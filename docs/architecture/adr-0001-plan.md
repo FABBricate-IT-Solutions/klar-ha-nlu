@@ -4,13 +4,29 @@
 
 Rahmen: [ADR 0001](adr-0001-rules-and-trainer.md). Jede Stufe ist ein eigenes PR. Defaults bleiben heutiges Assist-Verhalten, bis jemand eine Spur ändert. Kein Kalender — Abhängigkeit und Risiko steuern die Reihenfolge.
 
+## Locale-Invariante
+
+Alles gilt für **jede kompilierte Assist-Locale** in `GET /api/v2/languages` (heute 67, inkl. Varianten wie `de-CH`, `pt-BR`, `zh-CN`, `sr-Latn`). de/en sind Hand-Referenzpacks und Oracle-Graphen, **keine Support-Kaste**. Kein `match LangId` in `src/parse/`. Ein Feature, das nur auf Deutsch/Englisch grün ist, ist nicht fertig.
+
+| Schicht | Wie alle Locales mitkommen |
+|---------|----------------------------|
+| Match | sprachunabhängig (`PolicyId`). Catalog-Ids sind stabil; UI-Texte über Operator-i18n-Keys, nicht hardcodiertes Deutsch. |
+| Lexikon | jedes Pack ist die Seed-DB dieser Locale. Overlay `SetDelta` hängt am gebundenen Catalog, nicht an `de`. |
+| Govern-Safety | `when.domain=lock` ist sprachlos — **ein** Seed-Bundle für alle Packs, nicht 67 Übersetzungen. |
+| Phrase-Seeds / Household | nur über Generator für **alle** Packs im selben PR, analog `scripts/lang_packs`. Nie nur de/en. |
+| Trainer-Validate | Dry-Run gegen Representative + Parity **der gebundenen Locale**, nicht nur `familienhaus_de`. |
+| Operator-Chrome | neue Keys in `de.ts`/`en.ts`; übrige UI-JSONs fallen auf `en` zurück (bestehendes Muster). Assist-Qualität hängt nicht am Chrome. |
+
+**Gate jeder Stufe, die Parse oder Seeds berührt:** `cargo nextest run --locked --test assist_langs --test parity_langs` (volle Matrix, kein Fail-Fast), plus die Oracle-Suiten. Russisch bleibt außen vor (kein Pack).
+
 ## Festgelegte Entscheidungen
 
 | Punkt | Festlegung |
 |-------|------------|
 | Match | kompiliert + Overlay (`enabled`, `precedence`), keine Matching-DSL |
 | Lexikon | Pack = Seed-DB; Slang nur `LanguageOverlay` `SetDelta` |
-| Govern-Seed | `PolicyRule[]` pro Locale, Haus ersetzt per Id |
+| Govern-Seed | ein sprachloses Safety-Bundle für alle Locales; Phrase-Seeds nur generiert für die ganze Matrix |
+| Locales | alle kompilierten LangIds; de/en = Oracles, nicht Extra-Support |
 | Trainer | nur Operator-UI; Engine ohne Netz; Propose = Context + Validate |
 | `compiled_risky` | Untergrenze an, bis Seed-Parity bitgleich ist |
 | `origin: trainer` | bleibt sichtbar |
@@ -39,11 +55,11 @@ Ziel: dieselben Daten, die die UI später zeichnet, existieren im JSON. Parse-Er
 }
 ```
 
-`GET /api/v2/policies/catalog` — read-only Match-Katalog aus `PolicyId` (id, precedence, summary). Kein Overlay.
+`GET /api/v2/policies/catalog` — read-only Match-Katalog aus `PolicyId` (`id`, `precedence`, `summary_key`). Kein Overlay, keine locale-spezifischen Texte in der Engine.
 
 **Code:** `src/types/outcome.rs`, `src/nlu/draft.rs` `safety_decision`, `src/parse/policy.rs` (Katalogzeilen), `web/src/types.ts`, `web/src/parseContract.ts`, `tests/contract.rs`.
 
-**Gate:** `cargo nextest run --locked --test contract --test policy`; Web-Contract akzeptiert die neuen optionalen Keys. DE/EN-Voice-Suiten unverändert.
+**Gate:** `cargo nextest run --locked --test contract --test policy --test assist_langs`; Web-Contract akzeptiert die neuen optionalen Keys. Vollmatrix `parity_langs` wenn die Stufe Parse-Felder anfasst; sonst Contract reicht.
 
 **Risiko:** gering. Alte Clients ignorieren unbekannte Felder; Confirm/Clarify serialisieren weiter keinen Plan.
 
@@ -58,7 +74,7 @@ Ziel: Tab Regeln zeigt drei Spalten. Evaluate und Labor zeichnen denselben Pfad.
 - Labor: `.flow` / `processPath` durch `PolicyPath` ersetzen (Lesen, nicht Schreiben).
 - Strings in `web/src/i18n/en.ts` und `de.ts`; andere Locales fallen auf `en` zurück.
 
-**Gate:** manuell im Browser Regeln + Labor mit `Licht im Wohnzimmer an` und einem Schloss-Satz. Contract weiter grün.
+**Gate:** manuell im Browser Regeln + Labor, einmal `de` und einmal eine generierte Locale (z. B. `ja` oder `ar`). Evaluate mit `language` gepinnt. Contract + `assist_langs` grün.
 
 **Risiko:** gering. Kein Parse-Umbau. Auf schmalen Screens Spalten untereinander, eine offen.
 
@@ -76,74 +92,64 @@ Unbekannte Id → `400`. Fehlende Zeile = Engine-Default. Reset = Zeile löschen
 
 **Code:** `src/home/overlay.rs`, `src/io/policies.rs` (Bundle um `match_controls`), `src/parse/clause.rs` (disabled skippen, Precedence aus Overlay), `src/parse/policy.rs`. Lexikon: bestehende `POST /api/lang/overlay` aus der Spur Sprache aufrufen; `src/lang/validate.rs` `set_field` um fehlende Nomina/Cues erweitern (nicht Verben).
 
-**Tests:** leeres Overlay ≡ heutige Kandidatenliste; `media` aus → keine `PolicyId::Media`-Kandidaten; Locale-Smokes mit Default-Overlay grün. `tests/language.rs` Overlay add `funzel`.
+**Tests:** leeres Overlay ≡ heutige Kandidatenliste; `media` aus → keine `PolicyId::Media`-Kandidaten; Locale-Smokes mit Default-Overlay grün. `tests/language.rs` Overlay-add am **gebundenen** Pack (kein de-only Token).
 
-**Gate:** `assist_langs`, `parity_langs`, `policy`, `language`. Evaluate zeigt Warnung, wenn ein Disable ein Smoke-Muster treffen würde (best effort: bekannte PolicyIds wie `area_command` / `all_lights`); Speichern trotzdem.
+**Gate:** `assist_langs`, `parity_langs`, `policy`, `language`. Evaluate zeigt Warnung, wenn ein Disable ein Smoke-Muster treffen würde (best effort: bekannte PolicyIds wie `area_command` / `all_lights`); Speichern trotzdem. Leeres Overlay darf **keine** Locale gegenüber `main` verschieben.
 
 **Risiko:** mittel. Falsches Disable bricht Assist im Haus, nicht in CI, solange Defaults getestet werden.
 
-## Stufe 3 — Govern-Seed de/en, Verhalten gleich
+## Stufe 3 — Govern-Seed für alle Locales, Verhalten gleich
 
-Ziel: `risky_intent` / `allow_permitted` als sichtbare Seed-Regeln. `compiled_risky` bleibt Floor.
+Ziel: `risky_intent` / `allow_permitted` als sichtbare Seed-Regeln auf **jeder** gebundenen Locale. `compiled_risky` bleibt Floor.
 
-**Daten:** `src/lang/packs/de/govern.json`, `en/govern.json` — Ids `seed:confirm-lock`, `seed:confirm-cover-close`, `seed:block-area-lock`. Merge: Haus-Regeln davor, Haus mit gleicher Id ersetzt Seed, Seeds nicht in der 64.
+**Daten:** ein sprachloses Bundle, z. B. `src/lang/govern_safety.json`, gebunden mit jedem Pack — nicht 67 Kopien, nicht nur `de`/`en`. Ids `seed:confirm-lock`, `seed:confirm-cover-close`, `seed:block-area-lock`. `when` nur Intent/Domain/Area, keine Phrase. Merge: Haus davor, gleiche Id ersetzt Seed, Seeds nicht in der 64.
 
-**Code:** `src/types/policy.rs` (Origin/replaces optional), `src/nlu/draft.rs`, `src/nlu/policy_route.rs`. Toggle am Seed schreibt Haus-Override `enabled: false` mit `replaces`, löscht nicht das Pack.
+Phrase- oder Household-Seeds gehören **nicht** hierher. Wenn sie später kommen: Generator schreibt sie für `LangId::all()` im selben PR.
 
-**Tests:** dieselben Lock/Cover-Fälle in `src/nlu/validation.rs` und `tests/policy.rs` — Band identisch zu heute, `policy_trace.seed` gesetzt wenn Floor nicht allein greift.
+**Code:** `src/types/policy.rs`, `src/nlu/draft.rs`, `src/nlu/policy_route.rs`, Bind in `src/nlu/context.rs` unabhängig von `LangId`. Toggle schreibt Haus-Override `enabled: false` mit `replaces`.
 
-**Gate:** bitgleiche Confirm/Reject-Matrix vs. `main` auf `familienhaus_de` / `family_home_en` plus `tests/policy.rs`.
+**Tests:** Lock/Cover-Matrix in `tests/policy.rs` (de) **und** dieselben Intents über `assist_langs` / Representative je Locale, soweit das Set ein Schloss oder Cover hat. Band identisch zu `main`. `policy_trace.seed` gesetzt, wenn nicht nur der Floor greift.
 
-**Risiko:** hoch. Kleiner when-Fehler ändert Schloss-Confirm. Deshalb Floor an lassen, bis diese Stufe grün ist.
+**Gate:** `policy`, `assist_langs`, `parity_langs`; bitgleiche Confirm/Reject-Oracles `familienhaus_de` / `family_home_en` bleiben die Graph-Referenz, gelten aber nicht als einzige Locales.
 
-## Stufe 4 — Seeds für die übrigen Locales
+**Risiko:** hoch. Kleiner when-Fehler ändert Schloss-Confirm in allen Sprachen gleichzeitig. Floor an lassen, bis die volle Matrix grün ist.
 
-Ziel: jede kompilierte Locale hat denselben Safety-Universalsatz (sprachunabhängig). Phrase-Seeds nur wo das Pack Household-Phrasen hat — nicht in dieser Stufe.
+## Stufe 4 — Trainer (Context + Validate)
 
-Generator analog `scripts/lang_packs`: `de`/`en` Referenz kopieren. Freshness-Check wie Packs.
+Ziel: LLM richtet ein, Engine bleibt ohne Netz. Context und Validate sind **locale-scoped** (`language` am Request, sonst Assist-Pin).
 
-**Gate:** `parity_langs`; Confirm-Lock-Smoke je Locale, wo das Representative-Set ein Schloss hat, sonst Skip.
+1. `GET /api/v2/policies/trainer-context?layer=&language=` — Graph, Gaps, Catalog, Seed, Overlays, Schema. Lexikon-Vorschläge nur gegen den gebundenen Pack.
+2. UI oder HA-Agent erzeugt JSON (Prompt versioniert, `docs/architecture/trainer-prompt.md` in diesem PR). Prompt listet die Locale, nicht „German house“.
+3. `POST /api/v2/policies/propose/validate` — sanitize, Grounding, Dry-Run gegen Representative + Parity **dieser** Locale plus Haus-Smokes.
+4. Drawer: Diff, Apply auf die Write-API der Spur.
 
-**Risiko:** niedrig, wenn Stufe 3 hält. Dünne Seeds sind besser als übersetzte Phrase-Falschlinge.
+**Tests:** Fixtures ohne LLM für mindestens eine Referenz (`familienhaus_de`) **und** eine generierte Locale (z. B. `tests/datasets/full_home/ja` oder Parity-Graph). `media_new_matcher` rejected; Lexikon-add eines Partikels der **gebundenen** Locale rejected (nicht hart `an` für jede Sprache).
 
-## Stufe 5 — Trainer (Context + Validate)
+**Gate:** Unit + Contract; `assist_langs` unverändert. Kein Live-Modell in CI.
 
-Ziel: LLM richtet ein, Engine bleibt ohne Netz.
+**Risiko:** mittel (Prompt-Drift). Validate ist die Kante.
 
-1. `GET /api/v2/policies/trainer-context?layer=` — Graph-Sichtbares, Gaps, Catalog, Seed, aktuelle Overlays, Schema der Spur. Kein Roh-Journal ohne Settings.
-2. UI oder HA-Agent erzeugt JSON (Prompt versioniert, im Repo unter `docs/architecture/trainer-prompt.md`, erst in diesem PR).
-3. `POST /api/v2/policies/propose/validate` — `sanitize_*`, Grounding (Entity/Area/`prefer` im Graph, Match-Id im Catalog, Lexikon-Pfad in `set_field`), Dry-Run gegen Haus-Smokes + Locale-Smokes der gebundenen Sprache.
-4. Drawer: Diff, Checkbox, Übernehmen ruft die bestehende Write-API der Spur.
+## Stufe 5 — später, nicht v1
 
-**Schemas:** wie ADR-Tabelle (Match / Lexikon / Seed / Haus). Unbekannte Match-Id und fremde Entity → Zeile `rejected`, nicht 500.
-
-**Tests:** Fixtures ohne LLM: Graph `familienhaus_de` → erwartete Vorschläge für Klima/Lock; `media_new_matcher` rejected; Lexikon-add mit Partikel `an` rejected.
-
-**Gate:** Unit + Contract für Context/Validate. Kein Live-Modell in CI.
-
-**Risiko:** mittel (Prompt-Drift). Validate ist die Kante; das Modell darf nur vorschlagen.
-
-## Stufe 6 — später, nicht v1
-
-- Household-Phrasen (Uhr, Wetter, Undo, Erklären) in den Govern-Seed, nur bei gleichem Vertrag wie `src/nlu/household.rs`.
-- Trainer als Assist-Gespräch.
-- `compiled_risky` hinter Setting, sobald Stufe 3/4 lange grün sind.
+- Household-Phrasen in den Seed: **Generator für alle Packs**, Vertrag wie `src/nlu/household.rs`, Gate `assist_langs` + `parity_langs`.
+- Trainer als Assist-Gespräch (Pipeline-Sprache = Pack).
+- `compiled_risky` hinter Setting, sobald Stufe 3 auf der vollen Matrix hält.
 - Pfad-Chip in der Gesprächszeile.
 
 ## Reihenfolge und Stopps
 
 ```
-0 Vertrag → 1 UI-Pfad → 2 Match/Lexikon-Overlay → 3 Seed-Safety de/en
-                                                 → 4 Locale-Seeds
-                                                 → 5 Trainer
+0 Vertrag → 1 UI-Pfad → 2 Match/Lexikon-Overlay → 3 Seed-Safety (alle Locales)
+                                                 → 4 Trainer (locale-scoped)
 ```
 
 Nicht parallel zu Stufe 3: Seed-Merge ändert `safety_decision`. Stufe 1 darf auf Stufe 0 landen, sobald Catalog+Trace da sind.
 
-Stopp und zurück, wenn: DE/EN-Oracle-Suiten rot, Confirm-Lock driftet, Catalog merget Locales, Trainer ohne Validate speichert.
+Stopp und zurück, wenn: irgendeine Locale in `assist_langs` / `parity_langs` rot wird, Confirm-Lock driftet, Catalog Locales merget, Trainer ohne Validate speichert, oder eine Stufe nur für de/en landet.
 
 ## Explizit draußen
 
+- Eine Stufe oder ein Seed, das nur de/en beliefert
 - Neue `PolicyId` aus der UI oder dem Modell
 - Pack-Dateien zur Laufzeit ersetzen
 - Morphologie, `NumberStyle`, Tokenizer als Overlay

@@ -21,7 +21,7 @@ Desired:
 - **Manage** all three layers in the operator UI: on/off, order, content — plus **LLM proposals** per layer.
 - **Visualize** those three layers sharply: static (how they stack) and live (which path *this* sentence took). A click on a node opens the rule.
 
-Match stays compiled (no freely invented matching DSL). Controllable means an overlay on the catalog (enable, precedence), not new `PolicyId` functions from the model.
+Match stays compiled (no freely invented matching DSL). Controllable means an overlay on the catalog (enable, precedence), not new `PolicyId` functions from the model. Every compiled Assist locale (`GET /api/v2/languages`) is first-class — de/en are oracles, not a support caste.
 
 ## Current state (short)
 
@@ -61,7 +61,7 @@ Pre-seeded per language are **two** seeds, plus an overlay:
 
 1. **Lexicon pack** (already compiled): verbs, nouns, fillers. That *is* the pre-seeded database.
 2. **Lexicon overlay** (already `LanguageOverlay` / `SetDelta`): slang, dialect, house words. Preview and rollback exist.
-3. **Govern seed** (new): default `PolicyRule[]` for that locale.
+3. **Govern seed** (new): one language-free safety bundle bound with **every** pack.
 
 ## Layer contract
 
@@ -195,19 +195,16 @@ The model must not invent match ids, new effects, or entity ids off the graph. P
 2. **Match and language controls**  
    Overlay `match_controls`; seed toggles; lexicon deltas visible in the same lane (API already exists). Evaluate honors all of them. Reset-to-default. Parity: defaults = today’s behavior.
 
-3. **Safety as seed, same behavior**  
-   `risky_intent` / `allow_permitted` as seed rows. `compiled_risky` stays the floor until tests match bit-for-bit.
+3. **Safety as seed for every locale**  
+   One language-free govern bundle on every pack. `compiled_risky` stays the floor until `assist_langs` + `parity_langs` hold.
 
-4. **Seeds for every locale**  
-   Hand-written `de`/`en`, the rest generated or thin.
+4. **Trainer**  
+   Context + validate with `language`. Tests on a reference locale **and** a generated one.
 
-5. **Trainer**  
-   `POST /api/v2/policies/propose` with `layer`. UI diff on the lane. Tests on `familienhaus_de` / `family_home_en`.
+5. **Optional: household phrases**  
+   Only via a generator for `LangId::all()`.
 
-6. **Optional: household phrases into the seed**  
-   Only if the undo/explain/clock contract stays the same.
-
-Each phase is its own PR. This ADR is the frame.
+Each stage is its own PR; the [implementation plan](adr-0001-plan.en.md) is the order with files, gates, and stop rules. This ADR stays the frame.
 
 ## Open questions
 

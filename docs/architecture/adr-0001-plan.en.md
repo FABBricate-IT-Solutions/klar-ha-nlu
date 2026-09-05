@@ -4,13 +4,29 @@
 
 Frame: [ADR 0001](adr-0001-rules-and-trainer.en.md). Each stage is its own PR. Defaults stay today’s Assist behavior until someone changes a lane. No calendar — order follows dependencies and risk.
 
+## Locale invariant
+
+Everything applies to **every compiled Assist locale** in `GET /api/v2/languages` (67 today, including variants such as `de-CH`, `pt-BR`, `zh-CN`, `sr-Latn`). de/en are hand-written reference packs and oracle graphs, **not a support caste**. No `match LangId` in `src/parse/`. A feature that is green only on German/English is not done.
+
+| Layer | How every locale ships |
+|-------|------------------------|
+| Match | language-agnostic (`PolicyId`). Catalog ids are stable; UI copy uses operator i18n keys, not hard-coded German. |
+| Lexicon | each pack is that locale’s seed DB. Overlay `SetDelta` binds to the pinned catalog, not to `de`. |
+| Govern safety | `when.domain=lock` is language-free — **one** seed bundle for every pack, not 67 translations. |
+| Phrase seeds / household | only via a generator for **all** packs in the same PR, like `scripts/lang_packs`. Never de/en only. |
+| Trainer validate | dry-run against representative + parity **of the bound locale**, not only `familienhaus_de`. |
+| Operator chrome | new keys in `de.ts`/`en.ts`; other UI JSONs fall back to `en` (existing pattern). Assist quality does not hang on chrome. |
+
+**Gate for every stage that touches parse or seeds:** `cargo nextest run --locked --test assist_langs --test parity_langs` (full matrix, no fail-fast), plus the oracle suites. Russian stays out (no pack).
+
 ## Locked decisions
 
 | Topic | Decision |
 |-------|----------|
 | Match | compiled + overlay (`enabled`, `precedence`), no matching DSL |
 | Lexicon | pack = seed DB; slang only `LanguageOverlay` `SetDelta` |
-| Govern seed | `PolicyRule[]` per locale; house replaces by id |
+| Govern seed | one language-free safety bundle for all locales; phrase seeds only generated for the full matrix |
+| Locales | every compiled LangId; de/en = oracles, not extra support |
 | Trainer | operator UI only; engine has no net; propose = context + validate |
 | `compiled_risky` | floor on until seed parity is bit-identical |
 | `origin: trainer` | stays visible |
@@ -39,11 +55,11 @@ Extend `PolicyTrace` with optional fields (`skip_serializing_if`):
 }
 ```
 
-`GET /api/v2/policies/catalog` — read-only match catalog from `PolicyId` (id, precedence, summary). No overlay.
+`GET /api/v2/policies/catalog` — read-only match catalog from `PolicyId` (`id`, `precedence`, `summary_key`). No overlay, no locale-specific copy in the engine.
 
 **Code:** `src/types/outcome.rs`, `src/nlu/draft.rs` `safety_decision`, `src/parse/policy.rs` (catalog rows), `web/src/types.ts`, `web/src/parseContract.ts`, `tests/contract.rs`.
 
-**Gate:** `cargo nextest run --locked --test contract --test policy`; web contract accepts the new optional keys. DE/EN voice suites unchanged.
+**Gate:** `cargo nextest run --locked --test contract --test policy --test assist_langs`; web contract accepts the new optional keys. Full `parity_langs` matrix when the stage touches parse fields; otherwise contract is enough.
 
 **Risk:** low. Old clients ignore unknown fields; confirm/clarify still never serialize a plan.
 
@@ -58,7 +74,7 @@ Goal: the Rules tab shows three columns. Evaluate and Lab draw the same path. No
 - Lab: replace `.flow` / `processPath` with `PolicyPath` (read, do not write).
 - Strings in `web/src/i18n/en.ts` and `de.ts`; other locales fall back to `en`.
 
-**Gate:** browser pass on Rules + Lab with “turn on the living room lights” and a lock sentence. Contract still green.
+**Gate:** browser pass on Rules + Lab, once with `de` and once with a generated locale (e.g. `ja` or `ar`). Evaluate with `language` pinned. Contract + `assist_langs` green.
 
 **Risk:** low. No parse rewrite. On narrow screens stack the columns, one open.
 
@@ -76,74 +92,64 @@ Unknown id → `400`. Missing row = engine default. Reset = delete the row.
 
 **Code:** `src/home/overlay.rs`, `src/io/policies.rs` (bundle grows `match_controls`), `src/parse/clause.rs` (skip disabled, precedence from overlay), `src/parse/policy.rs`. Lexicon: call existing `POST /api/lang/overlay` from the Language lane; extend `src/lang/validate.rs` `set_field` with missing nouns/cues (not verbs).
 
-**Tests:** empty overlay ≡ today’s candidate list; `media` off → no `PolicyId::Media` candidates; locale smokes green with default overlay. `tests/language.rs` overlay add `funzel`.
+**Tests:** empty overlay ≡ today’s candidate list; `media` off → no `PolicyId::Media` candidates; locale smokes green with default overlay. `tests/language.rs` overlay add on the bound pack (not a de-only token).
 
-**Gate:** `assist_langs`, `parity_langs`, `policy`, `language`. Evaluate warns if a disable would hit a known smoke pattern (`area_command` / `all_lights`); save still allowed.
+**Gate:** `assist_langs`, `parity_langs`, `policy`, `language`. Evaluate warns if a disable would hit a known smoke pattern (`area_command` / `all_lights`); save still allowed. An empty overlay must **not** shift any locale versus `main`.
 
 **Risk:** medium. A bad disable breaks Assist in that house, not CI, as long as defaults stay tested.
 
-## Stage 3 — govern seed de/en, same behavior
+## Stage 3 — govern seed for every locale, same behavior
 
-Goal: `risky_intent` / `allow_permitted` as visible seed rules. `compiled_risky` stays the floor.
+Goal: `risky_intent` / `allow_permitted` as visible seed rules on **every** bound locale. `compiled_risky` stays the floor.
 
-**Data:** `src/lang/packs/de/govern.json`, `en/govern.json` — ids `seed:confirm-lock`, `seed:confirm-cover-close`, `seed:block-area-lock`. Merge: house rules in front, same id replaces seed, seeds do not count toward 64.
+**Data:** one language-free bundle, e.g. `src/lang/govern_safety.json`, bound with every pack — not 67 copies, not `de`/`en` only. Ids `seed:confirm-lock`, `seed:confirm-cover-close`, `seed:block-area-lock`. `when` is intent/domain/area only, no phrase. Merge: house in front, same id replaces seed, seeds do not count toward 64.
 
-**Code:** `src/types/policy.rs` (optional origin/replaces), `src/nlu/draft.rs`, `src/nlu/policy_route.rs`. A seed toggle writes a house override `enabled: false` with `replaces`; it does not delete the pack.
+Phrase or household seeds do **not** belong here. If they come later: the generator writes them for `LangId::all()` in the same PR.
 
-**Tests:** the same lock/cover cases in `src/nlu/validation.rs` and `tests/policy.rs` — band identical to today, `policy_trace.seed` set when the floor is not the only hit.
+**Code:** `src/types/policy.rs`, `src/nlu/draft.rs`, `src/nlu/policy_route.rs`, bind in `src/nlu/context.rs` independent of `LangId`. A toggle writes a house override `enabled: false` with `replaces`.
 
-**Gate:** bit-identical confirm/reject matrix vs `main` on `familienhaus_de` / `family_home_en` plus `tests/policy.rs`.
+**Tests:** lock/cover matrix in `tests/policy.rs` (de) **and** the same intents through `assist_langs` / representative per locale when the set has a lock or cover. Band identical to `main`. `policy_trace.seed` set when the floor is not the only hit.
 
-**Risk:** high. A small `when` mistake changes lock confirm. Keep the floor on until this stage is green.
+**Gate:** `policy`, `assist_langs`, `parity_langs`; bit-identical confirm/reject oracles `familienhaus_de` / `family_home_en` stay the graph reference, not the only locales.
 
-## Stage 4 — seeds for the remaining locales
+**Risk:** high. A small `when` mistake changes lock confirm in every language at once. Keep the floor on until the full matrix is green.
 
-Goal: every compiled locale has the same safety-universal set (language-agnostic). Phrase seeds only where the pack has household phrases — not in this stage.
+## Stage 4 — trainer (context + validate)
 
-Generator like `scripts/lang_packs`: copy the `de`/`en` reference. Freshness check like packs.
+Goal: the LLM sets the house up; the engine stays without a net. Context and validate are **locale-scoped** (`language` on the request, else the Assist pin).
 
-**Gate:** `parity_langs`; confirm-lock smoke per locale when the representative set has a lock, otherwise skip.
+1. `GET /api/v2/policies/trainer-context?layer=&language=` — graph, gaps, catalog, seed, overlays, schema. Lexicon proposals only against the bound pack.
+2. UI or HA agent produces JSON (versioned prompt, `docs/architecture/trainer-prompt.md` in this PR). The prompt names the locale, not “German house”.
+3. `POST /api/v2/policies/propose/validate` — sanitize, grounding, dry-run against representative + parity **of that locale** plus house smokes.
+4. Drawer: diff; apply calls that lane’s write API.
 
-**Risk:** low if stage 3 holds. Thin seeds beat mistranslated phrase seeds.
+**Tests:** fixtures without an LLM for at least one reference (`familienhaus_de`) **and** one generated locale (e.g. `tests/datasets/full_home/ja` or a parity graph). `media_new_matcher` rejected; lexicon-add of a particle of the **bound** locale rejected (not hard-coded `an` for every language).
 
-## Stage 5 — trainer (context + validate)
+**Gate:** unit + contract; `assist_langs` unchanged. No live model in CI.
 
-Goal: the LLM sets the house up; the engine stays without a net.
+**Risk:** medium (prompt drift). Validate is the edge.
 
-1. `GET /api/v2/policies/trainer-context?layer=` — visible graph, gaps, catalog, seed, current overlays, lane schema. No raw journal unless settings allow it.
-2. UI or HA agent produces JSON (versioned prompt in-repo as `docs/architecture/trainer-prompt.md`, added in this PR).
-3. `POST /api/v2/policies/propose/validate` — `sanitize_*`, grounding (entity/area/`prefer` on the graph, match id in the catalog, lexicon path in `set_field`), dry-run against house smokes + locale smokes of the bound language.
-4. Drawer: diff, checkboxes; apply calls that lane’s existing write API.
+## Stage 5 — later, not v1
 
-**Schemas:** as in the ADR table (match / lexicon / seed / house). Unknown match id and off-graph entity → row `rejected`, not HTTP 500.
-
-**Tests:** fixtures without an LLM: graph `familienhaus_de` → expected climate/lock proposals; `media_new_matcher` rejected; lexicon-add of particle `an` rejected.
-
-**Gate:** unit + contract for context/validate. No live model in CI.
-
-**Risk:** medium (prompt drift). Validate is the edge; the model may only propose.
-
-## Stage 6 — later, not v1
-
-- Household phrases (clock, weather, undo, explain) into the govern seed, only if the contract matches `src/nlu/household.rs`.
-- Trainer as an Assist conversation.
-- `compiled_risky` behind a setting once stages 3/4 stay green.
+- Household phrases into the seed: **generator for every pack**, contract like `src/nlu/household.rs`, gate `assist_langs` + `parity_langs`.
+- Trainer as an Assist conversation (pipeline language = pack).
+- `compiled_risky` behind a setting once stage 3 holds on the full matrix.
 - Path chip on a conversation row.
 
 ## Order and stop rules
 
 ```
-0 contract → 1 UI path → 2 match/lexicon overlay → 3 seed safety de/en
-                                                    → 4 locale seeds
-                                                    → 5 trainer
+0 contract → 1 UI path → 2 match/lexicon overlay → 3 seed safety (every locale)
+                                                   → 4 trainer (locale-scoped)
 ```
 
 Do not parallelize with stage 3: seed merge changes `safety_decision`. Stage 1 may land on stage 0 as soon as catalog+trace exist.
 
-Stop and revert if: DE/EN oracle suites go red, lock confirm drifts, the catalog merges locales, or the trainer saves without validate.
+Stop and revert if: any locale in `assist_langs` / `parity_langs` goes red, lock confirm drifts, the catalog merges locales, the trainer saves without validate, or a stage lands de/en-only.
 
 ## Explicitly out
 
+- A stage or seed that only ships de/en
 - New `PolicyId` from the UI or the model
 - Replacing pack files at runtime
 - Morphology, `NumberStyle`, tokenizer as overlay

@@ -21,7 +21,7 @@ Gewünscht:
 - Alle drei Ebenen in der Operator-UI **verwalten**: an/aus, Reihenfolge, Inhalt — plus **LLM-Vorschläge** pro Ebene.
 - Dieselben drei Ebenen **scharf visualisieren**: statisch (wie sie geschichtet sind) und live (welchen Pfad *dieser* Satz genommen hat). Ein Klick auf einen Knoten öffnet die Regel.
 
-Match bleibt kompiliert (keine frei erfundene Matching-DSL). Steuerbar heißt: Overlay auf dem Katalog (enable, Precedence), nicht neue `PolicyId`-Funktionen aus dem Modell.
+Match bleibt kompiliert (keine frei erfundene Matching-DSL). Steuerbar heißt: Overlay auf dem Katalog (enable, Precedence), nicht neue `PolicyId`-Funktionen aus dem Modell. Jede kompilierte Assist-Locale (`GET /api/v2/languages`) ist erstklassig — de/en sind Oracles, keine Extra-Kaste.
 
 ## Ist-Zustand (knapp)
 
@@ -61,7 +61,7 @@ Vorbefüllt pro Sprache sind **zwei** Samen, plus ein Overlay:
 
 1. **Lexikon-Pack** (schon kompiliert): Verben, Nomina, Füllwörter. Das *ist* die Pre-Seed-Datenbank.
 2. **Lexikon-Overlay** (schon `LanguageOverlay` / `SetDelta`): Slang, Dialekt, Hauswörter. Preview und Rollback existieren.
-3. **Govern-Seed** (neu): Default-`PolicyRule[]` dieser Locale.
+3. **Govern-Seed** (neu): ein sprachloses Safety-Bundle, gebunden mit **jedem** Pack.
 
 ## Schichtenvertrag
 
@@ -195,17 +195,14 @@ Das Modell darf keine neuen Match-Ids, keine neuen Effects, keine Entity-Ids au�
 2. **Match- und Sprachen-Steuerung**  
    Overlay `match_controls`; Seed-Toggles; Lexikon-Deltas in derselben Spur sichtbar (API existiert). Evaluate respektiert alles. Reset-auf-Default. Parity: Defaults = heutiges Verhalten.
 
-3. **Safety als Seed, Verhalten gleich**  
-   `risky_intent` / `allow_permitted` als Seed-Zeilen. `compiled_risky` bleibt Floor, bis Tests bitgleich sind.
+3. **Safety als Seed für alle Locales**  
+   Ein sprachloses Govern-Bundle an jedem Pack. `compiled_risky` bleibt Floor, bis `assist_langs` + `parity_langs` halten.
 
-4. **Seeds für alle Locales**  
-   `de`/`en` handgeschrieben, Rest generiert oder dünn.
+4. **Trainer**  
+   Context + Validate mit `language`. Tests an einer Referenz- **und** einer generierten Locale.
 
-5. **Trainer**  
-   `POST /api/v2/policies/propose` mit `layer`. UI-Diff auf der Spur. Tests an `familienhaus_de` / `family_home_en`.
-
-6. **Optional: Household-Phrasen in den Seed**  
-   Nur bei gleichem Undo/Explain/Clock-Vertrag.
+5. **Optional: Household-Phrasen**  
+   Nur per Generator für `LangId::all()`.
 
 Jede Stufe braucht ein eigenes PR; der [Umsetzungsplan](adr-0001-plan.md) ist die Reihenfolge mit Dateien, Gates und Stopps. Dieses ADR bleibt die Klammer.
 
