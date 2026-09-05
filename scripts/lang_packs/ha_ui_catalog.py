@@ -81,6 +81,10 @@ def expand(fields: dict[str, str]) -> dict[str, str]:
         ),
         "options.step.init.data_description.languages": f["help_languages"],
         "options.step.init.data_description.channel": f["help_channel"],
+        "options.step.init.data_description.fallback_agent": f.get(
+            "help_fallback_agent",
+            "Leave empty. Configure the LLM in the Klar operator UI (Settings → LLM). Assist chat and the trainer use that endpoint. This field is only for an old Home Assistant conversation integration.",
+        ),
         "options.error.invalid_url": f["invalid"],
         "selector.engine_mode.options.local": f["local"],
         "selector.engine_mode.options.remote": f["remote"],

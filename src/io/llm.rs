@@ -37,11 +37,7 @@ fn from_file(dir: &Path) -> Option<LlmEndpoint> {
 }
 
 fn save_endpoint(dir: &Path, endpoint: &LlmEndpoint) -> std::io::Result<()> {
-    let stored = StoredEndpoint {
-        base_url: endpoint.base_url.clone(),
-        api_key: endpoint.api_key.clone(),
-        model: endpoint.model.clone(),
-    };
+    let stored = StoredEndpoint { base_url: endpoint.base_url.clone(), api_key: endpoint.api_key.clone(), model: endpoint.model.clone() };
     write_atomic_confined(dir, LLM_FILE, &serde_json::to_vec_pretty(&stored).unwrap_or_default())
 }
 

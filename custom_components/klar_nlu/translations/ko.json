@@ -51,7 +51,8 @@
           "calendar_llm": "기본은 끔. 켬: Klar가 캘린더를 읽고 예비 LLM이 일정을 말함. 끔: Klar가 목록을 말함. 만들기, 삭제, 이동은 Klar에 남음.",
           "allow_llm_tools": "Off by default. On: Klar still calls the chit-chat agent even if that agent can control Home Assistant. The model may turn lights and run scripts. Off: Klar skips the LLM when that agent has Assist tools.",
           "languages": "기본값은 Home Assistant 시스템 언어입니다.",
-          "channel": "언제든 변경할 수 있습니다. Staging은 Klar NLU(Staging)를 가리킵니다."
+          "channel": "언제든 변경할 수 있습니다. Staging은 Klar NLU(Staging)를 가리킵니다.",
+          "fallback_agent": "Leave empty. Configure the LLM in the Klar operator UI (Settings → LLM). Assist chat and the trainer use that endpoint. This field is only for an old Home Assistant conversation integration."
         }
       }
     },

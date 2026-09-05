@@ -51,7 +51,8 @@
           "calendar_llm": "Itzalita lehenetsita. Piztuta: Klarrek egutegia irakurri eta ordezko LLM-k gertaerak esaten ditu. Itzalita: Klarrek zerrenda esaten du. Sortu, ezabatu eta mugitu Klarrenean geratzen dira.",
           "allow_llm_tools": "Off by default. On: Klar still calls the chit-chat agent even if that agent can control Home Assistant. The model may turn lights and run scripts. Off: Klar skips the LLM when that agent has Assist tools.",
           "languages": "Lehenetsita Home Assistant sistemaren hizkuntza da.",
-          "channel": "Edozein unetan. Staging-ek Klar NLU (Staging) seinalatzen du."
+          "channel": "Edozein unetan. Staging-ek Klar NLU (Staging) seinalatzen du.",
+          "fallback_agent": "Leave empty. Configure the LLM in the Klar operator UI (Settings → LLM). Assist chat and the trainer use that endpoint. This field is only for an old Home Assistant conversation integration."
         }
       }
     },

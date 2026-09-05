@@ -51,7 +51,8 @@
           "calendar_llm": "Анхдагч унтраалттай. Асаалттай: Klar хуанли уншиж, нөөц LLM үйл явдлыг хэлнэ. Унтраалттай: Klar жагсаалтыг өөрөө хэлнэ. Үүсгэх, устгах, зөөх нь Klar дээр үлдэнэ.",
           "allow_llm_tools": "Off by default. On: Klar still calls the chit-chat agent even if that agent can control Home Assistant. The model may turn lights and run scripts. Off: Klar skips the LLM when that agent has Assist tools.",
           "languages": "Анхдагч нь Home Assistant системийн хэл.",
-          "channel": "Хэзээ ч. Staging нь Klar NLU (Staging) руу заана."
+          "channel": "Хэзээ ч. Staging нь Klar NLU (Staging) руу заана.",
+          "fallback_agent": "Leave empty. Configure the LLM in the Klar operator UI (Settings → LLM). Assist chat and the trainer use that endpoint. This field is only for an old Home Assistant conversation integration."
         }
       }
     },

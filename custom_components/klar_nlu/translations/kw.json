@@ -51,7 +51,8 @@
           "calendar_llm": "Degewys dhe-ves. Warbarth: Klar a red an kalender, an LLM reserv a lever an hwarvosow. Dhe-ves: Klar a lever an rol. Gwruthyl, dilea ha gwaya a wort yn Klar.",
           "allow_llm_tools": "Off by default. On: Klar still calls the chit-chat agent even if that agent can control Home Assistant. The model may turn lights and run scripts. Off: Klar skips the LLM when that agent has Assist tools.",
           "languages": "Defowt a hol yeth system Home Assistant.",
-          "channel": "Pub termyn. Staging a boynt orth Klar NLU (Staging)."
+          "channel": "Pub termyn. Staging a boynt orth Klar NLU (Staging).",
+          "fallback_agent": "Leave empty. Configure the LLM in the Klar operator UI (Settings → LLM). Assist chat and the trainer use that endpoint. This field is only for an old Home Assistant conversation integration."
         }
       }
     },

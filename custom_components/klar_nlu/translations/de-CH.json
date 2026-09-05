@@ -28,7 +28,7 @@
           "mode": "Engine",
           "personality": "Persönlichkeit",
           "languages": "Sprache",
-          "fallback_agent": "Conversation-Agent für Smalltalk",
+          "fallback_agent": "Optionaler Legacy-Conversation-Agent",
           "allow_llm_tools": "Assist-Wärchzüüg bim Smalltalk-Agent erlaube",
           "refine_speech": "NLU-Antworten vom LLM verfyynere",
           "refine_prompt": "Verfyynerigs-Prompt",
@@ -51,7 +51,8 @@
           "calendar_llm": "Standard us. Aa: Klar liest de Kalender, s Fallback-LLM seit d Termin. Us: Klar seit d Liste sälber. Aalege, Lösche und Verschiebe blibed bi Klar.",
           "allow_llm_tools": "Standard us. Aa: Klar rueft de Smalltalk-Agent au, wenn er Home Assistant stüre darf. Us: Klar überspringt s LLM, wenn de Agent Assist-Wärchzüüg het.",
           "languages": "Standard isch d Home-Assistant-Systemsprach.",
-          "channel": "Jederzit. Staging uf Klar NLU (Staging), Stable uf d App oder d mitglieferte Engine."
+          "channel": "Jederzit. Staging uf Klar NLU (Staging), Stable uf d App oder d mitglieferte Engine.",
+          "fallback_agent": "Leer loh. S LLM isch i de Klar-Operator-UI (Iistellige → LLM). Assist-Chat und Trainer nützt de gliich Endpoint. Das Feld isch nur für e alti Home-Assistant-Conversation-Integration."
         }
       }
     },

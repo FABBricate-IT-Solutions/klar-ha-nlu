@@ -51,7 +51,8 @@
           "calendar_llm": "Varsayılan kapalı. Açık: Klar takvimi okur, yedek LLM etkinlikleri söyler. Kapalı: Klar listeyi söyler. Oluşturma, silme ve taşıma Klar'da kalır.",
           "allow_llm_tools": "Off by default. On: Klar still calls the chit-chat agent even if that agent can control Home Assistant. The model may turn lights and run scripts. Off: Klar skips the LLM when that agent has Assist tools.",
           "languages": "Varsayılan Home Assistant sistem dilidir.",
-          "channel": "İstediğiniz zaman. Staging, Klar NLU (Staging)’i gösterir."
+          "channel": "İstediğiniz zaman. Staging, Klar NLU (Staging)’i gösterir.",
+          "fallback_agent": "Leave empty. Configure the LLM in the Klar operator UI (Settings → LLM). Assist chat and the trainer use that endpoint. This field is only for an old Home Assistant conversation integration."
         }
       }
     },

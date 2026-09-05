@@ -1,6 +1,9 @@
 [advisories]
 version = 2
 yanked = "deny"
+ignore = [
+    { id = "RUSTSEC-2024-0421", reason = "url 2.5.2 is pinned so rustc 1.85 does not pull idna/icu 1.x; Klar rejects userinfo in LLM base URLs" },
+]
 
 [licenses]
 version = 2

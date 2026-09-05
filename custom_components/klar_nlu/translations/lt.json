@@ -51,7 +51,8 @@
           "calendar_llm": "Pagal numatymą išjungta. Įjungta: Klar skaito kalendorių, atsarginis LLM sako įvykius. Išjungta: Klar sako sąrašą. Kūrimas, trynimas ir perkėlimas lieka Klar.",
           "allow_llm_tools": "Off by default. On: Klar still calls the chit-chat agent even if that agent can control Home Assistant. The model may turn lights and run scripts. Off: Klar skips the LLM when that agent has Assist tools.",
           "languages": "Pagal numatymą seka Home Assistant sistemos kalbą.",
-          "channel": "Bet kada. Staging nurodo Klar NLU (Staging)."
+          "channel": "Bet kada. Staging nurodo Klar NLU (Staging).",
+          "fallback_agent": "Leave empty. Configure the LLM in the Klar operator UI (Settings → LLM). Assist chat and the trainer use that endpoint. This field is only for an old Home Assistant conversation integration."
         }
       }
     },

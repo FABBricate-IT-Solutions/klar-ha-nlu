@@ -1,13 +1,8 @@
 //! Split OpenAI-style `text/event-stream` payloads.
 
+#[derive(Default)]
 pub struct SseBuf {
     rest: String,
-}
-
-impl Default for SseBuf {
-    fn default() -> Self {
-        Self { rest: String::new() }
-    }
 }
 
 impl SseBuf {
