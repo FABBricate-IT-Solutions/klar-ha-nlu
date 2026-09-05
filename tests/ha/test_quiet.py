@@ -35,6 +35,8 @@ class QuietAckTests(unittest.TestCase):
         off = _ok("HassTurnOff", entity_id="light.wohnzimmer")
         self.assertTrue(quiet.quiet_ack_applies(*on))
         self.assertTrue(quiet.quiet_ack_applies(*off))
+        self.assertTrue(quiet.quiet_ack_applies(*on, True))
+        self.assertFalse(quiet.quiet_ack_applies(*on, False))
 
     def test_rejects_queries_and_scenes(self) -> None:
         query = _ok("HassGetState", area="wohnzimmer")

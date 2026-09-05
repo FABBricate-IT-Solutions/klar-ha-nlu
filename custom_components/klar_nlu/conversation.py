@@ -353,7 +353,7 @@ class KlarConversationEntity(ConversationEntity):
                 llm = _speech_from_result(fallback) if fallback is not None else ""
                 if keeps_calendar_reply(speech, llm):
                     speech = llm
-            if self._quiet_ack() and quiet_ack_applies(executed, plan):
+            if self._quiet_ack() and quiet_ack_applies(executed, plan, payload.get("quiet_ack_eligible") if isinstance(payload.get("quiet_ack_eligible"), bool) else None):
                 await play_chime(self.hass, user_input)
                 return await self._spoken(
                     user_input, chat_log, pack, "", conversation_id, False, "chime"

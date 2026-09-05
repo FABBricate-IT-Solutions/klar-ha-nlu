@@ -24,11 +24,19 @@ SIMPLE_DOMAINS = frozenset({"light", "switch"})
 _CHIME_WAV: bytes | None = None
 
 
-def quiet_ack_applies(executed: dict[str, Any] | None, intents: list[dict[str, Any]] | None) -> bool:
+def quiet_ack_applies(
+    executed: dict[str, Any] | None,
+    intents: list[dict[str, Any]] | None,
+    eligible: bool | None = None,
+) -> bool:
     if not executed or executed.get("outcome") != "success":
         return False
     steps = executed.get("steps") or []
     if len(steps) != 1 or steps[0].get("status") != "success":
+        return False
+    if eligible is True:
+        return True
+    if eligible is False:
         return False
     if len(intents or []) != 1:
         return False

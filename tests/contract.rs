@@ -63,6 +63,7 @@ fn v2_json_contract_has_versioned_shape_and_deterministic_ordering() {
     assert_eq!(trace.band.as_deref(), Some("execute"));
     assert!(trace.seed.is_none());
     assert_eq!(json["schema_version"], "2.0");
+    assert_eq!(json["quiet_ack_eligible"], true);
 }
 
 #[test]
