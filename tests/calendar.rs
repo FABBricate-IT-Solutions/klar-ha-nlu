@@ -275,6 +275,46 @@ fn en_tomorrow_agenda_lists_with_day() {
 }
 
 #[test]
+fn en_calendar_tomorrow_does_not_bind_weather() {
+    let mut home = default_home();
+    home.entities.push(EntityRec {
+        entity_id: "weather.home".into(),
+        name: "Home".into(),
+        domain: "weather".into(),
+        platform: None,
+        area: None,
+        aliases: vec!["weather".into(), "forecast".into()],
+        tags: Vec::new(),
+    });
+    let (decision, names, slots) = outcome_home("What's on my calendar tomorrow?", "en", home);
+    assert!(matches!(decision, ParseDecision::Execute), "{decision:?}");
+    assert!(names.iter().any(|name| name == "KlarGetCalendarEvents"), "{names:?}");
+    assert!(!names.iter().any(|name| name == "HassGetState"), "{names:?}");
+    assert!(!slots.iter().any(|(name, value)| name == "entity_id" && value.starts_with("weather.")), "{slots:?}");
+    assert!(slots.iter().any(|(name, value)| name == "day" && value == "tomorrow"), "{slots:?}");
+}
+
+#[test]
+fn de_calendar_tomorrow_does_not_bind_weather() {
+    let mut home = default_home();
+    home.entities.push(EntityRec {
+        entity_id: "weather.home".into(),
+        name: "Zuhause".into(),
+        domain: "weather".into(),
+        platform: None,
+        area: None,
+        aliases: vec!["wetter".into(), "vorhersage".into()],
+        tags: Vec::new(),
+    });
+    let (decision, names, slots) = outcome_home("Was steht morgen im Kalender?", "de", home);
+    assert!(matches!(decision, ParseDecision::Execute), "{decision:?}");
+    assert!(names.iter().any(|name| name == "KlarGetCalendarEvents"), "{names:?}");
+    assert!(!names.iter().any(|name| name == "HassGetState"), "{names:?}");
+    assert!(!slots.iter().any(|(name, value)| name == "entity_id" && value.starts_with("weather.")), "{slots:?}");
+    assert!(slots.iter().any(|(name, value)| name == "day" && value == "tomorrow"), "{slots:?}");
+}
+
+#[test]
 fn family_script_delete_smokes() {
     for (lang, text) in [("fr", "supprime dentiste calendrier"), ("ja", "sakujo haisha karendaa"), ("ar", "احذف طبيب تقويم")] {
         let (decision, names, _) = outcome(text, lang);

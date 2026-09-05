@@ -541,35 +541,42 @@ class DispatchTests(unittest.IsolatedAsyncioTestCase):
         self.assertEqual(call.kwargs["target"], {"entity_id": player.entity_id})
         self.assertNotIn("volume_level", call.args[2])
 
-    async def test_tv_request_without_entity_is_unavailable(self) -> None:
+    async def test_lab_turn_on_without_entity_keeps_the_plan(self) -> None:
         hass = _hass()
-        spoken = await dispatch.handle_intent(
-            hass,
-            _input("Fernseher im Wohnzimmer"),
-            _item("HassTurnOn", domain="media_player", area="wohnzimmer"),
-            "de",
-            None,
-            lambda _entity_id: True,
-        )
-        self.assertFalse(spoken.ok)
-        self.assertEqual(spoken.error, "media_unavailable")
-        hass.services.async_call.assert_not_awaited()
-        dispatch.intent.async_handle.assert_not_awaited()
+        dispatch.intent.async_handle.return_value = object()
+        with (
+            patch.object(dispatch, "area_label", return_value="Wohnzimmer"),
+            patch.object(dispatch, "from_handled", return_value="Fernseher an."),
+        ):
+            spoken = await dispatch.handle_intent(
+                hass,
+                _input("Fernseher im Wohnzimmer"),
+                _item("HassTurnOn", domain="media_player", area="wohnzimmer"),
+                "de",
+                None,
+                lambda _entity_id: True,
+            )
+        self.assertTrue(spoken.ok)
+        dispatch.intent.async_handle.assert_awaited()
+        self.assertEqual(dispatch.intent.async_handle.await_args.args[2], "HassTurnOn")
 
-    async def test_tv_request_does_not_turn_on_soundbar(self) -> None:
+    async def test_lab_turn_on_runs_the_bound_player(self) -> None:
         player = _State("media_player.lg_dsn9yg_8909", "idle", friendly_name="Wohnzimmer")
         hass = _hass(player)
-        spoken = await dispatch.handle_intent(
-            hass,
-            _input("Fernseher im Wohnzimmer"),
-            _item("HassTurnOn", entity_id=player.entity_id),
-            "de",
-            None,
-            lambda _entity_id: True,
-        )
-        self.assertFalse(spoken.ok)
-        self.assertEqual(spoken.error, "media_unavailable")
-        hass.services.async_call.assert_not_awaited()
+        with patch.object(dispatch, "from_handled", return_value="Wohnzimmer an."):
+            spoken = await dispatch.handle_intent(
+                hass,
+                _input("Fernseher im Wohnzimmer"),
+                _item("HassTurnOn", entity_id=player.entity_id),
+                "de",
+                None,
+                lambda _entity_id: True,
+            )
+        self.assertTrue(spoken.ok)
+        hass.services.async_call.assert_awaited()
+        args = hass.services.async_call.await_args
+        self.assertEqual(args.args[:2], ("media_player", "turn_on"))
+        self.assertEqual(args.args[2]["entity_id"], player.entity_id)
 
     async def test_idle_alexa_kitchen_starts_text_command(self) -> None:
         player = _State("media_player.kuchenbereich_2", "idle", friendly_name="Küchenbereich", volume_level=0.33)
@@ -689,6 +696,18 @@ class DispatchTests(unittest.IsolatedAsyncioTestCase):
         self.assertTrue(spoken.ok)
         self.assertEqual(spoken.speech, "Keine Geräte.")
         dispatch.intent.async_handle.assert_not_awaited()
+
+    def test_non_weather_intent_does_not_forward_utterance(self) -> None:
+        user = SimpleNamespace(text="What's on my calendar tomorrow?")
+        self.assertEqual(dispatch.intent_query_text(user, "HassSetVolume", {}), "HassSetVolume")
+        self.assertEqual(
+            dispatch.intent_query_text(user, "HassGetState", {"domain": {"value": "calendar"}}),
+            "HassGetState",
+        )
+        self.assertEqual(
+            dispatch.intent_query_text(user, "HassGetState", {"entity_id": {"value": "weather.home"}}),
+            user.text,
+        )
 
 
 if __name__ == "__main__":

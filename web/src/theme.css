@@ -309,6 +309,7 @@ button.chip { background: transparent; }
 }
 .lab-satellite label { margin-top: 0; }
 .lab-toolbar .flow { flex: 2 1 280px; }
+.lab-toolbar .lab-pipeline-armed { flex: 1 1 100%; }
 .lab-toolbar .caption { flex: 1 1 100%; margin: 0; }
 .lab textarea { min-height: 88px; }
 .lab-out { display: grid; gap: 16px; margin-top: 16px; }
