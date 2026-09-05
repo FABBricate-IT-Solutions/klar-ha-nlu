@@ -54,7 +54,7 @@ Antwort:
 
 `language` ist optional (`de`, `en`, `fr` oder ein BCP-47-Tag wie `en-US`). Ist es gesetzt, bindet Klar nur dieses Paket. `speech` folgt dem gesetzten Paket.
 
-`personality` ist optional und setzt auf diesem Endpunkt eine Formel vor `speech` (`Sehr wohl.`, `Aye.`, …). Home Assistant speichert die Auswahl in der Integration und schickt sie bei jedem Parse; die Engine-Settings sind nur für die Klar-UI. Die LLM-Verfeinerung in der HA-Integration formuliert den Satz danach in der Stimme um und klebt die Formel nicht wieder davor.
+`personality` ist optional und setzt auf diesem Endpunkt eine Formel vor `speech` (`Sehr wohl.`, `Aye.`, …). Die Engine-Settings sind die Quelle (`GET`/`POST /api/settings`); die Operator-UI Settings-Seite ist der Editor. Home Assistant lässt Persönlichkeit am Parse weg, wenn gespeicherte Engine-Settings da sind, und fällt nur auf übrige Integrationsoptionen zurück, wenn der Cache leer ist. Die LLM-Verfeinerung formuliert den Satz danach in der Stimme um und klebt die Formel nicht wieder davor.
 
 `decision.type` ist einer von `execute`, `clarify`, `confirm`, `reject`, `chat` oder `error`. Nur `execute` enthält `plan`, vollständige `candidates` und `selected_candidate_id`; Clients dürfen Intents ausschließlich in diesem Fall ausführen. Bei allen anderen Entscheidungen ist `candidates` leer und es werden nirgends Intent- oder Slot-Daten serialisiert. `confirm` enthält nur Prompt und eine opake Kandidaten-ID. Der vorgeschlagene Plan bleibt ausschließlich in der Session, bis dieselbe `conversation_id` bejaht wird.
 
@@ -105,6 +105,11 @@ Der Token kommt aus `--token`, `KLAR_TOKEN` oder `--token-file`.
 | `confirm_risky_actions` | `true` verlangt vor riskanten Aktionen wie Sperren/Entsperren und breiten sicherheitsrelevanten Steuerungen eine Bestätigung. |
 | `semantic_adapters` | `true` befragt lokale typisierte Adapter nach einem Ranking-Reject. Standard aus. Vorschläge werden revalidiert und überschreiben Execute/Confirm/Clarify/Chat nicht. |
 | `nlu_rag` | `true` hängt nur bei `chat` und `reject` einen gematchten Ausschnitt an. Standard aus. Nie Assist-Werkzeuge; der HA-Fallback darf einen Befehl nur über Klar-Werkzeuge nachziehen. `POST /api/v2/parse` kann `nlu_rag` pro Request setzen. |
+| `refine_speech` | `true` formuliert fertige NLU-Sprache mit dem Engine-LLM um. Standard aus. |
+| `extra_prompt` | Extra-Zeile über der Pack-Persönlichkeit. Leer = nur Pack-Stimme. |
+| `quiet_ack` | `true` spielt bei einfachem An/Aus einen Chime statt TTS. Standard aus. |
+| `calendar_llm` | `true` lässt das Engine-LLM Kalendertermine sprechen. Standard aus. |
+| `allow_llm_tools` | `true` erlaubt Assist-Werkzeuge am Chat-Modell. Standard aus. |
 
 ### `GET` / `POST /api/v2/llm/endpoint`
 

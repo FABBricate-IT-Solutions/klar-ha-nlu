@@ -71,6 +71,7 @@ const defaultSettings: Settings = {
   quiet_ack: false,
   allow_llm_tools: false,
   fallback_llm: false,
+  extra_prompt: "",
 };
 
 type Route = {

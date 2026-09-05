@@ -8,15 +8,12 @@ from homeassistant.helpers.entity import EntityCategory
 from homeassistant.helpers.entity_platform import AddEntitiesCallback
 
 from .const import (
-    CONF_LANGUAGES,
     CONF_PERSONALITY,
-    CONF_REFINE_PROMPT,
     DOMAIN,
     PERSONALITIES,
     resolve_personality,
 )
-from .lang_select import default_pack
-from .refine_voices import editable_prompt
+from .engine import async_patch_engine_settings, cached_engine_settings
 
 
 async def async_setup_entry(
@@ -50,20 +47,21 @@ class KlarPersonalitySelect(SelectEntity):
 
     @property
     def current_option(self) -> str:
+        settings = cached_engine_settings(self.hass, self._entry)
+        if settings.get("personality"):
+            return resolve_personality(settings.get("personality"))
         return resolve_personality(self._entry.options.get(CONF_PERSONALITY))
 
     async def async_select_option(self, option: str) -> None:
         personality = resolve_personality(option)
         if personality not in PERSONALITIES or personality == self.current_option:
             return
-        hass_language = getattr(getattr(self.hass, "config", None), "language", None)
-        pack = default_pack(self._entry.options.get(CONF_LANGUAGES), hass_language)
-        self.hass.config_entries.async_update_entry(
-            self._entry,
-            options={
-                **self._entry.options,
-                CONF_PERSONALITY: personality,
-                CONF_REFINE_PROMPT: editable_prompt(personality, pack),
-            },
+        patched = await async_patch_engine_settings(
+            self.hass, self._entry, {"personality": personality}
         )
+        if patched is None:
+            self.hass.config_entries.async_update_entry(
+                self._entry,
+                options={**self._entry.options, CONF_PERSONALITY: personality},
+            )
         self.async_write_ha_state()

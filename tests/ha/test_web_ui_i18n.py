@@ -38,11 +38,17 @@ class OperatorUiParity(unittest.TestCase):
         on_disk = {path.stem for path in MESSAGES.glob("*.json")}
         expected = set(_supported()) - {"de", "en"}
         self.assertEqual(expected, on_disk)
+        english_hint = "Voice, languages, and the LLM live here. Home Assistant only connects the engine."
         for code in sorted(expected):
             payload = json.loads((MESSAGES / f"{code}.json").read_text(encoding="utf-8"))
             self.assertEqual(set(english), set(payload), code)
             self.assertIn("{room}", payload["tryOn"], code)
             self.assertIn("{{ text }}", payload["payloadTemplate"], code)
+            self.assertIn("{count}", payload["applyDone"], code)
+            self.assertNotIn("Home Assistant → Klar NLU", payload["personalityHa"], code)
+            self.assertNotIn("Mode binds devices or rooms only", payload["engineHint"], code)
+            if code != "en-GB":
+                self.assertNotEqual(payload["engineHint"], english_hint, code)
 
     def test_operator_chrome_follows_saved_ui_not_nlu_pin(self) -> None:
         i18n = (ROOT / "web" / "src" / "i18n.ts").read_text(encoding="utf-8")

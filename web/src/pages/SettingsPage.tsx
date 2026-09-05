@@ -14,6 +14,7 @@ import {
   AlertDialogHeader,
   AlertDialogTitle,
 } from "@/components/ui/alert-dialog";
+import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Field, FieldContent, FieldDescription, FieldGroup, FieldLabel } from "@/components/ui/field";
@@ -27,7 +28,59 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Switch } from "@/components/ui/switch";
+import { Textarea } from "@/components/ui/textarea";
 import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
+
+const PERSONALITIES = [
+  "default",
+  "butler",
+  "locker",
+  "fuersorglich",
+  "party",
+  "grantig",
+  "sarkastisch",
+  "pirat",
+  "hippie",
+  "gollum",
+  "jarvis",
+] as const;
+
+type PersonalityId = (typeof PERSONALITIES)[number];
+
+function isPersonality(value: string): value is PersonalityId {
+  return (PERSONALITIES as readonly string[]).includes(value);
+}
+
+function personalityLabel(t: Messages, id: PersonalityId): string {
+  switch (id) {
+    case "default":
+      return t.personalityDefault;
+    case "butler":
+      return t.personalityButler;
+    case "locker":
+      return t.personalityLocker;
+    case "fuersorglich":
+      return t.personalityFuersorglich;
+    case "party":
+      return t.personalityParty;
+    case "grantig":
+      return t.personalityGrantig;
+    case "sarkastisch":
+      return t.personalitySarkastisch;
+    case "pirat":
+      return t.personalityPirat;
+    case "hippie":
+      return t.personalityHippie;
+    case "gollum":
+      return t.personalityGollum;
+    case "jarvis":
+      return t.personalityJarvis;
+    default: {
+      const _never: never = id;
+      return _never;
+    }
+  }
+}
 
 function readTheme(theme?: Theme): Theme {
   if (theme === "light" || theme === "dark") return theme;
@@ -53,7 +106,6 @@ export function SettingsPage({
   theme?: Theme;
   onTheme?: (theme: Theme) => void;
 }) {
-  const de = document.documentElement.lang.startsWith("de");
   const [bundle, setBundle] = useState<BundleList | null>(null);
   const [confirmClear, setConfirmClear] = useState(false);
   const [token, setTokenValue] = useState(localStorage.getItem("klar_token") || "");
@@ -73,6 +125,12 @@ export function SettingsPage({
     script: "",
     variants: [code],
   }))).map((pack) => ({ value: pack.code, label: `${pack.native_name} (${pack.code})` }));
+  const assistOptions = (packs.length ? packs : localeOptions.map((row) => ({
+    code: row.value,
+    native_name: row.label,
+    script: "",
+    variants: [row.value],
+  }))).map((pack) => ({ value: pack.code, label: `${pack.native_name} (${pack.code})` }));
   useEffect(() => {
     if (theme === "light" || theme === "dark") setPicked(theme);
   }, [theme]);
@@ -91,6 +149,9 @@ export function SettingsPage({
     document.documentElement.dataset.theme = next;
     onTheme?.(next);
   };
+  const allAssist = settings.languages.length === 0;
+  const pinned = settings.languages[0] || locale;
+  const voice = isPersonality(settings.personality) ? settings.personality : "default";
   return (
     <div className="page flex flex-col gap-6">
       <section className="hero">
@@ -100,36 +161,118 @@ export function SettingsPage({
         </div>
         <div className="flex flex-wrap gap-2">
           <Button variant="ghost" type="button" onClick={() => onReplayWizard?.()}>
-            {de ? "Setup erneut" : "Replay setup"}
+            {t.setupReplay}
           </Button>
           <Button type="button" onClick={() => void save()}>{t.save}</Button>
         </div>
       </section>
+      <Alert>
+        <AlertTitle>{t.settingsGuide}</AlertTitle>
+        <AlertDescription>{t.haGlueHint}</AlertDescription>
+      </Alert>
       <LlmSettingsCard t={t} />
       <section className="grid gap-4 md:grid-cols-2">
         <Card>
           <CardHeader>
-            <CardTitle>{t.personalityHa}</CardTitle>
-            <CardDescription>{de ? "Darstellung und Operator-Sprache" : "Appearance and operator language"}</CardDescription>
+            <CardTitle>{t.voice}</CardTitle>
+            <CardDescription>{t.voiceHint}</CardDescription>
           </CardHeader>
           <CardContent>
             <FieldGroup>
               <Field>
-                <FieldLabel>{de ? "Darstellung" : "Appearance"}</FieldLabel>
-                <ToggleGroup
-                  variant="outline"
-                  spacing={0}
-                  value={[picked]}
-                  onValueChange={(next) => {
-                    const value = next[0];
-                    if (value === "dark" || value === "light") setTheme(value);
+                <FieldLabel>{t.personality}</FieldLabel>
+                <Select
+                  value={voice}
+                  onValueChange={(value) => {
+                    if (value && isPersonality(value)) onSettings({ ...settings, personality: value });
                   }}
-                  aria-label={de ? "Darstellung" : "Appearance"}
                 >
-                  <ToggleGroupItem value="dark">{de ? "Dunkel" : "Dark"}</ToggleGroupItem>
-                  <ToggleGroupItem value="light">{de ? "Hell" : "Light"}</ToggleGroupItem>
-                </ToggleGroup>
+                  <SelectTrigger className="w-full">
+                    <SelectValue />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectGroup>
+                      {PERSONALITIES.map((id) => (
+                        <SelectItem key={id} value={id}>{personalityLabel(t, id)}</SelectItem>
+                      ))}
+                    </SelectGroup>
+                  </SelectContent>
+                </Select>
               </Field>
+              <Field>
+                <FieldLabel htmlFor="klar-extra-prompt">{t.extraPrompt}</FieldLabel>
+                <Textarea
+                  id="klar-extra-prompt"
+                  value={settings.extra_prompt || ""}
+                  onChange={(ev) => onSettings({ ...settings, extra_prompt: ev.target.value })}
+                />
+                <FieldDescription>{t.extraPromptHint}</FieldDescription>
+              </Field>
+              <Field orientation="horizontal">
+                <FieldContent>
+                  <FieldLabel>{t.refineSpeech}</FieldLabel>
+                  <FieldDescription>{t.refineSpeechHint}</FieldDescription>
+                </FieldContent>
+                <Switch
+                  checked={Boolean(settings.refine_speech)}
+                  onCheckedChange={(checked) => onSettings({ ...settings, refine_speech: Boolean(checked) })}
+                />
+              </Field>
+              <Field orientation="horizontal">
+                <FieldContent>
+                  <FieldLabel>{t.quietAck}</FieldLabel>
+                  <FieldDescription>{t.quietAckHint}</FieldDescription>
+                </FieldContent>
+                <Switch
+                  checked={Boolean(settings.quiet_ack)}
+                  onCheckedChange={(checked) => onSettings({ ...settings, quiet_ack: Boolean(checked) })}
+                />
+              </Field>
+            </FieldGroup>
+          </CardContent>
+        </Card>
+        <Card>
+          <CardHeader>
+            <CardTitle>{t.assistLanguages}</CardTitle>
+            <CardDescription>{t.assistLanguagesHint}</CardDescription>
+          </CardHeader>
+          <CardContent>
+            <FieldGroup>
+              <Field orientation="horizontal">
+                <FieldContent>
+                  <FieldLabel>{t.allAssistLanguages}</FieldLabel>
+                  <FieldDescription>{t.languageHint}</FieldDescription>
+                </FieldContent>
+                <Switch
+                  checked={allAssist}
+                  onCheckedChange={(checked) => onSettings({
+                    ...settings,
+                    languages: checked ? [] : [pinned],
+                  })}
+                />
+              </Field>
+              {allAssist ? null : (
+                <Field>
+                  <FieldLabel>{t.pinLanguage}</FieldLabel>
+                  <SearchSelect
+                    value={pinned}
+                    options={withCurrent(assistOptions, pinned)}
+                    onChange={(value) => onSettings({ ...settings, languages: value ? [value] : [] })}
+                    allowEmpty={false}
+                    placeholder={t.languageSearch}
+                  />
+                </Field>
+              )}
+            </FieldGroup>
+          </CardContent>
+        </Card>
+        <Card>
+          <CardHeader>
+            <CardTitle>{t.missTitle}</CardTitle>
+            <CardDescription>{t.missHint}</CardDescription>
+          </CardHeader>
+          <CardContent>
+            <FieldGroup>
               <Field>
                 <FieldLabel>{t.mode}</FieldLabel>
                 <Select
@@ -151,21 +294,6 @@ export function SettingsPage({
                   </SelectContent>
                 </Select>
               </Field>
-              <Field>
-                <FieldLabel>{t.operatorLanguage}</FieldLabel>
-                <SearchSelect
-                  value={locale}
-                  options={withCurrent(localeOptions, locale)}
-                  onChange={onLocale}
-                  allowEmpty={false}
-                  placeholder={t.languageSearch}
-                />
-                <FieldDescription>{t.operatorLanguageHint}</FieldDescription>
-              </Field>
-              <Field>
-                <FieldLabel>{t.languages}</FieldLabel>
-                <FieldDescription>{t.languageHint}</FieldDescription>
-              </Field>
               <Field orientation="horizontal">
                 <FieldContent>
                   <FieldLabel>{t.confirmRisky}</FieldLabel>
@@ -185,6 +313,63 @@ export function SettingsPage({
                   onCheckedChange={(checked) => onSettings({ ...settings, nlu_rag: Boolean(checked) })}
                 />
               </Field>
+              <Field orientation="horizontal">
+                <FieldContent>
+                  <FieldLabel>{t.calendarLlm}</FieldLabel>
+                  <FieldDescription>{t.calendarLlmHint}</FieldDescription>
+                </FieldContent>
+                <Switch
+                  checked={Boolean(settings.calendar_llm)}
+                  onCheckedChange={(checked) => onSettings({ ...settings, calendar_llm: Boolean(checked) })}
+                />
+              </Field>
+              <Field orientation="horizontal">
+                <FieldContent>
+                  <FieldLabel>{t.allowLlmTools}</FieldLabel>
+                  <FieldDescription>{t.allowLlmToolsHint}</FieldDescription>
+                </FieldContent>
+                <Switch
+                  checked={Boolean(settings.allow_llm_tools)}
+                  onCheckedChange={(checked) => onSettings({ ...settings, allow_llm_tools: Boolean(checked) })}
+                />
+              </Field>
+            </FieldGroup>
+          </CardContent>
+        </Card>
+        <Card>
+          <CardHeader>
+            <CardTitle>{t.operatorChrome}</CardTitle>
+            <CardDescription>{t.operatorChromeHint}</CardDescription>
+          </CardHeader>
+          <CardContent>
+            <FieldGroup>
+              <Field>
+                <FieldLabel>{t.operatorLanguage}</FieldLabel>
+                <SearchSelect
+                  value={locale}
+                  options={withCurrent(localeOptions, locale)}
+                  onChange={onLocale}
+                  allowEmpty={false}
+                  placeholder={t.languageSearch}
+                />
+                <FieldDescription>{t.operatorLanguageHint}</FieldDescription>
+              </Field>
+              <Field>
+                <FieldLabel>{t.operatorChrome}</FieldLabel>
+                <ToggleGroup
+                  variant="outline"
+                  spacing={0}
+                  value={[picked]}
+                  onValueChange={(next) => {
+                    const value = next[0];
+                    if (value === "dark" || value === "light") setTheme(value);
+                  }}
+                  aria-label={t.operatorChrome}
+                >
+                  <ToggleGroupItem value="dark">{t.appearanceDark}</ToggleGroupItem>
+                  <ToggleGroupItem value="light">{t.appearanceLight}</ToggleGroupItem>
+                </ToggleGroup>
+              </Field>
               <Field>
                 <FieldLabel htmlFor="klar-token">{t.token}</FieldLabel>
                 <Input id="klar-token" type="password" value={token} onChange={(ev) => setTokenValue(ev.target.value)} />
@@ -192,7 +377,7 @@ export function SettingsPage({
             </FieldGroup>
           </CardContent>
         </Card>
-        <Card>
+        <Card className="md:col-span-2">
           <CardHeader>
             <CardTitle>{t.supportBundle}</CardTitle>
             <CardDescription>{t.journalHint}</CardDescription>

@@ -54,7 +54,7 @@ Response:
 
 `language` is optional (`de`, `en`, `fr`, or a BCP-47 tag such as `en-US`). When set, Klar binds only that pack for the request. `speech` follows the pinned pack.
 
-`personality` is optional and prefixes `speech` on this endpoint (`Sehr wohl.`, `Aye.`, …). Home Assistant stores the choice in the integration and sends it on every parse; the engine settings copy is only for the Klar UI. LLM refine in the HA integration then rewrites that sentence in the selected voice and does not stamp the cue back on.
+`personality` is optional and prefixes `speech` on this endpoint (`Sehr wohl.`, `Aye.`, …). The engine settings store is the source of truth (`GET`/`POST /api/settings`); the operator UI Settings page is the editor. Home Assistant omits personality on parse when it already has stored engine settings, and only falls back to leftover integration options if that cache is empty. LLM refine then rewrites that sentence in the selected voice and does not stamp the cue back on.
 
 `decision.type` is one of `execute`, `clarify`, `confirm`, `reject`, `chat`, or `error`. Only `execute` contains `plan`, complete `candidates`, and `selected_candidate_id`; clients must execute intents only for that decision. For every other decision, `candidates` is empty and no intent or slot data is serialized anywhere. `confirm` contains only a prompt and an opaque candidate ID. The proposal remains exclusively in the session until the same `conversation_id` answers affirmatively.
 
@@ -105,6 +105,11 @@ The token comes from `--token`, `KLAR_TOKEN`, or `--token-file`.
 | `confirm_risky_actions` | `true` requires confirmation before risky actions such as locking/unlocking and broad safety-relevant controls. |
 | `semantic_adapters` | `true` consults local typed adapters after a ranking reject. Off by default. Proposals are revalidated; they never override Execute/Confirm/Clarify/Chat. |
 | `nlu_rag` | `true` attaches a matched-slice retrieval on `chat` and `reject` only. Off by default. Never Assist tools; the HA fallback may recover a command only through Klar tools. `POST /api/v2/parse` can set `nlu_rag` per request. |
+| `refine_speech` | `true` rewrites finished NLU speech with the engine LLM. Off by default. |
+| `extra_prompt` | Extra line on the packed personality. Empty uses the pack voice only. |
+| `quiet_ack` | `true` chimes instead of TTS on simple on/off. Off by default. |
+| `calendar_llm` | `true` lets the engine LLM speak calendar events. Off by default. |
+| `allow_llm_tools` | `true` allows Assist tools on the chat model. Off by default. |
 
 ### `GET` / `POST /api/v2/llm/endpoint`
 

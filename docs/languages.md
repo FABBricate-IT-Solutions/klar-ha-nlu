@@ -60,7 +60,7 @@ Ein neuer Kombinator ist eine neue Variante plus Tests. `De | En`-Matches nicht 
 
 ## Home Assistant
 
-Die Integration liest `custom_components/klar_nlu/languages.py` (generiert). Die Optionen listen jede kompilierte Locale mit ihrem Eigennamen. Default ist **Systemsprache**: die Pipeline-/Request-Sprache wählt das Pack, und das Sprachassistenten-Dropdown listet immer jede kompilierte Locale. Ein einzelnes gepinntes Pack beschränkt weiter nur das Parsing. `pt-BR` und `de-CH` werden nicht auf ISO-639-1 gestutzt.
+Die Integration liest `custom_components/klar_nlu/languages.py` (generiert). Assist-Sprachen setzt die Operator-UI (Einstellungen): leer = jede kompilierte Locale. Default folgt der Pipeline-/Request-Sprache. Ein einzelnes gepinntes Pack beschränkt weiter nur das Parsing. `pt-BR` und `de-CH` werden nicht auf ISO-639-1 gestutzt.
 
 Operator-Chrome (die offizielle Klar-App) ist **nicht** der Assist-Pin und **nicht** das Home-Assistant-Profil. Setzen in App → Einstellungen → Operator-Sprache, oder mit `KLAR_UI_LOCALE` vor dem ersten Speichern. Gespeicherte Einstellung gewinnt. Integrationsformulare bleiben bei Home Assistant `translations/{lang}.json`.
 

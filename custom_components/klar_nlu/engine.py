@@ -10,6 +10,7 @@ import secrets
 from pathlib import Path
 
 from aiohttp import ClientError, ClientSession, ClientTimeout
+from homeassistant.config_entries import ConfigEntry
 from homeassistant.core import HomeAssistant
 from homeassistant.helpers import issue_registry as ir
 from homeassistant.helpers.aiohttp_client import async_get_clientsession
@@ -17,10 +18,29 @@ from homeassistant.helpers.aiohttp_client import async_get_clientsession
 from .archive import extract_klar_archive, require_sha256
 from .const import (
     CHANNEL_STAGING,
+    CONF_ALLOW_LLM_TOOLS,
+    CONF_CALENDAR_LLM,
+    CONF_LANGUAGES,
+    CONF_NLU_RAG,
+    CONF_PERSONALITY,
+    CONF_PRODUCT_IN_ENGINE,
+    CONF_QUIET_ACK,
+    CONF_REFINE_PROMPT,
+    CONF_REFINE_SPEECH,
+    CONF_TOKEN,
+    CONF_URL,
+    DEFAULT_ALLOW_LLM_TOOLS,
+    DEFAULT_CALENDAR_LLM,
+    DEFAULT_NLU_RAG,
+    DEFAULT_PERSONALITY,
+    DEFAULT_QUIET_ACK,
+    DEFAULT_REFINE_SPEECH,
     DEFAULT_URL,
     DOMAIN,
     ENGINE_VERSION,
     GITHUB_REPO,
+    LANGUAGE_ALL,
+    LANGUAGE_SYSTEM,
     pick_staging_release,
     resolve_channel,
     resolve_personality,
@@ -277,44 +297,173 @@ def merge_ui_locale(data: object, locale: str) -> dict | None:
     return out
 
 
-async def async_push_personality(
+def product_options_nondefault(options: object) -> bool:
+    """True when leftover HA options still carry operator product knobs."""
+    if not isinstance(options, dict):
+        return False
+    if resolve_personality(options.get(CONF_PERSONALITY)) != DEFAULT_PERSONALITY:
+        return True
+    languages = options.get(CONF_LANGUAGES)
+    if isinstance(languages, list):
+        pinned = [code for code in languages if code not in {LANGUAGE_SYSTEM, LANGUAGE_ALL}]
+        if pinned:
+            return True
+    elif languages not in {None, "", LANGUAGE_SYSTEM, LANGUAGE_ALL}:
+        return True
+    if str(options.get(CONF_REFINE_PROMPT) or "").strip():
+        return True
+    flags = (
+        (CONF_REFINE_SPEECH, DEFAULT_REFINE_SPEECH),
+        (CONF_NLU_RAG, DEFAULT_NLU_RAG),
+        (CONF_QUIET_ACK, DEFAULT_QUIET_ACK),
+        (CONF_CALENDAR_LLM, DEFAULT_CALENDAR_LLM),
+        (CONF_ALLOW_LLM_TOOLS, DEFAULT_ALLOW_LLM_TOOLS),
+    )
+    return any(bool(options.get(key, default)) != bool(default) for key, default in flags)
+
+
+def cached_engine_settings(hass: HomeAssistant, entry: ConfigEntry) -> dict[str, object]:
+    stored = (hass.data.get(DOMAIN) or {}).get(entry.entry_id) or {}
+    payload = stored.get("engine_settings")
+    return payload if isinstance(payload, dict) else {}
+
+
+def store_engine_settings(
+    hass: HomeAssistant, entry: ConfigEntry, payload: dict[str, object]
+) -> None:
+    stored = (hass.data.get(DOMAIN) or {}).get(entry.entry_id)
+    if stored is not None:
+        stored["engine_settings"] = payload
+
+
+def _settings_headers(token: str | None) -> dict[str, str]:
+    return {"X-Klar-Token": token} if token else {}
+
+
+async def async_fetch_settings(
+    hass: HomeAssistant, url: str, token: str | None = None
+) -> dict[str, object] | None:
+    session = async_get_clientsession(hass)
+    timeout = ClientTimeout(total=3)
+    try:
+        async with session.get(
+            f"{url.rstrip('/')}/api/settings",
+            headers=_settings_headers(token),
+            timeout=timeout,
+        ) as resp:
+            resp.raise_for_status()
+            payload = await resp.json()
+    except (ClientError, TimeoutError, OSError, ValueError) as err:
+        _LOGGER.debug("Klar settings not fetched: %s", err)
+        return None
+    return payload if isinstance(payload, dict) else None
+
+
+async def async_put_settings(
     hass: HomeAssistant,
+    url: str,
+    payload: dict[str, object],
+    token: str | None = None,
+) -> dict[str, object] | None:
+    session = async_get_clientsession(hass)
+    timeout = ClientTimeout(total=3)
+    try:
+        async with session.post(
+            f"{url.rstrip('/')}/api/settings",
+            json=payload,
+            headers=_settings_headers(token),
+            timeout=timeout,
+        ) as resp:
+            resp.raise_for_status()
+            body = await resp.json()
+    except (ClientError, TimeoutError, OSError, ValueError) as err:
+        _LOGGER.debug("Klar settings not written: %s", err)
+        return None
+    return body if isinstance(body, dict) else payload
+
+
+def _entry_url_token(hass: HomeAssistant, entry: ConfigEntry) -> tuple[str, str | None]:
+    stored = (hass.data.get(DOMAIN) or {}).get(entry.entry_id) or {}
+    url = str(
+        stored.get("url")
+        or entry.options.get(CONF_URL)
+        or entry.data.get(CONF_URL)
+        or DEFAULT_URL
+    )
+    token = stored.get("token") or entry.options.get(CONF_TOKEN) or entry.data.get(CONF_TOKEN)
+    return url.rstrip("/"), str(token) if token else None
+
+
+async def async_refresh_engine_settings(
+    hass: HomeAssistant, entry: ConfigEntry
+) -> dict[str, object]:
+    url, token = _entry_url_token(hass, entry)
+    fetched = await async_fetch_settings(hass, url, token)
+    if fetched is not None:
+        store_engine_settings(hass, entry, fetched)
+        return fetched
+    return cached_engine_settings(hass, entry)
+
+
+async def async_seed_product_settings(
+    hass: HomeAssistant,
+    entry: ConfigEntry,
     url: str,
     personality: str,
     token: str | None = None,
     languages: list[str] | None = None,
     ui_locale: str | None = None,
     pipeline: dict[str, object] | None = None,
+) -> dict[str, object] | None:
+    """Copy leftover HA product options onto the engine once, then stop overwriting."""
+    del ui_locale
+    current = await async_fetch_settings(hass, url, token)
+    if current is None:
+        return None
+    migrated = bool(entry.data.get(CONF_PRODUCT_IN_ENGINE))
+    payload: dict[str, object] = current
+    if not migrated and product_options_nondefault(dict(entry.options)):
+        merged = merge_engine_settings(current, personality, languages, pipeline)
+        if merged is None:
+            return current
+        posted = await async_put_settings(hass, url, merged, token)
+        if posted is None:
+            store_engine_settings(hass, entry, current)
+            return current
+        payload = posted
+        migrated = True
+        hass.config_entries.async_update_entry(
+            entry, data={**dict(entry.data), CONF_PRODUCT_IN_ENGINE: True}
+        )
+    elif not migrated:
+        hass.config_entries.async_update_entry(
+            entry, data={**dict(entry.data), CONF_PRODUCT_IN_ENGINE: True}
+        )
+    store_engine_settings(hass, entry, payload)
+    return payload
+
+
+async def async_patch_engine_settings(
+    hass: HomeAssistant, entry: ConfigEntry, patch: dict[str, object]
+) -> dict[str, object] | None:
+    url, token = _entry_url_token(hass, entry)
+    current = cached_engine_settings(hass, entry)
+    if not current:
+        fetched = await async_fetch_settings(hass, url, token)
+        current = fetched or {}
+    if not current:
+        return None
+    posted = await async_put_settings(hass, url, {**current, **patch}, token)
+    if posted is not None:
+        store_engine_settings(hass, entry, posted)
+    return posted
+
+
+async def async_push_fallback_flag(
+    hass: HomeAssistant, entry: ConfigEntry, fallback_llm: bool
 ) -> None:
-    """Write HA personality, Assist pin, and pipeline flags onto the engine."""
-    session = async_get_clientsession(hass)
-    base = url.rstrip("/")
-    headers = {"X-Klar-Token": token} if token else {}
-    timeout = ClientTimeout(total=3)
-    try:
-        settings_url = f"{base}/api/settings"
-        async with session.get(settings_url, headers=headers, timeout=timeout) as resp:
-            resp.raise_for_status()
-            payload = merge_engine_settings(
-                await resp.json(), personality, languages, pipeline
-            )
-        if payload is None:
-            return
-        async with session.post(
-            settings_url, json=payload, headers=headers, timeout=timeout
-        ) as resp:
-            resp.raise_for_status()
-        if ui_locale:
-            ui_url = f"{base}/api/ui"
-            async with session.get(ui_url, headers=headers, timeout=timeout) as resp:
-                resp.raise_for_status()
-                ui = merge_ui_locale(await resp.json(), ui_locale)
-            if ui is None:
-                return
-            async with session.post(ui_url, json=ui, headers=headers, timeout=timeout) as resp:
-                resp.raise_for_status()
-    except (ClientError, TimeoutError, OSError) as err:
-        _LOGGER.debug("Klar settings not synced: %s", err)
+    """HA leftover agent is glue; keep the engine boolean in sync without touching voice."""
+    await async_patch_engine_settings(hass, entry, {"fallback_llm": fallback_llm})
 
 
 async def async_push_llm_endpoint(

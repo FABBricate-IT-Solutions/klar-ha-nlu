@@ -23,7 +23,7 @@
     "step": {
       "init": {
         "title": "Klar NLU",
-        "description": "Die Persönlichkeit liegt in Home Assistant und bleibt nach einer Neuinstallation der Klar-App erhalten. Beim Wechsel wird der LLM-Verfeinerungs-Prompt in die Einstellungen kopiert. Assist nutzt ihn bei jeder Antwort.",
+        "description": "Stimme, Assist-Sprachen und das LLM liegen in der Klar-Operator-UI (Einstellungen). Dieses Formular verbindet nur die Engine: URL, Token, Kanal und optional ein Legacy-Conversation-Agent.",
         "data": {
           "mode": "Engine",
           "personality": "Persönlichkeit",
