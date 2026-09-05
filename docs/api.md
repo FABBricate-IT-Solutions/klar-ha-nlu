@@ -106,6 +106,26 @@ Der Token kommt aus `--token`, `KLAR_TOKEN` oder `--token-file`.
 | `semantic_adapters` | `true` befragt lokale typisierte Adapter nach einem Ranking-Reject. Standard aus. Vorschläge werden revalidiert und überschreiben Execute/Confirm/Clarify/Chat nicht. |
 | `nlu_rag` | `true` hängt nur bei `chat` und `reject` einen gematchten Ausschnitt an. Standard aus. Nie Assist-Werkzeuge; der HA-Fallback darf einen Befehl nur über Klar-Werkzeuge nachziehen. `POST /api/v2/parse` kann `nlu_rag` pro Request setzen. |
 
+### `GET` / `POST /api/v2/llm/endpoint`
+
+OpenAI-kompatibler Upstream der Engine. `GET` liefert `{ "configured", "base_url", "model" }` — nie den API-Key. `POST` setzt `base_url`, `api_key`, `model` in `data_dir/llm_endpoint.json` (nicht im Overlay). Leerer `api_key` behält den gespeicherten Key. `configured: false` löscht die Datei. `KLAR_LLM_*` gewinnt beim Start. Config in der Operator-UI; Assist braucht keine andere Home-Assistant-LLM-Integration. `nlu::parse` nutzt ihn nicht.
+
+### `POST /api/v2/llm/chat`
+
+```json
+{ "messages": [{ "role": "user", "content": "…" }], "stream": true, "temperature": 0.2, "max_tokens": 2048 }
+```
+
+Write-Token nötig (wie Overlay). `stream: true` (Standard) sendet SSE `data: {"type":"delta"|"done"|"error",…}`. `stream: false` antwortet mit JSON `{"type":"done","text":"…"}`. 503 wenn kein Endpoint.
+
+### `POST /api/v2/policies/trainer/chat`
+
+```json
+{ "message": "Funzel als Licht-Wort", "layer": "language", "language": "de", "history": [] }
+```
+
+Die Engine lädt Trainer-Context, streamt das Modell, extrahiert JSON und hängt `proposal` plus `validate` an den Stream. Apply bleibt ein menschlicher Schreib-Call. Siehe [trainer-prompt.md](architecture/trainer-prompt.md).
+
 ### `POST /api/v2/home`
 
 Live-Home-Graph von der Home-Assistant-Integration. `schema_version` muss `"1"` sein. Caps und Fehlercodes: [home-assistant.md](home-assistant.md#registry-sync-ha-ist-quelle). Nach einem gültigen Push ist HA die laufende Quelle; die `.storage`-Überwachung überschreibt diesen Graph nicht mehr.

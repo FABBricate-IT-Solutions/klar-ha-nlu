@@ -2,7 +2,9 @@ use crate::home::overlay::{apply_overlay, load_overlay, save_overlay};
 use crate::home::{HomeStore, LoadedHome};
 use crate::io::bundle::{entry_from_parse, BundleStore};
 use crate::io::conversations::{turn_from_outcome, ConversationJournal};
+use crate::io::llm::load_endpoint;
 use crate::io::metrics::MetricsStore;
+use crate::llm::LlmEndpoint;
 use crate::session::Sessions;
 use crate::types::{CustomSentence, MatchControl, ParseOutcome, ParseResult, PolicyRule, Settings, SpeechBank};
 use std::path::PathBuf;
@@ -26,10 +28,12 @@ pub struct AppState {
     pub data_dir: PathBuf,
     pub live_sync: Arc<AtomicBool>,
     pub token: Option<String>,
+    pub llm: Arc<Mutex<Option<LlmEndpoint>>>,
 }
 
 impl AppState {
     pub fn new(loaded: LoadedHome, data_dir: PathBuf, token: Option<String>) -> Self {
+        let llm = load_endpoint(&data_dir);
         Self {
             home: HomeStore::new(loaded.graph),
             sessions: Arc::new(Mutex::new(Sessions::default())),
@@ -45,6 +49,7 @@ impl AppState {
             data_dir,
             live_sync: Arc::new(AtomicBool::new(false)),
             token,
+            llm: Arc::new(Mutex::new(llm)),
         }
     }
 

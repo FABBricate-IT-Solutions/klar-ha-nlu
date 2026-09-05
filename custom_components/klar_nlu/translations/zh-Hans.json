@@ -51,7 +51,8 @@
           "calendar_llm": "默认关闭。开：Klar 读取日历，由后备大模型口述日程。关：Klar 自己念列表。创建、删除和移动仍由 Klar 处理。",
           "allow_llm_tools": "Off by default. On: Klar still calls the chit-chat agent even if that agent can control Home Assistant. The model may turn lights and run scripts. Off: Klar skips the LLM when that agent has Assist tools.",
           "languages": "默认跟随 Home Assistant 系统语言。",
-          "channel": "随时可改。预发布指向 Klar NLU（Staging）。"
+          "channel": "随时可改。预发布指向 Klar NLU（Staging）。",
+          "fallback_agent": "Leave empty. Configure the LLM in the Klar operator UI (Settings → LLM). Assist chat and the trainer use that endpoint. This field is only for an old Home Assistant conversation integration."
         }
       }
     },

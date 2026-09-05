@@ -51,7 +51,8 @@
           "calendar_llm": "ಡೀಫಾಲ್ಟ್ ಆಫ್. ಮಾತಿನಲ್ಲಿ ಹೊಂದಿದ ತುಣುಕು ಮಾತ್ರ ಬ್ಯಾಕಪ್ ಮಾದರಿಗೆ ಹೋಗುತ್ತದೆ. ಕ್ಯಾಲೆಂಡರ್ ಪ್ರಶ್ನೆಗಳನ್ನು LLM ಗೆ ಕಳುಹಿಸಿ.",
           "allow_llm_tools": "Off by default. On: Klar still calls the chit-chat agent even if that agent can control Home Assistant. The model may turn lights and run scripts. Off: Klar skips the LLM when that agent has Assist tools.",
           "languages": "ಡೀಫಾಲ್ಟ್ Home Assistant ಸಿಸ್ಟಂ ಭಾಷೆ.",
-          "channel": "ಯಾವಾಗ ಬೇಕಾದರೂ. Staging Klar NLU (Staging) ಕಡೆಗೆ."
+          "channel": "ಯಾವಾಗ ಬೇಕಾದರೂ. Staging Klar NLU (Staging) ಕಡೆಗೆ.",
+          "fallback_agent": "Leave empty. Configure the LLM in the Klar operator UI (Settings → LLM). Assist chat and the trainer use that endpoint. This field is only for an old Home Assistant conversation integration."
         }
       }
     },

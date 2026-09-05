@@ -78,6 +78,7 @@ from .rag_tools import (
     parse_tool_reply,
     rag_prompt,
 )
+from .engine_llm import stream_engine_chat
 from .stream import stream_chat
 from .news import announce, asked_for_more, compose_speech, fetch_headlines, nudge
 from .policy_actions import (
@@ -319,7 +320,6 @@ class KlarConversationEntity(ConversationEntity):
             and not clarify
             and not intents
             and not payload.get("unreachable")
-            and self._fallback_agent_id()
         ):
             fallback = await self._fallback(user_input, chat_log, pack, chat, retrieval=retrieval)
             replied = await self._after_fallback(
@@ -341,7 +341,6 @@ class KlarConversationEntity(ConversationEntity):
                 executed.get("outcome") != "error"
                 and self._calendar_llm()
                 and calendar_query_only(plan)
-                and self._fallback_agent_id()
             ):
                 extra = getattr(user_input, "extra_system_prompt", None)
                 extra_s = extra if isinstance(extra, str) else None
@@ -565,13 +564,11 @@ class KlarConversationEntity(ConversationEntity):
         user_text: str | None = None,
     ) -> ConversationResult | None:
         agent_id = self._fallback_agent_id()
-        if not agent_id:
-            return None
-        if not can_use_fallback_agent(
+        if agent_id and not can_use_fallback_agent(
             self._agent_controls_home(agent_id), chat, self._allow_llm_tools()
         ):
             _LOGGER.warning("LLM-Fallback %s hat Assist-Werkzeuge — übersprungen", agent_id)
-            return None
+            agent_id = None
         asked = (user_text or user_input.text).strip() or user_input.text
         extra_s = getattr(user_input, "extra_system_prompt", None)
         extra_s = extra_s if isinstance(extra_s, str) else None
@@ -591,6 +588,35 @@ class KlarConversationEntity(ConversationEntity):
         if prior and not yarn_request(user_input.text):
             system = f"{system}\n\n{prior}"
         yarn = yarn_request(user_input.text)
+        engine_out = await stream_engine_chat(
+            self.hass,
+            [{"role": "system", "content": system}, {"role": "user", "content": asked}],
+            chat_log if publish else None,
+            getattr(user_input, "agent_id", None),
+            url=self._url,
+            token=self._token(),
+            hold=_stream_hold(yarn, self._nlu_rag()),
+        )
+        if engine_out is not None:
+            speech, published = engine_out
+            if yarn and yarn_asks_permission(speech) and not published:
+                nudged = await stream_engine_chat(
+                    self.hass,
+                    [
+                        {"role": "system", "content": yarn_nudge(pack, system)},
+                        {"role": "user", "content": asked},
+                    ],
+                    chat_log if publish else None,
+                    getattr(user_input, "agent_id", None),
+                    url=self._url,
+                    token=self._token(),
+                )
+                if nudged is not None:
+                    speech, published = nudged
+            if speech:
+                return _speech_result(pack, speech, published and chat_log is not None)
+        if not agent_id:
+            return None
         resolved = llm_client_and_model(self.hass, agent_id)
         if resolved is not None:
             streamed = await self._stream_fallback(

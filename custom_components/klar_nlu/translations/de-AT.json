@@ -28,7 +28,7 @@
           "mode": "Engine",
           "personality": "Persönlichkeit",
           "languages": "Sprachen",
-          "fallback_agent": "Conversation-Agent für Smalltalk",
+          "fallback_agent": "Optionaler Legacy-Conversation-Agent",
           "allow_llm_tools": "Assist-Werkzeuge beim Smalltalk-Agenten erlauben",
           "refine_speech": "NLU-Antworten vom LLM verfeinern",
           "refine_prompt": "Verfeinerungs-Prompt",
@@ -51,7 +51,8 @@
           "calendar_llm": "Standard aus. An: Klar liest den Kalender, das Fallback-LLM spricht die Termine. Aus: Klar spricht die Liste selbst. Anlegen, Löschen und Verschieben bleiben bei Klar.",
           "allow_llm_tools": "Standard aus. An: Klar ruft den Smalltalk-Agenten auch dann, wenn er Home Assistant steuern darf. Aus: Klar überspringt das LLM, wenn der Agent Assist-Werkzeuge hat.",
           "languages": "Standard ist die Home-Assistant-Systemsprache.",
-          "channel": "Jederzeit. Staging auf Klar NLU (Staging), Stable auf die App oder die mitgelieferte Engine."
+          "channel": "Jederzeit. Staging auf Klar NLU (Staging), Stable auf die App oder die mitgelieferte Engine.",
+          "fallback_agent": "Leave empty. Configure the LLM in the Klar operator UI (Settings → LLM). Assist chat and the trainer use that endpoint. This field is only for an old Home Assistant conversation integration."
         }
       }
     },

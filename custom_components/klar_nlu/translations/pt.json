@@ -51,7 +51,8 @@
           "calendar_llm": "Desligado por predefinição. Ligado: o Klar lê o calendário e o LLM de recurso diz os eventos. Desligado: o Klar diz a lista. Criar, apagar e mover ficam no Klar.",
           "allow_llm_tools": "Off by default. On: Klar still calls the chit-chat agent even if that agent can control Home Assistant. The model may turn lights and run scripts. Off: Klar skips the LLM when that agent has Assist tools.",
           "languages": "A predefinição é o idioma do sistema do Home Assistant.",
-          "channel": "Em qualquer altura. Staging aponta para Klar NLU (Staging); Stable para a app ou o motor incluído."
+          "channel": "Em qualquer altura. Staging aponta para Klar NLU (Staging); Stable para a app ou o motor incluído.",
+          "fallback_agent": "Leave empty. Configure the LLM in the Klar operator UI (Settings → LLM). Assist chat and the trainer use that endpoint. This field is only for an old Home Assistant conversation integration."
         }
       }
     },

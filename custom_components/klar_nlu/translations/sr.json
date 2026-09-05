@@ -51,7 +51,8 @@
           "calendar_llm": "Подразумевано искључено. Укључено: Клар чита календар, резервни LLM изговара догађаје. Искључено: Клар изговара списак. Прављење, брисање и премештање остају у Клару.",
           "allow_llm_tools": "Off by default. On: Klar still calls the chit-chat agent even if that agent can control Home Assistant. The model may turn lights and run scripts. Off: Klar skips the LLM when that agent has Assist tools.",
           "languages": "Подразумевано прати језик система Home Assistant.",
-          "channel": "Било када. Staging показује на Klar NLU (Staging)."
+          "channel": "Било када. Staging показује на Klar NLU (Staging).",
+          "fallback_agent": "Leave empty. Configure the LLM in the Klar operator UI (Settings → LLM). Assist chat and the trainer use that endpoint. This field is only for an old Home Assistant conversation integration."
         }
       }
     },

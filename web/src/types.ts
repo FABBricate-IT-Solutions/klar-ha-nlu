@@ -175,6 +175,14 @@ export type TrainerProposal = {
   language_overlay?: LanguageOverlay;
   utterances?: string[];
 };
+export type TrainerTurn = { role: "user" | "assistant"; content: string };
+export type LlmPublic = { configured: boolean; base_url?: string; model?: string };
+export type TrainerChatEvent =
+  | { type: "delta"; text: string }
+  | { type: "done"; text: string }
+  | { type: "error"; message: string }
+  | { type: "proposal"; value: TrainerProposal }
+  | { type: "validate"; value: TrainerValidateOut };
 
 export type ConversationTurn = {
   conversation_id: string;

@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { api, type LangOverlay } from "../api";
-import type { Messages } from "../i18n";
+import { OriginChip } from "./OriginChip";
+import { fill, type Messages } from "../i18n";
 import type { LanguageOverlay, PolicyRule } from "../types";
 
 const LEXICON_PATHS = [
@@ -51,6 +52,8 @@ export function LexiconLane({
   overlay,
   seeds,
   house,
+  selectedSeed,
+  onSelectSeed,
   onSaved,
   onHouse,
   onStatus,
@@ -59,6 +62,8 @@ export function LexiconLane({
   overlay: LangOverlay | null;
   seeds: PolicyRule[];
   house: PolicyRule[];
+  selectedSeed?: string;
+  onSelectSeed?: (id: string) => void;
   onSaved: (next: LangOverlay) => void;
   onHouse: (next: PolicyRule[]) => void;
   onStatus: (status: string) => void;
@@ -71,6 +76,9 @@ export function LexiconLane({
     for (const word of delta.remove || []) rows.push({ path: setPath, op: "−", token: word });
     return rows;
   });
+  const overlayTitle = lexiconRows.length
+    ? fill(t.lexiconOverlayPlus, { count: String(lexiconRows.length) })
+    : t.lexiconOverlay;
 
   const persist = async (language: LanguageOverlay, label: string) => {
     const saved = await api.saveLangOverlay({
@@ -96,13 +104,15 @@ export function LexiconLane({
 
   return (
     <>
-      <h2>{t.laneLanguage}</h2>
-      <h3>{t.lexiconOverlay}</h3>
+      <div className="policy-lane-head">
+        <h2>{t.laneLanguage}</h2>
+        <OriginChip t={t} origin="seed" />
+      </div>
+      <h3>{overlayTitle}</h3>
       {lexiconRows.length === 0 && <p className="muted">{t.lexiconEmpty}</p>}
       {lexiconRows.map((row) => (
         <p className="lexicon-delta" key={`${row.path}-${row.op}-${row.token}`}>
-          {row.path} {row.op}
-          {row.token}
+          {row.op === "+" ? `${row.token} → ${row.path}` : `− ${row.token} ← ${row.path}`}
         </p>
       ))}
       <label>{t.lexiconPath}</label>
@@ -117,6 +127,7 @@ export function LexiconLane({
       <div className="row" style={{ marginTop: 8 }}>
         <button
           className="secondary"
+          type="button"
           onClick={(ev) => {
             ev.stopPropagation();
             void apply("add");
@@ -126,6 +137,7 @@ export function LexiconLane({
         </button>
         <button
           className="ghost"
+          type="button"
           onClick={(ev) => {
             ev.stopPropagation();
             void apply("remove");
@@ -139,19 +151,25 @@ export function LexiconLane({
       {seeds.map((seed) => {
         const enabled = seedIsOn(house, seed.id);
         return (
-          <div className="rule-row" key={seed.id} onClick={(ev) => ev.stopPropagation()}>
-            <span className="chip origin">{t.originSeed}</span>
-            <strong className="mono">{seed.id}</strong>
-            <span className="chip intent">{seed.effect}</span>
-            <label className="row match-toggle">
+          <div
+            className={`lane-row${selectedSeed === seed.id ? " active" : ""}`}
+            key={seed.id}
+            onClick={(ev) => {
+              ev.stopPropagation();
+              onSelectSeed?.(seed.id);
+            }}
+          >
+            <label className="row match-toggle" onClick={(ev) => ev.stopPropagation()}>
               <input
                 type="checkbox"
                 checked={enabled}
                 onChange={(ev) => onHouse(toggleSeed(house, seed, ev.target.checked))}
-                style={{ width: "auto" }}
               />
               {enabled ? t.seedOn : t.seedOff}
             </label>
+            <strong className="mono">{seed.id}</strong>
+            <span className="chip intent">{seed.effect}</span>
+            <OriginChip t={t} origin="seed" />
           </div>
         );
       })}

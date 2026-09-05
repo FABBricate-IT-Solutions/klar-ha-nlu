@@ -51,7 +51,8 @@
           "calendar_llm": "पूर्वनिर्धारित बन्द। अन: क्लारले पात्रो पढ्छ, ब्याकअप LLM ले कार्यक्रम भन्छ। अफ: क्लारले सूची आफैं भन्छ। बनाउने, मेट्ने, सार्ने क्लारमै रहन्छ।",
           "allow_llm_tools": "Off by default. On: Klar still calls the chit-chat agent even if that agent can control Home Assistant. The model may turn lights and run scripts. Off: Klar skips the LLM when that agent has Assist tools.",
           "languages": "पूर्वनिर्धारित Home Assistant प्रणाली भाषा हो।",
-          "channel": "जुनसुकै बेला। Staging Klar NLU (Staging) तर्फ देखाउँछ।"
+          "channel": "जुनसुकै बेला। Staging Klar NLU (Staging) तर्फ देखाउँछ।",
+          "fallback_agent": "Leave empty. Configure the LLM in the Klar operator UI (Settings → LLM). Assist chat and the trainer use that endpoint. This field is only for an old Home Assistant conversation integration."
         }
       }
     },

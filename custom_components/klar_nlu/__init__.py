@@ -66,11 +66,13 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
     token = (engine.token if engine is not None else None) or entry.options.get(
         CONF_TOKEN
     ) or entry.data.get(CONF_TOKEN)
-    sync = HomeGraphSync(hass, entry, engine_url(entry), token)
+    url = engine_url(entry)
+    sync = HomeGraphSync(hass, entry, url, token)
     hass.data[DOMAIN][entry.entry_id] = {
         "engine": engine,
         "token": token,
         "sync": sync,
+        "url": url,
         "applied_options": dict(entry.options),
     }
     await hass.config_entries.async_forward_entry_setups(entry, PLATFORMS)

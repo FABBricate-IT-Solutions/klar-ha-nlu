@@ -1,11 +1,15 @@
 import { useEffect, useRef, type ReactNode } from "react";
+import { Card, CardContent } from "@/components/ui/card";
+import { cn } from "cn";
 
 export function Kpi({ value, label, hot }: { value: ReactNode; label: string; hot?: boolean }) {
   return (
-    <div className={`card kpi${hot ? " hot" : ""}`}>
-      <div className="value">{value}</div>
-      <div className="label">{label}</div>
-    </div>
+    <Card className={cn(hot && "ring-1 ring-primary")}>
+      <CardContent className="pt-1">
+        <div className="text-4xl font-semibold tracking-tight">{value}</div>
+        <div className="mt-2 text-sm text-muted-foreground">{label}</div>
+      </CardContent>
+    </Card>
   );
 }
 
@@ -51,7 +55,7 @@ export function Drawer({ title, children, onClose, closeLabel = "Close" }: { tit
     <>
       <button className="drawer-backdrop" aria-label={closeLabel} onClick={onClose} />
       <aside ref={panel} className="drawer" role="dialog" aria-modal="true" aria-labelledby="klar-drawer-title">
-        <div className="row" style={{ justifyContent: "space-between", marginBottom: 18 }}>
+        <div className="mb-[18px] flex items-center justify-between gap-3">
           <h2 id="klar-drawer-title">{title}</h2>
           <button className="ghost" onClick={onClose}>{closeLabel}</button>
         </div>
@@ -63,9 +67,11 @@ export function Drawer({ title, children, onClose, closeLabel = "Close" }: { tit
 
 export function Empty({ text, action }: { text: ReactNode; action?: ReactNode }) {
   return (
-    <div className="card">
-      <p className="muted">{text}</p>
-      {action}
-    </div>
+    <Card>
+      <CardContent>
+        <p className="text-sm text-muted-foreground">{text}</p>
+        {action}
+      </CardContent>
+    </Card>
   );
 }
