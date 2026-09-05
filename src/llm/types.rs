@@ -26,11 +26,30 @@ pub struct ChatRequest {
 #[derive(Debug, Clone, Serialize, Deserialize, PartialEq)]
 #[serde(tag = "type", rename_all = "snake_case")]
 pub enum ChatEvent {
-    Delta { text: String },
-    Done { text: String },
-    Error { message: String },
-    Proposal { value: serde_json::Value },
-    Validate { value: serde_json::Value },
+    Delta {
+        text: String,
+    },
+    Done {
+        text: String,
+    },
+    Error {
+        message: String,
+    },
+    Proposal {
+        value: serde_json::Value,
+    },
+    Validate {
+        value: serde_json::Value,
+    },
+    Tool {
+        tool: String,
+        #[serde(default, skip_serializing_if = "Option::is_none")]
+        text: Option<String>,
+        #[serde(default, skip_serializing_if = "Option::is_none")]
+        intent: Option<String>,
+        #[serde(default, skip_serializing_if = "Option::is_none")]
+        slots: Option<std::collections::BTreeMap<String, String>>,
+    },
 }
 
 #[derive(Debug, Error)]

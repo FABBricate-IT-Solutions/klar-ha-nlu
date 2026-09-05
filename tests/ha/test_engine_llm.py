@@ -81,6 +81,12 @@ class EngineLlmTests(unittest.TestCase):
         src = (PKG / "engine_llm.py").read_text(encoding="utf-8")
         self.assertIn("/api/v2/llm/refine", src)
         self.assertIn("complete_engine_refine", src)
+        self.assertIn("/api/v2/llm/assist", src)
+        self.assertIn("stream_engine_assist", src)
+        self.assertEqual(
+            engine_llm._tool_speech({"type": "tool", "tool": "klar.parse", "text": "licht an"}),
+            "KLAR_PARSE: licht an",
+        )
 
 
 if __name__ == "__main__":

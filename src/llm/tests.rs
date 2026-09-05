@@ -1,4 +1,4 @@
-use super::{chat, chat_stream, refine, ChatMessage, ChatRequest, LlmEndpoint, RefineRequest};
+use super::{assist, chat, chat_stream, refine, AssistRequest, ChatMessage, ChatRequest, LlmEndpoint, RefineRequest};
 use axum::routing::post;
 use axum::{Json, Router};
 use serde_json::{json, Value};
@@ -104,5 +104,64 @@ async fn refine_returns_original_when_accept_rejects() {
     .unwrap();
     assert!(!out.accepted);
     assert_eq!(out.text, "Nothing tomorrow.");
+    handle.abort();
+}
+
+#[tokio::test]
+async fn assist_emits_structured_parse_tool() {
+    let (base, handle) = serve(vec!["KLAR_PARSE: licht an".into()], false).await;
+    let endpoint = LlmEndpoint::from_parts(&base, "", "test-model").unwrap();
+    let out = assist(
+        &endpoint,
+        AssistRequest {
+            text: "mach das licht an".into(),
+            language: "de".into(),
+            personality: "default".into(),
+            kind: "rag".into(),
+            allow_tools: false,
+            nlu_rag: true,
+            retrieval: None,
+            facts: None,
+            history: vec![],
+            extra_system: None,
+            extra_prompt: None,
+            stream: Some(false),
+        },
+    )
+    .await
+    .unwrap();
+    assert!(out.tool.is_some());
+    assert_eq!(out.tool.as_ref().unwrap().tool, "klar.parse");
+    let json = serde_json::to_value(&out.events[0]).unwrap();
+    assert_eq!(json["type"], "tool");
+    assert_eq!(json["text"], "licht an");
+    handle.abort();
+}
+
+#[tokio::test]
+async fn assist_returns_canned_yarn_when_model_asks() {
+    let (base, handle) = serve(vec!["Soll ich dir eine Geschichte erzählen?".into()], false).await;
+    let endpoint = LlmEndpoint::from_parts(&base, "", "test-model").unwrap();
+    let out = assist(
+        &endpoint,
+        AssistRequest {
+            text: "erzähl eine Geschichte".into(),
+            language: "de".into(),
+            personality: "default".into(),
+            kind: "yarn".into(),
+            allow_tools: false,
+            nlu_rag: false,
+            retrieval: None,
+            facts: None,
+            history: vec![],
+            extra_system: None,
+            extra_prompt: None,
+            stream: Some(false),
+        },
+    )
+    .await
+    .unwrap();
+    assert!(out.text.contains("Fuchs"));
+    assert!(!out.text.contains("Soll ich"));
     handle.abort();
 }
