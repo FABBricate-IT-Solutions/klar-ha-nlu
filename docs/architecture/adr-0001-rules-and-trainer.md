@@ -2,7 +2,7 @@
 
 [Deutsch](adr-0001-rules-and-trainer.md) · [English](adr-0001-rules-and-trainer.en.md)
 
-Status: **vorgeschlagen** (noch keine Implementierung)
+Status: **vorgeschlagen** — Richtung akzeptiert. Umsetzung: [Plan](adr-0001-plan.md).
 
 Klar bleibt eine deterministische, lokale NLU. Ein LLM darf das Haus **einrichten**, nicht den Parse-Pfad **fahren**. Alle drei Ebenen sind in der Operator-UI **sichtbar, steuerbar und trainierbar**. Jeder Parse zeichnet denselben Pfad.
 
@@ -207,7 +207,7 @@ Das Modell darf keine neuen Match-Ids, keine neuen Effects, keine Entity-Ids au�
 6. **Optional: Household-Phrasen in den Seed**  
    Nur bei gleichem Undo/Explain/Clock-Vertrag.
 
-Jede Phase eigenes PR. Dieses ADR ist die Klammer.
+Jede Stufe braucht ein eigenes PR; der [Umsetzungsplan](adr-0001-plan.md) ist die Reihenfolge mit Dateien, Gates und Stopps. Dieses ADR bleibt die Klammer.
 
 ## Offene Punkte
 
