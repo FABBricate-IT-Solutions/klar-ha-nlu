@@ -134,7 +134,8 @@ export function CustomPage({ t, locale, embedded }: { t: Messages; locale: Local
             </div>
             {explain && (
               <p className="muted" style={{ marginTop: 12 }}>
-                {explain.decision} · {explain.confidence.toFixed(2)} · {explain.speech}
+                {explain.speech}
+                {explain.reply ? ` · ${explain.reply}` : ""}
               </p>
             )}
           </div>

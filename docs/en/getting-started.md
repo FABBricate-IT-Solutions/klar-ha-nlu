@@ -15,12 +15,12 @@ Klar ships two pieces. They do different jobs. Installing both does **not** make
 | Piece | Role | Need it? |
 |-------|------|----------|
 | **HACS integration** | Conversation agent for Assist. Syncs rooms and devices, runs intents. | Yes, if Assist should use Klar. |
-| **App (add-on)** | Runs the NLU engine in its own container. Mapping / Lab in sidebar **Klar NLU**. | Home Assistant OS, if you want that UI. |
+| **App (add-on)** | Runs the NLU engine in its own container. Operator console (Settings, House, Lab, Rules) in sidebar **Klar NLU**. | Home Assistant OS, if you want that UI. |
 | **Bundled engine** | The integration downloads the GitHub Release and starts the same engine inside Core on `127.0.0.1:10520`. | When there is no App. |
 
 Pick **one** host for the engine. Do not run the App and the bundled engine at the same time.
 
-Lovelace **Klar** is the last Assist turn (`klar-home-card`). Mapping and Lab are the App UI (**Klar NLU**), not that card.
+Lovelace **Klar** is the last Assist turn (`klar-home-card`). The operator console is the App UI (**Klar NLU**): Settings, House, Lab, and Rules — not that card.
 
 ## 1. Install Klar NLU
 
@@ -34,7 +34,7 @@ Lovelace **Klar** is the last Assist turn (`klar-home-card`). Mapping and Lab ar
 
 ### Without Supervisor — HACS only
 
-Same HACS steps, then [add the integration](https://my.home-assistant.io/redirect/config_flow_start/?domain=klar_nlu) and keep **Start the bundled engine (HACS only)**. Assist works. Mapping / Lab are not in the sidebar (the engine binds loopback inside Core).
+Same HACS steps, then [add the integration](https://my.home-assistant.io/redirect/config_flow_start/?domain=klar_nlu) and keep **Start the bundled engine (HACS only)**. Assist works. Settings and Lab are not in the sidebar (the engine binds loopback inside Core).
 
 Docker instead of bundled: run the image, then pick **Use the Klar NLU App or Docker** with `http://127.0.0.1:10520`. See [Home Assistant](home-assistant.md).
 
@@ -55,7 +55,7 @@ Settings → Voice assistants → edit the pipeline:
 
 Do not set an LLM as the conversation engine. Assist would skip Klar and the model could control devices.
 
-The integration registers the **Klar home** Lovelace card (`klar-home-card`) and adds a **Klar** sidebar view on first setup so the last Assist turn is visible without hunting the card picker. That is not Mapping / Lab.
+The integration registers the **Klar home** Lovelace card (`klar-home-card`) and adds a **Klar** sidebar view on first setup so the last Assist turn is visible without hunting the card picker. That is not the operator console.
 
 ## 4. Five phrases
 
@@ -73,9 +73,9 @@ German works in the same pipeline: `Licht im Wohnzimmer an`, `Spiel Queen`.
 
 Need a player in a room? Name the area (`Play the playlist Chill in the living room`). Klar does not invent playlists or artists that Music Assistant cannot resolve.
 
-## 5. Mapping tab
+## 5. House mapping
 
-On Home Assistant OS open sidebar **Klar NLU** (the App, not Lovelace **Klar**). **House → Mapping**.
+On Home Assistant OS open sidebar **Klar NLU** (the App, not Lovelace **Klar**). **House → Mapping**. Voice, languages, and the LLM live under **Settings**.
 
 If Assist asks “which lamp?” or misses a nickname, add an alias or accept a room suggestion there. That overlay sits on top of Home Assistant names — HA stays the device database.
 

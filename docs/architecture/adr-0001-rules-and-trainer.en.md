@@ -2,7 +2,7 @@
 
 [Deutsch](adr-0001-rules-and-trainer.md) · [English](adr-0001-rules-and-trainer.en.md)
 
-Status: **proposed** — direction accepted. Implementation on **`staging`**, not a main release: [plan](adr-0001-plan.en.md).
+Status: **accepted direction; implemented on staging, not a main release** — [plan](adr-0001-plan.en.md).
 
 Klar stays a deterministic, local NLU. An LLM may **set up** the house; it must not **drive** the parse path. All three layers are **visible, controllable, and trainable** in the operator UI. Every parse draws the same path.
 

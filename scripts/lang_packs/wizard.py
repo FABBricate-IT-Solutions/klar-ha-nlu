@@ -1,0 +1,141 @@
+"""First-run wizard chrome for every compiled Assist locale."""
+
+from __future__ import annotations
+
+from pathlib import Path
+
+ROOT = Path(__file__).resolve().parents[2]
+DEST = ROOT / "web" / "src" / "i18n" / "wizard"
+
+# Phrases stay on the de/en oracles.
+KEYS = (
+    "title",
+    "skip",
+    "back",
+    "next",
+    "done",
+    "stepOf",
+    "close",
+    "detected",
+    "recommended",
+    "whatTitle",
+    "whatLead",
+    "whatLocal",
+    "whatConsole",
+    "whatNoLlm",
+    "pathTitle",
+    "pathLead",
+    "pathShared",
+    "pathAddonTitle",
+    "pathAddonBody",
+    "pathDockerTitle",
+    "pathDockerBody",
+    "pathBinaryTitle",
+    "pathBinaryBody",
+    "pathSampleTitle",
+    "pathSampleBody",
+    "modeTitle",
+    "modeLead",
+    "modeFullTitle",
+    "modeFullBody",
+    "modeContextTitle",
+    "modeContextBody",
+    "modeNluTitle",
+    "modeNluBody",
+    "missTitle",
+    "missLead",
+    "missEngineTitle",
+    "missEngineBody",
+    "missSliceTitle",
+    "missSliceBody",
+    "missLlmTitle",
+    "missLlmBody",
+    "missWarn",
+    "llmOptional",
+    "toolsTitle",
+    "toolsLead",
+    "toolsLab",
+    "toolsMapping",
+    "toolsPhrases",
+    "toolsRoutines",
+    "toolsPolicies",
+    "phrasesTitle",
+    "phrasesLead",
+    "phrasesOther",
+    "phrasesMapping",
+    "phrasesReopen",
+    "phraseSay",
+    "phraseExpect",
+)
+
+EN = {
+    "title": "Setup",
+    "skip": "Skip",
+    "back": "Back",
+    "next": "Next",
+    "done": "Done",
+    "stepOf": "Step {n} of {total}",
+    "close": "Close",
+    "detected": "Detected",
+    "recommended": "Recommended",
+    "whatTitle": "What Klar is",
+    "whatLead": "Local Assist NLU. Home Assistant stays the device database. This is not a household dashboard and not an LLM conversation engine.",
+    "whatLocal": "Klar parses the sentence. Home Assistant owns rooms and devices.",
+    "whatConsole": "Lovelace “Klar” is the last Assist turn. This surface (Klar NLU) is the operator console: Settings, House, Lab, and Rules.",
+    "whatNoLlm": "Do not set an LLM as the pipeline conversation engine. Voice and the LLM live in Settings.",
+    "pathTitle": "Install path",
+    "pathLead": "One engine host. Integration for Assist. App or Docker for this UI.",
+    "pathShared": "Do not run the App and the bundled engine together. Installing both does not make parsing more accurate.",
+    "pathAddonTitle": "Home Assistant App",
+    "pathAddonBody": "You reached the App through ingress. The integration syncs the house. Integration URL: http://klar-nlu:10520.",
+    "pathDockerTitle": "App or Docker",
+    "pathDockerBody": "The graph was pushed from Home Assistant. In the integration pick “Use the Klar NLU App or Docker”. This console runs here.",
+    "pathBinaryTitle": "Bundled engine",
+    "pathBinaryBody": "HACS-only or a binary on loopback (127.0.0.1:10520). Assist works. A phone cannot reach Settings or Lab.",
+    "pathSampleTitle": "Sample house",
+    "pathSampleBody": "Still the built-in default_home, not an HA snapshot. Save the Assist pipeline — then your house appears.",
+    "modeTitle": "Voice",
+    "modeLead": "Personality, mode, and refine are stored on the engine. Home Assistant Configure does not need them.",
+    "modeFullTitle": "Resolve devices",
+    "modeFullBody": "full binds an entity_id. That is the usual household.",
+    "modeContextTitle": "Rooms only",
+    "modeContextBody": "context_only stops at the room. No device, no power through the resolver.",
+    "modeNluTitle": "NLU only",
+    "modeNluBody": "Default for unhandled speech: the matched slice, no Assist tools, no house context.",
+    "missTitle": "Engine LLM",
+    "missLead": "Assist chat, refine, and the trainer share this OpenAI-compatible endpoint. No Home Assistant LLM integration.",
+    "missEngineTitle": "Klar engine",
+    "missEngineBody": "Execute, clarify, or reject. Lab shows the pipeline.",
+    "missSliceTitle": "House context on miss",
+    "missSliceBody": "Optional. Already-matched names, rooms, last turn. No embeddings, no document index, no Assist tools. Default off.",
+    "missLlmTitle": "Engine LLM",
+    "missLlmBody": "Assist chat, refine, and the trainer live in Settings, not in a Home Assistant conversation integration.",
+    "missWarn": "Never put the LLM in the pipeline Conversation engine slot.",
+    "llmOptional": "Leave empty and set it later in Settings. Setup finishes without an LLM.",
+    "toolsTitle": "Tools",
+    "toolsLead": "After setup you stay in this console. Voice, languages, and the LLM are under Settings.",
+    "toolsLab": "Lab — replay a sentence, pipeline, discarded candidates.",
+    "toolsMapping": "House — aliases and room suggestions. Overlay on HA names.",
+    "toolsPhrases": "Phrases — one sentence to a known intent. Not one row per lamp.",
+    "toolsRoutines": "Routines — a spoken name starts a script.",
+    "toolsPolicies": "Policies — first matching rule wins. Pick device, room, or floor.",
+    "phrasesTitle": "Five phrases",
+    "phrasesLead": "Say them in Assist after the pipeline is saved. On HA OS, Lab works too.",
+    "phrasesOther": "German works in the same pipeline.",
+    "phrasesMapping": "{count} devices without a sure room — next is House → Mapping.",
+    "phrasesReopen": "Re-open this setup from Settings. It is not a seventh tab.",
+    "phraseSay": "Say",
+    "phraseExpect": "Expect",
+}
+
+EN_CONSOLE = EN["whatConsole"]
+EN_LLM = EN["missLlmBody"]
+
+
+def pack(**fields: str) -> dict[str, str]:
+    out = dict(EN)
+    out.update(fields)
+    missing = [key for key in ("whatConsole", "missLlmBody") if key not in fields]
+    if missing:
+        raise SystemExit(f"wizard pack missing identity keys {missing}")
+    return {key: out[key] for key in KEYS}

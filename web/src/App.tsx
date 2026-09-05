@@ -466,6 +466,9 @@ export function App() {
           locale={locale}
           leftover={dashboard?.counts.leftover ?? 0}
           entityIds={dashboard?.assignment.map((row) => row.entity_id)}
+          chrome={t}
+          settings={settings}
+          onSettings={setSettings}
           onDone={finishWizard}
           onClose={() => undefined}
         />

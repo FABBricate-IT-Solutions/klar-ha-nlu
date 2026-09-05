@@ -16,6 +16,76 @@ const COLORS: &[(&str, &str, &str)] = &[
     ("purple", "lila", "purple"),
 ];
 
+const EMPTY_PLACE: &[(&str, &str)] = &[
+    ("de", "Keine Geräte."),
+    ("en", "No devices."),
+    ("fr", "Aucun appareil."),
+    ("nl", "Geen apparaten."),
+    ("es", "Ningún aparato."),
+    ("it", "Nessun dispositivo."),
+    ("pt", "Nenhum aparelho."),
+    ("ca", "Cap aparell."),
+    ("ro", "Niciun aparat."),
+    ("da", "Ingen enheder."),
+    ("nb", "Ingen enheter."),
+    ("sv", "Inga enheter."),
+    ("fi", "Ei laitteita."),
+    ("af", "Geen toestelle."),
+    ("cs", "Žádná zařízení."),
+    ("sk", "Žiadne zariadenia."),
+    ("pl", "Brak urządzeń."),
+    ("hu", "Nincs eszköz."),
+    ("hr", "Nema uređaja."),
+    ("sl", "Ni naprav."),
+    ("bg", "Няма устройства."),
+    ("el", "Κανένα συσκευή."),
+    ("sr", "Нема уређаја."),
+    ("uk", "Немає пристроїв."),
+    ("zh-CN", "没有设备。"),
+    ("zh-TW", "沒有裝置。"),
+    ("zh-HK", "冇裝置。"),
+    ("ar", "لا أجهزة."),
+    ("he", "אין מכשירים."),
+    ("fa", "دستگاهی نیست."),
+    ("ur", "کوئی آلہ نہیں."),
+    ("tr", "Cihaz yok."),
+    ("th", "ไม่มีอุปกรณ์"),
+    ("ko", "기기 없음."),
+    ("ja", "機器はありません。"),
+    ("cy", "Dim dyfeisiau."),
+    ("et", "Seadmeid pole."),
+    ("eu", "Ez dago gailurik."),
+    ("ga", "Níl aon ghléas."),
+    ("gl", "Ningún aparello."),
+    ("is", "Engin tæki."),
+    ("lb", "Keng Geräter."),
+    ("kw", "Ny vyjy."),
+    ("lt", "Nėra įrenginių."),
+    ("lv", "Nav ierīču."),
+    ("id", "Tidak ada perangkat."),
+    ("ms", "Tiada peranti."),
+    ("sw", "Hakuna vifaa."),
+    ("vi", "Không có thiết bị."),
+    ("hi", "कोई उपकरण नहीं."),
+    ("bn", "কোনো যন্ত্র নেই."),
+    ("gu", "કોઈ ઉપકરણ નથી."),
+    ("kn", "ಯಾವುದೇ ಸಾಧನವಿಲ್ಲ."),
+    ("ml", "ഉപകരണങ്ങളില്ല."),
+    ("mr", "साधने नाहीत."),
+    ("ta", "சாதனங்கள் இல்லை."),
+    ("te", "పరికరాలు లేవు."),
+    ("pa", "ਕੋਈ ਯੰਤਰ ਨਹੀਂ."),
+    ("ne", "कुनै उपकरण छैन."),
+    ("hy", "Սարքեր չկան."),
+    ("ka", "მოწყობილობა არ არის."),
+    ("mn", "Төхөөрөмж байхгүй."),
+    ("sr-Latn", "Nema uređaja."),
+    ("pt-BR", "Nenhum aparelho."),
+    ("en-GB", "No devices."),
+    ("de-CH", "Kei Grät."),
+    ("de-AT", "Keine Geräte."),
+];
+
 const DE_STATE: &[(&str, &str)] = &[
     ("on", "an"),
     ("off", "aus"),
@@ -58,7 +128,9 @@ fn interpolate(snap: &SpeechSnapshot, speech: Speech, de: bool) -> String {
         "HassVacuumStart" => fill(speech.vacuum_start, &where_, "", ""),
         "HassVacuumReturnToBase" => fill(speech.vacuum_dock, &where_, "", ""),
         "HassFanSetSpeed" | "HassFanSetPercentage" => fill(speech.fan_set, &where_, slot(snap, "percentage").unwrap_or(""), ""),
-        "KlarGetCalendarEvents" => calendar_line(snap, speech),
+        "KlarGetCalendarEvents" | "KlarCreateCalendarEvent" | "KlarDeleteCalendarEvent" | "KlarMoveCalendarEvent" | "KlarNoMusicPlayer" => {
+            calendar_speech(snap, speech)
+        }
         _ => {
             if !where_.is_empty() {
                 fill(speech.done, &where_, "", "")
@@ -180,16 +252,22 @@ fn query_speech(snap: &SpeechSnapshot, speech: Speech, de: bool) -> String {
         return media_status(snap, status, de);
     }
     let entities: Vec<&SpeechEntity> = snap.entities.iter().filter(|entity| !is_infra(entity)).collect();
-    if entities.is_empty() {
-        return String::new();
-    }
     if snap.intent.name == "HassClimateGetTemperature" {
+        if entities.is_empty() {
+            return String::new();
+        }
         return climate_query(snap, &entities, de);
     }
-    if let Some(area) = slot(snap, "area_name").or_else(|| slot(snap, "area")) {
-        if slot(snap, "entity_id").is_none() {
-            return area_status(area, &entities, speech, &snap.language);
-        }
+    if slot(snap, "entity_id").is_none()
+        && (slot(snap, "area").is_some()
+            || slot(snap, "area_name").is_some()
+            || slot(snap, "floor").is_some()
+            || entities.iter().any(|entity| entity.area_name.as_ref().is_some_and(|name| !name.is_empty())))
+    {
+        return place_status(snap, &entities, speech, &snap.language);
+    }
+    if entities.is_empty() {
+        return String::new();
     }
     let lights: Vec<_> = entities.iter().filter(|entity| entity.domain == "light").copied().collect();
     if lights.len() >= 2 {
@@ -238,6 +316,61 @@ fn area_status(area: &str, entities: &[&SpeechEntity], speech: Speech, pack: &st
         return String::new();
     }
     format!("{pretty}. {}.", facts.join(". "))
+}
+
+fn place_status(snap: &SpeechSnapshot, entities: &[&SpeechEntity], speech: Speech, pack: &str) -> String {
+    if entities.is_empty() {
+        return empty_place(pack);
+    }
+    let mut groups: Vec<(String, Vec<&SpeechEntity>)> = Vec::new();
+    for entity in entities {
+        let key = entity
+            .area_name
+            .as_deref()
+            .filter(|name| !name.is_empty())
+            .or(entity.area.as_deref().filter(|name| !name.is_empty()))
+            .unwrap_or("")
+            .to_string();
+        if let Some((_, rows)) = groups.iter_mut().find(|(name, _)| *name == key) {
+            rows.push(*entity);
+        } else {
+            groups.push((key, vec![*entity]));
+        }
+    }
+    if groups.len() == 1 && groups[0].0.is_empty() {
+        let fallback = slot(snap, "area_name").or_else(|| slot(snap, "area")).or_else(|| slot(snap, "floor")).unwrap_or("");
+        let line = area_status(fallback, entities, speech, pack);
+        return if line.is_empty() { empty_place(pack) } else { line };
+    }
+    let mut parts = Vec::new();
+    for (name, rows) in groups {
+        let label = if name.is_empty() {
+            slot(snap, "area_name").or_else(|| slot(snap, "area")).or_else(|| slot(snap, "floor")).unwrap_or("")
+        } else {
+            name.as_str()
+        };
+        let line = area_status(label, &rows, speech, pack);
+        if !line.is_empty() {
+            parts.push(line);
+        }
+    }
+    if parts.is_empty() {
+        return empty_place(pack);
+    }
+    parts.join(" ")
+}
+
+fn empty_place(pack: &str) -> String {
+    let exact = EMPTY_PLACE.iter().find(|(code, _)| *code == pack);
+    if let Some((_, line)) = exact {
+        return (*line).to_string();
+    }
+    let base = pack.split('-').next().unwrap_or(pack);
+    EMPTY_PLACE
+        .iter()
+        .find(|(code, _)| *code == base)
+        .map(|(_, line)| (*line).to_string())
+        .unwrap_or_else(|| "No devices.".into())
 }
 
 fn title(raw: &str) -> String {
@@ -373,6 +506,37 @@ fn queue_speech(snap: &SpeechSnapshot, de: bool) -> String {
     }
 }
 
+fn calendar_speech(snap: &SpeechSnapshot, speech: Speech) -> String {
+    let need = slot(snap, "need").unwrap_or("");
+    let cue = slot(snap, "cue").unwrap_or("");
+    if matches!(need, "title") || cue == "need_title" {
+        return speech.calendar_need_title.to_string();
+    }
+    if matches!(need, "when") || cue == "need_when" {
+        return speech.calendar_need_when.to_string();
+    }
+    if matches!(need, "which") || cue == "which" {
+        return speech.calendar_which.to_string();
+    }
+    if matches!(cue, "none") {
+        return speech.calendar_none.to_string();
+    }
+    if matches!(cue, "readonly") {
+        return speech.calendar_readonly.to_string();
+    }
+    if matches!(cue, "no_uid") {
+        return speech.calendar_no_uid.to_string();
+    }
+    match snap.intent.name.as_str() {
+        "KlarNoMusicPlayer" => speech.no_music_player.to_string(),
+        "KlarGetCalendarEvents" => calendar_line(snap, speech),
+        "KlarCreateCalendarEvent" => fill_named(speech.calendar_created, snap),
+        "KlarDeleteCalendarEvent" => fill_named(speech.calendar_deleted, snap),
+        "KlarMoveCalendarEvent" => fill_named(speech.calendar_moved, snap),
+        _ => calendar_line(snap, speech),
+    }
+}
+
 fn calendar_line(snap: &SpeechSnapshot, speech: Speech) -> String {
     if snap.calendar_events.is_empty() {
         return speech.calendar_empty.to_string();
@@ -384,6 +548,10 @@ fn calendar_line(snap: &SpeechSnapshot, speech: Speech) -> String {
         .collect::<Vec<_>>()
         .join(". ");
     speech.calendar_list.replace("{items}", &items)
+}
+
+fn fill_named(template: &str, snap: &SpeechSnapshot) -> String {
+    template.replace("{summary}", slot(snap, "summary").unwrap_or("")).replace("{when}", slot(snap, "when").unwrap_or(""))
 }
 
 fn pretty_where(snap: &SpeechSnapshot, speech: Speech) -> String {

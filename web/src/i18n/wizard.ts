@@ -1,4 +1,4 @@
-/** First-run wizard copy. Chrome packs can later spread these into de.ts / en.ts. */
+/** First-run wizard copy. de/en are oracles; other Assist locales load generated JSON. */
 
 export type WizardPhrase = { say: string; expect: string };
 
@@ -49,6 +49,7 @@ export type WizardMessages = {
   missLlmTitle: string;
   missLlmBody: string;
   missWarn: string;
+  llmOptional: string;
 
   toolsTitle: string;
   toolsLead: string;
@@ -83,8 +84,8 @@ export const wizardDe: WizardMessages = {
   whatLead:
     "Lokale Assist-NLU. Home Assistant bleibt die Gerätedatenbank. Das hier ist keine Haushaltszentrale und keine LLM-Conversation-Engine.",
   whatLocal: "Klar zerlegt den Satz. Home Assistant besitzt Räume und Geräte.",
-  whatConsole: "Lovelace „Klar“ ist der letzte Assist-Zug. Diese Oberfläche (Klar NLU) ist Zuordnung und Labor.",
-  whatNoLlm: "Den LLM-Agenten nicht als Conversation-Engine in der Pipeline setzen.",
+  whatConsole: "Lovelace „Klar“ ist der letzte Assist-Zug. Diese Oberfläche (Klar NLU) ist die Operator-Konsole: Settings, Haus, Labor und Regeln.",
+  whatNoLlm: "Den LLM-Agenten nicht als Conversation-Engine in der Pipeline setzen. Stimme und LLM liegen unter Settings.",
 
   pathTitle: "Installationsweg",
   pathLead: "Ein Engine-Host. Integration für Assist, App oder Docker für diese UI.",
@@ -94,16 +95,16 @@ export const wizardDe: WizardMessages = {
     "Du bist über Ingress in der App. Integration synchronisiert das Haus. URL in der Integration: http://klar-nlu:10520.",
   pathDockerTitle: "App oder Docker",
   pathDockerBody:
-    "Der Graph kommt von Home Assistant. In der Integration „Klar-NLU-App oder Docker“ wählen. Mapping und Labor laufen hier.",
+    "Der Graph kommt von Home Assistant. In der Integration „Klar-NLU-App oder Docker“ wählen. Die Konsole läuft hier.",
   pathBinaryTitle: "Mitgelieferte Engine",
   pathBinaryBody:
-    "HACS-only oder Binary auf Loopback (127.0.0.1:10520). Assist funktioniert. Zuordnung und Labor erreicht ein Telefon nicht.",
+    "HACS-only oder Binary auf Loopback (127.0.0.1:10520). Assist funktioniert. Settings und Labor erreicht ein Telefon nicht.",
   pathSampleTitle: "Beispielhaus",
   pathSampleBody:
     "Noch das eingebaute default_home, kein HA-Snapshot. Assist-Pipeline speichern — dann erscheint euer Haus.",
 
-  modeTitle: "Modus",
-  modeLead: "Drei getrennte Schalter. Keiner davon ist ein LLM in Assist.",
+  modeTitle: "Stimme",
+  modeLead: "Persönlichkeit, Modus und Refine werden auf der Engine gespeichert. Home Assistant Configure braucht das nicht.",
   modeFullTitle: "Geräte auflösen",
   modeFullBody: "full bindet eine entity_id. Das ist der normale Haushalt.",
   modeContextTitle: "Nur Räume",
@@ -111,21 +112,22 @@ export const wizardDe: WizardMessages = {
   modeNluTitle: "Nur NLU",
   modeNluBody: "Standard für unbehandelte Sprache: matched slice, keine Assist-Werkzeuge, kein Hauskontext.",
 
-  missTitle: "Wenn Klar danebenliegt",
-  missLead: "Drei Schichten. Nur die erste sitzt in dieser Engine.",
+  missTitle: "LLM der Engine",
+  missLead: "Assist-Chat, Refine und Trainer nutzen denselben OpenAI-kompatiblen Endpunkt. Keine HA-LLM-Integration.",
   missEngineTitle: "Klar-Engine",
   missEngineBody: "Ausführen, nachfragen, ablehnen. Labor zeigt die Pipeline.",
   missSliceTitle: "Hauskontext bei einem Miss",
   missSliceBody:
     "Optional. Schon gematchte Namen, Räume, letzter Zug. Keine Embeddings, kein Dokumentindex, keine Assist-Tools. Standard aus.",
-  missLlmTitle: "HA-LLM",
-  missLlmBody: "Fallback und Refine bleiben in der Integration. Assist-Tools am LLM-Agenten aus.",
+  missLlmTitle: "Engine-LLM",
+  missLlmBody: "Assist-Chat, Refine und Trainer liegen in Settings, nicht in einer Home-Assistant-Conversation-Integration.",
   missWarn: "LLM niemals in den Slot „Conversation-Engine“ der Pipeline.",
+  llmOptional: "Leer lassen und später in Settings setzen. Setup kommt ohne LLM durch.",
 
   toolsTitle: "Werkzeuge",
-  toolsLead: "Nach dem Setup bleibt ihr in dieser Konsole, nicht in den API-Docs.",
+  toolsLead: "Nach dem Setup bleibt ihr in dieser Konsole. Stimme, Sprachen und LLM liegen unter Settings.",
   toolsLab: "Labor — Satz nochmal, Pipeline und verworfene Kandidaten.",
-  toolsMapping: "Zuordnung — Aliase und Raumvorschläge. Overlay über HA-Namen.",
+  toolsMapping: "Haus — Aliase und Raumvorschläge. Overlay über HA-Namen.",
   toolsPhrases: "Sätze — ein Satz auf einen bekannten Intent. Nicht für jedes Licht.",
   toolsRoutines: "Routinen — ein gesprochener Name startet ein Skript.",
   toolsPolicies: "Policies — erste zutreffende Regel gewinnt. Gerät, Raum oder Etage wählen.",
@@ -134,7 +136,7 @@ export const wizardDe: WizardMessages = {
   phrasesLead: "Nach der Pipeline in Assist sagen. Unter HA OS auch im Labor.",
   phrasesOther: "Englisch läuft in derselben Pipeline.",
   phrasesMapping: "{count} Geräte ohne sicheren Raum — als Nächstes Haus → Zuordnung.",
-  phrasesReopen: "Dieses Setup liegt unter Einstellungen, nicht als siebter Tab.",
+  phrasesReopen: "Dieses Setup liegt unter Settings, nicht als siebter Tab.",
   phraseSay: "Sagen",
   phraseExpect: "Erwartung",
   phrases: [
@@ -161,8 +163,8 @@ export const wizardEn: WizardMessages = {
   whatLead:
     "Local Assist NLU. Home Assistant stays the device database. This is not a household dashboard and not an LLM conversation engine.",
   whatLocal: "Klar parses the sentence. Home Assistant owns rooms and devices.",
-  whatConsole: "Lovelace “Klar” is the last Assist turn. This surface (Klar NLU) is Mapping and Lab.",
-  whatNoLlm: "Do not set an LLM as the pipeline conversation engine.",
+  whatConsole: "Lovelace “Klar” is the last Assist turn. This surface (Klar NLU) is the operator console: Settings, House, Lab, and Rules.",
+  whatNoLlm: "Do not set an LLM as the pipeline conversation engine. Voice and the LLM live in Settings.",
 
   pathTitle: "Install path",
   pathLead: "One engine host. Integration for Assist. App or Docker for this UI.",
@@ -172,16 +174,16 @@ export const wizardEn: WizardMessages = {
     "You reached the App through ingress. The integration syncs the house. Integration URL: http://klar-nlu:10520.",
   pathDockerTitle: "App or Docker",
   pathDockerBody:
-    "The graph was pushed from Home Assistant. In the integration pick “Use the Klar NLU App or Docker”. Mapping and Lab run here.",
+    "The graph was pushed from Home Assistant. In the integration pick “Use the Klar NLU App or Docker”. This console runs here.",
   pathBinaryTitle: "Bundled engine",
   pathBinaryBody:
-    "HACS-only or a binary on loopback (127.0.0.1:10520). Assist works. A phone cannot reach Mapping or Lab.",
+    "HACS-only or a binary on loopback (127.0.0.1:10520). Assist works. A phone cannot reach Settings or Lab.",
   pathSampleTitle: "Sample house",
   pathSampleBody:
     "Still the built-in default_home, not an HA snapshot. Save the Assist pipeline — then your house appears.",
 
-  modeTitle: "Mode",
-  modeLead: "Three separate switches. None of them puts an LLM in Assist.",
+  modeTitle: "Voice",
+  modeLead: "Personality, mode, and refine are stored on the engine. Home Assistant Configure does not need them.",
   modeFullTitle: "Resolve devices",
   modeFullBody: "full binds an entity_id. That is the usual household.",
   modeContextTitle: "Rooms only",
@@ -189,21 +191,22 @@ export const wizardEn: WizardMessages = {
   modeNluTitle: "NLU only",
   modeNluBody: "Default for unhandled speech: the matched slice, no Assist tools, no house context.",
 
-  missTitle: "On a miss",
-  missLead: "Three layers. Only the first lives in this engine.",
+  missTitle: "Engine LLM",
+  missLead: "Assist chat, refine, and the trainer share this OpenAI-compatible endpoint. No Home Assistant LLM integration.",
   missEngineTitle: "Klar engine",
   missEngineBody: "Execute, clarify, or reject. Lab shows the pipeline.",
   missSliceTitle: "House context on miss",
   missSliceBody:
     "Optional. Already-matched names, rooms, last turn. No embeddings, no document index, no Assist tools. Default off.",
-  missLlmTitle: "HA LLM",
-  missLlmBody: "Fallback and refine stay in the integration. Keep Assist tools off on the LLM agent.",
+  missLlmTitle: "Engine LLM",
+  missLlmBody: "Assist chat, refine, and the trainer live in Settings, not in a Home Assistant conversation integration.",
   missWarn: "Never put the LLM in the pipeline Conversation engine slot.",
+  llmOptional: "Leave empty and set it later in Settings. Setup finishes without an LLM.",
 
   toolsTitle: "Tools",
-  toolsLead: "After setup you stay in this console, not the API docs.",
+  toolsLead: "After setup you stay in this console. Voice, languages, and the LLM are under Settings.",
   toolsLab: "Lab — replay a sentence, pipeline, discarded candidates.",
-  toolsMapping: "Mapping — aliases and room suggestions. Overlay on HA names.",
+  toolsMapping: "House — aliases and room suggestions. Overlay on HA names.",
   toolsPhrases: "Phrases — one sentence to a known intent. Not one row per lamp.",
   toolsRoutines: "Routines — a spoken name starts a script.",
   toolsPolicies: "Policies — first matching rule wins. Pick device, room, or floor.",
@@ -224,8 +227,38 @@ export const wizardEn: WizardMessages = {
   ],
 };
 
+const extras = import.meta.glob("./wizard/*.json", { eager: true, import: "default" }) as Record<
+  string,
+  Partial<WizardMessages>
+>;
+
+function packFromPath(path: string): string {
+  return path.slice(path.lastIndexOf("/") + 1, -".json".length);
+}
+
+const overlays: Record<string, Partial<WizardMessages>> = {};
+for (const [path, extra] of Object.entries(extras)) {
+  overlays[packFromPath(path)] = extra;
+}
+
+function oracle(locale?: string): WizardMessages {
+  const tag = (locale || "").replaceAll("_", "-");
+  const lower = tag.toLowerCase();
+  if (lower === "de" || lower.startsWith("de-")) {
+    return wizardDe;
+  }
+  return wizardEn;
+}
+
 export function wizardMessages(locale?: string, extra?: Partial<WizardMessages>): WizardMessages {
-  const base = (locale || "").toLowerCase().startsWith("de") ? wizardDe : wizardEn;
+  const tag = (locale || "").replaceAll("_", "-");
+  const overlay = overlays[tag] || overlays[locale || ""];
+  const base = overlay
+    ? { ...oracle(locale), ...overlay, phrases: overlay.phrases ?? oracle(locale).phrases }
+    : oracle(locale);
+  if (tag.toLowerCase().startsWith("de") && tag.toLowerCase() !== "de" && tag.toLowerCase() !== "de-de" && !overlay) {
+    return extra ? { ...wizardDe, ...extra, phrases: extra.phrases ?? wizardDe.phrases } : wizardDe;
+  }
   if (!extra) return base;
   return { ...base, ...extra, phrases: extra.phrases ?? base.phrases };
 }

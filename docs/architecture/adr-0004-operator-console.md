@@ -2,7 +2,7 @@
 
 [Deutsch](adr-0004-operator-console.md) · [English](adr-0004-operator-console.en.md)
 
-Status: **vorgeschlagen** — Richtung für einen Staging-Zyklus. Umsetzung: [Plan](adr-0004-plan.md). Läuft auf **`staging`**, kein Hauptrelease.
+Status: **akzeptierte Richtung; auf staging umgesetzt, kein Hauptrelease**. Stufe 1 (Engine-Settings-Store) und Stufe 4 (Wizard schreibt Stimme + LLM) sind auf staging. Stufen 2–3 (Figma 05) bleiben Zukunft. Umsetzung: [Plan](adr-0004-plan.md).
 
 Klar bleibt eine deterministische, lokale NLU. `nlu::parse` hat kein Netz und kein Modell. Dieser ADR ersetzt nicht [ADR 0001](adr-0001-rules-and-trainer.md) (sichtbare Match-/Sprach-/Haus-Spuren), [ADR 0002](adr-0002-openai-llm-client.md) (Engine-LLM-Client) oder [ADR 0003](adr-0003-python-rust-boundary.md) (Engine besitzt Assist-Produktlogik). Er zieht die **Operator-Linie** durch: wer Klar betreibt, konfiguriert Klar **in Klar**, nicht in einem langen Home-Assistant-Optionsformular.
 

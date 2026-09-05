@@ -91,7 +91,6 @@ def _load_dispatch() -> types.ModuleType:
         _load(f"{PACKAGE}.speech_status", "speech_status.py")
         _load(f"{PACKAGE}.floor_query", "floor_query.py")
         _load(f"{PACKAGE}.dispatch_result", "dispatch_result.py")
-        _load(f"{PACKAGE}.refine_voices", "refine_voices.py")
         _load(f"{PACKAGE}.refine", "refine.py")
         _load(f"{PACKAGE}.stream", "stream.py")
         _load(f"{PACKAGE}.engine_llm", "engine_llm.py")
@@ -657,8 +656,8 @@ class DispatchTests(unittest.IsolatedAsyncioTestCase):
         hass = _hass(living, kitchen)
         with patch.object(
             dispatch,
-            "place_get_state",
-            return_value="Wohnzimmer. Licht an. Küche. Licht aus.",
+            "place_status_rooms",
+            return_value=[("Wohnzimmer", [living]), ("Küche", [kitchen])],
         ):
             spoken = await dispatch.handle_intent(
                 hass,
@@ -669,8 +668,7 @@ class DispatchTests(unittest.IsolatedAsyncioTestCase):
                 lambda _entity_id: True,
             )
         self.assertTrue(spoken.ok)
-        self.assertIn("Wohnzimmer", spoken.speech or "")
-        self.assertIn("Küche", spoken.speech or "")
+        self.assertEqual(spoken.speech, "ok.")
         dispatch.intent.async_handle.assert_not_awaited()
 
     async def test_area_status_uses_place_speech(self) -> None:
@@ -678,8 +676,8 @@ class DispatchTests(unittest.IsolatedAsyncioTestCase):
         hass = _hass(living)
         with patch.object(
             dispatch,
-            "place_get_state",
-            return_value="Wohnzimmer. Licht an.",
+            "place_status_rooms",
+            return_value=[("Wohnzimmer", [living])],
         ):
             spoken = await dispatch.handle_intent(
                 hass,
@@ -690,12 +688,12 @@ class DispatchTests(unittest.IsolatedAsyncioTestCase):
                 lambda _entity_id: True,
             )
         self.assertTrue(spoken.ok)
-        self.assertEqual(spoken.speech, "Wohnzimmer. Licht an.")
+        self.assertEqual(spoken.speech, "ok.")
         dispatch.intent.async_handle.assert_not_awaited()
 
     async def test_empty_floor_does_not_call_ha(self) -> None:
         hass = _hass()
-        with patch.object(dispatch, "place_get_state", return_value="Keine Geräte."):
+        with patch.object(dispatch, "place_status_rooms", return_value=[]):
             spoken = await dispatch.handle_intent(
                 hass,
                 _input("Wie ist der Status der Wohnung"),
@@ -705,7 +703,7 @@ class DispatchTests(unittest.IsolatedAsyncioTestCase):
                 lambda _entity_id: True,
             )
         self.assertTrue(spoken.ok)
-        self.assertEqual(spoken.speech, "Keine Geräte.")
+        self.assertEqual(spoken.speech, "ok.")
         dispatch.intent.async_handle.assert_not_awaited()
 
     def test_non_weather_intent_does_not_forward_utterance(self) -> None:

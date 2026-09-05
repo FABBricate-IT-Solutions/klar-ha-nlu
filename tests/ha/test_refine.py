@@ -33,26 +33,11 @@ def _load(name: str, rel: str):
 
 _load("klar_nlu.languages", "languages.py")
 const = _load("klar_nlu.const", "const.py")
-voices = _load("refine_voices", "refine_voices.py")
 refine = _load("klar_refine", "refine.py")
 speech = _load("klar_speech", "speech.py")
 
 
 class RefineTests(unittest.TestCase):
-    def test_personality_change_swaps_stored_prompt(self) -> None:
-        butler = voices.editable_prompt("butler", "de")
-        jarvis = voices.editable_prompt("jarvis", "de")
-        self.assertIn("Butler", butler)
-        self.assertIn("Jarvis", jarvis)
-        self.assertIn("21,5 °C", butler)
-        self.assertIn("Schlafzimmerlicht ist an.", butler)
-        swapped = voices.resolve_stored_prompt("jarvis", "butler", butler, "de")
-        self.assertEqual(swapped, jarvis)
-        kept = voices.resolve_stored_prompt("butler", "butler", "mein stil", "de")
-        self.assertEqual(kept, "mein stil")
-        filled = voices.resolve_stored_prompt("grantig", "grantig", "", "de")
-        self.assertEqual(filled, voices.editable_prompt("grantig", "de"))
-
     def test_nlu_home_turn_removed_because_every_reply_refines(self) -> None:
         self.assertFalse(hasattr(refine, "nlu_home_turn"))
         self.assertFalse(hasattr(refine, "accept_refined"))

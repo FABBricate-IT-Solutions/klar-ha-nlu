@@ -2,7 +2,7 @@
 
 [Deutsch](adr-0003-python-rust-boundary.md) · [English](adr-0003-python-rust-boundary.en.md)
 
-Status: **proposed** — direction for a staging cycle. Implementation: [plan](adr-0003-plan.en.md). Ships on **`staging`**, not a main release.
+Status: **accepted direction; implemented on staging, not a main release**. Implementation: [plan](adr-0003-plan.en.md).
 
 Klar stays a deterministic, local NLU. `nlu::parse` has no network and no model. An LLM may **talk and rewrite**; it must not **drive parse**. Product rules that are not Home Assistant platform glue belong in the Rust engine, not in `custom_components/klar_nlu/`.
 

@@ -104,7 +104,7 @@ export function PolicyPath({
   const dash = t.pathUnchecked;
   const kinds: PathKind[] = ["match", "seed", "house", "band"];
   return (
-    <div className="flex flex-wrap items-stretch gap-2" aria-label={t.processPath}>
+    <div className="flex flex-wrap items-stretch gap-2" aria-label={t.pathMatch}>
       {kinds.map((kind, index) => {
         const id = nodeId(policy, kind, dash);
         const lane = laneFor(kind);

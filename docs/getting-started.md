@@ -15,12 +15,12 @@ Klar kommt in zwei Teilen. Sie machen unterschiedliche Jobs. Beides zu installie
 | Teil | Rolle | Braucht ihr das? |
 |------|-------|------------------|
 | **HACS-Integration** | Conversation-Agent für Assist. Räume und Geräte synchronisieren, Intents ausführen. | Ja, wenn Assist Klar nutzen soll. |
-| **App (Add-on)** | NLU-Engine im eigenen Container. Zuordnung / Labor in der Seitenleiste **Klar NLU**. | Home Assistant OS, wenn ihr diese UI wollt. |
+| **App (Add-on)** | NLU-Engine im eigenen Container. Operator-Konsole (Settings, Haus, Labor, Regeln) in der Seitenleiste **Klar NLU**. | Home Assistant OS, wenn ihr diese UI wollt. |
 | **Mitgelieferte Engine** | Die Integration lädt das GitHub-Release und startet dieselbe Engine in Core auf `127.0.0.1:10520`. | Wenn keine App da ist. |
 
 Nur **einen** Engine-Host. App und mitgelieferte Engine nicht gleichzeitig.
 
-Lovelace **Klar** ist der letzte Assist-Zug (`klar-home-card`). Zuordnung und Labor sind die App-UI (**Klar NLU**), nicht diese Karte.
+Lovelace **Klar** ist der letzte Assist-Zug (`klar-home-card`). Die Operator-Konsole ist die App-UI (**Klar NLU**): Settings, Haus, Labor und Regeln — nicht diese Karte.
 
 ## 1. Klar NLU installieren
 
@@ -34,7 +34,7 @@ Lovelace **Klar** ist der letzte Assist-Zug (`klar-home-card`). Zuordnung und La
 
 ### Ohne Supervisor — nur HACS
 
-Dieselben HACS-Schritte, dann [Integration hinzufügen](https://my.home-assistant.io/redirect/config_flow_start/?domain=klar_nlu) und **Mitgelieferte Engine starten (nur HACS)** behalten. Assist funktioniert. Zuordnung / Labor sind nicht in der Seitenleiste (die Engine bindet Loopback in Core).
+Dieselben HACS-Schritte, dann [Integration hinzufügen](https://my.home-assistant.io/redirect/config_flow_start/?domain=klar_nlu) und **Mitgelieferte Engine starten (nur HACS)** behalten. Assist funktioniert. Settings und Labor sind nicht in der Seitenleiste (die Engine bindet Loopback in Core).
 
 Docker statt mitgeliefert: Image starten, dann **Klar-NLU-App oder Docker verwenden** mit `http://127.0.0.1:10520`. Siehe [Home Assistant](home-assistant.md).
 
@@ -55,7 +55,7 @@ Einstellungen → Sprachassistenten → Pipeline bearbeiten:
 
 Nicht den LLM-Agenten als Engine wählen. Sonst umgeht Assist Klar und das Modell darf Geräte anfassen.
 
-Die Integration registriert die Lovelace-Karte **Klar home** (`klar-home-card`) und legt beim ersten Start eine **Klar**-Seitenleiste an, damit der letzte Assist-Zug ohne Kartensuche sichtbar ist. Das ist nicht Zuordnung / Labor.
+Die Integration registriert die Lovelace-Karte **Klar home** (`klar-home-card`) und legt beim ersten Start eine **Klar**-Seitenleiste an, damit der letzte Assist-Zug ohne Kartensuche sichtbar ist. Das ist nicht die Operator-Konsole.
 
 ## 4. Fünf Sätze
 
@@ -73,9 +73,9 @@ Englisch läuft in derselben Pipeline: `Turn on the living room light`, `Play Qu
 
 Player im Raum? Den Raum mitnennen (`Play the playlist Chill in the living room` / Playlist plus Raum). Klar erfindet keine Playlists oder Interpreten, die Music Assistant nicht auflösen kann.
 
-## 5. Zuordnung
+## 5. Haus → Zuordnung
 
-Unter Home Assistant OS die Seitenleiste **Klar NLU** öffnen (die App, nicht Lovelace **Klar**). **Haus → Zuordnung**.
+Unter Home Assistant OS die Seitenleiste **Klar NLU** öffnen (die App, nicht Lovelace **Klar**). **Haus → Zuordnung**. Stimme, Sprachen und das LLM liegen unter **Settings**.
 
 Fragt Assist „welche Lampe?“ oder verpasst einen Spitznamen, dort einen Alias setzen oder einen Raumvorschlag übernehmen. Das Overlay liegt über den Home-Assistant-Namen — HA bleibt die Gerätedatenbank.
 

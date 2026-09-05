@@ -12,6 +12,7 @@ import type {
   MatchControl,
   LanguageOverlay,
   LlmPublic,
+  PolicyTrace,
   Settings,
   TrainerChatEvent,
   TrainerContext,
@@ -24,7 +25,17 @@ import { parseV2Response } from "./parseContract";
 
 export type CustomRule = { phrase: string; intent: string; slots: Record<string, string> };
 export type LangOverlay = { custom: CustomRule[]; language: LanguageOverlay; history: Array<{ hash: string; label: string; saved_at: string }> };
-export type LangExplain = { language: string; decision: string; confidence: number; speech: string; stages: string[]; evidence: string[]; matched_custom?: string };
+export type LangExplain = {
+  language: string;
+  decision: string;
+  confidence: number;
+  speech: string;
+  reply?: string;
+  stages: string[];
+  evidence: string[];
+  matched_custom?: string;
+  policy_trace?: PolicyTrace;
+};
 export type LanguagePack = { code: string; native_name: string; script: string; variants: string[] };
 
 const jsonHeaders = () => {

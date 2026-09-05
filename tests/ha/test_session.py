@@ -55,6 +55,9 @@ class SessionIsolationTests(unittest.TestCase):
         start = src.index("async def _parse")
         body = src[start : src.index("def _llm_session_id")]
         self.assertIn("parse_session_id(conversation_id, device_id, satellite_id)", body)
+        self.assertIn("if not self._engine_settings():", body)
+        self.assertIn('body["personality"] = self._personality()', body)
+        self.assertNotIn('"personality": self._personality()', body)
         self.assertIn("post_parse(", src)
         self.assertIn("finish_clock_speech", src)
         self.assertIn("keeps_engine_chat", src)

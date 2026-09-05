@@ -34,7 +34,6 @@ def _load(name: str, rel: str):
 
 _load("klar_nlu.languages", "languages.py")
 _load("klar_nlu.const", "const.py")
-_load("refine_voices", "refine_voices.py")
 _load("klar_refine", "refine.py")
 _load("klar_stream", "stream.py")
 engine_llm = _load("klar_nlu.engine_llm", "engine_llm.py")

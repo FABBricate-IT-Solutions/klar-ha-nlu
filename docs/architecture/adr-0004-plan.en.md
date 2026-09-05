@@ -8,7 +8,7 @@ Frame: [ADR 0004](adr-0004-operator-console.en.md). Each stage is its own PR **a
 
 Same channel rules as ADR 0001 / 0003: base every PR on `staging`; after merge the existing staging workflow tags a prerelease and docker `staging`; `staging` → `main` is not part of this plan.
 
-## Stage 1 — Engine is the product settings store (this PR)
+## Stage 1 — Engine is the product settings store (shipped)
 
 **Goal.** Home Assistant Configure shrinks to connection glue. Operator Settings becomes the guided editor. Assist reads engine settings.
 
@@ -36,9 +36,9 @@ Needs: Figma file edit access; a running staging UI helps `generate_figma_design
 
 Implement Figma 05 with existing `web/src/components/ui/*`. Better path visualization and lane controls. Browser-verify clicks, not a single screenshot. Operator chrome: same keys for every compiled Assist locale, translated — not English leftovers.
 
-## Stage 4 — Wizard owns first-run voice + LLM
+## Stage 4 — Wizard owns first-run voice + LLM (this PR)
 
-Wizard steps write `/api/settings` and `/api/v2/llm/endpoint` so a new house never opens HA Configure for product knobs. Replay setup from Settings stays.
+Wizard steps write `/api/settings` and `/api/v2/llm/endpoint` so a new house never opens HA Configure for product knobs. Replay setup from Settings stays. Wizard chrome is generated for every compiled Assist locale.
 
 ## Out of scope
 

@@ -168,7 +168,7 @@ export const en = {
   compiledRisk: "Compiled risk",
   matchedRule: "Rule",
   finalBand: "Band",
-  processPath: "conversation.process",
+  processPath: "Path",
   triggerFirst: "Klar parse, then that path. Assist does not run a different intent, a sentence trigger, or a weather fallback.",
   discarded: "Discarded",
   stageTokens: "Tokens",
