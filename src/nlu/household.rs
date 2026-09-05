@@ -1,7 +1,6 @@
 //! Household specials: teach a name, explain, undo, clock, weather, routines.
 
 use crate::lang::Household;
-use crate::parse::calendar::mentions_calendar;
 use crate::parse::normalize::fold_umlaut;
 use crate::parse::normalize::umlaut_eq;
 use crate::session::LastHeard;
@@ -32,11 +31,15 @@ pub(super) fn route(context: &ParseContext<'_>, tokens: &[String]) -> Option<Dra
     }
     if context.catalog.household_hit(&blob, |pack| pack.household.weather)
         && !climate_overrides_weather(context, tokens)
-        && !mentions_calendar(tokens)
+        && !calendar_overrides_weather(context, tokens)
     {
         return Some(weather(context));
     }
     None
+}
+
+fn calendar_overrides_weather(context: &ParseContext<'_>, tokens: &[String]) -> bool {
+    context.catalog.any(tokens, context.catalog.calendar_nouns())
 }
 
 /// Generated packs store `{query} {climate}` as a weather phrase. A room or
@@ -357,6 +360,31 @@ mod tests {
         let context = ctx("Wie ist das Wetter", &home, &session, &custom);
         let draft = route(&context, &["wie".into(), "ist".into(), "das".into(), "wetter".into()]).expect("weather");
         assert!(matches!(draft.decision, ParseDecision::Execute));
+        assert_eq!(draft.plan.as_ref().unwrap().intents()[0].slot("entity_id"), Some("weather.home"));
+    }
+
+    #[test]
+    fn weather_tomorrow_is_still_forecast() {
+        let mut home = default_home();
+        home.entities.push(EntityRec {
+            entity_id: "weather.home".into(),
+            name: "Home".into(),
+            domain: "weather".into(),
+            platform: None,
+            area: None,
+            aliases: Vec::new(),
+            tags: Vec::new(),
+        });
+        let session = Session::new();
+        let custom = Vec::new();
+        let context = ctx("Wie wird das Wetter morgen", &home, &session, &custom);
+        let draft = route(
+            &context,
+            &["wie".into(), "wird".into(), "das".into(), "wetter".into(), "morgen".into()],
+        )
+        .expect("weather");
+        assert!(matches!(draft.decision, ParseDecision::Execute));
+        assert_eq!(draft.plan.as_ref().unwrap().intents()[0].name, "HassGetState");
         assert_eq!(draft.plan.as_ref().unwrap().intents()[0].slot("entity_id"), Some("weather.home"));
     }
 
