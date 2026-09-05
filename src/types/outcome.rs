@@ -214,6 +214,10 @@ impl PolicyTraceLayer {
     pub fn house(id: impl Into<String>, hit: impl Into<String>) -> Self {
         Self { id: id.into(), hit: Some(hit.into()), origin: "operator".into() }
     }
+
+    pub fn seed(id: impl Into<String>, hit: impl Into<String>) -> Self {
+        Self { id: id.into(), hit: Some(hit.into()), origin: "seed".into() }
+    }
 }
 
 impl PolicyTraceDiscarded {

@@ -1,9 +1,11 @@
+mod govern;
 mod graph;
 mod intent;
 mod outcome;
 mod policy;
 mod settings;
 
+pub use govern::{first_seed_match, govern_safety_seeds, is_seed_id, SEED_BLOCK_AREA_LOCK, SEED_CONFIRM_COVER_CLOSE, SEED_CONFIRM_LOCK};
 pub use graph::{AreaRec, CustomSentence, EntityRec, FloorRec, HomeGraph, HomePolicy};
 pub use intent::{known_intent, Intent, ParseResult, Slot, KNOWN_INTENTS};
 pub use outcome::{

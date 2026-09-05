@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from lang_packs.web_ui_keys import CATALOG_KEYS
+from lang_packs.web_ui_keys import CATALOG_KEYS, FALLBACKS
 
 
 def parse_table(codes: list[str], table: str) -> dict[str, dict[str, str]]:
@@ -20,8 +20,14 @@ def parse_table(codes: list[str], table: str) -> dict[str, dict[str, str]]:
         seen.append(key)
         for code, value in zip(codes, values):
             packs[code][key] = value.replace("\\n", "\n")
-    missing = [key for key in CATALOG_KEYS if key not in seen]
     extra = [key for key in seen if key not in CATALOG_KEYS]
-    if missing or extra:
-        raise SystemExit(f"{codes}: missing={missing} extra={extra}")
+    if extra:
+        raise SystemExit(f"{codes}: extra={extra}")
+    missing = [key for key in CATALOG_KEYS if key not in seen]
+    unknown = [key for key in missing if key not in FALLBACKS]
+    if unknown:
+        raise SystemExit(f"{codes}: missing={unknown}")
+    for key in missing:
+        for code in codes:
+            packs[code][key] = FALLBACKS[key]
     return packs

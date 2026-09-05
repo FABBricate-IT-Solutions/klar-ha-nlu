@@ -4,6 +4,7 @@ import { LexiconLane } from "../components/LexiconLane";
 import { MatchLane } from "../components/MatchLane";
 import { PolicyPath, type PolicyLane } from "../components/PolicyPath";
 import { SearchSelect, useHouseCatalog, withCurrent } from "../components/SearchSelect";
+import { TrainerDrawer } from "../components/TrainerDrawer";
 import { policiesEmpty, SetupHint } from "../components/SetupHint";
 import type { Messages } from "../i18n";
 import { bakeVariants } from "../speechBank";
@@ -107,6 +108,7 @@ export function RulesPage({
   const [status, setStatus] = useState("");
   const [intents, setIntents] = useState<string[]>(fallbackIntents);
   const [catalog, setCatalog] = useState<MatchCatalogRow[]>([]);
+  const [seeds, setSeeds] = useState<PolicyRule[]>([]);
   const [matchControls, setMatchControls] = useState<MatchControl[]>([]);
   const [overlay, setOverlay] = useState<LangOverlay | null>(null);
   const [lane, setLane] = useState<PolicyLane>("house");
@@ -124,7 +126,10 @@ export function RulesPage({
       setBank(bundle.speech_bank);
       setMatchControls(bundle.match_controls || []);
     }).catch((err) => setStatus(String(err)));
-    api.policiesCatalog().then((body) => setCatalog(body.matches)).catch((err) => setStatus(String(err)));
+    api.policiesCatalog().then((body) => {
+      setCatalog(body.matches);
+      setSeeds(body.seeds || []);
+    }).catch((err) => setStatus(String(err)));
     api.langOverlay().then(setOverlay).catch((err) => setStatus(String(err)));
     api.intents().then((names) => { if (names.length) setIntents(names); }).catch(() => undefined);
   }, []);
@@ -256,7 +261,15 @@ export function RulesPage({
               />
             </div>
             <div className={`card${lane === "language" ? " lane-open" : ""}`} onClick={() => setLane("language")}>
-              <LexiconLane t={t} overlay={overlay} onSaved={setOverlay} onStatus={setStatus} />
+              <LexiconLane
+                t={t}
+                overlay={overlay}
+                seeds={seeds}
+                house={rules}
+                onSaved={setOverlay}
+                onHouse={(next) => { void persist(next); }}
+                onStatus={setStatus}
+              />
             </div>
             <div className={`card${lane === "house" ? " lane-open" : ""}`} onClick={() => setLane("house")}>
               <h2>{t.laneHouse}</h2>
@@ -380,6 +393,14 @@ export function RulesPage({
               </div>
             )}
           </div>
+          <TrainerDrawer
+            t={t}
+            language={languages.length === 1 ? languages[0] : locale}
+            overlay={overlay}
+            onApplyHouse={(next) => persist(next)}
+            onApplyMatch={(next) => persist(rules, bank, next)}
+            onStatus={setStatus}
+          />
         </>
       )}
       {status && <p className="muted">{status}</p>}

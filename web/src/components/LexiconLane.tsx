@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { api, type LangOverlay } from "../api";
 import type { Messages } from "../i18n";
-import type { LanguageOverlay } from "../types";
+import type { LanguageOverlay, PolicyRule } from "../types";
 
 const LEXICON_PATHS = [
   "nouns.light_nouns",
@@ -33,15 +33,34 @@ function patchSet(language: LanguageOverlay | undefined, path: string, token: st
   return { sets };
 }
 
+function seedIsOn(house: PolicyRule[], id: string): boolean {
+  const override = house.find((rule) => rule.id === id);
+  return override ? override.enabled : true;
+}
+
+function toggleSeed(house: PolicyRule[], seed: PolicyRule, enabled: boolean): PolicyRule[] {
+  const without = house.filter((rule) => rule.id !== seed.id);
+  if (enabled) {
+    return without;
+  }
+  return [...without, { ...seed, enabled: false }];
+}
+
 export function LexiconLane({
   t,
   overlay,
+  seeds,
+  house,
   onSaved,
+  onHouse,
   onStatus,
 }: {
   t: Messages;
   overlay: LangOverlay | null;
+  seeds: PolicyRule[];
+  house: PolicyRule[];
   onSaved: (next: LangOverlay) => void;
+  onHouse: (next: PolicyRule[]) => void;
   onStatus: (status: string) => void;
 }) {
   const [path, setPath] = useState("nouns.media_nouns");
@@ -116,7 +135,27 @@ export function LexiconLane({
         </button>
       </div>
       <h3>{t.governSeed}</h3>
-      <p className="muted">{t.governEmpty}</p>
+      {seeds.length === 0 && <p className="muted">{t.governEmpty}</p>}
+      {seeds.map((seed) => {
+        const enabled = seedIsOn(house, seed.id);
+        return (
+          <div className="rule-row" key={seed.id} onClick={(ev) => ev.stopPropagation()}>
+            <span className="chip origin">{t.originSeed}</span>
+            <strong className="mono">{seed.id}</strong>
+            <span className="chip intent">{seed.effect}</span>
+            <label className="row match-toggle">
+              <input
+                type="checkbox"
+                checked={enabled}
+                onChange={(ev) => onHouse(toggleSeed(house, seed, ev.target.checked))}
+                style={{ width: "auto" }}
+              />
+              {enabled ? t.seedOn : t.seedOff}
+            </label>
+          </div>
+        );
+      })}
+      {seeds.length > 0 && <p className="caption">{t.governEmpty}</p>}
     </>
   );
 }

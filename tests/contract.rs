@@ -358,7 +358,10 @@ fn policy_trace_confirm_carries_match_without_a_plan() {
     assert_eq!(match_node.origin, "engine");
     assert_eq!(trace.band.as_deref(), Some("confirm"));
     assert!(trace.compiled_risky);
-    assert!(trace.seed.is_none());
+    let seed = trace.seed.as_ref().expect("seed");
+    assert_eq!(seed.id, klar_nlu::types::SEED_CONFIRM_LOCK);
+    assert_eq!(seed.origin, "seed");
+    assert!(trace.house.is_none());
     assert_eq!(confirmation.schema_version, PARSE_SCHEMA_VERSION);
 }
 

@@ -275,6 +275,18 @@ button.chip { background: transparent; }
 .policy-path-discarded { flex-basis: 100%; margin-top: 8px; }
 .policy-lanes .chip.origin { font-family: "IBM Plex Mono", monospace; font-size: 11px; }
 .lexicon-delta { font-family: "IBM Plex Mono", monospace; font-size: 12px; }
+.trainer-json {
+  width: 100%;
+  margin-top: 8px;
+  padding: 8px 10px;
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 12px;
+  white-space: pre-wrap;
+  border: 1px solid var(--line);
+  background: var(--surface);
+  color: var(--text);
+  border-radius: 0;
+}
 .match-toggle { width: auto; gap: 6px; font-size: 12px; color: var(--muted); }
 .match-precedence {
   width: 72px;

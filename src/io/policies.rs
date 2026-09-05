@@ -44,6 +44,8 @@ pub fn routes() -> Router<AppState> {
         .route("/api/v2/policies", get(get_policies).post(set_policies))
         .route("/api/v2/policies/catalog", get(get_catalog))
         .route("/api/v2/policies/evaluate", post(evaluate_policies))
+        .route("/api/v2/policies/trainer-context", get(crate::io::trainer::trainer_context))
+        .route("/api/v2/policies/propose/validate", post(crate::io::trainer::validate_proposal))
 }
 
 async fn get_catalog(
@@ -54,12 +56,13 @@ async fn get_catalog(
     if !reads_allowed(Some(peer), &headers, &state.token) {
         return Err(StatusCode::UNAUTHORIZED);
     }
-    Ok(Json(MatchCatalog { matches: crate::parse::match_catalog() }))
+    Ok(Json(MatchCatalog { matches: crate::parse::match_catalog(), seeds: crate::types::govern_safety_seeds().to_vec() }))
 }
 
 #[derive(Debug, Clone, Serialize)]
 struct MatchCatalog {
     matches: Vec<MatchCatalogRow>,
+    seeds: Vec<PolicyRule>,
 }
 
 fn bundle(policies: Vec<PolicyRule>, speech_bank: SpeechBank, match_controls: Vec<MatchControl>) -> PolicyBundle {

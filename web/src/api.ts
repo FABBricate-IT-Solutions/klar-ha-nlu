@@ -12,6 +12,9 @@ import type {
   MatchControl,
   LanguageOverlay,
   Settings,
+  TrainerContext,
+  TrainerProposal,
+  TrainerValidateOut,
   UiState,
 } from "./types";
 
@@ -65,6 +68,13 @@ export const api = {
   savePolicies: (body: PolicyBundle) => request<PolicyBundle>("/api/v2/policies", { method: "POST", body: JSON.stringify(body) }),
   evaluatePolicies: (body: { text: string; language?: string; policies?: PolicyRule[]; match_controls?: MatchControl[] }) =>
     request<EvaluateOut>("/api/v2/policies/evaluate", { method: "POST", body: JSON.stringify(body) }),
+  trainerContext: (layer: string, language?: string) => {
+    const query = new URLSearchParams({ layer });
+    if (language) query.set("language", language);
+    return request<TrainerContext>(`/api/v2/policies/trainer-context?${query.toString()}`);
+  },
+  validateProposal: (body: TrainerProposal) =>
+    request<TrainerValidateOut>("/api/v2/policies/propose/validate", { method: "POST", body: JSON.stringify(body) }),
   conversations: () => request<ConversationTurn[]>("/api/v2/conversations"),
   conversation: (id: string) => request<ConversationTurn[]>(`/api/v2/conversations/${encodeURIComponent(id)}`),
   intents: () => request<string[]>("/api/v2/intents"),

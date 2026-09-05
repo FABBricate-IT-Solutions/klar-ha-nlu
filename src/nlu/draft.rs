@@ -6,8 +6,8 @@ use crate::parse::numbers::first_number;
 use crate::parse::respond::{speak, speak_correction, speak_need_target, speak_unknown};
 use crate::parse::slots::intent_with_entity;
 use crate::types::{
-    allow_permitted, first_matching_rule, Intent, IntentCandidate, IntentPlan, ParseDecision, PolicyHit, PolicyTrace, PolicyTraceLayer,
-    PolicyTraceMatch, RejectReason,
+    allow_permitted, first_matching_rule, first_seed_match, Intent, IntentCandidate, IntentPlan, ParseDecision, PolicyHit, PolicyTrace,
+    PolicyTraceLayer, PolicyTraceMatch, RejectReason,
 };
 
 use super::context::ParseContext;
@@ -273,7 +273,8 @@ pub(super) fn safety_decision(mut draft: Draft, context: &ParseContext<'_>) -> D
         return action;
     }
     let matched = first_matching_rule(context.policies, plan);
-    let policy_trace = overlay_trace(&draft, matched, compiled_risky, "reject");
+    let seed_matched = first_seed_match(context.policies, plan);
+    let policy_trace = overlay_trace(&draft, matched, seed_matched, compiled_risky, "reject");
     if matches!(matched.map(|(_, hit)| hit), Some(PolicyHit::Block)) {
         let mut rejected = reject(RejectReason::Unsafe, speak_unknown());
         rejected.confidence = draft.confidence;
@@ -322,17 +323,24 @@ pub(super) fn safety_decision(mut draft: Draft, context: &ParseContext<'_>) -> D
     if let (ParseDecision::Confirm { prompt, .. }, Some((_, _, stored))) = (&decided.decision, decided.commit.confirm.as_mut()) {
         *stored = prompt.clone();
     }
-    decided.policy_trace = Some(overlay_trace(&decided, matched, compiled_risky, decided.decision.type_name()));
+    decided.policy_trace = Some(overlay_trace(&decided, matched, seed_matched, compiled_risky, decided.decision.type_name()));
     decided
 }
 
-fn overlay_trace(draft: &Draft, matched: Option<(&crate::types::PolicyRule, PolicyHit)>, compiled_risky: bool, band: &str) -> PolicyTrace {
+fn overlay_trace(
+    draft: &Draft,
+    matched: Option<(&crate::types::PolicyRule, PolicyHit)>,
+    seed_matched: Option<(&crate::types::PolicyRule, PolicyHit)>,
+    compiled_risky: bool,
+    band: &str,
+) -> PolicyTrace {
     PolicyTrace {
-        matched_rule: matched.map(|(rule, _)| rule.id.clone()),
-        hit: matched.map(|(_, hit)| hit.as_str().into()),
+        matched_rule: matched.map(|(rule, _)| rule.id.clone()).or_else(|| seed_matched.map(|(rule, _)| rule.id.clone())),
+        hit: matched.map(|(_, hit)| hit.as_str().into()).or_else(|| seed_matched.map(|(_, hit)| hit.as_str().into())),
         compiled_risky,
-        payload: matched.and_then(|(rule, _)| rule.payload.clone()),
+        payload: matched.and_then(|(rule, _)| rule.payload.clone()).or_else(|| seed_matched.and_then(|(rule, _)| rule.payload.clone())),
         match_node: draft.output_candidate.as_ref().and_then(PolicyTraceMatch::from_candidate),
+        seed: seed_matched.map(|(rule, hit)| PolicyTraceLayer::seed(rule.id.clone(), hit.as_str())),
         house: matched.map(|(rule, hit)| PolicyTraceLayer::house(rule.id.clone(), hit.as_str())),
         band: Some(band.into()),
         ..PolicyTrace::default()

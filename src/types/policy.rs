@@ -49,6 +49,8 @@ pub struct PolicyMatch {
     pub name: Option<String>,
     #[serde(default, skip_serializing_if = "Option::is_none")]
     pub phrase: Option<String>,
+    #[serde(default, skip_serializing_if = "std::ops::Not::not")]
+    pub area_wide: bool,
 }
 
 #[derive(Debug, Clone, Serialize, Deserialize, PartialEq, Eq)]
@@ -228,6 +230,7 @@ pub fn matches_when(when: &PolicyMatch, intent: &Intent) -> bool {
         && field(when.area.as_deref(), intent.slot("area"))
         && field(when.entity_id.as_deref(), intent.slot("entity_id"))
         && field(when.floor.as_deref(), intent.slot("floor"))
+        && (!when.area_wide || intent.slot("area").is_some() || intent.slot("floor").is_some())
         && when.name.as_deref().is_none_or(|needle| {
             let hay = format!("{} {}", intent.slot("name").unwrap_or(""), intent.slot("entity_id").unwrap_or(""));
             hay.to_ascii_lowercase().contains(&needle.to_ascii_lowercase())
