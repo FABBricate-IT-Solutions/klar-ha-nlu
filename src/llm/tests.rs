@@ -1,5 +1,5 @@
-use super::{assist, chat, chat_stream, refine, AssistRequest, ChatMessage, ChatRequest, LlmEndpoint, RefineRequest};
-use axum::routing::post;
+use super::{assist, chat, chat_stream, list_models, refine, AssistRequest, ChatMessage, ChatRequest, LlmEndpoint, RefineRequest};
+use axum::routing::{get, post};
 use axum::{Json, Router};
 use serde_json::{json, Value};
 use tokio::net::TcpListener;
@@ -163,5 +163,48 @@ async fn assist_returns_canned_yarn_when_model_asks() {
     .unwrap();
     assert!(out.text.contains("Fuchs"));
     assert!(!out.text.contains("Soll ich"));
+    handle.abort();
+}
+
+async fn serve_models(body: Value) -> (String, tokio::task::JoinHandle<()>) {
+    let listener = TcpListener::bind("127.0.0.1:0").await.unwrap();
+    let addr = listener.local_addr().unwrap();
+    let handle = tokio::spawn(async move {
+        let app = Router::new().route(
+            "/v1/models",
+            get(move || {
+                let body = body.clone();
+                async move { Json(body) }
+            }),
+        );
+        axum::serve(listener, app).await.unwrap();
+    });
+    (format!("http://{addr}/v1"), handle)
+}
+
+#[tokio::test]
+async fn lists_openai_model_ids_sorted() {
+    let (base, handle) = serve_models(json!({"data":[{"id":"gpt-4o-mini"},{"id":"llama3"},{"name":"skip-me"}]})).await;
+    let endpoint = LlmEndpoint::for_discovery(&base, "sk-test").unwrap();
+    let models = list_models(&endpoint).await.unwrap();
+    assert_eq!(models, vec!["gpt-4o-mini", "llama3", "skip-me"]);
+    handle.abort();
+}
+
+#[tokio::test]
+async fn lists_ollama_name_rows() {
+    let (base, handle) = serve_models(json!({"models":[{"name":"llama3:latest"},{"id":"qwen2.5"}]})).await;
+    let endpoint = LlmEndpoint::for_discovery(&base, "").unwrap();
+    let models = list_models(&endpoint).await.unwrap();
+    assert_eq!(models, vec!["llama3:latest", "qwen2.5"]);
+    handle.abort();
+}
+
+#[tokio::test]
+async fn drops_empty_and_control_model_ids() {
+    let (base, handle) = serve_models(json!({"data":[{"id":""},{"id":"ok"},{"id":"bad\nid"}]})).await;
+    let endpoint = LlmEndpoint::for_discovery(&base, "").unwrap();
+    let models = list_models(&endpoint).await.unwrap();
+    assert_eq!(models, vec!["ok"]);
     handle.abort();
 }

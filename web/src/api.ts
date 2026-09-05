@@ -11,6 +11,7 @@ import type {
   MatchCatalog,
   MatchControl,
   LanguageOverlay,
+  LlmModels,
   LlmPublic,
   PolicyTrace,
   Settings,
@@ -143,6 +144,11 @@ export const api = {
   llmEndpoint: () => request<LlmPublic>("/api/v2/llm/endpoint"),
   saveLlmEndpoint: (body: { base_url?: string; api_key?: string; model?: string; configured?: boolean }) =>
     request<LlmPublic>("/api/v2/llm/endpoint", {
+      method: "POST",
+      body: JSON.stringify(body),
+    }),
+  llmModels: (body: { base_url?: string; api_key?: string }) =>
+    request<LlmModels>("/api/v2/llm/models", {
       method: "POST",
       body: JSON.stringify(body),
     }),

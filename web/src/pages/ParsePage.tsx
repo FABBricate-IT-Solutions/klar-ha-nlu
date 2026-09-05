@@ -6,6 +6,7 @@ import { PolicyPath } from "../components/PolicyPath";
 import { SearchSelect, withCurrent } from "../components/SearchSelect";
 import type { Messages } from "../i18n";
 import type { ParseResult, Settings } from "../types";
+import { Button } from "@/components/ui/button";
 
 const SKIP_REFINE = new Set(["chat", "llm", "chime", "error", ""]);
 const SIMPLE_ON_OFF = new Set(["HassTurnOn", "HassTurnOff"]);
@@ -145,6 +146,7 @@ export function ParsePage({
   const [area, setArea] = useState("");
   const [teachStatus, setTeachStatus] = useState("");
   const [error, setError] = useState("");
+  const [busy, setBusy] = useState(false);
   const [knownIntents, setKnownIntents] = useState<string[]>([]);
   const [teachIntent, setTeachIntent] = useState("KlarGetCalendarEvents");
   const intents = result?.plan?.steps.map((step) => step.intent) ?? [];
@@ -168,6 +170,7 @@ export function ParsePage({
 
   const submit = async () => {
     setError("");
+    setBusy(true);
     try {
       const data = await api.parse(text, parseLanguage || "", conversationId, settings.nlu_rag || undefined, area || undefined);
       setConversationId(data.conversation_id);
@@ -177,6 +180,8 @@ export function ParsePage({
       if (first) setTeachIntent(first);
     } catch (err) {
       setError(asError(err));
+    } finally {
+      setBusy(false);
     }
   };
 
@@ -215,7 +220,9 @@ export function ParsePage({
           <h1>{t.lab}</h1>
           <p className="muted">{t.parseHint}</p>
         </div>
-        <button className="primary" type="button" onClick={submit}>{t.analyze}</button>
+        <Button className="primary" type="button" onClick={() => void submit()} disabled={busy}>
+          {busy ? t.loading : t.analyze}
+        </Button>
       </section>
       {banner && <div className="lab-error" role="alert">{banner}</div>}
       <div className="lab-toolbar">

@@ -90,6 +90,7 @@ export type ParseResult = {
   trace: ParseTrace;
   retrieval?: Retrieval;
   policy_trace?: PolicyTrace;
+  quiet_ack_eligible?: boolean;
 };
 
 export type RetrievalHit = { entity_id: string; name: string; domain: string; area?: string | null };
@@ -178,6 +179,7 @@ export type TrainerProposal = {
 };
 export type TrainerTurn = { role: "user" | "assistant"; content: string };
 export type LlmPublic = { configured: boolean; base_url?: string; model?: string };
+export type LlmModels = { models: string[] };
 export type TrainerChatEvent =
   | { type: "delta"; text: string }
   | { type: "done"; text: string }

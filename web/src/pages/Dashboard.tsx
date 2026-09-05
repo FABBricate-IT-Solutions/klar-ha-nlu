@@ -13,7 +13,7 @@ import type { ApplyRow, ConversationTurn, Dashboard as DashboardData, Locale } f
 const MISS = new Set(["chat", "reject", "clarify"]);
 const MIX_LEGEND = [
   { key: "execute", color: "var(--high)" },
-  { key: "confirm", color: "var(--accent)" },
+  { key: "confirm", color: "var(--primary)" },
   { key: "clarify", color: "var(--medium)" },
   { key: "reject", color: "var(--danger)" },
   { key: "chat", color: "var(--cyan)" },
@@ -233,7 +233,7 @@ export function DashboardPage({
               <DecisionMix data={mix} unit={t.unitsTurns} />
               <div className="flex flex-wrap gap-2">
                 {MIX_LEGEND.map((item) => (
-                  <span className="chip" key={item.key}>
+                  <span className="chip text-foreground" key={item.key}>
                     <span className="size-2.5 rounded-sm" style={{ background: item.color }} />
                     {item.key}
                   </span>

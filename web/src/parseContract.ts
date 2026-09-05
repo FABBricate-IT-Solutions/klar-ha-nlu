@@ -33,8 +33,9 @@ export function parseV2Response(value: unknown): ParseResult {
       "briefing",
       "retrieval",
       "policy_trace",
+      "quiet_ack_eligible",
     ],
-    ["selected_candidate_id", "plan", "retrieval", "policy_trace"],
+    ["selected_candidate_id", "plan", "retrieval", "policy_trace", "quiet_ack_eligible"],
   );
   if (payload.schema_version !== "2.0") throw new Error("Unsupported parse schema");
   string(payload.text, "text", 4096, true);
@@ -64,6 +65,9 @@ export function parseV2Response(value: unknown): ParseResult {
   validateTrace(payload.trace);
   if (payload.policy_trace !== undefined && payload.policy_trace !== null) {
     validatePolicyTrace(payload.policy_trace);
+  }
+  if (payload.quiet_ack_eligible !== undefined && typeof payload.quiet_ack_eligible !== "boolean") {
+    throw new Error("quiet_ack_eligible must be boolean");
   }
   if (payload.retrieval !== undefined && payload.retrieval !== null) {
     if (decision !== "chat" && decision !== "reject") {

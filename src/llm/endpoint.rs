@@ -48,14 +48,20 @@ impl LlmEndpoint {
         if model.is_empty() || model.len() > 128 || model.chars().any(char::is_control) {
             return Err(LlmError::InvalidEndpoint("model"));
         }
-        if api_key.len() > 512 || api_key.chars().any(char::is_control) {
-            return Err(LlmError::InvalidEndpoint("api_key"));
-        }
-        Ok(Self { base_url: normalize_base(base_url)?, api_key: api_key.to_string(), model: model.to_string() })
+        Ok(Self { base_url: normalize_base(base_url)?, api_key: sanitize_key(api_key)?, model: model.to_string() })
+    }
+
+    /// List models without persisting a chat model. Never used by `nlu::parse`.
+    pub fn for_discovery(base_url: &str, api_key: &str) -> Result<Self, LlmError> {
+        Ok(Self { base_url: normalize_base(base_url)?, api_key: sanitize_key(api_key)?, model: String::new() })
     }
 
     pub fn chat_url(&self) -> String {
         format!("{}/chat/completions", self.base_url)
+    }
+
+    pub fn models_url(&self) -> String {
+        format!("{}/models", self.base_url)
     }
 
     pub fn public(&self) -> LlmPublic {
@@ -67,6 +73,13 @@ impl LlmPublic {
     pub fn empty() -> Self {
         Self { configured: false, base_url: None, model: None }
     }
+}
+
+fn sanitize_key(api_key: &str) -> Result<String, LlmError> {
+    if api_key.len() > 512 || api_key.chars().any(char::is_control) {
+        return Err(LlmError::InvalidEndpoint("api_key"));
+    }
+    Ok(api_key.to_string())
 }
 
 fn normalize_base(raw: &str) -> Result<String, LlmError> {
@@ -99,6 +112,14 @@ mod tests {
         let ep = LlmEndpoint::from_parts("https://api.openai.com", "sk-test", "gpt-4o-mini").unwrap();
         assert_eq!(ep.base_url, "https://api.openai.com/v1");
         assert_eq!(ep.chat_url(), "https://api.openai.com/v1/chat/completions");
+        assert_eq!(ep.models_url(), "https://api.openai.com/v1/models");
+    }
+
+    #[test]
+    fn discovery_skips_model_name() {
+        let ep = LlmEndpoint::for_discovery("http://127.0.0.1:11434/v1", "").unwrap();
+        assert_eq!(ep.models_url(), "http://127.0.0.1:11434/v1/models");
+        assert!(ep.model.is_empty());
     }
 
     #[test]

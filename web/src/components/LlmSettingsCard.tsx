@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { api } from "../api";
 import type { Messages } from "../i18n";
 import type { LlmPublic } from "../types";
+import { LlmModelField } from "./LlmModelField";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
@@ -105,7 +106,7 @@ export function LlmSettingsCard({ t }: { t: Messages }) {
           </Field>
           <Field>
             <FieldLabel htmlFor="llm-model">{t.llmModel}</FieldLabel>
-            <Input id="llm-model" value={model} onChange={(ev) => setModel(ev.target.value)} placeholder="gpt-4o-mini" />
+            <LlmModelField t={t} baseUrl={baseUrl} apiKey={apiKey} model={model} onModel={setModel} />
           </Field>
           <Field>
             <FieldLabel htmlFor="llm-key">{t.llmApiKey}</FieldLabel>

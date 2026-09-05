@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useRef, useState, type CSSProperties, type ReactNode } from "react";
 import { api } from "../api";
+import { LlmModelField } from "../components/LlmModelField";
 import type { Messages } from "../i18n";
 import { fillWizard, wizardMessages, type WizardMessages } from "../i18n/wizard";
 import type { Settings } from "../types";
@@ -430,7 +431,7 @@ export function Wizard({
                 </label>
                 <label style={field}>
                   {chrome.llmModel}
-                  <input style={control} value={llmModel} onChange={(event) => setLlmModel(event.target.value)} placeholder="gpt-4o-mini" />
+                  <LlmModelField t={chrome} baseUrl={llmUrl} apiKey={llmKey} model={llmModel} onModel={setLlmModel} inputId="wizard-llm-model" />
                 </label>
                 <label style={field}>
                   {chrome.llmApiKey}
