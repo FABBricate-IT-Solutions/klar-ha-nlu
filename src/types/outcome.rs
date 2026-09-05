@@ -33,6 +33,8 @@ pub struct ParseOutcome {
     pub retrieval: Option<Retrieval>,
     #[serde(default, skip_serializing_if = "Option::is_none")]
     pub policy_trace: Option<PolicyTrace>,
+    #[serde(default, skip_serializing_if = "std::ops::Not::not")]
+    pub quiet_ack_eligible: bool,
 }
 
 #[derive(Debug, Clone, Serialize, Deserialize, PartialEq, Default)]
@@ -251,6 +253,37 @@ impl IntentPlan {
     pub fn intents(&self) -> Vec<Intent> {
         self.steps.iter().map(|step| step.intent.clone()).collect()
     }
+
+    /// One on/off of a light or switch. Python still gates on dispatch success.
+    pub fn quiet_ack_eligible(&self) -> bool {
+        if self.steps.len() != 1 {
+            return false;
+        }
+        let intent = &self.steps[0].intent;
+        if !matches!(intent.name.as_str(), "HassTurnOn" | "HassTurnOff") {
+            return false;
+        }
+        quiet_ack_simple_target(intent)
+    }
+}
+
+const SIMPLE_ACK_DOMAINS: &[&str] = &["light", "switch"];
+const BLOCKED_ACK_DOMAINS: &[&str] = &["scene", "script", "cover", "lock", "climate", "fan", "media_player", "vacuum"];
+
+fn quiet_ack_simple_target(intent: &Intent) -> bool {
+    let domain = intent.slot("domain").unwrap_or("");
+    let entity_id = intent.slot("entity_id").unwrap_or("");
+    let prefix = entity_id.split_once('.').map(|(head, _)| head).unwrap_or("");
+    if BLOCKED_ACK_DOMAINS.contains(&prefix) || BLOCKED_ACK_DOMAINS.contains(&domain) {
+        return false;
+    }
+    if SIMPLE_ACK_DOMAINS.contains(&domain) || SIMPLE_ACK_DOMAINS.contains(&prefix) {
+        return true;
+    }
+    if intent.slot("area").is_some_and(|v| !v.is_empty()) || intent.slot("floor").is_some_and(|v| !v.is_empty()) {
+        return domain.is_empty() || SIMPLE_ACK_DOMAINS.contains(&domain);
+    }
+    false
 }
 
 impl ParseOutcome {
@@ -263,6 +296,7 @@ impl ParseOutcome {
             self.plan = None;
             self.selected_candidate_id = None;
             self.candidates.clear();
+            self.quiet_ack_eligible = false;
         }
         if !matches!(self.decision, ParseDecision::Chat | ParseDecision::Reject { .. }) {
             self.retrieval = None;
@@ -382,4 +416,38 @@ fn truncate_chars(value: &mut String, max: usize) {
         return;
     }
     *value = value.chars().take(max).collect();
+}
+
+#[cfg(test)]
+mod quiet_ack_tests {
+    use super::*;
+    use crate::types::Intent;
+
+    fn plan(name: &str, slots: &[(&str, &str)]) -> IntentPlan {
+        let mut intent = Intent::new(name);
+        for (key, value) in slots {
+            intent = intent.with(*key, *value);
+        }
+        IntentPlan::from_intents(vec![intent], 1.0, &[])
+    }
+
+    #[test]
+    fn flags_single_light_on_off() {
+        assert!(plan("HassTurnOn", &[("area", "wohnzimmer"), ("domain", "light")]).quiet_ack_eligible());
+        assert!(plan("HassTurnOff", &[("entity_id", "light.wohnzimmer")]).quiet_ack_eligible());
+        assert!(plan("HassTurnOn", &[("entity_id", "switch.kitchen")]).quiet_ack_eligible());
+    }
+
+    #[test]
+    fn rejects_queries_scenes_climate_and_pairs() {
+        assert!(!plan("HassGetState", &[("area", "wohnzimmer")]).quiet_ack_eligible());
+        assert!(!plan("HassTurnOn", &[("entity_id", "scene.filmabend")]).quiet_ack_eligible());
+        assert!(!plan("HassTurnOn", &[("domain", "climate"), ("area", "wohnzimmer")]).quiet_ack_eligible());
+        let pair = IntentPlan::from_intents(
+            vec![Intent::new("HassTurnOn").with("domain", "light"), Intent::new("HassTurnOff").with("domain", "light")],
+            1.0,
+            &[],
+        );
+        assert!(!pair.quiet_ack_eligible());
+    }
 }

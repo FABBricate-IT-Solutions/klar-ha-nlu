@@ -206,6 +206,7 @@ fn finish(
         briefing: draft.response_briefing,
         retrieval: None,
         policy_trace: draft.policy_trace.clone(),
+        quiet_ack_eligible: false,
     };
     let values: Vec<String> = outcome.evidence.iter().map(|item| item.value.clone()).collect();
     outcome.retrieval = retrieval::build(context, &outcome.decision, &values);
@@ -232,6 +233,8 @@ fn finish(
         }
     }
     outcome.enforce_output_caps();
+    outcome.quiet_ack_eligible =
+        matches!(outcome.decision, ParseDecision::Execute) && outcome.plan.as_ref().is_some_and(IntentPlan::quiet_ack_eligible);
     PipelineResult { outcome, commit: draft.commit }
 }
 
