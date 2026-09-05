@@ -18,8 +18,6 @@ from .dispatch_media import (
     music_assistant_player,
     run_mass,
     start_idle_music,
-    tv_named,
-    tv_request,
 )
 from .dispatch_result import IntentStepResult, fail as _fail, ok as _ok
 from .floor_query import place_get_state
@@ -73,10 +71,6 @@ async def handle_intent(
         return _ok(speech) if ok else _fail(error or "calendar_failed")
     slots = item_slots(item)
     entity_id = str(slots.get("entity_id", {}).get("value") or "")
-    if name == "HassTurnOn" and tv_request(getattr(user_input, "text", "")):
-        state = hass.states.get(entity_id) if entity_id else None
-        if not entity_id or not tv_named(entity_id, state):
-            return _fail("media_unavailable")
     if name == "HassMediaSearchAndPlay" and music_assistant_player(hass, entity_id):
         query = str(slots.get("media_id", {}).get("value") or slots.get("search_query", {}).get("value") or "")
         if query:
@@ -210,6 +204,15 @@ def climate_states_in_area(hass: HomeAssistant, area_key: str) -> list[Any]:
     return found
 
 
+def intent_query_text(user_input: ConversationInput, name: str, slots: dict[str, Any]) -> str:
+    """HA weather GetState reads the utterance for 'tomorrow'. Keep that only for weather."""
+    entity_id = str(slots.get("entity_id", {}).get("value") or "")
+    domain = str(slots.get("domain", {}).get("value") or "")
+    if name == "HassGetState" and (domain == "weather" or entity_id.startswith("weather.")):
+        return user_input.text
+    return name
+
+
 async def invoke_intent(
     hass: HomeAssistant,
     user_input: ConversationInput,
@@ -225,7 +228,7 @@ async def invoke_intent(
             "klar_nlu",
             name,
             slots,
-            user_input.text,
+            intent_query_text(user_input, name, slots),
             user_input.context,
             speak_tag(pack),
             assistant=assistant,

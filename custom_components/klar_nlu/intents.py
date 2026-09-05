@@ -100,6 +100,14 @@ def home_intents(intents: list[Any], registered: set[str] | None = None) -> list
     return out
 
 
+def keep_lab_plan(intents: list[Any], registered: set[str] | None = None) -> list[dict[str, Any]]:
+    """Assist executes the Lab plan. Do not drop an execute plan into HA fallback."""
+    filtered = home_intents(intents, registered)
+    if filtered:
+        return filtered
+    return [item for item in intents if isinstance(item, dict) and item.get("name")]
+
+
 def get_state_has_target(item: dict[str, Any]) -> bool:
     return any(
         isinstance(slot, dict)

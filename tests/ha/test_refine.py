@@ -160,6 +160,11 @@ class RefineTests(unittest.TestCase):
         self.assertIsNone(
             refine.accept_refined("Wohnzimmer TV ist an.", "Das Licht im Wohnzimmer ist an.")
         )
+        self.assertIsNone(refine.accept_refined("Nothing tomorrow.", "Tomorrow will be sunny."))
+        self.assertEqual(
+            refine.accept_refined("Team training at 3.", "Team training is at 3."),
+            "Team training is at 3.",
+        )
         self.assertIsNone(
             refine.accept_refined("Der Fernseher ist gerade nicht erreichbar.", "Das Licht im Wohnzimmer ist an.")
         )

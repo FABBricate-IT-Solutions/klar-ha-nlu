@@ -56,6 +56,8 @@ from .fallback import (
     can_use_fallback_agent,
     calendar_prompt,
     calendar_query_only,
+    calendar_readback,
+    keeps_calendar_reply,
     chat_only_prompt,
     history_prompt,
     llm_conversation_id,
@@ -68,7 +70,7 @@ from .fallback import (
     yarn_prompt,
     yarn_request,
 )
-from .intents import home_intents, registered_intent_names
+from .intents import keep_lab_plan, registered_intent_names
 from .rag_tools import (
     act_payload,
     holds_klar_tool_prefix,
@@ -266,16 +268,17 @@ class KlarConversationEntity(ConversationEntity):
         chat_log: ChatLog,
     ) -> ConversationResult:
         pack = self._request_pack(user_input.language)
-        triggered = await self._sentence_triggers(user_input, chat_log, pack)
-        if triggered is not None:
-            return triggered
         payload = await self._parse(
             user_input.text, user_input.conversation_id, pack, user_input.device_id, getattr(user_input, "satellite_id", None)
         )
         engine_speech = str(payload.get("speech") or "")
         decision = payload.get("decision") if isinstance(payload.get("decision"), dict) else {}
         decision_type = str(decision.get("type") or "")
-        intents = home_intents(executable_intents(payload), registered_intent_names(self.hass))
+        intents = keep_lab_plan(executable_intents(payload), registered_intent_names(self.hass))
+        if payload.get("unreachable"):
+            triggered = await self._sentence_triggers(user_input, chat_log, pack)
+            if triggered is not None:
+                return triggered
         speech = _ack_speech(engine_speech, pack, decision_type == "execute" and bool(intents))
         clarify = decision_type in {"clarify", "confirm"}
         chat = decision_type == "chat"
@@ -299,7 +302,7 @@ class KlarConversationEntity(ConversationEntity):
             rendered = await render_user_template(self.hass, action, user_input.text)
             if rendered:
                 speech = rendered
-        if hit == "llm" and action and not clarify and not payload.get("unreachable"):
+        if hit == "llm" and action and not clarify and decision_type != "execute" and not payload.get("unreachable"):
             prompt = yarn_prompt(pack, action, user_input.text) if yarn_request(user_input.text) else chat_only_prompt(pack, action, self._allow_llm_tools())
             fallback = await self._fallback(
                 user_input, chat_log, pack, True, prompt, retrieval
@@ -310,7 +313,8 @@ class KlarConversationEntity(ConversationEntity):
             if replied is not None:
                 return replied
         if (
-            not skips_llm_fallback(hit)
+            decision_type == "chat"
+            and not skips_llm_fallback(hit)
             and not keeps_engine_chat(hit, chat, engine_speech)
             and not clarify
             and not intents
@@ -325,12 +329,7 @@ class KlarConversationEntity(ConversationEntity):
                 return replied
 
         if decision_type == "execute" and intents:
-            names = {item.get("name") for item in intents}
-            plan = [
-                item
-                for item in intents
-                if not (item.get("name") == "HassVacuumReturnToBase" and "HassGetState" in names)
-            ]
+            plan = intents
             executed = await execute_plan(
                 self.hass, user_input, plan, pack, self._assistant(), self._exposed
             )
@@ -339,17 +338,23 @@ class KlarConversationEntity(ConversationEntity):
             if executed.get("outcome") == "error":
                 decision_type = "error"
             if (
-                self._calendar_llm()
+                executed.get("outcome") != "error"
+                and self._calendar_llm()
                 and calendar_query_only(plan)
                 and self._fallback_agent_id()
             ):
                 extra = getattr(user_input, "extra_system_prompt", None)
                 extra_s = extra if isinstance(extra, str) else None
                 fallback = await self._fallback(
-                    user_input, chat_log, pack, True, calendar_prompt(pack, speech, extra_s)
+                    user_input,
+                    chat_log,
+                    pack,
+                    True,
+                    calendar_prompt(pack, speech, extra_s),
+                    user_text=calendar_readback(pack, speech),
                 )
                 llm = _speech_from_result(fallback) if fallback is not None else ""
-                if llm.strip() and "?" not in llm:
+                if keeps_calendar_reply(speech, llm):
                     speech = llm
             if self._quiet_ack() and quiet_ack_applies(executed, plan):
                 await play_chime(self.hass, user_input)
@@ -522,7 +527,7 @@ class KlarConversationEntity(ConversationEntity):
                 str(tool["text"]), user_input.conversation_id, pack, user_input.device_id, getattr(user_input, "satellite_id", None)
             )
             if str((payload.get("decision") or {}).get("type") or "") == "execute":
-                intents = home_intents(executable_intents(payload), registered_intent_names(self.hass))
+                intents = keep_lab_plan(executable_intents(payload), registered_intent_names(self.hass))
                 if intents:
                     executed = await execute_plan(self.hass, user_input, intents, pack, self._assistant(), self._exposed)
                     speech = str(executed.get("speech") or payload.get("speech") or _cue(_DONE, pack, "OK"))
@@ -533,7 +538,7 @@ class KlarConversationEntity(ConversationEntity):
             return await self._spoken(user_input, chat_log, pack, speech, payload.get("conversation_id"), False)
         if tool.get("tool") == "klar.act" and tool.get("intent"):
             item = act_payload(str(tool["intent"]), tool.get("slots") or {})
-            intents = home_intents([item], registered_intent_names(self.hass))
+            intents = keep_lab_plan([item], registered_intent_names(self.hass))
             if not intents:
                 return None
             executed = await execute_plan(self.hass, user_input, intents, pack, self._assistant(), self._exposed)
@@ -557,6 +562,7 @@ class KlarConversationEntity(ConversationEntity):
         prompt: str | None = None,
         retrieval: dict[str, Any] | None = None,
         publish: bool = True,
+        user_text: str | None = None,
     ) -> ConversationResult | None:
         agent_id = self._fallback_agent_id()
         if not agent_id:
@@ -566,6 +572,7 @@ class KlarConversationEntity(ConversationEntity):
         ):
             _LOGGER.warning("LLM-Fallback %s hat Assist-Werkzeuge — übersprungen", agent_id)
             return None
+        asked = (user_text or user_input.text).strip() or user_input.text
         extra_s = getattr(user_input, "extra_system_prompt", None)
         extra_s = extra_s if isinstance(extra_s, str) else None
         voice = refine_prompt(pack, self._personality(), str(self._entry.options.get(CONF_REFINE_PROMPT) or ""))
@@ -594,13 +601,14 @@ class KlarConversationEntity(ConversationEntity):
                 system,
                 chat_log if publish else None,
                 yarn,
+                asked,
             )
             if streamed is not None:
                 return streamed
         try:
             result = await conversation.async_converse(
                 self.hass,
-                user_input.text,
+                asked,
                 isolated_conversation_id(),
                 user_input.context,
                 **nested_llm_session(agent_id, speak_tag(pack), system),
@@ -612,7 +620,7 @@ class KlarConversationEntity(ConversationEntity):
             try:
                 result = await conversation.async_converse(
                     self.hass,
-                    user_input.text,
+                    asked,
                     isolated_conversation_id(),
                     user_input.context,
                     **nested_llm_session(agent_id, speak_tag(pack), yarn_nudge(pack, system)),
@@ -630,13 +638,15 @@ class KlarConversationEntity(ConversationEntity):
         system: str,
         chat_log: ChatLog | None,
         yarn: bool,
+        asked: str | None = None,
     ) -> ConversationResult | None:
         hold = _stream_hold(yarn, self._nlu_rag())
+        text = asked or user_input.text
         try:
             speech, published = await stream_chat(
                 client,
                 model,
-                user_input.text,
+                text,
                 system,
                 chat_log,
                 getattr(user_input, "agent_id", None),
@@ -652,7 +662,7 @@ class KlarConversationEntity(ConversationEntity):
                 speech, published = await stream_chat(
                     client,
                     model,
-                    user_input.text,
+                    text,
                     yarn_nudge(pack, system),
                     chat_log,
                     getattr(user_input, "agent_id", None),

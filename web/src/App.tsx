@@ -51,6 +51,11 @@ const defaultSettings: Settings = {
   confirm_risky_actions: true,
   semantic_adapters: false,
   nlu_rag: false,
+  refine_speech: false,
+  calendar_llm: false,
+  quiet_ack: false,
+  allow_llm_tools: false,
+  fallback_llm: false,
 };
 
 type Route = {
@@ -411,7 +416,7 @@ export function App() {
             t={t}
             parseLanguage={assistParseLanguage(settings.languages, locale)}
             replayText={replayText}
-            nluRag={settings.nlu_rag}
+            settings={settings}
             rooms={dashboard?.rooms || []}
           />
         )}

@@ -8,13 +8,24 @@ from homeassistant.core import HomeAssistant
 from homeassistant.exceptions import ConfigEntryNotReady
 
 from .const import (
+    CONF_ALLOW_LLM_TOOLS,
     CONF_ASSIST_FILTER,
+    CONF_CALENDAR_LLM,
     CONF_CHANNEL,
+    CONF_FALLBACK_AGENT,
     CONF_LANGUAGES,
     CONF_MODE,
+    CONF_NLU_RAG,
     CONF_PERSONALITY,
+    CONF_QUIET_ACK,
+    CONF_REFINE_SPEECH,
     CONF_TOKEN,
     CONF_URL,
+    DEFAULT_ALLOW_LLM_TOOLS,
+    DEFAULT_CALENDAR_LLM,
+    DEFAULT_NLU_RAG,
+    DEFAULT_QUIET_ACK,
+    DEFAULT_REFINE_SPEECH,
     DEFAULT_URL,
     DOMAIN,
     MODE_LOCAL,
@@ -79,6 +90,19 @@ def _option(entry: ConfigEntry, key: str) -> object:
     return entry.options.get(key, entry.data.get(key))
 
 
+def _pipeline_flags(entry: ConfigEntry) -> dict[str, object]:
+    return {
+        "nlu_rag": bool(entry.options.get(CONF_NLU_RAG, DEFAULT_NLU_RAG)),
+        "refine_speech": bool(entry.options.get(CONF_REFINE_SPEECH, DEFAULT_REFINE_SPEECH)),
+        "calendar_llm": bool(entry.options.get(CONF_CALENDAR_LLM, DEFAULT_CALENDAR_LLM)),
+        "quiet_ack": bool(entry.options.get(CONF_QUIET_ACK, DEFAULT_QUIET_ACK)),
+        "allow_llm_tools": bool(
+            entry.options.get(CONF_ALLOW_LLM_TOOLS, DEFAULT_ALLOW_LLM_TOOLS)
+        ),
+        "fallback_llm": bool(entry.options.get(CONF_FALLBACK_AGENT)),
+    }
+
+
 async def _async_sync_personality(hass: HomeAssistant, entry: ConfigEntry) -> None:
     stored = (hass.data.get(DOMAIN) or {}).get(entry.entry_id) or {}
     token = stored.get("token") or _option(entry, CONF_TOKEN)
@@ -93,6 +117,7 @@ async def _async_sync_personality(hass: HomeAssistant, entry: ConfigEntry) -> No
         resolve_personality(entry.options.get(CONF_PERSONALITY)),
         token=str(token) if token else None,
         languages=languages,
+        pipeline=_pipeline_flags(entry),
     )
 
 
