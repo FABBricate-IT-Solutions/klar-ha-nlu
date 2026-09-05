@@ -32,7 +32,7 @@ from .const import (
     resolve_channel,
     resolve_personality,
 )
-from .engine import KlarEngine, async_push_llm_endpoint, async_push_personality
+from .engine import KlarEngine, async_push_personality
 from .lang_select import engine_language_state
 from .panel import async_setup_panel
 from .quiet import async_setup_chime
@@ -120,12 +120,6 @@ async def _async_sync_personality(hass: HomeAssistant, entry: ConfigEntry) -> No
         token=str(token) if token else None,
         languages=languages,
         pipeline=_pipeline_flags(entry),
-    )
-    await async_push_llm_endpoint(
-        hass,
-        str(url),
-        str(token) if token else None,
-        entry.options.get(CONF_FALLBACK_AGENT),
     )
 
 

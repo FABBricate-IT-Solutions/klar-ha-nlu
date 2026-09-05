@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { api, download, setToken, type LanguagePack } from "../api";
 import { Drawer } from "../components/common";
+import { LlmSettingsCard } from "../components/LlmSettingsCard";
 import { SearchSelect, withCurrent } from "../components/SearchSelect";
 import { dictionaries, type Messages } from "../i18n";
 import type { BundleList, Locale, Settings, Theme } from "../types";
@@ -77,6 +78,9 @@ export function SettingsPage({
           </button>
           <button className="primary" onClick={() => save()}>{t.save}</button>
         </div>
+      </section>
+      <section style={{ marginBottom: 16 }}>
+        <LlmSettingsCard t={t} />
       </section>
       <section className="grid two">
         <div className="card">

@@ -37,6 +37,10 @@ endpoint = _load("klar_nlu.llm_endpoint", "llm_endpoint.py")
 
 
 class LlmEndpointTests(unittest.TestCase):
+    def test_setup_does_not_copy_ha_agent_onto_klar(self) -> None:
+        src = (ROOT / "custom_components" / "klar_nlu" / "__init__.py").read_text(encoding="utf-8")
+        self.assertNotIn("async_push_llm_endpoint", src)
+
     def test_reads_openai_client_and_entry_data(self) -> None:
         client = SimpleNamespace(
             chat=object(),

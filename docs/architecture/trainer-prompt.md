@@ -2,7 +2,7 @@
 
 The Klar engine does **not** parse with a model. Chat completions live in Rust (`src/llm/`). An operator UI:
 
-1. `GET /api/v2/llm/endpoint` — `configured` must be true (HA glue copies an OpenAI-compatible agent, or set `KLAR_LLM_BASE_URL` / `KLAR_LLM_API_KEY` / `KLAR_LLM_MODEL`)
+1. `GET /api/v2/llm/endpoint` — `configured` must be true (operator UI Settings → LLM, or `KLAR_LLM_BASE_URL` / `KLAR_LLM_API_KEY` / `KLAR_LLM_MODEL`). No Home Assistant conversation integration is required.
 2. `POST /api/v2/policies/trainer/chat` with `{ "message", "layer"?, "language"?, "history"? }` — SSE events `delta`, `proposal`, `validate`, `done`
 3. Apply only after `validate.ok: true`, using the write API of that lane (`POST /api/v2/policies`, `POST /api/lang/overlay`)
 

@@ -3,6 +3,7 @@ use crate::home::{HomeStore, LoadedHome};
 use crate::io::bundle::{entry_from_parse, BundleStore};
 use crate::io::conversations::{turn_from_outcome, ConversationJournal};
 use crate::io::metrics::MetricsStore;
+use crate::io::llm::load_endpoint;
 use crate::llm::LlmEndpoint;
 use crate::session::Sessions;
 use crate::types::{CustomSentence, MatchControl, ParseOutcome, ParseResult, PolicyRule, Settings, SpeechBank};
@@ -32,6 +33,7 @@ pub struct AppState {
 
 impl AppState {
     pub fn new(loaded: LoadedHome, data_dir: PathBuf, token: Option<String>) -> Self {
+        let llm = load_endpoint(&data_dir);
         Self {
             home: HomeStore::new(loaded.graph),
             sessions: Arc::new(Mutex::new(Sessions::default())),
@@ -47,7 +49,7 @@ impl AppState {
             data_dir,
             live_sync: Arc::new(AtomicBool::new(false)),
             token,
-            llm: Arc::new(Mutex::new(LlmEndpoint::from_env())),
+            llm: Arc::new(Mutex::new(llm)),
         }
     }
 

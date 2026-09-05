@@ -108,7 +108,7 @@ The token comes from `--token`, `KLAR_TOKEN`, or `--token-file`.
 
 ### `GET` / `POST /api/v2/llm/endpoint`
 
-OpenAI-compatible upstream for the engine. `GET` returns `{ "configured", "base_url", "model" }` — never the API key. `POST` sets `base_url`, `api_key`, `model` in memory (not the overlay). `configured: false` clears it. Or set `KLAR_LLM_BASE_URL`, `KLAR_LLM_API_KEY`, `KLAR_LLM_MODEL`. `nlu::parse` does not use it.
+OpenAI-compatible upstream for the engine. `GET` returns `{ "configured", "base_url", "model" }` — never the API key. `POST` sets `base_url`, `api_key`, `model` in `data_dir/llm_endpoint.json` (not the overlay). Empty `api_key` keeps the stored key. `configured: false` deletes the file. `KLAR_LLM_*` env wins on boot. Configure it in the operator UI; Assist does not need another Home Assistant LLM integration. `nlu::parse` does not use it.
 
 ### `POST /api/v2/llm/chat`
 

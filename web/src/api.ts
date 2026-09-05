@@ -11,18 +11,21 @@ import type {
   MatchCatalog,
   MatchControl,
   LanguageOverlay,
+  LlmPublic,
   Settings,
+  TrainerChatEvent,
   TrainerContext,
   TrainerProposal,
+  TrainerTurn,
   TrainerValidateOut,
   UiState,
 } from "./types";
+import { parseV2Response } from "./parseContract";
 
 export type CustomRule = { phrase: string; intent: string; slots: Record<string, string> };
 export type LangOverlay = { custom: CustomRule[]; language: LanguageOverlay; history: Array<{ hash: string; label: string; saved_at: string }> };
 export type LangExplain = { language: string; decision: string; confidence: number; speech: string; stages: string[]; evidence: string[]; matched_custom?: string };
 export type LanguagePack = { code: string; native_name: string; script: string; variants: string[] };
-import { parseV2Response } from "./parseContract";
 
 const jsonHeaders = () => {
   const token = localStorage.getItem("klar_token") || "";
@@ -38,6 +41,57 @@ async function request<T>(path: string, init: RequestInit = {}): Promise<T> {
   const res = await fetch(appPath(path), { ...init, headers: { ...jsonHeaders(), ...(init.headers || {}) } });
   if (!res.ok) throw new Error(`${res.status} ${res.statusText}`);
   return res.json() as Promise<T>;
+}
+
+function asTrainerChatEvent(raw: unknown): TrainerChatEvent | null {
+  if (!raw || typeof raw !== "object") return null;
+  const row = raw as { type?: string };
+  switch (row.type) {
+    case "delta":
+    case "done":
+    case "error":
+    case "proposal":
+    case "validate":
+      return raw as TrainerChatEvent;
+    default:
+      return null;
+  }
+}
+
+async function streamTrainerChat(
+  body: { message: string; layer?: string; language?: string; history?: TrainerTurn[] },
+  onEvent: (event: TrainerChatEvent) => void,
+): Promise<void> {
+  const res = await fetch(appPath("/api/v2/policies/trainer/chat"), {
+    method: "POST",
+    headers: jsonHeaders(),
+    body: JSON.stringify(body),
+  });
+  if (res.status === 503) throw new Error("llm-unconfigured");
+  if (!res.ok) throw new Error(`${res.status} ${res.statusText}`);
+  if (!res.body) return;
+  const reader = res.body.getReader();
+  const decoder = new TextDecoder();
+  let buf = "";
+  while (true) {
+    const { done, value } = await reader.read();
+    if (done) break;
+    buf += decoder.decode(value, { stream: true });
+    const chunks = buf.split("\n\n");
+    buf = chunks.pop() ?? "";
+    for (const chunk of chunks) {
+      const line = chunk.split("\n").find((row) => row.startsWith("data:"));
+      if (!line) continue;
+      const payload = line.slice("data:".length).trim();
+      if (!payload || payload === "[DONE]") continue;
+      try {
+        const event = asTrainerChatEvent(JSON.parse(payload) as unknown);
+        if (event) onEvent(event);
+      } catch {
+        /* skip malformed SSE */
+      }
+    }
+  }
 }
 
 export const api = {
@@ -75,12 +129,16 @@ export const api = {
   },
   validateProposal: (body: TrainerProposal) =>
     request<TrainerValidateOut>("/api/v2/policies/propose/validate", { method: "POST", body: JSON.stringify(body) }),
-  llmEndpoint: () => request<{ configured: boolean; base_url?: string; model?: string }>("/api/v2/llm/endpoint"),
+  llmEndpoint: () => request<LlmPublic>("/api/v2/llm/endpoint"),
   saveLlmEndpoint: (body: { base_url?: string; api_key?: string; model?: string; configured?: boolean }) =>
-    request<{ configured: boolean; base_url?: string; model?: string }>("/api/v2/llm/endpoint", {
+    request<LlmPublic>("/api/v2/llm/endpoint", {
       method: "POST",
       body: JSON.stringify(body),
     }),
+  trainerChat: (
+    body: { message: string; layer?: string; language?: string; history?: TrainerTurn[] },
+    onEvent: (event: TrainerChatEvent) => void,
+  ) => streamTrainerChat(body, onEvent),
   conversations: () => request<ConversationTurn[]>("/api/v2/conversations"),
   conversation: (id: string) => request<ConversationTurn[]>(`/api/v2/conversations/${encodeURIComponent(id)}`),
   intents: () => request<string[]>("/api/v2/intents"),
