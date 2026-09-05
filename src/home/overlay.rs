@@ -1,6 +1,6 @@
 use super::paths::{confined_file, read_to_string_confined, write_atomic_confined};
 use crate::lang::{LanguageOverlay, LanguageRevision};
-use crate::types::{CustomSentence, HomeGraph, PolicyRule, Settings, SpeechBank};
+use crate::types::{CustomSentence, HomeGraph, MatchControl, PolicyRule, Settings, SpeechBank};
 use serde::{Deserialize, Serialize};
 use std::collections::HashMap;
 use std::path::{Path, PathBuf};
@@ -112,6 +112,8 @@ pub struct Overlay {
     pub policies: Vec<PolicyRule>,
     #[serde(default)]
     pub speech_bank: SpeechBank,
+    #[serde(default, skip_serializing_if = "Vec::is_empty")]
+    pub match_controls: Vec<MatchControl>,
 }
 
 const OVERLAY_FILE: &str = "klar_nlu.json";
@@ -317,5 +319,24 @@ mod tests {
         apply_overlay(&mut home, &Overlay { nlu_ignore: vec!["switch.create_calendar_event".into()], ..Default::default() });
         assert!(home.entities[0].tags.iter().any(|tag| tag == "nlu_ignore"));
         assert!(crate::home::policy::is_nlu_ignored(&home.entities[0]));
+    }
+
+    #[test]
+    fn match_controls_survive_roundtrip() {
+        let dir = std::env::temp_dir().join(format!("klar-overlay-match-{}", std::process::id()));
+        let _ = std::fs::create_dir_all(&dir);
+        let overlay = Overlay {
+            match_controls: vec![MatchControl { id: "media".into(), enabled: false, precedence: Some(3) }],
+            ..Default::default()
+        };
+        save_overlay(&dir, &overlay).unwrap();
+        let loaded = load_overlay(&dir);
+        assert_eq!(loaded.match_controls.len(), 1);
+        assert_eq!(loaded.match_controls[0].id, "media");
+        assert!(!loaded.match_controls[0].enabled);
+        assert_eq!(loaded.match_controls[0].precedence, Some(3));
+        let empty: Overlay = serde_json::from_str("{}").unwrap();
+        assert!(empty.match_controls.is_empty());
+        let _ = std::fs::remove_dir_all(&dir);
     }
 }

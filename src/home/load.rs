@@ -2,7 +2,7 @@ use crate::home::overlay::{apply_overlay, load_overlay};
 use crate::home::registry::load_home;
 use crate::home::sample::default_home;
 use crate::lang::LanguageOverlay;
-use crate::types::{CustomSentence, HomeGraph, PolicyRule, Settings, SpeechBank};
+use crate::types::{CustomSentence, HomeGraph, MatchControl, PolicyRule, Settings, SpeechBank};
 use std::path::Path;
 
 pub struct LoadedHome {
@@ -12,6 +12,7 @@ pub struct LoadedHome {
     pub language: LanguageOverlay,
     pub policies: Vec<PolicyRule>,
     pub speech_bank: SpeechBank,
+    pub match_controls: Vec<MatchControl>,
 }
 
 pub fn load_merged(config_dir: &Path, data_dir: &Path) -> LoadedHome {
@@ -23,6 +24,7 @@ pub fn load_merged(config_dir: &Path, data_dir: &Path) -> LoadedHome {
     let mut language = config_overlay.language.clone();
     let mut policies = config_overlay.policies.clone();
     let mut speech_bank = config_overlay.speech_bank.clone();
+    let mut match_controls = config_overlay.match_controls.clone();
 
     if data_dir != config_dir {
         let data_overlay = load_overlay(data_dir);
@@ -42,9 +44,12 @@ pub fn load_merged(config_dir: &Path, data_dir: &Path) -> LoadedHome {
         if !data_overlay.speech_bank.entries.is_empty() {
             speech_bank = data_overlay.speech_bank;
         }
+        if !data_overlay.match_controls.is_empty() {
+            match_controls = data_overlay.match_controls;
+        }
     }
 
-    LoadedHome { graph, settings, custom, language, policies, speech_bank }
+    LoadedHome { graph, settings, custom, language, policies, speech_bank, match_controls }
 }
 
 pub fn registry_stamp(config_dir: &Path) -> String {

@@ -4,7 +4,7 @@ use crate::io::bundle::{entry_from_parse, BundleStore};
 use crate::io::conversations::{turn_from_outcome, ConversationJournal};
 use crate::io::metrics::MetricsStore;
 use crate::session::Sessions;
-use crate::types::{CustomSentence, ParseOutcome, ParseResult, PolicyRule, Settings, SpeechBank};
+use crate::types::{CustomSentence, MatchControl, ParseOutcome, ParseResult, PolicyRule, Settings, SpeechBank};
 use std::path::PathBuf;
 use std::sync::atomic::AtomicBool;
 use std::sync::Arc;
@@ -18,6 +18,7 @@ pub struct AppState {
     pub custom: Arc<Mutex<Vec<CustomSentence>>>,
     pub policies: Arc<Mutex<Vec<PolicyRule>>>,
     pub speech_bank: Arc<Mutex<SpeechBank>>,
+    pub match_controls: Arc<Mutex<Vec<MatchControl>>>,
     pub journal: ConversationJournal,
     pub bundle: BundleStore,
     pub metrics: Arc<MetricsStore>,
@@ -36,6 +37,7 @@ impl AppState {
             custom: Arc::new(Mutex::new(loaded.custom)),
             policies: Arc::new(Mutex::new(loaded.policies)),
             speech_bank: Arc::new(Mutex::new(loaded.speech_bank)),
+            match_controls: Arc::new(Mutex::new(loaded.match_controls)),
             journal: ConversationJournal::open(&data_dir),
             bundle: BundleStore::open(&data_dir),
             metrics: Arc::new(MetricsStore::default()),

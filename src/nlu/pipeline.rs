@@ -4,7 +4,10 @@ use crate::parse::normalize::{strip_fillers, tokenize};
 use crate::parse::respond::{speak_clarify, speak_unknown};
 use crate::parse::split::split_clauses;
 use crate::session::Session;
-use crate::types::{Evidence, Intent, IntentCandidate, IntentPlan, ParseDecision, ParseOutcome, ParseTrace, RejectReason, StageTrace};
+use crate::types::{
+    Evidence, Intent, IntentCandidate, IntentPlan, ParseDecision, ParseOutcome, ParseTrace, PolicyTraceDiscarded, PolicyTraceMatch,
+    RejectReason, StageTrace,
+};
 use std::collections::BTreeSet;
 use std::time::Instant;
 
@@ -83,7 +86,7 @@ pub(super) fn run(context: ParseContext<'_>) -> PipelineResult {
             confidence: ranking.confidence,
             margin: ranking.margin,
             selected_candidate_id: None,
-            output_candidate: None,
+            output_candidate: ranking.selected.clone(),
             safety_confirmed: false,
             response_briefing: false,
             competing: ranking.competing,
@@ -176,6 +179,7 @@ fn finish(
     let started = Instant::now();
     let executable_plan = matches!(draft.decision, ParseDecision::Execute).then(|| draft.plan.clone()).flatten();
     let execute = matches!(draft.decision, ParseDecision::Execute);
+    attach_policy_trace(&mut draft, &trace);
     if !execute {
         candidates.clear();
     }
@@ -229,6 +233,20 @@ fn finish(
     }
     outcome.enforce_output_caps();
     PipelineResult { outcome, commit: draft.commit }
+}
+
+fn attach_policy_trace(draft: &mut Draft, parse_trace: &ParseTrace) {
+    let mut policy = draft.policy_trace.take().unwrap_or_default();
+    if policy.match_node.is_none() {
+        policy.match_node = draft.output_candidate.as_ref().and_then(PolicyTraceMatch::from_candidate);
+    }
+    if policy.band.is_none() {
+        policy.band = Some(draft.decision.type_name().into());
+    }
+    if policy.discarded.is_empty() {
+        policy.discarded = parse_trace.discarded.iter().map(PolicyTraceDiscarded::from_alternative).collect();
+    }
+    draft.policy_trace = Some(policy);
 }
 
 fn apply_resolved_lock_pair(ranking: &mut super::ranking::RankingResult, context: &ParseContext<'_>, tokens: &[String]) {
@@ -306,12 +324,5 @@ fn record_stage(trace: &mut ParseTrace, stage: &str, started: Instant, detail: S
 }
 
 fn decision_name(decision: &ParseDecision) -> &'static str {
-    match decision {
-        ParseDecision::Execute => "execute",
-        ParseDecision::Clarify { .. } => "clarify",
-        ParseDecision::Confirm { .. } => "confirm",
-        ParseDecision::Reject { .. } => "reject",
-        ParseDecision::Chat => "chat",
-        ParseDecision::Error { .. } => "error",
-    }
+    decision.type_name()
 }

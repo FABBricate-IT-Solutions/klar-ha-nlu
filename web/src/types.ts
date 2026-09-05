@@ -99,11 +99,19 @@ export type Retrieval = {
   custom?: string[];
   tokens?: string[];
 };
+export type PolicyTraceMatch = { id: string; score: number; origin: string };
+export type PolicyTraceLayer = { id: string; hit?: string | null; origin: string };
+export type PolicyTraceDiscarded = { id: string; score: number; reason: string };
 export type PolicyTrace = {
   matched_rule?: string | null;
   hit?: string | null;
   compiled_risky?: boolean;
   payload?: string | null;
+  match?: PolicyTraceMatch | null;
+  seed?: PolicyTraceLayer | null;
+  house?: PolicyTraceLayer | null;
+  band?: string | null;
+  discarded?: PolicyTraceDiscarded[];
 };
 
 export type PolicyEffect = "confirm" | "block" | "allow" | "prefer_entity" | "prefer_area" | "reply" | "script" | "template" | "llm";
@@ -115,6 +123,7 @@ export type PolicyMatch = {
   floor?: string;
   name?: string;
   phrase?: string;
+  area_wide?: boolean;
 };
 export type PolicyRule = {
   id: string;
@@ -128,13 +137,43 @@ export type PolicyRule = {
 export type SpeechVariant = { language: string; personality: string; text: string };
 export type SpeechBankEntry = { rule_id: string; variants: SpeechVariant[] };
 export type SpeechBank = { entries: SpeechBankEntry[] };
-export type PolicyBundle = { policies: PolicyRule[]; speech_bank: SpeechBank };
+export type PolicyBundle = { policies: PolicyRule[]; speech_bank: SpeechBank; match_controls?: MatchControl[] };
+export type MatchControl = { id: string; enabled: boolean; precedence?: number };
+export type SetDelta = { add?: string[]; remove?: string[] };
+export type LanguageOverlay = { sets?: Record<string, SetDelta> };
+export type MatchCatalogRow = { id: string; precedence: number; summary_key: string };
+export type MatchCatalog = { matches: MatchCatalogRow[]; seeds?: PolicyRule[] };
 export type EvaluateOut = {
   outcome: ParseResult;
   compiled_risky: boolean;
   matched_rule?: string | null;
   hit?: string | null;
   speech_variant?: string | null;
+  warnings?: string[];
+};
+
+export type TrainerContext = {
+  language: string;
+  layer: string;
+  prompt_version: string;
+  graph: { areas: Area[]; floors: Floor[]; entities: Entity[] };
+  gaps: string[];
+  matches: MatchCatalogRow[];
+  seeds: PolicyRule[];
+  overlays: { policies: PolicyRule[]; match_controls: MatchControl[]; language: LanguageOverlay };
+  schema: { effects: string[]; when_fields: string[]; max_rules: number; seed_ids: string[]; match_ids: string[] };
+};
+
+export type TrainerIssue = { path: string; message: string };
+export type TrainerDryRun = { text: string; decision: string; seed?: string | null; house?: string | null; compiled_risky: boolean };
+export type TrainerValidateOut = { ok: boolean; errors: TrainerIssue[]; warnings: TrainerIssue[]; dry_run: TrainerDryRun[] };
+export type TrainerProposal = {
+  layer?: string;
+  language?: string;
+  policies?: PolicyRule[];
+  match_controls?: MatchControl[];
+  language_overlay?: LanguageOverlay;
+  utterances?: string[];
 };
 
 export type ConversationTurn = {

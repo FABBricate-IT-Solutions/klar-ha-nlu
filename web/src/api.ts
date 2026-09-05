@@ -8,12 +8,18 @@ import type {
   Gaps,
   PolicyBundle,
   PolicyRule,
+  MatchCatalog,
+  MatchControl,
+  LanguageOverlay,
   Settings,
+  TrainerContext,
+  TrainerProposal,
+  TrainerValidateOut,
   UiState,
 } from "./types";
 
 export type CustomRule = { phrase: string; intent: string; slots: Record<string, string> };
-export type LangOverlay = { custom: CustomRule[]; language: unknown; history: Array<{ hash: string; label: string; saved_at: string }> };
+export type LangOverlay = { custom: CustomRule[]; language: LanguageOverlay; history: Array<{ hash: string; label: string; saved_at: string }> };
 export type LangExplain = { language: string; decision: string; confidence: number; speech: string; stages: string[]; evidence: string[]; matched_custom?: string };
 export type LanguagePack = { code: string; native_name: string; script: string; variants: string[] };
 import { parseV2Response } from "./parseContract";
@@ -58,9 +64,17 @@ export const api = {
     request<unknown>("/api/v2/parse", { method: "POST", body: JSON.stringify({ text, language, conversation_id, nlu_rag, preferred_area }) }).then(parseV2Response),
   lastTurn: () => request<ConversationTurn | null>("/api/v2/last-turn"),
   policies: () => request<PolicyBundle>("/api/v2/policies"),
+  policiesCatalog: () => request<MatchCatalog>("/api/v2/policies/catalog"),
   savePolicies: (body: PolicyBundle) => request<PolicyBundle>("/api/v2/policies", { method: "POST", body: JSON.stringify(body) }),
-  evaluatePolicies: (body: { text: string; language?: string; policies?: PolicyRule[] }) =>
+  evaluatePolicies: (body: { text: string; language?: string; policies?: PolicyRule[]; match_controls?: MatchControl[] }) =>
     request<EvaluateOut>("/api/v2/policies/evaluate", { method: "POST", body: JSON.stringify(body) }),
+  trainerContext: (layer: string, language?: string) => {
+    const query = new URLSearchParams({ layer });
+    if (language) query.set("language", language);
+    return request<TrainerContext>(`/api/v2/policies/trainer-context?${query.toString()}`);
+  },
+  validateProposal: (body: TrainerProposal) =>
+    request<TrainerValidateOut>("/api/v2/policies/propose/validate", { method: "POST", body: JSON.stringify(body) }),
   conversations: () => request<ConversationTurn[]>("/api/v2/conversations"),
   conversation: (id: string) => request<ConversationTurn[]>(`/api/v2/conversations/${encodeURIComponent(id)}`),
   intents: () => request<string[]>("/api/v2/intents"),

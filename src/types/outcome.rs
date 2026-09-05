@@ -35,7 +35,7 @@ pub struct ParseOutcome {
     pub policy_trace: Option<PolicyTrace>,
 }
 
-#[derive(Debug, Clone, Serialize, Deserialize, PartialEq, Eq, Default)]
+#[derive(Debug, Clone, Serialize, Deserialize, PartialEq, Default)]
 pub struct PolicyTrace {
     #[serde(default, skip_serializing_if = "Option::is_none")]
     pub matched_rule: Option<String>,
@@ -45,6 +45,38 @@ pub struct PolicyTrace {
     pub compiled_risky: bool,
     #[serde(default, skip_serializing_if = "Option::is_none")]
     pub payload: Option<String>,
+    #[serde(default, rename = "match", skip_serializing_if = "Option::is_none")]
+    pub match_node: Option<PolicyTraceMatch>,
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub seed: Option<PolicyTraceLayer>,
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub house: Option<PolicyTraceLayer>,
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub band: Option<String>,
+    #[serde(default, skip_serializing_if = "Vec::is_empty")]
+    pub discarded: Vec<PolicyTraceDiscarded>,
+}
+
+#[derive(Debug, Clone, Serialize, Deserialize, PartialEq)]
+pub struct PolicyTraceMatch {
+    pub id: String,
+    pub score: f64,
+    pub origin: String,
+}
+
+#[derive(Debug, Clone, Serialize, Deserialize, PartialEq, Eq)]
+pub struct PolicyTraceLayer {
+    pub id: String,
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub hit: Option<String>,
+    pub origin: String,
+}
+
+#[derive(Debug, Clone, Serialize, Deserialize, PartialEq)]
+pub struct PolicyTraceDiscarded {
+    pub id: String,
+    pub score: f64,
+    pub reason: String,
 }
 
 #[derive(Debug, Clone, Serialize, Deserialize, PartialEq, Eq)]
@@ -154,6 +186,46 @@ pub struct DiscardedAlternative {
     pub reason: String,
 }
 
+impl ParseDecision {
+    pub fn type_name(&self) -> &'static str {
+        match self {
+            Self::Execute => "execute",
+            Self::Clarify { .. } => "clarify",
+            Self::Confirm { .. } => "confirm",
+            Self::Reject { .. } => "reject",
+            Self::Chat => "chat",
+            Self::Error { .. } => "error",
+        }
+    }
+}
+
+impl PolicyTraceMatch {
+    pub fn engine(id: impl Into<String>, score: f64) -> Self {
+        Self { id: id.into(), score: score.clamp(0.0, 1.0), origin: "engine".into() }
+    }
+
+    pub fn from_candidate(candidate: &IntentCandidate) -> Option<Self> {
+        let id = candidate.policy.trim();
+        (!id.is_empty()).then(|| Self::engine(id, candidate.score))
+    }
+}
+
+impl PolicyTraceLayer {
+    pub fn house(id: impl Into<String>, hit: impl Into<String>) -> Self {
+        Self { id: id.into(), hit: Some(hit.into()), origin: "operator".into() }
+    }
+
+    pub fn seed(id: impl Into<String>, hit: impl Into<String>) -> Self {
+        Self { id: id.into(), hit: Some(hit.into()), origin: "seed".into() }
+    }
+}
+
+impl PolicyTraceDiscarded {
+    pub fn from_alternative(item: &DiscardedAlternative) -> Self {
+        Self { id: item.policy.clone(), score: item.score.clamp(0.0, 1.0), reason: "lower_score".into() }
+    }
+}
+
 impl IntentPlan {
     pub fn from_intents(intents: Vec<Intent>, confidence: f64, evidence: &[Evidence]) -> Self {
         let steps = intents
@@ -241,6 +313,9 @@ impl ParseOutcome {
         if let Some(plan) = &mut self.plan {
             cap_plan(plan);
         }
+        if let Some(policy) = &mut self.policy_trace {
+            cap_policy_trace(policy);
+        }
         for stage in &mut self.trace.stages {
             truncate_chars(&mut stage.detail, MAX_DETAIL_CHARS);
         }
@@ -249,6 +324,39 @@ impl ParseOutcome {
             truncate_chars(&mut discarded.policy, 128);
             truncate_chars(&mut discarded.reason, MAX_DETAIL_CHARS);
         }
+    }
+}
+
+fn cap_policy_trace(trace: &mut PolicyTrace) {
+    if let Some(node) = &mut trace.match_node {
+        truncate_chars(&mut node.id, 128);
+        truncate_chars(&mut node.origin, 32);
+        node.score = node.score.clamp(0.0, 1.0);
+    }
+    for layer in [&mut trace.seed, &mut trace.house].into_iter().flatten() {
+        truncate_chars(&mut layer.id, 128);
+        truncate_chars(&mut layer.origin, 32);
+        if let Some(hit) = &mut layer.hit {
+            truncate_chars(hit, 32);
+        }
+    }
+    if let Some(band) = &mut trace.band {
+        truncate_chars(band, 32);
+    }
+    if let Some(rule) = &mut trace.matched_rule {
+        truncate_chars(rule, 64);
+    }
+    if let Some(hit) = &mut trace.hit {
+        truncate_chars(hit, 32);
+    }
+    if let Some(payload) = &mut trace.payload {
+        truncate_chars(payload, 500);
+    }
+    trace.discarded.truncate(MAX_TRACE_DISCARDED);
+    for item in &mut trace.discarded {
+        truncate_chars(&mut item.id, 128);
+        truncate_chars(&mut item.reason, MAX_DETAIL_CHARS);
+        item.score = item.score.clamp(0.0, 1.0);
     }
 }
 

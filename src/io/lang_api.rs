@@ -299,6 +299,7 @@ mod tests {
                 language: Default::default(),
                 policies: Vec::new(),
                 speech_bank: Default::default(),
+                match_controls: Vec::new(),
             },
             dir,
             None,

@@ -1,6 +1,8 @@
 use crate::parse::fuzzy::{evidence, Profile};
 use crate::parse::normalize::{fold_umlaut, join_tokens, tokenize};
-use crate::types::{first_matching_rule, script_entity_id, Intent, IntentPlan, PolicyHit, PolicyMatch, PolicyRule, PolicyTrace};
+use crate::types::{
+    first_matching_rule, script_entity_id, Intent, IntentPlan, PolicyHit, PolicyMatch, PolicyRule, PolicyTrace, PolicyTraceLayer,
+};
 
 use super::context::ParseContext;
 use super::draft::{chat, execute, Draft};
@@ -21,6 +23,8 @@ pub(super) fn action_trace(rule: &PolicyRule, hit: PolicyHit) -> PolicyTrace {
         hit: Some(hit.as_str().into()),
         compiled_risky: false,
         payload: rule.payload.clone(),
+        house: Some(PolicyTraceLayer::house(rule.id.clone(), hit.as_str())),
+        ..PolicyTrace::default()
     }
 }
 

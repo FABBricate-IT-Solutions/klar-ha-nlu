@@ -1,6 +1,6 @@
 use crate::lang::Catalog;
 use crate::session::Session;
-use crate::types::{CustomSentence, HomeGraph, PolicyRule, Settings, SpeechBank};
+use crate::types::{CustomSentence, HomeGraph, MatchControl, PolicyRule, Settings, SpeechBank};
 use std::sync::LazyLock;
 
 pub struct ParseContext<'a> {
@@ -12,6 +12,7 @@ pub struct ParseContext<'a> {
     pub catalog: &'static Catalog,
     pub policies: &'a [PolicyRule],
     pub speech_bank: &'a SpeechBank,
+    pub match_controls: &'a [MatchControl],
 }
 
 impl<'a> ParseContext<'a> {
@@ -23,7 +24,7 @@ impl<'a> ParseContext<'a> {
         settings: &'a Settings,
         catalog: &'static Catalog,
     ) -> Self {
-        Self { text, home, session, custom, settings, catalog, policies: &[], speech_bank: empty_bank() }
+        Self { text, home, session, custom, settings, catalog, policies: &[], speech_bank: empty_bank(), match_controls: empty_controls() }
     }
 
     pub fn with_policies(mut self, policies: &'a [PolicyRule], speech_bank: &'a SpeechBank) -> Self {
@@ -31,6 +32,16 @@ impl<'a> ParseContext<'a> {
         self.speech_bank = speech_bank;
         self
     }
+
+    pub fn with_match_controls(mut self, match_controls: &'a [MatchControl]) -> Self {
+        self.match_controls = match_controls;
+        self
+    }
+}
+
+fn empty_controls() -> &'static [MatchControl] {
+    static CONTROLS: LazyLock<Vec<MatchControl>> = LazyLock::new(Vec::new);
+    CONTROLS.as_slice()
 }
 
 fn empty_bank() -> &'static SpeechBank {

@@ -3,7 +3,7 @@ use crate::parse::clause::{parse_clause_candidates_for_action, ClauseCandidate};
 use crate::parse::compound::CompoundSplit;
 use crate::parse::infer::looks_like_question;
 use crate::parse::normalize::tokenize;
-use crate::parse::policy::{candidate, PolicyId};
+use crate::parse::policy::{overlaid_candidate, MatchOverlay, PolicyId};
 use crate::parse::resolve::{resolve_scored, ResolveReport};
 use crate::parse::slots::{intent_from_action, ClauseOut};
 use crate::types::{Evidence, HomeGraph, Intent, ParseTrace, StageTrace, MAX_CLARIFY_OPTIONS, MAX_PLAN_STEPS};
@@ -75,8 +75,16 @@ pub(super) fn build_analyses(
             || clause.iter().any(|token| matches!(cat.verb(token), Some(crate::lang::VerbKind::ListComplete)));
         let explicit_list_completion = list_marker && complete_marker;
         let mut bindings = Vec::new();
-        let mut baseline =
-            parse_clause_candidates_for_action(&clause, raw_tokens, context.home, &working, context.settings, &split.light_areas, None);
+        let mut baseline = parse_clause_candidates_for_action(
+            &clause,
+            raw_tokens,
+            context.home,
+            &working,
+            context.settings,
+            &split.light_areas,
+            None,
+            context.match_controls,
+        );
         baseline.retain(|policy| !invalid_named_list_fallback(&clause, context.home, policy));
         if baseline.len() > MAX_POLICIES_PER_ACTION {
             return Err(ComplexityLimit);
@@ -122,15 +130,23 @@ pub(super) fn build_analyses(
                 },
             )?;
             if let Some(intent) = narrowed {
-                push_binding(
-                    &mut bindings,
-                    BindingAnalysis {
-                        action_evidence,
-                        targets,
-                        policy: candidate(PolicyId::GroundedEntities, policy.action, ClauseOut::Intents(vec![intent])),
-                        allowed_targets: allowed_targets.clone(),
-                    },
-                )?;
+                let overlay = MatchOverlay::new(context.match_controls);
+                if overlay.enabled(PolicyId::GroundedEntities) {
+                    push_binding(
+                        &mut bindings,
+                        BindingAnalysis {
+                            action_evidence,
+                            targets,
+                            policy: overlaid_candidate(
+                                PolicyId::GroundedEntities,
+                                policy.action,
+                                ClauseOut::Intents(vec![intent]),
+                                &overlay,
+                            ),
+                            allowed_targets: allowed_targets.clone(),
+                        },
+                    )?;
+                }
             }
         }
         let mut forced = hypotheses.clone();
@@ -152,6 +168,7 @@ pub(super) fn build_analyses(
                 context.settings,
                 &split.light_areas,
                 Some(hypothesis.action),
+                context.match_controls,
             );
             if policies.len() > MAX_POLICIES_PER_ACTION {
                 return Err(ComplexityLimit);

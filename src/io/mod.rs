@@ -10,6 +10,7 @@ pub(crate) mod metrics;
 pub(crate) mod policies;
 pub(crate) mod privacy;
 pub mod state;
+pub(crate) mod trainer;
 pub mod web;
 pub mod wyoming;
 
