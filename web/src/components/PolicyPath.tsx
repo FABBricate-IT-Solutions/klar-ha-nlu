@@ -1,3 +1,4 @@
+import { OriginChip, parseOrigin } from "./OriginChip";
 import type { Messages } from "../i18n";
 import type { PolicyTrace } from "../types";
 
@@ -72,6 +73,23 @@ function nodeWhy(t: Messages, trace: PolicyTrace | undefined, kind: PathKind): s
   }
 }
 
+function nodeOrigin(trace: PolicyTrace | undefined, kind: PathKind) {
+  switch (kind) {
+    case "match":
+      return parseOrigin(trace?.match?.origin);
+    case "seed":
+      return parseOrigin(trace?.seed?.origin);
+    case "house":
+      return parseOrigin(trace?.house?.origin);
+    case "band":
+      return undefined;
+    default: {
+      const _never: never = kind;
+      return _never;
+    }
+  }
+}
+
 export function PolicyPath({
   t,
   trace,
@@ -90,17 +108,22 @@ export function PolicyPath({
         const id = nodeId(policy, kind, dash);
         const lane = laneFor(kind);
         const why = nodeWhy(t, policy, kind);
-        const selectedId = id === dash ? undefined : id;
+        const origin = nodeOrigin(policy, kind);
+        const hit = id !== dash;
+        const selectedId = hit ? id : undefined;
         return (
           <span key={kind} className="policy-path-step">
-            {index > 0 ? <span className="muted"> → </span> : null}
+            {index > 0 ? <span className="policy-path-arrow" aria-hidden="true">→</span> : null}
             <button
               type="button"
-              className={`policy-path-node${id === dash ? "" : " hit"}`}
+              className={`policy-path-node${hit ? " hit" : " unchecked"}`}
               onClick={() => lane && onSelect?.(lane, selectedId)}
-              disabled={!lane}
+              disabled={!lane || !onSelect}
             >
-              <span className="muted">{kindLabel(t, kind)}</span>
+              <span className="policy-path-layer">
+                <span className="muted">{kindLabel(t, kind)}</span>
+                {origin && hit ? <OriginChip t={t} origin={origin} /> : null}
+              </span>
               <strong className="mono">{id}</strong>
               {why ? <span className="caption">{why}</span> : null}
             </button>

@@ -1,7 +1,21 @@
 import { useState } from "react";
 import { api, type LangOverlay } from "../api";
+import type { PolicyLane } from "./PolicyPath";
 import type { Messages } from "../i18n";
 import type { MatchControl, PolicyRule, TrainerProposal, TrainerValidateOut } from "../types";
+
+function trainerLayer(lane: PolicyLane): "match" | "language" | "house" {
+  switch (lane) {
+    case "match":
+    case "language":
+    case "house":
+      return lane;
+    default: {
+      const _never: never = lane;
+      return _never;
+    }
+  }
+}
 
 function layerOf(proposal: TrainerProposal): "match" | "language" | "house" | "all" {
   const layer = proposal.layer || "all";
@@ -18,6 +32,7 @@ function layerOf(proposal: TrainerProposal): "match" | "language" | "house" | "a
 
 export function TrainerDrawer({
   t,
+  lane,
   language,
   overlay,
   onApplyHouse,
@@ -25,6 +40,7 @@ export function TrainerDrawer({
   onStatus,
 }: {
   t: Messages;
+  lane: PolicyLane;
   language?: string;
   overlay: LangOverlay | null;
   onApplyHouse: (next: PolicyRule[]) => Promise<void>;
@@ -34,9 +50,10 @@ export function TrainerDrawer({
   const [raw, setRaw] = useState("");
   const [result, setResult] = useState<TrainerValidateOut | null>(null);
   const [contextText, setContextText] = useState("");
+  const layer = trainerLayer(lane);
 
   const loadContext = async () => {
-    const body = await api.trainerContext("all", language);
+    const body = await api.trainerContext(layer, language);
     setContextText(JSON.stringify(body, null, 2));
     onStatus(t.trainerContext);
   };
@@ -80,8 +97,8 @@ export function TrainerDrawer({
   };
 
   return (
-    <div className="card" style={{ marginTop: 16 }}>
-      <h2>{t.trainer}</h2>
+    <div className="card trainer-drawer">
+      <h2>{t.trainerForLane}</h2>
       <p className="muted">{t.trainerHint}</p>
       <div className="row">
         <button className="secondary" onClick={() => void loadContext()}>{t.trainerContext}</button>
