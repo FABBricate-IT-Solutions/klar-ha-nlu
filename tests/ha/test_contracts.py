@@ -163,6 +163,19 @@ class ContractTests(unittest.TestCase):
         validated = contracts.validate_v2_payload(payload)
         self.assertEqual(validated["policy_trace"]["payload"], "Schlaf schön.")
 
+    def test_policy_trace_accepts_path_fields(self) -> None:
+        payload = _payload({"type": "execute"}, _plan())
+        payload["policy_trace"] = {
+            "match": {"id": "area_command", "score": 0.93, "origin": "engine"},
+            "house": {"id": "prefer-ceiling", "hit": "prefer_entity", "origin": "operator"},
+            "band": "execute",
+            "compiled_risky": False,
+            "discarded": [{"id": "grounded_entities", "score": 0.88, "reason": "lower_score"}],
+        }
+        validated = contracts.validate_v2_payload(payload)
+        self.assertEqual(validated["policy_trace"]["match"]["id"], "area_command")
+        self.assertEqual(validated["policy_trace"]["band"], "execute")
+
     def test_rejects_oversized_candidates(self) -> None:
         payload = _payload({"type": "chat"})
         payload["candidates"] = [{}] * 65

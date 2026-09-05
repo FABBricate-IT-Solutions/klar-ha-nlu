@@ -8,6 +8,7 @@ import type {
   Gaps,
   PolicyBundle,
   PolicyRule,
+  MatchCatalog,
   Settings,
   UiState,
 } from "./types";
@@ -58,6 +59,7 @@ export const api = {
     request<unknown>("/api/v2/parse", { method: "POST", body: JSON.stringify({ text, language, conversation_id, nlu_rag, preferred_area }) }).then(parseV2Response),
   lastTurn: () => request<ConversationTurn | null>("/api/v2/last-turn"),
   policies: () => request<PolicyBundle>("/api/v2/policies"),
+  policiesCatalog: () => request<MatchCatalog>("/api/v2/policies/catalog"),
   savePolicies: (body: PolicyBundle) => request<PolicyBundle>("/api/v2/policies", { method: "POST", body: JSON.stringify(body) }),
   evaluatePolicies: (body: { text: string; language?: string; policies?: PolicyRule[] }) =>
     request<EvaluateOut>("/api/v2/policies/evaluate", { method: "POST", body: JSON.stringify(body) }),

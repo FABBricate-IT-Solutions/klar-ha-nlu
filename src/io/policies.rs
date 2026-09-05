@@ -2,7 +2,7 @@ use crate::home::overlay::{load_overlay, save_overlay};
 use crate::io::auth::{reads_allowed, writes_allowed};
 use crate::io::state::AppState;
 use crate::nlu::parse_with_policies;
-use crate::types::{sanitize_rules, sanitize_speech_bank, ParseOutcome, PolicyRule, SpeechBank};
+use crate::types::{sanitize_rules, sanitize_speech_bank, MatchCatalogRow, ParseOutcome, PolicyRule, SpeechBank};
 use axum::extract::{ConnectInfo, State};
 use axum::http::{HeaderMap, StatusCode};
 use axum::routing::{get, post};
@@ -36,7 +36,24 @@ pub struct EvaluateOut {
 pub fn routes() -> Router<AppState> {
     Router::new()
         .route("/api/v2/policies", get(get_policies).post(set_policies))
+        .route("/api/v2/policies/catalog", get(get_catalog))
         .route("/api/v2/policies/evaluate", post(evaluate_policies))
+}
+
+async fn get_catalog(
+    State(state): State<AppState>,
+    ConnectInfo(peer): ConnectInfo<SocketAddr>,
+    headers: HeaderMap,
+) -> Result<Json<MatchCatalog>, StatusCode> {
+    if !reads_allowed(Some(peer), &headers, &state.token) {
+        return Err(StatusCode::UNAUTHORIZED);
+    }
+    Ok(Json(MatchCatalog { matches: crate::parse::match_catalog() }))
+}
+
+#[derive(Debug, Clone, Serialize)]
+struct MatchCatalog {
+    matches: Vec<MatchCatalogRow>,
 }
 
 async fn get_policies(

@@ -25,6 +25,10 @@ pub mod split;
 use crate::session::Session;
 use crate::types::{CustomSentence, HomeGraph, ParseResult, Settings};
 
+pub fn match_catalog() -> Vec<crate::types::MatchCatalogRow> {
+    policy::PolicyId::catalog_rows()
+}
+
 pub fn parse(text: &str, home: &HomeGraph, session: &mut Session, custom: &[CustomSentence], settings: &Settings) -> ParseResult {
     let mut compatibility = settings.clone();
     compatibility.confirm_risky_actions = false;

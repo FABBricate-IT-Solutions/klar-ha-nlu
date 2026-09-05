@@ -99,11 +99,19 @@ export type Retrieval = {
   custom?: string[];
   tokens?: string[];
 };
+export type PolicyTraceMatch = { id: string; score: number; origin: string };
+export type PolicyTraceLayer = { id: string; hit?: string | null; origin: string };
+export type PolicyTraceDiscarded = { id: string; score: number; reason: string };
 export type PolicyTrace = {
   matched_rule?: string | null;
   hit?: string | null;
   compiled_risky?: boolean;
   payload?: string | null;
+  match?: PolicyTraceMatch | null;
+  seed?: PolicyTraceLayer | null;
+  house?: PolicyTraceLayer | null;
+  band?: string | null;
+  discarded?: PolicyTraceDiscarded[];
 };
 
 export type PolicyEffect = "confirm" | "block" | "allow" | "prefer_entity" | "prefer_area" | "reply" | "script" | "template" | "llm";
@@ -129,6 +137,8 @@ export type SpeechVariant = { language: string; personality: string; text: strin
 export type SpeechBankEntry = { rule_id: string; variants: SpeechVariant[] };
 export type SpeechBank = { entries: SpeechBankEntry[] };
 export type PolicyBundle = { policies: PolicyRule[]; speech_bank: SpeechBank };
+export type MatchCatalogRow = { id: string; precedence: number; summary_key: string };
+export type MatchCatalog = { matches: MatchCatalogRow[] };
 export type EvaluateOut = {
   outcome: ParseResult;
   compiled_risky: boolean;

@@ -74,6 +74,13 @@ fn phrase_reply_skips_intent() {
     assert_eq!(outcome.speech, "Schlaf schön.");
     assert!(outcome.plan.is_none());
     assert_eq!(outcome.policy_trace.as_ref().and_then(|trace| trace.hit.as_deref()), Some("reply"));
+    let trace = outcome.policy_trace.as_ref().expect("policy_trace");
+    let house = trace.house.as_ref().expect("house");
+    assert_eq!(house.id, "night");
+    assert_eq!(house.hit.as_deref(), Some("reply"));
+    assert_eq!(house.origin, "operator");
+    assert!(trace.seed.is_none());
+    assert_eq!(trace.band.as_deref(), Some("chat"));
 }
 
 #[test]

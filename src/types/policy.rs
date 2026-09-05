@@ -4,6 +4,13 @@ use serde::{Deserialize, Serialize};
 pub const MAX_POLICY_RULES: usize = 64;
 pub const MAX_SPEECH_VARIANTS: usize = 5;
 
+#[derive(Debug, Clone, Serialize, Deserialize, PartialEq, Eq)]
+pub struct MatchCatalogRow {
+    pub id: String,
+    pub precedence: u16,
+    pub summary_key: String,
+}
+
 #[derive(Debug, Clone, Copy, Serialize, Deserialize, PartialEq, Eq)]
 #[serde(rename_all = "snake_case")]
 pub enum PolicyEffect {
