@@ -479,6 +479,24 @@ async def async_refine_speech(
 ) -> str | None:
     if conversation is None:
         return None
+    try:
+        # Cycle: engine_llm → stream → refine. Keep this import in the function.
+        from .engine_llm import EngineRefineMissing, EngineUnavailable, complete_engine_refine
+
+        text, accepted = await complete_engine_refine(
+            hass,
+            speech,
+            language or pack,
+            personality,
+            extra_prompt or "",
+        )
+        return text if accepted else None
+    except EngineRefineMissing:
+        _LOGGER.debug("Klar LLM refine route missing")
+    except EngineUnavailable:
+        _LOGGER.debug("Klar LLM refine unavailable")
+    except Exception as err:  # noqa: BLE001 — engine HTTP is a system boundary
+        _LOGGER.debug("Klar LLM refine skipped: %s", err)
     prompt = refine_prompt(pack, personality, extra_prompt)
     _LOGGER.debug("LLM-Refine Stimme %s", personality)
     user = refine_input(speech, pack)

@@ -1,7 +1,7 @@
 use crate::home::paths::{read_to_string_confined, remove_confined, write_atomic_confined};
 use crate::io::auth::{reads_allowed, writes_allowed};
 use crate::io::state::AppState;
-use crate::llm::{chat, chat_stream, ChatEvent, ChatRequest, LlmEndpoint, LlmError, LlmPublic};
+use crate::llm::{chat, chat_stream, refine, ChatEvent, ChatRequest, LlmEndpoint, LlmError, LlmPublic, RefineRequest};
 use axum::extract::{ConnectInfo, DefaultBodyLimit, State};
 use axum::http::{HeaderMap, StatusCode};
 use axum::response::sse::{Event, KeepAlive, Sse};
@@ -55,6 +55,7 @@ pub fn routes() -> Router<AppState> {
     Router::new()
         .route("/api/v2/llm/endpoint", get(get_endpoint).post(set_endpoint))
         .route("/api/v2/llm/chat", post(llm_chat))
+        .route("/api/v2/llm/refine", post(llm_refine))
         .route("/api/v2/policies/trainer/chat", post(crate::io::trainer_chat::trainer_chat))
         .layer(DefaultBodyLimit::max(LLM_BODY_LIMIT))
 }
@@ -142,7 +143,43 @@ pub async fn llm_chat(
     }
 }
 
+pub async fn llm_refine(
+    State(state): State<AppState>,
+    ConnectInfo(peer): ConnectInfo<SocketAddr>,
+    headers: HeaderMap,
+    Json(body): Json<RefineRequest>,
+) -> Result<axum::response::Response, StatusCode> {
+    if !writes_allowed(Some(peer), &headers, &state.token) {
+        return Err(StatusCode::UNAUTHORIZED);
+    }
+    let stream = body.stream.unwrap_or(false);
+    let endpoint = state.llm.lock().await.clone().ok_or(StatusCode::SERVICE_UNAVAILABLE)?;
+    if stream {
+        let (tx, rx) = tokio::sync::mpsc::channel::<Result<Event, Infallible>>(8);
+        tokio::spawn(async move {
+            match refine(&endpoint, body).await {
+                Ok(out) => {
+                    let _ = tx.send(Ok(json_data(&out))).await;
+                }
+                Err(err) => {
+                    let _ = tx.send(Ok(json_event(&ChatEvent::Error { message: err.to_string() }))).await;
+                }
+            }
+        });
+        Ok(Sse::new(ReceiverStream::new(rx)).keep_alive(KeepAlive::default()).into_response())
+    } else {
+        match refine(&endpoint, body).await {
+            Ok(out) => Ok(Json(out).into_response()),
+            Err(err) => Err(status_for(&err)),
+        }
+    }
+}
+
 pub fn json_event(event: &ChatEvent) -> Event {
+    json_data(event)
+}
+
+fn json_data(event: &impl serde::Serialize) -> Event {
     Event::default().json_data(event).unwrap_or_else(|_| Event::default().data("{}"))
 }
 

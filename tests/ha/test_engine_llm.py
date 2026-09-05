@@ -63,12 +63,24 @@ class EngineLlmTests(unittest.TestCase):
         self.assertEqual([row.get("text") for row in rows], ["Hel", "lo", "Hello"])
         self.assertEqual(engine_llm._event_text({"type": "done", "text": "Hello"}), "Hello")
         self.assertEqual(engine_llm._event_text("nope"), "")
+        self.assertEqual(
+            engine_llm._refine_result({"type": "done", "text": "Das Licht ist an.", "accepted": True}),
+            ("Das Licht ist an.", True),
+        )
+        self.assertEqual(
+            engine_llm._refine_result({"type": "done", "text": "Wohnzimmer Licht ist an.", "accepted": False}),
+            ("Wohnzimmer Licht ist an.", False),
+        )
+        self.assertIsNone(engine_llm._refine_result({"type": "error", "message": "nope"}))
 
     def test_engine_target_prefers_explicit_url(self) -> None:
         hass = types.SimpleNamespace(data={})
         self.assertEqual(engine_llm.engine_target(hass, "http://127.0.0.1:10520/", "tok"), ("http://127.0.0.1:10520", "tok"))
         hass.data = {"klar_nlu": {"e1": {"url": "http://klar-nlu:10520", "token": "secret"}}}
         self.assertEqual(engine_llm.engine_target(hass), ("http://klar-nlu:10520", "secret"))
+        src = (PKG / "engine_llm.py").read_text(encoding="utf-8")
+        self.assertIn("/api/v2/llm/refine", src)
+        self.assertIn("complete_engine_refine", src)
 
 
 if __name__ == "__main__":

@@ -118,6 +118,14 @@ OpenAI-compatible upstream for the engine. `GET` returns `{ "configured", "base_
 
 Write token required (same as overlay). `stream: true` (default) emits SSE `data: {"type":"delta"|"done"|"error",…}`. `stream: false` returns JSON `{"type":"done","text":"…"}`. `503` when no endpoint is configured.
 
+### `POST /api/v2/llm/refine`
+
+```json
+{ "speech": "Wohnzimmer Licht ist an.", "language": "de", "personality": "butler", "extra_prompt": "", "stream": false }
+```
+
+The engine builds the refine prompt (pack + voice + extra), runs the model (`temperature` 0.65, `max_tokens` 128), and applies `accept_refined`. JSON `{"type":"done","text":"…","accepted":true}`. If accept rejects, `text` is the original and `accepted` is false. Caps: `speech` ≤ 4096, `extra_prompt` ≤ 2048. Write token required. `503` when no endpoint. Do not send a Python-built system prompt.
+
 ### `POST /api/v2/policies/trainer/chat`
 
 ```json
