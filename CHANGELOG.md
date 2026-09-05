@@ -6,6 +6,26 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 Versions follow Home Assistant calendar versioning (`YYYY.M.PATCH`)
 and [Conventional Commits](https://www.conventionalcommits.org/).
 
+## [2026.9.2](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/compare/2026.9.1...2026.9.2) - 2026-09-05
+
+
+
+### Bug Fixes
+
+- only skip household weather when a calendar noun is present([3d503d3](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/3d503d3d3359564d227e564e06fc6f3fe77daebe))
+
+- keep Assist on the Lab plan and show pipeline settings([53fc5bc](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/53fc5bcbe0e9128995ff5f2ff97505fac67fee2f))
+
+
+### Other
+
+- Merge pull request #192 from FABBricate-IT-Solutions/release/promote-assist-follows-lab([94132aa](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/94132aae94bd4439b5bc2969eecb23bcba439d04))
+
+
+### Styling
+
+- rustfmt household weather calendar guard([a5fe09a](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/a5fe09a913ca74f80f66b5a59a556bf385261a87))
+
 ## [2026.9.1](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/compare/2026.9.0...2026.9.1) - 2026-09-02
 
 
