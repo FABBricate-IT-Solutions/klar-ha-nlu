@@ -1,4 +1,4 @@
-//! Trainer context and validate. The engine does not call a model.
+//! Trainer context and validate. Chat completions live in `crate::llm`.
 
 use crate::home::gaps::leftover;
 use crate::home::overlay::load_overlay;
@@ -72,7 +72,7 @@ pub struct SchemaOut {
     pub match_ids: Vec<String>,
 }
 
-#[derive(Debug, Deserialize)]
+#[derive(Debug, Serialize, Deserialize)]
 pub struct ProposalIn {
     pub layer: Option<String>,
     pub language: Option<String>,
@@ -114,14 +114,18 @@ pub async fn trainer_context(
     if !reads_allowed(Some(peer), &headers, &state.token) {
         return Err(StatusCode::UNAUTHORIZED);
     }
+    Ok(Json(load_context(&state, &query).await?))
+}
+
+pub async fn load_context(state: &AppState, query: &TrainerQuery) -> Result<TrainerContext, StatusCode> {
     let settings = state.settings.lock().await.clone();
     let language = pin_language(query.language.as_deref(), &settings).map_err(|_| StatusCode::BAD_REQUEST)?;
     let home = state.home.snapshot().await;
     let catalog = catalog_for(&[language.clone()]);
     let overlay = load_overlay(&state.data_dir);
-    Ok(Json(TrainerContext {
+    Ok(TrainerContext {
         language,
-        layer: query.layer.unwrap_or_else(|| "all".into()),
+        layer: query.layer.clone().unwrap_or_else(|| "all".into()),
         prompt_version: PROMPT_VERSION.into(),
         graph: GraphOut { areas: home.areas.clone(), floors: home.floors.clone(), entities: home.entities.clone() },
         gaps: leftover(&home, catalog).into_iter().map(|entity| entity.entity_id).collect(),
@@ -133,7 +137,7 @@ pub async fn trainer_context(
             language: overlay.language,
         },
         schema: schema_out(),
-    }))
+    })
 }
 
 pub async fn validate_proposal(

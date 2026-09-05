@@ -3,6 +3,7 @@ use crate::home::{HomeStore, LoadedHome};
 use crate::io::bundle::{entry_from_parse, BundleStore};
 use crate::io::conversations::{turn_from_outcome, ConversationJournal};
 use crate::io::metrics::MetricsStore;
+use crate::llm::LlmEndpoint;
 use crate::session::Sessions;
 use crate::types::{CustomSentence, MatchControl, ParseOutcome, ParseResult, PolicyRule, Settings, SpeechBank};
 use std::path::PathBuf;
@@ -26,6 +27,7 @@ pub struct AppState {
     pub data_dir: PathBuf,
     pub live_sync: Arc<AtomicBool>,
     pub token: Option<String>,
+    pub llm: Arc<Mutex<Option<LlmEndpoint>>>,
 }
 
 impl AppState {
@@ -45,6 +47,7 @@ impl AppState {
             data_dir,
             live_sync: Arc::new(AtomicBool::new(false)),
             token,
+            llm: Arc::new(Mutex::new(LlmEndpoint::from_env())),
         }
     }
 

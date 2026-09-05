@@ -263,7 +263,7 @@ FALLBACKS = {
     "originTrainer": "trainer",
     "compiledFloor": "compiled floor",
     "trainer": "Trainer",
-    "trainerHint": "The engine does not call a model. Copy context, paste JSON, validate, then apply.",
+    "trainerHint": "Klar calls an OpenAI-compatible model in Rust. Chat, validate, then apply per lane. Advanced JSON is for debug.",
     "trainerContext": "Context",
     "trainerValidate": "Validate",
     "trainerApply": "Apply",

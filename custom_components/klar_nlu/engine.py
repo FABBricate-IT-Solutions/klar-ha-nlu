@@ -315,3 +315,34 @@ async def async_push_personality(
                 resp.raise_for_status()
     except (ClientError, TimeoutError, OSError) as err:
         _LOGGER.debug("Klar settings not synced: %s", err)
+
+
+async def async_push_llm_endpoint(
+    hass: HomeAssistant,
+    url: str,
+    token: str | None,
+    agent_id: object,
+) -> None:
+    """Copy an OpenAI-compatible agent onto the engine. Never stores the key in HA options."""
+    from .const import engine_url_candidates
+    from .llm_endpoint import openai_compatible_endpoint
+
+    payload = openai_compatible_endpoint(hass, str(agent_id) if agent_id else None)
+    if payload is None:
+        return
+    session = async_get_clientsession(hass)
+    headers = {"X-Klar-Token": token} if token else {}
+    timeout = ClientTimeout(total=3)
+    body = {**payload, "configured": True}
+    for base in engine_url_candidates(url):
+        try:
+            async with session.post(
+                f"{base}/api/v2/llm/endpoint",
+                json=body,
+                headers=headers,
+                timeout=timeout,
+            ) as resp:
+                if resp.status < 400:
+                    return
+        except (ClientError, TimeoutError, OSError) as err:
+            _LOGGER.debug("Klar LLM endpoint not synced: %s", err)

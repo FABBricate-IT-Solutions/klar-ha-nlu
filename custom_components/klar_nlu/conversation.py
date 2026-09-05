@@ -78,6 +78,7 @@ from .rag_tools import (
     parse_tool_reply,
     rag_prompt,
 )
+from .engine_llm import stream_engine_chat
 from .stream import stream_chat
 from .news import announce, asked_for_more, compose_speech, fetch_headlines, nudge
 from .policy_actions import (
@@ -591,6 +592,33 @@ class KlarConversationEntity(ConversationEntity):
         if prior and not yarn_request(user_input.text):
             system = f"{system}\n\n{prior}"
         yarn = yarn_request(user_input.text)
+        engine_out = await stream_engine_chat(
+            self.hass,
+            [{"role": "system", "content": system}, {"role": "user", "content": asked}],
+            chat_log if publish else None,
+            getattr(user_input, "agent_id", None),
+            url=self._url,
+            token=self._token(),
+            hold=_stream_hold(yarn, self._nlu_rag()),
+        )
+        if engine_out is not None:
+            speech, published = engine_out
+            if yarn and yarn_asks_permission(speech) and not published:
+                nudged = await stream_engine_chat(
+                    self.hass,
+                    [
+                        {"role": "system", "content": yarn_nudge(pack, system)},
+                        {"role": "user", "content": asked},
+                    ],
+                    chat_log if publish else None,
+                    getattr(user_input, "agent_id", None),
+                    url=self._url,
+                    token=self._token(),
+                )
+                if nudged is not None:
+                    speech, published = nudged
+            if speech:
+                return _speech_result(pack, speech, published and chat_log is not None)
         resolved = llm_client_and_model(self.hass, agent_id)
         if resolved is not None:
             streamed = await self._stream_fallback(

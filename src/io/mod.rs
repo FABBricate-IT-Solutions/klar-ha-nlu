@@ -6,11 +6,13 @@ pub(crate) mod dashboard;
 pub(crate) mod home_sync;
 pub(crate) mod lang_api;
 pub mod limits;
+pub(crate) mod llm;
 pub(crate) mod metrics;
 pub(crate) mod policies;
 pub(crate) mod privacy;
 pub mod state;
 pub(crate) mod trainer;
+pub(crate) mod trainer_chat;
 pub mod web;
 pub mod wyoming;
 

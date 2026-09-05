@@ -106,6 +106,26 @@ The token comes from `--token`, `KLAR_TOKEN`, or `--token-file`.
 | `semantic_adapters` | `true` consults local typed adapters after a ranking reject. Off by default. Proposals are revalidated; they never override Execute/Confirm/Clarify/Chat. |
 | `nlu_rag` | `true` attaches a matched-slice retrieval on `chat` and `reject` only. Off by default. Never Assist tools; the HA fallback may recover a command only through Klar tools. `POST /api/v2/parse` can set `nlu_rag` per request. |
 
+### `GET` / `POST /api/v2/llm/endpoint`
+
+OpenAI-compatible upstream for the engine. `GET` returns `{ "configured", "base_url", "model" }` — never the API key. `POST` sets `base_url`, `api_key`, `model` in memory (not the overlay). `configured: false` clears it. Or set `KLAR_LLM_BASE_URL`, `KLAR_LLM_API_KEY`, `KLAR_LLM_MODEL`. `nlu::parse` does not use it.
+
+### `POST /api/v2/llm/chat`
+
+```json
+{ "messages": [{ "role": "user", "content": "…" }], "stream": true, "temperature": 0.2, "max_tokens": 2048 }
+```
+
+Write token required (same as overlay). `stream: true` (default) emits SSE `data: {"type":"delta"|"done"|"error",…}`. `stream: false` returns JSON `{"type":"done","text":"…"}`. `503` when no endpoint is configured.
+
+### `POST /api/v2/policies/trainer/chat`
+
+```json
+{ "message": "Treat Funzel as a light noun", "layer": "language", "language": "de", "history": [] }
+```
+
+The engine loads trainer context, streams the model, extracts JSON, and appends `proposal` plus `validate` to the stream. Apply remains a human write call. See [trainer-prompt.md](../architecture/trainer-prompt.md).
+
 ### `POST /api/v2/home`
 
 Live home-graph snapshot from the Home Assistant integration. `schema_version` must be `"1"`. Caps and error codes: [home-assistant.md](home-assistant.md#registry-sync-ha-is-the-source-of-truth). After a valid push, HA is the live source; the `.storage` watcher no longer overwrites that graph.

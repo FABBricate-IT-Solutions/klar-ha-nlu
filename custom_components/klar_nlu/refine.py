@@ -498,6 +498,22 @@ async def _async_refine_raw(
     controls_home: bool,
     allow_tools: bool = False,
 ) -> str | None:
+    try:
+        from .engine_llm import complete_engine_chat
+
+        engine_text = await complete_engine_chat(
+            hass,
+            [
+                {"role": "system", "content": prompt},
+                {"role": "user", "content": user},
+            ],
+            max_tokens=128,
+            temperature=0.65,
+        )
+        if engine_text:
+            return engine_text
+    except Exception as err:  # noqa: BLE001 — engine HTTP is a system boundary
+        _LOGGER.debug("Klar LLM refine skipped: %s", err)
     resolved = llm_client_and_model(hass, agent_id)
     if resolved is not None:
         client, model = resolved

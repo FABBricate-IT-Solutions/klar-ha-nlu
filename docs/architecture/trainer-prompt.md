@@ -1,11 +1,12 @@
 # Trainer prompt — ADR 0001 stage 4
 
-The Klar engine does **not** call a model. An operator UI or an external agent:
+The Klar engine does **not** parse with a model. Chat completions live in Rust (`src/llm/`). An operator UI:
 
-1. `GET /api/v2/policies/trainer-context?layer=all&language=<Assist tag>`
-2. Propose JSON for one lane (`match`, `language`, `house`) or `all`
-3. `POST /api/v2/policies/propose/validate`
-4. Apply only after `ok: true`, using the write API of that lane (`POST /api/v2/policies`, `POST /api/lang/overlay`)
+1. `GET /api/v2/llm/endpoint` — `configured` must be true (HA glue copies an OpenAI-compatible agent, or set `KLAR_LLM_BASE_URL` / `KLAR_LLM_API_KEY` / `KLAR_LLM_MODEL`)
+2. `POST /api/v2/policies/trainer/chat` with `{ "message", "layer"?, "language"?, "history"? }` — SSE events `delta`, `proposal`, `validate`, `done`
+3. Apply only after `validate.ok: true`, using the write API of that lane (`POST /api/v2/policies`, `POST /api/lang/overlay`)
+
+Manual loop (debug): `GET /api/v2/policies/trainer-context` → JSON → `POST /api/v2/policies/propose/validate`.
 
 `prompt_version` in the context payload is `1`. Pin `language` to the bound Assist locale. Do not assume a German house.
 

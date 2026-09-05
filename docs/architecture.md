@@ -2,7 +2,9 @@
 
 [Deutsch](architecture.md) · [English](en/architecture.md)
 
-Klar ist eine regelbasierte NLU. Ein Satz wird tokenisiert, gegen Wortlisten geprüft und in Home-Assistant-Intents übersetzt. Es gibt kein neuronales Netz in der Engine.
+Klar ist eine regelbasierte NLU. Ein Satz wird tokenisiert, gegen Wortlisten geprüft und in Home-Assistant-Intents übersetzt. `nlu::parse` enthält kein Modell und kein Netz.
+
+Optional spricht die Engine eine **OpenAI-kompatible** Chat-API (`src/llm/`, SSE-Streaming) für Trainer und Sprach-Fallback. Python in der Integration ist nur Kleber: Endpoint aus dem HA-Agenten kopieren, Tokens ins Assist-Chat-Log schieben. Siehe [adr-0002-openai-llm-client.md](architecture/adr-0002-openai-llm-client.md).
 
 ## Laufzeitkarte
 
@@ -22,7 +24,7 @@ Text
   → ParseOutcome            Plan nur bei execute
 ```
 
-In Home Assistant kann der gesprochene Satz eine Persönlichkeitsformel bekommen und, wenn eingeschaltet, vom LLM umformuliert werden (`custom_components/klar_nlu/refine.py`). Die Engine selbst bleibt regelbasiert. Optionale lokale Semantik-Adapter dürfen nach einem Ranking-Reject einen typisierten Plan vorschlagen; Geräte führen sie nicht aus.
+In Home Assistant kann der gesprochene Satz eine Persönlichkeitsformel bekommen und, wenn eingeschaltet, vom LLM umformuliert werden. Die Umformulierung läuft über Klar (`POST /api/v2/llm/chat`); die Integration streamt nur nach Assist. Optionale lokale Semantik-Adapter dürfen nach einem Ranking-Reject einen typisierten Plan vorschlagen; Geräte führen sie nicht aus.
 
 `nlu::parse` in `src/nlu/` ist der Einstieg und liefert `ParseOutcome` (`schema_version: "2.0"`). Vor dem Parse bindet Klar die in `Settings.languages` gewählten Pakete (`de`, `en`, …). Confirm, Clarify und Reject serialisieren weder `plan` noch `candidates`.
 
@@ -38,7 +40,8 @@ In Home Assistant kann der gesprochene Satz eine Persönlichkeitsformel bekommen
 | `src/eval/` | Held-out-Metriken, Assist-Vergleich, Scorecard, Benches |
 | `src/migrate.rs` | Einmaliger V1-Overlay-Dry-Run / V2-Save |
 | `src/session.rs` | letztes Ziel, offenes Clarify/Confirm |
-| `src/io/` | HTTP (`/api/v2/parse`), Wyoming, redigierte Bundles, Bootstrap |
+| `src/llm/` | OpenAI-kompatibler Chat-Client, SSE, Trainer-Prompt |
+| `src/io/` | HTTP (`/api/v2/parse`, `/api/v2/llm/chat`), Wyoming, redigierte Bundles, Bootstrap |
 
 ## Modulbaum
 
@@ -52,6 +55,7 @@ src/
   eval/              Held-out-Scorecard und Benches
   migrate.rs         V1-Overlay-Importbericht
   session.rs         Conversation Memory
+  llm/               OpenAI-kompatibler Client, SSE
   io/                HTTP, Wyoming, Runtime-State, redigierte Bundles
   main.rs            CLI (lang / eval / migrate), dann io::run
 ```
@@ -115,5 +119,5 @@ Slots: `entity_id`, `area`, `floor`, `domain`, plus je nach Aktion `brightness`,
 ## Grenzen
 
 - Kein freies Weltwissen. „Erzähl einen Witz“ bleibt leer — in HA übernimmt dann der Fallback-Agent.
-- Keine Werkzeuge im Motor. Geräte laufen nur über die erkannten Intents. Ein optionales LLM in HA darf die fertige Bestätigung umformulieren; Assist-Werkzeuge bekommt es dafür nicht.
+- Keine Assist-Werkzeuge im Motor. Geräte laufen nur über die erkannten Intents. Klar darf die fertige Bestätigung über den OpenAI-kompatiblen Client umformulieren; HA schiebt nur Tokens ins Chat-Log und vergibt dafür keine Assist-Werkzeuge.
 - Dateien unter 500 Zeilen halten; neue Sprache = neues Paket, nicht eine längere `match`-Liste.

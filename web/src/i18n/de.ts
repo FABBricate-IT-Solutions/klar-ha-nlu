@@ -211,7 +211,7 @@ export const de = {
   originTrainer: "trainer",
   compiledFloor: "kompilierte Untergrenze",
   trainer: "Trainer",
-  trainerHint: "Die Engine ruft kein Modell. Context kopieren, JSON einfügen, prüfen, dann anwenden.",
+  trainerHint: "Klar ruft ein OpenAI-kompatibles Modell in Rust. Chatten, prüfen, dann pro Spur übernehmen. JSON nur für Debug.",
   trainerContext: "Context",
   trainerValidate: "Prüfen",
   trainerApply: "Anwenden",

@@ -75,6 +75,12 @@ export const api = {
   },
   validateProposal: (body: TrainerProposal) =>
     request<TrainerValidateOut>("/api/v2/policies/propose/validate", { method: "POST", body: JSON.stringify(body) }),
+  llmEndpoint: () => request<{ configured: boolean; base_url?: string; model?: string }>("/api/v2/llm/endpoint"),
+  saveLlmEndpoint: (body: { base_url?: string; api_key?: string; model?: string; configured?: boolean }) =>
+    request<{ configured: boolean; base_url?: string; model?: string }>("/api/v2/llm/endpoint", {
+      method: "POST",
+      body: JSON.stringify(body),
+    }),
   conversations: () => request<ConversationTurn[]>("/api/v2/conversations"),
   conversation: (id: string) => request<ConversationTurn[]>(`/api/v2/conversations/${encodeURIComponent(id)}`),
   intents: () => request<string[]>("/api/v2/intents"),
