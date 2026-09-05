@@ -146,6 +146,51 @@ The engine builds the refine prompt (pack + voice + extra), runs the model (`tem
 
 Engine owns Yarn/chat/RAG/calendar/news prompts and `yarn_canned` / `yarn_nudge`. `kind`: `auto` | `yarn` | `chat` | `rag` | `calendar` | `news` | `news_follow`. `auto` uses `yarn_request` / the RAG flag. `facts` is a headline list or calendar readback gathered by HA. Personality is applied here — do not also prepend `refine_prompt`. SSE adds `{"type":"tool","tool":"klar.parse","text":"licht an"}` / `klar.act` so TTS never speaks `KLAR_PARSE:`. Write token required. `503` when no endpoint. `404` keeps the previous Python prompt path for one staging bake.
 
+### `POST /api/v2/speech/render`
+
+Post-execute snapshot from Home Assistant. The engine validates caps and the allow-list; it does not interpolate yet (`source: "unrendered"`). Assist still speaks `from_handled`. Write token required.
+
+```json
+{
+  "schema_version": "1",
+  "language": "de",
+  "personality": "default",
+  "now": "2026-09-05T19:22:00+02:00",
+  "intent": {
+    "name": "HassTurnOn",
+    "slots": [{"name": "area", "value": "wohnzimmer"}]
+  },
+  "outcome": "success",
+  "entities": [
+    {
+      "entity_id": "light.wohnzimmer",
+      "name": "Wohnzimmer",
+      "domain": "light",
+      "state": "on",
+      "area": "wohnzimmer",
+      "area_name": "Wohnzimmer",
+      "device_class": null,
+      "attributes": {
+        "current_temperature": null,
+        "temperature_unit": null,
+        "unit_of_measurement": null,
+        "hvac_action": null,
+        "hvac_mode": null,
+        "volume_level": null,
+        "is_volume_muted": null,
+        "media_title": null,
+        "media_artist": null,
+        "media_album_name": null
+      }
+    }
+  ],
+  "calendar_events": [],
+  "media_queue": []
+}
+```
+
+Response: `{ "speech": "", "quiet_ack": false, "source": "unrendered" }`. `outcome` is `success` | `partial` | `error`. `now` is required (clock). Unknown attribute keys are dropped. Missing `schema_version` → `400`. Caps: 32 entities, 16 calendar rows, 8 queue titles, attribute values ≤ 256 characters.
+
 ### `POST /api/v2/policies/trainer/chat`
 
 ```json

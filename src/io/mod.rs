@@ -10,6 +10,7 @@ pub(crate) mod llm;
 pub(crate) mod metrics;
 pub(crate) mod policies;
 pub(crate) mod privacy;
+pub(crate) mod speech;
 pub mod state;
 pub(crate) mod trainer;
 pub(crate) mod trainer_chat;
