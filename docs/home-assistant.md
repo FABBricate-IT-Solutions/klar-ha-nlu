@@ -52,9 +52,9 @@ Der Agent bekommt den Hinweis, keine Geräte zu steuern und in der Assist-Sprach
 
 ## Persönlichkeit
 
-Einstellungen → Geräte & Dienste → Klar NLU → Konfigurieren → **Persönlichkeit**, oder die Select-Entity **Persönlichkeit** am Klar-Gerät.
+Klar-Operator-UI → Einstellungen → **Stimme**, oder die Select-Entity **Persönlichkeit** am Klar-Gerät (schreibt die Engine).
 
-Die Auswahl liegt in dieser Integration, nicht in der Klar-App, und überlebt eine Neuinstallation der Engine. Assist und der LLM-Verfeinerungs-Prompt wechseln mit. Nur die Persönlichkeit zu ändern startet die Engine nicht neu.
+Die Auswahl liegt in den Engine-Settings (`GET`/`POST /api/settings`), nicht im Home-Assistant-Optionsformular. Assist liest den Engine-Cache pro Turn und fällt nur auf übrige Integrationsoptionen zurück, wenn der Cache leer ist. Die Persönlichkeit zu ändern startet die Engine nicht neu.
 
 | Id | Stimme |
 |----|--------|
@@ -73,12 +73,12 @@ Mit LLM-Refine steckt die Stimme im Satz — nicht in einem Stempel wie „Sehr 
 
 ## LLM-Verfeinerung
 
-Standardmäßig aus. Einstellungen → Geräte & Dienste → Klar NLU → Konfigurieren:
+Standardmäßig aus. Klar-Operator-UI → Einstellungen:
 
-1. **Conversation-Agent für Smalltalk** setzen (OpenAI-kompatibel, lokales Gemma reicht).
-2. **NLU-Antworten vom LLM verfeinern** einschalten.
+1. LLM-Endpoint setzen (OpenAI-kompatibel, lokales Gemma reicht).
+2. **LLM-Verfeinerung** einschalten.
 3. Assist-Pipeline: Conversation-Engine = **Klar NLU**.
-4. Assist-Werkzeuge bei diesem LLM-Agenten **aus**, außer **Assist-Werkzeuge beim Smalltalk-Agenten erlauben** ist an. Kann der Agent das Haus steuern und die Option ist aus, fällt Refine aus.
+4. Assist-Werkzeuge beim Chat **aus**, außer **Assist-Werkzeuge beim Chat** ist an. Kann das Modell das Haus steuern und die Option ist aus, überspringt Klar den Agenten.
 
 Ablauf nach einem Hausbefehl:
 
@@ -87,7 +87,7 @@ Ablauf nach einem Hausbefehl:
 3. Die Umformulierung bleibt stehen. Klar klebt keine Formel mehr davor oder dahinter.
 4. Schlägt Refine fehl, bleibt die kurze Fallback-Formel.
 
-Der Prompt ist pro Persönlichkeit (Stimme plus Few-Shots). Das Feld **Verfeinerungs-Prompt** ist nur eine Extra-Zeile darüber — es ersetzt die Stimme nicht.
+Der Prompt ist pro Persönlichkeit (Stimme plus Few-Shots). **Extra-Prompt** unter Einstellungen ist nur eine Extra-Zeile darüber — es ersetzt die Stimme nicht.
 
 Die Sicherheit bleibt bei Klar, nicht beim Modell:
 

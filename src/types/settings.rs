@@ -56,21 +56,24 @@ pub struct Settings {
     /// Opt-in NLU-as-RAG: matched-slice retrieval and Klar tools. Off by default.
     #[serde(default)]
     pub nlu_rag: bool,
-    /// HA: rewrite finished NLU speech with the fallback LLM.
+    /// Rewrite finished NLU speech with the engine LLM. Off by default.
     #[serde(default)]
     pub refine_speech: bool,
-    /// HA: rewrite calendar list speech with the fallback LLM.
+    /// Rewrite calendar list speech with the engine LLM. Off by default.
     #[serde(default)]
     pub calendar_llm: bool,
-    /// HA: chime instead of TTS on simple on/off.
+    /// Chime instead of TTS on simple on/off. Off by default.
     #[serde(default)]
     pub quiet_ack: bool,
-    /// HA: allow Assist tools on the chit-chat LLM.
+    /// Allow Assist tools on the chit-chat LLM. Off by default.
     #[serde(default)]
     pub allow_llm_tools: bool,
-    /// HA: a fallback conversation agent is configured.
+    /// A Home Assistant leftover conversation agent is configured.
     #[serde(default)]
     pub fallback_llm: bool,
+    /// Extra line on the packed personality prompt. Empty uses the pack voice only.
+    #[serde(default)]
+    pub extra_prompt: String,
 }
 
 impl Default for Settings {
@@ -89,6 +92,7 @@ impl Default for Settings {
             quiet_ack: false,
             allow_llm_tools: false,
             fallback_llm: false,
+            extra_prompt: String::new(),
         }
     }
 }
@@ -117,6 +121,7 @@ mod tests {
         assert!(!set.quiet_ack);
         assert!(!set.allow_llm_tools);
         assert!(!set.fallback_llm);
+        assert!(set.extra_prompt.is_empty());
         assert_eq!(set.languages, vec!["de"]);
     }
 

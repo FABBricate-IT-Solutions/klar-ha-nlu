@@ -52,9 +52,9 @@ The agent is told not to control devices and to answer in the user’s Assist la
 
 ## Personality
 
-Settings → Devices & services → Klar NLU → Configure → **Personality**, or the **Personality** select entity on the Klar device.
+Klar operator UI → Settings → **Voice**, or the **Personality** select entity on the Klar device (it patches the engine).
 
-The choice lives in this integration, not in the Klar app, so it survives reinstalling the engine. Assist and the LLM refine prompt switch with it. Changing only the personality does not restart the engine.
+The choice lives in engine settings (`GET`/`POST /api/settings`), not in the Home Assistant options form. Assist reads the engine cache each turn and falls back to leftover integration options only if that cache is empty. Changing personality does not restart the engine.
 
 | Id | Voice |
 |----|-------|
@@ -73,12 +73,12 @@ With LLM refine the voice lives in the sentence — not in a stamp such as “Ve
 
 ## LLM refine
 
-Off by default. Settings → Devices & services → Klar NLU → Configure:
+Off by default. Klar operator UI → Settings:
 
-1. Set **Conversation agent for chit-chat** (OpenAI-compatible, local Gemma is fine).
-2. Turn on **Let the LLM refine NLU replies**.
+1. Set the LLM endpoint (OpenAI-compatible; local Gemma is fine).
+2. Turn on **LLM refine**.
 3. Keep Assist’s conversation engine = **Klar NLU**.
-4. Keep Assist tools **off** on that LLM agent unless you also turn on **Allow Assist tools on the chit-chat agent**. If the agent can control the home and that option is off, refine is skipped.
+4. Keep Assist tools **off** on chat unless you also turn on **Allow Assist tools on chat**. If the model can control the home and that option is off, Klar skips that agent.
 
 Flow after a home command:
 
@@ -87,7 +87,7 @@ Flow after a home command:
 3. That rewrite stands. Klar does not stamp a cue back on.
 4. If refine fails, the short fallback cue remains.
 
-The rewrite prompt is per personality (voice plus few-shots). The **Refinement prompt** field is an optional extra line on top — it does not replace the voice.
+The rewrite prompt is per personality (voice plus few-shots). **Extra prompt** on Settings is an optional extra line on top — it does not replace the voice.
 
 Safety stays with Klar, not the model:
 

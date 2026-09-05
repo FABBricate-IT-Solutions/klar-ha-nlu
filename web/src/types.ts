@@ -19,6 +19,7 @@ export type Settings = {
   quiet_ack?: boolean;
   allow_llm_tools?: boolean;
   fallback_llm?: boolean;
+  extra_prompt?: string;
 };
 
 export type Entity = {

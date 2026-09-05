@@ -32,7 +32,7 @@ Everything applies to **every compiled Assist locale** in `GET /api/v2/languages
 | Govern safety | `when.domain=lock` is language-free — **one** seed bundle for every pack, not 67 translations. |
 | Phrase seeds / household | only via a generator for **all** packs in the same PR, like `scripts/lang_packs`. Never de/en only. |
 | Trainer validate | dry-run against representative + parity **of the bound locale**, not only `familienhaus_de`. |
-| Operator chrome | new keys in `de.ts`/`en.ts`; other UI JSONs fall back to `en` (existing pattern). Assist quality does not hang on chrome. |
+| Operator chrome | every compiled Assist locale (`web/src/i18n/en.ts`, `de.ts`, and `messages/*.json`) gets the same keys, translated — not English leftovers. Assist quality does not hang on chrome. |
 
 **Gate for every stage that touches parse or seeds:** `cargo nextest run --locked --test assist_langs --test parity_langs` (full matrix, no fail-fast), plus the oracle suites. Russian stays out (no pack).
 
@@ -89,7 +89,7 @@ Goal: the Rules tab shows three columns. Evaluate and Lab draw the same path. No
 - `web/src/components/PolicyPath.tsx` — three required nodes + band; `—` = checked, not hit; click sets active lane + row.
 - `RulesPage`: three-column grid. Match from catalog (read-only). Language: lexicon deltas from `GET /api/lang/overlay` (read-only) + empty govern list. House: today’s editor.
 - Lab: replace `.flow` / `processPath` with `PolicyPath` (read, do not write).
-- Strings in `web/src/i18n/en.ts` and `de.ts`; other locales fall back to `en`.
+- Strings in `web/src/i18n/en.ts` and `de.ts`; every other compiled Assist locale is generated with the same keys (not an English fallback).
 
 **Gate:** browser pass on Rules + Lab, once with `de` and once with a generated locale (e.g. `ja` or `ar`). Evaluate with `language` pinned. Contract + `assist_langs` green.
 

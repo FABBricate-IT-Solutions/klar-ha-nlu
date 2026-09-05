@@ -23,7 +23,7 @@
     "step": {
       "init": {
         "title": "Klar NLU",
-        "description": "The personality is stored here, so it survives reinstalling the Klar app. Picking a personality copies its LLM refine prompt into this form. Assist and the LLM refine voice follow it on every reply.",
+        "description": "Voice, Assist languages, and the LLM live in the Klar operator UI (Settings). This form only connects the engine: URL, token, channel, and an optional leftover conversation agent.",
         "data": {
           "mode": "Engine",
           "personality": "Personality",

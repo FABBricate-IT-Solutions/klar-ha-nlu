@@ -39,13 +39,16 @@ from .const import (
     DEFAULT_CALENDAR_LLM,
     DEFAULT_NLU_RAG,
     DEFAULT_QUIET_ACK,
+    DEFAULT_REFINE_SPEECH,
     DEFAULT_URL,
     DOMAIN,
+    LANGUAGE_ALL,
     engine_session_id,
     keeps_conversation,
     parse_session_id,
     resolve_personality,
 )
+from .engine import async_refresh_engine_settings, cached_engine_settings
 from .engine_http import post_parse
 from .lang_select import advertised_languages, default_pack, enabled_packs, resolve_pack, speak_tag
 from .contracts import executable_intents
@@ -154,18 +157,29 @@ class KlarConversationEntity(ConversationEntity):
             manufacturer="FABBricate IT Solutions",
         )
 
+    def _engine_settings(self) -> dict:
+        return cached_engine_settings(self.hass, self._entry)
+
     def _packs(self) -> list[str]:
+        languages = self._engine_settings().get("languages")
+        if isinstance(languages, list):
+            return enabled_packs(
+                languages or LANGUAGE_ALL,
+                getattr(self.hass.config, "language", None),
+            )
         return enabled_packs(
             self._entry.options.get(CONF_LANGUAGES),
             getattr(self.hass.config, "language", None),
         )
 
     def _request_pack(self, language: str | None) -> str:
-        choice = self._entry.options.get(CONF_LANGUAGES)
-        hass_language = getattr(self.hass.config, "language", None)
         if language:
             return resolve_pack(language, self._packs())
-        return default_pack(choice, hass_language)
+        languages = self._engine_settings().get("languages")
+        if isinstance(languages, list) and len(languages) == 1:
+            return str(languages[0])
+        hass_language = getattr(self.hass.config, "language", None)
+        return default_pack(self._entry.options.get(CONF_LANGUAGES), hass_language)
 
     @property
     def supported_languages(self) -> list[str]:
@@ -191,7 +205,22 @@ class KlarConversationEntity(ConversationEntity):
         return None
 
     def _personality(self) -> str:
+        settings = self._engine_settings()
+        if settings.get("personality"):
+            return resolve_personality(settings.get("personality"))
         return resolve_personality(self._entry.options.get(CONF_PERSONALITY))
+
+    def _extra_prompt(self) -> str:
+        settings = self._engine_settings()
+        if "extra_prompt" in settings:
+            return str(settings.get("extra_prompt") or "")
+        return str(self._entry.options.get(CONF_REFINE_PROMPT) or "")
+
+    def _flag(self, key: str, option_key: str, default: bool) -> bool:
+        settings = self._engine_settings()
+        if key in settings:
+            return bool(settings.get(key))
+        return bool(self._entry.options.get(option_key, default))
 
     def _token(self) -> str | None:
         stored = (self.hass.data.get(DOMAIN) or {}).get(self._entry.entry_id) or {}
@@ -230,6 +259,7 @@ class KlarConversationEntity(ConversationEntity):
         user_input: ConversationInput,
         chat_log: ChatLog,
     ) -> ConversationResult:
+        await async_refresh_engine_settings(self.hass, self._entry)
         pack = self._request_pack(user_input.language)
         payload = await self._parse(
             user_input.text, user_input.conversation_id, pack, user_input.device_id, getattr(user_input, "satellite_id", None)
@@ -369,7 +399,7 @@ class KlarConversationEntity(ConversationEntity):
         if not skip_rewrite(decision):
             speech = await async_finish_speech(
                 self.hass,
-                bool(self._entry.options.get(CONF_REFINE_SPEECH)),
+                self._flag("refine_speech", CONF_REFINE_SPEECH, DEFAULT_REFINE_SPEECH),
                 agent_id,
                 self._agent_controls_home(str(agent_id or "")),
                 speech,
@@ -377,7 +407,7 @@ class KlarConversationEntity(ConversationEntity):
                 speak_tag(pack),
                 pack,
                 self._personality(),
-                str(self._entry.options.get(CONF_REFINE_PROMPT) or ""),
+                self._extra_prompt(),
                 self._allow_llm_tools(),
             )
         remember_turn(
@@ -437,16 +467,16 @@ class KlarConversationEntity(ConversationEntity):
         return await self._spoken(user_input, chat_log, pack, spoken, conversation_id, True, "chat")
 
     def _nlu_rag(self) -> bool:
-        return bool(self._entry.options.get(CONF_NLU_RAG, DEFAULT_NLU_RAG))
+        return self._flag("nlu_rag", CONF_NLU_RAG, DEFAULT_NLU_RAG)
 
     def _quiet_ack(self) -> bool:
-        return bool(self._entry.options.get(CONF_QUIET_ACK, DEFAULT_QUIET_ACK))
+        return self._flag("quiet_ack", CONF_QUIET_ACK, DEFAULT_QUIET_ACK)
 
     def _calendar_llm(self) -> bool:
-        return bool(self._entry.options.get(CONF_CALENDAR_LLM, DEFAULT_CALENDAR_LLM))
+        return self._flag("calendar_llm", CONF_CALENDAR_LLM, DEFAULT_CALENDAR_LLM)
 
     def _allow_llm_tools(self) -> bool:
-        return bool(self._entry.options.get(CONF_ALLOW_LLM_TOOLS, DEFAULT_ALLOW_LLM_TOOLS))
+        return self._flag("allow_llm_tools", CONF_ALLOW_LLM_TOOLS, DEFAULT_ALLOW_LLM_TOOLS)
 
     async def async_reload(self, language: str | None = None) -> None:
         """Honor conversation.reload; registered intents are read live."""
@@ -563,7 +593,7 @@ class KlarConversationEntity(ConversationEntity):
                 facts=facts,
                 history=self._llm_turns(session_id),
                 extra_system=extra_s,
-                extra_prompt=str(self._entry.options.get(CONF_REFINE_PROMPT) or ""),
+                extra_prompt=self._extra_prompt(),
                 url=self._url,
                 token=self._token(),
                 publish=publish,
@@ -576,7 +606,7 @@ class KlarConversationEntity(ConversationEntity):
             _LOGGER.debug("Klar LLM assist route missing")
         if not agent_id:
             return None
-        converse_prompt = extra_s or str(self._entry.options.get(CONF_REFINE_PROMPT) or "") or None
+        converse_prompt = extra_s or self._extra_prompt() or None
         try:
             return await conversation.async_converse(
                 self.hass,
