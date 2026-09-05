@@ -1,3 +1,4 @@
+import { FlaskConicalIcon, HomeIcon, HouseIcon, MessageSquareIcon, SettingsIcon, ShieldIcon } from "lucide-react";
 import { useEffect, useMemo, useRef, useState } from "react";
 import { api } from "./api";
 import { Drawer } from "./components/common";
@@ -11,6 +12,20 @@ import { RulesPage } from "./pages/RulesPage";
 import { SettingsPage } from "./pages/SettingsPage";
 import { Wizard } from "./pages/Wizard";
 import type { ConversationTurn, Dashboard, HouseView, RulesView, Settings, Tab, Theme, UiState } from "./types";
+import { Badge } from "@/components/ui/badge";
+import { Button, buttonVariants } from "@/components/ui/button";
+import { Toaster } from "@/components/ui/sonner";
+import { TooltipProvider } from "@/components/ui/tooltip";
+import { cn } from "cn";
+
+const tabIcons: Record<Tab, typeof HomeIcon> = {
+  home: HomeIcon,
+  conversations: MessageSquareIcon,
+  rules: ShieldIcon,
+  house: HouseIcon,
+  lab: FlaskConicalIcon,
+  settings: SettingsIcon,
+};
 
 const railTabs: Tab[] = ["home", "conversations", "rules", "house"];
 const utilTabs: Tab[] = ["lab", "settings"];
@@ -269,6 +284,7 @@ export function App() {
     document.documentElement.lang = locale;
     document.documentElement.dir = isRtl(locale) ? "rtl" : "ltr";
     document.documentElement.dataset.theme = theme;
+    document.documentElement.classList.toggle("dark", theme !== "light");
   }, [locale, theme]);
 
   useEffect(() => {
@@ -342,31 +358,37 @@ export function App() {
     }));
   };
 
-  const link = (tab: Tab) => (
-    <a
-      key={tab}
-      href={hrefFor(tab, ui)}
-      className={ui.tab === tab ? "active" : ""}
-      aria-current={ui.tab === tab ? "page" : undefined}
-    >
-      {t[tab]}
-    </a>
-  );
+  const link = (tab: Tab, full = true) => {
+    const Icon = tabIcons[tab];
+    const active = ui.tab === tab;
+    return (
+      <a
+        key={tab}
+        href={hrefFor(tab, ui)}
+        className={cn(buttonVariants({ variant: active ? "secondary" : "ghost" }), full && "w-full justify-start")}
+        aria-current={active ? "page" : undefined}
+      >
+        <Icon data-icon="inline-start" />
+        {t[tab]}
+      </a>
+    );
+  };
 
   return (
+    <TooltipProvider>
     <div className="app-shell" data-theme={theme}>
       <nav className="rail" aria-label="Klar">
         <div className="brand">Klar</div>
-        {railTabs.map(link)}
+        {railTabs.map((tab) => link(tab))}
       </nav>
       <div className="app-main">
         <header className="topbar">
           <div className="status">
-            <span className={`pill${dashboard?.counts.leftover ? " hot" : ""}`}>{dashboard?.counts.leftover ?? 0} {t.open}</span>
-            <span className={`pill${settings.nlu_rag ? " hot" : ""}`}>{settings.nlu_rag ? t.ragMode : t.chatMode}</span>
+            <Badge variant={dashboard?.counts.leftover ? "default" : "outline"}>{dashboard?.counts.leftover ?? 0} {t.open}</Badge>
+            <Badge variant={settings.nlu_rag ? "default" : "outline"}>{settings.nlu_rag ? t.ragMode : t.chatMode}</Badge>
           </div>
           <nav className="util">
-            {utilTabs.map(link)}
+            {utilTabs.map((tab) => link(tab, false))}
           </nav>
         </header>
         {error && <div className="page"><div className="card danger">{error}</div></div>}
@@ -448,13 +470,15 @@ export function App() {
       {confirmApply && (
         <Drawer title={t.confirmApply} onClose={() => setConfirmApply(false)} closeLabel={t.close}>
           {applyCandidates.map((row) => <p key={row.entity_id}>{row.name} → {row.suggested_area?.name}</p>)}
-          <div className="row">
-            <button className="primary" onClick={apply}>{t.apply}</button>
-            <button className="secondary" onClick={() => setConfirmApply(false)}>{t.cancel}</button>
+          <div className="flex flex-wrap gap-2">
+            <Button type="button" onClick={() => void apply()}>{t.apply}</Button>
+            <Button variant="outline" type="button" onClick={() => setConfirmApply(false)}>{t.cancel}</Button>
           </div>
-          {ui.last_apply.length > 0 && <button className="ghost" onClick={undo}>{t.undo}</button>}
+          {ui.last_apply.length > 0 && <Button variant="ghost" type="button" onClick={() => void undo()}>{t.undo}</Button>}
         </Drawer>
       )}
     </div>
+    <Toaster theme={theme} />
+    </TooltipProvider>
   );
 }

@@ -34,6 +34,9 @@ button { cursor: pointer; }
   min-height: 100vh;
   display: grid;
   grid-template-columns: 200px 1fr;
+  background:
+    radial-gradient(900px 420px at 0% 0%, color-mix(in srgb, var(--accent) 16%, transparent), transparent 58%),
+    var(--bg);
 }
 .app-main { min-width: 0; }
 .rail {
@@ -50,19 +53,7 @@ button { cursor: pointer; }
 }
 .rail .brand { margin: 8px 12px 16px; }
 .rail a, .util a {
-  display: inline-flex;
-  align-items: center;
-  min-height: 44px;
-  min-width: 44px;
-  padding: 10px 12px;
-  color: var(--muted);
   text-decoration: none;
-  border-inline-start: 2px solid transparent;
-  border-radius: 0;
-}
-.rail a.active, .util a.active {
-  color: var(--text);
-  border-inline-start-color: var(--accent);
 }
 .topbar {
   position: sticky;
@@ -101,7 +92,7 @@ button { cursor: pointer; }
 .status { display: flex; align-items: center; gap: 10px; white-space: nowrap; }
 .pill {
   border: 1px solid var(--line);
-  border-radius: 0;
+  border-radius: 8px;
   padding: 4px 10px;
   color: var(--muted);
   background: var(--surface);
@@ -122,7 +113,7 @@ h3 { font-size: 13px; color: var(--muted); font-weight: 500; }
 .card {
   background: var(--surface);
   border: 1px solid var(--line);
-  border-radius: 0;
+  border-radius: 8px;
   padding: 16px;
 }
 .card.hot { border-color: var(--accent); }
@@ -130,14 +121,14 @@ h3 { font-size: 13px; color: var(--muted); font-weight: 500; }
 .kpi .label { color: var(--muted); margin-top: 8px; }
 .primary {
   border: 0;
-  border-radius: 0;
+  border-radius: 8px;
   padding: 10px 14px;
   color: var(--text);
   background: var(--accent);
 }
 .secondary {
   border: 1px solid var(--line);
-  border-radius: 0;
+  border-radius: 8px;
   padding: 9px 13px;
   color: var(--text);
   background: var(--surface-2);
@@ -149,7 +140,7 @@ label { display: block; color: var(--muted); margin: 14px 0 6px; }
 input, textarea, select {
   width: 100%;
   border: 1px solid var(--line);
-  border-radius: 0;
+  border-radius: 8px;
   background: var(--bg);
   color: var(--text);
   padding: 10px 12px;
@@ -173,7 +164,7 @@ input[type="checkbox"] {
   color: var(--text);
   background: var(--surface-2);
   border: 1px solid var(--accent);
-  border-radius: 0;
+  border-radius: 8px;
 }
 .snackbar.danger { border-color: var(--danger); }
 textarea { min-height: 120px; resize: vertical; }
@@ -265,7 +256,7 @@ button.chip { background: transparent; }
   min-height: 44px;
   padding: 8px 10px;
   border: 1px solid var(--line);
-  border-radius: 0;
+  border-radius: 8px;
   background: var(--surface);
   color: var(--text);
   text-align: start;
@@ -285,7 +276,7 @@ button.chip { background: transparent; }
   border: 1px solid var(--line);
   background: var(--surface);
   color: var(--text);
-  border-radius: 0;
+  border-radius: 8px;
 }
 .trainer-layout {
   display: grid;
@@ -329,9 +320,7 @@ button.chip { background: transparent; }
   .rail .brand { margin: 0 8px 0 0; }
   .rail a, .util a {
     border-inline-start: 0;
-    border-bottom: 2px solid transparent;
   }
-  .rail a.active, .util a.active { border-bottom-color: var(--accent); }
   .topbar { align-items: flex-start; flex-wrap: wrap; }
   .status { width: 100%; }
   .hero { display: block; }
@@ -347,7 +336,7 @@ button.chip { background: transparent; }
 .lab .search-select input {
   min-height: 44px;
   min-width: 44px;
-  border-radius: 0;
+  border-radius: 8px;
 }
 .lab-error {
   display: flex;
@@ -358,7 +347,7 @@ button.chip { background: transparent; }
   color: var(--text);
   background: var(--surface);
   border: 1px solid var(--danger);
-  border-radius: 0;
+  border-radius: 8px;
 }
 .lab-toolbar {
   display: flex;
@@ -369,7 +358,7 @@ button.chip { background: transparent; }
   padding: 16px;
   background: var(--surface);
   border: 1px solid var(--line);
-  border-radius: 0;
+  border-radius: 8px;
 }
 .lab-satellite {
   flex: 1 1 200px;
@@ -397,7 +386,7 @@ button.chip { background: transparent; }
   overflow: auto;
   background: var(--bg);
   border: 1px solid var(--line);
-  border-radius: 0;
+  border-radius: 8px;
   font-family: "IBM Plex Mono", monospace;
   font-size: 12px;
 }

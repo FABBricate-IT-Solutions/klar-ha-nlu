@@ -2,9 +2,21 @@ import { useEffect, useState } from "react";
 import { api } from "../api";
 import type { Messages } from "../i18n";
 import type { LlmPublic } from "../types";
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
+import { Field, FieldDescription, FieldGroup, FieldLabel } from "@/components/ui/field";
+import { Input } from "@/components/ui/input";
+import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
 
 const OPENAI = "https://api.openai.com/v1";
 const OLLAMA = "http://127.0.0.1:11434/v1";
+
+function presetOf(url: string): "openai" | "ollama" | "" {
+  if (url === OPENAI) return "openai";
+  if (url === OLLAMA) return "ollama";
+  return "";
+}
 
 export function LlmSettingsCard({ t }: { t: Messages }) {
   const [endpoint, setEndpoint] = useState<LlmPublic>({ configured: false });
@@ -54,26 +66,59 @@ export function LlmSettingsCard({ t }: { t: Messages }) {
     }
   };
 
+  const preset = presetOf(baseUrl);
+
   return (
-    <div className="card">
-      <h2>{t.llm}</h2>
-      <p className="muted">{t.llmHint}</p>
-      <p className="caption">{endpoint.configured ? `${t.llmConfigured} · ${endpoint.model} · ${endpoint.base_url}` : t.llmNotConfigured}</p>
-      <div className="row">
-        <button type="button" className="secondary" onClick={() => setBaseUrl(OPENAI)}>{t.llmPresetOpenAi}</button>
-        <button type="button" className="secondary" onClick={() => setBaseUrl(OLLAMA)}>{t.llmPresetOllama}</button>
-      </div>
-      <label>{t.llmBaseUrl}</label>
-      <input value={baseUrl} onChange={(ev) => setBaseUrl(ev.target.value)} placeholder={OPENAI} />
-      <label>{t.llmModel}</label>
-      <input value={model} onChange={(ev) => setModel(ev.target.value)} placeholder="gpt-4o-mini" />
-      <label>{t.llmApiKey}</label>
-      <input type="password" value={apiKey} onChange={(ev) => setApiKey(ev.target.value)} placeholder={t.llmApiKeyHint} autoComplete="off" />
-      <div className="row" style={{ marginTop: 12 }}>
-        <button type="button" className="primary" onClick={() => void save()}>{t.save}</button>
-        <button type="button" className="ghost" disabled={!endpoint.configured} onClick={() => void clear()}>{t.llmClear}</button>
-      </div>
-      {status ? <p className="muted">{status}</p> : null}
-    </div>
+    <Card>
+      <CardHeader>
+        <div className="flex flex-wrap items-center gap-2">
+          <CardTitle>{t.llm}</CardTitle>
+          <Badge variant={endpoint.configured ? "default" : "outline"}>
+            {endpoint.configured ? t.llmConfigured : t.llmNotConfigured}
+          </Badge>
+        </div>
+        <CardDescription>{t.llmHint}</CardDescription>
+        {endpoint.configured ? (
+          <p className="font-mono text-xs text-muted-foreground">{endpoint.model} · {endpoint.base_url}</p>
+        ) : null}
+      </CardHeader>
+      <CardContent>
+        <FieldGroup>
+          <Field>
+            <ToggleGroup
+              variant="outline"
+              spacing={0}
+              value={preset ? [preset] : []}
+              onValueChange={(next) => {
+                const picked = next[0];
+                if (picked === "openai") setBaseUrl(OPENAI);
+                if (picked === "ollama") setBaseUrl(OLLAMA);
+              }}
+            >
+              <ToggleGroupItem value="openai">{t.llmPresetOpenAi}</ToggleGroupItem>
+              <ToggleGroupItem value="ollama">{t.llmPresetOllama}</ToggleGroupItem>
+            </ToggleGroup>
+          </Field>
+          <Field>
+            <FieldLabel htmlFor="llm-base-url">{t.llmBaseUrl}</FieldLabel>
+            <Input id="llm-base-url" value={baseUrl} onChange={(ev) => setBaseUrl(ev.target.value)} placeholder={OPENAI} />
+          </Field>
+          <Field>
+            <FieldLabel htmlFor="llm-model">{t.llmModel}</FieldLabel>
+            <Input id="llm-model" value={model} onChange={(ev) => setModel(ev.target.value)} placeholder="gpt-4o-mini" />
+          </Field>
+          <Field>
+            <FieldLabel htmlFor="llm-key">{t.llmApiKey}</FieldLabel>
+            <Input id="llm-key" type="password" value={apiKey} onChange={(ev) => setApiKey(ev.target.value)} placeholder={t.llmApiKeyHint} autoComplete="off" />
+            <FieldDescription>{t.llmApiKeyHint}</FieldDescription>
+          </Field>
+        </FieldGroup>
+      </CardContent>
+      <CardFooter className="flex flex-wrap gap-2">
+        <Button type="button" onClick={() => void save()}>{t.save}</Button>
+        <Button type="button" variant="ghost" disabled={!endpoint.configured} onClick={() => void clear()}>{t.llmClear}</Button>
+        {status ? <p className="text-sm text-muted-foreground">{status}</p> : null}
+      </CardFooter>
+    </Card>
   );
 }

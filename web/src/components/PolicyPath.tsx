@@ -1,5 +1,6 @@
 import type { Messages } from "../i18n";
 import type { PolicyTrace } from "../types";
+import { cn } from "cn";
 
 export type PolicyLane = "match" | "language" | "house";
 type PathKind = "match" | "seed" | "house" | "band";
@@ -85,33 +86,37 @@ export function PolicyPath({
   const dash = t.pathUnchecked;
   const kinds: PathKind[] = ["match", "seed", "house", "band"];
   return (
-    <div className="policy-path" aria-label={t.processPath}>
+    <div className="flex flex-wrap items-stretch gap-2" aria-label={t.processPath}>
       {kinds.map((kind, index) => {
         const id = nodeId(policy, kind, dash);
         const lane = laneFor(kind);
         const why = nodeWhy(t, policy, kind);
         const selectedId = id === dash ? undefined : id;
+        const hit = id !== dash;
         return (
-          <span key={kind} className="policy-path-step">
-            {index > 0 ? <span className="muted"> → </span> : null}
+          <span key={kind} className="inline-flex items-center gap-2">
+            {index > 0 ? <span className="text-muted-foreground">→</span> : null}
             <button
               type="button"
-              className={`policy-path-node${id === dash ? "" : " hit"}`}
+              className={cn(
+                "flex min-h-11 min-w-[132px] flex-col items-start gap-0.5 rounded-lg border bg-card px-3 py-2 text-start transition-colors",
+                hit ? "border-primary ring-1 ring-primary/35" : "border-border",
+              )}
               onClick={() => lane && onSelect?.(lane, selectedId)}
               disabled={!lane}
             >
-              <span className="muted">{kindLabel(t, kind)}</span>
-              <strong className="mono">{id}</strong>
-              {why ? <span className="caption">{why}</span> : null}
+              <span className="text-xs text-muted-foreground">{kindLabel(t, kind)}</span>
+              <strong className="font-mono text-xs">{id}</strong>
+              {why ? <span className="text-[11px] text-muted-foreground">{why}</span> : null}
             </button>
           </span>
         );
       })}
       {policy?.discarded && policy.discarded.length > 0 && (
-        <div className="policy-path-discarded">
+        <div className="basis-full mt-2">
           <h3>{t.discarded}</h3>
           {policy.discarded.map((row) => (
-            <p className="muted" key={`${row.id}-${row.reason}`}>
+            <p className="text-sm text-muted-foreground" key={`${row.id}-${row.reason}`}>
               {row.id} · {row.reason} · {row.score.toFixed(2)}
             </p>
           ))}

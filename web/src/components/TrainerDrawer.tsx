@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { Loader2Icon } from "lucide-react";
 import { api, type LangOverlay } from "../api";
 import type { Messages } from "../i18n";
 import type {
@@ -10,6 +11,15 @@ import type {
   TrainerTurn,
   TrainerValidateOut,
 } from "../types";
+import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
+import { Field, FieldGroup, FieldLabel } from "@/components/ui/field";
+import { ScrollArea } from "@/components/ui/scroll-area";
+import { Textarea } from "@/components/ui/textarea";
+import { cn } from "cn";
 
 function layerOf(proposal: TrainerProposal): "match" | "language" | "house" | "all" {
   const layer = proposal.layer || "all";
@@ -173,79 +183,118 @@ export function TrainerDrawer({
 
   if (!endpoint || !endpoint.configured) {
     return (
-      <div className="card trainer-setup" style={{ marginTop: 16 }}>
-        <h2>{t.trainer}</h2>
-        <p className="muted">{endpoint ? t.trainerNeedLlm : t.trainerStreaming}</p>
+      <Card className="mt-4 ring-1 ring-primary/40">
+        <CardHeader>
+          <CardTitle>{t.trainer}</CardTitle>
+          <CardDescription>{endpoint ? t.trainerNeedLlm : t.trainerStreaming}</CardDescription>
+        </CardHeader>
         {endpoint ? (
-          <button className="primary" onClick={() => { window.location.hash = "#/settings"; }}>{t.trainerOpenSettings}</button>
+          <CardContent>
+            <Button type="button" onClick={() => { window.location.hash = "#/settings"; }}>{t.trainerOpenSettings}</Button>
+          </CardContent>
         ) : null}
-      </div>
+      </Card>
     );
   }
 
   return (
-    <div className="card" style={{ marginTop: 16 }}>
-      <h2>{t.trainer}</h2>
-      <p className="muted">{t.trainerHint}</p>
-      <div className="trainer-layout">
-        <div>
-          <div className="trainer-thread">
-            {lines.map((line, index) => (
-              <p className={`trainer-bubble ${line.role}`} key={`${line.role}-${index}`}>{line.content || (busy ? t.trainerStreaming : "")}</p>
-            ))}
+    <Card className="mt-4">
+      <CardHeader>
+        <div className="flex flex-wrap items-center gap-2">
+          <CardTitle>{t.trainer}</CardTitle>
+          <Badge variant="outline">{endpoint.model || "LLM"}</Badge>
+        </div>
+        <CardDescription>{t.trainerHint}</CardDescription>
+      </CardHeader>
+      <CardContent>
+        <div className="grid gap-4 md:grid-cols-2">
+          <div className="flex flex-col gap-3">
+            <ScrollArea className="h-80 rounded-lg border bg-background">
+              <div className="flex flex-col gap-2 p-3">
+                {lines.map((line, index) => (
+                  <p
+                    key={`${line.role}-${index}`}
+                    className={cn(
+                      "min-h-11 rounded-lg px-3 py-2 text-sm",
+                      line.role === "user"
+                        ? "self-end bg-primary/15 text-foreground"
+                        : "self-start bg-muted text-foreground",
+                    )}
+                  >
+                    {line.content || (busy ? t.trainerStreaming : "")}
+                  </p>
+                ))}
+              </div>
+            </ScrollArea>
+            <FieldGroup>
+              <Field>
+                <FieldLabel htmlFor="trainer-draft">{t.trainerSend}</FieldLabel>
+                <Textarea
+                  id="trainer-draft"
+                  className="min-h-24 font-mono text-sm"
+                  value={draft}
+                  disabled={busy}
+                  onChange={(ev) => setDraft(ev.target.value)}
+                  onKeyDown={(ev) => {
+                    if (ev.key === "Enter" && !ev.shiftKey) {
+                      ev.preventDefault();
+                      void send();
+                    }
+                  }}
+                />
+              </Field>
+            </FieldGroup>
+            <Button type="button" disabled={busy || !draft.trim()} onClick={() => void send()}>
+              {busy ? <Loader2Icon data-icon="inline-start" className="animate-spin" /> : null}
+              {busy ? t.trainerStreaming : t.trainerSend}
+            </Button>
           </div>
-          <label>{t.trainerSend}</label>
-          <textarea
-            className="trainer-json"
-            value={draft}
-            rows={3}
-            disabled={busy}
-            onChange={(ev) => setDraft(ev.target.value)}
-            onKeyDown={(ev) => {
-              if (ev.key === "Enter" && !ev.shiftKey) {
-                ev.preventDefault();
-                void send();
-              }
-            }}
-          />
-          <div className="row">
-            <button className="primary" disabled={busy || !draft.trim()} onClick={() => void send()}>{busy ? t.trainerStreaming : t.trainerSend}</button>
+          <div className="flex flex-col gap-3">
+            {result ? (
+              <Alert variant={result.ok ? "default" : "destructive"}>
+                <AlertTitle>{result.ok ? t.trainerOk : t.trainerFail}</AlertTitle>
+                <AlertDescription>
+                  {result.errors.map((row) => (
+                    <p key={`${row.path}-${row.message}`}>{row.path}: {row.message}</p>
+                  ))}
+                  {result.warnings.map((row) => (
+                    <p key={`w-${row.path}-${row.message}`}>{row.path}: {row.message}</p>
+                  ))}
+                  {result.dry_run.map((row) => (
+                    <p className="font-mono" key={row.text}>
+                      {row.text} → {row.decision}
+                      {row.seed ? ` · seed ${row.seed}` : ""}
+                      {row.house ? ` · house ${row.house}` : ""}
+                    </p>
+                  ))}
+                </AlertDescription>
+              </Alert>
+            ) : null}
+            <div className="flex flex-wrap gap-2">
+              <Button type="button" disabled={!canApply("house")} onClick={() => void applyLane("house")}>{t.trainerApplyHouse}</Button>
+              <Button type="button" disabled={!canApply("match")} onClick={() => void applyLane("match")}>{t.trainerApplyMatch}</Button>
+              <Button type="button" disabled={!canApply("language")} onClick={() => void applyLane("language")}>{t.trainerApplyLanguage}</Button>
+            </div>
+            <Collapsible>
+              <CollapsibleTrigger render={<Button variant="outline" type="button" />}>
+                {t.trainerAdvanced}
+              </CollapsibleTrigger>
+              <CollapsibleContent className="flex flex-col gap-3 pt-3">
+                <Button variant="secondary" type="button" onClick={() => void runValidate()}>{t.trainerValidate}</Button>
+                <Field>
+                  <FieldLabel htmlFor="trainer-proposal">{t.trainerProposal}</FieldLabel>
+                  <Textarea
+                    id="trainer-proposal"
+                    className="min-h-40 font-mono text-xs"
+                    value={raw}
+                    onChange={(ev) => { setRaw(ev.target.value); setProposal(null); }}
+                  />
+                </Field>
+              </CollapsibleContent>
+            </Collapsible>
           </div>
         </div>
-        <div>
-          {result && (
-            <div>
-              <p className="muted">{result.ok ? t.trainerOk : t.trainerFail}</p>
-              {result.errors.map((row) => (
-                <p className="muted" key={`${row.path}-${row.message}`}>{row.path}: {row.message}</p>
-              ))}
-              {result.warnings.map((row) => (
-                <p className="muted" key={`w-${row.path}-${row.message}`}>{row.path}: {row.message}</p>
-              ))}
-              {result.dry_run.map((row) => (
-                <p className="lexicon-delta" key={row.text}>
-                  {row.text} → {row.decision}
-                  {row.seed ? ` · seed ${row.seed}` : ""}
-                  {row.house ? ` · house ${row.house}` : ""}
-                </p>
-              ))}
-            </div>
-          )}
-          <div className="row" style={{ marginTop: 12 }}>
-            <button className="primary" disabled={!canApply("house")} onClick={() => void applyLane("house")}>{t.trainerApplyHouse}</button>
-            <button className="primary" disabled={!canApply("match")} onClick={() => void applyLane("match")}>{t.trainerApplyMatch}</button>
-            <button className="primary" disabled={!canApply("language")} onClick={() => void applyLane("language")}>{t.trainerApplyLanguage}</button>
-          </div>
-          <details style={{ marginTop: 16 }}>
-            <summary>{t.trainerAdvanced}</summary>
-            <div className="row" style={{ marginTop: 8 }}>
-              <button className="secondary" onClick={() => void runValidate()}>{t.trainerValidate}</button>
-            </div>
-            <label>{t.trainerProposal}</label>
-            <textarea className="trainer-json" value={raw} onChange={(ev) => { setRaw(ev.target.value); setProposal(null); }} rows={8} />
-          </details>
-        </div>
-      </div>
-    </div>
+      </CardContent>
+    </Card>
   );
 }

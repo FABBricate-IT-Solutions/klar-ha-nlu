@@ -1,10 +1,33 @@
 import { useEffect, useState } from "react";
 import { api, download, setToken, type LanguagePack } from "../api";
-import { Drawer } from "../components/common";
 import { LlmSettingsCard } from "../components/LlmSettingsCard";
 import { SearchSelect, withCurrent } from "../components/SearchSelect";
 import { dictionaries, type Messages } from "../i18n";
 import type { BundleList, Locale, Settings, Theme } from "../types";
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+} from "@/components/ui/alert-dialog";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
+import { Field, FieldContent, FieldDescription, FieldGroup, FieldLabel } from "@/components/ui/field";
+import { Input } from "@/components/ui/input";
+import {
+  Select,
+  SelectContent,
+  SelectGroup,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import { Switch } from "@/components/ui/switch";
+import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
 
 function readTheme(theme?: Theme): Theme {
   if (theme === "light" || theme === "dark") return theme;
@@ -69,91 +92,165 @@ export function SettingsPage({
     onTheme?.(next);
   };
   return (
-    <div className="page">
+    <div className="page flex flex-col gap-6">
       <section className="hero">
-        <div><h1>{t.settings}</h1><p className="muted">{t.engineHint}</p></div>
-        <div className="row">
-          <button className="ghost" onClick={() => onReplayWizard?.()}>
+        <div>
+          <h1>{t.settings}</h1>
+          <p className="muted">{t.engineHint}</p>
+        </div>
+        <div className="flex flex-wrap gap-2">
+          <Button variant="ghost" type="button" onClick={() => onReplayWizard?.()}>
             {de ? "Setup erneut" : "Replay setup"}
-          </button>
-          <button className="primary" onClick={() => save()}>{t.save}</button>
+          </Button>
+          <Button type="button" onClick={() => void save()}>{t.save}</Button>
         </div>
       </section>
-      <section style={{ marginBottom: 16 }}>
-        <LlmSettingsCard t={t} />
+      <LlmSettingsCard t={t} />
+      <section className="grid gap-4 md:grid-cols-2">
+        <Card>
+          <CardHeader>
+            <CardTitle>{t.personalityHa}</CardTitle>
+            <CardDescription>{de ? "Darstellung und Operator-Sprache" : "Appearance and operator language"}</CardDescription>
+          </CardHeader>
+          <CardContent>
+            <FieldGroup>
+              <Field>
+                <FieldLabel>{de ? "Darstellung" : "Appearance"}</FieldLabel>
+                <ToggleGroup
+                  variant="outline"
+                  spacing={0}
+                  value={[picked]}
+                  onValueChange={(next) => {
+                    const value = next[0];
+                    if (value === "dark" || value === "light") setTheme(value);
+                  }}
+                  aria-label={de ? "Darstellung" : "Appearance"}
+                >
+                  <ToggleGroupItem value="dark">{de ? "Dunkel" : "Dark"}</ToggleGroupItem>
+                  <ToggleGroupItem value="light">{de ? "Hell" : "Light"}</ToggleGroupItem>
+                </ToggleGroup>
+              </Field>
+              <Field>
+                <FieldLabel>{t.mode}</FieldLabel>
+                <Select
+                  value={settings.mode}
+                  onValueChange={(value) => {
+                    if (value === "full" || value === "context_only") {
+                      onSettings({ ...settings, mode: value });
+                    }
+                  }}
+                >
+                  <SelectTrigger className="w-full">
+                    <SelectValue />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectGroup>
+                      <SelectItem value="full">{t.modeFull}</SelectItem>
+                      <SelectItem value="context_only">{t.modeContext}</SelectItem>
+                    </SelectGroup>
+                  </SelectContent>
+                </Select>
+              </Field>
+              <Field>
+                <FieldLabel>{t.operatorLanguage}</FieldLabel>
+                <SearchSelect
+                  value={locale}
+                  options={withCurrent(localeOptions, locale)}
+                  onChange={onLocale}
+                  allowEmpty={false}
+                  placeholder={t.languageSearch}
+                />
+                <FieldDescription>{t.operatorLanguageHint}</FieldDescription>
+              </Field>
+              <Field>
+                <FieldLabel>{t.languages}</FieldLabel>
+                <FieldDescription>{t.languageHint}</FieldDescription>
+              </Field>
+              <Field orientation="horizontal">
+                <FieldContent>
+                  <FieldLabel>{t.confirmRisky}</FieldLabel>
+                </FieldContent>
+                <Switch
+                  checked={settings.confirm_risky_actions}
+                  onCheckedChange={(checked) => onSettings({ ...settings, confirm_risky_actions: Boolean(checked) })}
+                />
+              </Field>
+              <Field orientation="horizontal">
+                <FieldContent>
+                  <FieldLabel>{t.nluRag}</FieldLabel>
+                  <FieldDescription>{t.nluRagHint}</FieldDescription>
+                </FieldContent>
+                <Switch
+                  checked={settings.nlu_rag}
+                  onCheckedChange={(checked) => onSettings({ ...settings, nlu_rag: Boolean(checked) })}
+                />
+              </Field>
+              <Field>
+                <FieldLabel htmlFor="klar-token">{t.token}</FieldLabel>
+                <Input id="klar-token" type="password" value={token} onChange={(ev) => setTokenValue(ev.target.value)} />
+              </Field>
+            </FieldGroup>
+          </CardContent>
+        </Card>
+        <Card>
+          <CardHeader>
+            <CardTitle>{t.supportBundle}</CardTitle>
+            <CardDescription>{t.journalHint}</CardDescription>
+          </CardHeader>
+          <CardContent>
+            <FieldGroup>
+              <Field orientation="horizontal">
+                <FieldContent>
+                  <FieldLabel>{t.recordProtocol}</FieldLabel>
+                </FieldContent>
+                <Switch
+                  checked={settings.support_bundle}
+                  onCheckedChange={(checked) => void save({ ...settings, support_bundle: Boolean(checked) })}
+                />
+              </Field>
+              <Field orientation="horizontal">
+                <FieldContent>
+                  <FieldLabel>{t.includeRawText}</FieldLabel>
+                </FieldContent>
+                <Switch
+                  checked={settings.support_bundle_raw_text}
+                  onCheckedChange={(checked) => void save({ ...settings, support_bundle_raw_text: Boolean(checked) })}
+                />
+              </Field>
+              <Field orientation="horizontal">
+                <FieldContent>
+                  <FieldLabel>{t.semanticAdapters}</FieldLabel>
+                </FieldContent>
+                <Switch
+                  checked={settings.semantic_adapters}
+                  onCheckedChange={(checked) => void save({ ...settings, semantic_adapters: Boolean(checked) })}
+                />
+              </Field>
+              <Field>
+                <FieldLabel>{t.journal}</FieldLabel>
+                <FieldDescription>{bundle ? `${bundle.count} ${t.recordings}` : "..."}</FieldDescription>
+              </Field>
+            </FieldGroup>
+          </CardContent>
+          <CardFooter className="flex flex-wrap gap-2">
+            <Button variant="outline" type="button" onClick={() => download("/api/bundle/dataset", "klar-assist-dataset.yaml")}>{t.downloadDataset}</Button>
+            <Button variant="outline" type="button" onClick={() => download("/api/bundle/protocol", "klar-support-bundle.jsonl")}>{t.downloadProtocol}</Button>
+            <Button variant="destructive" type="button" onClick={() => setConfirmClear(true)}>{t.clearAll}</Button>
+          </CardFooter>
+        </Card>
       </section>
-      <section className="grid two">
-        <div className="card">
-          <p className="caption">{t.personalityHa}</p>
-          <label>{de ? "Darstellung" : "Appearance"}</label>
-          <div className="row" role="group" aria-label={de ? "Darstellung" : "Appearance"}>
-            <button type="button" className={picked === "dark" ? "primary" : "secondary"} aria-pressed={picked === "dark"} onClick={() => setTheme("dark")}>
-              {de ? "Dunkel" : "Dark"}
-            </button>
-            <button type="button" className={picked === "light" ? "primary" : "secondary"} aria-pressed={picked === "light"} onClick={() => setTheme("light")}>
-              {de ? "Hell" : "Light"}
-            </button>
-          </div>
-          <label>{t.mode}</label>
-          <select value={settings.mode} onChange={(ev) => onSettings({ ...settings, mode: ev.target.value as Settings["mode"] })}>
-            <option value="full">{t.modeFull}</option>
-            <option value="context_only">{t.modeContext}</option>
-          </select>
-          <label>{t.operatorLanguage}</label>
-          <SearchSelect
-            value={locale}
-            options={withCurrent(localeOptions, locale)}
-            onChange={onLocale}
-            allowEmpty={false}
-            placeholder={t.languageSearch}
-          />
-          <p className="caption">{t.operatorLanguageHint}</p>
-          <label>{t.languages}</label>
-          <p className="caption">{t.languageHint}</p>
-          <label className="row">
-            <input type="checkbox" checked={settings.confirm_risky_actions} onChange={(ev) => onSettings({ ...settings, confirm_risky_actions: ev.target.checked })} style={{ width: "auto" }} />
-            {t.confirmRisky}
-          </label>
-          <label className="row">
-            <input type="checkbox" checked={settings.nlu_rag} onChange={(ev) => onSettings({ ...settings, nlu_rag: ev.target.checked })} style={{ width: "auto" }} />
-            {t.nluRag}
-          </label>
-          <p className="caption">{t.nluRagHint}</p>
-          <label>{t.token}</label>
-          <input type="password" value={token} onChange={(ev) => setTokenValue(ev.target.value)} />
-        </div>
-        <div className="card">
-          <h2>{t.supportBundle}</h2>
-          <label className="row">
-            <input type="checkbox" checked={settings.support_bundle} onChange={(ev) => save({ ...settings, support_bundle: ev.target.checked })} style={{ width: "auto" }} />
-            {t.recordProtocol}
-          </label>
-          <label className="row">
-            <input type="checkbox" checked={settings.support_bundle_raw_text} onChange={(ev) => save({ ...settings, support_bundle_raw_text: ev.target.checked })} style={{ width: "auto" }} />
-            {t.includeRawText}
-          </label>
-          <label className="row">
-            <input type="checkbox" checked={settings.semantic_adapters} onChange={(ev) => save({ ...settings, semantic_adapters: ev.target.checked })} style={{ width: "auto" }} />
-            {t.semanticAdapters}
-          </label>
-          <h2 style={{ marginTop: 20 }}>{t.journal}</h2>
-          <p className="muted">{t.journalHint}</p>
-          <p className="muted">{bundle ? `${bundle.count} ${t.recordings}` : "..."}</p>
-          <div className="row">
-            <button className="secondary" onClick={() => download("/api/bundle/dataset", "klar-assist-dataset.yaml")}>{t.downloadDataset}</button>
-            <button className="secondary" onClick={() => download("/api/bundle/protocol", "klar-support-bundle.jsonl")}>{t.downloadProtocol}</button>
-            <button className="ghost danger" onClick={() => setConfirmClear(true)}>{t.clearAll}</button>
-          </div>
-        </div>
-      </section>
-      {confirmClear && (
-        <Drawer title={t.clearAll} onClose={() => setConfirmClear(false)} closeLabel={t.close}>
-          <div className="row">
-            <button className="primary" onClick={clear}>{t.clearAll}</button>
-            <button className="secondary" onClick={() => setConfirmClear(false)}>{t.cancel}</button>
-          </div>
-        </Drawer>
-      )}
+      <AlertDialog open={confirmClear} onOpenChange={setConfirmClear}>
+        <AlertDialogContent>
+          <AlertDialogHeader>
+            <AlertDialogTitle>{t.clearAll}</AlertDialogTitle>
+            <AlertDialogDescription>{t.journalHint}</AlertDialogDescription>
+          </AlertDialogHeader>
+          <AlertDialogFooter>
+            <AlertDialogCancel>{t.cancel}</AlertDialogCancel>
+            <AlertDialogAction onClick={() => void clear()}>{t.clearAll}</AlertDialogAction>
+          </AlertDialogFooter>
+        </AlertDialogContent>
+      </AlertDialog>
     </div>
   );
 }
