@@ -33,7 +33,7 @@ button { cursor: pointer; }
 .app-shell {
   min-height: 100vh;
   display: grid;
-  grid-template-columns: 200px 1fr;
+  grid-template-columns: 1fr;
   background:
     radial-gradient(900px 420px at 0% 0%, color-mix(in srgb, var(--accent) 16%, transparent), transparent 58%),
     var(--bg);
@@ -76,7 +76,7 @@ button { cursor: pointer; }
 .nav { display: flex; gap: 20px; overflow-x: auto; flex: 1; }
 .util { display: flex; gap: 8px; }
 .nav button, .ghost, .subnav button {
-  color: var(--muted);
+  color: var(--muted-foreground);
   background: none;
   border: 0;
   padding: 6px 0;
@@ -94,7 +94,7 @@ button { cursor: pointer; }
   border: 1px solid var(--line);
   border-radius: 8px;
   padding: 4px 10px;
-  color: var(--muted);
+  color: var(--muted-foreground);
   background: var(--surface);
 }
 .pill.hot { color: var(--text); border-color: var(--accent); }
@@ -104,8 +104,8 @@ button { cursor: pointer; }
 h1, h2, h3 { margin: 0; font-weight: 600; line-height: 1.2; }
 h1 { font-size: 28px; letter-spacing: -.02em; }
 h2 { font-size: 16px; }
-h3 { font-size: 13px; color: var(--muted); font-weight: 500; }
-.muted { color: var(--muted); }
+h3 { font-size: 13px; color: var(--muted-foreground); font-weight: 500; }
+.muted { color: var(--muted-foreground); }
 .mono, .intent-name, .slot-chip { font-family: "IBM Plex Mono", monospace; font-size: 12px; }
 .mono { color: var(--cyan); }
 .grid { display: grid; gap: 16px; }
@@ -119,13 +119,13 @@ h3 { font-size: 13px; color: var(--muted); font-weight: 500; }
 }
 .card.hot { border-color: var(--accent); }
 .kpi .value { font-size: 36px; line-height: 1; font-weight: 600; letter-spacing: -.03em; }
-.kpi .label { color: var(--muted); margin-top: 8px; }
+.kpi .label { color: var(--muted-foreground); margin-top: 8px; }
 .primary {
   border: 0;
   border-radius: 8px;
   padding: 10px 14px;
-  color: var(--text);
-  background: var(--accent);
+  color: var(--primary-foreground);
+  background: var(--primary);
 }
 .secondary {
   border: 1px solid var(--line);
@@ -137,7 +137,7 @@ h3 { font-size: 13px; color: var(--muted); font-weight: 500; }
 .danger { color: var(--danger); }
 .row { display: flex; gap: 12px; align-items: center; flex-wrap: wrap; }
 .subnav { display: flex; gap: 16px; margin-bottom: 20px; border-bottom: 1px solid var(--line); }
-label { display: block; color: var(--muted); margin: 14px 0 6px; }
+label { display: block; color: var(--muted-foreground); margin: 14px 0 6px; }
 input, textarea, select {
   width: 100%;
   border: 1px solid var(--line);
@@ -204,12 +204,12 @@ th, td { text-align: left; padding: 10px 8px; border-bottom: 1px solid var(--lin
   align-items: center;
   border: 1px solid var(--line);
   padding: 3px 8px;
-  color: var(--muted);
+  color: var(--muted-foreground);
 }
 .chip.intent, .slot-chip { color: var(--cyan); border-color: #2a5558; }
 button.chip { background: transparent; }
 .chip.on { color: var(--text); border-color: var(--cyan); }
-.caption { color: var(--muted); font-size: 12px; margin-top: 8px; }
+.caption { color: var(--muted-foreground); font-size: 12px; margin-top: 8px; }
 .timeline { display: flex; flex-direction: column; gap: 0; }
 .timeline-item {
   display: grid;
@@ -251,7 +251,7 @@ button.chip { background: transparent; }
   background: var(--surface);
 }
 .policy-lane-tabs button {
-  color: var(--muted);
+  color: var(--muted-foreground);
   background: none;
   border: 0;
   min-height: 44px;
@@ -319,7 +319,7 @@ button.chip { background: transparent; }
   display: inline-flex;
   align-items: center;
   padding: 0 8px;
-  color: var(--muted);
+  color: var(--muted-foreground);
   font-family: "IBM Plex Mono", monospace;
 }
 .policy-path-node {
@@ -337,7 +337,7 @@ button.chip { background: transparent; }
   text-align: start;
 }
 .policy-path-node.hit { border-color: var(--accent); }
-.policy-path-node.unchecked { color: var(--muted); }
+.policy-path-node.unchecked { color: var(--muted-foreground); }
 .policy-path-node:disabled { opacity: 1; cursor: default; }
 .policy-path-layer {
   display: flex;
@@ -393,7 +393,7 @@ button.chip { background: transparent; }
 .trainer-bubble.user { background: var(--surface-2); }
 .trainer-bubble.assistant { background: var(--bg); }
 .trainer-setup { border-color: var(--accent); }
-.match-toggle { width: auto; gap: 6px; font-size: 12px; color: var(--muted); }
+.match-toggle { width: auto; gap: 6px; font-size: 12px; color: var(--muted-foreground); }
 .match-precedence {
   width: 72px;
   padding: 4px 6px;
@@ -401,21 +401,7 @@ button.chip { background: transparent; }
   font-size: 12px;
 }
 @media (max-width: 860px) {
-  .app-shell { grid-template-columns: 1fr; }
-  .rail {
-    height: auto;
-    flex-direction: row;
-    flex-wrap: wrap;
-    align-items: center;
-    border-inline-end: 0;
-    border-bottom: 1px solid var(--line);
-  }
-  .rail .brand { margin: 0 8px 0 0; }
-  .rail a, .util a {
-    border-inline-start: 0;
-  }
-  .topbar { align-items: flex-start; flex-wrap: wrap; }
-  .status { width: 100%; }
+  .topbar { align-items: center; }
   .hero { display: block; }
   .grid.two, .grid.three, .pipeline, .timeline-item, .trainer-layout { grid-template-columns: 1fr; }
   .policy-lanes > .card { display: none; }

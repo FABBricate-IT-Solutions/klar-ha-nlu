@@ -30,7 +30,7 @@ export function Donut({ high, medium, low }: { high: number; medium: number; low
       </ChartContainer>
       <div className="pointer-events-none absolute inset-0 flex flex-col items-center justify-center">
         <span className="text-3xl font-semibold tracking-tight">{Math.round((high / total) * 100)}%</span>
-        <span className="text-xs text-muted-foreground">ready</span>
+        <span className="text-xs text-foreground">ready</span>
       </div>
     </div>
   );

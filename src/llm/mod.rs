@@ -26,7 +26,7 @@ pub use assist::{assist, AssistOutcome, AssistRequest};
 pub use assist_prompt::{keeps_calendar_reply, AssistKind};
 pub use assist_rag::leaks_klar_tools;
 pub use assist_yarn::yarn_request;
-pub use client::{chat, chat_stream, LlmClient};
+pub use client::{chat, chat_stream, list_models, LlmClient};
 pub use endpoint::{LlmEndpoint, LlmPublic};
 pub use extract::json_object;
 pub use refine::{refine, RefineOutcome, RefineRequest};

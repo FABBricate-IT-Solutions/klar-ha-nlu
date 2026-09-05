@@ -11,6 +11,8 @@ type SearchSelectProps = {
   placeholder?: string;
   emptyLabel?: string;
   allowEmpty?: boolean;
+  allowCustom?: boolean;
+  id?: string;
 };
 
 function floorsFromDashboard(data: Dashboard): SearchOption[] {
@@ -65,6 +67,8 @@ export function SearchSelect({
   placeholder,
   emptyLabel = "any",
   allowEmpty = true,
+  allowCustom = false,
+  id,
 }: SearchSelectProps) {
   const listId = useId();
   const root = useRef<HTMLDivElement>(null);
@@ -79,8 +83,12 @@ export function SearchSelect({
     const rows = needle
       ? options.filter((row) => row.label.toLowerCase().includes(needle) || row.value.toLowerCase().includes(needle))
       : options;
-    return allowEmpty ? [{ value: "", label: emptyLabel }, ...rows] : rows;
-  }, [allowEmpty, emptyLabel, options, query]);
+    const custom = allowCustom && query.trim() && !options.some((row) => row.value === query.trim())
+      ? [{ value: query.trim(), label: query.trim() }]
+      : [];
+    const listed = custom.length ? [...custom, ...rows] : rows;
+    return allowEmpty ? [{ value: "", label: emptyLabel }, ...listed] : listed;
+  }, [allowCustom, allowEmpty, emptyLabel, options, query]);
 
   useEffect(() => {
     if (!open) return;
@@ -155,6 +163,7 @@ export function SearchSelect({
     <div className="search-select" ref={root}>
       <style>{searchSelectCss}</style>
       <input
+        id={id}
         role="combobox"
         aria-expanded={open}
         aria-controls={listId}

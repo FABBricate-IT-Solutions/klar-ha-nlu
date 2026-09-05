@@ -1,4 +1,4 @@
-import { FlaskConicalIcon, HomeIcon, HouseIcon, MessageSquareIcon, SettingsIcon, ShieldIcon } from "lucide-react";
+import { FlaskConicalIcon, HomeIcon, HouseIcon, MenuIcon, MessageSquareIcon, SettingsIcon, ShieldIcon } from "lucide-react";
 import { useEffect, useMemo, useRef, useState } from "react";
 import { api } from "./api";
 import { Drawer } from "./components/common";
@@ -14,6 +14,7 @@ import { Wizard } from "./pages/Wizard";
 import type { ConversationTurn, Dashboard, HouseView, RulesView, Settings, Tab, Theme, UiState } from "./types";
 import { Badge } from "@/components/ui/badge";
 import { Button, buttonVariants } from "@/components/ui/button";
+import { Sheet, SheetContent, SheetHeader, SheetTitle } from "@/components/ui/sheet";
 import { Toaster } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { cn } from "cn";
@@ -225,6 +226,7 @@ export function App() {
   const uiLoaded = useRef(false);
   const [inspectId, setInspectId] = useState("");
   const [booted, setBooted] = useState(false);
+  const [navOpen, setNavOpen] = useState(false);
   const locale = chromeLocale(ui.locale);
   const t = dictionaries[locale] || dictionaries.en;
   const theme = ui.theme || "dark";
@@ -371,6 +373,7 @@ export function App() {
         href={hrefFor(tab, ui)}
         className={cn(buttonVariants({ variant: active ? "secondary" : "ghost" }), full && "w-full justify-start")}
         aria-current={active ? "page" : undefined}
+        onClick={() => setNavOpen(false)}
       >
         <Icon data-icon="inline-start" />
         {t[tab]}
@@ -378,22 +381,41 @@ export function App() {
     );
   };
 
+  const navTabs: Tab[] = [...railTabs, ...utilTabs];
+
   return (
     <TooltipProvider>
     <div className="app-shell" data-theme={theme}>
-      <nav className="rail" aria-label="Klar">
-        <div className="brand">Klar</div>
-        {railTabs.map((tab) => link(tab))}
-      </nav>
+      <Sheet open={navOpen} onOpenChange={setNavOpen}>
+        <SheetContent side="left" id="klar-nav" className="bg-background text-foreground w-64 p-0">
+          <SheetHeader>
+            <SheetTitle className="brand px-4 pt-2">Klar</SheetTitle>
+          </SheetHeader>
+          <nav className="flex flex-col gap-1 px-3 pb-4" aria-label="Klar">
+            {navTabs.map((tab) => link(tab))}
+          </nav>
+        </SheetContent>
+      </Sheet>
       <div className="app-main">
         <header className="topbar">
+          <div className="flex items-center gap-2">
+            <Button
+              type="button"
+              variant="ghost"
+              size="icon"
+              aria-label={t.menu}
+              aria-expanded={navOpen}
+              aria-controls="klar-nav"
+              onClick={() => setNavOpen(true)}
+            >
+              <MenuIcon />
+            </Button>
+            <div className="brand">Klar</div>
+          </div>
           <div className="status">
             <Badge variant={dashboard?.counts.leftover ? "default" : "outline"}>{dashboard?.counts.leftover ?? 0} {t.open}</Badge>
             <Badge variant={settings.nlu_rag ? "default" : "outline"}>{settings.nlu_rag ? t.ragMode : t.chatMode}</Badge>
           </div>
-          <nav className="util">
-            {utilTabs.map((tab) => link(tab, false))}
-          </nav>
         </header>
         {error && <div className="page"><div className="card danger">{error}</div></div>}
         {!dashboard && !error && <div className="page"><div className="card">{t.loading}</div></div>}

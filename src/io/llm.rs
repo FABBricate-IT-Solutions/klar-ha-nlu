@@ -2,7 +2,7 @@ use crate::home::paths::{read_to_string_confined, remove_confined, write_atomic_
 use crate::io::auth::{reads_allowed, writes_allowed};
 use crate::io::state::AppState;
 use crate::llm::{
-    assist, chat, chat_stream, refine, AssistRequest, ChatEvent, ChatRequest, LlmEndpoint, LlmError, LlmPublic, RefineRequest,
+    assist, chat, chat_stream, list_models, refine, AssistRequest, ChatEvent, ChatRequest, LlmEndpoint, LlmError, LlmPublic, RefineRequest,
 };
 use axum::extract::{ConnectInfo, DefaultBodyLimit, State};
 use axum::http::{HeaderMap, StatusCode};
@@ -56,6 +56,7 @@ const LLM_BODY_LIMIT: usize = 256 * 1024;
 pub fn routes() -> Router<AppState> {
     Router::new()
         .route("/api/v2/llm/endpoint", get(get_endpoint).post(set_endpoint))
+        .route("/api/v2/llm/models", post(list_endpoint_models))
         .route("/api/v2/llm/chat", post(llm_chat))
         .route("/api/v2/llm/refine", post(llm_refine))
         .route("/api/v2/llm/assist", post(llm_assist))
@@ -108,6 +109,48 @@ async fn set_endpoint(
     let public = endpoint.public();
     *current = Some(endpoint);
     Ok(Json(public))
+}
+
+#[derive(Debug, Default, Deserialize)]
+pub struct ModelsIn {
+    pub base_url: Option<String>,
+    pub api_key: Option<String>,
+}
+
+#[derive(Debug, Serialize)]
+pub struct ModelsOut {
+    pub models: Vec<String>,
+}
+
+async fn list_endpoint_models(
+    State(state): State<AppState>,
+    ConnectInfo(peer): ConnectInfo<SocketAddr>,
+    headers: HeaderMap,
+    Json(body): Json<ModelsIn>,
+) -> Result<Json<ModelsOut>, StatusCode> {
+    if !writes_allowed(Some(peer), &headers, &state.token) {
+        return Err(StatusCode::UNAUTHORIZED);
+    }
+    let (base_url, api_key) = {
+        let current = state.llm.lock().await;
+        let api_key = match body.api_key.as_deref() {
+            Some(key) if !key.is_empty() => key.to_string(),
+            _ => current.as_ref().map(|ep| ep.api_key.clone()).unwrap_or_default(),
+        };
+        let base_url = match body.base_url.as_deref() {
+            Some(url) if !url.trim().is_empty() => url.to_string(),
+            _ => current.as_ref().map(|ep| ep.base_url.clone()).unwrap_or_default(),
+        };
+        (base_url, api_key)
+    };
+    if base_url.trim().is_empty() {
+        return Err(StatusCode::BAD_REQUEST);
+    }
+    let endpoint = LlmEndpoint::for_discovery(&base_url, &api_key).map_err(|_| StatusCode::BAD_REQUEST)?;
+    match list_models(&endpoint).await {
+        Ok(models) => Ok(Json(ModelsOut { models })),
+        Err(err) => Err(status_for(&err)),
+    }
 }
 
 pub async fn llm_chat(

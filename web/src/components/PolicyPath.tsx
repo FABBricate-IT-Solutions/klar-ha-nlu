@@ -114,7 +114,7 @@ export function PolicyPath({
         const selectedId = hit ? id : undefined;
         return (
           <span key={kind} className="inline-flex items-center gap-2">
-            {index > 0 ? <span className="text-muted-foreground" aria-hidden="true">→</span> : null}
+            {index > 0 ? <span className="text-foreground" aria-hidden="true">→</span> : null}
             <button
               type="button"
               className={cn(
@@ -125,11 +125,11 @@ export function PolicyPath({
               disabled={!lane || !onSelect}
             >
               <span className="flex w-full items-center justify-between gap-2">
-                <span className="text-xs text-muted-foreground">{kindLabel(t, kind)}</span>
+                <span className="text-xs text-foreground">{kindLabel(t, kind)}</span>
                 {origin && hit ? <OriginChip t={t} origin={origin} /> : null}
               </span>
               <strong className="font-mono text-xs">{id}</strong>
-              {why ? <span className="text-[11px] text-muted-foreground">{why}</span> : null}
+              {why ? <span className="text-[11px] text-foreground">{why}</span> : null}
             </button>
           </span>
         );
@@ -138,7 +138,7 @@ export function PolicyPath({
         <div className="basis-full mt-2">
           <h3>{t.discarded}</h3>
           {policy.discarded.map((row) => (
-            <p className="text-sm text-muted-foreground" key={`${row.id}-${row.reason}`}>
+            <p className="text-sm text-foreground" key={`${row.id}-${row.reason}`}>
               {row.id} · {row.reason} · {row.score.toFixed(2)}
             </p>
           ))}
