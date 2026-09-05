@@ -1,5 +1,7 @@
 # OpenAI-compatible LLM client — ADR 0002
 
+Status: **accepted direction; implemented on staging, not a main release**.
+
 `nlu::parse` stays deterministic and offline. Klar still owns **outbound** OpenAI-compatible chat (`/v1/chat/completions`, SSE streaming) so trainer and speech fallback do not keep a second Python client.
 
 ## Decision

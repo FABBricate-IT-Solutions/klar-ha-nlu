@@ -2,7 +2,7 @@
 
 [Deutsch](adr-0003-python-rust-boundary.md) · [English](adr-0003-python-rust-boundary.en.md)
 
-Status: **vorgeschlagen** — Richtung für einen Staging-Zyklus. Umsetzung: [Plan](adr-0003-plan.md). Läuft auf **`staging`**, kein Hauptrelease.
+Status: **akzeptierte Richtung; auf staging umgesetzt, kein Hauptrelease**. Umsetzung: [Plan](adr-0003-plan.md).
 
 Klar bleibt eine deterministische, lokale NLU. `nlu::parse` hat kein Netz und kein Modell. Ein LLM darf **reden und umformulieren**; es darf den Parse **nicht fahren**. Produktregeln, die nicht Home-Assistant-Plattformkleber sind, gehören in die Rust-Engine, nicht nach `custom_components/klar_nlu/`.
 

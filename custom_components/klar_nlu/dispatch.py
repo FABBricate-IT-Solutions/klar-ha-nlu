@@ -20,7 +20,7 @@ from .dispatch_media import (
     start_idle_music,
 )
 from .dispatch_result import IntentStepResult, fail as _fail, ok as _ok
-from .floor_query import place_get_state
+from .floor_query import place_status_rooms
 from .intents import (
     ENTITY_SERVICES,
     LIST_INTENTS,
@@ -69,7 +69,9 @@ async def handle_intent(
         ok, speech, error = await handle_calendar_intent(
             hass, item, pack, exposed, getattr(user_input, "conversation_id", None)
         )
-        return _ok(speech) if ok else _fail(error or "calendar_failed")
+        if not ok:
+            return _fail(error or "calendar_failed")
+        return _ok(speech) if speech else _fail("speech_missing")
     slots = item_slots(item)
     entity_id = str(slots.get("entity_id", {}).get("value") or "")
     if name == "HassMediaSearchAndPlay" and music_assistant_player(hass, entity_id):
@@ -97,9 +99,24 @@ async def handle_intent(
         )
         return _ok(spoken) if spoken else _fail("media_status_unavailable")
     if name == "HassGetState" and not entity_id:
-        spoken = place_get_state(hass, slots, pack, exposed)
-        if spoken:
-            return _ok(spoken)
+        rooms = place_status_rooms(hass, slots, exposed)
+        if rooms is not None:
+            extra: list[dict[str, Any]] = []
+            for area_name, states in rooms:
+                for state in states:
+                    row = entity_from_state(state)
+                    if not row:
+                        continue
+                    row["area_name"] = area_name
+                    extra.append(row)
+            spoken = await spoken_after_execute(
+                hass,
+                pack,
+                "default",
+                {**item, "name": name},
+                extra_entities=extra,
+            )
+            return _ok(spoken) if spoken else _fail("place_speech_missing")
     if name == "HassMediaUnpause" and entity_id:
         started = await start_idle_music(hass, entity_id, pack, item, exposed)
         if started is not None:

@@ -10,7 +10,7 @@ use crate::lang::{
 };
 use crate::nlu::parse;
 use crate::session::Session;
-use crate::types::{CustomSentence, ParseDecision, ParseOutcome, Settings};
+use crate::types::{CustomSentence, ParseDecision, ParseOutcome, PolicyTrace, Settings};
 use axum::extract::{ConnectInfo, State};
 use axum::http::{HeaderMap, StatusCode};
 use axum::routing::{get, post};
@@ -99,9 +99,13 @@ struct ExplainOut {
     decision: String,
     confidence: f64,
     speech: String,
+    #[serde(skip_serializing_if = "String::is_empty")]
+    reply: String,
     stages: Vec<String>,
     evidence: Vec<String>,
     matched_custom: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    policy_trace: Option<PolicyTrace>,
 }
 
 fn write_gate(peer: SocketAddr, headers: &HeaderMap, token: &Option<String>) -> Result<(), StatusCode> {
@@ -184,7 +188,7 @@ async fn explain(
 ) -> Result<Json<ExplainOut>, StatusCode> {
     let language = body.language.clone().unwrap_or_default();
     let Json(outcome) = preview(State(state.clone()), ConnectInfo(peer), headers, Json(body)).await?;
-    let mut out = explain_outcome(&outcome);
+    let mut out = explain_outcome(&language, &outcome);
     out.language = language;
     Ok(Json(out))
 }
@@ -245,7 +249,7 @@ fn pin_settings(mut settings: Settings, language: Option<&str>) -> Result<Settin
     }
 }
 
-fn explain_outcome(outcome: &ParseOutcome) -> ExplainOut {
+fn explain_outcome(language: &str, outcome: &ParseOutcome) -> ExplainOut {
     let decision = match &outcome.decision {
         ParseDecision::Execute => "execute",
         ParseDecision::Confirm { .. } => "confirm",
@@ -260,10 +264,53 @@ fn explain_outcome(outcome: &ParseOutcome) -> ExplainOut {
         language: String::new(),
         decision: decision.into(),
         confidence: outcome.confidence,
-        speech: outcome.speech.clone(),
+        speech: path_explain_speech(language, outcome, decision),
+        reply: outcome.speech.clone(),
         stages: outcome.trace.stages.iter().map(|stage| format!("{}: {}", stage.stage, stage.detail)).collect(),
         evidence: outcome.evidence.iter().map(|row| format!("{} {} {}", row.kind, row.source, row.value)).collect(),
         matched_custom,
+        policy_trace: outcome.policy_trace.clone(),
+    }
+}
+
+fn path_explain_speech(language: &str, outcome: &ParseOutcome, decision: &str) -> String {
+    let trace = outcome.policy_trace.as_ref();
+    let match_id = trace.and_then(|row| row.match_node.as_ref()).map(|node| node.id.as_str()).filter(|id| !id.is_empty());
+    let seed_id = trace.and_then(|row| row.seed.as_ref()).map(|node| node.id.as_str()).filter(|id| !id.is_empty());
+    let house_id =
+        trace.and_then(|row| row.house.as_ref().map(|node| node.id.as_str()).or(row.matched_rule.as_deref())).filter(|id| !id.is_empty());
+    let band = trace.and_then(|row| row.band.as_deref()).filter(|id| !id.is_empty()).unwrap_or(decision);
+    let de = language == "de" || language.starts_with("de-");
+    let mut parts = Vec::new();
+    if let Some(id) = match_id {
+        parts.push(format!("Match `{id}`"));
+    }
+    if let Some(id) = seed_id {
+        parts.push(format!("Seed `{id}`"));
+    }
+    if let Some(id) = house_id {
+        if de {
+            parts.push(format!("Haus `{id}`"));
+        } else {
+            parts.push(format!("house `{id}`"));
+        }
+    }
+    parts.push(if de { band_de(band) } else { band.into() });
+    if parts.len() == 1 {
+        return parts.pop().unwrap_or_default();
+    }
+    parts.join(", ") + "."
+}
+
+fn band_de(band: &str) -> String {
+    match band {
+        "execute" => "ausgeführt".into(),
+        "confirm" => "bestätigen".into(),
+        "clarify" => "nachfragen".into(),
+        "reject" => "abgelehnt".into(),
+        "chat" => "chat".into(),
+        "error" => "fehler".into(),
+        other => other.into(),
     }
 }
 
@@ -411,5 +458,49 @@ mod tests {
         ));
         assert!(installed_user_overlay().is_none());
         reset_runtime_packs();
+    }
+
+    #[test]
+    fn explain_speech_speaks_path_ids() {
+        let outcome = ParseOutcome {
+            schema_version: "2.0".into(),
+            text: "Licht an".into(),
+            conversation_id: "t".into(),
+            decision: ParseDecision::Execute,
+            speech: "Wohnzimmerlicht ist an.".into(),
+            confidence: 0.9,
+            margin: 0.1,
+            selected_candidate_id: None,
+            candidates: Vec::new(),
+            plan: None,
+            evidence: Vec::new(),
+            trace: crate::types::ParseTrace { stages: Vec::new(), discarded: Vec::new(), tokens: Vec::new(), normalized: String::new() },
+            briefing: false,
+            retrieval: None,
+            policy_trace: Some(crate::types::PolicyTrace {
+                match_node: Some(crate::types::PolicyTraceMatch { id: "area_command".into(), score: 0.93, origin: "engine".into() }),
+                house: Some(crate::types::PolicyTraceLayer {
+                    id: "prefer-ceiling".into(),
+                    hit: Some("prefer_entity".into()),
+                    origin: "operator".into(),
+                }),
+                band: Some("execute".into()),
+                ..crate::types::PolicyTrace::default()
+            }),
+            quiet_ack_eligible: false,
+        };
+        let out = explain_outcome("en", &outcome);
+        assert_eq!(out.decision, "execute");
+        assert_eq!(out.reply, "Wohnzimmerlicht ist an.");
+        assert!(out.speech.contains("Match `area_command`"));
+        assert!(out.speech.contains("house `prefer-ceiling`"));
+        assert!(out.speech.contains("execute"));
+        assert_eq!(
+            out.policy_trace.as_ref().and_then(|trace| trace.match_node.as_ref()).map(|node| node.id.as_str()),
+            Some("area_command")
+        );
+        let de = explain_outcome("de", &outcome);
+        assert!(de.speech.contains("Haus `prefer-ceiling`"));
+        assert!(de.speech.contains("ausgeführt"));
     }
 }

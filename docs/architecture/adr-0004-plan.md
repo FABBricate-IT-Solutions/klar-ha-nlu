@@ -8,7 +8,7 @@ Rahmen: [ADR 0004](adr-0004-operator-console.md). Jede Stufe ist ein eigener PR 
 
 Dieselben Kanalregeln wie ADR 0001 / 0003: jeder PR gegen `staging`; nach Merge taggt der Staging-Workflow ein Prerelease und Docker `staging`; `staging` → `main` gehört nicht zu diesem Plan.
 
-## Stufe 1 — Engine ist der Produkt-Settings-Store (dieser PR)
+## Stufe 1 — Engine ist der Produkt-Settings-Store (geliefert)
 
 **Ziel.** Home Assistant Konfigurieren schrumpft auf Anbindung. Operator-Settings wird der geführte Editor. Assist liest Engine-Settings.
 
@@ -36,9 +36,9 @@ Braucht: Figma-Schreibzugriff; eine laufende Staging-UI hilft bei Screenshots.
 
 Figma 05 mit bestehenden `web/src/components/ui/*`. Bessere Pfad-Visualisierung. Browser-Verify mit Klicks, nicht einem Screenshot. Operator-Chrome: dieselben Keys für jede kompilierte Assist-Locale, übersetzt — keine englischen Reste.
 
-## Stufe 4 — Wizard schreibt Stimme + LLM beim Erststart
+## Stufe 4 — Wizard schreibt Stimme + LLM beim Erststart (dieser PR)
 
-Wizard-Schritte schreiben `/api/settings` und `/api/v2/llm/endpoint`, damit ein neues Haus HA Konfigurieren nie für Produktknöpfe öffnet.
+Wizard-Schritte schreiben `/api/settings` und `/api/v2/llm/endpoint`, damit ein neues Haus HA Konfigurieren nie für Produktknöpfe öffnet. Setup erneut aus Settings. Wizard-Chrome für jede kompilierte Assist-Locale.
 
 ## Nicht in diesem Plan
 

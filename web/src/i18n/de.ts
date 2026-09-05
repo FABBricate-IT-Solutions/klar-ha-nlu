@@ -168,7 +168,7 @@ export const de = {
   compiledRisk: "Kompiliertes Risiko",
   matchedRule: "Regel",
   finalBand: "Band",
-  processPath: "conversation.process",
+  processPath: "Pfad",
   triggerFirst: "Klar-Parse, dann dieser Pfad. Assist startet keinen anderen Intent, keinen Satztrigger und keinen Wetter-Fallback.",
   discarded: "Verworfen",
   stageTokens: "Tokens",

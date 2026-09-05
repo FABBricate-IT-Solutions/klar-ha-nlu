@@ -279,14 +279,10 @@ class FloorQueryTests(unittest.TestCase):
             patch.object(floor_query, "resolve_floor", return_value=floor),
             patch.object(floor_query, "areas_on_floor", return_value=[]),
         ):
-            spoken = floor_query.place_get_state(
-                hass, {"floor": {"value": "wohnung"}}, "de", lambda _id: True
+            rooms = floor_query.place_status_rooms(
+                hass, {"floor": {"value": "wohnung"}}, lambda _id: True
             )
-            french = floor_query.place_get_state(
-                hass, {"floor": {"value": "wohnung"}}, "fr", lambda _id: True
-            )
-        self.assertEqual(spoken, "Keine Geräte.")
-        self.assertEqual(french, "Aucun appareil.")
+        self.assertEqual(rooms, [])
 
     def test_domain_filter_keeps_only_lights(self) -> None:
         living = _State("light.wohnzimmer", "on", "Wohnzimmer")

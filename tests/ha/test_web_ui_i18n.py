@@ -47,8 +47,44 @@ class OperatorUiParity(unittest.TestCase):
             self.assertIn("{count}", payload["applyDone"], code)
             self.assertNotIn("Home Assistant → Klar NLU", payload["personalityHa"], code)
             self.assertNotIn("Mode binds devices or rooms only", payload["engineHint"], code)
+            self.assertNotEqual(payload["processPath"], "conversation.process", code)
+            self.assertIn("{count}", payload["lexiconOverlayPlus"], code)
             if code != "en-GB":
                 self.assertNotEqual(payload["engineHint"], english_hint, code)
+                self.assertNotEqual(payload["laneTabs"], "Lanes", code)
+                self.assertNotEqual(
+                    payload["governEmpty"],
+                    "Safety seeds ship with every pack. Off writes a house override; the compiled floor stays on.",
+                    code,
+                )
+
+    def test_wizard_chrome_is_translated(self) -> None:
+        wizard = ROOT / "web" / "src" / "i18n" / "wizard"
+        expected = set(_supported()) - {"de", "en"}
+        on_disk = {path.stem for path in wizard.glob("*.json")}
+        self.assertEqual(expected, on_disk)
+        english_console = (
+            "Lovelace “Klar” is the last Assist turn. This surface (Klar NLU) is the operator console: Settings, House, Lab, and Rules."
+        )
+        english_llm = (
+            "Assist chat, refine, and the trainer live in Settings, not in a Home Assistant conversation integration."
+        )
+        for code in sorted(expected):
+            payload = json.loads((wizard / f"{code}.json").read_text(encoding="utf-8"))
+            self.assertIn("whatConsole", payload, code)
+            self.assertIn("missLlmBody", payload, code)
+            self.assertIn("{count}", payload["phrasesMapping"], code)
+            if code != "en-GB":
+                self.assertNotEqual(payload["whatConsole"], english_console, code)
+                self.assertNotEqual(payload["missLlmBody"], english_llm, code)
+
+    def test_wizard_writes_engine_settings(self) -> None:
+        wizard = (ROOT / "web" / "src" / "pages" / "Wizard.tsx").read_text(encoding="utf-8")
+        app = (ROOT / "web" / "src" / "App.tsx").read_text(encoding="utf-8")
+        self.assertIn("api.saveSettings", wizard)
+        self.assertIn("api.saveLlmEndpoint", wizard)
+        self.assertIn("chrome={t}", app)
+        self.assertIn("onSettings={setSettings}", app)
 
     def test_operator_chrome_follows_saved_ui_not_nlu_pin(self) -> None:
         i18n = (ROOT / "web" / "src" / "i18n.ts").read_text(encoding="utf-8")

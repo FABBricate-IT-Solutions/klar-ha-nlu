@@ -16,12 +16,13 @@ except ImportError:
     import calendar_session  # type: ignore[no-redef]
 
 try:
-    from .speech_locale import SPEECH_PACKS
+    from .speech_render import try_engine_speech
 except ImportError:
     try:
-        from speech_locale import SPEECH_PACKS
+        from speech_render import try_engine_speech
     except ImportError:
-        SPEECH_PACKS = {}
+        async def try_engine_speech(*_args: Any, **_kwargs: Any) -> str | None:
+            return None
 
 CALENDAR_INTENTS = {
     "KlarGetCalendarEvents",
@@ -30,19 +31,6 @@ CALENDAR_INTENTS = {
     "KlarMoveCalendarEvent",
     "KlarNoMusicPlayer",
 }
-
-
-def _pack(pack: str) -> dict[str, str]:
-    return calendar_say.overlay(pack, SPEECH_PACKS.get(pack) or SPEECH_PACKS.get("en") or {})
-
-
-def _fill(pack: str, key: str, **slots: str) -> str:
-    if key in calendar_say.templates(pack):
-        return calendar_say.fill(pack, key, **slots)
-    template = str(_pack(pack).get(key) or _pack("en").get(key) or "")
-    for name, value in slots.items():
-        template = template.replace(f"{{{name}}}", value)
-    return template.strip()
 
 
 def _slot(item: dict, name: str) -> str:
@@ -90,6 +78,28 @@ def _pick(conversation_id: str | None, summary: str, records: list[dict[str, str
     return calendar_session.match_events(unique, summary)
 
 
+def _with_slots(item: dict, extra: list[dict[str, str]]) -> dict[str, Any]:
+    return {**item, "slots": [*(item.get("slots") or []), *extra]}
+
+
+async def _speak(
+    hass: HomeAssistant,
+    pack: str,
+    item: dict,
+    *,
+    calendar_events: list[dict[str, Any]] | None = None,
+    extra_slots: list[dict[str, str]] | None = None,
+) -> str | None:
+    spoken_item = _with_slots(item, extra_slots or [])
+    return await try_engine_speech(
+        hass,
+        pack,
+        "default",
+        spoken_item,
+        calendar_events=calendar_events,
+    )
+
+
 async def handle_calendar_intent(
     hass: HomeAssistant,
     item: dict,
@@ -99,7 +109,7 @@ async def handle_calendar_intent(
 ) -> tuple[bool, str | None, str | None]:
     name = str(item.get("name") or "")
     if name == "KlarNoMusicPlayer":
-        return True, _fill(pack, "no_music_player"), None
+        return True, await _speak(hass, pack, item), None
     if name == "KlarCreateCalendarEvent":
         return await _create(hass, item, pack, exposed, conversation_id)
     if name == "KlarGetCalendarEvents":
@@ -120,17 +130,15 @@ async def _list(
 ) -> tuple[bool, str | None, str | None]:
     targets = _calendars(hass, item, exposed)
     if not targets:
-        return True, _fill(pack, "calendar_none"), None
+        return True, await _speak(hass, pack, item, extra_slots=[{"name": "cue", "value": "none"}]), None
     day = _slot(item, "day")
     start = end = None
     if day or _slot(item, "in_days"):
         start, end, _ = _when_bounds(item, hass)
     events, records = await calendar_entity.collect(hass, targets, start, end)
     calendar_session.remember(conversation_id, records)
-    if not events and day == "tomorrow":
-        empty = {"de": "Morgen steht nichts an.", "en": "Nothing tomorrow."}
-        return True, empty.get(pack) or empty["en"], None
-    return True, calendar_say.list_speech(events, pack, hass), None
+    snapshot = [_event_snapshot(event, pack, hass) for event in events]
+    return True, await _speak(hass, pack, item, calendar_events=snapshot), None
 
 
 async def _delete(
@@ -141,22 +149,24 @@ async def _delete(
     conversation_id: str | None,
 ) -> tuple[bool, str | None, str | None]:
     if _slot(item, "need") == "which":
-        return True, _fill(pack, "calendar_which"), None
+        return True, await _speak(hass, pack, item), None
     targets = _calendars(hass, item, exposed)
     if not targets:
-        return True, _fill(pack, "calendar_none"), None
+        return True, await _speak(hass, pack, item, extra_slots=[{"name": "cue", "value": "none"}]), None
     _, records = await calendar_entity.collect(hass, targets)
     hits = _pick(conversation_id, _slot(item, "summary"), records)
     if len(hits) != 1:
-        return True, _fill(pack, "calendar_which"), None
+        return True, await _speak(hass, pack, item, extra_slots=[{"name": "need", "value": "which"}]), None
     hit = hits[0]
     if not hit.get("uid"):
-        return True, _fill(pack, "calendar_no_uid"), None
+        return True, await _speak(hass, pack, item, extra_slots=[{"name": "cue", "value": "no_uid"}]), None
     if not await calendar_entity.delete_event(hass, hit):
-        return True, _fill(pack, "calendar_readonly"), None
+        return True, await _speak(hass, pack, item, extra_slots=[{"name": "cue", "value": "readonly"}]), None
     leftover = [row for row in calendar_session.last_events(conversation_id) if row.get("uid") != hit.get("uid")]
     calendar_session.remember(conversation_id, leftover)
-    return True, _fill(pack, "calendar_deleted", summary=hit.get("summary", "")), None
+    return True, await _speak(
+        hass, pack, item, extra_slots=[{"name": "summary", "value": hit.get("summary", "")}]
+    ), None
 
 
 async def _move(
@@ -168,23 +178,28 @@ async def _move(
 ) -> tuple[bool, str | None, str | None]:
     need = _slot(item, "need")
     if need == "when":
-        return True, _fill(pack, "calendar_need_when"), None
+        return True, await _speak(hass, pack, item), None
     if need == "which":
-        return True, _fill(pack, "calendar_which"), None
+        return True, await _speak(hass, pack, item), None
     targets = _calendars(hass, item, exposed)
     if not targets:
-        return True, _fill(pack, "calendar_none"), None
+        return True, await _speak(hass, pack, item, extra_slots=[{"name": "cue", "value": "none"}]), None
     _, records = await calendar_entity.collect(hass, targets)
     hits = _pick(conversation_id, _slot(item, "summary"), records)
     if len(hits) != 1:
-        return True, _fill(pack, "calendar_which"), None
+        return True, await _speak(hass, pack, item, extra_slots=[{"name": "need", "value": "which"}]), None
     hit = hits[0]
     start, end, all_day = _when_bounds(item, hass)
     data = _event_data(hit.get("summary") or _slot(item, "summary"), start, end, all_day)
     if not await calendar_entity.move_event(hass, hit, data, start, end, all_day):
-        return True, _fill(pack, "calendar_readonly"), None
+        return True, await _speak(hass, pack, item, extra_slots=[{"name": "cue", "value": "readonly"}]), None
     when = calendar_say.when_from_bounds(start, all_day, pack, hass)
-    return True, _fill(pack, "calendar_moved", summary=data["summary"], when=when), None
+    return True, await _speak(
+        hass,
+        pack,
+        item,
+        extra_slots=[{"name": "summary", "value": data["summary"]}, {"name": "when", "value": when}],
+    ), None
 
 
 async def _create(
@@ -196,23 +211,37 @@ async def _create(
 ) -> tuple[bool, str | None, str | None]:
     need = _slot(item, "need")
     if need == "title":
-        return True, _fill(pack, "calendar_need_title"), None
+        return True, await _speak(hass, pack, item), None
     if need == "when":
-        return True, _fill(pack, "calendar_need_when"), None
+        return True, await _speak(hass, pack, item), None
     summary = _slot(item, "summary")
     if not summary:
-        return True, _fill(pack, "calendar_need_title"), None
+        return True, await _speak(hass, pack, item, extra_slots=[{"name": "need", "value": "title"}]), None
     targets = _calendars(hass, item, exposed)
     if not targets:
-        return True, _fill(pack, "calendar_none"), None
+        return True, await _speak(hass, pack, item, extra_slots=[{"name": "cue", "value": "none"}]), None
     start, end, all_day = _when_bounds(item, hass)
     data = _event_data(summary, start, end, all_day)
     if not await calendar_entity.create_event(hass, targets[0], data):
-        return True, _fill(pack, "calendar_readonly"), None
+        return True, await _speak(hass, pack, item, extra_slots=[{"name": "cue", "value": "readonly"}]), None
     _, records = await calendar_entity.collect(hass, targets[:1])
     calendar_session.remember(conversation_id, records)
     when = calendar_say.when_from_bounds(start, all_day, pack, hass)
-    return True, _fill(pack, "calendar_created", summary=summary, when=when), None
+    return True, await _speak(
+        hass,
+        pack,
+        item,
+        extra_slots=[{"name": "summary", "value": summary}, {"name": "when", "value": when}],
+    ), None
+
+
+def _event_snapshot(event: dict[str, Any], pack: str, hass: HomeAssistant) -> dict[str, str]:
+    summary = str(event.get("summary") or event.get("title") or "").strip()
+    start = calendar_say._as_start(event)
+    if start is None:
+        return {"summary": summary, "start": ""}
+    when = calendar_say.when_label(start, calendar_say.is_all_day(event, start), pack, hass)
+    return {"summary": summary, "start": when}
 
 
 def _event_data(summary: str, start: datetime, end: datetime, all_day: bool) -> dict[str, str]:

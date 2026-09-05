@@ -638,8 +638,9 @@ class KlarConversationEntity(ConversationEntity):
             "text": text,
             "conversation_id": parse_session_id(conversation_id, device_id, satellite_id),
             "language": pack,
-            "personality": self._personality(),
         }
+        if not self._engine_settings():
+            body["personality"] = self._personality()
         if area := self._preferred_area(device_id, satellite_id):
             body["preferred_area"] = area
         if self._nlu_rag():

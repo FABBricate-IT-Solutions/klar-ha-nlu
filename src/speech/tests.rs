@@ -1,5 +1,5 @@
 use super::*;
-use crate::types::{SpeechEntity, SpeechIntent, SpeechSlot, SpeechSnapshot};
+use crate::types::{SpeechCalendarEvent, SpeechEntity, SpeechIntent, SpeechSlot, SpeechSnapshot};
 use std::collections::BTreeMap;
 
 fn snap(name: &str, slots: Vec<SpeechSlot>, entities: Vec<SpeechEntity>) -> SpeechSnapshot {
@@ -260,4 +260,67 @@ fn kitchen_english_uses_pack_room() {
     item.language = "en".into();
     let spoken = render_snapshot(&item).speech.to_lowercase();
     assert!(spoken.contains("kitchen"));
+}
+
+#[test]
+fn calendar_create_fills_summary_and_when() {
+    let mut item = snap(
+        "KlarCreateCalendarEvent",
+        vec![
+            SpeechSlot { name: "summary".into(), value: "zahnarzt".into() },
+            SpeechSlot { name: "when".into(), value: "morgen um 15 Uhr".into() },
+        ],
+        vec![],
+    );
+    assert_eq!(render_snapshot(&item).speech, "zahnarzt morgen um 15 Uhr.");
+    item.language = "en".into();
+    assert_eq!(render_snapshot(&item).speech, "zahnarzt morgen um 15 Uhr.");
+}
+
+#[test]
+fn calendar_list_and_empty_use_pack_lines() {
+    let empty = snap("KlarGetCalendarEvents", vec![], vec![]);
+    assert_eq!(render_snapshot(&empty).speech, pack_for("de").calendar_empty);
+    let mut listed = snap("KlarGetCalendarEvents", vec![], vec![]);
+    listed.calendar_events = vec![SpeechCalendarEvent { summary: "dentist".into(), start: "tomorrow 3pm".into() }];
+    let spoken = render_snapshot(&listed).speech;
+    assert!(spoken.contains("dentist"));
+    assert!(spoken.contains("tomorrow 3pm"));
+    let none = snap("KlarGetCalendarEvents", vec![SpeechSlot { name: "cue".into(), value: "none".into() }], vec![]);
+    assert_eq!(render_snapshot(&none).speech, pack_for("de").calendar_none);
+}
+
+#[test]
+fn floor_status_groups_rooms_and_empty_uses_pack_line() {
+    let living = SpeechEntity {
+        entity_id: "light.wohnzimmer".into(),
+        name: "Wohnzimmer".into(),
+        domain: "light".into(),
+        state: "on".into(),
+        area: Some("wohnzimmer".into()),
+        area_name: Some("Wohnzimmer".into()),
+        device_class: None,
+        attributes: BTreeMap::new(),
+    };
+    let kitchen = SpeechEntity {
+        entity_id: "light.kuche".into(),
+        name: "Küche".into(),
+        domain: "light".into(),
+        state: "off".into(),
+        area: Some("kuche".into()),
+        area_name: Some("Küche".into()),
+        device_class: None,
+        attributes: BTreeMap::new(),
+    };
+    let out =
+        render_snapshot(&snap("HassGetState", vec![SpeechSlot { name: "floor".into(), value: "wohnung".into() }], vec![kitchen, living]));
+    assert!(out.speech.contains("Küche"));
+    assert!(out.speech.contains("Wohnzimmer"));
+    assert!(out.speech.contains("aus"));
+    assert!(out.speech.contains("an"));
+    let empty = render_snapshot(&snap("HassGetState", vec![SpeechSlot { name: "floor".into(), value: "wohnung".into() }], vec![]));
+    assert_eq!(empty.speech, "Keine Geräte.");
+    let mut french = snap("HassGetState", vec![SpeechSlot { name: "floor".into(), value: "wohnung".into() }], vec![]);
+    french.language = "fr".into();
+    assert_eq!(render_snapshot(&french).speech, "Aucun appareil.");
 }

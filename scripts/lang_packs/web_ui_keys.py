@@ -16,7 +16,6 @@ ALIASES = {
 CONSTANTS = {
     "unitsPercent": "%",
     "entityId": "entity_id",
-    "processPath": "conversation.process",
     "advancedJson": "JSON",
     "unitsUs": "µs",
     "coverageGraph": "Graph",
@@ -180,6 +179,7 @@ CATALOG_KEYS = (
     "noPolicies",
     "compiledRisk",
     "finalBand",
+    "processPath",
     "triggerFirst",
     "discarded",
     "stageTokens",
@@ -297,6 +297,7 @@ CATALOG_KEYS = (
 
 # English fallbacks for operator-chrome keys not yet hand-translated in pack tables.
 FALLBACKS = {
+    "processPath": "Path",
     "pathUnchecked": "—",
     "pathMatch": "Match",
     "pathSeed": "Seed",

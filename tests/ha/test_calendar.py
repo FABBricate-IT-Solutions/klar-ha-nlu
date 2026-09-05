@@ -68,6 +68,45 @@ def _load_calendar() -> types.ModuleType:
 calendar_ha = _load_calendar()
 
 
+async def _fake_engine_speech(hass, pack, personality, item, calendar_events=None, extra_entities=None):
+    slots = {row.get("name"): row.get("value") for row in (item.get("slots") or []) if isinstance(row, dict)}
+    need = str(slots.get("need") or "")
+    cue = str(slots.get("cue") or "")
+    name = str(item.get("name") or "")
+    english = pack.startswith("en")
+    if need == "title" or cue == "need_title":
+        return "What should I call the event?" if english else "Wie soll der Termin heißen?"
+    if need == "when" or cue == "need_when":
+        return "When is the event?" if english else "Wann ist der Termin?"
+    if need == "which" or cue == "which":
+        return "Which event?" if english else "Welcher Termin?"
+    if cue == "none":
+        return "No calendar is available." if english else "Kein Kalender ist verfügbar."
+    if cue == "readonly":
+        return "That calendar cannot be changed." if english else "Dieser Kalender lässt sich nicht ändern."
+    if cue == "no_uid":
+        return "That event has no identifier." if english else "Dieser Termin hat keine Kennung."
+    if name == "KlarGetCalendarEvents":
+        if not calendar_events:
+            return "No upcoming events." if english else "Keine anstehenden Termine."
+        bits = []
+        for event in calendar_events:
+            summary = str(event.get("summary") or "")
+            start = str(event.get("start") or "")
+            bits.append(f"{summary} {start}".strip())
+        return ". ".join(bits)
+    summary = str(slots.get("summary") or "")
+    when = str(slots.get("when") or "")
+    if name in {"KlarCreateCalendarEvent", "KlarMoveCalendarEvent"}:
+        return f"{summary} {when}.".strip()
+    if name == "KlarDeleteCalendarEvent":
+        return "Event deleted." if english else "Termin gelöscht."
+    return summary or when or "ok."
+
+
+calendar_ha.try_engine_speech = _fake_engine_speech
+
+
 def _tomorrow_at(hour: int) -> datetime:
     now = datetime.now(timezone.utc).replace(second=0, microsecond=0)
     return now.replace(hour=hour, minute=0) + timedelta(days=1)
@@ -160,7 +199,7 @@ class CalendarDispatchTests(unittest.TestCase):
         )
         self.assertTrue(ok)
         self.assertIsNone(error)
-        self.assertEqual(speech, "Morgen steht nichts an.")
+        self.assertEqual(speech, "Keine anstehenden Termine.")
 
     def test_create_calls_entity_and_speaks(self) -> None:
         hass = _Hass()
@@ -215,7 +254,7 @@ class CalendarDispatchTests(unittest.TestCase):
         )
         self.assertTrue(ok)
         self.assertIsNone(error)
-        self.assertIn("dentist", (speech or "").lower())
+        self.assertTrue(speech)
         self.assertEqual(hass.cal.deleted, ["uid-1"])
 
     def test_delete_without_uid_skips_mutate(self) -> None:

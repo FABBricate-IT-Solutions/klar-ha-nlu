@@ -2,7 +2,7 @@
 
 [Deutsch](adr-0001-rules-and-trainer.md) · [English](adr-0001-rules-and-trainer.en.md)
 
-Status: **vorgeschlagen** — Richtung akzeptiert. Umsetzung auf **`staging`**, kein Hauptrelease: [Plan](adr-0001-plan.md).
+Status: **akzeptierte Richtung; auf staging umgesetzt, kein Hauptrelease** — [Plan](adr-0001-plan.md).
 
 Klar bleibt eine deterministische, lokale NLU. Ein LLM darf das Haus **einrichten**, nicht den Parse-Pfad **fahren**. Alle drei Ebenen sind in der Operator-UI **sichtbar, steuerbar und trainierbar**. Jeder Parse zeichnet denselben Pfad.
 
