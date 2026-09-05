@@ -252,7 +252,10 @@ class KlarEngine:
 
 
 def merge_engine_settings(
-    data: object, personality: str, languages: list[str] | None
+    data: object,
+    personality: str,
+    languages: list[str] | None,
+    pipeline: dict[str, object] | None = None,
 ) -> dict | None:
     if not isinstance(data, dict):
         return None
@@ -260,6 +263,9 @@ def merge_engine_settings(
     out["personality"] = resolve_personality(personality)
     if languages is not None:
         out["languages"] = list(languages)
+    if pipeline:
+        for key, value in pipeline.items():
+            out[key] = value
     return out
 
 
@@ -278,8 +284,9 @@ async def async_push_personality(
     token: str | None = None,
     languages: list[str] | None = None,
     ui_locale: str | None = None,
+    pipeline: dict[str, object] | None = None,
 ) -> None:
-    """Write HA personality and the Assist pin onto the engine. Operator chrome is not synced."""
+    """Write HA personality, Assist pin, and pipeline flags onto the engine."""
     session = async_get_clientsession(hass)
     base = url.rstrip("/")
     headers = {"X-Klar-Token": token} if token else {}
@@ -288,7 +295,9 @@ async def async_push_personality(
         settings_url = f"{base}/api/settings"
         async with session.get(settings_url, headers=headers, timeout=timeout) as resp:
             resp.raise_for_status()
-            payload = merge_engine_settings(await resp.json(), personality, languages)
+            payload = merge_engine_settings(
+                await resp.json(), personality, languages, pipeline
+            )
         if payload is None:
             return
         async with session.post(

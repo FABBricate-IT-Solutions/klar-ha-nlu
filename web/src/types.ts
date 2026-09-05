@@ -14,6 +14,11 @@ export type Settings = {
   confirm_risky_actions: boolean;
   semantic_adapters: boolean;
   nlu_rag: boolean;
+  refine_speech?: boolean;
+  calendar_llm?: boolean;
+  quiet_ack?: boolean;
+  allow_llm_tools?: boolean;
+  fallback_llm?: boolean;
 };
 
 export type Entity = {

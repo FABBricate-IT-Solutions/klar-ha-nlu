@@ -56,6 +56,21 @@ pub struct Settings {
     /// Opt-in NLU-as-RAG: matched-slice retrieval and Klar tools. Off by default.
     #[serde(default)]
     pub nlu_rag: bool,
+    /// HA: rewrite finished NLU speech with the fallback LLM.
+    #[serde(default)]
+    pub refine_speech: bool,
+    /// HA: rewrite calendar list speech with the fallback LLM.
+    #[serde(default)]
+    pub calendar_llm: bool,
+    /// HA: chime instead of TTS on simple on/off.
+    #[serde(default)]
+    pub quiet_ack: bool,
+    /// HA: allow Assist tools on the chit-chat LLM.
+    #[serde(default)]
+    pub allow_llm_tools: bool,
+    /// HA: a fallback conversation agent is configured.
+    #[serde(default)]
+    pub fallback_llm: bool,
 }
 
 impl Default for Settings {
@@ -69,6 +84,11 @@ impl Default for Settings {
             confirm_risky_actions: true,
             semantic_adapters: false,
             nlu_rag: false,
+            refine_speech: false,
+            calendar_llm: false,
+            quiet_ack: false,
+            allow_llm_tools: false,
+            fallback_llm: false,
         }
     }
 }
@@ -92,6 +112,11 @@ mod tests {
         assert!(set.confirm_risky_actions);
         assert!(!set.semantic_adapters);
         assert!(!set.nlu_rag);
+        assert!(!set.refine_speech);
+        assert!(!set.calendar_llm);
+        assert!(!set.quiet_ack);
+        assert!(!set.allow_llm_tools);
+        assert!(!set.fallback_llm);
         assert_eq!(set.languages, vec!["de"]);
     }
 

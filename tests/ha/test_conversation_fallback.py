@@ -12,11 +12,12 @@ ROOT = Path(__file__).resolve().parents[2]
 class ConversationFallbackTests(unittest.TestCase):
     def test_reject_does_not_require_nlu_rag(self) -> None:
         src = (ROOT / "custom_components" / "klar_nlu" / "conversation.py").read_text(encoding="utf-8")
-        start = src.index("if (\n            not skips_llm_fallback(hit)")
+        start = src.index("if (\n            decision_type == \"chat\"\n            and not skips_llm_fallback(hit)")
         end = src.index("fallback = await self._fallback", start)
         block = src[start:end]
         self.assertIn("self._fallback_agent_id()", block)
         self.assertIn("keeps_engine_chat(hit, chat, engine_speech)", block)
+        self.assertIn("decision_type == \"chat\"", block)
         self.assertNotIn("_nlu_rag()", block)
         self.assertNotIn("decision_type != \"reject\"", block)
 
@@ -49,6 +50,23 @@ class ConversationFallbackTests(unittest.TestCase):
         self.assertIn("calendar_query_only(plan)", block)
         self.assertIn("calendar_prompt(pack, speech", block)
         self.assertIn("self._calendar_llm()", block)
+        self.assertIn('executed.get("outcome") != "error"', block)
+        self.assertIn("calendar_readback(pack, speech)", block)
+        self.assertIn("keeps_calendar_reply(speech, llm)", block)
+        self.assertNotIn("if llm.strip() and \"?\" not in llm:", block)
+
+    def test_home_execute_skips_sentence_triggers(self) -> None:
+        src = (ROOT / "custom_components" / "klar_nlu" / "conversation.py").read_text(
+            encoding="utf-8"
+        )
+        start = src.index("async def _async_handle_message")
+        end = src.index("if payload.get(\"briefing\"):", start)
+        block = src[start:end]
+        self.assertLess(block.index("await self._parse("), block.index("_sentence_triggers"))
+        self.assertIn('if payload.get("unreachable"):', block)
+        self.assertNotIn('if decision_type != "execute":', block)
+        self.assertIn("keep_lab_plan(", src)
+        self.assertIn('decision_type != "execute"', src[src.index("if hit == \"llm\"") : src.index("if (\n            decision_type == \"chat\"")])
 
     def test_execute_closes_conversation_and_keeps_stable_session(self) -> None:
         src = (ROOT / "custom_components" / "klar_nlu" / "conversation.py").read_text(
@@ -60,6 +78,7 @@ class ConversationFallbackTests(unittest.TestCase):
         spoken = src[src.index("if self._quiet_ack()") : src.index("async def _after_fallback")]
         self.assertIn(', False, "chime"', spoken)
         self.assertNotIn(', True, "execute"', src)
+        self.assertNotIn("HassVacuumReturnToBase", src[src.index("if decision_type == \"execute\"") : src.index("if self._quiet_ack()")])
 
 
 if __name__ == "__main__":

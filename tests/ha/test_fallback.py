@@ -120,10 +120,30 @@ class FallbackTests(unittest.TestCase):
         self.assertIn("dentist tomorrow at 3", prompt)
         self.assertIn("Do not invent events", prompt)
         self.assertIn("Do not translate into German", prompt)
+        self.assertIn("Do not report weather", prompt)
         ja = fallback.calendar_prompt("ja", "meeting", None)
         self.assertNotIn("Termine", ja)
         self.assertNotIn("Assist pack code:", ja)
         self.assertIn("予定", ja)
+
+    def test_calendar_readback_does_not_repeat_the_question(self) -> None:
+        asked = fallback.calendar_readback("en", "dentist is tomorrow at 3.")
+        self.assertIn("dentist is tomorrow at 3.", asked)
+        self.assertNotIn("What's on my calendar", asked)
+        self.assertTrue(asked.startswith("Read back only these calendar events"))
+        de = fallback.calendar_readback("de", "")
+        self.assertIn("Keine Termine", de)
+        self.assertTrue(fallback.keeps_calendar_reply("dentist is tomorrow.", "Dentist is tomorrow."))
+        self.assertTrue(fallback.keeps_calendar_reply("Team training at 3.", "Team training is at 3."))
+        self.assertFalse(
+            fallback.keeps_calendar_reply("Team training at 3.", "Tomorrow will be rainy and 18°C.")
+        )
+        self.assertFalse(
+            fallback.keeps_calendar_reply("Nothing tomorrow.", "Tomorrow will be sunny with 18°C.")
+        )
+        self.assertFalse(fallback.keeps_calendar_reply("Nothing tomorrow.", ""))
+        self.assertFalse(fallback.weather_claim("Team training at 3."))
+        self.assertTrue(fallback.weather_claim("Tomorrow will be rainy."))
 
     def test_every_pack_has_native_calendar_prompt(self) -> None:
         languages = _load_module("klar_languages", "languages.py")

@@ -1,6 +1,7 @@
 //! Household specials: teach a name, explain, undo, clock, weather, routines.
 
 use crate::lang::Household;
+use crate::parse::calendar::mentions_calendar;
 use crate::parse::normalize::fold_umlaut;
 use crate::parse::normalize::umlaut_eq;
 use crate::session::LastHeard;
@@ -29,7 +30,10 @@ pub(super) fn route(context: &ParseContext<'_>, tokens: &[String]) -> Option<Dra
     if looks_like_clock(context, &blob, tokens) {
         return Some(clock(context));
     }
-    if context.catalog.household_hit(&blob, |pack| pack.household.weather) && !climate_overrides_weather(context, tokens) {
+    if context.catalog.household_hit(&blob, |pack| pack.household.weather)
+        && !climate_overrides_weather(context, tokens)
+        && !mentions_calendar(tokens)
+    {
         return Some(weather(context));
     }
     None
@@ -387,6 +391,52 @@ mod tests {
         assert!(!spoken.contains("date"));
         assert_eq!(spoken.matches(':').count(), 1, "{spoken}");
         assert!(!spoken.contains("sekunde"));
+    }
+
+    #[test]
+    fn calendar_query_is_not_forecast() {
+        let mut home = default_home();
+        home.entities.push(EntityRec {
+            entity_id: "weather.home".into(),
+            name: "Home".into(),
+            domain: "weather".into(),
+            platform: None,
+            area: None,
+            aliases: Vec::new(),
+            tags: Vec::new(),
+        });
+        let session = Session::new();
+        let custom = Vec::new();
+        let settings = Box::leak(Box::new(Settings::pinned("en")));
+        let catalog = catalog_for(&["en".into()]);
+        let context = ParseContext::new("What's on my calendar tomorrow?", &home, &session, &custom, settings, catalog);
+        assert!(
+            route(&context, &["what".into(), "on".into(), "calendar".into(), "tomorrow".into()]).is_none(),
+            "calendar query must not become household weather"
+        );
+    }
+
+    #[test]
+    fn german_calendar_query_is_not_forecast() {
+        let mut home = default_home();
+        home.entities.push(EntityRec {
+            entity_id: "weather.home".into(),
+            name: "Zuhause".into(),
+            domain: "weather".into(),
+            platform: None,
+            aliases: Vec::new(),
+            tags: Vec::new(),
+            area: None,
+        });
+        let session = Session::new();
+        let custom = Vec::new();
+        let settings = Box::leak(Box::new(Settings::pinned("de")));
+        let catalog = catalog_for(&["de".into()]);
+        let context = ParseContext::new("Was steht morgen im Kalender?", &home, &session, &custom, settings, catalog);
+        assert!(
+            route(&context, &["was".into(), "steht".into(), "morgen".into(), "im".into(), "kalender".into()]).is_none(),
+            "German calendar query must not become household weather"
+        );
     }
 
     #[test]
