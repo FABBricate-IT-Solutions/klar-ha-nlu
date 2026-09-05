@@ -50,6 +50,12 @@ pub fn match_control_warnings(rows: &[crate::types::MatchControl]) -> Vec<String
         .collect()
 }
 
+pub fn parse(text: &str, home: &HomeGraph, session: &mut Session, custom: &[CustomSentence], settings: &Settings) -> ParseResult {
+    let mut compatibility = settings.clone();
+    compatibility.confirm_risky_actions = false;
+    crate::nlu::parse_compatible(text, home, session, custom, &compatibility)
+}
+
 #[cfg(test)]
 mod tests {
     use super::{match_control_warnings, sanitize_match_controls};
@@ -74,10 +80,4 @@ mod tests {
             ["match.disable.area_command", "match.disable.all_lights"]
         );
     }
-}
-
-pub fn parse(text: &str, home: &HomeGraph, session: &mut Session, custom: &[CustomSentence], settings: &Settings) -> ParseResult {
-    let mut compatibility = settings.clone();
-    compatibility.confirm_risky_actions = false;
-    crate::nlu::parse_compatible(text, home, session, custom, &compatibility)
 }
