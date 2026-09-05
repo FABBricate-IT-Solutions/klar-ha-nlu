@@ -18,8 +18,8 @@ const CHAT_ONLY: &[(&str, &str)] = &[
 ];
 
 const TOOLS_OK: &[(&str, &str)] = &[
-    ("de", "Du darfst Home-Assistant-Werkzeuge nutzen, wenn der Nutzer das Haus oder aktuelle Fakten braucht."),
-    ("en", "You may use Home Assistant tools when the user needs the house or current facts."),
+    ("de", "Klar hat Gerätebefehle schon geparst. Werkzeuge sind für Live-Kontext und den Rest. Nutze Toolnamen exakt wie übergeben."),
+    ("en", "Klar already parsed device commands. Tools are for live context and leftovers. Use tool names exactly as provided."),
 ];
 
 const NEWS: &[(&str, &str)] = &[
@@ -269,7 +269,9 @@ mod tests {
         assert!(ja.contains("会話"));
         assert!(!ja.contains("Steuere keine Geräte"));
         let allowed = chat_only_prompt("en", None, true);
-        assert!(allowed.contains("You may use Home Assistant tools"));
+        assert!(allowed.contains("Use tool names exactly as provided"));
+        assert!(!allowed.contains("HassTurnOn"));
+        assert!(!allowed.contains("GetLiveContext"));
         assert!(!allowed.contains("Do not control devices"));
         let story = yarn_prompt("de", None, "Erzähle eine Geschichte");
         assert!(story.contains("Antwort = die Geschichte selbst"));

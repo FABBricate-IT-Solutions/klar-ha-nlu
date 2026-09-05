@@ -80,6 +80,7 @@ class EngineLlmTests(unittest.TestCase):
         src = (PKG / "engine_llm.py").read_text(encoding="utf-8")
         self.assertIn("/api/v2/llm/refine", src)
         self.assertIn("complete_engine_refine", src)
+        self.assertIn("conversation_id", src)
         self.assertIn("/api/v2/llm/assist", src)
         self.assertIn("stream_engine_assist", src)
         self.assertEqual(

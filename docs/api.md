@@ -106,10 +106,10 @@ Der Token kommt aus `--token`, `KLAR_TOKEN` oder `--token-file`.
 | `semantic_adapters` | `true` befragt lokale typisierte Adapter nach einem Ranking-Reject. Standard aus. Vorschläge werden revalidiert und überschreiben Execute/Confirm/Clarify/Chat nicht. |
 | `nlu_rag` | `true` hängt nur bei `chat` und `reject` einen gematchten Ausschnitt an. Standard aus. Nie Assist-Werkzeuge; der HA-Fallback darf einen Befehl nur über Klar-Werkzeuge nachziehen. `POST /api/v2/parse` kann `nlu_rag` pro Request setzen. |
 | `refine_speech` | `true` formuliert fertige NLU-Sprache mit dem Engine-LLM um. Standard aus. |
-| `extra_prompt` | Extra-Zeile über der Pack-Persönlichkeit. Leer = nur Pack-Stimme. |
+| `extra_prompt` | Hausregel als User-Nachricht. Leer = nur Pack-Stimme. Ersetzt die Persönlichkeit nicht. |
 | `quiet_ack` | `true` spielt bei einfachem An/Aus einen Chime statt TTS. Standard aus. |
 | `calendar_llm` | `true` lässt das Engine-LLM Kalendertermine sprechen. Standard aus. |
-| `allow_llm_tools` | `true` erlaubt Assist-Werkzeuge am Chat-Modell. Standard aus. |
+| `allow_llm_tools` | `true` lässt das Engine-Chat-Modell nach dem Klar-Parse Home-Assistant-Assist-Werkzeuge nutzen (2026.9, prefixierte Namen). Standard aus. |
 
 ### `GET` / `POST /api/v2/llm/endpoint`
 
@@ -129,7 +129,7 @@ Write-Token nötig (wie Overlay). `stream: true` (Standard) sendet SSE `data: {"
 { "speech": "Wohnzimmer Licht ist an.", "language": "de", "personality": "butler", "extra_prompt": "", "stream": false }
 ```
 
-Engine baut den Refine-Prompt (Pack + Stimme + extra), ruft das Modell (`temperature` 0.65, `max_tokens` 128) und prüft `accept_refined`. JSON `{"type":"done","text":"…","accepted":true}`. Abgelehnt: `text` ist das Original, `accepted` false. Caps: `speech` ≤ 4096, `extra_prompt` ≤ 2048. Write-Token. 503 ohne Endpoint. Python-Prompt nicht mitschicken.
+Engine baut den Refine-Systemprompt (Pack + Stimme) und schickt Extra als User-Nachricht, ruft das Modell (`temperature` 0.65, `max_tokens` 192) und prüft `accept_refined`. JSON `{"type":"done","text":"…","accepted":true}`. Abgelehnt: `text` ist das Original, `accepted` false. Caps: `speech` ≤ 4096, `extra_prompt` ≤ 2048. Write-Token. 503 ohne Endpoint. Python-Prompt nicht mitschicken.
 
 ### `POST /api/v2/llm/assist`
 

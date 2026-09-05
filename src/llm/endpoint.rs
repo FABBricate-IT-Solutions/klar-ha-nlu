@@ -1,4 +1,4 @@
-use super::types::LlmError;
+use super::types::{ChatTemplateKwargs, LlmError};
 use serde::{Deserialize, Serialize};
 
 const DEFAULT_BASE: &str = "https://api.openai.com/v1";
@@ -8,6 +8,7 @@ pub struct LlmEndpoint {
     pub base_url: String,
     pub api_key: String,
     pub model: String,
+    pub enable_thinking: bool,
 }
 
 #[derive(Debug, Clone, Serialize, Deserialize, PartialEq, Eq)]
@@ -17,6 +18,8 @@ pub struct LlmPublic {
     pub base_url: Option<String>,
     #[serde(skip_serializing_if = "Option::is_none")]
     pub model: Option<String>,
+    #[serde(default)]
+    pub enable_thinking: bool,
 }
 
 impl std::fmt::Debug for LlmEndpoint {
@@ -24,6 +27,7 @@ impl std::fmt::Debug for LlmEndpoint {
         f.debug_struct("LlmEndpoint")
             .field("base_url", &self.base_url)
             .field("model", &self.model)
+            .field("enable_thinking", &self.enable_thinking)
             .field("api_key", &if self.api_key.is_empty() { "" } else { "***" })
             .finish()
     }
@@ -41,6 +45,7 @@ impl LlmEndpoint {
             &model,
         )
         .ok()
+        .map(|endpoint| endpoint.with_thinking(env_thinking()))
     }
 
     pub fn from_parts(base_url: &str, api_key: &str, model: &str) -> Result<Self, LlmError> {
@@ -48,12 +53,17 @@ impl LlmEndpoint {
         if model.is_empty() || model.len() > 128 || model.chars().any(char::is_control) {
             return Err(LlmError::InvalidEndpoint("model"));
         }
-        Ok(Self { base_url: normalize_base(base_url)?, api_key: sanitize_key(api_key)?, model: model.to_string() })
+        Ok(Self { base_url: normalize_base(base_url)?, api_key: sanitize_key(api_key)?, model: model.to_string(), enable_thinking: false })
+    }
+
+    pub fn with_thinking(mut self, enable_thinking: bool) -> Self {
+        self.enable_thinking = enable_thinking;
+        self
     }
 
     /// List models without persisting a chat model. Never used by `nlu::parse`.
     pub fn for_discovery(base_url: &str, api_key: &str) -> Result<Self, LlmError> {
-        Ok(Self { base_url: normalize_base(base_url)?, api_key: sanitize_key(api_key)?, model: String::new() })
+        Ok(Self { base_url: normalize_base(base_url)?, api_key: sanitize_key(api_key)?, model: String::new(), enable_thinking: false })
     }
 
     pub fn chat_url(&self) -> String {
@@ -64,15 +74,29 @@ impl LlmEndpoint {
         format!("{}/models", self.base_url)
     }
 
+    /// Gemma 4 streams thoughts unless the template gets `enable_thinking: false`.
+    pub fn chat_template_kwargs(&self) -> Option<ChatTemplateKwargs> {
+        (!self.enable_thinking).then_some(ChatTemplateKwargs { enable_thinking: false })
+    }
+
     pub fn public(&self) -> LlmPublic {
-        LlmPublic { configured: true, base_url: Some(self.base_url.clone()), model: Some(self.model.clone()) }
+        LlmPublic {
+            configured: true,
+            base_url: Some(self.base_url.clone()),
+            model: Some(self.model.clone()),
+            enable_thinking: self.enable_thinking,
+        }
     }
 }
 
 impl LlmPublic {
     pub fn empty() -> Self {
-        Self { configured: false, base_url: None, model: None }
+        Self { configured: false, base_url: None, model: None, enable_thinking: false }
     }
+}
+
+fn env_thinking() -> bool {
+    matches!(std::env::var("KLAR_LLM_ENABLE_THINKING").ok().as_deref().map(str::trim), Some("1" | "true" | "TRUE" | "yes" | "on"))
 }
 
 fn sanitize_key(api_key: &str) -> Result<String, LlmError> {
@@ -113,6 +137,19 @@ mod tests {
         assert_eq!(ep.base_url, "https://api.openai.com/v1");
         assert_eq!(ep.chat_url(), "https://api.openai.com/v1/chat/completions");
         assert_eq!(ep.models_url(), "https://api.openai.com/v1/models");
+        assert!(!ep.enable_thinking);
+    }
+
+    #[test]
+    fn thinking_defaults_off_and_can_be_set() {
+        let off = LlmEndpoint::from_parts("https://api.openai.com/v1", "k", "m").unwrap();
+        assert!(!off.public().enable_thinking);
+        assert_eq!(serde_json::to_value(off.chat_template_kwargs()).unwrap()["enable_thinking"], false);
+        let on = off.with_thinking(true);
+        assert!(on.enable_thinking);
+        assert!(on.public().enable_thinking);
+        assert!(!LlmPublic::empty().enable_thinking);
+        assert!(on.chat_template_kwargs().is_none());
     }
 
     #[test]

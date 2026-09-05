@@ -67,9 +67,6 @@ def _options_schema() -> vol.Schema:
                     mode=selector.SelectSelectorMode.LIST,
                 )
             ),
-            vol.Optional(CONF_FALLBACK_AGENT): selector.ConversationAgentSelector(
-                selector.ConversationAgentSelectorConfig()
-            ),
             vol.Optional(CONF_URL): str,
             vol.Optional(CONF_TOKEN): str,
             vol.Optional(CONF_ASSIST_FILTER, default=DEFAULT_ASSIST_FILTER): (
@@ -177,9 +174,7 @@ class KlarOptionsFlow(config_entries.OptionsFlow):
     ) -> FlowResult:
         if user_input is not None:
             data = _keep_product_options(dict(self.config_entry.options))
-            agent = user_input.get(CONF_FALLBACK_AGENT) or None
-            if agent:
-                data[CONF_FALLBACK_AGENT] = agent
+            data.pop(CONF_FALLBACK_AGENT, None)
             channel = resolve_channel(user_input.get(CONF_CHANNEL))
             mode, url = resolve_engine_target(
                 mode=user_input.get(

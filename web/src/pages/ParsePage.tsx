@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { api } from "../api";
+import { LabSpeechCompare, type LabLlmPreview } from "../components/LabSpeechCompare";
 import { StageBars } from "../components/charts";
 import { Pipeline } from "../components/pipeline";
 import { PolicyPath } from "../components/PolicyPath";
@@ -24,6 +25,12 @@ const QUIET_BLOCKED = new Set([
 
 function asError(err: unknown): string {
   return err instanceof Error ? err.message : String(err);
+}
+
+function llmBanner(err: unknown, t: Messages): string {
+  const message = asError(err);
+  if (message === "llm-unconfigured" || message.startsWith("503")) return t.llmNotConfigured;
+  return message;
 }
 
 function bannerText(error: string, result: ParseResult | null): string {
@@ -51,7 +58,6 @@ export function armedPipeline(settings: Settings): string[] {
   if (on(settings, "calendar_llm")) chips.push("calendar LLM");
   if (on(settings, "quiet_ack")) chips.push("quiet ack");
   if (on(settings, "allow_llm_tools")) chips.push("LLM tools");
-  if (on(settings, "fallback_llm")) chips.push("fallback LLM");
   return chips;
 }
 
@@ -85,6 +91,18 @@ function quietAckLikely(result: ParseResult | null, names: string[]): boolean {
   return false;
 }
 
+export function labChatLike(result: ParseResult | null): boolean {
+  if (!result) return false;
+  const hit = result.policy_trace?.hit || "";
+  return Boolean(result.briefing) || hit === "llm" || result.decision.type === "chat";
+}
+
+export function labRefineEligible(result: ParseResult | null): boolean {
+  if (!result || labChatLike(result)) return false;
+  const band = result.decision.type;
+  return Boolean(result.speech?.trim()) && !SKIP_REFINE.has(band);
+}
+
 export function labPath(
   result: ParseResult | null,
   settings: Settings,
@@ -96,23 +114,22 @@ export function labPath(
   const band = result.decision.type;
   const names = intentNames(result);
   const hit = result.policy_trace?.hit || "";
-  const chatLike = Boolean(result.briefing) || hit === "llm" || band === "chat";
+  const chatLike = labChatLike(result);
   if (settings.nlu_rag && (band === "chat" || band === "reject")) steps.push("NLU-RAG");
   if (settings.semantic_adapters && band === "reject") steps.push("semantic");
   if (settings.mode === "context_only") steps.push("context only");
   steps.push(labDecisionLabel(result));
   const calendar =
     on(settings, "calendar_llm")
-    && on(settings, "fallback_llm")
     && band === "execute"
     && names.length > 0
     && names.every((name) => name === "KlarGetCalendarEvents");
   const quiet = on(settings, "quiet_ack") && quietAckLikely(result, names);
+  if (chatLike) steps.push("LLM chat");
   if (calendar) steps.push("calendar LLM");
   if (
     !quiet
     && on(settings, "refine_speech")
-    && on(settings, "fallback_llm")
     && !SKIP_REFINE.has(band)
     && !chatLike
   ) {
@@ -149,6 +166,7 @@ export function ParsePage({
   const [busy, setBusy] = useState(false);
   const [knownIntents, setKnownIntents] = useState<string[]>([]);
   const [teachIntent, setTeachIntent] = useState("KlarGetCalendarEvents");
+  const [llm, setLlm] = useState<LabLlmPreview | null>(null);
   const intents = result?.plan?.steps.map((step) => step.intent) ?? [];
   const heardIn = result?.evidence.find((item) => item.kind === "preferred_area")?.value || area;
   const boundEntity = intents.flatMap((intent) => intent.slots).find((slot) => slot.name === "entity_id")?.value || "";
@@ -171,6 +189,7 @@ export function ParsePage({
   const submit = async () => {
     setError("");
     setBusy(true);
+    setLlm(null);
     try {
       const data = await api.parse(text, parseLanguage || "", conversationId, settings.nlu_rag || undefined, area || undefined);
       setConversationId(data.conversation_id);
@@ -178,6 +197,40 @@ export function ParsePage({
       setTeachStatus("");
       const first = data.plan?.steps[0]?.intent.name;
       if (first) setTeachIntent(first);
+      const preview: LabLlmPreview = { nlu: data.speech, busy: true };
+      setLlm(preview);
+      const language = parseLanguage || "de";
+      const personality = settings.personality || "default";
+      const extra = settings.extra_prompt || "";
+      if (labChatLike(data)) {
+        try {
+          const chat = await api.llmAssist({
+            text,
+            language,
+            personality,
+            extra_prompt: extra,
+            conversation_id: data.conversation_id,
+          });
+          setLlm({ ...preview, busy: false, chat: chat.text });
+        } catch (err) {
+          setLlm({ ...preview, busy: false, error: llmBanner(err, t) });
+        }
+      } else if (labRefineEligible(data)) {
+        try {
+          const refined = await api.llmRefine({
+            speech: data.speech,
+            language,
+            personality,
+            extra_prompt: extra,
+            conversation_id: data.conversation_id,
+          });
+          setLlm({ ...preview, busy: false, refined: refined.text, accepted: refined.accepted });
+        } catch (err) {
+          setLlm({ ...preview, busy: false, error: llmBanner(err, t) });
+        }
+      } else {
+        setLlm({ ...preview, busy: false });
+      }
     } catch (err) {
       setError(asError(err));
     } finally {
@@ -270,14 +323,12 @@ export function ParsePage({
             </div>
           )}
           <section className="grid two">
-            <div className="card">
-              <h2>{t.speech}</h2>
-              <p>{result.speech || "..."}</p>
-              <div className="row">
-                <span className={`chip lab-band-chip${result.decision.type !== "chat" ? " intent" : ""}`}>{result.decision.type}</span>
-                {result.briefing && <span className="chip">briefing</span>}
-              </div>
-            </div>
+            <LabSpeechCompare
+              t={t}
+              band={result.decision.type}
+              briefing={Boolean(result.briefing)}
+              preview={llm || { nlu: result.speech, busy: false }}
+            />
             <div className="card">
               <h2>{t.intent}</h2>
               {intents.map((intent, index) => (

@@ -13,7 +13,9 @@ pub(crate) mod privacy;
 pub(crate) mod speech;
 pub mod state;
 pub(crate) mod trainer;
+pub(crate) mod trainer_apply;
 pub(crate) mod trainer_chat;
+pub(crate) mod trainer_consent;
 pub mod web;
 pub mod wyoming;
 

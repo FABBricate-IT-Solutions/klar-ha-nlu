@@ -178,14 +178,24 @@ export type TrainerProposal = {
   utterances?: string[];
 };
 export type TrainerTurn = { role: "user" | "assistant"; content: string };
-export type LlmPublic = { configured: boolean; base_url?: string; model?: string };
+export type LlmPublic = { configured: boolean; base_url?: string; model?: string; enable_thinking?: boolean };
 export type LlmModels = { models: string[] };
+export type RefineOutcome = { type: string; text: string; accepted: boolean };
+export type TrainerConsent = {
+  call_id: string;
+  tool: string;
+  summary: string;
+  validate: TrainerValidateOut;
+};
 export type TrainerChatEvent =
   | { type: "delta"; text: string }
   | { type: "done"; text: string }
   | { type: "error"; message: string }
   | { type: "proposal"; value: TrainerProposal }
-  | { type: "validate"; value: TrainerValidateOut };
+  | { type: "validate"; value: TrainerValidateOut }
+  | { type: "consent"; call_id: string; tool: string; summary: string; validate: TrainerValidateOut }
+  | { type: "session"; yolo: boolean; allowed: string[] }
+  | { type: "tool_call"; id: string; name: string; arguments: string };
 
 export type ConversationTurn = {
   conversation_id: string;
@@ -201,6 +211,7 @@ export type ConversationTurn = {
   confirm_prompt?: string | null;
   candidate_id?: string | null;
   preferred_area?: string | null;
+  speech_source?: string | null;
 };
 
 export type Suggestion = {

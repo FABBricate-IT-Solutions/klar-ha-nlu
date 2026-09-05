@@ -9,6 +9,7 @@ Status: **accepted direction; implemented on staging, not a main release**.
 - **Rust** (`src/llm/`): HTTP client, SSE parser, request caps, trainer system prompt.
 - **Python**: glue only. Stream Assist deltas from Klar events. Do not copy a HA conversation agent onto Klar (that overwrites operator Settings). `async_converse` remains a legacy fallback when an old agent is still configured.
 - The API key is stored in `data_dir/llm_endpoint.json` (not the overlay). `KLAR_LLM_*` env wins on boot. `GET /api/v2/llm/endpoint` never returns the key. Operator UI Settings is the config surface; Assist does not need a second Home Assistant conversation integration.
+- Chat requests default to `chat_template_kwargs.enable_thinking=false` (no thinking). The operator LLM card can turn thinking on; then Klar omits the kwargs. `KLAR_LLM_ENABLE_THINKING` can set the boot default when env config is used.
 - Trainer: `POST /api/v2/policies/trainer/chat` builds context on the engine, streams tokens, extracts JSON, runs `validate`. Apply stays a human action on the lane write API.
 - Speech: HA prefers `POST /api/v2/llm/chat` (stream) even when no fallback agent is configured. A leftover HA conversation agent remains an optional legacy path.
 

@@ -54,6 +54,7 @@ async def complete_engine_refine(
     personality: str,
     extra_prompt: str = "",
     *,
+    conversation_id: str | None = None,
     url: str | None = None,
     token: str | None = None,
 ) -> tuple[str, bool]:
@@ -72,6 +73,8 @@ async def complete_engine_refine(
         "extra_prompt": extra_prompt,
         "stream": False,
     }
+    if conversation_id:
+        body["conversation_id"] = conversation_id[:128]
     last_err: Exception | None = None
     for host in engine_url_candidates(base):
         try:
@@ -130,9 +133,12 @@ async def stream_engine_assist(
     history: list[tuple[str, str]] | None = None,
     extra_system: str | None = None,
     extra_prompt: str = "",
+    conversation_id: str | None = None,
     url: str | None = None,
     token: str | None = None,
     publish: bool = True,
+    tools: list[dict[str, Any]] | None = None,
+    tool_messages: list[dict[str, Any]] | None = None,
 ) -> tuple[str, bool] | None:
     target = engine_target(hass, url, token)
     if target is None:
@@ -155,11 +161,16 @@ async def stream_engine_assist(
             history=history,
             extra_system=extra_system,
             extra_prompt=extra_prompt,
+            conversation_id=conversation_id,
             url=url,
             token=token,
+            tools=tools,
+            tool_messages=tool_messages,
         ):
             if event.get("type") == "tool":
                 tool_line = _tool_speech(event)
+                continue
+            if event.get("type") == "tool_call":
                 continue
             if event.get("type") == "delta":
                 piece = str(event.get("text") or "")
@@ -199,8 +210,11 @@ async def iter_engine_assist_events(
     history: list[tuple[str, str]] | None = None,
     extra_system: str | None = None,
     extra_prompt: str = "",
+    conversation_id: str | None = None,
     url: str | None = None,
     token: str | None = None,
+    tools: list[dict[str, Any]] | None = None,
+    tool_messages: list[dict[str, Any]] | None = None,
 ) -> AsyncIterator[dict[str, Any]]:
     target = engine_target(hass, url, token)
     if target is None:
@@ -224,6 +238,12 @@ async def iter_engine_assist_events(
         "extra_prompt": extra_prompt,
         "stream": True,
     }
+    if tools:
+        body["tools"] = tools
+    if tool_messages:
+        body["tool_messages"] = tool_messages
+    if conversation_id:
+        body["conversation_id"] = conversation_id[:128]
     last_err: Exception | None = None
     for host in engine_url_candidates(base):
         try:

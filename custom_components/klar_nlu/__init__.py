@@ -12,7 +12,6 @@ from .const import (
     CONF_ASSIST_FILTER,
     CONF_CALENDAR_LLM,
     CONF_CHANNEL,
-    CONF_FALLBACK_AGENT,
     CONF_LANGUAGES,
     CONF_MODE,
     CONF_NLU_RAG,
@@ -107,7 +106,7 @@ def _pipeline_flags(entry: ConfigEntry) -> dict[str, object]:
         "allow_llm_tools": bool(
             entry.options.get(CONF_ALLOW_LLM_TOOLS, DEFAULT_ALLOW_LLM_TOOLS)
         ),
-        "fallback_llm": bool(entry.options.get(CONF_FALLBACK_AGENT)),
+        "fallback_llm": False,
         "extra_prompt": str(entry.options.get(CONF_REFINE_PROMPT) or ""),
     }
 
@@ -137,7 +136,7 @@ async def _async_on_update(hass: HomeAssistant, entry: ConfigEntry) -> None:
     current = dict(entry.options)
     if stored is not None:
         stored["applied_options"] = current
-    await async_push_fallback_flag(hass, entry, bool(entry.options.get(CONF_FALLBACK_AGENT)))
+    await async_push_fallback_flag(hass, entry, False)
     await _async_load_engine_settings(hass, entry)
     reload_keys = (
         CONF_URL,

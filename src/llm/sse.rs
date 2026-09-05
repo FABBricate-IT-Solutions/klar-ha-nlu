@@ -53,6 +53,19 @@ pub fn delta_text(data: &str) -> Option<String> {
     }
 }
 
+pub fn delta_tool_calls(data: &str) -> Option<Vec<super::types::UpstreamToolCall>> {
+    if data == "[DONE]" {
+        return None;
+    }
+    let chunk: super::types::UpstreamCompletion = serde_json::from_str(data).ok()?;
+    let calls = chunk.choices.first().and_then(|choice| choice.delta.as_ref()).and_then(|delta| delta.tool_calls.clone())?;
+    if calls.is_empty() {
+        None
+    } else {
+        Some(calls)
+    }
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;
@@ -67,6 +80,13 @@ mod tests {
         assert_eq!(delta_text(&second[0]).as_deref(), Some("lo"));
         assert_eq!(second[1], "[DONE]");
         assert!(delta_text(&second[1]).is_none());
+        let tools = buf.push(
+            "data: {\"choices\":[{\"delta\":{\"tool_calls\":[{\"index\":0,\"id\":\"c1\",\"function\":{\"name\":\"get_entity\",\"arguments\":\"{}\"}}]}}]}\n\n",
+        );
+        let calls = delta_tool_calls(&tools[0]).expect("tool delta");
+        assert_eq!(calls[0].id.as_deref(), Some("c1"));
+        assert_eq!(calls[0].function.as_ref().and_then(|fn_| fn_.name.as_deref()), Some("get_entity"));
+        assert!(delta_text(&tools[0]).is_none());
     }
 
     #[test]

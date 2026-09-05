@@ -205,6 +205,11 @@ async fn rollback(
     persist_rules(&state, revision.custom, revision.language, format!("rollback {}", revision.hash)).await
 }
 
+pub(crate) async fn persist_language_overlay(state: &AppState, language: LanguageOverlay, label: &str) -> Result<(), StatusCode> {
+    let custom = state.custom.lock().await.clone();
+    persist_rules(state, custom, language, label.to_string()).await.map(|_| ())
+}
+
 async fn persist_rules(
     state: &AppState,
     custom: Vec<CustomSentence>,

@@ -23,13 +23,13 @@
     "step": {
       "init": {
         "title": "Klar NLU",
-        "description": "Stimme, Assist-Sprachen und das LLM liegen in der Klar-Operator-UI (Einstellungen). Dieses Formular verbindet nur die Engine: URL, Token, Kanal und optional ein Legacy-Conversation-Agent.",
+        "description": "Stimme, Assist-Sprachen und das LLM liegen in der Klar-Operator-UI (Einstellungen). Dieses Formular verbindet nur die Engine: URL, Token und Kanal.",
         "data": {
           "mode": "Engine",
           "personality": "Persönlichkeit",
           "languages": "Sprachen",
           "fallback_agent": "Optionaler Legacy-Conversation-Agent",
-          "allow_llm_tools": "Assist-Werkzeuge beim Smalltalk-Agenten erlauben",
+          "allow_llm_tools": "Home-Assistant-Assist-Werkzeuge beim Engine-Chat erlauben",
           "refine_speech": "NLU-Antworten vom LLM verfeinern",
           "refine_prompt": "Verfeinerungs-Prompt",
           "url": "URL der Klar-API",
@@ -42,14 +42,14 @@
         },
         "data_description": {
           "personality": "Liegt in dieser Integration, nicht in der Klar-App. Beim Wechsel wird der Verfeinerungs-Prompt geladen. Assist und die LLM-Stimme folgen ihm.",
-          "refine_speech": "Klar steuert weiter die Geräte. Das Fallback-LLM formuliert danach jede fertige Antwort um. Klar schickt enable_thinking=false mit.",
+          "refine_speech": "Klar steuert weiter die Geräte. Das Engine-LLM formuliert fertige NLU-Antworten in dieser Stimme um.",
           "refine_prompt": "Systemprompt der Stimme. Persönlichkeit wechseln, absenden, Prompt anpassen. Keine Gerätesteuerung, keine neuen Fakten, gleiche Sprache.",
           "token": "Derselbe Token wie im Klar-Addon. Für Overlay-Schreibzugriffe aus Home Assistant.",
           "assist_filter": "An (Standard): nur was Assist sehen darf. Aus: auch versteckte Entitäten — leichter das falsche Gerät.",
           "nlu_rag": "Standard aus. Bei Chat und leerem Reject nur den gematchten Ausschnitt an das Fallback-Modell. Nur Klar-Werkzeuge.",
           "quiet_ack": "Bei einfachem Licht oder Schalter an/aus keine gesprochene Antwort, nur ein kurzer Ton am Satelliten.",
           "calendar_llm": "Standard aus. An: Klar liest den Kalender, das Fallback-LLM spricht die Termine. Aus: Klar spricht die Liste selbst. Anlegen, Löschen und Verschieben bleiben bei Klar.",
-          "allow_llm_tools": "Standard aus. An: Klar ruft den Smalltalk-Agenten auch dann, wenn er Home Assistant steuern darf. Das Modell kann Lichter schalten und Skripte starten. Aus: Klar überspringt das LLM, wenn der Agent Assist-Werkzeuge hat.",
+          "allow_llm_tools": "Standard aus. An: nach dem Klar-Parse darf das Engine-Chat-Modell Home-Assistant-Assist-Werkzeuge nutzen (Namen kommen von Core, bereits prefixiert). Aus: nur Gespräch.",
           "languages": "Standard ist die Home-Assistant-Systemsprache. Alle Sprachen lässt jede kompilierte Assist-Locale aktiv.",
           "channel": "Geht jederzeit. Staging zeigt auf Klar NLU (Staging), Stable auf die App oder die mitgelieferte Engine. Eine eigene URL bleibt.",
           "fallback_agent": "Leer lassen. Das LLM liegt in der Klar-Operator-UI (Einstellungen → LLM). Assist-Chat und Trainer nutzen denselben Endpoint. Dieses Feld ist nur für eine alte Home-Assistant-Conversation-Integration."

@@ -1,6 +1,8 @@
 use super::endpoint::LlmEndpoint;
-use super::sse::{delta_text, SseBuf};
-use super::types::{ChatRequest, LlmError, SanitizedChat, UpstreamChat, UpstreamCompletion};
+use super::sse::{delta_text, delta_tool_calls, SseBuf};
+use super::types::{
+    ChatRequest, CompletionTurn, LlmError, SanitizedChat, ToolCallAssembler, UpstreamChat, UpstreamCompletion, UpstreamMessage,
+};
 use futures_util::StreamExt;
 use serde_json::Value;
 use std::collections::BTreeSet;
@@ -27,14 +29,35 @@ impl LlmClient {
 }
 
 pub async fn chat(endpoint: &LlmEndpoint, request: ChatRequest) -> Result<String, LlmError> {
-    LlmClient::new(endpoint.clone())?.complete(request).await
+    let turn = chat_turn(endpoint, request).await?;
+    if turn.text.is_empty() && turn.tool_calls.is_empty() {
+        Err(LlmError::Response)
+    } else {
+        Ok(turn.text)
+    }
+}
+
+pub async fn chat_turn(endpoint: &LlmEndpoint, request: ChatRequest) -> Result<CompletionTurn, LlmError> {
+    LlmClient::new(endpoint.clone())?.complete_turn(request).await
 }
 
 pub async fn chat_stream<F>(endpoint: &LlmEndpoint, request: ChatRequest, mut on_delta: F) -> Result<String, LlmError>
 where
     F: FnMut(&str),
 {
-    LlmClient::new(endpoint.clone())?.stream(request, &mut on_delta).await
+    let turn = chat_stream_turn(endpoint, request, &mut on_delta).await?;
+    if turn.text.is_empty() && turn.tool_calls.is_empty() {
+        Err(LlmError::Response)
+    } else {
+        Ok(turn.text)
+    }
+}
+
+pub async fn chat_stream_turn<F>(endpoint: &LlmEndpoint, request: ChatRequest, mut on_delta: F) -> Result<CompletionTurn, LlmError>
+where
+    F: FnMut(&str),
+{
+    LlmClient::new(endpoint.clone())?.stream_turn(request, &mut on_delta).await
 }
 
 pub async fn list_models(endpoint: &LlmEndpoint) -> Result<Vec<String>, LlmError> {
@@ -90,6 +113,15 @@ fn sanitize_model_id(raw: &str) -> Option<String> {
 
 impl LlmClient {
     pub async fn complete(&self, request: ChatRequest) -> Result<String, LlmError> {
+        let turn = self.complete_turn(request).await?;
+        if turn.text.is_empty() && turn.tool_calls.is_empty() {
+            Err(LlmError::Response)
+        } else {
+            Ok(turn.text)
+        }
+    }
+
+    pub async fn complete_turn(&self, request: ChatRequest) -> Result<CompletionTurn, LlmError> {
         let body = request.sanitize()?;
         let response = self.send(&body, false).await?;
         let status = response.status();
@@ -97,15 +129,29 @@ impl LlmClient {
             return Err(LlmError::Upstream(status.as_u16()));
         }
         let parsed: UpstreamCompletion = response.json().await.map_err(|_| LlmError::Response)?;
-        let text = parsed.choices.first().and_then(|choice| choice.message.as_ref()).map(|message| message.text()).unwrap_or_default();
-        if text.is_empty() {
+        let message = parsed.choices.first().and_then(|choice| choice.message.as_ref());
+        let text = message.map(UpstreamMessage::text).unwrap_or_default();
+        let tool_calls = message.map(UpstreamMessage::tool_calls).unwrap_or_default();
+        if text.is_empty() && tool_calls.is_empty() {
             Err(LlmError::Response)
         } else {
-            Ok(text)
+            Ok(CompletionTurn { text, tool_calls })
         }
     }
 
     pub async fn stream<F>(&self, request: ChatRequest, on_delta: &mut F) -> Result<String, LlmError>
+    where
+        F: FnMut(&str),
+    {
+        let turn = self.stream_turn(request, on_delta).await?;
+        if turn.text.is_empty() && turn.tool_calls.is_empty() {
+            Err(LlmError::Response)
+        } else {
+            Ok(turn.text)
+        }
+    }
+
+    pub async fn stream_turn<F>(&self, request: ChatRequest, on_delta: &mut F) -> Result<CompletionTurn, LlmError>
     where
         F: FnMut(&str),
     {
@@ -117,24 +163,29 @@ impl LlmClient {
         }
         let mut buf = SseBuf::default();
         let mut out = String::new();
+        let mut assembler = ToolCallAssembler::default();
         let mut bytes = response.bytes_stream();
         while let Some(chunk) = bytes.next().await {
             let chunk = chunk.map_err(|_| LlmError::Transport)?;
             let text = String::from_utf8_lossy(&chunk);
             for data in buf.push(&text) {
                 if data == "[DONE]" {
-                    return Ok(out);
+                    return Ok(CompletionTurn { text: out, tool_calls: assembler.finish() });
                 }
                 if let Some(delta) = delta_text(&data) {
                     out.push_str(&delta);
                     on_delta(&delta);
                 }
+                if let Some(calls) = delta_tool_calls(&data) {
+                    assembler.push(&calls);
+                }
             }
         }
-        if out.is_empty() {
+        let tool_calls = assembler.finish();
+        if out.is_empty() && tool_calls.is_empty() {
             Err(LlmError::Response)
         } else {
-            Ok(out)
+            Ok(CompletionTurn { text: out, tool_calls })
         }
     }
 
@@ -145,6 +196,9 @@ impl LlmClient {
             stream,
             temperature: body.temperature,
             max_tokens: body.max_tokens,
+            tools: body.tools.as_deref(),
+            tool_choice: body.tool_choice.as_ref(),
+            chat_template_kwargs: self.endpoint.chat_template_kwargs(),
         });
         if !self.endpoint.api_key.is_empty() {
             req = req.bearer_auth(&self.endpoint.api_key);

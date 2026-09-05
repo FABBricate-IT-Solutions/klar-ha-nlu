@@ -106,10 +106,10 @@ The token comes from `--token`, `KLAR_TOKEN`, or `--token-file`.
 | `semantic_adapters` | `true` consults local typed adapters after a ranking reject. Off by default. Proposals are revalidated; they never override Execute/Confirm/Clarify/Chat. |
 | `nlu_rag` | `true` attaches a matched-slice retrieval on `chat` and `reject` only. Off by default. Never Assist tools; the HA fallback may recover a command only through Klar tools. `POST /api/v2/parse` can set `nlu_rag` per request. |
 | `refine_speech` | `true` rewrites finished NLU speech with the engine LLM. Off by default. |
-| `extra_prompt` | Extra line on the packed personality. Empty uses the pack voice only. |
+| `extra_prompt` | House rule as a user message. Empty uses the pack voice only. Does not replace personality. |
 | `quiet_ack` | `true` chimes instead of TTS on simple on/off. Off by default. |
 | `calendar_llm` | `true` lets the engine LLM speak calendar events. Off by default. |
-| `allow_llm_tools` | `true` allows Assist tools on the chat model. Off by default. |
+| `allow_llm_tools` | `true` lets the engine chat model call Home Assistant Assist tools after Klar parse (2026.9 prefixed names). Off by default. |
 
 ### `GET` / `POST /api/v2/llm/endpoint`
 
@@ -129,7 +129,7 @@ Write token required (same as overlay). `stream: true` (default) emits SSE `data
 { "speech": "Wohnzimmer Licht ist an.", "language": "de", "personality": "butler", "extra_prompt": "", "stream": false }
 ```
 
-The engine builds the refine prompt (pack + voice + extra), runs the model (`temperature` 0.65, `max_tokens` 128), and applies `accept_refined`. JSON `{"type":"done","text":"…","accepted":true}`. If accept rejects, `text` is the original and `accepted` is false. Caps: `speech` ≤ 4096, `extra_prompt` ≤ 2048. Write token required. `503` when no endpoint. Do not send a Python-built system prompt.
+The engine builds the refine system prompt (pack + voice only) and sends extra as a user message, runs the model (`temperature` 0.65, `max_tokens` 192), and applies `accept_refined`. JSON `{"type":"done","text":"…","accepted":true}`. If accept rejects, `text` is the original and `accepted` is false. Caps: `speech` ≤ 4096, `extra_prompt` ≤ 2048. Write token required. `503` when no endpoint. Do not send a Python-built system prompt.
 
 ### `POST /api/v2/llm/assist`
 

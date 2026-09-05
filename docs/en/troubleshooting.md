@@ -55,6 +55,6 @@ The conversation journal (UI **Conversations**) keeps the last 200 turns for 24 
 
 The engine is local. No cloud, no model weights, no phone-home.
 
-An optional LLM in Home Assistant may rewrite a finished confirmation or handle chit-chat. That is your agent, not Klar. Keep Assist tools **off** on that agent unless you turn on **Allow Assist tools on the chit-chat agent**. NLU-RAG (off by default) may send an already-matched slice to that fallback. Without the tools option it never gets Assist or Home Assistant control tools.
+Klar’s engine LLM may rewrite a finished confirmation or handle chat. Configure it in the operator UI (Settings → LLM). **Allow Assist tools on chat** is off by default; when on, Core Assist tool names (2026.9 prefixes) are advertised after Klar parse. NLU-RAG (off by default) may send an already-matched slice and is exclusive with those HA tools in one round.
 
 Do not commit `KLAR_TOKEN`, `klar.token`, or unredacted bundles.

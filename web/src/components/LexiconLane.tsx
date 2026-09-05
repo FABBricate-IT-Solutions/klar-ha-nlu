@@ -108,6 +108,7 @@ export function LexiconLane({
         <h2>{t.laneLanguage}</h2>
         <OriginChip t={t} origin="seed" />
       </div>
+      <div className="lane-body">
       <h3>{overlayTitle}</h3>
       {lexiconRows.length === 0 && <p className="muted">{t.lexiconEmpty}</p>}
       {lexiconRows.map((row) => (
@@ -174,6 +175,7 @@ export function LexiconLane({
         );
       })}
       {seeds.length > 0 && <p className="caption">{t.governEmpty}</p>}
+      </div>
     </>
   );
 }

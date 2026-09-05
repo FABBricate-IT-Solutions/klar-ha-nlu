@@ -6,8 +6,9 @@ import { LlmModelField } from "./LlmModelField";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
-import { Field, FieldDescription, FieldGroup, FieldLabel } from "@/components/ui/field";
+import { Field, FieldContent, FieldDescription, FieldGroup, FieldLabel } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
+import { Switch } from "@/components/ui/switch";
 import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
 
 const OPENAI = "https://api.openai.com/v1";
@@ -24,6 +25,7 @@ export function LlmSettingsCard({ t }: { t: Messages }) {
   const [baseUrl, setBaseUrl] = useState("");
   const [model, setModel] = useState("");
   const [apiKey, setApiKey] = useState("");
+  const [enableThinking, setEnableThinking] = useState(false);
   const [status, setStatus] = useState("");
 
   const load = async () => {
@@ -32,6 +34,7 @@ export function LlmSettingsCard({ t }: { t: Messages }) {
     setBaseUrl(next.base_url || "");
     setModel(next.model || "");
     setApiKey("");
+    setEnableThinking(Boolean(next.enable_thinking));
   };
 
   useEffect(() => {
@@ -45,6 +48,7 @@ export function LlmSettingsCard({ t }: { t: Messages }) {
         model,
         ...(apiKey.trim() ? { api_key: apiKey.trim() } : {}),
         configured: true,
+        enable_thinking: enableThinking,
       });
       setEndpoint(next);
       setApiKey("");
@@ -61,6 +65,7 @@ export function LlmSettingsCard({ t }: { t: Messages }) {
       setBaseUrl("");
       setModel("");
       setApiKey("");
+      setEnableThinking(false);
       setStatus(t.llmClear);
     } catch {
       setStatus(t.trainerFail);
@@ -112,6 +117,13 @@ export function LlmSettingsCard({ t }: { t: Messages }) {
             <FieldLabel htmlFor="llm-key">{t.llmApiKey}</FieldLabel>
             <Input id="llm-key" type="password" value={apiKey} onChange={(ev) => setApiKey(ev.target.value)} placeholder={t.llmApiKeyHint} autoComplete="off" />
             <FieldDescription>{t.llmApiKeyHint}</FieldDescription>
+          </Field>
+          <Field orientation="horizontal">
+            <FieldContent>
+              <FieldLabel>{t.llmThinking}</FieldLabel>
+              <FieldDescription>{t.llmThinkingHint}</FieldDescription>
+            </FieldContent>
+            <Switch checked={enableThinking} onCheckedChange={(checked) => setEnableThinking(Boolean(checked))} />
           </Field>
         </FieldGroup>
       </CardContent>

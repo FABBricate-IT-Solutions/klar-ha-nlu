@@ -123,5 +123,5 @@ Slots: `entity_id`, `area`, `floor`, `domain`, plus `brightness`, `temperature`,
 ## Limits
 
 - No general world knowledge. “Tell me a joke” stays empty — in HA the fallback agent takes over.
-- No Assist tools in the engine. Devices run only through recognized intents. Klar may rewrite the finished confirmation through its OpenAI-compatible client; HA only streams tokens into Assist and does not grant Assist tools for that step.
+- Parse/execute stays deterministic. After a chat/reject fallback, optional `allow_llm_tools` may advertise Home Assistant Assist tools (2026.9 prefixed names) on Klar’s conversation entity. Refine never gets those tools.
 - Files stay under 500 lines; a new language is a new pack, not a longer `match` list.

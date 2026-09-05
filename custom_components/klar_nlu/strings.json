@@ -23,13 +23,13 @@
     "step": {
       "init": {
         "title": "Klar NLU",
-        "description": "Voice, Assist languages, and the LLM live in the Klar operator UI (Settings). This form only connects the engine: URL, token, channel, and an optional leftover conversation agent.",
+        "description": "Voice, Assist languages, and the LLM live in the Klar operator UI (Settings). This form only connects the engine: URL, token, and channel.",
         "data": {
           "mode": "Engine",
           "personality": "Personality",
           "languages": "Languages",
           "fallback_agent": "Optional legacy conversation agent",
-          "allow_llm_tools": "Allow Assist tools on the chit-chat agent",
+          "allow_llm_tools": "Allow Home Assistant Assist tools on engine chat",
           "refine_speech": "Let the LLM refine NLU replies",
           "refine_prompt": "Refinement prompt",
           "url": "Klar API URL",
@@ -42,14 +42,14 @@
         },
         "data_description": {
           "personality": "Stored in this integration, not in the Klar app. Changing personality loads that voice into the refinement prompt below so you can edit it. Assist and the LLM refine voice follow that prompt. With refine on, the voice lives in the sentence, not in a fixed cue.",
-          "refine_speech": "When on, Klar still controls devices. The fallback LLM then rewrites every finished Klar reply — switches, status, rejects, clarify, chat, news — as spoken sentences in the refinement prompt. Klar sends enable_thinking=false on that request.",
+          "refine_speech": "When on, Klar still controls devices. The engine LLM then rewrites finished NLU replies as spoken sentences in this voice.",
           "refine_prompt": "This is the system prompt for the voice: switches, status, clarify questions, and open questions. Change the personality, submit, then edit and save. Klar still keeps the safety rules: no device control, no new facts, same language.",
           "token": "Same token as the Klar add-on. Needed for overlay writes from Home Assistant.",
           "assist_filter": "Developer option. On (default): Klar changes only what Assist may see. Off: match hidden sensors and switches too — easier to hit the wrong device.",
           "nlu_rag": "Off by default. When on, chat and empty rejects send the already-matched slice to the fallback model. The model may recover a command only through Klar tools, never Assist or Home Assistant control tools.",
           "quiet_ack": "On simple light or switch on/off, skip the spoken reply and play a short chime on the satellite.",
           "calendar_llm": "Off by default. On: Klar still reads the calendar, then Klar's LLM speaks the events. Off: Klar speaks the list itself. Create, delete, and move stay in Klar.",
-          "allow_llm_tools": "Off by default. On: Klar still calls the chit-chat agent even if that agent can control Home Assistant. The model may turn lights and run scripts. Off: Klar skips the LLM when that agent has Assist tools.",
+          "allow_llm_tools": "Off by default. On: after Klar parses, the engine chat model may call Home Assistant Assist tools (names come from Core, already prefixed). Off: conversation only.",
           "languages": "Assist parsing and spoken replies. Default follows the Home Assistant system language. This form stays in the Home Assistant language. All languages keeps every compiled Assist locale enabled.",
           "channel": "Works anytime. On Home Assistant OS, Staging points at Klar NLU (Staging) even if setup started the bundled engine. Stable goes back to the Klar NLU app or the bundled engine. A custom URL is left alone. Do not edit `.storage`.",
           "fallback_agent": "Leave empty. Configure the LLM in the Klar operator UI (Settings → LLM). Assist chat and the trainer use that endpoint. This field is only for an old Home Assistant conversation integration."

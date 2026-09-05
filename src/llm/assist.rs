@@ -5,8 +5,8 @@ use super::assist_rag::{holds_klar_tool_prefix, parse_tool_reply, KlarTool};
 use super::assist_yarn::{yarn_asks_permission, yarn_canned, yarn_nudge};
 use super::client::chat;
 use super::endpoint::LlmEndpoint;
-use super::refine_prompt::refine_prompt;
-use super::types::{ChatEvent, ChatMessage, ChatRequest, LlmError};
+use super::refine_prompt::{refine_prompt, usable_extra};
+use super::types::{ChatEvent, ChatMessage, ChatRequest, CompletionTurn, LlmError, ToolCall};
 use serde::Deserialize;
 
 pub const ASSIST_TEMPERATURE: f32 = 0.65;
@@ -40,7 +40,13 @@ pub struct AssistRequest {
     #[serde(default)]
     pub extra_prompt: Option<String>,
     #[serde(default)]
+    pub conversation_id: String,
+    #[serde(default)]
     pub stream: Option<bool>,
+    #[serde(default)]
+    pub tools: Option<Vec<serde_json::Value>>,
+    #[serde(default)]
+    pub tool_messages: Vec<ChatMessage>,
 }
 
 #[derive(Debug, Clone, Deserialize)]
@@ -72,6 +78,7 @@ impl AssistFacts {
 pub struct AssistOutcome {
     pub text: String,
     pub tool: Option<KlarTool>,
+    pub tool_calls: Vec<ToolCall>,
     pub events: Vec<ChatEvent>,
 }
 
@@ -87,8 +94,9 @@ struct SanitizedAssist {
     history: Vec<(String, String)>,
     extra_system: String,
     extra_prompt: String,
-    #[allow(dead_code)]
     stream: bool,
+    tools: Option<Vec<serde_json::Value>>,
+    tool_messages: Vec<ChatMessage>,
 }
 
 impl AssistRequest {
@@ -134,6 +142,8 @@ impl AssistRequest {
             extra_system,
             extra_prompt,
             stream: self.stream.unwrap_or(true),
+            tools: if self.nlu_rag { None } else { self.tools },
+            tool_messages: if self.nlu_rag { Vec::new() } else { self.tool_messages },
         })
     }
 }
@@ -153,8 +163,18 @@ impl SanitizedAssist {
                 base = format!("{base}\n\n{history}");
             }
         }
-        let voice = refine_prompt(&self.language, &self.personality, Some(self.extra_prompt.as_str()));
-        with_personality(&base, &voice)
+        let voice = refine_prompt(&self.language, &self.personality);
+        let mut prompt = with_personality(&base, &voice);
+        if self.uses_ha_tools() {
+            prompt = format!(
+                "{prompt}\n\nKlar already parsed device commands. Tools are for live context and leftovers. Use tool names exactly as provided."
+            );
+        }
+        prompt
+    }
+
+    fn uses_ha_tools(&self) -> bool {
+        self.allow_tools && !self.nlu_rag && self.tools.as_ref().is_some_and(|tools| !tools.is_empty())
     }
 
     fn user_text(&self) -> String {
@@ -171,44 +191,97 @@ pub async fn assist(endpoint: &LlmEndpoint, request: AssistRequest) -> Result<As
     let kind = body.resolved_kind();
     let system = body.system_prompt();
     let asked = body.user_text();
-    let mut raw = complete(endpoint, &system, &asked).await?;
-    if kind == AssistKind::Yarn && yarn_asks_permission(&raw) {
+    let stream = body.stream && kind != AssistKind::Yarn && kind != AssistKind::Rag && !body.nlu_rag;
+    if stream {
+        return complete_stream(endpoint, &body, &system, &asked).await;
+    }
+    let mut turn = complete_turn(endpoint, &body, &system, &asked).await?;
+    if kind == AssistKind::Yarn && yarn_asks_permission(&turn.text) {
         let nudged = yarn_nudge(&body.language, &system);
-        raw = complete(endpoint, &nudged, &asked).await.unwrap_or(raw);
-        if yarn_asks_permission(&raw) {
-            raw = yarn_canned(&body.language, &body.text);
+        turn.text = complete(endpoint, chat_body(&body, &nudged, &asked, false)).await.unwrap_or(turn.text);
+        if yarn_asks_permission(&turn.text) {
+            turn.text = yarn_canned(&body.language, &body.text);
+            turn.tool_calls.clear();
         }
     }
     if kind == AssistKind::Rag || body.nlu_rag {
-        if let Some(tool) = parse_tool_reply(&raw) {
+        if let Some(tool) = parse_tool_reply(&turn.text) {
             return Ok(AssistOutcome {
                 text: tool.spoken_line(),
                 tool: Some(tool.clone()),
+                tool_calls: Vec::new(),
                 events: vec![tool.event(), ChatEvent::Done { text: String::new() }],
             });
         }
-        if holds_klar_tool_prefix(raw.trim_start()) && parse_tool_reply(&raw).is_none() {
-            // Incomplete prefix — do not speak it.
-            raw = String::new();
+        if holds_klar_tool_prefix(turn.text.trim_start()) && parse_tool_reply(&turn.text).is_none() {
+            turn.text = String::new();
         }
     }
-    Ok(AssistOutcome { text: raw.clone(), tool: None, events: vec![ChatEvent::Delta { text: raw.clone() }, ChatEvent::Done { text: raw }] })
+    Ok(outcome_from_turn(turn, false))
 }
 
-async fn complete(endpoint: &LlmEndpoint, system: &str, user: &str) -> Result<String, LlmError> {
-    chat(
-        endpoint,
-        ChatRequest {
-            messages: vec![
-                ChatMessage { role: "system".into(), content: system.to_string() },
-                ChatMessage { role: "user".into(), content: user.to_string() },
-            ],
-            stream: Some(false),
-            temperature: Some(ASSIST_TEMPERATURE),
-            max_tokens: Some(ASSIST_MAX_TOKENS),
-        },
-    )
-    .await
+fn chat_messages(body: &SanitizedAssist, system: &str, user: &str) -> Vec<ChatMessage> {
+    let mut messages = vec![ChatMessage::new("system", system)];
+    if usable_extra(&body.extra_prompt, &body.language) {
+        messages.push(ChatMessage::new("user", body.extra_prompt.trim()));
+    }
+    messages.push(ChatMessage::new("user", user));
+    messages.extend(body.tool_messages.iter().cloned());
+    messages
+}
+
+fn chat_body(body: &SanitizedAssist, system: &str, user: &str, stream: bool) -> ChatRequest {
+    ChatRequest {
+        messages: chat_messages(body, system, user),
+        stream: Some(stream),
+        temperature: Some(ASSIST_TEMPERATURE),
+        max_tokens: Some(ASSIST_MAX_TOKENS),
+        tools: if body.uses_ha_tools() { body.tools.clone() } else { None },
+        tool_choice: None,
+    }
+}
+
+fn outcome_from_turn(turn: CompletionTurn, streamed: bool) -> AssistOutcome {
+    let mut events = Vec::new();
+    if !streamed && !turn.text.is_empty() {
+        events.push(ChatEvent::Delta { text: turn.text.clone() });
+    }
+    for call in &turn.tool_calls {
+        events.push(ChatEvent::ToolCall {
+            id: call.id.clone(),
+            name: call.function.name.clone(),
+            arguments: call.function.arguments.clone(),
+        });
+    }
+    events.push(ChatEvent::Done { text: turn.text.clone() });
+    AssistOutcome { text: turn.text, tool: None, tool_calls: turn.tool_calls, events }
+}
+
+async fn complete(endpoint: &LlmEndpoint, request: ChatRequest) -> Result<String, LlmError> {
+    chat(endpoint, request).await
+}
+
+async fn complete_turn(endpoint: &LlmEndpoint, body: &SanitizedAssist, system: &str, user: &str) -> Result<CompletionTurn, LlmError> {
+    super::client::chat_turn(endpoint, chat_body(body, system, user, false)).await
+}
+
+async fn complete_stream(endpoint: &LlmEndpoint, body: &SanitizedAssist, system: &str, user: &str) -> Result<AssistOutcome, LlmError> {
+    let mut events = Vec::new();
+    let turn = super::client::chat_stream_turn(endpoint, chat_body(body, system, user, true), |delta| {
+        if !delta.is_empty() {
+            events.push(ChatEvent::Delta { text: delta.to_string() });
+        }
+    })
+    .await?;
+    for call in &turn.tool_calls {
+        events.push(ChatEvent::ToolCall {
+            id: call.id.clone(),
+            name: call.function.name.clone(),
+            arguments: call.function.arguments.clone(),
+        });
+    }
+    events.push(ChatEvent::Done { text: turn.text.clone() });
+    Ok(AssistOutcome { text: turn.text, tool: None, tool_calls: turn.tool_calls, events })
 }
 
 #[cfg(test)]
@@ -229,7 +302,10 @@ mod tests {
             history: vec![],
             extra_system: None,
             extra_prompt: None,
+            conversation_id: String::new(),
             stream: Some(true),
+            tools: None,
+            tool_messages: vec![],
         };
         let body = req.sanitize().unwrap();
         assert_eq!(body.resolved_kind(), AssistKind::Yarn);
@@ -237,6 +313,32 @@ mod tests {
         assert!(system.contains("Witz"));
         assert!(system.contains("Stimme:") || system.contains("Voice:"));
         assert!(!system.contains("KLAR_PARSE:"));
+        assert!(!system.contains("Ein oder zwei Sätze."));
+        let with_extra = AssistRequest { extra_prompt: Some("Ein oder zwei Sätze.".into()), ..req_yarn() }.sanitize().unwrap();
+        assert!(!with_extra.system_prompt().contains("Ein oder zwei Sätze."));
+        let messages = chat_messages(&with_extra, &with_extra.system_prompt(), "hi");
+        assert_eq!(messages[1].role, "user");
+        assert_eq!(messages[1].content, "Ein oder zwei Sätze.");
+    }
+
+    fn req_yarn() -> AssistRequest {
+        AssistRequest {
+            text: "erzähl einen Witz".into(),
+            language: "de".into(),
+            personality: "butler".into(),
+            kind: "auto".into(),
+            allow_tools: false,
+            nlu_rag: false,
+            retrieval: None,
+            facts: None,
+            history: vec![],
+            extra_system: None,
+            extra_prompt: None,
+            conversation_id: String::new(),
+            stream: Some(true),
+            tools: None,
+            tool_messages: vec![],
+        }
     }
 
     #[test]
@@ -253,8 +355,37 @@ mod tests {
             history: vec![],
             extra_system: None,
             extra_prompt: None,
+            conversation_id: String::new(),
             stream: None,
+            tools: None,
+            tool_messages: vec![],
         };
         assert!(req.sanitize().is_err());
+    }
+
+    #[test]
+    fn nlu_rag_drops_ha_tools() {
+        let req = AssistRequest {
+            text: "licht an".into(),
+            language: "de".into(),
+            personality: "default".into(),
+            kind: "rag".into(),
+            allow_tools: true,
+            nlu_rag: true,
+            retrieval: None,
+            facts: None,
+            history: vec![],
+            extra_system: None,
+            extra_prompt: None,
+            conversation_id: String::new(),
+            stream: Some(false),
+            tools: Some(vec![serde_json::json!({"type":"function","function":{"name":"intent__HassTurnOn"}})]),
+            tool_messages: vec![],
+        };
+        let body = req.sanitize().unwrap();
+        assert!(body.tools.is_none());
+        assert!(!body.uses_ha_tools());
+        assert!(!body.system_prompt().contains("intent__HassTurnOn"));
+        assert!(!body.system_prompt().contains("HassTurnOn"));
     }
 }

@@ -2,14 +2,13 @@
 
 use super::refine_shots::locale_shots;
 use super::refine_voices::{normalize_personality, rules, voice, Lane};
+use serde::Serialize;
 
 const GERMAN_EXTRA_MARKERS: &[&str] = &["Stimme:", "Schalt-Bestätigungen", "Antworte nur auf Deutsch"];
 
-pub fn refine_prompt(pack: &str, personality: &str, extra: Option<&str>) -> String {
+pub fn refine_prompt(pack: &str, personality: &str) -> String {
     let personality = normalize_personality(personality);
-    let custom = extra.unwrap_or("").trim();
-    let stock = voice_block(pack, personality);
-    let voice_text = if usable_extra(custom, pack) { custom.to_string() } else { stock };
+    let voice_text = voice_block(pack, personality);
     let rules_text = rules(lane_for_rules(pack));
     let lock = language_lock(pack);
     format!("{lock}\n\n{rules_text}\n\n{voice_text}\n\n{lock}")
@@ -30,7 +29,7 @@ pub fn language_lock(pack: &str) -> String {
     }
 }
 
-fn usable_extra(custom: &str, pack: &str) -> bool {
+pub fn usable_extra(custom: &str, pack: &str) -> bool {
     if custom.is_empty() {
         return false;
     }
@@ -40,7 +39,19 @@ fn usable_extra(custom: &str, pack: &str) -> bool {
     true
 }
 
+fn stock_voice_pack(pack: &str) -> &str {
+    let tag = pack.trim();
+    if tag.eq_ignore_ascii_case("de") || tag.eq_ignore_ascii_case("de-de") {
+        "de"
+    } else if tag.eq_ignore_ascii_case("en") || tag.eq_ignore_ascii_case("en-us") {
+        "en"
+    } else {
+        pack
+    }
+}
+
 fn voice_block(pack: &str, personality: &str) -> String {
+    let pack = stock_voice_pack(pack);
     if pack == "en" {
         let block = voice(personality, Lane::En);
         return format!(
@@ -108,13 +119,27 @@ fn native_name(pack: &str) -> String {
         .unwrap_or_else(|| pack.to_string())
 }
 
+#[derive(Debug, Clone, Serialize, PartialEq, Eq)]
+pub struct PersonalityPreview {
+    pub personality: String,
+    pub flavor: String,
+    pub prompt: String,
+}
+
+pub fn personality_preview(pack: &str, personality: &str) -> PersonalityPreview {
+    let personality = normalize_personality(personality).to_string();
+    let flavor = voice(&personality, lane_for_rules(pack)).flavor.to_string();
+    let prompt = refine_prompt(pack, &personality);
+    PersonalityPreview { personality, flavor, prompt }
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;
 
     #[test]
-    fn german_butler_keeps_safety_and_extra() {
-        let prompt = refine_prompt("de", "butler", Some("Ein oder zwei Sätze."));
+    fn german_butler_keeps_safety_and_stock_voice() {
+        let prompt = refine_prompt("de", "butler");
         assert!(prompt.contains("Keine Home-Assistant-Werkzeuge"));
         assert!(prompt.contains("Ziffern bleiben Ziffern"));
         assert!(prompt.contains("2 bleibt 2"));
@@ -124,17 +149,19 @@ mod tests {
         assert!(prompt.contains("ein Satz"));
         assert!(prompt.contains("Uhrzeiten ohne Sekunden"));
         assert!(prompt.contains("14:44 nicht 14:44:55"));
-        assert!(prompt.contains("Ein oder zwei Sätze."));
         assert!(prompt.contains("Offene Fragen"));
         assert!(prompt.contains("Ist die Vorlage eine Frage, bleibt die Antwort eine Frage."));
+        assert!(prompt.contains("Butler"));
+        assert!(!prompt.contains("Ein oder zwei Sätze."));
         assert!(!prompt.contains("Formel: Sehr wohl."));
         assert!(!prompt.contains("Hänge immer an"));
-        assert!(!prompt.contains("Butler"));
+        assert!(usable_extra("Ein oder zwei Sätze.", "de"));
+        assert!(!usable_extra("", "de"));
     }
 
     #[test]
     fn empty_extra_uses_builtin_voice() {
-        let prompt = refine_prompt("de", "butler", None);
+        let prompt = refine_prompt("de", "butler");
         assert!(prompt.contains("Butler"));
         assert!(prompt.contains("Klebe nicht jedes Mal dieselbe Eröffnung davor."));
         assert!(prompt.contains("Status"));
@@ -142,7 +169,7 @@ mod tests {
 
     #[test]
     fn english_prompt_locks_language() {
-        let prompt = refine_prompt("en", "locker", None);
+        let prompt = refine_prompt("en", "locker");
         assert!(prompt.contains("Do not call Home Assistant tools"));
         assert!(prompt.contains("casual"));
         assert!(prompt.contains("Voice:"));
@@ -156,28 +183,41 @@ mod tests {
 
     #[test]
     fn german_stored_extra_ignored_for_english() {
-        let prompt = refine_prompt("en", "butler", Some("Stimme: Jarvis.\nSchalt-Bestätigungen"));
+        let prompt = refine_prompt("en", "butler");
         assert!(prompt.contains("Do not translate into German"));
         assert!(prompt.contains("Voice:"));
         assert!(!prompt.contains("Stimme:"));
+        assert!(!usable_extra("Stimme: Jarvis.\nSchalt-Bestätigungen", "en"));
+        assert!(usable_extra("Keep replies to one sentence.", "en"));
     }
 
     #[test]
     fn other_packs_use_meta_rules() {
         for pack in ["fr", "nl", "ja"] {
-            let prompt = refine_prompt(pack, "butler", None);
+            let prompt = refine_prompt(pack, "butler");
             assert!(!prompt.contains("Stimme:"), "{pack}");
             assert!(!prompt.contains("Klebe nicht jedes Mal"), "{pack}");
             assert!(prompt.to_lowercase().contains("same language"), "{pack}");
             assert!(prompt.to_lowercase().contains("input line"), "{pack}");
         }
-        let french = refine_prompt("fr", "butler", None);
+        let french = refine_prompt("fr", "butler");
         assert!(french.contains("Examples:"));
         assert!(french.contains('→'));
-        let swiss = refine_prompt("de-CH", "butler", None);
+        let swiss = refine_prompt("de-CH", "butler");
         assert!(!swiss.contains("Stimme:"));
         assert!(swiss.contains("Schwyzerdütsch"));
-        assert_eq!(refine_prompt("de", "not-a-voice", None), refine_prompt("de", "default", None));
+        assert_eq!(refine_prompt("de", "not-a-voice"), refine_prompt("de", "default"));
+        let de_de = refine_prompt("de-DE", "jarvis");
+        assert!(de_de.contains("Stimme:"));
+        assert!(de_de.contains("Jarvis"));
+    }
+
+    #[test]
+    fn preview_matches_selected_personality() {
+        let preview = personality_preview("de", "jarvis");
+        assert_eq!(preview.personality, "jarvis");
+        assert!(preview.flavor.contains("Jarvis"));
+        assert_eq!(preview.prompt, refine_prompt("de", "jarvis"));
     }
 
     #[test]
@@ -186,7 +226,7 @@ mod tests {
         for name in
             ["default", "butler", "locker", "fuersorglich", "party", "grantig", "sarkastisch", "pirat", "hippie", "gollum", "jarvis"]
         {
-            let prompt = refine_prompt("de", name, None);
+            let prompt = refine_prompt("de", name);
             assert!(!prompt.contains("Hänge immer an"), "{name}");
             assert!(prompt.contains('→'), "{name}");
             assert!(seen.insert(prompt), "{name} duplicate");

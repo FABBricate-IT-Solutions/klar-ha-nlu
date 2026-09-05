@@ -77,7 +77,14 @@ export function ConversationsPage({
               </div>
             </div>
             {heard ? <p>{heard}</p> : <p className="muted">—</p>}
-            {turn.speech ? <p className="muted">{turn.speech}</p> : null}
+            {turn.speech ? (
+              <p className="muted">
+                {turn.speech_source === "chat" ? <span className="chip">{t.speechChat}</span> : null}
+                {turn.speech_source === "refine" ? <span className="chip">{t.speechRefined}</span> : null}
+                {" "}
+                {turn.speech}
+              </p>
+            ) : null}
             {turn.preferred_area ? <p className="caption">{t.heardIn}: {turn.preferred_area}</p> : null}
             {canTeachFromMiss(turn) && (
               <div style={{ marginTop: 12 }}>
