@@ -372,7 +372,7 @@ fn match_catalog_is_stable_and_language_free() {
         assert_eq!(row.summary_key, format!("match.{}", row.id));
         assert!(row.id.bytes().all(|byte| byte.is_ascii_lowercase() || byte == b'_'));
         assert!(row.summary_key.starts_with("match."));
-        assert!(!row.summary_key.chars().any(|ch| !ch.is_ascii()));
+        assert!(row.summary_key.is_ascii());
     }
     assert!(ids.contains("area_command"));
     assert!(ids.contains("media"));
