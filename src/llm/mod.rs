@@ -1,5 +1,9 @@
 //! OpenAI-compatible chat client. Never called from `nlu::parse`.
 
+mod assist;
+mod assist_prompt;
+mod assist_rag;
+mod assist_yarn;
 mod client;
 mod endpoint;
 mod extract;
@@ -18,6 +22,10 @@ mod sse;
 mod trainer;
 mod types;
 
+pub use assist::{assist, AssistOutcome, AssistRequest};
+pub use assist_prompt::{keeps_calendar_reply, AssistKind};
+pub use assist_rag::leaks_klar_tools;
+pub use assist_yarn::yarn_request;
 pub use client::{chat, chat_stream, LlmClient};
 pub use endpoint::{LlmEndpoint, LlmPublic};
 pub use extract::json_object;

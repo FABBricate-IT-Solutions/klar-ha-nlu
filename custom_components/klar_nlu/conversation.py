@@ -78,7 +78,7 @@ from .rag_tools import (
     parse_tool_reply,
     rag_prompt,
 )
-from .engine_llm import stream_engine_chat
+from .engine_llm import EngineAssistMissing, stream_engine_assist, stream_engine_chat
 from .news import announce, asked_for_more, compose_speech, fetch_headlines, nudge
 from .policy_actions import (
     hit_and_payload,
@@ -304,7 +304,7 @@ class KlarConversationEntity(ConversationEntity):
         if hit == "llm" and action and not clarify and decision_type != "execute" and not payload.get("unreachable"):
             prompt = yarn_prompt(pack, action, user_input.text) if yarn_request(user_input.text) else chat_only_prompt(pack, action, self._allow_llm_tools())
             fallback = await self._fallback(
-                user_input, chat_log, pack, True, prompt, retrieval
+                user_input, chat_log, pack, True, prompt, retrieval, extra_system=action
             )
             replied = await self._after_fallback(
                 user_input, chat_log, pack, fallback, speech, conversation_id
@@ -349,6 +349,9 @@ class KlarConversationEntity(ConversationEntity):
                     True,
                     calendar_prompt(pack, speech, extra_s),
                     user_text=calendar_readback(pack, speech),
+                    kind="calendar",
+                    facts=speech,
+                    extra_system=extra_s,
                 )
                 llm = _speech_from_result(fallback) if fallback is not None else ""
                 if keeps_calendar_reply(speech, llm):
@@ -450,13 +453,18 @@ class KlarConversationEntity(ConversationEntity):
         extra = getattr(user_input, "extra_system_prompt", None)
         extra_s = extra if isinstance(extra, str) else None
         announced = False
+        headlines: list[str] = []
         if intro:
             announced = await announce(self.hass, user_input, intro)
             headlines = await fetch_headlines(self.hass, pack)
             prompt = news_prompt(pack, headlines, extra_s)
+            kind = "news"
         else:
             prompt = news_followup_prompt(pack, extra_s)
-        result = await self._fallback(user_input, chat_log, pack, True, prompt, publish=False)
+            kind = "news_follow"
+        result = await self._fallback(
+            user_input, chat_log, pack, True, prompt, publish=False, kind=kind, facts=headlines, extra_system=extra_s
+        )
         llm = _speech_from_result(result) if result is not None else ""
         extra_nudge = nudge(pack) if intro and not asked_for_more(llm) else ""
         spoken = compose_speech(intro, llm, extra_nudge, announced) or intro or _cue(_DONE, pack, "OK")
@@ -560,6 +568,9 @@ class KlarConversationEntity(ConversationEntity):
         retrieval: dict[str, Any] | None = None,
         publish: bool = True,
         user_text: str | None = None,
+        kind: str | None = None,
+        facts: str | list[str] | None = None,
+        extra_system: str | None = None,
     ) -> ConversationResult | None:
         agent_id = self._fallback_agent_id()
         if agent_id and not can_use_fallback_agent(
@@ -568,8 +579,38 @@ class KlarConversationEntity(ConversationEntity):
             _LOGGER.warning("LLM-Fallback %s hat Assist-Werkzeuge — übersprungen", agent_id)
             agent_id = None
         asked = (user_text or user_input.text).strip() or user_input.text
-        extra_s = getattr(user_input, "extra_system_prompt", None)
+        extra_s = extra_system if extra_system is not None else getattr(user_input, "extra_system_prompt", None)
         extra_s = extra_s if isinstance(extra_s, str) else None
+        session_id = self._llm_session_id(user_input)
+        yarn = yarn_request(user_input.text)
+        assist_kind = kind or ("auto")
+        assist_text = user_input.text if assist_kind == "calendar" else asked
+        try:
+            engine_assist = await stream_engine_assist(
+                self.hass,
+                assist_text,
+                pack,
+                self._personality(),
+                chat_log if publish else None,
+                getattr(user_input, "agent_id", None),
+                kind=assist_kind,
+                allow_tools=self._allow_llm_tools(),
+                nlu_rag=self._nlu_rag(),
+                retrieval=retrieval,
+                facts=facts,
+                history=self._llm_turns(session_id),
+                extra_system=extra_s,
+                extra_prompt=str(self._entry.options.get(CONF_REFINE_PROMPT) or ""),
+                url=self._url,
+                token=self._token(),
+                publish=publish,
+            )
+            if engine_assist is not None:
+                speech, published = engine_assist
+                if speech:
+                    return _speech_result(pack, speech, published and chat_log is not None)
+        except EngineAssistMissing:
+            pass
         voice = refine_prompt(pack, self._personality(), str(self._entry.options.get(CONF_REFINE_PROMPT) or ""))
         if prompt:
             system = with_personality(prompt, voice)
@@ -581,11 +622,9 @@ class KlarConversationEntity(ConversationEntity):
             system = chat_only_prompt(
                 pack, with_personality(extra_s, voice), self._allow_llm_tools()
             )
-        session_id = self._llm_session_id(user_input)
         prior = history_prompt(pack, self._llm_turns(session_id))
         if prior and not yarn_request(user_input.text):
             system = f"{system}\n\n{prior}"
-        yarn = yarn_request(user_input.text)
         engine_out = await stream_engine_chat(
             self.hass,
             [{"role": "system", "content": system}, {"role": "user", "content": asked}],

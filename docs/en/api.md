@@ -126,6 +126,26 @@ Write token required (same as overlay). `stream: true` (default) emits SSE `data
 
 The engine builds the refine prompt (pack + voice + extra), runs the model (`temperature` 0.65, `max_tokens` 128), and applies `accept_refined`. JSON `{"type":"done","text":"…","accepted":true}`. If accept rejects, `text` is the original and `accepted` is false. Caps: `speech` ≤ 4096, `extra_prompt` ≤ 2048. Write token required. `503` when no endpoint. Do not send a Python-built system prompt.
 
+### `POST /api/v2/llm/assist`
+
+```json
+{
+  "text": "erzähl einen Witz",
+  "language": "de",
+  "personality": "butler",
+  "kind": "auto",
+  "allow_tools": false,
+  "nlu_rag": false,
+  "retrieval": null,
+  "facts": null,
+  "history": [["user", "…"], ["assistant", "…"]],
+  "extra_system": null,
+  "stream": true
+}
+```
+
+Engine owns Yarn/chat/RAG/calendar/news prompts and `yarn_canned` / `yarn_nudge`. `kind`: `auto` | `yarn` | `chat` | `rag` | `calendar` | `news` | `news_follow`. `auto` uses `yarn_request` / the RAG flag. `facts` is a headline list or calendar readback gathered by HA. Personality is applied here — do not also prepend `refine_prompt`. SSE adds `{"type":"tool","tool":"klar.parse","text":"licht an"}` / `klar.act` so TTS never speaks `KLAR_PARSE:`. Write token required. `503` when no endpoint. `404` keeps the previous Python prompt path for one staging bake.
+
 ### `POST /api/v2/policies/trainer/chat`
 
 ```json

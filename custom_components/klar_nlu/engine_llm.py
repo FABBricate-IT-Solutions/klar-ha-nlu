@@ -114,6 +114,159 @@ def _refine_result(payload: object) -> tuple[str, bool] | None:
     return None
 
 
+async def stream_engine_assist(
+    hass: HomeAssistant,
+    text: str,
+    language: str,
+    personality: str,
+    chat_log: Any,
+    agent_id: str | None,
+    *,
+    kind: str = "auto",
+    allow_tools: bool = False,
+    nlu_rag: bool = False,
+    retrieval: dict[str, Any] | None = None,
+    facts: str | list[str] | None = None,
+    history: list[tuple[str, str]] | None = None,
+    extra_system: str | None = None,
+    extra_prompt: str = "",
+    url: str | None = None,
+    token: str | None = None,
+    publish: bool = True,
+) -> tuple[str, bool] | None:
+    target = engine_target(hass, url, token)
+    if target is None:
+        return None
+    collected: list[str] = []
+    tool_line = ""
+
+    async def tokens() -> AsyncIterator[str]:
+        nonlocal tool_line
+        async for event in iter_engine_assist_events(
+            hass,
+            text,
+            language,
+            personality,
+            kind=kind,
+            allow_tools=allow_tools,
+            nlu_rag=nlu_rag,
+            retrieval=retrieval,
+            facts=facts,
+            history=history,
+            extra_system=extra_system,
+            extra_prompt=extra_prompt,
+            url=url,
+            token=token,
+        ):
+            if event.get("type") == "tool":
+                tool_line = _tool_speech(event)
+                continue
+            if event.get("type") == "delta":
+                piece = str(event.get("text") or "")
+                if piece:
+                    yield piece
+
+    try:
+        posted = await emit_delta_stream(
+            chat_log if publish else None,
+            agent_id,
+            iter_token_deltas(tokens(), collected, None),
+        )
+    except EngineAssistMissing:
+        raise
+    except EngineUnavailable:
+        return None
+    except Exception as err:  # noqa: BLE001 — engine HTTP is a system boundary
+        _LOGGER.debug("Klar LLM assist failed: %s", err)
+        return None
+    speech = tool_line or "".join(collected)
+    if not speech:
+        return None
+    return speech, bool(posted) and not tool_line and publish
+
+
+async def iter_engine_assist_events(
+    hass: HomeAssistant,
+    text: str,
+    language: str,
+    personality: str,
+    *,
+    kind: str = "auto",
+    allow_tools: bool = False,
+    nlu_rag: bool = False,
+    retrieval: dict[str, Any] | None = None,
+    facts: str | list[str] | None = None,
+    history: list[tuple[str, str]] | None = None,
+    extra_system: str | None = None,
+    extra_prompt: str = "",
+    url: str | None = None,
+    token: str | None = None,
+) -> AsyncIterator[dict[str, Any]]:
+    target = engine_target(hass, url, token)
+    if target is None:
+        raise EngineUnavailable
+    base, tok = target
+    session = _session(hass)
+    if session is None:
+        raise EngineUnavailable
+    headers = {"X-Klar-Token": tok, "Accept": "text/event-stream"} if tok else {"Accept": "text/event-stream"}
+    body: dict[str, Any] = {
+        "text": text,
+        "language": language,
+        "personality": personality,
+        "kind": kind,
+        "allow_tools": allow_tools,
+        "nlu_rag": nlu_rag,
+        "retrieval": retrieval,
+        "facts": facts,
+        "history": [list(turn) for turn in (history or [])],
+        "extra_system": extra_system,
+        "extra_prompt": extra_prompt,
+        "stream": True,
+    }
+    last_err: Exception | None = None
+    for host in engine_url_candidates(base):
+        try:
+            async with session.post(
+                f"{host}/api/v2/llm/assist",
+                json=body,
+                headers=headers,
+                timeout=_CHAT_TIMEOUT,
+            ) as resp:
+                if resp.status == 404:
+                    raise EngineAssistMissing
+                if resp.status == 503:
+                    raise EngineUnavailable
+                resp.raise_for_status()
+                async for event in _iter_sse_json(resp.content):
+                    if event.get("type") == "error":
+                        raise RuntimeError(str(event.get("message") or "llm error"))
+                    yield event
+            return
+        except EngineAssistMissing:
+            raise
+        except EngineUnavailable:
+            raise
+        except (ClientError, TimeoutError, OSError) as err:
+            last_err = err
+            continue
+    if last_err is not None:
+        raise last_err
+    raise EngineUnavailable
+
+
+def _tool_speech(event: Mapping[str, Any]) -> str:
+    name = str(event.get("tool") or "")
+    if name == "klar.parse":
+        return f"KLAR_PARSE: {str(event.get('text') or '').strip()}".strip()
+    if name == "klar.act":
+        intent = str(event.get("intent") or "").strip()
+        slots = event.get("slots") if isinstance(event.get("slots"), dict) else {}
+        bits = " ".join(f"{key}={value}" for key, value in slots.items() if key and value)
+        return f"KLAR_ACT: {intent} {bits}".strip()
+    return ""
+
+
 async def complete_engine_chat(
     hass: HomeAssistant,
     messages: list[dict[str, str]],
@@ -249,6 +402,10 @@ class EngineUnavailable(Exception):
 
 class EngineRefineMissing(Exception):
     """Engine has no POST /api/v2/llm/refine yet."""
+
+
+class EngineAssistMissing(Exception):
+    """Engine has no POST /api/v2/llm/assist yet."""
 
 
 def _event_text(payload: object) -> str:
