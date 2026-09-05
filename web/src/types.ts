@@ -136,7 +136,8 @@ export type PolicyRule = {
 export type SpeechVariant = { language: string; personality: string; text: string };
 export type SpeechBankEntry = { rule_id: string; variants: SpeechVariant[] };
 export type SpeechBank = { entries: SpeechBankEntry[] };
-export type PolicyBundle = { policies: PolicyRule[]; speech_bank: SpeechBank };
+export type PolicyBundle = { policies: PolicyRule[]; speech_bank: SpeechBank; match_controls?: MatchControl[] };
+export type MatchControl = { id: string; enabled: boolean; precedence?: number };
 export type SetDelta = { add?: string[]; remove?: string[] };
 export type LanguageOverlay = { sets?: Record<string, SetDelta> };
 export type MatchCatalogRow = { id: string; precedence: number; summary_key: string };
@@ -147,6 +148,7 @@ export type EvaluateOut = {
   matched_rule?: string | null;
   hit?: string | null;
   speech_variant?: string | null;
+  warnings?: string[];
 };
 
 export type ConversationTurn = {

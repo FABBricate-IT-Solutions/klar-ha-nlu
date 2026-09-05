@@ -9,6 +9,7 @@ import type {
   PolicyBundle,
   PolicyRule,
   MatchCatalog,
+  MatchControl,
   LanguageOverlay,
   Settings,
   UiState,
@@ -62,7 +63,7 @@ export const api = {
   policies: () => request<PolicyBundle>("/api/v2/policies"),
   policiesCatalog: () => request<MatchCatalog>("/api/v2/policies/catalog"),
   savePolicies: (body: PolicyBundle) => request<PolicyBundle>("/api/v2/policies", { method: "POST", body: JSON.stringify(body) }),
-  evaluatePolicies: (body: { text: string; language?: string; policies?: PolicyRule[] }) =>
+  evaluatePolicies: (body: { text: string; language?: string; policies?: PolicyRule[]; match_controls?: MatchControl[] }) =>
     request<EvaluateOut>("/api/v2/policies/evaluate", { method: "POST", body: JSON.stringify(body) }),
   conversations: () => request<ConversationTurn[]>("/api/v2/conversations"),
   conversation: (id: string) => request<ConversationTurn[]>(`/api/v2/conversations/${encodeURIComponent(id)}`),

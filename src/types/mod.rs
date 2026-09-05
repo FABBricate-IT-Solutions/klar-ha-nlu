@@ -14,7 +14,7 @@ pub use outcome::{
 };
 pub use policy::{
     allow_permitted, fill_speech, first_matching_rule, matches_when, pick_speech, sanitize_rules, sanitize_speech_bank, script_entity_id,
-    MatchCatalogRow, PolicyEffect, PolicyHit, PolicyMatch, PolicyRule, SpeechBank, SpeechBankEntry, SpeechVariant, MAX_POLICY_RULES,
-    MAX_SPEECH_VARIANTS,
+    MatchCatalogRow, MatchControl, PolicyEffect, PolicyHit, PolicyMatch, PolicyRule, SpeechBank, SpeechBankEntry, SpeechVariant,
+    MAX_POLICY_RULES, MAX_SPEECH_VARIANTS,
 };
 pub use settings::{Mode, Personality, Settings};

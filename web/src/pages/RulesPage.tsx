@@ -1,11 +1,13 @@
 import { useEffect, useMemo, useState } from "react";
 import { api, type LangOverlay } from "../api";
+import { LexiconLane } from "../components/LexiconLane";
+import { MatchLane } from "../components/MatchLane";
 import { PolicyPath, type PolicyLane } from "../components/PolicyPath";
 import { SearchSelect, useHouseCatalog, withCurrent } from "../components/SearchSelect";
 import { policiesEmpty, SetupHint } from "../components/SetupHint";
 import type { Messages } from "../i18n";
 import { bakeVariants } from "../speechBank";
-import type { EvaluateOut, Locale, MatchCatalogRow, PolicyEffect, PolicyRule, RulesView, SpeechBank } from "../types";
+import type { EvaluateOut, Locale, MatchCatalogRow, MatchControl, PolicyEffect, PolicyRule, RulesView, SpeechBank } from "../types";
 import { CustomPage } from "./CustomPage";
 import { RoutinesPage } from "./RoutinesPage";
 
@@ -105,6 +107,7 @@ export function RulesPage({
   const [status, setStatus] = useState("");
   const [intents, setIntents] = useState<string[]>(fallbackIntents);
   const [catalog, setCatalog] = useState<MatchCatalogRow[]>([]);
+  const [matchControls, setMatchControls] = useState<MatchControl[]>([]);
   const [overlay, setOverlay] = useState<LangOverlay | null>(null);
   const [lane, setLane] = useState<PolicyLane>("house");
   const [selectedMatch, setSelectedMatch] = useState(0);
@@ -119,16 +122,18 @@ export function RulesPage({
     api.policies().then((bundle) => {
       setRules(bundle.policies);
       setBank(bundle.speech_bank);
+      setMatchControls(bundle.match_controls || []);
     }).catch((err) => setStatus(String(err)));
     api.policiesCatalog().then((body) => setCatalog(body.matches)).catch((err) => setStatus(String(err)));
     api.langOverlay().then(setOverlay).catch((err) => setStatus(String(err)));
     api.intents().then((names) => { if (names.length) setIntents(names); }).catch(() => undefined);
   }, []);
 
-  const persist = async (next: PolicyRule[], nextBank = bank) => {
-    const saved = await api.savePolicies({ policies: next, speech_bank: nextBank });
+  const persist = async (next: PolicyRule[], nextBank = bank, nextControls = matchControls) => {
+    const saved = await api.savePolicies({ policies: next, speech_bank: nextBank, match_controls: nextControls });
     setRules(saved.policies);
     setBank(saved.speech_bank);
+    setMatchControls(saved.match_controls || []);
     setStatus(t.save);
   };
 
@@ -167,6 +172,7 @@ export function RulesPage({
       text: utterance,
       language: languages.length === 1 ? languages[0] : undefined,
       policies: rules,
+      match_controls: matchControls,
     }));
   };
 
@@ -193,13 +199,6 @@ export function RulesPage({
       }
     }
   };
-
-  const lexiconRows = Object.entries(overlay?.language?.sets || {}).flatMap(([path, delta]) => {
-    const rows: { path: string; op: string; token: string }[] = [];
-    for (const token of delta.add || []) rows.push({ path, op: "+", token });
-    for (const token of delta.remove || []) rows.push({ path, op: "−", token });
-    return rows;
-  });
 
   const addRule = () => {
     const next = [...rules, newRule()];
@@ -244,33 +243,20 @@ export function RulesPage({
         <>
           <section className="grid three policy-lanes">
             <div className={`card${lane === "match" ? " lane-open" : ""}`} onClick={() => setLane("match")}>
-              <h2>{t.matchCatalog}</h2>
-              <p className="caption">{t.matchReadOnly}</p>
-              {catalog.map((row, index) => (
-                <div
-                  className={`rule-row${index === selectedMatch ? " active" : ""}`}
-                  key={row.id}
-                  onClick={(ev) => {
-                    ev.stopPropagation();
-                    setLane("match");
-                    setSelectedMatch(index);
-                  }}
-                >
-                  <span className="chip origin">{t.originEngine}</span>
-                  <strong className="mono">{row.id}</strong>
-                  <span className="muted">{row.precedence}</span>
-                </div>
-              ))}
+              <MatchLane
+                t={t}
+                catalog={catalog}
+                controls={matchControls}
+                selected={selectedMatch}
+                onSelect={(index) => {
+                  setLane("match");
+                  setSelectedMatch(index);
+                }}
+                onChange={setMatchControls}
+              />
             </div>
             <div className={`card${lane === "language" ? " lane-open" : ""}`} onClick={() => setLane("language")}>
-              <h2>{t.laneLanguage}</h2>
-              <h3>{t.lexiconOverlay}</h3>
-              {lexiconRows.length === 0 && <p className="muted">{t.lexiconEmpty}</p>}
-              {lexiconRows.map((row) => (
-                <p className="lexicon-delta" key={`${row.path}-${row.op}-${row.token}`}>{row.path} {row.op}{row.token}</p>
-              ))}
-              <h3>{t.governSeed}</h3>
-              <p className="muted">{t.governEmpty}</p>
+              <LexiconLane t={t} overlay={overlay} onSaved={setOverlay} onStatus={setStatus} />
             </div>
             <div className={`card${lane === "house" ? " lane-open" : ""}`} onClick={() => setLane("house")}>
               <h2>{t.laneHouse}</h2>
@@ -389,6 +375,7 @@ export function RulesPage({
             {evalOut && (
               <div style={{ marginTop: 16 }}>
                 <PolicyPath t={t} trace={evalOut.outcome.policy_trace} onSelect={selectLane} />
+                {evalOut.warnings?.length ? <p className="muted">{t.matchDisableWarning}</p> : null}
                 <p className="muted" style={{ marginTop: 12 }}>{evalOut.speech_variant || evalOut.outcome.speech}</p>
               </div>
             )}

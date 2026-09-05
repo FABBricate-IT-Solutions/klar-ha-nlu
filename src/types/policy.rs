@@ -5,6 +5,14 @@ pub const MAX_POLICY_RULES: usize = 64;
 pub const MAX_SPEECH_VARIANTS: usize = 5;
 
 #[derive(Debug, Clone, Serialize, Deserialize, PartialEq, Eq)]
+pub struct MatchControl {
+    pub id: String,
+    pub enabled: bool,
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub precedence: Option<u16>,
+}
+
+#[derive(Debug, Clone, Serialize, Deserialize, PartialEq, Eq)]
 pub struct MatchCatalogRow {
     pub id: String,
     pub precedence: u16,

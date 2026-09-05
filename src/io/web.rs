@@ -4,7 +4,7 @@ use crate::home::overlay::{apply_overlay, load_overlay, save_overlay, Overlay};
 use crate::io::auth::{reads_allowed, writes_allowed};
 use crate::io::limits::MAX_PARSE_CHARS;
 use crate::io::state::AppState;
-use crate::nlu::{legacy_result, parse_with_policies};
+use crate::nlu::{legacy_result, parse_with_controls};
 use crate::types::{known_intent, AreaRec, CustomSentence, EntityRec, ParseOutcome, Settings};
 use axum::extract::{ConnectInfo, DefaultBodyLimit, State};
 use axum::http::{HeaderMap, StatusCode};
@@ -110,12 +110,13 @@ async fn api_parse(
     let custom = state.custom.lock().await.clone();
     let policies = state.policies.lock().await.clone();
     let speech_bank = state.speech_bank.lock().await.clone();
+    let match_controls = state.match_controls.lock().await.clone();
     let mut session = {
         let mut sessions = state.sessions.lock().await;
         sessions.take(body.conversation_id.as_deref())
     };
     session.preferred_area = body.preferred_area.clone();
-    let outcome = parse_with_policies(&body.text, &home, &mut session, &custom, &settings, &policies, &speech_bank);
+    let outcome = parse_with_controls(&body.text, &home, &mut session, &custom, &settings, &policies, &speech_bank, &match_controls);
     if let Some((entity_id, alias)) = session.pending_teach.take() {
         state.apply_teach(&entity_id, &alias).await;
     }
@@ -404,6 +405,7 @@ mod tests {
                 language: Default::default(),
                 policies: Vec::new(),
                 speech_bank: Default::default(),
+                match_controls: Vec::new(),
             },
             dir,
             None,

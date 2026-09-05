@@ -1,6 +1,6 @@
 use crate::parse::action::Action;
 use crate::parse::calendar::calendar_clause;
-use crate::parse::policy::{candidate, ClauseCandidate, PolicyId};
+use crate::parse::policy::{overlaid_candidate, ClauseCandidate, MatchOverlay, PolicyId};
 use crate::parse::slots::{laundry_switch_clause, timer_clause, ClauseOut};
 use crate::types::HomeGraph;
 
@@ -16,12 +16,16 @@ pub(crate) fn early_special_clauses(
     early: Action,
     number: Option<i32>,
     domain: Option<&str>,
+    overlay: MatchOverlay<'_>,
 ) -> Vec<ClauseCandidate> {
     let mut candidates = Vec::new();
     for (policy, evaluate) in EARLY {
+        if !overlay.enabled(*policy) {
+            continue;
+        }
         let input = if *policy == PolicyId::Calendar { raw } else { tokens };
         if let Some(outcome) = evaluate(input, home, early, number, domain) {
-            candidates.push(candidate(*policy, early, outcome));
+            candidates.push(overlaid_candidate(*policy, early, outcome, &overlay));
         }
     }
     candidates
