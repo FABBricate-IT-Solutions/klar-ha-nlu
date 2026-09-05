@@ -223,6 +223,7 @@ export function App() {
   const [error, setError] = useState("");
   const uiLoaded = useRef(false);
   const [inspectId, setInspectId] = useState("");
+  const [booted, setBooted] = useState(false);
   const locale = chromeLocale(ui.locale);
   const t = dictionaries[locale] || dictionaries.en;
   const theme = ui.theme || "dark";
@@ -264,8 +265,10 @@ export function App() {
         setDashboard(nextDashboard);
         api.conversations().then(setJournal).catch(() => undefined);
         uiLoaded.current = true;
+        setBooted(true);
       } catch (err) {
         setError(String(err));
+        setBooted(true);
       }
     })();
   }, []);
@@ -456,7 +459,7 @@ export function App() {
         )}
       </div>
 
-      {!ui.wizard_done && (
+      {booted && !ui.wizard_done && (
         <Wizard
           open
           locale={locale}

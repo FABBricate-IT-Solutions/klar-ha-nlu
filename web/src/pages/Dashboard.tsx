@@ -23,10 +23,6 @@ function isDe(t: Messages): boolean {
   return t.replay === "Nochmal";
 }
 
-function moreLabel(t: Messages): string {
-  return isDe(t) ? "Mehr" : "More";
-}
-
 function rememberAsPhrase(t: Messages): string {
   return isDe(t) ? "Als Phrase merken" : "Remember as phrase";
 }
@@ -222,14 +218,12 @@ export function DashboardPage({
         </CardContent>
       </Card>
 
-      <details className="card">
-        <summary style={{ cursor: "pointer", minHeight: 44, display: "flex", alignItems: "center" }}>{moreLabel(t)}</summary>
-        <section className="grid three" style={{ margin: "16px 0" }}>
-          <Kpi value={view.counts.assist} label={t.assistVisible} />
-          <Kpi value={view.counts.high} label={t.certain} />
-          <Kpi value={turns.length || view.traffic.total} label={t.processed} />
-        </section>
-        <section className="grid gap-4 md:grid-cols-2">
+      <section className="mb-4 grid gap-4 md:grid-cols-3">
+        <Kpi value={view.counts.assist} label={t.assistVisible} />
+        <Kpi value={view.counts.high} label={t.certain} />
+        <Kpi value={turns.length || view.traffic.total} label={t.processed} />
+      </section>
+      <section className="grid gap-4 md:grid-cols-2">
           <Card className="overflow-visible">
             <CardHeader>
               <CardTitle>{t.decisionMix}</CardTitle>
@@ -303,7 +297,6 @@ export function DashboardPage({
             </CardContent>
           </Card>
         </section>
-      </details>
       {whyOpen && last && <WhyDrawer turn={last} t={t} onClose={() => setWhyOpen(false)} />}
       {snackbar && (
         <Snackbar
