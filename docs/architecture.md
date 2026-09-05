@@ -4,6 +4,8 @@
 
 Klar ist eine regelbasierte NLU. Ein Satz wird tokenisiert, gegen Wortlisten geprüft und in Home-Assistant-Intents übersetzt. Es gibt kein neuronales Netz in der Engine.
 
+Vorschlag, Overlay-Regeln, Sprach-Seeds und einen LLM-Trainer zu trennen: [ADR 0001](architecture/adr-0001-rules-and-trainer.md).
+
 ## Laufzeitkarte
 
 Interaktiver Weg Assist → `POST /api/v2/parse` → `nlu::parse` → Intent, mit git-geprüften Quellstellen. [runtime.html](architecture/runtime.html) lokal öffnen; typisierte Quelle: [runtime.architecture.json](architecture/runtime.architecture.json).
