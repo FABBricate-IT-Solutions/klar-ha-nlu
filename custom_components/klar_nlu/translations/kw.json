@@ -28,8 +28,7 @@
           "mode": "Jynn",
           "personality": "Personoleth",
           "languages": "Yethow",
-          "fallback_agent": "Agent keskows rag hwedhlow",
-          "allow_llm_tools": "Allow Assist tools on the chit-chat agent",
+          "allow_llm_tools": "Allow Home Assistant Assist tools on engine chat",
           "refine_speech": "Gas dhe’n LLM dasskrifa gorthypow NLU",
           "refine_prompt": "Prompt finheans",
           "url": "URL API Klar",
@@ -49,10 +48,9 @@
           "nlu_rag": "Dhe-ves dre dhefowt. Yn keskows yn unnik an tamm kevys a ydh dhe’n model reserv.",
           "quiet_ack": "War golow sempel war/dhe-ves, heb lavar, son berr war an loer yn unnik.",
           "calendar_llm": "Degewys dhe-ves. Warbarth: Klar a red an kalender, an LLM reserv a lever an hwarvosow. Dhe-ves: Klar a lever an rol. Gwruthyl, dilea ha gwaya a wort yn Klar.",
-          "allow_llm_tools": "Off by default. On: Klar still calls the chit-chat agent even if that agent can control Home Assistant. The model may turn lights and run scripts. Off: Klar skips the LLM when that agent has Assist tools.",
+          "allow_llm_tools": "Off by default. On: after Klar parses, the engine chat model may call Home Assistant Assist tools (names come from Core, already prefixed). Off: conversation only.",
           "languages": "Defowt a hol yeth system Home Assistant.",
-          "channel": "Pub termyn. Staging a boynt orth Klar NLU (Staging).",
-          "fallback_agent": "Leave empty. Configure the LLM in the Klar operator UI (Settings → LLM). Assist chat and the trainer use that endpoint. This field is only for an old Home Assistant conversation integration."
+          "channel": "Pub termyn. Staging a boynt orth Klar NLU (Staging)."
         }
       }
     },

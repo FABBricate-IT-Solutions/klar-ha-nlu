@@ -28,8 +28,7 @@
           "mode": "エンジン",
           "personality": "人格",
           "languages": "言語",
-          "fallback_agent": "雑談用会話エージェント",
-          "allow_llm_tools": "Allow Assist tools on the chit-chat agent",
+          "allow_llm_tools": "Allow Home Assistant Assist tools on engine chat",
           "refine_speech": "LLM で NLU の返答を整える",
           "refine_prompt": "整形プロンプト",
           "url": "Klar API の URL",
@@ -49,10 +48,9 @@
           "nlu_rag": "既定はオフ。雑談では一致した断片だけを予備モデルへ送ります。",
           "quiet_ack": "単純な照明のオン／オフでは発話せず、衛星で短い音だけ鳴らします。",
           "calendar_llm": "初期値はオフ。オン：Klarがカレンダーを読み、予備LLMが予定を話す。オフ：Klar自身が一覧を話す。作成・削除・移動はKlarのまま。",
-          "allow_llm_tools": "Off by default. On: Klar still calls the chit-chat agent even if that agent can control Home Assistant. The model may turn lights and run scripts. Off: Klar skips the LLM when that agent has Assist tools.",
+          "allow_llm_tools": "Off by default. On: after Klar parses, the engine chat model may call Home Assistant Assist tools (names come from Core, already prefixed). Off: conversation only.",
           "languages": "既定は Home Assistant のシステム言語です。",
-          "channel": "いつでも変更できます。Staging は Klar NLU（Staging）を指します。",
-          "fallback_agent": "Leave empty. Configure the LLM in the Klar operator UI (Settings → LLM). Assist chat and the trainer use that endpoint. This field is only for an old Home Assistant conversation integration."
+          "channel": "いつでも変更できます。Staging は Klar NLU（Staging）を指します。"
         }
       }
     },

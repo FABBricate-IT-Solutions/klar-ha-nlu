@@ -28,8 +28,7 @@
           "mode": "เอนจิน",
           "personality": "บุคลิก",
           "languages": "ภาษา",
-          "fallback_agent": "เอเจนต์สนทนาสำหรับคุยเล่น",
-          "allow_llm_tools": "Allow Assist tools on the chit-chat agent",
+          "allow_llm_tools": "Allow Home Assistant Assist tools on engine chat",
           "refine_speech": "ให้ LLM ปรับคำตอบ NLU",
           "refine_prompt": "พรอมต์ปรับแต่ง",
           "url": "URL ของ Klar API",
@@ -49,10 +48,9 @@
           "nlu_rag": "ปิดเป็นค่าเริ่มต้น ตอนคุยส่งเฉพาะช่วงที่จับได้ไปยังโมเดลสำรอง",
           "quiet_ack": "เปิดหรือปิดไฟอย่างง่ายจะไม่พูด มีแต่เสียงสั้นที่ดาวเทียม",
           "calendar_llm": "ปิดเป็นค่าเริ่มต้น เปิด: Klar อ่านปฏิทิน แล้ว LLM สำรองพูดนัด ปิด: Klar พูดรายการเอง สร้าง ลบ ย้ายยังอยู่ที่ Klar",
-          "allow_llm_tools": "Off by default. On: Klar still calls the chit-chat agent even if that agent can control Home Assistant. The model may turn lights and run scripts. Off: Klar skips the LLM when that agent has Assist tools.",
+          "allow_llm_tools": "Off by default. On: after Klar parses, the engine chat model may call Home Assistant Assist tools (names come from Core, already prefixed). Off: conversation only.",
           "languages": "ค่าเริ่มต้นคือภาษาของระบบ Home Assistant",
-          "channel": "เปลี่ยนได้ตลอด Staging ชี้ไปที่ Klar NLU (Staging)",
-          "fallback_agent": "Leave empty. Configure the LLM in the Klar operator UI (Settings → LLM). Assist chat and the trainer use that endpoint. This field is only for an old Home Assistant conversation integration."
+          "channel": "เปลี่ยนได้ตลอด Staging ชี้ไปที่ Klar NLU (Staging)"
         }
       }
     },

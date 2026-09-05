@@ -267,6 +267,11 @@
   "trainerApplyLanguage": "Aplicar Language",
   "trainerAdvanced": "JSON avanzado",
   "trainerStreaming": "Streaming…",
+  "trainerAllow": "Allow",
+  "trainerAllowOnce": "Allow once",
+  "trainerYolo": "YOLO",
+  "trainerDeny": "Deny",
+  "trainerAskAgain": "Ask again",
   "llm": "LLM",
   "llmHint": "Klar habla con un endpoint compatible con OpenAI. El chat de Assist y el trainer usan la misma config. No hace falta integración OpenAI u Ollama en Home Assistant.",
   "llmBaseUrl": "URL base",
@@ -293,10 +298,5 @@
   "houseMap": "Asignación",
   "matchedRule": "Regla",
   "ragMode": "Contexto de la casa al fallar",
-  "sentences": "Frases",
-  "trainerAllow": "Allow",
-  "trainerAllowOnce": "Allow once",
-  "trainerYolo": "YOLO",
-  "trainerDeny": "Deny",
-  "trainerAskAgain": "Ask again"
+  "sentences": "Frases"
 }

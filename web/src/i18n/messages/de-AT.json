@@ -252,7 +252,7 @@
   "compiledFloor": "kompilierte Untergrenze",
   "trainer": "Trainer",
   "trainerForLane": "Trainer für diese Spur",
-  "trainerHint": "Klar ruft ein OpenAI-kompatibles Modell in Rust. Lese-Tools laufen sofort. Schreiben wartet auf Allow once, Allow oder YOLO in diesem Chat. Keine Home-Assistant-LLM-Integration nötig.",
+  "trainerHint": "Klar ruft ein OpenAI-kompatibles Modell in Rust. Chatten, prüfen, dann pro Spur übernehmen. Keine Home-Assistant-LLM-Integration nötig. JSON nur für Debug.",
   "trainerContext": "Kontext",
   "trainerValidate": "Prüfen",
   "trainerApply": "Übernehmen",
@@ -267,6 +267,11 @@
   "trainerApplyLanguage": "Language anwenden",
   "trainerAdvanced": "JSON (Debug)",
   "trainerStreaming": "Stream…",
+  "trainerAllow": "Allow",
+  "trainerAllowOnce": "Allow once",
+  "trainerYolo": "YOLO",
+  "trainerDeny": "Deny",
+  "trainerAskAgain": "Ask again",
   "llm": "LLM",
   "llmHint": "Klar spricht mit einem OpenAI-kompatiblen Endpoint. Assist-Chat und Trainer nutzen dieselbe Config. Keine OpenAI- oder Ollama-Integration in Home Assistant nötig.",
   "llmBaseUrl": "Basis-URL",
@@ -293,10 +298,5 @@
   "houseMap": "Zuordnung",
   "matchedRule": "Regel",
   "ragMode": "Hauskontext bei einem Miss",
-  "sentences": "Sätze",
-  "trainerAllow": "Allow",
-  "trainerAllowOnce": "Allow once",
-  "trainerYolo": "YOLO",
-  "trainerDeny": "Ablehnen",
-  "trainerAskAgain": "Wieder fragen"
+  "sentences": "Sätze"
 }

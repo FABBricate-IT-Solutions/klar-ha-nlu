@@ -23,13 +23,12 @@
     "step": {
       "init": {
         "title": "Klar NLU",
-        "description": "Die Persönlichkeit bleibt in Home Assistant, auch nach einer Neuinstallation der Klar-App.",
+        "description": "Stimme, Assist-Sprachen und das LLM liegen in der Klar-Operator-UI (Einstellungen). Dieses Formular verbindet nur die Engine: URL, Token und Kanal.",
         "data": {
           "mode": "Engine",
           "personality": "Persönlichkeit",
           "languages": "Sprachen",
-          "fallback_agent": "Optionaler Legacy-Conversation-Agent",
-          "allow_llm_tools": "Assist-Werkzeuge beim Smalltalk-Agenten erlauben",
+          "allow_llm_tools": "Home-Assistant-Assist-Werkzeuge beim Engine-Chat erlauben",
           "refine_speech": "NLU-Antworten vom LLM verfeinern",
           "refine_prompt": "Verfeinerungs-Prompt",
           "url": "URL der Klar-API",
@@ -49,10 +48,9 @@
           "nlu_rag": "Standard aus. Bei Chat nur den gematchten Ausschnitt an das Fallback-Modell.",
           "quiet_ack": "Bei einfachem Licht an/aus keine gesprochene Antwort, nur ein kurzer Ton.",
           "calendar_llm": "Standard aus. An: Klar liest den Kalender, das Fallback-LLM spricht die Termine. Aus: Klar spricht die Liste selbst. Anlegen, Löschen und Verschieben bleiben bei Klar.",
-          "allow_llm_tools": "Standard aus. An: Klar ruft den Smalltalk-Agenten auch dann, wenn er Home Assistant steuern darf. Aus: Klar überspringt das LLM, wenn der Agent Assist-Werkzeuge hat.",
+          "allow_llm_tools": "Standard aus. An: nach dem Klar-Parse darf das Engine-Chat-Modell Home-Assistant-Assist-Werkzeuge nutzen (Namen kommen von Core, bereits prefixiert). Aus: nur Gespräch.",
           "languages": "Standard ist die Home-Assistant-Systemsprache.",
-          "channel": "Jederzeit. Staging auf Klar NLU (Staging), Stable auf die App oder die mitgelieferte Engine.",
-          "fallback_agent": "Leave empty. Configure the LLM in the Klar operator UI (Settings → LLM). Assist chat and the trainer use that endpoint. This field is only for an old Home Assistant conversation integration."
+          "channel": "Jederzeit. Staging auf Klar NLU (Staging), Stable auf die App oder die mitgelieferte Engine."
         }
       }
     },

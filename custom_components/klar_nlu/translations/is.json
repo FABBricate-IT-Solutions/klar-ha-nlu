@@ -28,8 +28,7 @@
           "mode": "Vél",
           "personality": "Persónuleiki",
           "languages": "Tungumál",
-          "fallback_agent": "Samræðuumsjónarmaður fyrir spjall",
-          "allow_llm_tools": "Allow Assist tools on the chit-chat agent",
+          "allow_llm_tools": "Allow Home Assistant Assist tools on engine chat",
           "refine_speech": "Láta LLM endurskrifa NLU svör",
           "refine_prompt": "Fínstillingarvísbending",
           "url": "Klar API slóð",
@@ -49,10 +48,9 @@
           "nlu_rag": "Slökkt sjálfgefið. Í spjalli fer aðeins samsvarandi sneið til varalíkansins.",
           "quiet_ack": "Við einfalda kveikingu/slökkvun ljóss er ekkert talað, aðeins stuttur hljóð á gervihnettinum.",
           "calendar_llm": "Slökkt sjálfgefið. Kveikt: Klar les dagatalið, varakerfið segir atburðina. Slökkt: Klar segir listann. Búa til, eyða og færa verða áfram hjá Klar.",
-          "allow_llm_tools": "Off by default. On: Klar still calls the chit-chat agent even if that agent can control Home Assistant. The model may turn lights and run scripts. Off: Klar skips the LLM when that agent has Assist tools.",
+          "allow_llm_tools": "Off by default. On: after Klar parses, the engine chat model may call Home Assistant Assist tools (names come from Core, already prefixed). Off: conversation only.",
           "languages": "Sjálfgefið fylgir kerfistungumáli Home Assistant.",
-          "channel": "Hvenær sem er. Staging vísar á Klar NLU (Staging).",
-          "fallback_agent": "Leave empty. Configure the LLM in the Klar operator UI (Settings → LLM). Assist chat and the trainer use that endpoint. This field is only for an old Home Assistant conversation integration."
+          "channel": "Hvenær sem er. Staging vísar á Klar NLU (Staging)."
         }
       }
     },

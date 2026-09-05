@@ -28,8 +28,7 @@
           "mode": "引擎",
           "personality": "人格",
           "languages": "語言",
-          "fallback_agent": "閒聊對話代理",
-          "allow_llm_tools": "Allow Assist tools on the chit-chat agent",
+          "allow_llm_tools": "Allow Home Assistant Assist tools on engine chat",
           "refine_speech": "用 LLM 潤飾 NLU 回覆",
           "refine_prompt": "潤飾提示",
           "url": "Klar API 網址",
@@ -49,10 +48,9 @@
           "nlu_rag": "預設關閉。傾偈時只將已配對片段交俾後備模型。",
           "quiet_ack": "簡單開關燈唔講嘢，只喺衛星播短提示音。",
           "calendar_llm": "預設關閉。開：Klar 讀日曆，後備大模型講行程。關：Klar 自己講清單。新增、刪除同搬動仍然由 Klar 處理。",
-          "allow_llm_tools": "Off by default. On: Klar still calls the chit-chat agent even if that agent can control Home Assistant. The model may turn lights and run scripts. Off: Klar skips the LLM when that agent has Assist tools.",
+          "allow_llm_tools": "Off by default. On: after Klar parses, the engine chat model may call Home Assistant Assist tools (names come from Core, already prefixed). Off: conversation only.",
           "languages": "預設跟 Home Assistant 系統語言。",
-          "channel": "隨時可改。預發佈指向 Klar NLU（Staging）。",
-          "fallback_agent": "Leave empty. Configure the LLM in the Klar operator UI (Settings → LLM). Assist chat and the trainer use that endpoint. This field is only for an old Home Assistant conversation integration."
+          "channel": "隨時可改。預發佈指向 Klar NLU（Staging）。"
         }
       }
     },

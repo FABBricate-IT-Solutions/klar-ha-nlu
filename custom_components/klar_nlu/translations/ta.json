@@ -28,8 +28,7 @@
           "mode": "இயந்திரம்",
           "personality": "ஆளுமை",
           "languages": "மொழிகள்",
-          "fallback_agent": "அரட்டைக்கான உரையாடல் முகவர்",
-          "allow_llm_tools": "Allow Assist tools on the chit-chat agent",
+          "allow_llm_tools": "Allow Home Assistant Assist tools on engine chat",
           "refine_speech": "LLM NLU பதில்களை மீண்டும் எழுதட்டும்",
           "refine_prompt": "மேம்பாட்டு அறிவுறுத்தல்",
           "url": "Klar API URL",
@@ -49,10 +48,9 @@
           "nlu_rag": "இயல்பு ஆஃப். அரட்டையில் பொருந்திய பகுதி மட்டும் காப்பு மாதிரிக்குச் செல்லும்.",
           "quiet_ack": "எளிய விளக்கு ஆன்/ஆஃப்பில் வாக்கியம் இல்லை, செயற்கைக்கோளில் குறுகிய ஒலி.",
           "calendar_llm": "இயல்பு ஆஃப். ஆன்: க்ளாா் நாட்காட்டியைப் படிக்கும், காப்பு LLM நிகழ்வைச் சொல்லும். ஆஃப்: க்ளாா் பட்டியலைத் தானே சொல்லும். உருவாக்குதல், நீக்குதல், நகர்த்துதல் க்ளாரிலேயே இருக்கும்.",
-          "allow_llm_tools": "Off by default. On: Klar still calls the chit-chat agent even if that agent can control Home Assistant. The model may turn lights and run scripts. Off: Klar skips the LLM when that agent has Assist tools.",
+          "allow_llm_tools": "Off by default. On: after Klar parses, the engine chat model may call Home Assistant Assist tools (names come from Core, already prefixed). Off: conversation only.",
           "languages": "இயல்பு Home Assistant கணினி மொழி.",
-          "channel": "எப்போது வேண்டுமானாலும். Staging Klar NLU (Staging) ஐச் சுட்டுகிறது.",
-          "fallback_agent": "Leave empty. Configure the LLM in the Klar operator UI (Settings → LLM). Assist chat and the trainer use that endpoint. This field is only for an old Home Assistant conversation integration."
+          "channel": "எப்போது வேண்டுமானாலும். Staging Klar NLU (Staging) ஐச் சுட்டுகிறது."
         }
       }
     },
