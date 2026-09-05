@@ -17,7 +17,9 @@ RUN cargo build --release --locked \
     && python3 scripts/third-party-notices.py > THIRD_PARTY
 
 FROM debian:bookworm-slim
-RUN apt-get update && apt-get install -y --no-install-recommends ca-certificates \
+RUN apt-get update \
+    && DEBIAN_FRONTEND=noninteractive apt-get upgrade -y --no-install-recommends \
+    && DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends ca-certificates \
     && rm -rf /var/lib/apt/lists/*
 COPY --from=build /src/target/release/klar /usr/local/bin/klar
 COPY --from=build /src/THIRD_PARTY /usr/share/doc/klar/THIRD_PARTY
