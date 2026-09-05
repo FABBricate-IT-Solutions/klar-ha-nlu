@@ -87,6 +87,9 @@ class EngineLlmTests(unittest.TestCase):
             engine_llm._tool_speech({"type": "tool", "tool": "klar.parse", "text": "licht an"}),
             "KLAR_PARSE: licht an",
         )
+        self.assertIn("/api/v2/speech/render", src)
+        self.assertIn("complete_engine_speech_render", src)
+        self.assertTrue(issubclass(engine_llm.EngineSpeechMissing, Exception))
 
 
 if __name__ == "__main__":

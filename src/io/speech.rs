@@ -21,7 +21,7 @@ async fn speech_render(
         return Err(StatusCode::UNAUTHORIZED);
     }
     let snap = body.sanitize().map_err(status_for)?;
-    Ok(Json(snap.unrendered()))
+    Ok(Json(crate::speech::render_snapshot(&snap)))
 }
 
 fn status_for(err: SnapshotError) -> StatusCode {

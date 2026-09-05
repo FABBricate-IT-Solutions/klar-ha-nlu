@@ -411,7 +411,9 @@ fn speech_snapshot_drops_unknown_attrs_and_rejects_missing_schema() {
     let clean = snap.sanitize().expect("valid snapshot");
     assert!(clean.entities[0].attributes.contains_key("media_title"));
     assert!(!clean.entities[0].attributes.contains_key("secret"));
-    assert_eq!(clean.unrendered().source, "unrendered");
+    let rendered = klar_nlu::speech::render_snapshot(&clean);
+    assert_eq!(rendered.source, "post_execute");
+    assert!(rendered.speech.contains("Wohnzimmer"));
     let missing: SpeechSnapshot = serde_json::from_value(serde_json::json!({
         "language": "de",
         "now": "2026-09-05T19:22:00+02:00",

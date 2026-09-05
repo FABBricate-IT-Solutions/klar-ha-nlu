@@ -396,6 +396,51 @@ async def iter_engine_tokens(
     raise EngineUnavailable
 
 
+async def complete_engine_speech_render(
+    hass: HomeAssistant,
+    snapshot: dict[str, Any],
+    *,
+    url: str | None = None,
+    token: str | None = None,
+) -> str | None:
+    target = engine_target(hass, url, token)
+    if target is None:
+        raise EngineSpeechMissing
+    base, tok = target
+    session = _session(hass)
+    if session is None:
+        raise EngineSpeechMissing
+    headers = {"X-Klar-Token": tok, "Accept": "application/json"} if tok else {"Accept": "application/json"}
+    last_err: Exception | None = None
+    for host in engine_url_candidates(base):
+        try:
+            async with session.post(
+                f"{host}/api/v2/speech/render",
+                json=snapshot,
+                headers=headers,
+                timeout=_CHAT_TIMEOUT,
+            ) as resp:
+                if resp.status == 404:
+                    raise EngineSpeechMissing
+                if resp.status == 503:
+                    return None
+                resp.raise_for_status()
+                payload = await resp.json()
+        except EngineSpeechMissing:
+            raise
+        except (ClientError, TimeoutError, OSError, ValueError) as err:
+            last_err = err
+            continue
+        if isinstance(payload, Mapping):
+            text = str(payload.get("speech") or "").strip()
+            if text or payload.get("source") == "post_execute":
+                return text
+        return None
+    if last_err is not None:
+        _LOGGER.debug("Klar speech render failed: %s", last_err)
+    raise EngineSpeechMissing
+
+
 class EngineUnavailable(Exception):
     """Klar has no LLM endpoint configured."""
 
@@ -406,6 +451,10 @@ class EngineRefineMissing(Exception):
 
 class EngineAssistMissing(Exception):
     """Engine has no POST /api/v2/llm/assist yet."""
+
+
+class EngineSpeechMissing(Exception):
+    """Engine has no POST /api/v2/speech/render yet."""
 
 
 def _event_text(payload: object) -> str:

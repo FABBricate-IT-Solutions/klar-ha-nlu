@@ -148,7 +148,7 @@ Engine owns Yarn/chat/RAG/calendar/news prompts and `yarn_canned` / `yarn_nudge`
 
 ### `POST /api/v2/speech/render`
 
-Post-execute snapshot from Home Assistant. The engine validates caps and the allow-list; it does not interpolate yet (`source: "unrendered"`). Assist still speaks `from_handled`. Write token required.
+Post-execute snapshot from Home Assistant. The engine interpolates pack templates into a factual sentence (`source: "post_execute"`). Personality prefix is applied later at Assist finish. Assist calls this after execute; `404` keeps `from_handled`. Write token required.
 
 ```json
 {
@@ -189,7 +189,7 @@ Post-execute snapshot from Home Assistant. The engine validates caps and the all
 }
 ```
 
-Response: `{ "speech": "", "quiet_ack": false, "source": "unrendered" }`. `outcome` is `success` | `partial` | `error`. `now` is required (clock). Unknown attribute keys are dropped. Missing `schema_version` → `400`. Caps: 32 entities, 16 calendar rows, 8 queue titles, attribute values ≤ 256 characters.
+Response: `{ "speech": "The living room light is on.", "quiet_ack": false, "source": "post_execute" }`. `outcome` is `success` | `partial` | `error`. `now` is required (clock). Unknown attribute keys are dropped. Missing `schema_version` → `400`. Caps: 32 entities, 16 calendar rows, 8 queue titles, attribute values ≤ 256 characters. Missing climate/MASS attributes use the unavailable line — never invent a value.
 
 ### `POST /api/v2/policies/trainer/chat`
 
