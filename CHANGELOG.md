@@ -6,6 +6,19 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 Versions follow Home Assistant calendar versioning (`YYYY.M.PATCH`)
 and [Conventional Commits](https://www.conventionalcommits.org/).
 
+## [2026.9.3](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/compare/2026.9.2...2026.9.3) - 2026-09-05
+
+
+
+### Bug Fixes
+
+- apply Debian security updates in the runtime image([4c30cfe](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/4c30cfe032286ea8f5373282d2283246d9b9c487))
+
+
+### Other
+
+- Merge pull request #195 from FABBricate-IT-Solutions/release/promote-image-security-updates([b17384b](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/b17384b2cace6cc055fe954eb3547b7a5b7ba40c))
+
 ## [2026.9.2](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/compare/2026.9.1...2026.9.2) - 2026-09-05
 
 
