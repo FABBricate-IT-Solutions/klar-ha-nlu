@@ -39,38 +39,6 @@ speech = _load("klar_speech", "speech.py")
 
 
 class RefineTests(unittest.TestCase):
-    def test_prompt_keeps_hard_safety_rules(self) -> None:
-        prompt = refine.refine_prompt("de", "butler", "Ein oder zwei Sätze.")
-        self.assertIn("Keine Home-Assistant-Werkzeuge", prompt)
-        self.assertIn("Ziffern bleiben Ziffern", prompt)
-        self.assertIn("2 bleibt 2", prompt)
-        self.assertIn("2 Lichter sind an, 3 Lichter sind aus.", prompt)
-        self.assertIn("21,5 °C", prompt)
-        self.assertIn("Keine neuen Zahlen", prompt)
-        self.assertIn("ein Satz", prompt)
-        self.assertIn("Uhrzeiten ohne Sekunden", prompt)
-        self.assertIn("14:44 nicht 14:44:55", prompt)
-        self.assertIn("Ein oder zwei Sätze.", prompt)
-        self.assertIn("Offene Fragen", prompt)
-        self.assertIn("Ist die Vorlage eine Frage, bleibt die Antwort eine Frage.", prompt)
-        self.assertNotIn("Formel: Sehr wohl.", prompt)
-        self.assertNotIn("Hänge immer an", prompt)
-        self.assertNotIn("besorgt", prompt)
-        self.assertNotIn("soweit gemeldet", prompt)
-        self.assertNotIn("Butler", prompt)
-
-    def test_empty_extra_uses_builtin_personality_voice(self) -> None:
-        prompt = refine.refine_prompt("de", "butler", None)
-        self.assertIn("Butler", prompt)
-        self.assertIn("Klebe nicht jedes Mal dieselbe Eröffnung davor.", prompt)
-        self.assertIn("Status", prompt)
-
-    def test_stored_prompt_replaces_builtin_voice(self) -> None:
-        prompt = refine.refine_prompt("de", "butler", "Stimme: Jarvis.\nBeispiele:\nX → Y")
-        self.assertIn("Keine Home-Assistant-Werkzeuge", prompt)
-        self.assertIn("Jarvis", prompt)
-        self.assertNotIn("Butler", prompt)
-
     def test_personality_change_swaps_stored_prompt(self) -> None:
         butler = voices.editable_prompt("butler", "de")
         jarvis = voices.editable_prompt("jarvis", "de")
@@ -85,109 +53,11 @@ class RefineTests(unittest.TestCase):
         filled = voices.resolve_stored_prompt("grantig", "grantig", "", "de")
         self.assertEqual(filled, voices.editable_prompt("grantig", "de"))
 
-    def test_each_personality_has_its_own_voice(self) -> None:
-        flavor = {
-            "default": "schlicht",
-            "butler": "Butler",
-            "locker": "locker",
-            "fuersorglich": "fürsorglich",
-            "party": "euphorisch",
-            "grantig": "grantig",
-            "sarkastisch": "sarkastisch",
-            "pirat": "piratenhaft",
-            "hippie": "entspannt",
-            "gollum": "gollumartig",
-            "jarvis": "Jarvis",
-        }
-        seen: set[str] = set()
-        for name, marker in flavor.items():
-            prompt = refine.refine_prompt("de", name, None)
-            self.assertIn(marker, prompt, name)
-            self.assertNotIn("Hänge immer an", prompt, name)
-            self.assertRegex(prompt, r"→ .+\.", name)
-            if name == "default":
-                self.assertNotIn("Es ist eingeschaltet", prompt)
-                self.assertNotIn("That is done.", refine.refine_prompt("en", "default", None))
-            self.assertNotIn(prompt, seen)
-            seen.add(prompt)
-
-    def test_english_prompt_uses_personality(self) -> None:
-        prompt = refine.refine_prompt("en", "locker", None)
-        self.assertIn("Do not call Home Assistant tools", prompt)
-        self.assertIn("casual", prompt)
-        self.assertIn("Voice:", prompt)
-        self.assertIn("open questions", prompt.lower())
-        self.assertIn("Do not stamp the same opening every time.", prompt)
-        self.assertIn("all set", prompt)
-        self.assertIn("Clock times without seconds", prompt)
-        self.assertIn("Do not translate into German", prompt)
-        self.assertNotIn("Additional style instruction", prompt)
-
-    def test_german_stored_extra_is_ignored_for_other_packs(self) -> None:
-        prompt = refine.refine_prompt("en", "butler", "Stimme: Jarvis.\nSchalt-Bestätigungen")
-        self.assertIn("Do not translate into German", prompt)
-        self.assertIn("Voice:", prompt)
-        self.assertNotIn("Stimme:", prompt)
-
     def test_nlu_home_turn_removed_because_every_reply_refines(self) -> None:
         self.assertFalse(hasattr(refine, "nlu_home_turn"))
-
-    def test_input_wraps_speech_so_queries_are_not_answered(self) -> None:
-        wrapped = refine.refine_input("Temperatur im Schlafzimmer.", "de")
-        self.assertEqual(wrapped, "Temperatur im Schlafzimmer.")
-
-    def test_accept_refined_keeps_facts_and_rejects_inventions(self) -> None:
-        self.assertEqual(
-            refine.accept_refined("Wohnzimmer Licht ist an.", "Das Licht im Wohnzimmer ist an."),
-            "Das Licht im Wohnzimmer ist an.",
-        )
-        self.assertEqual(
-            refine.accept_refined("Heizung Wohnzimmer auf 21 Grad.", "Die Heizung im Wohnzimmer auf 21 Grad."),
-            "Die Heizung im Wohnzimmer auf 21 Grad.",
-        )
-        self.assertEqual(
-            refine.accept_refined(
-                "Better Thermostat Wohnzimmer ist 21,5 °C.",
-                "Im Wohnzimmer sind es 21,5 °C.",
-            ),
-            "Im Wohnzimmer sind es 21,5 °C.",
-        )
-        self.assertIsNone(refine.accept_refined("Temperatur im Schlafzimmer.", "Die Temperatur im Schlafzimmer ist 20 Grad."))
-        self.assertIsNone(refine.accept_refined("Temperatur im Schlafzimmer.", "Die Temperatur im Schlafzimmer ist zwanzig Grad."))
-        self.assertIsNone(refine.accept_refined("Klimaanlage auf 19 Grad.", "Die Klimaanlage ist auf neunzehn Grad."))
-        self.assertIsNone(refine.accept_refined("Erledigt: HassSetPosition.", "HassSetPosition ist erledigt."))
-        self.assertIsNone(refine.accept_refined("Licht ist an.", "Licht ist an..."))
-        self.assertIsNone(
-            refine.accept_refined("Wohnzimmer TV ist an.", "Das Licht im Wohnzimmer ist an.")
-        )
-        self.assertIsNone(refine.accept_refined("Nothing tomorrow.", "Tomorrow will be sunny."))
-        self.assertEqual(
-            refine.accept_refined("Team training at 3.", "Team training is at 3."),
-            "Team training is at 3.",
-        )
-        self.assertIsNone(
-            refine.accept_refined("Der Fernseher ist gerade nicht erreichbar.", "Das Licht im Wohnzimmer ist an.")
-        )
-        self.assertTrue(refine.skip_rewrite("error"))
-        self.assertIsNone(refine.accept_refined("Temperatur im Schlafzimmer.", "Wie ist die Temperatur im Schlafzimmer?"))
-        self.assertEqual(
-            refine.accept_refined("Meinst du Küche oder Wohnzimmer?", "Küche oder Wohnzimmer, Sir?"),
-            "Küche oder Wohnzimmer, Sir?",
-        )
-        self.assertEqual(
-            refine.accept_refined(
-                "Wohnzimmer Licht ist an.",
-                "Das Licht im Wohnzimmer ist an. Ich habe es für Sie eingeschaltet.",
-            ),
-            "Das Licht im Wohnzimmer ist an. Ich habe es für Sie eingeschaltet.",
-        )
-        self.assertEqual(
-            refine.clean_refined("Das Licht ist an.\nIch habe es eingeschaltet."),
-            "Das Licht ist an. Ich habe es eingeschaltet.",
-        )
-        self.assertIsNone(refine.accept_refined("Licht ist an.", "Licht ist an. " + ("x" * 400)))
-        self.assertEqual(refine.clean_refined("Es ist 14:44:55."), "Es ist 14:44.")
-        self.assertEqual(refine.accept_refined("Es ist 14:44.", "Es ist 14:44:55."), "Es ist 14:44.")
+        self.assertFalse(hasattr(refine, "accept_refined"))
+        self.assertFalse(hasattr(refine, "refine_prompt"))
+        self.assertFalse(hasattr(refine, "_async_refine_raw"))
 
     def test_should_refine_any_spoken_reply(self) -> None:
         self.assertTrue(
@@ -206,64 +76,12 @@ class RefineTests(unittest.TestCase):
         self.assertFalse(hasattr(refine, "_TIMEOUT"))
         self.assertFalse(hasattr(refine, "nlu_home_turn"))
 
-    def test_client_lookup_reads_mapping_proxy_and_agent_model(self) -> None:
-        from types import MappingProxyType, SimpleNamespace
-
-        hass = object()
-        client = SimpleNamespace(chat=object())
-        fake = types.ModuleType("conversation")
-        original = refine.conversation
-
-        def resolve(agent: object):
-            fake.async_get_agent = lambda _hass, _agent_id: agent
-            refine.conversation = fake
-            try:
-                return refine.llm_client_and_model(hass, "conversation.llm")
-            finally:
-                refine.conversation = original
-
-        proxy_agent = SimpleNamespace(
-            entry=SimpleNamespace(
-                runtime_data=client,
-                options=MappingProxyType({}),
-                data=MappingProxyType({}),
-            ),
-            subentry=SimpleNamespace(data=MappingProxyType({"model": "Gemma-4-E2B-it-GGUF"})),
-        )
-        self.assertEqual(resolve(proxy_agent), (client, "Gemma-4-E2B-it-GGUF"))
-
-        named = SimpleNamespace(
-            model="Gemma-4-E4B-it-GGUF",
-            entry=SimpleNamespace(runtime_data=client, options={}, data={}),
-            subentry=None,
-        )
-        self.assertEqual(resolve(named), (client, "Gemma-4-E4B-it-GGUF"))
-
-    def test_extra_body_disables_thinking_for_ha_openai_client(self) -> None:
-        self.assertEqual(
-            refine.refine_extra_body(),
-            {"chat_template_kwargs": {"enable_thinking": False}},
-        )
-
-    def test_completion_speech_reads_openai_choice(self) -> None:
-        self.assertEqual(refine.speech_from_completion(_Completion("Licht ist an.")), "Licht ist an.")
-        self.assertEqual(refine.speech_from_completion(_Completion("")), "")
-
-    def test_empty_result_speech_is_ignored(self) -> None:
-        result = _Result("")
-        self.assertEqual(refine.speech_from_result(result), "")
-
-    def test_options_personality_switches_refine_prompt_and_fallback_cue(self) -> None:
+    def test_options_personality_switches_style_wrap(self) -> None:
         self.assertEqual(const.resolve_personality("grantig"), "grantig")
         self.assertEqual(const.resolve_personality("nope"), "default")
-        self.assertEqual(set(refine._PERSONALITY), set(const.PERSONALITIES))
         for pack in ("de", "en"):
-            seen_prompts: set[str] = set()
             for name in const.PERSONALITIES:
-                prompt = refine.refine_prompt(pack, name, None)
                 spoken = speech.style("Licht ist an.", name, pack)
-                self.assertNotIn(prompt, seen_prompts)
-                seen_prompts.add(prompt)
                 variants = list((speech._locale(pack).get("personality") or {}).get(name) or [""])
                 expected = {f"{prefix}Licht ist an." for prefix in variants}
                 expected.add("Licht ist an.")
@@ -272,12 +90,6 @@ class RefineTests(unittest.TestCase):
                     continue
                 self.assertTrue(variants, name)
                 self.assertIn(spoken, expected, name)
-        butler = refine.refine_prompt("de", const.resolve_personality("butler"), None)
-        grantig = refine.refine_prompt("de", const.resolve_personality("grantig"), None)
-        self.assertIn("Butler", butler)
-        self.assertNotIn("grantig", butler)
-        self.assertIn("grantig", grantig)
-        self.assertNotIn("Butler", grantig)
         spoken = speech.style("Licht ist an.", "butler", "de")
         variants = set((speech._locale("de").get("personality") or {}).get("butler") or [])
         self.assertTrue(variants, "butler variants")
@@ -285,35 +97,18 @@ class RefineTests(unittest.TestCase):
 
     def test_successful_refine_keeps_natural_line_without_restamping_cue(self) -> None:
         source = "Wohnzimmer Licht ist an."
-        natural = "Das Licht im Wohnzimmer ist an. Ich habe es für Sie eingeschaltet."
-        self.assertEqual(refine.accept_refined(source, natural), natural)
         spoken = speech.style(source, "butler", "de")
         variants = set((speech._locale("de").get("personality") or {}).get("butler") or [])
         self.assertIn(spoken, {f"{prefix}{source}" for prefix in variants})
 
-    def test_other_packs_do_not_use_german_wrapper(self) -> None:
-        for pack in ("fr", "nl", "ja"):
-            prompt = refine.refine_prompt(pack, "butler", None)
-            self.assertNotIn("Stimme:", prompt, pack)
-            self.assertNotIn("Klebe nicht jedes Mal", prompt, pack)
-            self.assertIn("same language", prompt.lower(), pack)
-            self.assertIn("input line", prompt.lower(), pack)
-
-    def test_accept_refined_rejects_bureaucratic_stamps(self) -> None:
-        self.assertIsNone(refine.accept_refined("Licht ist an.", "Zur Kenntnis genommen. Licht ist an."))
-        self.assertIsNone(refine.accept_refined("Licht ist an.", "Das ist besorgt."))
-        self.assertIsNone(refine.accept_refined("Licht ist an.", "soweit gemeldet"))
-
-    def test_refine_raw_uses_engine_then_converse(self) -> None:
+    def test_refine_calls_engine_and_fails_closed(self) -> None:
         src = (PKG / "refine.py").read_text(encoding="utf-8")
-        start = src.index("async def _async_refine_raw")
-        body = src[start:]
-        self.assertIn("complete_engine_chat", body)
-        self.assertIn("async_converse", body)
-        self.assertNotIn("chat.completions.create", body)
-        self.assertLess(body.index("complete_engine_chat"), body.index("async_converse"))
         self.assertIn("complete_engine_refine", src)
-        self.assertLess(src.index("complete_engine_refine"), src.index("async def _async_refine_raw"))
+        self.assertNotIn("complete_engine_chat", src)
+        self.assertNotIn("accept_refined", src)
+        self.assertNotIn("async_converse", src)
+        self.assertNotIn("chat.completions.create", src)
+        self.assertIn("Cycle: engine_llm → stream → refine", src)
 
     def test_no_homeassistant_runtime_falls_back_to_none(self) -> None:
         out = asyncio.run(
@@ -335,6 +130,7 @@ class RefineTests(unittest.TestCase):
         self.assertTrue(refine.skip_rewrite("chat"))
         self.assertTrue(refine.skip_rewrite("llm"))
         self.assertTrue(refine.skip_rewrite("chime"))
+        self.assertTrue(refine.skip_rewrite("error"))
         self.assertFalse(refine.skip_rewrite("execute"))
         self.assertFalse(refine.skip_rewrite("clarify"))
         self.assertFalse(refine.skip_rewrite("trigger"))
@@ -417,9 +213,9 @@ class RefineTests(unittest.TestCase):
                 self.without.append(body)
 
         log = Log()
-        speech = "Natürlich, Sir. Das Licht im Wohnzimmer ist an."
-        asyncio.run(refine.emit_assistant_speech(log, "conversation.klar_nlu", speech))
-        self.assertEqual(log.content[-1], speech)
+        spoken = "Natürlich, Sir. Das Licht im Wohnzimmer ist an."
+        asyncio.run(refine.emit_assistant_speech(log, "conversation.klar_nlu", spoken))
+        self.assertEqual(log.content[-1], spoken)
         self.assertEqual(log.without, [])
         self.assertEqual(log.deltas[0], {"role": "assistant"})
         self.assertEqual(log.deltas[1], {"content": "Natürlich, Sir."})
@@ -444,17 +240,17 @@ class RefineTests(unittest.TestCase):
         published = [nlu]
         self.assertNotEqual(published[-1], refined)
         published = []
-        speech = nlu
+        spoken = nlu
         if not refine.skip_rewrite("execute"):
-            speech = refined
-        published.append(speech)
+            spoken = refined
+        published.append(spoken)
         self.assertEqual(published[-1], refined)
         llm = "Bereits im Jarvis-Ton."
         published = []
-        speech = llm
+        spoken = llm
         if not refine.skip_rewrite("chat"):
-            speech = refined
-        published.append(speech)
+            spoken = refined
+        published.append(spoken)
         self.assertEqual(published[-1], llm)
 
     def test_fallback_converse_must_not_reuse_voice_session(self) -> None:
@@ -472,31 +268,6 @@ class RefineTests(unittest.TestCase):
         self.assertIn("skip_rewrite", spoken)
         self.assertIn("emit_assistant_speech", spoken)
         self.assertNotIn("async_add_assistant_content_without_tools", spoken)
-
-
-class _CompletionMessage:
-    def __init__(self, text: str) -> None:
-        self.content = text
-
-
-class _CompletionChoice:
-    def __init__(self, text: str) -> None:
-        self.message = _CompletionMessage(text)
-
-
-class _Completion:
-    def __init__(self, text: str) -> None:
-        self.choices = [_CompletionChoice(text)]
-
-
-class _Response:
-    def __init__(self, text: str) -> None:
-        self.speech = {"plain": {"speech": text}}
-
-
-class _Result:
-    def __init__(self, text: str) -> None:
-        self.response = _Response(text)
 
 
 if __name__ == "__main__":

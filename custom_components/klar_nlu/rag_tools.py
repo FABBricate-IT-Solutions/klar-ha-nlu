@@ -7,51 +7,6 @@ from typing import Any
 _PARSE = "klar.parse"
 _ACT = "klar.act"
 
-_INSTRUCT = {
-    "de": (
-        "Wenn der Satz ein Hausbefehl ist, antworte mit genau einer Zeile und sonst nichts: "
-        "KLAR_PARSE: <klarer Befehl>. "
-        "Sonst antworte kurz im Gespräch. "
-        "Nenne niemals Werkzeuge, Intents oder Präfixe."
-    ),
-    "en": (
-        "If the sentence is a home command, reply with exactly one line and nothing else: "
-        "KLAR_PARSE: <clear command>. "
-        "Otherwise reply briefly in conversation. "
-        "Never name tools, intents, or prefixes."
-    ),
-}
-
-
-def retrieval_lines(retrieval: dict[str, Any] | None, pack: str) -> str:
-    if not isinstance(retrieval, dict):
-        return ""
-    entities = retrieval.get("entities") or []
-    names = []
-    for item in entities[:8]:
-        if isinstance(item, dict) and item.get("name"):
-            names.append(str(item["name"]))
-    areas = [str(item) for item in (retrieval.get("areas") or [])[:8]]
-    last = [str(item) for item in (retrieval.get("last") or [])[:8]]
-    label = "Kontext" if pack == "de" else "Context"
-    bits = []
-    if names:
-        bits.append(", ".join(names))
-    if areas:
-        bits.append("/".join(areas))
-    if last:
-        bits.append(" · ".join(last))
-    if not bits:
-        return ""
-    return f"{label}: {'; '.join(bits)}"
-
-
-def rag_prompt(pack: str, retrieval: dict[str, Any] | None, extra: str | None) -> str:
-    instruct = _INSTRUCT.get(pack, _INSTRUCT["en"])
-    context = retrieval_lines(retrieval, pack)
-    parts = [part for part in (extra, context, instruct) if part]
-    return "\n".join(parts)
-
 
 def parse_tool_reply(speech: str) -> dict[str, Any] | None:
     text = (speech or "").strip()

@@ -364,18 +364,18 @@ Rollback pattern for every move: if the new route returns 404/503, Python keeps 
 
 ---
 
-### Follow-up (not a product PR)
+### Follow-up (done)
 
-After a staging bake: delete Python duplicates (`accept_refined`, prompt dicts, `from_handled` templates, `quiet_ack_applies` body). One cleanup PR. Freeze comments on `intents.py` fold helpers if not already added in PR 1.
+After the staging bake of PRs 1–6: Python duplicates are deleted (`accept_refined`, prompt dicts, `from_handled` templates, `quiet_ack_applies` domain body). Missing engine routes fail closed. Fold helpers in `intents.py` carry freeze comments. Mixed old-engine / new-integration pairs skip refine, Assist prompts, and post-execute interpolation rather than invent a second source of truth.
 
 ## Migration strategy (no double-speak, no dropped personality)
 
 1. **One LLM hop per turn.** PR 1 removes SDK so engine SSE and `async_converse` cannot both publish. Keep `skip_rewrite` for `chat` / `llm` / `chime` / `error` — fallback already applied the voice; a second refine rewrites after TTS started (`refine.py` `skip_rewrite`).
-2. **One system prompt.** When `/llm/assist` builds personality, HA must not also prepend `refine_prompt`. Today `_fallback` does `with_personality(prompt, voice)` where `voice = refine_prompt(...)`.
+2. **One system prompt.** When `/llm/assist` builds personality, HA must not also prepend `refine_prompt`. `_fallback` sends `extra_prompt` (operator option) and `extra_system` (user/policy extra), not a Python-built product prompt.
 3. **One spoken line after execute.** Assist continues to **replace** parse speech with post-exec speech. Do not TTS `respond.rs` and `speech/render`. Wyoming/Lab keep parse speech.
 4. **Personality prefix once.** Renderer returns the factual sentence. `async_finish_speech` applies `style()` or `/llm/refine`. Do not wrap in the renderer.
 5. **Quiet ack vs TTS.** Eligible + success → empty speech + `play_chime` (today). Engine flag must not also return a spoken ack.
-6. **Version skew.** Staging image = engine + integration. 404 fallback covers a mixed pair for one bake, then delete.
+6. **Version skew.** Staging image = engine + integration. Missing routes fail closed (no Python product duplicate).
 7. **Other RCs.** Docs PR is independent. Implementation that touches `conversation.py` stacks on current `staging`, not on leftover feature branches.
 
 ## Risks
@@ -413,7 +413,7 @@ After a staging bake: delete Python duplicates (`accept_refined`, prompt dicts, 
 4 snapshot contract   (parallel with 1 if it does not touch conversation.py)
   → 5 speech renderer + generator
 6 quiet_ack_eligible  (parallel with 2–5)
-  → cleanup delete Python duplicates
+  → cleanup delete Python duplicates (done)
 ```
 
 Stop and revert if: Assist double-speaks, personality drops on refine-off houses, `assist_langs` goes red because parse templates drifted, a stage ships de/en-only prompts or speech keys, the SDK path grows again, or someone puts HA state fetches in `nlu::parse`.

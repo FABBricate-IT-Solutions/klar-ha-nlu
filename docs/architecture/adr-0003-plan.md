@@ -364,18 +364,18 @@ Rollback-Muster für jeden Umzug: liefert die neue Route 404/503, behält Python
 
 ---
 
-### Nachlauf (kein Produkt-PR)
+### Nachlauf (erledigt)
 
-Nach einem Staging-Bake: Python-Duplikate löschen (`accept_refined`, Prompt-Dicts, `from_handled`-Vorlagen, `quiet_ack_applies`-Rumpf). Ein Cleanup-PR. Freeze-Kommentare an den Fold-Helfern in `intents.py`, falls nicht schon in PR 1.
+Nach dem Staging-Bake von PR 1–6: Python-Duplikate sind gelöscht (`accept_refined`, Prompt-Dicts, `from_handled`-Vorlagen, `quiet_ack_applies`-Domänenrumpf). Fehlende Engine-Routen fallen geschlossen fehl. Fold-Helfer in `intents.py` tragen Freeze-Kommentare. Ein gemischtes Paar alte Engine / neue Integration überspringt Refine, Assist-Prompts und Post-Execute-Interpolation, statt eine zweite Quelle der Wahrheit zu erfinden.
 
 ## Migrationsstrategie (kein Doppelsprechen, keine verlorene Persönlichkeit)
 
 1. **Ein LLM-Hop pro Turn.** PR 1 entfernt das SDK, damit Engine-SSE und `async_converse` nicht beide publizieren. `skip_rewrite` für `chat` / `llm` / `chime` / `error` behalten — der Fallback hat die Stimme schon angewendet; ein zweites Refine schreibt nach TTS-Start um (`refine.py` `skip_rewrite`).
-2. **Ein Systemprompt.** Wenn `/llm/assist` die Persönlichkeit baut, darf HA nicht zusätzlich `refine_prompt` vorschalten. Heute macht `_fallback` `with_personality(prompt, voice)` mit `voice = refine_prompt(...)`.
+2. **Ein Systemprompt.** Wenn `/llm/assist` die Persönlichkeit baut, darf HA nicht zusätzlich `refine_prompt` vorschalten. `_fallback` schickt `extra_prompt` (Operator-Option) und `extra_system` (User/Policy-Extra), keinen in Python gebauten Produktprompt.
 3. **Ein gesprochener Satz nach dem Execute.** Assist **ersetzt** weiter Parse-Sprache durch Post-Exec-Sprache. Nicht `respond.rs` und `speech/render` beide TTS-en. Wyoming/Labor behalten Parse-Sprache.
 4. **Persönlichkeitspräfix einmal.** Der Renderer liefert den Faktensatz. `async_finish_speech` macht `style()` oder `/llm/refine`. Nicht im Renderer wrappen.
 5. **Quiet-Ack vs. TTS.** Geeignet + Erfolg → leere Sprache + `play_chime` (heute). Das Engine-Flag darf nicht zusätzlich einen gesprochenen Ack liefern.
-6. **Versionsversatz.** Staging-Image = Engine + Integration. 404-Fallback deckt ein gemischtes Paar für einen Bake, dann löschen.
+6. **Versionsversatz.** Staging-Image = Engine + Integration. Fehlende Routen fallen geschlossen fehl (kein Python-Produktduplikat).
 7. **Andere RCs.** Docs-PR ist unabhängig. Umsetzung, die `conversation.py` anfasst, stapelt auf aktuellem `staging`, nicht auf übrig gebliebenen Feature-Branches.
 
 ## Risiken
@@ -413,7 +413,7 @@ Nach einem Staging-Bake: Python-Duplikate löschen (`accept_refined`, Prompt-Dic
 4 Schnappschussvertrag   (parallel zu 1, wenn conversation.py unberührt bleibt)
   → 5 Speech-Renderer + Generator
 6 quiet_ack_eligible  (parallel zu 2–5)
-  → Cleanup Python-Duplikate löschen
+  → Cleanup Python-Duplikate löschen (erledigt)
 ```
 
 Stoppen und zurück, wenn: Assist doppelt spricht, die Persönlichkeit in Häusern ohne Refine wegfällt, `assist_langs` rot wird weil Parse-Vorlagen drifteten, eine Stufe nur de/en-Prompts oder Sprach-Keys liefert, der SDK-Pfad wieder wächst, oder jemand HA-State-Fetches in `nlu::parse` steckt.

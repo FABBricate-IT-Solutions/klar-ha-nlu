@@ -33,7 +33,6 @@ class ScriptLanguageTests(unittest.TestCase):
     @classmethod
     def setUpClass(cls) -> None:
         cls.news = _load("klar_news_script", "news.py")
-        cls.fallback = _load("klar_fallback_script", "fallback.py")
         cls.say = _load("klar_calendar_say_script", "calendar_say.py")
 
     def test_overlay_keeps_romanized_room_synonyms(self) -> None:
@@ -110,14 +109,6 @@ class ScriptLanguageTests(unittest.TestCase):
         self.assertTrue(_has_letters(self.news.nudge("ja")))
         self.assertTrue(self.news.asked_for_more("もっと詳しく"))
         self.assertTrue(self.news.asked_for_more("想了解详情"))
-
-    def test_fallback_prompts_lock_native_packs(self) -> None:
-        ja = self.fallback.chat_only_prompt("ja", None)
-        self.assertIn("会話", ja)
-        self.assertNotIn("Deutsch", ja)
-        news = self.fallback.news_prompt("zh-CN", ["标题"], None)
-        self.assertIn("新闻", news)
-        self.assertNotIn("Schlagzeilen", news)
 
 
 if __name__ == "__main__":

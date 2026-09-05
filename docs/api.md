@@ -144,11 +144,11 @@ Engine baut den Refine-Prompt (Pack + Stimme + extra), ruft das Modell (`tempera
 }
 ```
 
-Die Engine besitzt Yarn/Chat/RAG/Kalender/News-Prompts und `yarn_canned` / `yarn_nudge`. `kind`: `auto` | `yarn` | `chat` | `rag` | `calendar` | `news` | `news_follow`. `auto` nutzt `yarn_request` / RAG-Flag. `facts` sind Schlagzeilen oder Kalender-Readback aus HA. Persönlichkeit sitzt hier — `refine_prompt` nicht zusätzlich voranstellen. SSE ergänzt `{"type":"tool","tool":"klar.parse","text":"licht an"}` / `klar.act`, damit TTS nie `KLAR_PARSE:` spricht. Write-Token. 503 ohne Endpoint. `404` behält den bisherigen Python-Prompt für einen Staging-Bake.
+Die Engine besitzt Yarn/Chat/RAG/Kalender/News-Prompts und `yarn_canned` / `yarn_nudge`. `kind`: `auto` | `yarn` | `chat` | `rag` | `calendar` | `news` | `news_follow`. `auto` nutzt `yarn_request` / RAG-Flag. `facts` sind Schlagzeilen oder Kalender-Readback aus HA. Persönlichkeit sitzt hier — `refine_prompt` nicht zusätzlich voranstellen. SSE ergänzt `{"type":"tool","tool":"klar.parse","text":"licht an"}` / `klar.act`, damit TTS nie `KLAR_PARSE:` spricht. Write-Token. 503 ohne Endpoint. Fehlende Route fällt geschlossen fehl — Home Assistant baut den Python-Prompt nicht nach.
 
 ### `POST /api/v2/speech/render`
 
-Post-Execute-Snapshot aus Home Assistant. Die Engine interpoliert Pack-Templates zu einem faktischen Satz (`source: "post_execute"`). Persönlichkeit kommt später beim Assist-Finish. Assist ruft das nach Execute; `404` behält `from_handled`. Write-Token nötig.
+Post-Execute-Snapshot aus Home Assistant. Die Engine interpoliert Pack-Templates zu einem faktischen Satz (`source: "post_execute"`). Persönlichkeit kommt später beim Assist-Finish. Assist ruft das nach Execute; fehlende Route fällt geschlossen fehl (kein Python-`from_handled`). Write-Token nötig.
 
 ```json
 {

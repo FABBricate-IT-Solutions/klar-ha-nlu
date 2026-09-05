@@ -144,11 +144,11 @@ The engine builds the refine prompt (pack + voice + extra), runs the model (`tem
 }
 ```
 
-Engine owns Yarn/chat/RAG/calendar/news prompts and `yarn_canned` / `yarn_nudge`. `kind`: `auto` | `yarn` | `chat` | `rag` | `calendar` | `news` | `news_follow`. `auto` uses `yarn_request` / the RAG flag. `facts` is a headline list or calendar readback gathered by HA. Personality is applied here — do not also prepend `refine_prompt`. SSE adds `{"type":"tool","tool":"klar.parse","text":"licht an"}` / `klar.act` so TTS never speaks `KLAR_PARSE:`. Write token required. `503` when no endpoint. `404` keeps the previous Python prompt path for one staging bake.
+Engine owns Yarn/chat/RAG/calendar/news prompts and `yarn_canned` / `yarn_nudge`. `kind`: `auto` | `yarn` | `chat` | `rag` | `calendar` | `news` | `news_follow`. `auto` uses `yarn_request` / the RAG flag. `facts` is a headline list or calendar readback gathered by HA. Personality is applied here — do not also prepend `refine_prompt`. SSE adds `{"type":"tool","tool":"klar.parse","text":"licht an"}` / `klar.act` so TTS never speaks `KLAR_PARSE:`. Write token required. `503` when no endpoint. Missing route fails closed — Home Assistant does not rebuild the Python prompt.
 
 ### `POST /api/v2/speech/render`
 
-Post-execute snapshot from Home Assistant. The engine interpolates pack templates into a factual sentence (`source: "post_execute"`). Personality prefix is applied later at Assist finish. Assist calls this after execute; `404` keeps `from_handled`. Write token required.
+Post-execute snapshot from Home Assistant. The engine interpolates pack templates into a factual sentence (`source: "post_execute"`). Personality prefix is applied later at Assist finish. Assist calls this after execute; missing route fails closed (no Python `from_handled`). Write token required.
 
 ```json
 {

@@ -21,7 +21,6 @@ def _load(name: str, rel: str):
 
 
 news = _load("klar_news", "news.py")
-fallback = _load("klar_fallback", "fallback.py")
 
 RSS = """<?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0">
@@ -62,14 +61,6 @@ class NewsTests(unittest.TestCase):
         self.assertNotIn("tagesschau", news.feed_url("ja"))
         self.assertEqual(news.feed_url("xx"), news.feed_url("en"))
         self.assertNotIn("Möchtest", news.nudge("ja"))
-
-    def test_news_prompt_lists_headlines(self) -> None:
-        prompt = fallback.news_prompt("de", ["Erste Meldung"], "Sei kurz.")
-        self.assertIn("Sei kurz.", prompt)
-        self.assertIn("Erste Meldung", prompt)
-        self.assertIn("keine Home-Assistant-Werkzeuge", prompt)
-        follow = fallback.news_followup_prompt("de", None)
-        self.assertIn("Nachrichtenthema", follow)
 
 
 if __name__ == "__main__":

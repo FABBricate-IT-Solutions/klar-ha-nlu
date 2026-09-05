@@ -16,11 +16,6 @@ _LOGGER = logging.getLogger(__name__)
 
 EVENT_ACK = f"{DOMAIN}_ack"
 CHIME_PATH = f"/api/{DOMAIN}/chime.wav"
-SIMPLE_INTENTS = frozenset({"HassTurnOn", "HassTurnOff"})
-BLOCKED_DOMAINS = frozenset(
-    {"scene", "script", "cover", "lock", "climate", "fan", "media_player", "vacuum"}
-)
-SIMPLE_DOMAINS = frozenset({"light", "switch"})
 _CHIME_WAV: bytes | None = None
 
 
@@ -29,39 +24,13 @@ def quiet_ack_applies(
     intents: list[dict[str, Any]] | None,
     eligible: bool | None = None,
 ) -> bool:
+    del intents
     if not executed or executed.get("outcome") != "success":
         return False
     steps = executed.get("steps") or []
     if len(steps) != 1 or steps[0].get("status") != "success":
         return False
-    if eligible is True:
-        return True
-    if eligible is False:
-        return False
-    if len(intents or []) != 1:
-        return False
-    item = intents[0]
-    if str(item.get("name") or "") not in SIMPLE_INTENTS:
-        return False
-    return _simple_target(item)
-
-
-def _simple_target(item: dict[str, Any]) -> bool:
-    slots = {
-        str(slot.get("name")): str(slot.get("value") or "")
-        for slot in item.get("slots") or []
-        if isinstance(slot, dict) and slot.get("name")
-    }
-    domain = slots.get("domain") or ""
-    entity_id = slots.get("entity_id") or ""
-    prefix = entity_id.split(".", 1)[0] if "." in entity_id else ""
-    if prefix in BLOCKED_DOMAINS or domain in BLOCKED_DOMAINS:
-        return False
-    if domain in SIMPLE_DOMAINS or prefix in SIMPLE_DOMAINS:
-        return True
-    if slots.get("area") or slots.get("floor"):
-        return domain in {"", "light", "switch"}
-    return False
+    return eligible is True
 
 
 def chime_wav() -> bytes:
