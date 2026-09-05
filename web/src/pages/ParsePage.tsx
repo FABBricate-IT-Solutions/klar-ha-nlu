@@ -125,12 +125,6 @@ export function labPath(
   return steps;
 }
 
-function pathChipClass(step: string, decision: string, band?: string): string {
-  if (step.startsWith("Klar parse")) return band && band !== "chat" ? "chip intent" : "chip";
-  if (step === decision) return band === "execute" ? "chip lab-band-chip intent" : "chip lab-band-chip";
-  return "chip";
-}
-
 export function ParsePage({
   t,
   parseLanguage,
@@ -159,8 +153,6 @@ export function ParsePage({
   const roomOptions = rooms.map((room) => ({ value: room.area_id, label: room.name }));
   const intentOptions = (knownIntents.length ? knownIntents : [teachIntent]).map((name) => ({ value: name, label: name }));
   const band = result?.decision.type;
-  const executeName = labDecisionLabel(result);
-  const path = labPath(result, settings, parseLanguage);
   const armed = armedPipeline(settings);
   const banner = bannerText(error, result);
 
@@ -238,7 +230,7 @@ export function ParsePage({
           />
         </div>
         {heardIn ? <span className="chip">{t.heardIn}: {heardIn}</span> : null}
-        <div className="flow" aria-label={t.processPath}>
+        <div className="lab-policy-path">
           <PolicyPath t={t} trace={result?.policy_trace} />
         </div>
         {armed.length > 0 && (

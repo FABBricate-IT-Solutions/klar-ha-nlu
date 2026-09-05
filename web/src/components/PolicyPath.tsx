@@ -1,3 +1,4 @@
+import { OriginChip, parseOrigin } from "./OriginChip";
 import type { Messages } from "../i18n";
 import type { PolicyTrace } from "../types";
 import { cn } from "cn";
@@ -73,6 +74,23 @@ function nodeWhy(t: Messages, trace: PolicyTrace | undefined, kind: PathKind): s
   }
 }
 
+function nodeOrigin(trace: PolicyTrace | undefined, kind: PathKind) {
+  switch (kind) {
+    case "match":
+      return parseOrigin(trace?.match?.origin);
+    case "seed":
+      return parseOrigin(trace?.seed?.origin);
+    case "house":
+      return parseOrigin(trace?.house?.origin);
+    case "band":
+      return undefined;
+    default: {
+      const _never: never = kind;
+      return _never;
+    }
+  }
+}
+
 export function PolicyPath({
   t,
   trace,
@@ -91,11 +109,12 @@ export function PolicyPath({
         const id = nodeId(policy, kind, dash);
         const lane = laneFor(kind);
         const why = nodeWhy(t, policy, kind);
-        const selectedId = id === dash ? undefined : id;
+        const origin = nodeOrigin(policy, kind);
         const hit = id !== dash;
+        const selectedId = hit ? id : undefined;
         return (
           <span key={kind} className="inline-flex items-center gap-2">
-            {index > 0 ? <span className="text-muted-foreground">→</span> : null}
+            {index > 0 ? <span className="text-muted-foreground" aria-hidden="true">→</span> : null}
             <button
               type="button"
               className={cn(
@@ -103,9 +122,12 @@ export function PolicyPath({
                 hit ? "border-primary ring-1 ring-primary/35" : "border-border",
               )}
               onClick={() => lane && onSelect?.(lane, selectedId)}
-              disabled={!lane}
+              disabled={!lane || !onSelect}
             >
-              <span className="text-xs text-muted-foreground">{kindLabel(t, kind)}</span>
+              <span className="flex w-full items-center justify-between gap-2">
+                <span className="text-xs text-muted-foreground">{kindLabel(t, kind)}</span>
+                {origin && hit ? <OriginChip t={t} origin={origin} /> : null}
+              </span>
               <strong className="font-mono text-xs">{id}</strong>
               {why ? <span className="text-[11px] text-muted-foreground">{why}</span> : null}
             </button>

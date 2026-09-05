@@ -1,3 +1,4 @@
+import { OriginChip } from "./OriginChip";
 import type { Messages } from "../i18n";
 import type { MatchCatalogRow, MatchControl } from "../types";
 
@@ -36,7 +37,10 @@ export function MatchLane({
 }) {
   return (
     <>
-      <h2>{t.matchCatalog}</h2>
+      <div className="policy-lane-head">
+        <h2>{t.laneMatchEngine}</h2>
+        <OriginChip t={t} origin="engine" />
+      </div>
       <p className="caption">{t.matchReadOnly}</p>
       {catalog.map((row, index) => {
         const overlay = controls.find((item) => item.id === row.id);
@@ -44,21 +48,19 @@ export function MatchLane({
         const precedence = overlay?.precedence ?? row.precedence;
         return (
           <div
-            className={`rule-row${index === selected ? " active" : ""}`}
+            className={`lane-row match-row${index === selected ? " active" : ""}`}
             key={row.id}
             onClick={() => onSelect(index)}
           >
-            <span className="chip origin">{t.originEngine}</span>
-            <strong className="mono">{row.id}</strong>
             <label className="row match-toggle" onClick={(ev) => ev.stopPropagation()}>
               <input
                 type="checkbox"
                 checked={enabled}
                 onChange={(ev) => onChange(upsertMatchControl(controls, catalog, row.id, { enabled: ev.target.checked }))}
-                style={{ width: "auto" }}
               />
               {enabled ? t.matchEnabled : t.matchDisabled}
             </label>
+            <strong className="mono">{row.id}</strong>
             <input
               className="match-precedence"
               type="number"

@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Loader2Icon } from "lucide-react";
 import { api, type LangOverlay } from "../api";
+import type { PolicyLane } from "./PolicyPath";
 import type { Messages } from "../i18n";
 import type {
   LlmPublic,
@@ -20,6 +21,19 @@ import { Field, FieldGroup, FieldLabel } from "@/components/ui/field";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Textarea } from "@/components/ui/textarea";
 import { cn } from "cn";
+
+function trainerLayer(lane: PolicyLane): "match" | "language" | "house" {
+  switch (lane) {
+    case "match":
+    case "language":
+    case "house":
+      return lane;
+    default: {
+      const _never: never = lane;
+      return _never;
+    }
+  }
+}
 
 function layerOf(proposal: TrainerProposal): "match" | "language" | "house" | "all" {
   const layer = proposal.layer || "all";
@@ -84,6 +98,7 @@ function applyEvent(
 
 export function TrainerDrawer({
   t,
+  lane,
   language,
   overlay,
   onApplyHouse,
@@ -91,6 +106,7 @@ export function TrainerDrawer({
   onStatus,
 }: {
   t: Messages;
+  lane: PolicyLane;
   language?: string;
   overlay: LangOverlay | null;
   onApplyHouse: (next: PolicyRule[]) => Promise<void>;
@@ -129,7 +145,7 @@ export function TrainerDrawer({
     setResult(null);
     setProposal(null);
     try {
-      await api.trainerChat({ message, layer: "all", language, history }, (event) => {
+      await api.trainerChat({ message, layer: trainerLayer(lane), language, history }, (event) => {
         applyEvent(event, setLines, setProposal, setRaw, setResult, onStatus, t);
       });
     } catch (err) {
@@ -185,7 +201,7 @@ export function TrainerDrawer({
     return (
       <Card className="mt-4 ring-1 ring-primary/40">
         <CardHeader>
-          <CardTitle>{t.trainer}</CardTitle>
+          <CardTitle>{t.trainerForLane}</CardTitle>
           <CardDescription>{endpoint ? t.trainerNeedLlm : t.trainerStreaming}</CardDescription>
         </CardHeader>
         {endpoint ? (
@@ -201,7 +217,7 @@ export function TrainerDrawer({
     <Card className="mt-4">
       <CardHeader>
         <div className="flex flex-wrap items-center gap-2">
-          <CardTitle>{t.trainer}</CardTitle>
+          <CardTitle>{t.trainerForLane}</CardTitle>
           <Badge variant="outline">{endpoint.model || "LLM"}</Badge>
         </div>
         <CardDescription>{t.trainerHint}</CardDescription>
