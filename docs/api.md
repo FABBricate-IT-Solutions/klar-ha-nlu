@@ -146,6 +146,51 @@ Engine baut den Refine-Prompt (Pack + Stimme + extra), ruft das Modell (`tempera
 
 Die Engine besitzt Yarn/Chat/RAG/Kalender/News-Prompts und `yarn_canned` / `yarn_nudge`. `kind`: `auto` | `yarn` | `chat` | `rag` | `calendar` | `news` | `news_follow`. `auto` nutzt `yarn_request` / RAG-Flag. `facts` sind Schlagzeilen oder Kalender-Readback aus HA. Persönlichkeit sitzt hier — `refine_prompt` nicht zusätzlich voranstellen. SSE ergänzt `{"type":"tool","tool":"klar.parse","text":"licht an"}` / `klar.act`, damit TTS nie `KLAR_PARSE:` spricht. Write-Token. 503 ohne Endpoint. `404` behält den bisherigen Python-Prompt für einen Staging-Bake.
 
+### `POST /api/v2/speech/render`
+
+Post-Execute-Snapshot aus Home Assistant. Die Engine prüft Caps und Allow-List; sie interpoliert in diesem Zyklus noch nicht (`source: "unrendered"`). Assist spricht weiter `from_handled`. Write-Token nötig.
+
+```json
+{
+  "schema_version": "1",
+  "language": "de",
+  "personality": "default",
+  "now": "2026-09-05T19:22:00+02:00",
+  "intent": {
+    "name": "HassTurnOn",
+    "slots": [{"name": "area", "value": "wohnzimmer"}]
+  },
+  "outcome": "success",
+  "entities": [
+    {
+      "entity_id": "light.wohnzimmer",
+      "name": "Wohnzimmer",
+      "domain": "light",
+      "state": "on",
+      "area": "wohnzimmer",
+      "area_name": "Wohnzimmer",
+      "device_class": null,
+      "attributes": {
+        "current_temperature": null,
+        "temperature_unit": null,
+        "unit_of_measurement": null,
+        "hvac_action": null,
+        "hvac_mode": null,
+        "volume_level": null,
+        "is_volume_muted": null,
+        "media_title": null,
+        "media_artist": null,
+        "media_album_name": null
+      }
+    }
+  ],
+  "calendar_events": [],
+  "media_queue": []
+}
+```
+
+Antwort: `{ "speech": "", "quiet_ack": false, "source": "unrendered" }`. `outcome` ist `success` | `partial` | `error`. `now` ist Pflicht (Uhr). Unbekannte Attribut-Keys werden verworfen. Fehlendes `schema_version` → `400`. Caps: 32 Entities, 16 Kalenderzeilen, 8 Queue-Titel, Attributwerte ≤ 256 Zeichen.
+
 ### `POST /api/v2/policies/trainer/chat`
 
 ```json

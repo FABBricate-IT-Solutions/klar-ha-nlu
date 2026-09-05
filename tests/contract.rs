@@ -382,3 +382,42 @@ fn match_catalog_is_stable_and_language_free() {
     assert!(ids.contains("media"));
     assert!(!ids.contains("media_new_matcher"));
 }
+
+#[test]
+fn speech_snapshot_drops_unknown_attrs_and_rejects_missing_schema() {
+    use klar_nlu::types::{SnapshotError, SpeechEntity, SpeechIntent, SpeechSnapshot, SNAPSHOT_SCHEMA};
+    use std::collections::BTreeMap;
+
+    let snap = SpeechSnapshot {
+        schema_version: SNAPSHOT_SCHEMA.into(),
+        language: "de".into(),
+        personality: "default".into(),
+        now: "2026-09-05T19:22:00+02:00".into(),
+        intent: SpeechIntent { name: "HassTurnOn".into(), slots: vec![] },
+        outcome: "success".into(),
+        entities: vec![SpeechEntity {
+            entity_id: "light.wohnzimmer".into(),
+            name: "Wohnzimmer".into(),
+            domain: "light".into(),
+            state: "on".into(),
+            area: None,
+            area_name: None,
+            device_class: None,
+            attributes: BTreeMap::from([("media_title".into(), serde_json::json!("ok")), ("secret".into(), serde_json::json!("drop-me"))]),
+        }],
+        calendar_events: vec![],
+        media_queue: vec![],
+    };
+    let clean = snap.sanitize().expect("valid snapshot");
+    assert!(clean.entities[0].attributes.contains_key("media_title"));
+    assert!(!clean.entities[0].attributes.contains_key("secret"));
+    assert_eq!(clean.unrendered().source, "unrendered");
+    let missing: SpeechSnapshot = serde_json::from_value(serde_json::json!({
+        "language": "de",
+        "now": "2026-09-05T19:22:00+02:00",
+        "intent": {"name": "HassTurnOn"},
+        "outcome": "success"
+    }))
+    .expect("deserialize");
+    assert_eq!(missing.sanitize(), Err(SnapshotError::Schema));
+}

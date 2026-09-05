@@ -4,6 +4,7 @@ mod intent;
 mod outcome;
 mod policy;
 mod settings;
+mod speech_snapshot;
 
 pub use govern::{first_seed_match, govern_safety_seeds, is_seed_id, SEED_BLOCK_AREA_LOCK, SEED_CONFIRM_COVER_CLOSE, SEED_CONFIRM_LOCK};
 pub use graph::{AreaRec, CustomSentence, EntityRec, FloorRec, HomeGraph, HomePolicy};
@@ -20,3 +21,7 @@ pub use policy::{
     MAX_POLICY_RULES, MAX_SPEECH_VARIANTS,
 };
 pub use settings::{Mode, Personality, Settings};
+pub use speech_snapshot::{
+    SnapshotError, SpeechCalendarEvent, SpeechEntity, SpeechIntent, SpeechQueueItem, SpeechRenderOut, SpeechSlot, SpeechSnapshot,
+    SNAPSHOT_SCHEMA,
+};
