@@ -304,6 +304,15 @@ class RefineTests(unittest.TestCase):
         self.assertIsNone(refine.accept_refined("Licht ist an.", "Das ist besorgt."))
         self.assertIsNone(refine.accept_refined("Licht ist an.", "soweit gemeldet"))
 
+    def test_refine_raw_uses_engine_then_converse(self) -> None:
+        src = (PKG / "refine.py").read_text(encoding="utf-8")
+        start = src.index("async def _async_refine_raw")
+        body = src[start:]
+        self.assertIn("complete_engine_chat", body)
+        self.assertIn("async_converse", body)
+        self.assertNotIn("chat.completions.create", body)
+        self.assertLess(body.index("complete_engine_chat"), body.index("async_converse"))
+
     def test_no_homeassistant_runtime_falls_back_to_none(self) -> None:
         out = asyncio.run(
             refine.async_refine_speech(

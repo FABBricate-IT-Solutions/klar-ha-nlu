@@ -79,7 +79,6 @@ from .rag_tools import (
     rag_prompt,
 )
 from .engine_llm import stream_engine_chat
-from .stream import stream_chat
 from .news import announce, asked_for_more, compose_speech, fetch_headlines, nudge
 from .policy_actions import (
     hit_and_payload,
@@ -91,7 +90,6 @@ from .refine import (
     async_finish_speech,
     emit_assistant_speech,
     isolated_conversation_id,
-    llm_client_and_model,
     nested_llm_session,
     pop_complete_sentences,
     refine_prompt,
@@ -617,20 +615,6 @@ class KlarConversationEntity(ConversationEntity):
                 return _speech_result(pack, speech, published and chat_log is not None)
         if not agent_id:
             return None
-        resolved = llm_client_and_model(self.hass, agent_id)
-        if resolved is not None:
-            streamed = await self._stream_fallback(
-                resolved[0],
-                resolved[1],
-                user_input,
-                pack,
-                system,
-                chat_log if publish else None,
-                yarn,
-                asked,
-            )
-            if streamed is not None:
-                return streamed
         try:
             result = await conversation.async_converse(
                 self.hass,
@@ -654,51 +638,6 @@ class KlarConversationEntity(ConversationEntity):
             except Exception as err:  # noqa: BLE001 — other agent is a system boundary
                 _LOGGER.warning("LLM-Fallback-Wiederholung fehlgeschlagen: %s", err)
         return result
-
-    async def _stream_fallback(
-        self,
-        client: Any,
-        model: str,
-        user_input: ConversationInput,
-        pack: str,
-        system: str,
-        chat_log: ChatLog | None,
-        yarn: bool,
-        asked: str | None = None,
-    ) -> ConversationResult | None:
-        hold = _stream_hold(yarn, self._nlu_rag())
-        text = asked or user_input.text
-        try:
-            speech, published = await stream_chat(
-                client,
-                model,
-                text,
-                system,
-                chat_log,
-                getattr(user_input, "agent_id", None),
-                hold=hold,
-            )
-        except Exception as err:  # noqa: BLE001 — client shape varies by agent
-            _LOGGER.warning("LLM-Stream fehlgeschlagen, converse: %s", err)
-            return None
-        if not speech:
-            return None
-        if yarn and yarn_asks_permission(speech) and not published:
-            try:
-                speech, published = await stream_chat(
-                    client,
-                    model,
-                    text,
-                    yarn_nudge(pack, system),
-                    chat_log,
-                    getattr(user_input, "agent_id", None),
-                )
-            except Exception as err:  # noqa: BLE001 — retry is best-effort
-                _LOGGER.warning("LLM-Stream-Wiederholung fehlgeschlagen: %s", err)
-                return None
-            if not speech:
-                return None
-        return _speech_result(pack, speech, published and chat_log is not None)
 
     def _preferred_area(self, device_id: str | None, satellite_id: str | None = None) -> str | None:
         registry = device_registry.async_get(self.hass)

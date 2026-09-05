@@ -514,23 +514,6 @@ async def _async_refine_raw(
             return engine_text
     except Exception as err:  # noqa: BLE001 — engine HTTP is a system boundary
         _LOGGER.debug("Klar LLM refine skipped: %s", err)
-    resolved = llm_client_and_model(hass, agent_id)
-    if resolved is not None:
-        client, model = resolved
-        try:
-            result = await client.chat.completions.create(
-                model=model,
-                messages=[
-                    {"role": "system", "content": prompt},
-                    {"role": "user", "content": user},
-                ],
-                max_tokens=128,
-                temperature=0.65,
-                extra_body=refine_extra_body(),
-            )
-            return speech_from_completion(result)
-        except Exception as err:  # noqa: BLE001 — client shape varies by agent
-            _LOGGER.debug("LLM-Refine direkt fehlgeschlagen, converse: %s", err)
     if not can_use_fallback_agent(controls_home, allow_tools=allow_tools):
         _LOGGER.warning("LLM-Refine %s hat Assist-Werkzeuge — converse übersprungen", agent_id)
         return None
