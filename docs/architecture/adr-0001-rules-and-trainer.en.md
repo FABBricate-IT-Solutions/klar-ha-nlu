@@ -11,7 +11,7 @@ Klar stays a deterministic, local NLU. An LLM may **set up** the house; it must 
 Behavior lives on **three layers** that the same utterance walks in order:
 
 1. **Match** — *how* tokens become an intent candidate (`PolicyId`: `area_command`, `grounded_entities`, `media`, …).
-2. **Language (seed)** — default govern for the bound locale (confirm locks, phrase defaults). Shipped with the pack.
+2. **Language** — two seeds of the same locale: **lexicon** (verbs/nouns, plus overlay for slang) and **govern seed** (confirm locks). Shipped with the pack.
 3. **House** — overlay for this graph: operator and trainer rules that replace or extend the seed.
 
 Today Match and safety are invisible in code, the Rules tab only knows an empty house list, and Lab shows a coarse process chip (`conversation.process`) rather than *which layer decided why*.
@@ -36,7 +36,8 @@ Text → tokenize → PolicyId match (fixed) → ranking
 | Overlay `PolicyRule` | house only, empty, no origin, max 64 |
 | Evaluate / Lab `.flow` | overlay hit + `compiled_risky`; no layer path |
 | `IntentCandidate.policy` | match name in JSON, not in the Rules UI |
-| Language packs | lexicon, no govern seeds |
+| Language packs | compiled lexicon; overlay `SetDelta` exists but barely in the Rules UI |
+| Govern seeds | missing |
 | `risky_intent` / infra | invisible |
 | Trainer | missing |
 
@@ -48,14 +49,19 @@ Not strategy B (Match as a freely writable DSL). Not trace-only with no knobs.
 Match catalog (compiled functions)
   + match overlay: enabled, precedence     ← UI + trainer
        ↓ candidates
-Language govern seed                       ← UI + trainer (on/off, reset)
+Language: lexicon pack + lexicon overlay         ← UI + trainer (add/remove tokens)
+       + govern seed                             ← UI + trainer (on/off, reset)
        ↓ first matching seed rule
 House overlay                              ← UI + trainer (full PolicyRule)
        ↓ first matching house rule wins over seed
 Invariants: validate_plan, expose, schema (always in the trace, no trainer)
 ```
 
-Pre-seeded data per language stays **two** separate things: lexicon pack (verbs/nouns) and govern seed (`PolicyRule[]`).
+Pre-seeded per language are **two** seeds, plus an overlay:
+
+1. **Lexicon pack** (already compiled): verbs, nouns, fillers. That *is* the pre-seeded database.
+2. **Lexicon overlay** (already `LanguageOverlay` / `SetDelta`): slang, dialect, house words. Preview and rollback exist.
+3. **Govern seed** (new): default `PolicyRule[]` for that locale.
 
 ## Layer contract
 
@@ -77,9 +83,21 @@ Example: house with no `media_player` → turn `media` off. Many lamps with the 
 
 Disabled ids are skipped in `parse_clause_candidates_for_action`. Unknown ids → 400. Reset deletes the overlay row.
 
-### 2. Language — govern seed
+### 2. Language — lexicon database plus govern seed
 
-Shipped with the pack, e.g. `src/lang/packs/de/govern.json`. Ordinary `PolicyRule`s, stable ids:
+A pack that “does not fit” (slang, dialect, exotic forms) is **not** fixed with a `PolicyRule`. Match only sees tokens that are in the catalog. `when.phrase = “turn on the funzel”` does not scale and bypasses the lexicon.
+
+Right path: the pack **is** the pre-seeded database. Visible in the Language lane, overridable through the same overlay `POST /api/lang/overlay` already writes (`sets.nouns.light_nouns.add = ["funzel"]`). The trainer may **add/remove on known set paths**, after preview and locale smokes.
+
+| May (lexicon) | Must not |
+|---------------|----------|
+| Add a token on an existing path (`nouns.light_nouns`, `cues.on_words`, …) | Replace the pack file, change morphology / `NumberStyle` / tokenizer |
+| Remove an overlay token, reset the pack | Flip `VerbKind` of a builtin token (same conflict as external packs) |
+| Dialect as an overlay on `de` (not every slang pack is a locale) | Merge every locale into one catalog; fillers that eat particles (`an` / `aus`) |
+
+`set_field` today allows only a subset of sets. Extend paths for slang if needed (more nouns, cues). New verbs only as a **new** token plus an explicit `VerbKind`; collision with builtin → reject.
+
+Govern seed sits beside that, e.g. `src/lang/packs/de/govern.json`. Ordinary `PolicyRule`s, stable ids:
 
 | Id | when | effect |
 |----|------|--------|
@@ -87,9 +105,9 @@ Shipped with the pack, e.g. `src/lang/packs/de/govern.json`. Ordinary `PolicyRul
 | `seed:confirm-cover-close` | cover + `HassTurnOff` | `confirm` |
 | `seed:block-area-lock` | lock + area | `block` |
 
-UI: list for the bound language, toggle, “reset seed”. No free-text `when` on the seed (that would drift the locale). A house rule with the same id **replaces** the seed. Extra house rules sit **in front**. Seeds do not count against the 64.
+UI: the Language lane has two lists — **lexicon** (pack read-only + overlay deltas) and **govern**. Toggle/reset on govern as planned. Lexicon deltas are `add`/`remove`, not drag order. A house rule with the same govern id **replaces** the seed. Extra house rules sit **in front**. Seeds do not count against the 64.
 
-Trainer: which seeds fit this graph (point `prefer` at `climate.living_room`, keep `confirm-lock`, drop the cover seed if there are no covers).
+Trainer: (a) lexicon — tokens from journal/gaps (`funzel` → `nouns.light_nouns`); (b) govern — which seeds fit this graph.
 
 ### 3. House — overlay
 
@@ -108,12 +126,13 @@ The Rules tab becomes the control surface. Lab and conversations **read the same
 Three columns, one order, matching runtime:
 
 ```
-Match (engine)          Language (seed)          House
+Match (engine)          Language                 House
 ──────────────          ──────────────           ────
-[on] laundry_switch 0   [on] seed:confirm-lock   1  kids AC    block
-[on] timer          1   [on] seed:confirm-cover  2  good night script
-[off] media         3   [off] seed:prefer-climate
-[on] area_command   8
+[on] laundry_switch 0   lexicon overlay +2       1  kids AC    block
+[on] timer          1     funzel → light_nouns   2  good night script
+[off] media         3   govern seed
+[on] area_command   8     [on] seed:confirm-lock
+…                       [off] seed:prefer-climate
 …
 Trainer for this lane →  evaluate utterance  →  path below
 ```
@@ -162,6 +181,7 @@ Graph + gaps + current overlays + language seed + match catalog
 | Layer | Schema | Example |
 |-------|--------|---------|
 | Match | `{ id, enabled, precedence? }[]` | turn `media` off because the graph has no player |
+| Lexicon | `{ path, add?, remove? }[]` | `nouns.light_nouns` += `funzel` |
 | Seed | `{ id, enabled, prefer? }[]` | point `seed:prefer-climate` at `climate.living_room` |
 | House | `PolicyRule[]` | phrase “good night” → `script.good_night` |
 
@@ -172,8 +192,8 @@ The model must not invent match ids, new effects, or entity ids off the graph. P
 1. **Path + catalog, still rigid**  
    `PolicyTrace` with `match`, `seed`, `house`, `band`, `discarded`. Shared path component in Rules and Lab. Three lanes visible; Match/Seed still toggle-less (read-only); house as today. Gate: contract tests; scorecard unchanged.
 
-2. **Match and seed controls**  
-   Overlay `match_controls`; seed toggles. Evaluate honors both. Reset-to-default. Parity: defaults = today’s behavior.
+2. **Match and language controls**  
+   Overlay `match_controls`; seed toggles; lexicon deltas visible in the same lane (API already exists). Evaluate honors all of them. Reset-to-default. Parity: defaults = today’s behavior.
 
 3. **Safety as seed, same behavior**  
    `risky_intent` / `allow_permitted` as seed rows. `compiled_risky` stays the floor until tests match bit-for-bit.
@@ -201,12 +221,14 @@ New because of the three lanes:
 
 6. May dragging precedence twist Match enough to fail locale smokes? (evaluate warns; save allowed; reset is one click)
 7. One trainer run across all lanes, or always one lane? (UI can offer both; apply stays confirmed per lane)
+8. May the trainer propose lexicon tokens that flip locale smokes? (preview required; apply only after a green dry-run or an explicit override)
+9. Extend overlay paths to all nouns/cues, or keep verbs on ExternalPack only? (recommendation: extend nouns/cues; verbs only as new tokens)
 
 ## Consequences
 
 - The Rules tab is the source of truth for all three layers; Lab and conversations show the same path.
-- Flexibility sits on **overlays** (match controls, seed toggles, house rules), not on a matching DSL.
-- The trainer has three tight schemas and the same dry-run as a human.
+- Flexibility sits on **overlays** (match controls, lexicon `SetDelta`, seed toggles, house rules), not on a matching DSL.
+- The trainer has a tight schema per lane and the same dry-run as a human.
 - Defaults remain today’s Assist behavior until someone changes a lane.
 
 ## References
@@ -215,4 +237,5 @@ New because of the three lanes:
 - Match policies: `src/parse/policy.rs`, `src/parse/clause.rs`
 - Safety: `src/nlu/draft.rs` `safety_decision`, `src/nlu/validation.rs` `risky_intent`
 - Lab path (today): `web/src/pages/ParsePage.tsx` (`.flow`, `processPath`)
-- API: [api](../en/api.md) (`/api/v2/policies`, `/api/v2/policies/evaluate`)
+- Lexicon overlay: `src/lang/user.rs`, `src/io/lang_api.rs` (`/api/lang/overlay`, preview, rollback)
+- API: [api](../en/api.md) (`/api/v2/policies`, `/api/v2/policies/evaluate`, `/api/lang/overlay`)

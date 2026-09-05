@@ -11,7 +11,7 @@ Klar bleibt eine deterministische, lokale NLU. Ein LLM darf das Haus **einrichte
 Verhalten lebt auf **drei Ebenen**, die derselbe Satz nacheinander durchläuft:
 
 1. **Match** — *wie* Tokens zu einem Intent-Kandidaten werden (`PolicyId`: `area_command`, `grounded_entities`, `media`, …).
-2. **Sprache (Seed)** — Default-Govern der gebundenen Locale (Confirm für Schlösser, Phrase-Defaults). Mit dem Pack ausgeliefert.
+2. **Sprache** — zwei Samen derselben Locale: **Lexikon** (Verben/Nomina, inkl. Overlay für Slang) und **Govern-Seed** (Confirm für Schlösser). Mit dem Pack ausgeliefert.
 3. **Haus** — Overlay dieses Graphen: Operator- und Trainer-Regeln, die den Seed überschreiben oder ergänzen.
 
 Heute sind Match und Safety unsichtbar im Code, der Tab Regeln kennt nur eine leere Haus-Liste, und das Labor zeigt einen groben Prozess-Chip (`conversation.process`), aber nicht *welche Ebene warum* entschieden hat.
@@ -36,7 +36,8 @@ Text → tokenize → PolicyId-Match (starr) → Ranking
 | Overlay-`PolicyRule` | nur Haus, leer, kein Origin, max. 64 |
 | Evaluate / Labor-`.flow` | Overlay-Treffer + `compiled_risky`; kein Ebenen-Pfad |
 | `IntentCandidate.policy` | Match-Name in JSON, nicht in der Regeln-UI |
-| Sprachpacks | Lexikon, keine Govern-Seeds |
+| Sprachpacks | kompiliertes Lexikon; Overlay `SetDelta` existiert, aber kaum in der Regeln-UI |
+| Govern-Seeds | fehlen |
 | `risky_intent` / Infra | unsichtbar |
 | Trainer | fehlt |
 
@@ -48,14 +49,19 @@ Nicht Strategie B (Match als frei schreibbare DSL). Nicht nur Trace ohne Knöpfe
 Match-Katalog (kompilierte Funktionen)
   + Match-Overlay: enabled, precedence     ← UI + Trainer
        ↓ Kandidaten
-Govern-Seed der Sprache                    ← UI + Trainer (an/aus, Reset)
+Sprache: Lexikon-Pack + Lexikon-Overlay          ← UI + Trainer (add/remove Token)
+       + Govern-Seed                             ← UI + Trainer (an/aus, Reset)
        ↓ erste passende Seed-Regel
 Haus-Overlay                               ← UI + Trainer (volle PolicyRule)
        ↓ erste passende Haus-Regel gewinnt vor Seed
 Invarianten: validate_plan, Expose, Schema (immer im Trace, kein Trainer)
 ```
 
-Vorbefüllte Daten pro Sprache bleiben **zwei** getrennte Dinge: Lexikon-Pack (Verben/Nomina) und Govern-Seed (`PolicyRule[]`).
+Vorbefüllt pro Sprache sind **zwei** Samen, plus ein Overlay:
+
+1. **Lexikon-Pack** (schon kompiliert): Verben, Nomina, Füllwörter. Das *ist* die Pre-Seed-Datenbank.
+2. **Lexikon-Overlay** (schon `LanguageOverlay` / `SetDelta`): Slang, Dialekt, Hauswörter. Preview und Rollback existieren.
+3. **Govern-Seed** (neu): Default-`PolicyRule[]` dieser Locale.
 
 ## Schichtenvertrag
 
@@ -77,9 +83,21 @@ Beispiel: Haus ohne `media_player` → `media` aus. Viele gleichnamige Lampen �
 
 Disabled Ids werden in `parse_clause_candidates_for_action` übersprungen. Unbekannte Ids → 400. Reset löscht die Overlay-Zeile.
 
-### 2. Sprache — Govern-Seed
+### 2. Sprache — Lexikon-Datenbank plus Govern-Seed
 
-Mit dem Pack, z. B. `src/lang/packs/de/govern.json`. Normale `PolicyRule`s, stabile Ids:
+Ein Pack, das „nicht passt“ (Slang, Dialekt, exotische Formen), wird **nicht** über `PolicyRule` repariert. Match sieht Tokens nur, wenn sie im Katalog stehen. `when.phrase = „mach die Funzel an“` skaliert nicht und umgeht das Lexikon.
+
+Richtig: das Pack **ist** die vorbefüllte Datenbank. Sichtbar in der Spur Sprache, überschreibbar durch dasselbe Overlay, das `POST /api/lang/overlay` schon schreibt (`sets.nouns.light_nouns.add = ["funzel"]`). Trainer darf **add/remove auf bekannten Set-Pfaden**, nach Preview und Locale-Smokes.
+
+| Darf (Lexikon) | Darf nicht |
+|----------------|------------|
+| Token auf existierendem Pfad ergänzen (`nouns.light_nouns`, `cues.on_words`, …) | Pack-Datei ersetzen, Morphologie/`NumberStyle`/Tokenizer ändern |
+| Token aus dem Overlay wieder entfernen, Pack-Reset | `VerbKind` eines Builtin-Tokens umbiegen (Konflikt wie bei ExternalPacks) |
+| Dialekt als Overlay auf `de` (nicht jedes Slang-Pack ist eine Locale) | alle Locales in einen Catalog mergen; Füllwörter, die Partikel fressen (`an`/`aus`) |
+
+`set_field` erlaubt heute nur eine Teilmenge der Sets. Pfade für Slang bei Bedarf erweitern (weitere Nomina, Cues). Neue Verben nur als **neues** Token plus explizitem `VerbKind`; Kollision mit Builtin → ablehnen.
+
+Govern-Seed bleibt daneben, z. B. in `src/lang/packs/de/govern.json`. Normale `PolicyRule`s, stabile Ids:
 
 | Id | when | effect |
 |----|------|--------|
@@ -87,9 +105,9 @@ Mit dem Pack, z. B. `src/lang/packs/de/govern.json`. Normale `PolicyRule`s, stab
 | `seed:confirm-cover-close` | cover + `HassTurnOff` | `confirm` |
 | `seed:block-area-lock` | lock + area | `block` |
 
-UI: Liste der gebundenen Sprache, Toggle, „Seed zurücksetzen“. Kein Freitext-`when` am Seed (sonst driftet die Locale). Haus-Regel mit derselben Id **ersetzt** den Seed. Extra Haus-Regeln stehen **davor**. Seeds zählen nicht gegen die 64.
+UI: Spur Sprache hat zwei Listen — **Lexikon** (Pack read-only + Overlay-Deltas) und **Govern**. Toggle/Reset am Govern wie geplant. Lexikon-Deltas sind `add`/`remove`, nicht Drag-Reihenfolge. Haus-Regel mit derselben Govern-Id **ersetzt** den Seed. Extra Haus-Regeln stehen **davor**. Seeds zählen nicht gegen die 64.
 
-Trainer: welche Seeds zu diesem Graph passen (`prefer` auf `climate.wohnzimmer` setzen, `confirm-lock` lassen, Cover-Seed aus wenn keine Cover).
+Trainer: (a) Lexikon — Tokens aus Journal/Gaps (`funzel` → `nouns.light_nouns`); (b) Govern — welche Seeds zu diesem Graph passen.
 
 ### 3. Haus — Overlay
 
@@ -108,12 +126,13 @@ Der Tab Regeln wird die Steuerzentrale. Labor und Gespräche **lesen denselben P
 Drei Spalten, eine Reihenfolge, die der Runtime entspricht:
 
 ```
-Match (Engine)          Sprache (Seed)           Haus
+Match (Engine)          Sprache                  Haus
 ──────────────          ──────────────           ────
-[on] laundry_switch 0   [on] seed:confirm-lock   1  Kinder-AC  block
-[on] timer          1   [on] seed:confirm-cover  2  Gute Nacht script
-[off] media         3   [off] seed:prefer-climate
-[on] area_command   8
+[on] laundry_switch 0   Lexikon overlay +2       1  Kinder-AC  block
+[on] timer          1     funzel → light_nouns   2  Gute Nacht script
+[off] media         3   Govern seed
+[on] area_command   8     [on] seed:confirm-lock
+…                       [off] seed:prefer-climate
 …
 Trainer für diese Spur →  Evaluate-Satz  →  Pfad unten
 ```
@@ -162,6 +181,7 @@ Graph + Gaps + aktuelle Overlays + Seed der Sprache + Match-Katalog
 | Ebene | Schema | Beispiel |
 |-------|--------|----------|
 | Match | `{ id, enabled, precedence? }[]` | `media` aus, weil kein Player im Graph |
+| Lexikon | `{ path, add?, remove? }[]` | `nouns.light_nouns` += `funzel` |
 | Seed | `{ id, enabled, prefer? }[]` | `seed:prefer-climate` auf `climate.wohnzimmer` |
 | Haus | `PolicyRule[]` | Phrase „gute Nacht“ → `script.good_night` |
 
@@ -172,8 +192,8 @@ Das Modell darf keine neuen Match-Ids, keine neuen Effects, keine Entity-Ids au�
 1. **Pfad + Katalog, noch starr**  
    `PolicyTrace` mit `match`, `seed`, `house`, `band`, `discarded`. Gemeinsame Pfad-Komponente in Regeln und Labor. Drei Spuren sichtbar, Match/Seed zunächst Toggle-los (read-only), Haus wie heute. Gate: Contract-Tests; Scorecard unverändert.
 
-2. **Match- und Seed-Steuerung**  
-   Overlay `match_controls`; Seed-Toggles. Evaluate respektiert beides. Reset-auf-Default. Parity: Defaults = heutiges Verhalten.
+2. **Match- und Sprachen-Steuerung**  
+   Overlay `match_controls`; Seed-Toggles; Lexikon-Deltas in derselben Spur sichtbar (API existiert). Evaluate respektiert alles. Reset-auf-Default. Parity: Defaults = heutiges Verhalten.
 
 3. **Safety als Seed, Verhalten gleich**  
    `risky_intent` / `allow_permitted` als Seed-Zeilen. `compiled_risky` bleibt Floor, bis Tests bitgleich sind.
@@ -202,11 +222,14 @@ Neu durch die drei Spuren:
 6. Darf Precedence-Ziehen Match so weit verdrehen, dass Locale-Smokes rot werden? (Evaluate warnt; Speichern erlaubt; Reset bleibt ein Klick)
 7. Ein Trainer-Lauf über alle Spuren oder immer eine Spur? (UI kann beides; Apply bleibt pro Spur bestätigt)
 
+8. Darf der Trainer Lexikon-Tokens vorschlagen, die Locale-Smokes drehen? (Preview Pflicht; Apply nur nach grünem Dry-Run oder explizitem Override)
+9. Overlay-Pfade auf alle Nomina/Cues erweitern, oder Verben weiter nur über ExternalPack? (Empfehlung: Nomina/Cues erweitern; Verben nur neue Tokens)
+
 ## Folgen
 
 - Tab Regeln ist die Wahrheit für alle drei Ebenen; Labor und Gespräche zeigen denselben Pfad.
-- Flexibilität sitzt auf **Overlays** (Match-Controls, Seed-Toggles, Haus-Regeln), nicht auf einer Matching-DSL.
-- Der Trainer hat drei enge Schemas und denselben Dry-Run wie der Mensch.
+- Flexibilität sitzt auf **Overlays** (Match-Controls, Lexikon-`SetDelta`, Seed-Toggles, Haus-Regeln), nicht auf einer Matching-DSL.
+- Der Trainer hat enge Schemas pro Spur und denselben Dry-Run wie der Mensch.
 - Defaults bleiben das heutige Assist-Verhalten, bis jemand eine Spur ändert.
 
 ## Verweise
@@ -215,4 +238,5 @@ Neu durch die drei Spuren:
 - Match-Policies: `src/parse/policy.rs`, `src/parse/clause.rs`
 - Safety: `src/nlu/draft.rs` `safety_decision`, `src/nlu/validation.rs` `risky_intent`
 - Labor-Pfad (heute): `web/src/pages/ParsePage.tsx` (`.flow`, `processPath`)
-- API: [API](../api.md) (`/api/v2/policies`, `/api/v2/policies/evaluate`)
+- Lexikon-Overlay: `src/lang/user.rs`, `src/io/lang_api.rs` (`/api/lang/overlay`, preview, rollback)
+- API: [API](../api.md) (`/api/v2/policies`, `/api/v2/policies/evaluate`, `/api/lang/overlay`)
