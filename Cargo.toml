@@ -19,8 +19,11 @@ tokio = { version = "1", features = ["full"] }
 tokio-stream = { version = "0.1", default-features = false, features = ["sync"] }
 reqwest = { version = "0.12.12", default-features = false, features = ["json", "rustls-tls", "stream"] }
 futures-util = { version = "0.3", default-features = false, features = ["std"] }
-# Keep url off the icu/idna 1.1 line that needs rustc > 1.85.
-url = "=2.5.2"
+# url 2.5.4 + idna 1.0.3 fix RUSTSEC-2024-0421. idna_adapter 1.1 is the
+# unicode-rs back end so rustc 1.85 does not pull ICU4X (MSRV 1.86+).
+url = "=2.5.4"
+idna = "=1.0.3"
+idna_adapter = "=1.1.0"
 tracing = "0.1"
 tracing-subscriber = { version = "0.3", features = ["env-filter"] }
 clap = { version = "4", features = ["derive"] }
