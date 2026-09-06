@@ -350,6 +350,9 @@ CATALOG_KEYS = (
     "trainerTool",
     "trainerClear",
     "trainerComposer",
+    "trainerYes",
+    "trainerNo",
+    "trainerNotNow",
 )
 
 
@@ -526,6 +529,9 @@ FALLBACKS = {
     'trainerTool': 'Tool',
     'trainerClear': 'Clear chat',
     'trainerComposer': 'Message Lotse',
+    'trainerYes': 'Yes',
+    'trainerNo': 'No',
+    'trainerNotNow': 'Not now',
 }
 
 

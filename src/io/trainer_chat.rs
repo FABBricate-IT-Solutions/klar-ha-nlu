@@ -7,8 +7,8 @@ use crate::io::trainer::{context_stub, load_context, TrainerQuery};
 use crate::io::trainer_apply::{dispatch, preview_write, write_summary};
 use crate::io::trainer_consent::{ConsentDecision, PendingWrite, TrainerConsentHub};
 use crate::llm::{
-    chat_stream_turn, history_messages, is_write_tool, openai_tools_for, parse_text_tools, system_prompt, tool_allowed_for_layer,
-    ChatEvent, ChatMessage, ChatRequest, CompletionTurn, LlmEndpoint, TrainerTurn,
+    chat_stream_turn, ensure_reply_choices, history_messages, is_write_tool, openai_tools_for, parse_text_tools, system_prompt,
+    tool_allowed_for_layer, ChatEvent, ChatMessage, ChatRequest, CompletionTurn, LlmEndpoint, TrainerTurn,
 };
 use axum::extract::{ConnectInfo, State};
 use axum::http::{HeaderMap, StatusCode};
@@ -55,13 +55,14 @@ pub async fn trainer_chat(
     let settings = state.settings.lock().await.clone();
     let stub = context_stub(&ctx, &settings.languages);
     let layer = ctx.layer.clone();
-    let mut messages = vec![ChatMessage::new("system", system_prompt(&layer, &stub))];
+    let reply_language = ctx.language.clone();
+    let mut messages = vec![ChatMessage::new("system", system_prompt(&layer, &stub, &reply_language))];
     messages.extend(history_messages(&body.history).map_err(|_| StatusCode::BAD_REQUEST)?);
     messages.push(ChatMessage::new("user", body.message));
     let session = TrainerConsentHub::session_key(&state.token, peer);
     let (tx, rx) = mpsc::unbounded_channel::<Result<axum::response::sse::Event, Infallible>>();
     tokio::spawn(async move {
-        run_loop(state, endpoint, session, layer, messages, tx).await;
+        run_loop(state, endpoint, session, layer, messages, tx, reply_language).await;
     });
     Ok(Sse::new(UnboundedReceiverStream::new(rx)).keep_alive(KeepAlive::default()).into_response())
 }
@@ -89,6 +90,7 @@ async fn run_loop(
     layer: String,
     mut messages: Vec<ChatMessage>,
     tx: UnboundedSender<Result<axum::response::sse::Event, Infallible>>,
+    reply_language: String,
 ) {
     let (yolo, allowed) = state.trainer_consent.snapshot(&session).await;
     let _ = tx.send(Ok(json_event(&ChatEvent::Session { yolo, allowed })));
@@ -114,7 +116,11 @@ async fn run_loop(
         };
         let (prose, calls) = merge_calls(turn);
         if calls.is_empty() {
-            let _ = tx.send(Ok(json_event(&ChatEvent::Done { text: prose })));
+            let extra = ensure_reply_choices(&endpoint, &prose, &reply_language).await;
+            if !extra.is_empty() {
+                let _ = tx.send(Ok(json_event(&ChatEvent::Delta { text: extra.clone() })));
+            }
+            let _ = tx.send(Ok(json_event(&ChatEvent::Done { text: format!("{prose}{extra}") })));
             return;
         }
         messages.push(ChatMessage::assistant_tools(prose, calls.clone()));

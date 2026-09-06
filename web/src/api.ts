@@ -89,11 +89,13 @@ function asTrainerChatEvent(raw: unknown): TrainerChatEvent | null {
 async function streamTrainerChat(
   body: { message: string; layer?: string; language?: string; history?: TrainerTurn[] },
   onEvent: (event: TrainerChatEvent) => void,
+  signal?: AbortSignal,
 ): Promise<void> {
   const res = await fetch(appPath("/api/v2/policies/trainer/chat"), {
     method: "POST",
     headers: jsonHeaders(),
     body: JSON.stringify(body),
+    signal,
   });
   if (res.status === 503) throw new Error("llm-unconfigured");
   if (!res.ok) throw new Error(`${res.status} ${res.statusText}`);
@@ -200,7 +202,8 @@ export const api = {
   trainerChat: (
     body: { message: string; layer?: string; language?: string; history?: TrainerTurn[] },
     onEvent: (event: TrainerChatEvent) => void,
-  ) => streamTrainerChat(body, onEvent),
+    signal?: AbortSignal,
+  ) => streamTrainerChat(body, onEvent, signal),
   trainerConsent: (body: { call_id?: string; decision: "allow_once" | "allow" | "yolo" | "deny" | "ask_again" }) =>
     request<{ ok: boolean; yolo: boolean; allowed: string[] }>("/api/v2/policies/trainer/consent", {
       method: "POST",

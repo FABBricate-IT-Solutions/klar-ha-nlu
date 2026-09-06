@@ -5,6 +5,8 @@ use crate::home::overlay::{load_overlay, save_overlay};
 use crate::io::lang_api::persist_language_overlay;
 use crate::io::state::AppState;
 use crate::io::trainer::{validate, ProposalIn};
+use crate::io::trainer_reads::{self, with_view};
+use crate::io::{trainer_settings, trainer_turns};
 use crate::lang::{catalog_for, is_lexicon_path, lexicon_set_paths, LanguageOverlay};
 use crate::parse::{match_catalog, sanitize_match_controls};
 use crate::types::{sanitize_rules, MatchControl, PolicyRule};
@@ -12,19 +14,28 @@ use serde_json::{json, Value};
 
 pub async fn dispatch(state: &AppState, name: &str, args: &Value) -> Result<Value, String> {
     match name {
-        "list_languages" => Ok(json!({ "languages": state.settings.lock().await.languages })),
+        "list_languages" => Ok(with_view("languages", json!({ "languages": state.settings.lock().await.languages }))),
         "search_house" => search_house(state, args).await,
         "get_entity" => get_entity(state, args).await,
-        "list_lexicon_paths" => Ok(json!({ "paths": lexicon_set_paths() })),
+        "list_lexicon_paths" => Ok(with_view("lexicon", json!({ "paths": lexicon_set_paths() }))),
         "get_lexicon" => get_lexicon(state, args).await,
         "list_matchers" => list_matchers(state).await,
-        "list_policies" => Ok(json!({ "policies": state.policies.lock().await.clone() })),
+        "list_policies" => Ok(with_view("policies", json!({ "policies": state.policies.lock().await.clone() }))),
         "list_gaps" => list_gaps(state).await,
         "validate_proposal" => validate_now(state, args).await,
+        "explain_klar" => trainer_reads::explain_klar(args),
+        "try_sentence" => trainer_reads::try_sentence(state, args).await,
+        "list_areas" => trainer_reads::list_areas(state).await,
+        "count_house" => trainer_reads::count_house(state).await,
+        "list_engine" => trainer_settings::list_engine(state).await,
+        "list_phrases" => trainer_reads::list_phrases(state).await,
+        "list_turns" => trainer_turns::list_turns(state, args).await,
         "apply_lexicon" => apply_lexicon(state, args).await,
         "apply_match" => apply_match(state, args).await,
         "apply_house" => apply_house(state, args).await,
         "apply_aliases" => apply_aliases(state, args).await,
+        "apply_engine" => trainer_settings::apply_engine(state, args).await,
+        "apply_ui" => trainer_settings::apply_ui(state, args).await,
         _ => Err(format!("unknown tool {name}")),
     }
 }
@@ -58,6 +69,14 @@ pub async fn preview_write(state: &AppState, name: &str, args: &Value) -> Result
             }
             Ok(json!({"ok": true, "errors": [], "warnings": [], "dry_run": []}))
         }
+        "apply_engine" => {
+            let settings = state.settings.lock().await.clone();
+            trainer_settings::preview_engine(&settings, args)
+        }
+        "apply_ui" => {
+            let ui = crate::home::overlay::load_overlay(&state.data_dir).ui;
+            trainer_settings::preview_ui(&ui.theme, &ui.locale, args)
+        }
         _ => Err(format!("{name} is not a write tool")),
     }
 }
@@ -75,6 +94,8 @@ pub fn write_summary(name: &str, args: &Value) -> String {
         "apply_aliases" => {
             format!("aliases {} +{}", args.get("entity_id").and_then(Value::as_str).unwrap_or("?"), string_list(args, "aliases").len())
         }
+        "apply_engine" => trainer_settings::engine_summary(args),
+        "apply_ui" => trainer_settings::ui_summary(args),
         _ => name.to_string(),
     }
 }
@@ -100,7 +121,7 @@ async fn search_house(state: &AppState, args: &Value) -> Result<Value, String> {
         .take(12)
         .map(|area| json!({"area_id": area.area_id, "name": area.name}))
         .collect();
-    Ok(json!({ "entities": entities, "areas": areas }))
+    Ok(with_view("house", json!({ "entities": entities, "areas": areas })))
 }
 
 async fn get_entity(state: &AppState, args: &Value) -> Result<Value, String> {
@@ -109,16 +130,16 @@ async fn get_entity(state: &AppState, args: &Value) -> Result<Value, String> {
     home.entities
         .iter()
         .find(|entity| entity.entity_id == entity_id)
-        .map(|entity| serde_json::to_value(entity).unwrap_or(json!({})))
+        .map(|entity| with_view("entity", serde_json::to_value(entity).unwrap_or(json!({}))))
         .ok_or_else(|| "entity is not on the graph".into())
 }
 
 async fn get_lexicon(state: &AppState, args: &Value) -> Result<Value, String> {
     let overlay = load_overlay(&state.data_dir).language;
     if let Some(path) = args.get("path").and_then(Value::as_str).filter(|path| !path.is_empty()) {
-        return Ok(json!({ "path": path, "delta": overlay.sets.get(path) }));
+        return Ok(with_view("lexicon", json!({ "path": path, "delta": overlay.sets.get(path) })));
     }
-    Ok(json!({ "sets": overlay.sets }))
+    Ok(with_view("lexicon", json!({ "sets": overlay.sets })))
 }
 
 async fn list_matchers(state: &AppState) -> Result<Value, String> {
@@ -130,7 +151,7 @@ async fn list_matchers(state: &AppState) -> Result<Value, String> {
             json!({"id": row.id, "precedence": hit.and_then(|item| item.precedence).unwrap_or(row.precedence), "enabled": hit.map(|item| item.enabled).unwrap_or(true)})
         })
         .collect();
-    Ok(json!({ "matchers": rows }))
+    Ok(with_view("matchers", json!({ "matchers": rows })))
 }
 
 async fn list_gaps(state: &AppState) -> Result<Value, String> {
@@ -141,7 +162,7 @@ async fn list_gaps(state: &AppState) -> Result<Value, String> {
         .into_iter()
         .map(|entity| json!({"entity_id": entity.entity_id, "name": entity.name, "area": entity.area}))
         .collect();
-    Ok(json!({ "gaps": gaps }))
+    Ok(with_view("gaps", json!({ "gaps": gaps })))
 }
 
 async fn validate_now(state: &AppState, args: &Value) -> Result<Value, String> {
@@ -173,7 +194,7 @@ async fn validate_now(state: &AppState, args: &Value) -> Result<Value, String> {
         &speech_bank,
         proposal.utterances.as_deref().unwrap_or(&[]),
     );
-    serde_json::to_value(out).map_err(|_| "validate encode".into())
+    serde_json::to_value(out).map(|value| with_view("validate", value)).map_err(|_| "validate encode".into())
 }
 
 async fn apply_lexicon(state: &AppState, args: &Value) -> Result<Value, String> {
@@ -183,7 +204,7 @@ async fn apply_lexicon(state: &AppState, args: &Value) -> Result<Value, String> 
     }
     let language = merged_lexicon(state, args).await?;
     persist_language_overlay(state, language, "trainer lexicon").await.map_err(|_| "persist lexicon")?;
-    Ok(json!({ "ok": true }))
+    Ok(with_view("write", json!({ "ok": true })))
 }
 
 async fn lexicon_proposal(state: &AppState, args: &Value) -> Result<Value, String> {
@@ -237,7 +258,7 @@ async fn apply_match(state: &AppState, args: &Value) -> Result<Value, String> {
         current
     };
     persist_policy_bundle(state, None, Some(merged)).await?;
-    Ok(json!({ "ok": true }))
+    Ok(with_view("write", json!({ "ok": true })))
 }
 
 async fn apply_house(state: &AppState, args: &Value) -> Result<Value, String> {
@@ -260,7 +281,7 @@ async fn apply_house(state: &AppState, args: &Value) -> Result<Value, String> {
         current
     };
     persist_policy_bundle(state, Some(merged), None).await?;
-    Ok(json!({ "ok": true }))
+    Ok(with_view("write", json!({ "ok": true })))
 }
 
 async fn apply_aliases(state: &AppState, args: &Value) -> Result<Value, String> {
@@ -272,7 +293,7 @@ async fn apply_aliases(state: &AppState, args: &Value) -> Result<Value, String> 
     for alias in string_list(args, "aliases") {
         state.apply_teach(entity_id, &alias).await;
     }
-    Ok(json!({ "ok": true }))
+    Ok(with_view("write", json!({ "ok": true })))
 }
 
 async fn persist_policy_bundle(

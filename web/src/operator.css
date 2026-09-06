@@ -28,7 +28,7 @@
   height: 100dvh;
   min-width: 0;
   border-inline-start: 1px solid var(--line);
-  background: #161616;
+  background: var(--bg);
 }
 
 .trainer-resize {
@@ -52,7 +52,7 @@
   left: 5px;
   width: 3px;
   border-radius: 2px;
-  background: #e08a4c;
+  background: var(--accent);
   opacity: 0.55;
 }
 
@@ -90,14 +90,15 @@
 
 .trainer-lanes button {
   padding: 4px 10px;
-  color: var(--trainer-soft);
-  border: 1px solid #5a5348;
-  background: #2a2a2a;
+  color: var(--muted-foreground);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--surface);
 }
 
 .trainer-lanes button[aria-pressed="true"] {
-  color: var(--trainer-ink);
-  border-color: var(--trainer-copper);
+  color: var(--text);
+  border-color: var(--accent);
 }
 
 .visually-hidden {
@@ -213,35 +214,17 @@ button.guide-step {
 }
 
 .trainer {
-  --trainer-ink: #f7f2ea;
-  --trainer-soft: #d8d2c6;
-  --trainer-copper: #e08a4c;
   position: relative;
   margin-top: 24px;
   overflow: hidden;
-  color: var(--trainer-ink);
-  border: 1px solid var(--line);
-  background:
-    linear-gradient(180deg, color-mix(in srgb, var(--trainer-copper) 16%, #161616), #1a1a1a 42%);
-  box-shadow: inset 4px 0 0 var(--trainer-copper);
-}
-
-.trainer::before {
-  content: "";
-  position: absolute;
-  inset: 0 auto 0 0;
-  width: 4px;
-  background: var(--trainer-copper);
-  pointer-events: none;
-}
-
-.trainer .muted {
-  color: var(--trainer-soft);
+  color: var(--text);
+  background: var(--bg);
 }
 
 .trainer-head,
 .trainer-composer,
 .trainer-result {
+  flex-shrink: 0;
   padding: 16px 18px 16px 20px;
 }
 
@@ -251,7 +234,7 @@ button.guide-step {
   align-items: flex-start;
   justify-content: space-between;
   gap: 12px;
-  border-bottom: 1px dashed color-mix(in srgb, var(--trainer-copper) 40%, var(--line));
+  border-bottom: 1px solid var(--line);
 }
 
 .trainer-kicker {
@@ -260,14 +243,13 @@ button.guide-step {
   font-size: 11px;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: var(--trainer-copper);
+  color: var(--accent);
 }
 
 .trainer-head h2 {
   margin: 0;
-  font-size: 20px;
-  letter-spacing: -0.03em;
-  color: var(--trainer-ink);
+  font-size: 16px;
+  letter-spacing: -0.02em;
 }
 
 .trainer-meta {
@@ -281,9 +263,6 @@ button.guide-step {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-  border-color: color-mix(in srgb, var(--trainer-copper) 55%, var(--line));
-  color: var(--trainer-ink);
-  background: color-mix(in srgb, var(--trainer-copper) 18%, #2a2a2a);
 }
 
 .trainer-thread {
@@ -293,31 +272,14 @@ button.guide-step {
   min-height: min(44vh, 24rem);
   max-height: min(56vh, 30rem);
   overflow: auto;
-  padding: 20px 18px 20px 20px;
-  background:
-    repeating-linear-gradient(
-      -18deg,
-      transparent,
-      transparent 11px,
-      color-mix(in srgb, var(--accent) 5%, transparent) 11px,
-      color-mix(in srgb, var(--accent) 5%, transparent) 12px
-    ),
-    #1c1c1c;
+  padding: 20px 18px;
+  background: var(--bg);
 }
 
 .trainer-empty {
   margin: auto;
   max-width: 26rem;
   text-align: start;
-  color: var(--trainer-ink);
-}
-
-.trainer-empty-mark {
-  margin: 0 0 8px;
-  font-family: "IBM Plex Mono", monospace;
-  font-size: 28px;
-  letter-spacing: 0.16em;
-  color: var(--trainer-copper);
 }
 
 .trainer-empty p {
@@ -328,31 +290,6 @@ button.guide-step {
   display: grid;
   gap: 8px;
   margin-top: 16px;
-}
-
-.trainer-ticket {
-  display: grid;
-  grid-template-columns: 2rem minmax(0, 1fr);
-  gap: 12px;
-  align-items: center;
-  min-height: 52px;
-  padding: 10px 12px;
-  text-align: start;
-  color: var(--trainer-ink);
-  border: 1px solid #5a5348;
-  background:
-    linear-gradient(90deg, color-mix(in srgb, var(--trainer-copper) 22%, #2a2a2a), #2a2a2a 28%);
-}
-
-.trainer-ticket:hover {
-  border-color: var(--trainer-copper);
-}
-
-.trainer-ticket-no {
-  font-family: "IBM Plex Mono", monospace;
-  font-size: 13px;
-  letter-spacing: 0.08em;
-  color: var(--trainer-copper);
 }
 
 .trainer-line {
@@ -370,12 +307,12 @@ button.guide-step {
   font-size: 11px;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: var(--trainer-soft);
+  color: var(--muted-foreground);
 }
 
 .trainer-line.user .trainer-role {
   text-align: end;
-  color: var(--trainer-copper);
+  color: var(--accent);
 }
 
 .trainer-bubble {
@@ -383,20 +320,21 @@ button.guide-step {
   padding: 10px 12px;
   overflow-wrap: anywhere;
   white-space: pre-wrap;
-  color: var(--trainer-ink);
 }
 
 .trainer-line.user .trainer-bubble {
-  color: #fffaf3;
-  background: #c45c26;
-  box-shadow: 3px 3px 0 #2a140c;
+  color: var(--primary-foreground);
+  background: var(--accent);
+  border-radius: 8px;
 }
 
 .trainer-line.assistant .trainer-bubble {
+  display: grid;
+  gap: 12px;
   white-space: normal;
-  color: var(--trainer-ink);
-  border-inline-start: 2px solid #5ed4da;
-  background: #2f2f2f;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--surface);
 }
 
 .trainer-md p,
@@ -419,27 +357,29 @@ button.guide-step {
   padding-inline-start: 1.15rem;
 }
 
-.trainer-md strong {
-  color: #fffaf3;
-  font-weight: 650;
-}
-
 .trainer-md code,
 .trainer-card code {
   font-family: "IBM Plex Mono", monospace;
   font-size: 12px;
-  color: #8be4e8;
+  color: var(--cyan);
 }
 
 .trainer-card {
-  padding: 10px 12px;
-  border: 1px dashed #5ed4da;
-  background: #1c2a2b;
+  padding: 0;
+  border: 0;
+  background: transparent;
+}
+
+.trainer-card .card,
+.trainer-card .guide,
+.trainer-card [data-slot="card"],
+.trainer-bubble .guide,
+.trainer-bubble [data-slot="card"] {
+  margin: 0;
 }
 
 .trainer-card .trainer-kicker {
   margin-bottom: 8px;
-  color: #5ed4da;
 }
 
 .trainer-card-list {
@@ -465,58 +405,44 @@ button.guide-step {
 .trainer-quick {
   display: flex;
   flex-wrap: wrap;
+  flex-shrink: 0;
   gap: 8px;
-  padding: 10px 18px 0 20px;
-  background: #121212;
+  padding: 10px 18px 0;
+  background: var(--bg);
 }
 
 .trainer-chip {
   max-width: 100%;
   padding: 6px 10px;
   text-align: start;
-  color: var(--trainer-ink);
-  border: 1px solid #5a5348;
-  background: #2a2a2a;
+  color: var(--text);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--surface);
 }
 
 .trainer-chip:hover:not(:disabled) {
-  border-color: var(--trainer-copper);
+  border-color: var(--accent);
 }
 
 .trainer-line.tool {
-  max-width: min(28rem, 100%);
+  max-width: min(36rem, 100%);
 }
 
 .trainer-line.tool .trainer-role {
-  color: #5ed4da;
-}
-
-.trainer-line.tool .trainer-bubble {
-  color: var(--trainer-ink);
-  font-family: "IBM Plex Mono", monospace;
-  font-size: 12px;
-  border: 1px dashed #5ed4da;
-  background: #1c2a2b;
+  color: var(--cyan);
 }
 
 .trainer-consent {
   align-self: stretch;
   padding: 12px 14px;
-  color: var(--trainer-ink);
-  border: 1px dashed var(--trainer-copper);
-  background:
-    repeating-linear-gradient(
-      45deg,
-      color-mix(in srgb, var(--trainer-copper) 14%, #1c1c1c),
-      color-mix(in srgb, var(--trainer-copper) 14%, #1c1c1c) 8px,
-      #1c1c1c 8px,
-      #1c1c1c 16px
-    );
+  border: 1px solid var(--accent);
+  border-radius: 8px;
+  background: var(--surface);
 }
 
 .trainer-consent p {
   margin: 0 0 8px;
-  color: var(--trainer-ink);
 }
 
 .trainer-composer {
@@ -525,25 +451,16 @@ button.guide-step {
   gap: 8px;
   align-items: end;
   border-top: 1px solid var(--line);
-  background: #121212;
+  background: var(--bg);
 }
 
 .trainer-composer textarea {
   min-height: 56px;
   max-height: 8rem;
   resize: vertical;
-  color: var(--trainer-ink);
-  border-color: #6a5a4a;
-  background: #2a2a2a;
-}
-
-.trainer-composer textarea::placeholder {
-  color: #c8c0b4;
-  opacity: 1;
 }
 
 .trainer-result {
-  color: var(--trainer-ink);
   border-top: 1px solid var(--line);
 }
 
@@ -579,7 +496,7 @@ button.guide-step {
   }
 
   .trainer-lanes button,
-  .trainer-ticket,
+  .trainer-prompts .guide-step,
   .trainer-chip,
   .trainer-composer .primary,
   .trainer-composer .ghost,
@@ -600,9 +517,6 @@ button.guide-step {
     padding-inline: 16px;
   }
 
-  .trainer-empty-mark {
-    font-size: 22px;
-  }
 }
 
 @media (max-width: 860px) {

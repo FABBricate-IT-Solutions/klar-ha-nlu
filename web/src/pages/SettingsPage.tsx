@@ -148,6 +148,12 @@ export function SettingsPage({
   const setTheme = (next: Theme) => {
     setPicked(next);
     document.documentElement.dataset.theme = next;
+    document.documentElement.classList.toggle("dark", next !== "light");
+    try {
+      localStorage.setItem("klar_theme", next);
+    } catch {
+      /* private mode */
+    }
     onTheme?.(next);
   };
   const allAssist = settings.languages.length === 0;

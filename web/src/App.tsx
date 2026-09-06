@@ -95,8 +95,27 @@ function asRulesView(value: string | undefined): RulesView {
   return rulesViews.includes(value as RulesView) ? (value as RulesView) : "routines";
 }
 
+const THEME_KEY = "klar_theme";
+
 function asTheme(value: string | undefined): Theme {
   return value === "light" ? "light" : "dark";
+}
+
+function readStoredTheme(): Theme | undefined {
+  try {
+    const value = localStorage.getItem(THEME_KEY);
+    return value === "light" || value === "dark" ? value : undefined;
+  } catch {
+    return undefined;
+  }
+}
+
+function writeStoredTheme(theme: Theme) {
+  try {
+    localStorage.setItem(THEME_KEY, theme);
+  } catch {
+    return;
+  }
 }
 
 function parseHash(raw: string): Route | null {
@@ -263,7 +282,7 @@ export function App() {
           tab: asTab(nextUi.tab),
           house_view: asHouseView(nextUi.house_view),
           rules_view: asRulesView(nextUi.rules_view),
-          theme: asTheme(nextUi.theme),
+          theme: asTheme(readStoredTheme() || nextUi.theme),
           wizard_done: Boolean(nextUi.wizard_done),
         }, route || { tab: asTab(nextUi.tab) }));
         if (route?.entity_id) setInspectId(route.entity_id);
@@ -311,6 +330,31 @@ export function App() {
     };
     window.addEventListener("hashchange", onHash);
     return () => window.removeEventListener("hashchange", onHash);
+  }, []);
+
+  useEffect(() => {
+    const onLotse = (event: Event) => {
+      const tool = (event as CustomEvent<{ tool?: string }>).detail?.tool;
+      api.ui()
+        .then((nextUi) => {
+          setUi((prev) => {
+            const fromApi = asTheme(nextUi.theme);
+            const theme = tool === "apply_ui" ? fromApi : asTheme(readStoredTheme() || prev.theme);
+            if (tool === "apply_ui") writeStoredTheme(fromApi);
+            return {
+              ...prev,
+              theme,
+              locale: nextUi.locale_set ? chromeLocale(nextUi.locale) : prev.locale,
+              locale_set: Boolean(nextUi.locale_set) || prev.locale_set,
+            };
+          });
+        })
+        .catch(() => undefined);
+      void refresh();
+      api.conversations().then(setJournal).catch(() => undefined);
+    };
+    window.addEventListener("klar-lotse-applied", onLotse);
+    return () => window.removeEventListener("klar-lotse-applied", onLotse);
   }, []);
 
   const applyCandidates = useMemo(
@@ -482,7 +526,10 @@ export function App() {
             onSettings={setSettings}
             onReplayWizard={replayWizard}
             theme={theme}
-            onTheme={(next) => setUi((prev) => ({ ...prev, theme: next }))}
+            onTheme={(next) => {
+              writeStoredTheme(next);
+              setUi((prev) => ({ ...prev, theme: next }));
+            }}
           />
         )}
       </div>
@@ -517,7 +564,7 @@ export function App() {
         open={trainerOpen}
         onOpenChange={setTrainerOpen}
         t={t}
-        language={settings.languages.length === 1 ? settings.languages[0] : locale}
+        language={locale}
       />
     ) : null}
     <Toaster theme={theme} />
