@@ -6,7 +6,6 @@ import { LexiconLane } from "../components/LexiconLane";
 import { MatchLane } from "../components/MatchLane";
 import { PolicyPath, type PolicyLane } from "../components/PolicyPath";
 import { useHouseCatalog } from "../components/SearchSelect";
-import { TrainerDrawer } from "../components/TrainerDrawer";
 import type { Messages } from "../i18n";
 import { bakeVariants } from "../speechBank";
 import type { EvaluateOut, Locale, MatchCatalogRow, MatchControl, PolicyRule, RulesView, SpeechBank } from "../types";
@@ -367,12 +366,6 @@ export function RulesPage({
             {evalOut?.warnings?.length ? <p className="muted">{t.matchDisableWarning}</p> : null}
             {evalOut ? <p className="muted" style={{ marginTop: 12 }}>{evalOut.speech_variant || evalOut.outcome.speech}</p> : null}
           </div>
-          <TrainerDrawer
-            t={t}
-            lane={lane}
-            language={languages.length === 1 ? languages[0] : locale}
-            onStatus={setStatus}
-          />
         </>
       )}
       {status && <p className="muted">{status}</p>}

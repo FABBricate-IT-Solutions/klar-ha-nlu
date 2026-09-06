@@ -20,6 +20,7 @@ mod refine_shots_f;
 mod refine_voices;
 mod sse;
 mod trainer;
+mod trainer_handbook;
 mod trainer_tools;
 mod types;
 

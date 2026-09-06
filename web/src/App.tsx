@@ -2,6 +2,7 @@ import { FlaskConicalIcon, HomeIcon, HouseIcon, MenuIcon, MessageSquareIcon, Set
 import { useEffect, useMemo, useRef, useState } from "react";
 import { api } from "./api";
 import { Drawer } from "./components/common";
+import { TrainerDock, TrainerToggle } from "./components/TrainerDock";
 import { TEACH_HEARD_KEY } from "./components/TeachFromMiss";
 import { assistParseLanguage, chromeLocale, dictionaries, isRtl } from "./i18n";
 import { ConversationsPage } from "./pages/ConversationsPage";
@@ -227,6 +228,7 @@ export function App() {
   const [inspectId, setInspectId] = useState("");
   const [booted, setBooted] = useState(false);
   const [navOpen, setNavOpen] = useState(false);
+  const [trainerOpen, setTrainerOpen] = useState(false);
   const locale = chromeLocale(ui.locale);
   const t = dictionaries[locale] || dictionaries.en;
   const theme = ui.theme || "dark";
@@ -385,7 +387,7 @@ export function App() {
 
   return (
     <TooltipProvider>
-    <div className="app-shell" data-theme={theme}>
+    <div className="app-shell" data-theme={theme} data-trainer={trainerOpen ? "open" : "closed"}>
       <Sheet open={navOpen} onOpenChange={setNavOpen}>
         <SheetContent side="left" id="klar-nav" className="bg-background text-foreground w-64 p-0">
           <SheetHeader>
@@ -412,9 +414,12 @@ export function App() {
             </Button>
             <div className="brand">Klar</div>
           </div>
-          <div className="status">
-            <Badge variant={dashboard?.counts.leftover ? "default" : "outline"}>{dashboard?.counts.leftover ?? 0} {t.open}</Badge>
-            <Badge variant={settings.nlu_rag ? "default" : "outline"}>{settings.nlu_rag ? t.ragModeShort : t.chatMode}</Badge>
+          <div className="topbar-end">
+            <div className="status">
+              <Badge variant={dashboard?.counts.leftover ? "default" : "outline"}>{dashboard?.counts.leftover ?? 0} {t.open}</Badge>
+              <Badge variant={settings.nlu_rag ? "default" : "outline"}>{settings.nlu_rag ? t.ragModeShort : t.chatMode}</Badge>
+            </div>
+            {booted ? <TrainerToggle open={trainerOpen} onOpenChange={setTrainerOpen} t={t} /> : null}
           </div>
         </header>
         {error && <div className="page"><div className="card danger">{error}</div></div>}
@@ -507,6 +512,14 @@ export function App() {
         </Drawer>
       )}
     </div>
+    {booted ? (
+      <TrainerDock
+        open={trainerOpen}
+        onOpenChange={setTrainerOpen}
+        t={t}
+        language={settings.languages.length === 1 ? settings.languages[0] : locale}
+      />
+    ) : null}
     <Toaster theme={theme} />
     </TooltipProvider>
   );

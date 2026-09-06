@@ -155,10 +155,14 @@ function applyEvent(
   }
 }
 
+const LANES: PolicyLane[] = ["match", "language", "house"];
+
 export function TrainerDrawer({
   t,
   lane,
   language,
+  onLane,
+  onClose,
   onStatus,
 }: {
   t: Messages;
@@ -167,6 +171,8 @@ export function TrainerDrawer({
   overlay?: unknown;
   onApplyHouse?: unknown;
   onApplyMatch?: unknown;
+  onLane?: (lane: PolicyLane) => void;
+  onClose?: () => void;
   onStatus: (status: string) => void;
 }) {
   const [endpoint, setEndpoint] = useState<LlmPublic | null>(null);
@@ -236,9 +242,11 @@ export function TrainerDrawer({
         <header className="trainer-head">
           <div>
             <p className="trainer-kicker">{t.trainer}</p>
-            <h2>{t.trainerForLane}</h2>
             <p className="muted">{endpoint ? t.trainerNeedLlm : t.trainerStreaming}</p>
           </div>
+          {onClose ? (
+            <button className="ghost" type="button" onClick={onClose}>{t.close}</button>
+          ) : null}
         </header>
         {endpoint ? (
           <div className="trainer-composer">
@@ -255,8 +263,23 @@ export function TrainerDrawer({
     <section className="trainer" aria-label={t.trainer}>
       <header className="trainer-head">
         <div>
-          <p className="trainer-kicker">{t.trainer} · {laneLabel(t, lane)}</p>
-          <h2>{t.trainerForLane}</h2>
+          <p className="trainer-kicker">{t.trainer}</p>
+          {onLane ? (
+            <nav className="trainer-lanes" aria-label={t.laneTabs}>
+              {LANES.map((id) => (
+                <button
+                  key={id}
+                  type="button"
+                  aria-pressed={lane === id}
+                  onClick={() => onLane(id)}
+                >
+                  {laneLabel(t, id)}
+                </button>
+              ))}
+            </nav>
+          ) : (
+            <h2>{t.trainerForLane}</h2>
+          )}
           <p className="muted">{t.trainerHint}</p>
         </div>
         <div className="trainer-meta">
@@ -270,6 +293,9 @@ export function TrainerDrawer({
             <button className="chip on" type="button" onClick={() => void decide("ask_again")}>
               {t.trainerYolo} · {t.trainerAskAgain}
             </button>
+          ) : null}
+          {onClose ? (
+            <button className="ghost" type="button" onClick={onClose}>{t.close}</button>
           ) : null}
         </div>
       </header>
