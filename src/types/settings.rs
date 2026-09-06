@@ -15,6 +15,7 @@ pub enum Personality {
     Hippie,
     Gollum,
     Jarvis,
+    Custom,
 }
 
 #[derive(Debug, Clone, Copy, Serialize, Deserialize, PartialEq, Eq, Default)]
@@ -23,6 +24,14 @@ pub enum Mode {
     #[default]
     Full,
     ContextOnly,
+}
+
+#[derive(Debug, Clone, Copy, Serialize, Deserialize, PartialEq, Eq, Default)]
+#[serde(rename_all = "snake_case")]
+pub enum UnitSystem {
+    #[default]
+    Metric,
+    Imperial,
 }
 
 fn default_languages() -> Vec<String> {
@@ -74,6 +83,12 @@ pub struct Settings {
     /// Extra line on the packed personality prompt. Empty uses the pack voice only.
     #[serde(default)]
     pub extra_prompt: String,
+    /// Operator temperatures for parse and speech. Default metric so old overlays stay Celsius.
+    #[serde(default)]
+    pub unit_system: UnitSystem,
+    /// Packed-voice replacement when `personality` is `custom`. Empty falls back to default.
+    #[serde(default)]
+    pub custom_voice: String,
 }
 
 impl Default for Settings {
@@ -93,6 +108,8 @@ impl Default for Settings {
             allow_llm_tools: false,
             fallback_llm: false,
             extra_prompt: String::new(),
+            unit_system: UnitSystem::Metric,
+            custom_voice: String::new(),
         }
     }
 }
@@ -122,7 +139,25 @@ mod tests {
         assert!(!set.allow_llm_tools);
         assert!(!set.fallback_llm);
         assert!(set.extra_prompt.is_empty());
+        assert!(set.custom_voice.is_empty());
+        assert_eq!(set.unit_system, UnitSystem::Metric);
         assert_eq!(set.languages, vec!["de"]);
+    }
+
+    #[test]
+    fn custom_personality_roundtrips() {
+        let raw = r#"{"personality":"custom","mode":"full","custom_voice":"Voice: dry."}"#;
+        let set: Settings = serde_json::from_str(raw).unwrap();
+        assert_eq!(set.personality, Personality::Custom);
+        assert_eq!(set.custom_voice, "Voice: dry.");
+    }
+
+    #[test]
+    fn omitted_unit_system_stays_metric() {
+        let raw = r#"{"personality":"default","mode":"full","languages":["de"]}"#;
+        let set: Settings = serde_json::from_str(raw).unwrap();
+        assert_eq!(set.unit_system, UnitSystem::Metric);
+        assert_eq!(Settings::default().unit_system, UnitSystem::Metric);
     }
 
     #[test]

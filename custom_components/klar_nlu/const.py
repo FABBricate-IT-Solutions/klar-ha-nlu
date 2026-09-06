@@ -76,7 +76,9 @@ PERSONALITIES = (
 
 def resolve_personality(value: object) -> str:
     name = str(value or DEFAULT_PERSONALITY)
-    return name if name in PERSONALITIES else DEFAULT_PERSONALITY
+    if name in PERSONALITIES or name == "custom":
+        return name
+    return DEFAULT_PERSONALITY
 
 
 MODE_LOCAL = "local"

@@ -106,6 +106,88 @@ async def complete_engine_refine(
     raise EngineUnavailable
 
 
+async def stream_engine_refine(
+    hass: HomeAssistant,
+    speech: str,
+    language: str,
+    personality: str,
+    extra_prompt: str,
+    chat_log: Any,
+    agent_id: str | None,
+    *,
+    conversation_id: str | None = None,
+    url: str | None = None,
+    token: str | None = None,
+) -> tuple[str, bool, bool] | None:
+    target = engine_target(hass, url, token)
+    if target is None:
+        return None
+    collected: list[str] = []
+    accepted = False
+    final = ""
+
+    async def tokens() -> AsyncIterator[str]:
+        nonlocal accepted, final
+        async for event in iter_engine_refine_events(
+            hass,
+            speech,
+            language,
+            personality,
+            extra_prompt,
+            conversation_id=conversation_id,
+            url=url,
+            token=token,
+        ):
+            if event.get("type") == "delta":
+                piece = str(event.get("text") or "")
+                if piece:
+                    yield piece
+            elif event.get("type") == "done":
+                parsed = _refine_result(event)
+                if parsed is not None:
+                    final, accepted = parsed
+
+    try:
+        posted = await emit_delta_stream(chat_log, agent_id, iter_token_deltas(tokens(), collected, None))
+    except EngineRefineMissing:
+        raise
+    except EngineUnavailable:
+        return None
+    except Exception as err:  # noqa: BLE001 — engine HTTP is a system boundary
+        _LOGGER.debug("Klar LLM refine stream failed: %s", err)
+        return None
+    text = final or "".join(collected)
+    if not text:
+        return None
+    return text, bool(posted), accepted
+
+
+async def iter_engine_refine_events(
+    hass: HomeAssistant,
+    speech: str,
+    language: str,
+    personality: str,
+    extra_prompt: str = "",
+    *,
+    conversation_id: str | None = None,
+    url: str | None = None,
+    token: str | None = None,
+) -> AsyncIterator[dict[str, Any]]:
+    body: dict[str, Any] = {
+        "speech": speech,
+        "language": language,
+        "personality": personality,
+        "extra_prompt": extra_prompt,
+        "stream": True,
+    }
+    if conversation_id:
+        body["conversation_id"] = conversation_id[:128]
+    async for event in _iter_engine_sse(
+        hass, "/api/v2/llm/refine", body, url=url, token=token, missing=EngineRefineMissing
+    ):
+        yield event
+
+
 def _refine_result(payload: object) -> tuple[str, bool] | None:
     if not isinstance(payload, Mapping):
         return None
@@ -216,14 +298,6 @@ async def iter_engine_assist_events(
     tools: list[dict[str, Any]] | None = None,
     tool_messages: list[dict[str, Any]] | None = None,
 ) -> AsyncIterator[dict[str, Any]]:
-    target = engine_target(hass, url, token)
-    if target is None:
-        raise EngineUnavailable
-    base, tok = target
-    session = _session(hass)
-    if session is None:
-        raise EngineUnavailable
-    headers = {"X-Klar-Token": tok, "Accept": "text/event-stream"} if tok else {"Accept": "text/event-stream"}
     body: dict[str, Any] = {
         "text": text,
         "language": language,
@@ -244,35 +318,10 @@ async def iter_engine_assist_events(
         body["tool_messages"] = tool_messages
     if conversation_id:
         body["conversation_id"] = conversation_id[:128]
-    last_err: Exception | None = None
-    for host in engine_url_candidates(base):
-        try:
-            async with session.post(
-                f"{host}/api/v2/llm/assist",
-                json=body,
-                headers=headers,
-                timeout=_CHAT_TIMEOUT,
-            ) as resp:
-                if resp.status == 404:
-                    raise EngineAssistMissing
-                if resp.status == 503:
-                    raise EngineUnavailable
-                resp.raise_for_status()
-                async for event in _iter_sse_json(resp.content):
-                    if event.get("type") == "error":
-                        raise RuntimeError(str(event.get("message") or "llm error"))
-                    yield event
-            return
-        except EngineAssistMissing:
-            raise
-        except EngineUnavailable:
-            raise
-        except (ClientError, TimeoutError, OSError) as err:
-            last_err = err
-            continue
-    if last_err is not None:
-        raise last_err
-    raise EngineUnavailable
+    async for event in _iter_engine_sse(
+        hass, "/api/v2/llm/assist", body, url=url, token=token, missing=EngineAssistMissing
+    ):
+        yield event
 
 
 def _tool_speech(event: Mapping[str, Any]) -> str:
@@ -377,43 +426,12 @@ async def iter_engine_tokens(
     max_tokens: int = 768,
     temperature: float = 0.65,
 ) -> AsyncIterator[str]:
-    target = engine_target(hass, url, token)
-    if target is None:
-        raise EngineUnavailable
-    base, tok = target
-    session = _session(hass)
-    if session is None:
-        raise EngineUnavailable
-    headers = {"X-Klar-Token": tok, "Accept": "text/event-stream"} if tok else {"Accept": "text/event-stream"}
     body = {"messages": messages, "stream": True, "max_tokens": max_tokens, "temperature": temperature}
-    last_err: Exception | None = None
-    for host in engine_url_candidates(base):
-        try:
-            async with session.post(
-                f"{host}/api/v2/llm/chat",
-                json=body,
-                headers=headers,
-                timeout=_CHAT_TIMEOUT,
-            ) as resp:
-                if resp.status == 503:
-                    raise EngineUnavailable
-                resp.raise_for_status()
-                async for event in _iter_sse_json(resp.content):
-                    if event.get("type") == "delta":
-                        text = str(event.get("text") or "")
-                        if text:
-                            yield text
-                    elif event.get("type") == "error":
-                        raise RuntimeError(str(event.get("message") or "llm error"))
-            return
-        except EngineUnavailable:
-            raise
-        except (ClientError, TimeoutError, OSError) as err:
-            last_err = err
-            continue
-    if last_err is not None:
-        raise last_err
-    raise EngineUnavailable
+    async for event in _iter_engine_sse(hass, "/api/v2/llm/chat", body, url=url, token=token):
+        if event.get("type") == "delta":
+            text = str(event.get("text") or "")
+            if text:
+                yield text
 
 
 async def complete_engine_speech_render(
@@ -483,6 +501,56 @@ def _event_text(payload: object) -> str:
     if payload.get("type") == "done":
         return str(payload.get("text") or "").strip()
     return str(payload.get("text") or "").strip()
+
+
+async def _iter_engine_sse(
+    hass: HomeAssistant,
+    path: str,
+    body: dict[str, Any],
+    *,
+    url: str | None = None,
+    token: str | None = None,
+    missing: type[Exception] | None = None,
+) -> AsyncIterator[dict[str, Any]]:
+    target = engine_target(hass, url, token)
+    if target is None:
+        raise EngineUnavailable
+    base, tok = target
+    session = _session(hass)
+    if session is None:
+        raise EngineUnavailable
+    headers = {"X-Klar-Token": tok, "Accept": "text/event-stream"} if tok else {"Accept": "text/event-stream"}
+    last_err: Exception | None = None
+    for host in engine_url_candidates(base):
+        try:
+            async with session.post(
+                f"{host}{path}",
+                json=body,
+                headers=headers,
+                timeout=_CHAT_TIMEOUT,
+            ) as resp:
+                if resp.status == 404 and missing is not None:
+                    raise missing
+                if resp.status == 503:
+                    raise EngineUnavailable
+                resp.raise_for_status()
+                async for event in _iter_sse_json(resp.content):
+                    if event.get("type") == "error":
+                        raise RuntimeError(str(event.get("message") or "llm error"))
+                    yield event
+            return
+        except EngineUnavailable:
+            raise
+        except Exception as err:
+            if missing is not None and isinstance(err, missing):
+                raise
+            if isinstance(err, (ClientError, TimeoutError, OSError)):
+                last_err = err
+                continue
+            raise
+    if last_err is not None:
+        raise last_err
+    raise EngineUnavailable
 
 
 async def _iter_sse_json(content: Any) -> AsyncIterator[dict[str, Any]]:

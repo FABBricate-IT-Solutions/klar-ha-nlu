@@ -190,6 +190,17 @@ class FloorQueryTests(unittest.TestCase):
         self.assertLess(spoken.index("Stecker aus"), spoken.index("jemand da"))
         self.assertLess(spoken.index("jemand da"), spoken.index("22,8 Grad"))
         self.assertLess(spoken.index("22,8 Grad"), spoken.index("40 Lux"))
+        imperial = floor_query.rooms_status_speech(
+            [
+                (
+                    "Wohnzimmer",
+                    [_State("climate.wz", "heat", "Heizung", current_temperature=21.0, temperature_unit="°C")],
+                )
+            ],
+            "de",
+            "imperial",
+        )
+        self.assertIn("70 Fahrenheit", imperial)
         self.assertLess(spoken.index("40 Lux"), spoken.index("R2D2"))
         self.assertLess(spoken.index("R2D2"), spoken.index("Heizung heizt"))
 

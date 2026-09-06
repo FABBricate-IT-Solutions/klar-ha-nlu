@@ -348,7 +348,7 @@ fn or_home(s: &str) -> String {
 }
 
 fn wrap(personality: Personality, body: &str) -> String {
-    if matches!(personality, Personality::Default) {
+    if matches!(personality, Personality::Default | Personality::Custom) {
         return body.to_string();
     }
     let key = match personality {
@@ -362,7 +362,7 @@ fn wrap(personality: Personality, body: &str) -> String {
         Personality::Hippie => "hippie",
         Personality::Gollum => "gollum",
         Personality::Jarvis => "jarvis",
-        Personality::Default => return body.to_string(),
+        Personality::Default | Personality::Custom => return body.to_string(),
     };
     let prefixes = speech().personality_prefixes(key);
     if prefixes.is_empty() {

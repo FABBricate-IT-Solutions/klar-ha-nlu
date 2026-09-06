@@ -1,5 +1,5 @@
 use super::*;
-use crate::types::{SpeechCalendarEvent, SpeechEntity, SpeechIntent, SpeechSlot, SpeechSnapshot};
+use crate::types::{SpeechCalendarEvent, SpeechEntity, SpeechIntent, SpeechSlot, SpeechSnapshot, UnitSystem};
 use std::collections::BTreeMap;
 
 fn snap(name: &str, slots: Vec<SpeechSlot>, entities: Vec<SpeechEntity>) -> SpeechSnapshot {
@@ -7,6 +7,7 @@ fn snap(name: &str, slots: Vec<SpeechSlot>, entities: Vec<SpeechEntity>) -> Spee
         schema_version: "1".into(),
         language: "de".into(),
         personality: "default".into(),
+        unit_system: UnitSystem::Metric,
         now: "2026-09-05T19:22:00+02:00".into(),
         intent: SpeechIntent { name: name.into(), slots },
         outcome: "success".into(),
@@ -73,6 +74,37 @@ fn climate_set_speaks_degrees() {
     ));
     assert_eq!(missing.speech, pack_for("de").unknown);
     assert!(!missing.speech.contains('?'));
+}
+
+#[test]
+fn climate_speech_uses_operator_unit() {
+    let mut set = snap(
+        "HassClimateSetTemperature",
+        vec![
+            SpeechSlot { name: "name".into(), value: "Heizung Wohnzimmer".into() },
+            SpeechSlot { name: "temperature".into(), value: "21".into() },
+        ],
+        vec![],
+    );
+    set.unit_system = UnitSystem::Imperial;
+    assert_eq!(render_snapshot(&set).speech, "Heizung Wohnzimmer auf 70 Fahrenheit.");
+    let climate = entity(
+        "climate.wohnzimmer",
+        "Heizung Wohnzimmer",
+        "climate",
+        "heat",
+        BTreeMap::from([("current_temperature".into(), serde_json::json!(21.5)), ("temperature_unit".into(), serde_json::json!("°C"))]),
+    );
+    let mut query = snap(
+        "HassClimateGetTemperature",
+        vec![
+            SpeechSlot { name: "area".into(), value: "wohnzimmer".into() },
+            SpeechSlot { name: "area_name".into(), value: "Wohnzimmer".into() },
+        ],
+        vec![climate],
+    );
+    query.unit_system = UnitSystem::Imperial;
+    assert_eq!(render_snapshot(&query).speech, "Wohnzimmer 70.7 Fahrenheit.");
 }
 
 #[test]

@@ -150,42 +150,58 @@ pub fn clean_refined(text: &str) -> String {
 
 pub fn accept_refined(original: &str, refined: &str) -> Option<String> {
     let speech = clean_refined(refined);
-    if speech.is_empty() || speech.ends_with("...") || speech.ends_with('…') {
+    if !refine_facts_ok(original, &speech, true) {
         return None;
+    }
+    Some(speech)
+}
+
+/// True when a streamed prefix may be published. Digit set may still be incomplete.
+pub fn streams_refine_prefix(original: &str, refined: &str) -> bool {
+    refine_facts_ok(original, &clean_refined(refined), false)
+}
+
+fn refine_facts_ok(original: &str, speech: &str, exact_digits: bool) -> bool {
+    if speech.is_empty() || speech.ends_with("...") || speech.ends_with('…') {
+        return false;
     }
     if speech.ends_with('?') && !original.trim_end().ends_with('?') {
-        return None;
+        return false;
     }
-    if has_intent_name(&speech) {
-        return None;
+    if has_intent_name(speech) {
+        return false;
     }
     let source_nums = digit_set(original);
-    let result_nums = digit_set(&speech);
-    if source_nums != result_nums {
-        return None;
+    let result_nums = digit_set(speech);
+    if exact_digits {
+        if source_nums != result_nums {
+            return false;
+        }
+    } else if !result_nums.is_subset(&source_nums) {
+        return false;
     }
-    if source_nums.is_empty() && has_number_word(&speech) {
-        return None;
+    if source_nums.is_empty() && has_number_word(speech) {
+        return false;
     }
     let max_len = (original.chars().count() * 6).max(280);
     if speech.chars().count() > max_len {
-        return None;
+        return false;
     }
     let folded = speech.to_lowercase();
     let original_fold = original.to_lowercase();
     if STAMP_BAN.iter().any(|ban| folded.contains(ban)) {
-        return None;
+        return false;
     }
     if LIGHT_CLAIM.iter().any(|word| folded.contains(word)) && !LIGHT_CLAIM.iter().any(|word| original_fold.contains(word)) {
-        return None;
+        return false;
     }
-    if invents_weather(original, &speech) {
-        return None;
+    if invents_weather(original, speech) {
+        return false;
     }
     if FAIL_CLAIM.iter().any(|word| original_fold.contains(word)) && DONE_CLAIM.iter().any(|word| folded.contains(word)) {
-        return None;
+        return false;
     }
-    Some(speech)
+    true
 }
 
 fn has_intent_name(text: &str) -> bool {
@@ -356,6 +372,12 @@ mod tests {
         assert_eq!(accept_refined("Licht ist an.", &format!("Licht ist an. {}", "x".repeat(400))), None);
         assert_eq!(clean_refined("Es ist 14:44:55."), "Es ist 14:44.");
         assert_eq!(accept_refined("Es ist 14:44.", "Es ist 14:44:55.").as_deref(), Some("Es ist 14:44."));
+        let rooms = "Wohnzimmer: Heizung 21,5 °C. Küche: 18 °C.";
+        let kept = "Im Wohnzimmer sind es 21,5 °C. In der Küche sind es 18 °C.";
+        assert_eq!(accept_refined(rooms, kept).as_deref(), Some(kept));
+        assert!(streams_refine_prefix(rooms, "Im Wohnzimmer sind es 21"));
+        assert!(!streams_refine_prefix(rooms, "Im Wohnzimmer sind es 22"));
+        assert_eq!(accept_refined(rooms, "Im Wohnzimmer sind es 21,5 °C."), None);
     }
 
     #[test]

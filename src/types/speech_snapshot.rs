@@ -1,5 +1,6 @@
 //! HA post-execute snapshot. Engine interpolates; Python builds from live state.
 
+use super::UnitSystem;
 use serde::{Deserialize, Serialize};
 use std::collections::BTreeMap;
 
@@ -12,6 +13,7 @@ pub const MAX_NAME_CHARS: usize = 128;
 
 const ALLOWED_ATTRS: &[&str] = &[
     "current_temperature",
+    "temperature",
     "temperature_unit",
     "unit_of_measurement",
     "hvac_action",
@@ -31,6 +33,8 @@ pub struct SpeechSnapshot {
     pub language: String,
     #[serde(default)]
     pub personality: String,
+    #[serde(default)]
+    pub unit_system: UnitSystem,
     #[serde(default)]
     pub now: String,
     pub intent: SpeechIntent,
@@ -180,6 +184,7 @@ mod tests {
             schema_version: "1".into(),
             language: "de".into(),
             personality: "default".into(),
+            unit_system: UnitSystem::Metric,
             now: "2026-09-05T19:22:00+02:00".into(),
             intent: SpeechIntent { name: "HassTurnOn".into(), slots: vec![SpeechSlot { name: "area".into(), value: "wohnzimmer".into() }] },
             outcome: "success".into(),

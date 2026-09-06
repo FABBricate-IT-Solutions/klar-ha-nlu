@@ -1,5 +1,5 @@
 use super::{
-    assist, assist_on, chat, chat_stream, list_models, refine, AssistRequest, ChatEvent, ChatMessage, ChatRequest, LlmEndpoint,
+    assist, assist_on, chat, chat_stream, list_models, refine, refine_on, AssistRequest, ChatEvent, ChatMessage, ChatRequest, LlmEndpoint,
     RefineRequest,
 };
 use axum::routing::{get, post};
@@ -53,6 +53,7 @@ fn chat_assist_req() -> AssistRequest {
         history: vec![],
         extra_system: None,
         extra_prompt: None,
+        custom_voice: None,
         conversation_id: String::new(),
         stream: Some(true),
         tools: None,
@@ -102,6 +103,7 @@ async fn refine_accepts_safe_rewrite() {
             language: "de".into(),
             personality: "default".into(),
             extra_prompt: String::new(),
+            custom_voice: String::new(),
             conversation_id: String::new(),
             stream: Some(false),
         },
@@ -124,6 +126,7 @@ async fn refine_returns_original_when_accept_rejects() {
             language: "en".into(),
             personality: "default".into(),
             extra_prompt: String::new(),
+            custom_voice: String::new(),
             conversation_id: String::new(),
             stream: Some(false),
         },
@@ -153,6 +156,7 @@ async fn assist_emits_structured_parse_tool() {
             history: vec![],
             extra_system: None,
             extra_prompt: None,
+            custom_voice: None,
             conversation_id: String::new(),
             stream: Some(false),
             tools: None,
@@ -187,6 +191,7 @@ async fn assist_returns_canned_yarn_when_model_asks() {
             history: vec![],
             extra_system: None,
             extra_prompt: None,
+            custom_voice: None,
             conversation_id: String::new(),
             stream: Some(false),
             tools: None,
@@ -299,5 +304,156 @@ async fn assist_on_forwards_deltas_before_return() {
         .collect();
     assert_eq!(live_deltas, ["Hel", "lo"]);
     assert!(matches!(live.last(), Some(ChatEvent::Done { text }) if text == "Hello"));
+    handle.abort();
+}
+
+fn yarn_assist_req(text: &str) -> AssistRequest {
+    AssistRequest {
+        text: text.into(),
+        language: "de".into(),
+        personality: "default".into(),
+        kind: "auto".into(),
+        allow_tools: false,
+        nlu_rag: false,
+        retrieval: None,
+        facts: None,
+        history: vec![],
+        extra_system: None,
+        extra_prompt: None,
+        custom_voice: None,
+        conversation_id: String::new(),
+        stream: Some(true),
+        tools: None,
+        tool_messages: vec![],
+    }
+}
+
+fn rag_assist_req(text: &str, stream: bool) -> AssistRequest {
+    AssistRequest {
+        text: text.into(),
+        language: "de".into(),
+        personality: "default".into(),
+        kind: "auto".into(),
+        allow_tools: false,
+        nlu_rag: true,
+        retrieval: None,
+        facts: None,
+        history: vec![],
+        extra_system: None,
+        extra_prompt: None,
+        custom_voice: None,
+        conversation_id: String::new(),
+        stream: Some(stream),
+        tools: None,
+        tool_messages: vec![],
+    }
+}
+
+fn live_deltas(events: &[ChatEvent]) -> Vec<&str> {
+    events
+        .iter()
+        .filter_map(|event| match event {
+            ChatEvent::Delta { text } => Some(text.as_str()),
+            _ => None,
+        })
+        .collect()
+}
+
+#[tokio::test]
+async fn assist_on_streams_yarn_story_and_joke() {
+    let (base, handle) = serve(vec!["Es war ".into(), "ein Fuchs.".into()], true).await;
+    let endpoint = LlmEndpoint::from_parts(&base, "", "test-model").unwrap();
+    let mut live = Vec::new();
+    let out = assist_on(&endpoint, yarn_assist_req("erzähl eine lange Geschichte"), |event| live.push(event.clone())).await.unwrap();
+    assert_eq!(out.text, "Es war ein Fuchs.");
+    assert_eq!(live_deltas(&live), ["Es war ", "ein Fuchs."]);
+    handle.abort();
+
+    let (base, handle) = serve(vec!["Warum ".into(), "Geister?".into()], true).await;
+    let endpoint = LlmEndpoint::from_parts(&base, "", "test-model").unwrap();
+    let mut live = Vec::new();
+    let out = assist_on(&endpoint, yarn_assist_req("erzähl einen Witz"), |event| live.push(event.clone())).await.unwrap();
+    assert_eq!(out.text, "Warum Geister?");
+    assert_eq!(live_deltas(&live), ["Warum ", "Geister?"]);
+    handle.abort();
+}
+
+#[tokio::test]
+async fn assist_on_streams_world_knowledge_with_nlu_rag() {
+    let (base, handle) = serve(vec!["Die Hauptstadt ".into(), "ist Paris.".into()], true).await;
+    let endpoint = LlmEndpoint::from_parts(&base, "", "test-model").unwrap();
+    let mut live = Vec::new();
+    let out = assist_on(&endpoint, rag_assist_req("Was ist die Hauptstadt von Frankreich", true), |event| live.push(event.clone()))
+        .await
+        .unwrap();
+    assert_eq!(out.text, "Die Hauptstadt ist Paris.");
+    assert_eq!(live_deltas(&live), ["Die Hauptstadt ", "ist Paris."]);
+    assert!(out.tool.is_none());
+    handle.abort();
+}
+
+#[tokio::test]
+async fn assist_on_holds_rag_tool_prefix() {
+    let (base, handle) = serve(vec!["KLAR_".into(), "PARSE: licht an".into()], true).await;
+    let endpoint = LlmEndpoint::from_parts(&base, "", "test-model").unwrap();
+    let mut live = Vec::new();
+    let out = assist_on(&endpoint, rag_assist_req("mach das licht an", true), |event| live.push(event.clone())).await.unwrap();
+    assert!(out.tool.is_some());
+    assert!(live_deltas(&live).is_empty());
+    let json = serde_json::to_value(&out.events[0]).unwrap();
+    assert_eq!(json["type"], "tool");
+    assert_eq!(json["text"], "licht an");
+    handle.abort();
+}
+
+#[tokio::test]
+async fn refine_on_forwards_deltas_before_done() {
+    let (base, handle) = serve(vec!["Das Licht ".into(), "im Wohnzimmer ist an.".into()], true).await;
+    let endpoint = LlmEndpoint::from_parts(&base, "", "test-model").unwrap();
+    let mut live = Vec::new();
+    let out = refine_on(
+        &endpoint,
+        RefineRequest {
+            speech: "Wohnzimmer Licht ist an.".into(),
+            language: "de".into(),
+            personality: "default".into(),
+            extra_prompt: String::new(),
+            custom_voice: String::new(),
+            conversation_id: String::new(),
+            stream: Some(true),
+        },
+        |event| live.push(event.clone()),
+    )
+    .await
+    .unwrap();
+    assert!(out.accepted);
+    assert_eq!(out.text, "Das Licht im Wohnzimmer ist an.");
+    assert_eq!(live_deltas(&live), ["Das Licht ", "im Wohnzimmer ist an."]);
+    handle.abort();
+}
+
+#[tokio::test]
+async fn refine_on_holds_rejected_prefix() {
+    let (base, handle) = serve(vec!["Tomorrow will be sunny.".into()], true).await;
+    let endpoint = LlmEndpoint::from_parts(&base, "", "test-model").unwrap();
+    let mut live = Vec::new();
+    let out = refine_on(
+        &endpoint,
+        RefineRequest {
+            speech: "Nothing tomorrow.".into(),
+            language: "en".into(),
+            personality: "default".into(),
+            extra_prompt: String::new(),
+            custom_voice: String::new(),
+            conversation_id: String::new(),
+            stream: Some(true),
+        },
+        |event| live.push(event.clone()),
+    )
+    .await
+    .unwrap();
+    assert!(!out.accepted);
+    assert_eq!(out.text, "Nothing tomorrow.");
+    assert!(live_deltas(&live).is_empty());
     handle.abort();
 }

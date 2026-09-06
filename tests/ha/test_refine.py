@@ -63,7 +63,9 @@ class RefineTests(unittest.TestCase):
 
     def test_options_personality_switches_style_wrap(self) -> None:
         self.assertEqual(const.resolve_personality("grantig"), "grantig")
+        self.assertEqual(const.resolve_personality("custom"), "custom")
         self.assertEqual(const.resolve_personality("nope"), "default")
+        self.assertEqual(speech.style("Licht ist an.", "custom", "de"), "Licht ist an.")
         for pack in ("de", "en"):
             for name in const.PERSONALITIES:
                 spoken = speech.style("Licht ist an.", name, pack)
@@ -89,6 +91,7 @@ class RefineTests(unittest.TestCase):
     def test_refine_calls_engine_and_fails_closed(self) -> None:
         src = (PKG / "refine.py").read_text(encoding="utf-8")
         self.assertIn("complete_engine_refine", src)
+        self.assertIn("stream_engine_refine", src)
         self.assertIn("conversation_id=conversation_id", src)
         self.assertNotIn("complete_engine_chat", src)
         self.assertNotIn("accept_refined", src)
@@ -97,7 +100,7 @@ class RefineTests(unittest.TestCase):
         self.assertIn("Cycle: engine_llm → stream → refine", src)
 
     def test_no_homeassistant_runtime_falls_back_to_none(self) -> None:
-        out = asyncio.run(
+        out, posted = asyncio.run(
             refine.async_refine_speech(
                 None,
                 "conversation.llm",
@@ -111,6 +114,7 @@ class RefineTests(unittest.TestCase):
             )
         )
         self.assertIsNone(out)
+        self.assertFalse(posted)
 
     def test_skip_rewrite_for_llm_replies_only(self) -> None:
         self.assertTrue(refine.skip_rewrite("chat"))
@@ -258,6 +262,8 @@ class RefineTests(unittest.TestCase):
         spoken = src[src.index("async def _spoken") : src.index("async def _briefing")]
         self.assertIn("skip_rewrite", spoken)
         self.assertIn("emit_assistant_speech", spoken)
+        self.assertIn("refine_posted", spoken)
+        self.assertIn("chat_log", spoken)
         calendar = src[src.index('kind="calendar"') : src.index("if self._quiet_ack()")]
         self.assertIn("_was_published(fallback)", calendar)
         self.assertIn('"llm"', calendar)

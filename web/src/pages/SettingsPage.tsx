@@ -1,10 +1,13 @@
 import { useEffect, useState } from "react";
 import { api, download, setToken, type LanguagePack } from "../api";
 import { Guide } from "../components/Guide";
+import { CustomVoiceInterview } from "../components/CustomVoiceInterview";
 import { LlmSettingsCard } from "../components/LlmSettingsCard";
+import { SettingsBackupCard } from "../components/SettingsBackupCard";
 import { PersonalityPrompt } from "../components/PersonalityPrompt";
 import { SearchSelect, withCurrent } from "../components/SearchSelect";
 import { dictionaries, type Messages } from "../i18n";
+import { isPersonality, PERSONALITIES, personalityLabel } from "../personality";
 import type { BundleList, Locale, Settings, Theme } from "../types";
 import {
   AlertDialog,
@@ -31,57 +34,6 @@ import {
 import { Switch } from "@/components/ui/switch";
 import { Textarea } from "@/components/ui/textarea";
 import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
-
-const PERSONALITIES = [
-  "default",
-  "butler",
-  "locker",
-  "fuersorglich",
-  "party",
-  "grantig",
-  "sarkastisch",
-  "pirat",
-  "hippie",
-  "gollum",
-  "jarvis",
-] as const;
-
-type PersonalityId = (typeof PERSONALITIES)[number];
-
-function isPersonality(value: string): value is PersonalityId {
-  return (PERSONALITIES as readonly string[]).includes(value);
-}
-
-function personalityLabel(t: Messages, id: PersonalityId): string {
-  switch (id) {
-    case "default":
-      return t.personalityDefault;
-    case "butler":
-      return t.personalityButler;
-    case "locker":
-      return t.personalityLocker;
-    case "fuersorglich":
-      return t.personalityFuersorglich;
-    case "party":
-      return t.personalityParty;
-    case "grantig":
-      return t.personalityGrantig;
-    case "sarkastisch":
-      return t.personalitySarkastisch;
-    case "pirat":
-      return t.personalityPirat;
-    case "hippie":
-      return t.personalityHippie;
-    case "gollum":
-      return t.personalityGollum;
-    case "jarvis":
-      return t.personalityJarvis;
-    default: {
-      const _never: never = id;
-      return _never;
-    }
-  }
-}
 
 function readTheme(theme?: Theme): Theme {
   if (theme === "light" || theme === "dark") return theme;
@@ -112,12 +64,15 @@ export function SettingsPage({
   const [token, setTokenValue] = useState(localStorage.getItem("klar_token") || "");
   const [picked, setPicked] = useState<Theme>(() => readTheme(theme));
   const [packs, setPacks] = useState<LanguagePack[]>([]);
+  const [llmEpoch, setLlmEpoch] = useState(0);
+  const [llmReady, setLlmReady] = useState(false);
   const refresh = () => api.bundle().then(setBundle).catch(() => undefined);
   useEffect(() => {
     refresh();
   }, []);
   useEffect(() => {
     api.languages().then(setPacks).catch(() => undefined);
+    api.llmEndpoint().then((next) => setLlmReady(Boolean(next.configured))).catch(() => undefined);
   }, []);
   const chromeCodes = new Set(Object.keys(dictionaries));
   const localeOptions = (packs.length ? packs.filter((pack) => chromeCodes.has(pack.code)) : [...chromeCodes].map((code) => ({
@@ -182,7 +137,7 @@ export function SettingsPage({
         ]}
       />
       <p className="caption" style={{ marginTop: -8 }}>{t.haGlueHint}</p>
-      <LlmSettingsCard t={t} />
+      <LlmSettingsCard key={llmEpoch} t={t} />
       <section className="grid gap-4 md:grid-cols-2">
         <Card>
           <CardHeader>
@@ -211,7 +166,27 @@ export function SettingsPage({
                   </SelectContent>
                 </Select>
               </Field>
-              <PersonalityPrompt t={t} personality={voice} language={pinned} />
+              {voice === "custom" ? (
+                <CustomVoiceInterview
+                  t={t}
+                  language={pinned}
+                  value={settings.custom_voice || ""}
+                  onChange={(prompt) => onSettings({ ...settings, personality: "custom", custom_voice: prompt })}
+                />
+              ) : (
+                <PersonalityPrompt t={t} personality={voice} language={pinned} />
+              )}
+              {llmReady && voice !== "custom" ? (
+                <Field>
+                  <Button
+                    variant="outline"
+                    type="button"
+                    onClick={() => onSettings({ ...settings, personality: "custom" })}
+                  >
+                    {t.customVoice}
+                  </Button>
+                </Field>
+              ) : null}
               <Field>
                 <FieldLabel htmlFor="klar-extra-prompt">{t.extraPrompt}</FieldLabel>
                 <Textarea
@@ -240,6 +215,23 @@ export function SettingsPage({
                   checked={Boolean(settings.quiet_ack)}
                   onCheckedChange={(checked) => onSettings({ ...settings, quiet_ack: Boolean(checked) })}
                 />
+              </Field>
+              <Field>
+                <FieldLabel>{t.unitSystem}</FieldLabel>
+                <ToggleGroup
+                  variant="outline"
+                  spacing={0}
+                  value={[settings.unit_system === "imperial" ? "imperial" : "metric"]}
+                  onValueChange={(next) => {
+                    const value = next[0];
+                    if (value === "metric" || value === "imperial") onSettings({ ...settings, unit_system: value });
+                  }}
+                  aria-label={t.unitSystem}
+                >
+                  <ToggleGroupItem value="metric">{t.unitMetric}</ToggleGroupItem>
+                  <ToggleGroupItem value="imperial">{t.unitImperial}</ToggleGroupItem>
+                </ToggleGroup>
+                <FieldDescription>{t.unitSystemHint}</FieldDescription>
               </Field>
             </FieldGroup>
           </CardContent>
@@ -436,6 +428,11 @@ export function SettingsPage({
             <Button variant="destructive" type="button" onClick={() => setConfirmClear(true)}>{t.clearAll}</Button>
           </CardFooter>
         </Card>
+        <SettingsBackupCard
+          t={t}
+          onSettings={onSettings}
+          onRestored={() => setLlmEpoch((epoch) => epoch + 1)}
+        />
       </section>
       <AlertDialog open={confirmClear} onOpenChange={setConfirmClear}>
         <AlertDialogContent>

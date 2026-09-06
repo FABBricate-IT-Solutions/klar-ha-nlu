@@ -217,6 +217,11 @@ fn wohnung_kitchen_music_and_all_off_scene() {
     assert_eq!(heat.intents.first().map(|intent| intent.name.as_str()), Some("HassClimateSetTemperature"), "{heat:?}");
     assert_eq!(heat.intents.first().and_then(|intent| intent.slot("temperature")), Some("21"), "{heat:?}");
     assert_eq!(heat.intents.first().and_then(|intent| intent.slot("entity_id")), Some("climate.better_thermostat_wohnzimmer"), "{heat:?}");
+    let imperial = Settings { unit_system: crate::types::UnitSystem::Imperial, languages: vec!["de".into()], ..Settings::default() };
+    let fahrenheit = parse("Heizung Wohnzimmer auf 70", &home, &mut Session::new(), &[], &imperial);
+    assert_eq!(fahrenheit.intents.first().and_then(|intent| intent.slot("temperature")), Some("21"), "{fahrenheit:?}");
+    let explicit = parse("Heizung Wohnzimmer auf 70 fahrenheit", &home, &mut Session::new(), &[], &settings);
+    assert_eq!(explicit.intents.first().and_then(|intent| intent.slot("temperature")), Some("21"), "{explicit:?}");
     let status = parse("Status TV", &home, &mut Session::new(), &[], &settings);
     assert!(!status.clarify, "{status:?}");
     assert_eq!(status.intents.first().and_then(|intent| intent.slot("entity_id")), Some("switch.schlafzimmer_tv"), "{status:?}");

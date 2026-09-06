@@ -217,10 +217,10 @@ pub fn openai_tools() -> Vec<Value> {
         ),
         tool(
             "apply_engine",
-            "Patch engine settings (refine, calendar_llm, personality, languages, quiet_ack, nlu_rag, extra_prompt, …). Never URL, token, or model. Needs consent.",
+            "Patch engine settings (refine, calendar_llm, personality, languages, quiet_ack, nlu_rag, extra_prompt, unit_system, …). Never URL, token, or model. Needs consent.",
             object(
                 &[
-                    ("personality", str_prop("default, butler, locker, fuersorglich, party, grantig, sarkastisch, pirat, hippie, gollum, jarvis")),
+                    ("personality", str_prop("default, butler, locker, fuersorglich, party, grantig, sarkastisch, pirat, hippie, gollum, jarvis, custom")),
                     ("mode", str_prop("full or context_only")),
                     ("languages", json!({"type": "array", "items": {"type": "string"}})),
                     ("refine_speech", json!({"type": "boolean"})),
@@ -233,6 +233,8 @@ pub fn openai_tools() -> Vec<Value> {
                     ("support_bundle", json!({"type": "boolean"})),
                     ("support_bundle_raw_text", json!({"type": "boolean"})),
                     ("extra_prompt", str_prop("House rule user line. Empty keeps pack voice.")),
+                    ("unit_system", str_prop("metric or imperial")),
+                    ("custom_voice", str_prop("Voice block when personality is custom.")),
                 ],
                 &[],
             ),

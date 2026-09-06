@@ -4,6 +4,7 @@ import { App } from "./App";
 import "./index.css";
 import "./theme.css";
 import "./operator.css";
+import "./wizard.css";
 
 const storedTheme = localStorage.getItem("klar_theme");
 if (storedTheme === "light" || storedTheme === "dark") {

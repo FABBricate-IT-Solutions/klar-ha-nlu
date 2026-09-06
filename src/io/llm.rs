@@ -2,8 +2,8 @@ use crate::home::paths::{read_to_string_confined, remove_confined, write_atomic_
 use crate::io::auth::{reads_allowed, writes_allowed};
 use crate::io::state::AppState;
 use crate::llm::{
-    assist, assist_on, chat, chat_stream, list_models, personality_preview, refine, AssistRequest, ChatEvent, ChatRequest, LlmEndpoint,
-    LlmError, LlmPublic, PersonalityPreview, RefineRequest,
+    assist, assist_on, chat, chat_stream, generate_custom_voice, list_models, personality_preview_for, refine, refine_on, AssistRequest,
+    ChatEvent, ChatRequest, CustomVoiceRequest, LlmEndpoint, LlmError, LlmPublic, PersonalityPreview, RefineRequest,
 };
 use axum::extract::{ConnectInfo, DefaultBodyLimit, Query, State};
 use axum::http::{HeaderMap, StatusCode};
@@ -15,17 +15,26 @@ use serde::{Deserialize, Serialize};
 use std::convert::Infallible;
 use std::net::SocketAddr;
 use std::path::Path;
-use tokio_stream::wrappers::ReceiverStream;
+use tokio_stream::wrappers::UnboundedReceiverStream;
 
-const LLM_FILE: &str = "llm_endpoint.json";
+pub(crate) const LLM_FILE: &str = "llm_endpoint.json";
 
-#[derive(Debug, Serialize, Deserialize, PartialEq, Eq)]
-struct StoredEndpoint {
-    base_url: String,
-    api_key: String,
-    model: String,
+#[derive(Debug, Clone, Serialize, Deserialize, PartialEq, Eq)]
+pub(crate) struct StoredEndpoint {
+    pub base_url: String,
+    pub api_key: String,
+    pub model: String,
     #[serde(default)]
-    enable_thinking: bool,
+    pub enable_thinking: bool,
+}
+
+pub(crate) fn load_stored_endpoint(dir: &Path) -> Option<StoredEndpoint> {
+    let raw = read_to_string_confined(dir, LLM_FILE).ok()?;
+    serde_json::from_str(&raw).ok()
+}
+
+pub(crate) fn save_stored_endpoint(dir: &Path, stored: &StoredEndpoint) -> std::io::Result<()> {
+    write_atomic_confined(dir, LLM_FILE, &serde_json::to_vec_pretty(stored).unwrap_or_default())
 }
 
 pub fn load_endpoint(dir: &Path) -> Option<LlmEndpoint> {
@@ -36,21 +45,22 @@ pub fn load_endpoint(dir: &Path) -> Option<LlmEndpoint> {
 }
 
 fn from_file(dir: &Path) -> Option<LlmEndpoint> {
-    let raw = read_to_string_confined(dir, LLM_FILE).ok()?;
-    let stored: StoredEndpoint = serde_json::from_str(&raw).ok()?;
+    let stored = load_stored_endpoint(dir)?;
     LlmEndpoint::from_parts(&stored.base_url, &stored.api_key, &stored.model)
         .ok()
         .map(|endpoint| endpoint.with_thinking(stored.enable_thinking))
 }
 
 fn save_endpoint(dir: &Path, endpoint: &LlmEndpoint) -> std::io::Result<()> {
-    let stored = StoredEndpoint {
-        base_url: endpoint.base_url.clone(),
-        api_key: endpoint.api_key.clone(),
-        model: endpoint.model.clone(),
-        enable_thinking: endpoint.enable_thinking,
-    };
-    write_atomic_confined(dir, LLM_FILE, &serde_json::to_vec_pretty(&stored).unwrap_or_default())
+    save_stored_endpoint(
+        dir,
+        &StoredEndpoint {
+            base_url: endpoint.base_url.clone(),
+            api_key: endpoint.api_key.clone(),
+            model: endpoint.model.clone(),
+            enable_thinking: endpoint.enable_thinking,
+        },
+    )
 }
 
 fn clear_endpoint(dir: &Path) -> std::io::Result<()> {
@@ -67,6 +77,7 @@ pub fn routes() -> Router<AppState> {
     Router::new()
         .route("/api/v2/llm/endpoint", get(get_endpoint).post(set_endpoint))
         .route("/api/v2/llm/voice", get(get_voice))
+        .route("/api/v2/llm/custom-voice", post(make_custom_voice))
         .route("/api/v2/llm/models", post(list_endpoint_models))
         .route("/api/v2/llm/chat", post(llm_chat))
         .route("/api/v2/llm/refine", post(llm_refine))
@@ -119,7 +130,24 @@ async fn get_voice(
     if personality.chars().count() > 32 || personality.chars().any(char::is_control) {
         return Err(StatusCode::BAD_REQUEST);
     }
-    Ok(Json(personality_preview(language, personality)))
+    let custom = if personality.eq_ignore_ascii_case("custom") { state.settings.lock().await.custom_voice.clone() } else { String::new() };
+    Ok(Json(personality_preview_for(language, personality, &custom)))
+}
+
+async fn make_custom_voice(
+    State(state): State<AppState>,
+    ConnectInfo(peer): ConnectInfo<SocketAddr>,
+    headers: HeaderMap,
+    Json(body): Json<CustomVoiceRequest>,
+) -> Result<Json<crate::llm::CustomVoiceOut>, StatusCode> {
+    if !writes_allowed(Some(peer), &headers, &state.token) {
+        return Err(StatusCode::UNAUTHORIZED);
+    }
+    let endpoint = state.llm.lock().await.clone().ok_or(StatusCode::SERVICE_UNAVAILABLE)?;
+    match generate_custom_voice(&endpoint, body).await {
+        Ok(out) => Ok(Json(out)),
+        Err(err) => Err(status_for(&err)),
+    }
 }
 
 async fn set_endpoint(
@@ -205,22 +233,22 @@ pub async fn llm_chat(
     let endpoint = state.llm.lock().await.clone().ok_or(StatusCode::SERVICE_UNAVAILABLE)?;
     let stream = body.stream.unwrap_or(true);
     if stream {
-        let (tx, rx) = tokio::sync::mpsc::channel::<Result<Event, Infallible>>(64);
+        let (tx, rx) = tokio::sync::mpsc::unbounded_channel::<Result<Event, Infallible>>();
         tokio::spawn(async move {
             let result = chat_stream(&endpoint, body, |delta| {
-                let _ = tx.try_send(Ok(json_event(&ChatEvent::Delta { text: delta.to_string() })));
+                let _ = tx.send(Ok(json_event(&ChatEvent::Delta { text: delta.to_string() })));
             })
             .await;
             match result {
                 Ok(text) => {
-                    let _ = tx.send(Ok(json_event(&ChatEvent::Done { text }))).await;
+                    let _ = tx.send(Ok(json_event(&ChatEvent::Done { text })));
                 }
                 Err(err) => {
-                    let _ = tx.send(Ok(json_event(&ChatEvent::Error { message: err.to_string() }))).await;
+                    let _ = tx.send(Ok(json_event(&ChatEvent::Error { message: err.to_string() })));
                 }
             }
         });
-        Ok(Sse::new(ReceiverStream::new(rx)).keep_alive(KeepAlive::default()).into_response())
+        Ok(Sse::new(UnboundedReceiverStream::new(rx)).keep_alive(KeepAlive::default()).into_response())
     } else {
         match chat(&endpoint, body).await {
             Ok(text) => Ok(Json(ChatEvent::Done { text }).into_response()),
@@ -238,26 +266,34 @@ pub async fn llm_refine(
     if !writes_allowed(Some(peer), &headers, &state.token) {
         return Err(StatusCode::UNAUTHORIZED);
     }
+    let mut body = body;
+    if body.custom_voice.is_empty() {
+        body.custom_voice = state.settings.lock().await.custom_voice.clone();
+    }
     let stream = body.stream.unwrap_or(false);
     let conversation_id = body.conversation_id.clone();
     let endpoint = state.llm.lock().await.clone().ok_or(StatusCode::SERVICE_UNAVAILABLE)?;
     let journal = state.journal.clone();
     if stream {
-        let (tx, rx) = tokio::sync::mpsc::channel::<Result<Event, Infallible>>(8);
+        let (tx, rx) = tokio::sync::mpsc::unbounded_channel::<Result<Event, Infallible>>();
         tokio::spawn(async move {
-            match refine(&endpoint, body).await {
+            match refine_on(&endpoint, body, |event| {
+                let _ = tx.send(Ok(json_event(event)));
+            })
+            .await
+            {
                 Ok(out) => {
                     if out.accepted {
                         journal.note_spoken(Some(&conversation_id), &out.text, "refine");
                     }
-                    let _ = tx.send(Ok(json_data(&out))).await;
+                    let _ = tx.send(Ok(json_data(&out)));
                 }
                 Err(err) => {
-                    let _ = tx.send(Ok(json_event(&ChatEvent::Error { message: err.to_string() }))).await;
+                    let _ = tx.send(Ok(json_event(&ChatEvent::Error { message: err.to_string() })));
                 }
             }
         });
-        Ok(Sse::new(ReceiverStream::new(rx)).keep_alive(KeepAlive::default()).into_response())
+        Ok(Sse::new(UnboundedReceiverStream::new(rx)).keep_alive(KeepAlive::default()).into_response())
     } else {
         match refine(&endpoint, body).await {
             Ok(out) => {
@@ -280,15 +316,19 @@ pub async fn llm_assist(
     if !writes_allowed(Some(peer), &headers, &state.token) {
         return Err(StatusCode::UNAUTHORIZED);
     }
+    let mut body = body;
+    if body.custom_voice.as_ref().is_none_or(|voice| voice.is_empty()) {
+        body.custom_voice = Some(state.settings.lock().await.custom_voice.clone());
+    }
     let stream = body.stream.unwrap_or(true);
     let conversation_id = body.conversation_id.clone();
     let endpoint = state.llm.lock().await.clone().ok_or(StatusCode::SERVICE_UNAVAILABLE)?;
     let journal = state.journal.clone();
     if stream {
-        let (tx, rx) = tokio::sync::mpsc::channel::<Result<Event, Infallible>>(64);
+        let (tx, rx) = tokio::sync::mpsc::unbounded_channel::<Result<Event, Infallible>>();
         tokio::spawn(async move {
             let result = assist_on(&endpoint, body, |event| {
-                let _ = tx.try_send(Ok(json_event(event)));
+                let _ = tx.send(Ok(json_event(event)));
             })
             .await;
             match result {
@@ -298,11 +338,11 @@ pub async fn llm_assist(
                     }
                 }
                 Err(err) => {
-                    let _ = tx.send(Ok(json_event(&ChatEvent::Error { message: err.to_string() }))).await;
+                    let _ = tx.send(Ok(json_event(&ChatEvent::Error { message: err.to_string() })));
                 }
             }
         });
-        Ok(Sse::new(ReceiverStream::new(rx)).keep_alive(KeepAlive::default()).into_response())
+        Ok(Sse::new(UnboundedReceiverStream::new(rx)).keep_alive(KeepAlive::default()).into_response())
     } else {
         match assist(&endpoint, body).await {
             Ok(out) => {
@@ -388,8 +428,20 @@ mod tests {
         let end = src.find("pub fn json_event").expect("json_event");
         let body = &src[start..end];
         assert!(body.contains("assist_on"));
-        assert!(body.contains("try_send"));
+        assert!(body.contains("unbounded_channel"));
+        assert!(!body.contains("blocking_send"));
+        assert!(!body.contains("try_send"));
         assert!(!body.contains("for event in out.events"));
+    }
+
+    #[test]
+    fn custom_voice_route_requires_write_and_endpoint() {
+        let src = include_str!("llm.rs");
+        let start = src.find("async fn make_custom_voice").expect("make_custom_voice");
+        let body = &src[start..start + 900];
+        assert!(body.contains("writes_allowed"));
+        assert!(body.contains("SERVICE_UNAVAILABLE"));
+        assert!(body.contains("generate_custom_voice"));
     }
 
     #[test]

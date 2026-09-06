@@ -66,6 +66,14 @@ KEYS = (
     "phrasesReopen",
     "phraseSay",
     "phraseExpect",
+    "chromeTitle",
+    "chromeLead",
+    "unitsTitle",
+    "unitsLead",
+    "restTitle",
+    "restLead",
+    "tutorialTitle",
+    "llmSkip",
 )
 
 EN = {
@@ -126,6 +134,14 @@ EN = {
     "phrasesReopen": "Re-open this setup from Settings. It is not a seventh tab.",
     "phraseSay": "Say",
     "phraseExpect": "Expect",
+    "chromeTitle": "This screen",
+    "chromeLead": "Theme and language for this console. Assist language can stay all packs.",
+    "unitsTitle": "Units",
+    "unitsLead": "Spoken and parsed temperatures. Lights and timers stay as they are.",
+    "restTitle": "House settings",
+    "restLead": "These stay on the engine. Home Assistant Configure does not need them.",
+    "tutorialTitle": "How to use Klar",
+    "llmSkip": "Leave empty to finish without an LLM.",
 }
 
 EN_CONSOLE = EN["whatConsole"]

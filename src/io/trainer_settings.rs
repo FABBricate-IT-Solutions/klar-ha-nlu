@@ -4,7 +4,7 @@ use crate::home::overlay::{load_overlay, save_overlay};
 use crate::io::state::AppState;
 use crate::io::trainer_reads::with_view;
 use crate::lang::{pin_language, LangId};
-use crate::types::{Mode, Personality, Settings};
+use crate::types::{Mode, Personality, Settings, UnitSystem};
 use serde_json::{json, Value};
 
 const FORBIDDEN: &[&str] = &["url", "base_url", "token", "api_key", "model", "endpoint", "llm_url", "fallback_llm", "fallback_agent"];
@@ -23,6 +23,8 @@ const ENGINE_KEYS: &[&str] = &[
     "quiet_ack",
     "allow_llm_tools",
     "extra_prompt",
+    "unit_system",
+    "custom_voice",
 ];
 
 const UI_KEYS: &[&str] = &["theme", "locale"];
@@ -44,6 +46,8 @@ pub fn engine_view(settings: &Settings, theme: &str, locale: &str, locale_set: b
             "support_bundle": settings.support_bundle,
             "support_bundle_raw_text": settings.support_bundle_raw_text,
             "extra_prompt": settings.extra_prompt,
+            "unit_system": settings.unit_system,
+            "custom_voice": settings.custom_voice,
             "theme": theme,
             "locale": locale,
             "locale_set": locale_set,
@@ -119,7 +123,9 @@ fn public_settings(settings: &Settings) -> Value {
         "semantic_adapters": settings.semantic_adapters,
         "support_bundle": settings.support_bundle,
         "support_bundle_raw_text": settings.support_bundle_raw_text,
-        "extra_prompt": settings.extra_prompt
+        "extra_prompt": settings.extra_prompt,
+        "unit_system": settings.unit_system,
+        "custom_voice": settings.custom_voice
     })
 }
 
@@ -167,6 +173,15 @@ fn patch_engine(current: &Settings, args: &Value) -> Result<Settings, String> {
             return Err("extra_prompt too long".into());
         }
         next.extra_prompt = text.to_string();
+    }
+    if let Some(value) = args.get("unit_system") {
+        next.unit_system = serde_json::from_value::<UnitSystem>(value.clone()).map_err(|_| "unknown unit_system")?;
+    }
+    if let Some(text) = args.get("custom_voice").and_then(Value::as_str) {
+        if text.chars().count() > 2048 {
+            return Err("custom_voice too long".into());
+        }
+        next.custom_voice = text.to_string();
     }
     Ok(next)
 }
@@ -264,6 +279,11 @@ mod tests {
         assert_eq!(next.personality, Personality::Jarvis);
         assert!(next.quiet_ack);
         assert_eq!(next.languages, vec!["de"]);
+        let imperial = patch_engine(&set, &json!({"unit_system":"imperial"})).unwrap();
+        assert_eq!(imperial.unit_system, UnitSystem::Imperial);
+        let custom = patch_engine(&set, &json!({"personality":"custom","custom_voice":"Voice: dry."})).unwrap();
+        assert_eq!(custom.personality, Personality::Custom);
+        assert_eq!(custom.custom_voice, "Voice: dry.");
     }
 
     #[tokio::test]

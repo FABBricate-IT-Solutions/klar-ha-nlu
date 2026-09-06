@@ -12,6 +12,22 @@ from .speech_snapshot import build_snapshot, entities_from_handled
 _LOGGER = logging.getLogger(__name__)
 
 
+def _unit_system(hass: Any) -> str:
+    stored = getattr(hass, "data", None) or {}
+    if not isinstance(stored, dict):
+        return "metric"
+    domain = stored.get("klar_nlu")
+    if not isinstance(domain, dict):
+        return "metric"
+    for payload in domain.values():
+        if not isinstance(payload, dict):
+            continue
+        settings = payload.get("engine_settings")
+        if isinstance(settings, dict) and str(settings.get("unit_system") or "").lower() == "imperial":
+            return "imperial"
+    return "metric"
+
+
 def _now() -> str:
     try:
         from homeassistant.util import dt as dt_util
@@ -44,6 +60,7 @@ async def try_engine_speech(
         entities=extra_entities if extra_entities is not None else entities_from_handled(handled, item),
         calendar_events=calendar_events,
         media_queue=media_queue,
+        unit_system=_unit_system(hass),
     )
     try:
         return await complete_engine_speech_render(hass, snapshot, url=url, token=token)

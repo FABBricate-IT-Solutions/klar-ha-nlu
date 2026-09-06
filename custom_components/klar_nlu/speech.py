@@ -23,7 +23,7 @@ def _locale(pack: str) -> dict:
 
 def style(speech: str, personality: str, pack: str) -> str:
     global _WRAP
-    if personality in {"", "default"}:
+    if personality in {"", "default", "custom"}:
         return speech
     variants = list((_locale(pack).get("personality") or {}).get(personality) or [])
     if not variants:

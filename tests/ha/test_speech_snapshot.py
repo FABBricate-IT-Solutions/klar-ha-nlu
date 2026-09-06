@@ -48,6 +48,8 @@ class SpeechSnapshotTests(unittest.TestCase):
                     "area_name": "Wohnzimmer",
                     "attributes": {
                         "current_temperature": 21.5,
+                        "temperature": 18.0,
+                        "temperature_unit": "°C",
                         "hvac_mode": "heat",
                         "secret": "drop-me",
                         "friendly_name": "nope",
@@ -64,6 +66,9 @@ class SpeechSnapshotTests(unittest.TestCase):
         self.assertEqual(body["intent"]["slots"], [{"name": "area", "value": "wohnzimmer"}])
         attrs = body["entities"][0]["attributes"]
         self.assertEqual(attrs["current_temperature"], 21.5)
+        self.assertEqual(attrs["temperature"], 18.0)
+        self.assertEqual(attrs["temperature_unit"], "°C")
+        self.assertEqual(body["unit_system"], "metric")
         self.assertEqual(attrs["hvac_mode"], "heat")
         self.assertNotIn("secret", attrs)
         self.assertNotIn("friendly_name", attrs)
