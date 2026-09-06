@@ -157,6 +157,6 @@ mod tests {
         );
         let out = try_sentence(&state, &json!({"text":"licht wohnzimmer an"})).await.unwrap();
         assert_eq!(out["view"], "path");
-        assert!(out["speech"].as_str().unwrap_or("").len() > 0 || out.get("policy_trace").is_some());
+        assert!(!out["speech"].as_str().unwrap_or("").is_empty() || out.get("policy_trace").is_some());
     }
 }

@@ -263,11 +263,6 @@ pub fn parse_text_tools(text: &str) -> (String, Vec<ToolCall>) {
     (kept, calls)
 }
 
-pub fn parse_tool_line(line: &str, index: usize) -> Option<ToolCall> {
-    let (_, mut calls) = take_tools(line, &mut { index });
-    calls.pop()
-}
-
 fn take_tools(line: &str, index: &mut usize) -> (String, Vec<ToolCall>) {
     let mut prose = String::new();
     let mut rest = line;
@@ -399,7 +394,7 @@ mod tests {
         assert_eq!(calls.len(), 1);
         assert_eq!(calls[0].function.name, "apply_aliases");
         assert!(calls[0].function.arguments.contains("light.wohnzimmer"));
-        assert!(parse_tool_line("TRAINER_TOOL: nope {}", 0).is_none());
+        assert!(parse_text_tools("TRAINER_TOOL: nope {}").1.is_empty());
         let (glued, many) = parse_text_tools("TRAINER_TOOL: list_matchers {} TRAINER_TOOL: list_policies {}I");
         assert!(glued.is_empty(), "{glued}");
         assert_eq!(many.iter().map(|call| call.function.name.as_str()).collect::<Vec<_>>(), ["list_matchers", "list_policies"]);
