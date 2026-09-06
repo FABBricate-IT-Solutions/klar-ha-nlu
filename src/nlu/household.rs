@@ -1,5 +1,6 @@
 //! Household specials: teach a name, explain, undo, clock, weather, routines.
 
+use crate::home::expose::assist_visible;
 use crate::lang::Household;
 use crate::parse::normalize::fold_umlaut;
 use crate::parse::normalize::umlaut_eq;
@@ -135,7 +136,7 @@ fn clock(context: &ParseContext<'_>) -> Draft {
 
 fn weather(context: &ParseContext<'_>) -> Draft {
     let house = templates(context);
-    let entity = context.home.entities.iter().find(|entity| entity.domain == "weather");
+    let entity = context.home.entities.iter().find(|entity| entity.domain == "weather" && assist_visible(entity, context.home));
     match entity {
         Some(entity) => execute(
             context,

@@ -25,6 +25,8 @@ _EVENTS = (
     "exposed_entities_updated",
 )
 _DEBOUNCE_S = 0.6
+_PUSH_EVERY_S = 60.0
+_RETRY_S = 15.0
 _ID_CAP = 128
 _NAME_CAP = 256
 _ALIAS_CAP = 32
@@ -41,18 +43,33 @@ class HomeGraphSync:
         self._token = token
         self._unsubs: list[Any] = []
         self._debounce: asyncio.TimerHandle | None = None
+        self._tick: asyncio.Task[None] | None = None
 
     async def async_start(self) -> None:
         await self.async_push()
         for event in _EVENTS:
             self._unsubs.append(self.hass.bus.async_listen(event, self._on_change))
+        self._tick = self.hass.async_create_task(self._loop())
 
     async def async_stop(self) -> None:
         if self._debounce is not None:
             self._debounce.cancel()
             self._debounce = None
+        if self._tick is not None:
+            self._tick.cancel()
+            try:
+                await self._tick
+            except asyncio.CancelledError:
+                pass
+            self._tick = None
         while self._unsubs:
             self._unsubs.pop()()
+
+    async def _loop(self) -> None:
+        delay = _PUSH_EVERY_S
+        while True:
+            await asyncio.sleep(delay)
+            delay = _PUSH_EVERY_S if await self.async_push() else _RETRY_S
 
     @callback
     def _on_change(self, _event: Event) -> None:
@@ -64,7 +81,7 @@ class HomeGraphSync:
         self._debounce = None
         self.hass.async_create_task(self.async_push())
 
-    async def async_push(self) -> None:
+    async def async_push(self) -> bool:
         snapshot = self.build_snapshot()
         session = async_get_clientsession(self.hass)
         headers = {"X-Klar-Token": self._token} if self._token else {}
@@ -79,13 +96,14 @@ class HomeGraphSync:
                 ) as resp:
                     if resp.status >= 400:
                         _LOGGER.warning("Klar home snapshot rejected: %s", resp.status)
-                        return
-                    return
+                        return False
+                    return True
             except (ClientError, TimeoutError, OSError) as err:
                 last_err = err
                 continue
         if last_err is not None:
             _LOGGER.debug("Klar home snapshot not pushed: %s", last_err)
+        return False
 
     def build_snapshot(self) -> dict[str, Any]:
         er = entity_registry.async_get(self.hass)
