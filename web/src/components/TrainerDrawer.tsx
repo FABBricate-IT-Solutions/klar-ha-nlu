@@ -1,18 +1,15 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Loader2Icon } from "lucide-react";
 import { api } from "../api";
 import type { PolicyLane } from "./PolicyPath";
 import type { Messages } from "../i18n";
 import type { LlmPublic, TrainerChatEvent, TrainerConsent, TrainerTurn, TrainerValidateOut } from "../types";
-import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
-import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
-import { Field, FieldGroup, FieldLabel } from "@/components/ui/field";
-import { ScrollArea } from "@/components/ui/scroll-area";
-import { Textarea } from "@/components/ui/textarea";
-import { cn } from "cn";
+import { LotseAnswer, lotseFallbackChips, lotseQuickChips, lotseReplyChoices, unansweredAssistant, visibleLotseText } from "./LotseAnswer";
+import { TrainerToolCard } from "./TrainerToolCard";
+
+type ThreadLine =
+  | { role: "user" | "assistant"; content: string }
+  | { role: "tool"; name: string; args: string; result?: string };
 
 function trainerLayer(lane: PolicyLane): "match" | "language" | "house" {
   switch (lane) {
@@ -27,25 +24,113 @@ function trainerLayer(lane: PolicyLane): "match" | "language" | "house" {
   }
 }
 
+function shortModel(model?: string): string {
+  if (!model) return "LLM";
+  if (/gemma-4-26b/i.test(model) && /mtp/i.test(model)) return "Gemma 26B MTP";
+  return model.replace(/-GGUF$/i, "");
+}
+
+function lanePrompts(t: Messages, lane: PolicyLane): [string, string] {
+  switch (lane) {
+    case "match":
+      return [t.trainerPromptMatchers, t.trainerPromptPrecedence];
+    case "language":
+      return [t.trainerPromptLexicon, t.trainerPromptSlang];
+    case "house":
+      return [t.trainerPromptGaps, t.trainerPromptNight];
+    default: {
+      const _never: never = lane;
+      return _never;
+    }
+  }
+}
+
+function chatHistory(lines: ThreadLine[]): TrainerTurn[] {
+  return lines
+    .filter((line): line is TrainerTurn => (line.role === "user" || line.role === "assistant") && Boolean(line.content.trim()))
+    .map((line) => (line.role === "assistant" ? { role: line.role, content: visibleLotseText(line.content) } : line))
+    .filter((line) => line.content.trim())
+    .slice(-8);
+}
+
+function isAbort(err: unknown): boolean {
+  return err instanceof DOMException && err.name === "AbortError";
+}
+
+function appendAssistantText(prev: ThreadLine[], text: string): ThreadLine[] {
+  if (!text) {
+    return prev;
+  }
+  const next = [...prev];
+  const last = next[next.length - 1];
+  if (last?.role === "assistant") {
+    next[next.length - 1] = { role: "assistant", content: last.content + text };
+    return next;
+  }
+  return [...next, { role: "assistant", content: text }];
+}
+
+function finishAssistantText(prev: ThreadLine[], text: string): ThreadLine[] {
+  if (!text.trim()) {
+    return prev;
+  }
+  const next = [...prev];
+  const last = next[next.length - 1];
+  if (last?.role === "assistant") {
+    if (!last.content.trim()) {
+      next[next.length - 1] = { role: "assistant", content: text };
+    }
+    return next;
+  }
+  return [...next, { role: "assistant", content: text }];
+}
+
+function lineRole(t: Messages, line: ThreadLine): string {
+  switch (line.role) {
+    case "user":
+      return t.trainerYou;
+    case "assistant":
+      return t.trainer;
+    case "tool":
+      return t.trainerTool;
+    default: {
+      const _never: never = line;
+      return _never;
+    }
+  }
+}
+
+function laneLabel(t: Messages, lane: PolicyLane): string {
+  switch (lane) {
+    case "match":
+      return t.laneMatch;
+    case "language":
+      return t.laneLanguage;
+    case "house":
+      return t.laneHouse;
+    default: {
+      const _never: never = lane;
+      return _never;
+    }
+  }
+}
+
 function applyEvent(
   event: TrainerChatEvent,
-  setLines: (fn: (prev: TrainerTurn[]) => TrainerTurn[]) => void,
+  setLines: (fn: (prev: ThreadLine[]) => ThreadLine[]) => void,
   setConsent: (next: TrainerConsent | null) => void,
   setYolo: (next: boolean) => void,
   setResult: (next: TrainerValidateOut | null) => void,
   onStatus: (status: string) => void,
   t: Messages,
+  live: () => boolean,
 ) {
+  if (!live()) {
+    return;
+  }
   switch (event.type) {
     case "delta":
-      setLines((prev) => {
-        const next = [...prev];
-        const last = next[next.length - 1];
-        if (last?.role === "assistant") {
-          next[next.length - 1] = { role: "assistant", content: last.content + event.text };
-        }
-        return next;
-      });
+      setLines((prev) => appendAssistantText(prev, event.text));
       return;
     case "consent":
       setConsent({
@@ -66,16 +151,26 @@ function applyEvent(
     case "proposal":
       return;
     case "tool_call":
+      setLines((prev) => [...prev, { role: "tool", name: event.name, args: event.arguments }]);
       return;
-    case "done":
+    case "tool":
+      if (event.tool === "apply_ui" || event.tool === "apply_engine") {
+        window.dispatchEvent(new CustomEvent("klar-lotse-applied", { detail: { tool: event.tool } }));
+      }
       setLines((prev) => {
         const next = [...prev];
-        const last = next[next.length - 1];
-        if (last?.role === "assistant" && !last.content.trim() && event.text) {
-          next[next.length - 1] = { role: "assistant", content: event.text };
+        for (let index = next.length - 1; index >= 0; index -= 1) {
+          const row = next[index];
+          if (row?.role === "tool" && row.name === event.tool && row.result === undefined) {
+            next[index] = { ...row, result: event.text };
+            return next;
+          }
         }
-        return next;
+        return [...next, { role: "tool", name: event.tool, args: "", result: event.text }];
       });
+      return;
+    case "done":
+      setLines((prev) => finishAssistantText(prev, event.text));
       return;
     case "error":
       onStatus(event.message || t.trainerFail);
@@ -87,10 +182,14 @@ function applyEvent(
   }
 }
 
+const LANES: PolicyLane[] = ["match", "language", "house"];
+
 export function TrainerDrawer({
   t,
   lane,
   language,
+  onLane,
+  onClose,
   onStatus,
 }: {
   t: Messages;
@@ -99,34 +198,78 @@ export function TrainerDrawer({
   overlay?: unknown;
   onApplyHouse?: unknown;
   onApplyMatch?: unknown;
+  onLane?: (lane: PolicyLane) => void;
+  onClose?: () => void;
   onStatus: (status: string) => void;
 }) {
   const [endpoint, setEndpoint] = useState<LlmPublic | null>(null);
   const [draft, setDraft] = useState("");
-  const [lines, setLines] = useState<TrainerTurn[]>([]);
+  const [lines, setLines] = useState<ThreadLine[]>([]);
   const [busy, setBusy] = useState(false);
   const [result, setResult] = useState<TrainerValidateOut | null>(null);
   const [consent, setConsent] = useState<TrainerConsent | null>(null);
   const [yolo, setYolo] = useState(false);
+  const [consumedFor, setConsumedFor] = useState("");
+  const endRef = useRef<HTMLDivElement>(null);
+  const abortRef = useRef<AbortController | null>(null);
+  const genRef = useRef(0);
+
+  const resetThread = () => {
+    abortRef.current?.abort();
+    abortRef.current = null;
+    genRef.current += 1;
+    setLines([]);
+    setConsent(null);
+    setResult(null);
+    setDraft("");
+    setBusy(false);
+    setConsumedFor("");
+    onStatus("");
+  };
 
   useEffect(() => {
     api.llmEndpoint().then(setEndpoint).catch(() => setEndpoint({ configured: false }));
   }, []);
 
-  const send = async () => {
-    const message = draft.trim();
+  useEffect(() => {
+    resetThread();
+    return () => {
+      abortRef.current?.abort();
+    };
+  }, [lane]);
+
+  useEffect(() => {
+    endRef.current?.scrollIntoView({ block: "end" });
+  }, [lines, consent, busy]);
+
+  const prompts = lanePrompts(t, lane);
+  const chips = lotseQuickChips({ lines, busy, consent: Boolean(consent), consumedFor, t });
+
+  const send = async (text = draft) => {
+    const message = text.trim();
     if (!message || busy) return;
+    const openText = unansweredAssistant(lines);
+    const open = lotseReplyChoices(openText);
+    const offered = open.length > 0 ? open : lotseFallbackChips(openText, t);
+    setConsumedFor(offered.includes(message) ? openText : "");
     setDraft("");
-    const history = lines.slice(-8);
+    const history = chatHistory(lines);
+    const gen = genRef.current;
+    abortRef.current?.abort();
+    const abort = new AbortController();
+    abortRef.current = abort;
     setLines((prev) => [...prev, { role: "user", content: message }, { role: "assistant", content: "" }]);
     setBusy(true);
     setResult(null);
     setConsent(null);
     try {
       await api.trainerChat({ message, layer: trainerLayer(lane), language, history }, (event) => {
-        applyEvent(event, setLines, setConsent, setYolo, setResult, onStatus, t);
-      });
+        applyEvent(event, setLines, setConsent, setYolo, setResult, onStatus, t, () => genRef.current === gen);
+      }, abort.signal);
     } catch (err) {
+      if (isAbort(err) || genRef.current !== gen) {
+        return;
+      }
       if (err instanceof Error && err.message === "llm-unconfigured") {
         setEndpoint({ configured: false });
         onStatus(t.trainerNeedLlm);
@@ -134,7 +277,9 @@ export function TrainerDrawer({
         onStatus(t.trainerFail);
       }
     } finally {
-      setBusy(false);
+      if (genRef.current === gen) {
+        setBusy(false);
+      }
     }
   };
 
@@ -142,9 +287,7 @@ export function TrainerDrawer({
     try {
       const out = await api.trainerConsent({ call_id: consent?.call_id, decision });
       setYolo(out.yolo);
-      if (decision !== "ask_again") {
-        setConsent(null);
-      }
+      if (decision !== "ask_again") setConsent(null);
     } catch {
       onStatus(t.trainerFail);
     }
@@ -152,124 +295,173 @@ export function TrainerDrawer({
 
   if (!endpoint || !endpoint.configured) {
     return (
-      <Card className="mt-4 ring-1 ring-primary/40">
-        <CardHeader>
-          <CardTitle>{t.trainerForLane}</CardTitle>
-          <CardDescription>{endpoint ? t.trainerNeedLlm : t.trainerStreaming}</CardDescription>
-        </CardHeader>
+      <section className="trainer">
+        <header className="trainer-head">
+          <div>
+            <p className="trainer-kicker">{t.trainer}</p>
+            <p className="muted">{endpoint ? t.trainerNeedLlm : t.trainerStreaming}</p>
+          </div>
+          {onClose ? (
+            <button className="ghost" type="button" onClick={onClose}>{t.close}</button>
+          ) : null}
+        </header>
         {endpoint ? (
-          <CardContent>
-            <Button type="button" onClick={() => { window.location.hash = "#/settings"; }}>{t.trainerOpenSettings}</Button>
-          </CardContent>
+          <div className="trainer-composer">
+            <button className="primary" type="button" onClick={() => { window.location.hash = "#/settings"; }}>
+              {t.trainerOpenSettings}
+            </button>
+          </div>
         ) : null}
-      </Card>
+      </section>
     );
   }
 
   return (
-    <Card className="mt-4">
-      <CardHeader>
-        <div className="flex flex-wrap items-center gap-2">
-          <CardTitle>{t.trainerForLane}</CardTitle>
-          <Badge variant="outline">{endpoint.model || "LLM"}</Badge>
+    <section className="trainer" aria-label={t.trainer}>
+      <header className="trainer-head">
+        <div>
+          <p className="trainer-kicker">{t.trainer}</p>
+          {onLane ? (
+            <nav className="trainer-lanes" aria-label={t.laneTabs}>
+              {LANES.map((id) => (
+                <button
+                  key={id}
+                  type="button"
+                  aria-pressed={lane === id}
+                  onClick={() => onLane(id)}
+                >
+                  {laneLabel(t, id)}
+                </button>
+              ))}
+            </nav>
+          ) : (
+            <h2>{t.trainerForLane}</h2>
+          )}
+          <p className="muted">{t.trainerHint}</p>
+        </div>
+        <div className="trainer-meta">
+          <span className="chip trainer-model" title={endpoint.model || "LLM"}>{shortModel(endpoint.model)}</span>
+          {lines.length > 0 ? (
+            <button className="ghost" type="button" onClick={resetThread}>
+              {t.trainerClear}
+            </button>
+          ) : null}
           {yolo ? (
-            <Badge variant="outline">
-              {t.trainerYolo}
-              <Button type="button" variant="ghost" size="sm" className="ml-2 h-6 px-2" onClick={() => void decide("ask_again")}>
-                {t.trainerAskAgain}
-              </Button>
-            </Badge>
+            <button className="chip on" type="button" onClick={() => void decide("ask_again")}>
+              {t.trainerYolo} · {t.trainerAskAgain}
+            </button>
+          ) : null}
+          {onClose ? (
+            <button className="ghost" type="button" onClick={onClose}>{t.close}</button>
           ) : null}
         </div>
-        <CardDescription>{t.trainerHint}</CardDescription>
-      </CardHeader>
-      <CardContent>
-        <div className="grid gap-4 md:grid-cols-2">
-          <div className="flex flex-col gap-3">
-            <ScrollArea className="h-80 rounded-lg border bg-background">
-              <div className="flex flex-col gap-2 p-3">
-                {lines.map((line, index) => (
-                  <p
-                    key={`${line.role}-${index}`}
-                    className={cn(
-                      "min-h-11 rounded-lg px-3 py-2 text-sm",
-                      line.role === "user"
-                        ? "self-end bg-primary/15 text-foreground"
-                        : "self-start bg-muted text-foreground",
-                    )}
-                  >
-                    {line.content || (busy ? t.trainerStreaming : "")}
-                  </p>
-                ))}
-                {consent ? (
-                  <div className="rounded-lg border bg-background p-3 text-sm">
-                    <p className="font-medium">{consent.tool}</p>
-                    <p className="text-muted-foreground">{consent.summary}</p>
-                    <div className="mt-2 flex flex-wrap gap-2">
-                      <Button type="button" size="sm" onClick={() => void decide("allow")}>{t.trainerAllow}</Button>
-                      <Button type="button" size="sm" variant="secondary" onClick={() => void decide("allow_once")}>{t.trainerAllowOnce}</Button>
-                      <Button type="button" size="sm" variant="secondary" onClick={() => void decide("yolo")}>{t.trainerYolo}</Button>
-                      <Button type="button" size="sm" variant="outline" onClick={() => void decide("deny")}>{t.trainerDeny}</Button>
-                    </div>
-                  </div>
-                ) : null}
+      </header>
+      <div className="trainer-thread">
+        {lines.length === 0 && !busy ? (
+          <div className="trainer-empty">
+            <p>{t.trainerEmpty}</p>
+            <p className="muted">{t.trainerEmptyHint}</p>
+            <div className="trainer-prompts">
+              <button className="guide-step" type="button" onClick={() => void send(prompts[0])}>
+                <span className="guide-num" aria-hidden="true">1</span>
+                <span className="guide-copy"><strong>{prompts[0]}</strong></span>
+              </button>
+              <button className="guide-step" type="button" onClick={() => void send(prompts[1])}>
+                <span className="guide-num" aria-hidden="true">2</span>
+                <span className="guide-copy"><strong>{prompts[1]}</strong></span>
+              </button>
+            </div>
+          </div>
+        ) : null}
+        {lines.map((line, index) => (
+          <article className={`trainer-line ${line.role}`} key={`${line.role}-${index}`}>
+            <span className="trainer-role">{lineRole(t, line)}</span>
+            {line.role === "tool" ? (
+              <TrainerToolCard name={line.name} args={line.args} result={line.result} t={t} />
+            ) : line.role === "assistant" ? (
+              <div className="trainer-bubble">
+                {line.content ? <LotseAnswer text={line.content} t={t} /> : busy ? t.trainerStreaming : ""}
               </div>
-            </ScrollArea>
-            <FieldGroup>
-              <Field>
-                <FieldLabel htmlFor="trainer-draft">{t.trainerSend}</FieldLabel>
-                <Textarea
-                  id="trainer-draft"
-                  className="min-h-24 font-mono text-sm"
-                  value={draft}
-                  disabled={busy && !consent}
-                  onChange={(ev) => setDraft(ev.target.value)}
-                  onKeyDown={(ev) => {
-                    if (ev.key === "Enter" && !ev.shiftKey) {
-                      ev.preventDefault();
-                      void send();
-                    }
-                  }}
-                />
-              </Field>
-            </FieldGroup>
-            <Button type="button" disabled={(busy && !consent) || !draft.trim()} onClick={() => void send()}>
-              {busy && !consent ? <Loader2Icon data-icon="inline-start" className="animate-spin" /> : null}
-              {busy && !consent ? t.trainerStreaming : t.trainerSend}
-            </Button>
+            ) : (
+              <p className="trainer-bubble">{line.content}</p>
+            )}
+          </article>
+        ))}
+        {consent ? (
+          <div className="trainer-consent">
+            <p className="trainer-kicker">{t.trainerPermit}</p>
+            <p className="mono">{consent.tool}</p>
+            <p>{consent.summary}</p>
+            <div className="row">
+              <button className="primary" type="button" onClick={() => void decide("allow")}>{t.trainerAllow}</button>
+              <button className="secondary" type="button" onClick={() => void decide("allow_once")}>{t.trainerAllowOnce}</button>
+              <button className="ghost" type="button" onClick={() => void decide("deny")}>{t.trainerDeny}</button>
+              <button className="ghost danger" type="button" onClick={() => void decide("yolo")}>{t.trainerYolo}</button>
+            </div>
           </div>
-          <div className="flex flex-col gap-3">
-            {result ? (
-              <Alert variant={result.ok ? "default" : "destructive"}>
-                <AlertTitle>{result.ok ? t.trainerOk : t.trainerFail}</AlertTitle>
-                <AlertDescription>
-                  {result.errors.map((row) => (
-                    <p key={`${row.path}-${row.message}`}>{row.path}: {row.message}</p>
-                  ))}
-                  {result.warnings.map((row) => (
-                    <p key={`w-${row.path}-${row.message}`}>{row.path}: {row.message}</p>
-                  ))}
-                  {result.dry_run.map((row) => (
-                    <p className="font-mono" key={row.text}>
-                      {row.text} → {row.decision}
-                      {row.seed ? ` · seed ${row.seed}` : ""}
-                      {row.house ? ` · house ${row.house}` : ""}
-                    </p>
-                  ))}
-                </AlertDescription>
-              </Alert>
-            ) : null}
-            <Collapsible>
-              <CollapsibleTrigger render={<Button variant="outline" type="button" />}>
-                {t.trainerAdvanced}
-              </CollapsibleTrigger>
-              <CollapsibleContent className="pt-3 text-sm text-muted-foreground">
-                {t.trainerHint}
-              </CollapsibleContent>
-            </Collapsible>
-          </div>
+        ) : null}
+        <div ref={endRef} />
+      </div>
+      {chips.length > 0 ? (
+        <div className="trainer-quick">
+          {chips.map((prompt) => (
+            <button
+              className="trainer-chip"
+              disabled={busy}
+              key={prompt}
+              type="button"
+              onClick={() => void send(prompt)}
+            >
+              {prompt}
+            </button>
+          ))}
         </div>
-      </CardContent>
-    </Card>
+      ) : null}
+      <form
+        className="trainer-composer"
+        onSubmit={(event) => {
+          event.preventDefault();
+          void send();
+        }}
+      >
+        <label className="visually-hidden" htmlFor="trainer-draft">{t.trainerComposer}</label>
+        <textarea
+          id="trainer-draft"
+          value={draft}
+          disabled={busy && !consent}
+          placeholder={t.trainerComposer}
+          rows={2}
+          onChange={(ev) => setDraft(ev.target.value)}
+          onKeyDown={(ev) => {
+            if (ev.key === "Enter" && !ev.shiftKey) {
+              ev.preventDefault();
+              void send();
+            }
+          }}
+        />
+        <button className="primary" type="submit" disabled={(busy && !consent) || !draft.trim()}>
+          {busy && !consent ? <Loader2Icon data-icon="inline-start" className="animate-spin" /> : null}
+          {busy && !consent ? t.trainerStreaming : t.trainerSend}
+        </button>
+      </form>
+      {result ? (
+        <div className={`trainer-result${result.ok ? "" : " danger"}`}>
+          <strong>{result.ok ? t.trainerOk : t.trainerFail}</strong>
+          {result.errors.map((row) => (
+            <p key={`${row.path}-${row.message}`}>{row.path}: {row.message}</p>
+          ))}
+          {result.warnings.map((row) => (
+            <p className="muted" key={`w-${row.path}-${row.message}`}>{row.path}: {row.message}</p>
+          ))}
+          {result.dry_run.map((row) => (
+            <span className="mono" key={row.text}>
+              {row.text} → {row.decision}
+              {row.seed ? ` · seed ${row.seed}` : ""}
+              {row.house ? ` · house ${row.house}` : ""}
+            </span>
+          ))}
+        </div>
+      ) : null}
+    </section>
   );
 }

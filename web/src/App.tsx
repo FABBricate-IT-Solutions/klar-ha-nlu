@@ -2,6 +2,7 @@ import { FlaskConicalIcon, HomeIcon, HouseIcon, MenuIcon, MessageSquareIcon, Set
 import { useEffect, useMemo, useRef, useState } from "react";
 import { api } from "./api";
 import { Drawer } from "./components/common";
+import { TrainerDock, TrainerToggle } from "./components/TrainerDock";
 import { TEACH_HEARD_KEY } from "./components/TeachFromMiss";
 import { assistParseLanguage, chromeLocale, dictionaries, isRtl } from "./i18n";
 import { ConversationsPage } from "./pages/ConversationsPage";
@@ -94,8 +95,27 @@ function asRulesView(value: string | undefined): RulesView {
   return rulesViews.includes(value as RulesView) ? (value as RulesView) : "routines";
 }
 
+const THEME_KEY = "klar_theme";
+
 function asTheme(value: string | undefined): Theme {
   return value === "light" ? "light" : "dark";
+}
+
+function readStoredTheme(): Theme | undefined {
+  try {
+    const value = localStorage.getItem(THEME_KEY);
+    return value === "light" || value === "dark" ? value : undefined;
+  } catch {
+    return undefined;
+  }
+}
+
+function writeStoredTheme(theme: Theme) {
+  try {
+    localStorage.setItem(THEME_KEY, theme);
+  } catch {
+    return;
+  }
 }
 
 function parseHash(raw: string): Route | null {
@@ -227,6 +247,7 @@ export function App() {
   const [inspectId, setInspectId] = useState("");
   const [booted, setBooted] = useState(false);
   const [navOpen, setNavOpen] = useState(false);
+  const [trainerOpen, setTrainerOpen] = useState(false);
   const locale = chromeLocale(ui.locale);
   const t = dictionaries[locale] || dictionaries.en;
   const theme = ui.theme || "dark";
@@ -261,7 +282,7 @@ export function App() {
           tab: asTab(nextUi.tab),
           house_view: asHouseView(nextUi.house_view),
           rules_view: asRulesView(nextUi.rules_view),
-          theme: asTheme(nextUi.theme),
+          theme: asTheme(readStoredTheme() || nextUi.theme),
           wizard_done: Boolean(nextUi.wizard_done),
         }, route || { tab: asTab(nextUi.tab) }));
         if (route?.entity_id) setInspectId(route.entity_id);
@@ -309,6 +330,31 @@ export function App() {
     };
     window.addEventListener("hashchange", onHash);
     return () => window.removeEventListener("hashchange", onHash);
+  }, []);
+
+  useEffect(() => {
+    const onLotse = (event: Event) => {
+      const tool = (event as CustomEvent<{ tool?: string }>).detail?.tool;
+      api.ui()
+        .then((nextUi) => {
+          setUi((prev) => {
+            const fromApi = asTheme(nextUi.theme);
+            const theme = tool === "apply_ui" ? fromApi : asTheme(readStoredTheme() || prev.theme);
+            if (tool === "apply_ui") writeStoredTheme(fromApi);
+            return {
+              ...prev,
+              theme,
+              locale: nextUi.locale_set ? chromeLocale(nextUi.locale) : prev.locale,
+              locale_set: Boolean(nextUi.locale_set) || prev.locale_set,
+            };
+          });
+        })
+        .catch(() => undefined);
+      void refresh();
+      api.conversations().then(setJournal).catch(() => undefined);
+    };
+    window.addEventListener("klar-lotse-applied", onLotse);
+    return () => window.removeEventListener("klar-lotse-applied", onLotse);
   }, []);
 
   const applyCandidates = useMemo(
@@ -385,7 +431,7 @@ export function App() {
 
   return (
     <TooltipProvider>
-    <div className="app-shell" data-theme={theme}>
+    <div className="app-shell" data-theme={theme} data-trainer={trainerOpen ? "open" : "closed"}>
       <Sheet open={navOpen} onOpenChange={setNavOpen}>
         <SheetContent side="left" id="klar-nav" className="bg-background text-foreground w-64 p-0">
           <SheetHeader>
@@ -412,9 +458,12 @@ export function App() {
             </Button>
             <div className="brand">Klar</div>
           </div>
-          <div className="status">
-            <Badge variant={dashboard?.counts.leftover ? "default" : "outline"}>{dashboard?.counts.leftover ?? 0} {t.open}</Badge>
-            <Badge variant={settings.nlu_rag ? "default" : "outline"}>{settings.nlu_rag ? t.ragMode : t.chatMode}</Badge>
+          <div className="topbar-end">
+            <div className="status">
+              <Badge variant={dashboard?.counts.leftover ? "default" : "outline"}>{dashboard?.counts.leftover ?? 0} {t.open}</Badge>
+              <Badge variant={settings.nlu_rag ? "default" : "outline"}>{settings.nlu_rag ? t.ragModeShort : t.chatMode}</Badge>
+            </div>
+            {booted ? <TrainerToggle open={trainerOpen} onOpenChange={setTrainerOpen} t={t} /> : null}
           </div>
         </header>
         {error && <div className="page"><div className="card danger">{error}</div></div>}
@@ -430,7 +479,7 @@ export function App() {
             onOpenCalibrate={() => go("house", { house_view: "calibrate" })}
             canApply={applyCandidates.length > 0}
             onTeach={teach}
-            lastTurn={journal ? journal.at(-1) ?? null : undefined}
+            lastTurn={Array.isArray(journal) ? journal.at(-1) ?? null : undefined}
             parseLanguage={assistParseLanguage(settings.languages, locale)}
           />
         )}
@@ -477,7 +526,10 @@ export function App() {
             onSettings={setSettings}
             onReplayWizard={replayWizard}
             theme={theme}
-            onTheme={(next) => setUi((prev) => ({ ...prev, theme: next }))}
+            onTheme={(next) => {
+              writeStoredTheme(next);
+              setUi((prev) => ({ ...prev, theme: next }));
+            }}
           />
         )}
       </div>
@@ -507,6 +559,14 @@ export function App() {
         </Drawer>
       )}
     </div>
+    {booted ? (
+      <TrainerDock
+        open={trainerOpen}
+        onOpenChange={setTrainerOpen}
+        t={t}
+        language={locale}
+      />
+    ) : null}
     <Toaster theme={theme} />
     </TooltipProvider>
   );

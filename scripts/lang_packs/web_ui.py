@@ -12,6 +12,8 @@ sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 from lang_packs.web_ui_asia import PACKS as ASIA
 from lang_packs.web_ui_europe import PACKS as EUROPE
 from lang_packs.web_ui_indic import PACKS as INDIC
+from lang_packs.lotse_chrome import apply_lotse_chrome
+from lang_packs.lotse_yesno import apply_yesno
 from lang_packs.web_ui_keys import ALIASES, CATALOG_KEYS, CONSTANTS, expand
 from lang_packs.web_ui_mena import PACKS as MENA
 from lang_packs.web_ui_nordic import PACKS as NORDIC
@@ -52,6 +54,8 @@ for _code, _fields in PACKS.items():
     _fields["triggerFirst"] = _LAB_PATH.get(_code, _LAB_PATH_EN)
 apply_settings_copy(PACKS)
 apply_lanes_copy(PACKS, LANES)
+apply_yesno(PACKS)
+apply_lotse_chrome(PACKS)
 
 
 def english_keys() -> list[str]:

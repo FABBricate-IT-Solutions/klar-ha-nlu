@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { api, download, setToken, type LanguagePack } from "../api";
+import { Guide } from "../components/Guide";
 import { LlmSettingsCard } from "../components/LlmSettingsCard";
 import { PersonalityPrompt } from "../components/PersonalityPrompt";
 import { SearchSelect, withCurrent } from "../components/SearchSelect";
@@ -15,7 +16,6 @@ import {
   AlertDialogHeader,
   AlertDialogTitle,
 } from "@/components/ui/alert-dialog";
-import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Field, FieldContent, FieldDescription, FieldGroup, FieldLabel } from "@/components/ui/field";
@@ -148,6 +148,12 @@ export function SettingsPage({
   const setTheme = (next: Theme) => {
     setPicked(next);
     document.documentElement.dataset.theme = next;
+    document.documentElement.classList.toggle("dark", next !== "light");
+    try {
+      localStorage.setItem("klar_theme", next);
+    } catch {
+      /* private mode */
+    }
     onTheme?.(next);
   };
   const allAssist = settings.languages.length === 0;
@@ -167,10 +173,15 @@ export function SettingsPage({
           <Button type="button" onClick={() => void save()}>{t.save}</Button>
         </div>
       </section>
-      <Alert>
-        <AlertTitle>{t.settingsGuide}</AlertTitle>
-        <AlertDescription>{t.haGlueHint}</AlertDescription>
-      </Alert>
+      <Guide
+        title={t.settingsGuide}
+        steps={[
+          { id: "voice", label: t.settingsGuideVoice, hint: t.voiceHint },
+          { id: "llm", label: t.settingsGuideLlm, hint: t.llmHint },
+          { id: "lang", label: t.settingsGuideLang, hint: t.assistLanguagesHint },
+        ]}
+      />
+      <p className="caption" style={{ marginTop: -8 }}>{t.haGlueHint}</p>
       <LlmSettingsCard t={t} />
       <section className="grid gap-4 md:grid-cols-2">
         <Card>

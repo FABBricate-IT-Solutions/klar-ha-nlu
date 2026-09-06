@@ -1,0 +1,536 @@
+.app-shell {
+  overflow-x: clip;
+}
+
+.app-shell[data-trainer="open"] .app-main {
+  padding-inline-end: min(var(--trainer-width, 26.25rem), 92vw);
+}
+
+.topbar-end {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 8px;
+  min-width: 0;
+}
+
+.trainer-backdrop {
+  display: none;
+}
+
+.trainer-dock {
+  position: fixed;
+  inset: 0 0 0 auto;
+  z-index: 12;
+  display: flex;
+  flex-direction: column;
+  width: min(var(--trainer-width, 26.25rem), 92vw);
+  height: 100dvh;
+  min-width: 0;
+  border-inline-start: 1px solid var(--line);
+  background: var(--bg);
+}
+
+.trainer-resize {
+  position: absolute;
+  inset: 0 auto 0 0;
+  z-index: 2;
+  width: 14px;
+  margin: 0;
+  padding: 0;
+  cursor: ew-resize;
+  touch-action: none;
+  border: 0;
+  background: transparent;
+}
+
+.trainer-resize::after {
+  content: "";
+  position: absolute;
+  top: 20%;
+  bottom: 20%;
+  left: 5px;
+  width: 3px;
+  border-radius: 2px;
+  background: var(--accent);
+  opacity: 0.55;
+}
+
+.trainer-dock[hidden] {
+  display: none;
+}
+
+.trainer-dock .trainer {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-height: 0;
+  margin: 0;
+  border: 0;
+  box-shadow: none;
+}
+
+.trainer-dock .trainer-thread {
+  flex: 1;
+  min-height: 0;
+  max-height: none;
+}
+
+.trainer-dock-status {
+  margin: 0;
+  padding: 8px 18px 12px;
+}
+
+.trainer-lanes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin: 8px 0;
+}
+
+.trainer-lanes button {
+  padding: 4px 10px;
+  color: var(--muted-foreground);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--surface);
+}
+
+.trainer-lanes button[aria-pressed="true"] {
+  color: var(--text);
+  border-color: var(--accent);
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.page,
+.card,
+.inbox-card {
+  min-width: 0;
+  max-width: 100%;
+}
+
+.row > input,
+.row > select,
+.row > textarea {
+  width: auto;
+  flex: 1 1 12rem;
+  min-width: 0;
+}
+
+.grid.two,
+.grid.three {
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 16rem), 1fr));
+}
+
+.guide {
+  margin-bottom: 20px;
+  padding: 14px 16px;
+  border: 1px solid var(--line);
+  background: var(--surface);
+}
+
+.guide-title {
+  margin: 0 0 12px;
+  color: var(--muted-foreground);
+  font-size: 13px;
+}
+
+.guide-steps {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 12rem), 1fr));
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.guide-step {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  width: 100%;
+  min-height: 44px;
+  min-width: 0;
+  padding: 8px;
+  text-align: start;
+  color: inherit;
+  background: var(--surface-2);
+  border: 1px solid var(--line);
+}
+
+button.guide-step {
+  cursor: pointer;
+}
+
+.guide-steps li.active .guide-step {
+  border-color: var(--accent);
+}
+
+.guide-num {
+  flex: 0 0 1.25rem;
+  font-weight: 600;
+  color: var(--accent);
+}
+
+.guide-copy {
+  display: grid;
+  gap: 2px;
+  min-width: 0;
+}
+
+.guide-copy strong,
+.guide-copy .muted {
+  overflow-wrap: anywhere;
+}
+
+.conv-head,
+.list-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 8px 12px;
+  min-width: 0;
+}
+
+.list-row .mono,
+.conv-head h2 {
+  overflow-wrap: anywhere;
+}
+
+.policy-evaluate input {
+  min-width: 0;
+}
+
+.trainer {
+  position: relative;
+  margin-top: 24px;
+  overflow: hidden;
+  color: var(--text);
+  background: var(--bg);
+}
+
+.trainer-head,
+.trainer-composer,
+.trainer-result {
+  flex-shrink: 0;
+  padding: 16px 18px 16px 20px;
+}
+
+.trainer-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+  border-bottom: 1px solid var(--line);
+}
+
+.trainer-kicker {
+  margin: 0 0 6px;
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+.trainer-head h2 {
+  margin: 0;
+  font-size: 16px;
+  letter-spacing: -0.02em;
+}
+
+.trainer-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.trainer-model {
+  max-width: 16rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.trainer-thread {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  min-height: min(44vh, 24rem);
+  max-height: min(56vh, 30rem);
+  overflow: auto;
+  padding: 20px 18px;
+  background: var(--bg);
+}
+
+.trainer-empty {
+  margin: auto;
+  max-width: 26rem;
+  text-align: start;
+}
+
+.trainer-empty p {
+  margin: 0 0 8px;
+}
+
+.trainer-prompts {
+  display: grid;
+  gap: 8px;
+  margin-top: 16px;
+}
+
+.trainer-line {
+  display: grid;
+  gap: 4px;
+  max-width: min(38rem, 100%);
+}
+
+.trainer-line.user {
+  margin-inline-start: auto;
+}
+
+.trainer-role {
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted-foreground);
+}
+
+.trainer-line.user .trainer-role {
+  text-align: end;
+  color: var(--accent);
+}
+
+.trainer-bubble {
+  margin: 0;
+  padding: 10px 12px;
+  overflow-wrap: anywhere;
+  white-space: pre-wrap;
+}
+
+.trainer-line.user .trainer-bubble {
+  color: var(--primary-foreground);
+  background: var(--accent);
+  border-radius: 8px;
+}
+
+.trainer-line.assistant .trainer-bubble {
+  display: grid;
+  gap: 12px;
+  white-space: normal;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--surface);
+}
+
+.trainer-md p,
+.trainer-md-head,
+.trainer-md-list {
+  margin: 0 0 8px;
+}
+
+.trainer-md p:last-child,
+.trainer-md-head:last-child,
+.trainer-md-list:last-child {
+  margin-bottom: 0;
+}
+
+.trainer-md-head {
+  font-weight: 600;
+}
+
+.trainer-md-list {
+  padding-inline-start: 1.15rem;
+}
+
+.trainer-md code,
+.trainer-card code {
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 12px;
+  color: var(--cyan);
+}
+
+.trainer-card {
+  padding: 0;
+  border: 0;
+  background: transparent;
+}
+
+.trainer-card .card,
+.trainer-card .guide,
+.trainer-card [data-slot="card"],
+.trainer-bubble .guide,
+.trainer-bubble [data-slot="card"] {
+  margin: 0;
+}
+
+.trainer-card .trainer-kicker {
+  margin-bottom: 8px;
+}
+
+.trainer-card-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: 6px;
+}
+
+.trainer-card-list li {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 6px 12px;
+}
+
+.trainer-card-tags {
+  margin: 0;
+  overflow-wrap: anywhere;
+}
+
+.trainer-quick {
+  display: flex;
+  flex-wrap: wrap;
+  flex-shrink: 0;
+  gap: 8px;
+  padding: 10px 18px 0;
+  background: var(--bg);
+}
+
+.trainer-chip {
+  max-width: 100%;
+  padding: 6px 10px;
+  text-align: start;
+  color: var(--text);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--surface);
+}
+
+.trainer-chip:hover:not(:disabled) {
+  border-color: var(--accent);
+}
+
+.trainer-line.tool {
+  max-width: min(36rem, 100%);
+}
+
+.trainer-line.tool .trainer-role {
+  color: var(--cyan);
+}
+
+.trainer-consent {
+  align-self: stretch;
+  padding: 12px 14px;
+  border: 1px solid var(--accent);
+  border-radius: 8px;
+  background: var(--surface);
+}
+
+.trainer-consent p {
+  margin: 0 0 8px;
+}
+
+.trainer-composer {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 8px;
+  align-items: end;
+  border-top: 1px solid var(--line);
+  background: var(--bg);
+}
+
+.trainer-composer textarea {
+  min-height: 56px;
+  max-height: 8rem;
+  resize: vertical;
+}
+
+.trainer-result {
+  border-top: 1px solid var(--line);
+}
+
+.trainer-result .mono {
+  display: block;
+  margin-top: 6px;
+}
+
+@media (max-width: 960px) {
+  .app-shell[data-trainer="open"] .app-main {
+    padding-inline-end: 0;
+  }
+
+  .trainer-backdrop {
+    display: block;
+    position: fixed;
+    inset: 0;
+    z-index: 11;
+    border: 0;
+    background: #0008;
+  }
+
+  .trainer-dock {
+    width: 100vw;
+    height: 100dvh;
+    padding-top: env(safe-area-inset-top, 0);
+    padding-bottom: env(safe-area-inset-bottom, 0);
+    box-shadow: none;
+  }
+
+  .trainer-resize {
+    display: none;
+  }
+
+  .trainer-lanes button,
+  .trainer-prompts .guide-step,
+  .trainer-chip,
+  .trainer-composer .primary,
+  .trainer-composer .ghost,
+  .trainer-consent button,
+  .trainer-meta .ghost {
+    min-height: 44px;
+  }
+
+  .trainer-composer textarea {
+    min-height: 72px;
+    font-size: 16px;
+  }
+
+  .trainer-head,
+  .trainer-composer,
+  .trainer-result,
+  .trainer-thread {
+    padding-inline: 16px;
+  }
+
+}
+
+@media (max-width: 860px) {
+  .policy-evaluate .row {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .policy-evaluate .row > input,
+  .policy-evaluate .row > button {
+    width: 100%;
+  }
+
+  .trainer-composer {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}

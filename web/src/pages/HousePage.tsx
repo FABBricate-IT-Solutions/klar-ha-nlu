@@ -5,8 +5,24 @@ import type { Assignment, Dashboard, HouseView, UiState } from "../types";
 import { CalibratePage } from "./CalibratePage";
 import { EntitiesPage } from "./EntitiesPage";
 import { GraphPage } from "./GraphPage";
+import "./house.css";
 
 const views: HouseView[] = ["graph", "entities", "calibrate"];
+
+function viewGuide(view: HouseView, t: Messages): string {
+  switch (view) {
+    case "graph":
+      return t.houseGuideGraph;
+    case "entities":
+      return t.houseGuideDevices;
+    case "calibrate":
+      return t.houseGuideMap;
+    default: {
+      const _never: never = view;
+      return _never;
+    }
+  }
+}
 
 function viewLabel(view: HouseView, t: Messages): string {
   switch (view) {
@@ -92,7 +108,7 @@ export function HousePage({
   }, []);
 
   return (
-    <div>
+    <div className="house-page">
       <div className="page" style={{ paddingBottom: 0 }}>
         <nav className="subnav" aria-label={t.house}>
           {views.map((item) => (
@@ -107,6 +123,7 @@ export function HousePage({
             </button>
           ))}
         </nav>
+        <p className="muted" style={{ margin: "0 0 8px" }}>{viewGuide(view, t)}</p>
       </div>
       {view === "graph" && <GraphPage data={data} ui={ui} t={t} onUi={onUi} onInspect={openInspect} />}
       {view === "entities" && (

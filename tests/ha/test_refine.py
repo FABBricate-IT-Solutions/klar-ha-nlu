@@ -238,6 +238,10 @@ class RefineTests(unittest.TestCase):
             spoken = refined
         published.append(spoken)
         self.assertEqual(published[-1], llm)
+        published = [llm]
+        if not refine.skip_rewrite("llm"):
+            published.append(refined)
+        self.assertEqual(published, [llm])
 
     def test_fallback_converse_must_not_reuse_voice_session(self) -> None:
         src = (PKG / "conversation.py").read_text()
@@ -254,6 +258,9 @@ class RefineTests(unittest.TestCase):
         spoken = src[src.index("async def _spoken") : src.index("async def _briefing")]
         self.assertIn("skip_rewrite", spoken)
         self.assertIn("emit_assistant_speech", spoken)
+        calendar = src[src.index('kind="calendar"') : src.index("if self._quiet_ack()")]
+        self.assertIn("_was_published(fallback)", calendar)
+        self.assertIn('"llm"', calendar)
         self.assertNotIn("async_add_assistant_content_without_tools", spoken)
 
 

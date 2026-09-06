@@ -37,7 +37,7 @@ export function useHouseCatalog() {
   const [floors, setFloors] = useState<SearchOption[]>([]);
 
   useEffect(() => {
-    api.entities().then(setEntities).catch(() => undefined);
+    api.entities().then((rows) => setEntities(Array.isArray(rows) ? rows : [])).catch(() => undefined);
     api
       .dashboard()
       .then((dash) => {

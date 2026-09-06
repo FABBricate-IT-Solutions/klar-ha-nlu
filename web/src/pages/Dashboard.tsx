@@ -93,7 +93,7 @@ export function DashboardPage({
     setOverlay(null);
   }, [data]);
   useEffect(() => {
-    api.conversations().then(setTurns).catch(() => undefined);
+    api.conversations().then((rows) => setTurns(Array.isArray(rows) ? rows : [])).catch(() => undefined);
   }, [view.traffic.total]);
   useEffect(() => {
     let cancelled = false;
@@ -158,8 +158,8 @@ export function DashboardPage({
 
       {last && (
         <Card className="mb-4">
-          <CardHeader className="flex-row items-start justify-between gap-4">
-            <div className="flex flex-col gap-2">
+          <CardHeader className="flex flex-col items-stretch justify-between gap-4 sm:flex-row sm:items-start">
+            <div className="flex min-w-0 flex-col gap-2">
               <CardTitle>{t.lastTurn}</CardTitle>
               <Badge variant="secondary" className="w-fit">{last.decision}</Badge>
               {heard ? <p>{heard}</p> : <p className="muted">—</p>}

@@ -167,6 +167,14 @@ class SyncTests(unittest.TestCase):
         snapshot = sync.HomeGraphSync(hass, entry, "http://127.0.0.1:10520", None).build_snapshot()
         self.assertEqual(snapshot["assist"], [])
 
+    def test_live_sync_retries_when_engine_is_gone(self) -> None:
+        src = (ROOT / "custom_components" / "klar_nlu" / "sync.py").read_text(encoding="utf-8")
+        self.assertIn("_PUSH_EVERY_S", src)
+        self.assertIn("_RETRY_S", src)
+        self.assertIn("async def _loop", src)
+        self.assertIn("return False", src)
+        self.assertIn("self.hass.async_create_task(self._loop())", src)
+
 
 if __name__ == "__main__":
     unittest.main()

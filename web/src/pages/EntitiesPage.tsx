@@ -89,7 +89,7 @@ function DeviceButton({
         borderColor: active ? "var(--accent)" : "var(--line)",
       }}
     >
-      <div>
+      <div className="house-inbox-copy">
         <strong>{row.name}</strong>
         <div className="mono">{row.entity_id}</div>
         <p className="muted">

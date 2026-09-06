@@ -16,6 +16,9 @@ pub(crate) mod trainer;
 pub(crate) mod trainer_apply;
 pub(crate) mod trainer_chat;
 pub(crate) mod trainer_consent;
+pub(crate) mod trainer_reads;
+pub(crate) mod trainer_settings;
+pub(crate) mod trainer_turns;
 pub mod web;
 pub mod wyoming;
 

@@ -129,7 +129,7 @@ Write-Token nötig (wie Overlay). `stream: true` (Standard) sendet SSE `data: {"
 { "speech": "Wohnzimmer Licht ist an.", "language": "de", "personality": "butler", "extra_prompt": "", "stream": false }
 ```
 
-Engine baut den Refine-Systemprompt (Pack + Stimme) und schickt Extra als User-Nachricht, ruft das Modell (`temperature` 0.65, `max_tokens` 192) und prüft `accept_refined`. JSON `{"type":"done","text":"…","accepted":true}`. Abgelehnt: `text` ist das Original, `accepted` false. Caps: `speech` ≤ 4096, `extra_prompt` ≤ 2048. Write-Token. 503 ohne Endpoint. Python-Prompt nicht mitschicken.
+Engine baut den Refine-Systemprompt (Pack + Stimme) und schickt Extra als User-Nachricht, ruft das Modell (`temperature` 0.65, `max_tokens` skaliert mit der Original-Länge, min 192, max 4096) und prüft `accept_refined`. JSON `{"type":"done","text":"…","accepted":true}`. Abgelehnt: `text` ist das Original, `accepted` false. Caps: `speech` ≤ 4096, `extra_prompt` ≤ 2048. Write-Token. 503 ohne Endpoint. Python-Prompt nicht mitschicken.
 
 ### `POST /api/v2/llm/assist`
 

@@ -59,7 +59,7 @@ function DeviceRow({
         borderRadius: 0,
       }}
     >
-      <div>
+      <div className="house-inbox-copy">
         <strong>{row.name}</strong>
         <div className="mono">{row.entity_id}</div>
         <p className="muted">
@@ -237,7 +237,7 @@ export function GraphList({
   };
 
   return (
-    <div className="card" style={{ minWidth: 0, maxHeight: "min(70vh, 720px)", overflow: "auto", borderRadius: 0 }}>
+    <div className="card house-list" style={{ borderRadius: 0 }}>
       <label htmlFor={`${listId}-search`}>{t.entities}</label>
       <input
         id={`${listId}-search`}

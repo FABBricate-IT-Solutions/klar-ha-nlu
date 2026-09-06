@@ -83,6 +83,11 @@ class EngineLlmTests(unittest.TestCase):
         self.assertIn("conversation_id", src)
         self.assertIn("/api/v2/llm/assist", src)
         self.assertIn("stream_engine_assist", src)
+        rust = (ROOT / "src" / "io" / "llm.rs").read_text(encoding="utf-8")
+        assist = rust[rust.index("pub async fn llm_assist") : rust.index("pub fn json_event")]
+        self.assertIn("assist_on", assist)
+        self.assertIn("try_send", assist)
+        self.assertNotIn("for event in out.events", assist)
         self.assertEqual(
             engine_llm._tool_speech({"type": "tool", "tool": "klar.parse", "text": "licht an"}),
             "KLAR_PARSE: licht an",

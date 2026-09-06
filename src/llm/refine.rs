@@ -4,13 +4,13 @@ use super::client::chat;
 use super::endpoint::LlmEndpoint;
 use super::refine_accept::accept_refined;
 use super::refine_prompt::{refine_input, refine_prompt, usable_extra};
-use super::types::{ChatMessage, ChatRequest, LlmError};
+use super::types::{ChatMessage, ChatRequest, LlmError, MAX_TOKENS_LIMIT};
 use serde::{Deserialize, Serialize};
 
 pub const MAX_SPEECH_CHARS: usize = 4096;
 pub const MAX_EXTRA_CHARS: usize = 2048;
 pub const REFINE_TEMPERATURE: f32 = 0.65;
-pub const REFINE_MAX_TOKENS: u32 = 192;
+pub const REFINE_MIN_TOKENS: u32 = 192;
 
 #[derive(Debug, Clone, Deserialize)]
 pub struct RefineRequest {
@@ -86,7 +86,7 @@ pub async fn refine(endpoint: &LlmEndpoint, request: RefineRequest) -> Result<Re
         messages: refine_messages(&body),
         stream: Some(false),
         temperature: Some(REFINE_TEMPERATURE),
-        max_tokens: Some(REFINE_MAX_TOKENS),
+        max_tokens: Some(refine_max_tokens(&body.speech)),
         tools: None,
         tool_choice: None,
     };
@@ -95,6 +95,14 @@ pub async fn refine(endpoint: &LlmEndpoint, request: RefineRequest) -> Result<Re
         Some(text) => Ok(RefineOutcome::done(text, true)),
         None => Ok(RefineOutcome::done(body.speech, false)),
     }
+}
+
+/// Token budget for a rewrite. Accept allows up to `max(chars * 6, 280)`;
+/// ~3 chars/token covers DE/EN. Short replies keep the old 192 floor.
+pub fn refine_max_tokens(speech: &str) -> u32 {
+    let accept_chars = (speech.chars().count() * 6).max(280);
+    let tokens = u32::try_from(accept_chars / 3).unwrap_or(MAX_TOKENS_LIMIT);
+    tokens.clamp(REFINE_MIN_TOKENS, MAX_TOKENS_LIMIT)
 }
 
 fn refine_messages(body: &SanitizedRefine) -> Vec<ChatMessage> {
@@ -108,6 +116,7 @@ fn refine_messages(body: &SanitizedRefine) -> Vec<ChatMessage> {
 
 #[cfg(test)]
 mod tests {
+    use super::super::types::MAX_TOKENS_LIMIT;
     use super::*;
 
     #[test]
@@ -158,5 +167,15 @@ mod tests {
         assert_eq!(messages[1].content, "Ein oder zwei Sätze.");
         assert_eq!(messages[2].role, "user");
         assert_eq!(messages[2].content, "Wohnzimmer Licht ist an.");
+    }
+
+    #[test]
+    fn token_budget_scales_with_speech() {
+        assert_eq!(refine_max_tokens("Licht ist an."), REFINE_MIN_TOKENS);
+        let room = "x".repeat(200);
+        let home = "x".repeat(2000);
+        assert!(refine_max_tokens(&room) > REFINE_MIN_TOKENS);
+        assert!(refine_max_tokens(&home) > refine_max_tokens(&room));
+        assert_eq!(refine_max_tokens(&"x".repeat(MAX_SPEECH_CHARS)), MAX_TOKENS_LIMIT);
     }
 }

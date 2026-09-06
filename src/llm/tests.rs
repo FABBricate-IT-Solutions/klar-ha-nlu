@@ -1,5 +1,6 @@
 use super::{
-    assist, chat, chat_stream, list_models, refine, AssistRequest, ChatEvent, ChatMessage, ChatRequest, LlmEndpoint, RefineRequest,
+    assist, assist_on, chat, chat_stream, list_models, refine, AssistRequest, ChatEvent, ChatMessage, ChatRequest, LlmEndpoint,
+    RefineRequest,
 };
 use axum::routing::{get, post};
 use axum::{Json, Router};
@@ -37,6 +38,26 @@ async fn serve(chunks: Vec<String>, stream: bool) -> (String, tokio::task::JoinH
         axum::serve(listener, app).await.unwrap();
     });
     (format!("http://{addr}/v1"), handle)
+}
+
+fn chat_assist_req() -> AssistRequest {
+    AssistRequest {
+        text: "hi there".into(),
+        language: "en".into(),
+        personality: "default".into(),
+        kind: "chat".into(),
+        allow_tools: false,
+        nlu_rag: false,
+        retrieval: None,
+        facts: None,
+        history: vec![],
+        extra_system: None,
+        extra_prompt: None,
+        conversation_id: String::new(),
+        stream: Some(true),
+        tools: None,
+        tool_messages: vec![],
+    }
 }
 
 fn request(text: &str) -> ChatRequest {
@@ -248,28 +269,7 @@ async fn thinking_on_omits_template_kwargs() {
 async fn assist_streams_chat_deltas() {
     let (base, handle) = serve(vec!["Hel".into(), "lo".into()], true).await;
     let endpoint = LlmEndpoint::from_parts(&base, "", "test-model").unwrap();
-    let out = assist(
-        &endpoint,
-        AssistRequest {
-            text: "hi there".into(),
-            language: "en".into(),
-            personality: "default".into(),
-            kind: "chat".into(),
-            allow_tools: false,
-            nlu_rag: false,
-            retrieval: None,
-            facts: None,
-            history: vec![],
-            extra_system: None,
-            extra_prompt: None,
-            conversation_id: String::new(),
-            stream: Some(true),
-            tools: None,
-            tool_messages: vec![],
-        },
-    )
-    .await
-    .unwrap();
+    let out = assist(&endpoint, chat_assist_req()).await.unwrap();
     assert_eq!(out.text, "Hello");
     let deltas: Vec<&str> = out
         .events
@@ -280,5 +280,24 @@ async fn assist_streams_chat_deltas() {
         })
         .collect();
     assert_eq!(deltas, ["Hel", "lo"]);
+    handle.abort();
+}
+
+#[tokio::test]
+async fn assist_on_forwards_deltas_before_return() {
+    let (base, handle) = serve(vec!["Hel".into(), "lo".into()], true).await;
+    let endpoint = LlmEndpoint::from_parts(&base, "", "test-model").unwrap();
+    let mut live = Vec::new();
+    let out = assist_on(&endpoint, chat_assist_req(), |event| live.push(event.clone())).await.unwrap();
+    assert_eq!(out.text, "Hello");
+    let live_deltas: Vec<&str> = live
+        .iter()
+        .filter_map(|event| match event {
+            ChatEvent::Delta { text } => Some(text.as_str()),
+            _ => None,
+        })
+        .collect();
+    assert_eq!(live_deltas, ["Hel", "lo"]);
+    assert!(matches!(live.last(), Some(ChatEvent::Done { text }) if text == "Hello"));
     handle.abort();
 }

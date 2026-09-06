@@ -222,6 +222,7 @@ pub fn context_stub(ctx: &TrainerContext, languages: &[String]) -> String {
     serde_json::json!({
         "prompt_version": ctx.prompt_version,
         "languages": languages,
+        "reply_language": ctx.language,
         "layer": ctx.layer,
         "schema": ctx.schema,
         "gap_count": ctx.gaps.len(),
@@ -468,6 +469,7 @@ mod tests {
         let stub = context_stub(&ctx, &["de".into(), "en".into()]);
         assert!(stub.contains("\"gap_count\":2"));
         assert!(stub.contains("\"languages\":[\"de\",\"en\"]"));
+        assert!(stub.contains("\"reply_language\":\"de\""));
         assert!(!stub.contains("light.a"));
         assert!(!stub.contains("graph"));
     }

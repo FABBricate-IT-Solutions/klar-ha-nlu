@@ -62,6 +62,8 @@ class ConversationFallbackTests(unittest.TestCase):
         self.assertNotIn("calendar_prompt", block)
         self.assertNotIn("keeps_calendar_reply", block)
         self.assertIn("if llm.strip():", block)
+        self.assertIn("_was_published(fallback)", block)
+        self.assertIn('"llm"', block)
 
     def test_home_execute_skips_sentence_triggers(self) -> None:
         src = (ROOT / "custom_components" / "klar_nlu" / "conversation.py").read_text(
