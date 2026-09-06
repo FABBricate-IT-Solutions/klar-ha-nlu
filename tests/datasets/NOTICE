@@ -1,0 +1,23 @@
+Third-party test data
+
+`family_home_en/` is a substantial copy of the `family_home_medium_two_storey`
+dataset from Aquila Labs' Home Assistant voice test suite:
+
+    https://git.cicero.sh/aquila/ha-voice-test-suite/
+
+That suite is published under the MIT License. The license text, as shipped
+by Aquila (copyright line left as a placeholder), is in
+`family_home_en/LICENSE`. Keep that file with any copy or substantial
+portion of the English suite.
+
+`familienhaus_de/` and `parity/*/familienhaus_de/` reuse the same home graph
+and case ids with other-language sentences. Treat those as derivatives of
+the Aquila dataset and keep this notice with them.
+
+Klar's own suites (`wohnung_mittel`, `wohnung_en`, `wohnung_live`, `assist`,
+`full_home`) are not copies of that dataset.
+
+This notice covers test YAML only. It does not apply to the Klar engine,
+Home Assistant integration, add-on, or UI. Those are original Klar work
+and are not derived from the Sophia NLU engine (commercial EULA) or from
+https://github.com/cicero-ai/sophia-ha-integration.

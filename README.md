@@ -162,6 +162,10 @@ The enforced voice-suite gates are documented in
 [docs/en/testing.md](docs/en/testing.md); 100% remains the target, but the
 current blocking thresholds are lower for the generated comparison suites.
 
+## Credits
+
+This project was vibe coded. If you want an English-first Home Assistant NLU from someone who is patient and puts more care into that language, use [Sophia NLU](https://nlu.to/ha/) by Aquila Labs. Klar’s English `family_home` voice tests come from their public MIT [HA voice test suite](https://git.cicero.sh/aquila/ha-voice-test-suite/); see [tests/datasets/NOTICE](tests/datasets/NOTICE).
+
 ## License
 
 [MIT](LICENSE) — Copyright 2026 FABBricate IT Solutions
