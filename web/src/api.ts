@@ -160,6 +160,15 @@ export const api = {
   validateProposal: (body: TrainerProposal) =>
     request<TrainerValidateOut>("/api/v2/policies/propose/validate", { method: "POST", body: JSON.stringify(body) }),
   llmEndpoint: () => request<LlmPublic>("/api/v2/llm/endpoint"),
+  customVoice: (body: {
+    language: string;
+    address: string;
+    name?: string;
+    tone: string;
+    humor: string;
+    length: string;
+    taboo?: string;
+  }) => request<{ prompt: string }>("/api/v2/llm/custom-voice", { method: "POST", body: JSON.stringify(body) }),
   llmVoice: (personality: string, language: string) => {
     const query = new URLSearchParams({ personality, language });
     return request<{ personality: string; flavor: string; prompt: string }>(`/api/v2/llm/voice?${query.toString()}`);
@@ -235,4 +244,17 @@ export async function download(path: string, fallback: string) {
   a.download = (match && match[1]) || fallback;
   a.click();
   URL.revokeObjectURL(a.href);
+}
+
+export async function uploadSettingsBackup(body: Blob) {
+  const token = localStorage.getItem("klar_token") || "";
+  const res = await fetch(appPath("/api/v2/settings/restore"), {
+    method: "POST",
+    headers: {
+      "content-type": body.type || "application/gzip",
+      ...(token ? { "x-klar-token": token } : {}),
+    },
+    body,
+  });
+  if (!res.ok) throw new Error(`${res.status} ${res.statusText}`);
 }

@@ -80,14 +80,22 @@ class EngineLlmTests(unittest.TestCase):
         src = (PKG / "engine_llm.py").read_text(encoding="utf-8")
         self.assertIn("/api/v2/llm/refine", src)
         self.assertIn("complete_engine_refine", src)
+        self.assertIn("stream_engine_refine", src)
+        self.assertIn('"stream": True', src)
         self.assertIn("conversation_id", src)
         self.assertIn("/api/v2/llm/assist", src)
         self.assertIn("stream_engine_assist", src)
         rust = (ROOT / "src" / "io" / "llm.rs").read_text(encoding="utf-8")
         assist = rust[rust.index("pub async fn llm_assist") : rust.index("pub fn json_event")]
         self.assertIn("assist_on", assist)
-        self.assertIn("try_send", assist)
+        self.assertIn("unbounded_channel", assist)
+        self.assertNotIn("blocking_send", assist)
+        self.assertNotIn("try_send", assist)
         self.assertNotIn("for event in out.events", assist)
+        refine = rust[rust.index("pub async fn llm_refine") : rust.index("pub async fn llm_assist")]
+        self.assertIn("refine_on", refine)
+        self.assertIn("unbounded_channel", refine)
+        self.assertNotIn("blocking_send", refine)
         self.assertEqual(
             engine_llm._tool_speech({"type": "tool", "tool": "klar.parse", "text": "licht an"}),
             "KLAR_PARSE: licht an",

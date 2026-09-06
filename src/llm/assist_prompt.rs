@@ -275,7 +275,11 @@ mod tests {
         assert!(!allowed.contains("Do not control devices"));
         let story = yarn_prompt("de", None, "Erzähle eine Geschichte");
         assert!(story.contains("Antwort = die Geschichte selbst"));
+        assert!(story.contains("Ein oder zwei Sätze"));
         assert!(!story.contains("Erzähl jetzt einen Witz"));
+        let long = yarn_prompt("de", None, "erzähl eine lange Geschichte");
+        assert!(long.contains("lange Geschichte"));
+        assert!(!long.contains("Ein oder zwei Sätze"));
         assert_eq!(with_personality("Nur reden.", "Stimme: Butler."), "Stimme: Butler.\n\nNur reden.");
         assert_eq!(AssistKind::parse("auto").unwrap().resolve("erzähl einen Witz", false), AssistKind::Yarn);
         assert_eq!(AssistKind::parse("auto").unwrap().resolve("licht an", true), AssistKind::Rag);

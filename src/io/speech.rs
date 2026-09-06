@@ -20,7 +20,8 @@ async fn speech_render(
     if !writes_allowed(Some(peer), &headers, &state.token) {
         return Err(StatusCode::UNAUTHORIZED);
     }
-    let snap = body.sanitize().map_err(status_for)?;
+    let mut snap = body.sanitize().map_err(status_for)?;
+    snap.unit_system = state.settings.lock().await.unit_system;
     Ok(Json(crate::speech::render_snapshot(&snap)))
 }
 

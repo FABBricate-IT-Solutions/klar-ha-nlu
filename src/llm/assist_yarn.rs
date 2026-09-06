@@ -30,10 +30,18 @@ const STORY_DE: &str = "Der Nutzer will eine Geschichte. Erzähl jetzt eine kurz
 Antwort = die Geschichte selbst. Keine Frage. Nicht um Erlaubnis fragen. Kein Witz. \
 Verboten: Soll ich, Darf ich, Womit soll, Kurz oder lang, Welche Art. \
 Ein oder zwei Sätze, dann Schluss. Keine Geräte, keine entity_id.";
+const STORY_LONG_DE: &str = "Der Nutzer will eine lange Geschichte. Erzähl jetzt eine Geschichte. \
+Antwort = die Geschichte selbst. Keine Frage. Nicht um Erlaubnis fragen. Kein Witz. \
+Verboten: Soll ich, Darf ich, Womit soll, Kurz oder lang, Welche Art. \
+Keine Geräte, keine entity_id.";
 const STORY_EN: &str = "The user wants a story. Tell a short story now (one beat). \
 Your reply is the story itself. No question. Do not ask permission. Do not tell a joke. \
 Forbidden: shall I, should I, do you want, what kind. \
 One or two sentences, then stop. No devices, no entity ids.";
+const STORY_LONG_EN: &str = "The user wants a long story. Tell a story now. \
+Your reply is the story itself. No question. Do not ask permission. Do not tell a joke. \
+Forbidden: shall I, should I, do you want, what kind. \
+No devices, no entity ids.";
 const JOKE_DE: &str = "Der Nutzer will einen Witz. Erzähl jetzt einen Witz. Nicht fragen. Keine Geschichte. \
 Ein oder zwei Sätze, dann Schluss. Keine Geräte, keine entity_id.";
 const JOKE_EN: &str = "The user wants a joke. Tell a joke now. Do not ask. Do not tell a story. \
@@ -94,17 +102,33 @@ pub fn yarn_body(pack: &str, text: &str) -> &'static str {
             JOKE_EN
         }
     } else if story_request(text) {
-        if is_de(pack) {
-            STORY_DE
-        } else {
-            STORY_EN
-        }
+        story_body(pack, text)
     } else if is_de(pack) {
         // Combined yarn when the request is ambiguous.
         STORY_DE
     } else {
         STORY_EN
     }
+}
+
+fn story_body(pack: &str, text: &str) -> &'static str {
+    if long_story_request(text) {
+        if is_de(pack) {
+            STORY_LONG_DE
+        } else {
+            STORY_LONG_EN
+        }
+    } else if is_de(pack) {
+        STORY_DE
+    } else {
+        STORY_EN
+    }
+}
+
+fn long_story_request(text: &str) -> bool {
+    text.to_lowercase()
+        .split(|ch: char| !ch.is_alphanumeric())
+        .any(|word| matches!(word, "lang" | "lange" | "langen" | "langes" | "langer" | "long"))
 }
 
 fn is_de(pack: &str) -> bool {
@@ -128,7 +152,12 @@ mod tests {
         assert!(yarn_canned("de", "Erzähle einen Witz").contains("Geister"));
         assert!(!yarn_canned("de", "Erzähle eine Geschichte").contains("Soll ich"));
         assert!(yarn_body("de", "Erzähle eine Geschichte").contains("Antwort = die Geschichte selbst"));
+        assert!(yarn_body("de", "Erzähle eine Geschichte").contains("Ein oder zwei Sätze"));
         assert!(!yarn_body("de", "Erzähle eine Geschichte").contains("Erzähl jetzt einen Witz"));
+        assert!(!yarn_body("de", "erzähl eine lange Geschichte").contains("Ein oder zwei Sätze"));
+        assert!(yarn_body("de", "erzähl eine lange Geschichte").contains("lange Geschichte"));
+        assert!(!yarn_body("en", "tell me a long story").contains("One or two sentences"));
         assert!(yarn_body("de", "Erzähle einen Witz").contains("Witz"));
+        assert!(yarn_body("de", "Erzähle einen Witz").contains("Ein oder zwei Sätze"));
     }
 }

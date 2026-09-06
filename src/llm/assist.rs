@@ -5,12 +5,12 @@ use super::assist_rag::{holds_klar_tool_prefix, parse_tool_reply, KlarTool};
 use super::assist_yarn::{yarn_asks_permission, yarn_canned, yarn_nudge};
 use super::client::chat;
 use super::endpoint::LlmEndpoint;
-use super::refine_prompt::{refine_prompt, usable_extra};
+use super::refine_prompt::{refine_prompt_for, usable_extra};
 use super::types::{ChatEvent, ChatMessage, ChatRequest, CompletionTurn, LlmError, ToolCall};
 use serde::Deserialize;
 
 pub const ASSIST_TEMPERATURE: f32 = 0.65;
-pub const ASSIST_MAX_TOKENS: u32 = 768;
+pub const ASSIST_MAX_TOKENS: u32 = 2048;
 pub const MAX_TEXT_CHARS: usize = 4096;
 pub const MAX_EXTRA_CHARS: usize = 2048;
 pub const MAX_FACTS: usize = 16;
@@ -39,6 +39,8 @@ pub struct AssistRequest {
     pub extra_system: Option<String>,
     #[serde(default)]
     pub extra_prompt: Option<String>,
+    #[serde(default)]
+    pub custom_voice: Option<String>,
     #[serde(default)]
     pub conversation_id: String,
     #[serde(default)]
@@ -94,6 +96,7 @@ struct SanitizedAssist {
     history: Vec<(String, String)>,
     extra_system: String,
     extra_prompt: String,
+    custom_voice: String,
     stream: bool,
     tools: Option<Vec<serde_json::Value>>,
     tool_messages: Vec<ChatMessage>,
@@ -125,6 +128,10 @@ impl AssistRequest {
         if extra_prompt.chars().count() > MAX_EXTRA_CHARS {
             return Err(LlmError::InvalidRequest("extra_prompt"));
         }
+        let custom_voice = self.custom_voice.unwrap_or_default();
+        if custom_voice.chars().count() > MAX_EXTRA_CHARS {
+            return Err(LlmError::InvalidRequest("custom_voice"));
+        }
         let mut facts = self.facts.map(|facts| facts.lines()).unwrap_or_default();
         facts.truncate(MAX_FACTS);
         let mut history = self.history;
@@ -141,6 +148,7 @@ impl AssistRequest {
             history,
             extra_system,
             extra_prompt,
+            custom_voice,
             stream: self.stream.unwrap_or(true),
             tools: if self.nlu_rag { None } else { self.tools },
             tool_messages: if self.nlu_rag { Vec::new() } else { self.tool_messages },
@@ -163,7 +171,7 @@ impl SanitizedAssist {
                 base = format!("{base}\n\n{history}");
             }
         }
-        let voice = refine_prompt(&self.language, &self.personality);
+        let voice = refine_prompt_for(&self.language, &self.personality, &self.custom_voice);
         let mut prompt = with_personality(&base, &voice);
         if self.uses_ha_tools() {
             prompt = format!(
@@ -198,7 +206,7 @@ where
     let kind = body.resolved_kind();
     let system = body.system_prompt();
     let asked = body.user_text();
-    let stream = body.stream && kind != AssistKind::Yarn && kind != AssistKind::Rag && !body.nlu_rag;
+    let stream = body.stream;
     if stream {
         return complete_stream(endpoint, &body, &system, &asked, &mut on_event).await;
     }
@@ -292,15 +300,45 @@ async fn complete_stream<F>(
 where
     F: FnMut(&ChatEvent),
 {
+    let kind = body.resolved_kind();
+    let rag = kind == AssistKind::Rag || body.nlu_rag;
+    let yarn = kind == AssistKind::Yarn;
     let mut events = Vec::new();
-    let turn = super::client::chat_stream_turn(endpoint, chat_body(body, system, user, true), |delta| {
-        if !delta.is_empty() {
-            let event = ChatEvent::Delta { text: delta.to_string() };
+    let mut acc = String::new();
+    let mut released = 0usize;
+    let mut turn = super::client::chat_stream_turn(endpoint, chat_body(body, system, user, true), |delta| {
+        if delta.is_empty() {
+            return;
+        }
+        acc.push_str(delta);
+        if let Some(piece) = flush_assist_delta(rag, yarn, &acc, &mut released) {
+            let event = ChatEvent::Delta { text: piece };
             on_event(&event);
             events.push(event);
         }
     })
     .await?;
+    if yarn && yarn_asks_permission(&turn.text) {
+        let nudged = yarn_nudge(&body.language, system);
+        turn.text = complete(endpoint, chat_body(body, &nudged, user, false)).await.unwrap_or(turn.text);
+        if yarn_asks_permission(&turn.text) {
+            turn.text = yarn_canned(&body.language, &body.text);
+            turn.tool_calls.clear();
+        }
+        if released == 0 && !turn.text.is_empty() {
+            let event = ChatEvent::Delta { text: turn.text.clone() };
+            on_event(&event);
+            events.push(event);
+        }
+    }
+    if rag {
+        if let Some(tool) = parse_tool_reply(&turn.text) {
+            return Ok(emit_streamed_tool(tool, on_event, events));
+        }
+        if holds_klar_tool_prefix(turn.text.trim_start()) && parse_tool_reply(&turn.text).is_none() {
+            turn.text = String::new();
+        }
+    }
     for call in &turn.tool_calls {
         let event =
             ChatEvent::ToolCall { id: call.id.clone(), name: call.function.name.clone(), arguments: call.function.arguments.clone() };
@@ -311,6 +349,35 @@ where
     on_event(&done);
     events.push(done);
     Ok(AssistOutcome { text: turn.text, tool: None, tool_calls: turn.tool_calls, events })
+}
+
+fn flush_assist_delta(rag: bool, yarn: bool, acc: &str, released: &mut usize) -> Option<String> {
+    if rag && (parse_tool_reply(acc).is_some() || holds_klar_tool_prefix(acc)) {
+        return None;
+    }
+    if yarn && yarn_asks_permission(acc) {
+        return None;
+    }
+    if *released >= acc.len() {
+        return None;
+    }
+    let piece = acc[*released..].to_string();
+    *released = acc.len();
+    if piece.is_empty() {
+        None
+    } else {
+        Some(piece)
+    }
+}
+
+fn emit_streamed_tool<F: FnMut(&ChatEvent)>(tool: KlarTool, on_event: &mut F, mut events: Vec<ChatEvent>) -> AssistOutcome {
+    let event = tool.event();
+    on_event(&event);
+    events.push(event);
+    let done = ChatEvent::Done { text: String::new() };
+    on_event(&done);
+    events.push(done);
+    AssistOutcome { text: tool.spoken_line(), tool: Some(tool), tool_calls: Vec::new(), events }
 }
 
 #[cfg(test)]
@@ -331,6 +398,7 @@ mod tests {
             history: vec![],
             extra_system: None,
             extra_prompt: None,
+            custom_voice: None,
             conversation_id: String::new(),
             stream: Some(true),
             tools: None,
@@ -363,6 +431,7 @@ mod tests {
             history: vec![],
             extra_system: None,
             extra_prompt: None,
+            custom_voice: None,
             conversation_id: String::new(),
             stream: Some(true),
             tools: None,
@@ -384,6 +453,7 @@ mod tests {
             history: vec![],
             extra_system: None,
             extra_prompt: None,
+            custom_voice: None,
             conversation_id: String::new(),
             stream: None,
             tools: None,
@@ -406,6 +476,7 @@ mod tests {
             history: vec![],
             extra_system: None,
             extra_prompt: None,
+            custom_voice: None,
             conversation_id: String::new(),
             stream: Some(false),
             tools: Some(vec![serde_json::json!({"type":"function","function":{"name":"intent__HassTurnOn"}})]),

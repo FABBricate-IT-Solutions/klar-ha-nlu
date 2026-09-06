@@ -163,7 +163,11 @@ pub(super) fn replay_or_decide(
                 } else {
                     ("HassLightSet", "brightness")
                 };
-                intents.push(Intent::new(name).with("entity_id", previous).with(slot, number.to_string()));
+                let mut intent = Intent::new(name).with("entity_id", previous).with(slot, number.to_string());
+                if name == "HassClimateSetTemperature" {
+                    crate::units::bind_set_temp(&mut intent, tokens, context.settings.unit_system);
+                }
+                intents.push(intent);
             } else if context.catalog.any(tokens, context.catalog.replay_on_off()) {
                 let name = if context.catalog.any(tokens, context.catalog.replay_off()) { "HassTurnOff" } else { "HassTurnOn" };
                 intents.push(Intent::new(name).with("entity_id", previous));

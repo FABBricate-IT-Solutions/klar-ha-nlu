@@ -20,6 +20,8 @@ export type Settings = {
   allow_llm_tools?: boolean;
   fallback_llm?: boolean;
   extra_prompt?: string;
+  unit_system?: "metric" | "imperial";
+  custom_voice?: string;
 };
 
 export type Entity = {

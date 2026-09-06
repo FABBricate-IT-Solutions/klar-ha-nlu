@@ -74,6 +74,8 @@ const defaultSettings: Settings = {
   allow_llm_tools: false,
   fallback_llm: false,
   extra_prompt: "",
+  unit_system: "metric",
+  custom_voice: "",
 };
 
 type Route = {
@@ -538,6 +540,12 @@ export function App() {
         <Wizard
           open
           locale={locale}
+          onLocale={(next) => setUi((prev) => ({ ...prev, locale: next, locale_set: true }))}
+          theme={theme}
+          onTheme={(next) => {
+            writeStoredTheme(next);
+            setUi((prev) => ({ ...prev, theme: next }));
+          }}
           leftover={dashboard?.counts.leftover ?? 0}
           entityIds={dashboard?.assignment.map((row) => row.entity_id)}
           chrome={t}

@@ -392,6 +392,7 @@ fn speech_snapshot_drops_unknown_attrs_and_rejects_missing_schema() {
         schema_version: SNAPSHOT_SCHEMA.into(),
         language: "de".into(),
         personality: "default".into(),
+        unit_system: klar_nlu::types::UnitSystem::Metric,
         now: "2026-09-05T19:22:00+02:00".into(),
         intent: SpeechIntent { name: "HassTurnOn".into(), slots: vec![] },
         outcome: "success".into(),

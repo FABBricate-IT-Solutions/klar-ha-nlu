@@ -1,7 +1,8 @@
 //! Factual post-execute lines from a sanitized snapshot.
 
 use crate::lang::{LangId, Speech};
-use crate::types::{SpeechEntity, SpeechRenderOut, SpeechSnapshot};
+use crate::types::{SpeechEntity, SpeechRenderOut, SpeechSnapshot, UnitSystem};
+use crate::units::{entity_temp_scale, entity_temperature, speak_converted, speak_temp, spoken_unit_word};
 
 const COLORS: &[(&str, &str, &str)] = &[
     ("red", "rot", "red"),
@@ -150,13 +151,16 @@ fn light_set(snap: &SpeechSnapshot, speech: Speech, where_: &str, de: bool) -> S
 }
 
 fn climate_set(snap: &SpeechSnapshot, speech: Speech, where_: &str, de: bool) -> String {
-    let Some(temp) = slot(snap, "temperature") else {
+    let Some(raw) = slot(snap, "temperature") else {
         return speech.unknown.to_string();
     };
+    let ha = entity_temp_scale(snap.entities.iter().find(|entity| entity.domain == "climate" || entity.domain == "weather"));
+    let temp = speak_temp(raw, ha, snap.unit_system);
+    let unit = spoken_unit_word(snap.unit_system, de);
     if de {
-        format!("{where_} auf {temp} Grad.")
+        format!("{where_} auf {temp} {unit}.")
     } else {
-        format!("{where_} is at {temp} degrees.")
+        format!("{where_} is at {temp} {unit}.")
     }
 }
 
@@ -290,15 +294,17 @@ fn query_speech(snap: &SpeechSnapshot, speech: Speech, de: bool) -> String {
 
 fn climate_query(snap: &SpeechSnapshot, entities: &[&SpeechEntity], de: bool) -> String {
     let area = slot(snap, "area_name").or_else(|| slot(snap, "area")).unwrap_or("");
+    let unit = spoken_unit_word(snap.unit_system, de);
     for entity in entities {
-        if entity.domain != "climate" {
+        if entity.domain != "climate" && entity.domain != "weather" {
             continue;
         }
-        if let Some(temp) = attr_str(entity, "current_temperature") {
+        if let Some((raw, ha)) = entity_temperature(entity) {
+            let temp = speak_converted(raw, ha, snap.unit_system);
             if de {
-                return format!("{area} {temp} Grad.").trim().to_string();
+                return format!("{area} {temp} {unit}.").trim().to_string();
             }
-            return format!("{area} is {temp} degrees.").trim().to_string();
+            return format!("{area} is {temp} {unit}.").trim().to_string();
         }
         if de {
             return format!("{} ist {}.", entity.name, speak_state(&entity.state, "de"));
@@ -308,10 +314,13 @@ fn climate_query(snap: &SpeechSnapshot, entities: &[&SpeechEntity], de: bool) ->
     String::new()
 }
 
-fn area_status(area: &str, entities: &[&SpeechEntity], speech: Speech, pack: &str) -> String {
+fn area_status(area: &str, entities: &[&SpeechEntity], speech: Speech, pack: &str, unit_system: UnitSystem) -> String {
     let pretty = speech.room_name(&fold(area)).map_or_else(|| title(area), str::to_string);
-    let facts: Vec<String> =
+    let mut facts: Vec<String> =
         entities.iter().map(|entity| format!("{} {}", title(&entity.name), speak_state(&entity.state, pack))).collect();
+    if let Some(temp) = area_temp_fact(entities, unit_system, is_de(pack)) {
+        facts.push(temp);
+    }
     if facts.is_empty() {
         return String::new();
     }
@@ -339,7 +348,7 @@ fn place_status(snap: &SpeechSnapshot, entities: &[&SpeechEntity], speech: Speec
     }
     if groups.len() == 1 && groups[0].0.is_empty() {
         let fallback = slot(snap, "area_name").or_else(|| slot(snap, "area")).or_else(|| slot(snap, "floor")).unwrap_or("");
-        let line = area_status(fallback, entities, speech, pack);
+        let line = area_status(fallback, entities, speech, pack, snap.unit_system);
         return if line.is_empty() { empty_place(pack) } else { line };
     }
     let mut parts = Vec::new();
@@ -349,7 +358,7 @@ fn place_status(snap: &SpeechSnapshot, entities: &[&SpeechEntity], speech: Speec
         } else {
             name.as_str()
         };
-        let line = area_status(label, &rows, speech, pack);
+        let line = area_status(label, &rows, speech, pack, snap.unit_system);
         if !line.is_empty() {
             parts.push(line);
         }
@@ -724,6 +733,18 @@ fn is_infra(entity: &SpeechEntity) -> bool {
     ]
     .iter()
     .any(|needle| blob.contains(needle))
+}
+
+fn area_temp_fact(entities: &[&SpeechEntity], unit_system: UnitSystem, de: bool) -> Option<String> {
+    for entity in entities {
+        let Some((raw, ha)) = entity_temperature(entity) else {
+            continue;
+        };
+        let temp = speak_converted(raw, ha, unit_system);
+        let unit = spoken_unit_word(unit_system, de);
+        return Some(format!("{temp} {unit}"));
+    }
+    None
 }
 
 fn attr_str(entity: &SpeechEntity, key: &str) -> Option<String> {

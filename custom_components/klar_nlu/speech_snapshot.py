@@ -11,6 +11,7 @@ MAX_QUEUE = 8
 MAX_ATTR = 256
 ALLOWED_ATTRS = (
     "current_temperature",
+    "temperature",
     "temperature_unit",
     "unit_of_measurement",
     "hvac_action",
@@ -33,11 +34,13 @@ def build_snapshot(
     entities: list[dict[str, Any]] | None = None,
     calendar_events: list[dict[str, Any]] | None = None,
     media_queue: list[dict[str, Any]] | None = None,
+    unit_system: str = "metric",
 ) -> dict[str, Any]:
     return {
         "schema_version": SNAPSHOT_SCHEMA,
         "language": language,
         "personality": personality or "default",
+        "unit_system": "imperial" if unit_system == "imperial" else "metric",
         "now": now,
         "intent": {
             "name": str(intent.get("name") or ""),

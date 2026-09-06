@@ -67,6 +67,15 @@ export type WizardMessages = {
   phraseSay: string;
   phraseExpect: string;
   phrases: WizardPhrase[];
+
+  chromeTitle: string;
+  chromeLead: string;
+  unitsTitle: string;
+  unitsLead: string;
+  restTitle: string;
+  restLead: string;
+  tutorialTitle: string;
+  llmSkip: string;
 };
 
 export const wizardDe: WizardMessages = {
@@ -146,6 +155,15 @@ export const wizardDe: WizardMessages = {
     { say: "Wohnzimmer Fernseher pausieren", expect: "Media-Pause auf dem Player" },
     { say: "Spiel Queen", expect: "Music Assistant sucht und spielt" },
   ],
+
+  chromeTitle: "Diese Oberfläche",
+  chromeLead: "Theme und Sprache für diese Konsole. Assist kann alle Packs behalten.",
+  unitsTitle: "Einheiten",
+  unitsLead: "Gesprochene und geparste Temperaturen. Lichter und Timer bleiben wie sie sind.",
+  restTitle: "Haus-Einstellungen",
+  restLead: "Das bleibt auf der Engine. Home Assistant Konfigurieren braucht das nicht.",
+  tutorialTitle: "Klar benutzen",
+  llmSkip: "Leer lassen und ohne LLM fertig werden.",
 };
 
 export const wizardEn: WizardMessages = {
@@ -225,6 +243,15 @@ export const wizardEn: WizardMessages = {
     { say: "Pause the living room TV", expect: "Media pause on that player" },
     { say: "Play Queen", expect: "Music Assistant search-and-play" },
   ],
+
+  chromeTitle: "This screen",
+  chromeLead: "Theme and language for this console. Assist language can stay all packs.",
+  unitsTitle: "Units",
+  unitsLead: "Spoken and parsed temperatures. Lights and timers stay as they are.",
+  restTitle: "House settings",
+  restLead: "These stay on the engine. Home Assistant Configure does not need them.",
+  tutorialTitle: "How to use Klar",
+  llmSkip: "Leave empty to finish without an LLM.",
 };
 
 const extras = import.meta.glob("./wizard/*.json", { eager: true, import: "default" }) as Record<

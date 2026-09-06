@@ -1,13 +1,13 @@
 //! Assist refine: engine builds the prompt, runs the model, applies accept.
 
-use super::client::chat;
+use super::client::{chat, chat_stream};
 use super::endpoint::LlmEndpoint;
-use super::refine_accept::accept_refined;
-use super::refine_prompt::{refine_input, refine_prompt, usable_extra};
-use super::types::{ChatMessage, ChatRequest, LlmError, MAX_TOKENS_LIMIT};
+use super::refine_accept::{accept_refined, streams_refine_prefix};
+use super::refine_prompt::{refine_input, refine_prompt_for, usable_extra};
+use super::types::{ChatEvent, ChatMessage, ChatRequest, LlmError, MAX_TOKENS_LIMIT};
 use serde::{Deserialize, Serialize};
 
-pub const MAX_SPEECH_CHARS: usize = 4096;
+pub const MAX_SPEECH_CHARS: usize = 8192;
 pub const MAX_EXTRA_CHARS: usize = 2048;
 pub const REFINE_TEMPERATURE: f32 = 0.65;
 pub const REFINE_MIN_TOKENS: u32 = 192;
@@ -21,6 +21,8 @@ pub struct RefineRequest {
     pub personality: String,
     #[serde(default)]
     pub extra_prompt: String,
+    #[serde(default)]
+    pub custom_voice: String,
     #[serde(default)]
     pub conversation_id: String,
     #[serde(default)]
@@ -53,6 +55,9 @@ impl RefineRequest {
         if self.extra_prompt.chars().count() > MAX_EXTRA_CHARS {
             return Err(LlmError::InvalidRequest("extra_prompt"));
         }
+        if self.custom_voice.chars().count() > MAX_EXTRA_CHARS {
+            return Err(LlmError::InvalidRequest("custom_voice"));
+        }
         let language = self.language.trim();
         if language.is_empty() || language.chars().count() > 32 || language.chars().any(char::is_control) {
             return Err(LlmError::InvalidRequest("language"));
@@ -66,6 +71,7 @@ impl RefineRequest {
             language: language.to_string(),
             personality: personality.to_string(),
             extra_prompt: self.extra_prompt,
+            custom_voice: self.custom_voice,
             stream: self.stream.unwrap_or(false),
         })
     }
@@ -77,20 +83,45 @@ pub struct SanitizedRefine {
     pub language: String,
     pub personality: String,
     pub extra_prompt: String,
+    pub custom_voice: String,
     pub stream: bool,
 }
 
 pub async fn refine(endpoint: &LlmEndpoint, request: RefineRequest) -> Result<RefineOutcome, LlmError> {
+    refine_on(endpoint, request, |_| {}).await
+}
+
+pub async fn refine_on<F>(endpoint: &LlmEndpoint, request: RefineRequest, mut on_event: F) -> Result<RefineOutcome, LlmError>
+where
+    F: FnMut(&ChatEvent),
+{
     let body = request.sanitize()?;
     let chat_req = ChatRequest {
         messages: refine_messages(&body),
-        stream: Some(false),
+        stream: Some(body.stream),
         temperature: Some(REFINE_TEMPERATURE),
         max_tokens: Some(refine_max_tokens(&body.speech)),
         tools: None,
         tool_choice: None,
     };
-    let raw = chat(endpoint, chat_req).await?;
+    let raw = if body.stream {
+        let mut acc = String::new();
+        let mut released = 0usize;
+        chat_stream(endpoint, chat_req, |delta| {
+            if delta.is_empty() {
+                return;
+            }
+            acc.push_str(delta);
+            if streams_refine_prefix(&body.speech, &acc) && released < acc.len() {
+                let piece = acc[released..].to_string();
+                released = acc.len();
+                on_event(&ChatEvent::Delta { text: piece });
+            }
+        })
+        .await?
+    } else {
+        chat(endpoint, chat_req).await?
+    };
     match accept_refined(&body.speech, &raw) {
         Some(text) => Ok(RefineOutcome::done(text, true)),
         None => Ok(RefineOutcome::done(body.speech, false)),
@@ -106,7 +137,7 @@ pub fn refine_max_tokens(speech: &str) -> u32 {
 }
 
 fn refine_messages(body: &SanitizedRefine) -> Vec<ChatMessage> {
-    let mut messages = vec![ChatMessage::new("system", refine_prompt(&body.language, &body.personality))];
+    let mut messages = vec![ChatMessage::new("system", refine_prompt_for(&body.language, &body.personality, &body.custom_voice))];
     if usable_extra(&body.extra_prompt, &body.language) {
         messages.push(ChatMessage::new("user", body.extra_prompt.trim()));
     }
@@ -126,6 +157,7 @@ mod tests {
             language: "de".into(),
             personality: "butler".into(),
             extra_prompt: String::new(),
+            custom_voice: String::new(),
             conversation_id: String::new(),
             stream: None,
         };
@@ -139,6 +171,7 @@ mod tests {
             language: "de".into(),
             personality: "butler".into(),
             extra_prompt: String::new(),
+            custom_voice: String::new(),
             conversation_id: "c1".into(),
             stream: Some(false),
         };
@@ -154,6 +187,7 @@ mod tests {
             language: "de".into(),
             personality: "jarvis".into(),
             extra_prompt: "Ein oder zwei Sätze.".into(),
+            custom_voice: String::new(),
             conversation_id: String::new(),
             stream: None,
         }
@@ -167,6 +201,25 @@ mod tests {
         assert_eq!(messages[1].content, "Ein oder zwei Sätze.");
         assert_eq!(messages[2].role, "user");
         assert_eq!(messages[2].content, "Wohnzimmer Licht ist an.");
+    }
+
+    #[test]
+    fn custom_voice_enters_system() {
+        let body = RefineRequest {
+            speech: "Wohnzimmer Licht ist an.".into(),
+            language: "de".into(),
+            personality: "custom".into(),
+            extra_prompt: String::new(),
+            custom_voice: "Stimme: knochentrocken.".into(),
+            conversation_id: String::new(),
+            stream: None,
+        }
+        .sanitize()
+        .unwrap();
+        let system = &refine_messages(&body)[0].content;
+        assert!(system.contains("Stimme: knochentrocken."));
+        assert!(system.contains("Keine Home-Assistant-Werkzeuge"));
+        assert!(!system.contains("Butler"));
     }
 
     #[test]

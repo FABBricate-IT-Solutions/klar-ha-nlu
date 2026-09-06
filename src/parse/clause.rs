@@ -21,7 +21,7 @@ use crate::parse::resolve::{
 use crate::parse::slots::{all_lights_clause, fill_intent, fill_list_intent, intent_from_action, ClauseOut};
 use crate::parse::split::follow_fixture;
 use crate::session::Session;
-use crate::types::{HomeGraph, Intent, Settings};
+use crate::types::{HomeGraph, Intent, Settings, UnitSystem};
 
 pub(crate) struct Clause<'a> {
     pub tokens: &'a [String],
@@ -142,6 +142,7 @@ pub(crate) fn parse_clause_candidates_for_action(
     }) {
         candidates.retain(|candidate| candidate.policy == PolicyId::NamedScene);
     }
+    rewrite_climate_temps(&mut candidates, tokens, settings.unit_system);
     if media_claimed_empty(&candidates) {
         let transfer = ctx.tokens.iter().any(|token| matches!(token.as_str(), "verschiebe" | "move" | "transfer"));
         let named = !transfer
@@ -155,6 +156,16 @@ pub(crate) fn parse_clause_candidates_for_action(
         candidates.retain(|candidate| !matches!(candidate.policy, PolicyId::GroundedAmbiguous | PolicyId::GroundedEntities));
     }
     candidates
+}
+
+fn rewrite_climate_temps(candidates: &mut [ClauseCandidate], tokens: &[String], unit: UnitSystem) {
+    for candidate in candidates {
+        if let ClauseOut::Intents(intents) = &mut candidate.outcome {
+            for intent in intents {
+                crate::units::bind_set_temp(intent, tokens, unit);
+            }
+        }
+    }
 }
 
 fn media(ctx: &Clause) -> Option<ClauseOut> {

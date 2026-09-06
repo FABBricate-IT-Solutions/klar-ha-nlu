@@ -169,10 +169,12 @@ async def async_finish_speech(
     extra_prompt: str | None,
     allow_tools: bool = False,
     conversation_id: str | None = None,
-) -> str:
+    chat_log: Any = None,
+    publish_agent_id: str | None = None,
+) -> tuple[str, bool]:
     if not should_refine(enabled, agent_id, speech):
-        return style(speech, personality, pack)
-    refined = await async_refine_speech(
+        return style(speech, personality, pack), False
+    refined, posted = await async_refine_speech(
         hass,
         str(agent_id),
         controls_home,
@@ -184,8 +186,10 @@ async def async_finish_speech(
         extra_prompt,
         allow_tools,
         conversation_id,
+        chat_log,
+        publish_agent_id,
     )
-    return refined or style(speech, personality, pack)
+    return (refined or style(speech, personality, pack), posted)
 
 
 async def async_refine_speech(
@@ -200,14 +204,30 @@ async def async_refine_speech(
     extra_prompt: str | None,
     allow_tools: bool = False,
     conversation_id: str | None = None,
-) -> str | None:
+    chat_log: Any = None,
+    publish_agent_id: str | None = None,
+) -> tuple[str | None, bool]:
     del agent_id, controls_home, context, allow_tools
     if hass is None:
-        return None
+        return None, False
     try:
         # Cycle: engine_llm → stream → refine. Keep this import in the function.
-        from .engine_llm import EngineRefineMissing, EngineUnavailable, complete_engine_refine
+        from .engine_llm import EngineRefineMissing, EngineUnavailable, complete_engine_refine, stream_engine_refine
 
+        if chat_log is not None:
+            streamed = await stream_engine_refine(
+                hass,
+                speech,
+                language or pack,
+                personality,
+                extra_prompt or "",
+                chat_log,
+                publish_agent_id,
+                conversation_id=conversation_id,
+            )
+            if streamed is not None:
+                text, posted, accepted = streamed
+                return (text if accepted else None, posted)
         text, accepted = await complete_engine_refine(
             hass,
             speech,
@@ -216,11 +236,11 @@ async def async_refine_speech(
             extra_prompt or "",
             conversation_id=conversation_id,
         )
-        return text if accepted else None
+        return (text if accepted else None), False
     except EngineRefineMissing:
         _LOGGER.debug("Klar LLM refine route missing")
     except EngineUnavailable:
         _LOGGER.debug("Klar LLM refine unavailable")
     except Exception as err:  # noqa: BLE001 — engine HTTP is a system boundary
         _LOGGER.debug("Klar LLM refine skipped: %s", err)
-    return None
+    return None, False

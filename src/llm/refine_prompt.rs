@@ -7,11 +7,22 @@ use serde::Serialize;
 const GERMAN_EXTRA_MARKERS: &[&str] = &["Stimme:", "Schalt-Bestätigungen", "Antworte nur auf Deutsch"];
 
 pub fn refine_prompt(pack: &str, personality: &str) -> String {
-    let personality = normalize_personality(personality);
-    let voice_text = voice_block(pack, personality);
+    refine_prompt_for(pack, personality, "")
+}
+
+pub fn refine_prompt_for(pack: &str, personality: &str, custom_voice: &str) -> String {
     let rules_text = rules(lane_for_rules(pack));
     let lock = language_lock(pack);
+    let voice_text = if is_custom(personality) && !custom_voice.trim().is_empty() {
+        custom_voice.trim().to_string()
+    } else {
+        voice_block(pack, normalize_personality(personality))
+    };
     format!("{lock}\n\n{rules_text}\n\n{voice_text}\n\n{lock}")
+}
+
+fn is_custom(personality: &str) -> bool {
+    personality.trim().eq_ignore_ascii_case("custom")
 }
 
 pub fn refine_input(speech: &str) -> String {
@@ -127,9 +138,17 @@ pub struct PersonalityPreview {
 }
 
 pub fn personality_preview(pack: &str, personality: &str) -> PersonalityPreview {
+    personality_preview_for(pack, personality, "")
+}
+
+pub fn personality_preview_for(pack: &str, personality: &str, custom_voice: &str) -> PersonalityPreview {
+    let prompt = refine_prompt_for(pack, personality, custom_voice);
+    if is_custom(personality) {
+        let flavor = custom_voice.lines().next().unwrap_or("custom").trim().to_string();
+        return PersonalityPreview { personality: "custom".into(), flavor, prompt };
+    }
     let personality = normalize_personality(personality).to_string();
     let flavor = voice(&personality, lane_for_rules(pack)).flavor.to_string();
-    let prompt = refine_prompt(pack, &personality);
     PersonalityPreview { personality, flavor, prompt }
 }
 
@@ -146,9 +165,11 @@ mod tests {
         assert!(prompt.contains("2 Lichter sind an, 3 Lichter sind aus."));
         assert!(prompt.contains("21,5 °C"));
         assert!(prompt.contains("Keine neuen Zahlen"));
-        assert!(prompt.contains("ein Satz"));
+        assert!(prompt.contains("Länge folgt der NLU-Vorlage"));
+        assert!(!prompt.contains("ein Satz"));
         assert!(prompt.contains("Uhrzeiten ohne Sekunden"));
         assert!(prompt.contains("14:44 nicht 14:44:55"));
+        assert!(prompt.contains("In der Küche ist das Licht aus"));
         assert!(prompt.contains("Offene Fragen"));
         assert!(prompt.contains("Ist die Vorlage eine Frage, bleibt die Antwort eine Frage."));
         assert!(prompt.contains("Butler"));
@@ -177,6 +198,8 @@ mod tests {
         assert!(prompt.contains("Do not stamp the same opening every time."));
         assert!(prompt.contains("all set"));
         assert!(prompt.contains("Clock times without seconds"));
+        assert!(prompt.contains("Length follows the NLU source"));
+        assert!(!prompt.contains("one spoken sentence"));
         assert!(prompt.contains("Do not translate into German"));
         assert!(!prompt.contains("Additional style instruction"));
     }
@@ -231,5 +254,16 @@ mod tests {
             assert!(prompt.contains('→'), "{name}");
             assert!(seen.insert(prompt), "{name} duplicate");
         }
+    }
+
+    #[test]
+    fn custom_voice_keeps_lock_and_rules() {
+        let prompt = refine_prompt_for("de", "custom", "Stimme: knochentrocken.\nKeine Floskeln.");
+        assert!(prompt.contains("Antworte nur auf"));
+        assert!(prompt.contains("Keine Home-Assistant-Werkzeuge"));
+        assert!(prompt.contains("Stimme: knochentrocken."));
+        assert!(!prompt.contains("Butler"));
+        assert_eq!(refine_prompt_for("de", "custom", ""), refine_prompt("de", "default"));
+        assert_eq!(refine_prompt("de", "custom"), refine_prompt("de", "default"));
     }
 }

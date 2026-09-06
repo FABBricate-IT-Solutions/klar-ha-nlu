@@ -184,16 +184,20 @@ def empty_status_speech(pack: str) -> str:
     return _EMPTY.get(_base(pack)) or _EMPTY["en"]
 
 
-def rooms_status_speech(rooms: list[tuple[str, list[Any]]], pack: str) -> str:
+def rooms_status_speech(
+    rooms: list[tuple[str, list[Any]]], pack: str, unit_system: str = "metric"
+) -> str:
     stop = "。" if _base(pack) in _IDEO else " "
-    parts = [area_status_speech(name, states, pack) for name, states in rooms]
+    parts = [area_status_speech(name, states, pack, unit_system) for name, states in rooms]
     return stop.join(part for part in parts if part)
 
 
-def area_status_speech(name: str, states: list[Any], pack: str) -> str:
+def area_status_speech(
+    name: str, states: list[Any], pack: str, unit_system: str = "metric"
+) -> str:
     words = _words(pack)
     visible = [state for state in states if not _infra_state(state) and _usable(state)]
-    facts = _facts(visible, pack, words)
+    facts = _facts(visible, pack, words, unit_system)
     if not facts:
         return ""
     pretty = _title(name)
@@ -202,7 +206,9 @@ def area_status_speech(name: str, states: list[Any], pack: str) -> str:
     return f"{pretty}. {'. '.join(facts)}."
 
 
-def _facts(states: list[Any], pack: str, words: dict[str, str]) -> list[str]:
+def _facts(
+    states: list[Any], pack: str, words: dict[str, str], unit_system: str = "metric"
+) -> list[str]:
     lights = [state for state in states if _domain(state) == "light"]
     sockets = [state for state in states if _is_socket(state)]
     presence = [state for state in states if _class_of(state) in _PRESENCE]
@@ -221,11 +227,12 @@ def _facts(states: list[Any], pack: str, words: dict[str, str]) -> list[str]:
     if presence:
         facts.append(words["present"] if any(_is_on(state) for state in presence) else words["absent"])
     sensors = [state for state in temps if _class_of(state) == "temperature"]
-    temp = _first_number(sensors, None)
-    if temp == "":
-        temp = _first_number(temps, "current_temperature")
-    if temp != "":
-        facts.append(words["temp"].replace("{n}", _num(temp, pack)))
+    spoken_temp = _spoken_temp(sensors, None, pack, unit_system)
+    if spoken_temp == "":
+        spoken_temp = _spoken_temp(temps, "current_temperature", pack, unit_system)
+    if spoken_temp != "":
+        template = "{n} Fahrenheit" if unit_system == "imperial" else words["temp"]
+        facts.append(template.replace("{n}", spoken_temp))
     lux = _first_number(luxes, None)
     if lux != "":
         facts.append(words["lux"].replace("{n}", _num(lux, pack, digits=0)))
@@ -298,6 +305,45 @@ def _num(value: Any, pack: str, digits: int | None = 1) -> str:
     if _base(pack) in _COMMA:
         text = text.replace(".", ",")
     return text
+
+
+def _spoken_temp(states: list[Any], attr: str | None, pack: str, unit_system: str) -> str:
+    for state in states:
+        attrs = getattr(state, "attributes", None) or {}
+        raw = attrs.get(attr) if attr else None
+        if raw in (None, ""):
+            raw = getattr(state, "state", None)
+        if not _numeric(raw):
+            continue
+        converted = _to_operator(float(raw), _ha_scale(state), unit_system)
+        return _num(converted, pack)
+    return ""
+
+
+def _ha_scale(state: Any) -> str:
+    attrs = getattr(state, "attributes", None) or {}
+    label = str(attrs.get("temperature_unit") or attrs.get("unit_of_measurement") or "").lower()
+    compact = label.replace(" ", "")
+    if "fahrenheit" in compact or "°f" in compact or compact == "f":
+        return "imperial"
+    return "metric"
+
+
+def _to_operator(value: float, ha: str, operator: str) -> float:
+    if ha == operator:
+        return value
+    if abs(value - round(value)) < 1e-6:
+        whole = int(round(value))
+        if ha == "imperial" and operator != "imperial":
+            return float(((whole - 32) * 5 + 4) // 9)
+        if ha != "imperial" and operator == "imperial":
+            return float((whole * 9 + 2) // 5 + 32)
+        return value
+    if ha == "imperial" and operator != "imperial":
+        return (value - 32.0) * 5.0 / 9.0
+    if ha != "imperial" and operator == "imperial":
+        return value * 9.0 / 5.0 + 32.0
+    return value
 
 
 def _first_number(states: list[Any], attr: str | None) -> Any:

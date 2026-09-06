@@ -328,6 +328,17 @@ def cached_engine_settings(hass: HomeAssistant, entry: ConfigEntry) -> dict[str,
     return payload if isinstance(payload, dict) else {}
 
 
+def cached_unit_system(hass: HomeAssistant) -> str:
+    stored = hass.data.get(DOMAIN) or {}
+    for payload in stored.values():
+        if not isinstance(payload, dict):
+            continue
+        settings = payload.get("engine_settings")
+        if isinstance(settings, dict) and str(settings.get("unit_system") or "").lower() == "imperial":
+            return "imperial"
+    return "metric"
+
+
 def store_engine_settings(
     hass: HomeAssistant, entry: ConfigEntry, payload: dict[str, object]
 ) -> None:

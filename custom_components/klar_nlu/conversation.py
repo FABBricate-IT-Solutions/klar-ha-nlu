@@ -385,7 +385,7 @@ class KlarConversationEntity(ConversationEntity):
         if decision == "chat":
             speech = finish_clock_speech(speech, pack)
         if not skip_rewrite(decision):
-            speech = await async_finish_speech(
+            speech, refine_posted = await async_finish_speech(
                 self.hass,
                 self._flag("refine_speech", CONF_REFINE_SPEECH, DEFAULT_REFINE_SPEECH),
                 None,
@@ -398,7 +398,10 @@ class KlarConversationEntity(ConversationEntity):
                 self._extra_prompt(),
                 self._allow_llm_tools(),
                 conversation_id,
+                chat_log,
+                user_input.agent_id,
             )
+            published = published or refine_posted
         remember_turn(
             self.hass,
             self._entry.entry_id,

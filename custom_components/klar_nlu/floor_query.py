@@ -54,11 +54,12 @@ def place_get_state(
     slots: dict[str, Any],
     pack: str,
     exposed: Callable[[str], bool],
+    unit_system: str = "metric",
 ) -> str:
     rooms = place_status_rooms(hass, slots, exposed)
     if rooms is None:
         return ""
-    return rooms_status_speech(rooms, pack) or empty_status_speech(pack)
+    return rooms_status_speech(rooms, pack, unit_system) or empty_status_speech(pack)
 
 
 def floor_get_state(
@@ -66,11 +67,12 @@ def floor_get_state(
     slots: dict[str, Any],
     pack: str,
     exposed: Callable[[str], bool],
+    unit_system: str = "metric",
 ) -> str:
     floor_key = str(slots.get("floor", {}).get("value") or "")
     domain = str(slots.get("domain", {}).get("value") or "")
     rooms = floor_status_rooms(hass, floor_key, domain, exposed)
-    return rooms_status_speech(rooms, pack)
+    return rooms_status_speech(rooms, pack, unit_system)
 
 
 def area_get_state(
@@ -78,11 +80,12 @@ def area_get_state(
     slots: dict[str, Any],
     pack: str,
     exposed: Callable[[str], bool],
+    unit_system: str = "metric",
 ) -> str:
     area_key = str(slots.get("area", {}).get("value") or "")
     domain = str(slots.get("domain", {}).get("value") or "")
     rooms = area_status_rooms(hass, area_key, domain, exposed)
-    return rooms_status_speech(rooms, pack)
+    return rooms_status_speech(rooms, pack, unit_system)
 
 
 def floor_status_rooms(
