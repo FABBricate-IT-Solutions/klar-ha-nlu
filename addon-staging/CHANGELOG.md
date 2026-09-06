@@ -6,6 +6,21 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 Versions follow Home Assistant calendar versioning (`YYYY.M.PATCH`)
 and [Conventional Commits](https://www.conventionalcommits.org/).
 
+## [2026.9.6](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/compare/2026.9.5...2026.9.6) - 2026-09-06
+
+
+
+### Bug Fixes
+
+- add engineOffline to every Assist locale([eb9146f](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/eb9146ff13591e4fae6e7ebbe7fec8f57da95538))
+
+- fail closed when custom phrases cannot persist([9dbecdd](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/9dbecdd91824ab28c60102501021be01277cac82))
+
+
+### Other
+
+- Merge pull request #231 from FABBricate-IT-Solutions/fix/custom-phrase-live-store([8be8509](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/8be850902cd34588d8fad9bdce77efef4b825ed4))
+
 ## [2026.9.5](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/compare/2026.9.4...2026.9.5) - 2026-09-06
 
 
