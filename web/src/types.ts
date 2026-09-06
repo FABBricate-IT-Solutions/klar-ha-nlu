@@ -3,6 +3,7 @@ export type Tab = "home" | "conversations" | "rules" | "house" | "lab" | "settin
 export type HouseView = "graph" | "entities" | "calibrate";
 export type RulesView = "routines" | "sentences" | "policies";
 export type Theme = "dark" | "light";
+export type SettingsView = "llm" | "voice" | "languages" | "engine" | "backup";
 export type Confidence = "high" | "medium" | "low";
 
 export type Settings = {
@@ -22,6 +23,18 @@ export type Settings = {
   extra_prompt?: string;
   unit_system?: "metric" | "imperial";
   custom_voice?: string;
+  custom_voice_name?: string;
+  custom_voice_seed?: string;
+  custom_voice_traits?: VoiceTraits;
+};
+
+export type VoiceTraits = {
+  warmth: number;
+  humor: number;
+  sarcasm: number;
+  formality: number;
+  verbosity: number;
+  energy: number;
 };
 
 export type Entity = {
@@ -180,7 +193,13 @@ export type TrainerProposal = {
   utterances?: string[];
 };
 export type TrainerTurn = { role: "user" | "assistant"; content: string };
-export type LlmPublic = { configured: boolean; base_url?: string; model?: string; enable_thinking?: boolean };
+export type LlmPublic = {
+  configured: boolean;
+  base_url?: string;
+  model?: string;
+  enable_thinking?: boolean;
+  provider?: string;
+};
 export type LlmModels = { models: string[] };
 export type RefineOutcome = { type: string; text: string; accepted: boolean };
 export type TrainerConsent = {
@@ -268,6 +287,7 @@ export type UiState = {
   wizard_done?: boolean;
   house_view?: HouseView;
   rules_view?: RulesView;
+  settings_view?: SettingsView;
   theme?: Theme;
 };
 

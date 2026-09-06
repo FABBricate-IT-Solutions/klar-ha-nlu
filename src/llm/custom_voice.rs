@@ -1,4 +1,4 @@
-//! Build a custom refine voice from a short operator interview.
+//! Build a custom refine voice from a seed character plus delivery sliders.
 
 use super::client::chat;
 use super::endpoint::LlmEndpoint;
@@ -8,6 +8,9 @@ use super::types::{ChatMessage, ChatRequest, LlmError};
 use serde::{Deserialize, Serialize};
 
 const SYSTEM: &str = "You write a Klar NLU voice block only. \
+If a seed character is given, keep that identity. \
+Sliders 0-10 only refine delivery (warmth, humor, sarcasm, formality, verbosity, energy). \
+They must not replace or ignore the seed. \
 Output the voice description and a few short example rewrites (source → spoken). \
 Keep language lock and safety: no Home Assistant tools, no device control, \
 digits stay digits, no new facts. Do not repeat the safety rules. \
@@ -22,13 +25,31 @@ pub struct CustomVoiceRequest {
     #[serde(default)]
     pub name: String,
     #[serde(default)]
-    pub tone: String,
+    pub voice_name: String,
     #[serde(default)]
-    pub humor: String,
+    pub seed: String,
+    #[serde(default = "five")]
+    pub warmth: u8,
+    #[serde(default = "five")]
+    pub humor: u8,
     #[serde(default)]
-    pub length: String,
+    pub sarcasm: u8,
+    #[serde(default = "five")]
+    pub formality: u8,
+    #[serde(default = "five")]
+    pub verbosity: u8,
+    #[serde(default = "five")]
+    pub energy: u8,
     #[serde(default)]
     pub taboo: String,
+}
+
+const fn five() -> u8 {
+    5
+}
+
+fn clamp_trait(value: u8) -> u8 {
+    value.min(10)
 }
 
 #[derive(Debug, Clone, Serialize, PartialEq, Eq)]
@@ -41,9 +62,14 @@ pub struct SanitizedInterview {
     pub language: String,
     pub address: &'static str,
     pub name: String,
-    pub tone: &'static str,
-    pub humor: &'static str,
-    pub length: &'static str,
+    pub voice_name: String,
+    pub seed: String,
+    pub warmth: u8,
+    pub humor: u8,
+    pub sarcasm: u8,
+    pub formality: u8,
+    pub verbosity: u8,
+    pub energy: u8,
     pub taboo: String,
 }
 
@@ -66,23 +92,14 @@ impl CustomVoiceRequest {
         if address == "name" && name.is_empty() {
             return Err(LlmError::InvalidRequest("name"));
         }
-        let tone = match self.tone.trim() {
-            "short" => "short",
-            "warm" => "warm",
-            "dry" => "dry",
-            _ => return Err(LlmError::InvalidRequest("tone")),
-        };
-        let humor = match self.humor.trim() {
-            "none" => "none",
-            "light" => "light",
-            "sharp" => "sharp",
-            _ => return Err(LlmError::InvalidRequest("humor")),
-        };
-        let length = match self.length.trim() {
-            "one" => "one",
-            "more" => "more",
-            _ => return Err(LlmError::InvalidRequest("length")),
-        };
+        let voice_name = self.voice_name.trim();
+        if voice_name.chars().count() > 64 || voice_name.chars().any(char::is_control) {
+            return Err(LlmError::InvalidRequest("voice_name"));
+        }
+        let seed = self.seed.trim();
+        if seed.chars().count() > 500 || seed.chars().any(|ch| ch.is_control() && ch != '\n' && ch != '\t') {
+            return Err(LlmError::InvalidRequest("seed"));
+        }
         let taboo = self.taboo.trim();
         if taboo.chars().count() > 200 || taboo.chars().any(|ch| ch.is_control() && ch != '\n' && ch != '\t') {
             return Err(LlmError::InvalidRequest("taboo"));
@@ -91,9 +108,14 @@ impl CustomVoiceRequest {
             language: language.to_string(),
             address,
             name: name.to_string(),
-            tone,
-            humor,
-            length,
+            voice_name: voice_name.to_string(),
+            seed: seed.to_string(),
+            warmth: clamp_trait(self.warmth),
+            humor: clamp_trait(self.humor),
+            sarcasm: clamp_trait(self.sarcasm),
+            formality: clamp_trait(self.formality),
+            verbosity: clamp_trait(self.verbosity),
+            energy: clamp_trait(self.energy),
             taboo: taboo.to_string(),
         })
     }
@@ -102,9 +124,21 @@ impl CustomVoiceRequest {
 pub fn interview_user_line(body: &SanitizedInterview) -> String {
     let address = if body.address == "name" { format!("address by first name ({})", body.name) } else { body.address.to_string() };
     let mut line = format!(
-        "Language pack: {}.\nAddress: {}.\nTone: {}.\nHumor: {}.\nLength: {}.",
-        body.language, address, body.tone, body.humor, body.length
+        "Voice name: {}.\nLanguage pack: {}.\nAddress the operator: {}.\nTraits 0-10 (delivery only): warmth={}, humor={}, sarcasm={}, formality={}, verbosity={}, energy={}.",
+        if body.voice_name.is_empty() { "custom" } else { &body.voice_name },
+        body.language,
+        address,
+        body.warmth,
+        body.humor,
+        body.sarcasm,
+        body.formality,
+        body.verbosity,
+        body.energy
     );
+    if !body.seed.is_empty() {
+        line.push_str("\nSeed character (keep this identity; sliders only refine delivery):\n");
+        line.push_str(&body.seed);
+    }
     if !body.taboo.is_empty() {
         line.push_str("\nDo not say: ");
         line.push_str(&body.taboo);
@@ -139,37 +173,46 @@ pub async fn generate_custom_voice(endpoint: &LlmEndpoint, request: CustomVoiceR
 mod tests {
     use super::*;
 
+    fn sample() -> CustomVoiceRequest {
+        CustomVoiceRequest {
+            language: "de".into(),
+            address: "name".into(),
+            name: "Ines".into(),
+            voice_name: "Spock".into(),
+            seed: "You are Spock from Star Trek.".into(),
+            warmth: 2,
+            humor: 1,
+            sarcasm: 3,
+            formality: 9,
+            verbosity: 4,
+            energy: 3,
+            taboo: "chef".into(),
+        }
+    }
+
     #[test]
     fn rejects_unknown_choices() {
-        let bad = CustomVoiceRequest {
-            language: "de".into(),
-            address: "hey".into(),
-            name: String::new(),
-            tone: "warm".into(),
-            humor: "none".into(),
-            length: "one".into(),
-            taboo: String::new(),
-        };
+        let mut bad = sample();
+        bad.address = "hey".into();
         assert!(bad.sanitize().is_err());
     }
 
     #[test]
     fn formats_interview() {
-        let body = CustomVoiceRequest {
-            language: "de".into(),
-            address: "name".into(),
-            name: "Ines".into(),
-            tone: "dry".into(),
-            humor: "light".into(),
-            length: "one".into(),
-            taboo: "chef".into(),
-        }
-        .sanitize()
-        .unwrap();
-        let line = interview_user_line(&body);
+        let line = interview_user_line(&sample().sanitize().unwrap());
         assert!(line.contains("Language pack: de."));
         assert!(line.contains("Ines"));
+        assert!(line.contains("Voice name: Spock."));
+        assert!(line.contains("You are Spock from Star Trek."));
+        assert!(line.contains("sarcasm=3"));
         assert!(line.contains("Do not say: chef"));
+    }
+
+    #[test]
+    fn sliders_are_independent_of_seed() {
+        let line = interview_user_line(&sample().sanitize().unwrap());
+        assert!(line.contains("Seed character"));
+        assert!(line.contains("delivery only"));
     }
 
     #[test]

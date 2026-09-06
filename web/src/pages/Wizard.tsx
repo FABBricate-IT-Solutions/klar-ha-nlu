@@ -1,5 +1,6 @@
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
 import { api, type LanguagePack } from "../api";
+import { KlarBrand } from "../components/KlarBrand";
 import { ChromeStep } from "../components/wizard/ChromeStep";
 import { LlmStep } from "../components/wizard/LlmStep";
 import { RestStep } from "../components/wizard/RestStep";
@@ -8,6 +9,7 @@ import { UnitsStep } from "../components/wizard/UnitsStep";
 import { VoiceStep } from "../components/wizard/VoiceStep";
 import type { Messages } from "../i18n";
 import { fillWizard, wizardMessages, type WizardMessages } from "../i18n/wizard";
+import { isProviderId, resolveProvider, writeStoredProvider } from "../llmProviders";
 import type { Locale, Settings, Theme } from "../types";
 
 export type InstallPath = "addon" | "docker" | "binary" | "sample";
@@ -142,6 +144,8 @@ export function Wizard({
   const doneRef = useRef(onDone);
   const closeRef = useRef(onClose);
   const [step, setStep] = useState<WizardStep>(0);
+  const scrollRef = useRef<HTMLDivElement>(null);
+  const [scrollable, setScrollable] = useState(false);
   const [draft, setDraft] = useState<Settings>(settings);
   const [llmUrl, setLlmUrl] = useState("");
   const [llmModel, setLlmModel] = useState("");
@@ -179,10 +183,15 @@ export function Wizard({
         ...(llmKey.trim() ? { api_key: llmKey.trim() } : {}),
         configured: true,
         enable_thinking: llmThinking,
+        provider: resolveProvider(llmUrl),
       });
       setLlmReady(true);
       return true;
     } catch {
+      if (llmUrl.trim() && llmModel.trim()) {
+        setLlmReady(true);
+        return true;
+      }
       return llmReady;
     }
   };
@@ -207,6 +216,7 @@ export function Wizard({
       setLlmModel(next.model || "");
       setLlmThinking(Boolean(next.enable_thinking));
       setLlmReady(Boolean(next.configured));
+      if (isProviderId(next.provider)) writeStoredProvider(next.provider);
     }).catch(() => {
       setLlmUrl("");
       setLlmModel("");
@@ -245,6 +255,18 @@ export function Wizard({
       prior.current?.focus();
     };
   }, [open]);
+
+  useLayoutEffect(() => {
+    const el = scrollRef.current;
+    if (!el) return;
+    const update = () => setScrollable(el.scrollHeight > el.clientHeight + 2);
+    update();
+    const ro = new ResizeObserver(update);
+    ro.observe(el);
+    const child = el.firstElementChild;
+    if (child) ro.observe(child);
+    return () => ro.disconnect();
+  }, [step, open]);
 
   if (!open) return null;
 
@@ -313,6 +335,12 @@ export function Wizard({
             settings={draft}
             llmReady={llmReady}
             language={assistLang}
+            llm={{
+              baseUrl: llmUrl,
+              model: llmModel,
+              apiKey: llmKey,
+              provider: resolveProvider(llmUrl),
+            }}
             onSettings={setDraft}
           />
         );
@@ -339,7 +367,10 @@ export function Wizard({
           aria-labelledby="klar-wizard-title"
         >
           <div className="wizard-head">
-            <p className="pill">{copy.title}</p>
+            <div className="flex min-w-0 items-center gap-2">
+              <KlarBrand />
+              <p className="pill">{copy.title}</p>
+            </div>
             <button type="button" className="ghost" onClick={finish}>{copy.skip}</button>
           </div>
           <h1 id="klar-wizard-title">{stepTitle(step, copy)}</h1>
@@ -357,7 +388,9 @@ export function Wizard({
               </button>
             ))}
           </nav>
-          {body}
+          <div ref={scrollRef} className={scrollable ? "wizard-scroll is-scrollable" : "wizard-scroll"}>
+            <div className="wizard-body">{body}</div>
+          </div>
           <div className="wizard-foot">
             <button type="button" className="secondary" onClick={() => setStep(clampStep(step - 1))} disabled={step === 0}>
               {copy.back}

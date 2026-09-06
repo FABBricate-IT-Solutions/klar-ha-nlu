@@ -1,7 +1,8 @@
 import type { Messages } from "../../i18n";
 import type { WizardMessages } from "../../i18n/wizard";
 import type { Settings } from "../../types";
-import { field, control } from "./styles";
+import { Field, FieldDescription, FieldGroup, FieldLabel } from "@/components/ui/field";
+import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
 
 export function UnitsStep({
   copy,
@@ -16,24 +17,27 @@ export function UnitsStep({
 }) {
   const unit = settings.unit_system === "imperial" ? "imperial" : "metric";
   return (
-    <>
+    <FieldGroup>
       <p>{copy.unitsLead}</p>
-      <label style={field}>
-        {chrome.unitSystem}
-        <select
-          style={control}
-          value={unit}
-          onChange={(ev) => {
-            if (ev.target.value === "metric" || ev.target.value === "imperial") {
-              onSettings({ ...settings, unit_system: ev.target.value });
+      <Field>
+        <FieldLabel>{chrome.unitSystem}</FieldLabel>
+        <ToggleGroup
+          variant="outline"
+          spacing={0}
+          value={[unit]}
+          onValueChange={(next) => {
+            const value = next[0];
+            if (value === "metric" || value === "imperial") {
+              onSettings({ ...settings, unit_system: value });
             }
           }}
+          aria-label={chrome.unitSystem}
         >
-          <option value="metric">{chrome.unitMetric}</option>
-          <option value="imperial">{chrome.unitImperial}</option>
-        </select>
-      </label>
-      <p className="caption">{chrome.unitSystemHint}</p>
-    </>
+          <ToggleGroupItem value="metric">{chrome.unitMetric}</ToggleGroupItem>
+          <ToggleGroupItem value="imperial">{chrome.unitImperial}</ToggleGroupItem>
+        </ToggleGroup>
+        <FieldDescription>{chrome.unitSystemHint}</FieldDescription>
+      </Field>
+    </FieldGroup>
   );
 }

@@ -1,7 +1,10 @@
 import type { Messages } from "../../i18n";
 import type { WizardMessages } from "../../i18n/wizard";
 import type { Settings } from "../../types";
-import { field, control } from "./styles";
+import { Field, FieldContent, FieldDescription, FieldGroup, FieldLabel } from "@/components/ui/field";
+import { Switch } from "@/components/ui/switch";
+import { Textarea } from "@/components/ui/textarea";
+import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
 
 export function RestStep({
   copy,
@@ -17,75 +20,84 @@ export function RestStep({
   onSettings: (next: Settings) => void;
 }) {
   return (
-    <>
+    <FieldGroup>
       <p>{copy.restLead}</p>
-      <label style={field}>
-        {chrome.mode}
-        <select
-          style={control}
-          value={settings.mode}
-          onChange={(ev) => {
-            if (ev.target.value === "full" || ev.target.value === "context_only") {
-              onSettings({ ...settings, mode: ev.target.value });
+      <Field>
+        <FieldLabel>{chrome.mode}</FieldLabel>
+        <ToggleGroup
+          variant="outline"
+          spacing={0}
+          value={[settings.mode]}
+          onValueChange={(next) => {
+            const value = next[0];
+            if (value === "full" || value === "context_only") {
+              onSettings({ ...settings, mode: value });
             }
           }}
+          aria-label={chrome.mode}
         >
-          <option value="full">{chrome.modeFull}</option>
-          <option value="context_only">{chrome.modeContext}</option>
-        </select>
-      </label>
-      <label style={field}>
-        {chrome.extraPrompt}
-        <textarea
-          style={{ ...control, minHeight: 88 }}
+          <ToggleGroupItem value="full">{chrome.modeFull}</ToggleGroupItem>
+          <ToggleGroupItem value="context_only">{chrome.modeContext}</ToggleGroupItem>
+        </ToggleGroup>
+      </Field>
+      <Field>
+        <FieldLabel htmlFor="wizard-extra-prompt">{chrome.extraPrompt}</FieldLabel>
+        <Textarea
+          id="wizard-extra-prompt"
           value={settings.extra_prompt || ""}
           onChange={(ev) => onSettings({ ...settings, extra_prompt: ev.target.value })}
         />
-      </label>
-      <label className="wizard-check">
-        <input
-          type="checkbox"
+      </Field>
+      <Field orientation="horizontal">
+        <FieldContent>
+          <FieldLabel>{chrome.confirmRisky}</FieldLabel>
+        </FieldContent>
+        <Switch
           checked={settings.confirm_risky_actions}
-          onChange={(ev) => onSettings({ ...settings, confirm_risky_actions: ev.target.checked })}
+          onCheckedChange={(checked) => onSettings({ ...settings, confirm_risky_actions: Boolean(checked) })}
         />
-        {chrome.confirmRisky}
-      </label>
-      <label className="wizard-check">
-        <input
-          type="checkbox"
+      </Field>
+      <Field orientation="horizontal">
+        <FieldContent>
+          <FieldLabel>{chrome.quietAck}</FieldLabel>
+        </FieldContent>
+        <Switch
           checked={Boolean(settings.quiet_ack)}
-          onChange={(ev) => onSettings({ ...settings, quiet_ack: ev.target.checked })}
+          onCheckedChange={(checked) => onSettings({ ...settings, quiet_ack: Boolean(checked) })}
         />
-        {chrome.quietAck}
-      </label>
-      <label className="wizard-check">
-        <input
-          type="checkbox"
+      </Field>
+      <Field orientation="horizontal">
+        <FieldContent>
+          <FieldLabel>{chrome.nluRag}</FieldLabel>
+        </FieldContent>
+        <Switch
           checked={Boolean(settings.nlu_rag)}
-          onChange={(ev) => onSettings({ ...settings, nlu_rag: ev.target.checked })}
+          onCheckedChange={(checked) => onSettings({ ...settings, nlu_rag: Boolean(checked) })}
         />
-        {chrome.nluRag}
-      </label>
+      </Field>
       {llmReady ? (
         <>
-          <label className="wizard-check">
-            <input
-              type="checkbox"
+          <Field orientation="horizontal">
+            <FieldContent>
+              <FieldLabel>{chrome.calendarLlm}</FieldLabel>
+            </FieldContent>
+            <Switch
               checked={Boolean(settings.calendar_llm)}
-              onChange={(ev) => onSettings({ ...settings, calendar_llm: ev.target.checked })}
+              onCheckedChange={(checked) => onSettings({ ...settings, calendar_llm: Boolean(checked) })}
             />
-            {chrome.calendarLlm}
-          </label>
-          <label className="wizard-check">
-            <input
-              type="checkbox"
+          </Field>
+          <Field orientation="horizontal">
+            <FieldContent>
+              <FieldLabel>{chrome.allowLlmTools}</FieldLabel>
+              <FieldDescription>{chrome.allowLlmToolsHint}</FieldDescription>
+            </FieldContent>
+            <Switch
               checked={Boolean(settings.allow_llm_tools)}
-              onChange={(ev) => onSettings({ ...settings, allow_llm_tools: ev.target.checked })}
+              onCheckedChange={(checked) => onSettings({ ...settings, allow_llm_tools: Boolean(checked) })}
             />
-            {chrome.allowLlmTools}
-          </label>
+          </Field>
         </>
       ) : null}
-    </>
+    </FieldGroup>
   );
 }

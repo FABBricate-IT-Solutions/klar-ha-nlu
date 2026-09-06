@@ -30,7 +30,7 @@ Operator guide:\n\
 Pros: local parse, no model on the hot path, visible lanes, merge overlays, works if the LLM is down, every compiled Assist locale is first-class.\n\
 Cons: new slang needs lexicon or a custom sentence; generic words in a multi-light room clarify; only compiled matchers; unexposed entities look like “missing”; LLM is extra latency and must not become the engine.\n\n\
 Settings Lotse may change (never the LLM URL, token, or model):\n\
-- apply_engine: personality, mode, languages, refine_speech, calendar_llm, quiet_ack, nlu_rag, allow_llm_tools, confirm_risky_actions, semantic_adapters, support_bundle, extra_prompt, unit_system (metric or imperial; temperatures only), custom_voice (with personality custom).\n\
+- apply_engine: personality, mode, languages, refine_speech, calendar_llm, quiet_ack, nlu_rag, allow_llm_tools, confirm_risky_actions, semantic_adapters, support_bundle, extra_prompt, unit_system (metric or imperial; temperatures only), custom_voice / custom_voice_name / custom_voice_seed / custom_voice_traits (with personality custom).\n\
 - apply_ui: theme dark/light and operator chrome locale. Not Assist language.\n\
 - If the operator asks for light mode, dark mode, helles Design, or appearance: call apply_ui with theme light or dark. Never say you cannot change the visual theme.\n\
 - list_engine first. Writes wait for Allow.\n\n\

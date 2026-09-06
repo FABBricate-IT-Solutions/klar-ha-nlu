@@ -164,9 +164,14 @@ export const api = {
     language: string;
     address: string;
     name?: string;
-    tone: string;
-    humor: string;
-    length: string;
+    voice_name?: string;
+    seed?: string;
+    warmth: number;
+    humor: number;
+    sarcasm: number;
+    formality: number;
+    verbosity: number;
+    energy: number;
     taboo?: string;
   }) => request<{ prompt: string }>("/api/v2/llm/custom-voice", { method: "POST", body: JSON.stringify(body) }),
   llmVoice: (personality: string, language: string) => {
@@ -179,12 +184,13 @@ export const api = {
     model?: string;
     configured?: boolean;
     enable_thinking?: boolean;
+    provider?: string;
   }) =>
     request<LlmPublic>("/api/v2/llm/endpoint", {
       method: "POST",
       body: JSON.stringify(body),
     }),
-  llmModels: (body: { base_url?: string; api_key?: string }) =>
+  llmModels: (body: { base_url?: string; api_key?: string; provider?: string }) =>
     request<LlmModels>("/api/v2/llm/models", {
       method: "POST",
       body: JSON.stringify(body),

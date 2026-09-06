@@ -39,6 +39,8 @@ pub struct UiState {
     pub house_view: String,
     #[serde(default = "default_rules_view")]
     pub rules_view: String,
+    #[serde(default = "default_settings_view")]
+    pub settings_view: String,
     #[serde(default = "default_theme")]
     pub theme: String,
 }
@@ -55,6 +57,7 @@ impl Default for UiState {
             wizard_done: false,
             house_view: default_house_view(),
             rules_view: default_rules_view(),
+            settings_view: default_settings_view(),
             theme: default_theme(),
         }
     }
@@ -74,6 +77,10 @@ fn default_house_view() -> String {
 
 fn default_rules_view() -> String {
     "routines".into()
+}
+
+fn default_settings_view() -> String {
+    "llm".into()
 }
 
 fn default_theme() -> String {
@@ -235,6 +242,7 @@ mod tests {
                 wizard_done: true,
                 house_view: "entities".into(),
                 rules_view: "policies".into(),
+                settings_view: "voice".into(),
                 theme: "light".into(),
             },
             ..Default::default()
@@ -250,6 +258,7 @@ mod tests {
         assert!(loaded.ui.wizard_done);
         assert_eq!(loaded.ui.house_view, "entities");
         assert_eq!(loaded.ui.rules_view, "policies");
+        assert_eq!(loaded.ui.settings_view, "voice");
         assert_eq!(loaded.ui.theme, "light");
         let _ = std::fs::remove_dir_all(&dir);
     }
@@ -260,6 +269,7 @@ mod tests {
         assert!(!ui.wizard_done);
         assert_eq!(ui.house_view, "calibrate");
         assert_eq!(ui.rules_view, "routines");
+        assert_eq!(ui.settings_view, "llm");
         assert_eq!(ui.theme, "dark");
         assert_eq!(ui.locale, "");
         assert!(!ui.locale_set);

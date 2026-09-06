@@ -14,8 +14,8 @@ import {
 } from "@/components/ui/alert-dialog";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
-import { Checkbox } from "@/components/ui/checkbox";
 import { Field, FieldContent, FieldDescription, FieldGroup, FieldLabel } from "@/components/ui/field";
+import { Switch } from "@/components/ui/switch";
 
 export function SettingsBackupCard({
   t,
@@ -64,7 +64,7 @@ export function SettingsBackupCard({
 
   return (
     <>
-      <Card className="md:col-span-2">
+      <Card className="w-full">
         <CardHeader>
           <CardTitle>{t.settingsBackup}</CardTitle>
           <CardDescription>{t.settingsBackupHint}</CardDescription>
@@ -76,7 +76,7 @@ export function SettingsBackupCard({
                 <FieldLabel htmlFor="klar-backup-secrets">{t.settingsBackupIncludeKey}</FieldLabel>
                 <FieldDescription>{t.settingsBackupIncludeKeyHint}</FieldDescription>
               </FieldContent>
-              <Checkbox
+              <Switch
                 id="klar-backup-secrets"
                 checked={includeKey}
                 onCheckedChange={(checked) => setIncludeKey(checked === true)}
@@ -86,7 +86,7 @@ export function SettingsBackupCard({
               <FieldLabel>{t.settingsBackupPickFile}</FieldLabel>
               <input
                 ref={fileRef}
-                className="sr-only"
+                className="sr-only w-px max-w-px"
                 type="file"
                 accept=".tar.gz,.tgz,.tar,.gz,application/gzip,application/x-tar"
                 onChange={(ev) => setPicked(ev.target.files?.[0] || null)}

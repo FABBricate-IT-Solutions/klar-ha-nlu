@@ -3,7 +3,7 @@ use crate::io::auth::{reads_allowed, writes_allowed};
 use crate::io::state::AppState;
 use crate::llm::{
     assist, assist_on, chat, chat_stream, generate_custom_voice, list_models, personality_preview_for, refine, refine_on, AssistRequest,
-    ChatEvent, ChatRequest, CustomVoiceRequest, LlmEndpoint, LlmError, LlmPublic, PersonalityPreview, RefineRequest,
+    ChatEvent, ChatRequest, CustomVoiceRequest, LlmEndpoint, LlmError, LlmProviderKind, LlmPublic, PersonalityPreview, RefineRequest,
 };
 use axum::extract::{ConnectInfo, DefaultBodyLimit, Query, State};
 use axum::http::{HeaderMap, StatusCode};
@@ -26,6 +26,8 @@ pub(crate) struct StoredEndpoint {
     pub model: String,
     #[serde(default)]
     pub enable_thinking: bool,
+    #[serde(default)]
+    pub provider: LlmProviderKind,
 }
 
 pub(crate) fn load_stored_endpoint(dir: &Path) -> Option<StoredEndpoint> {
@@ -46,9 +48,11 @@ pub fn load_endpoint(dir: &Path) -> Option<LlmEndpoint> {
 
 fn from_file(dir: &Path) -> Option<LlmEndpoint> {
     let stored = load_stored_endpoint(dir)?;
-    LlmEndpoint::from_parts(&stored.base_url, &stored.api_key, &stored.model)
-        .ok()
-        .map(|endpoint| endpoint.with_thinking(stored.enable_thinking))
+    LlmEndpoint::from_parts(&stored.base_url, &stored.api_key, &stored.model).ok().map(|endpoint| {
+        let provider =
+            if stored.provider == LlmProviderKind::Custom { LlmProviderKind::from_url(&endpoint.base_url) } else { stored.provider };
+        endpoint.with_thinking(stored.enable_thinking).with_provider(provider)
+    })
 }
 
 fn save_endpoint(dir: &Path, endpoint: &LlmEndpoint) -> std::io::Result<()> {
@@ -59,6 +63,7 @@ fn save_endpoint(dir: &Path, endpoint: &LlmEndpoint) -> std::io::Result<()> {
             api_key: endpoint.api_key.clone(),
             model: endpoint.model.clone(),
             enable_thinking: endpoint.enable_thinking,
+            provider: endpoint.provider,
         },
     )
 }
@@ -94,6 +99,7 @@ pub struct EndpointIn {
     pub model: Option<String>,
     pub configured: Option<bool>,
     pub enable_thinking: Option<bool>,
+    pub provider: Option<String>,
 }
 
 async fn get_endpoint(
@@ -172,7 +178,15 @@ async fn set_endpoint(
     let base_url = body.base_url.as_deref().unwrap_or("");
     let model = body.model.as_deref().unwrap_or("");
     let thinking = body.enable_thinking.unwrap_or_else(|| current.as_ref().map(|ep| ep.enable_thinking).unwrap_or(false));
-    let endpoint = LlmEndpoint::from_parts(base_url, &api_key, model).map_err(|_| StatusCode::BAD_REQUEST)?.with_thinking(thinking);
+    let provider = body
+        .provider
+        .as_deref()
+        .map(LlmProviderKind::parse)
+        .unwrap_or_else(|| current.as_ref().map(|ep| ep.provider).unwrap_or_else(|| LlmProviderKind::from_url(base_url)));
+    let endpoint = LlmEndpoint::from_parts(base_url, &api_key, model)
+        .map_err(|_| StatusCode::BAD_REQUEST)?
+        .with_thinking(thinking)
+        .with_provider(provider);
     save_endpoint(&state.data_dir, &endpoint).map_err(|_| StatusCode::INTERNAL_SERVER_ERROR)?;
     let public = endpoint.public();
     *current = Some(endpoint);
@@ -183,6 +197,7 @@ async fn set_endpoint(
 pub struct ModelsIn {
     pub base_url: Option<String>,
     pub api_key: Option<String>,
+    pub provider: Option<String>,
 }
 
 #[derive(Debug, Serialize)]
@@ -214,7 +229,8 @@ async fn list_endpoint_models(
     if base_url.trim().is_empty() {
         return Err(StatusCode::BAD_REQUEST);
     }
-    let endpoint = LlmEndpoint::for_discovery(&base_url, &api_key).map_err(|_| StatusCode::BAD_REQUEST)?;
+    let provider = body.provider.as_deref().map(LlmProviderKind::parse).unwrap_or_else(|| LlmProviderKind::from_url(&base_url));
+    let endpoint = LlmEndpoint::for_discovery(&base_url, &api_key).map_err(|_| StatusCode::BAD_REQUEST)?.with_provider(provider);
     match list_models(&endpoint).await {
         Ok(models) => Ok(Json(ModelsOut { models })),
         Err(err) => Err(status_for(&err)),
@@ -404,6 +420,7 @@ mod tests {
         assert!(json.contains("llama3"));
         assert!(!loaded.enable_thinking);
         assert!(!public.enable_thinking);
+        assert_eq!(public.provider.as_deref(), Some("custom"));
         clear_endpoint(&dir).unwrap();
         assert!(from_file(&dir).is_none());
         let _ = std::fs::remove_dir_all(&dir);

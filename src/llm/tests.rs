@@ -239,12 +239,48 @@ async fn lists_ollama_name_rows() {
     handle.abort();
 }
 
+#[test]
+fn lemonade_v1_also_tries_api_v1() {
+    let urls = super::client::model_list_urls("http://192.168.178.15:8000/v1");
+    assert_eq!(urls, vec!["http://192.168.178.15:8000/v1/models".to_string(), "http://192.168.178.15:8000/api/v1/models".to_string()]);
+}
+
+#[tokio::test]
+async fn lists_models_from_lemonade_api_v1_fallback() {
+    let listener = TcpListener::bind("127.0.0.1:0").await.unwrap();
+    let addr = listener.local_addr().unwrap();
+    let handle = tokio::spawn(async move {
+        let app = Router::new().route("/api/v1/models", get(|| async { Json(json!({"data":[{"id":"Qwen3-0.6B-GGUF"}]})) }));
+        axum::serve(listener, app).await.unwrap();
+    });
+    let endpoint = LlmEndpoint::for_discovery(&format!("http://{addr}/v1"), "").unwrap();
+    let models = list_models(&endpoint).await.unwrap();
+    assert_eq!(models, vec!["Qwen3-0.6B-GGUF"]);
+    handle.abort();
+}
+
 #[tokio::test]
 async fn drops_empty_and_control_model_ids() {
     let (base, handle) = serve_models(json!({"data":[{"id":""},{"id":"ok"},{"id":"bad\nid"}]})).await;
     let endpoint = LlmEndpoint::for_discovery(&base, "").unwrap();
     let models = list_models(&endpoint).await.unwrap();
     assert_eq!(models, vec!["ok"]);
+    handle.abort();
+}
+
+#[tokio::test]
+async fn lemonade_lists_chat_models_only() {
+    let body = json!({
+        "data": [
+            {"id": "Qwen3-Chat", "labels": ["chat", "tool-calling"]},
+            {"id": "Flux-Image", "labels": ["image"]},
+            {"id": "ACE-Music", "labels": ["audio-generation"]}
+        ]
+    });
+    let (base, handle) = serve_models(body).await;
+    let endpoint = LlmEndpoint::for_discovery(&base, "").unwrap();
+    let models = list_models(&endpoint).await.unwrap();
+    assert_eq!(models, vec!["Qwen3-Chat"]);
     handle.abort();
 }
 

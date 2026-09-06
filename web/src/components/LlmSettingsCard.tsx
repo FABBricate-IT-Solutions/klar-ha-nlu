@@ -2,23 +2,11 @@ import { useEffect, useState } from "react";
 import { api } from "../api";
 import type { Messages } from "../i18n";
 import type { LlmPublic } from "../types";
-import { LlmModelField } from "./LlmModelField";
+import { isProviderId, resolveProvider, writeStoredProvider } from "../llmProviders";
+import { LlmProviderFields } from "./LlmProviderFields";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
-import { Field, FieldContent, FieldDescription, FieldGroup, FieldLabel } from "@/components/ui/field";
-import { Input } from "@/components/ui/input";
-import { Switch } from "@/components/ui/switch";
-import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
-
-const OPENAI = "https://api.openai.com/v1";
-const OLLAMA = "http://127.0.0.1:11434/v1";
-
-function presetOf(url: string): "openai" | "ollama" | "" {
-  if (url === OPENAI) return "openai";
-  if (url === OLLAMA) return "ollama";
-  return "";
-}
 
 export function LlmSettingsCard({ t }: { t: Messages }) {
   const [endpoint, setEndpoint] = useState<LlmPublic>({ configured: false });
@@ -35,6 +23,7 @@ export function LlmSettingsCard({ t }: { t: Messages }) {
     setModel(next.model || "");
     setApiKey("");
     setEnableThinking(Boolean(next.enable_thinking));
+    if (isProviderId(next.provider)) writeStoredProvider(next.provider);
   };
 
   useEffect(() => {
@@ -49,6 +38,7 @@ export function LlmSettingsCard({ t }: { t: Messages }) {
         ...(apiKey.trim() ? { api_key: apiKey.trim() } : {}),
         configured: true,
         enable_thinking: enableThinking,
+        provider: resolveProvider(baseUrl),
       });
       setEndpoint(next);
       setApiKey("");
@@ -72,8 +62,6 @@ export function LlmSettingsCard({ t }: { t: Messages }) {
     }
   };
 
-  const preset = presetOf(baseUrl);
-
   return (
     <Card>
       <CardHeader>
@@ -89,43 +77,17 @@ export function LlmSettingsCard({ t }: { t: Messages }) {
         ) : null}
       </CardHeader>
       <CardContent>
-        <FieldGroup>
-          <Field>
-            <ToggleGroup
-              variant="outline"
-              spacing={0}
-              value={preset ? [preset] : []}
-              onValueChange={(next) => {
-                const picked = next[0];
-                if (picked === "openai") setBaseUrl(OPENAI);
-                if (picked === "ollama") setBaseUrl(OLLAMA);
-              }}
-            >
-              <ToggleGroupItem value="openai">{t.llmPresetOpenAi}</ToggleGroupItem>
-              <ToggleGroupItem value="ollama">{t.llmPresetOllama}</ToggleGroupItem>
-            </ToggleGroup>
-          </Field>
-          <Field>
-            <FieldLabel htmlFor="llm-base-url">{t.llmBaseUrl}</FieldLabel>
-            <Input id="llm-base-url" value={baseUrl} onChange={(ev) => setBaseUrl(ev.target.value)} placeholder={OPENAI} />
-          </Field>
-          <Field>
-            <FieldLabel htmlFor="llm-model">{t.llmModel}</FieldLabel>
-            <LlmModelField t={t} baseUrl={baseUrl} apiKey={apiKey} model={model} onModel={setModel} />
-          </Field>
-          <Field>
-            <FieldLabel htmlFor="llm-key">{t.llmApiKey}</FieldLabel>
-            <Input id="llm-key" type="password" value={apiKey} onChange={(ev) => setApiKey(ev.target.value)} placeholder={t.llmApiKeyHint} autoComplete="off" />
-            <FieldDescription>{t.llmApiKeyHint}</FieldDescription>
-          </Field>
-          <Field orientation="horizontal">
-            <FieldContent>
-              <FieldLabel>{t.llmThinking}</FieldLabel>
-              <FieldDescription>{t.llmThinkingHint}</FieldDescription>
-            </FieldContent>
-            <Switch checked={enableThinking} onCheckedChange={(checked) => setEnableThinking(Boolean(checked))} />
-          </Field>
-        </FieldGroup>
+        <LlmProviderFields
+          t={t}
+          baseUrl={baseUrl}
+          model={model}
+          apiKey={apiKey}
+          thinking={enableThinking}
+          onUrl={setBaseUrl}
+          onModel={setModel}
+          onKey={setApiKey}
+          onThinking={setEnableThinking}
+        />
       </CardContent>
       <CardFooter className="flex flex-wrap gap-2">
         <Button type="button" onClick={() => void save()}>{t.save}</Button>

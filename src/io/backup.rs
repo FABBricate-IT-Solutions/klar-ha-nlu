@@ -330,6 +330,7 @@ mod tests {
                 api_key: "sk-secret".into(),
                 model: "gemma".into(),
                 enable_thinking: false,
+                provider: crate::llm::LlmProviderKind::Custom,
             },
         )
         .unwrap();
@@ -429,6 +430,7 @@ mod tests {
                 api_key: "sk-local".into(),
                 model: "old".into(),
                 enable_thinking: false,
+                provider: crate::llm::LlmProviderKind::Custom,
             },
         )
         .unwrap();
@@ -437,6 +439,7 @@ mod tests {
             api_key: String::new(),
             model: "gemma".into(),
             enable_thinking: true,
+            provider: crate::llm::LlmProviderKind::Lemonade,
         };
         let state = AppState::new(
             LoadedHome {

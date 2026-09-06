@@ -32,7 +32,7 @@ pub use assist_rag::leaks_klar_tools;
 pub use assist_yarn::yarn_request;
 pub use client::{chat, chat_stream, chat_stream_turn, chat_turn, list_models, LlmClient};
 pub use custom_voice::{generate_custom_voice, CustomVoiceOut, CustomVoiceRequest};
-pub use endpoint::{LlmEndpoint, LlmPublic};
+pub use endpoint::{LlmEndpoint, LlmProviderKind, LlmPublic};
 pub use extract::{json_array, json_object};
 pub use refine::{refine, refine_on, RefineOutcome, RefineRequest};
 pub use refine_accept::{accept_refined, streams_refine_prefix, weather_claim};
