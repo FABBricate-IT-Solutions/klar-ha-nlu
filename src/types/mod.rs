@@ -20,7 +20,7 @@ pub use policy::{
     MatchCatalogRow, MatchControl, PolicyEffect, PolicyHit, PolicyMatch, PolicyRule, SpeechBank, SpeechBankEntry, SpeechVariant,
     MAX_POLICY_RULES, MAX_SPEECH_VARIANTS,
 };
-pub use settings::{Mode, Personality, Settings, UnitSystem};
+pub use settings::{Mode, Personality, Settings, UnitSystem, VoiceTraits};
 pub use speech_snapshot::{
     SnapshotError, SpeechCalendarEvent, SpeechEntity, SpeechIntent, SpeechQueueItem, SpeechRenderOut, SpeechSlot, SpeechSnapshot,
     SNAPSHOT_SCHEMA,

@@ -1,4 +1,4 @@
-use super::endpoint::LlmEndpoint;
+use super::endpoint::{LlmEndpoint, LlmProviderKind};
 use super::sse::{delta_text, delta_tool_calls, SseBuf};
 use super::types::{
     ChatRequest, CompletionTurn, LlmError, SanitizedChat, ToolCallAssembler, UpstreamChat, UpstreamCompletion, UpstreamMessage,
@@ -9,7 +9,7 @@ use std::collections::BTreeSet;
 use std::time::Duration;
 
 const MAX_MODELS: usize = 500;
-const MAX_MODEL_ID: usize = 128;
+const MAX_MODEL_ID: usize = 256;
 
 #[derive(Clone)]
 pub struct LlmClient {
@@ -66,10 +66,41 @@ pub async fn list_models(endpoint: &LlmEndpoint) -> Result<Vec<String>, LlmError
         .connect_timeout(Duration::from_secs(8))
         .build()
         .map_err(|_| LlmError::Transport)?;
-    let mut req = http.get(endpoint.models_url());
-    if !endpoint.api_key.is_empty() {
-        req = req.bearer_auth(&endpoint.api_key);
+    let mut last_err = LlmError::Response;
+    let mut saw_empty = false;
+    for url in model_list_urls(&endpoint.base_url) {
+        match list_models_at(&http, endpoint, &url).await {
+            Ok(ids) if !ids.is_empty() => return Ok(ids),
+            Ok(_) => saw_empty = true,
+            Err(err) => last_err = err,
+        }
     }
+    if saw_empty {
+        Ok(Vec::new())
+    } else {
+        Err(last_err)
+    }
+}
+
+pub(crate) fn model_list_urls(base_url: &str) -> Vec<String> {
+    let base = base_url.trim_end_matches('/');
+    let mut urls = vec![format!("{base}/models")];
+    if let Some(root) = base.strip_suffix("/api/v1") {
+        let alt = format!("{root}/v1/models");
+        if !urls.contains(&alt) {
+            urls.push(alt);
+        }
+    } else if let Some(root) = base.strip_suffix("/v1") {
+        let alt = format!("{root}/api/v1/models");
+        if !urls.contains(&alt) {
+            urls.push(alt);
+        }
+    }
+    urls
+}
+
+async fn list_models_at(http: &reqwest::Client, endpoint: &LlmEndpoint, url: &str) -> Result<Vec<String>, LlmError> {
+    let req = apply_provider_headers(http.get(url), endpoint);
     let response = req.send().await.map_err(LlmError::from)?;
     let status = response.status();
     if !status.is_success() {
@@ -80,26 +111,45 @@ pub async fn list_models(endpoint: &LlmEndpoint) -> Result<Vec<String>, LlmError
 }
 
 fn parse_model_ids(value: &Value) -> Vec<String> {
-    let mut ids = BTreeSet::new();
-    let rows = value.get("data").or_else(|| value.get("models")).and_then(Value::as_array);
+    let rows = value
+        .as_array()
+        .or_else(|| value.get("data").and_then(Value::as_array))
+        .or_else(|| value.get("models").and_then(Value::as_array));
     let Some(rows) = rows else {
         return Vec::new();
     };
+    let mut parsed = Vec::new();
     for row in rows {
-        if ids.len() >= MAX_MODELS {
-            break;
-        }
         let raw = row.as_str().map(str::to_string).or_else(|| {
-            row.get("id")
-                .and_then(Value::as_str)
-                .map(str::to_string)
-                .or_else(|| row.get("name").and_then(Value::as_str).map(str::to_string))
+            ["id", "name", "model"]
+                .iter()
+                .find_map(|key| row.get(*key).and_then(Value::as_str).map(str::to_string))
         });
         if let Some(id) = raw.and_then(|text| sanitize_model_id(&text)) {
-            ids.insert(id);
+            parsed.push((id, row_labels(row)));
         }
     }
-    ids.into_iter().collect()
+    let chat: Vec<String> = parsed
+        .iter()
+        .filter(|(_, labels)| labels.iter().any(|label| label == "chat"))
+        .map(|(id, _)| id.clone())
+        .collect();
+    let ids = if chat.is_empty() { parsed.into_iter().map(|(id, _)| id).collect() } else { chat };
+    let mut unique = BTreeSet::new();
+    for id in ids {
+        if unique.len() >= MAX_MODELS {
+            break;
+        }
+        unique.insert(id);
+    }
+    unique.into_iter().collect()
+}
+
+fn row_labels(row: &Value) -> Vec<String> {
+    row.get("labels")
+        .and_then(Value::as_array)
+        .map(|arr| arr.iter().filter_map(Value::as_str).map(str::to_ascii_lowercase).collect())
+        .unwrap_or_default()
 }
 
 fn sanitize_model_id(raw: &str) -> Option<String> {
@@ -190,19 +240,36 @@ impl LlmClient {
     }
 
     async fn send(&self, body: &SanitizedChat, stream: bool) -> Result<reqwest::Response, LlmError> {
-        let mut req = self.http.post(self.endpoint.chat_url()).json(&UpstreamChat {
-            model: &self.endpoint.model,
-            messages: &body.messages,
-            stream,
-            temperature: body.temperature,
-            max_tokens: body.max_tokens,
-            tools: body.tools.as_deref(),
-            tool_choice: body.tool_choice.as_ref(),
-            chat_template_kwargs: self.endpoint.chat_template_kwargs(),
-        });
-        if !self.endpoint.api_key.is_empty() {
-            req = req.bearer_auth(&self.endpoint.api_key);
-        }
+        let extra = self.endpoint.thinking_extras();
+        let req = apply_provider_headers(
+            self.http.post(self.endpoint.chat_url()).json(&UpstreamChat {
+                model: &self.endpoint.model,
+                messages: &body.messages,
+                stream,
+                temperature: body.temperature,
+                max_tokens: body.max_tokens,
+                tools: body.tools.as_deref(),
+                tool_choice: body.tool_choice.as_ref(),
+                chat_template_kwargs: extra.chat_template_kwargs,
+                reasoning_effort: extra.reasoning_effort,
+                thinking: extra.thinking,
+                extra_body: extra.extra_body,
+            }),
+            &self.endpoint,
+        );
         req.send().await.map_err(LlmError::from)
+    }
+}
+
+fn apply_provider_headers(mut req: reqwest::RequestBuilder, endpoint: &LlmEndpoint) -> reqwest::RequestBuilder {
+    if endpoint.api_key.is_empty() {
+        return req;
+    }
+    match endpoint.provider {
+        LlmProviderKind::Anthropic => {
+            req = req.header("x-api-key", &endpoint.api_key).header("anthropic-version", "2023-06-01");
+            req
+        }
+        _ => req.bearer_auth(&endpoint.api_key),
     }
 }

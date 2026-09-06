@@ -1,9 +1,12 @@
+import type { LlmChatTarget } from "../../customVoice";
 import { CustomVoiceInterview } from "../CustomVoiceInterview";
+import { SearchSelect } from "../SearchSelect";
 import { isPersonality, PERSONALITIES, personalityLabel } from "../../personality";
 import type { Messages } from "../../i18n";
 import type { WizardMessages } from "../../i18n/wizard";
 import type { Settings } from "../../types";
-import { field, control } from "./styles";
+import { Field, FieldContent, FieldDescription, FieldGroup, FieldLabel } from "@/components/ui/field";
+import { Switch } from "@/components/ui/switch";
 
 export function VoiceStep({
   copy,
@@ -11,6 +14,7 @@ export function VoiceStep({
   settings,
   llmReady,
   language,
+  llm,
   onSettings,
 }: {
   copy: WizardMessages;
@@ -18,58 +22,56 @@ export function VoiceStep({
   settings: Settings;
   llmReady: boolean;
   language: string;
+  llm?: LlmChatTarget;
   onSettings: (next: Settings) => void;
 }) {
   const voice = isPersonality(settings.personality) ? settings.personality : "default";
   const customOn = voice === "custom";
+  const voices = PERSONALITIES.filter((id) => id !== "custom" || llmReady).map((id) => ({
+    value: id,
+    label: personalityLabel(chrome, id, settings.custom_voice_name),
+  }));
   return (
-    <>
+    <FieldGroup>
       <p>{copy.modeLead}</p>
-      <label style={field}>
-        {chrome.personality}
-        <select
-          style={control}
+      <Field>
+        <FieldLabel>{chrome.personality}</FieldLabel>
+        <SearchSelect
           value={voice}
-          onChange={(ev) => {
-            if (isPersonality(ev.target.value)) {
-              onSettings({ ...settings, personality: ev.target.value });
-            }
+          options={voices}
+          onChange={(value) => {
+            if (isPersonality(value)) onSettings({ ...settings, personality: value });
           }}
-        >
-          {PERSONALITIES.filter((id) => id !== "custom" || llmReady).map((id) => (
-            <option key={id} value={id}>{personalityLabel(chrome, id)}</option>
-          ))}
-        </select>
-      </label>
+          allowEmpty={false}
+          placeholder={chrome.personality}
+        />
+      </Field>
       {llmReady ? (
-        <label className="wizard-check">
-          <input
-            type="checkbox"
+        <Field orientation="horizontal">
+          <FieldContent>
+            <FieldLabel>{chrome.customVoice}</FieldLabel>
+          </FieldContent>
+          <Switch
             checked={customOn}
-            onChange={(ev) => onSettings({ ...settings, personality: ev.target.checked ? "custom" : "default" })}
+            onCheckedChange={(checked) => onSettings({ ...settings, personality: checked ? "custom" : "default" })}
           />
-          {chrome.customVoice}
-        </label>
+        </Field>
       ) : null}
       {customOn && llmReady ? (
-        <CustomVoiceInterview
-          t={chrome}
-          language={language}
-          value={settings.custom_voice || ""}
-          onChange={(prompt) => onSettings({ ...settings, personality: "custom", custom_voice: prompt })}
-        />
+        <CustomVoiceInterview t={chrome} language={language} settings={settings} llm={llm} onSettings={onSettings} />
       ) : null}
       {llmReady ? (
-        <label className="wizard-check">
-          <input
-            type="checkbox"
+        <Field orientation="horizontal">
+          <FieldContent>
+            <FieldLabel>{chrome.refineSpeech}</FieldLabel>
+            <FieldDescription>{chrome.refineSpeechHint}</FieldDescription>
+          </FieldContent>
+          <Switch
             checked={Boolean(settings.refine_speech)}
-            onChange={(ev) => onSettings({ ...settings, refine_speech: ev.target.checked })}
+            onCheckedChange={(checked) => onSettings({ ...settings, refine_speech: Boolean(checked) })}
           />
-          {chrome.refineSpeech}
-        </label>
+        </Field>
       ) : null}
-      {llmReady ? <p className="caption">{chrome.refineSpeechHint}</p> : null}
-    </>
+    </FieldGroup>
   );
 }

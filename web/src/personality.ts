@@ -21,7 +21,7 @@ export function isPersonality(value: string): value is PersonalityId {
   return (PERSONALITIES as readonly string[]).includes(value);
 }
 
-export function personalityLabel(t: Messages, id: PersonalityId): string {
+export function personalityLabel(t: Messages, id: PersonalityId, customName?: string): string {
   switch (id) {
     case "default":
       return t.personalityDefault;
@@ -46,7 +46,7 @@ export function personalityLabel(t: Messages, id: PersonalityId): string {
     case "jarvis":
       return t.personalityJarvis;
     case "custom":
-      return t.personalityCustom;
+      return customName?.trim() || t.personalityCustom;
     default: {
       const _never: never = id;
       return _never;

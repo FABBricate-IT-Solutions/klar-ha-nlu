@@ -2,6 +2,7 @@ import { FlaskConicalIcon, HomeIcon, HouseIcon, MenuIcon, MessageSquareIcon, Set
 import { useEffect, useMemo, useRef, useState } from "react";
 import { api } from "./api";
 import { Drawer } from "./components/common";
+import { KlarBrand } from "./components/KlarBrand";
 import { TrainerDock, TrainerToggle } from "./components/TrainerDock";
 import { TEACH_HEARD_KEY } from "./components/TeachFromMiss";
 import { assistParseLanguage, chromeLocale, dictionaries, isRtl } from "./i18n";
@@ -12,7 +13,8 @@ import { ParsePage } from "./pages/ParsePage";
 import { RulesPage } from "./pages/RulesPage";
 import { SettingsPage } from "./pages/SettingsPage";
 import { Wizard } from "./pages/Wizard";
-import type { ConversationTurn, Dashboard, HouseView, RulesView, Settings, Tab, Theme, UiState } from "./types";
+import { applyRoute, asHouseView, asRulesView, asSettingsView, asTab, hrefFor, parseHash } from "./routes";
+import type { ConversationTurn, Dashboard, Settings, Tab, Theme, UiState } from "./types";
 import { Badge } from "@/components/ui/badge";
 import { Button, buttonVariants } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetHeader, SheetTitle } from "@/components/ui/sheet";
@@ -31,22 +33,6 @@ const tabIcons: Record<Tab, typeof HomeIcon> = {
 
 const railTabs: Tab[] = ["home", "conversations", "rules", "house"];
 const utilTabs: Tab[] = ["lab", "settings"];
-const houseViews: HouseView[] = ["graph", "entities", "calibrate"];
-const rulesViews: RulesView[] = ["routines", "sentences", "policies"];
-const legacyTab: Record<string, Tab> = {
-  dashboard: "home",
-  graph: "house",
-  parse: "lab",
-  calibrate: "house",
-  entities: "house",
-  custom: "rules",
-  settings: "settings",
-  home: "home",
-  conversations: "conversations",
-  rules: "rules",
-  house: "house",
-  lab: "lab",
-};
 const defaultUi: UiState = {
   tab: "home",
   locale: "",
@@ -57,6 +43,7 @@ const defaultUi: UiState = {
   wizard_done: false,
   house_view: "calibrate",
   rules_view: "routines",
+  settings_view: "llm",
   theme: "dark",
 };
 const defaultSettings: Settings = {
@@ -76,26 +63,17 @@ const defaultSettings: Settings = {
   extra_prompt: "",
   unit_system: "metric",
   custom_voice: "",
+  custom_voice_name: "",
+  custom_voice_seed: "",
+  custom_voice_traits: {
+    warmth: 5,
+    humor: 4,
+    sarcasm: 2,
+    formality: 5,
+    verbosity: 4,
+    energy: 5,
+  },
 };
-
-type Route = {
-  tab: Tab;
-  house_view?: HouseView;
-  rules_view?: RulesView;
-  entity_id?: string;
-};
-
-function asTab(value: string | undefined): Tab {
-  return legacyTab[value || ""] || "home";
-}
-
-function asHouseView(value: string | undefined): HouseView {
-  return houseViews.includes(value as HouseView) ? (value as HouseView) : "calibrate";
-}
-
-function asRulesView(value: string | undefined): RulesView {
-  return rulesViews.includes(value as RulesView) ? (value as RulesView) : "routines";
-}
 
 const THEME_KEY = "klar_theme";
 
@@ -118,123 +96,6 @@ function writeStoredTheme(theme: Theme) {
   } catch {
     return;
   }
-}
-
-function parseHash(raw: string): Route | null {
-  if (!raw || raw === "#") return null;
-  const parts = raw.replace(/^#/, "").replace(/^\//, "").split("/").filter(Boolean);
-  if (parts.length === 0) return { tab: "home" };
-  const head = parts[0] || "";
-  const rest = parts.slice(1);
-  switch (head) {
-    case "dashboard":
-    case "home":
-      return { tab: "home" };
-    case "conversations":
-      return { tab: "conversations" };
-    case "lab":
-    case "parse":
-      return { tab: "lab" };
-    case "settings":
-      return { tab: "settings" };
-    case "custom":
-      return { tab: "rules", rules_view: "sentences" };
-    case "rules":
-      return parseRulesHash(rest);
-    case "house":
-      return parseHouseHash(rest);
-    case "graph":
-      return { tab: "house", house_view: "graph" };
-    case "calibrate":
-      return { tab: "house", house_view: "calibrate" };
-    case "entities":
-      return { tab: "house", house_view: "entities" };
-    default:
-      return { tab: asTab(head) };
-  }
-}
-
-function parseRulesHash(rest: string[]): Route {
-  const sub = rest[0] || "";
-  if (sub === "sentences" || sub === "phrases") return { tab: "rules", rules_view: "sentences" };
-  if (sub === "policies") return { tab: "rules", rules_view: "policies" };
-  if (sub === "routines") return { tab: "rules", rules_view: "routines" };
-  return { tab: "rules" };
-}
-
-function parseHouseHash(rest: string[]): Route {
-  const sub = rest[0] || "";
-  if (sub === "mapping" || sub === "calibrate") return { tab: "house", house_view: "calibrate" };
-  if (sub === "graph") return { tab: "house", house_view: "graph" };
-  if (sub === "entities") return { tab: "house", house_view: "entities" };
-  if (sub === "devices") {
-    const id = rest.slice(1).map((part) => decodeURIComponent(part)).join("/");
-    return { tab: "house", house_view: "entities", entity_id: id || undefined };
-  }
-  return { tab: "house" };
-}
-
-function houseHash(view: HouseView | undefined, entityId?: string): string {
-  if (entityId) return `#/house/devices/${encodeURIComponent(entityId)}`;
-  const current: HouseView = view || "calibrate";
-  switch (current) {
-    case "calibrate":
-      return "#/house/mapping";
-    case "entities":
-      return "#/house/devices";
-    case "graph":
-      return "#/house/graph";
-    default: {
-      const _never: never = current;
-      return _never;
-    }
-  }
-}
-
-function rulesHash(view: RulesView | undefined): string {
-  const current: RulesView = view || "routines";
-  switch (current) {
-    case "routines":
-      return "#/rules/routines";
-    case "sentences":
-      return "#/rules/sentences";
-    case "policies":
-      return "#/rules/policies";
-    default: {
-      const _never: never = current;
-      return _never;
-    }
-  }
-}
-
-function hrefFor(tab: Tab, ui: UiState, entityId?: string): string {
-  switch (tab) {
-    case "home":
-      return "#/";
-    case "conversations":
-      return "#/conversations";
-    case "rules":
-      return rulesHash(ui.rules_view);
-    case "house":
-      return houseHash(ui.house_view, entityId);
-    case "lab":
-      return "#/lab";
-    case "settings":
-      return "#/settings";
-    default: {
-      const _never: never = tab;
-      return _never;
-    }
-  }
-}
-
-function applyRoute(prev: UiState, route: Route): UiState {
-  return {
-    ...prev,
-    tab: route.tab,
-    house_view: route.house_view ?? prev.house_view ?? "calibrate",
-    rules_view: route.rules_view ?? prev.rules_view ?? "routines",
-  };
 }
 
 export function App() {
@@ -284,6 +145,7 @@ export function App() {
           tab: asTab(nextUi.tab),
           house_view: asHouseView(nextUi.house_view),
           rules_view: asRulesView(nextUi.rules_view),
+          settings_view: asSettingsView(nextUi.settings_view),
           theme: asTheme(readStoredTheme() || nextUi.theme),
           wizard_done: Boolean(nextUi.wizard_done),
         }, route || { tab: asTab(nextUi.tab) }));
@@ -294,6 +156,8 @@ export function App() {
         setBooted(true);
       } catch (err) {
         setError(String(err));
+        const route = parseHash(window.location.hash);
+        if (route) setUi((prev) => applyRoute(prev, route));
         setBooted(true);
       }
     })();
@@ -321,7 +185,7 @@ export function App() {
     const next = hrefFor(ui.tab, ui, ui.tab === "house" ? (inspectId || undefined) : undefined);
     if (window.location.hash === next) return;
     history.replaceState(null, "", `${window.location.pathname}${window.location.search}${next}`);
-  }, [ui.tab, ui.house_view, ui.rules_view, inspectId]);
+  }, [ui.tab, ui.house_view, ui.rules_view, ui.settings_view, inspectId]);
 
   useEffect(() => {
     const onHash = () => {
@@ -364,7 +228,7 @@ export function App() {
     [dashboard],
   );
 
-  const go = (tab: Tab, extra: Partial<Pick<UiState, "house_view" | "rules_view">> = {}) => {
+  const go = (tab: Tab, extra: Partial<Pick<UiState, "house_view" | "rules_view" | "settings_view">> = {}) => {
     setUi((prev) => ({ ...prev, tab, ...extra }));
   };
   const teach = (heard: string) => {
@@ -408,6 +272,7 @@ export function App() {
       wizard_done: prev.wizard_done,
       house_view: asHouseView(next.house_view ?? prev.house_view),
       rules_view: prev.rules_view,
+      settings_view: prev.settings_view,
       theme: prev.theme,
     }));
   };
@@ -437,9 +302,9 @@ export function App() {
       <Sheet open={navOpen} onOpenChange={setNavOpen}>
         <SheetContent side="left" id="klar-nav" className="bg-background text-foreground w-64 p-0">
           <SheetHeader>
-            <SheetTitle className="brand px-4 pt-2">Klar</SheetTitle>
+            <SheetTitle className="px-4 pt-2"><KlarBrand /></SheetTitle>
           </SheetHeader>
-          <nav className="flex flex-col gap-1 px-3 pb-4" aria-label="Klar">
+          <nav className="flex flex-col gap-1 px-3 pb-4" aria-label="Klar!">
             {navTabs.map((tab) => link(tab))}
           </nav>
         </SheetContent>
@@ -458,7 +323,7 @@ export function App() {
             >
               <MenuIcon />
             </Button>
-            <div className="brand">Klar</div>
+            <KlarBrand />
           </div>
           <div className="topbar-end">
             <div className="status">
@@ -468,6 +333,7 @@ export function App() {
             {booted ? <TrainerToggle open={trainerOpen} onOpenChange={setTrainerOpen} t={t} /> : null}
           </div>
         </header>
+        <div className="app-body">
         {error && <div className="page"><div className="card danger">{error}</div></div>}
         {!dashboard && !error && <div className="page"><div className="card">{t.loading}</div></div>}
         {dashboard && ui.tab === "home" && (
@@ -527,6 +393,8 @@ export function App() {
             settings={settings}
             onSettings={setSettings}
             onReplayWizard={replayWizard}
+            settingsView={asSettingsView(ui.settings_view)}
+            onSettingsView={(view) => go("settings", { settings_view: view })}
             theme={theme}
             onTheme={(next) => {
               writeStoredTheme(next);
@@ -534,6 +402,7 @@ export function App() {
             }}
           />
         )}
+        </div>
       </div>
 
       {booted && !ui.wizard_done && (

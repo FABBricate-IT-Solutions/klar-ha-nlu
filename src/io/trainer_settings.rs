@@ -4,7 +4,7 @@ use crate::home::overlay::{load_overlay, save_overlay};
 use crate::io::state::AppState;
 use crate::io::trainer_reads::with_view;
 use crate::lang::{pin_language, LangId};
-use crate::types::{Mode, Personality, Settings, UnitSystem};
+use crate::types::{Mode, Personality, Settings, UnitSystem, VoiceTraits};
 use serde_json::{json, Value};
 
 const FORBIDDEN: &[&str] = &["url", "base_url", "token", "api_key", "model", "endpoint", "llm_url", "fallback_llm", "fallback_agent"];
@@ -25,6 +25,9 @@ const ENGINE_KEYS: &[&str] = &[
     "extra_prompt",
     "unit_system",
     "custom_voice",
+    "custom_voice_name",
+    "custom_voice_seed",
+    "custom_voice_traits",
 ];
 
 const UI_KEYS: &[&str] = &["theme", "locale"];
@@ -48,6 +51,9 @@ pub fn engine_view(settings: &Settings, theme: &str, locale: &str, locale_set: b
             "extra_prompt": settings.extra_prompt,
             "unit_system": settings.unit_system,
             "custom_voice": settings.custom_voice,
+            "custom_voice_name": settings.custom_voice_name,
+            "custom_voice_seed": settings.custom_voice_seed,
+            "custom_voice_traits": settings.custom_voice_traits,
             "theme": theme,
             "locale": locale,
             "locale_set": locale_set,
@@ -125,7 +131,10 @@ fn public_settings(settings: &Settings) -> Value {
         "support_bundle_raw_text": settings.support_bundle_raw_text,
         "extra_prompt": settings.extra_prompt,
         "unit_system": settings.unit_system,
-        "custom_voice": settings.custom_voice
+        "custom_voice": settings.custom_voice,
+        "custom_voice_name": settings.custom_voice_name,
+        "custom_voice_seed": settings.custom_voice_seed,
+        "custom_voice_traits": settings.custom_voice_traits
     })
 }
 
@@ -182,6 +191,23 @@ fn patch_engine(current: &Settings, args: &Value) -> Result<Settings, String> {
             return Err("custom_voice too long".into());
         }
         next.custom_voice = text.to_string();
+    }
+    if let Some(text) = args.get("custom_voice_name").and_then(Value::as_str) {
+        if text.chars().count() > 64 {
+            return Err("custom_voice_name too long".into());
+        }
+        next.custom_voice_name = text.to_string();
+    }
+    if let Some(text) = args.get("custom_voice_seed").and_then(Value::as_str) {
+        if text.chars().count() > 500 {
+            return Err("custom_voice_seed too long".into());
+        }
+        next.custom_voice_seed = text.to_string();
+    }
+    if let Some(value) = args.get("custom_voice_traits") {
+        next.custom_voice_traits = serde_json::from_value::<VoiceTraits>(value.clone())
+            .map_err(|_| "bad custom_voice_traits")?
+            .clamp();
     }
     Ok(next)
 }
@@ -281,9 +307,11 @@ mod tests {
         assert_eq!(next.languages, vec!["de"]);
         let imperial = patch_engine(&set, &json!({"unit_system":"imperial"})).unwrap();
         assert_eq!(imperial.unit_system, UnitSystem::Imperial);
-        let custom = patch_engine(&set, &json!({"personality":"custom","custom_voice":"Voice: dry."})).unwrap();
+        let custom = patch_engine(&set, &json!({"personality":"custom","custom_voice":"Voice: dry.","custom_voice_name":"Spock","custom_voice_seed":"You are Spock."})).unwrap();
         assert_eq!(custom.personality, Personality::Custom);
         assert_eq!(custom.custom_voice, "Voice: dry.");
+        assert_eq!(custom.custom_voice_name, "Spock");
+        assert_eq!(custom.custom_voice_seed, "You are Spock.");
     }
 
     #[tokio::test]

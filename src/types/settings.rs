@@ -42,6 +42,56 @@ const fn default_confirm_risky_actions() -> bool {
     true
 }
 
+const fn trait_mid() -> u8 {
+    5
+}
+
+fn clamp_trait(value: u8) -> u8 {
+    value.min(10)
+}
+
+#[derive(Debug, Clone, Serialize, Deserialize, PartialEq, Eq)]
+pub struct VoiceTraits {
+    #[serde(default = "trait_mid")]
+    pub warmth: u8,
+    #[serde(default = "trait_mid")]
+    pub humor: u8,
+    #[serde(default)]
+    pub sarcasm: u8,
+    #[serde(default = "trait_mid")]
+    pub formality: u8,
+    #[serde(default = "trait_mid")]
+    pub verbosity: u8,
+    #[serde(default = "trait_mid")]
+    pub energy: u8,
+}
+
+impl Default for VoiceTraits {
+    fn default() -> Self {
+        Self {
+            warmth: 5,
+            humor: 4,
+            sarcasm: 2,
+            formality: 5,
+            verbosity: 4,
+            energy: 5,
+        }
+    }
+}
+
+impl VoiceTraits {
+    pub fn clamp(self) -> Self {
+        Self {
+            warmth: clamp_trait(self.warmth),
+            humor: clamp_trait(self.humor),
+            sarcasm: clamp_trait(self.sarcasm),
+            formality: clamp_trait(self.formality),
+            verbosity: clamp_trait(self.verbosity),
+            energy: clamp_trait(self.energy),
+        }
+    }
+}
+
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct Settings {
     pub personality: Personality,
@@ -89,6 +139,15 @@ pub struct Settings {
     /// Packed-voice replacement when `personality` is `custom`. Empty falls back to default.
     #[serde(default)]
     pub custom_voice: String,
+    /// Operator label for the custom voice.
+    #[serde(default)]
+    pub custom_voice_name: String,
+    /// Character seed. Traits only refine how that seed speaks.
+    #[serde(default)]
+    pub custom_voice_seed: String,
+    /// Delivery sliders 0–10. Independent of the seed identity.
+    #[serde(default)]
+    pub custom_voice_traits: VoiceTraits,
 }
 
 impl Default for Settings {
@@ -110,6 +169,9 @@ impl Default for Settings {
             extra_prompt: String::new(),
             unit_system: UnitSystem::Metric,
             custom_voice: String::new(),
+            custom_voice_name: String::new(),
+            custom_voice_seed: String::new(),
+            custom_voice_traits: VoiceTraits::default(),
         }
     }
 }
@@ -140,16 +202,23 @@ mod tests {
         assert!(!set.fallback_llm);
         assert!(set.extra_prompt.is_empty());
         assert!(set.custom_voice.is_empty());
+        assert!(set.custom_voice_name.is_empty());
+        assert!(set.custom_voice_seed.is_empty());
+        assert_eq!(set.custom_voice_traits, VoiceTraits::default());
         assert_eq!(set.unit_system, UnitSystem::Metric);
         assert_eq!(set.languages, vec!["de"]);
     }
 
     #[test]
     fn custom_personality_roundtrips() {
-        let raw = r#"{"personality":"custom","mode":"full","custom_voice":"Voice: dry."}"#;
+        let raw = r#"{"personality":"custom","mode":"full","custom_voice":"Voice: dry.","custom_voice_name":"Spock","custom_voice_seed":"You are Spock.","custom_voice_traits":{"sarcasm":3}}"#;
         let set: Settings = serde_json::from_str(raw).unwrap();
         assert_eq!(set.personality, Personality::Custom);
         assert_eq!(set.custom_voice, "Voice: dry.");
+        assert_eq!(set.custom_voice_name, "Spock");
+        assert_eq!(set.custom_voice_seed, "You are Spock.");
+        assert_eq!(set.custom_voice_traits.sarcasm, 3);
+        assert_eq!(set.custom_voice_traits.warmth, 5);
     }
 
     #[test]

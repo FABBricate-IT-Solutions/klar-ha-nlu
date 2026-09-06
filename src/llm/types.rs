@@ -209,6 +209,22 @@ pub struct ChatTemplateKwargs {
     pub enable_thinking: bool,
 }
 
+#[derive(Debug, Clone, Serialize)]
+pub struct AnthropicThinking {
+    #[serde(rename = "type")]
+    pub kind: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub budget_tokens: Option<u32>,
+}
+
+#[derive(Debug, Default)]
+pub struct ThinkingExtras {
+    pub chat_template_kwargs: Option<ChatTemplateKwargs>,
+    pub reasoning_effort: Option<&'static str>,
+    pub thinking: Option<AnthropicThinking>,
+    pub extra_body: Option<serde_json::Value>,
+}
+
 #[derive(Debug, Serialize)]
 pub struct UpstreamChat<'a> {
     pub model: &'a str,
@@ -222,6 +238,12 @@ pub struct UpstreamChat<'a> {
     pub tool_choice: Option<&'a serde_json::Value>,
     #[serde(skip_serializing_if = "Option::is_none")]
     pub chat_template_kwargs: Option<ChatTemplateKwargs>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub reasoning_effort: Option<&'a str>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub thinking: Option<AnthropicThinking>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub extra_body: Option<serde_json::Value>,
 }
 
 #[derive(Debug, Deserialize)]

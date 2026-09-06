@@ -22,15 +22,45 @@
 .wizard-panel {
   position: relative;
   z-index: 31;
+  display: grid;
+  grid-template-rows: auto auto auto auto minmax(0, 1fr) auto;
   width: min(640px, 100%);
   max-height: min(88dvh, 840px);
   min-width: 0;
-  overflow: auto;
+  overflow: hidden;
   padding: 24px;
   background: var(--surface);
   border: 1px solid var(--line);
   border-radius: 0;
   overflow-wrap: anywhere;
+}
+
+.wizard-scroll {
+  min-height: 0;
+  overflow: hidden;
+  overscroll-behavior: contain;
+  isolation: isolate;
+  scrollbar-width: none;
+}
+
+.wizard-scroll::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+}
+
+.wizard-scroll.is-scrollable {
+  overflow-y: auto;
+  scrollbar-width: thin;
+}
+
+.wizard-scroll.is-scrollable::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+.wizard-body {
+  min-width: 0;
+  padding-bottom: 4px;
 }
 
 .wizard-panel h1 {
@@ -64,7 +94,7 @@
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
-  margin: 12px 0 20px;
+  margin: 8px 0 12px;
 }
 
 .wizard-steps button {
@@ -76,7 +106,14 @@
   padding: 0;
 }
 
-.wizard-foot { margin-top: 24px; }
+.wizard-foot {
+  position: relative;
+  z-index: 2;
+  margin-top: 0;
+  padding-top: 12px;
+  border-top: 1px solid var(--line);
+  background: var(--surface);
+}
 
 .wizard-foot button {
   min-height: 44px;
@@ -99,13 +136,20 @@
 .wizard-theme {
   display: flex;
   flex-wrap: wrap;
+  align-items: center;
   gap: 12px;
-  margin-top: 16px;
 }
 
-.wizard-theme button {
-  min-height: 72px;
-  min-width: 72px;
+.wizard-theme [data-slot="toggle-group-item"] {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+}
+
+.wizard-theme [data-slot="toggle-group-item"] svg {
+  display: block;
+  margin: auto;
 }
 
 .wizard-phrases { width: 100%; }

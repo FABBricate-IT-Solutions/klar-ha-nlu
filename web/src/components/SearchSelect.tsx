@@ -1,8 +1,17 @@
-import { useEffect, useId, useMemo, useRef, useState, type KeyboardEvent } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { api } from "../api";
+import { languageFlag } from "../i18n/languageFlag";
 import type { Dashboard, Entity } from "../types";
+import {
+  Combobox,
+  ComboboxContent,
+  ComboboxEmpty,
+  ComboboxInput,
+  ComboboxItem,
+  ComboboxList,
+} from "@/components/ui/combobox";
 
-export type SearchOption = { value: string; label: string };
+export type SearchOption = { value: string; label: string; hint?: string; flag?: string };
 
 type SearchSelectProps = {
   value: string;
@@ -28,6 +37,24 @@ function floorsFromDashboard(data: Dashboard): SearchOption[] {
 export function withCurrent(options: SearchOption[], value: string): SearchOption[] {
   if (!value || options.some((row) => row.value === value)) return options;
   return [{ value, label: value }, ...options];
+}
+
+export function languageOptions(
+  packs: { code: string; native_name: string }[],
+  displayLocale = "en",
+): SearchOption[] {
+  const names = new Intl.DisplayNames([displayLocale, "en"], { type: "language" });
+  return packs.map((pack) => {
+    const pretty = pack.native_name && pack.native_name !== pack.code
+      ? pack.native_name
+      : names.of(pack.code) || pack.code;
+    return {
+      value: pack.code,
+      label: pretty,
+      hint: pack.code,
+      flag: languageFlag(pack.code),
+    };
+  });
 }
 
 export function useHouseCatalog() {
@@ -60,6 +87,16 @@ export function useHouseCatalog() {
   return { entities, entityOptions, scriptOptions, rooms, domains, floors };
 }
 
+function matchesQuery(row: SearchOption, query: string): boolean {
+  const needle = query.trim().toLowerCase();
+  if (!needle) return true;
+  return (
+    row.label.toLowerCase().includes(needle)
+    || row.value.toLowerCase().includes(needle)
+    || Boolean(row.hint?.toLowerCase().includes(needle))
+  );
+}
+
 export function SearchSelect({
   value,
   options,
@@ -70,177 +107,48 @@ export function SearchSelect({
   allowCustom = false,
   id,
 }: SearchSelectProps) {
-  const listId = useId();
-  const root = useRef<HTMLDivElement>(null);
-  const activeRef = useRef<HTMLLIElement>(null);
-  const [open, setOpen] = useState(false);
   const [query, setQuery] = useState("");
-  const [active, setActive] = useState(0);
-  const selected = options.find((row) => row.value === value);
-
-  const filtered = useMemo(() => {
-    const needle = query.trim().toLowerCase();
-    const rows = needle
-      ? options.filter((row) => row.label.toLowerCase().includes(needle) || row.value.toLowerCase().includes(needle))
-      : options;
-    const custom = allowCustom && query.trim() && !options.some((row) => row.value === query.trim())
-      ? [{ value: query.trim(), label: query.trim() }]
-      : [];
-    const listed = custom.length ? [...custom, ...rows] : rows;
-    return allowEmpty ? [{ value: "", label: emptyLabel }, ...listed] : listed;
+  const items = useMemo(() => {
+    const listed = allowEmpty ? [{ value: "", label: emptyLabel }, ...options] : options;
+    const typed = query.trim();
+    if (allowCustom && typed && !listed.some((row) => row.value === typed)) {
+      return [{ value: typed, label: typed }, ...listed];
+    }
+    return listed;
   }, [allowCustom, allowEmpty, emptyLabel, options, query]);
-
-  useEffect(() => {
-    if (!open) return;
-    const close = (event: MouseEvent) => {
-      if (!root.current?.contains(event.target as Node)) setOpen(false);
-    };
-    document.addEventListener("mousedown", close);
-    return () => document.removeEventListener("mousedown", close);
-  }, [open]);
-
-  useEffect(() => {
-    activeRef.current?.scrollIntoView({ block: "nearest" });
-  }, [active, open]);
-
-  const highlightSelected = () => {
-    const rows = allowEmpty ? [{ value: "", label: emptyLabel }, ...options] : options;
-    const index = rows.findIndex((row) => row.value === value);
-    setActive(index >= 0 ? index : 0);
-  };
-
-  const openList = () => {
-    setQuery("");
-    highlightSelected();
-    setOpen(true);
-  };
-
-  const pick = (next: string) => {
-    onChange(next);
-    setOpen(false);
-    setQuery("");
-  };
-
-  const onKeyDown = (event: KeyboardEvent<HTMLInputElement>) => {
-    if (event.key === "ArrowDown") {
-      event.preventDefault();
-      if (!open) {
-        openList();
-        return;
-      }
-      setActive((index) => Math.min(index + 1, Math.max(filtered.length - 1, 0)));
-      return;
-    }
-    if (event.key === "ArrowUp") {
-      event.preventDefault();
-      setActive((index) => Math.max(index - 1, 0));
-      return;
-    }
-    if (event.key === "Home") {
-      event.preventDefault();
-      setActive(0);
-      return;
-    }
-    if (event.key === "End") {
-      event.preventDefault();
-      setActive(Math.max(filtered.length - 1, 0));
-      return;
-    }
-    if (event.key === "Enter") {
-      event.preventDefault();
-      const row = filtered[active];
-      if (row) pick(row.value);
-      return;
-    }
-    if (event.key === "Escape") {
-      event.preventDefault();
-      setOpen(false);
-      setQuery("");
-    }
-  };
+  const selected = items.find((row) => row.value === value) ?? null;
 
   return (
-    <div className="search-select" ref={root}>
-      <style>{searchSelectCss}</style>
-      <input
-        id={id}
-        role="combobox"
-        aria-expanded={open}
-        aria-controls={listId}
-        aria-haspopup="listbox"
-        aria-autocomplete="list"
-        autoComplete="off"
-        aria-activedescendant={open && filtered[active] ? `${listId}-${active}` : undefined}
-        value={open ? query : selected?.label || value}
-        placeholder={placeholder || emptyLabel}
-        onChange={(event) => {
-          setQuery(event.target.value);
-          setOpen(true);
-          setActive(0);
-        }}
-        onFocus={openList}
-        onKeyDown={onKeyDown}
-      />
-      {open && (
-        <ul id={listId} role="listbox" className="search-select-list">
-          {filtered.length === 0 && (
-            <li className="muted" role="presentation">
-              —
-            </li>
+    <Combobox
+      items={items}
+      value={selected}
+      onValueChange={(next) => onChange(next?.value ?? "")}
+      onInputValueChange={(next) => setQuery(next)}
+      isItemEqualToValue={(left, right) => left.value === right.value}
+      itemToStringLabel={(row) => (row.flag ? `${row.flag} ${row.label}` : row.label)}
+      itemToStringValue={(row) => row.value}
+      filter={matchesQuery}
+      autoHighlight
+    >
+      <ComboboxInput id={id} placeholder={placeholder || emptyLabel} />
+      <ComboboxContent align="start">
+        <ComboboxEmpty>—</ComboboxEmpty>
+        <ComboboxList>
+          {(row) => (
+            <ComboboxItem key={row.value || "any"} value={row}>
+              {row.flag ? (
+                <span className="text-base leading-none" aria-hidden>
+                  {row.flag}
+                </span>
+              ) : null}
+              <span className="min-w-0 flex-1 truncate">{row.label}</span>
+              {row.hint && row.hint !== row.label ? (
+                <span className="font-mono text-xs text-muted-foreground">{row.hint}</span>
+              ) : null}
+            </ComboboxItem>
           )}
-          {filtered.map((row, index) => (
-            <li
-              key={`${row.value || "any"}-${index}`}
-              id={`${listId}-${index}`}
-              ref={index === active ? activeRef : undefined}
-              role="option"
-              aria-selected={row.value === value}
-              className={index === active ? "active" : ""}
-              onMouseEnter={() => setActive(index)}
-              onMouseDown={(event) => {
-                event.preventDefault();
-                pick(row.value);
-              }}
-            >
-              <span>{row.label}</span>
-              {row.value && row.label !== row.value && <span className="mono">{row.value}</span>}
-            </li>
-          ))}
-        </ul>
-      )}
-    </div>
+        </ComboboxList>
+      </ComboboxContent>
+    </Combobox>
   );
 }
-
-const searchSelectCss = `
-.search-select { position: relative; }
-.search-select-list {
-  position: absolute;
-  z-index: 8;
-  inset-inline: 0;
-  top: calc(100% - 1px);
-  max-height: 240px;
-  margin: 0;
-  padding: 0;
-  overflow: auto;
-  list-style: none;
-  background: var(--surface);
-  border: 1px solid var(--line);
-  border-radius: 0;
-}
-.search-select-list li {
-  display: flex;
-  justify-content: space-between;
-  gap: 12px;
-  align-items: baseline;
-  padding: 10px 12px;
-  cursor: pointer;
-  border-radius: 0;
-}
-.search-select-list li.active,
-.search-select-list li[aria-selected="true"] {
-  background: var(--surface-2);
-}
-.search-select-list li.active { outline: 1px solid var(--accent); outline-offset: -1px; }
-.search-select input:focus-visible { outline: 1px solid var(--accent); outline-offset: 0; }
-`;
