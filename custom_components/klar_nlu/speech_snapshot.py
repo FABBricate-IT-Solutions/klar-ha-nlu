@@ -5,7 +5,7 @@ from __future__ import annotations
 from typing import Any
 
 SNAPSHOT_SCHEMA = "1"
-MAX_ENTITIES = 32
+MAX_ENTITIES = 96
 MAX_EVENTS = 16
 MAX_QUEUE = 8
 MAX_ATTR = 256

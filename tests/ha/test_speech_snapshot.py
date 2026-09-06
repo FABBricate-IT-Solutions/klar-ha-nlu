@@ -77,7 +77,7 @@ class SpeechSnapshotTests(unittest.TestCase):
         self.assertEqual(body["media_queue"][0]["title"], "Song")
 
     def test_caps_and_attr_length(self) -> None:
-        entities = [{"entity_id": f"light.n{i}", "name": "n", "domain": "light", "state": "on"} for i in range(40)]
+        entities = [{"entity_id": f"light.n{i}", "name": "n", "domain": "light", "state": "on"} for i in range(120)]
         body = snapshot.build_snapshot(
             language="en",
             personality="",
@@ -89,7 +89,7 @@ class SpeechSnapshotTests(unittest.TestCase):
             media_queue=[{"title": "t"} for _ in range(12)],
         )
         self.assertEqual(body["personality"], "default")
-        self.assertEqual(len(body["entities"]), 32)
+        self.assertEqual(len(body["entities"]), 96)
         self.assertEqual(len(body["calendar_events"]), 16)
         self.assertEqual(len(body["media_queue"]), 8)
         long_title = snapshot.build_snapshot(

@@ -261,9 +261,7 @@ fn query_speech(snap: &SpeechSnapshot, speech: Speech, de: bool) -> String {
         return media_status(snap, status, de);
     }
     let entities: Vec<&SpeechEntity> = snap.entities.iter().filter(|entity| !is_infra(entity)).collect();
-    let climate_like = snap.intent.name == "HassClimateGetTemperature"
-        || entities.iter().any(|entity| entity.domain == "climate" || entity.domain == "weather");
-    if climate_like {
+    if snap.intent.name == "HassClimateGetTemperature" {
         if entities.is_empty() {
             return String::new();
         }
@@ -272,13 +270,14 @@ fn query_speech(snap: &SpeechSnapshot, speech: Speech, de: bool) -> String {
             return line;
         }
     }
-    if slot(snap, "entity_id").is_none()
-        && (slot(snap, "area").is_some()
-            || slot(snap, "area_name").is_some()
-            || slot(snap, "floor").is_some()
-            || entities.iter().any(|entity| entity.area_name.as_ref().is_some_and(|name| !name.is_empty())))
-    {
+    if is_place_query(snap, &entities) {
         return place_status(snap, &entities, speech, &snap.language);
+    }
+    if entities.iter().any(|entity| entity.domain == "climate" || entity.domain == "weather") {
+        let line = climate_query(snap, &entities, de);
+        if !line.is_empty() {
+            return line;
+        }
     }
     if entities.is_empty() {
         return String::new();
@@ -686,6 +685,16 @@ fn domain_of(snap: &SpeechSnapshot) -> &str {
 
 fn is_query(name: &str) -> bool {
     matches!(name, "HassGetState" | "HassClimateGetTemperature")
+}
+
+fn is_place_query(snap: &SpeechSnapshot, entities: &[&SpeechEntity]) -> bool {
+    if slot(snap, "entity_id").is_some() {
+        return false;
+    }
+    slot(snap, "floor").is_some()
+        || slot(snap, "area").is_some()
+        || slot(snap, "area_name").is_some()
+        || entities.iter().any(|entity| entity.area_name.as_ref().is_some_and(|name| !name.is_empty()))
 }
 
 fn is_de(pack: &str) -> bool {
