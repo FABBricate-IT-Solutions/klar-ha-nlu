@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import type { Messages } from "../i18n";
 import {
   exactProvider,
+  guessProvider,
   LLM_PROVIDERS,
   providerById,
   resolveProvider,
@@ -89,6 +90,7 @@ export function LlmProviderFields({
             setProvider(next.id);
             writeStoredProvider(next.id);
             if (next.id === "custom") return;
+            if (guessProvider(baseUrl) === next.id) return;
             onUrl(next.url);
             if (next.model) onModel(next.model);
           }}

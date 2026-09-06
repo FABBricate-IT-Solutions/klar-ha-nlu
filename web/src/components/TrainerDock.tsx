@@ -132,6 +132,7 @@ export function TrainerDock({
           t={t}
           lane={lane}
           language={language}
+          active={open}
           onLane={setLane}
           onClose={() => onOpenChange(false)}
           onStatus={setStatus}

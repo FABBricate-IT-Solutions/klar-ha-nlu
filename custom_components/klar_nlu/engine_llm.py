@@ -125,9 +125,10 @@ async def stream_engine_refine(
     collected: list[str] = []
     accepted = False
     final = ""
+    finished = False
 
     async def tokens() -> AsyncIterator[str]:
-        nonlocal accepted, final
+        nonlocal accepted, final, finished
         async for event in iter_engine_refine_events(
             hass,
             speech,
@@ -146,9 +147,15 @@ async def stream_engine_refine(
                 parsed = _refine_result(event)
                 if parsed is not None:
                     final, accepted = parsed
+                finished = True
+
+    def hold(_speech: str) -> bool | None:
+        if not finished:
+            return False
+        return True if accepted else None
 
     try:
-        posted = await emit_delta_stream(chat_log, agent_id, iter_token_deltas(tokens(), collected, None))
+        posted = await emit_delta_stream(chat_log, agent_id, iter_token_deltas(tokens(), collected, hold))
     except EngineRefineMissing:
         raise
     except EngineUnavailable:

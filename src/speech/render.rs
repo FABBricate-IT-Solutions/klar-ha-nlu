@@ -101,6 +101,11 @@ const DE_STATE: &[(&str, &str)] = &[
     ("idle", "bereit"),
     ("heat", "heizt"),
     ("cool", "kühlt"),
+    ("cloudy", "bewölkt"),
+    ("partlycloudy", "teilweise bewölkt"),
+    ("rainy", "regnerisch"),
+    ("sunny", "sonnig"),
+    ("clear", "klar"),
 ];
 
 pub fn render_snapshot(snap: &SpeechSnapshot) -> SpeechRenderOut {
@@ -256,11 +261,16 @@ fn query_speech(snap: &SpeechSnapshot, speech: Speech, de: bool) -> String {
         return media_status(snap, status, de);
     }
     let entities: Vec<&SpeechEntity> = snap.entities.iter().filter(|entity| !is_infra(entity)).collect();
-    if snap.intent.name == "HassClimateGetTemperature" {
+    let climate_like = snap.intent.name == "HassClimateGetTemperature"
+        || entities.iter().any(|entity| entity.domain == "climate" || entity.domain == "weather");
+    if climate_like {
         if entities.is_empty() {
             return String::new();
         }
-        return climate_query(snap, &entities, de);
+        let line = climate_query(snap, &entities, de);
+        if !line.is_empty() {
+            return line;
+        }
     }
     if slot(snap, "entity_id").is_none()
         && (slot(snap, "area").is_some()
@@ -280,13 +290,16 @@ fn query_speech(snap: &SpeechSnapshot, speech: Speech, de: bool) -> String {
     entities
         .iter()
         .take(4)
-        .map(|entity| {
+        .filter_map(|entity| {
             let spoken = speak_state(&entity.state, &snap.language);
-            if de {
-                format!("{} ist {spoken}.", entity.name)
-            } else {
-                format!("{} is {spoken}.", entity.name)
+            if entity.name.trim().is_empty() && spoken.trim().is_empty() {
+                return None;
             }
+            Some(if de {
+                format!("{} ist {spoken}.", entity.name).trim().to_string()
+            } else {
+                format!("{} is {spoken}.", entity.name).trim().to_string()
+            })
         })
         .collect::<Vec<_>>()
         .join(" ")
@@ -306,10 +319,14 @@ fn climate_query(snap: &SpeechSnapshot, entities: &[&SpeechEntity], de: bool) ->
             }
             return format!("{area} is {temp} {unit}.").trim().to_string();
         }
-        if de {
-            return format!("{} ist {}.", entity.name, speak_state(&entity.state, "de"));
+        let spoken = speak_state(&entity.state, if de { "de" } else { "en" });
+        if entity.name.trim().is_empty() && spoken.trim().is_empty() {
+            continue;
         }
-        return format!("{} is {}.", entity.name, speak_state(&entity.state, "en"));
+        if de {
+            return format!("{} ist {spoken}.", entity.name).trim().to_string();
+        }
+        return format!("{} is {spoken}.", entity.name).trim().to_string();
     }
     String::new()
 }

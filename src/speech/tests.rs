@@ -356,3 +356,35 @@ fn floor_status_groups_rooms_and_empty_uses_pack_line() {
     french.language = "fr".into();
     assert_eq!(render_snapshot(&french).speech, "Aucun appareil.");
 }
+
+#[test]
+fn empty_get_state_does_not_say_ist() {
+    let out = render_snapshot(&snap(
+        "HassGetState",
+        vec![
+            SpeechSlot { name: "entity_id".into(), value: "weather.openweathermap".into() },
+            SpeechSlot { name: "domain".into(), value: "weather".into() },
+        ],
+        vec![entity("weather.openweathermap", "", "weather", "", BTreeMap::new())],
+    ));
+    assert!(!out.speech.contains("ist ."), "{}", out.speech);
+    assert!(!out.speech.contains(" ist."), "{}", out.speech);
+}
+
+#[test]
+fn weather_get_state_speaks_temperature() {
+    let out = render_snapshot(&snap(
+        "HassGetState",
+        vec![SpeechSlot { name: "entity_id".into(), value: "weather.openweathermap".into() }],
+        vec![entity(
+            "weather.openweathermap",
+            "OpenWeatherMap",
+            "weather",
+            "cloudy",
+            BTreeMap::from([("temperature".into(), serde_json::json!(27.1)), ("temperature_unit".into(), serde_json::json!("°C"))]),
+        )],
+    ));
+    assert!(out.speech.contains("27"), "{}", out.speech);
+    assert!(out.speech.contains("Grad"), "{}", out.speech);
+    assert!(!out.speech.contains("cloudy"), "{}", out.speech);
+}

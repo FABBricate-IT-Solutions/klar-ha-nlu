@@ -81,6 +81,8 @@ class EngineLlmTests(unittest.TestCase):
         self.assertIn("/api/v2/llm/refine", src)
         self.assertIn("complete_engine_refine", src)
         self.assertIn("stream_engine_refine", src)
+        self.assertIn("finished = False", src)
+        self.assertIn("hold", src)
         self.assertIn('"stream": True', src)
         self.assertIn("conversation_id", src)
         self.assertIn("/api/v2/llm/assist", src)

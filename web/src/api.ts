@@ -48,7 +48,15 @@ const jsonHeaders = () => {
   };
 };
 
-const appPath = (path: string) => path.replace(/^\//, "");
+/** Resolve `/api/...` under ingress (`.../TOKEN` with no trailing slash) and Vite `/`. */
+export function appPath(path: string): string {
+  const rel = path.replace(/^\//, "");
+  let dir = window.location.pathname;
+  if (!dir.endsWith("/")) {
+    dir = /\.[a-zA-Z0-9]+$/.test(dir) ? dir.slice(0, dir.lastIndexOf("/") + 1) : `${dir}/`;
+  }
+  return `${dir}${rel}`;
+}
 
 async function request<T>(path: string, init: RequestInit = {}): Promise<T> {
   const res = await fetch(appPath(path), { ...init, headers: { ...jsonHeaders(), ...(init.headers || {}) } });

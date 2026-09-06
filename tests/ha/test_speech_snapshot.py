@@ -5,6 +5,7 @@ from __future__ import annotations
 
 import importlib.util
 import sys
+import types
 import unittest
 from pathlib import Path
 
@@ -109,6 +110,27 @@ class SpeechSnapshotTests(unittest.TestCase):
         )
         self.assertEqual(len(long_title["entities"][0]["attributes"]["media_title"]), 256)
         self.assertEqual(long_title["entities"][0]["attributes"]["volume_level"], 0.4)
+
+    def test_hydrate_fills_empty_slot_stub(self) -> None:
+        class States:
+            def get(self, entity_id: str):
+                if entity_id != "weather.openweathermap":
+                    return None
+                return types.SimpleNamespace(
+                    entity_id=entity_id,
+                    state="cloudy",
+                    name="OpenWeatherMap",
+                    attributes={"friendly_name": "OpenWeatherMap", "temperature": 27.1},
+                )
+
+        handled = types.SimpleNamespace(matched_states=[], unmatched_states=[])
+        item = {"slots": [{"name": "entity_id", "value": "weather.openweathermap"}, {"name": "domain", "value": "weather"}]}
+        dry = snapshot.entities_from_handled(handled, item)
+        self.assertEqual(dry[0]["state"], "")
+        live = snapshot.entities_from_handled(handled, item, types.SimpleNamespace(states=States()))
+        self.assertEqual(live[0]["name"], "OpenWeatherMap")
+        self.assertEqual(live[0]["state"], "cloudy")
+        self.assertEqual(live[0]["attributes"]["temperature"], 27.1)
 
 
 if __name__ == "__main__":

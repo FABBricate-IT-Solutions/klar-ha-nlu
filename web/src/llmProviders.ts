@@ -46,6 +46,7 @@ export function guessProvider(url: string): LlmProviderId {
   if (raw.includes("api.openai.com")) return "openai";
   if (raw.includes("googleapis.com") || raw.includes("generativelanguage")) return "google";
   if (raw.includes("lemonade") || raw.includes(":13305") || raw.includes("/api/v1")) return "lemonade";
+  if (raw.includes(":8000") && raw.endsWith("/v1")) return "lemonade";
   if (raw.includes(":8080") && raw.endsWith("/v1")) return "llamacpp";
   return "custom";
 }

@@ -28,38 +28,84 @@ function parseChoiceLine(line: string): string[] | null {
   }
 }
 
+function parseJsonObject(raw: string): Record<string, unknown> | null {
+  const attempts = [raw.trim()];
+  if (raw.includes("\\\"")) {
+    attempts.push(raw.replaceAll("\\\"", "\""));
+  }
+  for (const candidate of attempts) {
+    try {
+      const payload = JSON.parse(candidate) as unknown;
+      if (payload && typeof payload === "object" && !Array.isArray(payload)) {
+        return payload as Record<string, unknown>;
+      }
+    } catch {
+      /* try next */
+    }
+  }
+  return null;
+}
+
+function unwrap(text: string): string {
+  return text.replace(/^[\s`*_]+|[\s`*_]+$/g, "");
+}
+
+function takeMark(line: string, mark: string): { before: string; rest: string } | null {
+  const at = line.indexOf(mark);
+  if (at < 0) {
+    return null;
+  }
+  return { before: unwrap(line.slice(0, at)), rest: unwrap(line.slice(at + mark.length)) };
+}
+
+function isMarkStub(line: string): boolean {
+  const trim = unwrap(line);
+  return /^(LOTSE_VIEW|LOTSE_CHOICES|TRAINER_TOOL)\b/.test(trim);
+}
+
+function isPartialMark(line: string): boolean {
+  const trim = unwrap(line);
+  if (!trim) {
+    return false;
+  }
+  return ["LOTSE_VIEW", "LOTSE_CHOICES", "TRAINER_TOOL"].some((mark) => mark.startsWith(trim) || trim.startsWith(mark));
+}
+
 function splitLotseBlocks(text: string): { prose: string; views: LotseViewSpec[]; choices: string[] } {
   const views: LotseViewSpec[] = [];
   const choices: string[] = [];
   const kept: string[] = [];
   for (const line of text.replaceAll("\r\n", "\n").split("\n")) {
-    if (line.trim().startsWith(CHOICE_MARK)) {
-      choices.push(...(parseChoiceLine(line) ?? []));
+    const choice = takeMark(line, CHOICE_MARK);
+    if (choice) {
+      if (choice.before) kept.push(choice.before);
+      choices.push(...(parseChoiceLine(`${CHOICE_MARK} ${choice.rest}`) ?? []));
       continue;
     }
-    const toolAt = line.indexOf("TRAINER_TOOL:");
-    if (toolAt >= 0) {
-      const before = line.slice(0, toolAt).trim();
-      if (before) {
-        kept.push(before);
+    const tool = takeMark(line, "TRAINER_TOOL:");
+    if (tool) {
+      if (tool.before) kept.push(tool.before);
+      continue;
+    }
+    const view = takeMark(line, VIEW_MARK);
+    if (view) {
+      if (view.before) kept.push(view.before);
+      const jsonAt = view.rest.search(/[{[]/);
+      const kind = parseLotseViewKind((jsonAt >= 0 ? view.rest.slice(0, jsonAt) : view.rest).trim());
+      const payload = jsonAt >= 0 ? parseJsonObject(view.rest.slice(jsonAt)) : {};
+      if (kind && payload && Object.keys(payload).length) {
+        views.push({ kind, payload });
       }
       continue;
     }
-    const rest = line.trim().startsWith(VIEW_MARK) ? line.trim().slice(VIEW_MARK.length).trim() : "";
-    const space = rest.indexOf("{");
-    if (rest && space > 0) {
-      const kind = parseLotseViewKind(rest.slice(0, space).trim());
-      try {
-        const payload = JSON.parse(rest.slice(space)) as unknown;
-        if (kind && payload && typeof payload === "object" && !Array.isArray(payload)) {
-          views.push({ kind, payload: payload as Record<string, unknown> });
-          continue;
-        }
-      } catch {
-        /* keep the line */
-      }
+    if (isMarkStub(line)) {
+      continue;
     }
     kept.push(line);
+  }
+  const last = kept.at(-1);
+  if (last && isPartialMark(last)) {
+    kept.pop();
   }
   return { prose: kept.join("\n").trim(), views, choices };
 }

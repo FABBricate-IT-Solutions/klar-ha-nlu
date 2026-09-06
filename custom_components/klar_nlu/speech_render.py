@@ -57,7 +57,7 @@ async def try_engine_speech(
         now=_now(),
         intent=item,
         outcome=outcome,
-        entities=extra_entities if extra_entities is not None else entities_from_handled(handled, item),
+        entities=extra_entities if extra_entities is not None else entities_from_handled(handled, item, hass),
         calendar_events=calendar_events,
         media_queue=media_queue,
         unit_system=_unit_system(hass),

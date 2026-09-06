@@ -13,6 +13,7 @@ pub enum LlmProviderKind {
     Lemonade,
     Llamacpp,
     #[default]
+    #[serde(other)]
     Custom,
 }
 
@@ -164,6 +165,8 @@ impl LlmProviderKind {
             Self::Google
         } else if raw.contains("lemonade") || raw.contains(":13305") || raw.contains("/api/v1") {
             Self::Lemonade
+        } else if raw.contains(":8000") && raw.ends_with("/v1") {
+            Self::Lemonade
         } else if raw.contains(":8080") && raw.ends_with("/v1") {
             Self::Llamacpp
         } else {
@@ -308,6 +311,13 @@ mod tests {
     fn ollama_keeps_v1_path() {
         let ep = LlmEndpoint::from_parts("http://192.168.1.8:11434/v1", "", "llama3").unwrap();
         assert_eq!(ep.base_url, "http://192.168.1.8:11434/v1");
+    }
+
+    #[test]
+    fn lemonade_open_ai_port_is_lemonade() {
+        assert_eq!(LlmProviderKind::from_url("http://192.168.178.15:8000/v1"), LlmProviderKind::Lemonade);
+        let raw = serde_json::from_str::<LlmProviderKind>("\"unknown-host\"").unwrap();
+        assert_eq!(raw, LlmProviderKind::Custom);
     }
 
     #[test]

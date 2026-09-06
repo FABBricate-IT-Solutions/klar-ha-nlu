@@ -257,6 +257,7 @@ pub fn parse_text_tools(text: &str) -> (String, Vec<ToolCall>) {
     for line in text.lines() {
         let (prose, found) = take_tools(line, &mut index);
         calls.extend(found);
+        let prose = cut_lotse_mark(&prose);
         if leftover_after_tools(&prose) {
             continue;
         }
@@ -338,7 +339,15 @@ fn brace_end(text: &str) -> Option<usize> {
 
 fn leftover_after_tools(text: &str) -> bool {
     let trim = text.trim();
-    trim.is_empty() || (trim.chars().count() == 1 && trim.chars().all(|ch| ch.is_ascii_alphabetic()))
+    trim.is_empty()
+        || (trim.chars().count() == 1 && trim.chars().all(|ch| ch.is_ascii_alphabetic()))
+        || trim.starts_with("LOTSE_VIEW")
+        || trim.starts_with("LOTSE_CHOICES")
+}
+
+fn cut_lotse_mark(prose: &str) -> String {
+    let cut = ["LOTSE_VIEW", "LOTSE_CHOICES"].iter().filter_map(|mark| prose.find(mark)).min().unwrap_or(prose.len());
+    prose[..cut].trim_end().to_string()
 }
 
 fn tool(name: &str, description: &str, parameters: Value) -> Value {
@@ -403,5 +412,9 @@ mod tests {
         let (glued, many) = parse_text_tools("TRAINER_TOOL: list_matchers {} TRAINER_TOOL: list_policies {}I");
         assert!(glued.is_empty(), "{glued}");
         assert_eq!(many.iter().map(|call| call.function.name.as_str()).collect::<Vec<_>>(), ["list_matchers", "list_policies"]);
+        let (view, _) = parse_text_tools("Kurz.\nLOTSE_VIEW: architecture\nLOTSE_VIEW: gaps");
+        assert_eq!(view, "Kurz.");
+        let (inline, _) = parse_text_tools("Siehe LOTSE_VIEW: architecture");
+        assert_eq!(inline, "Siehe");
     }
 }

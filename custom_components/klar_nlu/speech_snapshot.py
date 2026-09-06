@@ -95,34 +95,52 @@ def _opt(value: Any) -> str | None:
     return text[:128] if text else None
 
 
-def entities_from_handled(handled: Any, item: dict[str, Any] | None = None) -> list[dict[str, Any]]:
+def entities_from_handled(
+    handled: Any,
+    item: dict[str, Any] | None = None,
+    hass: Any = None,
+) -> list[dict[str, Any]]:
     states = list(getattr(handled, "matched_states", None) or [])
     if not states:
         states = list(getattr(handled, "unmatched_states", None) or [])
     rows = [_state_row(state) for state in states]
     rows = [row for row in rows if row]
-    if rows:
-        return rows
-    slots = {
-        str(slot.get("name") or ""): str(slot.get("value") or "")
-        for slot in (item or {}).get("slots") or []
-        if isinstance(slot, dict)
-    }
-    entity_id = slots.get("entity_id") or ""
-    if not entity_id:
-        return []
-    domain = entity_id.split(".", 1)[0]
-    return [
-        {
-            "entity_id": entity_id,
-            "name": slots.get("name") or "",
-            "domain": domain,
-            "state": "",
-            "area": slots.get("area") or None,
-            "area_name": slots.get("area_name") or None,
-            "attributes": {},
+    if not rows:
+        slots = {
+            str(slot.get("name") or ""): str(slot.get("value") or "")
+            for slot in (item or {}).get("slots") or []
+            if isinstance(slot, dict)
         }
-    ]
+        entity_id = slots.get("entity_id") or ""
+        if entity_id:
+            domain = entity_id.split(".", 1)[0]
+            rows = [
+                {
+                    "entity_id": entity_id,
+                    "name": slots.get("name") or "",
+                    "domain": domain,
+                    "state": "",
+                    "area": slots.get("area") or None,
+                    "area_name": slots.get("area_name") or None,
+                    "attributes": {},
+                }
+            ]
+    return hydrate_from_hass(hass, rows)
+
+
+def hydrate_from_hass(hass: Any, rows: list[dict[str, Any]]) -> list[dict[str, Any]]:
+    if hass is None:
+        return rows
+    out: list[dict[str, Any]] = []
+    for row in rows:
+        if row.get("state") and row.get("name") and row.get("attributes"):
+            out.append(row)
+            continue
+        entity_id = str(row.get("entity_id") or "")
+        state = hass.states.get(entity_id) if entity_id else None
+        live = _state_row(state) if state is not None else None
+        out.append(live or row)
+    return out
 
 
 def entity_from_state(state: Any) -> dict[str, Any] | None:
