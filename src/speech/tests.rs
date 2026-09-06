@@ -358,6 +358,37 @@ fn floor_status_groups_rooms_and_empty_uses_pack_line() {
 }
 
 #[test]
+fn floor_status_keeps_rooms_when_a_climate_entity_is_present() {
+    let climate = SpeechEntity {
+        entity_id: "climate.kuche".into(),
+        name: "Küche Klima".into(),
+        domain: "climate".into(),
+        state: "cool".into(),
+        area: Some("kuche".into()),
+        area_name: Some("Küche".into()),
+        device_class: None,
+        attributes: BTreeMap::from([("current_temperature".into(), serde_json::json!(23.4))]),
+    };
+    let living = SpeechEntity {
+        entity_id: "light.wohnzimmer".into(),
+        name: "Wohnzimmer".into(),
+        domain: "light".into(),
+        state: "on".into(),
+        area: Some("wohnzimmer".into()),
+        area_name: Some("Wohnzimmer".into()),
+        device_class: None,
+        attributes: BTreeMap::new(),
+    };
+    let out =
+        render_snapshot(&snap("HassGetState", vec![SpeechSlot { name: "floor".into(), value: "wohnung".into() }], vec![climate, living]));
+    assert!(out.speech.contains("Küche"), "{}", out.speech);
+    assert!(out.speech.contains("Wohnzimmer"), "{}", out.speech);
+    assert!(out.speech.contains("an"), "{}", out.speech);
+    assert!(!out.speech.eq("23.4 Grad."), "{}", out.speech);
+    assert!(!out.speech.starts_with("23.4"), "{}", out.speech);
+}
+
+#[test]
 fn empty_get_state_does_not_say_ist() {
     let out = render_snapshot(&snap(
         "HassGetState",
