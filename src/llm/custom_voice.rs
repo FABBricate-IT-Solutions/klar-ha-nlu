@@ -131,7 +131,7 @@ pub async fn generate_custom_voice(endpoint: &LlmEndpoint, request: CustomVoiceR
         tools: None,
         tool_choice: None,
     };
-    let prompt = clip_voice(&chat(&endpoint, chat_req).await?)?;
+    let prompt = clip_voice(&chat(endpoint, chat_req).await?)?;
     Ok(CustomVoiceOut { prompt })
 }
 
