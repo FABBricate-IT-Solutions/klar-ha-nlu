@@ -163,9 +163,11 @@ impl LlmProviderKind {
             Self::Openai
         } else if raw.contains("googleapis.com") || raw.contains("generativelanguage") {
             Self::Google
-        } else if raw.contains("lemonade") || raw.contains(":13305") || raw.contains("/api/v1") {
-            Self::Lemonade
-        } else if raw.contains(":8000") && raw.ends_with("/v1") {
+        } else if raw.contains("lemonade")
+            || raw.contains(":13305")
+            || raw.contains("/api/v1")
+            || (raw.contains(":8000") && raw.ends_with("/v1"))
+        {
             Self::Lemonade
         } else if raw.contains(":8080") && raw.ends_with("/v1") {
             Self::Llamacpp

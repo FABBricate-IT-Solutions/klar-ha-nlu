@@ -129,7 +129,9 @@ def entities_from_handled(
 
 
 def hydrate_from_hass(hass: Any, rows: list[dict[str, Any]]) -> list[dict[str, Any]]:
-    if hass is None:
+    states = getattr(hass, "states", None) if hass is not None else None
+    getter = getattr(states, "get", None)
+    if not callable(getter):
         return rows
     out: list[dict[str, Any]] = []
     for row in rows:
@@ -137,7 +139,7 @@ def hydrate_from_hass(hass: Any, rows: list[dict[str, Any]]) -> list[dict[str, A
             out.append(row)
             continue
         entity_id = str(row.get("entity_id") or "")
-        state = hass.states.get(entity_id) if entity_id else None
+        state = getter(entity_id) if entity_id else None
         live = _state_row(state) if state is not None else None
         out.append(live or row)
     return out
