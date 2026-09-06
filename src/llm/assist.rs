@@ -187,13 +187,20 @@ impl SanitizedAssist {
 }
 
 pub async fn assist(endpoint: &LlmEndpoint, request: AssistRequest) -> Result<AssistOutcome, LlmError> {
+    assist_on(endpoint, request, |_| {}).await
+}
+
+pub async fn assist_on<F>(endpoint: &LlmEndpoint, request: AssistRequest, mut on_event: F) -> Result<AssistOutcome, LlmError>
+where
+    F: FnMut(&ChatEvent),
+{
     let body = request.sanitize()?;
     let kind = body.resolved_kind();
     let system = body.system_prompt();
     let asked = body.user_text();
     let stream = body.stream && kind != AssistKind::Yarn && kind != AssistKind::Rag && !body.nlu_rag;
     if stream {
-        return complete_stream(endpoint, &body, &system, &asked).await;
+        return complete_stream(endpoint, &body, &system, &asked, &mut on_event).await;
     }
     let mut turn = complete_turn(endpoint, &body, &system, &asked).await?;
     if kind == AssistKind::Yarn && yarn_asks_permission(&turn.text) {
@@ -206,18 +213,28 @@ pub async fn assist(endpoint: &LlmEndpoint, request: AssistRequest) -> Result<As
     }
     if kind == AssistKind::Rag || body.nlu_rag {
         if let Some(tool) = parse_tool_reply(&turn.text) {
-            return Ok(AssistOutcome {
-                text: tool.spoken_line(),
-                tool: Some(tool.clone()),
-                tool_calls: Vec::new(),
-                events: vec![tool.event(), ChatEvent::Done { text: String::new() }],
-            });
+            return Ok(emit_outcome(
+                AssistOutcome {
+                    text: tool.spoken_line(),
+                    tool: Some(tool.clone()),
+                    tool_calls: Vec::new(),
+                    events: vec![tool.event(), ChatEvent::Done { text: String::new() }],
+                },
+                &mut on_event,
+            ));
         }
         if holds_klar_tool_prefix(turn.text.trim_start()) && parse_tool_reply(&turn.text).is_none() {
             turn.text = String::new();
         }
     }
-    Ok(outcome_from_turn(turn, false))
+    Ok(emit_outcome(outcome_from_turn(turn, false), &mut on_event))
+}
+
+fn emit_outcome<F: FnMut(&ChatEvent)>(out: AssistOutcome, on_event: &mut F) -> AssistOutcome {
+    for event in &out.events {
+        on_event(event);
+    }
+    out
 }
 
 fn chat_messages(body: &SanitizedAssist, system: &str, user: &str) -> Vec<ChatMessage> {
@@ -265,22 +282,34 @@ async fn complete_turn(endpoint: &LlmEndpoint, body: &SanitizedAssist, system: &
     super::client::chat_turn(endpoint, chat_body(body, system, user, false)).await
 }
 
-async fn complete_stream(endpoint: &LlmEndpoint, body: &SanitizedAssist, system: &str, user: &str) -> Result<AssistOutcome, LlmError> {
+async fn complete_stream<F>(
+    endpoint: &LlmEndpoint,
+    body: &SanitizedAssist,
+    system: &str,
+    user: &str,
+    on_event: &mut F,
+) -> Result<AssistOutcome, LlmError>
+where
+    F: FnMut(&ChatEvent),
+{
     let mut events = Vec::new();
     let turn = super::client::chat_stream_turn(endpoint, chat_body(body, system, user, true), |delta| {
         if !delta.is_empty() {
-            events.push(ChatEvent::Delta { text: delta.to_string() });
+            let event = ChatEvent::Delta { text: delta.to_string() };
+            on_event(&event);
+            events.push(event);
         }
     })
     .await?;
     for call in &turn.tool_calls {
-        events.push(ChatEvent::ToolCall {
-            id: call.id.clone(),
-            name: call.function.name.clone(),
-            arguments: call.function.arguments.clone(),
-        });
+        let event =
+            ChatEvent::ToolCall { id: call.id.clone(), name: call.function.name.clone(), arguments: call.function.arguments.clone() };
+        on_event(&event);
+        events.push(event);
     }
-    events.push(ChatEvent::Done { text: turn.text.clone() });
+    let done = ChatEvent::Done { text: turn.text.clone() };
+    on_event(&done);
+    events.push(done);
     Ok(AssistOutcome { text: turn.text, tool: None, tool_calls: turn.tool_calls, events })
 }
 

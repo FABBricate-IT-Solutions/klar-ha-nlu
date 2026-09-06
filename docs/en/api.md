@@ -129,7 +129,7 @@ Write token required (same as overlay). `stream: true` (default) emits SSE `data
 { "speech": "Wohnzimmer Licht ist an.", "language": "de", "personality": "butler", "extra_prompt": "", "stream": false }
 ```
 
-The engine builds the refine system prompt (pack + voice only) and sends extra as a user message, runs the model (`temperature` 0.65, `max_tokens` 192), and applies `accept_refined`. JSON `{"type":"done","text":"…","accepted":true}`. If accept rejects, `text` is the original and `accepted` is false. Caps: `speech` ≤ 4096, `extra_prompt` ≤ 2048. Write token required. `503` when no endpoint. Do not send a Python-built system prompt.
+The engine builds the refine system prompt (pack + voice only) and sends extra as a user message, runs the model (`temperature` 0.65, `max_tokens` scales with the original length, min 192, max 4096), and applies `accept_refined`. JSON `{"type":"done","text":"…","accepted":true}`. If accept rejects, `text` is the original and `accepted` is false. Caps: `speech` ≤ 4096, `extra_prompt` ≤ 2048. Write token required. `503` when no endpoint. Do not send a Python-built system prompt.
 
 ### `POST /api/v2/llm/assist`
 

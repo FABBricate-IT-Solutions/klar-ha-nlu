@@ -2,8 +2,8 @@ use crate::home::paths::{read_to_string_confined, remove_confined, write_atomic_
 use crate::io::auth::{reads_allowed, writes_allowed};
 use crate::io::state::AppState;
 use crate::llm::{
-    assist, chat, chat_stream, list_models, personality_preview, refine, AssistRequest, ChatEvent, ChatRequest, LlmEndpoint, LlmError,
-    LlmPublic, PersonalityPreview, RefineRequest,
+    assist, assist_on, chat, chat_stream, list_models, personality_preview, refine, AssistRequest, ChatEvent, ChatRequest, LlmEndpoint,
+    LlmError, LlmPublic, PersonalityPreview, RefineRequest,
 };
 use axum::extract::{ConnectInfo, DefaultBodyLimit, Query, State};
 use axum::http::{HeaderMap, StatusCode};
@@ -285,15 +285,16 @@ pub async fn llm_assist(
     let endpoint = state.llm.lock().await.clone().ok_or(StatusCode::SERVICE_UNAVAILABLE)?;
     let journal = state.journal.clone();
     if stream {
-        let (tx, rx) = tokio::sync::mpsc::channel::<Result<Event, Infallible>>(16);
+        let (tx, rx) = tokio::sync::mpsc::channel::<Result<Event, Infallible>>(64);
         tokio::spawn(async move {
-            match assist(&endpoint, body).await {
+            let result = assist_on(&endpoint, body, |event| {
+                let _ = tx.try_send(Ok(json_event(event)));
+            })
+            .await;
+            match result {
                 Ok(out) => {
                     if out.tool.is_none() {
                         journal.note_spoken(Some(&conversation_id), &out.text, "chat");
-                    }
-                    for event in out.events {
-                        let _ = tx.send(Ok(json_event(&event))).await;
                     }
                 }
                 Err(err) => {
@@ -378,6 +379,17 @@ mod tests {
         let again = from_file(&dir).unwrap();
         assert!(again.enable_thinking);
         let _ = std::fs::remove_dir_all(&dir);
+    }
+
+    #[test]
+    fn assist_sse_forwards_deltas_live() {
+        let src = include_str!("llm.rs");
+        let start = src.find("pub async fn llm_assist").expect("llm_assist");
+        let end = src.find("pub fn json_event").expect("json_event");
+        let body = &src[start..end];
+        assert!(body.contains("assist_on"));
+        assert!(body.contains("try_send"));
+        assert!(!body.contains("for event in out.events"));
     }
 
     #[test]
