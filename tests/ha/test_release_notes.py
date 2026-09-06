@@ -3,7 +3,9 @@
 
 from __future__ import annotations
 
+import contextlib
 import importlib.util
+import io
 import re
 import unittest
 from pathlib import Path
@@ -77,6 +79,63 @@ class ReleaseNotesTests(unittest.TestCase):
         notes = mod.section(empty, "2026.8.4")
         self.assertTrue(notes)
         self.assertIsNone(re.search(r"^### ", notes, re.M))
+
+    def test_hoist_breaking_from_mark(self) -> None:
+        notes = (
+            "## [1.2.0](https://example.test/compare/1.1.0...1.2.0) - 2026-01-02\n\n"
+            "### Features\n\n"
+            "- [**breaking**] drop /api/parse\n"
+            "- extra lights\n"
+        )
+        out = mod.hoist_breaking(notes)
+        self.assertTrue(out.startswith("## Breaking Changes"))
+        self.assertLess(out.index("drop /api/parse"), out.index("### Features"))
+        self.assertIn("- extra lights", out)
+
+    def test_hoist_skips_when_none(self) -> None:
+        notes = "## [1.0.0]\n\n### Bug Fixes\n\n- older\n"
+        self.assertEqual(mod.hoist_breaking(notes), notes)
+
+    def test_hoist_from_breaking_group(self) -> None:
+        notes = (
+            "## [1.3.0] - 2026-01-03\n\n"
+            "### Breaking Changes\n\n"
+            "- HTTP parse is V2 only\n\n"
+            "### Features\n\n"
+            "- extra lights\n"
+        )
+        out = mod.hoist_breaking(notes)
+        lead = out.split("## [1.3.0]", 1)[0]
+        self.assertIn("HTTP parse is V2 only", lead)
+        self.assertNotIn("extra lights", lead)
+
+    def test_staging_hoists_bang_commits(self) -> None:
+        notes = mod.commits_since(["feat!: parse is V2 only", "fix: typo"], "main")
+        out = mod.hoist_breaking(notes)
+        self.assertTrue(out.startswith("## Breaking Changes"))
+        self.assertIn("feat!: parse is V2 only", out.split("## Changes since", 1)[0])
+        self.assertIn("- fix: typo", out)
+
+    def test_stable_notes_hoist_v2_break(self) -> None:
+        buf = io.StringIO()
+        with contextlib.redirect_stdout(buf):
+            self.assertEqual(mod.main(["release-notes.py", "2026.8.26"]), 0)
+        out = buf.getvalue()
+        self.assertTrue(out.startswith("## Breaking Changes"))
+        self.assertIn("V2 ParseOutcome", out)
+        self.assertIn("### Features", out)
+
+    def test_addon_changelogs_match_root(self) -> None:
+        root = (ROOT / "CHANGELOG.md").read_text(encoding="utf-8")
+        self.assertTrue(root.startswith("# Changelog"))
+        for rel in ("addon/CHANGELOG.md", "addon-staging/CHANGELOG.md"):
+            path = ROOT / rel
+            self.assertTrue(path.is_file(), rel)
+            self.assertEqual(path.read_text(encoding="utf-8"), root)
+
+    def test_sync_addons_rewrites_copies(self) -> None:
+        self.assertEqual(mod.main(["release-notes.py", "--sync-addons"]), 0)
+        self.test_addon_changelogs_match_root()
 
 
 if __name__ == "__main__":

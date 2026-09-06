@@ -197,7 +197,8 @@ land_via_pr() {
   git checkout -B "$branch"
   git add Cargo.toml Cargo.lock config.yaml addon/config.yaml \
     custom_components/klar_nlu/manifest.json \
-    custom_components/klar_nlu/const.py CHANGELOG.md
+    custom_components/klar_nlu/const.py CHANGELOG.md \
+    addon/CHANGELOG.md addon-staging/CHANGELOG.md
   if git diff --cached --quiet; then
     echo "Release files already match ${tag}"
   else
@@ -275,6 +276,7 @@ main() {
 
   python3 scripts/bump-version.py "$version"
   write_changelog "$tag"
+  python3 scripts/release-notes.py --sync-addons
   land_via_pr "$tag"
 }
 
