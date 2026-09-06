@@ -6,6 +6,19 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 Versions follow Home Assistant calendar versioning (`YYYY.M.PATCH`)
 and [Conventional Commits](https://www.conventionalcommits.org/).
 
+## [2026.9.5](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/compare/2026.9.4...2026.9.5) - 2026-09-06
+
+
+
+### Documentation
+
+- credit Aquila MIT voice suite([ae99f65](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/ae99f6515918f7c5957f5d26a405c4e9602ed0c8))
+
+
+### Other
+
+- Merge pull request #228 from FABBricate-IT-Solutions/docs/credit-aquila-suite-main([bb721c7](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/bb721c74a85972bd08bcf6e16a282df96419d2e3))
+
 ## [2026.9.4](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/compare/2026.8.65-staging.8474bc4...2026.9.4) - 2026-09-06
 
 
