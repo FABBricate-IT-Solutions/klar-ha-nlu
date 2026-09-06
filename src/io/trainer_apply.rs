@@ -5,7 +5,7 @@ use crate::home::overlay::{load_overlay, save_overlay};
 use crate::io::lang_api::persist_language_overlay;
 use crate::io::state::AppState;
 use crate::io::trainer::{validate, ProposalIn};
-use crate::lang::{catalog_for, is_lexicon_path, lexicon_set_paths, LanguageOverlay, SetDelta};
+use crate::lang::{catalog_for, is_lexicon_path, lexicon_set_paths, LanguageOverlay};
 use crate::parse::{match_catalog, sanitize_match_controls};
 use crate::types::{sanitize_rules, MatchControl, PolicyRule};
 use serde_json::{json, Value};
@@ -198,7 +198,7 @@ async fn merged_lexicon(state: &AppState, args: &Value) -> Result<LanguageOverla
         return Err(format!("unknown set path {path}"));
     }
     let mut overlay = load_overlay(&state.data_dir).language;
-    let delta = overlay.sets.entry(path.to_string()).or_insert_with(SetDelta::default);
+    let delta = overlay.sets.entry(path.to_string()).or_default();
     for word in string_list(args, "add") {
         if !delta.add.iter().any(|item| item == &word) {
             delta.add.push(word.clone());
@@ -221,7 +221,7 @@ async fn apply_match(state: &AppState, args: &Value) -> Result<Value, String> {
     }
     let incoming: Vec<MatchControl> =
         serde_json::from_value(args.get("match_controls").cloned().unwrap_or(json!([]))).map_err(|_| "invalid match_controls")?;
-    let incoming = sanitize_match_controls(incoming).map_err(|err| err)?;
+    let incoming = sanitize_match_controls(incoming)?;
     let merged = {
         let mut current = state.match_controls.lock().await.clone();
         for row in incoming {
@@ -247,7 +247,7 @@ async fn apply_house(state: &AppState, args: &Value) -> Result<Value, String> {
     }
     let incoming: Vec<PolicyRule> =
         serde_json::from_value(args.get("policies").cloned().unwrap_or(json!([]))).map_err(|_| "invalid policies")?;
-    let incoming = sanitize_rules(incoming).map_err(|err| err)?;
+    let incoming = sanitize_rules(incoming)?;
     let merged = {
         let mut current = state.policies.lock().await.clone();
         for rule in incoming {
