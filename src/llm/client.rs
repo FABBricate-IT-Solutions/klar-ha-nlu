@@ -111,29 +111,23 @@ async fn list_models_at(http: &reqwest::Client, endpoint: &LlmEndpoint, url: &st
 }
 
 fn parse_model_ids(value: &Value) -> Vec<String> {
-    let rows = value
-        .as_array()
-        .or_else(|| value.get("data").and_then(Value::as_array))
-        .or_else(|| value.get("models").and_then(Value::as_array));
+    let rows =
+        value.as_array().or_else(|| value.get("data").and_then(Value::as_array)).or_else(|| value.get("models").and_then(Value::as_array));
     let Some(rows) = rows else {
         return Vec::new();
     };
     let mut parsed = Vec::new();
     for row in rows {
-        let raw = row.as_str().map(str::to_string).or_else(|| {
-            ["id", "name", "model"]
-                .iter()
-                .find_map(|key| row.get(*key).and_then(Value::as_str).map(str::to_string))
-        });
+        let raw = row
+            .as_str()
+            .map(str::to_string)
+            .or_else(|| ["id", "name", "model"].iter().find_map(|key| row.get(*key).and_then(Value::as_str).map(str::to_string)));
         if let Some(id) = raw.and_then(|text| sanitize_model_id(&text)) {
             parsed.push((id, row_labels(row)));
         }
     }
-    let chat: Vec<String> = parsed
-        .iter()
-        .filter(|(_, labels)| labels.iter().any(|label| label == "chat"))
-        .map(|(id, _)| id.clone())
-        .collect();
+    let chat: Vec<String> =
+        parsed.iter().filter(|(_, labels)| labels.iter().any(|label| label == "chat")).map(|(id, _)| id.clone()).collect();
     let ids = if chat.is_empty() { parsed.into_iter().map(|(id, _)| id).collect() } else { chat };
     let mut unique = BTreeSet::new();
     for id in ids {

@@ -68,14 +68,7 @@ pub struct VoiceTraits {
 
 impl Default for VoiceTraits {
     fn default() -> Self {
-        Self {
-            warmth: 5,
-            humor: 4,
-            sarcasm: 2,
-            formality: 5,
-            verbosity: 4,
-            energy: 5,
-        }
+        Self { warmth: 5, humor: 4, sarcasm: 2, formality: 5, verbosity: 4, energy: 5 }
     }
 }
 

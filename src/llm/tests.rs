@@ -242,13 +242,7 @@ async fn lists_ollama_name_rows() {
 #[test]
 fn lemonade_v1_also_tries_api_v1() {
     let urls = super::client::model_list_urls("http://192.168.178.15:8000/v1");
-    assert_eq!(
-        urls,
-        vec![
-            "http://192.168.178.15:8000/v1/models".to_string(),
-            "http://192.168.178.15:8000/api/v1/models".to_string()
-        ]
-    );
+    assert_eq!(urls, vec!["http://192.168.178.15:8000/v1/models".to_string(), "http://192.168.178.15:8000/api/v1/models".to_string()]);
 }
 
 #[tokio::test]
@@ -256,10 +250,7 @@ async fn lists_models_from_lemonade_api_v1_fallback() {
     let listener = TcpListener::bind("127.0.0.1:0").await.unwrap();
     let addr = listener.local_addr().unwrap();
     let handle = tokio::spawn(async move {
-        let app = Router::new().route(
-            "/api/v1/models",
-            get(|| async { Json(json!({"data":[{"id":"Qwen3-0.6B-GGUF"}]})) }),
-        );
+        let app = Router::new().route("/api/v1/models", get(|| async { Json(json!({"data":[{"id":"Qwen3-0.6B-GGUF"}]})) }));
         axum::serve(listener, app).await.unwrap();
     });
     let endpoint = LlmEndpoint::for_discovery(&format!("http://{addr}/v1"), "").unwrap();

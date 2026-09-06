@@ -205,9 +205,7 @@ fn patch_engine(current: &Settings, args: &Value) -> Result<Settings, String> {
         next.custom_voice_seed = text.to_string();
     }
     if let Some(value) = args.get("custom_voice_traits") {
-        next.custom_voice_traits = serde_json::from_value::<VoiceTraits>(value.clone())
-            .map_err(|_| "bad custom_voice_traits")?
-            .clamp();
+        next.custom_voice_traits = serde_json::from_value::<VoiceTraits>(value.clone()).map_err(|_| "bad custom_voice_traits")?.clamp();
     }
     Ok(next)
 }
@@ -307,7 +305,11 @@ mod tests {
         assert_eq!(next.languages, vec!["de"]);
         let imperial = patch_engine(&set, &json!({"unit_system":"imperial"})).unwrap();
         assert_eq!(imperial.unit_system, UnitSystem::Imperial);
-        let custom = patch_engine(&set, &json!({"personality":"custom","custom_voice":"Voice: dry.","custom_voice_name":"Spock","custom_voice_seed":"You are Spock."})).unwrap();
+        let custom = patch_engine(
+            &set,
+            &json!({"personality":"custom","custom_voice":"Voice: dry.","custom_voice_name":"Spock","custom_voice_seed":"You are Spock."}),
+        )
+        .unwrap();
         assert_eq!(custom.personality, Personality::Custom);
         assert_eq!(custom.custom_voice, "Voice: dry.");
         assert_eq!(custom.custom_voice_name, "Spock");

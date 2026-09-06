@@ -179,10 +179,7 @@ impl LlmPublic {
 }
 
 fn local_template_thinking(enable: bool) -> ThinkingExtras {
-    ThinkingExtras {
-        chat_template_kwargs: (!enable).then_some(ChatTemplateKwargs { enable_thinking: false }),
-        ..ThinkingExtras::default()
-    }
+    ThinkingExtras { chat_template_kwargs: (!enable).then_some(ChatTemplateKwargs { enable_thinking: false }), ..ThinkingExtras::default() }
 }
 
 fn openai_reasoning_model(model: &str) -> bool {

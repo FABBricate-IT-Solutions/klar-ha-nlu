@@ -48,16 +48,11 @@ pub fn load_endpoint(dir: &Path) -> Option<LlmEndpoint> {
 
 fn from_file(dir: &Path) -> Option<LlmEndpoint> {
     let stored = load_stored_endpoint(dir)?;
-    LlmEndpoint::from_parts(&stored.base_url, &stored.api_key, &stored.model)
-        .ok()
-        .map(|endpoint| {
-            let provider = if stored.provider == LlmProviderKind::Custom {
-                LlmProviderKind::from_url(&endpoint.base_url)
-            } else {
-                stored.provider
-            };
-            endpoint.with_thinking(stored.enable_thinking).with_provider(provider)
-        })
+    LlmEndpoint::from_parts(&stored.base_url, &stored.api_key, &stored.model).ok().map(|endpoint| {
+        let provider =
+            if stored.provider == LlmProviderKind::Custom { LlmProviderKind::from_url(&endpoint.base_url) } else { stored.provider };
+        endpoint.with_thinking(stored.enable_thinking).with_provider(provider)
+    })
 }
 
 fn save_endpoint(dir: &Path, endpoint: &LlmEndpoint) -> std::io::Result<()> {
@@ -235,9 +230,7 @@ async fn list_endpoint_models(
         return Err(StatusCode::BAD_REQUEST);
     }
     let provider = body.provider.as_deref().map(LlmProviderKind::parse).unwrap_or_else(|| LlmProviderKind::from_url(&base_url));
-    let endpoint = LlmEndpoint::for_discovery(&base_url, &api_key)
-        .map_err(|_| StatusCode::BAD_REQUEST)?
-        .with_provider(provider);
+    let endpoint = LlmEndpoint::for_discovery(&base_url, &api_key).map_err(|_| StatusCode::BAD_REQUEST)?.with_provider(provider);
     match list_models(&endpoint).await {
         Ok(models) => Ok(Json(ModelsOut { models })),
         Err(err) => Err(status_for(&err)),
