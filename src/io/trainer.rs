@@ -18,7 +18,7 @@ use axum::Json;
 use serde::{Deserialize, Serialize};
 use std::net::SocketAddr;
 
-const PROMPT_VERSION: &str = "1";
+const PROMPT_VERSION: &str = "2";
 const SMOKES: &[(&str, &str)] = &[
     ("de", "licht wohnzimmer an"),
     ("en", "turn on the living room light"),
@@ -216,6 +216,19 @@ pub fn validate(
     let dry_run =
         if errors.is_empty() { dry_run_rows(home, &pinned, &house, &match_controls, speech_bank, language, extra) } else { Vec::new() };
     ValidateOut { ok: errors.is_empty(), errors, warnings, dry_run }
+}
+
+pub fn context_stub(ctx: &TrainerContext, languages: &[String]) -> String {
+    serde_json::json!({
+        "prompt_version": ctx.prompt_version,
+        "languages": languages,
+        "layer": ctx.layer,
+        "schema": ctx.schema,
+        "gap_count": ctx.gaps.len(),
+        "policy_count": ctx.overlays.policies.len(),
+        "match_overlay_count": ctx.overlays.match_controls.len(),
+    })
+    .to_string()
 }
 
 fn schema_out() -> SchemaOut {
@@ -437,5 +450,25 @@ mod tests {
         let out = validate(&home, &settings(), "de", "house", rules, Vec::new(), LanguageOverlay::default(), &SpeechBank::default(), &[]);
         assert!(!out.ok);
         assert!(out.errors.iter().any(|row| row.path.contains("entity_id")));
+    }
+
+    #[test]
+    fn context_stub_is_compact() {
+        let ctx = TrainerContext {
+            language: "de".into(),
+            layer: "all".into(),
+            prompt_version: "2".into(),
+            graph: GraphOut { areas: Vec::new(), floors: Vec::new(), entities: Vec::new() },
+            gaps: vec!["light.a".into(), "light.b".into()],
+            matches: Vec::new(),
+            seeds: Vec::new(),
+            overlays: OverlaysOut { policies: Vec::new(), match_controls: Vec::new(), language: LanguageOverlay::default() },
+            schema: schema_out(),
+        };
+        let stub = context_stub(&ctx, &["de".into(), "en".into()]);
+        assert!(stub.contains("\"gap_count\":2"));
+        assert!(stub.contains("\"languages\":[\"de\",\"en\"]"));
+        assert!(!stub.contains("light.a"));
+        assert!(!stub.contains("graph"));
     }
 }

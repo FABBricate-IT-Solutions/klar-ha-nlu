@@ -56,7 +56,7 @@ class RefineTests(unittest.TestCase):
         self.assertFalse(
             refine.should_refine(False, "conversation.llm", "Licht ist an.")
         )
-        self.assertFalse(refine.should_refine(True, None, "Licht ist an."))
+        self.assertTrue(refine.should_refine(True, None, "Licht ist an."))
         self.assertFalse(refine.should_refine(True, "conversation.llm", ""))
         self.assertFalse(hasattr(refine, "_TIMEOUT"))
         self.assertFalse(hasattr(refine, "nlu_home_turn"))
@@ -89,6 +89,7 @@ class RefineTests(unittest.TestCase):
     def test_refine_calls_engine_and_fails_closed(self) -> None:
         src = (PKG / "refine.py").read_text(encoding="utf-8")
         self.assertIn("complete_engine_refine", src)
+        self.assertIn("conversation_id=conversation_id", src)
         self.assertNotIn("complete_engine_chat", src)
         self.assertNotIn("accept_refined", src)
         self.assertNotIn("async_converse", src)
@@ -243,12 +244,13 @@ class RefineTests(unittest.TestCase):
         start = src.index("async def _fallback")
         end = src.index("def _preferred_area")
         body = src[start:end]
-        self.assertIn("isolated_conversation_id", body)
-        self.assertIn("nested_llm_session", body)
-        self.assertIn("speak_tag(pack)", body)
+        self.assertNotIn("async_converse", body)
+        self.assertNotIn("nested_llm_session", body)
+        self.assertIn("stream_engine_assist", body)
         self.assertNotIn("user_input.conversation_id", body)
         self.assertNotIn("user_input.device_id", body)
         self.assertNotIn("record", body)
+        self.assertIn("isolated_conversation_id", src)
         spoken = src[src.index("async def _spoken") : src.index("async def _briefing")]
         self.assertIn("skip_rewrite", spoken)
         self.assertIn("emit_assistant_speech", spoken)

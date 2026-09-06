@@ -108,6 +108,7 @@ export function HouseLane({
         <h2>{t.laneHouse}</h2>
         <OriginChip t={t} origin="operator" />
       </div>
+      <div className="lane-body">
       {houseRules.length === 0 && (
         <div>
           <p className="muted">{policiesEmpty(t)}</p>
@@ -220,6 +221,7 @@ export function HouseLane({
           ))}
         </div>
       ) : houseRules.length === 0 ? null : <p className="muted">{t.noPolicies}</p>}
+      </div>
     </>
   );
 }

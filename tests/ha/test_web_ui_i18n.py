@@ -109,6 +109,12 @@ class OperatorUiParity(unittest.TestCase):
         self.assertIn("labPath", lab)
         self.assertIn("void submit()", lab)
         self.assertIn("api.parse", lab)
+        self.assertIn("api.llmRefine", lab)
+        self.assertIn("api.llmAssist", lab)
+        self.assertIn("labChatLike", lab)
+        self.assertIn("labRefineEligible", lab)
+        self.assertIn("LLM chat", lab)
+        self.assertIn("LabSpeechCompare", lab)
         self.assertIn("aria-controls=\"klar-nav\"", app)
         self.assertIn("setNavOpen", app)
         self.assertIn("MenuIcon", app)
@@ -120,7 +126,9 @@ class OperatorUiParity(unittest.TestCase):
         self.assertIn("calendar LLM", lab)
         self.assertIn("quiet ack", lab)
         self.assertIn("LLM tools", lab)
-        self.assertIn("fallback LLM", lab)
+        self.assertIn("PersonalityPrompt", (ROOT / "web" / "src" / "pages" / "SettingsPage.tsx").read_text(encoding="utf-8"))
+        self.assertIn("/api/v2/llm/voice", engine_llm_rs)
+        self.assertNotIn("fallback LLM", lab)
         self.assertIn("NLU-RAG", lab)
         self.assertIn("aria-label=\"pipeline\"", lab)
         self.assertIn("policy_trace?.hit", lab)
@@ -140,3 +148,12 @@ class OperatorUiParity(unittest.TestCase):
             encoding="utf-8"
         )
         self.assertIn("advertised_languages()", conversation)
+
+    def test_policy_lanes_clip_lists(self) -> None:
+        theme = (ROOT / "web" / "src" / "theme.css").read_text(encoding="utf-8")
+        self.assertIn(".lane-body {", theme)
+        self.assertIn("overflow: auto;", theme)
+        self.assertNotIn("max-height: none;", theme)
+        for name in ("MatchLane.tsx", "LexiconLane.tsx", "HouseLane.tsx"):
+            src = (ROOT / "web" / "src" / "components" / name).read_text(encoding="utf-8")
+            self.assertIn('className="lane-body"', src, name)

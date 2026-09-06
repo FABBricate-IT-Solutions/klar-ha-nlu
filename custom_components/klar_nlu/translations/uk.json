@@ -28,8 +28,7 @@
           "mode": "Рушій",
           "personality": "Особистість",
           "languages": "Мови",
-          "fallback_agent": "Розмовний агент для балачок",
-          "allow_llm_tools": "Allow Assist tools on the chit-chat agent",
+          "allow_llm_tools": "Allow Home Assistant Assist tools on engine chat",
           "refine_speech": "Нехай LLM переформулює відповіді NLU",
           "refine_prompt": "Підказка уточнення",
           "url": "URL API Klar",
@@ -49,10 +48,9 @@
           "nlu_rag": "Типово вимкнено. У розмові до резервної моделі йде лише розпізнаний фрагмент.",
           "quiet_ack": "При простому вмиканні/вимиканні світла без фрази, лише короткий звук на супутнику.",
           "calendar_llm": "Типово вимкнено. Увімкнено: Klar читає календар, резервна LLM озвучує події. Вимкнено: Klar озвучує список. Створення, видалення й переміщення лишаються в Klar.",
-          "allow_llm_tools": "Off by default. On: Klar still calls the chit-chat agent even if that agent can control Home Assistant. The model may turn lights and run scripts. Off: Klar skips the LLM when that agent has Assist tools.",
+          "allow_llm_tools": "Off by default. On: after Klar parses, the engine chat model may call Home Assistant Assist tools (names come from Core, already prefixed). Off: conversation only.",
           "languages": "Типово відповідає мові системи Home Assistant.",
-          "channel": "Будь-коли. Staging вказує на Klar NLU (Staging).",
-          "fallback_agent": "Leave empty. Configure the LLM in the Klar operator UI (Settings → LLM). Assist chat and the trainer use that endpoint. This field is only for an old Home Assistant conversation integration."
+          "channel": "Будь-коли. Staging вказує на Klar NLU (Staging)."
         }
       }
     },

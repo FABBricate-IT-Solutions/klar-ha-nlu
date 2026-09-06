@@ -1,17 +1,9 @@
 import { useEffect, useState } from "react";
 import { Loader2Icon } from "lucide-react";
-import { api, type LangOverlay } from "../api";
+import { api } from "../api";
 import type { PolicyLane } from "./PolicyPath";
 import type { Messages } from "../i18n";
-import type {
-  LlmPublic,
-  MatchControl,
-  PolicyRule,
-  TrainerChatEvent,
-  TrainerProposal,
-  TrainerTurn,
-  TrainerValidateOut,
-} from "../types";
+import type { LlmPublic, TrainerChatEvent, TrainerConsent, TrainerTurn, TrainerValidateOut } from "../types";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -35,24 +27,11 @@ function trainerLayer(lane: PolicyLane): "match" | "language" | "house" {
   }
 }
 
-function layerOf(proposal: TrainerProposal): "match" | "language" | "house" | "all" {
-  const layer = proposal.layer || "all";
-  switch (layer) {
-    case "match":
-    case "language":
-    case "house":
-    case "all":
-      return layer;
-    default:
-      return "all";
-  }
-}
-
 function applyEvent(
   event: TrainerChatEvent,
   setLines: (fn: (prev: TrainerTurn[]) => TrainerTurn[]) => void,
-  setProposal: (next: TrainerProposal | null) => void,
-  setRaw: (next: string) => void,
+  setConsent: (next: TrainerConsent | null) => void,
+  setYolo: (next: boolean) => void,
   setResult: (next: TrainerValidateOut | null) => void,
   onStatus: (status: string) => void,
   t: Messages,
@@ -68,13 +47,25 @@ function applyEvent(
         return next;
       });
       return;
-    case "proposal":
-      setProposal(event.value);
-      setRaw(JSON.stringify(event.value, null, 2));
+    case "consent":
+      setConsent({
+        call_id: event.call_id,
+        tool: event.tool,
+        summary: event.summary,
+        validate: event.validate,
+      });
+      setResult(event.validate);
+      return;
+    case "session":
+      setYolo(event.yolo);
       return;
     case "validate":
       setResult(event.value);
       onStatus(event.value.ok ? t.trainerOk : t.trainerFail);
+      return;
+    case "proposal":
+      return;
+    case "tool_call":
       return;
     case "done":
       setLines((prev) => {
@@ -100,40 +91,27 @@ export function TrainerDrawer({
   t,
   lane,
   language,
-  overlay,
-  onApplyHouse,
-  onApplyMatch,
   onStatus,
 }: {
   t: Messages;
   lane: PolicyLane;
   language?: string;
-  overlay: LangOverlay | null;
-  onApplyHouse: (next: PolicyRule[]) => Promise<void>;
-  onApplyMatch: (next: MatchControl[]) => Promise<void>;
+  overlay?: unknown;
+  onApplyHouse?: unknown;
+  onApplyMatch?: unknown;
   onStatus: (status: string) => void;
 }) {
   const [endpoint, setEndpoint] = useState<LlmPublic | null>(null);
   const [draft, setDraft] = useState("");
   const [lines, setLines] = useState<TrainerTurn[]>([]);
   const [busy, setBusy] = useState(false);
-  const [raw, setRaw] = useState("");
   const [result, setResult] = useState<TrainerValidateOut | null>(null);
-  const [proposal, setProposal] = useState<TrainerProposal | null>(null);
+  const [consent, setConsent] = useState<TrainerConsent | null>(null);
+  const [yolo, setYolo] = useState(false);
 
   useEffect(() => {
     api.llmEndpoint().then(setEndpoint).catch(() => setEndpoint({ configured: false }));
   }, []);
-
-  const parsed = (): TrainerProposal | null => {
-    if (proposal) return proposal;
-    if (!raw.trim()) return null;
-    try {
-      return JSON.parse(raw) as TrainerProposal;
-    } catch {
-      return null;
-    }
-  };
 
   const send = async () => {
     const message = draft.trim();
@@ -143,10 +121,10 @@ export function TrainerDrawer({
     setLines((prev) => [...prev, { role: "user", content: message }, { role: "assistant", content: "" }]);
     setBusy(true);
     setResult(null);
-    setProposal(null);
+    setConsent(null);
     try {
       await api.trainerChat({ message, layer: trainerLayer(lane), language, history }, (event) => {
-        applyEvent(event, setLines, setProposal, setRaw, setResult, onStatus, t);
+        applyEvent(event, setLines, setConsent, setYolo, setResult, onStatus, t);
       });
     } catch (err) {
       if (err instanceof Error && err.message === "llm-unconfigured") {
@@ -160,41 +138,16 @@ export function TrainerDrawer({
     }
   };
 
-  const runValidate = async () => {
-    const next = parsed();
-    if (!next) {
+  const decide = async (decision: "allow_once" | "allow" | "yolo" | "deny" | "ask_again") => {
+    try {
+      const out = await api.trainerConsent({ call_id: consent?.call_id, decision });
+      setYolo(out.yolo);
+      if (decision !== "ask_again") {
+        setConsent(null);
+      }
+    } catch {
       onStatus(t.trainerFail);
-      return;
     }
-    if (!next.language && language) next.language = language;
-    const out = await api.validateProposal(next);
-    setResult(out);
-    onStatus(out.ok ? t.trainerOk : t.trainerFail);
-  };
-
-  const applyLane = async (lane: "house" | "match" | "language") => {
-    if (!result?.ok) return;
-    const next = parsed();
-    if (!next) return;
-    const layer = layerOf(next);
-    if (layer !== "all" && layer !== lane) return;
-    if (lane === "house" && next.policies) await onApplyHouse(next.policies);
-    if (lane === "match" && next.match_controls) await onApplyMatch(next.match_controls);
-    if (lane === "language" && next.language_overlay) {
-      await api.saveLangOverlay({ custom: overlay?.custom || [], language: next.language_overlay, label: "trainer" });
-    }
-    onStatus(t.trainerApply);
-  };
-
-  const canApply = (lane: "house" | "match" | "language") => {
-    if (!result?.ok) return false;
-    const next = parsed();
-    if (!next) return false;
-    const layer = layerOf(next);
-    if (layer !== "all" && layer !== lane) return false;
-    if (lane === "house") return Boolean(next.policies);
-    if (lane === "match") return Boolean(next.match_controls);
-    return Boolean(next.language_overlay);
   };
 
   if (!endpoint || !endpoint.configured) {
@@ -219,6 +172,14 @@ export function TrainerDrawer({
         <div className="flex flex-wrap items-center gap-2">
           <CardTitle>{t.trainerForLane}</CardTitle>
           <Badge variant="outline">{endpoint.model || "LLM"}</Badge>
+          {yolo ? (
+            <Badge variant="outline">
+              {t.trainerYolo}
+              <Button type="button" variant="ghost" size="sm" className="ml-2 h-6 px-2" onClick={() => void decide("ask_again")}>
+                {t.trainerAskAgain}
+              </Button>
+            </Badge>
+          ) : null}
         </div>
         <CardDescription>{t.trainerHint}</CardDescription>
       </CardHeader>
@@ -240,6 +201,18 @@ export function TrainerDrawer({
                     {line.content || (busy ? t.trainerStreaming : "")}
                   </p>
                 ))}
+                {consent ? (
+                  <div className="rounded-lg border bg-background p-3 text-sm">
+                    <p className="font-medium">{consent.tool}</p>
+                    <p className="text-muted-foreground">{consent.summary}</p>
+                    <div className="mt-2 flex flex-wrap gap-2">
+                      <Button type="button" size="sm" onClick={() => void decide("allow")}>{t.trainerAllow}</Button>
+                      <Button type="button" size="sm" variant="secondary" onClick={() => void decide("allow_once")}>{t.trainerAllowOnce}</Button>
+                      <Button type="button" size="sm" variant="secondary" onClick={() => void decide("yolo")}>{t.trainerYolo}</Button>
+                      <Button type="button" size="sm" variant="outline" onClick={() => void decide("deny")}>{t.trainerDeny}</Button>
+                    </div>
+                  </div>
+                ) : null}
               </div>
             </ScrollArea>
             <FieldGroup>
@@ -249,7 +222,7 @@ export function TrainerDrawer({
                   id="trainer-draft"
                   className="min-h-24 font-mono text-sm"
                   value={draft}
-                  disabled={busy}
+                  disabled={busy && !consent}
                   onChange={(ev) => setDraft(ev.target.value)}
                   onKeyDown={(ev) => {
                     if (ev.key === "Enter" && !ev.shiftKey) {
@@ -260,9 +233,9 @@ export function TrainerDrawer({
                 />
               </Field>
             </FieldGroup>
-            <Button type="button" disabled={busy || !draft.trim()} onClick={() => void send()}>
-              {busy ? <Loader2Icon data-icon="inline-start" className="animate-spin" /> : null}
-              {busy ? t.trainerStreaming : t.trainerSend}
+            <Button type="button" disabled={(busy && !consent) || !draft.trim()} onClick={() => void send()}>
+              {busy && !consent ? <Loader2Icon data-icon="inline-start" className="animate-spin" /> : null}
+              {busy && !consent ? t.trainerStreaming : t.trainerSend}
             </Button>
           </div>
           <div className="flex flex-col gap-3">
@@ -286,26 +259,12 @@ export function TrainerDrawer({
                 </AlertDescription>
               </Alert>
             ) : null}
-            <div className="flex flex-wrap gap-2">
-              <Button type="button" disabled={!canApply("house")} onClick={() => void applyLane("house")}>{t.trainerApplyHouse}</Button>
-              <Button type="button" disabled={!canApply("match")} onClick={() => void applyLane("match")}>{t.trainerApplyMatch}</Button>
-              <Button type="button" disabled={!canApply("language")} onClick={() => void applyLane("language")}>{t.trainerApplyLanguage}</Button>
-            </div>
             <Collapsible>
               <CollapsibleTrigger render={<Button variant="outline" type="button" />}>
                 {t.trainerAdvanced}
               </CollapsibleTrigger>
-              <CollapsibleContent className="flex flex-col gap-3 pt-3">
-                <Button variant="secondary" type="button" onClick={() => void runValidate()}>{t.trainerValidate}</Button>
-                <Field>
-                  <FieldLabel htmlFor="trainer-proposal">{t.trainerProposal}</FieldLabel>
-                  <Textarea
-                    id="trainer-proposal"
-                    className="min-h-40 font-mono text-xs"
-                    value={raw}
-                    onChange={(ev) => { setRaw(ev.target.value); setProposal(null); }}
-                  />
-                </Field>
+              <CollapsibleContent className="pt-3 text-sm text-muted-foreground">
+                {t.trainerHint}
               </CollapsibleContent>
             </Collapsible>
           </div>

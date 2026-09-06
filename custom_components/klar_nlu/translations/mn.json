@@ -28,8 +28,7 @@
           "mode": "Хөдөлгүүр",
           "personality": "Зан чанар",
           "languages": "Хэлнүүд",
-          "fallback_agent": "Чатлах ярианы агент",
-          "allow_llm_tools": "Allow Assist tools on the chit-chat agent",
+          "allow_llm_tools": "Allow Home Assistant Assist tools on engine chat",
           "refine_speech": "LLM-ээр NLU хариуг дахин бичүүлэх",
           "refine_prompt": "Засварын сануулга",
           "url": "Klar API хаяг",
@@ -49,10 +48,9 @@
           "nlu_rag": "Анхдагч унтраалттай. Чатад нөөц загварт зөвхөн таарсан хэсэг очно.",
           "quiet_ack": "Энгийн гэрэл асаах/унтраахад яриагүй, хиймэл дагуул дээр богино дуу.",
           "calendar_llm": "Анхдагч унтраалттай. Асаалттай: Klar хуанли уншиж, нөөц LLM үйл явдлыг хэлнэ. Унтраалттай: Klar жагсаалтыг өөрөө хэлнэ. Үүсгэх, устгах, зөөх нь Klar дээр үлдэнэ.",
-          "allow_llm_tools": "Off by default. On: Klar still calls the chit-chat agent even if that agent can control Home Assistant. The model may turn lights and run scripts. Off: Klar skips the LLM when that agent has Assist tools.",
+          "allow_llm_tools": "Off by default. On: after Klar parses, the engine chat model may call Home Assistant Assist tools (names come from Core, already prefixed). Off: conversation only.",
           "languages": "Анхдагч нь Home Assistant системийн хэл.",
-          "channel": "Хэзээ ч. Staging нь Klar NLU (Staging) руу заана.",
-          "fallback_agent": "Leave empty. Configure the LLM in the Klar operator UI (Settings → LLM). Assist chat and the trainer use that endpoint. This field is only for an old Home Assistant conversation integration."
+          "channel": "Хэзээ ч. Staging нь Klar NLU (Staging) руу заана."
         }
       }
     },

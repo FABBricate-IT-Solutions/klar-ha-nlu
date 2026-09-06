@@ -28,8 +28,7 @@
           "mode": "Mecanismo",
           "personality": "Personalidade",
           "languages": "Idiomas",
-          "fallback_agent": "Agente de conversa para papo",
-          "allow_llm_tools": "Allow Assist tools on the chit-chat agent",
+          "allow_llm_tools": "Allow Home Assistant Assist tools on engine chat",
           "refine_speech": "Deixar o LLM refinar as respostas NLU",
           "refine_prompt": "Prompt de refinamento",
           "url": "URL da API Klar",
@@ -49,10 +48,9 @@
           "nlu_rag": "Desligado por padrão. No chat só o trecho reconhecido vai para o modelo reserva.",
           "quiet_ack": "Em ligar ou desligar simples, sem fala: só um som curto no satélite.",
           "calendar_llm": "Desligado por padrão. Ligado: o Klar lê o calendário e o LLM reserva fala os eventos. Desligado: o Klar fala a lista. Criar, apagar e mover ficam no Klar.",
-          "allow_llm_tools": "Off by default. On: Klar still calls the chit-chat agent even if that agent can control Home Assistant. The model may turn lights and run scripts. Off: Klar skips the LLM when that agent has Assist tools.",
+          "allow_llm_tools": "Off by default. On: after Klar parses, the engine chat model may call Home Assistant Assist tools (names come from Core, already prefixed). Off: conversation only.",
           "languages": "O padrão é o idioma do sistema do Home Assistant.",
-          "channel": "A qualquer momento. Staging aponta para Klar NLU (Staging); Stable para o app ou o mecanismo incluso.",
-          "fallback_agent": "Leave empty. Configure the LLM in the Klar operator UI (Settings → LLM). Assist chat and the trainer use that endpoint. This field is only for an old Home Assistant conversation integration."
+          "channel": "A qualquer momento. Staging aponta para Klar NLU (Staging); Stable para o app ou o mecanismo incluso."
         }
       }
     },

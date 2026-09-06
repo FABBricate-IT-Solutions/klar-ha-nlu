@@ -23,13 +23,12 @@
     "step": {
       "init": {
         "title": "Klar NLU",
-        "description": "D Persönlichkeit blibt i Home Assistant, au nach ere Neuinstallation vo de Klar-App. Beim Wächsle wird de Verfyynerigs-Prompt kopiert.",
+        "description": "Stimm, Assist-Sprache und s LLM liged i de Klar-Operator-UI (Istellige). Das Formular verbindet nur d Engine: URL, Token und Kanal.",
         "data": {
           "mode": "Engine",
           "personality": "Persönlichkeit",
           "languages": "Sprache",
-          "fallback_agent": "Optionaler Legacy-Conversation-Agent",
-          "allow_llm_tools": "Assist-Wärchzüüg bim Smalltalk-Agent erlaube",
+          "allow_llm_tools": "Home-Assistant-Assist-Wärchzüüg bim Engine-Chat erlaube",
           "refine_speech": "NLU-Antworten vom LLM verfyynere",
           "refine_prompt": "Verfyynerigs-Prompt",
           "url": "URL vo de Klar-API",
@@ -49,10 +48,9 @@
           "nlu_rag": "Standard us. Bi Chat nume de gmatchti Uschnitt ans Fallback-Modell.",
           "quiet_ack": "Bi eifachem Liecht aa/us kei gredti Antwort, nur en churze Ton.",
           "calendar_llm": "Standard us. Aa: Klar liest de Kalender, s Fallback-LLM seit d Termin. Us: Klar seit d Liste sälber. Aalege, Lösche und Verschiebe blibed bi Klar.",
-          "allow_llm_tools": "Standard us. Aa: Klar rueft de Smalltalk-Agent au, wenn er Home Assistant stüre darf. Us: Klar überspringt s LLM, wenn de Agent Assist-Wärchzüüg het.",
+          "allow_llm_tools": "Standard us. Aa: nach em Klar-Parse darf s Engine-Chat-Modell Home-Assistant-Assist-Wärchzüüg nutze (Nämme chömed vo Core, scho prefixiert). Us: nur Gspröch.",
           "languages": "Standard isch d Home-Assistant-Systemsprach.",
-          "channel": "Jederzit. Staging uf Klar NLU (Staging), Stable uf d App oder d mitglieferte Engine.",
-          "fallback_agent": "Leer loh. S LLM isch i de Klar-Operator-UI (Iistellige → LLM). Assist-Chat und Trainer nützt de gliich Endpoint. Das Feld isch nur für e alti Home-Assistant-Conversation-Integration."
+          "channel": "Jederzit. Staging uf Klar NLU (Staging), Stable uf d App oder d mitglieferte Engine."
         }
       }
     },

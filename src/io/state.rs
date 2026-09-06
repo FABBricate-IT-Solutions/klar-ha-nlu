@@ -4,6 +4,7 @@ use crate::io::bundle::{entry_from_parse, BundleStore};
 use crate::io::conversations::{turn_from_outcome, ConversationJournal};
 use crate::io::llm::load_endpoint;
 use crate::io::metrics::MetricsStore;
+use crate::io::trainer_consent::TrainerConsentHub;
 use crate::llm::LlmEndpoint;
 use crate::session::Sessions;
 use crate::types::{CustomSentence, MatchControl, ParseOutcome, ParseResult, PolicyRule, Settings, SpeechBank};
@@ -29,6 +30,7 @@ pub struct AppState {
     pub live_sync: Arc<AtomicBool>,
     pub token: Option<String>,
     pub llm: Arc<Mutex<Option<LlmEndpoint>>>,
+    pub trainer_consent: Arc<TrainerConsentHub>,
 }
 
 impl AppState {
@@ -50,6 +52,7 @@ impl AppState {
             live_sync: Arc::new(AtomicBool::new(false)),
             token,
             llm: Arc::new(Mutex::new(llm)),
+            trainer_consent: TrainerConsentHub::new(),
         }
     }
 

@@ -314,9 +314,6 @@ export function RulesPage({
             t={t}
             lane={lane}
             language={languages.length === 1 ? languages[0] : locale}
-            overlay={overlay}
-            onApplyHouse={(next) => persist(next)}
-            onApplyMatch={(next) => persist(rules, bank, next)}
             onStatus={setStatus}
           />
         </>

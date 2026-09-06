@@ -41,6 +41,7 @@ export function MatchLane({
         <h2>{t.laneMatchEngine}</h2>
         <OriginChip t={t} origin="engine" />
       </div>
+      <div className="lane-body">
       <p className="caption">{t.matchReadOnly}</p>
       {catalog.map((row, index) => {
         const overlay = controls.find((item) => item.id === row.id);
@@ -76,6 +77,7 @@ export function MatchLane({
           </div>
         );
       })}
+      </div>
     </>
   );
 }

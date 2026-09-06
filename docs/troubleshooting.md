@@ -55,6 +55,6 @@ Das Conversation-Journal (UI **Gespräche**) hält die letzten 200 Turns 24 Stun
 
 Die Engine ist lokal. Keine Cloud, keine Modellgewichte, kein Phone-Home.
 
-Ein optionales LLM in Home Assistant darf eine fertige Bestätigung umformulieren oder Smalltalk führen. Das ist euer Agent, nicht Klar. Assist-Werkzeuge bei diesem Agenten **aus**, außer **Assist-Werkzeuge beim Smalltalk-Agenten erlauben** ist an. NLU-RAG (standardmäßig aus) darf dem Fallback nur den bereits gematchten Ausschnitt schicken. Ohne die Werkzeug-Option bekommt es keine Assist- oder Home-Assistant-Steuerwerkzeuge.
+Das Klar-Engine-LLM darf eine fertige Bestätigung umformulieren oder Chat führen. Konfiguration in der Operator-UI (Einstellungen → LLM). **Assist-Werkzeuge beim Chat** ist standardmäßig aus; an: Core-Assist-Toolnamen (2026.9-Präfixe) nach dem Klar-Parse. NLU-RAG (standardmäßig aus) schickt nur den gematchten Ausschnitt und schließt HA-Tools in derselben Runde aus.
 
 `KLAR_TOKEN`, `klar.token` und unredigierte Bundles nicht committen.

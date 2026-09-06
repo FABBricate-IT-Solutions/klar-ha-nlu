@@ -170,6 +170,14 @@ const SET_KEYS: &[(&str, WordKey)] = &[
     ("cues.article_one", WordKey::ArticleOne),
 ];
 
+pub fn lexicon_set_paths() -> Vec<&'static str> {
+    SET_KEYS.iter().map(|(name, _)| *name).collect()
+}
+
+pub fn is_lexicon_path(path: &str) -> bool {
+    set_field(path).is_some()
+}
+
 pub(super) fn set_field(path: &str) -> Option<WordKey> {
     SET_KEYS.iter().copied().find(|(name, _)| *name == path).map(|(_, key)| key)
 }

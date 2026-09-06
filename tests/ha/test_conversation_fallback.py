@@ -21,16 +21,19 @@ class ConversationFallbackTests(unittest.TestCase):
         self.assertNotIn("_nlu_rag()", block)
         self.assertNotIn("decision_type != \"reject\"", block)
 
-    def test_fallback_uses_engine_assist_then_converse(self) -> None:
+    def test_fallback_uses_engine_assist_only(self) -> None:
         src = (ROOT / "custom_components" / "klar_nlu" / "conversation.py").read_text(encoding="utf-8")
         start = src.index("async def _fallback")
         end = src.index("def _preferred_area")
         body = src[start:end]
         self.assertIn("stream_engine_assist", body)
+        self.assertIn("stream_assist_with_ha_tools", body)
         self.assertIn("self._allow_llm_tools()", body)
-        self.assertIn("speak_tag(pack)", body)
+        self.assertIn("async_provide_llm_data", (ROOT / "custom_components" / "klar_nlu" / "assist_tools.py").read_text(encoding="utf-8"))
+        self.assertIn("speak_tag(pack)", src)
         self.assertIn("_llm_session_id", body)
-        self.assertIn("async_converse", body)
+        self.assertNotIn("async_converse", body)
+        self.assertNotIn("_fallback_agent_id", src)
         self.assertNotIn("chat_only_prompt", body)
         self.assertNotIn("refine_prompt(", body)
         self.assertNotIn("history_prompt", body)
@@ -39,9 +42,6 @@ class ConversationFallbackTests(unittest.TestCase):
         self.assertNotIn("stream_engine_chat", body)
         self.assertNotIn("stream_chat", body)
         self.assertNotIn("_stream_fallback", body)
-        self.assertLess(body.index("stream_engine_assist"), body.index("if not agent_id:"))
-        self.assertLess(body.index("if not agent_id:"), body.index("async_converse"))
-        self.assertNotIn("if not agent_id:\n            return None", body[: body.index("stream_engine_assist")])
         self.assertNotIn("yarn_canned", src)
         self.assertIn("leaks_klar_tools", src)
         self.assertIn("parse_tool_reply", src)

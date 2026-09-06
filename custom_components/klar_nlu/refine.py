@@ -36,7 +36,8 @@ _END = re.compile(r"(?:(?:\.\.\.|…|[.!?。！？])[\"'»”’]*)$")
 
 
 def should_refine(enabled: bool, agent_id: str | None, speech: str) -> bool:
-    return bool(enabled and agent_id and speech.strip())
+    del agent_id
+    return bool(enabled and speech.strip())
 
 
 def isolated_conversation_id() -> str:
@@ -167,6 +168,7 @@ async def async_finish_speech(
     personality: str,
     extra_prompt: str | None,
     allow_tools: bool = False,
+    conversation_id: str | None = None,
 ) -> str:
     if not should_refine(enabled, agent_id, speech):
         return style(speech, personality, pack)
@@ -181,6 +183,7 @@ async def async_finish_speech(
         personality,
         extra_prompt,
         allow_tools,
+        conversation_id,
     )
     return refined or style(speech, personality, pack)
 
@@ -196,6 +199,7 @@ async def async_refine_speech(
     personality: str,
     extra_prompt: str | None,
     allow_tools: bool = False,
+    conversation_id: str | None = None,
 ) -> str | None:
     del agent_id, controls_home, context, allow_tools
     if hass is None:
@@ -210,6 +214,7 @@ async def async_refine_speech(
             language or pack,
             personality,
             extra_prompt or "",
+            conversation_id=conversation_id,
         )
         return text if accepted else None
     except EngineRefineMissing:

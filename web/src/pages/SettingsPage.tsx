@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { api, download, setToken, type LanguagePack } from "../api";
 import { LlmSettingsCard } from "../components/LlmSettingsCard";
+import { PersonalityPrompt } from "../components/PersonalityPrompt";
 import { SearchSelect, withCurrent } from "../components/SearchSelect";
 import { dictionaries, type Messages } from "../i18n";
 import type { BundleList, Locale, Settings, Theme } from "../types";
@@ -199,6 +200,7 @@ export function SettingsPage({
                   </SelectContent>
                 </Select>
               </Field>
+              <PersonalityPrompt t={t} personality={voice} language={pinned} />
               <Field>
                 <FieldLabel htmlFor="klar-extra-prompt">{t.extraPrompt}</FieldLabel>
                 <Textarea

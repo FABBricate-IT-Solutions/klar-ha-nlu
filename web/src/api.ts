@@ -14,6 +14,7 @@ import type {
   LlmModels,
   LlmPublic,
   PolicyTrace,
+  RefineOutcome,
   Settings,
   TrainerChatEvent,
   TrainerContext,
@@ -55,6 +56,17 @@ async function request<T>(path: string, init: RequestInit = {}): Promise<T> {
   return res.json() as Promise<T>;
 }
 
+async function llmWrite<T>(path: string, body: unknown): Promise<T> {
+  const res = await fetch(appPath(path), {
+    method: "POST",
+    headers: jsonHeaders(),
+    body: JSON.stringify(body),
+  });
+  if (res.status === 503) throw new Error("llm-unconfigured");
+  if (!res.ok) throw new Error(`${res.status} ${res.statusText}`);
+  return res.json() as Promise<T>;
+}
+
 function asTrainerChatEvent(raw: unknown): TrainerChatEvent | null {
   if (!raw || typeof raw !== "object") return null;
   const row = raw as { type?: string };
@@ -64,6 +76,9 @@ function asTrainerChatEvent(raw: unknown): TrainerChatEvent | null {
     case "error":
     case "proposal":
     case "validate":
+    case "consent":
+    case "session":
+    case "tool_call":
       return raw as TrainerChatEvent;
     default:
       return null;
@@ -142,7 +157,17 @@ export const api = {
   validateProposal: (body: TrainerProposal) =>
     request<TrainerValidateOut>("/api/v2/policies/propose/validate", { method: "POST", body: JSON.stringify(body) }),
   llmEndpoint: () => request<LlmPublic>("/api/v2/llm/endpoint"),
-  saveLlmEndpoint: (body: { base_url?: string; api_key?: string; model?: string; configured?: boolean }) =>
+  llmVoice: (personality: string, language: string) => {
+    const query = new URLSearchParams({ personality, language });
+    return request<{ personality: string; flavor: string; prompt: string }>(`/api/v2/llm/voice?${query.toString()}`);
+  },
+  saveLlmEndpoint: (body: {
+    base_url?: string;
+    api_key?: string;
+    model?: string;
+    configured?: boolean;
+    enable_thinking?: boolean;
+  }) =>
     request<LlmPublic>("/api/v2/llm/endpoint", {
       method: "POST",
       body: JSON.stringify(body),
@@ -152,10 +177,34 @@ export const api = {
       method: "POST",
       body: JSON.stringify(body),
     }),
+  llmRefine: (body: {
+    speech: string;
+    language: string;
+    personality: string;
+    extra_prompt?: string;
+    conversation_id?: string;
+  }) =>
+    llmWrite<RefineOutcome>("/api/v2/llm/refine", { ...body, stream: false }),
+  llmAssist: (body: {
+    text: string;
+    language: string;
+    personality: string;
+    extra_prompt?: string;
+    conversation_id?: string;
+    kind?: string;
+  }) =>
+    llmWrite<{ type: string; text?: string }>("/api/v2/llm/assist", { ...body, stream: false }).then((row) => ({
+      text: String(row.text || ""),
+    })),
   trainerChat: (
     body: { message: string; layer?: string; language?: string; history?: TrainerTurn[] },
     onEvent: (event: TrainerChatEvent) => void,
   ) => streamTrainerChat(body, onEvent),
+  trainerConsent: (body: { call_id?: string; decision: "allow_once" | "allow" | "yolo" | "deny" | "ask_again" }) =>
+    request<{ ok: boolean; yolo: boolean; allowed: string[] }>("/api/v2/policies/trainer/consent", {
+      method: "POST",
+      body: JSON.stringify(body),
+    }),
   conversations: () => request<ConversationTurn[]>("/api/v2/conversations"),
   conversation: (id: string) => request<ConversationTurn[]>(`/api/v2/conversations/${encodeURIComponent(id)}`),
   intents: () => request<string[]>("/api/v2/intents"),

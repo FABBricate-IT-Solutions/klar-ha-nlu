@@ -28,8 +28,7 @@
           "mode": "એન્જિન",
           "personality": "વ્યક્તિત્વ",
           "languages": "ભાષાઓ",
-          "fallback_agent": "વાતચીત માટે વાર્તાલાપ એજન્ટ",
-          "allow_llm_tools": "Allow Assist tools on the chit-chat agent",
+          "allow_llm_tools": "Allow Home Assistant Assist tools on engine chat",
           "refine_speech": "LLM પાસે NLU જવાબ સુધારાવો",
           "refine_prompt": "સુધારા પ્રોમ્પ્ટ",
           "url": "Klar API URL",
@@ -49,10 +48,9 @@
           "nlu_rag": "મૂળભૂત બંધ. વાતમાં ફક્ત મળેલો ટુકડો બેકઅપ મોડેલને જાય છે.",
           "quiet_ack": "સાદી લાઇટ ચાલુ/બંધ પર વાક્ય નહીં, સેટેલાઇટ પર ટૂંકો અવાજ.",
           "calendar_llm": "મૂળભૂત બંધ. વાતમાં ફક્ત મળેલો ટુકડો બેકઅપ મોડેલને જાય છે. કેલેન્ડર પ્રશ્નો LLMને મોકલો.",
-          "allow_llm_tools": "Off by default. On: Klar still calls the chit-chat agent even if that agent can control Home Assistant. The model may turn lights and run scripts. Off: Klar skips the LLM when that agent has Assist tools.",
+          "allow_llm_tools": "Off by default. On: after Klar parses, the engine chat model may call Home Assistant Assist tools (names come from Core, already prefixed). Off: conversation only.",
           "languages": "મૂળભૂત Home Assistant સિસ્ટમ ભાષા છે.",
-          "channel": "ગમે ત્યારે. Staging Klar NLU (Staging) તરફ છે.",
-          "fallback_agent": "Leave empty. Configure the LLM in the Klar operator UI (Settings → LLM). Assist chat and the trainer use that endpoint. This field is only for an old Home Assistant conversation integration."
+          "channel": "ગમે ત્યારે. Staging Klar NLU (Staging) તરફ છે."
         }
       }
     },
