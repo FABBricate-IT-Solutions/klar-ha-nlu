@@ -6,6 +6,103 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 Versions follow Home Assistant calendar versioning (`YYYY.M.PATCH`)
 and [Conventional Commits](https://www.conventionalcommits.org/).
 
+## [2026.9.3](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/compare/2026.9.2...2026.9.3) - 2026-09-05
+
+
+
+### Bug Fixes
+
+- apply Debian security updates in the runtime image([4c30cfe](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/4c30cfe032286ea8f5373282d2283246d9b9c487))
+
+
+### Other
+
+- Merge pull request #195 from FABBricate-IT-Solutions/release/promote-image-security-updates([b17384b](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/b17384b2cace6cc055fe954eb3547b7a5b7ba40c))
+
+## [2026.9.2](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/compare/2026.9.1...2026.9.2) - 2026-09-05
+
+
+
+### Bug Fixes
+
+- only skip household weather when a calendar noun is present([3d503d3](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/3d503d3d3359564d227e564e06fc6f3fe77daebe))
+
+- keep Assist on the Lab plan and show pipeline settings([53fc5bc](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/53fc5bcbe0e9128995ff5f2ff97505fac67fee2f))
+
+
+### Other
+
+- Merge pull request #192 from FABBricate-IT-Solutions/release/promote-assist-follows-lab([94132aa](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/94132aae94bd4439b5bc2969eecb23bcba439d04))
+
+
+### Styling
+
+- rustfmt household weather calendar guard([a5fe09a](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/a5fe09a913ca74f80f66b5a59a556bf385261a87))
+
+## [2026.9.1](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/compare/2026.9.0...2026.9.1) - 2026-09-02
+
+
+
+### Features
+
+- speak named devices in floor and room status([095bac1](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/095bac1f2d7f1a7118ad832304c43f91e09c940d))
+
+
+### Other
+
+- Merge pull request #189 from FABBricate-IT-Solutions/release/promote-named-room-status([72aeadb](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/72aeadbdd84637f642e91c4461f3503ccb002cfa))
+
+
+### Styling
+
+- rustfmt the floor-status parse test([7d4df2f](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/7d4df2f915b8fa5893bd32d3531829bd25b1e201))
+
+## [2026.9.0](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/compare/2026.8.67...2026.9.0) - 2026-09-02
+
+
+
+### Features
+
+- let users opt in to Assist tools on the chit-chat LLM([a87a2fa](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/a87a2fae58fdac688bbe87ca07296fcabbca28f5))
+
+
+### Other
+
+- Merge pull request #186 from FABBricate-IT-Solutions/release/promote-allow-llm-tools([6c28793](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/6c28793c83f7af6dd60319cbcb3b54e0c848eb4a))
+
+## [2026.8.67](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/compare/2026.8.66...2026.8.67) - 2026-08-31
+
+
+
+### Bug Fixes
+
+- store stream-published flag on speech extra_data([cf6accc](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/cf6accca3328daa067b59b7819793256ffacf804))
+
+- publish LLM tokens into Assist chat([47108f2](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/47108f216287227caf6e95fd9f69d815c6bf6e8c))
+
+
+### Features
+
+- stream LLM deltas into Assist chat and TTS([fb8d530](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/fb8d530a0473a5c66035b50cdfc74406b6398dd5))
+
+
+### Other
+
+- Merge pull request #183 from FABBricate-IT-Solutions/release/promote-2026.9.0([3b3539b](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/3b3539bff51146bd8f8ae39e3d4fe0b59a7140ad))
+
+## [2026.8.66](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/compare/2026.8.65...2026.8.66) - 2026-08-31
+
+
+
+### Bug Fixes
+
+- close Assist listen after execute([41491a3](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/41491a39b666fe12e660efb15e6b3bc20d874e6c))
+
+
+### Other
+
+- Merge pull request #178 from FABBricate-IT-Solutions/fix/close-conversation-after-execute([219a432](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/219a43215b708aa17a584b1cb86c4ae0235bf253))
+
 ## [2026.8.65](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/compare/2026.8.64...2026.8.65) - 2026-08-31
 
 

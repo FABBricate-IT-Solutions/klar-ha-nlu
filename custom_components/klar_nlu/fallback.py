@@ -2,8 +2,6 @@
 
 from __future__ import annotations
 
-import re
-
 # homeassistant.components.conversation.ConversationEntityFeature.CONTROL
 _CONTROL = 1
 
