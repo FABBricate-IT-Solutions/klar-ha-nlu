@@ -287,10 +287,8 @@ mod tests {
     }
 
     fn sample_overlay() -> Overlay {
-        let mut overlay = Overlay {
-            settings: Some(Settings { refine_speech: true, nlu_rag: true, ..Settings::default() }),
-            ..Overlay::default()
-        };
+        let mut overlay =
+            Overlay { settings: Some(Settings { refine_speech: true, nlu_rag: true, ..Settings::default() }), ..Overlay::default() };
         overlay.aliases.insert("light.wohnzimmer".into(), vec!["kugel".into()]);
         overlay.areas.insert("light.wohnzimmer".into(), "wohnzimmer".into());
         overlay.policies.push(PolicyRule {
