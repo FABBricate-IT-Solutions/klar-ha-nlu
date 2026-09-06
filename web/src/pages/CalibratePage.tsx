@@ -43,13 +43,13 @@ export function CalibratePage({
         {inbox.length === 0 && <div className="card hot"><h2>{t.noGaps}</h2></div>}
         {inbox.map((row) => (
           <article className="inbox-card" key={row.entity_id}>
-            <div>
+            <div className="house-inbox-copy">
               <h2>{row.name}</h2>
               <p className="mono">{row.entity_id}</p>
               <p className={`conf-${row.confidence}`}>{t[row.confidence]} · {row.reasons.join(", ")}</p>
               {row.suggested_area && <p>{row.suggested_area.name} · {t.score} {row.suggested_area.score}</p>}
             </div>
-            <div className="grid" style={{ minWidth: 180 }}>
+            <div className="house-actions">
               {row.suggested_area && <button className="primary" onClick={() => accept(row)}>{t.accept}</button>}
               <select value={row.area || ""} onChange={(ev) => ev.target.value && accept(row, ev.target.value)}>
                 <option value="">{t.otherRoom}</option>

@@ -70,8 +70,7 @@ export function GraphPage({
   };
 
   return (
-    <div className="page" style={{ minWidth: 0 }}>
-      <style>{graphCss}</style>
+    <div className="page">
       <section className="hero">
         <div>
           <h1>{t.graph}</h1>
@@ -81,7 +80,7 @@ export function GraphPage({
           {t.resetLayout}
         </button>
       </section>
-      <div className="graph-split">
+      <div className="house-split">
         <GraphCanvas
           tree={mapTree}
           ui={ui}
@@ -106,20 +105,3 @@ export function GraphPage({
     </div>
   );
 }
-
-const graphCss = `
-.graph-split {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(220px, 320px);
-  gap: 16px;
-  align-items: start;
-  min-width: 0;
-}
-.graph-split .graph-canvas,
-.graph-split .card {
-  border-radius: 0;
-}
-@media (max-width: 860px) {
-  .graph-split { grid-template-columns: 1fr; }
-}
-`;

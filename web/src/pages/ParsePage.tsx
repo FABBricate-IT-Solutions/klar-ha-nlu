@@ -271,7 +271,8 @@ export function ParsePage({
       <section className="hero">
         <div>
           <h1>{t.lab}</h1>
-          <p className="muted">{t.parseHint}</p>
+          <p className="muted">{t.labGuide}</p>
+          <p className="caption">{t.parseHint}</p>
         </div>
         <Button className="primary" type="button" onClick={() => void submit()} disabled={busy}>
           {busy ? t.loading : t.analyze}

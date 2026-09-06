@@ -34,7 +34,7 @@ pub use refine::{refine, RefineOutcome, RefineRequest};
 pub use refine_accept::{accept_refined, weather_claim};
 pub use refine_prompt::{personality_preview, refine_prompt, usable_extra, PersonalityPreview};
 pub use trainer::{history_messages, system_prompt, TrainerTurn};
-pub use trainer_tools::{is_write_tool, openai_tools, parse_text_tools, WRITE_TOOLS};
+pub use trainer_tools::{is_write_tool, openai_tools, openai_tools_for, parse_text_tools, tool_allowed_for_layer, WRITE_TOOLS};
 pub use types::{ChatEvent, ChatMessage, ChatRequest, CompletionTurn, LlmError, ToolCall};
 
 #[cfg(test)]

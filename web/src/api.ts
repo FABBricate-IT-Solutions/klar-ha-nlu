@@ -79,6 +79,7 @@ function asTrainerChatEvent(raw: unknown): TrainerChatEvent | null {
     case "consent":
     case "session":
     case "tool_call":
+    case "tool":
       return raw as TrainerChatEvent;
     default:
       return null;

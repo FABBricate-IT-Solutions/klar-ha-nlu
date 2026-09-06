@@ -195,7 +195,8 @@ export type TrainerChatEvent =
   | { type: "validate"; value: TrainerValidateOut }
   | { type: "consent"; call_id: string; tool: string; summary: string; validate: TrainerValidateOut }
   | { type: "session"; yolo: boolean; allowed: string[] }
-  | { type: "tool_call"; id: string; name: string; arguments: string };
+  | { type: "tool_call"; id: string; name: string; arguments: string }
+  | { type: "tool"; tool: string; text?: string };
 
 export type ConversationTurn = {
   conversation_id: string;

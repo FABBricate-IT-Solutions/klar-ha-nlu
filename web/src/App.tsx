@@ -414,7 +414,7 @@ export function App() {
           </div>
           <div className="status">
             <Badge variant={dashboard?.counts.leftover ? "default" : "outline"}>{dashboard?.counts.leftover ?? 0} {t.open}</Badge>
-            <Badge variant={settings.nlu_rag ? "default" : "outline"}>{settings.nlu_rag ? t.ragMode : t.chatMode}</Badge>
+            <Badge variant={settings.nlu_rag ? "default" : "outline"}>{settings.nlu_rag ? t.ragModeShort : t.chatMode}</Badge>
           </div>
         </header>
         {error && <div className="page"><div className="card danger">{error}</div></div>}
@@ -430,7 +430,7 @@ export function App() {
             onOpenCalibrate={() => go("house", { house_view: "calibrate" })}
             canApply={applyCandidates.length > 0}
             onTeach={teach}
-            lastTurn={journal ? journal.at(-1) ?? null : undefined}
+            lastTurn={Array.isArray(journal) ? journal.at(-1) ?? null : undefined}
             parseLanguage={assistParseLanguage(settings.languages, locale)}
           />
         )}

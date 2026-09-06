@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useState } from "react";
 import { api, type LangOverlay } from "../api";
+import { Guide } from "../components/Guide";
 import { HouseLane } from "../components/HouseLane";
 import { LexiconLane } from "../components/LexiconLane";
 import { MatchLane } from "../components/MatchLane";
@@ -26,6 +27,21 @@ function newRule(): PolicyRule {
     when: {},
     effect: "confirm",
   };
+}
+
+function rulesHint(t: Messages, view: RulesView): string {
+  switch (view) {
+    case "routines":
+      return t.rulesRoutinesHint;
+    case "sentences":
+      return t.rulesSentencesHint;
+    case "policies":
+      return t.rulesPoliciesHint;
+    default: {
+      const _never: never = view;
+      return _never;
+    }
+  }
 }
 
 function laneTitle(t: Messages, lane: PolicyLane): string {
@@ -201,7 +217,7 @@ export function RulesPage({
       <section className="hero">
         <div>
           <h1>{t.rules}</h1>
-          {view === "policies" && <p className="muted">{t.priority}</p>}
+          <p className="muted">{rulesHint(t, view)}</p>
         </div>
         {view === "policies" && (
           <div className="row">
@@ -215,10 +231,50 @@ export function RulesPage({
         <button className={view === "sentences" ? "active" : ""} type="button" onClick={() => setView("sentences")}>{t.sentences}</button>
         <button className={view === "policies" ? "active" : ""} type="button" onClick={() => setView("policies")}>{t.policies}</button>
       </nav>
-      {view === "routines" && <RoutinesPage t={t} />}
-      {view === "sentences" && <CustomPage t={t} locale={locale} embedded />}
+      {view === "routines" && (
+        <>
+          <Guide
+            title={t.rulesRoutinesHint}
+            steps={[
+              { id: "say", label: t.guideRoutinesSay, hint: t.guideRoutinesSayHint },
+              { id: "script", label: t.guideRoutinesScript, hint: t.guideRoutinesScriptHint },
+            ]}
+          />
+          <RoutinesPage t={t} />
+        </>
+      )}
+      {view === "sentences" && (
+        <>
+          <Guide
+            title={t.rulesSentencesHint}
+            steps={[
+              { id: "phrase", label: t.guideSentencesPhrase, hint: t.guideSentencesPhraseHint },
+              { id: "intent", label: t.guideSentencesIntent, hint: t.guideSentencesIntentHint },
+              { id: "test", label: t.guideSentencesTest, hint: t.guideSentencesTestHint },
+            ]}
+          />
+          <CustomPage t={t} locale={locale} embedded />
+        </>
+      )}
       {view === "policies" && (
         <>
+          <Guide
+            title={t.priority}
+            steps={[
+              { id: "match", label: t.guidePoliciesMatch, hint: t.guidePoliciesMatchHint },
+              { id: "language", label: t.guidePoliciesLang, hint: t.guidePoliciesLangHint },
+              { id: "house", label: t.guidePoliciesHouse, hint: t.guidePoliciesHouseHint },
+              { id: "test", label: t.guidePoliciesTest, hint: t.guidePoliciesTestHint },
+            ]}
+            current={lane}
+            onPick={(id) => {
+              if (id === "test") {
+                document.getElementById("klar-policy-eval")?.scrollIntoView({ block: "start", behavior: "smooth" });
+                return;
+              }
+              if (id === "match" || id === "language" || id === "house") setLane(id);
+            }}
+          />
           <nav className="policy-lane-tabs" aria-label={t.laneTabs}>
             {LANES.map((item) => (
               <button
@@ -298,8 +354,9 @@ export function RulesPage({
               />
             </div>
           </section>
-          <div className="card policy-evaluate">
+          <div className="card policy-evaluate" id="klar-policy-eval">
             <h2>{t.evaluator}</h2>
+            <p className="muted">{t.evaluatorHint}</p>
             <div className="row">
               <input value={utterance} onChange={(ev) => setUtterance(ev.target.value)} placeholder={t.command} />
               <button className="primary" type="button" onClick={evaluate}>{t.analyze}</button>

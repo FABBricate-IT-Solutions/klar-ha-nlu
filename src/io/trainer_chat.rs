@@ -7,8 +7,8 @@ use crate::io::trainer::{context_stub, load_context, TrainerQuery};
 use crate::io::trainer_apply::{dispatch, preview_write, write_summary};
 use crate::io::trainer_consent::{ConsentDecision, PendingWrite, TrainerConsentHub};
 use crate::llm::{
-    chat_stream_turn, history_messages, is_write_tool, openai_tools, parse_text_tools, system_prompt, ChatEvent, ChatMessage, ChatRequest,
-    CompletionTurn, LlmEndpoint, TrainerTurn,
+    chat_stream_turn, history_messages, is_write_tool, openai_tools_for, parse_text_tools, system_prompt, tool_allowed_for_layer,
+    ChatEvent, ChatMessage, ChatRequest, CompletionTurn, LlmEndpoint, TrainerTurn,
 };
 use axum::extract::{ConnectInfo, State};
 use axum::http::{HeaderMap, StatusCode};
@@ -54,13 +54,14 @@ pub async fn trainer_chat(
     let ctx = load_context(&state, &TrainerQuery { layer: body.layer.clone(), language: body.language.clone() }).await?;
     let settings = state.settings.lock().await.clone();
     let stub = context_stub(&ctx, &settings.languages);
-    let mut messages = vec![ChatMessage::new("system", system_prompt(&stub))];
+    let layer = ctx.layer.clone();
+    let mut messages = vec![ChatMessage::new("system", system_prompt(&layer, &stub))];
     messages.extend(history_messages(&body.history).map_err(|_| StatusCode::BAD_REQUEST)?);
     messages.push(ChatMessage::new("user", body.message));
     let session = TrainerConsentHub::session_key(&state.token, peer);
     let (tx, rx) = mpsc::unbounded_channel::<Result<axum::response::sse::Event, Infallible>>();
     tokio::spawn(async move {
-        run_loop(state, endpoint, session, messages, tx).await;
+        run_loop(state, endpoint, session, layer, messages, tx).await;
     });
     Ok(Sse::new(UnboundedReceiverStream::new(rx)).keep_alive(KeepAlive::default()).into_response())
 }
@@ -85,6 +86,7 @@ async fn run_loop(
     state: AppState,
     endpoint: LlmEndpoint,
     session: String,
+    layer: String,
     mut messages: Vec<ChatMessage>,
     tx: UnboundedSender<Result<axum::response::sse::Event, Infallible>>,
 ) {
@@ -96,7 +98,7 @@ async fn run_loop(
             stream: Some(true),
             temperature: Some(0.2),
             max_tokens: Some(2048),
-            tools: Some(openai_tools()),
+            tools: Some(openai_tools_for(&layer)),
             tool_choice: None,
         };
         let turn = match chat_stream_turn(&endpoint, request, |delta| {
@@ -117,7 +119,7 @@ async fn run_loop(
         }
         messages.push(ChatMessage::assistant_tools(prose, calls.clone()));
         for call in calls {
-            let result = handle_call(&state, &session, &tx, &call).await;
+            let result = handle_call(&state, &session, &layer, &tx, &call).await;
             messages.push(ChatMessage::tool(&call.id, result));
         }
     }
@@ -136,9 +138,31 @@ fn merge_calls(turn: CompletionTurn) -> (String, Vec<crate::llm::ToolCall>) {
 async fn handle_call(
     state: &AppState,
     session: &str,
+    layer: &str,
     tx: &UnboundedSender<Result<axum::response::sse::Event, Infallible>>,
     call: &crate::llm::ToolCall,
 ) -> String {
+    let _ = tx.send(Ok(json_event(&ChatEvent::ToolCall {
+        id: call.id.clone(),
+        name: call.function.name.clone(),
+        arguments: call.function.arguments.clone(),
+    })));
+    let out = run_call(state, session, layer, tx, call).await;
+    let preview: String = out.chars().take(8000).collect();
+    let _ = tx.send(Ok(json_event(&ChatEvent::Tool { tool: call.function.name.clone(), text: Some(preview), intent: None, slots: None })));
+    out
+}
+
+async fn run_call(
+    state: &AppState,
+    session: &str,
+    layer: &str,
+    tx: &UnboundedSender<Result<axum::response::sse::Event, Infallible>>,
+    call: &crate::llm::ToolCall,
+) -> String {
+    if !tool_allowed_for_layer(layer, &call.function.name) {
+        return serde_json::json!({"error": "off-lane tool", "tool": call.function.name, "layer": layer}).to_string();
+    }
     let args = serde_json::from_str(&call.function.arguments).unwrap_or(serde_json::json!({}));
     if !is_write_tool(&call.function.name) {
         return match dispatch(state, &call.function.name, &args).await {
@@ -184,6 +208,12 @@ async fn handle_call(
 mod tests {
     use super::*;
     use crate::llm::ToolCall;
+
+    #[test]
+    fn off_lane_write_is_named() {
+        assert!(!tool_allowed_for_layer("match", "apply_house"));
+        assert!(tool_allowed_for_layer("house", "apply_house"));
+    }
 
     #[test]
     fn text_fallback_fills_empty_tool_calls() {

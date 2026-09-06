@@ -25,6 +25,50 @@ pub fn known_tool(name: &str) -> bool {
     READ_TOOLS.contains(&name) || WRITE_TOOLS.contains(&name)
 }
 
+const MATCH_TOOLS: &[&str] = &["list_languages", "list_matchers", "validate_proposal", "apply_match"];
+const LANGUAGE_TOOLS: &[&str] = &["list_languages", "list_lexicon_paths", "get_lexicon", "apply_lexicon"];
+const HOUSE_TOOLS: &[&str] =
+    &["list_languages", "search_house", "get_entity", "list_policies", "list_gaps", "apply_house", "apply_aliases"];
+
+pub fn tools_for_layer(layer: &str) -> &'static [&'static str] {
+    match layer {
+        "match" => MATCH_TOOLS,
+        "language" => LANGUAGE_TOOLS,
+        "house" => HOUSE_TOOLS,
+        _ => {
+            const ALL: &[&str] = &[
+                "list_languages",
+                "search_house",
+                "get_entity",
+                "list_lexicon_paths",
+                "get_lexicon",
+                "list_matchers",
+                "list_policies",
+                "list_gaps",
+                "validate_proposal",
+                "apply_lexicon",
+                "apply_match",
+                "apply_house",
+                "apply_aliases",
+            ];
+            ALL
+        }
+    }
+}
+
+pub fn write_tools_for_layer(layer: &str) -> Vec<&'static str> {
+    tools_for_layer(layer).iter().copied().filter(|name| is_write_tool(name)).collect()
+}
+
+pub fn tool_allowed_for_layer(layer: &str, name: &str) -> bool {
+    tools_for_layer(layer).contains(&name)
+}
+
+pub fn openai_tools_for(layer: &str) -> Vec<Value> {
+    let allowed = tools_for_layer(layer);
+    openai_tools().into_iter().filter(|tool| allowed.contains(&tool["function"]["name"].as_str().unwrap_or(""))).collect()
+}
+
 pub fn openai_tools() -> Vec<Value> {
     vec![
         tool("list_languages", "Assist languages from settings.languages.", json!({"type": "object", "properties": {}})),
@@ -150,6 +194,24 @@ mod tests {
         assert!(is_write_tool("apply_aliases"));
         assert!(!is_write_tool("get_entity"));
         assert!(openai_tools().iter().any(|tool| tool["function"]["name"] == "apply_house"));
+    }
+
+    #[test]
+    fn lane_filter_keeps_writes_on_their_spur() {
+        assert!(tool_allowed_for_layer("match", "apply_match"));
+        assert!(tool_allowed_for_layer("match", "list_matchers"));
+        assert!(tool_allowed_for_layer("match", "list_languages"));
+        assert!(!tool_allowed_for_layer("match", "apply_house"));
+        assert!(!tool_allowed_for_layer("match", "apply_lexicon"));
+        assert!(tool_allowed_for_layer("language", "apply_lexicon"));
+        assert!(!tool_allowed_for_layer("language", "apply_match"));
+        assert!(tool_allowed_for_layer("house", "apply_house"));
+        assert!(tool_allowed_for_layer("house", "apply_aliases"));
+        assert!(!tool_allowed_for_layer("house", "apply_match"));
+        let names: Vec<_> = openai_tools_for("match").iter().map(|tool| tool["function"]["name"].as_str().unwrap().to_string()).collect();
+        assert!(names.contains(&"apply_match".into()));
+        assert!(!names.iter().any(|name| name == "apply_house"));
+        assert_eq!(write_tools_for_layer("house"), vec!["apply_house", "apply_aliases"]);
     }
 
     #[test]
