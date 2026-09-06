@@ -23,7 +23,7 @@ chore(release): prepare for 2026.8.0
 | `feat` | Features |
 | `fix` | Bug Fixes |
 | `perf` | Performance |
-| `feat!` / `BREAKING CHANGE:` | Features + breaking |
+| `feat!` / `BREAKING CHANGE:` | Breaking Changes (first in the notes) |
 | `docs`, `refactor`, `test`, `ci`, `chore` | listed, no version change |
 
 `chore(deps*)` and `chore(release)` are omitted from the changelog.
