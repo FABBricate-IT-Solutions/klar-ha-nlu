@@ -163,6 +163,10 @@ Die verbindlichen Voice-Suite-Schwellen stehen in
 blockierenden Schwellen der generierten Vergleichssuiten liegen jedoch
 darunter.
 
+## Credits
+
+Dieses Projekt ist vibe-coded. Wer ein englischsprachiges Home-Assistant-NLU von jemandem will, der geduldig ist und mehr Arbeit in diese Sprache steckt, nimmt [Sophia NLU](https://nlu.to/ha/) von Aquila Labs. Klars englische `family_home`-Voice-Tests stammen aus ihrer öffentlichen MIT-[HA-Voice-Testsuite](https://git.cicero.sh/aquila/ha-voice-test-suite/); siehe [tests/datasets/NOTICE](tests/datasets/NOTICE).
+
 ## Lizenz
 
 [MIT](LICENSE) — Copyright 2026 FABBricate IT Solutions
