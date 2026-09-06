@@ -471,6 +471,9 @@ class KlarConversationEntity(ConversationEntity):
     def _allow_llm_tools(self) -> bool:
         return self._flag("allow_llm_tools", CONF_ALLOW_LLM_TOOLS, DEFAULT_ALLOW_LLM_TOOLS)
 
+    def _allow_llm_tools(self) -> bool:
+        return bool(self._entry.options.get(CONF_ALLOW_LLM_TOOLS, DEFAULT_ALLOW_LLM_TOOLS))
+
     async def async_reload(self, language: str | None = None) -> None:
         """Honor conversation.reload; registered intents are read live."""
         del language
@@ -620,6 +623,51 @@ class KlarConversationEntity(ConversationEntity):
         except EngineAssistMissing:
             _LOGGER.debug("Klar LLM assist route missing")
         return None
+
+    async def _stream_fallback(
+        self,
+        client: Any,
+        model: str,
+        user_input: ConversationInput,
+        pack: str,
+        system: str,
+        chat_log: ChatLog | None,
+        yarn: bool,
+        asked: str | None = None,
+    ) -> ConversationResult | None:
+        hold = _stream_hold(yarn, self._nlu_rag())
+        text = asked or user_input.text
+        try:
+            speech, published = await stream_chat(
+                client,
+                model,
+                text,
+                system,
+                chat_log,
+                getattr(user_input, "agent_id", None),
+                hold=hold,
+            )
+        except Exception as err:  # noqa: BLE001 — client shape varies by agent
+            _LOGGER.warning("LLM-Stream fehlgeschlagen, converse: %s", err)
+            return None
+        if not speech:
+            return None
+        if yarn and yarn_asks_permission(speech) and not published:
+            try:
+                speech, published = await stream_chat(
+                    client,
+                    model,
+                    text,
+                    yarn_nudge(pack, system),
+                    chat_log,
+                    getattr(user_input, "agent_id", None),
+                )
+            except Exception as err:  # noqa: BLE001 — retry is best-effort
+                _LOGGER.warning("LLM-Stream-Wiederholung fehlgeschlagen: %s", err)
+                return None
+            if not speech:
+                return None
+        return _speech_result(pack, speech, published and chat_log is not None)
 
     def _preferred_area(self, device_id: str | None, satellite_id: str | None = None) -> str | None:
         registry = device_registry.async_get(self.hass)
