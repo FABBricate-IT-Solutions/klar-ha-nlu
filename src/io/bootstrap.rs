@@ -29,6 +29,9 @@ pub async fn run(args: RuntimeArgs) {
 
     load_language_packs(args.lang_dir.as_deref());
     let loaded = load_merged(&args.config_dir, &data_dir);
+    if loaded.custom.is_empty() {
+        tracing::warn!("keine eigenen Sätze in klar_nlu.json — Custom-Phrasen fehlen bis zum Speichern");
+    }
     if !loaded.language.sets.is_empty() {
         crate::lang::install_user_overlay(Some(loaded.language.clone()));
     }

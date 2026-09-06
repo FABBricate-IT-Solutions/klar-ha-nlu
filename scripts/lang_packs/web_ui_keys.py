@@ -105,6 +105,7 @@ CATALOG_KEYS = (
     "explainRule",
     "rollback",
     "noRules",
+    "engineOffline",
     "emptyBundle",
     "confirmApply",
     "cancel",
@@ -416,6 +417,7 @@ CATALOG_KEYS = (
 
 # English fallbacks for operator-chrome keys not yet hand-translated in pack tables.
 FALLBACKS = {
+    "engineOffline": "Engine unreachable. This list is empty until a live load succeeds.",
     "settingsBackup": "Settings backup",
     "settingsBackupHint": "Overlay, assignments, rules, and the LLM endpoint. Conversations and the house graph stay on this engine.",
     "settingsBackupDownload": "Download settings",

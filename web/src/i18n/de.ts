@@ -90,6 +90,7 @@ export const de = {
   rollback: "Zurückrollen",
   entityId: "entity_id",
   noRules: "Noch keine eigenen Sätze.",
+  engineOffline: "Engine nicht erreichbar. Die Liste bleibt leer, bis ein Live-Laden klappt.",
   advancedJson: "JSON",
   emptyBundle: "Noch keine Aufzeichnungen. Schalte das Bundle ein und teste einen Satz.",
   confirmApply: "Diese Vorschläge übernehmen?",

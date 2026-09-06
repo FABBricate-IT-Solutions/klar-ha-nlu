@@ -1,18 +1,20 @@
 import { useEffect, useState } from "react";
-import { api, type CustomRule, type LangExplain, type LangOverlay } from "../api";
+import { api, type CustomRule, type LangExplain } from "../api";
 import { SearchSelect, useHouseCatalog, withCurrent } from "../components/SearchSelect";
 import { sentencesEmpty, SetupHint } from "../components/SetupHint";
 import { TEACH_HEARD_KEY, TEACH_INTENT_KEY } from "../components/TeachFromMiss";
 import type { Messages } from "../i18n";
 import type { Locale } from "../types";
+import { useLangOverlay } from "../useLangOverlay";
 
 const fallbackIntents = ["HassTurnOn", "HassTurnOff", "HassToggle", "HassLightSet", "HassGetState", "HassClimateSetTemperature"];
 
 export function CustomPage({ t, locale, embedded }: { t: Messages; locale: Locale; embedded?: boolean }) {
   const [intents, setIntents] = useState<string[]>(fallbackIntents);
-  const [rules, setRules] = useState<CustomRule[]>([]);
-  const [language, setLanguage] = useState<unknown>({});
-  const [history, setHistory] = useState<LangOverlay["history"]>([]);
+  const { overlay, offline, status, setStatus, replace } = useLangOverlay();
+  const rules = overlay?.custom ?? [];
+  const language = overlay?.language ?? {};
+  const history = overlay?.history ?? [];
   const [phrase, setPhrase] = useState("");
   const [intent, setIntent] = useState(intents[0]);
   const [entityId, setEntityId] = useState("");
@@ -21,18 +23,13 @@ export function CustomPage({ t, locale, embedded }: { t: Messages; locale: Local
   const [explain, setExplain] = useState<LangExplain | null>(null);
   const [jsonMode, setJsonMode] = useState(false);
   const [jsonBody, setJsonBody] = useState("[]");
-  const [status, setStatus] = useState("");
   const { entityOptions } = useHouseCatalog();
 
-  const load = (overlay: LangOverlay) => {
-    setRules(overlay.custom);
-    setLanguage(overlay.language);
-    setHistory(overlay.history);
-    setJsonBody(JSON.stringify(overlay.custom, null, 2));
-  };
+  useEffect(() => {
+    setJsonBody(JSON.stringify(rules, null, 2));
+  }, [rules]);
 
   useEffect(() => {
-    api.langOverlay().then(load).catch((err) => setStatus(String(err)));
     api.intents().then((names) => { if (names.length) setIntents(names); }).catch(() => undefined);
     const heard = sessionStorage.getItem(TEACH_HEARD_KEY);
     if (heard) {
@@ -50,8 +47,12 @@ export function CustomPage({ t, locale, embedded }: { t: Messages; locale: Local
   }, [intents]);
 
   const persist = async (next: CustomRule[], label: string) => {
-    load(await api.saveLangOverlay({ custom: next, language, label }));
-    setStatus(t.save);
+    try {
+      replace(await api.saveLangOverlay({ custom: next, language, label }));
+      setStatus(t.save);
+    } catch (err) {
+      setStatus(String(err));
+    }
   };
 
   const add = async () => {
@@ -80,7 +81,7 @@ export function CustomPage({ t, locale, embedded }: { t: Messages; locale: Local
   };
 
   const rollback = async (hash?: string) => {
-    load(await api.rollbackLang(hash));
+    replace(await api.rollbackLang(hash));
     setStatus(t.rollback);
   };
 
@@ -94,14 +95,14 @@ export function CustomPage({ t, locale, embedded }: { t: Messages; locale: Local
         </div>
         <div className="row">
           <button className="ghost" onClick={() => setJsonMode(!jsonMode)}>{t.advancedJson}</button>
-          <button className="primary" onClick={() => jsonMode ? saveJson() : add()}>{jsonMode ? t.save : t.addPhrase}</button>
+          <button className="primary" disabled={offline} onClick={() => jsonMode ? saveJson() : add()}>{jsonMode ? t.save : t.addPhrase}</button>
         </div>
       </section>
       )}
       {embedded && (
         <div className="row" style={{ marginBottom: 16 }}>
           <button className="ghost" onClick={() => setJsonMode(!jsonMode)}>{t.advancedJson}</button>
-          <button className="primary" onClick={() => jsonMode ? saveJson() : add()}>{jsonMode ? t.save : t.addPhrase}</button>
+          <button className="primary" disabled={offline} onClick={() => jsonMode ? saveJson() : add()}>{jsonMode ? t.save : t.addPhrase}</button>
         </div>
       )}
       {jsonMode ? (
@@ -142,7 +143,8 @@ export function CustomPage({ t, locale, embedded }: { t: Messages; locale: Local
         </section>
       )}
       <section className="card" style={{ marginTop: 16 }}>
-        {rules.length === 0 && (
+        {offline && <p className="muted">{t.engineOffline}</p>}
+        {!offline && rules.length === 0 && (
           <div>
             <p className="muted">{sentencesEmpty(t)}</p>
             <SetupHint t={t} />

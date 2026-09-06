@@ -90,6 +90,7 @@ export const en = {
   rollback: "Roll back",
   entityId: "entity_id",
   noRules: "No custom phrases yet.",
+  engineOffline: "Engine unreachable. This list is empty until a live load succeeds.",
   advancedJson: "JSON",
   emptyBundle: "No recordings yet. Enable the bundle and try a sentence.",
   confirmApply: "Apply these suggestions?",

@@ -199,11 +199,11 @@ async fn set_custom(
     {
         return Err(StatusCode::BAD_REQUEST);
     }
-    *state.custom.lock().await = body.clone();
     let mut overlay = load_overlay(&state.data_dir);
     crate::lang::push_revision(&mut overlay.language_history, overlay.custom.clone(), overlay.language.clone(), "custom".into());
     overlay.custom = body.clone();
-    let _ = save_overlay(&state.data_dir, &overlay);
+    save_overlay(&state.data_dir, &overlay).map_err(|_| StatusCode::INTERNAL_SERVER_ERROR)?;
+    *state.custom.lock().await = body.clone();
     Ok(Json(body))
 }
 
@@ -453,5 +453,31 @@ mod tests {
         .0;
         assert!(matches!(second.decision, ParseDecision::Execute), "{second:#?}");
         assert_eq!(second.plan.as_ref().map(|plan| plan.steps.len()), Some(1));
+    }
+
+    #[tokio::test]
+    async fn set_custom_fails_closed_when_overlay_cannot_write() {
+        let path = std::env::temp_dir().join(format!("klar-custom-notdir-{}", std::process::id()));
+        let _ = std::fs::remove_file(&path);
+        std::fs::write(&path, b"x").unwrap();
+        let state = AppState::new(
+            LoadedHome {
+                graph: default_home(),
+                settings: Settings::default(),
+                custom: Vec::new(),
+                language: Default::default(),
+                policies: Vec::new(),
+                speech_bank: Default::default(),
+                match_controls: Vec::new(),
+            },
+            path.clone(),
+            None,
+        );
+        let peer = ConnectInfo("127.0.0.1:9".parse().unwrap());
+        let body = vec![CustomSentence { phrase: "good morning".into(), intent: "HassTurnOn".into(), slots: Default::default() }];
+        let err = super::set_custom(State(state.clone()), peer, HeaderMap::new(), Json(body)).await.unwrap_err();
+        assert_eq!(err, StatusCode::INTERNAL_SERVER_ERROR);
+        assert!(state.custom.lock().await.is_empty());
+        let _ = std::fs::remove_file(&path);
     }
 }
