@@ -188,11 +188,7 @@ export function Wizard({
       setLlmReady(true);
       return true;
     } catch {
-      if (llmUrl.trim() && llmModel.trim()) {
-        setLlmReady(true);
-        return true;
-      }
-      return llmReady;
+      return false;
     }
   };
 

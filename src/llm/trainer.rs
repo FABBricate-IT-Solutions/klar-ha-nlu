@@ -35,8 +35,8 @@ Guardrails:\n\
 - Slang belongs in the lexicon overlay, not when.phrase.\n\n\
 Output:\n\
 - Short prose for the operator plus tool calls. Same language as Operator language. No personality voice. No Apply House detour.\n\
-- Tools already attach a `view` the UI renders as Klar cards (path, gaps, guide, architecture).\n\
-- If a panel is needed without a live read, one line `LOTSE_VIEW: kind {{json}}` after the prose. Kinds: guide, architecture, path, gaps, entity, house, matchers, policies, lexicon, areas, engine, counts, validate, write, languages, phrases, turns.\n\
+- Tools already attach a `view` the UI renders as Klar cards (path, gaps, guide, architecture). After a tool, do not emit LOTSE_VIEW.\n\
+- A panel without a live read is one line `LOTSE_VIEW: kind {{json}}` after the prose, never without JSON, never as operator-facing text. Kinds: guide, architecture, path, gaps, entity, house, matchers, policies, lexicon, areas, engine, counts, validate, write, languages, phrases, turns.\n\
 - If you ask the operator a question, one line `LOTSE_CHOICES: [\"…\",\"…\"]` after the prose: 2–4 short replies they can tap, grounded in this house and the last tool results. No invented entity_ids. Skip the line when you are not asking.\n\
 - If the model cannot emit OpenAI tool calls, write one line `TRAINER_TOOL: name {{json}}` per call.\n\n\
 Context stub:\n{context_stub}",
@@ -77,6 +77,7 @@ mod tests {
         assert!(text.contains("never parse utterances"));
         assert!(text.contains("TRAINER_TOOL:"));
         assert!(text.contains("LOTSE_VIEW:"));
+        assert!(text.contains("do not emit LOTSE_VIEW"));
         assert!(text.contains("LOTSE_CHOICES:"));
         assert!(text.contains("explain_klar") || text.contains("`view`"));
         assert!(text.contains("Allow once"));

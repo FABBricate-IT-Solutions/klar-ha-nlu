@@ -427,6 +427,20 @@ mod tests {
     }
 
     #[test]
+    fn unknown_provider_still_loads() {
+        let dir = temp_dir("unknown-provider");
+        std::fs::write(
+            dir.join("llm_endpoint.json"),
+            r#"{"base_url":"http://192.168.178.15:8000/v1","api_key":"k","model":"gemma","provider":"not-a-host"}"#,
+        )
+        .unwrap();
+        let loaded = from_file(&dir).unwrap();
+        assert_eq!(loaded.model, "gemma");
+        assert_eq!(loaded.base_url, "http://192.168.178.15:8000/v1");
+        let _ = std::fs::remove_dir_all(&dir);
+    }
+
+    #[test]
     fn old_file_defaults_thinking_off_and_roundtrips_on() {
         let dir = temp_dir("legacy");
         std::fs::write(dir.join("llm_endpoint.json"), r#"{"base_url":"http://127.0.0.1:8000/v1","api_key":"k","model":"gemma"}"#).unwrap();

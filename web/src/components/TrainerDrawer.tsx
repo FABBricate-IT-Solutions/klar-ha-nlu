@@ -188,6 +188,7 @@ export function TrainerDrawer({
   t,
   lane,
   language,
+  active = true,
   onLane,
   onClose,
   onStatus,
@@ -195,14 +196,13 @@ export function TrainerDrawer({
   t: Messages;
   lane: PolicyLane;
   language?: string;
-  overlay?: unknown;
-  onApplyHouse?: unknown;
-  onApplyMatch?: unknown;
+  active?: boolean;
   onLane?: (lane: PolicyLane) => void;
   onClose?: () => void;
   onStatus: (status: string) => void;
 }) {
   const [endpoint, setEndpoint] = useState<LlmPublic | null>(null);
+  const [endpointError, setEndpointError] = useState(false);
   const [draft, setDraft] = useState("");
   const [lines, setLines] = useState<ThreadLine[]>([]);
   const [busy, setBusy] = useState(false);
@@ -227,9 +227,24 @@ export function TrainerDrawer({
     onStatus("");
   };
 
+  const loadEndpoint = () => {
+    api.llmEndpoint()
+      .then((next) => {
+        setEndpoint(next);
+        setEndpointError(false);
+      })
+      .catch(() => {
+        setEndpointError(true);
+      });
+  };
+
   useEffect(() => {
-    api.llmEndpoint().then(setEndpoint).catch(() => setEndpoint({ configured: false }));
+    loadEndpoint();
   }, []);
+
+  useEffect(() => {
+    if (active) loadEndpoint();
+  }, [active]);
 
   useEffect(() => {
     resetThread();
@@ -271,8 +286,15 @@ export function TrainerDrawer({
         return;
       }
       if (err instanceof Error && err.message === "llm-unconfigured") {
-        setEndpoint({ configured: false });
-        onStatus(t.trainerNeedLlm);
+        try {
+          const next = await api.llmEndpoint();
+          setEndpoint(next);
+          setEndpointError(false);
+          onStatus(next.configured ? t.trainerFail : t.trainerNeedLlm);
+        } catch {
+          setEndpointError(true);
+          onStatus(t.trainerFail);
+        }
       } else {
         onStatus(t.trainerFail);
       }
@@ -293,25 +315,31 @@ export function TrainerDrawer({
     }
   };
 
-  if (!endpoint || !endpoint.configured) {
+  if (!endpoint?.configured) {
+    const waiting = !endpoint && !endpointError;
+    const needLlm = Boolean(endpoint && !endpoint.configured && !endpointError);
     return (
       <section className="trainer">
         <header className="trainer-head">
           <div>
             <p className="trainer-kicker">{t.trainer}</p>
-            <p className="muted">{endpoint ? t.trainerNeedLlm : t.trainerStreaming}</p>
+            <p className="muted">{waiting ? t.trainerStreaming : needLlm ? t.trainerNeedLlm : t.trainerFail}</p>
           </div>
           {onClose ? (
             <button className="ghost" type="button" onClick={onClose}>{t.close}</button>
           ) : null}
         </header>
-        {endpoint ? (
+        {waiting ? null : (
           <div className="trainer-composer">
-            <button className="primary" type="button" onClick={() => { window.location.hash = "#/settings"; }}>
-              {t.trainerOpenSettings}
-            </button>
+            {needLlm ? (
+              <button className="primary" type="button" onClick={() => { window.location.hash = "#/settings/llm"; }}>
+                {t.trainerOpenSettings}
+              </button>
+            ) : (
+              <button className="primary" type="button" onClick={() => loadEndpoint()}>{t.trainerValidate}</button>
+            )}
           </div>
-        ) : null}
+        )}
       </section>
     );
   }

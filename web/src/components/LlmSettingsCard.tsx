@@ -38,7 +38,7 @@ export function LlmSettingsCard({ t }: { t: Messages }) {
         ...(apiKey.trim() ? { api_key: apiKey.trim() } : {}),
         configured: true,
         enable_thinking: enableThinking,
-        provider: resolveProvider(baseUrl),
+        provider: resolveProvider(baseUrl, isProviderId(endpoint.provider) ? endpoint.provider : undefined),
       });
       setEndpoint(next);
       setApiKey("");

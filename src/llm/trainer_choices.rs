@@ -112,7 +112,7 @@ fn strip_marks(text: &str) -> String {
         .lines()
         .filter(|line| {
             let trim = line.trim();
-            !trim.starts_with(MARK) && !trim.starts_with("LOTSE_VIEW:")
+            !trim.starts_with(MARK) && !trim.starts_with("LOTSE_VIEW")
         })
         .collect::<Vec<_>>()
         .join("\n")
