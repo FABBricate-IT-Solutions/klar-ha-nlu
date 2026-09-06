@@ -102,7 +102,7 @@ pub async fn refine(endpoint: &LlmEndpoint, request: RefineRequest) -> Result<Re
 pub fn refine_max_tokens(speech: &str) -> u32 {
     let accept_chars = (speech.chars().count() * 6).max(280);
     let tokens = u32::try_from(accept_chars / 3).unwrap_or(MAX_TOKENS_LIMIT);
-    tokens.max(REFINE_MIN_TOKENS).min(MAX_TOKENS_LIMIT)
+    tokens.clamp(REFINE_MIN_TOKENS, MAX_TOKENS_LIMIT)
 }
 
 fn refine_messages(body: &SanitizedRefine) -> Vec<ChatMessage> {
