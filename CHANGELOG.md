@@ -6,6 +6,21 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 Versions follow Home Assistant calendar versioning (`YYYY.M.PATCH`)
 and [Conventional Commits](https://www.conventionalcommits.org/).
 
+## [2026.9.4](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/compare/2026.8.65-staging.8474bc4...2026.9.4) - 2026-09-06
+
+
+
+### Bug Fixes
+
+- keep staging Assist code when promoting to main([684a325](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/684a3254f2c9fde0635b1d677b2452dfc0cc99fc))
+
+
+### Other
+
+- Merge pull request #225 from FABBricate-IT-Solutions/release/promote-staging([136c27d](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/136c27daa457fc74b465501f3b7cba70c7f69098))
+
+- accept staging product over main 2026.9.3([84a77b9](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/84a77b99b56feed645c120808896bea1ba0e2a6f))
+
 ## [2026.9.3](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/compare/2026.9.2...2026.9.3) - 2026-09-05
 
 
