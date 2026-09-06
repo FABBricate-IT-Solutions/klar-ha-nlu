@@ -61,6 +61,8 @@ ignore_tags = ""
 topo_order = false
 sort_commits = "newest"
 commit_parsers = [
+    { message = "^[a-z]+(?:\\([^)]+\\))?!:", group = "Breaking Changes" },
+    { body = ".*BREAKING CHANGE", group = "Breaking Changes" },
     { message = "^feat", group = "Features" },
     { message = "^fix", group = "Bug Fixes" },
     { message = "^doc", group = "Documentation" },

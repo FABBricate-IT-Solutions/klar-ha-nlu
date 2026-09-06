@@ -8,6 +8,7 @@ from homeassistant.helpers.entity import EntityCategory
 from homeassistant.helpers.entity_platform import AddEntitiesCallback
 
 from .const import CONF_QUIET_ACK, DEFAULT_QUIET_ACK, DOMAIN
+from .engine import async_patch_engine_settings, cached_engine_settings
 
 
 async def async_setup_entry(
@@ -41,6 +42,9 @@ class KlarQuietAckSwitch(SwitchEntity):
 
     @property
     def is_on(self) -> bool:
+        settings = cached_engine_settings(self.hass, self._entry)
+        if "quiet_ack" in settings:
+            return bool(settings.get("quiet_ack"))
         return bool(self._entry.options.get(CONF_QUIET_ACK, DEFAULT_QUIET_ACK))
 
     async def async_turn_on(self, **kwargs: object) -> None:
@@ -54,8 +58,12 @@ class KlarQuietAckSwitch(SwitchEntity):
     async def _async_set(self, enabled: bool) -> None:
         if enabled == self.is_on:
             return
-        self.hass.config_entries.async_update_entry(
-            self._entry,
-            options={**self._entry.options, CONF_QUIET_ACK: enabled},
+        patched = await async_patch_engine_settings(
+            self.hass, self._entry, {"quiet_ack": enabled}
         )
+        if patched is None:
+            self.hass.config_entries.async_update_entry(
+                self._entry,
+                options={**self._entry.options, CONF_QUIET_ACK: enabled},
+            )
         self.async_write_ha_state()

@@ -1,7 +1,7 @@
 use crate::io::auth::wyoming_allowed;
 use crate::io::limits::MAX_PARSE_CHARS;
 use crate::io::state::AppState;
-use crate::nlu::{legacy_result, parse_with_policies};
+use crate::nlu::{legacy_result, parse_with_controls};
 use crate::types::{ParseDecision, ParseOutcome};
 use serde_json::{json, Value};
 use std::io::{Error, ErrorKind};
@@ -117,6 +117,7 @@ where
                 let custom = state.custom.lock().await.clone();
                 let policies = state.policies.lock().await.clone();
                 let speech_bank = state.speech_bank.lock().await.clone();
+                let match_controls = state.match_controls.lock().await.clone();
                 let mut session = {
                     let mut guard = state.sessions.lock().await;
                     guard.take(conversation_id)
@@ -126,7 +127,7 @@ where
                         session.preferred_area = Some(area.to_string());
                     }
                 }
-                let outcome = parse_with_policies(text, &home, &mut session, &custom, &settings, &policies, &speech_bank);
+                let outcome = parse_with_controls(text, &home, &mut session, &custom, &settings, &policies, &speech_bank, &match_controls);
                 if let Some((entity_id, alias)) = session.pending_teach.take() {
                     state.apply_teach(&entity_id, &alias).await;
                 }
@@ -258,6 +259,7 @@ mod tests {
                 language: Default::default(),
                 policies: Vec::new(),
                 speech_bank: Default::default(),
+                match_controls: Vec::new(),
             },
             dir,
             None,

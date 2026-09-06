@@ -56,13 +56,21 @@ export function ConversationsPage({
       {error && <div className="card danger">{error}</div>}
       {turns === null && !error && <div className="card">{t.loading}</div>}
       {turns && items.length === 0 && !error && (
-        <Empty text={t.noConversations} action={<SetupHint t={t} />} />
+        <Empty
+          text={t.noConversations}
+          action={(
+            <>
+              <p className="caption">{t.conversationsEmptyHint}</p>
+              <SetupHint t={t} />
+            </>
+          )}
+        />
       )}
       {items.map((turn, index) => {
         const heard = journalHeard(turn);
         return (
           <article className="card" key={`${turn.conversation_id}-${turn.ts_ms}-${index}`} style={{ marginBottom: 16 }}>
-            <div className="row" style={{ justifyContent: "space-between", alignItems: "flex-start" }}>
+            <div className="conv-head">
               <h2>{turnTitle(turn, locale)}</h2>
               <div className="row">
                 <button className="ghost" type="button" onClick={() => setWhy(turn)}>{whyThisBand(t)}</button>
@@ -77,7 +85,14 @@ export function ConversationsPage({
               </div>
             </div>
             {heard ? <p>{heard}</p> : <p className="muted">—</p>}
-            {turn.speech ? <p className="muted">{turn.speech}</p> : null}
+            {turn.speech ? (
+              <p className="muted">
+                {turn.speech_source === "chat" ? <span className="chip">{t.speechChat}</span> : null}
+                {turn.speech_source === "refine" ? <span className="chip">{t.speechRefined}</span> : null}
+                {" "}
+                {turn.speech}
+              </p>
+            ) : null}
             {turn.preferred_area ? <p className="caption">{t.heardIn}: {turn.preferred_area}</p> : null}
             {canTeachFromMiss(turn) && (
               <div style={{ marginTop: 12 }}>

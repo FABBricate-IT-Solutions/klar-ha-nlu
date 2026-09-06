@@ -110,6 +110,7 @@ fn sanitize_ui(mut ui: UiState) -> UiState {
     ui.graph.retain(|id, point| valid_entity_id(id) && point.x.is_finite() && point.y.is_finite());
     ui.house_view = sanitize_choice(&ui.house_view, &["graph", "entities", "calibrate"], "calibrate");
     ui.rules_view = sanitize_choice(&ui.rules_view, &["routines", "sentences", "policies"], "routines");
+    ui.settings_view = sanitize_choice(&ui.settings_view, &["llm", "voice", "languages", "engine", "backup"], "llm");
     ui.theme = sanitize_choice(&ui.theme, &["dark", "light"], "dark");
     ui
 }
@@ -213,6 +214,7 @@ mod tests {
         assert!(!ui.wizard_done);
         assert_eq!(ui.house_view, "calibrate");
         assert_eq!(ui.rules_view, "routines");
+        assert_eq!(ui.settings_view, "llm");
         assert_eq!(ui.theme, "dark");
     }
 
@@ -222,12 +224,14 @@ mod tests {
             wizard_done: true,
             house_view: "lab".into(),
             rules_view: "wizard".into(),
+            settings_view: "lab".into(),
             theme: "neon".into(),
             ..Default::default()
         });
         assert!(ui.wizard_done);
         assert_eq!(ui.house_view, "calibrate");
         assert_eq!(ui.rules_view, "routines");
+        assert_eq!(ui.settings_view, "llm");
         assert_eq!(ui.theme, "dark");
     }
 
@@ -237,12 +241,14 @@ mod tests {
             wizard_done: true,
             house_view: "graph".into(),
             rules_view: "sentences".into(),
+            settings_view: "backup".into(),
             theme: "light".into(),
             ..Default::default()
         });
         assert!(ui.wizard_done);
         assert_eq!(ui.house_view, "graph");
         assert_eq!(ui.rules_view, "sentences");
+        assert_eq!(ui.settings_view, "backup");
         assert_eq!(ui.theme, "light");
     }
 

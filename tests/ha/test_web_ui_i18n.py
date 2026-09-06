@@ -38,11 +38,53 @@ class OperatorUiParity(unittest.TestCase):
         on_disk = {path.stem for path in MESSAGES.glob("*.json")}
         expected = set(_supported()) - {"de", "en"}
         self.assertEqual(expected, on_disk)
+        english_hint = "Voice, languages, and the LLM live here. Home Assistant only connects the engine."
         for code in sorted(expected):
             payload = json.loads((MESSAGES / f"{code}.json").read_text(encoding="utf-8"))
             self.assertEqual(set(english), set(payload), code)
             self.assertIn("{room}", payload["tryOn"], code)
             self.assertIn("{{ text }}", payload["payloadTemplate"], code)
+            self.assertIn("{count}", payload["applyDone"], code)
+            self.assertNotIn("Home Assistant → Klar NLU", payload["personalityHa"], code)
+            self.assertNotIn("Mode binds devices or rooms only", payload["engineHint"], code)
+            self.assertNotEqual(payload["processPath"], "conversation.process", code)
+            self.assertIn("{count}", payload["lexiconOverlayPlus"], code)
+            if code != "en-GB":
+                self.assertNotEqual(payload["engineHint"], english_hint, code)
+                self.assertNotEqual(payload["laneTabs"], "Lanes", code)
+                self.assertNotEqual(
+                    payload["governEmpty"],
+                    "Safety seeds ship with every pack. Off writes a house override; the compiled floor stays on.",
+                    code,
+                )
+
+    def test_wizard_chrome_is_translated(self) -> None:
+        wizard = ROOT / "web" / "src" / "i18n" / "wizard"
+        expected = set(_supported()) - {"de", "en"}
+        on_disk = {path.stem for path in wizard.glob("*.json")}
+        self.assertEqual(expected, on_disk)
+        english_console = (
+            "Lovelace “Klar” is the last Assist turn. This surface (Klar NLU) is the operator console: Settings, House, Lab, and Rules."
+        )
+        english_llm = (
+            "Assist chat, refine, and the trainer live in Settings, not in a Home Assistant conversation integration."
+        )
+        for code in sorted(expected):
+            payload = json.loads((wizard / f"{code}.json").read_text(encoding="utf-8"))
+            self.assertIn("whatConsole", payload, code)
+            self.assertIn("missLlmBody", payload, code)
+            self.assertIn("{count}", payload["phrasesMapping"], code)
+            if code != "en-GB":
+                self.assertNotEqual(payload["whatConsole"], english_console, code)
+                self.assertNotEqual(payload["missLlmBody"], english_llm, code)
+
+    def test_wizard_writes_engine_settings(self) -> None:
+        wizard = (ROOT / "web" / "src" / "pages" / "Wizard.tsx").read_text(encoding="utf-8")
+        app = (ROOT / "web" / "src" / "App.tsx").read_text(encoding="utf-8")
+        self.assertIn("api.saveSettings", wizard)
+        self.assertIn("api.saveLlmEndpoint", wizard)
+        self.assertIn("chrome={t}", app)
+        self.assertIn("onSettings={setSettings}", app)
 
     def test_operator_chrome_follows_saved_ui_not_nlu_pin(self) -> None:
         i18n = (ROOT / "web" / "src" / "i18n.ts").read_text(encoding="utf-8")
@@ -65,15 +107,33 @@ class OperatorUiParity(unittest.TestCase):
         self.assertIn("Klar parse", lab)
         self.assertIn("armedPipeline", lab)
         self.assertIn("labPath", lab)
+        self.assertIn("void submit()", lab)
+        self.assertIn("api.parse", lab)
+        self.assertIn("api.llmRefine", lab)
+        self.assertIn("api.llmAssist", lab)
+        self.assertIn("labChatLike", lab)
+        self.assertIn("labRefineEligible", lab)
+        self.assertIn("LLM chat", lab)
+        self.assertIn("LabSpeechCompare", lab)
+        self.assertIn("aria-controls=\"klar-nav\"", app)
+        self.assertIn("setNavOpen", app)
+        self.assertIn("MenuIcon", app)
+        llm = (ROOT / "web" / "src" / "components" / "LlmProviderFields.tsx").read_text(encoding="utf-8")
+        self.assertIn("LlmModelField", llm)
+        engine_llm_rs = (ROOT / "src" / "io" / "llm.rs").read_text(encoding="utf-8")
+        self.assertIn("/api/v2/llm/models", engine_llm_rs)
         self.assertIn("LLM refine", lab)
         self.assertIn("calendar LLM", lab)
         self.assertIn("quiet ack", lab)
         self.assertIn("LLM tools", lab)
-        self.assertIn("fallback LLM", lab)
+        self.assertIn("PersonalityPrompt", (ROOT / "web" / "src" / "components" / "SettingsSections.tsx").read_text(encoding="utf-8"))
+        self.assertIn("/api/v2/llm/voice", engine_llm_rs)
+        self.assertNotIn("fallback LLM", lab)
         self.assertIn("NLU-RAG", lab)
         self.assertIn("aria-label=\"pipeline\"", lab)
         self.assertIn("policy_trace?.hit", lab)
         en = EN.read_text(encoding="utf-8")
+        self.assertIn("llmModelsEmpty", en)
         self.assertIn("Lab is the Assist path for the selected language", en)
         self.assertIn("Sentence triggers run only if Klar is unreachable", en)
         self.assertNotIn("trigger, then Klar, then intent_script", en)
@@ -88,3 +148,12 @@ class OperatorUiParity(unittest.TestCase):
             encoding="utf-8"
         )
         self.assertIn("advertised_languages()", conversation)
+
+    def test_policy_lanes_clip_lists(self) -> None:
+        theme = (ROOT / "web" / "src" / "theme.css").read_text(encoding="utf-8")
+        self.assertIn(".lane-body {", theme)
+        self.assertIn("overflow: auto;", theme)
+        self.assertNotIn("max-height: none;", theme)
+        for name in ("MatchLane.tsx", "LexiconLane.tsx", "HouseLane.tsx"):
+            src = (ROOT / "web" / "src" / "components" / name).read_text(encoding="utf-8")
+            self.assertIn('className="lane-body"', src, name)

@@ -1,10 +1,14 @@
 import { useEffect, useMemo, useState } from "react";
-import { api } from "../api";
-import { SearchSelect, useHouseCatalog, withCurrent } from "../components/SearchSelect";
-import { policiesEmpty, SetupHint } from "../components/SetupHint";
+import { api, type LangOverlay } from "../api";
+import { Guide } from "../components/Guide";
+import { HouseLane } from "../components/HouseLane";
+import { LexiconLane } from "../components/LexiconLane";
+import { MatchLane } from "../components/MatchLane";
+import { PolicyPath, type PolicyLane } from "../components/PolicyPath";
+import { useHouseCatalog } from "../components/SearchSelect";
 import type { Messages } from "../i18n";
 import { bakeVariants } from "../speechBank";
-import type { EvaluateOut, Locale, PolicyEffect, PolicyRule, RulesView, SpeechBank } from "../types";
+import type { EvaluateOut, Locale, MatchCatalogRow, MatchControl, PolicyRule, RulesView, SpeechBank } from "../types";
 import { CustomPage } from "./CustomPage";
 import { RoutinesPage } from "./RoutinesPage";
 
@@ -12,58 +16,7 @@ import { RoutinesPage } from "./RoutinesPage";
 
 const fallbackIntents = ["HassTurnOn", "HassTurnOff", "HassToggle", "HassLightSet", "HassGetState", "HassClimateSetTemperature"];
 
-const EFFECTS: PolicyEffect[] = ["confirm", "block", "allow", "prefer_entity", "prefer_area", "reply", "script", "template", "llm"];
-const ACTION_EFFECTS: PolicyEffect[] = ["reply", "script", "template", "llm"];
-
-function effectLabel(t: Messages, effect: PolicyEffect): string {
-  switch (effect) {
-    case "confirm":
-      return t.effectConfirm;
-    case "block":
-      return t.effectBlock;
-    case "allow":
-      return t.effectAllow;
-    case "prefer_entity":
-      return t.effectPreferEntity;
-    case "prefer_area":
-      return t.effectPreferArea;
-    case "reply":
-      return t.effectReply;
-    case "script":
-      return t.effectScript;
-    case "template":
-      return t.effectTemplate;
-    case "llm":
-      return t.effectLlm;
-    default: {
-      const _never: never = effect;
-      return _never;
-    }
-  }
-}
-
-function payloadHint(t: Messages, effect: PolicyEffect): string {
-  switch (effect) {
-    case "reply":
-      return t.payloadReply;
-    case "script":
-      return t.payloadScript;
-    case "template":
-      return t.payloadTemplate;
-    case "llm":
-      return t.payloadLlm;
-    case "confirm":
-    case "block":
-    case "allow":
-    case "prefer_entity":
-    case "prefer_area":
-      return "";
-    default: {
-      const _never: never = effect;
-      return _never;
-    }
-  }
-}
+const LANES: PolicyLane[] = ["match", "language", "house"];
 
 function newRule(): PolicyRule {
   return {
@@ -73,6 +26,36 @@ function newRule(): PolicyRule {
     when: {},
     effect: "confirm",
   };
+}
+
+function rulesHint(t: Messages, view: RulesView): string {
+  switch (view) {
+    case "routines":
+      return t.rulesRoutinesHint;
+    case "sentences":
+      return t.rulesSentencesHint;
+    case "policies":
+      return t.rulesPoliciesHint;
+    default: {
+      const _never: never = view;
+      return _never;
+    }
+  }
+}
+
+function laneTitle(t: Messages, lane: PolicyLane): string {
+  switch (lane) {
+    case "match":
+      return t.laneMatch;
+    case "language":
+      return t.laneLanguage;
+    case "house":
+      return t.laneHouse;
+    default: {
+      const _never: never = lane;
+      return _never;
+    }
+  }
 }
 
 export function RulesPage({
@@ -103,8 +86,16 @@ export function RulesPage({
   const [evalOut, setEvalOut] = useState<EvaluateOut | null>(null);
   const [status, setStatus] = useState("");
   const [intents, setIntents] = useState<string[]>(fallbackIntents);
+  const [catalog, setCatalog] = useState<MatchCatalogRow[]>([]);
+  const [seeds, setSeeds] = useState<PolicyRule[]>([]);
+  const [matchControls, setMatchControls] = useState<MatchControl[]>([]);
+  const [overlay, setOverlay] = useState<LangOverlay | null>(null);
+  const [lane, setLane] = useState<PolicyLane>("match");
+  const [selectedMatch, setSelectedMatch] = useState(0);
+  const [selectedSeed, setSelectedSeed] = useState<string | undefined>();
   const { entityOptions, rooms, domains, floors } = useHouseCatalog();
   const current = rules[selected];
+  const seedIds = useMemo(() => new Set(seeds.map((seed) => seed.id)), [seeds]);
   const intentOptions = useMemo(
     () => intents.map((name) => ({ value: name, label: name })),
     [intents],
@@ -114,14 +105,21 @@ export function RulesPage({
     api.policies().then((bundle) => {
       setRules(bundle.policies);
       setBank(bundle.speech_bank);
+      setMatchControls(bundle.match_controls || []);
     }).catch((err) => setStatus(String(err)));
+    api.policiesCatalog().then((body) => {
+      setCatalog(body.matches);
+      setSeeds(body.seeds || []);
+    }).catch((err) => setStatus(String(err)));
+    api.langOverlay().then(setOverlay).catch((err) => setStatus(String(err)));
     api.intents().then((names) => { if (names.length) setIntents(names); }).catch(() => undefined);
   }, []);
 
-  const persist = async (next: PolicyRule[], nextBank = bank) => {
-    const saved = await api.savePolicies({ policies: next, speech_bank: nextBank });
+  const persist = async (next: PolicyRule[], nextBank = bank, nextControls = matchControls) => {
+    const saved = await api.savePolicies({ policies: next, speech_bank: nextBank, match_controls: nextControls });
     setRules(saved.policies);
     setBank(saved.speech_bank);
+    setMatchControls(saved.match_controls || []);
     setStatus(t.save);
   };
 
@@ -160,13 +158,45 @@ export function RulesPage({
       text: utterance,
       language: languages.length === 1 ? languages[0] : undefined,
       policies: rules,
+      match_controls: matchControls,
     }));
+  };
+
+  const selectLane = (next: PolicyLane, id?: string) => {
+    setLane(next);
+    switch (next) {
+      case "match":
+        if (id) {
+          const index = catalog.findIndex((row) => row.id === id);
+          if (index >= 0) setSelectedMatch(index);
+        }
+        break;
+      case "language":
+        if (id) setSelectedSeed(id);
+        break;
+      case "house":
+        if (id && seedIds.has(id)) {
+          setLane("language");
+          setSelectedSeed(id);
+          break;
+        }
+        if (id) {
+          const index = rules.findIndex((rule) => rule.id === id);
+          if (index >= 0) setSelected(index);
+        }
+        break;
+      default: {
+        const _never: never = next;
+        return _never;
+      }
+    }
   };
 
   const addRule = () => {
     const next = [...rules, newRule()];
     setRules(next);
     setSelected(next.length - 1);
+    setLane("house");
   };
 
   const removeRule = async (id: string) => {
@@ -182,148 +212,161 @@ export function RulesPage({
   };
 
   return (
-    <div className="page">
+    <div className={`page${view === "policies" ? " policy-workbench" : ""}`}>
       <section className="hero">
         <div>
           <h1>{t.rules}</h1>
-          {view === "policies" && <p className="muted">{t.priority}</p>}
+          <p className="muted">{rulesHint(t, view)}</p>
         </div>
         {view === "policies" && (
           <div className="row">
-            <button className="secondary" onClick={() => persist(rules)}>{t.save}</button>
-            <button className="primary" onClick={addRule}>{t.addRule}</button>
+            <button className="secondary" type="button" onClick={() => persist(rules)}>{t.save}</button>
+            <button className="primary" type="button" onClick={addRule}>{t.addRule}</button>
           </div>
         )}
       </section>
       <nav className="subnav">
-        <button className={view === "routines" ? "active" : ""} onClick={() => setView("routines")}>{t.routines}</button>
-        <button className={view === "sentences" ? "active" : ""} onClick={() => setView("sentences")}>{t.sentences}</button>
-        <button className={view === "policies" ? "active" : ""} onClick={() => setView("policies")}>{t.policies}</button>
+        <button className={view === "routines" ? "active" : ""} type="button" onClick={() => setView("routines")}>{t.routines}</button>
+        <button className={view === "sentences" ? "active" : ""} type="button" onClick={() => setView("sentences")}>{t.sentences}</button>
+        <button className={view === "policies" ? "active" : ""} type="button" onClick={() => setView("policies")}>{t.policies}</button>
       </nav>
-      {view === "routines" && <RoutinesPage t={t} />}
-      {view === "sentences" && <CustomPage t={t} locale={locale} embedded />}
+      {view === "routines" && (
+        <>
+          <Guide
+            title={t.rulesRoutinesHint}
+            steps={[
+              { id: "say", label: t.guideRoutinesSay, hint: t.guideRoutinesSayHint },
+              { id: "script", label: t.guideRoutinesScript, hint: t.guideRoutinesScriptHint },
+            ]}
+          />
+          <RoutinesPage t={t} />
+        </>
+      )}
+      {view === "sentences" && (
+        <>
+          <Guide
+            title={t.rulesSentencesHint}
+            steps={[
+              { id: "phrase", label: t.guideSentencesPhrase, hint: t.guideSentencesPhraseHint },
+              { id: "intent", label: t.guideSentencesIntent, hint: t.guideSentencesIntentHint },
+              { id: "test", label: t.guideSentencesTest, hint: t.guideSentencesTestHint },
+            ]}
+          />
+          <CustomPage t={t} locale={locale} embedded />
+        </>
+      )}
       {view === "policies" && (
-        <section className="grid two">
-          <div className="card">
-            {rules.length === 0 && (
-              <div>
-                <p className="muted">{policiesEmpty(t)}</p>
-                <SetupHint t={t} />
-              </div>
-            )}
-            {rules.map((rule, index) => (
-              <div
-                className={`rule-row${index === selected ? " active" : ""}`}
-                key={rule.id}
-                draggable
-                onDragStart={(ev) => ev.dataTransfer.setData("text/plain", String(index))}
-                onDragOver={(ev) => ev.preventDefault()}
-                onDrop={(ev) => {
-                  ev.preventDefault();
-                  move(Number(ev.dataTransfer.getData("text/plain")), index);
-                }}
-                onClick={() => setSelected(index)}
+        <>
+          <Guide
+            title={t.priority}
+            steps={[
+              { id: "match", label: t.guidePoliciesMatch, hint: t.guidePoliciesMatchHint },
+              { id: "language", label: t.guidePoliciesLang, hint: t.guidePoliciesLangHint },
+              { id: "house", label: t.guidePoliciesHouse, hint: t.guidePoliciesHouseHint },
+              { id: "test", label: t.guidePoliciesTest, hint: t.guidePoliciesTestHint },
+            ]}
+            current={lane}
+            onPick={(id) => {
+              if (id === "test") {
+                document.getElementById("klar-policy-eval")?.scrollIntoView({ block: "start", behavior: "smooth" });
+                return;
+              }
+              if (id === "match" || id === "language" || id === "house") setLane(id);
+            }}
+          />
+          <nav className="policy-lane-tabs" aria-label={t.laneTabs}>
+            {LANES.map((item) => (
+              <button
+                key={item}
+                type="button"
+                className={lane === item ? "active" : ""}
+                onClick={() => setLane(item)}
               >
-                <span className="muted">{index + 1}</span>
-                <strong>{rule.label || rule.id}</strong>
-                <span className="chip intent">{rule.effect}</span>
-                <button className="ghost danger" onClick={() => removeRule(rule.id)}>{t.dismiss}</button>
-              </div>
+                {laneTitle(t, item)}
+              </button>
             ))}
-          </div>
-          <div className="card">
-            {current ? (
-              <>
-                <label>{t.custom}</label>
-                <input value={current.label} onChange={(ev) => update({ label: ev.target.value })} />
-                <label className="row">
-                  <input type="checkbox" checked={current.enabled} onChange={(ev) => update({ enabled: ev.target.checked })} style={{ width: "auto" }} />
-                  {current.enabled ? "on" : "off"}
-                </label>
-                <label>{t.when}</label>
-                <input placeholder={t.whenPhrase} value={current.when.phrase || ""} onChange={(ev) => updateWhen("phrase", ev.target.value)} />
-                <SearchSelect
-                  value={current.when.intent || ""}
-                  options={withCurrent(intentOptions, current.when.intent || "")}
-                  onChange={(value) => updateWhen("intent", value)}
-                  placeholder="intent"
-                />
-                <SearchSelect
-                  value={current.when.domain || ""}
-                  options={withCurrent(domains, current.when.domain || "")}
-                  onChange={(value) => updateWhen("domain", value)}
-                  placeholder="domain"
-                />
-                <SearchSelect
-                  value={current.when.area || ""}
-                  options={withCurrent(rooms, current.when.area || "")}
-                  onChange={(value) => updateWhen("area", value)}
-                  placeholder="area"
-                />
-                <SearchSelect
-                  value={current.when.entity_id || ""}
-                  options={withCurrent(entityOptions, current.when.entity_id || "")}
-                  onChange={updateWhenEntity}
-                  placeholder="entity_id"
-                />
-                <SearchSelect
-                  value={current.when.floor || ""}
-                  options={withCurrent(floors, current.when.floor || "")}
-                  onChange={(value) => updateWhen("floor", value)}
-                  placeholder="floor"
-                />
-                <input placeholder="name" value={current.when.name || ""} onChange={(ev) => updateWhen("name", ev.target.value)} />
-                <label>{t.then}</label>
-                <select value={current.effect} onChange={(ev) => update({ effect: ev.target.value as PolicyEffect })}>
-                  {EFFECTS.map((effect) => <option key={effect} value={effect}>{effectLabel(t, effect)}</option>)}
-                </select>
-                {current.effect === "prefer_entity" && (
-                  <SearchSelect
-                    value={current.prefer || ""}
-                    options={withCurrent(entityOptions, current.prefer || "")}
-                    onChange={(value) => update({ prefer: value || undefined })}
-                    placeholder="prefer"
-                    allowEmpty={false}
-                  />
-                )}
-                {current.effect === "prefer_area" && (
-                  <SearchSelect
-                    value={current.prefer || ""}
-                    options={withCurrent(rooms, current.prefer || "")}
-                    onChange={(value) => update({ prefer: value || undefined })}
-                    placeholder="prefer"
-                    allowEmpty={false}
-                  />
-                )}
-                {ACTION_EFFECTS.includes(current.effect) && (
-                  <textarea placeholder={payloadHint(t, current.effect)} value={current.payload || ""} onChange={(ev) => update({ payload: ev.target.value })} />
-                )}
-                <div className="row" style={{ marginTop: 12 }}>
-                  <button className="secondary" onClick={bake}>{t.bakeSpeech}</button>
-                </div>
-                {bank.entries.find((item) => item.rule_id === current.id)?.variants.map((variant, index) => (
-                  <p className="muted" key={`${variant.language}-${index}`}>{variant.language}/{variant.personality}: {variant.text}</p>
-                ))}
-              </>
-            ) : <p className="muted">{t.noPolicies}</p>}
-          </div>
-          <div className="card" style={{ gridColumn: "1 / -1" }}>
+          </nav>
+          <section className="policy-lanes">
+            <div
+              className={`policy-lane${lane === "match" ? " active" : ""}`}
+              data-lane="match"
+              onClick={() => setLane("match")}
+            >
+              <MatchLane
+                t={t}
+                catalog={catalog}
+                controls={matchControls}
+                selected={selectedMatch}
+                onSelect={(index) => {
+                  setLane("match");
+                  setSelectedMatch(index);
+                }}
+                onChange={setMatchControls}
+              />
+            </div>
+            <div
+              className={`policy-lane${lane === "language" ? " active" : ""}`}
+              data-lane="language"
+              onClick={() => setLane("language")}
+            >
+              <LexiconLane
+                t={t}
+                overlay={overlay}
+                seeds={seeds}
+                house={rules}
+                selectedSeed={selectedSeed}
+                onSelectSeed={(id) => {
+                  setLane("language");
+                  setSelectedSeed(id);
+                }}
+                onSaved={setOverlay}
+                onHouse={(next) => { void persist(next); }}
+                onStatus={setStatus}
+              />
+            </div>
+            <div
+              className={`policy-lane${lane === "house" ? " active" : ""}`}
+              data-lane="house"
+              onClick={() => setLane("house")}
+            >
+              <HouseLane
+                t={t}
+                rules={rules}
+                seedIds={seedIds}
+                selected={selected}
+                bank={bank}
+                intentOptions={intentOptions}
+                entityOptions={entityOptions}
+                rooms={rooms}
+                domains={domains}
+                floors={floors}
+                onSelect={(index) => {
+                  setLane("house");
+                  setSelected(index);
+                }}
+                onMove={move}
+                onRemove={(id) => { void removeRule(id); }}
+                onUpdate={update}
+                onUpdateWhen={updateWhen}
+                onUpdateWhenEntity={updateWhenEntity}
+                onBake={bake}
+              />
+            </div>
+          </section>
+          <div className="card policy-evaluate" id="klar-policy-eval">
             <h2>{t.evaluator}</h2>
+            <p className="muted">{t.evaluatorHint}</p>
             <div className="row">
               <input value={utterance} onChange={(ev) => setUtterance(ev.target.value)} placeholder={t.command} />
-              <button className="primary" onClick={evaluate}>{t.analyze}</button>
+              <button className="primary" type="button" onClick={evaluate}>{t.analyze}</button>
             </div>
-            {evalOut && (
-              <div className="flow" style={{ marginTop: 16 }}>
-                <div className="card"><h3>{t.compiledRisk}</h3><p>{evalOut.compiled_risky ? "yes" : "no"}</p></div>
-                <div className="card"><h3>{t.matchedRule}</h3><p className="mono">{evalOut.matched_rule || "—"}</p></div>
-                <div className="card"><h3>{t.then}</h3><p className="mono">{evalOut.hit || "—"}</p></div>
-                <div className="card"><h3>{t.finalBand}</h3><p className="mono">{evalOut.outcome.decision.type}</p></div>
-                <div className="card"><h3>{t.variantPreview}</h3><p>{evalOut.speech_variant || evalOut.outcome.speech}</p></div>
-              </div>
-            )}
+            <div className="policy-evaluate-path">
+              <PolicyPath t={t} trace={evalOut?.outcome.policy_trace} onSelect={selectLane} />
+            </div>
+            {evalOut?.warnings?.length ? <p className="muted">{t.matchDisableWarning}</p> : null}
+            {evalOut ? <p className="muted" style={{ marginTop: 12 }}>{evalOut.speech_variant || evalOut.outcome.speech}</p> : null}
           </div>
-        </section>
+        </>
       )}
       {status && <p className="muted">{status}</p>}
     </div>

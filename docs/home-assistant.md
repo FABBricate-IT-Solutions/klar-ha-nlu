@@ -23,7 +23,7 @@ V2 spricht nur `POST /api/v2/parse`. Integration und Engine im selben Release ak
 
 Ohne HACS `custom_components/klar_nlu` nach `<config>/custom_components/klar_nlu` kopieren und neu starten.
 
-Nur eine Instanz. Die URL bleibt im ersten Schritt; der Smalltalk-Agent liegt in den Optionen.
+Nur eine Instanz. Die URL bleibt im ersten Schritt. Stimme und Engine-LLM liegen in der Klar-Operator-UI.
 
 ## Assist-Pipeline
 
@@ -36,7 +36,7 @@ Nicht den LLM-Agenten direkt als Engine wählen. Sonst umgeht Assist Klar und da
 
 ## LLM-Fallback
 
-Einstellungen → Geräte & Dienste → Klar NLU → Konfigurieren → **Conversation-Agent für Smalltalk**.
+Einstellungen → Klar-Operator-UI → **LLM**. Assist-Chat nutzt diesen Engine-Endpoint, keinen leftover Home-Assistant-Conversation-Agenten.
 
 Es gibt keine Nutzer-Phrase wie „Frag das LLM“. Ist ein Fallback-Agent gesetzt, gehen unhandled Sätze (Reject oder leere Intents) an diesen Agenten in der Assist-Sprache. Refine ändert nur den Ton einer schon gesprochenen NLU-Zeile.
 
@@ -48,13 +48,13 @@ Ablauf:
 4. Keine Intents, einschließlich Reject → Weiterleitung an den gewählten Agenten. NLU-RAG ist nicht nötig.
 5. Klar selbst und ein unerreichbarer Motor lösen keinen Fallback aus.
 
-Der Agent bekommt den Hinweis, keine Geräte zu steuern und in der Assist-Sprache des Nutzers zu antworten. Hat der Agent in seiner eigenen Integration HA-Tools, überspringt Klar ihn, außer **Assist-Werkzeuge beim Smalltalk-Agenten erlauben** ist an. Die Option ist standardmäßig aus. Ist sie an, darf das Modell Lichter schalten und Skripte starten.
+Chat-Fallback nutzt das Klar-Engine-LLM. **Assist-Werkzeuge beim Chat** ist standardmäßig aus. Ist sie an, darf das Modell nach dem Klar-Parse Home-Assistant-Assist-Werkzeuge mit den Namen von Core nutzen (2026.9-Präfixe wie `intent__HassTurnOn`). Gerätebefehle laufen zuerst durch Klar-Parse.
 
 ## Persönlichkeit
 
-Einstellungen → Geräte & Dienste → Klar NLU → Konfigurieren → **Persönlichkeit**, oder die Select-Entity **Persönlichkeit** am Klar-Gerät.
+Klar-Operator-UI → Einstellungen → **Stimme**, oder die Select-Entity **Persönlichkeit** am Klar-Gerät (schreibt die Engine).
 
-Die Auswahl liegt in dieser Integration, nicht in der Klar-App, und überlebt eine Neuinstallation der Engine. Assist und der LLM-Verfeinerungs-Prompt wechseln mit. Nur die Persönlichkeit zu ändern startet die Engine nicht neu.
+Die Auswahl liegt in den Engine-Settings (`GET`/`POST /api/settings`), nicht im Home-Assistant-Optionsformular. Assist liest den Engine-Cache pro Turn und fällt nur auf übrige Integrationsoptionen zurück, wenn der Cache leer ist. Die Persönlichkeit zu ändern startet die Engine nicht neu.
 
 | Id | Stimme |
 |----|--------|
@@ -73,12 +73,12 @@ Mit LLM-Refine steckt die Stimme im Satz — nicht in einem Stempel wie „Sehr 
 
 ## LLM-Verfeinerung
 
-Standardmäßig aus. Einstellungen → Geräte & Dienste → Klar NLU → Konfigurieren:
+Standardmäßig aus. Klar-Operator-UI → Einstellungen:
 
-1. **Conversation-Agent für Smalltalk** setzen (OpenAI-kompatibel, lokales Gemma reicht).
-2. **NLU-Antworten vom LLM verfeinern** einschalten.
+1. LLM-Endpoint setzen (OpenAI-kompatibel, lokales Gemma reicht).
+2. **LLM-Verfeinerung** einschalten.
 3. Assist-Pipeline: Conversation-Engine = **Klar NLU**.
-4. Assist-Werkzeuge bei diesem LLM-Agenten **aus**, außer **Assist-Werkzeuge beim Smalltalk-Agenten erlauben** ist an. Kann der Agent das Haus steuern und die Option ist aus, fällt Refine aus.
+4. **Assist-Werkzeuge beim Chat** aus lassen, außer Core-Assist-Werkzeuge sollen im Engine-Chat-Fallback verfügbar sein.
 
 Ablauf nach einem Hausbefehl:
 
@@ -87,7 +87,7 @@ Ablauf nach einem Hausbefehl:
 3. Die Umformulierung bleibt stehen. Klar klebt keine Formel mehr davor oder dahinter.
 4. Schlägt Refine fehl, bleibt die kurze Fallback-Formel.
 
-Der Prompt ist pro Persönlichkeit (Stimme plus Few-Shots). Das Feld **Verfeinerungs-Prompt** ist nur eine Extra-Zeile darüber — es ersetzt die Stimme nicht.
+Der Prompt ist pro Persönlichkeit (Stimme plus Few-Shots) und ist die **System**-Nachricht. **Extra-Prompt** unter Einstellungen ist eine optionale **User**-Hausregel — sie ersetzt die Pack-Stimme nicht.
 
 Die Sicherheit bleibt bei Klar, nicht beim Modell:
 

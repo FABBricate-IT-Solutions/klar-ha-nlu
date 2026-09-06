@@ -2,9 +2,12 @@ use crate::home::overlay::{apply_overlay, load_overlay, save_overlay};
 use crate::home::{HomeStore, LoadedHome};
 use crate::io::bundle::{entry_from_parse, BundleStore};
 use crate::io::conversations::{turn_from_outcome, ConversationJournal};
+use crate::io::llm::load_endpoint;
 use crate::io::metrics::MetricsStore;
+use crate::io::trainer_consent::TrainerConsentHub;
+use crate::llm::LlmEndpoint;
 use crate::session::Sessions;
-use crate::types::{CustomSentence, ParseOutcome, ParseResult, PolicyRule, Settings, SpeechBank};
+use crate::types::{CustomSentence, MatchControl, ParseOutcome, ParseResult, PolicyRule, Settings, SpeechBank};
 use std::path::PathBuf;
 use std::sync::atomic::AtomicBool;
 use std::sync::Arc;
@@ -18,6 +21,7 @@ pub struct AppState {
     pub custom: Arc<Mutex<Vec<CustomSentence>>>,
     pub policies: Arc<Mutex<Vec<PolicyRule>>>,
     pub speech_bank: Arc<Mutex<SpeechBank>>,
+    pub match_controls: Arc<Mutex<Vec<MatchControl>>>,
     pub journal: ConversationJournal,
     pub bundle: BundleStore,
     pub metrics: Arc<MetricsStore>,
@@ -25,10 +29,13 @@ pub struct AppState {
     pub data_dir: PathBuf,
     pub live_sync: Arc<AtomicBool>,
     pub token: Option<String>,
+    pub llm: Arc<Mutex<Option<LlmEndpoint>>>,
+    pub trainer_consent: Arc<TrainerConsentHub>,
 }
 
 impl AppState {
     pub fn new(loaded: LoadedHome, data_dir: PathBuf, token: Option<String>) -> Self {
+        let llm = load_endpoint(&data_dir);
         Self {
             home: HomeStore::new(loaded.graph),
             sessions: Arc::new(Mutex::new(Sessions::default())),
@@ -36,6 +43,7 @@ impl AppState {
             custom: Arc::new(Mutex::new(loaded.custom)),
             policies: Arc::new(Mutex::new(loaded.policies)),
             speech_bank: Arc::new(Mutex::new(loaded.speech_bank)),
+            match_controls: Arc::new(Mutex::new(loaded.match_controls)),
             journal: ConversationJournal::open(&data_dir),
             bundle: BundleStore::open(&data_dir),
             metrics: Arc::new(MetricsStore::default()),
@@ -43,6 +51,8 @@ impl AppState {
             data_dir,
             live_sync: Arc::new(AtomicBool::new(false)),
             token,
+            llm: Arc::new(Mutex::new(llm)),
+            trainer_consent: TrainerConsentHub::new(),
         }
     }
 

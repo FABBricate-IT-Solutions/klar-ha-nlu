@@ -28,8 +28,7 @@
           "mode": "Двигател",
           "personality": "Личност",
           "languages": "Езици",
-          "fallback_agent": "Разговорен агент за бъбрене",
-          "allow_llm_tools": "Allow Assist tools on the chit-chat agent",
+          "allow_llm_tools": "Allow Home Assistant Assist tools on engine chat",
           "refine_speech": "LLM да преформулира отговорите на NLU",
           "refine_prompt": "Подсказка за дооформяне",
           "url": "URL на Klar API",
@@ -49,7 +48,7 @@
           "nlu_rag": "По подразбиране изкл. При разговор към резервния модел отива само разпознатият отрязък.",
           "quiet_ack": "При просто вкл./изкл. на лампа няма говор, само кратък звук на сателита.",
           "calendar_llm": "По подразбиране изключено. Включено: Klar чете календара, резервният LLM казва събитията. Изключено: Klar казва списъка. Създаване, изтриване и преместване остават в Klar.",
-          "allow_llm_tools": "Off by default. On: Klar still calls the chit-chat agent even if that agent can control Home Assistant. The model may turn lights and run scripts. Off: Klar skips the LLM when that agent has Assist tools.",
+          "allow_llm_tools": "Off by default. On: after Klar parses, the engine chat model may call Home Assistant Assist tools (names come from Core, already prefixed). Off: conversation only.",
           "languages": "По подразбиране следва езика на системата Home Assistant.",
           "channel": "По всяко време. Staging сочи към Klar NLU (Staging)."
         }

@@ -15,7 +15,9 @@ mod speech;
 mod validation;
 
 use crate::session::Session;
-use crate::types::{CustomSentence, HomeGraph, IntentPlan, ParseDecision, ParseOutcome, ParseResult, PolicyRule, Settings, SpeechBank};
+use crate::types::{
+    CustomSentence, HomeGraph, IntentPlan, MatchControl, ParseDecision, ParseOutcome, ParseResult, PolicyRule, Settings, SpeechBank,
+};
 
 pub use context::ParseContext;
 
@@ -61,14 +63,31 @@ pub fn parse_with_policies(
     policies: &[PolicyRule],
     speech_bank: &SpeechBank,
 ) -> ParseOutcome {
+    parse_with_controls(text, home, session, custom, settings, policies, speech_bank, &[])
+}
+
+pub fn parse_with_controls(
+    text: &str,
+    home: &HomeGraph,
+    session: &mut Session,
+    custom: &[CustomSentence],
+    settings: &Settings,
+    policies: &[PolicyRule],
+    speech_bank: &SpeechBank,
+    match_controls: &[MatchControl],
+) -> ParseOutcome {
     let catalog = crate::lang::catalog_for(&settings.languages);
     if catalog.pack_intents.is_empty() {
-        let context = ParseContext::new(text, home, session, custom, settings, catalog).with_policies(policies, speech_bank);
+        let context = ParseContext::new(text, home, session, custom, settings, catalog)
+            .with_policies(policies, speech_bank)
+            .with_match_controls(match_controls);
         return pipeline::run(context).commit(session);
     }
     let mut sentences = custom.to_vec();
     sentences.extend(catalog.pack_intents.iter().cloned());
-    let context = ParseContext::new(text, home, session, &sentences, settings, catalog).with_policies(policies, speech_bank);
+    let context = ParseContext::new(text, home, session, &sentences, settings, catalog)
+        .with_policies(policies, speech_bank)
+        .with_match_controls(match_controls);
     pipeline::run(context).commit(session)
 }
 

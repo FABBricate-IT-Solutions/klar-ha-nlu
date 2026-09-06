@@ -25,7 +25,6 @@ from .const import (
     CONF_ALLOW_LLM_TOOLS,
     CONF_ASSIST_FILTER,
     CONF_CALENDAR_LLM,
-    CONF_FALLBACK_AGENT,
     CONF_LANGUAGES,
     CONF_NLU_RAG,
     CONF_PERSONALITY,
@@ -39,46 +38,34 @@ from .const import (
     DEFAULT_CALENDAR_LLM,
     DEFAULT_NLU_RAG,
     DEFAULT_QUIET_ACK,
+    DEFAULT_REFINE_SPEECH,
     DEFAULT_URL,
     DOMAIN,
+    LANGUAGE_ALL,
     engine_session_id,
     keeps_conversation,
     parse_session_id,
     resolve_personality,
 )
+from .engine import async_refresh_engine_settings, cached_engine_settings
 from .engine_http import post_parse
 from .lang_select import advertised_languages, default_pack, enabled_packs, resolve_pack, speak_tag
 from .contracts import executable_intents
 from .executor import execute_plan
 from .fallback import (
-    agent_has_home_control,
     append_llm_turn,
-    can_use_fallback_agent,
-    calendar_prompt,
     calendar_query_only,
     calendar_readback,
-    keeps_calendar_reply,
-    chat_only_prompt,
-    history_prompt,
     llm_conversation_id,
-    news_followup_prompt,
-    news_prompt,
-    with_personality,
-    yarn_asks_permission,
-    yarn_canned,
-    yarn_nudge,
-    yarn_prompt,
-    yarn_request,
 )
 from .intents import keep_lab_plan, registered_intent_names
 from .rag_tools import (
     act_payload,
-    holds_klar_tool_prefix,
     leaks_klar_tools,
     parse_tool_reply,
-    rag_prompt,
 )
-from .stream import stream_chat
+from .assist_tools import stream_assist_with_ha_tools
+from .engine_llm import EngineAssistMissing, stream_engine_assist
 from .news import announce, asked_for_more, compose_speech, fetch_headlines, nudge
 from .policy_actions import (
     hit_and_payload,
@@ -90,10 +77,6 @@ from .refine import (
     async_finish_speech,
     emit_assistant_speech,
     isolated_conversation_id,
-    llm_client_and_model,
-    nested_llm_session,
-    pop_complete_sentences,
-    refine_prompt,
     skip_rewrite,
 )
 from .quiet import play_chime, quiet_ack_applies
@@ -156,26 +139,6 @@ def _speech_result(pack: str, speech: str, published: bool) -> ConversationResul
     )
 
 
-def _stream_hold(yarn: bool, rag: bool):
-    if not yarn and not rag:
-        return None
-
-    def hold(speech: str) -> bool | None:
-        stripped = speech.lstrip()
-        if parse_tool_reply(stripped) or leaks_klar_tools(speech):
-            return None
-        if rag and holds_klar_tool_prefix(stripped):
-            return False
-        if yarn:
-            if not pop_complete_sentences(speech)[0]:
-                return False
-            if yarn_asks_permission(speech):
-                return None
-        return True
-
-    return hold
-
-
 class KlarConversationEntity(ConversationEntity):
     _attr_name = "Klar NLU"
     _attr_supported_features = conversation.ConversationEntityFeature.CONTROL
@@ -191,18 +154,29 @@ class KlarConversationEntity(ConversationEntity):
             manufacturer="FABBricate IT Solutions",
         )
 
+    def _engine_settings(self) -> dict:
+        return cached_engine_settings(self.hass, self._entry)
+
     def _packs(self) -> list[str]:
+        languages = self._engine_settings().get("languages")
+        if isinstance(languages, list):
+            return enabled_packs(
+                languages or LANGUAGE_ALL,
+                getattr(self.hass.config, "language", None),
+            )
         return enabled_packs(
             self._entry.options.get(CONF_LANGUAGES),
             getattr(self.hass.config, "language", None),
         )
 
     def _request_pack(self, language: str | None) -> str:
-        choice = self._entry.options.get(CONF_LANGUAGES)
-        hass_language = getattr(self.hass.config, "language", None)
         if language:
             return resolve_pack(language, self._packs())
-        return default_pack(choice, hass_language)
+        languages = self._engine_settings().get("languages")
+        if isinstance(languages, list) and len(languages) == 1:
+            return str(languages[0])
+        hass_language = getattr(self.hass.config, "language", None)
+        return default_pack(self._entry.options.get(CONF_LANGUAGES), hass_language)
 
     @property
     def supported_languages(self) -> list[str]:
@@ -216,19 +190,28 @@ class KlarConversationEntity(ConversationEntity):
             or DEFAULT_URL
         ).rstrip("/")
 
-    def _fallback_agent_id(self) -> str | None:
-        agent_id = self._entry.options.get(CONF_FALLBACK_AGENT)
-        if not agent_id or agent_id == self.entity_id:
-            return None
-        return agent_id
-
     def _assistant(self) -> str | None:
         if self._entry.options.get(CONF_ASSIST_FILTER, DEFAULT_ASSIST_FILTER):
             return "conversation"
         return None
 
     def _personality(self) -> str:
+        settings = self._engine_settings()
+        if settings.get("personality"):
+            return resolve_personality(settings.get("personality"))
         return resolve_personality(self._entry.options.get(CONF_PERSONALITY))
+
+    def _extra_prompt(self) -> str:
+        settings = self._engine_settings()
+        if "extra_prompt" in settings:
+            return str(settings.get("extra_prompt") or "")
+        return str(self._entry.options.get(CONF_REFINE_PROMPT) or "")
+
+    def _flag(self, key: str, option_key: str, default: bool) -> bool:
+        settings = self._engine_settings()
+        if key in settings:
+            return bool(settings.get(key))
+        return bool(self._entry.options.get(option_key, default))
 
     def _token(self) -> str | None:
         stored = (self.hass.data.get(DOMAIN) or {}).get(self._entry.entry_id) or {}
@@ -238,21 +221,6 @@ class KlarConversationEntity(ConversationEntity):
     def _headers(self) -> dict[str, str]:
         token = self._token()
         return {"X-Klar-Token": token} if token else {}
-
-    def _agent_controls_home(self, agent_id: str) -> bool:
-        try:
-            agent = conversation.async_get_agent(self.hass, agent_id)
-        except Exception:  # noqa: BLE001 — other agent is a system boundary
-            return True
-        if agent is None:
-            return True
-        features = getattr(agent, "supported_features", 0)
-        if callable(features):
-            try:
-                features = features()
-            except Exception:  # noqa: BLE001 — agent API varies
-                return True
-        return agent_has_home_control(features)
 
     def _exposed(self, entity_id: str) -> bool:
         if not self._assistant():
@@ -267,6 +235,7 @@ class KlarConversationEntity(ConversationEntity):
         user_input: ConversationInput,
         chat_log: ChatLog,
     ) -> ConversationResult:
+        await async_refresh_engine_settings(self.hass, self._entry)
         pack = self._request_pack(user_input.language)
         payload = await self._parse(
             user_input.text, user_input.conversation_id, pack, user_input.device_id, getattr(user_input, "satellite_id", None)
@@ -303,9 +272,9 @@ class KlarConversationEntity(ConversationEntity):
             if rendered:
                 speech = rendered
         if hit == "llm" and action and not clarify and decision_type != "execute" and not payload.get("unreachable"):
-            prompt = yarn_prompt(pack, action, user_input.text) if yarn_request(user_input.text) else chat_only_prompt(pack, action, self._allow_llm_tools())
             fallback = await self._fallback(
-                user_input, chat_log, pack, True, prompt, retrieval
+                user_input, chat_log, pack, True, retrieval=retrieval, extra_system=action,
+                conversation_id=conversation_id,
             )
             replied = await self._after_fallback(
                 user_input, chat_log, pack, fallback, speech, conversation_id
@@ -319,9 +288,10 @@ class KlarConversationEntity(ConversationEntity):
             and not clarify
             and not intents
             and not payload.get("unreachable")
-            and self._fallback_agent_id()
         ):
-            fallback = await self._fallback(user_input, chat_log, pack, chat, retrieval=retrieval)
+            fallback = await self._fallback(
+                user_input, chat_log, pack, chat, retrieval=retrieval, conversation_id=conversation_id,
+            )
             replied = await self._after_fallback(
                 user_input, chat_log, pack, fallback, speech, conversation_id
             )
@@ -341,7 +311,6 @@ class KlarConversationEntity(ConversationEntity):
                 executed.get("outcome") != "error"
                 and self._calendar_llm()
                 and calendar_query_only(plan)
-                and self._fallback_agent_id()
             ):
                 extra = getattr(user_input, "extra_system_prompt", None)
                 extra_s = extra if isinstance(extra, str) else None
@@ -350,13 +319,25 @@ class KlarConversationEntity(ConversationEntity):
                     chat_log,
                     pack,
                     True,
-                    calendar_prompt(pack, speech, extra_s),
                     user_text=calendar_readback(pack, speech),
+                    kind="calendar",
+                    facts=speech,
+                    extra_system=extra_s,
+                    conversation_id=conversation_id,
                 )
                 llm = _speech_from_result(fallback) if fallback is not None else ""
-                if keeps_calendar_reply(speech, llm):
-                    speech = llm
-            if self._quiet_ack() and quiet_ack_applies(executed, plan):
+                if llm.strip():
+                    return await self._spoken(
+                        user_input,
+                        chat_log,
+                        pack,
+                        llm,
+                        conversation_id,
+                        False,
+                        "llm",
+                        _was_published(fallback),
+                    )
+            if self._quiet_ack() and quiet_ack_applies(executed, plan, payload.get("quiet_ack_eligible") if isinstance(payload.get("quiet_ack_eligible"), bool) else None):
                 await play_chime(self.hass, user_input)
                 return await self._spoken(
                     user_input, chat_log, pack, "", conversation_id, False, "chime"
@@ -380,8 +361,6 @@ class KlarConversationEntity(ConversationEntity):
         if tooled is not None:
             return tooled
         llm = _speech_from_result(fallback)
-        if yarn_request(user_input.text) and yarn_asks_permission(llm):
-            llm = yarn_canned(pack, user_input.text)
         if leaks_klar_tools(llm):
             llm = speech
             return await self._spoken(user_input, chat_log, pack, llm, conversation_id, False)
@@ -403,23 +382,26 @@ class KlarConversationEntity(ConversationEntity):
         decision: str = "",
         published: bool = False,
     ) -> ConversationResult:
-        agent_id = self._fallback_agent_id()
         if decision == "chat":
             speech = finish_clock_speech(speech, pack)
         if not skip_rewrite(decision):
-            speech = await async_finish_speech(
+            speech, refine_posted = await async_finish_speech(
                 self.hass,
-                bool(self._entry.options.get(CONF_REFINE_SPEECH)),
-                agent_id,
-                self._agent_controls_home(str(agent_id or "")),
+                self._flag("refine_speech", CONF_REFINE_SPEECH, DEFAULT_REFINE_SPEECH),
+                None,
+                False,
                 speech,
                 user_input.context,
-                speak_tag(pack),
+                pack,
                 pack,
                 self._personality(),
-                str(self._entry.options.get(CONF_REFINE_PROMPT) or ""),
+                self._extra_prompt(),
                 self._allow_llm_tools(),
+                conversation_id,
+                chat_log,
+                user_input.agent_id,
             )
+            published = published or refine_posted
         remember_turn(
             self.hass,
             self._entry.entry_id,
@@ -453,13 +435,24 @@ class KlarConversationEntity(ConversationEntity):
         extra = getattr(user_input, "extra_system_prompt", None)
         extra_s = extra if isinstance(extra, str) else None
         announced = False
+        headlines: list[str] = []
         if intro:
             announced = await announce(self.hass, user_input, intro)
             headlines = await fetch_headlines(self.hass, pack)
-            prompt = news_prompt(pack, headlines, extra_s)
+            kind = "news"
         else:
-            prompt = news_followup_prompt(pack, extra_s)
-        result = await self._fallback(user_input, chat_log, pack, True, prompt, publish=False)
+            kind = "news_follow"
+        result = await self._fallback(
+            user_input,
+            chat_log,
+            pack,
+            True,
+            publish=False,
+            kind=kind,
+            facts=headlines,
+            extra_system=extra_s,
+            conversation_id=conversation_id,
+        )
         llm = _speech_from_result(result) if result is not None else ""
         extra_nudge = nudge(pack) if intro and not asked_for_more(llm) else ""
         spoken = compose_speech(intro, llm, extra_nudge, announced) or intro or _cue(_DONE, pack, "OK")
@@ -467,16 +460,16 @@ class KlarConversationEntity(ConversationEntity):
         return await self._spoken(user_input, chat_log, pack, spoken, conversation_id, True, "chat")
 
     def _nlu_rag(self) -> bool:
-        return bool(self._entry.options.get(CONF_NLU_RAG, DEFAULT_NLU_RAG))
+        return self._flag("nlu_rag", CONF_NLU_RAG, DEFAULT_NLU_RAG)
 
     def _quiet_ack(self) -> bool:
-        return bool(self._entry.options.get(CONF_QUIET_ACK, DEFAULT_QUIET_ACK))
+        return self._flag("quiet_ack", CONF_QUIET_ACK, DEFAULT_QUIET_ACK)
 
     def _calendar_llm(self) -> bool:
-        return bool(self._entry.options.get(CONF_CALENDAR_LLM, DEFAULT_CALENDAR_LLM))
+        return self._flag("calendar_llm", CONF_CALENDAR_LLM, DEFAULT_CALENDAR_LLM)
 
     def _allow_llm_tools(self) -> bool:
-        return bool(self._entry.options.get(CONF_ALLOW_LLM_TOOLS, DEFAULT_ALLOW_LLM_TOOLS))
+        return self._flag("allow_llm_tools", CONF_ALLOW_LLM_TOOLS, DEFAULT_ALLOW_LLM_TOOLS)
 
     async def async_reload(self, language: str | None = None) -> None:
         """Honor conversation.reload; registered intents are read live."""
@@ -559,120 +552,74 @@ class KlarConversationEntity(ConversationEntity):
         chat_log: ChatLog,
         pack: str,
         chat: bool = False,
-        prompt: str | None = None,
         retrieval: dict[str, Any] | None = None,
         publish: bool = True,
         user_text: str | None = None,
+        kind: str | None = None,
+        facts: str | list[str] | None = None,
+        extra_system: str | None = None,
+        conversation_id: str | None = None,
     ) -> ConversationResult | None:
-        agent_id = self._fallback_agent_id()
-        if not agent_id:
-            return None
-        if not can_use_fallback_agent(
-            self._agent_controls_home(agent_id), chat, self._allow_llm_tools()
-        ):
-            _LOGGER.warning("LLM-Fallback %s hat Assist-Werkzeuge — übersprungen", agent_id)
-            return None
+        del chat
         asked = (user_text or user_input.text).strip() or user_input.text
-        extra_s = getattr(user_input, "extra_system_prompt", None)
+        extra_s = extra_system if extra_system is not None else getattr(user_input, "extra_system_prompt", None)
         extra_s = extra_s if isinstance(extra_s, str) else None
-        voice = refine_prompt(pack, self._personality(), str(self._entry.options.get(CONF_REFINE_PROMPT) or ""))
-        if prompt:
-            system = with_personality(prompt, voice)
-        elif self._nlu_rag():
-            system = rag_prompt(pack, retrieval, with_personality(extra_s, voice))
-        elif yarn_request(user_input.text):
-            system = yarn_prompt(pack, with_personality(extra_s, voice), user_input.text)
-        else:
-            system = chat_only_prompt(
-                pack, with_personality(extra_s, voice), self._allow_llm_tools()
-            )
         session_id = self._llm_session_id(user_input)
-        prior = history_prompt(pack, self._llm_turns(session_id))
-        if prior and not yarn_request(user_input.text):
-            system = f"{system}\n\n{prior}"
-        yarn = yarn_request(user_input.text)
-        resolved = llm_client_and_model(self.hass, agent_id)
-        if resolved is not None:
-            streamed = await self._stream_fallback(
-                resolved[0],
-                resolved[1],
-                user_input,
-                pack,
-                system,
-                chat_log if publish else None,
-                yarn,
-                asked,
-            )
-            if streamed is not None:
-                return streamed
+        assist_kind = kind or "auto"
+        assist_text = user_input.text if assist_kind == "calendar" else asked
         try:
-            result = await conversation.async_converse(
-                self.hass,
-                asked,
-                isolated_conversation_id(),
-                user_input.context,
-                **nested_llm_session(agent_id, speak_tag(pack), system),
-            )
-        except Exception as err:  # noqa: BLE001 — other agent is a system boundary
-            _LOGGER.warning("LLM-Fallback fehlgeschlagen: %s", err)
-            return None
-        if result is not None and yarn and yarn_asks_permission(_speech_from_result(result)):
-            try:
-                result = await conversation.async_converse(
+            allow_tools = self._allow_llm_tools() and not self._nlu_rag()
+            if allow_tools and publish and chat_log is not None:
+                engine_assist = await stream_assist_with_ha_tools(
                     self.hass,
-                    asked,
-                    isolated_conversation_id(),
-                    user_input.context,
-                    **nested_llm_session(agent_id, speak_tag(pack), yarn_nudge(pack, system)),
-                )
-            except Exception as err:  # noqa: BLE001 — other agent is a system boundary
-                _LOGGER.warning("LLM-Fallback-Wiederholung fehlgeschlagen: %s", err)
-        return result
-
-    async def _stream_fallback(
-        self,
-        client: Any,
-        model: str,
-        user_input: ConversationInput,
-        pack: str,
-        system: str,
-        chat_log: ChatLog | None,
-        yarn: bool,
-        asked: str | None = None,
-    ) -> ConversationResult | None:
-        hold = _stream_hold(yarn, self._nlu_rag())
-        text = asked or user_input.text
-        try:
-            speech, published = await stream_chat(
-                client,
-                model,
-                text,
-                system,
-                chat_log,
-                getattr(user_input, "agent_id", None),
-                hold=hold,
-            )
-        except Exception as err:  # noqa: BLE001 — client shape varies by agent
-            _LOGGER.warning("LLM-Stream fehlgeschlagen, converse: %s", err)
-            return None
-        if not speech:
-            return None
-        if yarn and yarn_asks_permission(speech) and not published:
-            try:
-                speech, published = await stream_chat(
-                    client,
-                    model,
-                    text,
-                    yarn_nudge(pack, system),
+                    user_input,
                     chat_log,
-                    getattr(user_input, "agent_id", None),
+                    assist_text,
+                    pack,
+                    self._personality(),
+                    kind=assist_kind,
+                    nlu_rag=False,
+                    retrieval=retrieval,
+                    facts=facts,
+                    history=self._llm_turns(session_id),
+                    extra_system=extra_s,
+                    extra_prompt=self._extra_prompt(),
+                    conversation_id=conversation_id,
+                    url=self._url,
+                    token=self._token(),
+                    publish=publish,
+                    agent_id=getattr(user_input, "agent_id", None),
                 )
-            except Exception as err:  # noqa: BLE001 — retry is best-effort
-                _LOGGER.warning("LLM-Stream-Wiederholung fehlgeschlagen: %s", err)
-                return None
-            if not speech:
-                return None
-        return _speech_result(pack, speech, published and chat_log is not None)
+            else:
+                engine_assist = None
+            if engine_assist is None:
+                engine_assist = await stream_engine_assist(
+                    self.hass,
+                    assist_text,
+                    pack,
+                    self._personality(),
+                    chat_log if publish else None,
+                    getattr(user_input, "agent_id", None),
+                    kind=assist_kind,
+                    allow_tools=allow_tools,
+                    nlu_rag=self._nlu_rag(),
+                    retrieval=retrieval,
+                    facts=facts,
+                    history=self._llm_turns(session_id),
+                    extra_system=extra_s,
+                    extra_prompt=self._extra_prompt(),
+                    conversation_id=conversation_id,
+                    url=self._url,
+                    token=self._token(),
+                    publish=publish,
+                )
+            if engine_assist is not None:
+                speech, published = engine_assist
+                if speech:
+                    return _speech_result(pack, speech, published and chat_log is not None)
+        except EngineAssistMissing:
+            _LOGGER.debug("Klar LLM assist route missing")
+        return None
 
     def _preferred_area(self, device_id: str | None, satellite_id: str | None = None) -> str | None:
         registry = device_registry.async_get(self.hass)
@@ -693,8 +640,9 @@ class KlarConversationEntity(ConversationEntity):
             "text": text,
             "conversation_id": parse_session_id(conversation_id, device_id, satellite_id),
             "language": pack,
-            "personality": self._personality(),
         }
+        if not self._engine_settings():
+            body["personality"] = self._personality()
         if area := self._preferred_area(device_id, satellite_id):
             body["preferred_area"] = area
         if self._nlu_rag():

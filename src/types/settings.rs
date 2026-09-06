@@ -15,6 +15,7 @@ pub enum Personality {
     Hippie,
     Gollum,
     Jarvis,
+    Custom,
 }
 
 #[derive(Debug, Clone, Copy, Serialize, Deserialize, PartialEq, Eq, Default)]
@@ -25,12 +26,63 @@ pub enum Mode {
     ContextOnly,
 }
 
+#[derive(Debug, Clone, Copy, Serialize, Deserialize, PartialEq, Eq, Default)]
+#[serde(rename_all = "snake_case")]
+pub enum UnitSystem {
+    #[default]
+    Metric,
+    Imperial,
+}
+
 fn default_languages() -> Vec<String> {
     Vec::new()
 }
 
 const fn default_confirm_risky_actions() -> bool {
     true
+}
+
+const fn trait_mid() -> u8 {
+    5
+}
+
+fn clamp_trait(value: u8) -> u8 {
+    value.min(10)
+}
+
+#[derive(Debug, Clone, Serialize, Deserialize, PartialEq, Eq)]
+pub struct VoiceTraits {
+    #[serde(default = "trait_mid")]
+    pub warmth: u8,
+    #[serde(default = "trait_mid")]
+    pub humor: u8,
+    #[serde(default)]
+    pub sarcasm: u8,
+    #[serde(default = "trait_mid")]
+    pub formality: u8,
+    #[serde(default = "trait_mid")]
+    pub verbosity: u8,
+    #[serde(default = "trait_mid")]
+    pub energy: u8,
+}
+
+impl Default for VoiceTraits {
+    fn default() -> Self {
+        Self { warmth: 5, humor: 4, sarcasm: 2, formality: 5, verbosity: 4, energy: 5 }
+    }
+}
+
+impl VoiceTraits {
+    pub fn clamp(self) -> Self {
+        Self {
+            warmth: clamp_trait(self.warmth),
+            humor: clamp_trait(self.humor),
+            sarcasm: clamp_trait(self.sarcasm),
+            formality: clamp_trait(self.formality),
+            verbosity: clamp_trait(self.verbosity),
+            energy: clamp_trait(self.energy),
+        }
+    }
 }
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
@@ -56,21 +108,39 @@ pub struct Settings {
     /// Opt-in NLU-as-RAG: matched-slice retrieval and Klar tools. Off by default.
     #[serde(default)]
     pub nlu_rag: bool,
-    /// HA: rewrite finished NLU speech with the fallback LLM.
+    /// Rewrite finished NLU speech with the engine LLM. Off by default.
     #[serde(default)]
     pub refine_speech: bool,
-    /// HA: rewrite calendar list speech with the fallback LLM.
+    /// Rewrite calendar list speech with the engine LLM. Off by default.
     #[serde(default)]
     pub calendar_llm: bool,
-    /// HA: chime instead of TTS on simple on/off.
+    /// Chime instead of TTS on simple on/off. Off by default.
     #[serde(default)]
     pub quiet_ack: bool,
-    /// HA: allow Assist tools on the chit-chat LLM.
+    /// Allow Assist tools on the chit-chat LLM. Off by default.
     #[serde(default)]
     pub allow_llm_tools: bool,
-    /// HA: a fallback conversation agent is configured.
+    /// A Home Assistant leftover conversation agent is configured.
     #[serde(default)]
     pub fallback_llm: bool,
+    /// Extra line on the packed personality prompt. Empty uses the pack voice only.
+    #[serde(default)]
+    pub extra_prompt: String,
+    /// Operator temperatures for parse and speech. Default metric so old overlays stay Celsius.
+    #[serde(default)]
+    pub unit_system: UnitSystem,
+    /// Packed-voice replacement when `personality` is `custom`. Empty falls back to default.
+    #[serde(default)]
+    pub custom_voice: String,
+    /// Operator label for the custom voice.
+    #[serde(default)]
+    pub custom_voice_name: String,
+    /// Character seed. Traits only refine how that seed speaks.
+    #[serde(default)]
+    pub custom_voice_seed: String,
+    /// Delivery sliders 0–10. Independent of the seed identity.
+    #[serde(default)]
+    pub custom_voice_traits: VoiceTraits,
 }
 
 impl Default for Settings {
@@ -89,6 +159,12 @@ impl Default for Settings {
             quiet_ack: false,
             allow_llm_tools: false,
             fallback_llm: false,
+            extra_prompt: String::new(),
+            unit_system: UnitSystem::Metric,
+            custom_voice: String::new(),
+            custom_voice_name: String::new(),
+            custom_voice_seed: String::new(),
+            custom_voice_traits: VoiceTraits::default(),
         }
     }
 }
@@ -117,7 +193,33 @@ mod tests {
         assert!(!set.quiet_ack);
         assert!(!set.allow_llm_tools);
         assert!(!set.fallback_llm);
+        assert!(set.extra_prompt.is_empty());
+        assert!(set.custom_voice.is_empty());
+        assert!(set.custom_voice_name.is_empty());
+        assert!(set.custom_voice_seed.is_empty());
+        assert_eq!(set.custom_voice_traits, VoiceTraits::default());
+        assert_eq!(set.unit_system, UnitSystem::Metric);
         assert_eq!(set.languages, vec!["de"]);
+    }
+
+    #[test]
+    fn custom_personality_roundtrips() {
+        let raw = r#"{"personality":"custom","mode":"full","custom_voice":"Voice: dry.","custom_voice_name":"Spock","custom_voice_seed":"You are Spock.","custom_voice_traits":{"sarcasm":3}}"#;
+        let set: Settings = serde_json::from_str(raw).unwrap();
+        assert_eq!(set.personality, Personality::Custom);
+        assert_eq!(set.custom_voice, "Voice: dry.");
+        assert_eq!(set.custom_voice_name, "Spock");
+        assert_eq!(set.custom_voice_seed, "You are Spock.");
+        assert_eq!(set.custom_voice_traits.sarcasm, 3);
+        assert_eq!(set.custom_voice_traits.warmth, 5);
+    }
+
+    #[test]
+    fn omitted_unit_system_stays_metric() {
+        let raw = r#"{"personality":"default","mode":"full","languages":["de"]}"#;
+        let set: Settings = serde_json::from_str(raw).unwrap();
+        assert_eq!(set.unit_system, UnitSystem::Metric);
+        assert_eq!(Settings::default().unit_system, UnitSystem::Metric);
     }
 
     #[test]

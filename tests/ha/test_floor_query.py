@@ -190,6 +190,17 @@ class FloorQueryTests(unittest.TestCase):
         self.assertLess(spoken.index("Stecker aus"), spoken.index("jemand da"))
         self.assertLess(spoken.index("jemand da"), spoken.index("22,8 Grad"))
         self.assertLess(spoken.index("22,8 Grad"), spoken.index("40 Lux"))
+        imperial = floor_query.rooms_status_speech(
+            [
+                (
+                    "Wohnzimmer",
+                    [_State("climate.wz", "heat", "Heizung", current_temperature=21.0, temperature_unit="°C")],
+                )
+            ],
+            "de",
+            "imperial",
+        )
+        self.assertIn("70 Fahrenheit", imperial)
         self.assertLess(spoken.index("40 Lux"), spoken.index("R2D2"))
         self.assertLess(spoken.index("R2D2"), spoken.index("Heizung heizt"))
 
@@ -279,14 +290,10 @@ class FloorQueryTests(unittest.TestCase):
             patch.object(floor_query, "resolve_floor", return_value=floor),
             patch.object(floor_query, "areas_on_floor", return_value=[]),
         ):
-            spoken = floor_query.place_get_state(
-                hass, {"floor": {"value": "wohnung"}}, "de", lambda _id: True
+            rooms = floor_query.place_status_rooms(
+                hass, {"floor": {"value": "wohnung"}}, lambda _id: True
             )
-            french = floor_query.place_get_state(
-                hass, {"floor": {"value": "wohnung"}}, "fr", lambda _id: True
-            )
-        self.assertEqual(spoken, "Keine Geräte.")
-        self.assertEqual(french, "Aucun appareil.")
+        self.assertEqual(rooms, [])
 
     def test_domain_filter_keeps_only_lights(self) -> None:
         living = _State("light.wohnzimmer", "on", "Wohnzimmer")

@@ -54,7 +54,7 @@ Response:
 
 `language` is optional (`de`, `en`, `fr`, or a BCP-47 tag such as `en-US`). When set, Klar binds only that pack for the request. `speech` follows the pinned pack.
 
-`personality` is optional and prefixes `speech` on this endpoint (`Sehr wohl.`, `Aye.`, …). Home Assistant stores the choice in the integration and sends it on every parse; the engine settings copy is only for the Klar UI. LLM refine in the HA integration then rewrites that sentence in the selected voice and does not stamp the cue back on.
+`personality` is optional and prefixes `speech` on this endpoint (`Sehr wohl.`, `Aye.`, …). The engine settings store is the source of truth (`GET`/`POST /api/settings`); the operator UI Settings page is the editor. Home Assistant omits personality on parse when it already has stored engine settings, and only falls back to leftover integration options if that cache is empty. LLM refine then rewrites that sentence in the selected voice and does not stamp the cue back on.
 
 `decision.type` is one of `execute`, `clarify`, `confirm`, `reject`, `chat`, or `error`. Only `execute` contains `plan`, complete `candidates`, and `selected_candidate_id`; clients must execute intents only for that decision. For every other decision, `candidates` is empty and no intent or slot data is serialized anywhere. `confirm` contains only a prompt and an opaque candidate ID. The proposal remains exclusively in the session until the same `conversation_id` answers affirmatively.
 
@@ -105,6 +105,104 @@ The token comes from `--token`, `KLAR_TOKEN`, or `--token-file`.
 | `confirm_risky_actions` | `true` requires confirmation before risky actions such as locking/unlocking and broad safety-relevant controls. |
 | `semantic_adapters` | `true` consults local typed adapters after a ranking reject. Off by default. Proposals are revalidated; they never override Execute/Confirm/Clarify/Chat. |
 | `nlu_rag` | `true` attaches a matched-slice retrieval on `chat` and `reject` only. Off by default. Never Assist tools; the HA fallback may recover a command only through Klar tools. `POST /api/v2/parse` can set `nlu_rag` per request. |
+| `refine_speech` | `true` rewrites finished NLU speech with the engine LLM. Off by default. |
+| `extra_prompt` | House rule as a user message. Empty uses the pack voice only. Does not replace personality. |
+| `quiet_ack` | `true` chimes instead of TTS on simple on/off. Off by default. |
+| `calendar_llm` | `true` lets the engine LLM speak calendar events. Off by default. |
+| `allow_llm_tools` | `true` lets the engine chat model call Home Assistant Assist tools after Klar parse (2026.9 prefixed names). Off by default. |
+
+### `GET` / `POST /api/v2/llm/endpoint`
+
+OpenAI-compatible upstream for the engine. `GET` returns `{ "configured", "base_url", "model" }` — never the API key. `POST` sets `base_url`, `api_key`, `model` in `data_dir/llm_endpoint.json` (not the overlay). Empty `api_key` keeps the stored key. `configured: false` deletes the file. `KLAR_LLM_*` env wins on boot. Configure it in the operator UI; Assist does not need another Home Assistant LLM integration. `nlu::parse` does not use it.
+
+### `POST /api/v2/llm/chat`
+
+```json
+{ "messages": [{ "role": "user", "content": "…" }], "stream": true, "temperature": 0.2, "max_tokens": 2048 }
+```
+
+Write token required (same as overlay). `stream: true` (default) emits SSE `data: {"type":"delta"|"done"|"error",…}`. `stream: false` returns JSON `{"type":"done","text":"…"}`. `503` when no endpoint is configured.
+
+### `POST /api/v2/llm/refine`
+
+```json
+{ "speech": "Wohnzimmer Licht ist an.", "language": "de", "personality": "butler", "extra_prompt": "", "stream": false }
+```
+
+The engine builds the refine system prompt (pack + voice only) and sends extra as a user message, runs the model (`temperature` 0.65, `max_tokens` scales with the original length, min 192, max 4096), and applies `accept_refined`. JSON `{"type":"done","text":"…","accepted":true}`. If accept rejects, `text` is the original and `accepted` is false. Caps: `speech` ≤ 4096, `extra_prompt` ≤ 2048. Write token required. `503` when no endpoint. Do not send a Python-built system prompt.
+
+### `POST /api/v2/llm/assist`
+
+```json
+{
+  "text": "erzähl einen Witz",
+  "language": "de",
+  "personality": "butler",
+  "kind": "auto",
+  "allow_tools": false,
+  "nlu_rag": false,
+  "retrieval": null,
+  "facts": null,
+  "history": [["user", "…"], ["assistant", "…"]],
+  "extra_system": null,
+  "stream": true
+}
+```
+
+Engine owns Yarn/chat/RAG/calendar/news prompts and `yarn_canned` / `yarn_nudge`. `kind`: `auto` | `yarn` | `chat` | `rag` | `calendar` | `news` | `news_follow`. `auto` uses `yarn_request` / the RAG flag. `facts` is a headline list or calendar readback gathered by HA. Personality is applied here — do not also prepend `refine_prompt`. SSE adds `{"type":"tool","tool":"klar.parse","text":"licht an"}` / `klar.act` so TTS never speaks `KLAR_PARSE:`. Write token required. `503` when no endpoint. Missing route fails closed — Home Assistant does not rebuild the Python prompt.
+
+### `POST /api/v2/speech/render`
+
+Post-execute snapshot from Home Assistant. The engine interpolates pack templates into a factual sentence (`source: "post_execute"`). Personality prefix is applied later at Assist finish. Assist calls this after execute; missing route fails closed (no Python `from_handled`). Write token required.
+
+```json
+{
+  "schema_version": "1",
+  "language": "de",
+  "personality": "default",
+  "now": "2026-09-05T19:22:00+02:00",
+  "intent": {
+    "name": "HassTurnOn",
+    "slots": [{"name": "area", "value": "wohnzimmer"}]
+  },
+  "outcome": "success",
+  "entities": [
+    {
+      "entity_id": "light.wohnzimmer",
+      "name": "Wohnzimmer",
+      "domain": "light",
+      "state": "on",
+      "area": "wohnzimmer",
+      "area_name": "Wohnzimmer",
+      "device_class": null,
+      "attributes": {
+        "current_temperature": null,
+        "temperature_unit": null,
+        "unit_of_measurement": null,
+        "hvac_action": null,
+        "hvac_mode": null,
+        "volume_level": null,
+        "is_volume_muted": null,
+        "media_title": null,
+        "media_artist": null,
+        "media_album_name": null
+      }
+    }
+  ],
+  "calendar_events": [],
+  "media_queue": []
+}
+```
+
+Response: `{ "speech": "The living room light is on.", "quiet_ack": false, "source": "post_execute" }`. `outcome` is `success` | `partial` | `error`. `now` is required (clock). Unknown attribute keys are dropped. Missing `schema_version` → `400`. Caps: 32 entities, 16 calendar rows, 8 queue titles, attribute values ≤ 256 characters. Missing climate/MASS attributes use the unavailable line — never invent a value.
+
+### `POST /api/v2/policies/trainer/chat`
+
+```json
+{ "message": "Treat Funzel as a light noun", "layer": "language", "language": "de", "history": [] }
+```
+
+The engine loads trainer context, streams the model, extracts JSON, and appends `proposal` plus `validate` to the stream. Apply remains a human write call. See [trainer-prompt.md](../architecture/trainer-prompt.md).
 
 ### `POST /api/v2/home`
 

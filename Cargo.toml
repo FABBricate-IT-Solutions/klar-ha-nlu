@@ -16,6 +16,11 @@ axum = { version = "0.8", features = ["json"] }
 serde = { version = "1", features = ["derive"] }
 serde_json = "1"
 tokio = { version = "1", features = ["full"] }
+tokio-stream = { version = "0.1", default-features = false, features = ["sync"] }
+reqwest = { version = "0.12.12", default-features = false, features = ["json", "rustls-tls", "stream"] }
+futures-util = { version = "0.3", default-features = false, features = ["std"] }
+# Keep url off the icu/idna 1.1 line that needs rustc > 1.85.
+url = "=2.5.2"
 tracing = "0.1"
 tracing-subscriber = { version = "0.3", features = ["env-filter"] }
 clap = { version = "4", features = ["derive"] }
@@ -24,6 +29,8 @@ strsim = "0.11"
 uuid = { version = "1", features = ["v4"] }
 serde_yaml = "0.9"
 tower-http = { version = "0.7.0", features = ["fs"] }
+tar = "0.4"
+flate2 = { version = "1", default-features = false, features = ["rust_backend"] }
 
 [profile.test]
 opt-level = 1

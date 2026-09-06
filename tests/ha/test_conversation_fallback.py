@@ -15,29 +15,36 @@ class ConversationFallbackTests(unittest.TestCase):
         start = src.index("if (\n            decision_type == \"chat\"\n            and not skips_llm_fallback(hit)")
         end = src.index("fallback = await self._fallback", start)
         block = src[start:end]
-        self.assertIn("self._fallback_agent_id()", block)
+        self.assertNotIn("self._fallback_agent_id()", block)
         self.assertIn("keeps_engine_chat(hit, chat, engine_speech)", block)
         self.assertIn("decision_type == \"chat\"", block)
         self.assertNotIn("_nlu_rag()", block)
         self.assertNotIn("decision_type != \"reject\"", block)
 
-    def test_fallback_prompt_is_chat_only_without_rag(self) -> None:
+    def test_fallback_uses_engine_assist_only(self) -> None:
         src = (ROOT / "custom_components" / "klar_nlu" / "conversation.py").read_text(encoding="utf-8")
         start = src.index("async def _fallback")
         end = src.index("def _preferred_area")
         body = src[start:end]
-        self.assertIn("chat_only_prompt", body)
+        self.assertIn("stream_engine_assist", body)
+        self.assertIn("stream_assist_with_ha_tools", body)
         self.assertIn("self._allow_llm_tools()", body)
-        self.assertIn("refine_prompt", body)
-        self.assertIn("speak_tag(pack)", body)
-        self.assertIn("history_prompt", body)
+        self.assertIn("async_provide_llm_data", (ROOT / "custom_components" / "klar_nlu" / "assist_tools.py").read_text(encoding="utf-8"))
+        self.assertIn("speak_tag(pack)", src)
         self.assertIn("_llm_session_id", body)
-        self.assertIn("yarn_asks_permission", body)
-        self.assertIn("yarn_nudge", body)
-        self.assertIn("stream_chat", body)
-        self.assertIn("holds_klar_tool_prefix", src)
-        self.assertNotIn("user_input.language", body)
-        self.assertIn("yarn_canned", src)
+        self.assertNotIn("async_converse", body)
+        self.assertNotIn("_fallback_agent_id", src)
+        self.assertNotIn("chat_only_prompt", body)
+        self.assertNotIn("refine_prompt(", body)
+        self.assertNotIn("history_prompt", body)
+        self.assertNotIn("yarn_nudge", body)
+        self.assertNotIn("yarn_asks_permission", body)
+        self.assertNotIn("stream_engine_chat", body)
+        self.assertNotIn("stream_chat", body)
+        self.assertNotIn("_stream_fallback", body)
+        self.assertNotIn("yarn_canned", src)
+        self.assertIn("leaks_klar_tools", src)
+        self.assertIn("parse_tool_reply", src)
         self.assertIn("_attr_supports_streaming = True", src)
 
     def test_calendar_queries_can_go_to_llm(self) -> None:
@@ -48,12 +55,15 @@ class ConversationFallbackTests(unittest.TestCase):
         end = src.index("if self._quiet_ack()", start)
         block = src[start:end]
         self.assertIn("calendar_query_only(plan)", block)
-        self.assertIn("calendar_prompt(pack, speech", block)
         self.assertIn("self._calendar_llm()", block)
         self.assertIn('executed.get("outcome") != "error"', block)
         self.assertIn("calendar_readback(pack, speech)", block)
-        self.assertIn("keeps_calendar_reply(speech, llm)", block)
-        self.assertNotIn("if llm.strip() and \"?\" not in llm:", block)
+        self.assertIn('kind="calendar"', block)
+        self.assertNotIn("calendar_prompt", block)
+        self.assertNotIn("keeps_calendar_reply", block)
+        self.assertIn("if llm.strip():", block)
+        self.assertIn("_was_published(fallback)", block)
+        self.assertIn('"llm"', block)
 
     def test_home_execute_skips_sentence_triggers(self) -> None:
         src = (ROOT / "custom_components" / "klar_nlu" / "conversation.py").read_text(

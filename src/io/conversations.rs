@@ -27,6 +27,8 @@ pub struct ConversationTurn {
     pub tokens: Vec<String>,
     pub decision: String,
     pub speech: String,
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub speech_source: Option<String>,
     pub confidence: f64,
     pub briefing: bool,
     #[serde(default)]
@@ -72,6 +74,28 @@ impl ConversationJournal {
     pub fn by_id(&self, conversation_id: &str) -> Vec<ConversationTurn> {
         self.list().into_iter().filter(|turn| turn.conversation_id == conversation_id).collect()
     }
+
+    pub fn note_spoken(&self, conversation_id: Option<&str>, speech: &str, source: &str) {
+        let Some(id) = sanitize_conversation_id(conversation_id) else {
+            return;
+        };
+        let Some(speech) = sanitize_journal_speech(speech) else {
+            return;
+        };
+        let mut turns = self.lock.lock().unwrap_or_else(|err| err.into_inner());
+        if let Some(turn) = turns.iter_mut().rev().find(|turn| turn.conversation_id == id) {
+            turn.speech = speech;
+            turn.speech_source = Some(source.to_string());
+            turn.ts_ms = now_ms();
+        } else {
+            turns.push(llm_turn(id, speech, source));
+            if turns.len() > MAX_TURNS {
+                let drop = turns.len() - MAX_TURNS;
+                turns.drain(0..drop);
+            }
+        }
+        let _ = write_turns(&self.dir, &turns);
+    }
 }
 
 pub fn turn_from_outcome(
@@ -92,6 +116,7 @@ pub fn turn_from_outcome(
         tokens: replay_tokens(&outcome.text),
         decision: decision_name(&outcome.decision).into(),
         speech: outcome.speech.clone(),
+        speech_source: None,
         confidence: outcome.confidence,
         briefing: outcome.briefing,
         evidence_kinds: outcome.evidence.iter().map(|item| item.kind.clone()).take(16).collect(),
@@ -115,6 +140,41 @@ fn decision_name(decision: &ParseDecision) -> &'static str {
 
 fn now_ms() -> u64 {
     SystemTime::now().duration_since(UNIX_EPOCH).map(|d| d.as_millis() as u64).unwrap_or(0)
+}
+
+fn sanitize_conversation_id(raw: Option<&str>) -> Option<String> {
+    let id = raw?.trim();
+    if id.is_empty() || id.chars().count() > 128 || id.chars().any(char::is_control) {
+        return None;
+    }
+    Some(id.to_string())
+}
+
+fn sanitize_journal_speech(raw: &str) -> Option<String> {
+    let speech = raw.trim();
+    if speech.is_empty() || speech.starts_with("KLAR_") || speech.chars().count() > 4096 {
+        return None;
+    }
+    Some(speech.to_string())
+}
+
+fn llm_turn(conversation_id: String, speech: String, source: &str) -> ConversationTurn {
+    ConversationTurn {
+        conversation_id,
+        ts_ms: now_ms(),
+        text: None,
+        tokens: Vec::new(),
+        decision: if source == "chat" { "chat".into() } else { "execute".into() },
+        speech,
+        speech_source: Some(source.to_string()),
+        confidence: 0.0,
+        briefing: false,
+        evidence_kinds: Vec::new(),
+        last_names: Vec::new(),
+        confirm_prompt: None,
+        candidate_id: None,
+        preferred_area: None,
+    }
 }
 
 fn read_turns(dir: &FsPath) -> Vec<ConversationTurn> {
@@ -198,6 +258,7 @@ mod tests {
             briefing: false,
             retrieval: None,
             policy_trace: None,
+            quiet_ack_eligible: false,
         };
         let turn = turn_from_outcome(&outcome, false, Vec::new(), None);
         assert_eq!(turn.decision, "confirm");
@@ -230,6 +291,7 @@ mod tests {
             briefing: false,
             retrieval: None,
             policy_trace: None,
+            quiet_ack_eligible: false,
         };
         let turn = turn_from_outcome(&outcome, true, vec!["Kugel".into()], Some("kueche".into()));
         assert_eq!(turn.preferred_area.as_deref(), Some("kueche"));
@@ -257,6 +319,7 @@ mod tests {
             briefing: false,
             retrieval: None,
             policy_trace: None,
+            quiet_ack_eligible: false,
         };
         let turn = turn_from_outcome(&outcome, false, vec!["HassTurnOn".into()], None);
         assert!(turn.text.is_none());
@@ -290,6 +353,7 @@ mod tests {
             briefing: false,
             retrieval: None,
             policy_trace: None,
+            quiet_ack_eligible: false,
         };
         let journal = ConversationJournal::open(&dir);
         journal.append(turn_from_outcome(&outcome, false, Vec::new(), None));
@@ -310,5 +374,41 @@ mod tests {
         let turn: ConversationTurn = serde_json::from_str(line).expect("legacy turn");
         assert!(turn.tokens.is_empty());
         assert!(turn.text.is_none());
+        assert!(turn.speech_source.is_none());
+    }
+
+    #[test]
+    fn note_spoken_patches_chat_reply_on_latest_turn() {
+        let dir = std::env::temp_dir().join(format!("klar-journal-chat-{}", std::process::id()));
+        let _ = std::fs::remove_dir_all(&dir);
+        std::fs::create_dir_all(&dir).expect("temp journal dir");
+        let outcome = ParseOutcome {
+            schema_version: "2.0".into(),
+            text: "erzähl einen witz".into(),
+            conversation_id: "c-chat".into(),
+            decision: ParseDecision::Chat,
+            speech: "Verstanden.".into(),
+            confidence: 0.2,
+            margin: 0.0,
+            selected_candidate_id: None,
+            candidates: Vec::new(),
+            plan: None,
+            evidence: Vec::new(),
+            trace: Default::default(),
+            briefing: false,
+            retrieval: None,
+            policy_trace: None,
+            quiet_ack_eligible: false,
+        };
+        let journal = ConversationJournal::open(&dir);
+        journal.append(turn_from_outcome(&outcome, false, Vec::new(), None));
+        journal.note_spoken(Some("c-chat"), "Zwei Roboter gehen in eine Bar.", "chat");
+        journal.note_spoken(Some("c-chat"), "KLAR_PARSE: licht an", "chat");
+        let turns = journal.list();
+        assert_eq!(turns.len(), 1);
+        assert_eq!(turns[0].speech, "Zwei Roboter gehen in eine Bar.");
+        assert_eq!(turns[0].speech_source.as_deref(), Some("chat"));
+        assert_eq!(turns[0].decision, "chat");
+        let _ = std::fs::remove_dir_all(&dir);
     }
 }

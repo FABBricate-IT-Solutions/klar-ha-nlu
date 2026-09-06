@@ -1,0 +1,196 @@
+.house-page {
+  min-width: 0;
+  overflow-x: clip;
+}
+
+.house-page > .page:first-child {
+  padding-block: 12px 0;
+}
+
+.house-page .page {
+  min-width: 0;
+  max-width: 100%;
+}
+
+.house-page .subnav {
+  flex-wrap: wrap;
+  gap: 4px 16px;
+}
+
+.house-page .hero {
+  flex-wrap: wrap;
+  align-items: flex-start;
+  gap: 16px;
+  margin-bottom: 20px;
+}
+
+.house-page .hero h1 {
+  overflow-wrap: anywhere;
+}
+
+.house-page .mono {
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+
+.house-page .card,
+.house-page .inbox-card {
+  min-width: 0;
+  max-width: 100%;
+}
+
+.house-split {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 17.5rem);
+  gap: 16px;
+  align-items: start;
+  min-width: 0;
+}
+
+.house-split .graph-canvas,
+.house-split .card {
+  border-radius: 0;
+}
+
+.house-canvas.graph-canvas {
+  min-height: min(48vh, 28rem);
+  max-width: 100%;
+}
+
+.house-rooms,
+.house-devices,
+.house-floors {
+  display: grid;
+  gap: 12px;
+  min-width: 0;
+}
+
+.house-rooms {
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 16.5rem), 1fr));
+}
+
+.house-devices {
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 12rem), 1fr));
+  gap: 8px;
+}
+
+.house-cluster {
+  display: grid;
+  gap: 8px;
+  min-width: 0;
+  max-width: 100%;
+}
+
+.house-device {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  width: 100%;
+  min-width: 0;
+  max-width: 100%;
+  min-height: 44px;
+  padding: 8px;
+  color: var(--text);
+  background: var(--surface-2);
+  border-radius: 0;
+  touch-action: none;
+}
+
+.house-device-dot {
+  width: 10px;
+  height: 10px;
+  flex: 0 0 10px;
+  margin-top: 5px;
+}
+
+.house-device-copy {
+  min-width: 0;
+  flex: 1;
+}
+
+.house-device-copy strong,
+.house-device-copy .mono,
+.house-device-meta {
+  display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.house-device-meta {
+  margin: 0;
+}
+
+.house-overlay-node {
+  width: min(16.5rem, calc(100vw - 48px));
+  max-width: calc(100vw - 48px);
+}
+
+.house-list {
+  min-width: 0;
+  max-height: min(70vh, 45rem);
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+.house-list .inbox-card {
+  padding: 10px;
+}
+
+.house-list .house-inbox-copy strong,
+.house-list .house-inbox-copy .mono,
+.house-list .house-inbox-copy .muted {
+  display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.house-inbox-copy .mono {
+  word-break: break-all;
+}
+
+.house-actions {
+  display: grid;
+  gap: 8px;
+  min-width: 0;
+}
+
+.house-inbox-copy {
+  min-width: 0;
+}
+
+.house-page button.inbox-card {
+  grid-template-columns: minmax(0, 1fr);
+  width: 100%;
+  min-width: 0;
+  max-width: 100%;
+}
+
+@media (max-width: 960px) {
+  .house-split {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .house-list {
+    max-height: none;
+  }
+
+  .house-canvas.graph-canvas {
+    min-height: min(42vh, 22rem);
+  }
+}
+
+@media (max-width: 720px) {
+  .house-page .inbox-card {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .house-page > .page:not(:first-child) {
+    padding-top: 8px;
+  }
+
+  .house-page .hero {
+    margin-bottom: 16px;
+  }
+}

@@ -68,7 +68,34 @@ impl PolicyId {
         }
     }
 
-    const fn precedence(self) -> u16 {
+    pub(crate) const ALL: &'static [Self] = &[
+        Self::LaundrySwitch,
+        Self::Timer,
+        Self::Calendar,
+        Self::List,
+        Self::Media,
+        Self::NamedScene,
+        Self::AllLights,
+        Self::FollowNamed,
+        Self::PreferredAreaCommand,
+        Self::AreaCommand,
+        Self::FloorCommand,
+        Self::QueryArea,
+        Self::QueryUngrounded,
+        Self::MultiArea,
+        Self::GroundedEntities,
+        Self::GroundedAmbiguous,
+        Self::GroundedAreas,
+        Self::SessionClimateCover,
+        Self::SessionEntities,
+        Self::SessionAreas,
+        Self::LightRoomsClarify,
+        Self::FallbackTemp,
+        Self::FallbackCover,
+        Self::LeftoverCommand,
+    ];
+
+    pub(crate) const fn precedence(self) -> u16 {
         match self {
             Self::LaundrySwitch => 0,
             Self::Timer => 1,
@@ -95,11 +122,46 @@ impl PolicyId {
             Self::LeftoverCommand => 21,
         }
     }
+
+    pub(crate) fn parse_id(id: &str) -> Option<Self> {
+        Self::ALL.iter().copied().find(|policy| policy.as_str() == id)
+    }
+
+    pub(crate) fn catalog_rows() -> Vec<crate::types::MatchCatalogRow> {
+        Self::ALL
+            .iter()
+            .copied()
+            .map(|policy| crate::types::MatchCatalogRow {
+                id: policy.as_str().to_string(),
+                precedence: policy.precedence(),
+                summary_key: format!("match.{}", policy.as_str()),
+            })
+            .collect()
+    }
 }
 
-pub(crate) fn candidate(policy: PolicyId, action: Action, outcome: ClauseOut) -> ClauseCandidate {
-    let precedence = policy.precedence();
+pub(crate) fn overlaid_candidate(policy: PolicyId, action: Action, outcome: ClauseOut, overlay: &MatchOverlay<'_>) -> ClauseCandidate {
+    let precedence = overlay.precedence(policy);
     ClauseCandidate { policy, precedence, score: (1.0 - f64::from(precedence) * 0.0125).max(0.7), action, outcome }
+}
+
+#[derive(Clone, Copy)]
+pub(crate) struct MatchOverlay<'a> {
+    controls: &'a [crate::types::MatchControl],
+}
+
+impl<'a> MatchOverlay<'a> {
+    pub(crate) fn new(controls: &'a [crate::types::MatchControl]) -> Self {
+        Self { controls }
+    }
+
+    pub(crate) fn enabled(self, policy: PolicyId) -> bool {
+        self.controls.iter().find(|row| row.id == policy.as_str()).map(|row| row.enabled).unwrap_or(true)
+    }
+
+    pub(crate) fn precedence(self, policy: PolicyId) -> u16 {
+        self.controls.iter().find(|row| row.id == policy.as_str()).and_then(|row| row.precedence).unwrap_or_else(|| policy.precedence())
+    }
 }
 
 pub(crate) fn media_claimed_empty(candidates: &[ClauseCandidate]) -> bool {
@@ -127,4 +189,48 @@ pub(crate) fn media_fallback_allowed(policy: PolicyId) -> bool {
             | PolicyId::GroundedEntities
             | PolicyId::GroundedAmbiguous
     )
+}
+
+#[cfg(test)]
+mod tests {
+    use super::PolicyId;
+    use std::collections::BTreeSet;
+
+    #[test]
+    fn match_catalog_is_language_free_and_complete() {
+        let rows = PolicyId::catalog_rows();
+        assert_eq!(rows.len(), PolicyId::ALL.len());
+        assert_eq!(rows.len(), 24);
+        let mut ids = BTreeSet::new();
+        for row in &rows {
+            assert!(ids.insert(row.id.as_str()), "duplicate {}", row.id);
+            assert_eq!(row.summary_key, format!("match.{}", row.id));
+            assert!(row.id.bytes().all(|byte| byte.is_ascii_lowercase() || byte == b'_'));
+            assert!(!row.summary_key.contains('ä') && !row.summary_key.contains('ö') && !row.summary_key.contains('ü'));
+        }
+        assert!(ids.contains("area_command"));
+        assert!(!ids.contains("media_new_matcher"));
+    }
+
+    #[test]
+    fn empty_overlay_keeps_engine_defaults() {
+        let overlay = super::MatchOverlay::new(&[]);
+        assert!(overlay.enabled(PolicyId::Media));
+        assert_eq!(overlay.precedence(PolicyId::Media), PolicyId::Media.precedence());
+        assert_eq!(overlay.precedence(PolicyId::AreaCommand), PolicyId::AreaCommand.precedence());
+    }
+
+    #[test]
+    fn overlay_disables_and_overrides_precedence() {
+        let rows = vec![
+            crate::types::MatchControl { id: "media".into(), enabled: false, precedence: Some(0) },
+            crate::types::MatchControl { id: "timer".into(), enabled: true, precedence: Some(9) },
+        ];
+        let overlay = super::MatchOverlay::new(&rows);
+        assert!(!overlay.enabled(PolicyId::Media));
+        assert!(overlay.enabled(PolicyId::AreaCommand));
+        assert_eq!(overlay.precedence(PolicyId::Timer), 9);
+        assert_eq!(overlay.precedence(PolicyId::Media), 0);
+        assert_eq!(overlay.precedence(PolicyId::AreaCommand), PolicyId::AreaCommand.precedence());
+    }
 }

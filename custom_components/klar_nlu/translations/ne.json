@@ -28,8 +28,7 @@
           "mode": "इन्जिन",
           "personality": "व्यक्तित्व",
           "languages": "भाषाहरू",
-          "fallback_agent": "गफगाफका लागि कुराकानी एजेन्ट",
-          "allow_llm_tools": "Allow Assist tools on the chit-chat agent",
+          "allow_llm_tools": "Allow Home Assistant Assist tools on engine chat",
           "refine_speech": "LLM लाई NLU जवाफ सच्याउन दिनुहोस्",
           "refine_prompt": "सुधार संकेत",
           "url": "Klar API URL",
@@ -49,7 +48,7 @@
           "nlu_rag": "पूर्वनिर्धारित अफ। कुराकानीमा मिलेको टुक्रा मात्र ब्याकअप मोडेलमा जान्छ।",
           "quiet_ack": "साधारण बत्ती अन/अफमा वाक्य छैन, उपग्रहमा छोटो आवाज मात्र।",
           "calendar_llm": "पूर्वनिर्धारित बन्द। अन: क्लारले पात्रो पढ्छ, ब्याकअप LLM ले कार्यक्रम भन्छ। अफ: क्लारले सूची आफैं भन्छ। बनाउने, मेट्ने, सार्ने क्लारमै रहन्छ।",
-          "allow_llm_tools": "Off by default. On: Klar still calls the chit-chat agent even if that agent can control Home Assistant. The model may turn lights and run scripts. Off: Klar skips the LLM when that agent has Assist tools.",
+          "allow_llm_tools": "Off by default. On: after Klar parses, the engine chat model may call Home Assistant Assist tools (names come from Core, already prefixed). Off: conversation only.",
           "languages": "पूर्वनिर्धारित Home Assistant प्रणाली भाषा हो।",
           "channel": "जुनसुकै बेला। Staging Klar NLU (Staging) तर्फ देखाउँछ।"
         }

@@ -12,12 +12,12 @@ from .const import (
     CONF_ASSIST_FILTER,
     CONF_CALENDAR_LLM,
     CONF_CHANNEL,
-    CONF_FALLBACK_AGENT,
     CONF_LANGUAGES,
     CONF_MODE,
     CONF_NLU_RAG,
     CONF_PERSONALITY,
     CONF_QUIET_ACK,
+    CONF_REFINE_PROMPT,
     CONF_REFINE_SPEECH,
     CONF_TOKEN,
     CONF_URL,
@@ -32,7 +32,11 @@ from .const import (
     resolve_channel,
     resolve_personality,
 )
-from .engine import KlarEngine, async_push_personality
+from .engine import (
+    KlarEngine,
+    async_push_fallback_flag,
+    async_seed_product_settings,
+)
 from .lang_select import engine_language_state
 from .panel import async_setup_panel
 from .quiet import async_setup_chime
@@ -66,12 +70,15 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
     token = (engine.token if engine is not None else None) or entry.options.get(
         CONF_TOKEN
     ) or entry.data.get(CONF_TOKEN)
-    sync = HomeGraphSync(hass, entry, engine_url(entry), token)
+    url = engine_url(entry)
+    sync = HomeGraphSync(hass, entry, url, token)
     hass.data[DOMAIN][entry.entry_id] = {
         "engine": engine,
         "token": token,
         "sync": sync,
+        "url": url,
         "applied_options": dict(entry.options),
+        "engine_settings": {},
     }
     await hass.config_entries.async_forward_entry_setups(entry, PLATFORMS)
     await sync.async_start()
@@ -81,7 +88,7 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
         await async_setup_panel(hass)
     except Exception:
         _LOGGER.exception("Klar sidebar panel failed; engine still loads")
-    await _async_sync_personality(hass, entry)
+    await _async_load_engine_settings(hass, entry)
     entry.async_on_unload(entry.add_update_listener(_async_on_update))
     return True
 
@@ -99,11 +106,12 @@ def _pipeline_flags(entry: ConfigEntry) -> dict[str, object]:
         "allow_llm_tools": bool(
             entry.options.get(CONF_ALLOW_LLM_TOOLS, DEFAULT_ALLOW_LLM_TOOLS)
         ),
-        "fallback_llm": bool(entry.options.get(CONF_FALLBACK_AGENT)),
+        "fallback_llm": False,
+        "extra_prompt": str(entry.options.get(CONF_REFINE_PROMPT) or ""),
     }
 
 
-async def _async_sync_personality(hass: HomeAssistant, entry: ConfigEntry) -> None:
+async def _async_load_engine_settings(hass: HomeAssistant, entry: ConfigEntry) -> None:
     stored = (hass.data.get(DOMAIN) or {}).get(entry.entry_id) or {}
     token = stored.get("token") or _option(entry, CONF_TOKEN)
     url = _option(entry, CONF_URL) or DEFAULT_URL
@@ -111,8 +119,9 @@ async def _async_sync_personality(hass: HomeAssistant, entry: ConfigEntry) -> No
         entry.options.get(CONF_LANGUAGES),
         getattr(hass.config, "language", None),
     )
-    await async_push_personality(
+    await async_seed_product_settings(
         hass,
+        entry,
         str(url),
         resolve_personality(entry.options.get(CONF_PERSONALITY)),
         token=str(token) if token else None,
@@ -127,11 +136,11 @@ async def _async_on_update(hass: HomeAssistant, entry: ConfigEntry) -> None:
     current = dict(entry.options)
     if stored is not None:
         stored["applied_options"] = current
-    await _async_sync_personality(hass, entry)
+    await async_push_fallback_flag(hass, entry, False)
+    await _async_load_engine_settings(hass, entry)
     reload_keys = (
         CONF_URL,
         CONF_TOKEN,
-        CONF_LANGUAGES,
         CONF_ASSIST_FILTER,
         CONF_CHANNEL,
         CONF_MODE,

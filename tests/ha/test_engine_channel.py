@@ -274,6 +274,7 @@ class EngineChannelTests(unittest.TestCase):
                 "quiet_ack": True,
                 "allow_llm_tools": True,
                 "fallback_llm": True,
+                "extra_prompt": "house rule",
             },
         )
         self.assertEqual(merged["personality"], "butler")
@@ -284,6 +285,7 @@ class EngineChannelTests(unittest.TestCase):
         self.assertTrue(merged["quiet_ack"])
         self.assertTrue(merged["allow_llm_tools"])
         self.assertTrue(merged["fallback_llm"])
+        self.assertEqual(merged["extra_prompt"], "house rule")
         self.assertIsNone(ns["merge_engine_settings"]("nope", "default", None))
 
 

@@ -20,7 +20,7 @@ from .dispatch_media import (
     start_idle_music,
 )
 from .dispatch_result import IntentStepResult, fail as _fail, ok as _ok
-from .floor_query import place_get_state
+from .floor_query import place_status_rooms
 from .intents import (
     ENTITY_SERVICES,
     LIST_INTENTS,
@@ -33,7 +33,8 @@ from .intents import (
     timer_slots,
 )
 from .lang_select import speak_tag
-from .speech import from_handled, media_state_speech
+from .speech_render import spoken_after_execute
+from .speech_snapshot import entity_from_state
 
 _LOGGER = logging.getLogger(__name__)
 
@@ -68,7 +69,9 @@ async def handle_intent(
         ok, speech, error = await handle_calendar_intent(
             hass, item, pack, exposed, getattr(user_input, "conversation_id", None)
         )
-        return _ok(speech) if ok else _fail(error or "calendar_failed")
+        if not ok:
+            return _fail(error or "calendar_failed")
+        return _ok(speech) if speech else _fail("speech_missing")
     slots = item_slots(item)
     entity_id = str(slots.get("entity_id", {}).get("value") or "")
     if name == "HassMediaSearchAndPlay" and music_assistant_player(hass, entity_id):
@@ -85,11 +88,35 @@ async def handle_intent(
         state = hass.states.get(entity_id) if entity_id.startswith("media_player.") else None
         if state is None or not exposed(entity_id) or media_missing(state):
             return _fail("media_status_unavailable")
-        return _ok(media_state_speech(state, media_status, pack))
+        extra = [row] if (row := entity_from_state(state)) else None
+        spoken = await spoken_after_execute(
+            hass,
+            pack,
+            "default",
+            {**item, "name": name},
+            SimpleNamespace(matched_states=[state], response_type="query_answer"),
+            extra_entities=extra,
+        )
+        return _ok(spoken) if spoken else _fail("media_status_unavailable")
     if name == "HassGetState" and not entity_id:
-        spoken = place_get_state(hass, slots, pack, exposed)
-        if spoken:
-            return _ok(spoken)
+        rooms = place_status_rooms(hass, slots, exposed)
+        if rooms is not None:
+            extra: list[dict[str, Any]] = []
+            for area_name, states in rooms:
+                for state in states:
+                    row = entity_from_state(state)
+                    if not row:
+                        continue
+                    row["area_name"] = area_name
+                    extra.append(row)
+            spoken = await spoken_after_execute(
+                hass,
+                pack,
+                "default",
+                {**item, "name": name},
+                extra_entities=extra,
+            )
+            return _ok(spoken) if spoken else _fail("place_speech_missing")
     if name == "HassMediaUnpause" and entity_id:
         started = await start_idle_music(hass, entity_id, pack, item, exposed)
         if started is not None:
@@ -176,15 +203,17 @@ async def climate_query(
         states = [item_state for item_state in climate_states_in_area(hass, area_key) if exposed(item_state.entity_id)]
     if not states:
         return first
-    spoken = from_handled(
+    spoken = await spoken_after_execute(
+        hass,
+        pack,
+        "default",
+        {**item, "name": "HassClimateGetTemperature"},
         SimpleNamespace(
             matched_states=states,
             unmatched_states=[],
             success_results=[],
             response_type="query_answer",
         ),
-        pack,
-        {**item, "name": "HassClimateGetTemperature"},
     )
     return _ok(spoken) if spoken else first
 
@@ -236,7 +265,7 @@ async def invoke_intent(
     except Exception as err:  # noqa: BLE001 — HA intent system is a boundary
         _LOGGER.debug("Intent %s nicht ausgeführt: %s", name, err)
         return _fail(str(err) or name)
-    return _ok(from_handled(handled, pack, {**item, "name": name}))
+    return _ok(await spoken_after_execute(hass, pack, "default", {**item, "name": name}, handled))
 
 
 async def run_entity(
@@ -294,7 +323,8 @@ async def run_entity(
         pretty = str(attrs.get("friendly_name") or "")
     pretty = pretty or str(getattr(state, "name", None) or "")
     spoken = {**item, "name": name, "slots": [*(item.get("slots") or []), {"name": "name", "value": pretty}]}
-    return _ok(from_handled(None, pack, spoken))
+    extra = [row] if (row := entity_from_state(state)) else None
+    return _ok(await spoken_after_execute(hass, pack, "default", spoken, extra_entities=extra))
 
 
 def light_turn_on(slots: dict[str, Any]) -> dict[str, Any]:

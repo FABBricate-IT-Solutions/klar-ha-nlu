@@ -3,6 +3,7 @@ export type Tab = "home" | "conversations" | "rules" | "house" | "lab" | "settin
 export type HouseView = "graph" | "entities" | "calibrate";
 export type RulesView = "routines" | "sentences" | "policies";
 export type Theme = "dark" | "light";
+export type SettingsView = "llm" | "voice" | "languages" | "engine" | "backup";
 export type Confidence = "high" | "medium" | "low";
 
 export type Settings = {
@@ -19,6 +20,21 @@ export type Settings = {
   quiet_ack?: boolean;
   allow_llm_tools?: boolean;
   fallback_llm?: boolean;
+  extra_prompt?: string;
+  unit_system?: "metric" | "imperial";
+  custom_voice?: string;
+  custom_voice_name?: string;
+  custom_voice_seed?: string;
+  custom_voice_traits?: VoiceTraits;
+};
+
+export type VoiceTraits = {
+  warmth: number;
+  humor: number;
+  sarcasm: number;
+  formality: number;
+  verbosity: number;
+  energy: number;
 };
 
 export type Entity = {
@@ -89,6 +105,7 @@ export type ParseResult = {
   trace: ParseTrace;
   retrieval?: Retrieval;
   policy_trace?: PolicyTrace;
+  quiet_ack_eligible?: boolean;
 };
 
 export type RetrievalHit = { entity_id: string; name: string; domain: string; area?: string | null };
@@ -99,11 +116,19 @@ export type Retrieval = {
   custom?: string[];
   tokens?: string[];
 };
+export type PolicyTraceMatch = { id: string; score: number; origin: string };
+export type PolicyTraceLayer = { id: string; hit?: string | null; origin: string };
+export type PolicyTraceDiscarded = { id: string; score: number; reason: string };
 export type PolicyTrace = {
   matched_rule?: string | null;
   hit?: string | null;
   compiled_risky?: boolean;
   payload?: string | null;
+  match?: PolicyTraceMatch | null;
+  seed?: PolicyTraceLayer | null;
+  house?: PolicyTraceLayer | null;
+  band?: string | null;
+  discarded?: PolicyTraceDiscarded[];
 };
 
 export type PolicyEffect = "confirm" | "block" | "allow" | "prefer_entity" | "prefer_area" | "reply" | "script" | "template" | "llm";
@@ -115,6 +140,7 @@ export type PolicyMatch = {
   floor?: string;
   name?: string;
   phrase?: string;
+  area_wide?: boolean;
 };
 export type PolicyRule = {
   id: string;
@@ -128,14 +154,70 @@ export type PolicyRule = {
 export type SpeechVariant = { language: string; personality: string; text: string };
 export type SpeechBankEntry = { rule_id: string; variants: SpeechVariant[] };
 export type SpeechBank = { entries: SpeechBankEntry[] };
-export type PolicyBundle = { policies: PolicyRule[]; speech_bank: SpeechBank };
+export type PolicyBundle = { policies: PolicyRule[]; speech_bank: SpeechBank; match_controls?: MatchControl[] };
+export type MatchControl = { id: string; enabled: boolean; precedence?: number };
+export type SetDelta = { add?: string[]; remove?: string[] };
+export type LanguageOverlay = { sets?: Record<string, SetDelta> };
+export type MatchCatalogRow = { id: string; precedence: number; summary_key: string };
+export type MatchCatalog = { matches: MatchCatalogRow[]; seeds?: PolicyRule[] };
 export type EvaluateOut = {
   outcome: ParseResult;
   compiled_risky: boolean;
   matched_rule?: string | null;
   hit?: string | null;
   speech_variant?: string | null;
+  warnings?: string[];
 };
+
+export type TrainerContext = {
+  language: string;
+  layer: string;
+  prompt_version: string;
+  graph: { areas: Area[]; floors: Floor[]; entities: Entity[] };
+  gaps: string[];
+  matches: MatchCatalogRow[];
+  seeds: PolicyRule[];
+  overlays: { policies: PolicyRule[]; match_controls: MatchControl[]; language: LanguageOverlay };
+  schema: { effects: string[]; when_fields: string[]; max_rules: number; seed_ids: string[]; match_ids: string[] };
+};
+
+export type TrainerIssue = { path: string; message: string };
+export type TrainerDryRun = { text: string; decision: string; seed?: string | null; house?: string | null; compiled_risky: boolean };
+export type TrainerValidateOut = { ok: boolean; errors: TrainerIssue[]; warnings: TrainerIssue[]; dry_run: TrainerDryRun[] };
+export type TrainerProposal = {
+  layer?: string;
+  language?: string;
+  policies?: PolicyRule[];
+  match_controls?: MatchControl[];
+  language_overlay?: LanguageOverlay;
+  utterances?: string[];
+};
+export type TrainerTurn = { role: "user" | "assistant"; content: string };
+export type LlmPublic = {
+  configured: boolean;
+  base_url?: string;
+  model?: string;
+  enable_thinking?: boolean;
+  provider?: string;
+};
+export type LlmModels = { models: string[] };
+export type RefineOutcome = { type: string; text: string; accepted: boolean };
+export type TrainerConsent = {
+  call_id: string;
+  tool: string;
+  summary: string;
+  validate: TrainerValidateOut;
+};
+export type TrainerChatEvent =
+  | { type: "delta"; text: string }
+  | { type: "done"; text: string }
+  | { type: "error"; message: string }
+  | { type: "proposal"; value: TrainerProposal }
+  | { type: "validate"; value: TrainerValidateOut }
+  | { type: "consent"; call_id: string; tool: string; summary: string; validate: TrainerValidateOut }
+  | { type: "session"; yolo: boolean; allowed: string[] }
+  | { type: "tool_call"; id: string; name: string; arguments: string }
+  | { type: "tool"; tool: string; text?: string };
 
 export type ConversationTurn = {
   conversation_id: string;
@@ -151,6 +233,7 @@ export type ConversationTurn = {
   confirm_prompt?: string | null;
   candidate_id?: string | null;
   preferred_area?: string | null;
+  speech_source?: string | null;
 };
 
 export type Suggestion = {
@@ -204,6 +287,7 @@ export type UiState = {
   wizard_done?: boolean;
   house_view?: HouseView;
   rules_view?: RulesView;
+  settings_view?: SettingsView;
   theme?: Theme;
 };
 

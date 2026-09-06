@@ -14,11 +14,11 @@ from .const import (
     CHANNEL_STAGING,
     CONF_ALLOW_LLM_TOOLS,
     CONF_ASSIST_FILTER,
+    CONF_CALENDAR_LLM,
     CONF_CHANNEL,
     CONF_FALLBACK_AGENT,
     CONF_LANGUAGES,
     CONF_MODE,
-    CONF_CALENDAR_LLM,
     CONF_NLU_RAG,
     CONF_PERSONALITY,
     CONF_QUIET_ACK,
@@ -26,46 +26,30 @@ from .const import (
     CONF_REFINE_SPEECH,
     CONF_TOKEN,
     CONF_URL,
-    DEFAULT_ALLOW_LLM_TOOLS,
     DEFAULT_ASSIST_FILTER,
-    DEFAULT_CALENDAR_LLM,
     DEFAULT_CHANNEL,
-    DEFAULT_NLU_RAG,
-    DEFAULT_PERSONALITY,
-    DEFAULT_QUIET_ACK,
-    DEFAULT_REFINE_PROMPT,
-    DEFAULT_REFINE_SPEECH,
     DEFAULT_URL,
     DOMAIN,
-    LANGUAGE_ALL,
-    LANGUAGE_SYSTEM,
     MODE_LOCAL,
     MODE_REMOTE,
-    PERSONALITIES,
-    SUPPORTED_LANGUAGES,
     channel_for_addon_slug,
     is_managed_engine_url,
     resolve_channel,
     resolve_engine_target,
-    resolve_personality,
 )
-from .lang_select import default_pack, normalize_language_choice
-from .languages import LANGUAGE_NAMES
-from .refine_voices import editable_prompt, resolve_stored_prompt
 
-
-def _language_options() -> list[dict[str, str]]:
-    # HA SelectSelector requires value+label on every dict option.
-    # Missing labels make the options flow return HTTP 400.
-    packs = [
-        {"value": code, "label": f"{LANGUAGE_NAMES.get(code, code)} ({code})"}
-        for code in SUPPORTED_LANGUAGES
-    ]
-    return [
-        {"value": LANGUAGE_SYSTEM, "label": "System language"},  # HA translates via nlu_language
-        {"value": LANGUAGE_ALL, "label": "All languages"},
-        *packs,
-    ]
+# Leftover product knobs from older options forms. Assist falls back to these
+# only when the engine settings cache is empty. The operator UI owns them now.
+_PRODUCT_OPTION_KEYS = (
+    CONF_PERSONALITY,
+    CONF_LANGUAGES,
+    CONF_REFINE_SPEECH,
+    CONF_REFINE_PROMPT,
+    CONF_NLU_RAG,
+    CONF_QUIET_ACK,
+    CONF_CALENDAR_LLM,
+    CONF_ALLOW_LLM_TOOLS,
+)
 
 
 def _on_supervisor(hass: Any) -> bool:
@@ -74,63 +58,30 @@ def _on_supervisor(hass: Any) -> bool:
 
 
 def _options_schema() -> vol.Schema:
-    fields: dict[Any, Any] = {
-        vol.Optional(CONF_MODE, default=MODE_LOCAL): selector.SelectSelector(
-            selector.SelectSelectorConfig(
-                options=[MODE_LOCAL, MODE_REMOTE],
-                translation_key="engine_mode",
-                mode=selector.SelectSelectorMode.LIST,
-            )
-        ),
-        vol.Optional(CONF_PERSONALITY, default=DEFAULT_PERSONALITY): selector.SelectSelector(
-            selector.SelectSelectorConfig(
-                options=list(PERSONALITIES),
-                mode=selector.SelectSelectorMode.DROPDOWN,
-                translation_key="personality",
-            )
-        ),
-        vol.Optional(CONF_LANGUAGES, default=LANGUAGE_SYSTEM): selector.SelectSelector(
-            selector.SelectSelectorConfig(
-                options=_language_options(),
-                mode=selector.SelectSelectorMode.DROPDOWN,
-                translation_key="nlu_language",
-            )
-        ),
-        vol.Optional(CONF_FALLBACK_AGENT): selector.ConversationAgentSelector(
-            selector.ConversationAgentSelectorConfig()
-        ),
-        vol.Optional(CONF_ALLOW_LLM_TOOLS, default=DEFAULT_ALLOW_LLM_TOOLS): (
-            selector.BooleanSelector()
-        ),
-        vol.Optional(CONF_REFINE_SPEECH, default=DEFAULT_REFINE_SPEECH): (
-            selector.BooleanSelector()
-        ),
-        vol.Optional(CONF_REFINE_PROMPT, default=DEFAULT_REFINE_PROMPT): (
-            selector.TextSelector(
-                selector.TextSelectorConfig(
-                    multiline=True,
+    return vol.Schema(
+        {
+            vol.Optional(CONF_MODE, default=MODE_LOCAL): selector.SelectSelector(
+                selector.SelectSelectorConfig(
+                    options=[MODE_LOCAL, MODE_REMOTE],
+                    translation_key="engine_mode",
+                    mode=selector.SelectSelectorMode.LIST,
                 )
-            )
-        ),
-        vol.Optional(CONF_URL): str,
-        vol.Optional(CONF_TOKEN): str,
-        vol.Optional(CONF_ASSIST_FILTER, default=DEFAULT_ASSIST_FILTER): (
-            selector.BooleanSelector()
-        ),
-        vol.Optional(CONF_NLU_RAG, default=DEFAULT_NLU_RAG): selector.BooleanSelector(),
-        vol.Optional(CONF_QUIET_ACK, default=DEFAULT_QUIET_ACK): selector.BooleanSelector(),
-        vol.Optional(CONF_CALENDAR_LLM, default=DEFAULT_CALENDAR_LLM): (
-            selector.BooleanSelector()
-        ),
-        vol.Optional(CONF_CHANNEL, default=DEFAULT_CHANNEL): selector.SelectSelector(
-            selector.SelectSelectorConfig(
-                options=[CHANNEL_STABLE, CHANNEL_STAGING],
-                translation_key="release_channel",
-                mode=selector.SelectSelectorMode.LIST,
-            )
-        ),
-    }
-    return vol.Schema(fields)
+            ),
+            vol.Optional(CONF_URL): str,
+            vol.Optional(CONF_TOKEN): str,
+            vol.Optional(CONF_ASSIST_FILTER, default=DEFAULT_ASSIST_FILTER): (
+                selector.BooleanSelector()
+            ),
+            vol.Optional(CONF_CHANNEL, default=DEFAULT_CHANNEL): selector.SelectSelector(
+                selector.SelectSelectorConfig(
+                    options=[CHANNEL_STABLE, CHANNEL_STAGING],
+                    translation_key="release_channel",
+                    mode=selector.SelectSelectorMode.LIST,
+                )
+            ),
+        }
+    )
+
 
 USER_SCHEMA = vol.Schema(
     {
@@ -157,6 +108,10 @@ USER_SCHEMA = vol.Schema(
 def _valid_engine_url(url: str) -> bool:
     parsed = urlparse(url)
     return parsed.scheme in {"http", "https"} and bool(parsed.netloc) and not parsed.username
+
+
+def _keep_product_options(existing: dict[str, Any]) -> dict[str, Any]:
+    return {key: existing[key] for key in _PRODUCT_OPTION_KEYS if key in existing}
 
 
 class KlarConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
@@ -214,54 +169,12 @@ class KlarConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
 
 
 class KlarOptionsFlow(config_entries.OptionsFlow):
-    def __init__(self, *args: Any, **kwargs: Any) -> None:
-        super().__init__(*args, **kwargs)
-        self._shown_personality: str | None = None
-
-    def _pack(self, language_choice: object | None = None) -> str:
-        hass_language = getattr(getattr(self.hass, "config", None), "language", None)
-        return default_pack(
-            language_choice if language_choice is not None else self.config_entry.options.get(CONF_LANGUAGES),
-            hass_language,
-        )
-
     async def async_step_init(
         self, user_input: dict[str, Any] | None = None
     ) -> FlowResult:
         if user_input is not None:
-            language = normalize_language_choice(
-                user_input.get(CONF_LANGUAGES, LANGUAGE_SYSTEM)
-            )
-            personality = resolve_personality(user_input.get(CONF_PERSONALITY))
-            pack = self._pack(language)
-            if self._shown_personality is not None and personality != self._shown_personality:
-                self._shown_personality = personality
-                swapped = {
-                    **user_input,
-                    CONF_PERSONALITY: personality,
-                    CONF_REFINE_PROMPT: editable_prompt(personality, pack),
-                }
-                return self.async_show_form(
-                    step_id="init",
-                    data_schema=self.add_suggested_values_to_schema(
-                        _options_schema(), swapped
-                    ),
-                )
-            data: dict[str, Any] = {
-                CONF_LANGUAGES: language,
-                CONF_PERSONALITY: personality,
-            }
-            agent = user_input.get(CONF_FALLBACK_AGENT) or None
-            if agent:
-                data[CONF_FALLBACK_AGENT] = agent
-            data[CONF_REFINE_SPEECH] = bool(user_input.get(CONF_REFINE_SPEECH))
-            data[CONF_REFINE_PROMPT] = resolve_stored_prompt(
-                personality,
-                self._shown_personality
-                or resolve_personality(self.config_entry.options.get(CONF_PERSONALITY)),
-                user_input.get(CONF_REFINE_PROMPT),
-                pack,
-            )
+            data = _keep_product_options(dict(self.config_entry.options))
+            data.pop(CONF_FALLBACK_AGENT, None)
             channel = resolve_channel(user_input.get(CONF_CHANNEL))
             mode, url = resolve_engine_target(
                 mode=user_input.get(
@@ -309,30 +222,9 @@ class KlarOptionsFlow(config_entries.OptionsFlow):
                         CONF_ASSIST_FILTER, DEFAULT_ASSIST_FILTER
                     )
                 )
-            data[CONF_NLU_RAG] = bool(user_input.get(CONF_NLU_RAG, DEFAULT_NLU_RAG))
-            data[CONF_CALENDAR_LLM] = bool(
-                user_input.get(CONF_CALENDAR_LLM, DEFAULT_CALENDAR_LLM)
-            )
-            data[CONF_ALLOW_LLM_TOOLS] = bool(
-                user_input.get(CONF_ALLOW_LLM_TOOLS, DEFAULT_ALLOW_LLM_TOOLS)
-            )
-            data[CONF_QUIET_ACK] = bool(
-                user_input.get(
-                    CONF_QUIET_ACK,
-                    self.config_entry.options.get(CONF_QUIET_ACK, DEFAULT_QUIET_ACK),
-                )
-            )
             return self.async_create_entry(data=data)
         suggested = {
-            CONF_LANGUAGES: LANGUAGE_SYSTEM,
             CONF_ASSIST_FILTER: DEFAULT_ASSIST_FILTER,
-            CONF_PERSONALITY: DEFAULT_PERSONALITY,
-            CONF_REFINE_PROMPT: DEFAULT_REFINE_PROMPT,
-            CONF_REFINE_SPEECH: DEFAULT_REFINE_SPEECH,
-            CONF_NLU_RAG: DEFAULT_NLU_RAG,
-            CONF_CALENDAR_LLM: DEFAULT_CALENDAR_LLM,
-            CONF_ALLOW_LLM_TOOLS: DEFAULT_ALLOW_LLM_TOOLS,
-            CONF_QUIET_ACK: DEFAULT_QUIET_ACK,
             CONF_MODE: self.config_entry.options.get(
                 CONF_MODE, self.config_entry.data.get(CONF_MODE, MODE_LOCAL)
             ),
@@ -351,17 +243,6 @@ class KlarOptionsFlow(config_entries.OptionsFlow):
         suggested[CONF_MODE] = suggested.get(
             CONF_MODE, self.config_entry.data.get(CONF_MODE, MODE_LOCAL)
         )
-        suggested[CONF_LANGUAGES] = normalize_language_choice(
-            suggested.get(CONF_LANGUAGES, LANGUAGE_SYSTEM)
-        )
-        personality = resolve_personality(suggested.get(CONF_PERSONALITY))
-        suggested[CONF_PERSONALITY] = personality
-        stored_prompt = str(suggested.get(CONF_REFINE_PROMPT) or "").strip()
-        suggested[CONF_REFINE_PROMPT] = stored_prompt or editable_prompt(
-            personality,
-            self._pack(),
-        )
-        self._shown_personality = personality
         if is_managed_engine_url(suggested.get(CONF_URL)):
             suggested[CONF_MODE], suggested[CONF_URL] = resolve_engine_target(
                 mode=suggested[CONF_MODE],

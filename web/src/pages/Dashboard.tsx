@@ -3,6 +3,9 @@ import { api } from "../api";
 import { AreaTrend, Bars, DecisionMix, Donut, type MixRow } from "../components/charts";
 import { Empty, Kpi } from "../components/common";
 import { Snackbar } from "../components/Snackbar";
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { WhyDrawer, canJournalReplay, journalHeard, whyThisBand } from "../components/WhyDrawer";
 import { fill, type Messages } from "../i18n";
 import type { ApplyRow, ConversationTurn, Dashboard as DashboardData, Locale } from "../types";
@@ -10,7 +13,7 @@ import type { ApplyRow, ConversationTurn, Dashboard as DashboardData, Locale } f
 const MISS = new Set(["chat", "reject", "clarify"]);
 const MIX_LEGEND = [
   { key: "execute", color: "var(--high)" },
-  { key: "confirm", color: "var(--accent)" },
+  { key: "confirm", color: "var(--primary)" },
   { key: "clarify", color: "var(--medium)" },
   { key: "reject", color: "var(--danger)" },
   { key: "chat", color: "var(--cyan)" },
@@ -18,10 +21,6 @@ const MIX_LEGEND = [
 
 function isDe(t: Messages): boolean {
   return t.replay === "Nochmal";
-}
-
-function moreLabel(t: Messages): string {
-  return isDe(t) ? "Mehr" : "More";
 }
 
 function rememberAsPhrase(t: Messages): string {
@@ -94,7 +93,7 @@ export function DashboardPage({
     setOverlay(null);
   }, [data]);
   useEffect(() => {
-    api.conversations().then(setTurns).catch(() => undefined);
+    api.conversations().then((rows) => setTurns(Array.isArray(rows) ? rows : [])).catch(() => undefined);
   }, [view.traffic.total]);
   useEffect(() => {
     let cancelled = false;
@@ -149,48 +148,49 @@ export function DashboardPage({
   return (
     <div className="page">
       <section className="hero">
-        <div>
-          <p className="pill" style={{ display: "inline-block" }}>{t.engineReady}</p>
+        <div className="flex flex-col gap-2">
+          <Badge variant="outline" className="w-fit">{t.engineReady}</Badge>
           <h1>{t.understandsHome}</h1>
           <p className="muted">{view.counts.assist} {t.assistVisible} · {view.counts.leftover} {t.open}</p>
         </div>
-        {canApply && <button className="primary" type="button" onClick={onApply}>{t.applyAll}</button>}
+        {canApply && <Button type="button" onClick={onApply}>{t.applyAll}</Button>}
       </section>
 
       {last && (
-        <section className="card" style={{ marginBottom: 16 }}>
-          <div className="row" style={{ justifyContent: "space-between", alignItems: "flex-start" }}>
-            <div>
-              <h2>{t.lastTurn}</h2>
-              <p className="pill" style={{ display: "inline-block" }}>{last.decision}</p>
+        <Card className="mb-4">
+          <CardHeader className="flex flex-col items-stretch justify-between gap-4 sm:flex-row sm:items-start">
+            <div className="flex min-w-0 flex-col gap-2">
+              <CardTitle>{t.lastTurn}</CardTitle>
+              <Badge variant="secondary" className="w-fit">{last.decision}</Badge>
               {heard ? <p>{heard}</p> : <p className="muted">—</p>}
               {last.speech ? <p className="muted">{last.speech}</p> : null}
               {last.preferred_area && <p className="caption">{t.heardIn}: {last.preferred_area}</p>}
             </div>
-            <div className="row">
-              <button className="ghost" type="button" onClick={() => setWhyOpen(true)}>{whyThisBand(t)}</button>
-              <button className="ghost" type="button" onClick={() => onReplay(heard)} disabled={!canReplay}>{t.inLab}</button>
-              <button className="secondary" type="button" onClick={undoLast} disabled={busy}>{t.undoLastCommand}</button>
+            <div className="flex flex-wrap gap-2">
+              <Button variant="ghost" type="button" onClick={() => setWhyOpen(true)}>{whyThisBand(t)}</Button>
+              <Button variant="ghost" type="button" onClick={() => onReplay(heard)} disabled={!canReplay}>{t.inLab}</Button>
+              <Button variant="outline" type="button" onClick={() => void undoLast()} disabled={busy}>{t.undoLastCommand}</Button>
             </div>
-          </div>
-        </section>
+          </CardHeader>
+        </Card>
       )}
 
       {leftoverMiss && (
-        <section className="card hot" style={{ marginBottom: 16 }}>
+        <Card className="mb-4 ring-1 ring-primary/50">
+          <CardContent className="flex flex-col gap-3">
           {inbox.length > 0 && (
-            <div className="row" style={{ justifyContent: "space-between", alignItems: "flex-start" }}>
+            <div className="flex flex-wrap items-start justify-between gap-3">
               <div>
                 <h2>{view.counts.leftover} {t.needsWork}</h2>
                 <p className="muted">{inbox[0]?.name} · {inbox[0]?.reasons.join(", ")}</p>
               </div>
-              <button className="secondary" type="button" onClick={onOpenCalibrate}>{t.calibrate}</button>
+              <Button variant="outline" type="button" onClick={onOpenCalibrate}>{t.calibrate}</Button>
             </div>
           )}
           {canTeach && (
-            <div className="row" style={{ marginTop: inbox.length > 0 ? 12 : 0 }}>
-              <button
-                className="secondary"
+            <div className="flex flex-wrap gap-2">
+              <Button
+                variant="outline"
                 type="button"
                 disabled={!heard}
                 onClick={() => {
@@ -198,81 +198,105 @@ export function DashboardPage({
                 }}
               >
                 {rememberAsPhrase(t)}
-              </button>
-              <button className="ghost" type="button" onClick={() => onReplay(heard)} disabled={!canReplay}>{t.inLab}</button>
+              </Button>
+              <Button variant="ghost" type="button" onClick={() => onReplay(heard)} disabled={!canReplay}>{t.inLab}</Button>
             </div>
           )}
-        </section>
+          </CardContent>
+        </Card>
       )}
 
-      <section className="card" style={{ marginBottom: 16 }}>
-        <h2>{t.tryThese}</h2>
-        <p className="muted">{t.tryTheseHint}</p>
-        <div className="row" style={{ flexWrap: "wrap", marginTop: 8 }}>
+      <Card className="mb-4">
+        <CardHeader>
+          <CardTitle>{t.tryThese}</CardTitle>
+          <CardDescription>{t.tryTheseHint}</CardDescription>
+        </CardHeader>
+        <CardContent className="flex flex-wrap gap-2">
           {samples.map((sentence) => (
-            <button key={sentence} className="ghost" type="button" onClick={() => onReplay(sentence)}>{sentence}</button>
+            <Button key={sentence} variant="ghost" type="button" onClick={() => onReplay(sentence)}>{sentence}</Button>
           ))}
-        </div>
-      </section>
+        </CardContent>
+      </Card>
 
-      <details className="card">
-        <summary style={{ cursor: "pointer", minHeight: 44, display: "flex", alignItems: "center" }}>{moreLabel(t)}</summary>
-        <section className="grid three" style={{ margin: "16px 0" }}>
-          <Kpi value={view.counts.assist} label={t.assistVisible} />
-          <Kpi value={view.counts.high} label={t.certain} />
-          <Kpi value={turns.length || view.traffic.total} label={t.processed} />
+      <section className="mb-4 grid gap-4 md:grid-cols-3">
+        <Kpi value={view.counts.assist} label={t.assistVisible} />
+        <Kpi value={view.counts.high} label={t.certain} />
+        <Kpi value={turns.length || view.traffic.total} label={t.processed} />
+      </section>
+      <section className="grid gap-4 md:grid-cols-2">
+          <Card className="overflow-visible">
+            <CardHeader>
+              <CardTitle>{t.decisionMix}</CardTitle>
+              <CardDescription>{t.mixCaption}</CardDescription>
+            </CardHeader>
+            <CardContent className="flex flex-col gap-3">
+              <DecisionMix data={mix} unit={t.unitsTurns} />
+              <div className="flex flex-wrap gap-2">
+                {MIX_LEGEND.map((item) => (
+                  <span className="chip text-foreground" key={item.key}>
+                    <span className="size-2.5 rounded-sm" style={{ background: item.color }} />
+                    {item.key}
+                  </span>
+                ))}
+              </div>
+            </CardContent>
+          </Card>
+          <Card className="overflow-visible">
+            <CardHeader>
+              <CardTitle>{t.coverage}</CardTitle>
+              <CardDescription>{t.coverageCaption}</CardDescription>
+            </CardHeader>
+            <CardContent>
+              <Bars data={[
+                { label: t.coverageGraph, value: view.coverage.all },
+                { label: t.coverageAssist, value: view.coverage.assist },
+                { label: t.coverageReady, value: view.coverage.high },
+                { label: t.coverageOpen, value: view.coverage.leftover },
+              ]} unit={t.unitsPercent} />
+            </CardContent>
+          </Card>
+          <Card className="overflow-visible">
+            <CardHeader>
+              <CardTitle>{t.confidence}</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <Donut high={view.counts.high} medium={view.counts.medium} low={view.counts.low} />
+            </CardContent>
+          </Card>
+          <Card className="overflow-visible">
+            <CardHeader>
+              <CardTitle>{t.rooms}</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <Bars data={view.rooms.slice(0, 8).map((room) => ({ label: room.name, value: room.inbox }))} />
+            </CardContent>
+          </Card>
+          <Card className="overflow-visible">
+            <CardHeader>
+              <CardTitle>{t.recordings}</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <AreaTrend data={view.traffic.by_day} unit={t.unitsTurns} />
+            </CardContent>
+          </Card>
+          <Card className="overflow-visible">
+            <CardHeader>
+              <CardTitle>{t.recent}</CardTitle>
+            </CardHeader>
+            <CardContent className="flex flex-col gap-2">
+              {turns.length === 0 ? <Empty text={t.emptyBundle} /> : null}
+              {turns.slice(-6).reverse().map((row) => {
+                const line = journalHeard(row);
+                return (
+                  <div className="flex items-center justify-between gap-3 border-b border-border py-2" key={`${row.conversation_id}-${row.ts_ms}`}>
+                    <span>{line || row.decision}</span>
+                    <Button variant="ghost" type="button" onClick={() => onReplay(line)} disabled={!canJournalReplay(row)}>{t.replay}</Button>
+                  </div>
+                );
+              })}
+            </CardContent>
+          </Card>
         </section>
-        <section className="grid two">
-          <div className="card">
-            <h2>{t.decisionMix}</h2>
-            <DecisionMix data={mix} unit={t.unitsTurns} />
-            <div className="row" style={{ marginTop: 8 }}>
-              {MIX_LEGEND.map((item) => (
-                <span className="chip" key={item.key}>
-                  <span style={{ width: 10, height: 10, background: item.color }} />
-                  {item.key}
-                </span>
-              ))}
-            </div>
-            <p className="caption">{t.mixCaption}</p>
-          </div>
-          <div className="card">
-            <h2>{t.coverage}</h2>
-            <Bars data={[
-              { label: t.coverageGraph, value: view.coverage.all },
-              { label: t.coverageAssist, value: view.coverage.assist },
-              { label: t.coverageReady, value: view.coverage.high },
-              { label: t.coverageOpen, value: view.coverage.leftover },
-            ]} unit={t.unitsPercent} />
-            <p className="caption">{t.coverageCaption}</p>
-          </div>
-          <div className="card">
-            <h2>{t.confidence}</h2>
-            <Donut high={view.counts.high} medium={view.counts.medium} low={view.counts.low} />
-          </div>
-          <div className="card">
-            <h2>{t.rooms}</h2>
-            <Bars data={view.rooms.slice(0, 8).map((room) => ({ label: room.name, value: room.inbox }))} />
-          </div>
-          <div className="card">
-            <h2>{t.recordings}</h2>
-            <AreaTrend data={view.traffic.by_day} unit={t.unitsTurns} />
-          </div>
-          <div className="card">
-            <h2>{t.recent}</h2>
-            {turns.length === 0 ? <Empty text={t.emptyBundle} /> : null}
-            {turns.slice(-6).reverse().map((row) => {
-              const line = journalHeard(row);
-              return (
-                <div className="row" key={`${row.conversation_id}-${row.ts_ms}`} style={{ justifyContent: "space-between", borderBottom: "1px solid var(--line)", padding: "8px 0" }}>
-                  <span>{line || row.decision}</span>
-                  <button className="ghost" type="button" onClick={() => onReplay(line)} disabled={!canJournalReplay(row)}>{t.replay}</button>
-                </div>
-              );
-            })}
-          </div>
-        </section>
-      </details>
       {whyOpen && last && <WhyDrawer turn={last} t={t} onClose={() => setWhyOpen(false)} />}
       {snackbar && (
         <Snackbar
@@ -284,7 +308,7 @@ export function DashboardPage({
             setApplyNotice(null);
           }}
           action={snackbar.action ? (
-            <button className="ghost" type="button" onClick={undoApply} disabled={applyBusy}>{t.undo}</button>
+            <Button variant="ghost" type="button" onClick={() => void undoApply()} disabled={applyBusy}>{t.undo}</Button>
           ) : null}
         />
       )}

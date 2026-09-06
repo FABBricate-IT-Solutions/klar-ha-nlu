@@ -109,9 +109,9 @@ export function CustomPage({ t, locale, embedded }: { t: Messages; locale: Local
       ) : (
         <section className="grid two">
           <div className="card">
-            <label>{t.command}</label>
+            <label>{t.guideSentencesPhrase}</label>
             <input value={phrase} onChange={(ev) => setPhrase(ev.target.value)} />
-            <label>{t.intent}</label>
+            <label>{t.guideSentencesIntent}</label>
             <select value={intent} onChange={(ev) => setIntent(ev.target.value)}>
               {intents.map((name) => <option key={name} value={name}>{name}</option>)}
             </select>
@@ -126,7 +126,7 @@ export function CustomPage({ t, locale, embedded }: { t: Messages; locale: Local
             <input value={summary} onChange={(ev) => setSummary(ev.target.value)} placeholder="summary" />
           </div>
           <div className="card">
-            <label>{t.previewRule}</label>
+            <label>{t.guideSentencesTest}</label>
             <input value={previewText} onChange={(ev) => setPreviewText(ev.target.value)} placeholder={phrase || t.command} />
             <div className="row" style={{ marginTop: 12 }}>
               <button className="secondary" onClick={runPreview}>{t.explainRule}</button>
@@ -134,7 +134,8 @@ export function CustomPage({ t, locale, embedded }: { t: Messages; locale: Local
             </div>
             {explain && (
               <p className="muted" style={{ marginTop: 12 }}>
-                {explain.decision} · {explain.confidence.toFixed(2)} · {explain.speech}
+                {explain.speech}
+                {explain.reply ? ` · ${explain.reply}` : ""}
               </p>
             )}
           </div>
@@ -148,7 +149,7 @@ export function CustomPage({ t, locale, embedded }: { t: Messages; locale: Local
           </div>
         )}
         {rules.map((rule, index) => (
-          <div className="row" key={`${rule.phrase}-${index}`} style={{ marginTop: 8 }}>
+          <div className="list-row" key={`${rule.phrase}-${index}`} style={{ marginTop: 8 }}>
             <strong>{rule.phrase}</strong>
             <span className="chip">{rule.intent}</span>
             {rule.slots.entity_id && <span className="chip">{rule.slots.entity_id}</span>}

@@ -145,10 +145,12 @@ pub fn ingest(snapshot: HomeSnapshot) -> Result<HomeGraph, SnapshotError> {
         })
         .collect::<Vec<_>>();
     let area_ids = areas.iter().map(|area| area.area_id.as_str()).collect::<HashSet<_>>();
+    let assist_ids: HashSet<String> =
+        snapshot.assist.as_ref().map(|ids| ids.iter().filter(|id| id.contains('.')).cloned().collect()).unwrap_or_default();
     let entities = snapshot
         .entities
         .into_iter()
-        .filter(|entity| !entity.disabled && keep_domain(&entity.entity_id))
+        .filter(|entity| !entity.disabled && (keep_domain(&entity.entity_id) || assist_ids.contains(&entity.entity_id)))
         .map(|entity| {
             let domain = entity.entity_id.split('.').next().unwrap_or("").to_string();
             let device = entity.device_id.as_deref().and_then(|id| devices.get(id));
@@ -416,5 +418,52 @@ mod tests {
         let home = ingest(raw).expect("snapshot");
         assert!(home.areas[0].floor_id.is_none());
         assert_eq!(home.entities.len(), 1);
+    }
+
+    #[test]
+    fn ingest_keeps_weather_and_assist_only_domains() {
+        let mut raw = snapshot();
+        raw.entities.push(SnapshotEntity {
+            entity_id: "weather.openweathermap".into(),
+            name: Some("OpenWeatherMap".into()),
+            original_name: None,
+            has_entity_name: false,
+            area_id: None,
+            device_id: None,
+            platform: Some("openweathermap".into()),
+            aliases: vec!["Wetter".into()],
+            labels: Vec::new(),
+            disabled: false,
+        });
+        raw.entities.push(SnapshotEntity {
+            entity_id: "sensor.openweathermap_temperatur".into(),
+            name: Some("Temperatur".into()),
+            original_name: None,
+            has_entity_name: false,
+            area_id: None,
+            device_id: None,
+            platform: Some("openweathermap".into()),
+            aliases: Vec::new(),
+            labels: Vec::new(),
+            disabled: false,
+        });
+        raw.entities.push(SnapshotEntity {
+            entity_id: "sensor.hidden_temp".into(),
+            name: Some("Hidden".into()),
+            original_name: None,
+            has_entity_name: false,
+            area_id: None,
+            device_id: None,
+            platform: None,
+            aliases: Vec::new(),
+            labels: Vec::new(),
+            disabled: false,
+        });
+        raw.assist = Some(vec!["light.living".into(), "weather.openweathermap".into(), "sensor.openweathermap_temperatur".into()]);
+        let home = ingest(raw).expect("snapshot");
+        let ids: HashSet<_> = home.entities.iter().map(|entity| entity.entity_id.as_str()).collect();
+        assert!(ids.contains("weather.openweathermap"));
+        assert!(ids.contains("sensor.openweathermap_temperatur"));
+        assert!(!ids.contains("sensor.hidden_temp"));
     }
 }

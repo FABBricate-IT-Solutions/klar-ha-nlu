@@ -12,7 +12,7 @@ use crate::parse::compound::apply_compound_light;
 use crate::parse::infer::{except_tail, infer_action, looks_like_named_device, looks_like_question, prefer_action, wants_all_lights};
 use crate::parse::media::{media_clause, now_playing_status};
 use crate::parse::numbers::first_number;
-use crate::parse::policy::{candidate, media_claimed_empty, retain_after_media_claim};
+use crate::parse::policy::{media_claimed_empty, overlaid_candidate, retain_after_media_claim, MatchOverlay};
 pub(crate) use crate::parse::policy::{ClauseCandidate, PolicyId};
 use crate::parse::resolve::{
     climates_of_kind, entity_has_name_evidence, entity_name_is_mentioned, has_fuzzy_target_token, known_target_token,
@@ -21,7 +21,7 @@ use crate::parse::resolve::{
 use crate::parse::slots::{all_lights_clause, fill_intent, fill_list_intent, intent_from_action, ClauseOut};
 use crate::parse::split::follow_fixture;
 use crate::session::Session;
-use crate::types::{HomeGraph, Intent, Settings};
+use crate::types::{HomeGraph, Intent, Settings, UnitSystem};
 
 pub(crate) struct Clause<'a> {
     pub tokens: &'a [String],
@@ -46,6 +46,7 @@ pub(crate) fn parse_clause_candidates_for_action(
     settings: &Settings,
     light_areas: &[String],
     forced_action: Option<Action>,
+    match_controls: &[crate::types::MatchControl],
 ) -> Vec<ClauseCandidate> {
     let cat = catalog();
     let free_text_payload =
@@ -78,7 +79,8 @@ pub(crate) fn parse_clause_candidates_for_action(
     let early = infer_action(guessed, tokens, number, question, session, None);
     let domain = domain_for(early, tokens);
 
-    let mut candidates = crate::parse::clause_early::early_special_clauses(tokens, raw, home, early, number, domain);
+    let overlay = MatchOverlay::new(match_controls);
+    let mut candidates = crate::parse::clause_early::early_special_clauses(tokens, raw, home, early, number, domain, overlay);
 
     let mut resolved = resolve_targets(tokens, home, settings, domain, early);
     apply_compound_light(home, tokens, light_areas, &mut resolved);
@@ -114,6 +116,9 @@ pub(crate) fn parse_clause_candidates_for_action(
         (PolicyId::LeftoverCommand, leftover_command),
     ];
     for (policy, evaluate) in policies {
+        if !overlay.enabled(*policy) {
+            continue;
+        }
         if except_all
             && matches!(
                 *policy,
@@ -129,7 +134,7 @@ pub(crate) fn parse_clause_candidates_for_action(
             continue;
         }
         if let Some(outcome) = evaluate(&ctx) {
-            candidates.push(candidate(*policy, action, outcome));
+            candidates.push(overlaid_candidate(*policy, action, outcome, &overlay));
         }
     }
     if candidates.iter().any(|candidate| {
@@ -137,6 +142,7 @@ pub(crate) fn parse_clause_candidates_for_action(
     }) {
         candidates.retain(|candidate| candidate.policy == PolicyId::NamedScene);
     }
+    rewrite_climate_temps(&mut candidates, tokens, settings.unit_system);
     if media_claimed_empty(&candidates) {
         let transfer = ctx.tokens.iter().any(|token| matches!(token.as_str(), "verschiebe" | "move" | "transfer"));
         let named = !transfer
@@ -150,6 +156,16 @@ pub(crate) fn parse_clause_candidates_for_action(
         candidates.retain(|candidate| !matches!(candidate.policy, PolicyId::GroundedAmbiguous | PolicyId::GroundedEntities));
     }
     candidates
+}
+
+fn rewrite_climate_temps(candidates: &mut [ClauseCandidate], tokens: &[String], unit: UnitSystem) {
+    for candidate in candidates {
+        if let ClauseOut::Intents(intents) = &mut candidate.outcome {
+            for intent in intents {
+                crate::units::bind_set_temp(intent, tokens, unit);
+            }
+        }
+    }
 }
 
 fn media(ctx: &Clause) -> Option<ClauseOut> {

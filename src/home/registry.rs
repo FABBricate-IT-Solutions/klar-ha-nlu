@@ -317,6 +317,7 @@ pub(crate) fn keep_domain(entity_id: &str) -> bool {
             | Some("timer")
             | Some("todo")
             | Some("calendar")
+            | Some("weather")
     )
 }
 
@@ -404,6 +405,13 @@ mod tests {
         entity.aliases = vec!["Wohnzimmer Licht".into()];
         assert_eq!(entity_display_name(&entity, None), "Wohnzimmer Licht");
         assert_eq!(entity_display_name(&raw("climate.better_thermostat_wohnzimmer"), None), "better thermostat wohnzimmer");
+    }
+
+    #[test]
+    fn keep_domain_includes_weather() {
+        assert!(keep_domain("weather.openweathermap"));
+        assert!(keep_domain("light.wohnzimmer"));
+        assert!(!keep_domain("sensor.openweathermap_temperatur"));
     }
 
     #[test]

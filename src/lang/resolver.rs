@@ -95,11 +95,11 @@ pub fn apply_overlay(catalog: &mut Catalog, pack: &ExternalPack) -> Result<(), S
         catalog.numbers.insert(leak(token), *number);
     }
     for (path, words) in &pack.sets {
-        let Some(field) = set_field(path) else {
+        let Some(key) = set_field(path) else {
             continue;
         };
         for word in words {
-            field(catalog).insert(leak(word));
+            catalog.words_mut(key).insert(leak(word));
         }
     }
     let extra = pack.morphology();
@@ -147,14 +147,14 @@ pub fn user_overlay_key(overlay: &LanguageOverlay) -> String {
 
 pub fn apply_user_overlay(catalog: &mut Catalog, overlay: &LanguageOverlay) {
     for (path, delta) in &overlay.sets {
-        let Some(field) = set_field(path) else {
+        let Some(key) = set_field(path) else {
             continue;
         };
         for word in &delta.add {
-            field(catalog).insert(leak(word));
+            catalog.words_mut(key).insert(leak(word));
         }
         for word in &delta.remove {
-            field(catalog).retain(|existing| *existing != word.as_str());
+            catalog.words_mut(key).retain(|existing| *existing != word.as_str());
         }
     }
 }

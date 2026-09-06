@@ -99,6 +99,26 @@ fn preview_bind_does_not_change_installed_overlay() {
 }
 
 #[test]
+fn overlay_adds_nouns_and_cues_on_bound_non_german_packs() {
+    let _guard = lock_overlay();
+    reset_runtime_packs();
+    install_user_overlay(Some(LanguageOverlay {
+        sets: [
+            ("nouns.fan_nouns".into(), SetDelta { add: vec!["ventiloconv".into()], remove: vec![] }),
+            ("cues.open_words".into(), SetDelta { add: vec!["ouvretoi".into()], remove: vec![] }),
+        ]
+        .into(),
+    }));
+    let fr = catalog_for(&["fr".into()]);
+    assert!(fr.fan_nouns().contains("ventiloconv"));
+    assert!(fr.open_words().contains("ouvretoi"));
+    let gb = catalog_for(&["en-GB".into()]);
+    assert!(gb.fan_nouns().contains("ventiloconv"));
+    assert!(gb.open_words().contains("ouvretoi"));
+    reset_runtime_packs();
+}
+
+#[test]
 fn preview_custom_phrase_does_not_require_save() {
     let home = default_home();
     let settings = Settings { languages: vec!["de".into()], ..Settings::default() };

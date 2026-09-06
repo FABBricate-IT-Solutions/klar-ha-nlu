@@ -28,8 +28,7 @@
           "mode": "引擎",
           "personality": "人格",
           "languages": "语言",
-          "fallback_agent": "闲聊对话代理",
-          "allow_llm_tools": "Allow Assist tools on the chit-chat agent",
+          "allow_llm_tools": "Allow Home Assistant Assist tools on engine chat",
           "refine_speech": "用 LLM 润色 NLU 回复",
           "refine_prompt": "润色提示词",
           "url": "Klar API 地址",
@@ -49,7 +48,7 @@
           "nlu_rag": "默认关闭。闲聊时只把已匹配片段送给后备模型。",
           "quiet_ack": "简单开关灯时不说话，只在卫星上播放短提示音。",
           "calendar_llm": "默认关闭。开：Klar 读取日历，由后备大模型口述日程。关：Klar 自己念列表。创建、删除和移动仍由 Klar 处理。",
-          "allow_llm_tools": "Off by default. On: Klar still calls the chit-chat agent even if that agent can control Home Assistant. The model may turn lights and run scripts. Off: Klar skips the LLM when that agent has Assist tools.",
+          "allow_llm_tools": "Off by default. On: after Klar parses, the engine chat model may call Home Assistant Assist tools (names come from Core, already prefixed). Off: conversation only.",
           "languages": "默认跟随 Home Assistant 系统语言。",
           "channel": "随时可改。预发布指向 Klar NLU（Staging）。"
         }

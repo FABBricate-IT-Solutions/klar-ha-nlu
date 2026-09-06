@@ -2,7 +2,13 @@
 
 [Deutsch](../architecture.md) · [English](architecture.md)
 
-Klar is a rule-based NLU. A sentence is tokenized, checked against word lists, and turned into Home Assistant intents. There is no neural net in the engine.
+Klar is a rule-based NLU. A sentence is tokenized, checked against word lists, and turned into Home Assistant intents. `nlu::parse` has no model and no network.
+
+Optionally the engine speaks an **OpenAI-compatible** chat API (`src/llm/`, SSE streaming) for the trainer and speech fallback. Python in the integration is glue: copy the HA agent's endpoint, stream tokens into the Assist chat log. See [adr-0002-openai-llm-client.md](../architecture/adr-0002-openai-llm-client.md).
+
+Proposal to control Match / language seed / house in the operator UI and draw the parse path: [ADR 0001](../architecture/adr-0001-rules-and-trainer.en.md) · [plan](../architecture/adr-0001-plan.en.md) (ships on `staging`, not a main release).
+
+Assist product logic (refine rules, fallback prompts, speech after HA execute) belongs in the engine, not the integration: [ADR 0003](../architecture/adr-0003-python-rust-boundary.en.md) · [plan](../architecture/adr-0003-plan.en.md) (also `staging`).
 
 ## Runtime map
 
@@ -22,7 +28,7 @@ Text
   → ParseOutcome           plan only on execute
 ```
 
-In Home Assistant the spoken line can get a personality cue and, if enabled, an LLM rewrite (`custom_components/klar_nlu/refine.py`). The engine itself stays rule-based. Optional local semantic adapters may propose a typed plan after a ranking reject; they never execute devices.
+In Home Assistant the spoken line can get a personality cue and, if enabled, an LLM rewrite. The rewrite runs through Klar (`POST /api/v2/llm/chat`); the integration only streams into Assist. Optional local semantic adapters may propose a typed plan after a ranking reject; they never execute devices.
 
 `nlu::parse` in `src/nlu/` is the entry point and returns `ParseOutcome` (`schema_version: "2.0"`). Before parsing, Klar binds the packs listed in `Settings.languages` (`de`, `en`, …). Confirm, clarify, and reject never serialize `plan` or `candidates`.
 
@@ -38,7 +44,8 @@ In Home Assistant the spoken line can get a personality cue and, if enabled, an 
 | `src/eval/` | Held-out metrics, Assist comparison, scorecard, benches |
 | `src/migrate.rs` | One-shot V1 overlay dry-run / V2 save |
 | `src/session.rs` | Last target, pending clarify/confirm |
-| `src/io/` | HTTP (`/api/v2/parse`), Wyoming, privacy-safe bundles, bootstrap |
+| `src/llm/` | OpenAI-compatible chat client, SSE, trainer prompt |
+| `src/io/` | HTTP (`/api/v2/parse`, `/api/v2/llm/chat`), Wyoming, privacy-safe bundles, bootstrap |
 
 ## Module Tree
 
@@ -52,6 +59,7 @@ src/
   eval/              held-out scorecard and benches
   migrate.rs         V1 overlay import report
   session.rs         conversation memory
+  llm/               OpenAI-compatible client, SSE
   io/                HTTP, Wyoming, runtime state, redacted bundles
   main.rs            CLI (lang / eval / migrate) then io::run
 ```
@@ -115,5 +123,5 @@ Slots: `entity_id`, `area`, `floor`, `domain`, plus `brightness`, `temperature`,
 ## Limits
 
 - No general world knowledge. “Tell me a joke” stays empty — in HA the fallback agent takes over.
-- No tools in the engine. Devices run only through recognized intents. An optional LLM in HA may rewrite the finished confirmation; it does not get Assist tools for that step.
+- Parse/execute stays deterministic. After a chat/reject fallback, optional `allow_llm_tools` may advertise Home Assistant Assist tools (2026.9 prefixed names) on Klar’s conversation entity. Refine never gets those tools.
 - Files stay under 500 lines; a new language is a new pack, not a longer `match` list.

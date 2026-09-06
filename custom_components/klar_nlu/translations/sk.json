@@ -28,8 +28,7 @@
           "mode": "Engine",
           "personality": "Osobnosť",
           "languages": "Jazyky",
-          "fallback_agent": "Konverzačný agent na pokec",
-          "allow_llm_tools": "Allow Assist tools on the chit-chat agent",
+          "allow_llm_tools": "Allow Home Assistant Assist tools on engine chat",
           "refine_speech": "Nech LLM preformuluje odpovede NLU",
           "refine_prompt": "Výzva na vylepšenie",
           "url": "URL Klar API",
@@ -49,7 +48,7 @@
           "nlu_rag": "Predvolene vypnuté. Pri chate ide záložnému modelu len zhodný úsek.",
           "quiet_ack": "Pri jednoduchom zapnutí/vypnutí svetla bez vety, len krátky zvuk na satelite.",
           "calendar_llm": "Predvolene vypnuté. Zapnuté: Klar prečíta kalendár, záložné LLM povie udalosti. Vypnuté: Klar povie zoznam. Vytvorenie, zmazanie a presun zostanú v Klar.",
-          "allow_llm_tools": "Off by default. On: Klar still calls the chit-chat agent even if that agent can control Home Assistant. The model may turn lights and run scripts. Off: Klar skips the LLM when that agent has Assist tools.",
+          "allow_llm_tools": "Off by default. On: after Klar parses, the engine chat model may call Home Assistant Assist tools (names come from Core, already prefixed). Off: conversation only.",
           "languages": "Predvolene nasleduje jazyk systému Home Assistant.",
           "channel": "Kedykoľvek. Staging ukazuje na Klar NLU (Staging)."
         }

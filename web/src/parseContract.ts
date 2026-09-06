@@ -33,8 +33,9 @@ export function parseV2Response(value: unknown): ParseResult {
       "briefing",
       "retrieval",
       "policy_trace",
+      "quiet_ack_eligible",
     ],
-    ["selected_candidate_id", "plan", "retrieval", "policy_trace"],
+    ["selected_candidate_id", "plan", "retrieval", "policy_trace", "quiet_ack_eligible"],
   );
   if (payload.schema_version !== "2.0") throw new Error("Unsupported parse schema");
   string(payload.text, "text", 4096, true);
@@ -62,6 +63,12 @@ export function parseV2Response(value: unknown): ParseResult {
   }
   list(payload.evidence, "evidence", MAX_EVIDENCE, validateEvidence);
   validateTrace(payload.trace);
+  if (payload.policy_trace !== undefined && payload.policy_trace !== null) {
+    validatePolicyTrace(payload.policy_trace);
+  }
+  if (payload.quiet_ack_eligible !== undefined && typeof payload.quiet_ack_eligible !== "boolean") {
+    throw new Error("quiet_ack_eligible must be boolean");
+  }
   if (payload.retrieval !== undefined && payload.retrieval !== null) {
     if (decision !== "chat" && decision !== "reject") {
       throw new Error("retrieval only allowed on chat or reject");
@@ -156,6 +163,66 @@ function validateEvidence(value: unknown, path: string): void {
   string(evidence.value, `${path}.value`, 512);
   score(evidence.score, `${path}.score`);
   if (typeof evidence.exact !== "boolean") throw new Error(`${path}.exact must be boolean`);
+}
+
+function validatePolicyTrace(value: unknown): void {
+  const trace = object(value, "policy_trace");
+  keys(
+    trace,
+    ["matched_rule", "hit", "compiled_risky", "payload", "match", "seed", "house", "band", "discarded"],
+    ["matched_rule", "hit", "compiled_risky", "payload", "match", "seed", "house", "band", "discarded"],
+  );
+  if (trace.matched_rule !== undefined && trace.matched_rule !== null) {
+    string(trace.matched_rule, "policy_trace.matched_rule", 64);
+  }
+  if (trace.hit !== undefined && trace.hit !== null) {
+    string(trace.hit, "policy_trace.hit", 32);
+  }
+  if (trace.payload !== undefined && trace.payload !== null) {
+    string(trace.payload, "policy_trace.payload", 500, true);
+  }
+  if (trace.compiled_risky !== undefined && typeof trace.compiled_risky !== "boolean") {
+    throw new Error("policy_trace.compiled_risky must be boolean");
+  }
+  if (trace.match !== undefined && trace.match !== null) {
+    validatePolicyMatch(trace.match, "policy_trace.match");
+  }
+  if (trace.seed !== undefined && trace.seed !== null) {
+    validatePolicyLayer(trace.seed, "policy_trace.seed");
+  }
+  if (trace.house !== undefined && trace.house !== null) {
+    validatePolicyLayer(trace.house, "policy_trace.house");
+  }
+  if (trace.band !== undefined && trace.band !== null) {
+    string(trace.band, "policy_trace.band", 32);
+  }
+  if (trace.discarded !== undefined) {
+    list(trace.discarded, "policy_trace.discarded", MAX_DISCARDED, (item, path) => {
+      const discarded = object(item, path);
+      keys(discarded, ["id", "score", "reason"]);
+      string(discarded.id, `${path}.id`, 128);
+      score(discarded.score, `${path}.score`);
+      string(discarded.reason, `${path}.reason`, MAX_DETAIL);
+    });
+  }
+}
+
+function validatePolicyMatch(value: unknown, path: string): void {
+  const node = object(value, path);
+  keys(node, ["id", "score", "origin"]);
+  string(node.id, `${path}.id`, 128);
+  score(node.score, `${path}.score`);
+  string(node.origin, `${path}.origin`, 32);
+}
+
+function validatePolicyLayer(value: unknown, path: string): void {
+  const layer = object(value, path);
+  keys(layer, ["id", "hit", "origin"], ["hit"]);
+  string(layer.id, `${path}.id`, 128);
+  string(layer.origin, `${path}.origin`, 32);
+  if (layer.hit !== undefined && layer.hit !== null) {
+    string(layer.hit, `${path}.hit`, 32);
+  }
 }
 
 function validateTrace(value: unknown): void {

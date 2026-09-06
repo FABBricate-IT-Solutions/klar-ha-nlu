@@ -56,6 +56,14 @@ fn v2_json_contract_has_versioned_shape_and_deterministic_ordering() {
     );
     assert!(!first.trace.tokens.is_empty());
     assert!(!first.trace.normalized.is_empty());
+    let trace = first.policy_trace.as_ref().expect("policy_trace");
+    let match_node = trace.match_node.as_ref().expect("match");
+    assert_eq!(match_node.origin, "engine");
+    assert_eq!(Some(match_node.id.as_str()), first.candidates.first().map(|candidate| candidate.policy.as_str()));
+    assert_eq!(trace.band.as_deref(), Some("execute"));
+    assert!(trace.seed.is_none());
+    assert_eq!(json["schema_version"], "2.0");
+    assert_eq!(json["quiet_ack_eligible"], true);
 }
 
 #[test]
@@ -337,4 +345,82 @@ fn clarification_follow_up_picks_the_named_lamp() {
     assert!(first.clarify);
     let second = parse("die Lampe", &home, &mut session, &[], &settings);
     assert_eq!(second.intents.first().and_then(|intent| intent.slot("entity_id")), Some("light.master_bedside_left"));
+}
+
+#[test]
+fn policy_trace_confirm_carries_match_without_a_plan() {
+    let home = default_home();
+    let confirmation = nlu::parse("Wohnungstür abschließen", &home, &mut Session::new(), &[], &Settings::pinned("de"));
+    assert!(matches!(confirmation.decision, ParseDecision::Confirm { .. }), "{confirmation:#?}");
+    assert!(confirmation.plan.is_none());
+    let trace = confirmation.policy_trace.as_ref().expect("policy_trace");
+    let match_node = trace.match_node.as_ref().expect("match");
+    assert!(!match_node.id.is_empty());
+    assert_eq!(match_node.origin, "engine");
+    assert_eq!(trace.band.as_deref(), Some("confirm"));
+    assert!(trace.compiled_risky);
+    let seed = trace.seed.as_ref().expect("seed");
+    assert_eq!(seed.id, klar_nlu::types::SEED_CONFIRM_LOCK);
+    assert_eq!(seed.origin, "seed");
+    assert!(trace.house.is_none());
+    assert_eq!(confirmation.schema_version, PARSE_SCHEMA_VERSION);
+}
+
+#[test]
+fn match_catalog_is_stable_and_language_free() {
+    let rows = klar_nlu::parse::match_catalog();
+    assert_eq!(rows.len(), 24);
+    let mut ids = std::collections::BTreeSet::new();
+    for row in &rows {
+        assert!(ids.insert(row.id.as_str()), "{}", row.id);
+        assert_eq!(row.summary_key, format!("match.{}", row.id));
+        assert!(row.id.bytes().all(|byte| byte.is_ascii_lowercase() || byte == b'_'));
+        assert!(row.summary_key.starts_with("match."));
+        assert!(row.summary_key.is_ascii());
+    }
+    assert!(ids.contains("area_command"));
+    assert!(ids.contains("media"));
+    assert!(!ids.contains("media_new_matcher"));
+}
+
+#[test]
+fn speech_snapshot_drops_unknown_attrs_and_rejects_missing_schema() {
+    use klar_nlu::types::{SnapshotError, SpeechEntity, SpeechIntent, SpeechSnapshot, SNAPSHOT_SCHEMA};
+    use std::collections::BTreeMap;
+
+    let snap = SpeechSnapshot {
+        schema_version: SNAPSHOT_SCHEMA.into(),
+        language: "de".into(),
+        personality: "default".into(),
+        unit_system: klar_nlu::types::UnitSystem::Metric,
+        now: "2026-09-05T19:22:00+02:00".into(),
+        intent: SpeechIntent { name: "HassTurnOn".into(), slots: vec![] },
+        outcome: "success".into(),
+        entities: vec![SpeechEntity {
+            entity_id: "light.wohnzimmer".into(),
+            name: "Wohnzimmer".into(),
+            domain: "light".into(),
+            state: "on".into(),
+            area: None,
+            area_name: None,
+            device_class: None,
+            attributes: BTreeMap::from([("media_title".into(), serde_json::json!("ok")), ("secret".into(), serde_json::json!("drop-me"))]),
+        }],
+        calendar_events: vec![],
+        media_queue: vec![],
+    };
+    let clean = snap.sanitize().expect("valid snapshot");
+    assert!(clean.entities[0].attributes.contains_key("media_title"));
+    assert!(!clean.entities[0].attributes.contains_key("secret"));
+    let rendered = klar_nlu::speech::render_snapshot(&clean);
+    assert_eq!(rendered.source, "post_execute");
+    assert!(rendered.speech.contains("Wohnzimmer"));
+    let missing: SpeechSnapshot = serde_json::from_value(serde_json::json!({
+        "language": "de",
+        "now": "2026-09-05T19:22:00+02:00",
+        "intent": {"name": "HassTurnOn"},
+        "outcome": "success"
+    }))
+    .expect("deserialize");
+    assert_eq!(missing.sanitize(), Err(SnapshotError::Schema));
 }

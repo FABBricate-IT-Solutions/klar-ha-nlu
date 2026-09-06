@@ -60,7 +60,7 @@ A new combinator is a new variant plus tests. Do not extend `De | En` matches.
 
 ## Home Assistant
 
-The integration reads `custom_components/klar_nlu/languages.py` (generated). Options list every compiled locale with its native name. Default choice is **system language**: the request/pipeline language selects the pack, and the Voice assistants dropdown always lists every compiled locale. A single pinned pack still restricts parsing to that pack. `pt-BR` and `de-CH` are not stripped to ISO-639-1.
+The integration reads `custom_components/klar_nlu/languages.py` (generated). Assist languages are set in the operator UI (Settings): empty = every compiled locale. Default follows the request/pipeline language. A single pinned pack still restricts parsing to that pack. `pt-BR` and `de-CH` are not stripped to ISO-639-1.
 
 Operator chrome (the official Klar app) is **not** the Assist pin and **not** the Home Assistant profile. Set it in App → Settings → Operator language, or with `KLAR_UI_LOCALE` before the first save. Saved Settings wins. Integration form labels stay on Home Assistant `translations/{lang}.json`.
 

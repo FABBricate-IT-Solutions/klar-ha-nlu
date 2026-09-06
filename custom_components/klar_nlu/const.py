@@ -49,6 +49,7 @@ CONF_CALENDAR_LLM = "calendar_llm"
 CONF_ALLOW_LLM_TOOLS = "allow_llm_tools"
 CONF_TOKEN = "token"
 CONF_CHANNEL = "channel"
+CONF_PRODUCT_IN_ENGINE = "product_in_engine"
 ENGINE_VERSION = "2026.9.3"
 DEFAULT_ASSIST_FILTER = True
 DEFAULT_PERSONALITY = "default"
@@ -75,7 +76,9 @@ PERSONALITIES = (
 
 def resolve_personality(value: object) -> str:
     name = str(value or DEFAULT_PERSONALITY)
-    return name if name in PERSONALITIES else DEFAULT_PERSONALITY
+    if name in PERSONALITIES or name == "custom":
+        return name
+    return DEFAULT_PERSONALITY
 
 
 MODE_LOCAL = "local"

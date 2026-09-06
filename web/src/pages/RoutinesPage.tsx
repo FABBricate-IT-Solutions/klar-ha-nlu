@@ -60,9 +60,9 @@ export function RoutinesPage({ t }: { t: Messages }) {
       <div className="card">
         <h2>{t.routines}</h2>
         <p className="muted">{t.routineHint}</p>
-        <label>{t.whenPhrase}</label>
+        <label>{t.guideRoutinesSay}</label>
         <input value={phrase} onChange={(ev) => setPhrase(ev.target.value)} placeholder={t.routinePhraseHint} />
-        <label>{t.payloadScript}</label>
+        <label>{t.guideRoutinesScript}</label>
         <SearchSelect
           value={script}
           options={withCurrent(scriptOptions, script.startsWith("script.") ? script : script ? `script.${script}` : "")}
@@ -71,7 +71,7 @@ export function RoutinesPage({ t }: { t: Messages }) {
           allowEmpty={false}
         />
         <div className="row" style={{ marginTop: 12 }}>
-          <button className="primary" onClick={add}>{t.addRoutine}</button>
+          <button className="primary" type="button" onClick={() => void add()}>{t.addRoutine}</button>
         </div>
         {status && <p className="caption">{status}</p>}
       </div>
@@ -83,7 +83,7 @@ export function RoutinesPage({ t }: { t: Messages }) {
           </div>
         )}
         {routines.map(({ rule, index }) => (
-          <div className="row" key={`${rule.phrase}-${index}`} style={{ justifyContent: "space-between", borderBottom: "1px solid var(--line)", padding: "8px 0" }}>
+          <div className="list-row" key={`${rule.phrase}-${index}`} style={{ borderBottom: "1px solid var(--line)", padding: "8px 0" }}>
             <div>
               <strong>{rule.phrase}</strong>
               <p className="mono">{rule.slots.entity_id}</p>

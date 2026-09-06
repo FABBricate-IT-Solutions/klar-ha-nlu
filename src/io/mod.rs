@@ -1,4 +1,5 @@
 pub(crate) mod auth;
+pub(crate) mod backup;
 pub mod bootstrap;
 pub(crate) mod bundle;
 pub(crate) mod conversations;
@@ -6,10 +7,19 @@ pub(crate) mod dashboard;
 pub(crate) mod home_sync;
 pub(crate) mod lang_api;
 pub mod limits;
+pub(crate) mod llm;
 pub(crate) mod metrics;
 pub(crate) mod policies;
 pub(crate) mod privacy;
+pub(crate) mod speech;
 pub mod state;
+pub(crate) mod trainer;
+pub(crate) mod trainer_apply;
+pub(crate) mod trainer_chat;
+pub(crate) mod trainer_consent;
+pub(crate) mod trainer_reads;
+pub(crate) mod trainer_settings;
+pub(crate) mod trainer_turns;
 pub mod web;
 pub mod wyoming;
 

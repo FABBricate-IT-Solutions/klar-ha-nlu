@@ -39,7 +39,7 @@ pub use user::{
     push_revision, revision_hash, select_revision, validate_custom, validate_language, LanguageOverlay, LanguageRevision, OverlayIssue,
     SetDelta, MAX_HISTORY, MAX_USER_INTENTS,
 };
-pub use validate::{validate_pack, ValidationReport};
+pub use validate::{is_lexicon_path, lexicon_set_paths, validate_pack, ValidationReport};
 pub use verbs::VerbKind;
 
 use pack::LanguagePack as Pack;

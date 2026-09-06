@@ -24,19 +24,42 @@ _STATUS_DOMAINS = (
 )
 
 
+def place_status_rooms(
+    hass: Any,
+    slots: dict[str, Any],
+    exposed: Callable[[str], bool],
+) -> list[tuple[str, list[Any]]] | None:
+    """Collect floor/area states. None = not a place query."""
+    if str(slots.get("device_class", {}).get("value") or "") == "temperature":
+        return None
+    if slots.get("floor"):
+        return floor_status_rooms(
+            hass,
+            str(slots.get("floor", {}).get("value") or ""),
+            str(slots.get("domain", {}).get("value") or ""),
+            exposed,
+        )
+    if slots.get("area"):
+        return area_status_rooms(
+            hass,
+            str(slots.get("area", {}).get("value") or ""),
+            str(slots.get("domain", {}).get("value") or ""),
+            exposed,
+        )
+    return None
+
+
 def place_get_state(
     hass: Any,
     slots: dict[str, Any],
     pack: str,
     exposed: Callable[[str], bool],
+    unit_system: str = "metric",
 ) -> str:
-    if str(slots.get("device_class", {}).get("value") or "") == "temperature":
+    rooms = place_status_rooms(hass, slots, exposed)
+    if rooms is None:
         return ""
-    if slots.get("floor"):
-        return floor_get_state(hass, slots, pack, exposed) or empty_status_speech(pack)
-    if slots.get("area"):
-        return area_get_state(hass, slots, pack, exposed) or empty_status_speech(pack)
-    return ""
+    return rooms_status_speech(rooms, pack, unit_system) or empty_status_speech(pack)
 
 
 def floor_get_state(
@@ -44,11 +67,12 @@ def floor_get_state(
     slots: dict[str, Any],
     pack: str,
     exposed: Callable[[str], bool],
+    unit_system: str = "metric",
 ) -> str:
     floor_key = str(slots.get("floor", {}).get("value") or "")
     domain = str(slots.get("domain", {}).get("value") or "")
     rooms = floor_status_rooms(hass, floor_key, domain, exposed)
-    return rooms_status_speech(rooms, pack)
+    return rooms_status_speech(rooms, pack, unit_system)
 
 
 def area_get_state(
@@ -56,11 +80,12 @@ def area_get_state(
     slots: dict[str, Any],
     pack: str,
     exposed: Callable[[str], bool],
+    unit_system: str = "metric",
 ) -> str:
     area_key = str(slots.get("area", {}).get("value") or "")
     domain = str(slots.get("domain", {}).get("value") or "")
     rooms = area_status_rooms(hass, area_key, domain, exposed)
-    return rooms_status_speech(rooms, pack)
+    return rooms_status_speech(rooms, pack, unit_system)
 
 
 def floor_status_rooms(

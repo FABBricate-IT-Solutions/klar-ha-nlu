@@ -33,8 +33,10 @@ class QuietAckTests(unittest.TestCase):
     def test_area_light_on_off(self) -> None:
         on = _ok("HassTurnOn", area="wohnzimmer", domain="light")
         off = _ok("HassTurnOff", entity_id="light.wohnzimmer")
-        self.assertTrue(quiet.quiet_ack_applies(*on))
-        self.assertTrue(quiet.quiet_ack_applies(*off))
+        self.assertTrue(quiet.quiet_ack_applies(*on, True))
+        self.assertFalse(quiet.quiet_ack_applies(*on, False))
+        self.assertFalse(quiet.quiet_ack_applies(*on))
+        self.assertFalse(quiet.quiet_ack_applies(*off))
 
     def test_rejects_queries_and_scenes(self) -> None:
         query = _ok("HassGetState", area="wohnzimmer")

@@ -39,9 +39,10 @@ def validate_v2_payload(value: Any) -> dict[str, Any]:
             "briefing",
             "retrieval",
             "policy_trace",
+            "quiet_ack_eligible",
         },
         "response",
-        optional={"selected_candidate_id", "plan", "retrieval", "policy_trace"},
+        optional={"selected_candidate_id", "plan", "retrieval", "policy_trace", "quiet_ack_eligible"},
     )
     if payload.get("schema_version") != "2.0":
         raise ValueError("unsupported Klar schema_version")
@@ -78,6 +79,9 @@ def validate_v2_payload(value: Any) -> dict[str, Any]:
         _retrieval(retrieval)
     if payload.get("policy_trace") is not None:
         _policy_trace(payload.get("policy_trace"))
+    eligible = payload.get("quiet_ack_eligible")
+    if eligible is not None and not isinstance(eligible, bool):
+        raise ValueError("quiet_ack_eligible must be boolean")
     return payload
 
 
@@ -252,9 +256,9 @@ def _policy_trace(value: Any) -> None:
     trace = _mapping(value, "policy_trace")
     _keys(
         trace,
-        {"matched_rule", "hit", "compiled_risky", "payload"},
+        {"matched_rule", "hit", "compiled_risky", "payload", "match", "seed", "house", "band", "discarded"},
         "policy_trace",
-        optional={"matched_rule", "hit", "compiled_risky", "payload"},
+        optional={"matched_rule", "hit", "compiled_risky", "payload", "match", "seed", "house", "band", "discarded"},
     )
     if trace.get("matched_rule") is not None:
         _string(trace.get("matched_rule"), "policy_trace.matched_rule", 64)
@@ -264,6 +268,34 @@ def _policy_trace(value: Any) -> None:
         _string(trace.get("payload"), "policy_trace.payload", 500)
     if "compiled_risky" in trace and not isinstance(trace.get("compiled_risky"), bool):
         raise ValueError("policy_trace.compiled_risky must be boolean")
+    if trace.get("match") is not None:
+        node = _mapping(trace.get("match"), "policy_trace.match")
+        _keys(node, {"id", "score", "origin"}, "policy_trace.match")
+        _string(node.get("id"), "policy_trace.match.id", 128)
+        _score(node.get("score"), "policy_trace.match.score")
+        _string(node.get("origin"), "policy_trace.match.origin", 32)
+    for key in ("seed", "house"):
+        layer = trace.get(key)
+        if layer is None:
+            continue
+        item = _mapping(layer, f"policy_trace.{key}")
+        _keys(item, {"id", "hit", "origin"}, f"policy_trace.{key}", optional={"hit"})
+        _string(item.get("id"), f"policy_trace.{key}.id", 128)
+        _string(item.get("origin"), f"policy_trace.{key}.origin", 32)
+        if item.get("hit") is not None:
+            _string(item.get("hit"), f"policy_trace.{key}.hit", 32)
+    if trace.get("band") is not None:
+        _string(trace.get("band"), "policy_trace.band", 32)
+    if trace.get("discarded") is not None:
+        _list(trace.get("discarded"), "policy_trace.discarded", MAX_TRACE_DISCARDED, _policy_discarded)
+
+
+def _policy_discarded(value: Any, path: str) -> None:
+    item = _mapping(value, path)
+    _keys(item, {"id", "score", "reason"}, path)
+    _string(item.get("id"), f"{path}.id", 128)
+    _score(item.get("score"), f"{path}.score")
+    _string(item.get("reason"), f"{path}.reason", MAX_DETAIL_CHARS)
 
 
 def _trace(value: Any) -> None:

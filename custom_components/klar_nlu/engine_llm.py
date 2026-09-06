@@ -1,0 +1,580 @@
+"""Call Klar's OpenAI-compatible chat API. HA only glues Assist streaming."""
+
+from __future__ import annotations
+
+import json
+import logging
+from collections.abc import AsyncIterator, Mapping
+from typing import Any
+
+try:
+    from aiohttp import ClientError, ClientTimeout
+    from homeassistant.core import HomeAssistant
+    from homeassistant.helpers.aiohttp_client import async_get_clientsession
+except ImportError:  # stdlib tests load helpers without Home Assistant
+    ClientError = Exception  # type: ignore[misc,assignment]
+    class ClientTimeout:  # type: ignore[no-redef]
+        def __init__(self, total: int = 0) -> None:
+            self.total = total
+
+    HomeAssistant = Any
+    async_get_clientsession = None  # type: ignore[assignment]
+
+from .const import DOMAIN, engine_url_candidates
+from .stream import emit_delta_stream, iter_token_deltas
+
+_LOGGER = logging.getLogger(__name__)
+_CHAT_TIMEOUT = ClientTimeout(total=120)
+
+
+def engine_target(hass: HomeAssistant, url: str | None = None, token: str | None = None) -> tuple[str, str | None] | None:
+    if url:
+        return url.rstrip("/"), token
+    stored = hass.data.get(DOMAIN) or {}
+    for item in stored.values():
+        if not isinstance(item, dict):
+            continue
+        found = str(item.get("url") or "").strip()
+        if found:
+            tok = item.get("token")
+            return found.rstrip("/"), str(tok) if tok else None
+    return None
+
+
+def _session(hass: HomeAssistant) -> Any:
+    if async_get_clientsession is None:
+        return None
+    return async_get_clientsession(hass)
+
+
+async def complete_engine_refine(
+    hass: HomeAssistant,
+    speech: str,
+    language: str,
+    personality: str,
+    extra_prompt: str = "",
+    *,
+    conversation_id: str | None = None,
+    url: str | None = None,
+    token: str | None = None,
+) -> tuple[str, bool]:
+    target = engine_target(hass, url, token)
+    if target is None:
+        raise EngineUnavailable
+    base, tok = target
+    session = _session(hass)
+    if session is None:
+        raise EngineUnavailable
+    headers = {"X-Klar-Token": tok, "Accept": "application/json"} if tok else {"Accept": "application/json"}
+    body = {
+        "speech": speech,
+        "language": language,
+        "personality": personality,
+        "extra_prompt": extra_prompt,
+        "stream": False,
+    }
+    if conversation_id:
+        body["conversation_id"] = conversation_id[:128]
+    last_err: Exception | None = None
+    for host in engine_url_candidates(base):
+        try:
+            async with session.post(
+                f"{host}/api/v2/llm/refine",
+                json=body,
+                headers=headers,
+                timeout=_CHAT_TIMEOUT,
+            ) as resp:
+                if resp.status == 404:
+                    raise EngineRefineMissing
+                if resp.status == 503:
+                    raise EngineUnavailable
+                resp.raise_for_status()
+                payload = await resp.json()
+        except EngineRefineMissing:
+            raise
+        except EngineUnavailable:
+            raise
+        except (ClientError, TimeoutError, OSError, ValueError) as err:
+            last_err = err
+            continue
+        parsed = _refine_result(payload)
+        if parsed is None:
+            raise EngineUnavailable
+        return parsed
+    if last_err is not None:
+        _LOGGER.debug("Klar LLM refine failed: %s", last_err)
+    raise EngineUnavailable
+
+
+async def stream_engine_refine(
+    hass: HomeAssistant,
+    speech: str,
+    language: str,
+    personality: str,
+    extra_prompt: str,
+    chat_log: Any,
+    agent_id: str | None,
+    *,
+    conversation_id: str | None = None,
+    url: str | None = None,
+    token: str | None = None,
+) -> tuple[str, bool, bool] | None:
+    target = engine_target(hass, url, token)
+    if target is None:
+        return None
+    collected: list[str] = []
+    accepted = False
+    final = ""
+    finished = False
+
+    async def tokens() -> AsyncIterator[str]:
+        nonlocal accepted, final, finished
+        async for event in iter_engine_refine_events(
+            hass,
+            speech,
+            language,
+            personality,
+            extra_prompt,
+            conversation_id=conversation_id,
+            url=url,
+            token=token,
+        ):
+            if event.get("type") == "delta":
+                piece = str(event.get("text") or "")
+                if piece:
+                    yield piece
+            elif event.get("type") == "done":
+                parsed = _refine_result(event)
+                if parsed is not None:
+                    final, accepted = parsed
+                finished = True
+
+    def hold(_speech: str) -> bool | None:
+        if not finished:
+            return False
+        return True if accepted else None
+
+    try:
+        posted = await emit_delta_stream(chat_log, agent_id, iter_token_deltas(tokens(), collected, hold))
+    except EngineRefineMissing:
+        raise
+    except EngineUnavailable:
+        return None
+    except Exception as err:  # noqa: BLE001 — engine HTTP is a system boundary
+        _LOGGER.debug("Klar LLM refine stream failed: %s", err)
+        return None
+    text = final or "".join(collected)
+    if not text:
+        return None
+    return text, bool(posted), accepted
+
+
+async def iter_engine_refine_events(
+    hass: HomeAssistant,
+    speech: str,
+    language: str,
+    personality: str,
+    extra_prompt: str = "",
+    *,
+    conversation_id: str | None = None,
+    url: str | None = None,
+    token: str | None = None,
+) -> AsyncIterator[dict[str, Any]]:
+    body: dict[str, Any] = {
+        "speech": speech,
+        "language": language,
+        "personality": personality,
+        "extra_prompt": extra_prompt,
+        "stream": True,
+    }
+    if conversation_id:
+        body["conversation_id"] = conversation_id[:128]
+    async for event in _iter_engine_sse(
+        hass, "/api/v2/llm/refine", body, url=url, token=token, missing=EngineRefineMissing
+    ):
+        yield event
+
+
+def _refine_result(payload: object) -> tuple[str, bool] | None:
+    if not isinstance(payload, Mapping):
+        return None
+    text = str(payload.get("text") or "").strip()
+    if payload.get("type") == "done" and text:
+        return text, bool(payload.get("accepted"))
+    if text:
+        return text, bool(payload.get("accepted"))
+    return None
+
+
+async def stream_engine_assist(
+    hass: HomeAssistant,
+    text: str,
+    language: str,
+    personality: str,
+    chat_log: Any,
+    agent_id: str | None,
+    *,
+    kind: str = "auto",
+    allow_tools: bool = False,
+    nlu_rag: bool = False,
+    retrieval: dict[str, Any] | None = None,
+    facts: str | list[str] | None = None,
+    history: list[tuple[str, str]] | None = None,
+    extra_system: str | None = None,
+    extra_prompt: str = "",
+    conversation_id: str | None = None,
+    url: str | None = None,
+    token: str | None = None,
+    publish: bool = True,
+    tools: list[dict[str, Any]] | None = None,
+    tool_messages: list[dict[str, Any]] | None = None,
+) -> tuple[str, bool] | None:
+    target = engine_target(hass, url, token)
+    if target is None:
+        return None
+    collected: list[str] = []
+    tool_line = ""
+
+    async def tokens() -> AsyncIterator[str]:
+        nonlocal tool_line
+        async for event in iter_engine_assist_events(
+            hass,
+            text,
+            language,
+            personality,
+            kind=kind,
+            allow_tools=allow_tools,
+            nlu_rag=nlu_rag,
+            retrieval=retrieval,
+            facts=facts,
+            history=history,
+            extra_system=extra_system,
+            extra_prompt=extra_prompt,
+            conversation_id=conversation_id,
+            url=url,
+            token=token,
+            tools=tools,
+            tool_messages=tool_messages,
+        ):
+            if event.get("type") == "tool":
+                tool_line = _tool_speech(event)
+                continue
+            if event.get("type") == "tool_call":
+                continue
+            if event.get("type") == "delta":
+                piece = str(event.get("text") or "")
+                if piece:
+                    yield piece
+
+    try:
+        posted = await emit_delta_stream(
+            chat_log if publish else None,
+            agent_id,
+            iter_token_deltas(tokens(), collected, None),
+        )
+    except EngineAssistMissing:
+        raise
+    except EngineUnavailable:
+        return None
+    except Exception as err:  # noqa: BLE001 — engine HTTP is a system boundary
+        _LOGGER.debug("Klar LLM assist failed: %s", err)
+        return None
+    speech = tool_line or "".join(collected)
+    if not speech:
+        return None
+    return speech, bool(posted) and not tool_line and publish
+
+
+async def iter_engine_assist_events(
+    hass: HomeAssistant,
+    text: str,
+    language: str,
+    personality: str,
+    *,
+    kind: str = "auto",
+    allow_tools: bool = False,
+    nlu_rag: bool = False,
+    retrieval: dict[str, Any] | None = None,
+    facts: str | list[str] | None = None,
+    history: list[tuple[str, str]] | None = None,
+    extra_system: str | None = None,
+    extra_prompt: str = "",
+    conversation_id: str | None = None,
+    url: str | None = None,
+    token: str | None = None,
+    tools: list[dict[str, Any]] | None = None,
+    tool_messages: list[dict[str, Any]] | None = None,
+) -> AsyncIterator[dict[str, Any]]:
+    body: dict[str, Any] = {
+        "text": text,
+        "language": language,
+        "personality": personality,
+        "kind": kind,
+        "allow_tools": allow_tools,
+        "nlu_rag": nlu_rag,
+        "retrieval": retrieval,
+        "facts": facts,
+        "history": [list(turn) for turn in (history or [])],
+        "extra_system": extra_system,
+        "extra_prompt": extra_prompt,
+        "stream": True,
+    }
+    if tools:
+        body["tools"] = tools
+    if tool_messages:
+        body["tool_messages"] = tool_messages
+    if conversation_id:
+        body["conversation_id"] = conversation_id[:128]
+    async for event in _iter_engine_sse(
+        hass, "/api/v2/llm/assist", body, url=url, token=token, missing=EngineAssistMissing
+    ):
+        yield event
+
+
+def _tool_speech(event: Mapping[str, Any]) -> str:
+    name = str(event.get("tool") or "")
+    if name == "klar.parse":
+        return f"KLAR_PARSE: {str(event.get('text') or '').strip()}".strip()
+    if name == "klar.act":
+        intent = str(event.get("intent") or "").strip()
+        slots = event.get("slots") if isinstance(event.get("slots"), dict) else {}
+        bits = " ".join(f"{key}={value}" for key, value in slots.items() if key and value)
+        return f"KLAR_ACT: {intent} {bits}".strip()
+    return ""
+
+
+async def complete_engine_chat(
+    hass: HomeAssistant,
+    messages: list[dict[str, str]],
+    *,
+    url: str | None = None,
+    token: str | None = None,
+    max_tokens: int = 768,
+    temperature: float = 0.65,
+) -> str | None:
+    target = engine_target(hass, url, token)
+    if target is None:
+        return None
+    base, tok = target
+    session = _session(hass)
+    if session is None:
+        return None
+    headers = {"X-Klar-Token": tok, "Accept": "application/json"} if tok else {"Accept": "application/json"}
+    body = {"messages": messages, "stream": False, "max_tokens": max_tokens, "temperature": temperature}
+    last_err: Exception | None = None
+    for host in engine_url_candidates(base):
+        try:
+            async with session.post(
+                f"{host}/api/v2/llm/chat",
+                json=body,
+                headers=headers,
+                timeout=_CHAT_TIMEOUT,
+            ) as resp:
+                if resp.status == 503:
+                    return None
+                resp.raise_for_status()
+                payload = await resp.json()
+        except (ClientError, TimeoutError, OSError, ValueError) as err:
+            last_err = err
+            continue
+        text = _event_text(payload)
+        if text:
+            return text
+        return None
+    if last_err is not None:
+        _LOGGER.debug("Klar LLM complete failed: %s", last_err)
+    return None
+
+
+async def stream_engine_chat(
+    hass: HomeAssistant,
+    messages: list[dict[str, str]],
+    chat_log: Any,
+    agent_id: str | None,
+    *,
+    url: str | None = None,
+    token: str | None = None,
+    hold: Any = None,
+    max_tokens: int = 768,
+    temperature: float = 0.65,
+) -> tuple[str, bool] | None:
+    target = engine_target(hass, url, token)
+    if target is None:
+        return None
+    collected: list[str] = []
+
+    async def tokens() -> AsyncIterator[str]:
+        async for delta in iter_engine_tokens(
+            hass, messages, url=url, token=token, max_tokens=max_tokens, temperature=temperature
+        ):
+            yield delta
+
+    try:
+        posted = await emit_delta_stream(chat_log, agent_id, iter_token_deltas(tokens(), collected, hold))
+    except EngineUnavailable:
+        return None
+    except Exception as err:  # noqa: BLE001 — engine HTTP is a system boundary
+        _LOGGER.debug("Klar LLM stream failed: %s", err)
+        return None
+    speech = "".join(collected)
+    if not speech:
+        return None
+    if hold is not None and hold(speech) is not True:
+        return speech, False
+    return speech, posted
+
+
+async def iter_engine_tokens(
+    hass: HomeAssistant,
+    messages: list[dict[str, str]],
+    *,
+    url: str | None = None,
+    token: str | None = None,
+    max_tokens: int = 768,
+    temperature: float = 0.65,
+) -> AsyncIterator[str]:
+    body = {"messages": messages, "stream": True, "max_tokens": max_tokens, "temperature": temperature}
+    async for event in _iter_engine_sse(hass, "/api/v2/llm/chat", body, url=url, token=token):
+        if event.get("type") == "delta":
+            text = str(event.get("text") or "")
+            if text:
+                yield text
+
+
+async def complete_engine_speech_render(
+    hass: HomeAssistant,
+    snapshot: dict[str, Any],
+    *,
+    url: str | None = None,
+    token: str | None = None,
+) -> str | None:
+    target = engine_target(hass, url, token)
+    if target is None:
+        raise EngineSpeechMissing
+    base, tok = target
+    session = _session(hass)
+    if session is None:
+        raise EngineSpeechMissing
+    headers = {"X-Klar-Token": tok, "Accept": "application/json"} if tok else {"Accept": "application/json"}
+    last_err: Exception | None = None
+    for host in engine_url_candidates(base):
+        try:
+            async with session.post(
+                f"{host}/api/v2/speech/render",
+                json=snapshot,
+                headers=headers,
+                timeout=_CHAT_TIMEOUT,
+            ) as resp:
+                if resp.status == 404:
+                    raise EngineSpeechMissing
+                if resp.status == 503:
+                    return None
+                resp.raise_for_status()
+                payload = await resp.json()
+        except EngineSpeechMissing:
+            raise
+        except (ClientError, TimeoutError, OSError, ValueError) as err:
+            last_err = err
+            continue
+        if isinstance(payload, Mapping):
+            text = str(payload.get("speech") or "").strip()
+            if text or payload.get("source") == "post_execute":
+                return text
+        return None
+    if last_err is not None:
+        _LOGGER.debug("Klar speech render failed: %s", last_err)
+    raise EngineSpeechMissing
+
+
+class EngineUnavailable(Exception):
+    """Klar has no LLM endpoint configured."""
+
+
+class EngineRefineMissing(Exception):
+    """Engine has no POST /api/v2/llm/refine yet."""
+
+
+class EngineAssistMissing(Exception):
+    """Engine has no POST /api/v2/llm/assist yet."""
+
+
+class EngineSpeechMissing(Exception):
+    """Engine has no POST /api/v2/speech/render yet."""
+
+
+def _event_text(payload: object) -> str:
+    if not isinstance(payload, Mapping):
+        return ""
+    if payload.get("type") == "done":
+        return str(payload.get("text") or "").strip()
+    return str(payload.get("text") or "").strip()
+
+
+async def _iter_engine_sse(
+    hass: HomeAssistant,
+    path: str,
+    body: dict[str, Any],
+    *,
+    url: str | None = None,
+    token: str | None = None,
+    missing: type[Exception] | None = None,
+) -> AsyncIterator[dict[str, Any]]:
+    target = engine_target(hass, url, token)
+    if target is None:
+        raise EngineUnavailable
+    base, tok = target
+    session = _session(hass)
+    if session is None:
+        raise EngineUnavailable
+    headers = {"X-Klar-Token": tok, "Accept": "text/event-stream"} if tok else {"Accept": "text/event-stream"}
+    last_err: Exception | None = None
+    for host in engine_url_candidates(base):
+        try:
+            async with session.post(
+                f"{host}{path}",
+                json=body,
+                headers=headers,
+                timeout=_CHAT_TIMEOUT,
+            ) as resp:
+                if resp.status == 404 and missing is not None:
+                    raise missing
+                if resp.status == 503:
+                    raise EngineUnavailable
+                resp.raise_for_status()
+                async for event in _iter_sse_json(resp.content):
+                    if event.get("type") == "error":
+                        raise RuntimeError(str(event.get("message") or "llm error"))
+                    yield event
+            return
+        except EngineUnavailable:
+            raise
+        except Exception as err:
+            if missing is not None and isinstance(err, missing):
+                raise
+            if isinstance(err, (ClientError, TimeoutError, OSError)):
+                last_err = err
+                continue
+            raise
+    if last_err is not None:
+        raise last_err
+    raise EngineUnavailable
+
+
+async def _iter_sse_json(content: Any) -> AsyncIterator[dict[str, Any]]:
+    buf = b""
+    async for chunk in content.iter_any():
+        buf += chunk
+        while b"\n\n" in buf:
+            raw, buf = buf.split(b"\n\n", 1)
+            for line in raw.replace(b"\r\n", b"\n").split(b"\n"):
+                if not line.startswith(b"data:"):
+                    continue
+                payload = line[5:].strip()
+                if not payload or payload == b"[DONE]":
+                    continue
+                try:
+                    data = json.loads(payload)
+                except json.JSONDecodeError:
+                    continue
+                if isinstance(data, dict):
+                    yield data

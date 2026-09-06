@@ -28,8 +28,7 @@
           "mode": "Động cơ",
           "personality": "Tính cách",
           "languages": "Ngôn ngữ",
-          "fallback_agent": "Tác nhân trò chuyện phiếm",
-          "allow_llm_tools": "Allow Assist tools on the chit-chat agent",
+          "allow_llm_tools": "Allow Home Assistant Assist tools on engine chat",
           "refine_speech": "Để LLM chỉnh câu trả lời NLU",
           "refine_prompt": "Lời nhắc tinh chỉnh",
           "url": "URL API Klar",
@@ -49,7 +48,7 @@
           "nlu_rag": "Mặc định tắt. Khi trò chuyện chỉ gửi đoạn đã khớp tới mô hình dự phòng.",
           "quiet_ack": "Bật/tắt đèn đơn giản thì không nói, chỉ một tiếng ngắn trên vệ tinh.",
           "calendar_llm": "Mặc định tắt. Bật: Klar đọc lịch, LLM dự phòng nói sự kiện. Tắt: Klar tự nói danh sách. Tạo, xóa, chuyển vẫn do Klar.",
-          "allow_llm_tools": "Off by default. On: Klar still calls the chit-chat agent even if that agent can control Home Assistant. The model may turn lights and run scripts. Off: Klar skips the LLM when that agent has Assist tools.",
+          "allow_llm_tools": "Off by default. On: after Klar parses, the engine chat model may call Home Assistant Assist tools (names come from Core, already prefixed). Off: conversation only.",
           "languages": "Mặc định theo ngôn ngữ hệ thống của Home Assistant.",
           "channel": "Đổi bất cứ lúc nào. Staging trỏ tới Klar NLU (Staging)."
         }

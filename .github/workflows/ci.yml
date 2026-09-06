@@ -82,6 +82,14 @@ jobs:
             tests/datasets
             custom_components/klar_nlu/languages.py
             custom_components/klar_nlu/speech_locale.py
+            src/llm/refine_shots.rs
+            src/llm/refine_shots_a.rs
+            src/llm/refine_shots_b.rs
+            src/llm/refine_shots_c.rs
+            src/llm/refine_shots_d.rs
+            src/llm/refine_shots_e.rs
+            src/llm/refine_shots_f.rs
+            src/speech/generated.rs
           )
           dirty="$(git status --porcelain -- "${paths[@]}")"
           if [[ -n "$dirty" ]]; then

@@ -54,7 +54,7 @@ Antwort:
 
 `language` ist optional (`de`, `en`, `fr` oder ein BCP-47-Tag wie `en-US`). Ist es gesetzt, bindet Klar nur dieses Paket. `speech` folgt dem gesetzten Paket.
 
-`personality` ist optional und setzt auf diesem Endpunkt eine Formel vor `speech` (`Sehr wohl.`, `Aye.`, …). Home Assistant speichert die Auswahl in der Integration und schickt sie bei jedem Parse; die Engine-Settings sind nur für die Klar-UI. Die LLM-Verfeinerung in der HA-Integration formuliert den Satz danach in der Stimme um und klebt die Formel nicht wieder davor.
+`personality` ist optional und setzt auf diesem Endpunkt eine Formel vor `speech` (`Sehr wohl.`, `Aye.`, …). Die Engine-Settings sind die Quelle (`GET`/`POST /api/settings`); die Operator-UI Settings-Seite ist der Editor. Home Assistant lässt Persönlichkeit am Parse weg, wenn gespeicherte Engine-Settings da sind, und fällt nur auf übrige Integrationsoptionen zurück, wenn der Cache leer ist. Die LLM-Verfeinerung formuliert den Satz danach in der Stimme um und klebt die Formel nicht wieder davor.
 
 `decision.type` ist einer von `execute`, `clarify`, `confirm`, `reject`, `chat` oder `error`. Nur `execute` enthält `plan`, vollständige `candidates` und `selected_candidate_id`; Clients dürfen Intents ausschließlich in diesem Fall ausführen. Bei allen anderen Entscheidungen ist `candidates` leer und es werden nirgends Intent- oder Slot-Daten serialisiert. `confirm` enthält nur Prompt und eine opake Kandidaten-ID. Der vorgeschlagene Plan bleibt ausschließlich in der Session, bis dieselbe `conversation_id` bejaht wird.
 
@@ -105,6 +105,104 @@ Der Token kommt aus `--token`, `KLAR_TOKEN` oder `--token-file`.
 | `confirm_risky_actions` | `true` verlangt vor riskanten Aktionen wie Sperren/Entsperren und breiten sicherheitsrelevanten Steuerungen eine Bestätigung. |
 | `semantic_adapters` | `true` befragt lokale typisierte Adapter nach einem Ranking-Reject. Standard aus. Vorschläge werden revalidiert und überschreiben Execute/Confirm/Clarify/Chat nicht. |
 | `nlu_rag` | `true` hängt nur bei `chat` und `reject` einen gematchten Ausschnitt an. Standard aus. Nie Assist-Werkzeuge; der HA-Fallback darf einen Befehl nur über Klar-Werkzeuge nachziehen. `POST /api/v2/parse` kann `nlu_rag` pro Request setzen. |
+| `refine_speech` | `true` formuliert fertige NLU-Sprache mit dem Engine-LLM um. Standard aus. |
+| `extra_prompt` | Hausregel als User-Nachricht. Leer = nur Pack-Stimme. Ersetzt die Persönlichkeit nicht. |
+| `quiet_ack` | `true` spielt bei einfachem An/Aus einen Chime statt TTS. Standard aus. |
+| `calendar_llm` | `true` lässt das Engine-LLM Kalendertermine sprechen. Standard aus. |
+| `allow_llm_tools` | `true` lässt das Engine-Chat-Modell nach dem Klar-Parse Home-Assistant-Assist-Werkzeuge nutzen (2026.9, prefixierte Namen). Standard aus. |
+
+### `GET` / `POST /api/v2/llm/endpoint`
+
+OpenAI-kompatibler Upstream der Engine. `GET` liefert `{ "configured", "base_url", "model" }` — nie den API-Key. `POST` setzt `base_url`, `api_key`, `model` in `data_dir/llm_endpoint.json` (nicht im Overlay). Leerer `api_key` behält den gespeicherten Key. `configured: false` löscht die Datei. `KLAR_LLM_*` gewinnt beim Start. Config in der Operator-UI; Assist braucht keine andere Home-Assistant-LLM-Integration. `nlu::parse` nutzt ihn nicht.
+
+### `POST /api/v2/llm/chat`
+
+```json
+{ "messages": [{ "role": "user", "content": "…" }], "stream": true, "temperature": 0.2, "max_tokens": 2048 }
+```
+
+Write-Token nötig (wie Overlay). `stream: true` (Standard) sendet SSE `data: {"type":"delta"|"done"|"error",…}`. `stream: false` antwortet mit JSON `{"type":"done","text":"…"}`. 503 wenn kein Endpoint.
+
+### `POST /api/v2/llm/refine`
+
+```json
+{ "speech": "Wohnzimmer Licht ist an.", "language": "de", "personality": "butler", "extra_prompt": "", "stream": false }
+```
+
+Engine baut den Refine-Systemprompt (Pack + Stimme) und schickt Extra als User-Nachricht, ruft das Modell (`temperature` 0.65, `max_tokens` skaliert mit der Original-Länge, min 192, max 4096) und prüft `accept_refined`. JSON `{"type":"done","text":"…","accepted":true}`. Abgelehnt: `text` ist das Original, `accepted` false. Caps: `speech` ≤ 4096, `extra_prompt` ≤ 2048. Write-Token. 503 ohne Endpoint. Python-Prompt nicht mitschicken.
+
+### `POST /api/v2/llm/assist`
+
+```json
+{
+  "text": "erzähl einen Witz",
+  "language": "de",
+  "personality": "butler",
+  "kind": "auto",
+  "allow_tools": false,
+  "nlu_rag": false,
+  "retrieval": null,
+  "facts": null,
+  "history": [["user", "…"], ["assistant", "…"]],
+  "extra_system": null,
+  "stream": true
+}
+```
+
+Die Engine besitzt Yarn/Chat/RAG/Kalender/News-Prompts und `yarn_canned` / `yarn_nudge`. `kind`: `auto` | `yarn` | `chat` | `rag` | `calendar` | `news` | `news_follow`. `auto` nutzt `yarn_request` / RAG-Flag. `facts` sind Schlagzeilen oder Kalender-Readback aus HA. Persönlichkeit sitzt hier — `refine_prompt` nicht zusätzlich voranstellen. SSE ergänzt `{"type":"tool","tool":"klar.parse","text":"licht an"}` / `klar.act`, damit TTS nie `KLAR_PARSE:` spricht. Write-Token. 503 ohne Endpoint. Fehlende Route fällt geschlossen fehl — Home Assistant baut den Python-Prompt nicht nach.
+
+### `POST /api/v2/speech/render`
+
+Post-Execute-Snapshot aus Home Assistant. Die Engine interpoliert Pack-Templates zu einem faktischen Satz (`source: "post_execute"`). Persönlichkeit kommt später beim Assist-Finish. Assist ruft das nach Execute; fehlende Route fällt geschlossen fehl (kein Python-`from_handled`). Write-Token nötig.
+
+```json
+{
+  "schema_version": "1",
+  "language": "de",
+  "personality": "default",
+  "now": "2026-09-05T19:22:00+02:00",
+  "intent": {
+    "name": "HassTurnOn",
+    "slots": [{"name": "area", "value": "wohnzimmer"}]
+  },
+  "outcome": "success",
+  "entities": [
+    {
+      "entity_id": "light.wohnzimmer",
+      "name": "Wohnzimmer",
+      "domain": "light",
+      "state": "on",
+      "area": "wohnzimmer",
+      "area_name": "Wohnzimmer",
+      "device_class": null,
+      "attributes": {
+        "current_temperature": null,
+        "temperature_unit": null,
+        "unit_of_measurement": null,
+        "hvac_action": null,
+        "hvac_mode": null,
+        "volume_level": null,
+        "is_volume_muted": null,
+        "media_title": null,
+        "media_artist": null,
+        "media_album_name": null
+      }
+    }
+  ],
+  "calendar_events": [],
+  "media_queue": []
+}
+```
+
+Antwort: `{ "speech": "Licht im Wohnzimmer ist an.", "quiet_ack": false, "source": "post_execute" }`. `outcome` ist `success` | `partial` | `error`. `now` ist Pflicht (Uhr). Unbekannte Attribut-Keys werden verworfen. Fehlendes `schema_version` → `400`. Caps: 32 Entities, 16 Kalenderzeilen, 8 Queue-Titel, Attributwerte ≤ 256 Zeichen. Fehlendes Klima-/MASS-Attribut → Unavailable-Satz, keine Erfindung.
+
+### `POST /api/v2/policies/trainer/chat`
+
+```json
+{ "message": "Funzel als Licht-Wort", "layer": "language", "language": "de", "history": [] }
+```
+
+Die Engine lädt Trainer-Context, streamt das Modell, extrahiert JSON und hängt `proposal` plus `validate` an den Stream. Apply bleibt ein menschlicher Schreib-Call. Siehe [trainer-prompt.md](architecture/trainer-prompt.md).
 
 ### `POST /api/v2/home`
 

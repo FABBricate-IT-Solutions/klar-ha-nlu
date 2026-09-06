@@ -1,0 +1,225 @@
+.wizard-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 30;
+  display: grid;
+  place-items: center;
+  padding:
+    max(12px, env(safe-area-inset-top, 0px))
+    max(12px, env(safe-area-inset-right, 0px))
+    max(12px, env(safe-area-inset-bottom, 0px))
+    max(12px, env(safe-area-inset-left, 0px));
+}
+
+.wizard-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 29;
+  border: 0;
+  background: rgba(0, 0, 0, .55);
+}
+
+.wizard-panel {
+  position: relative;
+  z-index: 31;
+  display: grid;
+  grid-template-rows: auto auto auto auto minmax(0, 1fr) auto;
+  width: min(640px, 100%);
+  max-height: min(88dvh, 840px);
+  min-width: 0;
+  overflow: hidden;
+  padding: 24px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 0;
+  overflow-wrap: anywhere;
+}
+
+.wizard-scroll {
+  min-height: 0;
+  overflow: hidden;
+  overscroll-behavior: contain;
+  isolation: isolate;
+  scrollbar-width: none;
+}
+
+.wizard-scroll::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+}
+
+.wizard-scroll.is-scrollable {
+  overflow-y: auto;
+  scrollbar-width: thin;
+}
+
+.wizard-scroll.is-scrollable::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+.wizard-body {
+  min-width: 0;
+  padding-bottom: 4px;
+}
+
+.wizard-panel h1 {
+  overflow-wrap: anywhere;
+}
+
+.wizard-panel .search-select,
+.wizard-panel .search-select input {
+  width: 100%;
+  min-width: 0;
+}
+
+.wizard-panel input,
+.wizard-panel select,
+.wizard-panel textarea {
+  font-size: 16px;
+}
+
+.wizard-head,
+.wizard-foot {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px 12px;
+}
+
+.wizard-head { margin-bottom: 16px; }
+
+.wizard-steps {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 8px 0 12px;
+}
+
+.wizard-steps button {
+  flex: 1 1 44px;
+  width: 44px;
+  max-width: 56px;
+  min-width: 44px;
+  min-height: 44px;
+  padding: 0;
+}
+
+.wizard-foot {
+  position: relative;
+  z-index: 2;
+  margin-top: 0;
+  padding-top: 12px;
+  border-top: 1px solid var(--line);
+  background: var(--surface);
+}
+
+.wizard-foot button {
+  min-height: 44px;
+  min-width: 44px;
+}
+
+.wizard-check {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  min-height: 44px;
+  margin-top: 12px;
+}
+
+.wizard-check input {
+  flex-shrink: 0;
+  margin-top: 4px;
+}
+
+.wizard-theme {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+}
+
+.wizard-theme [data-slot="toggle-group-item"] {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+}
+
+.wizard-theme [data-slot="toggle-group-item"] svg {
+  display: block;
+  margin: auto;
+}
+
+.wizard-phrases { width: 100%; }
+
+.wizard-panel pre {
+  max-width: 100%;
+  overflow-x: auto;
+  white-space: pre-wrap;
+}
+
+@media (max-width: 640px) {
+  .wizard-overlay {
+    place-items: stretch;
+    padding: 0;
+  }
+
+  .wizard-panel {
+    width: 100%;
+    max-height: 100dvh;
+    min-height: 100dvh;
+    padding: 16px;
+    padding-top: max(16px, env(safe-area-inset-top, 0px));
+    padding-right: max(16px, env(safe-area-inset-right, 0px));
+    padding-bottom: max(16px, env(safe-area-inset-bottom, 0px));
+    padding-left: max(16px, env(safe-area-inset-left, 0px));
+    border: 0;
+  }
+
+  .wizard-panel h1 { font-size: 22px; }
+
+  .wizard-steps { gap: 6px; }
+
+  .wizard-steps button {
+    max-width: none;
+    flex: 1 1 calc((100% - 30px) / 6);
+  }
+
+  .wizard-foot { margin-top: 16px; }
+
+  .wizard-foot button { flex: 1 1 140px; }
+
+  .wizard-phrases,
+  .wizard-phrases tbody {
+    display: block;
+    width: 100%;
+  }
+
+  .wizard-phrases thead { display: none; }
+
+  .wizard-phrases tr {
+    display: block;
+    margin-top: 10px;
+    padding: 12px;
+    background: var(--surface-2);
+    border: 1px solid var(--line);
+  }
+
+  .wizard-phrases td {
+    display: block;
+    width: 100%;
+    padding: 2px 0;
+    border: 0;
+  }
+
+  .wizard-phrases td:first-child { font-weight: 600; }
+}
+
+@media (max-width: 380px) {
+  .wizard-steps button {
+    flex: 1 1 calc((100% - 12px) / 3);
+    min-width: 44px;
+  }
+}

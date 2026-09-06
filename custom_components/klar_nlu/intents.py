@@ -116,6 +116,7 @@ def get_state_has_target(item: dict[str, Any]) -> bool:
     )
 
 
+# Freeze: do not grow. Canonical fold is src/parse/normalize.rs. Area resolve vs HA registry is glue.
 def _fold_latin(text: str) -> str:
     return (
         text.replace("ä", "ae")
@@ -142,6 +143,7 @@ def _fold_marks(text: str) -> str:
     )
 
 
+# Freeze: do not grow. Canonical fold is src/parse/normalize.rs.
 def _umlaut_eq(left: str, right: str) -> bool:
     if left == right:
         return True

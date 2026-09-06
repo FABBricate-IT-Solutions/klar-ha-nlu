@@ -1,13 +1,70 @@
 import { useEffect, useState } from "react";
 import { api, download, setToken, type LanguagePack } from "../api";
-import { Drawer } from "../components/common";
-import { SearchSelect, withCurrent } from "../components/SearchSelect";
-import { dictionaries, type Messages } from "../i18n";
-import type { BundleList, Locale, Settings, Theme } from "../types";
+import { Guide } from "../components/Guide";
+import { LlmSettingsCard } from "../components/LlmSettingsCard";
+import { SettingsBackupCard } from "../components/SettingsBackupCard";
+import {
+  SettingsEngineSection,
+  SettingsJournalSection,
+  SettingsLanguagesSection,
+  SettingsVoiceSection,
+} from "../components/SettingsSections";
+import { type Messages } from "../i18n";
+import { settingsViews } from "../routes";
+import type { BundleList, Locale, Settings, SettingsView, Theme } from "../types";
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+} from "@/components/ui/alert-dialog";
+import { Button } from "@/components/ui/button";
 
 function readTheme(theme?: Theme): Theme {
   if (theme === "light" || theme === "dark") return theme;
   return document.documentElement.dataset.theme === "light" ? "light" : "dark";
+}
+
+function settingsLabel(t: Messages, view: SettingsView): string {
+  switch (view) {
+    case "llm":
+      return t.settingsNavLlm;
+    case "voice":
+      return t.settingsNavVoice;
+    case "languages":
+      return t.settingsNavLanguages;
+    case "engine":
+      return t.settingsNavEngine;
+    case "backup":
+      return t.settingsNavBackup;
+    default: {
+      const _never: never = view;
+      return _never;
+    }
+  }
+}
+
+function settingsHint(t: Messages, view: SettingsView): string {
+  switch (view) {
+    case "llm":
+      return t.llmHint;
+    case "voice":
+      return t.voiceHint;
+    case "languages":
+      return t.assistLanguagesHint;
+    case "engine":
+      return t.missHint;
+    case "backup":
+      return t.journalHint;
+    default: {
+      const _never: never = view;
+      return _never;
+    }
+  }
 }
 
 export function SettingsPage({
@@ -19,6 +76,8 @@ export function SettingsPage({
   onReplayWizard,
   theme,
   onTheme,
+  settingsView,
+  onSettingsView,
 }: {
   t: Messages;
   locale: Locale;
@@ -28,27 +87,25 @@ export function SettingsPage({
   onReplayWizard?: () => void;
   theme?: Theme;
   onTheme?: (theme: Theme) => void;
+  settingsView: SettingsView;
+  onSettingsView: (view: SettingsView) => void;
 }) {
-  const de = document.documentElement.lang.startsWith("de");
   const [bundle, setBundle] = useState<BundleList | null>(null);
   const [confirmClear, setConfirmClear] = useState(false);
   const [token, setTokenValue] = useState(localStorage.getItem("klar_token") || "");
   const [picked, setPicked] = useState<Theme>(() => readTheme(theme));
   const [packs, setPacks] = useState<LanguagePack[]>([]);
+  const [llmEpoch, setLlmEpoch] = useState(0);
+  const [llmReady, setLlmReady] = useState(false);
+  const view = settingsView;
   const refresh = () => api.bundle().then(setBundle).catch(() => undefined);
   useEffect(() => {
     refresh();
   }, []);
   useEffect(() => {
     api.languages().then(setPacks).catch(() => undefined);
+    api.llmEndpoint().then((next) => setLlmReady(Boolean(next.configured))).catch(() => undefined);
   }, []);
-  const chromeCodes = new Set(Object.keys(dictionaries));
-  const localeOptions = (packs.length ? packs.filter((pack) => chromeCodes.has(pack.code)) : [...chromeCodes].map((code) => ({
-    code,
-    native_name: code,
-    script: "",
-    variants: [code],
-  }))).map((pack) => ({ value: pack.code, label: `${pack.native_name} (${pack.code})` }));
   useEffect(() => {
     if (theme === "light" || theme === "dark") setPicked(theme);
   }, [theme]);
@@ -65,91 +122,94 @@ export function SettingsPage({
   const setTheme = (next: Theme) => {
     setPicked(next);
     document.documentElement.dataset.theme = next;
+    document.documentElement.classList.toggle("dark", next !== "light");
+    try {
+      localStorage.setItem("klar_theme", next);
+    } catch {
+      /* private mode */
+    }
     onTheme?.(next);
   };
   return (
-    <div className="page">
+    <div className="page flex min-w-0 flex-col gap-6 overflow-x-hidden">
       <section className="hero">
-        <div><h1>{t.settings}</h1><p className="muted">{t.engineHint}</p></div>
-        <div className="row">
-          <button className="ghost" onClick={() => onReplayWizard?.()}>
-            {de ? "Setup erneut" : "Replay setup"}
+        <div>
+          <h1>{t.settings}</h1>
+          <p className="muted">{t.engineHint}</p>
+        </div>
+        <div className="flex flex-wrap gap-2">
+          <Button variant="ghost" type="button" onClick={() => onReplayWizard?.()}>
+            {t.setupReplay}
+          </Button>
+          <Button type="button" onClick={() => void save()}>{t.save}</Button>
+        </div>
+      </section>
+      <nav className="subnav" aria-label={t.settings}>
+        {settingsViews.map((item) => (
+          <button
+            key={item}
+            type="button"
+            className={view === item ? "active" : ""}
+            aria-current={view === item ? "page" : undefined}
+            onClick={() => onSettingsView(item)}
+          >
+            {settingsLabel(t, item)}
           </button>
-          <button className="primary" onClick={() => save()}>{t.save}</button>
-        </div>
-      </section>
-      <section className="grid two">
-        <div className="card">
-          <p className="caption">{t.personalityHa}</p>
-          <label>{de ? "Darstellung" : "Appearance"}</label>
-          <div className="row" role="group" aria-label={de ? "Darstellung" : "Appearance"}>
-            <button type="button" className={picked === "dark" ? "primary" : "secondary"} aria-pressed={picked === "dark"} onClick={() => setTheme("dark")}>
-              {de ? "Dunkel" : "Dark"}
-            </button>
-            <button type="button" className={picked === "light" ? "primary" : "secondary"} aria-pressed={picked === "light"} onClick={() => setTheme("light")}>
-              {de ? "Hell" : "Light"}
-            </button>
-          </div>
-          <label>{t.mode}</label>
-          <select value={settings.mode} onChange={(ev) => onSettings({ ...settings, mode: ev.target.value as Settings["mode"] })}>
-            <option value="full">{t.modeFull}</option>
-            <option value="context_only">{t.modeContext}</option>
-          </select>
-          <label>{t.operatorLanguage}</label>
-          <SearchSelect
-            value={locale}
-            options={withCurrent(localeOptions, locale)}
-            onChange={onLocale}
-            allowEmpty={false}
-            placeholder={t.languageSearch}
+        ))}
+      </nav>
+      <Guide title={t.settingsGuide} steps={[{ id: view, label: settingsLabel(t, view), hint: settingsHint(t, view) }]} />
+      <p className="caption" style={{ marginTop: -8 }}>{t.haGlueHint}</p>
+      {view === "llm" ? <LlmSettingsCard key={llmEpoch} t={t} /> : null}
+      {view === "voice" ? (
+        <SettingsVoiceSection t={t} settings={settings} onSettings={onSettings} locale={locale} llmReady={llmReady} />
+      ) : null}
+      {view === "languages" ? (
+        <SettingsLanguagesSection
+          t={t}
+          locale={locale}
+          onLocale={onLocale}
+          settings={settings}
+          onSettings={onSettings}
+          packs={packs}
+        />
+      ) : null}
+      {view === "engine" ? (
+        <SettingsEngineSection
+          t={t}
+          settings={settings}
+          onSettings={onSettings}
+          token={token}
+          onToken={setTokenValue}
+          theme={picked}
+          onTheme={setTheme}
+        />
+      ) : null}
+      {view === "backup" ? (
+        <div className="flex min-w-0 flex-col gap-4">
+          <SettingsBackupCard t={t} onSettings={onSettings} onRestored={() => setLlmEpoch((epoch) => epoch + 1)} />
+          <SettingsJournalSection
+            t={t}
+            settings={settings}
+            bundle={bundle}
+            onToggle={(next) => void save(next)}
+            onDownloadDataset={() => download("/api/bundle/dataset", "klar-assist-dataset.yaml")}
+            onDownloadProtocol={() => download("/api/bundle/protocol", "klar-support-bundle.jsonl")}
+            onClear={() => setConfirmClear(true)}
           />
-          <p className="caption">{t.operatorLanguageHint}</p>
-          <label>{t.languages}</label>
-          <p className="caption">{t.languageHint}</p>
-          <label className="row">
-            <input type="checkbox" checked={settings.confirm_risky_actions} onChange={(ev) => onSettings({ ...settings, confirm_risky_actions: ev.target.checked })} style={{ width: "auto" }} />
-            {t.confirmRisky}
-          </label>
-          <label className="row">
-            <input type="checkbox" checked={settings.nlu_rag} onChange={(ev) => onSettings({ ...settings, nlu_rag: ev.target.checked })} style={{ width: "auto" }} />
-            {t.nluRag}
-          </label>
-          <p className="caption">{t.nluRagHint}</p>
-          <label>{t.token}</label>
-          <input type="password" value={token} onChange={(ev) => setTokenValue(ev.target.value)} />
         </div>
-        <div className="card">
-          <h2>{t.supportBundle}</h2>
-          <label className="row">
-            <input type="checkbox" checked={settings.support_bundle} onChange={(ev) => save({ ...settings, support_bundle: ev.target.checked })} style={{ width: "auto" }} />
-            {t.recordProtocol}
-          </label>
-          <label className="row">
-            <input type="checkbox" checked={settings.support_bundle_raw_text} onChange={(ev) => save({ ...settings, support_bundle_raw_text: ev.target.checked })} style={{ width: "auto" }} />
-            {t.includeRawText}
-          </label>
-          <label className="row">
-            <input type="checkbox" checked={settings.semantic_adapters} onChange={(ev) => save({ ...settings, semantic_adapters: ev.target.checked })} style={{ width: "auto" }} />
-            {t.semanticAdapters}
-          </label>
-          <h2 style={{ marginTop: 20 }}>{t.journal}</h2>
-          <p className="muted">{t.journalHint}</p>
-          <p className="muted">{bundle ? `${bundle.count} ${t.recordings}` : "..."}</p>
-          <div className="row">
-            <button className="secondary" onClick={() => download("/api/bundle/dataset", "klar-assist-dataset.yaml")}>{t.downloadDataset}</button>
-            <button className="secondary" onClick={() => download("/api/bundle/protocol", "klar-support-bundle.jsonl")}>{t.downloadProtocol}</button>
-            <button className="ghost danger" onClick={() => setConfirmClear(true)}>{t.clearAll}</button>
-          </div>
-        </div>
-      </section>
-      {confirmClear && (
-        <Drawer title={t.clearAll} onClose={() => setConfirmClear(false)} closeLabel={t.close}>
-          <div className="row">
-            <button className="primary" onClick={clear}>{t.clearAll}</button>
-            <button className="secondary" onClick={() => setConfirmClear(false)}>{t.cancel}</button>
-          </div>
-        </Drawer>
-      )}
+      ) : null}
+      <AlertDialog open={confirmClear} onOpenChange={setConfirmClear}>
+        <AlertDialogContent>
+          <AlertDialogHeader>
+            <AlertDialogTitle>{t.clearAll}</AlertDialogTitle>
+            <AlertDialogDescription>{t.journalHint}</AlertDialogDescription>
+          </AlertDialogHeader>
+          <AlertDialogFooter>
+            <AlertDialogCancel>{t.cancel}</AlertDialogCancel>
+            <AlertDialogAction onClick={() => void clear()}>{t.clearAll}</AlertDialogAction>
+          </AlertDialogFooter>
+        </AlertDialogContent>
+      </AlertDialog>
     </div>
   );
 }

@@ -8,6 +8,7 @@ import importlib.util
 import sys
 import types
 import unittest
+from collections.abc import AsyncIterator
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[2]
@@ -33,7 +34,6 @@ def _load(name: str, rel: str):
 
 _load("klar_nlu.languages", "languages.py")
 _load("klar_nlu.const", "const.py")
-_load("refine_voices", "refine_voices.py")
 refine = _load("klar_refine", "refine.py")
 stream = _load("klar_stream", "stream.py")
 
@@ -53,38 +53,6 @@ class _Chunk:
         self.choices = [_Choice(text)]
 
 
-class _Stream:
-    def __init__(self, parts: list[str]) -> None:
-        self._parts = parts
-
-    def __aiter__(self):
-        async def gen():
-            for part in self._parts:
-                yield _Chunk(part)
-
-        return gen()
-
-
-class _Client:
-    def __init__(self, parts: list[str]) -> None:
-        self.parts = parts
-        self.kwargs: dict = {}
-
-        class Completions:
-            def __init__(self, outer: _Client) -> None:
-                self._outer = outer
-
-            async def create(self, **kwargs):
-                self._outer.kwargs = kwargs
-                return _Stream(self._outer.parts)
-
-        class Chat:
-            def __init__(self, outer: _Client) -> None:
-                self.completions = Completions(outer)
-
-        self.chat = Chat(self)
-
-
 class _Log:
     def __init__(self) -> None:
         self.content = [types.SimpleNamespace(role="user", content="hi")]
@@ -99,6 +67,28 @@ class _Log:
                 yield None
 
         return gen()
+
+
+async def _tokens(parts: list[str]) -> AsyncIterator[str]:
+    for part in parts:
+        yield part
+
+
+def _pipe(parts: list[str], log: object, hold=None) -> tuple[str, bool]:
+    collected: list[str] = []
+
+    async def go() -> tuple[str, bool]:
+        posted = await stream.emit_delta_stream(
+            log,
+            "conversation.klar_nlu",
+            stream.iter_token_deltas(_tokens(parts), collected, hold),
+        )
+        speech = "".join(collected)
+        if hold is not None and hold(speech) is not True:
+            return speech, False
+        return speech, posted
+
+    return asyncio.run(go())
 
 
 class StreamTests(unittest.TestCase):
@@ -119,10 +109,7 @@ class StreamTests(unittest.TestCase):
 
     def test_token_deltas_hit_chat_log_immediately(self) -> None:
         log = _Log()
-        client = _Client(["Natür", "lich, Sir. ", "Licht ist an."])
-        speech, published = asyncio.run(
-            stream.stream_chat(client, "Gemma-4-E4B-it-GGUF", "hi", "sys", log, "conversation.klar_nlu")
-        )
+        speech, published = _pipe(["Natür", "lich, Sir. ", "Licht ist an."], log)
         self.assertTrue(published)
         self.assertEqual(speech, "Natürlich, Sir. Licht ist an.")
         self.assertEqual(log.deltas[0], {"role": "assistant"})
@@ -130,7 +117,6 @@ class StreamTests(unittest.TestCase):
             [item.get("content") for item in log.deltas if item.get("content")],
             ["Natür", "lich, Sir. ", "Licht ist an."],
         )
-        self.assertTrue(client.kwargs.get("stream"))
 
     def test_emit_awaits_coroutine_streamer(self) -> None:
         log = types.SimpleNamespace(content=[], deltas=[])
@@ -141,9 +127,7 @@ class StreamTests(unittest.TestCase):
                 log.deltas.append(delta)
 
         log.async_add_delta_content_stream = streamer
-        speech, published = asyncio.run(
-            stream.stream_chat(_Client(["Hi"]), "Gemma-4-E4B-it-GGUF", "hi", "sys", log, "conversation.klar_nlu")
-        )
+        speech, published = _pipe(["Hi"], log)
         self.assertTrue(published)
         self.assertEqual(speech, "Hi")
         self.assertEqual(log.deltas, [{"role": "assistant"}, {"content": "Hi"}])
@@ -156,17 +140,7 @@ class StreamTests(unittest.TestCase):
                 return None
             return True
 
-        speech, published = asyncio.run(
-            stream.stream_chat(
-                _Client(["KLAR_PARSE: Licht an"]),
-                "Gemma-4-E4B-it-GGUF",
-                "hi",
-                "sys",
-                log,
-                "conversation.klar_nlu",
-                hold=hold,
-            )
-        )
+        speech, published = _pipe(["KLAR_PARSE: Licht an"], log, hold=hold)
         self.assertEqual(speech, "KLAR_PARSE: Licht an")
         self.assertFalse(published)
         self.assertEqual(log.deltas, [])
@@ -174,7 +148,8 @@ class StreamTests(unittest.TestCase):
     def test_conversation_enables_ha_streaming(self) -> None:
         src = (PKG / "conversation.py").read_text(encoding="utf-8")
         self.assertIn("_attr_supports_streaming = True", src)
-        self.assertIn("stream_chat", src)
+        self.assertIn("stream_engine_assist", src)
+        self.assertNotIn("stream_chat", src)
         self.assertIn("klar_published", src)
         self.assertIn("_was_published", src)
         self.assertNotIn("result.klar_published", src)

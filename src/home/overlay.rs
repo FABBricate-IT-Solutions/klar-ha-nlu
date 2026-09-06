@@ -1,6 +1,6 @@
 use super::paths::{confined_file, read_to_string_confined, write_atomic_confined};
 use crate::lang::{LanguageOverlay, LanguageRevision};
-use crate::types::{CustomSentence, HomeGraph, PolicyRule, Settings, SpeechBank};
+use crate::types::{CustomSentence, HomeGraph, MatchControl, PolicyRule, Settings, SpeechBank};
 use serde::{Deserialize, Serialize};
 use std::collections::HashMap;
 use std::path::{Path, PathBuf};
@@ -39,6 +39,8 @@ pub struct UiState {
     pub house_view: String,
     #[serde(default = "default_rules_view")]
     pub rules_view: String,
+    #[serde(default = "default_settings_view")]
+    pub settings_view: String,
     #[serde(default = "default_theme")]
     pub theme: String,
 }
@@ -55,6 +57,7 @@ impl Default for UiState {
             wizard_done: false,
             house_view: default_house_view(),
             rules_view: default_rules_view(),
+            settings_view: default_settings_view(),
             theme: default_theme(),
         }
     }
@@ -74,6 +77,10 @@ fn default_house_view() -> String {
 
 fn default_rules_view() -> String {
     "routines".into()
+}
+
+fn default_settings_view() -> String {
+    "llm".into()
 }
 
 fn default_theme() -> String {
@@ -112,6 +119,8 @@ pub struct Overlay {
     pub policies: Vec<PolicyRule>,
     #[serde(default)]
     pub speech_bank: SpeechBank,
+    #[serde(default, skip_serializing_if = "Vec::is_empty")]
+    pub match_controls: Vec<MatchControl>,
 }
 
 const OVERLAY_FILE: &str = "klar_nlu.json";
@@ -233,6 +242,7 @@ mod tests {
                 wizard_done: true,
                 house_view: "entities".into(),
                 rules_view: "policies".into(),
+                settings_view: "voice".into(),
                 theme: "light".into(),
             },
             ..Default::default()
@@ -248,6 +258,7 @@ mod tests {
         assert!(loaded.ui.wizard_done);
         assert_eq!(loaded.ui.house_view, "entities");
         assert_eq!(loaded.ui.rules_view, "policies");
+        assert_eq!(loaded.ui.settings_view, "voice");
         assert_eq!(loaded.ui.theme, "light");
         let _ = std::fs::remove_dir_all(&dir);
     }
@@ -258,6 +269,7 @@ mod tests {
         assert!(!ui.wizard_done);
         assert_eq!(ui.house_view, "calibrate");
         assert_eq!(ui.rules_view, "routines");
+        assert_eq!(ui.settings_view, "llm");
         assert_eq!(ui.theme, "dark");
         assert_eq!(ui.locale, "");
         assert!(!ui.locale_set);
@@ -317,5 +329,24 @@ mod tests {
         apply_overlay(&mut home, &Overlay { nlu_ignore: vec!["switch.create_calendar_event".into()], ..Default::default() });
         assert!(home.entities[0].tags.iter().any(|tag| tag == "nlu_ignore"));
         assert!(crate::home::policy::is_nlu_ignored(&home.entities[0]));
+    }
+
+    #[test]
+    fn match_controls_survive_roundtrip() {
+        let dir = std::env::temp_dir().join(format!("klar-overlay-match-{}", std::process::id()));
+        let _ = std::fs::create_dir_all(&dir);
+        let overlay = Overlay {
+            match_controls: vec![MatchControl { id: "media".into(), enabled: false, precedence: Some(3) }],
+            ..Default::default()
+        };
+        save_overlay(&dir, &overlay).unwrap();
+        let loaded = load_overlay(&dir);
+        assert_eq!(loaded.match_controls.len(), 1);
+        assert_eq!(loaded.match_controls[0].id, "media");
+        assert!(!loaded.match_controls[0].enabled);
+        assert_eq!(loaded.match_controls[0].precedence, Some(3));
+        let empty: Overlay = serde_json::from_str("{}").unwrap();
+        assert!(empty.match_controls.is_empty());
+        let _ = std::fs::remove_dir_all(&dir);
     }
 }
