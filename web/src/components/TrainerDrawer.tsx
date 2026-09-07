@@ -1,11 +1,18 @@
 import { useEffect, useRef, useState } from "react";
-import { Loader2Icon } from "lucide-react";
+import { ArrowUpIcon, Loader2Icon, MoreHorizontalIcon, XIcon } from "lucide-react";
 import { api } from "../api";
 import type { PolicyLane } from "./PolicyPath";
 import type { Messages } from "../i18n";
 import type { LlmPublic, TrainerChatEvent, TrainerConsent, TrainerTurn, TrainerValidateOut } from "../types";
 import { LotseAnswer, lotseFallbackChips, lotseQuickChips, lotseReplyChoices, unansweredAssistant, visibleLotseText } from "./LotseAnswer";
 import { TrainerToolCard } from "./TrainerToolCard";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 
 type ThreadLine =
   | { role: "user" | "assistant"; content: string }
@@ -115,6 +122,17 @@ function laneLabel(t: Messages, lane: PolicyLane): string {
   }
 }
 
+function asLane(value: string): PolicyLane {
+  switch (value) {
+    case "match":
+    case "language":
+    case "house":
+      return value;
+    default:
+      return "house";
+  }
+}
+
 function applyEvent(
   event: TrainerChatEvent,
   setLines: (fn: (prev: ThreadLine[]) => ThreadLine[]) => void,
@@ -184,6 +202,40 @@ function applyEvent(
 
 const LANES: PolicyLane[] = ["match", "language", "house"];
 
+function fitDraft(node: HTMLTextAreaElement) {
+  node.style.height = "0";
+  node.style.height = `${Math.min(node.scrollHeight, 128)}px`;
+}
+
+function TrainerMore({
+  t,
+  model,
+  canClear,
+  yolo,
+  onClear,
+  onAskAgain,
+}: {
+  t: Messages;
+  model: string;
+  canClear: boolean;
+  yolo: boolean;
+  onClear: () => void;
+  onAskAgain: () => void;
+}) {
+  return (
+    <DropdownMenu>
+      <DropdownMenuTrigger className="ghost trainer-icon trainer-more" aria-label={t.trainerMore} title={t.trainerMore}>
+        <MoreHorizontalIcon />
+      </DropdownMenuTrigger>
+      <DropdownMenuContent align="end" className="min-w-44">
+        <DropdownMenuLabel>{model}</DropdownMenuLabel>
+        {canClear ? <DropdownMenuItem onClick={onClear}>{t.trainerClear}</DropdownMenuItem> : null}
+        {yolo ? <DropdownMenuItem onClick={onAskAgain}>{t.trainerYolo} · {t.trainerAskAgain}</DropdownMenuItem> : null}
+      </DropdownMenuContent>
+    </DropdownMenu>
+  );
+}
+
 export function TrainerDrawer({
   t,
   lane,
@@ -211,6 +263,7 @@ export function TrainerDrawer({
   const [yolo, setYolo] = useState(false);
   const [consumedFor, setConsumedFor] = useState("");
   const endRef = useRef<HTMLDivElement>(null);
+  const draftRef = useRef<HTMLTextAreaElement>(null);
   const abortRef = useRef<AbortController | null>(null);
   const genRef = useRef(0);
 
@@ -268,6 +321,9 @@ export function TrainerDrawer({
     const offered = open.length > 0 ? open : lotseFallbackChips(openText, t);
     setConsumedFor(offered.includes(message) ? openText : "");
     setDraft("");
+    if (draftRef.current) {
+      draftRef.current.style.height = "";
+    }
     const history = chatHistory(lines);
     const gen = genRef.current;
     abortRef.current?.abort();
@@ -315,19 +371,31 @@ export function TrainerDrawer({
     }
   };
 
+  const chatting = lines.length > 0 || busy;
+  const modelName = shortModel(endpoint?.model);
+
   if (!endpoint?.configured) {
     const waiting = !endpoint && !endpointError;
     const needLlm = Boolean(endpoint && !endpoint.configured && !endpointError);
     return (
-      <section className="trainer">
+      <section className="trainer" data-chatting="false">
         <header className="trainer-head">
-          <div>
-            <p className="trainer-kicker">{t.trainer}</p>
-            <p className="muted">{waiting ? t.trainerStreaming : needLlm ? t.trainerNeedLlm : t.trainerFail}</p>
+          <div className="trainer-bar">
+            {onClose ? (
+              <button className="ghost trainer-icon trainer-close-icon" type="button" onClick={onClose} aria-label={t.close}>
+                <XIcon />
+              </button>
+            ) : null}
+            <div className="trainer-copy">
+              <p className="trainer-kicker">{t.trainer}</p>
+            </div>
+            <div className="trainer-meta">
+              {onClose ? (
+                <button className="ghost trainer-close-label" type="button" onClick={onClose}>{t.close}</button>
+              ) : null}
+            </div>
           </div>
-          {onClose ? (
-            <button className="ghost" type="button" onClick={onClose}>{t.close}</button>
-          ) : null}
+          <p className="muted trainer-hint">{waiting ? t.trainerStreaming : needLlm ? t.trainerNeedLlm : t.trainerFail}</p>
         </header>
         {waiting ? null : (
           <div className="trainer-composer">
@@ -345,59 +413,81 @@ export function TrainerDrawer({
   }
 
   return (
-    <section className="trainer" aria-label={t.trainer}>
+    <section className="trainer" aria-label={t.trainer} data-chatting={chatting ? "true" : "false"}>
       <header className="trainer-head">
-        <div>
-          <p className="trainer-kicker">{t.trainer}</p>
-          {onLane ? (
-            <nav className="trainer-lanes" aria-label={t.laneTabs}>
-              {LANES.map((id) => (
-                <button
-                  key={id}
-                  type="button"
-                  aria-pressed={lane === id}
-                  onClick={() => onLane(id)}
-                >
-                  {laneLabel(t, id)}
-                </button>
-              ))}
-            </nav>
-          ) : (
-            <h2>{t.trainerForLane}</h2>
-          )}
-          <p className="muted">{t.trainerHint}</p>
-        </div>
-        <div className="trainer-meta">
-          <span className="chip trainer-model" title={endpoint.model || "LLM"}>{shortModel(endpoint.model)}</span>
-          {lines.length > 0 ? (
-            <button className="ghost" type="button" onClick={resetThread}>
-              {t.trainerClear}
-            </button>
-          ) : null}
-          {yolo ? (
-            <button className="chip on" type="button" onClick={() => void decide("ask_again")}>
-              {t.trainerYolo} · {t.trainerAskAgain}
-            </button>
-          ) : null}
+        <div className="trainer-bar">
           {onClose ? (
-            <button className="ghost" type="button" onClick={onClose}>{t.close}</button>
+            <button className="ghost trainer-icon trainer-close-icon" type="button" onClick={onClose} aria-label={t.close}>
+              <XIcon />
+            </button>
           ) : null}
+          <div className="trainer-copy">
+            <p className="trainer-kicker">{t.trainer}</p>
+            {onLane ? (
+              <>
+                <nav className="trainer-lanes" aria-label={t.laneTabs}>
+                  {LANES.map((id) => (
+                    <button
+                      key={id}
+                      type="button"
+                      aria-pressed={lane === id}
+                      onClick={() => onLane(id)}
+                    >
+                      {laneLabel(t, id)}
+                    </button>
+                  ))}
+                </nav>
+                <label className="trainer-lane-pick">
+                  <span className="visually-hidden">{t.laneTabs}</span>
+                  <select value={lane} onChange={(event) => onLane(asLane(event.target.value))}>
+                    {LANES.map((id) => (
+                      <option key={id} value={id}>{laneLabel(t, id)}</option>
+                    ))}
+                  </select>
+                </label>
+              </>
+            ) : (
+              <h2>{t.trainerForLane}</h2>
+            )}
+          </div>
+          <div className="trainer-meta">
+            <span className="chip trainer-model" title={endpoint.model || "LLM"}>{modelName}</span>
+            {lines.length > 0 ? (
+              <button className="ghost trainer-clear-label" type="button" onClick={resetThread}>
+                {t.trainerClear}
+              </button>
+            ) : null}
+            {yolo ? (
+              <button className="chip on trainer-yolo-label" type="button" onClick={() => void decide("ask_again")}>
+                {t.trainerYolo} · {t.trainerAskAgain}
+              </button>
+            ) : null}
+            {onClose ? (
+              <button className="ghost trainer-close-label" type="button" onClick={onClose}>{t.close}</button>
+            ) : null}
+            <TrainerMore
+              t={t}
+              model={modelName}
+              canClear={lines.length > 0}
+              yolo={yolo}
+              onClear={resetThread}
+              onAskAgain={() => void decide("ask_again")}
+            />
+          </div>
         </div>
+        {chatting ? null : <p className="muted trainer-hint">{t.trainerHint}</p>}
       </header>
       <div className="trainer-thread">
         {lines.length === 0 && !busy ? (
           <div className="trainer-empty">
             <p>{t.trainerEmpty}</p>
-            <p className="muted">{t.trainerEmptyHint}</p>
+            <p className="muted trainer-empty-hint">{t.trainerEmptyHint}</p>
             <div className="trainer-prompts">
-              <button className="guide-step" type="button" onClick={() => void send(prompts[0])}>
-                <span className="guide-num" aria-hidden="true">1</span>
-                <span className="guide-copy"><strong>{prompts[0]}</strong></span>
-              </button>
-              <button className="guide-step" type="button" onClick={() => void send(prompts[1])}>
-                <span className="guide-num" aria-hidden="true">2</span>
-                <span className="guide-copy"><strong>{prompts[1]}</strong></span>
-              </button>
+              {prompts.map((prompt) => (
+                <button className="trainer-chip" type="button" key={prompt} onClick={() => void send(prompt)}>
+                  {prompt}
+                </button>
+              ))}
             </div>
           </div>
         ) : null}
@@ -420,7 +510,7 @@ export function TrainerDrawer({
             <p className="trainer-kicker">{t.trainerPermit}</p>
             <p className="mono">{consent.tool}</p>
             <p>{consent.summary}</p>
-            <div className="row">
+            <div className="row trainer-consent-actions">
               <button className="primary" type="button" onClick={() => void decide("allow")}>{t.trainerAllow}</button>
               <button className="secondary" type="button" onClick={() => void decide("allow_once")}>{t.trainerAllowOnce}</button>
               <button className="ghost" type="button" onClick={() => void decide("deny")}>{t.trainerDeny}</button>
@@ -455,11 +545,15 @@ export function TrainerDrawer({
         <label className="visually-hidden" htmlFor="trainer-draft">{t.trainerComposer}</label>
         <textarea
           id="trainer-draft"
+          ref={draftRef}
           value={draft}
           disabled={busy && !consent}
           placeholder={t.trainerComposer}
-          rows={2}
-          onChange={(ev) => setDraft(ev.target.value)}
+          rows={1}
+          onChange={(ev) => {
+            setDraft(ev.target.value);
+            fitDraft(ev.currentTarget);
+          }}
           onKeyDown={(ev) => {
             if (ev.key === "Enter" && !ev.shiftKey) {
               ev.preventDefault();
@@ -467,9 +561,9 @@ export function TrainerDrawer({
             }
           }}
         />
-        <button className="primary" type="submit" disabled={(busy && !consent) || !draft.trim()}>
-          {busy && !consent ? <Loader2Icon data-icon="inline-start" className="animate-spin" /> : null}
-          {busy && !consent ? t.trainerStreaming : t.trainerSend}
+        <button className="primary trainer-send" type="submit" disabled={(busy && !consent) || !draft.trim()}>
+          {busy && !consent ? <Loader2Icon className="animate-spin" /> : <ArrowUpIcon />}
+          <span className="trainer-send-label">{busy && !consent ? t.trainerStreaming : t.trainerSend}</span>
         </button>
       </form>
       {result ? (
