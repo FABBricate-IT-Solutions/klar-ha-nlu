@@ -227,7 +227,7 @@ function TrainerMore({
       <DropdownMenuTrigger className="ghost trainer-icon trainer-more" aria-label={t.trainerMore} title={t.trainerMore}>
         <MoreHorizontalIcon />
       </DropdownMenuTrigger>
-      <DropdownMenuContent align="end" className="min-w-44">
+      <DropdownMenuContent align="end" className="w-56 min-w-44">
         <DropdownMenuLabel>{model}</DropdownMenuLabel>
         {canClear ? <DropdownMenuItem onClick={onClear}>{t.trainerClear}</DropdownMenuItem> : null}
         {yolo ? <DropdownMenuItem onClick={onAskAgain}>{t.trainerYolo} · {t.trainerAskAgain}</DropdownMenuItem> : null}
