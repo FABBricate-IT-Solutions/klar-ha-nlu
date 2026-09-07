@@ -89,16 +89,19 @@ export function TrainerDock({
   useEffect(() => {
     if (!open) return;
     const root = document.documentElement;
+    const view = window.visualViewport;
+    let baseline = Math.max(window.innerHeight, view?.height ?? 0);
     const apply = () => {
-      const view = window.visualViewport;
       const height = view?.height ?? window.innerHeight;
       const offset = view?.offsetTop ?? 0;
+      if (height > baseline) {
+        baseline = height;
+      }
       root.style.setProperty("--trainer-vvh", `${Math.round(height)}px`);
       root.style.setProperty("--trainer-vv-top", `${Math.round(offset)}px`);
-      root.dataset.trainerKeyboard = height < window.innerHeight - KEYBOARD_GAP ? "open" : "closed";
+      root.dataset.trainerKeyboard = baseline - height > KEYBOARD_GAP || offset > 16 ? "open" : "closed";
     };
     apply();
-    const view = window.visualViewport;
     view?.addEventListener("resize", apply);
     view?.addEventListener("scroll", apply);
     window.addEventListener("resize", apply);

@@ -639,6 +639,7 @@ button.guide-step {
 
   .trainer-prompts,
   .trainer-quick {
+    display: flex;
     flex-wrap: nowrap;
     overflow-x: auto;
     padding: 8px 12px 0;
