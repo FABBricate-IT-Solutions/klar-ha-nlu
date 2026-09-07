@@ -381,17 +381,14 @@ export function TrainerDrawer({
       <section className="trainer" data-chatting="false">
         <header className="trainer-head">
           <div className="trainer-bar">
-            {onClose ? (
-              <button className="ghost trainer-icon trainer-close-icon" type="button" onClick={onClose} aria-label={t.close}>
-                <XIcon />
-              </button>
-            ) : null}
             <div className="trainer-copy">
               <p className="trainer-kicker">{t.trainer}</p>
             </div>
             <div className="trainer-meta">
               {onClose ? (
-                <button className="ghost trainer-close-label" type="button" onClick={onClose}>{t.close}</button>
+                <button className="ghost trainer-close-icon" type="button" onClick={onClose} aria-label={t.close}>
+                  <XIcon />
+                </button>
               ) : null}
             </div>
           </div>
@@ -416,11 +413,6 @@ export function TrainerDrawer({
     <section className="trainer" aria-label={t.trainer} data-chatting={chatting ? "true" : "false"}>
       <header className="trainer-head">
         <div className="trainer-bar">
-          {onClose ? (
-            <button className="ghost trainer-icon trainer-close-icon" type="button" onClick={onClose} aria-label={t.close}>
-              <XIcon />
-            </button>
-          ) : null}
           <div className="trainer-copy">
             <p className="trainer-kicker">{t.trainer}</p>
             {onLane ? (
@@ -462,9 +454,6 @@ export function TrainerDrawer({
                 {t.trainerYolo} · {t.trainerAskAgain}
               </button>
             ) : null}
-            {onClose ? (
-              <button className="ghost trainer-close-label" type="button" onClick={onClose}>{t.close}</button>
-            ) : null}
             <TrainerMore
               t={t}
               model={modelName}
@@ -473,6 +462,11 @@ export function TrainerDrawer({
               onClear={resetThread}
               onAskAgain={() => void decide("ask_again")}
             />
+            {onClose ? (
+              <button className="ghost trainer-close-icon" type="button" onClick={onClose} aria-label={t.close}>
+                <XIcon />
+              </button>
+            ) : null}
           </div>
         </div>
         {chatting ? null : <p className="muted trainer-hint">{t.trainerHint}</p>}

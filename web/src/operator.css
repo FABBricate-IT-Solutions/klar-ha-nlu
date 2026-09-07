@@ -248,19 +248,27 @@ button.guide-step {
   margin: 0;
 }
 
-.trainer-icon {
-  display: none;
-  width: 44px;
-  min-width: 44px;
-  height: 44px;
+.trainer-icon,
+.trainer-close-icon {
+  display: inline-flex;
+  width: 36px;
+  min-width: 36px;
+  height: 36px;
   padding: 0;
   align-items: center;
   justify-content: center;
 }
 
+.trainer-icon {
+  display: none;
+}
+
 .trainer-lane-pick,
-.trainer-close-icon,
 .trainer-more {
+  display: none;
+}
+
+.trainer-close-label {
   display: none;
 }
 
@@ -732,6 +740,9 @@ button.guide-step {
   .trainer-close-icon,
   .trainer-more {
     display: inline-flex;
+    width: 44px;
+    min-width: 44px;
+    height: 44px;
   }
 
   .trainer-lane-pick {
