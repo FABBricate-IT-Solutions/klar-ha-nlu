@@ -465,8 +465,158 @@ button.guide-step {
 }
 
 @media (min-width: 961px) {
-  .trainer-view:not([open]) > .trainer-view-card {
-    display: block !important;
+  .trainer-head {
+    padding: 8px 12px 8px 16px;
+    gap: 0;
+  }
+
+  .trainer-bar {
+    flex-wrap: nowrap;
+    min-height: 44px;
+    gap: 8px;
+  }
+
+  .trainer-copy {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    min-width: 0;
+  }
+
+  .trainer-lanes {
+    flex-wrap: nowrap;
+    margin: 0;
+    gap: 4px;
+  }
+
+  .trainer-lanes button {
+    padding: 4px 8px;
+  }
+
+  .trainer-icon,
+  .trainer-close-icon,
+  .trainer-more {
+    display: inline-flex;
+    width: 36px;
+    min-width: 36px;
+    height: 36px;
+  }
+
+  .trainer-close-label,
+  .trainer-clear-label,
+  .trainer-yolo-label,
+  .trainer-model,
+  .trainer[aria-label] .trainer-hint,
+  .trainer-empty-hint {
+    display: none;
+  }
+
+  .trainer-meta {
+    flex-wrap: nowrap;
+    gap: 0;
+  }
+
+  .trainer-thread {
+    padding: 12px 14px;
+    gap: 10px;
+  }
+
+  .trainer-empty {
+    margin: 8px 0 0;
+  }
+
+  .trainer-empty p {
+    margin: 0 0 10px;
+  }
+
+  .trainer-prompts {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 0;
+  }
+
+  .trainer-quick {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    padding: 8px 14px 0;
+    scrollbar-width: none;
+  }
+
+  .trainer-quick::-webkit-scrollbar {
+    display: none;
+  }
+
+  .trainer-composer {
+    padding: 8px 12px 10px 16px;
+    gap: 8px;
+    align-items: end;
+  }
+
+  .trainer-composer textarea {
+    min-height: 40px;
+    max-height: 8rem;
+    padding: 8px 12px;
+    resize: none;
+  }
+
+  .trainer-send {
+    min-height: 40px;
+    padding: 8px 12px;
+  }
+
+  .trainer-result {
+    padding: 8px 14px 12px;
+  }
+
+  .trainer-card > .trainer-kicker {
+    display: none;
+  }
+
+  .trainer-view-summary {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    min-height: 36px;
+    padding: 6px 10px;
+    cursor: pointer;
+    list-style: none;
+    font-weight: 600;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    background: var(--surface);
+  }
+
+  .trainer-view-summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .trainer-view-summary::after {
+    content: "";
+    width: 0.4rem;
+    height: 0.4rem;
+    border-inline-end: 2px solid var(--muted-foreground);
+    border-bottom: 2px solid var(--muted-foreground);
+    transform: rotate(45deg);
+  }
+
+  .trainer-view[open] .trainer-view-summary {
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+  }
+
+  .trainer-view[open] .trainer-view-summary::after {
+    transform: rotate(225deg);
+    translate: 0 2px;
+  }
+
+  .trainer-view-head {
+    display: none;
+  }
+
+  .trainer-view-card {
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
   }
 }
 
