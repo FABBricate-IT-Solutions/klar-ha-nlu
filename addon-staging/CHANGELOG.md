@@ -6,6 +6,18 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 Versions follow Home Assistant calendar versioning (`YYYY.M.PATCH`)
 and [Conventional Commits](https://www.conventionalcommits.org/).
 
+## [2026.9.7](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/compare/2026.9.6...2026.9.7) - 2026-09-07
+
+
+
+### Other
+
+- bump recharts from 3.8.0 to 3.10.1 in /web in the npm-minor group (#236)([5796317](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/5796317eb494e56bf3bf64df9d74dea24d195396))
+
+- bump @types/react-dom from 19.2.5 to 19.2.7 in /web in the npm-patch group (#234)([2843919](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/2843919682870b03538952dde82adfb47dc54771))
+
+- bump the rust-patch group with 2 updates (#233)([64c715d](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/64c715de603a22a551571da7def62edf96daada1))
+
 ## [2026.9.6](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/compare/2026.9.5...2026.9.6) - 2026-09-06
 
 
