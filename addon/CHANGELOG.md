@@ -6,6 +6,14 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 Versions follow Home Assistant calendar versioning (`YYYY.M.PATCH`)
 and [Conventional Commits](https://www.conventionalcommits.org/).
 
+## [2026.9.8](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/compare/2026.9.7...2026.9.8) - 2026-09-07
+
+
+
+### Other
+
+- Compact Lotse on mobile so the chat keeps the screen (#239)([412108a](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/412108a46b719769ab5a9942dbdc5adf7c4f5590))
+
 ## [2026.9.7](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/compare/2026.9.6...2026.9.7) - 2026-09-07
 
 
