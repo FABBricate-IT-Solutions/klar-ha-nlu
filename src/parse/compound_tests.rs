@@ -43,3 +43,26 @@ fn short_script_alias_is_an_exact_token_match() {
     };
     assert_eq!(named_scene_or_script(&["nag".into()], &home).as_deref(), Some("script.good_night"));
 }
+
+#[test]
+fn dishwasher_off_is_not_the_all_off_scene() {
+    let _bind = crate::lang::bind(&["de".into()]);
+    let home = crate::home::load_home_config(std::path::Path::new("tests/datasets/wohnung_mittel/home_config.yaml")).expect("home");
+    assert_eq!(named_scene_or_script(&["spuelmaschine".into(), "aus".into()], &home), None);
+    let settings = crate::types::Settings { languages: vec!["de".into()], ..crate::types::Settings::default() };
+    let outcome = crate::nlu::parse("Spülmaschine aus", &home, &mut crate::session::Session::new(), &[], &settings);
+    let names: Vec<_> = outcome.plan.as_ref().map(|plan| plan.intents()).unwrap_or_default();
+    assert!(
+        names.iter().any(|intent| intent.name == "HassTurnOff" && intent.slot("entity_id") == Some("switch.kuche_spulmaschine")),
+        "{:?} {:?}",
+        outcome.decision,
+        names
+    );
+}
+
+#[test]
+fn all_lamps_off_is_not_the_all_off_scene() {
+    let _bind = crate::lang::bind(&["en".into()]);
+    let home = crate::home::load_home_config(std::path::Path::new("tests/datasets/wohnung_mittel/home_config.yaml")).expect("home");
+    assert_eq!(named_scene_or_script(&["turn".into(), "off".into(), "all".into(), "lamps".into()], &home), None);
+}
