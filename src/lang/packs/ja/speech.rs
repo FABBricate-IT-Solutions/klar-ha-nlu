@@ -40,6 +40,7 @@ pub(super) const SPEECH: Speech = Speech {
     timer_start: "タイマーを開始しました。",
     timer_cancel: "タイマーを止めました。",
     timer_pause: "タイマーを一時停止しました。",
+    timer_how_long: "どのくらい？",
     list_add: "リストに追加しました。",
     calendar_list: "{items}",
     calendar_empty: "予定はありません。",

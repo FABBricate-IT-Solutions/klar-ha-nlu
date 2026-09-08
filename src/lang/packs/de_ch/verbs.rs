@@ -28,6 +28,7 @@ pub(super) const VERBS: &[(&str, VerbKind)] = &[
     ("timer", VerbKind::Timer),
     ("ufmache", VerbKind::Open),
     ("ventilator", VerbKind::FanNoun),
+    ("verringere", VerbKind::Lower),
     ("violett", VerbKind::Color),
     ("warmweiss", VerbKind::Color),
     ("was", VerbKind::Query),

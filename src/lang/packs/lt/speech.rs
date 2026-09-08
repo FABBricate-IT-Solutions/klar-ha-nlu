@@ -40,6 +40,7 @@ pub(super) const SPEECH: Speech = Speech {
     timer_start: "Laikmatis veikia.",
     timer_cancel: "Laikmatis atšauktas.",
     timer_pause: "Laikmatis pristabdytas.",
+    timer_how_long: "Kaip ilgai?",
     list_add: "Sarase.",
     calendar_list: "{items}",
     calendar_empty: "Nesupratau.",

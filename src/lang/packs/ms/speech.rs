@@ -40,6 +40,7 @@ pub(super) const SPEECH: Speech = Speech {
     timer_start: "Pemasa berjalan.",
     timer_cancel: "Pemasa dibatalkan.",
     timer_pause: "Pemasa dijeda.",
+    timer_how_long: "Berapa lama?",
     list_add: "Ada dalam senarai.",
     calendar_list: "{items}",
     calendar_empty: "Saya tidak faham.",

@@ -208,6 +208,7 @@ pub const PACK: LanguagePack = LanguagePack {
         timer_cancel: &["abbrechen", "abbreche", "abbruch", "stopp", "stoppe", "stoppen", "loesche", "loeschen", "aus"],
         timer_pause: &["pause", "pausieren", "anhalten", "halt"],
         timer_add: &["plus", "mehr"],
+        timer_remove: &["verringern", "verringere", "reduzieren", "reduziere", "weniger", "kuerzen", "kuerze", "abziehen", "minus"],
         list_complete: &["haken", "erledigt", "abgehakt"],
         playback_resume: &["weiter", "fortsetzen"],
         calendar_query: &["steht", "anstehend", "kommende", "naechste"],

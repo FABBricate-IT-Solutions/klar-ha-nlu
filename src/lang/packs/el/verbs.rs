@@ -20,6 +20,7 @@ pub(super) const VERBS: &[(&str, VerbKind)] = &[
     ("κλειδωσε", VerbKind::Lock),
     ("κλεισε", VerbKind::Close),
     ("λιστα", VerbKind::List),
+    ("μειωσε", VerbKind::Lower),
     ("μεσαίο", VerbKind::Dim),
     ("ξεκλειδωσε", VerbKind::Unlock),
     ("παιξε", VerbKind::Play),

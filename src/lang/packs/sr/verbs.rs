@@ -22,6 +22,7 @@ pub(super) const VERBS: &[(&str, VerbKind)] = &[
     ("пригуши", VerbKind::Dim),
     ("проценат", VerbKind::Percent),
     ("пусти", VerbKind::Play),
+    ("смањи", VerbKind::Lower),
     ("средње", VerbKind::Dim),
     ("стави", VerbKind::Set),
     ("станица", VerbKind::Dock),

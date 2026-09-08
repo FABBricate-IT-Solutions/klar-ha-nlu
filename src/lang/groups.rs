@@ -117,6 +117,7 @@ pub struct Cues {
     pub timer_cancel: &'static [&'static str],
     pub timer_pause: &'static [&'static str],
     pub timer_add: &'static [&'static str],
+    pub timer_remove: &'static [&'static str],
     pub list_complete: &'static [&'static str],
     pub playback_resume: &'static [&'static str],
     pub calendar_query: &'static [&'static str],

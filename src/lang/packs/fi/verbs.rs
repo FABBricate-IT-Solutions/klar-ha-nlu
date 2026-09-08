@@ -32,6 +32,7 @@ pub(super) const VERBS: &[(&str, VerbKind)] = &[
     ("tummempi", VerbKind::Dim),
     ("tuuletin", VerbKind::FanNoun),
     ("vaaleanpunainen", VerbKind::Color),
+    ("vahenna", VerbKind::Lower),
     ("valkoinen", VerbKind::Color),
     ("vihrea", VerbKind::Color),
     ("violetti", VerbKind::Color),

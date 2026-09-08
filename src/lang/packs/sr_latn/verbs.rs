@@ -22,6 +22,7 @@ pub(super) const VERBS: &[(&str, VerbKind)] = &[
     ("pusti", VerbKind::Play),
     ("red", VerbKind::Color),
     ("scena", VerbKind::Scene),
+    ("smanji", VerbKind::Lower),
     ("srednje", VerbKind::Dim),
     ("sta", VerbKind::Query),
     ("stanica", VerbKind::Dock),

@@ -11,6 +11,7 @@ pub(super) const VERBS: &[(&str, VerbKind)] = &[
     ("red", VerbKind::Color),
     ("white", VerbKind::Color),
     ("yellow", VerbKind::Color),
+    ("أنقص", VerbKind::Lower),
     ("ابيضدافئ", VerbKind::Color),
     ("اخفت", VerbKind::Dim),
     ("اطفئ", VerbKind::Off),

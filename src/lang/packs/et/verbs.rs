@@ -31,6 +31,7 @@ pub(super) const VERBS: &[(&str, VerbKind)] = &[
     ("taimer", VerbKind::Timer),
     ("tolmuimeja", VerbKind::VacuumNoun),
     ("tumedam", VerbKind::Dim),
+    ("vahenda", VerbKind::Lower),
     ("ventilaator", VerbKind::FanNoun),
     ("white", VerbKind::Color),
     ("yellow", VerbKind::Color),

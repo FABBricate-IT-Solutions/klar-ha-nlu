@@ -4,109 +4,8 @@ use crate::lang::{LangId, Speech};
 use crate::types::{SpeechEntity, SpeechRenderOut, SpeechSnapshot, UnitSystem};
 use crate::units::{entity_temp_scale, entity_temperature, speak_converted, speak_temp, spoken_unit_word};
 
-const COLORS: &[(&str, &str, &str)] = &[
-    ("red", "rot", "red"),
-    ("blue", "blau", "blue"),
-    ("green", "grün", "green"),
-    ("yellow", "gelb", "yellow"),
-    ("orange", "orange", "orange"),
-    ("pink", "pink", "pink"),
-    ("black", "schwarz", "black"),
-    ("white", "weiß", "white"),
-    ("warmwhite", "warmweiß", "warm white"),
-    ("purple", "lila", "purple"),
-];
-
-const EMPTY_PLACE: &[(&str, &str)] = &[
-    ("de", "Keine Geräte."),
-    ("en", "No devices."),
-    ("fr", "Aucun appareil."),
-    ("nl", "Geen apparaten."),
-    ("es", "Ningún aparato."),
-    ("it", "Nessun dispositivo."),
-    ("pt", "Nenhum aparelho."),
-    ("ca", "Cap aparell."),
-    ("ro", "Niciun aparat."),
-    ("da", "Ingen enheder."),
-    ("nb", "Ingen enheter."),
-    ("sv", "Inga enheter."),
-    ("fi", "Ei laitteita."),
-    ("af", "Geen toestelle."),
-    ("cs", "Žádná zařízení."),
-    ("sk", "Žiadne zariadenia."),
-    ("pl", "Brak urządzeń."),
-    ("hu", "Nincs eszköz."),
-    ("hr", "Nema uređaja."),
-    ("sl", "Ni naprav."),
-    ("bg", "Няма устройства."),
-    ("el", "Κανένα συσκευή."),
-    ("sr", "Нема уређаја."),
-    ("uk", "Немає пристроїв."),
-    ("zh-CN", "没有设备。"),
-    ("zh-TW", "沒有裝置。"),
-    ("zh-HK", "冇裝置。"),
-    ("ar", "لا أجهزة."),
-    ("he", "אין מכשירים."),
-    ("fa", "دستگاهی نیست."),
-    ("ur", "کوئی آلہ نہیں."),
-    ("tr", "Cihaz yok."),
-    ("th", "ไม่มีอุปกรณ์"),
-    ("ko", "기기 없음."),
-    ("ja", "機器はありません。"),
-    ("cy", "Dim dyfeisiau."),
-    ("et", "Seadmeid pole."),
-    ("eu", "Ez dago gailurik."),
-    ("ga", "Níl aon ghléas."),
-    ("gl", "Ningún aparello."),
-    ("is", "Engin tæki."),
-    ("lb", "Keng Geräter."),
-    ("kw", "Ny vyjy."),
-    ("lt", "Nėra įrenginių."),
-    ("lv", "Nav ierīču."),
-    ("id", "Tidak ada perangkat."),
-    ("ms", "Tiada peranti."),
-    ("sw", "Hakuna vifaa."),
-    ("vi", "Không có thiết bị."),
-    ("hi", "कोई उपकरण नहीं."),
-    ("bn", "কোনো যন্ত্র নেই."),
-    ("gu", "કોઈ ઉપકરણ નથી."),
-    ("kn", "ಯಾವುದೇ ಸಾಧನವಿಲ್ಲ."),
-    ("ml", "ഉപകരണങ്ങളില്ല."),
-    ("mr", "साधने नाहीत."),
-    ("ta", "சாதனங்கள் இல்லை."),
-    ("te", "పరికరాలు లేవు."),
-    ("pa", "ਕੋਈ ਯੰਤਰ ਨਹੀਂ."),
-    ("ne", "कुनै उपकरण छैन."),
-    ("hy", "Սարքեր չկան."),
-    ("ka", "მოწყობილობა არ არის."),
-    ("mn", "Төхөөрөмж байхгүй."),
-    ("sr-Latn", "Nema uređaja."),
-    ("pt-BR", "Nenhum aparelho."),
-    ("en-GB", "No devices."),
-    ("de-CH", "Kei Grät."),
-    ("de-AT", "Keine Geräte."),
-];
-
-const DE_STATE: &[(&str, &str)] = &[
-    ("on", "an"),
-    ("off", "aus"),
-    ("unavailable", "nicht da"),
-    ("unknown", "unbekannt"),
-    ("open", "offen"),
-    ("closed", "zu"),
-    ("locked", "zu"),
-    ("unlocked", "offen"),
-    ("playing", "spielt"),
-    ("paused", "pausiert"),
-    ("idle", "bereit"),
-    ("heat", "heizt"),
-    ("cool", "kühlt"),
-    ("cloudy", "bewölkt"),
-    ("partlycloudy", "teilweise bewölkt"),
-    ("rainy", "regnerisch"),
-    ("sunny", "sonnig"),
-    ("clear", "klar"),
-];
+use super::render_media::{media_action, media_status};
+use super::render_place::{color_word, empty_place, slot, speak_state};
 
 pub fn render_snapshot(snap: &SpeechSnapshot) -> SpeechRenderOut {
     let speech = pack_for(&snap.language);
@@ -122,6 +21,9 @@ fn interpolate(snap: &SpeechSnapshot, speech: Speech, de: bool) -> String {
         return query_speech(snap, speech, de);
     }
     if let Some(line) = media_action(name, &where_, snap, de) {
+        return line;
+    }
+    if let Some(line) = timer_action(name, speech) {
         return line;
     }
     match name {
@@ -169,88 +71,11 @@ fn climate_set(snap: &SpeechSnapshot, speech: Speech, where_: &str, de: bool) ->
     }
 }
 
-fn media_action(name: &str, where_: &str, snap: &SpeechSnapshot, de: bool) -> Option<String> {
+fn timer_action(name: &str, speech: Speech) -> Option<String> {
     Some(match name {
-        "HassMediaPause" => {
-            if de {
-                format!("{where_} ist pausiert.")
-            } else {
-                format!("{where_} is paused.")
-            }
-        }
-        "HassMediaUnpause" => {
-            if de {
-                format!("{where_} spielt weiter.")
-            } else {
-                format!("{where_} resumed playback.")
-            }
-        }
-        "HassMediaNext" => {
-            if de {
-                format!("Auf {where_} läuft der nächste Titel.")
-            } else {
-                format!("The next track is playing on {where_}.")
-            }
-        }
-        "HassMediaPrevious" => {
-            if de {
-                format!("Auf {where_} läuft der vorherige Titel.")
-            } else {
-                format!("The previous track is playing on {where_}.")
-            }
-        }
-        "HassMediaPlayerMute" => {
-            if de {
-                format!("{where_} ist stumm.")
-            } else {
-                format!("{where_} is muted.")
-            }
-        }
-        "HassMediaPlayerUnmute" => {
-            if de {
-                format!("Der Ton von {where_} ist an.")
-            } else {
-                format!("{where_} is unmuted.")
-            }
-        }
-        "MassFavorite" => {
-            if de {
-                "Als Favorit markiert.".into()
-            } else {
-                "Marked as a favorite.".into()
-            }
-        }
-        "HassMediaSearchAndPlay" | "MassPlayMedia" => {
-            if de {
-                "Die Wiedergabe wurde gestartet.".into()
-            } else {
-                "Playback started.".into()
-            }
-        }
-        "MassTransferQueue" => {
-            if de {
-                "Die Warteschlange wurde übertragen.".into()
-            } else {
-                "The queue was transferred.".into()
-            }
-        }
-        "HassSetVolume" => {
-            let level = slot(snap, "volume_level").unwrap_or("?");
-            if de {
-                format!("Die Lautstärke von {where_} ist auf {level} Prozent.")
-            } else {
-                format!("{where_} volume is set to {level} percent.")
-            }
-        }
-        "HassSetVolumeRelative" => {
-            let down = slot(snap, "volume_step").is_some_and(|step| step == "down");
-            if de {
-                format!("Die Lautstärke von {where_} wurde {}.", if down { "verringert" } else { "erhöht" })
-            } else {
-                format!("{where_} volume was {}.", if down { "lowered" } else { "raised" })
-            }
-        }
-        "MassGetQueue" => queue_speech(snap, de),
+        "HassStartTimer" | "HassIncreaseTimer" | "HassDecreaseTimer" => speech.timer_start.to_string(),
+        "HassCancelTimer" => speech.timer_cancel.to_string(),
+        "HassPauseTimer" => speech.timer_pause.to_string(),
         _ => return None,
     })
 }
@@ -385,15 +210,6 @@ fn place_status(snap: &SpeechSnapshot, entities: &[&SpeechEntity], speech: Speec
     parts.join(" ")
 }
 
-fn empty_place(pack: &str) -> String {
-    let exact = EMPTY_PLACE.iter().find(|(code, _)| *code == pack);
-    if let Some((_, line)) = exact {
-        return (*line).to_string();
-    }
-    let base = pack.split('-').next().unwrap_or(pack);
-    EMPTY_PLACE.iter().find(|(code, _)| *code == base).map(|(_, line)| (*line).to_string()).unwrap_or_else(|| "No devices.".into())
-}
-
 fn title(raw: &str) -> String {
     let text = raw.replace('_', " ");
     let text = text.split_whitespace().collect::<Vec<_>>().join(" ");
@@ -429,101 +245,6 @@ fn light_counts(lights: &[&SpeechEntity], de: bool) -> String {
             bits.push(format!("{off} lights off"));
         }
         bits.join(", ") + "."
-    }
-}
-
-fn media_status(snap: &SpeechSnapshot, status: &str, de: bool) -> String {
-    let Some(player) = snap.entities.iter().find(|entity| entity.domain == "media_player") else {
-        return String::new();
-    };
-    match status {
-        "volume" => {
-            let pct = volume_percent(attr_num(player, "volume_level"));
-            let muted = attr_bool(player, "is_volume_muted");
-            if de {
-                let body =
-                    if pct.is_empty() { "Ich kann die Lautstärke nicht lesen.".into() } else { format!("Lautstärke ist {pct} Prozent.") };
-                if muted {
-                    format!("{body} Der Ton ist stumm.")
-                } else {
-                    body
-                }
-            } else {
-                let body = if pct.is_empty() { "I cannot read the volume.".into() } else { format!("Volume is {pct} percent.") };
-                if muted {
-                    format!("{body} It is muted.")
-                } else {
-                    body
-                }
-            }
-        }
-        "mute" => {
-            let muted = attr_bool(player, "is_volume_muted");
-            if de {
-                if muted {
-                    "Der Ton ist stumm.".into()
-                } else {
-                    "Der Ton ist an.".into()
-                }
-            } else if muted {
-                "It is muted.".into()
-            } else {
-                "It is not muted.".into()
-            }
-        }
-        "now_playing" | "player" => {
-            let title = media_title(player);
-            if title.is_empty() {
-                let spoken = speak_state(&player.state, if de { "de" } else { "en" });
-                if de {
-                    format!("Der Player ist {spoken}.")
-                } else {
-                    format!("The player is {spoken}.")
-                }
-            } else if de {
-                let prefix = if player.state == "playing" { "Gerade läuft" } else { "Ausgewählt ist" };
-                format!("{prefix} {title}.")
-            } else {
-                let prefix = if player.state == "playing" { "Now playing" } else { "Selected" };
-                format!("{prefix} {title}.")
-            }
-        }
-        _ => String::new(),
-    }
-}
-
-fn queue_speech(snap: &SpeechSnapshot, de: bool) -> String {
-    let current = snap.entities.iter().find(|entity| entity.domain == "media_player").map(media_title).unwrap_or_default();
-    let upcoming: Vec<&str> =
-        snap.media_queue.iter().map(|item| item.title.as_str()).filter(|title| !title.is_empty() && *title != current).take(3).collect();
-    if de {
-        let mut bits = Vec::new();
-        if !current.is_empty() {
-            bits.push(format!("Gerade läuft {current}."));
-        }
-        if upcoming.is_empty() {
-            bits.push(if current.is_empty() { "Die Warteschlange ist leer.".into() } else { "Danach ist die Warteschlange leer.".into() });
-            return bits.join(" ");
-        }
-        bits.push(format!("Als Nächstes kommt {}.", upcoming[0]));
-        if upcoming.len() > 1 {
-            bits.push(format!("Danach {}.", upcoming[1..].join(", ")));
-        }
-        bits.join(" ")
-    } else {
-        let mut bits = Vec::new();
-        if !current.is_empty() {
-            bits.push(format!("Now playing {current}."));
-        }
-        if upcoming.is_empty() {
-            bits.push(if current.is_empty() { "The queue is empty.".into() } else { "There is nothing else in the queue.".into() });
-            return bits.join(" ");
-        }
-        bits.push(format!("Next is {}.", upcoming[0]));
-        if upcoming.len() > 1 {
-            bits.push(format!("Then {}.", upcoming[1..].join(", ")));
-        }
-        bits.join(" ")
     }
 }
 
@@ -672,10 +393,6 @@ fn fill(template: &str, target: &str, n: &str, color: &str) -> String {
     template.replace("{target}", target).replace("{n}", n).replace("{color}", color).replace("{name}", target).replace("{loc}", target)
 }
 
-fn slot<'a>(snap: &'a SpeechSnapshot, name: &str) -> Option<&'a str> {
-    snap.intent.slots.iter().find(|slot| slot.name == name).map(|slot| slot.value.as_str()).filter(|value| !value.is_empty())
-}
-
 fn domain_of(snap: &SpeechSnapshot) -> &str {
     snap.entities
         .first()
@@ -703,40 +420,6 @@ fn is_de(pack: &str) -> bool {
 
 fn pack_for(language: &str) -> Speech {
     LangId::from_tag(language).or_else(|| LangId::from_code(language)).unwrap_or(LangId::En).pack().speech
-}
-
-fn speak_state(raw: &str, pack: &str) -> String {
-    let base = pack.split('-').next().unwrap_or(pack);
-    if base == "de" {
-        return DE_STATE
-            .iter()
-            .find(|(key, _)| *key == raw)
-            .map(|(_, spoken)| (*spoken).to_string())
-            .unwrap_or_else(|| raw.replace('.', ","));
-    }
-    if raw == "off" {
-        return match base {
-            "fr" => "éteinte".into(),
-            "nl" => "uit".into(),
-            _ => "off".into(),
-        };
-    }
-    if raw == "on" {
-        return match base {
-            "fr" => "allumée".into(),
-            "nl" => "aan".into(),
-            _ => "on".into(),
-        };
-    }
-    raw.to_string()
-}
-
-fn color_word(raw: Option<&str>, de: bool) -> Option<String> {
-    let color = raw?;
-    COLORS
-        .iter()
-        .find(|(key, _, _)| *key == color)
-        .map(|(_, german, english)| if de { (*german).to_string() } else { (*english).to_string() })
 }
 
 fn fold(text: &str) -> String {
@@ -771,50 +454,6 @@ fn area_temp_fact(entities: &[&SpeechEntity], unit_system: UnitSystem, de: bool)
         return Some(format!("{temp} {unit}"));
     }
     None
-}
-
-fn attr_str(entity: &SpeechEntity, key: &str) -> Option<String> {
-    match entity.attributes.get(key)? {
-        serde_json::Value::String(text) if !text.is_empty() => Some(text.clone()),
-        serde_json::Value::Number(num) => Some(num.to_string()),
-        _ => None,
-    }
-}
-
-fn attr_num(entity: &SpeechEntity, key: &str) -> Option<f64> {
-    match entity.attributes.get(key)? {
-        serde_json::Value::Number(num) => num.as_f64(),
-        serde_json::Value::String(text) => text.parse().ok(),
-        _ => None,
-    }
-}
-
-fn attr_bool(entity: &SpeechEntity, key: &str) -> bool {
-    match entity.attributes.get(key) {
-        Some(serde_json::Value::Bool(flag)) => *flag,
-        Some(serde_json::Value::String(text)) => text == "true" || text == "on",
-        _ => false,
-    }
-}
-
-fn volume_percent(raw: Option<f64>) -> String {
-    let Some(mut value) = raw else {
-        return String::new();
-    };
-    if value <= 1.0 {
-        value *= 100.0;
-    }
-    format!("{}", value.round() as i64)
-}
-
-fn media_title(entity: &SpeechEntity) -> String {
-    let title = attr_str(entity, "media_title").unwrap_or_default();
-    let artist = attr_str(entity, "media_artist").unwrap_or_default();
-    if !title.is_empty() && !artist.is_empty() {
-        format!("{title} by {artist}")
-    } else {
-        title
-    }
 }
 
 #[cfg(test)]

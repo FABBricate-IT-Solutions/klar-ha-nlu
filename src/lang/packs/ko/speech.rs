@@ -40,6 +40,7 @@ pub(super) const SPEECH: Speech = Speech {
     timer_start: "타이머가 시작됐어요.",
     timer_cancel: "타이머를 취소했어요.",
     timer_pause: "타이머를 멈췄어요.",
+    timer_how_long: "얼마나요?",
     list_add: "목록에 넣었어요.",
     calendar_list: "{items}",
     calendar_empty: "일정이 없어요.",

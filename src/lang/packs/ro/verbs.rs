@@ -35,6 +35,7 @@ pub(super) const VERBS: &[(&str, VerbKind)] = &[
     ("redata", VerbKind::Play),
     ("rosu", VerbKind::Color),
     ("roz", VerbKind::Color),
+    ("scade", VerbKind::Lower),
     ("scena", VerbKind::Scene),
     ("stare", VerbKind::Query),
     ("statie", VerbKind::Dock),

@@ -34,5 +34,6 @@ pub(super) const VERBS: &[(&str, VerbKind)] = &[
     ("zamek", VerbKind::Lock),
     ("zamknij", VerbKind::Close),
     ("zielony", VerbKind::Color),
+    ("zmniejsz", VerbKind::Lower),
     ("zolty", VerbKind::Color),
 ];

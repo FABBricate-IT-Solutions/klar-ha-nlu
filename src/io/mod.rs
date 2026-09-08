@@ -6,6 +6,7 @@ pub(crate) mod conversations;
 pub(crate) mod dashboard;
 pub(crate) mod home_sync;
 pub(crate) mod lang_api;
+pub(crate) mod lang_explain;
 pub mod limits;
 pub(crate) mod llm;
 pub(crate) mod metrics;

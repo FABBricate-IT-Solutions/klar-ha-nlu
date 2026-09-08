@@ -25,3 +25,21 @@ fn nachttisch_is_not_a_whole_word_nacht_script() {
     assert_eq!(named_scene_or_script(&["nachttisch".into(), "schlafzimmer".into()], &home), None);
     assert_eq!(named_scene_or_script(&["nacht".into(), "an".into()], &home).as_deref(), Some("script.good_night"));
 }
+
+#[test]
+fn short_script_alias_is_an_exact_token_match() {
+    let _bind = crate::lang::bind(&["af".into()]);
+    let home = crate::types::HomeGraph {
+        entities: vec![crate::types::EntityRec {
+            entity_id: "script.good_night".into(),
+            name: "Good Night".into(),
+            domain: "script".into(),
+            platform: None,
+            area: None,
+            aliases: vec!["nag".into()],
+            tags: vec![],
+        }],
+        ..HomeGraph::default()
+    };
+    assert_eq!(named_scene_or_script(&["nag".into()], &home).as_deref(), Some("script.good_night"));
+}

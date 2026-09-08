@@ -40,6 +40,7 @@ pub(super) const SPEECH: Speech = Speech {
     timer_start: "Таймер працює.",
     timer_cancel: "Таймер вимкнено.",
     timer_pause: "Таймер на паузі.",
+    timer_how_long: "Як довго?",
     list_add: "У списку.",
     calendar_list: "{items}",
     calendar_empty: "Немає подій.",

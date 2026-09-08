@@ -13,6 +13,7 @@ pub(super) const VERBS: &[(&str, VerbKind)] = &[
     ("cena", VerbKind::Scene),
     ("como", VerbKind::Query),
     ("desliga", VerbKind::Off),
+    ("diminui", VerbKind::Lower),
     ("escurecer", VerbKind::Dim),
     ("estacao", VerbKind::Dock),
     ("fecha", VerbKind::Close),

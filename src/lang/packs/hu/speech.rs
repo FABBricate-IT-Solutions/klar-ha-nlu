@@ -40,6 +40,7 @@ pub(super) const SPEECH: Speech = Speech {
     timer_start: "Az időzítő fut.",
     timer_cancel: "Az időzítő leállt.",
     timer_pause: "Az időzítő szünetel.",
+    timer_how_long: "Mennyi ideig?",
     list_add: "Felkerult a listara.",
     calendar_list: "{items}",
     calendar_empty: "Nincs esemeny.",

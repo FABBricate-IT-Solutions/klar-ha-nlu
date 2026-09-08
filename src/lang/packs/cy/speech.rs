@@ -40,6 +40,7 @@ pub(super) const SPEECH: Speech = Speech {
     timer_start: "Mae'r amserydd yn rhedeg.",
     timer_cancel: "Mae'r amserydd wedi'i ganslo.",
     timer_pause: "Mae'r amserydd ar seibiant.",
+    timer_how_long: "Am faint?",
     list_add: "Ar y rhestr.",
     calendar_list: "{items}",
     calendar_empty: "Do ddeallais i ddim.",

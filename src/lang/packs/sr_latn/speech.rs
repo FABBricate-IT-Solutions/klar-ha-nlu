@@ -40,6 +40,7 @@ pub(super) const SPEECH: Speech = Speech {
     timer_start: "Tajmer radi.",
     timer_cancel: "Tajmer je isključen.",
     timer_pause: "Tajmer je pauziran.",
+    timer_how_long: "Koliko dugo?",
     list_add: "Na je spisku.",
     calendar_list: "{items}",
     calendar_empty: "Nema dogadjaja.",

@@ -20,6 +20,7 @@ pub(super) const VERBS: &[(&str, VerbKind)] = &[
     ("закрий", VerbKind::Close),
     ("замок", VerbKind::Lock),
     ("затемни", VerbKind::Dim),
+    ("зменш", VerbKind::Lower),
     ("пилосос", VerbKind::VacuumNoun),
     ("постав", VerbKind::Set),
     ("середньо", VerbKind::Dim),

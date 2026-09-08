@@ -38,6 +38,7 @@ pub(super) const VERBS: &[(&str, VerbKind)] = &[
     ("장면", VerbKind::Scene),
     ("재생", VerbKind::Play),
     ("주황", VerbKind::Color),
+    ("줄여", VerbKind::Lower),
     ("중간", VerbKind::Dim),
     ("청소기", VerbKind::VacuumNoun),
     ("초록", VerbKind::Color),

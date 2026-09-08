@@ -1,7 +1,6 @@
 use crate::home::classify::is_generic_room_light;
 use crate::home::expose::assist_visible;
-use crate::home::policy::is_infra_light;
-use crate::home::policy::is_whole_home;
+use crate::home::policy::{is_infra_light, is_whole_home};
 use crate::lang::catalog;
 use crate::parse::fuzzy::{evidence, select_unique, Profile};
 use crate::parse::infer::mentions_fixture_noun;
@@ -262,11 +261,9 @@ pub(crate) fn named_scene_or_script(tokens: &[String], home: &HomeGraph) -> Opti
 
 fn scene_label_whole(tokens: &[String], label: &str) -> bool {
     let label = compact(label);
-    if label.len() <= 3 {
-        return false;
-    }
     let parts: Vec<String> = tokens.iter().map(|token| compact(token)).filter(|token| !token.is_empty()).collect();
-    parts.iter().any(|token| token == &label) || (2..=parts.len()).any(|width| parts.windows(width).any(|window| window.join("") == label))
+    (label.len() >= 2 && parts.iter().any(|token| token == &label))
+        || (label.len() > 3 && (2..=parts.len()).any(|width| parts.windows(width).any(|window| window.join("") == label)))
 }
 
 fn scene_compact_hit(id: &str, tokens: &[String], home: &HomeGraph) -> bool {

@@ -4,7 +4,7 @@ use super::Action;
 
 pub(super) fn timer_kind(tokens: &[String]) -> Action {
     let cat = catalog();
-    if cat.any(tokens, cat.timer_pause()) || timer_hold(tokens) {
+    if cat.any(tokens, cat.timer_pause()) {
         Action::TimerPause
     } else if cat.any(tokens, cat.playback_resume()) {
         Action::TimerStart
@@ -19,19 +19,19 @@ pub(super) fn timer_kind(tokens: &[String]) -> Action {
     }
 }
 
-pub(super) fn timer_hold(tokens: &[String]) -> bool {
-    tokens.iter().any(|token| matches!(token.as_str(), "hold" | "halt"))
-}
-
 pub(super) fn timer_decrease(tokens: &[String]) -> bool {
-    !catalog().any(tokens, catalog().timer_add())
-        && tokens.iter().any(|token| match token.as_str() {
-            "decrease" | "decreased" | "reduce" | "reduced" | "subtract" | "subtracted" | "minus" | "shorten" | "shortened"
-            | "verringern" | "verringere" | "reduzieren" | "reduziere" | "weniger" | "kuerzen" | "kuerze" | "abziehen" => true,
-            "remove" | "removed" | "cut" | "take" | "knock" | "down" => crate::parse::numbers::first_number(tokens).is_some(),
-            _ => {
-                matches!(catalog().verb(token), Some(VerbKind::Lower))
-                    || (matches!(catalog().verb(token), Some(VerbKind::Down)) && crate::parse::numbers::first_number(tokens).is_some())
-            }
-        })
+    let cat = catalog();
+    if cat.any(tokens, cat.timer_add()) {
+        return false;
+    }
+    let numbered = crate::parse::numbers::first_number(tokens).is_some();
+    tokens.iter().any(|token| match token.as_str() {
+        "minus" => true,
+        "remove" | "removed" => numbered,
+        _ => {
+            cat.timer_remove().contains(token.as_str())
+                || matches!(cat.verb(token), Some(VerbKind::Lower))
+                || (numbered && matches!(cat.verb(token), Some(VerbKind::Down | VerbKind::Dim)))
+        }
+    })
 }

@@ -246,9 +246,11 @@ pub(crate) fn fill_list_intent(action: Action, tokens: &[String], target: Option
 }
 
 fn timer_unit(tokens: &[String]) -> &'static str {
-    if catalog().any(tokens, catalog().hours()) {
+    if catalog().any(tokens, catalog().hours()) || tokens.iter().any(|token| matches!(token.as_str(), "hour" | "hours" | "hrs")) {
         "hours"
-    } else if catalog().any(tokens, catalog().seconds()) {
+    } else if catalog().any(tokens, catalog().seconds())
+        || tokens.iter().any(|token| matches!(token.as_str(), "second" | "seconds" | "sec" | "secs"))
+    {
         "seconds"
     } else {
         "minutes"

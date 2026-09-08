@@ -3,7 +3,7 @@
 
 de/en live in src/lang/packs/{de,en}/ as hand-written reference packs.
 The generator must not overwrite them. Shared LanguagePack fields belong
-in those two packs, scripts/lang_packs/emit.py, and this checklist.
+in those two packs, scripts/lang_packs/emit*.py, and this checklist.
 """
 
 from __future__ import annotations
@@ -103,7 +103,7 @@ def struct_fields(source: str, name: str) -> list[str]:
 
 def check_field_checklist() -> None:
     groups = (ROOT / "src" / "lang" / "groups.rs").read_text(encoding="utf-8")
-    emit = (ROOT / "scripts" / "lang_packs" / "emit.py").read_text(encoding="utf-8")
+    emit = "".join(path.read_text(encoding="utf-8") for path in sorted((ROOT / "scripts" / "lang_packs").glob("emit*.py")))
     de_pack = (PACKS / "de" / "pack.rs").read_text(encoding="utf-8")
     en_pack = (PACKS / "en" / "pack.rs").read_text(encoding="utf-8")
     missing = []

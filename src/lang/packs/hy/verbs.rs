@@ -16,6 +16,7 @@ pub(super) const VERBS: &[(&str, VerbKind)] = &[
     ("miatsu", VerbKind::On),
     ("mijn", VerbKind::Dim),
     ("mut", VerbKind::Dim),
+    ("nvazecnel", VerbKind::Lower),
     ("odapokhich", VerbKind::FanNoun),
     ("orange", VerbKind::Color),
     ("pakir", VerbKind::Close),

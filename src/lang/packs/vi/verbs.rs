@@ -11,6 +11,7 @@ pub(super) const VERBS: &[(&str, VerbKind)] = &[
     ("dat", VerbKind::Set),
     ("dong", VerbKind::Close),
     ("gi", VerbKind::Query),
+    ("giam", VerbKind::Lower),
     ("giamden", VerbKind::Dim),
     ("green", VerbKind::Color),
     ("hen", VerbKind::Timer),

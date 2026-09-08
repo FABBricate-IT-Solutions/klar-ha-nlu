@@ -48,6 +48,7 @@ pub(super) const VERBS: &[(&str, VerbKind)] = &[
     ("次", VerbKind::Next),
     ("消して", VerbKind::Off),
     ("消す", VerbKind::Off),
+    ("減らす", VerbKind::Lower),
     ("点ける", VerbKind::On),
     ("白", VerbKind::Color),
     ("紫", VerbKind::Color),

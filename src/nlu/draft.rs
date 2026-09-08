@@ -241,7 +241,7 @@ pub(super) fn safety_decision(mut draft: Draft, context: &ParseContext<'_>) -> D
         return draft;
     }
     if draft.plan.as_ref().is_some_and(|plan| missing_timer_duration(plan, context.text)) {
-        let prompt = if context.catalog.has_german_und() { "Wie lange?" } else { "How long?" }.to_string();
+        let prompt = context.catalog.speech().timer_how_long.to_string();
         draft.decision = ParseDecision::Clarify { prompt: prompt.clone(), options: Vec::new() };
         draft.speech = prompt;
         draft.plan = None;

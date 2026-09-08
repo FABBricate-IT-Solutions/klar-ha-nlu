@@ -6,6 +6,7 @@ pub(super) const VERBS: &[(&str, VerbKind)] = &[
     ("black", VerbKind::Color),
     ("blue", VerbKind::Color),
     ("buudal", VerbKind::Dock),
+    ("buuruul", VerbKind::Lower),
     ("dulaan tsagaan", VerbKind::Color),
     ("dund", VerbKind::Dim),
     ("ger", VerbKind::Dock),

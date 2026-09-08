@@ -35,4 +35,5 @@ pub(super) const VERBS: &[(&str, VerbKind)] = &[
     ("yellow", VerbKind::Color),
     ("zapri", VerbKind::Close),
     ("zatemniti", VerbKind::Dim),
+    ("zmanjsaj", VerbKind::Lower),
 ];

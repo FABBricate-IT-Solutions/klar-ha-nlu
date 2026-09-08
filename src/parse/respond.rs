@@ -117,7 +117,7 @@ fn describe(intent: &Intent, home: Option<&HomeGraph>) -> String {
         "HassFanSetSpeed" => pack.fan_set.replace("{n}", intent.slot("percentage").unwrap_or("?")),
         "HassVacuumStart" => pack.vacuum_start.replace("{target}", &vacuum_name(&where_)),
         "HassVacuumReturnToBase" => pack.vacuum_dock.replace("{target}", &vacuum_name(&where_)),
-        "HassStartTimer" => pack.timer_start.to_string(),
+        "HassStartTimer" | "HassIncreaseTimer" | "HassDecreaseTimer" => pack.timer_start.to_string(),
         "HassCancelTimer" => pack.timer_cancel.to_string(),
         "HassPauseTimer" => pack.timer_pause.to_string(),
         "HassListAddItem" | "HassShoppingListAddItem" => pack.list_add.to_string(),

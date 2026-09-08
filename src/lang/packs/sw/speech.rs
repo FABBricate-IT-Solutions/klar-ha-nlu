@@ -40,6 +40,7 @@ pub(super) const SPEECH: Speech = Speech {
     timer_start: "Kipima muda kinafanya kazi.",
     timer_cancel: "Kipima muda kimeghairiwa.",
     timer_pause: "Kipima muda kimesimamishwa.",
+    timer_how_long: "Muda gani?",
     list_add: "Iko kwenye orodha.",
     calendar_list: "{items}",
     calendar_empty: "Sikuelewa.",

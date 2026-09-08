@@ -389,6 +389,17 @@ fn floor_status_keeps_rooms_when_a_climate_entity_is_present() {
 }
 
 #[test]
+fn timer_intents_use_timer_templates_not_or_home() {
+    assert_eq!(render_snapshot(&snap("HassStartTimer", vec![], vec![])).speech, "Timer läuft.");
+    assert_eq!(render_snapshot(&snap("HassDecreaseTimer", vec![], vec![])).speech, "Timer läuft.");
+    assert_eq!(render_snapshot(&snap("HassCancelTimer", vec![], vec![])).speech, "Timer ist aus.");
+    let mut english = snap("HassStartTimer", vec![], vec![]);
+    english.language = "en".into();
+    assert_eq!(render_snapshot(&english).speech, "Timer is running.");
+    assert!(!render_snapshot(&english).speech.to_lowercase().contains("device"));
+}
+
+#[test]
 fn empty_get_state_does_not_say_ist() {
     let out = render_snapshot(&snap(
         "HassGetState",

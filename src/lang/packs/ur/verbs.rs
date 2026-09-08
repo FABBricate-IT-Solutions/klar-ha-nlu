@@ -27,6 +27,7 @@ pub(super) const VERBS: &[(&str, VerbKind)] = &[
     ("پنکھا", VerbKind::FanNoun),
     ("چالو", VerbKind::On),
     ("چلاو", VerbKind::Play),
+    ("کم", VerbKind::Lower),
     ("کھولو", VerbKind::Open),
     ("کیا", VerbKind::Query),
     ("کیسے", VerbKind::Query),
