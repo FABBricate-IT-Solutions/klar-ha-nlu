@@ -321,6 +321,7 @@ fn fixture_aliases(token: &str) -> Vec<&str> {
     }
     if token == "lamp" || cat.lamp_fixture().contains(token) {
         out.extend(["lamp", "lampe"]);
+        out.extend(cat.lamp_fixture().iter().copied());
     }
     if cat.bedside().contains(token) {
         out.extend(["nacht", "nachttisch", "bedside"]);

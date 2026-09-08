@@ -28,9 +28,13 @@ fn generic_name(name: &str, room: &str, cat: &Catalog) -> bool {
     if room.is_empty() {
         return false;
     }
-    let light = cat.light_nouns().iter().any(|noun| name.ends_with(noun)) || cat.light_singular().iter().any(|noun| name.ends_with(noun));
+    let light = name.ends_with("licht")
+        || name.ends_with("light")
+        || cat.light_nouns().iter().any(|noun| name.ends_with(noun))
+        || cat.light_singular().iter().any(|noun| name.ends_with(noun));
     light
         && (cat.light_nouns().iter().any(|noun| *name == format!("{room}{noun}"))
             || cat.light_singular().iter().any(|noun| *name == format!("{room}{noun}"))
-            || name.starts_with(room))
+            || *name == format!("{room}licht")
+            || *name == format!("{room}light"))
 }

@@ -1,3 +1,4 @@
+use crate::home::classify::is_generic_room_light;
 use crate::home::expose::assist_visible;
 use crate::home::policy::is_infra;
 use crate::home::roles::{looks_like_tv, matches_domain, tv_asked};
@@ -120,7 +121,7 @@ pub fn resolve(tokens: &[String], home: &HomeGraph, domain: Option<&str>) -> Res
             let skip_standin = crate::parse::infer::mentions_fixture_noun(tokens)
                 && crowded
                 && rec.domain == "light"
-                && !["lamp", "ceiling", "island", "bedside", "globe"].iter().any(|needle| fixture_matches(rec, needle));
+                && is_generic_room_light(rec, home, catalog());
             if (distinctive_light_name(tokens, rec, home) || !(generic_light && crowded)) && !skip_standin {
                 entities.push(rec.clone());
             }
