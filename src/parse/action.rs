@@ -114,7 +114,13 @@ pub(crate) fn detect_actions_bounded(tokens: &[String], maximum: usize) -> Vec<(
             Some(VerbKind::Auf) => auf_action(tokens),
             Some(VerbKind::Stop) => stop_action(tokens),
             Some(VerbKind::Toggle) => Some(Action::Toggle),
-            Some(VerbKind::Dim) => Some(Action::SetLight),
+            Some(VerbKind::Dim) => {
+                Some(if catalog().any(tokens, catalog().timer_nouns()) && crate::parse::numbers::first_number(tokens).is_some() {
+                    Action::TimerRemove
+                } else {
+                    Action::SetLight
+                })
+            }
             Some(VerbKind::Brightness) => Some(
                 if crate::parse::numbers::first_number(tokens).is_some()
                     || tokens.iter().any(|token| matches!(token.as_str(), "voll" | "volle" | "full" | "maximal" | "maximum"))
@@ -450,7 +456,7 @@ fn add_action(tokens: &[String]) -> Option<Action> {
     } else if cat.any(tokens, cat.timer_nouns()) {
         Some(if timer_ops::timer_decrease(tokens) {
             Action::TimerRemove
-        } else if cat.any(tokens, cat.timer_pause()) || timer_ops::timer_hold(tokens) {
+        } else if cat.any(tokens, cat.timer_pause()) {
             Action::TimerPause
         } else {
             Action::TimerAdd

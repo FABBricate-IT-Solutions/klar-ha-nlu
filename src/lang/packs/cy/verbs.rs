@@ -20,6 +20,7 @@ pub(super) const VERBS: &[(&str, VerbKind)] = &[
     ("green", VerbKind::Color),
     ("gwyncynnes", VerbKind::Color),
     ("gwyntyll", VerbKind::FanNoun),
+    ("lleihau", VerbKind::Lower),
     ("next", VerbKind::Next),
     ("orange", VerbKind::Color),
     ("pink", VerbKind::Color),

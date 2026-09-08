@@ -12,6 +12,7 @@ pub(super) const VERBS: &[(&str, VerbKind)] = &[
     ("green", VerbKind::Color),
     ("kipas", VerbKind::FanNoun),
     ("kunci", VerbKind::Lock),
+    ("kurangi", VerbKind::Lower),
     ("lebihgelap", VerbKind::Dim),
     ("matikan", VerbKind::Off),
     ("next", VerbKind::Next),

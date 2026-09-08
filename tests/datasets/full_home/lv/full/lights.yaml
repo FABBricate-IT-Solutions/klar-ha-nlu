@@ -678,16 +678,16 @@
     entity_id: light.master_bedside_left
     state: 'on'
   sentences:
-  - iesledz bedside gulamistabamaster
-  - bedside gulamistabamaster iesledz
+  - iesledz naktsskapis gulamistabamaster
+  - naktsskapis gulamistabamaster iesledz
 - name: light.master_bedside_left_off
   conditions:
   - type: action
     entity_id: light.master_bedside_left
     state: 'off'
   sentences:
-  - izsledz bedside gulamistabamaster
-  - bedside gulamistabamaster izsledz
+  - izsledz naktsskapis gulamistabamaster
+  - naktsskapis gulamistabamaster izsledz
 - name: light.master_bedside_left_bright_20
   conditions:
   - type: action
@@ -695,8 +695,8 @@
     attributes:
       brightness: 20
   sentences:
-  - iestati bedside gulamistabamaster 20
-  - bedside gulamistabamaster 20
+  - iestati naktsskapis gulamistabamaster 20
+  - naktsskapis gulamistabamaster 20
 - name: light.master_bedside_left_bright_40
   conditions:
   - type: action
@@ -704,8 +704,8 @@
     attributes:
       brightness: 40
   sentences:
-  - iestati bedside gulamistabamaster 40
-  - bedside gulamistabamaster 40
+  - iestati naktsskapis gulamistabamaster 40
+  - naktsskapis gulamistabamaster 40
 - name: light.master_bedside_left_bright_50
   conditions:
   - type: action
@@ -713,8 +713,8 @@
     attributes:
       brightness: 50
   sentences:
-  - iestati bedside gulamistabamaster 50
-  - bedside gulamistabamaster 50
+  - iestati naktsskapis gulamistabamaster 50
+  - naktsskapis gulamistabamaster 50
 - name: light.master_bedside_left_bright_60
   conditions:
   - type: action
@@ -722,8 +722,8 @@
     attributes:
       brightness: 60
   sentences:
-  - iestati bedside gulamistabamaster 60
-  - bedside gulamistabamaster 60
+  - iestati naktsskapis gulamistabamaster 60
+  - naktsskapis gulamistabamaster 60
 - name: light.master_bedside_left_bright_80
   conditions:
   - type: action
@@ -731,8 +731,8 @@
     attributes:
       brightness: 80
   sentences:
-  - iestati bedside gulamistabamaster 80
-  - bedside gulamistabamaster 80
+  - iestati naktsskapis gulamistabamaster 80
+  - naktsskapis gulamistabamaster 80
 - name: light.master_bedside_left_bright_100
   conditions:
   - type: action
@@ -740,8 +740,8 @@
     attributes:
       brightness: 100
   sentences:
-  - iestati bedside gulamistabamaster 100
-  - bedside gulamistabamaster 100
+  - iestati naktsskapis gulamistabamaster 100
+  - naktsskapis gulamistabamaster 100
 - name: light.office_ceiling_on
   conditions:
   - type: action
@@ -1798,16 +1798,16 @@
     entity_id: light.master_bedside_right
     state: 'on'
   sentences:
-  - iesledz bedside gulamistabamaster
-  - bedside gulamistabamaster iesledz
+  - iesledz naktsskapis gulamistabamaster
+  - naktsskapis gulamistabamaster iesledz
 - name: light.master_bedside_right_off
   conditions:
   - type: action
     entity_id: light.master_bedside_right
     state: 'off'
   sentences:
-  - izsledz bedside gulamistabamaster
-  - bedside gulamistabamaster izsledz
+  - izsledz naktsskapis gulamistabamaster
+  - naktsskapis gulamistabamaster izsledz
 - name: light.master_bedside_right_bright_20
   conditions:
   - type: action
@@ -1815,8 +1815,8 @@
     attributes:
       brightness: 20
   sentences:
-  - iestati bedside gulamistabamaster 20
-  - bedside gulamistabamaster 20
+  - iestati naktsskapis gulamistabamaster 20
+  - naktsskapis gulamistabamaster 20
 - name: light.master_bedside_right_bright_40
   conditions:
   - type: action
@@ -1824,8 +1824,8 @@
     attributes:
       brightness: 40
   sentences:
-  - iestati bedside gulamistabamaster 40
-  - bedside gulamistabamaster 40
+  - iestati naktsskapis gulamistabamaster 40
+  - naktsskapis gulamistabamaster 40
 - name: light.master_bedside_right_bright_50
   conditions:
   - type: action
@@ -1833,8 +1833,8 @@
     attributes:
       brightness: 50
   sentences:
-  - iestati bedside gulamistabamaster 50
-  - bedside gulamistabamaster 50
+  - iestati naktsskapis gulamistabamaster 50
+  - naktsskapis gulamistabamaster 50
 - name: light.master_bedside_right_bright_60
   conditions:
   - type: action
@@ -1842,8 +1842,8 @@
     attributes:
       brightness: 60
   sentences:
-  - iestati bedside gulamistabamaster 60
-  - bedside gulamistabamaster 60
+  - iestati naktsskapis gulamistabamaster 60
+  - naktsskapis gulamistabamaster 60
 - name: light.master_bedside_right_bright_80
   conditions:
   - type: action
@@ -1851,8 +1851,8 @@
     attributes:
       brightness: 80
   sentences:
-  - iestati bedside gulamistabamaster 80
-  - bedside gulamistabamaster 80
+  - iestati naktsskapis gulamistabamaster 80
+  - naktsskapis gulamistabamaster 80
 - name: light.master_bedside_right_bright_100
   conditions:
   - type: action
@@ -1860,8 +1860,8 @@
     attributes:
       brightness: 100
   sentences:
-  - iestati bedside gulamistabamaster 100
-  - bedside gulamistabamaster 100
+  - iestati naktsskapis gulamistabamaster 100
+  - naktsskapis gulamistabamaster 100
 - name: light.master_bath_light_on
   conditions:
   - type: action
@@ -2209,7 +2209,7 @@
     attributes:
       color: red
   sentences:
-  - iestati bedside gulamistabamaster red
+  - iestati naktsskapis gulamistabamaster red
   - iestati gaisma gulamistabamaster red
 - name: light.master_bedside_left_blue
   conditions:
@@ -2218,7 +2218,7 @@
     attributes:
       color: blue
   sentences:
-  - iestati bedside gulamistabamaster blue
+  - iestati naktsskapis gulamistabamaster blue
   - iestati gaisma gulamistabamaster blue
 - name: light.master_bedside_left_green
   conditions:
@@ -2227,7 +2227,7 @@
     attributes:
       color: green
   sentences:
-  - iestati bedside gulamistabamaster green
+  - iestati naktsskapis gulamistabamaster green
   - iestati gaisma gulamistabamaster green
 - name: light.master_bedside_left_white
   conditions:
@@ -2236,7 +2236,7 @@
     attributes:
       color: white
   sentences:
-  - iestati bedside gulamistabamaster white
+  - iestati naktsskapis gulamistabamaster white
   - iestati gaisma gulamistabamaster white
 - name: light.master_bedside_left_yellow
   conditions:
@@ -2245,7 +2245,7 @@
     attributes:
       color: yellow
   sentences:
-  - iestati bedside gulamistabamaster yellow
+  - iestati naktsskapis gulamistabamaster yellow
   - iestati gaisma gulamistabamaster yellow
 - name: light.master_bedside_left_black
   conditions:
@@ -2254,7 +2254,7 @@
     attributes:
       color: black
   sentences:
-  - iestati bedside gulamistabamaster black
+  - iestati naktsskapis gulamistabamaster black
   - iestati gaisma gulamistabamaster black
 - name: light.office_ceiling_red
   conditions:
@@ -3073,7 +3073,7 @@
     attributes:
       color: red
   sentences:
-  - iestati bedside gulamistabamaster red
+  - iestati naktsskapis gulamistabamaster red
   - iestati gaisma gulamistabamaster red
 - name: light.master_bedside_right_blue
   conditions:
@@ -3082,7 +3082,7 @@
     attributes:
       color: blue
   sentences:
-  - iestati bedside gulamistabamaster blue
+  - iestati naktsskapis gulamistabamaster blue
   - iestati gaisma gulamistabamaster blue
 - name: light.master_bedside_right_green
   conditions:
@@ -3091,7 +3091,7 @@
     attributes:
       color: green
   sentences:
-  - iestati bedside gulamistabamaster green
+  - iestati naktsskapis gulamistabamaster green
   - iestati gaisma gulamistabamaster green
 - name: light.master_bedside_right_white
   conditions:
@@ -3100,7 +3100,7 @@
     attributes:
       color: white
   sentences:
-  - iestati bedside gulamistabamaster white
+  - iestati naktsskapis gulamistabamaster white
   - iestati gaisma gulamistabamaster white
 - name: light.master_bedside_right_yellow
   conditions:
@@ -3109,7 +3109,7 @@
     attributes:
       color: yellow
   sentences:
-  - iestati bedside gulamistabamaster yellow
+  - iestati naktsskapis gulamistabamaster yellow
   - iestati gaisma gulamistabamaster yellow
 - name: light.master_bedside_right_black
   conditions:
@@ -3118,7 +3118,7 @@
     attributes:
       color: black
   sentences:
-  - iestati bedside gulamistabamaster black
+  - iestati naktsskapis gulamistabamaster black
   - iestati gaisma gulamistabamaster black
 - name: light.master_bath_light_red
   conditions:

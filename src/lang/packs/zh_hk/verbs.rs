@@ -36,6 +36,7 @@ pub(super) const VERBS: &[(&str, VerbKind)] = &[
     ("暫停", VerbKind::Pause),
     ("橙", VerbKind::Color),
     ("清單", VerbKind::List),
+    ("減少", VerbKind::Lower),
     ("白", VerbKind::Color),
     ("百分之", VerbKind::Percent),
     ("粉", VerbKind::Color),

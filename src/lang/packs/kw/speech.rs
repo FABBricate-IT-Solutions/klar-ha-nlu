@@ -40,6 +40,7 @@ pub(super) const SPEECH: Speech = Speech {
     timer_start: "Yn termyn yw ow kerdhes.",
     timer_cancel: "Y termyn yw hedhyes.",
     timer_pause: "Y termyn yw pausys.",
+    timer_how_long: "Pys termyn?",
     list_add: "War an rol.",
     calendar_list: "{items}",
     calendar_empty: "Ny gonvedhis.",

@@ -16,6 +16,7 @@ pub(super) const VERBS: &[(&str, VerbKind)] = &[
     ("בינוני", VerbKind::Dim),
     ("בסיס", VerbKind::Dock),
     ("הדלק", VerbKind::On),
+    ("הפחת", VerbKind::Lower),
     ("טיימר", VerbKind::Timer),
     ("יותר", VerbKind::Dim),
     ("כבה", VerbKind::Off),

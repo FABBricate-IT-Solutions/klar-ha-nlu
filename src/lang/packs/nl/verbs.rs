@@ -48,6 +48,7 @@ pub(super) const VERBS: &[(&str, VerbKind)] = &[
     ("uitzetten", VerbKind::Off),
     ("ventilator", VerbKind::FanNoun),
     ("vergrendel", VerbKind::Lock),
+    ("verlaag", VerbKind::Lower),
     ("voeg", VerbKind::Add),
     ("warmwit", VerbKind::Color),
     ("wat", VerbKind::Query),

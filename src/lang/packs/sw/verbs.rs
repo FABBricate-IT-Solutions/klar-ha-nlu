@@ -24,6 +24,7 @@ pub(super) const VERBS: &[(&str, VerbKind)] = &[
     ("orodha", VerbKind::List),
     ("pink", VerbKind::Color),
     ("play", VerbKind::Play),
+    ("punguza", VerbKind::Lower),
     ("purple", VerbKind::Color),
     ("red", VerbKind::Color),
     ("tukio", VerbKind::Scene),

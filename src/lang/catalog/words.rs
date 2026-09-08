@@ -269,6 +269,9 @@ impl Catalog {
     pub fn timer_add(&self) -> &HashSet<&'static str> {
         self.words(WordKey::TimerAdd)
     }
+    pub fn timer_remove(&self) -> &HashSet<&'static str> {
+        self.words(WordKey::TimerRemove)
+    }
     pub fn list_complete(&self) -> &HashSet<&'static str> {
         self.words(WordKey::ListComplete)
     }

@@ -3,6 +3,8 @@
 
 mod generated;
 mod render;
+mod render_media;
+mod render_place;
 
 pub use generated::ACTION_TEMPLATES;
 pub use render::render_snapshot;

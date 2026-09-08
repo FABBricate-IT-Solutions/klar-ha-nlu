@@ -117,8 +117,8 @@
     entity_id: light.master_bedside_left
     state: 'on'
   sentences:
-  - iesledz gulamistabamaster griesti un gulamistabamaster bedside
-  - gulamistabamaster griesti un gulamistabamaster bedside iesledz
+  - iesledz gulamistabamaster griesti un gulamistabamaster naktsskapis
+  - gulamistabamaster griesti un gulamistabamaster naktsskapis iesledz
 - name: and_light.master_ceiling_light.master_bedside_left_off
   conditions:
   - type: action
@@ -128,8 +128,8 @@
     entity_id: light.master_bedside_left
     state: 'off'
   sentences:
-  - izsledz gulamistabamaster griesti un gulamistabamaster bedside
-  - gulamistabamaster griesti un gulamistabamaster bedside izsledz
+  - izsledz gulamistabamaster griesti un gulamistabamaster naktsskapis
+  - gulamistabamaster griesti un gulamistabamaster naktsskapis izsledz
 - name: and_light.family_ceiling_light.dining_pendant_on
   conditions:
   - type: action

@@ -85,6 +85,7 @@ const WORD_SOURCES: &[(WordKey, WordPick)] = &[
     (WordKey::TimerCancel, |p: &Pack| p.cues.timer_cancel),
     (WordKey::TimerPause, |p: &Pack| p.cues.timer_pause),
     (WordKey::TimerAdd, |p: &Pack| p.cues.timer_add),
+    (WordKey::TimerRemove, |p: &Pack| p.cues.timer_remove),
     (WordKey::ListComplete, |p: &Pack| p.cues.list_complete),
     (WordKey::PlaybackResume, |p: &Pack| p.cues.playback_resume),
     (WordKey::CalendarQuery, |p: &Pack| p.cues.calendar_query),

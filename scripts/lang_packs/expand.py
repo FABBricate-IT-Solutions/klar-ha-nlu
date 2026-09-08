@@ -7,6 +7,7 @@ from lang_packs.convo import with_warm_white
 from lang_packs.extras import pack_extras
 from lang_packs.native_apply import apply_native, is_script_pack
 from lang_packs.speech_slots import apply_speech_slots, pick_room_names
+from lang_packs.timer_lex import apply_to_words, how_long
 from lang_packs.voices import normalize_personality
 
 ROOMS = (
@@ -20,6 +21,7 @@ def expand(core: dict) -> dict:
     w = core["w"]
     for key, val in pack_extras(core["code"]).items():
         w.setdefault(key, val)
+    apply_to_words(core["code"], w)
     cal = calendar_for(core["code"])
     w.setdefault("calendar", list(cal["nouns"]))
     w.setdefault("calendar_query", list(cal["query"]))
@@ -37,6 +39,7 @@ def expand(core: dict) -> dict:
         speech.setdefault(key, value)
     personality = normalize_personality(core.get("personality"))
     speech, personality = apply_speech_slots(core["code"], speech, core, personality)
+    speech.setdefault("timer_how_long", how_long(core["code"]))
     chat = dict(core["chat"])
     chat["news_intro"] = speech["unknown"]
     colors = with_warm_white(core["code"], list(core.get("colors") or default_colors()))
@@ -50,7 +53,7 @@ def expand(core: dict) -> dict:
     light = w["light"]
     cover = distinct_from(w["cover"], light, "cover")
     climate = distinct_from(w["climate"], light, "climate")
-    media = distinct_from(w["media"], light, "media")
+    media = distinct_from(unique(list(w.get("music") or []) + list(w["media"])), light, "media")
     lock = distinct_from(w["lock"], light, "lock")
     door = distinct_from(w["door"], light, "door")
     timer = distinct_from(w["timer"], light, "timer")
@@ -104,6 +107,8 @@ def expand(core: dict) -> dict:
         verbs.append((word, "Percent"))
     for word in unique(list(w.get("dim") or []) + list(w.get("medium") or [])):
         verbs.append((word, "Dim"))
+    for word in w.get("decrease", []):
+        verbs.append((word, "Lower"))
     for word in w.get("stop", off[:1]):
         verbs.append((word, "Stop"))
     for word in unique(list(w.get("play") or []) + extra_play):
@@ -203,7 +208,7 @@ def expand(core: dict) -> dict:
         "fixtures": {
             "island": w.get("island", []),
             "ceiling": w.get("ceiling", []),
-            "lamp_fixture": unique(w.get("lamp", []) or light[1:2]),
+            "lamp_fixture": unique(w.get("lamp") or light[1:2] or ["lamp"]),
             "pendant": w.get("pendant", []),
             "bedside": w.get("bedside", []),
             "left": w.get("left", []),
@@ -260,8 +265,9 @@ def expand(core: dict) -> dict:
             "chores": unique(lst[-1:]),
             "weak_scene": w["fillers"][:3],
             "timer_cancel": unique(off[:1] + w.get("stop", [])),
-            "timer_pause": w.get("pause", []),
+            "timer_pause": unique(list(w.get("pause") or []) + ["hold", "halt"]),
             "timer_add": w.get("add", []),
+            "timer_remove": unique(list(w.get("decrease") or []) + ["minus"]),
             "list_complete": lexemes(w.get("done", [])),
             "playback_resume": unique(list(w.get("play") or []) + list(w.get("resume") or [])),
             "calendar_query": unique(w.get("calendar_query", [])),
@@ -272,9 +278,9 @@ def expand(core: dict) -> dict:
             "calendar_delete": unique(w.get("calendar_delete", [])),
             "calendar_move": unique(w.get("calendar_move", [])),
             "vacuum_start": on[:1],
-            "hours": w.get("hours", []),
-            "minutes": w.get("minutes", []),
-            "seconds": w.get("seconds", []),
+            "hours": unique(w.get("hours") or ["hour", "hours", "hrs"]),
+            "minutes": unique(w.get("minutes") or ["minute", "minutes", "min", "mins"]),
+            "seconds": unique(w.get("seconds") or ["second", "seconds", "sec", "secs"]),
             "list_skip": unique(
                 w["fillers"][:4]
                 + w.get("add", [])
@@ -322,7 +328,7 @@ def expand(core: dict) -> dict:
         },
         "chat": chat,
         "household": household_from(core, w, speech),
-        "smoke": smoke_rows(core, on) + calendar_smokes(cal) + music_smokes(w),
+        "smoke": list(core.get("smoke", [])) + calendar_smokes(cal) + music_smokes(w),
     }
 
 
@@ -375,11 +381,6 @@ def scene_lexemes(core: dict) -> list[str]:
         words.append(src)
         words.append(dst)
     return words
-
-
-def smoke_rows(core: dict, on: list[str]) -> list[tuple[str, str]]:
-    del on
-    return list(core.get("smoke", []))
 
 
 def calendar_smokes(cal: dict) -> list[tuple[str, str]]:
@@ -463,17 +464,7 @@ def rooms_named(rooms: list[tuple[str, str]], canon: str) -> list[str]:
 
 
 def default_colors() -> list[tuple[str, str]]:
-    return [
-        ("red", "red"),
-        ("blue", "blue"),
-        ("green", "green"),
-        ("yellow", "yellow"),
-        ("orange", "orange"),
-        ("pink", "pink"),
-        ("black", "black"),
-        ("white", "white"),
-        ("purple", "purple"),
-    ]
+    return [(color, color) for color in ("red", "blue", "green", "yellow", "orange", "pink", "black", "white", "purple")]
 
 
 def distinct_from(words: list[str], forbidden: list[str], field: str) -> list[str]:

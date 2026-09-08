@@ -40,6 +40,7 @@ pub(super) const SPEECH: Speech = Speech {
     timer_start: "టైమర్ నడుస్తోంది.",
     timer_cancel: "టైమర్ ఆగింది.",
     timer_pause: "టైమర్ పాజ్ అయింది.",
+    timer_how_long: "ఎంతసేపు?",
     list_add: "జాబితాలో ఉంది.",
     calendar_list: "{items}",
     calendar_empty: "అపాయింట్‌మెంట్ లేదు.",

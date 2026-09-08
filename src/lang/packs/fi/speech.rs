@@ -40,6 +40,7 @@ pub(super) const SPEECH: Speech = Speech {
     timer_start: "Ajastin käynnissä.",
     timer_cancel: "Ajastin pois.",
     timer_pause: "Ajastin tauolla.",
+    timer_how_long: "Kuinka kauan?",
     list_add: "On listalla.",
     calendar_list: "{items}",
     calendar_empty: "Ei tapahtumia.",

@@ -20,6 +20,7 @@ pub(super) const VERBS: &[(&str, VerbKind)] = &[
     ("sadguri", VerbKind::Dock),
     ("saketi", VerbKind::Lock),
     ("saxlshi", VerbKind::Dock),
+    ("sheamcire", VerbKind::Lower),
     ("shuaguli", VerbKind::Dim),
     ("sia", VerbKind::List),
     ("stsena", VerbKind::Scene),

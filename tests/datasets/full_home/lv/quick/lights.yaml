@@ -210,14 +210,14 @@
     entity_id: light.master_bedside_left
     state: 'on'
   sentences:
-  - iesledz bedside gulamistabamaster
+  - iesledz naktsskapis gulamistabamaster
 - name: light.master_bedside_left_off
   conditions:
   - type: action
     entity_id: light.master_bedside_left
     state: 'off'
   sentences:
-  - izsledz bedside gulamistabamaster
+  - izsledz naktsskapis gulamistabamaster
 - name: light.office_ceiling_on
   conditions:
   - type: action

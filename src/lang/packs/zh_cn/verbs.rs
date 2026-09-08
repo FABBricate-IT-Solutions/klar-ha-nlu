@@ -25,6 +25,7 @@ pub(super) const VERBS: &[(&str, VerbKind)] = &[
     ("关", VerbKind::Off),
     ("关上", VerbKind::Close),
     ("关闭", VerbKind::Off),
+    ("减少", VerbKind::Lower),
     ("合上", VerbKind::Close),
     ("回充", VerbKind::Dock),
     ("回家", VerbKind::Dock),

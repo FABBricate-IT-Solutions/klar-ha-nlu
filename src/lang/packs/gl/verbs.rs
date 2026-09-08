@@ -29,6 +29,7 @@ pub(super) const VERBS: &[(&str, VerbKind)] = &[
     ("purple", VerbKind::Color),
     ("que", VerbKind::Query),
     ("red", VerbKind::Color),
+    ("reduce", VerbKind::Lower),
     ("reproduce", VerbKind::Play),
     ("temporizador", VerbKind::Timer),
     ("ventilador", VerbKind::FanNoun),

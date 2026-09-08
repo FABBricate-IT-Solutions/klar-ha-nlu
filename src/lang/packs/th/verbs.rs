@@ -34,6 +34,7 @@ pub(super) const VERBS: &[(&str, VerbKind)] = &[
     ("ม่วง", VerbKind::Color),
     ("ยังไง", VerbKind::Query),
     ("รายการ", VerbKind::List),
+    ("ลด", VerbKind::Lower),
     ("ส้ม", VerbKind::Color),
     ("หยุด", VerbKind::Pause),
     ("หรี่", VerbKind::Dim),

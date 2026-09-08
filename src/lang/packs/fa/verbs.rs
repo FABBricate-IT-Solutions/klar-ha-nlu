@@ -31,5 +31,6 @@ pub(super) const VERBS: &[(&str, VerbKind)] = &[
     ("پنکه", VerbKind::FanNoun),
     ("چطور", VerbKind::Query),
     ("چی", VerbKind::Query),
+    ("کاهش", VerbKind::Lower),
     ("کم‌نور", VerbKind::Dim),
 ];

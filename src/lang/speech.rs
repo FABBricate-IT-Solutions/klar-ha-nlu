@@ -39,6 +39,7 @@ pub struct Speech {
     pub timer_start: &'static str,
     pub timer_cancel: &'static str,
     pub timer_pause: &'static str,
+    pub timer_how_long: &'static str,
     pub list_add: &'static str,
     pub calendar_list: &'static str,
     pub calendar_empty: &'static str,
@@ -96,6 +97,7 @@ mod tests {
             assert_ne!(s.vacuum_default, s.need_on, "{code} vacuum_default");
             assert_ne!(s.timer_cancel, s.need_off, "{code} timer_cancel");
             assert_ne!(s.timer_pause, s.need_off, "{code} timer_pause");
+            assert!(!s.timer_how_long.is_empty(), "{code} timer_how_long");
             assert_ne!(s.heat_noun, s.cool_noun, "{code} heat/cool");
             assert_ne!(s.loc_home, s.need_on, "{code} loc_home");
             let jarvis = s.personality_prefixes("jarvis");

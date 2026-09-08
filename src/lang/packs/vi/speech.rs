@@ -40,6 +40,7 @@ pub(super) const SPEECH: Speech = Speech {
     timer_start: "Hẹn giờ đang chạy.",
     timer_cancel: "Đã hủy hẹn giờ.",
     timer_pause: "Hẹn giờ tạm dừng.",
+    timer_how_long: "Bao lâu?",
     list_add: "Da vao danhsach.",
     calendar_list: "{items}",
     calendar_empty: "Toi khong hieu.",

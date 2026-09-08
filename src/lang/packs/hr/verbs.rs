@@ -21,6 +21,7 @@ pub(super) const VERBS: &[(&str, VerbKind)] = &[
     ("purple", VerbKind::Color),
     ("red", VerbKind::Color),
     ("scena", VerbKind::Scene),
+    ("smanji", VerbKind::Lower),
     ("srednje", VerbKind::Dim),
     ("stanica", VerbKind::Dock),
     ("stavi", VerbKind::Set),

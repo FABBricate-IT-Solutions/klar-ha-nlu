@@ -40,6 +40,7 @@ pub(super) const SPEECH: Speech = Speech {
     timer_start: "Tá an t-amadóir ar siúl.",
     timer_cancel: "Tá an t-amadóir curtha ar ceal.",
     timer_pause: "Tá an t-amadóir ar sos.",
+    timer_how_long: "Cá fhad?",
     list_add: "Ar an liosta.",
     calendar_list: "{items}",
     calendar_empty: "Nior thuig me.",
