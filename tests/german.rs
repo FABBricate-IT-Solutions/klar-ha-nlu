@@ -183,6 +183,31 @@ fn schlafzimmerlicht_trifft_hue_kugel_nicht_gruppe() {
     assert!(!slots.iter().any(|(k, v)| *k == "entity_id" && *v == "light.schlafzimmer_licht"), "{slots:?}");
 }
 
+/// Live: „Lampe im Schlafzimmer“ fragt nach, Follow-up „die Kugel“ muss den Namen treffen.
+#[test]
+fn lamp_clarify_followup_picks_friendly_name() {
+    let mut home = default_home();
+    home.entities.retain(|e| e.entity_id != "light.schlafzimmer_kugel");
+    home.entities.push(EntityRec {
+        entity_id: "light.schlafzimmer".into(),
+        name: "Kugel".into(),
+        domain: "light".into(),
+        platform: None,
+        area: Some("schlafzimmer".into()),
+        aliases: vec!["kugel".into()],
+        tags: Vec::new(),
+    });
+    let mut session = Session::new();
+    let settings = Settings::pinned("de");
+    let first = parse("mach die Lampe im Schlafzimmer an", &home, &mut session, &[], &settings);
+    assert!(first.clarify, "{}", first.speech);
+    assert!(first.intents.is_empty(), "{:?} {}", first.intents, first.speech);
+    let second = parse("die Kugel", &home, &mut session, &[], &settings);
+    assert!(!second.clarify, "{}", second.speech);
+    assert_eq!(second.intents[0].name, "HassTurnOn", "{:?} {}", second.intents, second.speech);
+    assert_eq!(second.intents[0].slot("entity_id"), Some("light.schlafzimmer"), "{:?} {}", second.intents, second.speech);
+}
+
 #[test]
 fn follow_up_aus() {
     let home = default_home();

@@ -1,7 +1,8 @@
 use crate::parse::chat::{briefing_followup, is_news, is_news_dismiss, is_ood, wants_llm};
+use crate::parse::clarify::pick_clarification;
 use crate::parse::clause_support::last_visible;
 use crate::parse::compound::CompoundSplit;
-use crate::parse::infer::{looks_like_correction, match_custom, pick_clarification};
+use crate::parse::infer::{looks_like_correction, match_custom};
 use crate::parse::numbers::first_number;
 use crate::parse::respond::{speak, speak_correction, speak_need_target, speak_unknown};
 use crate::parse::slots::intent_with_entity;
@@ -119,7 +120,7 @@ pub(super) fn route_pending(context: &ParseContext<'_>, tokens: &[String]) -> Op
         });
     }
     if context.session.pending_clarify().is_some() {
-        let picked = pick_clarification(tokens, context.session);
+        let picked = pick_clarification(tokens, context.session, context.home);
         if let Some(chosen) = picked {
             let template = context.session.pending_clarify()?.template.clone();
             let intent = if context.home.areas.iter().any(|area| area.area_id == chosen) {

@@ -4,6 +4,7 @@ pub mod action;
 pub(crate) mod also;
 pub(crate) mod calendar;
 pub(crate) mod chat;
+pub(crate) mod clarify;
 pub(crate) mod clause;
 pub(crate) mod clause_area;
 pub(crate) mod clause_early;

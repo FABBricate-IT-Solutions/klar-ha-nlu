@@ -275,28 +275,6 @@ pub(crate) fn looks_like_correction(tokens: &[String]) -> bool {
     catalog().correction().iter().any(|w| blob.contains(w)) || catalog().correction_phrases().iter().any(|phrase| blob.contains(phrase))
 }
 
-pub(crate) fn pick_clarification(tokens: &[String], session: &Session) -> Option<String> {
-    let pending = &session.pending_clarify()?.options;
-    if tokens.iter().any(|t| catalog().clarify_pick().contains(t.as_str())) {
-        return pending.first().cloned();
-    }
-    let blob = join_tokens(tokens);
-    pending
-        .iter()
-        .find(|id| {
-            let tail = id.rsplit('.').next().unwrap_or(id).replace('_', " ");
-            let folded = fold_umlaut(&tail);
-            blob.contains(&folded)
-                || tokens.iter().any(|t| {
-                    let aliases = fixture_aliases(t);
-                    aliases
-                        .iter()
-                        .any(|a| (folded.contains(a) && a.len() > 2) || tail.split_whitespace().any(|p| a.contains(p) && p.len() > 2))
-                })
-        })
-        .cloned()
-}
-
 pub(crate) fn fixture_matches(entity: &EntityRec, needle: &str) -> bool {
     let blob = format!("{} {} {}", entity.entity_id, fold_umlaut(&entity.name), entity.aliases.join(" "));
     let hits = fixture_aliases(needle);
@@ -309,7 +287,7 @@ pub(crate) fn fixture_matches(entity: &EntityRec, needle: &str) -> bool {
     }
 }
 
-fn fixture_aliases(token: &str) -> Vec<&str> {
+pub(crate) fn fixture_aliases(token: &str) -> Vec<&str> {
     let cat = catalog();
     let aliases = cat.fixture_alias(token);
     let mut out: Vec<&str> = if aliases.is_empty() { vec![token] } else { aliases.to_vec() };

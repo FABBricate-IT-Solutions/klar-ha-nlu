@@ -167,6 +167,15 @@ def is_addon_engine_url(url: object) -> bool:
     return _addon_kind(_engine_host(url)) is not None
 
 
+def addon_sidebar_path(url: object) -> str | None:
+    kind = _addon_kind(_engine_host(url))
+    if kind == CHANNEL_STAGING:
+        return "klar_nlu_staging"
+    if kind == CHANNEL_STABLE:
+        return "klar_nlu"
+    return None
+
+
 def is_managed_engine_url(url: object) -> bool:
     text = _normalize_engine_url(url)
     if text in {

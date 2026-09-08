@@ -22,7 +22,7 @@ except ImportError:
 from .const import (
     DOMAIN,
     TOKEN_HEADER,
-    is_addon_engine_url,
+    addon_sidebar_path,
 )
 
 _LOGGER = logging.getLogger(__name__)
@@ -32,7 +32,6 @@ SESSION_PATH = "/api/klar_nlu/session"
 COOKIE_NAME = "klar_nlu_ui"
 COOKIE_PATH = "/api/klar_nlu"
 COOKIE_TTL_S = 86400
-ADDON_PANEL_PATHS = ("klar_nlu", "klar_nlu_staging")
 _STORE_KEYS = frozenset({"panel", "ui_proxy", "ui_cookie_secret", "operator_panel"})
 _STRIP_REQ = frozenset(
     {
@@ -155,16 +154,15 @@ def request_allowed(request: web.Request, secret: bytes, now: float | None = Non
 
 
 def addon_ingress_active(hass: HomeAssistant) -> bool:
-    """True when Supervisor already put Klar NLU on the sidebar."""
+    """True when Supervisor already put this Klar engine on the sidebar."""
     panels = hass.data.get("frontend_panels") or {}
-    for path in ADDON_PANEL_PATHS:
+    wanted = {addon_sidebar_path(url) for url in _configured_urls(hass)}
+    wanted.discard(None)
+    for path in wanted:
         panel = panels.get(path) if isinstance(panels, dict) else None
         if panel is not None and _panel_component(panel) == "hassio":
             return True
-    components = getattr(getattr(hass, "config", None), "components", None) or []
-    if "hassio" not in components:
-        return False
-    return any(is_addon_engine_url(url) for url in _configured_urls(hass))
+    return False
 
 
 def _configured_urls(hass: HomeAssistant) -> list[str]:

@@ -149,7 +149,7 @@ class PanelDashboardTests(unittest.TestCase):
 
     def test_skips_sidebar_when_hassio_addon_panel_exists(self) -> None:
         hass = _hass(
-            domain={},
+            domain={"entry": {"url": "http://klar-nlu:10520", "token": None}},
             panels={"klar_nlu": SimpleNamespace(component_name="hassio")},
         )
         captured: list[dict] = []
@@ -159,17 +159,19 @@ class PanelDashboardTests(unittest.TestCase):
             asyncio.run(panel.async_setup_panel(hass))
         self.assertEqual(captured, [])
 
-    def test_skips_sidebar_when_hassio_points_at_addon(self) -> None:
+    def test_registers_hacs_when_addon_panel_missing(self) -> None:
         hass = _hass(
             components=("hassio",),
-            domain={"entry": {"url": "http://klar-nlu:10520", "token": None}},
+            domain={"entry": {"url": "http://klar-nlu-staging:10520", "token": None}},
+            panels={"klar_nlu": SimpleNamespace(component_name="hassio")},
         )
         captured: list[dict] = []
         with patch.object(
-            panel, "async_register_built_in_panel", lambda *_a, **_k: captured.append({})
+            panel, "async_register_built_in_panel", lambda *_a, **kwargs: captured.append(kwargs)
         ):
             asyncio.run(panel.async_setup_panel(hass))
-        self.assertEqual(captured, [])
+        self.assertEqual(len(captured), 1)
+        self.assertEqual(captured[0]["frontend_url_path"], "klar-nlu")
 
     def test_registers_when_hassio_uses_bundled_loopback(self) -> None:
         hass = _hass(

@@ -69,7 +69,23 @@ def timer_slots(slots: dict[str, Any]) -> dict[str, Any]:
             slots["minutes"] = duration
     slots.pop("entity_id", None)
     slots.pop("domain", None)
+    for key in ("hours", "minutes", "seconds"):
+        if key not in slots:
+            continue
+        parsed = _slot_int(slots.get(key))
+        if parsed is not None:
+            slots[key] = {"value": parsed}
     return slots
+
+
+def _slot_int(raw: Any) -> int | None:
+    value = raw.get("value") if isinstance(raw, dict) else raw
+    if value is None or value == "":
+        return None
+    try:
+        return int(float(str(value)))
+    except (TypeError, ValueError):
+        return None
 
 
 def list_slots(

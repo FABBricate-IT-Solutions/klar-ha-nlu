@@ -190,8 +190,11 @@ class UiProxyTests(unittest.TestCase):
 
     def test_addon_ingress_detects_hassio_panel(self) -> None:
         hass = SimpleNamespace(
-            data={"frontend_panels": {"klar_nlu": SimpleNamespace(component_name="hassio")}},
-            config=SimpleNamespace(components=set()),
+            data={
+                "frontend_panels": {"klar_nlu": SimpleNamespace(component_name="hassio")},
+                "klar_nlu": {"entry": {"url": "http://klar-nlu:10520"}},
+            },
+            config=SimpleNamespace(components={"hassio"}),
         )
         self.assertTrue(proxy.addon_ingress_active(hass))
         hass.data["frontend_panels"]["klar_nlu"] = SimpleNamespace(component_name="custom")
@@ -202,12 +205,26 @@ class UiProxyTests(unittest.TestCase):
             data={"klar_nlu": {"entry": {"url": "http://klar-nlu:10520"}}},
             config=SimpleNamespace(components={"hassio"}),
         )
-        self.assertTrue(proxy.addon_ingress_active(hass))
+        self.assertFalse(proxy.addon_ingress_active(hass))
         hass.config.components = set()
         self.assertFalse(proxy.addon_ingress_active(hass))
         hass.config.components = {"hassio"}
         hass.data["klar_nlu"]["entry"]["url"] = "http://127.0.0.1:10520"
         self.assertFalse(proxy.addon_ingress_active(hass))
+
+    def test_addon_ingress_matches_configured_engine_panel(self) -> None:
+        hass = SimpleNamespace(
+            data={
+                "frontend_panels": {"klar_nlu": SimpleNamespace(component_name="hassio")},
+                "klar_nlu": {"entry": {"url": "http://8db2ab02-klar-nlu-staging.local.hass.io:10520"}},
+            },
+            config=SimpleNamespace(components={"hassio"}),
+        )
+        self.assertFalse(proxy.addon_ingress_active(hass))
+        hass.data["frontend_panels"]["klar_nlu_staging"] = SimpleNamespace(component_name="hassio")
+        self.assertTrue(proxy.addon_ingress_active(hass))
+        hass.data["klar_nlu"]["entry"]["url"] = "http://8db2ab02-klar-nlu.local.hass.io:10520"
+        self.assertTrue(proxy.addon_ingress_active(hass))
 
 
 if __name__ == "__main__":
