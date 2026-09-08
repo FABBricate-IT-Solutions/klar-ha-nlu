@@ -3,34 +3,34 @@ timers/timers::abstract_start:
 timers/timers::abstract_start_hours_minutes:
 - ჩართე ტაიმერი abstract 20 min
 timers/timers::abstract_start_seconds:
-- ჩართე ტაიმერი abstract
+- ჩართე ტაიმერი abstract 45 sec
 timers/timers::cancel_all_timers:
 - გამორთე ყველა ტაიმერი
 timers/timers::timer_laundry_cancel:
-- ჩართე ტაიმერი laundry
+- გამორთე ტაიმერი laundry
 timers/timers::timer_laundry_decrease:
 - ჩართე ტაიმერი laundry 5 min
 timers/timers::timer_laundry_increase:
 - ჩართე ტაიმერი laundry 16 min
 timers/timers::timer_laundry_pause:
-- გამორთე ტაიმერი laundry
+- პაუზა ტაიმერი laundry
 timers/timers::timer_laundry_start:
-- ჩართე ტაიმერი laundry
+- ჩართე ტაიმერი laundry 90 sec
 timers/timers::timer_laundry_status:
 - რა ტაიმერი laundry
 timers/timers::timer_laundry_unpause:
-- ჩართე ტაიმერი laundry
+- დაკვრა ტაიმერი laundry
 timers/timers::timer_oven_cancel:
-- ჩართე ტაიმერი oven
+- გამორთე ტაიმერი oven
 timers/timers::timer_oven_decrease:
 - ჩართე ტაიმერი oven 44 min
 timers/timers::timer_oven_increase:
 - ჩართე ტაიმერი oven 30 min
 timers/timers::timer_oven_pause:
-- გამორთე ტაიმერი oven
+- პაუზა ტაიმერი oven
 timers/timers::timer_oven_start:
 - ჩართე ტაიმერი oven 2 min
 timers/timers::timer_oven_status:
 - რა ტაიმერი oven
 timers/timers::timer_oven_unpause:
-- ჩართე ტაიმერი oven
+- დაკვრა ტაიმერი oven

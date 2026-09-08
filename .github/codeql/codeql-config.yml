@@ -2,3 +2,5 @@ name: klar-nlu
 paths-ignore:
   - src/lang/packs/**
   - tests/datasets/**
+  - src/**/tests.rs
+  - tests/**

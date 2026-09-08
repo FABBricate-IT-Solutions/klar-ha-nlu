@@ -1,8 +1,9 @@
-import { useEffect, useState } from "react";
-import { api, type CustomRule, type LangOverlay } from "../api";
+import { useState } from "react";
+import { api, type CustomRule } from "../api";
 import { SearchSelect, useHouseCatalog, withCurrent } from "../components/SearchSelect";
 import { SetupHint } from "../components/SetupHint";
 import type { Messages } from "../i18n";
+import { useLangOverlay } from "../useLangOverlay";
 
 function isRoutine(rule: CustomRule): boolean {
   const script = rule.slots.entity_id || "";
@@ -16,25 +17,20 @@ function asScript(value: string): string {
 }
 
 export function RoutinesPage({ t }: { t: Messages }) {
-  const [rules, setRules] = useState<CustomRule[]>([]);
-  const [language, setLanguage] = useState<unknown>({});
+  const { overlay, offline, status, setStatus, replace } = useLangOverlay();
+  const rules = overlay?.custom ?? [];
+  const language = overlay?.language ?? {};
   const [phrase, setPhrase] = useState("");
   const [script, setScript] = useState("");
-  const [status, setStatus] = useState("");
   const { scriptOptions } = useHouseCatalog();
 
-  const load = (overlay: LangOverlay) => {
-    setRules(overlay.custom);
-    setLanguage(overlay.language);
-  };
-
-  useEffect(() => {
-    api.langOverlay().then(load).catch((err) => setStatus(String(err)));
-  }, []);
-
   const persist = async (next: CustomRule[], label: string) => {
-    load(await api.saveLangOverlay({ custom: next, language, label }));
-    setStatus(t.save);
+    try {
+      replace(await api.saveLangOverlay({ custom: next, language, label }));
+      setStatus(t.save);
+    } catch (err) {
+      setStatus(String(err));
+    }
   };
 
   const add = async () => {
@@ -71,12 +67,13 @@ export function RoutinesPage({ t }: { t: Messages }) {
           allowEmpty={false}
         />
         <div className="row" style={{ marginTop: 12 }}>
-          <button className="primary" type="button" onClick={() => void add()}>{t.addRoutine}</button>
+          <button className="primary" type="button" onClick={() => void add()} disabled={offline}>{t.addRoutine}</button>
         </div>
         {status && <p className="caption">{status}</p>}
       </div>
       <div className="card">
-        {routines.length === 0 && (
+        {offline && <p className="muted">{t.engineOffline}</p>}
+        {!offline && routines.length === 0 && (
           <div>
             <p className="muted">{t.noRoutines}</p>
             <SetupHint t={t} />

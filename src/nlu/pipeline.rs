@@ -253,6 +253,9 @@ fn attach_policy_trace(draft: &mut Draft, parse_trace: &ParseTrace) {
 }
 
 fn apply_resolved_lock_pair(ranking: &mut super::ranking::RankingResult, context: &ParseContext<'_>, tokens: &[String]) {
+    if ranking.competing && !paired_lock_command(tokens) {
+        return;
+    }
     let locks = crate::parse::resolve::resolve(tokens, context.home, Some("lock"))
         .entities
         .into_iter()
@@ -305,6 +308,11 @@ fn apply_resolved_lock_pair(ranking: &mut super::ranking::RankingResult, context
             evidence: Vec::new(),
         });
     }
+}
+
+fn paired_lock_command(tokens: &[String]) -> bool {
+    let cat = crate::lang::catalog();
+    tokens.iter().any(|token| cat.is_conj(token)) && (cat.any(tokens, cat.lock_nouns()) || cat.any(tokens, cat.door_nouns()))
 }
 
 fn dedup_intents(intents: &mut Vec<Intent>) {

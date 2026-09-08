@@ -175,13 +175,13 @@ devices/light_master_bath_light::light_master_bath_light_turn_off:
 devices/light_master_bath_light::light_master_bath_light_turn_on:
 - accendi luce bagnomaster
 devices/light_master_bedside_right::light_master_bedside_right_change_brightness:
-- metti comodino cameramaster 25
+- metti comodino right cameramaster 25
 devices/light_master_bedside_right::light_master_bedside_right_change_color:
-- metti comodino cameramaster rosso
+- metti comodino right cameramaster rosso
 devices/light_master_bedside_right::light_master_bedside_right_turn_off:
-- spegni comodino cameramaster
+- spegni comodino right cameramaster
 devices/light_master_bedside_right::light_master_bedside_right_turn_on:
-- accendi comodino cameramaster
+- accendi comodino right cameramaster
 devices/light_master_ceiling::light_master_ceiling_change_brightness:
 - metti soffitto cameramaster 77
 devices/light_master_ceiling::light_master_ceiling_change_color:

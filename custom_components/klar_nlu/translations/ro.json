@@ -23,33 +23,17 @@
     "step": {
       "init": {
         "title": "Klar NLU",
-        "description": "Personalitatea se salvează aici și rămâne după reinstalarea aplicației Klar.",
+        "description": "Vocea, limbile Assist și LLM-ul sunt în UI-ul operator Klar (Setări). Acest formular conectează doar motorul: URL, token și canal.",
         "data": {
           "mode": "Motor",
-          "personality": "Personalitate",
-          "languages": "Limbi",
-          "allow_llm_tools": "Allow Home Assistant Assist tools on engine chat",
-          "refine_speech": "Lasă LLM-ul să reformuleze răspunsurile NLU",
-          "refine_prompt": "Prompt de rafinare",
           "url": "URL API Klar",
           "token": "Token de scriere",
           "assist_filter": "Controlează doar entitățile expuse către Assist",
-          "nlu_rag": "NLU-RAG (opțional)",
-          "quiet_ack": "Confirmare scurtă (clopoțel)",
-          "calendar_llm": "Trimite interogările de calendar la LLM",
           "channel": "Canal de lansare"
         },
         "data_description": {
-          "personality": "Este în această integrare, nu în aplicația Klar.",
-          "refine_speech": "Klar controlează în continuare dispozitivele. LLM-ul de rezervă reformulează răspunsul.",
-          "refine_prompt": "Promptul de sistem al vocii. Fără control de dispozitive, fără fapte noi, aceeași limbă.",
           "token": "Același token ca în aplicația Klar.",
           "assist_filter": "Pornit: doar ce vede Assist. Oprit: și entități ascunse.",
-          "nlu_rag": "Dezactivat implicit. La conversație doar fragmentul recunoscut merge la modelul de rezervă.",
-          "quiet_ack": "La aprindere/stingere simplă nu vorbește, doar un sunet scurt pe satelit.",
-          "calendar_llm": "Dezactivat implicit. Pornit: Klar citește calendarul, LLM-ul de rezervă spune evenimentele. Oprit: Klar spune lista. Crearea, ștergerea și mutarea rămân în Klar.",
-          "allow_llm_tools": "Off by default. On: after Klar parses, the engine chat model may call Home Assistant Assist tools (names come from Core, already prefixed). Off: conversation only.",
-          "languages": "Implicit urmează limba sistemului Home Assistant.",
           "channel": "Oricând. Staging indică Klar NLU (Staging)."
         }
       }

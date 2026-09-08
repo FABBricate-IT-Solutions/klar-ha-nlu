@@ -13,8 +13,10 @@ use crate::types::{
 use super::context::ParseContext;
 use super::decision::{decide_band, PolicyBand};
 use super::ranking::RankingResult;
-use super::speech::{apply_rule_speech, confirmation_prompt};
-use super::validation::{filter_valid_steps, requires_confirmation, validate_plan, PlanInvalid};
+use super::speech::{affirmative, apply_rule_speech, confirmation_prompt, mark_competing};
+use super::validation::{
+    fail_closed_intent, filter_valid_steps, missing_timer_duration, requires_confirmation, validate_plan, PlanInvalid,
+};
 
 #[derive(Default)]
 pub(super) struct SessionCommit {
@@ -205,7 +207,7 @@ pub(super) fn replay_or_decide(
         draft.commit.briefing = Some(false);
         draft
     } else if let Some(plan) = selected_plan.filter(|plan| plan.intents() == intents) {
-        with_competing(
+        mark_competing(
             execute_plan(
                 context,
                 plan,
@@ -218,7 +220,7 @@ pub(super) fn replay_or_decide(
             ranking.competing,
         )
     } else {
-        with_competing(
+        mark_competing(
             execute(
                 context,
                 intents,
@@ -235,6 +237,14 @@ pub(super) fn replay_or_decide(
 
 pub(super) fn safety_decision(mut draft: Draft, context: &ParseContext<'_>) -> Draft {
     if !matches!(draft.decision, ParseDecision::Execute) {
+        return draft;
+    }
+    if draft.plan.as_ref().is_some_and(|plan| missing_timer_duration(plan, context.text)) {
+        let prompt = if context.catalog.has_german_und() { "Wie lange?" } else { "How long?" }.to_string();
+        draft.decision = ParseDecision::Clarify { prompt: prompt.clone(), options: Vec::new() };
+        draft.speech = prompt;
+        draft.plan = None;
+        draft.commit = SessionCommit { briefing: draft.commit.briefing, ..SessionCommit::default() };
         return draft;
     }
     if draft.safety_confirmed {
@@ -254,6 +264,10 @@ pub(super) fn safety_decision(mut draft: Draft, context: &ParseContext<'_>) -> D
             return invalid_plan(draft, reason);
         }
         if filtered.steps.len() != plan.steps.len() {
+            if plan.steps.iter().any(|step| fail_closed_intent(&step.intent)) {
+                draft.plan = Some(plan);
+                return invalid_plan(draft, PlanInvalid::UnsafeTarget);
+            }
             let intents = filtered.intents();
             draft.speech = speak(&intents, context.settings.personality, false, Some(context.home));
             draft.commit.remember = intents;
@@ -455,11 +469,6 @@ pub(super) fn chat(speech: String, response_briefing: bool, next_briefing: bool)
     }
 }
 
-fn with_competing(mut draft: Draft, competing: bool) -> Draft {
-    draft.competing = competing;
-    draft
-}
-
 pub(super) fn decide_execute_plan(
     home: &crate::types::HomeGraph,
     settings: &crate::types::Settings,
@@ -477,10 +486,6 @@ pub(super) fn decide_execute_plan(
     draft.margin = margin;
     draft.competing = competing;
     safety_decision(draft, &context)
-}
-
-fn affirmative(tokens: &[String], catalog: &crate::lang::Catalog) -> bool {
-    !tokens.is_empty() && tokens.iter().all(|token| catalog.is_affirm(token))
 }
 
 #[cfg(test)]

@@ -337,14 +337,14 @@ fn follow_up_turns_off_the_same_light() {
 }
 
 #[test]
-fn clarification_follow_up_picks_the_named_lamp() {
+fn room_light_executes_and_named_lamp_clarifies() {
     let home = klar_nlu::home::load_home_config(std::path::Path::new("tests/datasets/familienhaus_de/home_config.yaml")).expect("home");
     let settings = Settings::pinned("de");
-    let mut session = Session::new();
-    let first = parse("Mach Licht Schlafzimmer an", &home, &mut session, &[], &settings);
-    assert!(first.clarify);
-    let second = parse("die Lampe", &home, &mut session, &[], &settings);
-    assert_eq!(second.intents.first().and_then(|intent| intent.slot("entity_id")), Some("light.master_bedside_left"));
+    let generic = parse("Mach Licht Schlafzimmer an", &home, &mut Session::new(), &[], &settings);
+    assert!(!generic.clarify, "{generic:#?}");
+    assert_eq!(generic.intents.first().and_then(|intent| intent.slot("domain")), Some("light"));
+    let named = parse("Mach die Lampe im Schlafzimmer an", &home, &mut Session::new(), &[], &settings);
+    assert!(named.clarify, "{named:#?}");
 }
 
 #[test]

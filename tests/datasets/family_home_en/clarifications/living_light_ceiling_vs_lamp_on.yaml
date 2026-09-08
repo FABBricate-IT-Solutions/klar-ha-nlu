@@ -5,15 +5,6 @@ conditions:
   state: 'on'
 - type: action
   entity_id: light.living_lamp
-  state: 'off'
+  state: 'on'
 sentences:
-- - turn on the living room light
-  - ceiling
-- - switch on the living room lights
-  - the ceiling one
-- - living room light on
-  - ceiling please
-- - flip on the living room light
-  - just ceiling
-- - hey can you turn on the living room light
-  - ceiling light
+- turn on the living room light

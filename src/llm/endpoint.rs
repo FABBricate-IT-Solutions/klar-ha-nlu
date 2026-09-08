@@ -233,6 +233,17 @@ fn sanitize_key(api_key: &str) -> Result<String, LlmError> {
     Ok(api_key.to_string())
 }
 
+fn blocked_llm_target(url: &url::Url) -> bool {
+    match url.host() {
+        Some(url::Host::Ipv4(ip)) => ip.is_link_local(),
+        Some(url::Host::Ipv6(ip)) => ip.is_unicast_link_local() || ip.to_ipv4_mapped().is_some_and(|v4| v4.is_link_local()),
+        Some(url::Host::Domain(name)) => {
+            matches!(name.trim_end_matches('.').to_ascii_lowercase().as_str(), "metadata.google.internal" | "metadata")
+        }
+        None => true,
+    }
+}
+
 fn normalize_base(raw: &str) -> Result<String, LlmError> {
     let trimmed = raw.trim();
     let base = if trimmed.is_empty() { DEFAULT_BASE } else { trimmed };
@@ -244,6 +255,10 @@ fn normalize_base(raw: &str) -> Result<String, LlmError> {
         return Err(LlmError::InvalidEndpoint("base_url"));
     }
     if no_slash.contains('@') || no_slash.contains(char::is_whitespace) {
+        return Err(LlmError::InvalidEndpoint("base_url"));
+    }
+    let parsed = url::Url::parse(no_slash).map_err(|_| LlmError::InvalidEndpoint("base_url"))?;
+    if !parsed.username().is_empty() || parsed.password().is_some() || blocked_llm_target(&parsed) {
         return Err(LlmError::InvalidEndpoint("base_url"));
     }
     let path = no_slash.splitn(4, '/').nth(3).unwrap_or("");
@@ -327,6 +342,22 @@ mod tests {
         assert!(LlmEndpoint::from_parts("https://u:p@api.openai.com/v1", "k", "m").is_err());
         assert!(LlmEndpoint::from_parts("file:///etc/passwd", "k", "m").is_err());
         assert!(LlmEndpoint::from_parts("https://api.openai.com/v1", "k", "").is_err());
+    }
+
+    #[test]
+    fn rejects_link_local_and_metadata_hosts() {
+        assert!(LlmEndpoint::from_parts("http://169.254.169.254/v1", "k", "m").is_err());
+        assert!(LlmEndpoint::from_parts("http://169.254.1.1:80/v1", "k", "m").is_err());
+        assert!(LlmEndpoint::from_parts("http://metadata.google.internal/v1", "k", "m").is_err());
+        assert!(LlmEndpoint::from_parts("http://METADATA.GOOGLE.INTERNAL./v1", "k", "m").is_err());
+        assert!(LlmEndpoint::from_parts("http://metadata/v1", "k", "m").is_err());
+        assert!(LlmEndpoint::for_discovery("http://[fe80::1]/v1", "").is_err());
+        assert!(LlmEndpoint::from_parts("http://127.0.0.1:11434/v1", "", "llama3").is_ok());
+        assert!(LlmEndpoint::from_parts("http://[::1]:11434/v1", "", "llama3").is_ok());
+        assert!(LlmEndpoint::from_parts("http://192.168.1.8:11434/v1", "", "llama3").is_ok());
+        assert!(LlmEndpoint::from_parts("http://10.0.0.5:11434/v1", "", "m").is_ok());
+        assert!(LlmEndpoint::from_parts("http://172.16.0.8:11434/v1", "", "m").is_ok());
+        assert!(LlmEndpoint::from_parts("http://172.31.255.1:11434/v1", "", "m").is_ok());
     }
 
     #[test]

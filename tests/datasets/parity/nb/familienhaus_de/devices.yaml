@@ -175,13 +175,13 @@ devices/light_master_bath_light::light_master_bath_light_turn_off:
 devices/light_master_bath_light::light_master_bath_light_turn_on:
 - skru lys badmaster
 devices/light_master_bedside_right::light_master_bedside_right_change_brightness:
-- sett nattbord soverommaster 25
+- sett nattbord right soverommaster 25
 devices/light_master_bedside_right::light_master_bedside_right_change_color:
-- sett nattbord soverommaster rod
+- sett nattbord right soverommaster rod
 devices/light_master_bedside_right::light_master_bedside_right_turn_off:
-- slaa nattbord soverommaster
+- slaa nattbord right soverommaster
 devices/light_master_bedside_right::light_master_bedside_right_turn_on:
-- skru nattbord soverommaster
+- skru nattbord right soverommaster
 devices/light_master_ceiling::light_master_ceiling_change_brightness:
 - sett tak soverommaster 77
 devices/light_master_ceiling::light_master_ceiling_change_color:

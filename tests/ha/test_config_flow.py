@@ -140,6 +140,14 @@ class ConfigFlowSchemaTests(unittest.TestCase):
         german = json.loads((ROOT / "custom_components" / "klar_nlu" / "translations" / "de.json").read_text(encoding="utf-8"))
         self.assertIn("operator UI", strings["options"]["step"]["init"]["description"])
         self.assertIn("Operator-UI", german["options"]["step"]["init"]["description"])
+        self.assertEqual(
+            set(strings["options"]["step"]["init"]["data"]),
+            {"mode", "url", "token", "assist_filter", "channel"},
+        )
+        self.assertEqual(
+            set(strings["options"]["step"]["init"]["data_description"]),
+            {"token", "assist_filter", "channel"},
+        )
         self.assertEqual(strings["selector"]["nlu_language"]["options"]["system"], "System language")
         self.assertEqual(german["selector"]["nlu_language"]["options"]["system"], "Systemsprache")
         self.assertEqual(strings["entity"]["select"]["personality"]["name"], "Personality")

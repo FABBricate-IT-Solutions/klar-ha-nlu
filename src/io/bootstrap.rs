@@ -24,11 +24,14 @@ pub async fn run(args: RuntimeArgs) {
     let token =
         resolve_token(args.token.or_else(|| std::env::var("KLAR_TOKEN").ok().filter(|s| !s.is_empty())), args.token_file.as_deref());
     if token.is_none() {
-        tracing::warn!("Kein Token: HTTP-API nur von localhost und dem Supervisor-Netz");
+        tracing::warn!("Kein Token: Schreiben nur von localhost; Supervisor-Netz darf lesen");
     }
 
     load_language_packs(args.lang_dir.as_deref());
     let loaded = load_merged(&args.config_dir, &data_dir);
+    if loaded.custom.is_empty() {
+        tracing::warn!("keine eigenen Sätze in klar_nlu.json — Custom-Phrasen fehlen bis zum Speichern");
+    }
     if !loaded.language.sets.is_empty() {
         crate::lang::install_user_overlay(Some(loaded.language.clone()));
     }
@@ -84,6 +87,7 @@ fn resolve_token(explicit: Option<String>, file: Option<&Path>) -> Option<String
     if let Ok(existing) = std::fs::read_to_string(path) {
         let trimmed = existing.trim().to_string();
         if !trimmed.is_empty() {
+            tighten_token_mode(path);
             return Some(trimmed);
         }
     }
@@ -91,12 +95,34 @@ fn resolve_token(explicit: Option<String>, file: Option<&Path>) -> Option<String
     if let Some(parent) = path.parent() {
         let _ = std::fs::create_dir_all(parent);
     }
-    if std::fs::write(path, &token).is_ok() {
+    if write_token_file(path, &token).is_ok() {
         tracing::warn!("Write-Token nach {} geschrieben", path.display());
         Some(token)
     } else {
         None
     }
+}
+
+fn tighten_token_mode(path: &Path) {
+    use std::os::unix::fs::PermissionsExt;
+    if let Ok(meta) = std::fs::metadata(path) {
+        let mut perms = meta.permissions();
+        if perms.mode() & 0o777 != 0o600 {
+            perms.set_mode(0o600);
+            let _ = std::fs::set_permissions(path, perms);
+        }
+    }
+}
+
+fn write_token_file(path: &Path, token: &str) -> std::io::Result<()> {
+    use std::io::Write;
+    use std::os::unix::fs::{OpenOptionsExt, PermissionsExt};
+    let mut file = std::fs::OpenOptions::new().write(true).create(true).truncate(true).mode(0o600).open(path)?;
+    file.write_all(token.as_bytes())?;
+    let mut perms = file.metadata()?.permissions();
+    perms.set_mode(0o600);
+    std::fs::set_permissions(path, perms)?;
+    Ok(())
 }
 
 async fn reload_home(state: AppState, config_dir: PathBuf, data_dir: PathBuf) {
@@ -129,5 +155,23 @@ fn load_language_packs(explicit: Option<&Path>) {
     match crate::lang::load_runtime_dir(&dir) {
         Ok(count) => tracing::info!("Sprachpakete aus {} geladen ({count})", dir.display()),
         Err(err) => tracing::warn!("Sprachpakete {}: {err}", dir.display()),
+    }
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+    use std::os::unix::fs::PermissionsExt;
+
+    #[test]
+    fn token_file_is_owner_rw_only() {
+        let dir = std::env::temp_dir().join(format!("klar-token-{}", uuid::Uuid::new_v4().simple()));
+        let _ = std::fs::create_dir_all(&dir);
+        let path = dir.join("klar.token");
+        let token = resolve_token(None, Some(&path)).expect("token");
+        assert!(!token.is_empty());
+        let mode = std::fs::metadata(&path).unwrap().permissions().mode() & 0o777;
+        assert_eq!(mode, 0o600);
+        let _ = std::fs::remove_dir_all(&dir);
     }
 }

@@ -5,13 +5,6 @@ conditions:
   state: 'on'
 - type: action
   entity_id: light.master_ceiling
-  state: 'off'
+  state: 'on'
 sentences:
-- - turn on the master bedroom light
-  - left bedside
-- - switch on the bedroom light
-  - left bedside lamp
-- - master bedroom light on
-  - left one
-- - flip the bedroom light on
-  - left bedside please
+- turn on the master bedroom light

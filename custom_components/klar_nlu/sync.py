@@ -13,7 +13,7 @@ from homeassistant.core import Event, HomeAssistant, callback
 from homeassistant.helpers import area_registry, device_registry, entity_registry, floor_registry, label_registry
 from homeassistant.helpers.aiohttp_client import async_get_clientsession
 
-from .const import CONF_ASSIST_FILTER, DEFAULT_ASSIST_FILTER, DEFAULT_URL, CONF_URL, engine_url_candidates
+from .const import CONF_ASSIST_FILTER, DEFAULT_ASSIST_FILTER, DEFAULT_URL, CONF_URL, engine_headers, engine_url_candidates
 
 _LOGGER = logging.getLogger(__name__)
 _EVENTS = (
@@ -49,7 +49,11 @@ class HomeGraphSync:
         await self.async_push()
         for event in _EVENTS:
             self._unsubs.append(self.hass.bus.async_listen(event, self._on_change))
-        self._tick = self.hass.async_create_task(self._loop())
+        create_bg = getattr(self.hass, "async_create_background_task", None)
+        if create_bg is not None:
+            self._tick = create_bg(self._loop(), "klar_nlu_home_sync")
+        else:
+            self._tick = self.hass.async_create_task(self._loop())
 
     async def async_stop(self) -> None:
         if self._debounce is not None:
@@ -84,7 +88,7 @@ class HomeGraphSync:
     async def async_push(self) -> bool:
         snapshot = self.build_snapshot()
         session = async_get_clientsession(self.hass)
-        headers = {"X-Klar-Token": self._token} if self._token else {}
+        headers = engine_headers(self._token)
         last_err: Exception | None = None
         for base in engine_url_candidates(self._url):
             try:

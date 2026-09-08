@@ -23,33 +23,17 @@
     "step": {
       "init": {
         "title": "Klar NLU",
-        "description": "شخصیت اینجا ذخیره می‌شود و پس از نصب دوباره برنامه Klar باقی می‌ماند.",
+        "description": "صدا، زبان‌های Assist و مدل زبانی در رابط اپراتور Klar (تنظیمات) هستند. این فرم فقط موتور را وصل می‌کند: نشانی، رمز و کانال.",
         "data": {
           "mode": "موتور",
-          "personality": "شخصیت",
-          "languages": "زبان‌ها",
-          "allow_llm_tools": "Allow Home Assistant Assist tools on engine chat",
-          "refine_speech": "بازنویسی پاسخ‌های NLU توسط LLM",
-          "refine_prompt": "اعلان اصلاح",
           "url": "نشانی API کلار",
           "token": "توکن نوشتن",
           "assist_filter": "فقط نهادهای نمایان برای Assist را کنترل کن",
-          "nlu_rag": "NLU-RAG (اختیاری)",
-          "quiet_ack": "تأیید کوتاه (زنگ)",
-          "calendar_llm": "پرس‌وجوهای تقویم را به مدل زبانی بفرست",
           "channel": "کانال انتشار"
         },
         "data_description": {
-          "personality": "در این یکپارچه‌سازی است، نه در برنامه Klar.",
-          "refine_speech": "Klar همچنان دستگاه‌ها را کنترل می‌کند. LLM پشتیبان پاسخ را بازنویسی می‌کند.",
-          "refine_prompt": "اعلان سیستمی صدا. بدون کنترل دستگاه، بدون واقعیت تازه، همان زبان.",
           "token": "همان توکن برنامه Klar.",
           "assist_filter": "روشن: فقط آنچه Assist می‌بیند. خاموش: شامل نهادهای پنهان.",
-          "nlu_rag": "پیش‌فرض خاموش. در گپ فقط قطعه تطبیق‌شده به مدل پشتیبان می‌رود.",
-          "quiet_ack": "روشن/خاموش ساده چراغ بدون جمله؛ فقط صدای کوتاه روی ماهواره.",
-          "calendar_llm": "پیش‌فرض خاموش. روشن: کلار تقویم را می‌خواند و مدل پشتیبان رویدادها را می‌گوید. خاموش: خود کلار فهرست را می‌گوید. ساختن، حذف و جابه‌جایی در کلار می‌ماند.",
-          "allow_llm_tools": "Off by default. On: after Klar parses, the engine chat model may call Home Assistant Assist tools (names come from Core, already prefixed). Off: conversation only.",
-          "languages": "پیش‌فرض زبان سیستم Home Assistant است.",
           "channel": "هر زمان. Staging به Klar NLU (Staging) اشاره می‌کند."
         }
       }

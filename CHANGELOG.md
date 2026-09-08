@@ -6,6 +6,131 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 Versions follow Home Assistant calendar versioning (`YYYY.M.PATCH`)
 and [Conventional Commits](https://www.conventionalcommits.org/).
 
+## [2026.9.5](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/compare/2026.9.4...2026.9.5) - 2026-09-06
+
+
+
+### Documentation
+
+- credit Aquila MIT voice suite([ae99f65](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/ae99f6515918f7c5957f5d26a405c4e9602ed0c8))
+
+
+### Other
+
+- Merge pull request #228 from FABBricate-IT-Solutions/docs/credit-aquila-suite-main([bb721c7](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/bb721c74a85972bd08bcf6e16a282df96419d2e3))
+
+## [2026.9.4](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/compare/2026.8.65-staging.8474bc4...2026.9.4) - 2026-09-06
+
+
+
+### Bug Fixes
+
+- keep staging Assist code when promoting to main([684a325](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/684a3254f2c9fde0635b1d677b2452dfc0cc99fc))
+
+
+### Other
+
+- Merge pull request #225 from FABBricate-IT-Solutions/release/promote-staging([136c27d](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/136c27daa457fc74b465501f3b7cba70c7f69098))
+
+- accept staging product over main 2026.9.3([84a77b9](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/84a77b99b56feed645c120808896bea1ba0e2a6f))
+
+## [2026.9.3](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/compare/2026.9.2...2026.9.3) - 2026-09-05
+
+
+
+### Bug Fixes
+
+- apply Debian security updates in the runtime image([4c30cfe](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/4c30cfe032286ea8f5373282d2283246d9b9c487))
+
+
+### Other
+
+- Merge pull request #195 from FABBricate-IT-Solutions/release/promote-image-security-updates([b17384b](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/b17384b2cace6cc055fe954eb3547b7a5b7ba40c))
+
+## [2026.9.2](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/compare/2026.9.1...2026.9.2) - 2026-09-05
+
+
+
+### Bug Fixes
+
+- only skip household weather when a calendar noun is present([3d503d3](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/3d503d3d3359564d227e564e06fc6f3fe77daebe))
+
+- keep Assist on the Lab plan and show pipeline settings([53fc5bc](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/53fc5bcbe0e9128995ff5f2ff97505fac67fee2f))
+
+
+### Other
+
+- Merge pull request #192 from FABBricate-IT-Solutions/release/promote-assist-follows-lab([94132aa](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/94132aae94bd4439b5bc2969eecb23bcba439d04))
+
+
+### Styling
+
+- rustfmt household weather calendar guard([a5fe09a](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/a5fe09a913ca74f80f66b5a59a556bf385261a87))
+
+## [2026.9.1](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/compare/2026.9.0...2026.9.1) - 2026-09-02
+
+
+
+### Features
+
+- speak named devices in floor and room status([095bac1](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/095bac1f2d7f1a7118ad832304c43f91e09c940d))
+
+
+### Other
+
+- Merge pull request #189 from FABBricate-IT-Solutions/release/promote-named-room-status([72aeadb](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/72aeadbdd84637f642e91c4461f3503ccb002cfa))
+
+
+### Styling
+
+- rustfmt the floor-status parse test([7d4df2f](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/7d4df2f915b8fa5893bd32d3531829bd25b1e201))
+
+## [2026.9.0](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/compare/2026.8.67...2026.9.0) - 2026-09-02
+
+
+
+### Features
+
+- let users opt in to Assist tools on the chit-chat LLM([a87a2fa](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/a87a2fae58fdac688bbe87ca07296fcabbca28f5))
+
+
+### Other
+
+- Merge pull request #186 from FABBricate-IT-Solutions/release/promote-allow-llm-tools([6c28793](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/6c28793c83f7af6dd60319cbcb3b54e0c848eb4a))
+
+## [2026.8.67](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/compare/2026.8.66...2026.8.67) - 2026-08-31
+
+
+
+### Bug Fixes
+
+- store stream-published flag on speech extra_data([cf6accc](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/cf6accca3328daa067b59b7819793256ffacf804))
+
+- publish LLM tokens into Assist chat([47108f2](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/47108f216287227caf6e95fd9f69d815c6bf6e8c))
+
+
+### Features
+
+- stream LLM deltas into Assist chat and TTS([fb8d530](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/fb8d530a0473a5c66035b50cdfc74406b6398dd5))
+
+
+### Other
+
+- Merge pull request #183 from FABBricate-IT-Solutions/release/promote-2026.9.0([3b3539b](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/3b3539bff51146bd8f8ae39e3d4fe0b59a7140ad))
+
+## [2026.8.66](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/compare/2026.8.65...2026.8.66) - 2026-08-31
+
+
+
+### Bug Fixes
+
+- close Assist listen after execute([41491a3](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/41491a39b666fe12e660efb15e6b3bc20d874e6c))
+
+
+### Other
+
+- Merge pull request #178 from FABBricate-IT-Solutions/fix/close-conversation-after-execute([219a432](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/219a43215b708aa17a584b1cb86c4ae0235bf253))
+
 ## [2026.8.65](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/compare/2026.8.64...2026.8.65) - 2026-08-31
 
 

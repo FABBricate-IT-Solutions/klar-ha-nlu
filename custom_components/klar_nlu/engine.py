@@ -44,6 +44,7 @@ from .const import (
     pick_staging_release,
     resolve_channel,
     resolve_personality,
+    engine_headers,
 )
 
 _LOGGER = logging.getLogger(__name__)
@@ -91,6 +92,7 @@ class KlarEngine:
 
     async def async_start(self) -> None:
         if await self._ping():
+            self.token = await self.hass.async_add_executor_job(self._existing_token)
             _LOGGER.info("Klar already listens on %s", DEFAULT_URL)
             return
         await self._ensure_binary()
@@ -185,15 +187,23 @@ class KlarEngine:
         extract_klar_archive(blob, self.bindir)
         (self.bindir / "version").write_text(stamp, encoding="utf-8")
 
+    def _existing_token(self) -> str | None:
+        path = self.bindir / "token"
+        if not path.is_file():
+            return None
+        token = path.read_text(encoding="utf-8").strip()
+        return token or None
+
     def _ensure_token(self) -> str:
         path = self.bindir / "token"
         self.bindir.mkdir(parents=True, exist_ok=True)
-        if path.is_file():
-            token = path.read_text(encoding="utf-8").strip()
-            if token:
-                return token
-        token = secrets.token_hex(16)
-        path.write_text(token, encoding="utf-8")
+        token = path.read_text(encoding="utf-8").strip() if path.is_file() else ""
+        if not token:
+            token = secrets.token_hex(16)
+            fd = os.open(path, os.O_WRONLY | os.O_CREAT | os.O_TRUNC, 0o600)
+            with os.fdopen(fd, "w", encoding="utf-8") as handle:
+                handle.write(token)
+        os.chmod(path, 0o600)
         return token
 
     async def _spawn(self) -> None:
@@ -347,10 +357,6 @@ def store_engine_settings(
         stored["engine_settings"] = payload
 
 
-def _settings_headers(token: str | None) -> dict[str, str]:
-    return {"X-Klar-Token": token} if token else {}
-
-
 async def async_fetch_settings(
     hass: HomeAssistant, url: str, token: str | None = None
 ) -> dict[str, object] | None:
@@ -359,7 +365,7 @@ async def async_fetch_settings(
     try:
         async with session.get(
             f"{url.rstrip('/')}/api/settings",
-            headers=_settings_headers(token),
+            headers=engine_headers(token),
             timeout=timeout,
         ) as resp:
             resp.raise_for_status()
@@ -382,7 +388,7 @@ async def async_put_settings(
         async with session.post(
             f"{url.rstrip('/')}/api/settings",
             json=payload,
-            headers=_settings_headers(token),
+            headers=engine_headers(token),
             timeout=timeout,
         ) as resp:
             resp.raise_for_status()
@@ -491,7 +497,7 @@ async def async_push_llm_endpoint(
     if payload is None:
         return
     session = async_get_clientsession(hass)
-    headers = {"X-Klar-Token": token} if token else {}
+    headers = engine_headers(token)
     timeout = ClientTimeout(total=3)
     body = {**payload, "configured": True}
     for base in engine_url_candidates(url):

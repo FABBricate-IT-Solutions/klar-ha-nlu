@@ -70,8 +70,9 @@
   sentences:
     - turn on the living room light
   nlu_expect:
-    intents: []
-    clarify: true
+    intents:
+      - intent: HassTurnOn
+        slots: {area: living, domain: light}
 
 - name: exact_reject
   sentences:

@@ -73,9 +73,9 @@ A temperatura Y. → Sim. A temperatura Y.",
     (
         "pt",
         "jarvis",
-        "X esta ligado. → Of course, sir. X esta ligado.
+        "X esta ligado. → Claro, senhor. X esta ligado.
 X esta desligado. → X esta desligado.
-A temperatura Y. → Of course, sir. A temperatura Y.",
+A temperatura Y. → Claro, senhor. A temperatura Y.",
     ),
     (
         "fi",
@@ -150,9 +150,9 @@ Lampotila Y. → Kylla. Lampotila Y.",
     (
         "fi",
         "jarvis",
-        "X on paalla. → Of course, sir. X on paalla.
+        "X on paalla. → Totta kai, sir. X on paalla.
 X on pois. → X on pois.
-Lampotila Y. → Of course, sir. Lampotila Y.",
+Lampotila Y. → Totta kai, sir. Lampotila Y.",
     ),
     (
         "cs",
@@ -227,9 +227,9 @@ Teplota Y. → Ano. Teplota Y.",
     (
         "cs",
         "jarvis",
-        "X je zapnute. → Of course, sir. X je zapnute.
+        "X je zapnute. → Samozřejmě, pane. X je zapnute.
 X je vypnute. → X je vypnute.
-Teplota Y. → Of course, sir. Teplota Y.",
+Teplota Y. → Samozřejmě, pane. Teplota Y.",
     ),
     (
         "bg",
@@ -304,9 +304,9 @@ X е изключен. → X е изключен.
     (
         "bg",
         "jarvis",
-        "X е включен. → Of course, sir. X е включен.
+        "X е включен. → Разбира се, сър. X е включен.
 X е изключен. → X е изключен.
-Температурата Y. → Of course, sir. Температурата Y.",
+Температурата Y. → Разбира се, сър. Температурата Y.",
     ),
     (
         "zh-TW",
@@ -381,9 +381,9 @@ X關了。 → X關了。
     (
         "zh-TW",
         "jarvis",
-        "X開了。 → Of course, sir. X開了。
+        "X開了。 → 當然，先生。 X開了。
 X關了。 → X關了。
-溫度Y。 → Of course, sir. 溫度Y。",
+溫度Y。 → 當然，先生。 溫度Y。",
     ),
     (
         "tr",
@@ -458,9 +458,9 @@ Sicaklik Y. → Evet. Sicaklik Y.",
     (
         "tr",
         "jarvis",
-        "X acik. → Of course, sir. X acik.
+        "X acik. → Tabii, efendim. X acik.
 X kapali. → X kapali.
-Sicaklik Y. → Of course, sir. Sicaklik Y.",
+Sicaklik Y. → Tabii, efendim. Sicaklik Y.",
     ),
     (
         "eu",
@@ -535,9 +535,9 @@ Tenperatura Y. → Bai. Tenperatura Y.",
     (
         "eu",
         "jarvis",
-        "X piztuta dago. → Of course, sir. X piztuta dago.
+        "X piztuta dago. → Noski, jauna. X piztuta dago.
 X itzalita dago. → X itzalita dago.
-Tenperatura Y. → Of course, sir. Tenperatura Y.",
+Tenperatura Y. → Noski, jauna. Tenperatura Y.",
     ),
     (
         "lt",
@@ -612,239 +612,239 @@ Temperatura Y. → Taip. Temperatura Y.",
     (
         "lt",
         "jarvis",
-        "X ijungta. → Of course, sir. X ijungta.
+        "X ijungta. → Žinoma, pone. X ijungta.
 X isjungta. → X isjungta.
-Temperatura Y. → Of course, sir. Temperatura Y.",
+Temperatura Y. → Žinoma, pone. Temperatura Y.",
     ),
     (
         "hi",
         "default",
         "X जल रहा है। → X जल रहा है।
 X बंद है। → X बंद है।
-Tapman Y. → Tapman Y.",
+तापमान Y। → तापमान Y।",
     ),
     (
         "hi",
         "butler",
-        "X जल रहा है। → Theek. X जल रहा है।
+        "X जल रहा है। → ठीक। X जल रहा है।
 X बंद है। → X बंद है।
-Tapman Y. → Theek. Tapman Y.",
+तापमान Y। → ठीक। तापमान Y।",
     ),
     (
         "hi",
         "locker",
-        "X जल रहा है। → Samajh gaya. X जल रहा है।
+        "X जल रहा है। → समझ गया। X जल रहा है।
 X बंद है। → X बंद है।
-Tapman Y. → Samajh gaya. Tapman Y.",
+तापमान Y। → समझ गया। तापमान Y।",
     ),
     (
         "hi",
         "fuersorglich",
-        "X जल रहा है। → Abhi karta hoon. X जल रहा है।
+        "X जल रहा है। → अभी करता हूँ। X जल रहा है।
 X बंद है। → X बंद है।
-Tapman Y. → Abhi karta hoon. Tapman Y.",
+तापमान Y। → अभी करता हूँ। तापमान Y।",
     ),
     (
         "hi",
         "party",
-        "X जल रहा है। → Chalo. X जल रहा है।
+        "X जल रहा है। → चलो। X जल रहा है।
 X बंद है। → X बंद है।
-Tapman Y. → Chalo. Tapman Y.",
+तापमान Y। → चलो। तापमान Y।",
     ),
     (
         "hi",
         "grantig",
-        "X जल रहा है। → Theek hai. X जल रहा है।
+        "X जल रहा है। → ठीक है। X जल रहा है।
 X बंद है। → X बंद है।
-Tapman Y. → Theek hai. Tapman Y.",
+तापमान Y। → ठीक है। तापमान Y।",
     ),
     (
         "hi",
         "sarkastisch",
-        "X जल रहा है। → Zaroor. X जल रहा है।
+        "X जल रहा है। → ज़रूर। X जल रहा है।
 X बंद है। → X बंद है।
-Tapman Y. → Zaroor. Tapman Y.",
+तापमान Y। → ज़रूर। तापमान Y।",
     ),
     (
         "hi",
         "pirat",
         "X जल रहा है। → Aye. X जल रहा है।
 X बंद है। → X बंद है।
-Tapman Y. → Aye. Tapman Y.",
+तापमान Y। → Aye. तापमान Y।",
     ),
     (
         "hi",
         "hippie",
-        "X जल रहा है। → Aaram se. X जल रहा है।
+        "X जल रहा है। → आराम से। X जल रहा है।
 X बंद है। → X बंद है।
-Tapman Y. → Aaram se. Tapman Y.",
+तापमान Y। → आराम से। तापमान Y।",
     ),
     (
         "hi",
         "gollum",
-        "X जल रहा है। → Haan. X जल रहा है।
+        "X जल रहा है। → हाँ। X जल रहा है।
 X बंद है। → X बंद है।
-Tapman Y. → Haan. Tapman Y.",
+तापमान Y। → हाँ। तापमान Y।",
     ),
     (
         "hi",
         "jarvis",
-        "X जल रहा है। → Of course, sir. X जल रहा है।
+        "X जल रहा है। → जी हाँ, सर। X जल रहा है।
 X बंद है। → X बंद है।
-Tapman Y. → Of course, sir. Tapman Y.",
+तापमान Y। → जी हाँ, सर। तापमान Y।",
     ),
     (
         "ta",
         "default",
         "X எரிகிறது. → X எரிகிறது.
 X அணைந்தது. → X அணைந்தது.
-Veppam Y. → Veppam Y.",
+வெப்பம் Y. → வெப்பம் Y.",
     ),
     (
         "ta",
         "butler",
-        "X எரிகிறது. → Nandraga. X எரிகிறது.
+        "X எரிகிறது. → நன்றாக. X எரிகிறது.
 X அணைந்தது. → X அணைந்தது.
-Veppam Y. → Nandraga. Veppam Y.",
+வெப்பம் Y. → நன்றாக. வெப்பம் Y.",
     ),
     (
         "ta",
         "locker",
-        "X எரிகிறது. → Purinjiduchu. X எரிகிறது.
+        "X எரிகிறது. → புரிந்தது. X எரிகிறது.
 X அணைந்தது. → X அணைந்தது.
-Veppam Y. → Purinjiduchu. Veppam Y.",
+வெப்பம் Y. → புரிந்தது. வெப்பம் Y.",
     ),
     (
         "ta",
         "fuersorglich",
-        "X எரிகிறது. → Ippo seiren. X எரிகிறது.
+        "X எரிகிறது. → இப்போது செய்கிறேன். X எரிகிறது.
 X அணைந்தது. → X அணைந்தது.
-Veppam Y. → Ippo seiren. Veppam Y.",
+வெப்பம் Y. → இப்போது செய்கிறேன். வெப்பம் Y.",
     ),
     (
         "ta",
         "party",
-        "X எரிகிறது. → Povom. X எரிகிறது.
+        "X எரிகிறது. → போவோம். X எரிகிறது.
 X அணைந்தது. → X அணைந்தது.
-Veppam Y. → Povom. Veppam Y.",
+வெப்பம் Y. → போவோம். வெப்பம் Y.",
     ),
     (
         "ta",
         "grantig",
-        "X எரிகிறது. → Sari. X எரிகிறது.
+        "X எரிகிறது. → சரி. X எரிகிறது.
 X அணைந்தது. → X அணைந்தது.
-Veppam Y. → Sari. Veppam Y.",
+வெப்பம் Y. → சரி. வெப்பம் Y.",
     ),
     (
         "ta",
         "sarkastisch",
-        "X எரிகிறது. → Kandippa. X எரிகிறது.
+        "X எரிகிறது. → கண்டிப்பா. X எரிகிறது.
 X அணைந்தது. → X அணைந்தது.
-Veppam Y. → Kandippa. Veppam Y.",
+வெப்பம் Y. → கண்டிப்பா. வெப்பம் Y.",
     ),
     (
         "ta",
         "pirat",
         "X எரிகிறது. → Aye. X எரிகிறது.
 X அணைந்தது. → X அணைந்தது.
-Veppam Y. → Aye. Veppam Y.",
+வெப்பம் Y. → Aye. வெப்பம் Y.",
     ),
     (
         "ta",
         "hippie",
-        "X எரிகிறது. → Amaidhi. X எரிகிறது.
+        "X எரிகிறது. → அமைதி. X எரிகிறது.
 X அணைந்தது. → X அணைந்தது.
-Veppam Y. → Amaidhi. Veppam Y.",
+வெப்பம் Y. → அமைதி. வெப்பம் Y.",
     ),
     (
         "ta",
         "gollum",
-        "X எரிகிறது. → Aam. X எரிகிறது.
+        "X எரிகிறது. → ஆம். X எரிகிறது.
 X அணைந்தது. → X அணைந்தது.
-Veppam Y. → Aam. Veppam Y.",
+வெப்பம் Y. → ஆம். வெப்பம் Y.",
     ),
     (
         "ta",
         "jarvis",
-        "X எரிகிறது. → Of course, sir. X எரிகிறது.
+        "X எரிகிறது. → ஆம், சார். X எரிகிறது.
 X அணைந்தது. → X அணைந்தது.
-Veppam Y. → Of course, sir. Veppam Y.",
+வெப்பம் Y. → ஆம், சார். வெப்பம் Y.",
     ),
     (
         "mn",
         "default",
-        "X асаа. → X асаа.
-X унтраа. → X унтраа.
-Temperatur Y. → Temperatur Y.",
+        "X аслаа. → X аслаа.
+X унтарлаа. → X унтарлаа.
+Температур Y. → Температур Y.",
     ),
     (
         "mn",
         "butler",
-        "X асаа. → Za saikhan. X асаа.
-X унтраа. → X унтраа.
-Temperatur Y. → Za saikhan. Temperatur Y.",
+        "X аслаа. → За. X аслаа.
+X унтарлаа. → X унтарлаа.
+Температур Y. → За. Температур Y.",
     ),
     (
         "mn",
         "locker",
-        "X асаа. → Oilgoloo. X асаа.
-X унтраа. → X унтраа.
-Temperatur Y. → Oilgoloo. Temperatur Y.",
+        "X аслаа. → Ойлголоо. X аслаа.
+X унтарлаа. → X унтарлаа.
+Температур Y. → Ойлголоо. Температур Y.",
     ),
     (
         "mn",
         "fuersorglich",
-        "X асаа. → Odoo khine. X асаа.
-X унтраа. → X унтраа.
-Temperatur Y. → Odoo khine. Temperatur Y.",
+        "X аслаа. → Одоо хийнэ. X аслаа.
+X унтарлаа. → X унтарлаа.
+Температур Y. → Одоо хийнэ. Температур Y.",
     ),
     (
         "mn",
         "party",
-        "X асаа. → Yavya. X асаа.
-X унтраа. → X унтраа.
-Temperatur Y. → Yavya. Temperatur Y.",
+        "X аслаа. → Явцгаая. X аслаа.
+X унтарлаа. → X унтарлаа.
+Температур Y. → Явцгаая. Температур Y.",
     ),
     (
         "mn",
         "grantig",
-        "X асаа. → Za. X асаа.
-X унтраа. → X унтраа.
-Temperatur Y. → Za. Temperatur Y.",
+        "X аслаа. → За. X аслаа.
+X унтарлаа. → X унтарлаа.
+Температур Y. → За. Температур Y.",
     ),
     (
         "mn",
         "sarkastisch",
-        "X асаа. → Medeej. X асаа.
-X унтраа. → X унтраа.
-Temperatur Y. → Medeej. Temperatur Y.",
+        "X аслаа. → Мэдээж. X аслаа.
+X унтарлаа. → X унтарлаа.
+Температур Y. → Мэдээж. Температур Y.",
     ),
     (
         "mn",
         "pirat",
-        "X асаа. → Aye. X асаа.
-X унтраа. → X унтраа.
-Temperatur Y. → Aye. Temperatur Y.",
+        "X аслаа. → Aye. X аслаа.
+X унтарлаа. → X унтарлаа.
+Температур Y. → Aye. Температур Y.",
     ),
     (
         "mn",
         "hippie",
-        "X асаа. → Amjuun. X асаа.
-X унтраа. → X унтраа.
-Temperatur Y. → Amjuun. Temperatur Y.",
+        "X аслаа. → Тайван. X аслаа.
+X унтарлаа. → X унтарлаа.
+Температур Y. → Тайван. Температур Y.",
     ),
     (
         "mn",
         "gollum",
-        "X асаа. → Tiim. X асаа.
-X унтраа. → X унтраа.
-Temperatur Y. → Tiim. Temperatur Y.",
+        "X аслаа. → Тийм. X аслаа.
+X унтарлаа. → X унтарлаа.
+Температур Y. → Тийм. Температур Y.",
     ),
     (
         "mn",
         "jarvis",
-        "X асаа. → Of course, sir. X асаа.
-X унтраа. → X унтраа.
-Temperatur Y. → Of course, sir. Temperatur Y.",
+        "X аслаа. → Мэдээж, ноён. X аслаа.
+X унтарлаа. → X унтарлаа.
+Температур Y. → Мэдээж, ноён. Температур Y.",
     ),
 ];

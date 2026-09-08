@@ -5,6 +5,14 @@ use crate::types::{EntityRec, HomeGraph, Settings};
 use std::collections::HashSet;
 
 #[test]
+fn decrease_action_emits_hass_decrease_timer() {
+    use crate::parse::action::Action;
+    let tokens = ["decrease", "timer", "5", "minutes"].into_iter().map(str::to_string).collect::<Vec<_>>();
+    assert_eq!(super::intent_from_action(Action::TimerRemove, &tokens).name, "HassDecreaseTimer");
+    assert_eq!(super::intent_from_action(Action::TimerAdd, &tokens).name, "HassIncreaseTimer");
+}
+
+#[test]
 fn group_conj_is_a_word_not_a_substring() {
     assert!(name_has_group_conj("Wohn und Esszimmer"));
     assert!(name_has_group_conj("Living and Dining"));

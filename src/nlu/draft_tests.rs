@@ -39,3 +39,56 @@ fn risky_plan_at_confirm_band_confirms() {
     assert!(matches!(decided.decision, ParseDecision::Confirm { .. }), "{:#?}", decided.decision);
     assert!(decided.commit.confirm.is_some());
 }
+
+#[test]
+fn start_timer_without_duration_clarifies() {
+    let home = default_home();
+    let session = Session::new();
+    let settings = Settings::pinned("en");
+    let catalog = catalog_for(&["en".into()]);
+    let context = ParseContext::new("Start the timer", &home, &session, &[], &settings, catalog);
+    let plan = IntentPlan::from_intents(vec![Intent::new("HassStartTimer")], 1.0, &[]);
+    let decided = safety_decision(execute_plan(&context, plan, "test", None, None, false, false), &context);
+    assert!(matches!(decided.decision, ParseDecision::Clarify { .. }), "{:#?}", decided.decision);
+    assert!(decided.plan.is_none());
+}
+
+#[test]
+fn resume_named_timer_without_duration_executes() {
+    let mut home = default_home();
+    home.entities.push(crate::types::EntityRec {
+        entity_id: "timer.oven".into(),
+        name: "Oven".into(),
+        domain: "timer".into(),
+        platform: None,
+        area: None,
+        aliases: vec!["oven".into()],
+        tags: Vec::new(),
+    });
+    let session = Session::new();
+    let settings = Settings::pinned("en");
+    let catalog = catalog_for(&["en".into()]);
+    let context = ParseContext::new("Resume the oven timer", &home, &session, &[], &settings, catalog);
+    let plan = IntentPlan::from_intents(vec![Intent::new("HassStartTimer").with("entity_id", "timer.oven")], 1.0, &[]);
+    let decided = safety_decision(execute_plan(&context, plan, "test", None, None, false, false), &context);
+    assert!(matches!(decided.decision, ParseDecision::Execute), "{:#?}", decided.decision);
+    let name = decided.plan.as_ref().map(|plan| plan.intents()[0].name.clone());
+    assert_eq!(name.as_deref(), Some("HassStartTimer"));
+}
+
+#[test]
+fn lock_partial_fails_closed() {
+    let home = default_home();
+    let session = Session::new();
+    let settings = Settings::default();
+    let catalog = catalog_for(&["de".into()]);
+    let context = ParseContext::new("test", &home, &session, &[], &settings, catalog);
+    let plan = IntentPlan::from_intents(
+        vec![Intent::new("HassTurnOn").with("entity_id", "light.wohnzimmer"), Intent::new("HassTurnOn").with("entity_id", "lock.missing")],
+        1.0,
+        &[],
+    );
+    let decided = safety_decision(execute_plan(&context, plan, "test", None, None, false, false), &context);
+    assert!(matches!(decided.decision, ParseDecision::Reject { .. }), "{:#?}", decided.decision);
+    assert!(decided.plan.is_none());
+}

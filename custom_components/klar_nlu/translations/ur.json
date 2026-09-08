@@ -23,33 +23,17 @@
     "step": {
       "init": {
         "title": "Klar NLU",
-        "description": "شخصیت یہاں محفوظ ہے اور Klar ایپ دوبارہ نصب کرنے کے بعد بھی رہتی ہے۔",
+        "description": "آواز، Assist زبانیں اور LLM کلار آپریٹر UI (ترتیبات) میں ہیں۔ یہ فارم صرف انجن جوڑتا ہے: URL، ٹوکن اور چینل۔",
         "data": {
           "mode": "انجن",
-          "personality": "شخصیت",
-          "languages": "زبانیں",
-          "allow_llm_tools": "Allow Home Assistant Assist tools on engine chat",
-          "refine_speech": "LLM سے NLU جواب درست کریں",
-          "refine_prompt": "درستگی کا پرامپٹ",
           "url": "Klar API یو آر ایل",
           "token": "لکھنے کا ٹوکن",
           "assist_filter": "صرف Assist کو دکھائی گئی ہستیاں کنٹرول کریں",
-          "nlu_rag": "NLU-RAG (اختیاری)",
-          "quiet_ack": "مختصر تصدیق (گھنٹی)",
-          "calendar_llm": "کیلنڈر سوالات ماڈل کو بھیجیں",
           "channel": "ریلیز چینل"
         },
         "data_description": {
-          "personality": "اس انٹیگریشن میں ہے، Klar ایپ میں نہیں۔",
-          "refine_speech": "Klar آلات کنٹرول کرتا رہتا ہے۔ بیک اپ LLM جواب دوبارہ لکھتا ہے۔",
-          "refine_prompt": "آواز کا سسٹم پرامپٹ۔ آلات کنٹرول نہیں، نئی حقیقت نہیں، وہی زبان۔",
           "token": "وہی ٹوکن جو Klar ایپ میں ہے۔",
           "assist_filter": "آن: صرف جو Assist دیکھے۔ آف: چھپی ہستیاں بھی۔",
-          "nlu_rag": "طے شدہ آف۔ بات چیت میں صرف پہچانا ہوا ٹکڑا بیک اپ ماڈل کو جاتا ہے۔",
-          "quiet_ack": "سادہ بتی آن/آف پر بات نہیں، سیٹلائٹ پر صرف مختصر آواز۔",
-          "calendar_llm": "طے شدہ بند۔ آن: کلار کیلنڈر پڑھتا ہے، بیک اپ ماڈل تقریبات کہتا ہے۔ آف: کلار فہرست خود کہتا ہے۔ بنانا، مٹانا اور منتقل کلار ہی کرتا ہے۔",
-          "allow_llm_tools": "Off by default. On: after Klar parses, the engine chat model may call Home Assistant Assist tools (names come from Core, already prefixed). Off: conversation only.",
-          "languages": "طے شدہ Home Assistant کی سسٹم زبان ہے۔",
           "channel": "کسی بھی وقت۔ Staging Klar NLU (Staging) کی طرف ہے۔"
         }
       }

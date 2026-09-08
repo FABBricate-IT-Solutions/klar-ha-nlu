@@ -1,10 +1,4 @@
-"""Turn a compact lexicon into a full LanguagePack dict.
-
-Spoken lists come from the locale lexicon (or stay empty). Do not inject
-German fillers (bitte, die, der, das), home-graph tokens (aufgabenliste,
-klimaanlage, insel), or speech scaffolding (leuchte, filmabend) unless
-that locale's lexicon actually lists them. de-CH/de-AT may keep German.
-"""
+"""Turn a compact lexicon into a full LanguagePack dict."""
 
 from __future__ import annotations
 
@@ -12,6 +6,7 @@ from lang_packs.calendar_lex import calendar_for
 from lang_packs.convo import with_warm_white
 from lang_packs.extras import pack_extras
 from lang_packs.native_apply import apply_native, is_script_pack
+from lang_packs.speech_slots import apply_speech_slots, pick_room_names
 from lang_packs.voices import normalize_personality
 
 ROOMS = (
@@ -38,9 +33,10 @@ def expand(core: dict) -> dict:
     speech = dict(core["speech"])
     for key, value in cal["speech"].items():
         if key == "unknown":
-            speech["unknown"] = value
-        else:
-            speech.setdefault(key, value)
+            continue
+        speech.setdefault(key, value)
+    personality = normalize_personality(core.get("personality"))
+    speech, personality = apply_speech_slots(core["code"], speech, core, personality)
     chat = dict(core["chat"])
     chat["news_intro"] = speech["unknown"]
     colors = with_warm_white(core["code"], list(core.get("colors") or default_colors()))
@@ -159,9 +155,9 @@ def expand(core: dict) -> dict:
         "path": f"packs::{core['mod']}::PACK",
         "verbs": verbs,
         "speech": speech,
-        "room_names": [(canon, native) for native, canon in rooms[:3]],
+        "room_names": pick_room_names(rooms),
         "loc_der_rooms": [r[0] for r in rooms[:2]],
-        "personality": normalize_personality(core.get("personality")),
+        "personality": personality,
         "talk": {
             "fillers": unique(w["fillers"]),
             "action_keep": unique(on[:2] + off[:2] + opn[:1] + close[:1]),

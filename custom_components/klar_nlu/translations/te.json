@@ -23,33 +23,17 @@
     "step": {
       "init": {
         "title": "Klar NLU",
-        "description": "The personality is stored here, so it survives reinstalling the Klar app.",
+        "description": "వాయిస్, భాషలు, LLM Klar operator UI (అమరికలు). This form only connects the engine: URL, token, and channel.",
         "data": {
           "mode": "ఇంజిన్",
-          "personality": "వ్యక్తిత్వం",
-          "languages": "భాషలు",
-          "allow_llm_tools": "Allow Home Assistant Assist tools on engine chat",
-          "refine_speech": "LLM NLU సమాధానాలను మళ్లీ రాయనివ్వండి",
-          "refine_prompt": "మెరుగుదల ప్రాంప్ట్",
           "url": "Klar API URL",
           "token": "రాత టోకెన్",
           "assist_filter": "Assistకు కనిపించే అంశాలను మాత్రమే నియంత్రించండి",
-          "nlu_rag": "NLU-RAG (ఐచ్ఛికం)",
-          "quiet_ack": "చిన్న నిర్ధారణ (గంట)",
-          "calendar_llm": "క్యాలెండర్ ప్రశ్నలను LLMకి పంపండి",
           "channel": "రిలీజ్ ఛానల్"
         },
         "data_description": {
-          "personality": "ఈ ఇంటిగ్రేషన్‌లో ఉంది, Klar యాప్‌లో కాదు.",
-          "refine_speech": "Klar still controls devices. The fallback LLM rewrites the reply.",
-          "refine_prompt": "Voice system prompt. No device control, no new facts, same language.",
           "token": "Klar యాప్‌లో ఉన్నట్టే టోకెన్.",
           "assist_filter": "ఆన్: Assist చూసేది మాత్రమే. ఆఫ్: దాచిన అంశాలు కూడా.",
-          "nlu_rag": "డిఫాల్ట్ ఆఫ్. చాట్‌లో సరిపోయిన భాగం మాత్రమే బ్యాకప్ మోడల్‌కు వెళ్తుంది.",
-          "quiet_ack": "సాధారణ లైట్ ఆన్/ఆఫ్‌లో వాక్యం లేదు, ఉపగ్రహంపై చిన్న ధ్వని మాత్రమే.",
-          "calendar_llm": "డిఫాల్ట్ ఆఫ్. చాట్‌లో సరిపోయిన భాగం మాత్రమే బ్యాకప్ మోడల్‌కు వెళ్తుంది. క్యాలెండర్ ప్రశ్నలను LLMకి పంపండి.",
-          "allow_llm_tools": "Off by default. On: after Klar parses, the engine chat model may call Home Assistant Assist tools (names come from Core, already prefixed). Off: conversation only.",
-          "languages": "డిఫాల్ట్ Home Assistant సిస్టమ్ భాష.",
           "channel": "ఎప్పుడైనా. Staging Klar NLU (Staging) వైపు చూపిస్తుంది."
         }
       }

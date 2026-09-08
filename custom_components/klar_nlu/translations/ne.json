@@ -23,33 +23,17 @@
     "step": {
       "init": {
         "title": "Klar NLU",
-        "description": "व्यक्तित्व यहाँ सुरक्षित हुन्छ र Klar एप फेरि राखेपछि पनि रहन्छ।",
+        "description": "आवाज, Assist भाषा र LLM Klar अपरेटर UI (सेटिङ) मा छन्। यो फारमले इन्जिन मात्र जोड्छ: URL, टोकन र च्यानल।",
         "data": {
           "mode": "इन्जिन",
-          "personality": "व्यक्तित्व",
-          "languages": "भाषाहरू",
-          "allow_llm_tools": "Allow Home Assistant Assist tools on engine chat",
-          "refine_speech": "LLM लाई NLU जवाफ सच्याउन दिनुहोस्",
-          "refine_prompt": "सुधार संकेत",
           "url": "Klar API URL",
           "token": "लेख्ने टोकन",
           "assist_filter": "Assist लाई देखिने एकाइ मात्र नियन्त्रण गर्नुहोस्",
-          "nlu_rag": "NLU-RAG (वैकल्पिक)",
-          "quiet_ack": "छोटो पुष्टि (घन्टी)",
-          "calendar_llm": "पात्रो प्रश्न LLM मा पठाउनुहोस्",
           "channel": "रिलिज च्यानल"
         },
         "data_description": {
-          "personality": "यो एकीकरणमा छ, Klar एपमा होइन।",
-          "refine_speech": "Klar उपकरण नियन्त्रण गरिरहन्छ। ब्याकअप LLM जवाफ फेरि लेख्छ।",
-          "refine_prompt": "आवाजको सिस्टम संकेत। उपकरण नियन्त्रण छैन, नयाँ तथ्य छैन, उही भाषा।",
           "token": "Klar एपकै जस्तो टोकन।",
           "assist_filter": "अन: Assist ले देख्ने मात्र। अफ: लुकेका एकाइ पनि।",
-          "nlu_rag": "पूर्वनिर्धारित अफ। कुराकानीमा मिलेको टुक्रा मात्र ब्याकअप मोडेलमा जान्छ।",
-          "quiet_ack": "साधारण बत्ती अन/अफमा वाक्य छैन, उपग्रहमा छोटो आवाज मात्र।",
-          "calendar_llm": "पूर्वनिर्धारित बन्द। अन: क्लारले पात्रो पढ्छ, ब्याकअप LLM ले कार्यक्रम भन्छ। अफ: क्लारले सूची आफैं भन्छ। बनाउने, मेट्ने, सार्ने क्लारमै रहन्छ।",
-          "allow_llm_tools": "Off by default. On: after Klar parses, the engine chat model may call Home Assistant Assist tools (names come from Core, already prefixed). Off: conversation only.",
-          "languages": "पूर्वनिर्धारित Home Assistant प्रणाली भाषा हो।",
           "channel": "जुनसुकै बेला। Staging Klar NLU (Staging) तर्फ देखाउँछ।"
         }
       }

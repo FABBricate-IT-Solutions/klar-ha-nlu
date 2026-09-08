@@ -20,7 +20,9 @@
 
 .trainer-dock {
   position: fixed;
-  inset: 0 0 0 auto;
+  inset-block: 0;
+  inset-inline-end: 0;
+  inset-inline-start: auto;
   z-index: 12;
   display: flex;
   flex-direction: column;
@@ -33,7 +35,9 @@
 
 .trainer-resize {
   position: absolute;
-  inset: 0 auto 0 0;
+  inset-block: 0;
+  inset-inline-start: 0;
+  inset-inline-end: auto;
   z-index: 2;
   width: 14px;
   margin: 0;
@@ -49,11 +53,15 @@
   position: absolute;
   top: 20%;
   bottom: 20%;
-  left: 5px;
+  inset-inline-start: 5px;
   width: 3px;
   border-radius: 2px;
   background: var(--accent);
   opacity: 0.55;
+}
+
+[dir="rtl"] [data-slot="switch"][data-checked] [data-slot="switch-thumb"] {
+  transform: translateX(calc(-100% + 2px));
 }
 
 .trainer-dock[hidden] {

@@ -175,13 +175,13 @@ devices/light_master_bath_light::light_master_bath_light_turn_off:
 devices/light_master_bath_light::light_master_bath_light_turn_on:
 - kveiktu ljos badmaster
 devices/light_master_bedside_right::light_master_bedside_right_change_brightness:
-- settu nattbord svefnherbergimaster 25
+- settu nattbord right svefnherbergimaster 25
 devices/light_master_bedside_right::light_master_bedside_right_change_color:
-- settu nattbord svefnherbergimaster red
+- settu nattbord right svefnherbergimaster red
 devices/light_master_bedside_right::light_master_bedside_right_turn_off:
-- slokktu nattbord svefnherbergimaster
+- slokktu nattbord right svefnherbergimaster
 devices/light_master_bedside_right::light_master_bedside_right_turn_on:
-- kveiktu nattbord svefnherbergimaster
+- kveiktu nattbord right svefnherbergimaster
 devices/light_master_ceiling::light_master_ceiling_change_brightness:
 - settu loft svefnherbergimaster 77
 devices/light_master_ceiling::light_master_ceiling_change_color:

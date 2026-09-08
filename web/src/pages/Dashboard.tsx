@@ -7,7 +7,7 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { WhyDrawer, canJournalReplay, journalHeard, whyThisBand } from "../components/WhyDrawer";
-import { fill, type Messages } from "../i18n";
+import { fill, inboxReason, type Messages } from "../i18n";
 import type { ApplyRow, ConversationTurn, Dashboard as DashboardData, Locale } from "../types";
 
 const MISS = new Set(["chat", "reject", "clarify"]);
@@ -18,14 +18,6 @@ const MIX_LEGEND = [
   { key: "reject", color: "var(--danger)" },
   { key: "chat", color: "var(--cyan)" },
 ] as const;
-
-function isDe(t: Messages): boolean {
-  return t.replay === "Nochmal";
-}
-
-function rememberAsPhrase(t: Messages): string {
-  return isDe(t) ? "Als Phrase merken" : "Remember as phrase";
-}
 
 function trySentences(rooms: DashboardData["rooms"], t: Messages): string[] {
   const room = rooms[0]?.name || t.tryRoom;
@@ -182,7 +174,7 @@ export function DashboardPage({
             <div className="flex flex-wrap items-start justify-between gap-3">
               <div>
                 <h2>{view.counts.leftover} {t.needsWork}</h2>
-                <p className="muted">{inbox[0]?.name} · {inbox[0]?.reasons.join(", ")}</p>
+                <p className="muted">{inbox[0]?.name} · {(inbox[0]?.reasons ?? []).map((reason) => inboxReason(reason, t)).join(", ")}</p>
               </div>
               <Button variant="outline" type="button" onClick={onOpenCalibrate}>{t.calibrate}</Button>
             </div>
@@ -197,7 +189,7 @@ export function DashboardPage({
                   if (heard) onTeach?.(heard);
                 }}
               >
-                {rememberAsPhrase(t)}
+                {t.rememberAsPhrase}
               </Button>
               <Button variant="ghost" type="button" onClick={() => onReplay(heard)} disabled={!canReplay}>{t.inLab}</Button>
             </div>

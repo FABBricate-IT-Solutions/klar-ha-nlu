@@ -73,6 +73,14 @@ class EngineChannelTests(unittest.TestCase):
         self.assertIsNotNone(chosen)
         self.assertEqual(chosen["name"], "wanted")
 
+    def test_is_addon_engine_url(self) -> None:
+        self.assertFalse(const.is_addon_engine_url(const.DEFAULT_URL))
+        self.assertFalse(const.is_addon_engine_url("http://192.168.1.40:10520"))
+        self.assertTrue(const.is_addon_engine_url(const.DEFAULT_ADDON_URL))
+        self.assertTrue(const.is_addon_engine_url(const.DEFAULT_STAGING_ADDON_URL))
+        self.assertTrue(const.is_addon_engine_url("http://klar-nlu.local.hass.io:10520"))
+        self.assertTrue(const.is_addon_engine_url("http://8db2ab02-klar-nlu:10520"))
+
     def test_addon_url_follows_channel(self) -> None:
         self.assertEqual(
             const.addon_url_for_channel(const.CHANNEL_STABLE),
@@ -287,6 +295,17 @@ class EngineChannelTests(unittest.TestCase):
         self.assertTrue(merged["fallback_llm"])
         self.assertEqual(merged["extra_prompt"], "house rule")
         self.assertIsNone(ns["merge_engine_settings"]("nope", "default", None))
+
+    def test_engine_headers_send_write_token(self) -> None:
+        self.assertEqual(const.TOKEN_HEADER, "x-klar-token")
+        self.assertEqual(const.engine_headers("secret"), {"x-klar-token": "secret"})
+        self.assertEqual(const.engine_headers("  tok  ", extra={"Accept": "application/json"}), {"Accept": "application/json", "x-klar-token": "tok"})
+        self.assertEqual(const.engine_headers(None, extra={"Accept": "text/event-stream"}), {"Accept": "text/event-stream"})
+        self.assertEqual(const.engine_headers(""), {})
+        for rel in ("engine.py", "engine_llm.py", "sync.py", "services.py"):
+            src = (ROOT / "custom_components" / "klar_nlu" / rel).read_text(encoding="utf-8")
+            self.assertIn("engine_headers", src, rel)
+            self.assertNotIn("X-Klar-Token", src, rel)
 
 
 if __name__ == "__main__":

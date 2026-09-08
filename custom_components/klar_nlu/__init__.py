@@ -38,10 +38,11 @@ from .engine import (
     async_seed_product_settings,
 )
 from .lang_select import engine_language_state
-from .panel import async_setup_panel
+from .panel import async_setup_panel, async_unload_panel
 from .quiet import async_setup_chime
 from .services import async_setup_services
 from .sync import HomeGraphSync, engine_url
+from .ui_proxy import async_setup_ui_proxy
 
 PLATFORMS = [Platform.CONVERSATION, Platform.SELECT, Platform.SENSOR, Platform.SWITCH]
 _LOGGER = logging.getLogger(__name__)
@@ -85,6 +86,7 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
     await async_setup_services(hass)
     await async_setup_chime(hass)
     try:
+        await async_setup_ui_proxy(hass)
         await async_setup_panel(hass)
     except Exception:
         _LOGGER.exception("Klar sidebar panel failed; engine still loads")
@@ -114,7 +116,7 @@ def _pipeline_flags(entry: ConfigEntry) -> dict[str, object]:
 async def _async_load_engine_settings(hass: HomeAssistant, entry: ConfigEntry) -> None:
     stored = (hass.data.get(DOMAIN) or {}).get(entry.entry_id) or {}
     token = stored.get("token") or _option(entry, CONF_TOKEN)
-    url = _option(entry, CONF_URL) or DEFAULT_URL
+    url = stored.get("url") or _option(entry, CONF_URL) or DEFAULT_URL
     languages, _chrome = engine_language_state(
         entry.options.get(CONF_LANGUAGES),
         getattr(hass.config, "language", None),
@@ -158,4 +160,5 @@ async def async_unload_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
     engine = stored.get("engine")
     if engine is not None:
         await engine.async_stop()
+    await async_unload_panel(hass)
     return unload_ok

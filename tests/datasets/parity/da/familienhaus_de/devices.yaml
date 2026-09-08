@@ -175,13 +175,13 @@ devices/light_master_bath_light::light_master_bath_light_turn_off:
 devices/light_master_bath_light::light_master_bath_light_turn_on:
 - taend lys badmaster
 devices/light_master_bedside_right::light_master_bedside_right_change_brightness:
-- saet natbord sovevaerelsemaster 25
+- saet natbord right sovevaerelsemaster 25
 devices/light_master_bedside_right::light_master_bedside_right_change_color:
-- saet natbord sovevaerelsemaster rod
+- saet natbord right sovevaerelsemaster rod
 devices/light_master_bedside_right::light_master_bedside_right_turn_off:
-- sluk natbord sovevaerelsemaster
+- sluk natbord right sovevaerelsemaster
 devices/light_master_bedside_right::light_master_bedside_right_turn_on:
-- taend natbord sovevaerelsemaster
+- taend natbord right sovevaerelsemaster
 devices/light_master_ceiling::light_master_ceiling_change_brightness:
 - saet loft sovevaerelsemaster 77
 devices/light_master_ceiling::light_master_ceiling_change_color:

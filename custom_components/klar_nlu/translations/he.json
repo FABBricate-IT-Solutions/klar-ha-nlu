@@ -23,33 +23,17 @@
     "step": {
       "init": {
         "title": "Klar NLU",
-        "description": "האישיות נשמרת כאן ונשארת אחרי התקנה מחדש של אפליקציית Klar.",
+        "description": "הקול, שפות Assist והמודל נמצאים בממשק המפעיל של Klar (הגדרות). טופס זה מחבר רק את המנוע: כתובת, אסימון וערוץ.",
         "data": {
           "mode": "מנוע",
-          "personality": "אישיות",
-          "languages": "שפות",
-          "allow_llm_tools": "Allow Home Assistant Assist tools on engine chat",
-          "refine_speech": "לתת ל-LLM לנסח מחדש תשובות NLU",
-          "refine_prompt": "הנחיית עידון",
           "url": "כתובת API של Klar",
           "token": "אסימון כתיבה",
           "assist_filter": "לשלוט רק בישויות החשופות ל-Assist",
-          "nlu_rag": "NLU-RAG (אופציונלי)",
-          "quiet_ack": "אישור קצר (פעמון)",
-          "calendar_llm": "שלח שאילתות יומן ל-LLM",
           "channel": "ערוץ הפצה"
         },
         "data_description": {
-          "personality": "באינטגרציה הזו, לא באפליקציית Klar.",
-          "refine_speech": "Klar ממשיך לשלוט במכשירים. ה-LLM הרזרבי כותב מחדש את התשובה.",
-          "refine_prompt": "הנחיית מערכת לקול. בלי שליטה במכשירים, בלי עובדות חדשות, אותה שפה.",
           "token": "אותו אסימון כמו באפליקציית Klar.",
           "assist_filter": "דלוק: רק מה ש-Assist רואה. כבוי: גם ישויות מוסתרות.",
-          "nlu_rag": "כבוי כברירת מחדל. בצ'אט נשלח למודל הרזרבי רק הקטע שזוהה.",
-          "quiet_ack": "בהדלקה/כיבוי פשוט של אור אין דיבור, רק צליל קצר בלוויין.",
-          "calendar_llm": "כבוי כברירת מחדל. דלוק: קלאר קורא את היומן וסוכן הגיבוי אומר את האירועים. כבוי: קלאר אומר את הרשימה. יצירה, מחיקה והעברה נשארות אצל קלאר.",
-          "allow_llm_tools": "Off by default. On: after Klar parses, the engine chat model may call Home Assistant Assist tools (names come from Core, already prefixed). Off: conversation only.",
-          "languages": "ברירת המחדל היא שפת המערכת של Home Assistant.",
           "channel": "בכל עת. Staging מצביע על Klar NLU (Staging)."
         }
       }

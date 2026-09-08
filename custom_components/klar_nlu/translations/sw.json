@@ -23,33 +23,17 @@
     "step": {
       "init": {
         "title": "Klar NLU",
-        "description": "Tabia inahifadhiwa hapa na inabaki baada ya kusakinisha tena programu ya Klar.",
+        "description": "Sauti, lugha za Assist na LLM ziko kwenye UI ya opereta ya Klar (Mipangilio). Fomu hii inaunganisha injini tu: URL, tokeni na kituo.",
         "data": {
           "mode": "Injini",
-          "personality": "Tabia",
-          "languages": "Lugha",
-          "allow_llm_tools": "Allow Home Assistant Assist tools on engine chat",
-          "refine_speech": "Acha LLM iandike upya majibu ya NLU",
-          "refine_prompt": "Kidokezo cha kuboresha",
           "url": "URL ya API ya Klar",
           "token": "Tokeni ya kuandika",
           "assist_filter": "Dhibiti tu huluki zilizoonekana kwa Assist",
-          "nlu_rag": "NLU-RAG (si lazima)",
-          "quiet_ack": "Uthibitisho mfupi (kengele)",
-          "calendar_llm": "Tuma maswali ya kalenda kwa LLM",
           "channel": "Kituo cha toleo"
         },
         "data_description": {
-          "personality": "Iko katika muunganisho huu, si katika programu ya Klar.",
-          "refine_speech": "Klar bado inadhibiti vifaa. LLM ya akiba inaandika tena jibu.",
-          "refine_prompt": "Kidokezo cha mfumo wa sauti. Hakuna udhibiti wa kifaa, hakuna ukweli mpya, lugha ileile.",
           "token": "Tokeni ileile kama katika programu ya Klar.",
           "assist_filter": "Washa: tu kile Assist inaona. Zima: hata huluki zilizofichwa.",
-          "nlu_rag": "Imezimwa kwa chaguo-msingi. Kwenye gumzo kipande kilicholingana tu huenda kwa modeli ya akiba.",
-          "quiet_ack": "Kuwasha/kuzima taa rahisi hakuna sentensi, sauti fupi tu kwenye satelaiti.",
-          "calendar_llm": "Zimwa kwa chaguo-msingi. Washa: Klar inasoma kalenda, LLM ya akiba inasema matukio. Zima: Klar inasema orodha. Kuunda, kufuta na kuhamisha vinabaki kwa Klar.",
-          "allow_llm_tools": "Off by default. On: after Klar parses, the engine chat model may call Home Assistant Assist tools (names come from Core, already prefixed). Off: conversation only.",
-          "languages": "Chaguo-msingi hufuata lugha ya mfumo wa Home Assistant.",
           "channel": "Wakati wowote. Staging inaelekeza Klar NLU (Staging)."
         }
       }

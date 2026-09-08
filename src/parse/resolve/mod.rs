@@ -1,9 +1,11 @@
+use crate::home::classify::is_generic_room_light;
 use crate::home::expose::assist_visible;
 use crate::home::policy::is_infra;
 use crate::home::roles::{looks_like_tv, matches_domain, tv_asked};
 use crate::lang::catalog;
 use crate::parse::action::{has_light_noun, is_garage_cover, is_query_token};
 use crate::parse::fuzzy::{evidence, Profile};
+use crate::parse::infer::fixture_matches;
 use crate::parse::normalize::{compact, fold_umlaut, inflected_eq, is_time_unit, umlaut_eq};
 use crate::types::{AreaRec, EntityRec, FloorRec, HomeGraph};
 pub(crate) use report::{resolve_scored, ResolveEvidence, ResolveReport};
@@ -72,6 +74,7 @@ pub fn resolve(tokens: &[String], home: &HomeGraph, domain: Option<&str>) -> Res
     }
     prefer::prefer_entry_lock(tokens, home, &mut candidates);
     prefer::prefer_tv(tokens, home, &mut candidates);
+    prefer::prefer_light_over_script(tokens, &mut candidates);
     if crate::parse::compound::named_scene_or_script(tokens, home).is_none()
         && !catalog().any(tokens, catalog().scene_nouns())
         && !catalog().any(tokens, catalog().script_words())
@@ -103,30 +106,26 @@ pub fn resolve(tokens: &[String], home: &HomeGraph, domain: Option<&str>) -> Res
             .filter(|(s, e)| (*s - best).abs() < 0.08 && e.entity_id != rec.entity_id && overlap(tokens, e, home) >= best_overlap)
             .map(|(_, e)| e.clone())
             .collect();
+        let generic_light =
+            rec.domain == "light" && catalog().any(tokens, catalog().light_nouns()) && !crate::parse::infer::mentions_fixture_noun(tokens);
+        let crowded = rec.area.as_deref().is_some_and(|area| {
+            home.entities
+                .iter()
+                .filter(|entity| {
+                    assist_visible(entity, home) && entity.domain == "light" && !is_infra(entity) && entity.area.as_deref() == Some(area)
+                })
+                .count()
+                > 1
+        });
         if *best >= 0.86 && peers.is_empty() {
-            let generic_light = rec.domain == "light"
-                && catalog().any(tokens, catalog().light_nouns())
-                && !catalog().any(tokens, catalog().named_device())
-                && !catalog().any(tokens, catalog().ceiling())
-                && !catalog().any(tokens, catalog().island())
-                && !catalog().any(tokens, catalog().bedside())
-                && !catalog().any(tokens, catalog().lamp_fixture());
-            let crowded = rec.area.as_deref().is_some_and(|area| {
-                home.entities
-                    .iter()
-                    .filter(|entity| {
-                        assist_visible(entity, home)
-                            && entity.domain == "light"
-                            && !is_infra(entity)
-                            && entity.area.as_deref() == Some(area)
-                    })
-                    .count()
-                    > 1
-            });
-            if distinctive_light_name(tokens, rec, home) || !(generic_light && crowded) {
+            let skip_standin = crate::parse::infer::mentions_fixture_noun(tokens)
+                && crowded
+                && rec.domain == "light"
+                && is_generic_room_light(rec, home, catalog());
+            if (distinctive_light_name(tokens, rec, home) || !(generic_light && crowded)) && !skip_standin {
                 entities.push(rec.clone());
             }
-        } else if *best >= 0.86 && !peers.is_empty() {
+        } else if *best >= 0.86 && !peers.is_empty() && !(generic_light && crowded && !distinctive_light_name(tokens, rec, home)) {
             ambiguous.push(rec.clone());
             ambiguous.extend(peers);
         }
@@ -237,16 +236,16 @@ fn pick_fixture(tokens: &[String], home: &HomeGraph, areas: &[String]) -> Option
     } else if cat.any(tokens, cat.pendant()) {
         Some("pendant")
     } else if cat.any(tokens, cat.bedside()) {
-        if cat.any(tokens, cat.right()) {
+        if cat.any(tokens, cat.right()) || tokens.iter().any(|token| token == "right") {
             Some("right")
-        } else if cat.any(tokens, cat.left()) {
+        } else if cat.any(tokens, cat.left()) || tokens.iter().any(|token| token == "left") {
             Some("left")
         } else {
             Some("bedside")
         }
     } else if tokens.iter().any(|token| token == "floor" || cat.fixture_alias("floor").contains(&token.as_str())) {
         Some("floor")
-    } else if !room_level && cat.any(tokens, cat.lamp_fixture()) {
+    } else if !room_level && (cat.any(tokens, cat.lamp_fixture()) || tokens.iter().any(|token| token == "lamp")) {
         Some("lamp")
     } else {
         tokens.iter().find(|t| cat.ceiling().contains(t.as_str())).map(|word| word.as_str())
@@ -260,19 +259,24 @@ fn pick_fixture(tokens: &[String], home: &HomeGraph, areas: &[String]) -> Option
         .filter(|e| fixture_matches(e, needle))
         .cloned()
         .collect();
-    (hits.len() == 1).then_some(hits)
+    if hits.len() == 1 {
+        return Some(hits);
+    }
+    if needle == "bedside" && hits.len() > 1 {
+        return Some(vec![pick_bedside(&hits)]);
+    }
+    None
 }
 
-pub(crate) fn fixture_matches(entity: &EntityRec, needle: &str) -> bool {
-    let blob = format!("{} {} {}", entity.entity_id, fold_umlaut(&entity.name), entity.aliases.join(" "));
-    let aliases = catalog().fixture_alias(needle);
-    let hits: Vec<&str> = if aliases.is_empty() { vec![needle] } else { aliases.to_vec() };
-    let matched = hits.iter().any(|alias| blob.contains(alias));
-    if needle == "lamp" {
-        matched && !catalog().ceiling().iter().any(|word| blob.contains(word))
-    } else {
-        matched
-    }
+fn pick_bedside(hits: &[EntityRec]) -> EntityRec {
+    hits.iter()
+        .find(|entity| {
+            let blob = format!("{} {}", entity.entity_id, compact(&entity.name));
+            blob.contains("left") || blob.contains("links")
+        })
+        .or_else(|| hits.iter().min_by_key(|entity| entity.entity_id.as_str()))
+        .cloned()
+        .unwrap_or_else(|| hits[0].clone())
 }
 
 fn match_areas(tokens: &[String], areas: &[AreaRec]) -> Vec<String> {

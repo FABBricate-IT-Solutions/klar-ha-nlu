@@ -153,7 +153,7 @@ Engine owns Yarn/chat/RAG/calendar/news prompts and `yarn_canned` / `yarn_nudge`
 
 ### `POST /api/v2/speech/render`
 
-Post-execute snapshot from Home Assistant. The engine interpolates pack templates into a factual sentence (`source: "post_execute"`). Personality prefix is applied later at Assist finish. Assist calls this after execute; missing route fails closed (no Python `from_handled`). Write token required.
+Post-execute snapshot from Home Assistant. The engine interpolates pack templates into a factual sentence (`source: "post_execute"`). Personality prefix is applied later at Assist finish. Assist calls this after execute; missing route fails closed (no Python `from_handled`). Same auth as parse: Supervisor network and loopback without a token, otherwise a token.
 
 ```json
 {

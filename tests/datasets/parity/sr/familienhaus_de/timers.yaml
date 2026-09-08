@@ -3,34 +3,34 @@ timers/timers::abstract_start:
 timers/timers::abstract_start_hours_minutes:
 - укључи тајмер abstract 20 min
 timers/timers::abstract_start_seconds:
-- укључи тајмер abstract
+- укључи тајмер abstract 45 sec
 timers/timers::cancel_all_timers:
 - искључи све тајмер
 timers/timers::timer_laundry_cancel:
-- укључи тајмер laundry
+- искључи тајмер laundry
 timers/timers::timer_laundry_decrease:
 - укључи тајмер laundry 5 min
 timers/timers::timer_laundry_increase:
 - укључи тајмер laundry 16 min
 timers/timers::timer_laundry_pause:
-- искључи тајмер laundry
+- pause тајмер laundry
 timers/timers::timer_laundry_start:
-- укључи тајмер laundry
+- укључи тајмер laundry 90 sec
 timers/timers::timer_laundry_status:
 - шта тајмер laundry
 timers/timers::timer_laundry_unpause:
-- укључи тајмер laundry
+- пусти тајмер laundry
 timers/timers::timer_oven_cancel:
-- укључи тајмер oven
+- искључи тајмер oven
 timers/timers::timer_oven_decrease:
 - укључи тајмер oven 44 min
 timers/timers::timer_oven_increase:
 - укључи тајмер oven 30 min
 timers/timers::timer_oven_pause:
-- искључи тајмер oven
+- pause тајмер oven
 timers/timers::timer_oven_start:
 - укључи тајмер oven 2 min
 timers/timers::timer_oven_status:
 - шта тајмер oven
 timers/timers::timer_oven_unpause:
-- укључи тајмер oven
+- пусти тајмер oven

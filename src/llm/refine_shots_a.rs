@@ -73,9 +73,9 @@ La temperature Y. → Oui. La temperature Y.",
     (
         "fr",
         "jarvis",
-        "X est allume. → Of course, sir. X est allume.
+        "X est allume. → Evidemment. X est allume.
 X est eteint. → X est eteint.
-La temperature Y. → Of course, sir. La temperature Y.",
+La temperature Y. → Evidemment. La temperature Y.",
     ),
     (
         "ro",
@@ -150,9 +150,9 @@ Temperatura Y. → Da. Temperatura Y.",
     (
         "ro",
         "jarvis",
-        "X este aprins. → Of course, sir. X este aprins.
+        "X este aprins. → Sigur, domnule. X este aprins.
 X este stins. → X este stins.
-Temperatura Y. → Of course, sir. Temperatura Y.",
+Temperatura Y. → Sigur, domnule. Temperatura Y.",
     ),
     (
         "de-AT",
@@ -227,9 +227,9 @@ Die Temperatur Y. → Ja. Die Temperatur Y.",
     (
         "de-AT",
         "jarvis",
-        "X is an. → Of course, sir. X is an.
+        "X is an. → Natürlich, Sir. X is an.
 X is aus. → X is aus.
-Die Temperatur Y. → Of course, sir. Die Temperatur Y.",
+Die Temperatur Y. → Natürlich, Sir. Die Temperatur Y.",
     ),
     (
         "pl",
@@ -304,9 +304,9 @@ Temperatura Y. → Tak. Temperatura Y.",
     (
         "pl",
         "jarvis",
-        "X jest wlaczone. → Of course, sir. X jest wlaczone.
+        "X jest wlaczone. → Oczywiście, panie. X jest wlaczone.
 X jest wylaczone. → X jest wylaczone.
-Temperatura Y. → Of course, sir. Temperatura Y.",
+Temperatura Y. → Oczywiście, panie. Temperatura Y.",
     ),
     (
         "sr",
@@ -381,9 +381,9 @@ X је угашен. → X је угашен.
     (
         "sr",
         "jarvis",
-        "X је упаљен. → Of course, sir. X је упаљен.
+        "X је упаљен. → Наравно, господине. X је упаљен.
 X је угашен. → X је угашен.
-Температура Y. → Of course, sir. Температура Y.",
+Температура Y. → Наравно, господине. Температура Y.",
     ),
     (
         "ar",
@@ -458,9 +458,9 @@ X مطفأ. → X مطفأ.
     (
         "ar",
         "jarvis",
-        "X يعمل. → Of course, sir. X يعمل.
+        "X يعمل. → طبعا يا سيدي. X يعمل.
 X مطفأ. → X مطفأ.
-درجة الحرارة Y. → Of course, sir. درجة الحرارة Y.",
+درجة الحرارة Y. → طبعا يا سيدي. درجة الحرارة Y.",
     ),
     (
         "ko",
@@ -535,9 +535,9 @@ X 꺼졌어요. → X 꺼졌어요.
     (
         "ko",
         "jarvis",
-        "X 켜졌어요. → Of course, sir. X 켜졌어요.
+        "X 켜졌어요. → 물론이죠, 선생님. X 켜졌어요.
 X 꺼졌어요. → X 꺼졌어요.
-온도 Y. → Of course, sir. 온도 Y.",
+온도 Y. → 물론이죠, 선생님. 온도 Y.",
     ),
     (
         "gl",
@@ -612,9 +612,9 @@ A temperatura Y. → Si. A temperatura Y.",
     (
         "gl",
         "jarvis",
-        "X esta aceso. → Of course, sir. X esta aceso.
+        "X esta aceso. → Claro, señor. X esta aceso.
 X esta apagado. → X esta apagado.
-A temperatura Y. → Of course, sir. A temperatura Y.",
+A temperatura Y. → Claro, señor. A temperatura Y.",
     ),
     (
         "id",
@@ -689,162 +689,162 @@ Suhu Y. → Ya. Suhu Y.",
     (
         "id",
         "jarvis",
-        "X menyala. → Of course, sir. X menyala.
+        "X menyala. → Tentu, tuan. X menyala.
 X mati. → X mati.
-Suhu Y. → Of course, sir. Suhu Y.",
+Suhu Y. → Tentu, tuan. Suhu Y.",
     ),
     (
         "gu",
         "default",
         "X ચાલુ છે. → X ચાલુ છે.
 X બંધ છે. → X બંધ છે.
-Tapman Y. → Tapman Y.",
+તાપમાન Y. → તાપમાન Y.",
     ),
     (
         "gu",
         "butler",
-        "X ચાલુ છે. → Saras. X ચાલુ છે.
+        "X ચાલુ છે. → સરસ. X ચાલુ છે.
 X બંધ છે. → X બંધ છે.
-Tapman Y. → Saras. Tapman Y.",
+તાપમાન Y. → સરસ. તાપમાન Y.",
     ),
     (
         "gu",
         "locker",
-        "X ચાલુ છે. → Samajyu. X ચાલુ છે.
+        "X ચાલુ છે. → સમજાયું. X ચાલુ છે.
 X બંધ છે. → X બંધ છે.
-Tapman Y. → Samajyu. Tapman Y.",
+તાપમાન Y. → સમજાયું. તાપમાન Y.",
     ),
     (
         "gu",
         "fuersorglich",
-        "X ચાલુ છે. → Have karu chhu. X ચાલુ છે.
+        "X ચાલુ છે. → હવે કરું છું. X ચાલુ છે.
 X બંધ છે. → X બંધ છે.
-Tapman Y. → Have karu chhu. Tapman Y.",
+તાપમાન Y. → હવે કરું છું. તાપમાન Y.",
     ),
     (
         "gu",
         "party",
-        "X ચાલુ છે. → Chalo. X ચાલુ છે.
+        "X ચાલુ છે. → ચાલો. X ચાલુ છે.
 X બંધ છે. → X બંધ છે.
-Tapman Y. → Chalo. Tapman Y.",
+તાપમાન Y. → ચાલો. તાપમાન Y.",
     ),
     (
         "gu",
         "grantig",
-        "X ચાલુ છે. → Theek. X ચાલુ છે.
+        "X ચાલુ છે. → ઠીક. X ચાલુ છે.
 X બંધ છે. → X બંધ છે.
-Tapman Y. → Theek. Tapman Y.",
+તાપમાન Y. → ઠીક. તાપમાન Y.",
     ),
     (
         "gu",
         "sarkastisch",
-        "X ચાલુ છે. → Chek. X ચાલુ છે.
+        "X ચાલુ છે. → ચોક્કસ. X ચાલુ છે.
 X બંધ છે. → X બંધ છે.
-Tapman Y. → Chek. Tapman Y.",
+તાપમાન Y. → ચોક્કસ. તાપમાન Y.",
     ),
     (
         "gu",
         "pirat",
         "X ચાલુ છે. → Aye. X ચાલુ છે.
 X બંધ છે. → X બંધ છે.
-Tapman Y. → Aye. Tapman Y.",
+તાપમાન Y. → Aye. તાપમાન Y.",
     ),
     (
         "gu",
         "hippie",
-        "X ચાલુ છે. → Shaant. X ચાલુ છે.
+        "X ચાલુ છે. → શાંત. X ચાલુ છે.
 X બંધ છે. → X બંધ છે.
-Tapman Y. → Shaant. Tapman Y.",
+તાપમાન Y. → શાંત. તાપમાન Y.",
     ),
     (
         "gu",
         "gollum",
-        "X ચાલુ છે. → Ha. X ચાલુ છે.
+        "X ચાલુ છે. → હા. X ચાલુ છે.
 X બંધ છે. → X બંધ છે.
-Tapman Y. → Ha. Tapman Y.",
+તાપમાન Y. → હા. તાપમાન Y.",
     ),
     (
         "gu",
         "jarvis",
-        "X ચાલુ છે. → Of course, sir. X ચાલુ છે.
+        "X ચાલુ છે. → જી હા, સર. X ચાલુ છે.
 X બંધ છે. → X બંધ છે.
-Tapman Y. → Of course, sir. Tapman Y.",
+તાપમાન Y. → જી હા, સર. તાપમાન Y.",
     ),
     (
         "pa",
         "default",
-        "X ਚਾਲੂ ਹੈ. → X ਚਾਲੂ ਹੈ.
-X ਬੰਦ ਹੈ. → X ਬੰਦ ਹੈ.
-Tapman Y. → Tapman Y.",
+        "X ਚਾਲੂ ਹੈ। → X ਚਾਲੂ ਹੈ।
+X ਬੰਦ ਹੈ। → X ਬੰਦ ਹੈ।
+ਤਾਪਮਾਨ Y। → ਤਾਪਮਾਨ Y।",
     ),
     (
         "pa",
         "butler",
-        "X ਚਾਲੂ ਹੈ. → Theek. X ਚਾਲੂ ਹੈ.
-X ਬੰਦ ਹੈ. → X ਬੰਦ ਹੈ.
-Tapman Y. → Theek. Tapman Y.",
+        "X ਚਾਲੂ ਹੈ। → ਠੀਕ। X ਚਾਲੂ ਹੈ।
+X ਬੰਦ ਹੈ। → X ਬੰਦ ਹੈ।
+ਤਾਪਮਾਨ Y। → ਠੀਕ। ਤਾਪਮਾਨ Y।",
     ),
     (
         "pa",
         "locker",
-        "X ਚਾਲੂ ਹੈ. → Samajh gaya. X ਚਾਲੂ ਹੈ.
-X ਬੰਦ ਹੈ. → X ਬੰਦ ਹੈ.
-Tapman Y. → Samajh gaya. Tapman Y.",
+        "X ਚਾਲੂ ਹੈ। → ਸਮਝ ਗਿਆ। X ਚਾਲੂ ਹੈ।
+X ਬੰਦ ਹੈ। → X ਬੰਦ ਹੈ।
+ਤਾਪਮਾਨ Y। → ਸਮਝ ਗਿਆ। ਤਾਪਮਾਨ Y।",
     ),
     (
         "pa",
         "fuersorglich",
-        "X ਚਾਲੂ ਹੈ. → Hun karda haan. X ਚਾਲੂ ਹੈ.
-X ਬੰਦ ਹੈ. → X ਬੰਦ ਹੈ.
-Tapman Y. → Hun karda haan. Tapman Y.",
+        "X ਚਾਲੂ ਹੈ। → ਹੁਣ ਕਰਦਾ ਹਾਂ। X ਚਾਲੂ ਹੈ।
+X ਬੰਦ ਹੈ। → X ਬੰਦ ਹੈ।
+ਤਾਪਮਾਨ Y। → ਹੁਣ ਕਰਦਾ ਹਾਂ। ਤਾਪਮਾਨ Y।",
     ),
     (
         "pa",
         "party",
-        "X ਚਾਲੂ ਹੈ. → Chalo. X ਚਾਲੂ ਹੈ.
-X ਬੰਦ ਹੈ. → X ਬੰਦ ਹੈ.
-Tapman Y. → Chalo. Tapman Y.",
+        "X ਚਾਲੂ ਹੈ। → ਚਲੋ। X ਚਾਲੂ ਹੈ।
+X ਬੰਦ ਹੈ। → X ਬੰਦ ਹੈ।
+ਤਾਪਮਾਨ Y। → ਚਲੋ। ਤਾਪਮਾਨ Y।",
     ),
     (
         "pa",
         "grantig",
-        "X ਚਾਲੂ ਹੈ. → Theek hai. X ਚਾਲੂ ਹੈ.
-X ਬੰਦ ਹੈ. → X ਬੰਦ ਹੈ.
-Tapman Y. → Theek hai. Tapman Y.",
+        "X ਚਾਲੂ ਹੈ। → ਠੀਕ ਹੈ। X ਚਾਲੂ ਹੈ।
+X ਬੰਦ ਹੈ। → X ਬੰਦ ਹੈ।
+ਤਾਪਮਾਨ Y। → ਠੀਕ ਹੈ। ਤਾਪਮਾਨ Y।",
     ),
     (
         "pa",
         "sarkastisch",
-        "X ਚਾਲੂ ਹੈ. → Zaroor. X ਚਾਲੂ ਹੈ.
-X ਬੰਦ ਹੈ. → X ਬੰਦ ਹੈ.
-Tapman Y. → Zaroor. Tapman Y.",
+        "X ਚਾਲੂ ਹੈ। → ਜ਼ਰੂਰ। X ਚਾਲੂ ਹੈ।
+X ਬੰਦ ਹੈ। → X ਬੰਦ ਹੈ।
+ਤਾਪਮਾਨ Y। → ਜ਼ਰੂਰ। ਤਾਪਮਾਨ Y।",
     ),
     (
         "pa",
         "pirat",
-        "X ਚਾਲੂ ਹੈ. → Aye. X ਚਾਲੂ ਹੈ.
-X ਬੰਦ ਹੈ. → X ਬੰਦ ਹੈ.
-Tapman Y. → Aye. Tapman Y.",
+        "X ਚਾਲੂ ਹੈ। → Aye. X ਚਾਲੂ ਹੈ।
+X ਬੰਦ ਹੈ। → X ਬੰਦ ਹੈ।
+ਤਾਪਮਾਨ Y। → Aye. ਤਾਪਮਾਨ Y।",
     ),
     (
         "pa",
         "hippie",
-        "X ਚਾਲੂ ਹੈ. → Aram naal. X ਚਾਲੂ ਹੈ.
-X ਬੰਦ ਹੈ. → X ਬੰਦ ਹੈ.
-Tapman Y. → Aram naal. Tapman Y.",
+        "X ਚਾਲੂ ਹੈ। → ਆਰਾਮ ਨਾਲ। X ਚਾਲੂ ਹੈ।
+X ਬੰਦ ਹੈ। → X ਬੰਦ ਹੈ।
+ਤਾਪਮਾਨ Y। → ਆਰਾਮ ਨਾਲ। ਤਾਪਮਾਨ Y।",
     ),
     (
         "pa",
         "gollum",
-        "X ਚਾਲੂ ਹੈ. → Haan. X ਚਾਲੂ ਹੈ.
-X ਬੰਦ ਹੈ. → X ਬੰਦ ਹੈ.
-Tapman Y. → Haan. Tapman Y.",
+        "X ਚਾਲੂ ਹੈ। → ਹਾਂ। X ਚਾਲੂ ਹੈ।
+X ਬੰਦ ਹੈ। → X ਬੰਦ ਹੈ।
+ਤਾਪਮਾਨ Y। → ਹਾਂ। ਤਾਪਮਾਨ Y।",
     ),
     (
         "pa",
         "jarvis",
-        "X ਚਾਲੂ ਹੈ. → Of course, sir. X ਚਾਲੂ ਹੈ.
-X ਬੰਦ ਹੈ. → X ਬੰਦ ਹੈ.
-Tapman Y. → Of course, sir. Tapman Y.",
+        "X ਚਾਲੂ ਹੈ। → ਜੀ ਹਾਂ, ਸਰ। X ਚਾਲੂ ਹੈ।
+X ਬੰਦ ਹੈ। → X ਬੰਦ ਹੈ।
+ਤਾਪਮਾਨ Y। → ਜੀ ਹਾਂ, ਸਰ। ਤਾਪਮਾਨ Y।",
     ),
 ];

@@ -3,34 +3,34 @@ timers/timers::abstract_start:
 timers/timers::abstract_start_hours_minutes:
 - ਚਾਲੂ ਟਾਈਮਰ abstract 20 min
 timers/timers::abstract_start_seconds:
-- ਚਾਲੂ ਟਾਈਮਰ abstract
+- ਚਾਲੂ ਟਾਈਮਰ abstract 45 sec
 timers/timers::cancel_all_timers:
 - ਬੰਦ ਸਭ ਟਾਈਮਰ
 timers/timers::timer_laundry_cancel:
-- ਚਾਲੂ ਟਾਈਮਰ laundry
+- ਬੰਦ ਟਾਈਮਰ laundry
 timers/timers::timer_laundry_decrease:
 - ਚਾਲੂ ਟਾਈਮਰ laundry 5 min
 timers/timers::timer_laundry_increase:
 - ਚਾਲੂ ਟਾਈਮਰ laundry 16 min
 timers/timers::timer_laundry_pause:
-- ਬੰਦ ਟਾਈਮਰ laundry
+- ਰੋਕੋ ਟਾਈਮਰ laundry
 timers/timers::timer_laundry_start:
-- ਚਾਲੂ ਟਾਈਮਰ laundry
+- ਚਾਲੂ ਟਾਈਮਰ laundry 90 sec
 timers/timers::timer_laundry_status:
 - ਕੀ ਟਾਈਮਰ laundry
 timers/timers::timer_laundry_unpause:
-- ਚਾਲੂ ਟਾਈਮਰ laundry
+- ਚਲਾਓ ਟਾਈਮਰ laundry
 timers/timers::timer_oven_cancel:
-- ਚਾਲੂ ਟਾਈਮਰ oven
+- ਬੰਦ ਟਾਈਮਰ oven
 timers/timers::timer_oven_decrease:
 - ਚਾਲੂ ਟਾਈਮਰ oven 44 min
 timers/timers::timer_oven_increase:
 - ਚਾਲੂ ਟਾਈਮਰ oven 30 min
 timers/timers::timer_oven_pause:
-- ਬੰਦ ਟਾਈਮਰ oven
+- ਰੋਕੋ ਟਾਈਮਰ oven
 timers/timers::timer_oven_start:
 - ਚਾਲੂ ਟਾਈਮਰ oven 2 min
 timers/timers::timer_oven_status:
 - ਕੀ ਟਾਈਮਰ oven
 timers/timers::timer_oven_unpause:
-- ਚਾਲੂ ਟਾਈਮਰ oven
+- ਚਲਾਓ ਟਾਈਮਰ oven

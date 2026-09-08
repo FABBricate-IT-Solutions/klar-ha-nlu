@@ -9,7 +9,7 @@ from homeassistant.core import HomeAssistant, ServiceCall
 from homeassistant.helpers import entity_registry as er
 from homeassistant.helpers.aiohttp_client import async_get_clientsession
 
-from .const import CONF_TOKEN, CONF_URL, DEFAULT_URL, DOMAIN
+from .const import CONF_TOKEN, CONF_URL, DEFAULT_URL, DOMAIN, engine_headers
 
 _LOGGER = logging.getLogger(__name__)
 
@@ -69,7 +69,7 @@ async def async_setup_services(hass: HomeAssistant) -> None:
             )
             return
         url, token = _url_token(hass, entry)
-        headers = {"X-Klar-Token": token} if token else {}
+        headers = engine_headers(token)
         session = async_get_clientsession(hass)
         try:
             async with session.post(

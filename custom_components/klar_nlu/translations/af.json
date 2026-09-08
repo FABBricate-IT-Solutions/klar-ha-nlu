@@ -23,33 +23,17 @@
     "step": {
       "init": {
         "title": "Klar NLU",
-        "description": "Die persoonlikheid word hier gestoor en bly na herinstallasie van die Klar-app.",
+        "description": "Stem, Assist-tale en die LLM leef in die Klar-operateur-UI (Instellings). Hierdie vorm verbind net die enjin: URL, token en kanaal.",
         "data": {
           "mode": "Enjin",
-          "personality": "Persoonlikheid",
-          "languages": "Tale",
-          "allow_llm_tools": "Allow Home Assistant Assist tools on engine chat",
-          "refine_speech": "Laat die LLM NLU-antwoorde herformuleer",
-          "refine_prompt": "Verfynde opdrag",
           "url": "Klar API-URL",
           "token": "Skryf-token",
           "assist_filter": "Beheer slegs entiteite wat aan Assist blootgestel is",
-          "nlu_rag": "NLU-RAG (opsioneel)",
-          "quiet_ack": "Kort bevestiging (klokkie)",
-          "calendar_llm": "Stuur kalendernavrae na die LLM",
           "channel": "Vrystellingskanaal"
         },
         "data_description": {
-          "personality": "In hierdie integrasie, nie in die Klar-app nie.",
-          "refine_speech": "Klar beheer steeds toestelle. Die rugsteun-LLM herskryf die antwoord.",
-          "refine_prompt": "Stelselopdrag vir die stem. Geen toestelbeheer, geen nuwe feite, dieselfde taal.",
           "token": "Dieselfde token as in die Klar-app.",
           "assist_filter": "Aan: net wat Assist mag sien. Af: ook versteekte entiteite.",
-          "nlu_rag": "Verstek af. In gesels stuur slegs die ooreenstemmende stuk na die rugsteunmodel.",
-          "quiet_ack": "By eenvoudige lig aan/af geen sin nie, net ’n kort klank op die satelliet.",
-          "calendar_llm": "Verstek af. Aan: Klar lees die kalender, die terugval-LLM sê die afsprake. Af: Klar sê self die lys. Skep, skrapping en skuif bly by Klar.",
-          "allow_llm_tools": "Off by default. On: after Klar parses, the engine chat model may call Home Assistant Assist tools (names come from Core, already prefixed). Off: conversation only.",
-          "languages": "Verstek volg die Home Assistant-stelseltaal.",
           "channel": "Enige tyd. Staging wys na Klar NLU (Staging)."
         }
       }

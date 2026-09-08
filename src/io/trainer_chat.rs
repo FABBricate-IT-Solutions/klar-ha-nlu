@@ -59,7 +59,7 @@ pub async fn trainer_chat(
     let mut messages = vec![ChatMessage::new("system", system_prompt(&layer, &stub, &reply_language))];
     messages.extend(history_messages(&body.history).map_err(|_| StatusCode::BAD_REQUEST)?);
     messages.push(ChatMessage::new("user", body.message));
-    let session = TrainerConsentHub::session_key(&state.token, peer);
+    let session = TrainerConsentHub::session_key(&state.token, peer, &headers);
     let (tx, rx) = mpsc::unbounded_channel::<Result<axum::response::sse::Event, Infallible>>();
     tokio::spawn(async move {
         run_loop(state, endpoint, session, layer, messages, tx, reply_language).await;
@@ -76,7 +76,7 @@ pub async fn trainer_consent(
     if !writes_allowed(Some(peer), &headers, &state.token) {
         return Err(StatusCode::UNAUTHORIZED);
     }
-    let key = TrainerConsentHub::session_key(&state.token, peer);
+    let key = TrainerConsentHub::session_key(&state.token, peer, &headers);
     let call_id = body.call_id.unwrap_or_default();
     state.trainer_consent.decide(&key, &call_id, body.decision).await.map_err(|_| StatusCode::NOT_FOUND)?;
     let (yolo, allowed) = state.trainer_consent.snapshot(&key).await;

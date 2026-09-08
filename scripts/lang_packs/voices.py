@@ -235,10 +235,40 @@ def triples(*rows: object) -> list[list[str]]:
     if len(normalized) > len(PERSONALITY_KEYS):
         raise ValueError(f"personality needs at most {len(PERSONALITY_KEYS)} rows")
     while len(normalized) < len(PERSONALITY_KEYS):
-        key = PERSONALITY_KEYS[len(normalized)]
-        fallback = VOICES.get(key) or {}
-        normalized.append(list(fallback.get("en") or ["", "", ""]))
+        normalized.append([])
     return normalized
+
+
+def _yes_prefix(yes) -> str:
+    word = ""
+    if isinstance(yes, (list, tuple)) and yes:
+        word = str(yes[0]).strip()
+    elif isinstance(yes, str):
+        word = yes.strip()
+    if not word:
+        return ""
+    if word.endswith((".", "。", "!", "?", "؟")):
+        return word + " "
+    return word + ". "
+
+
+def localize_jarvis(personality, yes=None, confirm=None) -> list[list[str]]:
+    """Replace missing/English Jarvis with a local of-course / right-away pair."""
+    del confirm
+    rows = [normalize_variants(row) for row in (personality or [])]
+    while len(rows) < len(PERSONALITY_KEYS):
+        rows.append([])
+    idx = PERSONALITY_KEYS.index("jarvis")
+    english = list(VOICES["jarvis"]["en"])
+    current = rows[idx]
+    if current and current != english:
+        return rows
+    sark = rows[PERSONALITY_KEYS.index("sarkastisch")]
+    fuer = rows[PERSONALITY_KEYS.index("fuersorglich")]
+    of_course = (sark[0] if sark else "") or _yes_prefix(yes)
+    right_away = (fuer[0] if fuer else "") or of_course
+    rows[idx] = [of_course, right_away, ""]
+    return rows
 
 
 def spoken_home(

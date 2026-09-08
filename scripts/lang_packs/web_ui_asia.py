@@ -70,6 +70,7 @@ previewRule	预览	預覽	預覽	プレビュー	미리보기	ดูตัวอ
 explainRule	解释	說明	解釋	説明	설명	อธิบาย	Giải thích	Jelaskan	Terangkan	Тайлбарлах
 rollback	回滚	回溯	回溯	ロールバック	되돌리기	ย้อนกลับ	Hoàn lui	Gulung balik	Gulung balik	Буцаах
 noRules	还没有自定义短语。	還沒有自訂語句。	未有自訂語句。	カスタムフレーズはまだありません。	사용자 구문이 아직 없습니다.	ยังไม่มีวลีกำหนดเอง	Chưa có cụm từ tùy chỉnh.	Belum ada frasa khusus.	Belum ada frasa tersuai.	Өөрийн хэллэг хараахан алга.
+engineOffline	引擎无法连接。在成功实时加载之前，此列表为空。	引擎無法連線。在成功即時載入之前，此列表為空。	引擎無法連線。成功即時載入之前，此列表為空。	エンジンに到達できません。ライブ読み込みが成功するまで、この一覧は空です。	엔진에 연결할 수 없습니다. 실시간 불러오기가 성공할 때까지 이 목록은 비어 있습니다.	เชื่อมต่อเอนจินไม่ได้ รายการนี้ว่างจนกว่าการโหลดสดจะสำเร็จ	Không thể kết nối máy. Danh sách trống cho đến khi tải trực tiếp thành công.	Mesin tidak terjangkau. Daftar ini kosong sampai pemuatan langsung berhasil.	Enjin tidak dapat dicapai. Senarai ini kosong sehingga muatan langsung berjaya.	Хөдөлгүүрт холбогдохгүй. Шууд ачаалал амжилттай болтол жагсаалт хоосон.
 emptyBundle	还没有记录。请开启捆绑并试一句。	還沒有紀錄。請開啟套件並試一句。	未有紀錄。請開套件試一句。	記録はまだありません。バンドルを有効にして文を試してください。	기록이 아직 없습니다. 번들을 켜고 문장을 시험하세요.	ยังไม่มีบันทึก เปิดชุดแล้วลองประโยค	Chưa có bản ghi. Bật gói và thử một câu.	Belum ada rekaman. Nyalakan bundel dan coba sebuah kalimat.	Belum ada rakaman. Hidupkan bundel dan cuba satu ayat.	Бичлэг хараахан алга. Багцыг асаагаад өгүүлбэр туршина уу.
 confirmApply	应用这些建议？	套用這些建議？	套用呢啲建議？	これらの提案を適用しますか？	이 제안을 적용할까요?	ใช้ข้อเสนอเหล่านี้หรือไม่	Áp các gợi ý này?	Terapkan saran ini?	Guna cadangan ini?	Эдгээр саналыг хэрэглэх үү?
 cancel	取消	取消	取消	キャンセル	취소	ยกเลิก	Hủy	Batal	Batal	Цуцлах

@@ -4,6 +4,7 @@ use thiserror::Error;
 pub const MAX_MESSAGES: usize = 48;
 pub const MAX_MESSAGE_CHARS: usize = 32_768;
 pub const MAX_TOKENS_LIMIT: u32 = 4096;
+pub const MAX_TOOL_CALLS: usize = 32;
 
 #[derive(Debug, Clone, Serialize, Deserialize, PartialEq, Eq, Default)]
 pub struct ToolFn {
@@ -140,10 +141,14 @@ pub enum LlmError {
 
 impl ChatRequest {
     pub fn sanitize(self) -> Result<SanitizedChat, LlmError> {
-        if self.messages.is_empty() || self.messages.len() > MAX_MESSAGES {
+        let message_count = self.messages.len();
+        if message_count == 0 {
             return Err(LlmError::InvalidRequest("messages"));
         }
-        let mut messages = Vec::with_capacity(self.messages.len());
+        if message_count > MAX_MESSAGES {
+            return Err(LlmError::InvalidRequest("messages"));
+        }
+        let mut messages = Vec::with_capacity(MAX_MESSAGES);
         for message in self.messages {
             messages.push(sanitize_message(message)?);
         }
@@ -181,6 +186,9 @@ fn sanitize_message(message: ChatMessage) -> Result<ChatMessage, LlmError> {
             }
         }
         "assistant" => {
+            if message.tool_calls.len() > MAX_TOOL_CALLS {
+                return Err(LlmError::InvalidRequest("tool_calls"));
+            }
             if message.content.is_empty() && message.tool_calls.is_empty() {
                 return Err(LlmError::InvalidRequest("content"));
             }
@@ -324,6 +332,9 @@ impl ToolCallAssembler {
     pub fn push(&mut self, rows: &[UpstreamToolCall]) {
         for row in rows {
             let index = row.index.unwrap_or(self.slots.len());
+            if index >= MAX_TOOL_CALLS {
+                continue;
+            }
             if self.slots.len() <= index {
                 self.slots.resize(index + 1, ToolCall::default());
             }
@@ -378,6 +389,27 @@ impl From<reqwest::Error> for LlmError {
 mod tests {
     use super::*;
 
+    fn chat_request(messages: Vec<ChatMessage>) -> ChatRequest {
+        ChatRequest { messages, stream: Some(false), ..ChatRequest::default() }
+    }
+
+    #[test]
+    fn rejects_empty_messages() {
+        assert!(matches!(chat_request(vec![]).sanitize(), Err(LlmError::InvalidRequest("messages"))));
+    }
+
+    #[test]
+    fn rejects_too_many_messages() {
+        let messages = vec![ChatMessage::new("user", "hi"); MAX_MESSAGES + 1];
+        assert!(matches!(chat_request(messages).sanitize(), Err(LlmError::InvalidRequest("messages"))));
+    }
+
+    #[test]
+    fn accepts_max_messages() {
+        let messages = vec![ChatMessage::new("user", "hi"); MAX_MESSAGES];
+        assert_eq!(chat_request(messages).sanitize().unwrap().messages.len(), MAX_MESSAGES);
+    }
+
     #[test]
     fn assistant_tool_message_may_omit_text() {
         let req = ChatRequest {
@@ -412,5 +444,24 @@ mod tests {
         assert_eq!(calls[0].id, "call_1");
         assert_eq!(calls[0].function.name, "get_entity");
         assert_eq!(calls[0].function.arguments, r#"{"entity_id":"light.x"}"#);
+    }
+
+    #[test]
+    fn ignores_oversized_tool_call_index() {
+        let mut assembler = ToolCallAssembler::default();
+        assembler.push(&[UpstreamToolCall {
+            index: Some(MAX_TOOL_CALLS),
+            id: Some("huge".into()),
+            kind: Some("function".into()),
+            function: Some(UpstreamToolFn { name: Some("get_entity".into()), arguments: Some("{}".into()) }),
+        }]);
+        assert!(assembler.finish().is_empty());
+    }
+
+    #[test]
+    fn rejects_too_many_tool_calls() {
+        let calls = vec![ToolCall::function("c1", "apply_aliases", "{}"); MAX_TOOL_CALLS + 1];
+        let req = chat_request(vec![ChatMessage::assistant_tools("", calls)]);
+        assert!(matches!(req.sanitize(), Err(LlmError::InvalidRequest("tool_calls"))));
     }
 }

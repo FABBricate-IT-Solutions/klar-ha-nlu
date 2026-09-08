@@ -23,33 +23,17 @@
     "step": {
       "init": {
         "title": "Klar NLU",
-        "description": "വ്യക്തിത്വം ഇവിടെ സൂക്ഷിക്കുകയും Klar ആപ്പ് വീണ്ടും ഇൻസ്റ്റാൾ ചെയ്ത ശേഷവും നിലനിൽക്കുകയും ചെയ്യുന്നു.",
+        "description": "ശബ്ദവും Assist ഭാഷകളും LLM-ഉം Klar ഓപ്പറേറ്റർ UI-യിലാണ് (ക്രമീകരണങ്ങൾ). ഈ ഫോം എഞ്ചിൻ മാത്രം ബന്ധിപ്പിക്കുന്നു: URL, ടോക്കൺ, ചാനൽ.",
         "data": {
           "mode": "എഞ്ചിൻ",
-          "personality": "വ്യക്തിത്വം",
-          "languages": "ഭാഷകൾ",
-          "allow_llm_tools": "Allow Home Assistant Assist tools on engine chat",
-          "refine_speech": "LLM NLU മറുപടികൾ തിരുത്തട്ടെ",
-          "refine_prompt": "മെച്ചപ്പെടുത്തൽ പ്രോംപ്റ്റ്",
           "url": "Klar API URL",
           "token": "എഴുത്ത് ടോക്കൺ",
           "assist_filter": "Assist കാണുന്ന യൂണിറ്റുകൾ മാത്രം നിയന്ത്രിക്കുക",
-          "nlu_rag": "NLU-RAG (ഓപ്ഷണൽ)",
-          "quiet_ack": "ചെറിയ സ്ഥിരീകരണം (മണി)",
-          "calendar_llm": "കലണ്ടർ ചോദ്യങ്ങൾ LLM-ലേക്ക് അയയ്ക്കുക",
           "channel": "റിലീസ് ചാനൽ"
         },
         "data_description": {
-          "personality": "ഈ ഇന്റഗ്രേഷനിലാണ്, Klar ആപ്പിലല്ല.",
-          "refine_speech": "Klar ഉപകരണങ്ങൾ നിയന്ത്രിക്കുന്നത് തുടരും. ബാക്കപ്പ് LLM മറുപടി വീണ്ടും എഴുതും.",
-          "refine_prompt": "ശബ്ദത്തിന്റെ സിസ്റ്റം പ്രോംപ്റ്റ്. ഉപകരണ നിയന്ത്രണമില്ല, പുതിയ വസ്തുതകളില്ല, അതേ ഭാഷ.",
           "token": "Klar ആപ്പിലേതു പോലെ തന്നെ ടോക്കൺ.",
           "assist_filter": "ഓൺ: Assist കാണുന്നത് മാത്രം. ഓഫ്: മറച്ച യൂണിറ്റുകളും.",
-          "nlu_rag": "ഡിഫോൾട്ട് ഓഫ്. സംസാരത്തിൽ പൊരുത്തപ്പെട്ട ഭാഗം മാത്രം ബാക്കപ്പ് മോഡലിലേക്ക്.",
-          "quiet_ack": "ലളിതമായ ലൈറ്റ് ഓൺ/ഓഫിൽ വാക്യമില്ല, സാറ്റലൈറ്റിൽ ചെറിയ ശബ്ദം മാത്രം.",
-          "calendar_llm": "ഡിഫോൾട്ട് ഓഫ്. സംസാരത്തിൽ പൊരുത്തപ്പെട്ട ഭാഗം മാത്രം ബാക്കപ്പ് മോഡലിലേക്ക്. കലണ്ടർ ചോദ്യങ്ങൾ LLM-ലേക്ക് അയയ്ക്കുക.",
-          "allow_llm_tools": "Off by default. On: after Klar parses, the engine chat model may call Home Assistant Assist tools (names come from Core, already prefixed). Off: conversation only.",
-          "languages": "ഡിഫോൾട്ട് Home Assistant സിസ്റ്റം ഭാഷയാണ്.",
           "channel": "Works anytime. Staging points at Klar NLU (Staging)."
         }
       }

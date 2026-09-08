@@ -50,7 +50,8 @@ CONF_ALLOW_LLM_TOOLS = "allow_llm_tools"
 CONF_TOKEN = "token"
 CONF_CHANNEL = "channel"
 CONF_PRODUCT_IN_ENGINE = "product_in_engine"
-ENGINE_VERSION = "2026.8.65"
+TOKEN_HEADER = "x-klar-token"
+ENGINE_VERSION = "2026.9.5"
 DEFAULT_ASSIST_FILTER = True
 DEFAULT_PERSONALITY = "default"
 DEFAULT_REFINE_PROMPT = ""
@@ -72,6 +73,15 @@ PERSONALITIES = (
     "gollum",
     "jarvis",
 )
+
+
+def engine_headers(token: object, extra: dict[str, str] | None = None) -> dict[str, str]:
+    """Attach the write token when configured. Empty token stays tokenless (loopback)."""
+    headers = dict(extra or {})
+    text = str(token or "").strip()
+    if text:
+        headers[TOKEN_HEADER] = text
+    return headers
 
 
 def resolve_personality(value: object) -> str:
@@ -150,6 +160,11 @@ def addon_url_for_channel(channel: object) -> str:
     if resolve_channel(channel) == CHANNEL_STAGING:
         return DEFAULT_STAGING_ADDON_URL
     return DEFAULT_ADDON_URL
+
+
+def is_addon_engine_url(url: object) -> bool:
+    """True when the engine URL is the Supervisor Klar addon, not loopback or LAN."""
+    return _addon_kind(_engine_host(url)) is not None
 
 
 def is_managed_engine_url(url: object) -> bool:

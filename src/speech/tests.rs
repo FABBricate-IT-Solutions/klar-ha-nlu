@@ -381,11 +381,11 @@ fn floor_status_keeps_rooms_when_a_climate_entity_is_present() {
     };
     let out =
         render_snapshot(&snap("HassGetState", vec![SpeechSlot { name: "floor".into(), value: "wohnung".into() }], vec![climate, living]));
-    assert!(out.speech.contains("Küche"), "{}", out.speech);
-    assert!(out.speech.contains("Wohnzimmer"), "{}", out.speech);
-    assert!(out.speech.contains("an"), "{}", out.speech);
-    assert!(!out.speech.eq("23.4 Grad."), "{}", out.speech);
-    assert!(!out.speech.starts_with("23.4"), "{}", out.speech);
+    assert!(out.speech.contains("Küche"));
+    assert!(out.speech.contains("Wohnzimmer"));
+    assert!(out.speech.contains("an"));
+    assert!(!out.speech.eq("23.4 Grad."));
+    assert!(!out.speech.starts_with("23.4"));
 }
 
 #[test]
@@ -398,8 +398,8 @@ fn empty_get_state_does_not_say_ist() {
         ],
         vec![entity("weather.openweathermap", "", "weather", "", BTreeMap::new())],
     ));
-    assert!(!out.speech.contains("ist ."), "{}", out.speech);
-    assert!(!out.speech.contains(" ist."), "{}", out.speech);
+    assert!(!out.speech.contains("ist ."));
+    assert!(!out.speech.contains(" ist."));
 }
 
 #[test]
@@ -415,7 +415,7 @@ fn weather_get_state_speaks_temperature() {
             BTreeMap::from([("temperature".into(), serde_json::json!(27.1)), ("temperature_unit".into(), serde_json::json!("°C"))]),
         )],
     ));
-    assert!(out.speech.contains("27"), "{}", out.speech);
-    assert!(out.speech.contains("Grad"), "{}", out.speech);
-    assert!(!out.speech.contains("cloudy"), "{}", out.speech);
+    assert!(out.speech.contains("27"));
+    assert!(out.speech.contains("Grad"));
+    assert!(!out.speech.contains("cloudy"));
 }

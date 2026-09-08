@@ -35,7 +35,7 @@ Every compiled Assist locale is first-class. German and English are hand-written
 - Multiple clauses (`living room and kitchen`, `turn the lights off and set heat to 21`)
 - Clarification when a device is ambiguous
 - Session: “turn it off” refers to the last target
-- Personalities in Home Assistant (butler, grumpy, pirate, …) — Assist, the spoken cue, and the optional LLM rewrite all follow the same choice
+- Personalities in the Klar operator UI (butler, grumpy, pirate, …) — Assist, the spoken cue, and the optional LLM rewrite all follow the same choice
 - Optional LLM fallback in Home Assistant for chit-chat once Klar sees no home command
 - Optional LLM refine of finished NLU replies (off by default; device control stays with Klar)
 
@@ -65,7 +65,7 @@ Pick **one** engine host. Do not run the App and the bundled engine together.
 4. [![Open your Home Assistant instance and start setting up a new integration.](https://my.home-assistant.io/badges/config_flow_start.svg)](https://my.home-assistant.io/redirect/config_flow_start/?domain=klar_nlu) — with the App running pick **Use the Klar NLU App or Docker**; without it pick **Start the bundled engine (HACS only)**
 5. Expose the devices you want to talk to (Settings → Voice assistants → Expose)
 6. Assist pipeline: conversation engine = **Klar NLU**
-7. Optionally pick a conversation agent for chit-chat in the options. Same place: personality, and **Let the LLM refine NLU replies** if that agent should rewrite confirmations
+7. Personality, LLM, and refine live in the Klar NLU App / operator Settings — not in the Home Assistant options form
 
 Step-by-step with example phrases: [docs/en/getting-started.md](docs/en/getting-started.md). Details: [docs/en/home-assistant.md](docs/en/home-assistant.md).
 
@@ -73,12 +73,12 @@ Release candidates: Configure → **Release channel** → Staging. That points a
 
 ### Docker
 
-Pin the image tag to the engine CalVer (same as `Cargo.toml` / the GitHub Release). Current tree: **2026.8.30**.
+Pin the image tag to the engine CalVer (same as `Cargo.toml` / the GitHub Release). Current tree: **2026.9.5**.
 
 ```bash
 docker run --rm --network host \
   -v /path/to/homeassistant/config:/config:ro \
-  ghcr.io/fabbricate-it-solutions/klar-nlu:2026.8.30
+  ghcr.io/fabbricate-it-solutions/klar-nlu:2026.9.5
 ```
 
 Integration URL: `http://127.0.0.1:10520`. Images also exist per arch (`klar-nlu-amd64`, `klar-nlu-aarch64`). RC images: tag `staging`.

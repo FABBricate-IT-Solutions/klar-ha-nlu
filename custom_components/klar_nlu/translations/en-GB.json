@@ -23,33 +23,17 @@
     "step": {
       "init": {
         "title": "Klar NLU",
-        "description": "The personality is stored here, so it survives reinstalling the Klar app. Picking a personality copies its LLM refine prompt into this form.",
+        "description": "Voice, Assist languages, and the LLM live in the Klar operator UI (Settings). This form only connects the engine: URL, token, and channel.",
         "data": {
           "mode": "Engine",
-          "personality": "Personality",
-          "languages": "Languages",
-          "allow_llm_tools": "Allow Home Assistant Assist tools on engine chat",
-          "refine_speech": "Let the LLM refine NLU replies",
-          "refine_prompt": "Refinement prompt",
           "url": "Klar API URL",
           "token": "Write token",
           "assist_filter": "Only control entities exposed to Assist",
-          "nlu_rag": "NLU-RAG (opt-in)",
-          "quiet_ack": "Short confirmation (chime)",
-          "calendar_llm": "Send calendar queries to the LLM",
           "channel": "Release channel"
         },
         "data_description": {
-          "personality": "Stored in this integration, not in the Klar app. Assist and the LLM voice follow the prompt.",
-          "refine_speech": "Klar still controls devices. The fallback LLM then rewrites each finished reply.",
-          "refine_prompt": "System prompt for the voice. No device control, no new facts, same language.",
           "token": "Same token as the Klar add-on.",
           "assist_filter": "On (default): only what Assist may see. Off: hidden entities too.",
-          "nlu_rag": "Off by default. Chat and empty rejects send the matched slice to the fallback model.",
-          "quiet_ack": "On simple light or switch on/off, skip the spoken reply and play a short chime.",
-          "calendar_llm": "Off by default. On: Klar still reads the calendar, then the fallback LLM speaks the events. Off: Klar speaks the list itself. Create, delete, and move stay in Klar.",
-          "allow_llm_tools": "Off by default. On: after Klar parses, the engine chat model may call Home Assistant Assist tools (names come from Core, already prefixed). Off: conversation only.",
-          "languages": "Default follows the Home Assistant system language.",
           "channel": "Works anytime. Staging points at Klar NLU (Staging). Stable goes back to the app or bundled engine."
         }
       }

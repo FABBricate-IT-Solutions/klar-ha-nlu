@@ -17,14 +17,18 @@ pub struct LlmClient {
     endpoint: LlmEndpoint,
 }
 
+fn http_client(timeout: Duration, connect_timeout: Duration) -> Result<reqwest::Client, LlmError> {
+    reqwest::Client::builder()
+        .timeout(timeout)
+        .connect_timeout(connect_timeout)
+        .redirect(reqwest::redirect::Policy::none())
+        .build()
+        .map_err(|_| LlmError::Transport)
+}
+
 impl LlmClient {
     pub fn new(endpoint: LlmEndpoint) -> Result<Self, LlmError> {
-        let http = reqwest::Client::builder()
-            .timeout(Duration::from_secs(120))
-            .connect_timeout(Duration::from_secs(10))
-            .build()
-            .map_err(|_| LlmError::Transport)?;
-        Ok(Self { http, endpoint })
+        Ok(Self { http: http_client(Duration::from_secs(120), Duration::from_secs(10))?, endpoint })
     }
 }
 
@@ -61,11 +65,7 @@ where
 }
 
 pub async fn list_models(endpoint: &LlmEndpoint) -> Result<Vec<String>, LlmError> {
-    let http = reqwest::Client::builder()
-        .timeout(Duration::from_secs(20))
-        .connect_timeout(Duration::from_secs(8))
-        .build()
-        .map_err(|_| LlmError::Transport)?;
+    let http = http_client(Duration::from_secs(20), Duration::from_secs(8))?;
     let mut last_err = LlmError::Response;
     let mut saw_empty = false;
     for url in model_list_urls(&endpoint.base_url) {

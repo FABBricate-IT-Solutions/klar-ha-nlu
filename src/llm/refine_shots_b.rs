@@ -73,9 +73,9 @@ De temperatuur Y. → Ja. De temperatuur Y.",
     (
         "nl",
         "jarvis",
-        "X staat aan. → Of course, sir. X staat aan.
+        "X staat aan. → Natuurlijk. X staat aan.
 X staat uit. → X staat uit.
-De temperatuur Y. → Of course, sir. De temperatuur Y.",
+De temperatuur Y. → Natuurlijk. De temperatuur Y.",
     ),
     (
         "da",
@@ -150,9 +150,9 @@ Temperaturen Y. → Ja. Temperaturen Y.",
     (
         "da",
         "jarvis",
-        "X er taendt. → Of course, sir. X er taendt.
+        "X er taendt. → Selvfølgelig, sir. X er taendt.
 X er slukket. → X er slukket.
-Temperaturen Y. → Of course, sir. Temperaturen Y.",
+Temperaturen Y. → Selvfølgelig, sir. Temperaturen Y.",
     ),
     (
         "en-GB",
@@ -227,9 +227,9 @@ The temperature Y. → Yes. The temperature Y.",
     (
         "en-GB",
         "jarvis",
-        "X is on. → Of course, sir. X is on.
+        "X is on. → Certainly, sir. X is on.
 X is off. → X is off.
-The temperature Y. → Of course, sir. The temperature Y.",
+The temperature Y. → Certainly, sir. The temperature Y.",
     ),
     (
         "hu",
@@ -304,9 +304,9 @@ A homerseklet Y. → Igen. A homerseklet Y.",
     (
         "hu",
         "jarvis",
-        "X be van kapcsolva. → Of course, sir. X be van kapcsolva.
+        "X be van kapcsolva. → Persze, uram. X be van kapcsolva.
 X ki van kapcsolva. → X ki van kapcsolva.
-A homerseklet Y. → Of course, sir. A homerseklet Y.",
+A homerseklet Y. → Persze, uram. A homerseklet Y.",
     ),
     (
         "sr-Latn",
@@ -381,9 +381,9 @@ Temperatura Y. → Da. Temperatura Y.",
     (
         "sr-Latn",
         "jarvis",
-        "X je upaljen. → Of course, sir. X je upaljen.
+        "X je upaljen. → Naravno, gospodine. X je upaljen.
 X je ugasen. → X je ugasen.
-Temperatura Y. → Of course, sir. Temperatura Y.",
+Temperatura Y. → Naravno, gospodine. Temperatura Y.",
     ),
     (
         "he",
@@ -458,9 +458,9 @@ X כבוי. → X כבוי.
     (
         "he",
         "jarvis",
-        "X דולק. → Of course, sir. X דולק.
+        "X דולק. → כמובן, אדוני. X דולק.
 X כבוי. → X כבוי.
-הטמפרטורה Y. → Of course, sir. הטמפרטורה Y.",
+הטמפרטורה Y. → כמובן, אדוני. הטמפרטורה Y.",
     ),
     (
         "ja",
@@ -535,9 +535,9 @@ Xは消えています。 → Xは消えています。
     (
         "ja",
         "jarvis",
-        "Xはついています。 → Of course, sir. Xはついています。
+        "Xはついています。 → 承知しました。 Xはついています。
 Xは消えています。 → Xは消えています。
-温度Y。 → Of course, sir. 温度Y。",
+温度Y。 → 承知しました。 温度Y。",
     ),
     (
         "is",
@@ -612,9 +612,9 @@ Hitinn Y. → Ja. Hitinn Y.",
     (
         "is",
         "jarvis",
-        "X er kveikt. → Of course, sir. X er kveikt.
+        "X er kveikt. → Að sjálfsögðu, herra. X er kveikt.
 X er slokkt. → X er slokkt.
-Hitinn Y. → Of course, sir. Hitinn Y.",
+Hitinn Y. → Að sjálfsögðu, herra. Hitinn Y.",
     ),
     (
         "ms",
@@ -689,162 +689,162 @@ Suhu Y. → Ya. Suhu Y.",
     (
         "ms",
         "jarvis",
-        "X hidup. → Of course, sir. X hidup.
+        "X hidup. → Sudah tentu, tuan. X hidup.
 X mati. → X mati.
-Suhu Y. → Of course, sir. Suhu Y.",
+Suhu Y. → Sudah tentu, tuan. Suhu Y.",
     ),
     (
         "kn",
         "default",
         "X ಹಚ್ಚಿದೆ. → X ಹಚ್ಚಿದೆ.
 X ಆರಿಸಿದೆ. → X ಆರಿಸಿದೆ.
-Ushnata Y. → Ushnata Y.",
+ಉಷ್ಣತೆ Y. → ಉಷ್ಣತೆ Y.",
     ),
     (
         "kn",
         "butler",
-        "X ಹಚ್ಚಿದೆ. → Chennagide. X ಹಚ್ಚಿದೆ.
+        "X ಹಚ್ಚಿದೆ. → ಚೆನ್ನಾಗಿದೆ. X ಹಚ್ಚಿದೆ.
 X ಆರಿಸಿದೆ. → X ಆರಿಸಿದೆ.
-Ushnata Y. → Chennagide. Ushnata Y.",
+ಉಷ್ಣತೆ Y. → ಚೆನ್ನಾಗಿದೆ. ಉಷ್ಣತೆ Y.",
     ),
     (
         "kn",
         "locker",
-        "X ಹಚ್ಚಿದೆ. → Tiliyitu. X ಹಚ್ಚಿದೆ.
+        "X ಹಚ್ಚಿದೆ. → ತಿಳಿಯಿತು. X ಹಚ್ಚಿದೆ.
 X ಆರಿಸಿದೆ. → X ಆರಿಸಿದೆ.
-Ushnata Y. → Tiliyitu. Ushnata Y.",
+ಉಷ್ಣತೆ Y. → ತಿಳಿಯಿತು. ಉಷ್ಣತೆ Y.",
     ),
     (
         "kn",
         "fuersorglich",
-        "X ಹಚ್ಚಿದೆ. → Eega maduttene. X ಹಚ್ಚಿದೆ.
+        "X ಹಚ್ಚಿದೆ. → ಈಗ ಮಾಡುತ್ತೇನೆ. X ಹಚ್ಚಿದೆ.
 X ಆರಿಸಿದೆ. → X ಆರಿಸಿದೆ.
-Ushnata Y. → Eega maduttene. Ushnata Y.",
+ಉಷ್ಣತೆ Y. → ಈಗ ಮಾಡುತ್ತೇನೆ. ಉಷ್ಣತೆ Y.",
     ),
     (
         "kn",
         "party",
-        "X ಹಚ್ಚಿದೆ. → Hogona. X ಹಚ್ಚಿದೆ.
+        "X ಹಚ್ಚಿದೆ. → ಹೋಗೋಣ. X ಹಚ್ಚಿದೆ.
 X ಆರಿಸಿದೆ. → X ಆರಿಸಿದೆ.
-Ushnata Y. → Hogona. Ushnata Y.",
+ಉಷ್ಣತೆ Y. → ಹೋಗೋಣ. ಉಷ್ಣತೆ Y.",
     ),
     (
         "kn",
         "grantig",
-        "X ಹಚ್ಚಿದೆ. → Sari. X ಹಚ್ಚಿದೆ.
+        "X ಹಚ್ಚಿದೆ. → ಸರಿ. X ಹಚ್ಚಿದೆ.
 X ಆರಿಸಿದೆ. → X ಆರಿಸಿದೆ.
-Ushnata Y. → Sari. Ushnata Y.",
+ಉಷ್ಣತೆ Y. → ಸರಿ. ಉಷ್ಣತೆ Y.",
     ),
     (
         "kn",
         "sarkastisch",
-        "X ಹಚ್ಚಿದೆ. → Khandita. X ಹಚ್ಚಿದೆ.
+        "X ಹಚ್ಚಿದೆ. → ಖಂಡಿತ. X ಹಚ್ಚಿದೆ.
 X ಆರಿಸಿದೆ. → X ಆರಿಸಿದೆ.
-Ushnata Y. → Khandita. Ushnata Y.",
+ಉಷ್ಣತೆ Y. → ಖಂಡಿತ. ಉಷ್ಣತೆ Y.",
     ),
     (
         "kn",
         "pirat",
         "X ಹಚ್ಚಿದೆ. → Aye. X ಹಚ್ಚಿದೆ.
 X ಆರಿಸಿದೆ. → X ಆರಿಸಿದೆ.
-Ushnata Y. → Aye. Ushnata Y.",
+ಉಷ್ಣತೆ Y. → Aye. ಉಷ್ಣತೆ Y.",
     ),
     (
         "kn",
         "hippie",
-        "X ಹಚ್ಚಿದೆ. → Nidhanavagide. X ಹಚ್ಚಿದೆ.
+        "X ಹಚ್ಚಿದೆ. → ನಿಧಾನ. X ಹಚ್ಚಿದೆ.
 X ಆರಿಸಿದೆ. → X ಆರಿಸಿದೆ.
-Ushnata Y. → Nidhanavagide. Ushnata Y.",
+ಉಷ್ಣತೆ Y. → ನಿಧಾನ. ಉಷ್ಣತೆ Y.",
     ),
     (
         "kn",
         "gollum",
-        "X ಹಚ್ಚಿದೆ. → Haudu. X ಹಚ್ಚಿದೆ.
+        "X ಹಚ್ಚಿದೆ. → ಹೌದು. X ಹಚ್ಚಿದೆ.
 X ಆರಿಸಿದೆ. → X ಆರಿಸಿದೆ.
-Ushnata Y. → Haudu. Ushnata Y.",
+ಉಷ್ಣತೆ Y. → ಹೌದು. ಉಷ್ಣತೆ Y.",
     ),
     (
         "kn",
         "jarvis",
-        "X ಹಚ್ಚಿದೆ. → Of course, sir. X ಹಚ್ಚಿದೆ.
+        "X ಹಚ್ಚಿದೆ. → ಹೌದು, ಸರ್. X ಹಚ್ಚಿದೆ.
 X ಆರಿಸಿದೆ. → X ಆರಿಸಿದೆ.
-Ushnata Y. → Of course, sir. Ushnata Y.",
+ಉಷ್ಣತೆ Y. → ಹೌದು, ಸರ್. ಉಷ್ಣತೆ Y.",
     ),
     (
         "ne",
         "default",
         "X बल्यो। → X बल्यो।
 X निभ्यो। → X निभ्यो।
-Tapman Y. → Tapman Y.",
+तापक्रम Y। → तापक्रम Y।",
     ),
     (
         "ne",
         "butler",
-        "X बल्यो। → Thik. X बल्यो।
+        "X बल्यो। → ठीक। X बल्यो।
 X निभ्यो। → X निभ्यो।
-Tapman Y. → Thik. Tapman Y.",
+तापक्रम Y। → ठीक। तापक्रम Y।",
     ),
     (
         "ne",
         "locker",
-        "X बल्यो। → Bujhe. X बल्यो।
+        "X बल्यो। → बुझेँ। X बल्यो।
 X निभ्यो। → X निभ्यो।
-Tapman Y. → Bujhe. Tapman Y.",
+तापक्रम Y। → बुझेँ। तापक्रम Y।",
     ),
     (
         "ne",
         "fuersorglich",
-        "X बल्यो। → Ahile garchu. X बल्यो।
+        "X बल्यो। → अहिले गर्छु। X बल्यो।
 X निभ्यो। → X निभ्यो।
-Tapman Y. → Ahile garchu. Tapman Y.",
+तापक्रम Y। → अहिले गर्छु। तापक्रम Y।",
     ),
     (
         "ne",
         "party",
-        "X बल्यो। → Chalaun. X बल्यो।
+        "X बल्यो। → चलाऔँ। X बल्यो।
 X निभ्यो। → X निभ्यो।
-Tapman Y. → Chalaun. Tapman Y.",
+तापक्रम Y। → चलाऔँ। तापक्रम Y।",
     ),
     (
         "ne",
         "grantig",
-        "X बल्यो। → Thik cha. X बल्यो।
+        "X बल्यो। → ठीक छ। X बल्यो।
 X निभ्यो। → X निभ्यो।
-Tapman Y. → Thik cha. Tapman Y.",
+तापक्रम Y। → ठीक छ। तापक्रम Y।",
     ),
     (
         "ne",
         "sarkastisch",
-        "X बल्यो। → Avashya. X बल्यो।
+        "X बल्यो। → अवश्य। X बल्यो।
 X निभ्यो। → X निभ्यो।
-Tapman Y. → Avashya. Tapman Y.",
+तापक्रम Y। → अवश्य। तापक्रम Y।",
     ),
     (
         "ne",
         "pirat",
         "X बल्यो। → Aye. X बल्यो।
 X निभ्यो। → X निभ्यो।
-Tapman Y. → Aye. Tapman Y.",
+तापक्रम Y। → Aye. तापक्रम Y।",
     ),
     (
         "ne",
         "hippie",
-        "X बल्यो। → Shanta. X बल्यो।
+        "X बल्यो। → शान्त। X बल्यो।
 X निभ्यो। → X निभ्यो।
-Tapman Y. → Shanta. Tapman Y.",
+तापक्रम Y। → शान्त। तापक्रम Y।",
     ),
     (
         "ne",
         "gollum",
-        "X बल्यो। → Ho. X बल्यो।
+        "X बल्यो। → हो। X बल्यो।
 X निभ्यो। → X निभ्यो।
-Tapman Y. → Ho. Tapman Y.",
+तापक्रम Y। → हो। तापक्रम Y।",
     ),
     (
         "ne",
         "jarvis",
-        "X बल्यो। → Of course, sir. X बल्यो।
+        "X बल्यो। → हो, सर। X बल्यो।
 X निभ्यो। → X निभ्यो।
-Tapman Y. → Of course, sir. Tapman Y.",
+तापक्रम Y। → हो, सर। तापक्रम Y।",
     ),
 ];

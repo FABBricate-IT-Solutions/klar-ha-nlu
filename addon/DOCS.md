@@ -10,7 +10,7 @@ Household path: [getting started](../docs/en/getting-started.md) · [Einstieg](.
 2. Add the integration and choose **Use the Klar NLU App or Docker**.
 3. URL: `http://klar-nlu:10520`
 4. If you set the App **token**, paste the same value into the integration **Write token**. Overlay writes from Home Assistant need it (Supervisor is not loopback).
-5. In the integration options: personality, optional chit-chat agent, optional **Let the LLM refine NLU replies**. Assist’s conversation engine must stay **Klar NLU**.
+5. Personality, LLM, and refine live in the Klar NLU App / operator Settings — not in the Home Assistant options form. Assist’s conversation engine must stay **Klar NLU**.
 
 Do not also pick **Start the bundled engine (HACS only)** while this App is running.
 
@@ -28,13 +28,13 @@ Settings stay in `/data/klar_nlu.json`, recordings in `/data/support_bundle.json
 
 ## Docker without the add-on
 
-Pin the image tag to the engine CalVer (same as `Cargo.toml` / the GitHub Release). Current tree: **2026.8.30**.
+Pin the image tag to the engine CalVer (same as `Cargo.toml` / the GitHub Release). Current tree: **2026.9.5**.
 
 ```bash
 docker run --rm --network host \
   -v /path/to/homeassistant/config:/config:ro \
   -v /path/to/klar-data:/data \
-  ghcr.io/fabbricate-it-solutions/klar-nlu:2026.8.30
+  ghcr.io/fabbricate-it-solutions/klar-nlu:2026.9.5
 ```
 
 Then use `http://127.0.0.1:10520` in the integration.

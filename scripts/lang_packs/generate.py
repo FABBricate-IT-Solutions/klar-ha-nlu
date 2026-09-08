@@ -7,21 +7,53 @@ This script never overwrites them; it only registers their paths.
 
 from __future__ import annotations
 
+import argparse
 import sys
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
-from lang_packs.emit import write_pack, write_registry, rust_str
+from lang_packs.emit import write_pack, write_registry, write_speech, rust_str
 from lang_packs.ha_ui import write_ha_translations
 from lang_packs.web_ui import write_web_ui_translations
 from lang_packs.expand import expand
 from lang_packs.lexicons import ALL_CORES, BUILTINS
+from lang_packs.speech_slots import slot_gaps
 from lang_packs.voices import HAND_BUNDLES, locale_bundle, PERSONALITY_KEYS
 
 
-def main() -> None:
+def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
+    parser = argparse.ArgumentParser(description="Generate compiled Assist language packs")
+    parser.add_argument("--skip-ha", action="store_true", help="Do not write HA JSON translations")
+    parser.add_argument("--skip-web", action="store_true", help="Do not write web UI translations")
+    parser.add_argument(
+        "--speech-only",
+        action="store_true",
+        help="Write speech.rs + speech_locale/refine/post-exec only (implies --skip-ha --skip-web)",
+    )
+    parser.add_argument(
+        "--packs-only",
+        action="store_true",
+        help="Write Rust packs + registry, skip HA/web JSON",
+    )
+    return parser.parse_args(argv)
+
+
+def main(argv: list[str] | None = None) -> None:
+    args = parse_args(argv)
+    missing = slot_gaps()
+    if missing:
+        raise SystemExit("speech slot tables missing: " + ", ".join(missing))
     generated = [expand(core) for core in ALL_CORES]
+    if args.speech_only:
+        for lang in generated:
+            write_speech(lang)
+            print("wrote speech", lang["code"])
+        write_speech_locale(generated)
+        write_refine_shots(generated)
+        write_post_exec(generated)
+        print("speech-only", len(generated))
+        return
     for lang in generated:
         write_pack(lang)
         print("wrote", lang["code"])
@@ -109,9 +141,13 @@ fn russian_is_not_a_compiled_pack() {
     write_speech_locale(generated)
     write_refine_shots(generated)
     write_post_exec(generated)
-    write_ha_translations()
-    write_web_ui_translations()
-    print("registry", len(registry), "languages")
+    skip_ha = args.skip_ha or args.packs_only
+    skip_web = args.skip_web or args.packs_only
+    if not skip_ha:
+        write_ha_translations()
+    if not skip_web:
+        write_web_ui_translations()
+    print("registry", len(registry), "languages", "skip_ha" if skip_ha else "ha", "skip_web" if skip_web else "web")
 
 
 def write_speech_locale(generated: list[dict]) -> None:

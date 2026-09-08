@@ -23,33 +23,17 @@
     "step": {
       "init": {
         "title": "Klar NLU",
-        "description": "The personality is stored here, so it survives reinstalling the Klar app.",
+        "description": "અવાજ, Assist ભાષાઓ અને LLM Klar ઓપરેટર UI (સેટિંગ્સ)માં છે. આ ફોર્મ ફક્ત એન્જિન જોડે છે: URL, ટોકન અને ચેનલ.",
         "data": {
           "mode": "એન્જિન",
-          "personality": "વ્યક્તિત્વ",
-          "languages": "ભાષાઓ",
-          "allow_llm_tools": "Allow Home Assistant Assist tools on engine chat",
-          "refine_speech": "LLM પાસે NLU જવાબ સુધારાવો",
-          "refine_prompt": "સુધારા પ્રોમ્પ્ટ",
           "url": "Klar API URL",
           "token": "લેખન ટોકન",
           "assist_filter": "ફક્ત Assistને દેખાતી એકમો નિયંત્રિત કરો",
-          "nlu_rag": "NLU-RAG (વૈકલ્પિક)",
-          "quiet_ack": "ટૂંકી પુષ્ટિ (ઘંટડી)",
-          "calendar_llm": "કેલેન્ડર પ્રશ્નો LLMને મોકલો",
           "channel": "રિલીઝ ચેનલ"
         },
         "data_description": {
-          "personality": "આ એકીકરણમાં છે, Klar એપમાં નહીં.",
-          "refine_speech": "Klar ઉપકરણો નિયંત્રિત કરે છે. બેકઅપ LLM જવાબ ફરી લખે છે.",
-          "refine_prompt": "અવાજનું સિસ્ટમ પ્રોમ્પ્ટ. ઉપકરણ નિયંત્રણ નહીં, નવી હકીકત નહીં, એ જ ભાષા.",
           "token": "Klar એપ જેવું જ ટોકન.",
           "assist_filter": "ચાલુ: ફક્ત Assist જુએ તે. બંધ: છુપાયેલા એકમો પણ.",
-          "nlu_rag": "મૂળભૂત બંધ. વાતમાં ફક્ત મળેલો ટુકડો બેકઅપ મોડેલને જાય છે.",
-          "quiet_ack": "સાદી લાઇટ ચાલુ/બંધ પર વાક્ય નહીં, સેટેલાઇટ પર ટૂંકો અવાજ.",
-          "calendar_llm": "મૂળભૂત બંધ. વાતમાં ફક્ત મળેલો ટુકડો બેકઅપ મોડેલને જાય છે. કેલેન્ડર પ્રશ્નો LLMને મોકલો.",
-          "allow_llm_tools": "Off by default. On: after Klar parses, the engine chat model may call Home Assistant Assist tools (names come from Core, already prefixed). Off: conversation only.",
-          "languages": "મૂળભૂત Home Assistant સિસ્ટમ ભાષા છે.",
           "channel": "ગમે ત્યારે. Staging Klar NLU (Staging) તરફ છે."
         }
       }

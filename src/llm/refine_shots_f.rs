@@ -73,9 +73,9 @@ La temperatura Y. → Si. La temperatura Y.",
     (
         "ca",
         "jarvis",
-        "X esta encès. → Of course, sir. X esta encès.
+        "X esta encès. → És clar, senyor. X esta encès.
 X esta apagat. → X esta apagat.
-La temperatura Y. → Of course, sir. La temperatura Y.",
+La temperatura Y. → És clar, senyor. La temperatura Y.",
     ),
     (
         "de-CH",
@@ -150,9 +150,9 @@ D Temperatur Y. → Ja. D Temperatur Y.",
     (
         "de-CH",
         "jarvis",
-        "X isch aa. → Of course, sir. X isch aa.
+        "X isch aa. → Natürlich, Sir. X isch aa.
 X isch uus. → X isch uus.
-D Temperatur Y. → Of course, sir. D Temperatur Y.",
+D Temperatur Y. → Natürlich, Sir. D Temperatur Y.",
     ),
     (
         "sk",
@@ -227,9 +227,9 @@ Teplota Y. → Ano. Teplota Y.",
     (
         "sk",
         "jarvis",
-        "X je zapnute. → Of course, sir. X je zapnute.
+        "X je zapnute. → Samozrejme, pán. X je zapnute.
 X je vypnute. → X je vypnute.
-Teplota Y. → Of course, sir. Teplota Y.",
+Teplota Y. → Samozrejme, pán. Teplota Y.",
     ),
     (
         "el",
@@ -304,9 +304,9 @@ X ειναι κλειστο. → X ειναι κλειστο.
     (
         "el",
         "jarvis",
-        "X ειναι ανοιχτο. → Of course, sir. X ειναι ανοιχτο.
+        "X ειναι ανοιχτο. → Βεβαίως, κύριε. X ειναι ανοιχτο.
 X ειναι κλειστο. → X ειναι κλειστο.
-Η θερμοκρασια Y. → Of course, sir. Η θερμοκρασια Y.",
+Η θερμοκρασια Y. → Βεβαίως, κύριε. Η θερμοκρασια Y.",
     ),
     (
         "zh-HK",
@@ -381,9 +381,9 @@ X關咗。 → X關咗。
     (
         "zh-HK",
         "jarvis",
-        "X開咗。 → Of course, sir. X開咗。
+        "X開咗。 → 當然，先生。 X開咗。
 X關咗。 → X關咗。
-溫度Y。 → Of course, sir. 溫度Y。",
+溫度Y。 → 當然，先生。 溫度Y。",
     ),
     (
         "th",
@@ -458,9 +458,9 @@ X ปิดแล้ว. → X ปิดแล้ว.
     (
         "th",
         "jarvis",
-        "X เปิดแล้ว. → Of course, sir. X เปิดแล้ว.
+        "X เปิดแล้ว. → ครับท่าน X เปิดแล้ว.
 X ปิดแล้ว. → X ปิดแล้ว.
-อุณหภูมิ Y. → Of course, sir. อุณหภูมิ Y.",
+อุณหภูมิ Y. → ครับท่าน อุณหภูมิ Y.",
     ),
     (
         "ga",
@@ -535,9 +535,9 @@ An teocht Y. → Ta. An teocht Y.",
     (
         "ga",
         "jarvis",
-        "Ta X ar siul. → Of course, sir. Ta X ar siul.
+        "Ta X ar siul. → Ar ndóigh, a dhuine uasail. Ta X ar siul.
 Ta X muchta. → Ta X muchta.
-An teocht Y. → Of course, sir. An teocht Y.",
+An teocht Y. → Ar ndóigh, a dhuine uasail. An teocht Y.",
     ),
     (
         "lv",
@@ -612,162 +612,162 @@ Temperatura Y. → Ja. Temperatura Y.",
     (
         "lv",
         "jarvis",
-        "X ir ieslegts. → Of course, sir. X ir ieslegts.
+        "X ir ieslegts. → Protams, kungs. X ir ieslegts.
 X ir izslegts. → X ir izslegts.
-Temperatura Y. → Of course, sir. Temperatura Y.",
+Temperatura Y. → Protams, kungs. Temperatura Y.",
     ),
     (
         "bn",
         "default",
         "X জ্বলছে। → X জ্বলছে।
 X নিভানো। → X নিভানো।
-Tapmatra Y. → Tapmatra Y.",
+তাপমাত্রা Y। → তাপমাত্রা Y।",
     ),
     (
         "bn",
         "butler",
-        "X জ্বলছে। → Bhalo. X জ্বলছে।
+        "X জ্বলছে। → ভালো। X জ্বলছে।
 X নিভানো। → X নিভানো।
-Tapmatra Y. → Bhalo. Tapmatra Y.",
+তাপমাত্রা Y। → ভালো। তাপমাত্রা Y।",
     ),
     (
         "bn",
         "locker",
-        "X জ্বলছে। → Bujhechi. X জ্বলছে।
+        "X জ্বলছে। → বুঝেছি। X জ্বলছে।
 X নিভানো। → X নিভানো।
-Tapmatra Y. → Bujhechi. Tapmatra Y.",
+তাপমাত্রা Y। → বুঝেছি। তাপমাত্রা Y।",
     ),
     (
         "bn",
         "fuersorglich",
-        "X জ্বলছে। → Ekhon korchi. X জ্বলছে।
+        "X জ্বলছে। → এখন করছি। X জ্বলছে।
 X নিভানো। → X নিভানো।
-Tapmatra Y. → Ekhon korchi. Tapmatra Y.",
+তাপমাত্রা Y। → এখন করছি। তাপমাত্রা Y।",
     ),
     (
         "bn",
         "party",
-        "X জ্বলছে। → Cholo. X জ্বলছে।
+        "X জ্বলছে। → চলো। X জ্বলছে।
 X নিভানো। → X নিভানো।
-Tapmatra Y. → Cholo. Tapmatra Y.",
+তাপমাত্রা Y। → চলো। তাপমাত্রা Y।",
     ),
     (
         "bn",
         "grantig",
-        "X জ্বলছে। → Thik. X জ্বলছে।
+        "X জ্বলছে। → ঠিক। X জ্বলছে।
 X নিভানো। → X নিভানো।
-Tapmatra Y. → Thik. Tapmatra Y.",
+তাপমাত্রা Y। → ঠিক। তাপমাত্রা Y।",
     ),
     (
         "bn",
         "sarkastisch",
-        "X জ্বলছে। → Obosshoi. X জ্বলছে।
+        "X জ্বলছে। → অবশ্যই। X জ্বলছে।
 X নিভানো। → X নিভানো।
-Tapmatra Y. → Obosshoi. Tapmatra Y.",
+তাপমাত্রা Y। → অবশ্যই। তাপমাত্রা Y।",
     ),
     (
         "bn",
         "pirat",
         "X জ্বলছে। → Aye. X জ্বলছে।
 X নিভানো। → X নিভানো।
-Tapmatra Y. → Aye. Tapmatra Y.",
+তাপমাত্রা Y। → Aye. তাপমাত্রা Y।",
     ),
     (
         "bn",
         "hippie",
-        "X জ্বলছে। → Aaram. X জ্বলছে।
+        "X জ্বলছে। → আরাম। X জ্বলছে।
 X নিভানো। → X নিভানো।
-Tapmatra Y. → Aaram. Tapmatra Y.",
+তাপমাত্রা Y। → আরাম। তাপমাত্রা Y।",
     ),
     (
         "bn",
         "gollum",
-        "X জ্বলছে। → Hyan. X জ্বলছে।
+        "X জ্বলছে। → হ্যাঁ। X জ্বলছে।
 X নিভানো। → X নিভানো।
-Tapmatra Y. → Hyan. Tapmatra Y.",
+তাপমাত্রা Y। → হ্যাঁ। তাপমাত্রা Y।",
     ),
     (
         "bn",
         "jarvis",
-        "X জ্বলছে। → Of course, sir. X জ্বলছে।
+        "X জ্বলছে। → জি হ্যাঁ, স্যার। X জ্বলছে।
 X নিভানো। → X নিভানো।
-Tapmatra Y. → Of course, sir. Tapmatra Y.",
+তাপমাত্রা Y। → জি হ্যাঁ, স্যার। তাপমাত্রা Y।",
     ),
     (
         "te",
         "default",
         "X వెలిగింది. → X వెలిగింది.
 X ఆరిపోయింది. → X ఆరిపోయింది.
-Ushnota Y. → Ushnota Y.",
+ఉష్ణోగ్రత Y. → ఉష్ణోగ్రత Y.",
     ),
     (
         "te",
         "butler",
-        "X వెలిగింది. → Baagundi. X వెలిగింది.
+        "X వెలిగింది. → బాగుంది. X వెలిగింది.
 X ఆరిపోయింది. → X ఆరిపోయింది.
-Ushnota Y. → Baagundi. Ushnota Y.",
+ఉష్ణోగ్రత Y. → బాగుంది. ఉష్ణోగ్రత Y.",
     ),
     (
         "te",
         "locker",
-        "X వెలిగింది. → Ardham ayindi. X వెలిగింది.
+        "X వెలిగింది. → అర్థమైంది. X వెలిగింది.
 X ఆరిపోయింది. → X ఆరిపోయింది.
-Ushnota Y. → Ardham ayindi. Ushnota Y.",
+ఉష్ణోగ్రత Y. → అర్థమైంది. ఉష్ణోగ్రత Y.",
     ),
     (
         "te",
         "fuersorglich",
-        "X వెలిగింది. → Ippudu chestunnanu. X వెలిగింది.
+        "X వెలిగింది. → ఇప్పుడు చేస్తున్నాను. X వెలిగింది.
 X ఆరిపోయింది. → X ఆరిపోయింది.
-Ushnota Y. → Ippudu chestunnanu. Ushnota Y.",
+ఉష్ణోగ్రత Y. → ఇప్పుడు చేస్తున్నాను. ఉష్ణోగ్రత Y.",
     ),
     (
         "te",
         "party",
-        "X వెలిగింది. → Podam. X వెలిగింది.
+        "X వెలిగింది. → పోదాం. X వెలిగింది.
 X ఆరిపోయింది. → X ఆరిపోయింది.
-Ushnota Y. → Podam. Ushnota Y.",
+ఉష్ణోగ్రత Y. → పోదాం. ఉష్ణోగ్రత Y.",
     ),
     (
         "te",
         "grantig",
-        "X వెలిగింది. → Sare. X వెలిగింది.
+        "X వెలిగింది. → సరే. X వెలిగింది.
 X ఆరిపోయింది. → X ఆరిపోయింది.
-Ushnota Y. → Sare. Ushnota Y.",
+ఉష్ణోగ్రత Y. → సరే. ఉష్ణోగ్రత Y.",
     ),
     (
         "te",
         "sarkastisch",
-        "X వెలిగింది. → Kesam. X వెలిగింది.
+        "X వెలిగింది. → కచ్చితం. X వెలిగింది.
 X ఆరిపోయింది. → X ఆరిపోయింది.
-Ushnota Y. → Kesam. Ushnota Y.",
+ఉష్ణోగ్రత Y. → కచ్చితం. ఉష్ణోగ్రత Y.",
     ),
     (
         "te",
         "pirat",
         "X వెలిగింది. → Aye. X వెలిగింది.
 X ఆరిపోయింది. → X ఆరిపోయింది.
-Ushnota Y. → Aye. Ushnota Y.",
+ఉష్ణోగ్రత Y. → Aye. ఉష్ణోగ్రత Y.",
     ),
     (
         "te",
         "hippie",
-        "X వెలిగింది. → Prashantam. X వెలిగింది.
+        "X వెలిగింది. → ప్రశాంతం. X వెలిగింది.
 X ఆరిపోయింది. → X ఆరిపోయింది.
-Ushnota Y. → Prashantam. Ushnota Y.",
+ఉష్ణోగ్రత Y. → ప్రశాంతం. ఉష్ణోగ్రత Y.",
     ),
     (
         "te",
         "gollum",
-        "X వెలిగింది. → Avunu. X వెలిగింది.
+        "X వెలిగింది. → అవును. X వెలిగింది.
 X ఆరిపోయింది. → X ఆరిపోయింది.
-Ushnota Y. → Avunu. Ushnota Y.",
+ఉష్ణోగ్రత Y. → అవును. ఉష్ణోగ్రత Y.",
     ),
     (
         "te",
         "jarvis",
-        "X వెలిగింది. → Of course, sir. X వెలిగింది.
+        "X వెలిగింది. → అవును, సర్. X వెలిగింది.
 X ఆరిపోయింది. → X ఆరిపోయింది.
-Ushnota Y. → Of course, sir. Ushnota Y.",
+ఉష్ణోగ్రత Y. → అవును, సర్. ఉష్ణోగ్రత Y.",
     ),
 ];

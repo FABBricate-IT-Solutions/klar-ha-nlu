@@ -28,3 +28,12 @@ pub(super) fn apply_rule_speech(draft: &mut Draft, context: &ParseContext<'_>, r
 pub(super) fn confirmation_prompt(context: &ParseContext<'_>) -> String {
     context.catalog.speech().confirm.to_string()
 }
+
+pub(super) fn mark_competing(mut draft: Draft, competing: bool) -> Draft {
+    draft.competing = competing;
+    draft
+}
+
+pub(super) fn affirmative(tokens: &[String], catalog: &crate::lang::Catalog) -> bool {
+    !tokens.is_empty() && tokens.iter().all(|token| catalog.is_affirm(token))
+}

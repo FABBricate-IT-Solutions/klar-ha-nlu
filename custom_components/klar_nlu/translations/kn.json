@@ -23,33 +23,17 @@
     "step": {
       "init": {
         "title": "Klar NLU",
-        "description": "ವ್ಯಕ್ತಿತ್ವ ಇಲ್ಲಿ ಉಳಿಯುತ್ತದೆ ಮತ್ತು Klar ಅಪ್ಲಿ ಮರುಸ್ಥಾಪನೆಯ ನಂತರವೂ ಇರುತ್ತದೆ.",
+        "description": "ಧ್ವನಿ, Assist ಭಾಷೆಗಳು ಮತ್ತು LLM Klar ಆಪರೇಟರ್ UI (ಸೆಟ್ಟಿಂಗ್‌ಗಳು)ಯಲ್ಲಿವೆ. ಈ ನಮೂನೆ ಇಂಜಿನ್ ಮಾತ್ರ ಸಂಪರ್ಕಿಸುತ್ತದೆ: URL, ಟೋಕನ್ ಮತ್ತು ಚಾನಲ್.",
         "data": {
           "mode": "ಎಂಜಿನ್",
-          "personality": "ವ್ಯಕ್ತಿತ್ವ",
-          "languages": "ಭಾಷೆಗಳು",
-          "allow_llm_tools": "Allow Home Assistant Assist tools on engine chat",
-          "refine_speech": "LLM NLU ಉತ್ತರಗಳನ್ನು ಬರೆಯಲಿ",
-          "refine_prompt": "ಸುಧಾರಣೆ ಪ್ರಾಂಪ್ಟ್",
           "url": "Klar API URL",
           "token": "ಬರೆಯುವ ಟೋಕನ್",
           "assist_filter": "Assistಗೆ ಕಾಣುವ ಘಟಕಗಳನ್ನು ಮಾತ್ರ ನಿಯಂತ್ರಿಸಿ",
-          "nlu_rag": "NLU-RAG (ಐಚ್ಛಿಕ)",
-          "quiet_ack": "ಚಿಕ್ಕ ದೃಢೀಕರಣ (ಗಂಟೆ)",
-          "calendar_llm": "ಕ್ಯಾಲೆಂಡರ್ ಪ್ರಶ್ನೆಗಳನ್ನು LLM ಗೆ ಕಳುಹಿಸಿ",
           "channel": "ಬಿಡುಗಡೆ ಚಾನಲ್"
         },
         "data_description": {
-          "personality": "ಈ ಏಕೀಕರಣದಲ್ಲಿ, Klar ಅಪ್ಲಿಯಲ್ಲಿ ಅಲ್ಲ.",
-          "refine_speech": "Klar ಸಾಧನಗಳನ್ನು ನಿಯಂತ್ರಿಸುತ್ತಲೇ ಇರುತ್ತದೆ. ಬ್ಯಾಕಪ್ LLM ಉತ್ತರವನ್ನು ಬರೆಯುತ್ತದೆ.",
-          "refine_prompt": "ಧ್ವನಿಯ ಸಿಸ್ಟಂ ಪ್ರಾಂಪ್ಟ್. ಸಾಧನ ನಿಯಂತ್ರಣವಿಲ್ಲ, ಹೊಸ ಸಂಗತಿಗಳಿಲ್ಲ, ಅದೇ ಭಾಷೆ.",
           "token": "Klar ಅಪ್ಲಿಯಂತೆಯೇ ಟೋಕನ್.",
           "assist_filter": "On: only what Assist may see. Off: hidden entities too.",
-          "nlu_rag": "ಡೀಫಾಲ್ಟ್ ಆಫ್. ಮಾತಿನಲ್ಲಿ ಹೊಂದಿದ ತುಣುಕು ಮಾತ್ರ ಬ್ಯಾಕಪ್ ಮಾದರಿಗೆ ಹೋಗುತ್ತದೆ.",
-          "quiet_ack": "ಸರಳ ಬೆಳಕು ಆನ್/ಆಫ್‌ನಲ್ಲಿ ವಾಕ್ಯವಿಲ್ಲ, ಉಪಗ್ರಹದಲ್ಲಿ ಚಿಕ್ಕ ಧ್ವನಿ.",
-          "calendar_llm": "ಡೀಫಾಲ್ಟ್ ಆಫ್. ಮಾತಿನಲ್ಲಿ ಹೊಂದಿದ ತುಣುಕು ಮಾತ್ರ ಬ್ಯಾಕಪ್ ಮಾದರಿಗೆ ಹೋಗುತ್ತದೆ. ಕ್ಯಾಲೆಂಡರ್ ಪ್ರಶ್ನೆಗಳನ್ನು LLM ಗೆ ಕಳುಹಿಸಿ.",
-          "allow_llm_tools": "Off by default. On: after Klar parses, the engine chat model may call Home Assistant Assist tools (names come from Core, already prefixed). Off: conversation only.",
-          "languages": "ಡೀಫಾಲ್ಟ್ Home Assistant ಸಿಸ್ಟಂ ಭಾಷೆ.",
           "channel": "ಯಾವಾಗ ಬೇಕಾದರೂ. Staging Klar NLU (Staging) ಕಡೆಗೆ."
         }
       }

@@ -58,10 +58,11 @@ def lotse(
     precedence: str,
     lexicon: str,
     slang: str,
-    for_lane: str = "Lotse",
+    for_lane: str = "Guide",
+    trainer: str = "Guide",
 ) -> dict[str, str]:
     return {
-        "trainer": "Lotse",
+        "trainer": trainer,
         "trainerForLane": for_lane,
         "trainerHint": hint,
         "trainerEmpty": empty,
@@ -91,6 +92,44 @@ def lotse(
     }
 
 
+_ENGLISH_LOTSE = {
+    "trainerHint": "Ask about Klar anytime. Writes wait for Allow in this chat.",
+    "trainerEmpty": "Ask how Klar works — or about a gap.",
+    "trainerEmptyHint": "Lotse writes nothing until you tap Allow.",
+    "trainerNeedLlm": "Configure an LLM in Settings first. No other Home Assistant conversation agent.",
+    "trainerPromptGaps": "Which devices have no room?",
+    "trainerPromptNight": "Suggest a house rule for good night.",
+    "trainerPromptMatchers": "Which matchers are on, and in what order?",
+    "trainerPromptPrecedence": "Explain matcher precedence. Do not change it.",
+    "trainerPromptLexicon": "Which lexicon paths exist for German?",
+    "trainerPromptSlang": "Suggest slang for a lexicon path. Do not write yet.",
+}
+
+_LOTSE_FORMS = (
+    "Lotsénak",
+    "Lotsovi",
+    "Lotselle",
+    "Lotsile",
+    "Lotsui",
+    "Lotsem",
+    "Lotsed",
+    "Lotseri",
+    "Lotsa",
+    "Lotsu",
+    "Lotsе",
+    "Lotsen",
+    "Lotse",
+    "Lots",
+)
+
+
+def rewrite_lotse_name(text: str, name: str) -> str:
+    for token in _LOTSE_FORMS:
+        if token in text:
+            text = text.replace(token, name)
+    return text
+
+
 def apply_lotse_chrome(packs: dict[str, dict[str, str]]) -> None:
     from lang_packs.lotse_chrome_east import PACKS as EAST
     from lang_packs.lotse_chrome_script import PACKS as SCRIPT
@@ -111,5 +150,34 @@ def apply_lotse_chrome(packs: dict[str, dict[str, str]]) -> None:
         absent = [key for key in KEYS if key not in row]
         if absent:
             raise SystemExit(f"{code}: lotse chrome missing keys {absent}")
+        saved_trainer = fields.get("trainer")
+        saved_lane = fields.get("trainerForLane")
+        saved_native = {
+            key: fields[key]
+            for key in _ENGLISH_LOTSE
+            if fields.get(key) and fields[key] not in _ENGLISH_LOTSE.values()
+        }
         for key in KEYS:
+            if key == "trainer":
+                if code.startswith("de"):
+                    fields[key] = row.get("trainer") or "Lotse"
+                continue
             fields[key] = row[key]
+        if code.startswith("de"):
+            continue
+        name = saved_trainer or row.get("trainer") or "Guide"
+        for key in ("trainerEmptyHint", "trainerComposer", "trainerForLane", "trainerEmpty", "trainerHint"):
+            fields[key] = rewrite_lotse_name(fields[key], name)
+        if fields["trainerForLane"] == name and saved_lane and saved_lane != name:
+            fields["trainerForLane"] = saved_lane
+        for key, value in saved_native.items():
+            if fields.get(key) in _ENGLISH_LOTSE.values():
+                fields[key] = value
+        allow = fields.get("effectAllow") or fields.get("trainerAllow") or ""
+        empty_hint = fields.get("trainerEmptyHint") or ""
+        if allow and ("writes nothing" in empty_hint or "until you tap" in empty_hint or empty_hint in _ENGLISH_LOTSE.values()):
+            fields["trainerEmptyHint"] = f"{name} — {allow}."
+        if fields.get("trainerEmpty") in _ENGLISH_LOTSE.values():
+            native_empty = fields.get("emptyBundle") or fields.get("noGaps")
+            if native_empty:
+                fields["trainerEmpty"] = native_empty

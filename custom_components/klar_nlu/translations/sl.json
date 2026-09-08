@@ -23,33 +23,17 @@
     "step": {
       "init": {
         "title": "Klar NLU",
-        "description": "Osebnost je shranjena tukaj in ostane po ponovni namestitvi aplikacije Klar.",
+        "description": "Glas, jeziki Assist in LLM so v Klarjevem operatorskem vmesniku (Nastavitve). Ta obrazec samo poveže motor: URL, žeton in kanal.",
         "data": {
           "mode": "Pogon",
-          "personality": "Osebnost",
-          "languages": "Jeziki",
-          "allow_llm_tools": "Allow Home Assistant Assist tools on engine chat",
-          "refine_speech": "Naj LLM preoblikuje odgovore NLU",
-          "refine_prompt": "Poziv za izboljšavo",
           "url": "URL Klar API",
           "token": "Žeton za pisanje",
           "assist_filter": "Upravljaj samo entitete, izpostavljene Assistu",
-          "nlu_rag": "NLU-RAG (izbirno)",
-          "quiet_ack": "Kratka potrditev (zvonček)",
-          "calendar_llm": "Pošlji koledarska vprašanja LLM-ju",
           "channel": "Kanal izdaje"
         },
         "data_description": {
-          "personality": "Je v tej integraciji, ne v aplikaciji Klar.",
-          "refine_speech": "Klar še vedno upravlja naprave. Rezervni LLM prepiše odgovor.",
-          "refine_prompt": "Sistemski poziv glasu. Brez upravljanja naprav, brez novih dejstev, isti jezik.",
           "token": "Isti žeton kot v aplikaciji Klar.",
           "assist_filter": "Vklopljeno: samo kar vidi Assist. Izklopljeno: tudi skrite entitete.",
-          "nlu_rag": "Privzeto izklopljeno. Pri klepetu gre rezervnemu modelu samo ujemajoči se del.",
-          "quiet_ack": "Pri preprostem vklopu/izklopu luči ni govora, le kratek zvok na satelitu.",
-          "calendar_llm": "Privzeto izklopljeno. Vklopljeno: Klar prebere koledar, nadomestni LLM pove dogodke. Izklopljeno: Klar pove seznam. Ustvarjanje, brisanje in premikanje ostanejo pri Klarju.",
-          "allow_llm_tools": "Off by default. On: after Klar parses, the engine chat model may call Home Assistant Assist tools (names come from Core, already prefixed). Off: conversation only.",
-          "languages": "Privzeto sledi jeziku sistema Home Assistant.",
           "channel": "Kadarkoli. Staging kaže na Klar NLU (Staging)."
         }
       }
