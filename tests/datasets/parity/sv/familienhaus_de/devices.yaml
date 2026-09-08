@@ -175,13 +175,13 @@ devices/light_master_bath_light::light_master_bath_light_turn_off:
 devices/light_master_bath_light::light_master_bath_light_turn_on:
 - tand ljus badmaster
 devices/light_master_bedside_right::light_master_bedside_right_change_brightness:
-- satt sanglampa sovrummaster 25
+- satt sanglampa right sovrummaster 25
 devices/light_master_bedside_right::light_master_bedside_right_change_color:
-- satt sanglampa sovrummaster rod
+- satt sanglampa right sovrummaster rod
 devices/light_master_bedside_right::light_master_bedside_right_turn_off:
-- slack sanglampa sovrummaster
+- slack sanglampa right sovrummaster
 devices/light_master_bedside_right::light_master_bedside_right_turn_on:
-- tand sanglampa sovrummaster
+- tand sanglampa right sovrummaster
 devices/light_master_ceiling::light_master_ceiling_change_brightness:
 - satt tak sovrummaster 77
 devices/light_master_ceiling::light_master_ceiling_change_color:

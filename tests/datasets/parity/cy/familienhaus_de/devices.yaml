@@ -175,13 +175,13 @@ devices/light_master_bath_light::light_master_bath_light_turn_off:
 devices/light_master_bath_light::light_master_bath_light_turn_on:
 - tro golau bathmaster
 devices/light_master_bedside_right::light_master_bedside_right_change_brightness:
-- gosod gwely llofftmaster 25
+- gosod gwely right llofftmaster 25
 devices/light_master_bedside_right::light_master_bedside_right_change_color:
-- gosod gwely llofftmaster red
+- gosod gwely right llofftmaster red
 devices/light_master_bedside_right::light_master_bedside_right_turn_off:
-- diffodd gwely llofftmaster
+- diffodd gwely right llofftmaster
 devices/light_master_bedside_right::light_master_bedside_right_turn_on:
-- tro gwely llofftmaster
+- tro gwely right llofftmaster
 devices/light_master_ceiling::light_master_ceiling_change_brightness:
 - gosod nenfwd llofftmaster 77
 devices/light_master_ceiling::light_master_ceiling_change_color:

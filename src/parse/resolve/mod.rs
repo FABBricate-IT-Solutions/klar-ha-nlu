@@ -117,7 +117,11 @@ pub fn resolve(tokens: &[String], home: &HomeGraph, domain: Option<&str>) -> Res
                 > 1
         });
         if *best >= 0.86 && peers.is_empty() {
-            if distinctive_light_name(tokens, rec, home) || !(generic_light && crowded) {
+            let skip_standin = crate::parse::infer::mentions_fixture_noun(tokens)
+                && crowded
+                && rec.domain == "light"
+                && !["lamp", "ceiling", "island", "bedside", "globe"].iter().any(|needle| fixture_matches(rec, needle));
+            if (distinctive_light_name(tokens, rec, home) || !(generic_light && crowded)) && !skip_standin {
                 entities.push(rec.clone());
             }
         } else if *best >= 0.86 && !peers.is_empty() && !(generic_light && crowded && !distinctive_light_name(tokens, rec, home)) {
@@ -231,9 +235,9 @@ fn pick_fixture(tokens: &[String], home: &HomeGraph, areas: &[String]) -> Option
     } else if cat.any(tokens, cat.pendant()) {
         Some("pendant")
     } else if cat.any(tokens, cat.bedside()) {
-        if cat.any(tokens, cat.right()) {
+        if cat.any(tokens, cat.right()) || tokens.iter().any(|token| token == "right") {
             Some("right")
-        } else if cat.any(tokens, cat.left()) {
+        } else if cat.any(tokens, cat.left()) || tokens.iter().any(|token| token == "left") {
             Some("left")
         } else {
             Some("bedside")

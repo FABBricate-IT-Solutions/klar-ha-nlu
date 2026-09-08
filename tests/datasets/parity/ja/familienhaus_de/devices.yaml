@@ -175,13 +175,13 @@ devices/light_master_bath_light::light_master_bath_light_turn_off:
 devices/light_master_bath_light::light_master_bath_light_turn_on:
 - つけて 電気 shuyokushitsu
 devices/light_master_bedside_right::light_master_bedside_right_change_brightness:
-- セット beddowaki shinshitsumaster 25
+- セット beddowaki right shinshitsumaster 25
 devices/light_master_bedside_right::light_master_bedside_right_change_color:
-- セット beddowaki shinshitsumaster 赤
+- セット beddowaki right shinshitsumaster 赤
 devices/light_master_bedside_right::light_master_bedside_right_turn_off:
-- 消して beddowaki shinshitsumaster
+- 消して beddowaki right shinshitsumaster
 devices/light_master_bedside_right::light_master_bedside_right_turn_on:
-- つけて beddowaki shinshitsumaster
+- つけて beddowaki right shinshitsumaster
 devices/light_master_ceiling::light_master_ceiling_change_brightness:
 - セット tenjo shinshitsumaster 77
 devices/light_master_ceiling::light_master_ceiling_change_color:

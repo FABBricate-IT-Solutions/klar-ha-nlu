@@ -175,13 +175,13 @@ devices/light_master_bath_light::light_master_bath_light_turn_off:
 devices/light_master_bath_light::light_master_bath_light_turn_on:
 - bat bongden phongtamchinh
 devices/light_master_bedside_right::light_master_bedside_right_change_brightness:
-- dat dau giuong phongngumaster 25
+- dat dau giuong right phongngumaster 25
 devices/light_master_bedside_right::light_master_bedside_right_change_color:
-- dat dau giuong phongngumaster red
+- dat dau giuong right phongngumaster red
 devices/light_master_bedside_right::light_master_bedside_right_turn_off:
-- tat dau giuong phongngumaster
+- tat dau giuong right phongngumaster
 devices/light_master_bedside_right::light_master_bedside_right_turn_on:
-- bat dau giuong phongngumaster
+- bat dau giuong right phongngumaster
 devices/light_master_ceiling::light_master_ceiling_change_brightness:
 - dat tran phongngumaster 77
 devices/light_master_ceiling::light_master_ceiling_change_color:

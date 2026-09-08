@@ -175,13 +175,13 @@ devices/light_master_bath_light::light_master_bath_light_turn_off:
 devices/light_master_bath_light::light_master_bath_light_turn_on:
 - skakel lig badmaster
 devices/light_master_bedside_right::light_master_bedside_right_change_brightness:
-- stel nagus slaapkamermaster 25
+- stel nagus right slaapkamermaster 25
 devices/light_master_bedside_right::light_master_bedside_right_change_color:
-- stel nagus slaapkamermaster rooi
+- stel nagus right slaapkamermaster rooi
 devices/light_master_bedside_right::light_master_bedside_right_turn_off:
-- doof nagus slaapkamermaster
+- doof nagus right slaapkamermaster
 devices/light_master_bedside_right::light_master_bedside_right_turn_on:
-- skakel nagus slaapkamermaster
+- skakel nagus right slaapkamermaster
 devices/light_master_ceiling::light_master_ceiling_change_brightness:
 - stel plafon slaapkamermaster 77
 devices/light_master_ceiling::light_master_ceiling_change_color:

@@ -175,13 +175,13 @@ devices/light_master_bath_light::light_master_bath_light_turn_off:
 devices/light_master_bath_light::light_master_bath_light_turn_on:
 - zapni svetlo kupelmaster
 devices/light_master_bedside_right::light_master_bedside_right_change_brightness:
-- nastav nocny spalnamaster 25
+- nastav nocny right spalnamaster 25
 devices/light_master_bedside_right::light_master_bedside_right_change_color:
-- nastav nocny spalnamaster red
+- nastav nocny right spalnamaster red
 devices/light_master_bedside_right::light_master_bedside_right_turn_off:
-- vypni nocny spalnamaster
+- vypni nocny right spalnamaster
 devices/light_master_bedside_right::light_master_bedside_right_turn_on:
-- zapni nocny spalnamaster
+- zapni nocny right spalnamaster
 devices/light_master_ceiling::light_master_ceiling_change_brightness:
 - nastav strop spalnamaster 77
 devices/light_master_ceiling::light_master_ceiling_change_color:

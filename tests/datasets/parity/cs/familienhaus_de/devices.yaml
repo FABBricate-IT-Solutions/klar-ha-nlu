@@ -175,13 +175,13 @@ devices/light_master_bath_light::light_master_bath_light_turn_off:
 devices/light_master_bath_light::light_master_bath_light_turn_on:
 - zapni svetlo koupelmaster
 devices/light_master_bedside_right::light_master_bedside_right_change_brightness:
-- nastav nocnik loznicemaster 25
+- nastav nocnik right loznicemaster 25
 devices/light_master_bedside_right::light_master_bedside_right_change_color:
-- nastav nocnik loznicemaster cervena
+- nastav nocnik right loznicemaster cervena
 devices/light_master_bedside_right::light_master_bedside_right_turn_off:
-- vypni nocnik loznicemaster
+- vypni nocnik right loznicemaster
 devices/light_master_bedside_right::light_master_bedside_right_turn_on:
-- zapni nocnik loznicemaster
+- zapni nocnik right loznicemaster
 devices/light_master_ceiling::light_master_ceiling_change_brightness:
 - nastav strop loznicemaster 77
 devices/light_master_ceiling::light_master_ceiling_change_color:

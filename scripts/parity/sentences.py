@@ -100,7 +100,8 @@ def target_words(lex: dict, cond: dict, suite: str) -> str:
         if domain == "light" and info["area"] and any(key in ident or key in info["name"].lower() for key in ("lampe", "lamp")):
             return f"{lex['lamp']} {room(lex, info['area'])}"
         if domain == "light" and info["area"] and any(key in ident or key in info["name"].lower() for key in ("nacht", "bedside")):
-            return f"{lex['bedside']} {room(lex, info['area'])}"
+            side = "right" if "right" in ident or "rechts" in ident else "left" if "left" in ident or "links" in ident else ""
+            return f"{lex['bedside']} {side} {room(lex, info['area'])}".strip()
         if domain == "light" and info["area"] and any(key in ident or key in info["name"].lower() for key in ("insel", "island")):
             return f"{lex['island']} {room(lex, info['area'])}"
         if domain == "light" and info["area"] and "ensuite" in ident:
