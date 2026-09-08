@@ -304,10 +304,10 @@ impl Sessions {
 }
 
 fn same_satellite_hint(session: &Session, recent: &Session) -> bool {
-    match (session.preferred_area.as_deref(), recent.preferred_area.as_deref()) {
-        (Some(left), Some(right)) if !left.is_empty() && left == right => true,
-        _ => false,
-    }
+    matches!(
+        (session.preferred_area.as_deref(), recent.preferred_area.as_deref()),
+        (Some(left), Some(right)) if !left.is_empty() && left == right
+    )
 }
 
 fn drop_media_followup(session: &mut Session) {
