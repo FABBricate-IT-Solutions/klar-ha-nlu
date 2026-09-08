@@ -97,10 +97,11 @@ def _load_dispatch() -> types.ModuleType:
         _load(f"{PACKAGE}.speech_snapshot", "speech_snapshot.py")
         _load(f"{PACKAGE}.speech_render", "speech_render.py")
         media = _load(f"{PACKAGE}.dispatch_media", "dispatch_media.py")
-        return _load(f"{PACKAGE}.dispatch", "dispatch.py"), media
+        timer = _load(f"{PACKAGE}.dispatch_timer", "dispatch_timer.py")
+        return _load(f"{PACKAGE}.dispatch", "dispatch.py"), media, timer
 
 
-dispatch, dispatch_media = _load_dispatch()
+dispatch, dispatch_media, dispatch_timer = _load_dispatch()
 
 
 class _State:
@@ -128,8 +129,14 @@ def _hass(*states: _State) -> SimpleNamespace:
     return SimpleNamespace(states=_States(*states), services=SimpleNamespace(async_call=AsyncMock()))
 
 
-def _input(text: str = "test") -> SimpleNamespace:
-    return SimpleNamespace(text=text, context=object(), language="de")
+def _input(text: str = "test", device_id: str | None = None, satellite_id: str | None = None) -> SimpleNamespace:
+    return SimpleNamespace(
+        text=text,
+        context=object(),
+        language="de",
+        device_id=device_id,
+        satellite_id=satellite_id,
+    )
 
 
 def _item(name: str, **slots: object) -> dict[str, object]:
@@ -148,6 +155,7 @@ class DispatchTests(unittest.IsolatedAsyncioTestCase):
             patch.object(dispatch, "spoken_after_execute", new=spoken),
             patch.object(media, "spoken_after_execute", new=spoken),
             patch.object(media, "try_engine_speech", new=spoken),
+            patch.object(dispatch_timer, "spoken_after_execute", new=spoken),
         ]
         for item in self._speech_patches:
             item.start()
@@ -717,6 +725,84 @@ class DispatchTests(unittest.IsolatedAsyncioTestCase):
             dispatch.intent_query_text(user, "HassGetState", {"entity_id": {"value": "weather.home"}}),
             user.text,
         )
+
+    async def test_timer_without_satellite_uses_helper(self) -> None:
+        hass = _hass(_State("timer.5min_warten", "idle", friendly_name="5min warten"))
+        spoken = await dispatch.handle_intent(
+            hass,
+            _input("Starte einen Timer für 30 Sekunden"),
+            _item("HassStartTimer", seconds="30"),
+            "de",
+            None,
+            lambda _entity_id: False,
+        )
+        self.assertTrue(spoken.ok)
+        dispatch.intent.async_handle.assert_not_awaited()
+        hass.services.async_call.assert_awaited_once_with(
+            "timer",
+            "start",
+            {"entity_id": "timer.5min_warten", "duration": "00:00:30"},
+            blocking=True,
+        )
+
+    async def test_timer_decrease_without_satellite_uses_helper(self) -> None:
+        hass = _hass(_State("timer.5min_warten", "active", friendly_name="5min warten"))
+        spoken = await dispatch.handle_intent(
+            hass,
+            _input("verringere den Timer um 10 Sekunden"),
+            _item("HassDecreaseTimer", seconds=10),
+            "de",
+            None,
+            lambda _entity_id: False,
+        )
+        self.assertTrue(spoken.ok)
+        dispatch.intent.async_handle.assert_not_awaited()
+        hass.services.async_call.assert_awaited_once_with(
+            "timer",
+            "change",
+            {"entity_id": "timer.5min_warten", "duration": "-00:00:10"},
+            blocking=True,
+        )
+
+    async def test_timer_with_satellite_uses_ha_intent(self) -> None:
+        hass = _hass(_State("timer.5min_warten", "idle", friendly_name="5min warten"))
+        dispatch.intent.async_handle.return_value = SimpleNamespace()
+        spoken = await dispatch.handle_intent(
+            hass,
+            _input("Timer starten", device_id="voice-sat"),
+            _item("HassStartTimer", seconds=30),
+            "de",
+            None,
+            lambda _entity_id: False,
+        )
+        self.assertTrue(spoken.ok)
+        dispatch.intent.async_handle.assert_awaited()
+        kwargs = dispatch.intent.async_handle.await_args.kwargs
+        self.assertEqual(kwargs.get("device_id"), "voice-sat")
+        hass.services.async_call.assert_not_awaited()
+
+    async def test_timer_satellite_failure_falls_back_to_helper(self) -> None:
+        hass = _hass(_State("timer.5min_warten", "idle", friendly_name="5min warten"))
+        dispatch.intent.async_handle.side_effect = RuntimeError("TimersNotSupported")
+        spoken = await dispatch.handle_intent(
+            hass,
+            _input("Timer starten", device_id="voice-sat"),
+            _item("HassStartTimer", seconds=40),
+            "de",
+            None,
+            lambda _entity_id: False,
+        )
+        self.assertTrue(spoken.ok)
+        hass.services.async_call.assert_awaited()
+
+    def test_timer_slots_coerce_duration_to_int(self) -> None:
+        shaped, err = dispatch_timer.prepare_timer_slots(
+            "HassStartTimer",
+            {"seconds": {"value": "30"}, "entity_id": {"value": "timer.x"}},
+        )
+        self.assertIsNone(err)
+        self.assertEqual(shaped["seconds"], {"value": 30})
+        self.assertNotIn("entity_id", shaped)
 
 
 if __name__ == "__main__":

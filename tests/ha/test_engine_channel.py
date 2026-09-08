@@ -80,6 +80,13 @@ class EngineChannelTests(unittest.TestCase):
         self.assertTrue(const.is_addon_engine_url(const.DEFAULT_STAGING_ADDON_URL))
         self.assertTrue(const.is_addon_engine_url("http://klar-nlu.local.hass.io:10520"))
         self.assertTrue(const.is_addon_engine_url("http://8db2ab02-klar-nlu:10520"))
+        self.assertEqual(const.addon_sidebar_path(const.DEFAULT_ADDON_URL), "klar_nlu")
+        self.assertEqual(const.addon_sidebar_path(const.DEFAULT_STAGING_ADDON_URL), "klar_nlu_staging")
+        self.assertEqual(
+            const.addon_sidebar_path("http://8db2ab02-klar-nlu-staging.local.hass.io:10520"),
+            "klar_nlu_staging",
+        )
+        self.assertIsNone(const.addon_sidebar_path(const.DEFAULT_URL))
 
     def test_addon_url_follows_channel(self) -> None:
         self.assertEqual(
