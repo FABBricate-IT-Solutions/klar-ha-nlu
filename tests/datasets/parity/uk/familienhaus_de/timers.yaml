@@ -3,34 +3,34 @@ timers/timers::abstract_start:
 timers/timers::abstract_start_hours_minutes:
 - увімкни таймер abstract 20 min
 timers/timers::abstract_start_seconds:
-- увімкни таймер abstract
+- увімкни таймер abstract 45 sec
 timers/timers::cancel_all_timers:
 - вимкни все таймер
 timers/timers::timer_laundry_cancel:
-- увімкни таймер laundry
+- вимкни таймер laundry
 timers/timers::timer_laundry_decrease:
 - увімкни таймер laundry 5 min
 timers/timers::timer_laundry_increase:
 - увімкни таймер laundry 16 min
 timers/timers::timer_laundry_pause:
-- вимкни таймер laundry
+- pause таймер laundry
 timers/timers::timer_laundry_start:
-- увімкни таймер laundry
+- увімкни таймер laundry 90 sec
 timers/timers::timer_laundry_status:
 - що таймер laundry
 timers/timers::timer_laundry_unpause:
-- увімкни таймер laundry
+- грай таймер laundry
 timers/timers::timer_oven_cancel:
-- увімкни таймер oven
+- вимкни таймер oven
 timers/timers::timer_oven_decrease:
 - увімкни таймер oven 44 min
 timers/timers::timer_oven_increase:
 - увімкни таймер oven 30 min
 timers/timers::timer_oven_pause:
-- вимкни таймер oven
+- pause таймер oven
 timers/timers::timer_oven_start:
 - увімкни таймер oven 2 min
 timers/timers::timer_oven_status:
 - що таймер oven
 timers/timers::timer_oven_unpause:
-- увімкни таймер oven
+- грай таймер oven

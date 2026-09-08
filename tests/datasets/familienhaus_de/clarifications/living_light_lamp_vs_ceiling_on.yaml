@@ -5,13 +5,6 @@
     state: 'on'
   - type: action
     entity_id: light.living_ceiling
-    state: 'off'
+    state: 'on'
   sentences:
-  - - Mach Licht Wohnzimmer an
-    - die Lampe
-  - - Mach Licht Wohnzimmer an
-    - die Lampe
-  - - Mach Licht Wohnzimmer an
-    - die Lampe
-  - - Mach Licht Wohnzimmer an
-    - die Lampe
+  - Mach Licht Wohnzimmer an

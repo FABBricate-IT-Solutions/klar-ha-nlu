@@ -4,6 +4,7 @@ use crate::home::roles::{looks_like_tv, matches_domain, tv_asked};
 use crate::lang::catalog;
 use crate::parse::action::{has_light_noun, is_garage_cover, is_query_token};
 use crate::parse::fuzzy::{evidence, Profile};
+use crate::parse::infer::fixture_matches;
 use crate::parse::normalize::{compact, fold_umlaut, inflected_eq, is_time_unit, umlaut_eq};
 use crate::types::{AreaRec, EntityRec, FloorRec, HomeGraph};
 pub(crate) use report::{resolve_scored, ResolveEvidence, ResolveReport};
@@ -239,7 +240,7 @@ fn pick_fixture(tokens: &[String], home: &HomeGraph, areas: &[String]) -> Option
         }
     } else if tokens.iter().any(|token| token == "floor" || cat.fixture_alias("floor").contains(&token.as_str())) {
         Some("floor")
-    } else if !room_level && cat.any(tokens, cat.lamp_fixture()) {
+    } else if !room_level && (cat.any(tokens, cat.lamp_fixture()) || tokens.iter().any(|token| token == "lamp")) {
         Some("lamp")
     } else {
         tokens.iter().find(|t| cat.ceiling().contains(t.as_str())).map(|word| word.as_str())
@@ -271,18 +272,6 @@ fn pick_bedside(hits: &[EntityRec]) -> EntityRec {
         .or_else(|| hits.iter().min_by_key(|entity| entity.entity_id.as_str()))
         .cloned()
         .unwrap_or_else(|| hits[0].clone())
-}
-
-pub(crate) fn fixture_matches(entity: &EntityRec, needle: &str) -> bool {
-    let blob = format!("{} {} {}", entity.entity_id, fold_umlaut(&entity.name), entity.aliases.join(" "));
-    let aliases = catalog().fixture_alias(needle);
-    let hits: Vec<&str> = if aliases.is_empty() { vec![needle] } else { aliases.to_vec() };
-    let matched = hits.iter().any(|alias| blob.contains(alias));
-    if needle == "lamp" {
-        matched && !catalog().ceiling().iter().any(|word| blob.contains(word))
-    } else {
-        matched
-    }
 }
 
 fn match_areas(tokens: &[String], areas: &[AreaRec]) -> Vec<String> {

@@ -3,34 +3,34 @@ timers/timers::abstract_start:
 timers/timers::abstract_start_hours_minutes:
 - つけて タイマー abstract 20 分
 timers/timers::abstract_start_seconds:
-- つけて タイマー abstract
+- つけて タイマー abstract 45 sec
 timers/timers::cancel_all_timers:
 - 消して 全部 タイマー
 timers/timers::timer_laundry_cancel:
-- つけて タイマー laundry
+- 消して タイマー laundry
 timers/timers::timer_laundry_decrease:
 - つけて タイマー laundry 5 分
 timers/timers::timer_laundry_increase:
 - つけて タイマー laundry 16 分
 timers/timers::timer_laundry_pause:
-- 消して タイマー laundry
+- 一時停止 タイマー laundry
 timers/timers::timer_laundry_start:
-- つけて タイマー laundry
+- つけて タイマー laundry 90 sec
 timers/timers::timer_laundry_status:
 - 何 タイマー laundry
 timers/timers::timer_laundry_unpause:
-- つけて タイマー laundry
+- 再生 タイマー laundry
 timers/timers::timer_oven_cancel:
-- つけて タイマー oven
+- 消して タイマー oven
 timers/timers::timer_oven_decrease:
 - つけて タイマー oven 44 分
 timers/timers::timer_oven_increase:
 - つけて タイマー oven 30 分
 timers/timers::timer_oven_pause:
-- 消して タイマー oven
+- 一時停止 タイマー oven
 timers/timers::timer_oven_start:
 - つけて タイマー oven 2 分
 timers/timers::timer_oven_status:
 - 何 タイマー oven
 timers/timers::timer_oven_unpause:
-- つけて タイマー oven
+- 再生 タイマー oven

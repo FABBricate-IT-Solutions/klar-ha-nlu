@@ -3,34 +3,34 @@ timers/timers::abstract_start:
 timers/timers::abstract_start_hours_minutes:
 - iesledz taimeris abstract 20 min
 timers/timers::abstract_start_seconds:
-- iesledz taimeris abstract
+- iesledz taimeris abstract 45 sec
 timers/timers::cancel_all_timers:
 - izsledz viss taimeris
 timers/timers::timer_laundry_cancel:
-- iesledz taimeris laundry
+- izsledz taimeris laundry
 timers/timers::timer_laundry_decrease:
 - iesledz taimeris laundry 5 min
 timers/timers::timer_laundry_increase:
 - iesledz taimeris laundry 16 min
 timers/timers::timer_laundry_pause:
-- izsledz taimeris laundry
+- pause taimeris laundry
 timers/timers::timer_laundry_start:
-- iesledz taimeris laundry
+- iesledz taimeris laundry 90 sec
 timers/timers::timer_laundry_status:
 - kas taimeris laundry
 timers/timers::timer_laundry_unpause:
-- iesledz taimeris laundry
+- atskanot taimeris laundry
 timers/timers::timer_oven_cancel:
-- iesledz taimeris oven
+- izsledz taimeris oven
 timers/timers::timer_oven_decrease:
 - iesledz taimeris oven 44 min
 timers/timers::timer_oven_increase:
 - iesledz taimeris oven 30 min
 timers/timers::timer_oven_pause:
-- izsledz taimeris oven
+- pause taimeris oven
 timers/timers::timer_oven_start:
 - iesledz taimeris oven 2 min
 timers/timers::timer_oven_status:
 - kas taimeris oven
 timers/timers::timer_oven_unpause:
-- iesledz taimeris oven
+- atskanot taimeris oven

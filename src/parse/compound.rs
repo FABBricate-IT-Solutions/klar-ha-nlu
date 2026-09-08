@@ -4,6 +4,7 @@ use crate::home::policy::is_infra_light;
 use crate::home::policy::is_whole_home;
 use crate::lang::catalog;
 use crate::parse::fuzzy::{evidence, select_unique, Profile};
+use crate::parse::infer::mentions_fixture_noun;
 use crate::parse::media::is_media_move_or_play;
 use crate::parse::normalize::{compact, fold_marks, fold_umlaut, inflected_eq, umlaut_eq};
 use crate::types::{EntityRec, HomeGraph};
@@ -230,7 +231,7 @@ fn is_light_noun(token: &str) -> bool {
 }
 
 pub(crate) fn named_scene_or_script(tokens: &[String], home: &HomeGraph) -> Option<String> {
-    if is_media_move_or_play(tokens) {
+    if is_media_move_or_play(tokens) || catalog().any(tokens, catalog().media_nouns()) {
         return None;
     }
     let mentioned = tokens.iter().any(|t| catalog().scene_nouns().contains(t.as_str()) || catalog().script_words().contains(t.as_str()));
@@ -350,6 +351,14 @@ pub(crate) fn room_light_standin(home: &HomeGraph, area: &str) -> Option<String>
 }
 
 pub(crate) fn light_aim(home: &HomeGraph, area: &str, tokens: &[String]) -> LightAim {
+    if mentions_fixture_noun(tokens) {
+        if let Some(id) = crate::home::roles::unique_role_in_area(home, area, "light", catalog()) {
+            return LightAim::Unique(id);
+        }
+        if area_light_count(home, area) > 1 {
+            return LightAim::Clarify;
+        }
+    }
     if let Some(id) = room_light_standin(home, area) {
         return LightAim::RoomGroup(id);
     }

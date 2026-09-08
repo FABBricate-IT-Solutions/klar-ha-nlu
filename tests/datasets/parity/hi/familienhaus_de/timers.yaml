@@ -3,34 +3,34 @@ timers/timers::abstract_start:
 timers/timers::abstract_start_hours_minutes:
 - जलाओ टाइमर abstract 20 min
 timers/timers::abstract_start_seconds:
-- जलाओ टाइमर abstract
+- जलाओ टाइमर abstract 45 sec
 timers/timers::cancel_all_timers:
 - बुझाओ सब टाइमर
 timers/timers::timer_laundry_cancel:
-- जलाओ टाइमर laundry
+- बुझाओ टाइमर laundry
 timers/timers::timer_laundry_decrease:
 - जलाओ टाइमर laundry 5 min
 timers/timers::timer_laundry_increase:
 - जलाओ टाइमर laundry 16 min
 timers/timers::timer_laundry_pause:
-- बुझाओ टाइमर laundry
+- रोको टाइमर laundry
 timers/timers::timer_laundry_start:
-- जलाओ टाइमर laundry
+- जलाओ टाइमर laundry 90 sec
 timers/timers::timer_laundry_status:
 - क्या टाइमर laundry
 timers/timers::timer_laundry_unpause:
-- जलाओ टाइमर laundry
+- चलाओ टाइमर laundry
 timers/timers::timer_oven_cancel:
-- जलाओ टाइमर oven
+- बुझाओ टाइमर oven
 timers/timers::timer_oven_decrease:
 - जलाओ टाइमर oven 44 min
 timers/timers::timer_oven_increase:
 - जलाओ टाइमर oven 30 min
 timers/timers::timer_oven_pause:
-- बुझाओ टाइमर oven
+- रोको टाइमर oven
 timers/timers::timer_oven_start:
 - जलाओ टाइमर oven 2 min
 timers/timers::timer_oven_status:
 - क्या टाइमर oven
 timers/timers::timer_oven_unpause:
-- जलाओ टाइमर oven
+- चलाओ टाइमर oven

@@ -3,34 +3,34 @@ timers/timers::abstract_start:
 timers/timers::abstract_start_hours_minutes:
 - เปิด ตั้งเวลา abstract 20 min
 timers/timers::abstract_start_seconds:
-- เปิด ตั้งเวลา abstract
+- เปิด ตั้งเวลา abstract 45 sec
 timers/timers::cancel_all_timers:
 - ปิด ทั้งหมด ตั้งเวลา
 timers/timers::timer_laundry_cancel:
-- เปิด ตั้งเวลา laundry
+- ปิด ตั้งเวลา laundry
 timers/timers::timer_laundry_decrease:
 - เปิด ตั้งเวลา laundry 5 min
 timers/timers::timer_laundry_increase:
 - เปิด ตั้งเวลา laundry 16 min
 timers/timers::timer_laundry_pause:
-- ปิด ตั้งเวลา laundry
+- หยุด ตั้งเวลา laundry
 timers/timers::timer_laundry_start:
-- เปิด ตั้งเวลา laundry
+- เปิด ตั้งเวลา laundry 90 sec
 timers/timers::timer_laundry_status:
 - อะไร ตั้งเวลา laundry
 timers/timers::timer_laundry_unpause:
-- เปิด ตั้งเวลา laundry
+- เล่น ตั้งเวลา laundry
 timers/timers::timer_oven_cancel:
-- เปิด ตั้งเวลา oven
+- ปิด ตั้งเวลา oven
 timers/timers::timer_oven_decrease:
 - เปิด ตั้งเวลา oven 44 min
 timers/timers::timer_oven_increase:
 - เปิด ตั้งเวลา oven 30 min
 timers/timers::timer_oven_pause:
-- ปิด ตั้งเวลา oven
+- หยุด ตั้งเวลา oven
 timers/timers::timer_oven_start:
 - เปิด ตั้งเวลา oven 2 min
 timers/timers::timer_oven_status:
 - อะไร ตั้งเวลา oven
 timers/timers::timer_oven_unpause:
-- เปิด ตั้งเวลา oven
+- เล่น ตั้งเวลา oven
