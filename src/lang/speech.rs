@@ -99,10 +99,7 @@ mod tests {
             assert_ne!(s.heat_noun, s.cool_noun, "{code} heat/cool");
             assert_ne!(s.loc_home, s.need_on, "{code} loc_home");
             let jarvis = s.personality_prefixes("jarvis");
-            assert!(
-                !jarvis.iter().any(|prefix| prefix.contains("Of course, sir")),
-                "{code} jarvis should not be English"
-            );
+            assert!(!jarvis.iter().any(|prefix| prefix.contains("Of course, sir")), "{code} jarvis should not be English");
         }
     }
 }

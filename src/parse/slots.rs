@@ -392,8 +392,7 @@ pub(crate) fn start_timer_missing_duration(intent: &Intent) -> bool {
 }
 
 fn named_timer_target(intent: &Intent) -> bool {
-    intent.slot("timer_name").is_some()
-        || intent.slot("entity_id").is_some_and(|id| id.starts_with("timer.") && !id.contains("abstract"))
+    intent.slot("timer_name").is_some() || intent.slot("entity_id").is_some_and(|id| id.starts_with("timer.") && !id.contains("abstract"))
 }
 
 pub(crate) fn needs_timer_duration_prompt(intent: &Intent, tokens: &[String]) -> bool {

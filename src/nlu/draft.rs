@@ -14,7 +14,9 @@ use super::context::ParseContext;
 use super::decision::{decide_band, PolicyBand};
 use super::ranking::RankingResult;
 use super::speech::{affirmative, apply_rule_speech, confirmation_prompt, mark_competing};
-use super::validation::{fail_closed_intent, filter_valid_steps, missing_timer_duration, requires_confirmation, validate_plan, PlanInvalid};
+use super::validation::{
+    fail_closed_intent, filter_valid_steps, missing_timer_duration, requires_confirmation, validate_plan, PlanInvalid,
+};
 
 #[derive(Default)]
 pub(super) struct SessionCommit {

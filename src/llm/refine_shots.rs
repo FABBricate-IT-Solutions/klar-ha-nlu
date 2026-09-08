@@ -2,7 +2,14 @@
 //! Refine example shots for generated Assist locales. de/en stay handwritten.
 
 pub fn locale_shots(pack: &str, personality: &str) -> &'static str {
-    for rows in [super::refine_shots_a::ROWS, super::refine_shots_b::ROWS, super::refine_shots_c::ROWS, super::refine_shots_d::ROWS, super::refine_shots_e::ROWS, super::refine_shots_f::ROWS] {
+    for rows in [
+        super::refine_shots_a::ROWS,
+        super::refine_shots_b::ROWS,
+        super::refine_shots_c::ROWS,
+        super::refine_shots_d::ROWS,
+        super::refine_shots_e::ROWS,
+        super::refine_shots_f::ROWS,
+    ] {
         for (code, key, shots) in rows {
             if *code == pack && *key == personality {
                 return shots;

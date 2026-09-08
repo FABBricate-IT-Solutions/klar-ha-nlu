@@ -92,10 +92,7 @@ fn generic_room_light_does_not_clarify_ceiling_versus_lamp() {
     let _bind = bind(&["fr".into()]);
     let home = HomeGraph {
         areas: vec![AreaRec { area_id: "living".into(), name: "Salon".into(), aliases: vec!["salon".into()], floor_id: None }],
-        entities: vec![
-            lamp("light.living_ceiling", "salon plafond", "living"),
-            lamp("light.living_lamp", "salon lampe", "living"),
-        ],
+        entities: vec![lamp("light.living_ceiling", "salon plafond", "living"), lamp("light.living_lamp", "salon lampe", "living")],
         ..HomeGraph::default()
     };
     let hit = resolve(&["allume".into(), "lumiere".into(), "salon".into()], &home, Some("light"));

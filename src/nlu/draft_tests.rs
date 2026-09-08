@@ -84,10 +84,7 @@ fn lock_partial_fails_closed() {
     let catalog = catalog_for(&["de".into()]);
     let context = ParseContext::new("test", &home, &session, &[], &settings, catalog);
     let plan = IntentPlan::from_intents(
-        vec![
-            Intent::new("HassTurnOn").with("entity_id", "light.wohnzimmer"),
-            Intent::new("HassTurnOn").with("entity_id", "lock.missing"),
-        ],
+        vec![Intent::new("HassTurnOn").with("entity_id", "light.wohnzimmer"), Intent::new("HassTurnOn").with("entity_id", "lock.missing")],
         1.0,
         &[],
     );

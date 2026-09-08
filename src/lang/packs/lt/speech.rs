@@ -60,10 +60,7 @@ pub(super) const SPEECH: Speech = Speech {
     loc_in_der: "{room}",
     loc_home: "namie",
     or_home: "durys",
-    room_names: &[
-        ("wohnzimmer", "svetaine"),
-        ("kuche", "virtuve"),
-    ],
+    room_names: &[("wohnzimmer", "svetaine"), ("kuche", "virtuve")],
     loc_der_rooms: &["svetaine", "virtuve"],
     personality: &[
         ("butler", &["Labai gerai. ", "Mielai. ", ""]),

@@ -104,9 +104,8 @@ pub fn resolve(tokens: &[String], home: &HomeGraph, domain: Option<&str>) -> Res
             .filter(|(s, e)| (*s - best).abs() < 0.08 && e.entity_id != rec.entity_id && overlap(tokens, e, home) >= best_overlap)
             .map(|(_, e)| e.clone())
             .collect();
-        let generic_light = rec.domain == "light"
-            && catalog().any(tokens, catalog().light_nouns())
-            && !crate::parse::infer::mentions_fixture_noun(tokens);
+        let generic_light =
+            rec.domain == "light" && catalog().any(tokens, catalog().light_nouns()) && !crate::parse::infer::mentions_fixture_noun(tokens);
         let crowded = rec.area.as_deref().is_some_and(|area| {
             home.entities
                 .iter()

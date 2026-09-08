@@ -29,7 +29,9 @@ pub(super) fn timer_decrease(tokens: &[String]) -> bool {
             "decrease" | "decreased" | "reduce" | "reduced" | "subtract" | "subtracted" | "minus" | "shorten" | "shortened"
             | "verringern" | "verringere" | "reduzieren" | "reduziere" | "weniger" | "kuerzen" | "kuerze" | "abziehen" => true,
             "remove" | "removed" | "cut" | "take" | "knock" | "down" => crate::parse::numbers::first_number(tokens).is_some(),
-            _ => matches!(catalog().verb(token), Some(VerbKind::Lower))
-                || (matches!(catalog().verb(token), Some(VerbKind::Down)) && crate::parse::numbers::first_number(tokens).is_some()),
+            _ => {
+                matches!(catalog().verb(token), Some(VerbKind::Lower))
+                    || (matches!(catalog().verb(token), Some(VerbKind::Down)) && crate::parse::numbers::first_number(tokens).is_some())
+            }
         })
 }

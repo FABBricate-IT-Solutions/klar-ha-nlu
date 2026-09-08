@@ -265,8 +265,7 @@ fn scene_label_whole(tokens: &[String], label: &str) -> bool {
         return false;
     }
     let parts: Vec<String> = tokens.iter().map(|token| compact(token)).filter(|token| !token.is_empty()).collect();
-    parts.iter().any(|token| token == &label)
-        || (2..=parts.len()).any(|width| parts.windows(width).any(|window| window.join("") == label))
+    parts.iter().any(|token| token == &label) || (2..=parts.len()).any(|width| parts.windows(width).any(|window| window.join("") == label))
 }
 
 fn scene_compact_hit(id: &str, tokens: &[String], home: &HomeGraph) -> bool {

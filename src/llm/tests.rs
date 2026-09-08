@@ -115,9 +115,7 @@ async fn does_not_follow_redirect_to_other_host() {
             "/v1/chat/completions",
             post(move || {
                 let location = location.clone();
-                async move {
-                    (axum::http::StatusCode::FOUND, [(axum::http::header::LOCATION, location)])
-                }
+                async move { (axum::http::StatusCode::FOUND, [(axum::http::header::LOCATION, location)]) }
             }),
         );
         axum::serve(redirector, app).await.unwrap();

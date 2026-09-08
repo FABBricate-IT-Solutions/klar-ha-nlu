@@ -55,9 +55,8 @@ pub(super) fn complete_plans_compete(selected_policy: &str, runner_policy: &str,
 }
 
 fn area_lights_outrank_fixtures(selected_policy: &str, runner_policy: &str, selected: &IntentPlan, runner: &IntentPlan) -> bool {
-    let group = selected_policy
-        .split('+')
-        .any(|part| matches!(part, "area_command" | "grounded_areas" | "preferred_area_command" | "all_lights"));
+    let group =
+        selected_policy.split('+').any(|part| matches!(part, "area_command" | "grounded_areas" | "preferred_area_command" | "all_lights"));
     let fixture = runner_policy.split('+').any(|part| matches!(part, "grounded_ambiguous" | "grounded_entities"));
     group
         && fixture
