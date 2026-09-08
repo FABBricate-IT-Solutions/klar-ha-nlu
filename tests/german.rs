@@ -208,9 +208,17 @@ fn follow_up_ein_across_conversation_ids() {
     sessions.put(first);
     let mut second = sessions.take(Some("wake-on"));
     let on = parse("schalte es wieder ein", &home, &mut second, &[], &settings);
-    assert!(!on.clarify, "{}", on.speech);
-    assert_eq!(on.intents[0].name, "HassTurnOn", "{:?} {}", on.intents, on.speech);
-    assert_eq!(on.intents[0].slot("entity_id"), off_id, "{:?} {}", on.intents, on.speech);
+    assert!(on.clarify, "{}", on.speech);
+    assert!(on.intents.is_empty(), "{:?} {}", on.intents, on.speech);
+
+    let mut same = sessions.take_with_area(Some("wake-off"), "wohnzimmer");
+    parse("Wohnzimmerlicht aus", &home, &mut same, &[], &settings);
+    sessions.put(same);
+    let mut seeded = sessions.take_with_area(Some("wake-on"), "wohnzimmer");
+    let replay = parse("schalte es wieder ein", &home, &mut seeded, &[], &settings);
+    assert!(!replay.clarify, "{}", replay.speech);
+    assert_eq!(replay.intents[0].name, "HassTurnOn", "{:?} {}", replay.intents, replay.speech);
+    assert_eq!(replay.intents[0].slot("entity_id"), off_id, "{:?} {}", replay.intents, replay.speech);
 }
 
 #[test]
@@ -260,6 +268,27 @@ fn wohn_und_esszimmer_auf_rot() {
     let found = slots("Wohn und Esszimmer auf Rot");
     assert_eq!(found.len(), 2, "{found:?}");
     assert!(found.iter().all(|(name, slots)| name == "HassLightSet" && slots.iter().any(|(k, v)| k == "color" && v == "red")), "{found:?}");
+}
+
+#[test]
+fn nachttisch_schlafzimmer_is_bedside_not_good_night() {
+    let home = klar_nlu::home::load_home_config(std::path::Path::new("tests/datasets/full_home/de/home_config.yaml")).expect("home");
+    let mut session = Session::new();
+    let result = parse("nachttisch schlafzimmer an", &home, &mut session, &[], &Settings::pinned("de"));
+    assert!(!result.clarify, "{}", result.speech);
+    assert_eq!(result.intents[0].name, "HassTurnOn", "{:?} {}", result.intents, result.speech);
+    let id = result.intents[0].slot("entity_id").unwrap_or("");
+    assert!(id.starts_with("light."), "{:?} {}", result.intents, result.speech);
+    assert_ne!(id, "script.good_night", "{:?} {}", result.intents, result.speech);
+}
+
+#[test]
+fn nacht_an_still_runs_good_night() {
+    let home = klar_nlu::home::load_home_config(std::path::Path::new("tests/datasets/full_home/de/home_config.yaml")).expect("home");
+    let mut session = Session::new();
+    let result = parse("nacht an", &home, &mut session, &[], &Settings::pinned("de"));
+    assert!(!result.clarify, "{}", result.speech);
+    assert_eq!(result.intents[0].slot("entity_id"), Some("script.good_night"), "{:?} {}", result.intents, result.speech);
 }
 
 #[test]

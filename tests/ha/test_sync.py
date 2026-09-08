@@ -173,7 +173,8 @@ class SyncTests(unittest.TestCase):
         self.assertIn("_RETRY_S", src)
         self.assertIn("async def _loop", src)
         self.assertIn("return False", src)
-        self.assertIn("self.hass.async_create_task(self._loop())", src)
+        self.assertIn("async_create_background_task", src)
+        self.assertIn("self._loop()", src)
 
 
 if __name__ == "__main__":

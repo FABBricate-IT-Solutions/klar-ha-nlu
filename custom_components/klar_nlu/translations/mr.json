@@ -23,33 +23,17 @@
     "step": {
       "init": {
         "title": "Klar NLU",
-        "description": "व्यक्तिमत्त्व येथे साठवले जाते आणि Klar अॅप पुन्हा बसवल्यावरही राहते.",
+        "description": "आवाज, Assist भाषा आणि LLM Klar ऑपरेटर UI (सेटिंग्ज) मध्ये आहेत. हा फॉर्म फक्त इंजिन जोडतो: URL, टोकन आणि चॅनेल.",
         "data": {
           "mode": "इंजिन",
-          "personality": "व्यक्तिमत्त्व",
-          "languages": "भाषा",
-          "allow_llm_tools": "Allow Home Assistant Assist tools on engine chat",
-          "refine_speech": "LLM ने NLU उत्तरे सुधारू द्या",
-          "refine_prompt": "सुधारणा प्रॉम्प्ट",
           "url": "Klar API URL",
           "token": "लेखन टोकन",
           "assist_filter": "फक्त Assist ला दिसणाऱ्या घटक नियंत्रित करा",
-          "nlu_rag": "NLU-RAG (पर्यायी)",
-          "quiet_ack": "थोडी पुष्टी (घंटा)",
-          "calendar_llm": "दिनदर्शिका प्रश्न LLM ला पाठवा",
           "channel": "रिलीझ चॅनेल"
         },
         "data_description": {
-          "personality": "या एकत्रीकरणात आहे, Klar अॅपमध्ये नाही.",
-          "refine_speech": "Klar उपकरणे नियंत्रित करत राहतो. बॅकअप LLM उत्तर पुन्हा लिहितो.",
-          "refine_prompt": "आवाजाचा सिस्टम प्रॉम्प्ट. उपकरण नियंत्रण नाही, नवीन तथ्ये नाहीत, तीच भाषा.",
           "token": "Klar अॅपसारखेच टोकन.",
           "assist_filter": "चालू: फक्त Assist जे पाहतो. बंद: लपवलेले घटकही.",
-          "nlu_rag": "डीफॉल्ट बंद. गप्पांमध्ये फक्त जुळलेला तुकडा बॅकअप मॉडेलकडे जातो.",
-          "quiet_ack": "साधी दिवा चालू/बंद करताना वाक्य नाही, उपग्रहावर थोडा आवाज.",
-          "calendar_llm": "डीफॉल्ट बंद. चालू: क्लार दिनदर्शिका वाचतो, बॅकअप LLM कार्यक्रम सांगतो. बंद: क्लार यादी स्वतः सांगतो. तयार, हटवणे, हलवणे क्लारकडेच राहते.",
-          "allow_llm_tools": "Off by default. On: after Klar parses, the engine chat model may call Home Assistant Assist tools (names come from Core, already prefixed). Off: conversation only.",
-          "languages": "डीफॉल्ट Home Assistant ची सिस्टम भाषा आहे.",
           "channel": "कधीही. Staging Klar NLU (Staging) कडे दर्शवते."
         }
       }

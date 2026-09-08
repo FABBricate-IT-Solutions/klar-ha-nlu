@@ -154,6 +154,7 @@ PACKS: dict[str, dict[str, str]] = {
         lexicon="Weli Lexikon-Pfad gits für Dütsch?",
         slang="Schlag Slang für en Lexikon-Pfad vor. No nöd schriibe.",
         for_lane="Lotse für die Spur",
+        trainer="Lotse",
     ),
     "de-AT": lotse(
         hint="Fragen zu Klar sofort. Schreiben erst nach Freigabe.",
@@ -169,6 +170,7 @@ PACKS: dict[str, dict[str, str]] = {
         lexicon="Welche Lexikon-Pfade gibt es für Deutsch?",
         slang="Schlage Slang für einen Lexikon-Pfad vor. Noch nicht schreiben.",
         for_lane="Lotse für diese Spur",
+        trainer="Lotse",
     ),
     "en-GB": lotse(
         hint="Ask about Klar anytime. Writes wait for Allow in this chat.",

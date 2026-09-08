@@ -250,10 +250,20 @@ impl Sessions {
         if Instant::now().duration_since(recent.last_used) >= RECENT_FOLLOW_TTL || recent.last.is_empty() {
             return;
         }
+        if !same_satellite_hint(session, recent) {
+            return;
+        }
         session.last = recent.last.clone();
         session.last_execute = recent.last_execute.clone();
         session.last_turn_id = recent.last_turn_id;
         drop_media_followup(session);
+    }
+
+    pub fn take_with_area(&mut self, id: Option<&str>, area: &str) -> Session {
+        let mut session = self.get_or_create(id).clone();
+        session.preferred_area = Some(area.to_string());
+        self.seed_followup(&mut session);
+        session
     }
 
     pub fn put(&mut self, mut session: Session) {
@@ -290,6 +300,13 @@ impl Sessions {
                 break;
             }
         }
+    }
+}
+
+fn same_satellite_hint(session: &Session, recent: &Session) -> bool {
+    match (session.preferred_area.as_deref(), recent.preferred_area.as_deref()) {
+        (Some(left), Some(right)) if !left.is_empty() && left == right => true,
+        _ => false,
     }
 }
 
@@ -337,7 +354,17 @@ mod tests {
     }
 
     #[test]
-    fn new_conversation_inherits_light_not_media() {
+    fn same_conversation_followup_keeps_last() {
+        let mut sessions = Sessions::default();
+        let mut first = sessions.take(Some("assist-1"));
+        first.remember_entity("light.wohnzimmer");
+        sessions.put(first);
+        let follow = sessions.take(Some("assist-1"));
+        assert_eq!(follow.last_entities().collect::<Vec<_>>(), ["light.wohnzimmer"]);
+    }
+
+    #[test]
+    fn new_conversation_does_not_inherit_without_satellite_hint() {
         let mut sessions = Sessions::default();
         let mut first = sessions.take(Some("assist-music"));
         first.remember_entity("media_player.kuchenbereich_2");
@@ -345,19 +372,39 @@ mod tests {
         sessions.put(first);
         let follow = sessions.take(Some("assist-calendar"));
         assert_eq!(follow.id, "assist-calendar");
-        let entities: Vec<_> = follow.last_entities().collect();
-        assert_eq!(entities, ["light.wohnzimmer"]);
+        assert!(follow.last_entities().next().is_none());
     }
 
     #[test]
-    fn followup_fallback_still_inherits_recent_last() {
+    fn same_satellite_inherits_light_not_media() {
+        let mut sessions = Sessions::default();
+        let mut first = sessions.take_with_area(Some("assist-music"), "kueche");
+        first.remember_entity("media_player.kuchenbereich_2");
+        first.remember_entity("light.wohnzimmer");
+        sessions.put(first);
+        let follow = sessions.take_with_area(Some("assist-calendar"), "kueche");
+        assert_eq!(follow.last_entities().collect::<Vec<_>>(), ["light.wohnzimmer"]);
+    }
+
+    #[test]
+    fn different_satellite_does_not_inherit() {
+        let mut sessions = Sessions::default();
+        let mut first = sessions.take_with_area(Some("wake-1"), "kueche");
+        first.remember_entity("light.wohnzimmer");
+        sessions.put(first);
+        let follow = sessions.take_with_area(Some(FOLLOWUP_ID), "wohnzimmer");
+        assert!(follow.last_entities().next().is_none());
+    }
+
+    #[test]
+    fn followup_fallback_needs_shared_satellite() {
         let mut sessions = Sessions::default();
         let mut first = sessions.take(Some("wake-1"));
         first.remember_entity("light.wohnzimmer");
         sessions.put(first);
         let follow = sessions.take(Some(FOLLOWUP_ID));
         assert_eq!(follow.id, FOLLOWUP_ID);
-        assert_eq!(follow.last_entities().collect::<Vec<_>>(), ["light.wohnzimmer"]);
+        assert!(follow.last_entities().next().is_none());
     }
 
     #[test]

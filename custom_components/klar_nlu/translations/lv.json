@@ -23,33 +23,17 @@
     "step": {
       "init": {
         "title": "Klar NLU",
-        "description": "Personība tiek saglabāta šeit un paliek pēc Klar lietotnes atkārtotas instalēšanas.",
+        "description": "Balss, Assist valodas un LLM ir Klar operatora saskarnē (Iestatījumi). Šī veidlapa savieno tikai dzinēju: URL, marķieris un kanāls.",
         "data": {
           "mode": "Dzinējs",
-          "personality": "Personība",
-          "languages": "Valodas",
-          "allow_llm_tools": "Allow Home Assistant Assist tools on engine chat",
-          "refine_speech": "Ļaut LLM pārfrāzēt NLU atbildes",
-          "refine_prompt": "Uzlabošanas uzvedne",
           "url": "Klar API URL",
           "token": "Rakstīšanas marķieris",
           "assist_filter": "Vadīt tikai Assist redzamās entītijas",
-          "nlu_rag": "NLU-RAG (pēc izvēles)",
-          "quiet_ack": "Īsa apstiprināšana (zvans)",
-          "calendar_llm": "Sūtīt kalendāra vaicājumus uz LLM",
           "channel": "Izlaides kanāls"
         },
         "data_description": {
-          "personality": "Šajā integrācijā, nevis Klar lietotnē.",
-          "refine_speech": "Klar joprojām vada ierīces. Rezerves LLM pārraksta atbildi.",
-          "refine_prompt": "Balss sistēmas uzvedne. Bez ierīču vadības, bez jauniem faktiem, tā pati valoda.",
           "token": "Tas pats marķieris kā Klar lietotnē.",
           "assist_filter": "Ieslēgts: tikai to, ko redz Assist. Izslēgts: arī slēptās entītijas.",
-          "nlu_rag": "Pēc noklusējuma izslēgts. Tērzēšanā rezerves modelim iet tikai atpazītais fragments.",
-          "quiet_ack": "Vienkāršai gaismas ieslēgšanai/izslēgšanai nav teikuma, tikai īss skaņa uz satelīta.",
-          "calendar_llm": "Pēc noklusējuma izslēgts. Ieslēgts: Klar lasa kalendāru, rezerves LLM saka notikumus. Izslēgts: Klar saka sarakstu. Izveide, dzēšana un pārvietošana paliek Klar.",
-          "allow_llm_tools": "Off by default. On: after Klar parses, the engine chat model may call Home Assistant Assist tools (names come from Core, already prefixed). Off: conversation only.",
-          "languages": "Pēc noklusējuma seko Home Assistant sistēmas valodai.",
           "channel": "Jebkurā laikā. Staging norāda uz Klar NLU (Staging)."
         }
       }

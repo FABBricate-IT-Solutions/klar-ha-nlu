@@ -72,6 +72,7 @@ pub fn resolve(tokens: &[String], home: &HomeGraph, domain: Option<&str>) -> Res
     }
     prefer::prefer_entry_lock(tokens, home, &mut candidates);
     prefer::prefer_tv(tokens, home, &mut candidates);
+    prefer::prefer_light_over_script(tokens, &mut candidates);
     if crate::parse::compound::named_scene_or_script(tokens, home).is_none()
         && !catalog().any(tokens, catalog().scene_nouns())
         && !catalog().any(tokens, catalog().script_words())
@@ -103,30 +104,23 @@ pub fn resolve(tokens: &[String], home: &HomeGraph, domain: Option<&str>) -> Res
             .filter(|(s, e)| (*s - best).abs() < 0.08 && e.entity_id != rec.entity_id && overlap(tokens, e, home) >= best_overlap)
             .map(|(_, e)| e.clone())
             .collect();
+        let generic_light = rec.domain == "light"
+            && catalog().any(tokens, catalog().light_nouns())
+            && !crate::parse::infer::mentions_fixture_noun(tokens);
+        let crowded = rec.area.as_deref().is_some_and(|area| {
+            home.entities
+                .iter()
+                .filter(|entity| {
+                    assist_visible(entity, home) && entity.domain == "light" && !is_infra(entity) && entity.area.as_deref() == Some(area)
+                })
+                .count()
+                > 1
+        });
         if *best >= 0.86 && peers.is_empty() {
-            let generic_light = rec.domain == "light"
-                && catalog().any(tokens, catalog().light_nouns())
-                && !catalog().any(tokens, catalog().named_device())
-                && !catalog().any(tokens, catalog().ceiling())
-                && !catalog().any(tokens, catalog().island())
-                && !catalog().any(tokens, catalog().bedside())
-                && !catalog().any(tokens, catalog().lamp_fixture());
-            let crowded = rec.area.as_deref().is_some_and(|area| {
-                home.entities
-                    .iter()
-                    .filter(|entity| {
-                        assist_visible(entity, home)
-                            && entity.domain == "light"
-                            && !is_infra(entity)
-                            && entity.area.as_deref() == Some(area)
-                    })
-                    .count()
-                    > 1
-            });
             if distinctive_light_name(tokens, rec, home) || !(generic_light && crowded) {
                 entities.push(rec.clone());
             }
-        } else if *best >= 0.86 && !peers.is_empty() {
+        } else if *best >= 0.86 && !peers.is_empty() && !(generic_light && crowded && !distinctive_light_name(tokens, rec, home)) {
             ambiguous.push(rec.clone());
             ambiguous.extend(peers);
         }
@@ -260,7 +254,24 @@ fn pick_fixture(tokens: &[String], home: &HomeGraph, areas: &[String]) -> Option
         .filter(|e| fixture_matches(e, needle))
         .cloned()
         .collect();
-    (hits.len() == 1).then_some(hits)
+    if hits.len() == 1 {
+        return Some(hits);
+    }
+    if needle == "bedside" && hits.len() > 1 {
+        return Some(vec![pick_bedside(&hits)]);
+    }
+    None
+}
+
+fn pick_bedside(hits: &[EntityRec]) -> EntityRec {
+    hits.iter()
+        .find(|entity| {
+            let blob = format!("{} {}", entity.entity_id, compact(&entity.name));
+            blob.contains("left") || blob.contains("links")
+        })
+        .or_else(|| hits.iter().min_by_key(|entity| entity.entity_id.as_str()))
+        .cloned()
+        .unwrap_or_else(|| hits[0].clone())
 }
 
 pub(crate) fn fixture_matches(entity: &EntityRec, needle: &str) -> bool {

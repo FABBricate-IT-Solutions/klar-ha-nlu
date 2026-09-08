@@ -1,5 +1,6 @@
 //! In-memory trainer write consent. Reload or restart asks again.
 
+use axum::http::HeaderMap;
 use serde::{Deserialize, Serialize};
 use std::collections::{HashMap, HashSet};
 use std::hash::{Hash, Hasher};
@@ -47,15 +48,27 @@ impl TrainerConsentHub {
         Arc::new(Self::default())
     }
 
-    pub fn session_key(token: &Option<String>, peer: SocketAddr) -> String {
+    /// Isolates YOLO/allow lists. Not authentication — spoofable headers can collide.
+    ///
+    /// Ingress users share the Supervisor proxy IP, so the key hashes the write token
+    /// plus `x-ingress-path` and a user header (`x-hass-user-id` / `x-remote-user-id`)
+    /// or `x-forwarded-for` when the proxy sent one. Home Assistant ingress often omits
+    /// a user id; those operators then share consent if they share token and XFF.
+    pub fn session_key(token: &Option<String>, peer: SocketAddr, headers: &HeaderMap) -> String {
+        let mut hasher = std::collections::hash_map::DefaultHasher::new();
         match token.as_deref().filter(|item| !item.is_empty()) {
-            Some(token) => {
-                let mut hasher = std::collections::hash_map::DefaultHasher::new();
-                token.hash(&mut hasher);
-                format!("tok:{:x}", hasher.finish())
-            }
-            None => format!("peer:{}", peer.ip()),
+            Some(token) => token.hash(&mut hasher),
+            None => peer.ip().hash(&mut hasher),
         }
+        if let Some(path) = header_text(headers, "x-ingress-path") {
+            path.hash(&mut hasher);
+        }
+        if let Some(user) = operator_header(headers) {
+            user.hash(&mut hasher);
+        } else if let Some(xff) = header_text(headers, "x-forwarded-for") {
+            xff.hash(&mut hasher);
+        }
+        format!("sess:{:x}", hasher.finish())
     }
 
     pub async fn snapshot(&self, key: &str) -> (bool, Vec<String>) {
@@ -130,6 +143,14 @@ impl TrainerConsentHub {
     }
 }
 
+fn header_text<'a>(headers: &'a HeaderMap, name: &str) -> Option<&'a str> {
+    headers.get(name).and_then(|value| value.to_str().ok()).map(str::trim).filter(|value| !value.is_empty())
+}
+
+fn operator_header(headers: &HeaderMap) -> Option<&str> {
+    ["x-hass-user-id", "x-remote-user-id"].into_iter().find_map(|name| header_text(headers, name))
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;
@@ -201,5 +222,26 @@ mod tests {
         let (decision, _) = tokio::join!(wait, decide);
         assert_eq!(decision, ConsentDecision::Deny);
         assert!(!hub.allows("s", "apply_house").await);
+    }
+
+    #[test]
+    fn session_key_splits_ingress_users_when_headers_differ() {
+        let peer = "172.30.32.2:9".parse().unwrap();
+        let token = Some("secret".into());
+        let mut a = HeaderMap::new();
+        a.insert("x-ingress-path", "/api/hassio_ingress/tok".parse().unwrap());
+        a.insert("x-hass-user-id", "user-a".parse().unwrap());
+        let mut b = a.clone();
+        b.insert("x-hass-user-id", "user-b".parse().unwrap());
+        assert_ne!(TrainerConsentHub::session_key(&token, peer, &a), TrainerConsentHub::session_key(&token, peer, &b));
+        let mut xff_a = HeaderMap::new();
+        xff_a.insert("x-forwarded-for", "10.0.0.8".parse().unwrap());
+        let mut xff_b = HeaderMap::new();
+        xff_b.insert("x-forwarded-for", "10.0.0.9".parse().unwrap());
+        assert_ne!(TrainerConsentHub::session_key(&token, peer, &xff_a), TrainerConsentHub::session_key(&token, peer, &xff_b));
+        assert_eq!(
+            TrainerConsentHub::session_key(&token, peer, &HeaderMap::new()),
+            TrainerConsentHub::session_key(&token, peer, &HeaderMap::new())
+        );
     }
 }

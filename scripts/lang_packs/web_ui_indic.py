@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+from lang_packs.web_ui_indic_offline import apply_offline
 from lang_packs.web_ui_table import parse_table
 
 CODES = ["hi", "bn", "gu", "kn", "ml", "mr", "ta", "te", "pa", "ne", "sw"]
@@ -166,3 +167,4 @@ personalityHa	व्यक्तित्व Home Assistant → Klar NLU → व
 """
 
 PACKS = parse_table(CODES, TABLE)
+apply_offline(PACKS)

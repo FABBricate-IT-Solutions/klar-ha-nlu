@@ -23,33 +23,17 @@
     "step": {
       "init": {
         "title": "Klar NLU",
-        "description": "A személyiség itt tárolódik, és a Klar alkalmazás újratelepítése után is megmarad.",
+        "description": "A hang, az Assist nyelvei és az LLM a Klar operátori felületén vannak (Beállítások). Ez az űrlap csak a motort köti: URL, token és csatorna.",
         "data": {
           "mode": "Motor",
-          "personality": "Személyiség",
-          "languages": "Nyelvek",
-          "allow_llm_tools": "Allow Home Assistant Assist tools on engine chat",
-          "refine_speech": "Az LLM fogalmazza újra az NLU válaszokat",
-          "refine_prompt": "Finomító prompt",
           "url": "Klar API URL",
           "token": "Írási token",
           "assist_filter": "Csak az Assistnek kitett entitások vezérlése",
-          "nlu_rag": "NLU-RAG (opcionális)",
-          "quiet_ack": "Rövid megerősítés (csengő)",
-          "calendar_llm": "Naptárlekérdezések küldése az LLM-nek",
           "channel": "Kiadási csatorna"
         },
         "data_description": {
-          "personality": "Ebben az integrációban van, nem a Klar alkalmazásban.",
-          "refine_speech": "A Klar továbbra is vezérli az eszközöket. A tartalék LLM átírja a választ.",
-          "refine_prompt": "A hang rendszerpromptja. Nincs eszközvezérlés, nincs új tény, ugyanaz a nyelv.",
           "token": "Ugyanaz a token, mint a Klar alkalmazásban.",
           "assist_filter": "Be: csak amit az Assist lát. Ki: rejtett entitások is.",
-          "nlu_rag": "Alapból ki. Csevegéskor csak az illeszkedő szelet megy a tartalék modellnek.",
-          "quiet_ack": "Egyszerű lámpa ki/be esetén nincs beszéd, csak rövid hang a műholdon.",
-          "calendar_llm": "Alapból ki. Be: a Klar olvassa a naptárt, a tartalék LLM mondja az eseményeket. Ki: a Klar mondja a listát. Létrehozás, törlés, áthelyezés a Klarnál marad.",
-          "allow_llm_tools": "Off by default. On: after Klar parses, the engine chat model may call Home Assistant Assist tools (names come from Core, already prefixed). Off: conversation only.",
-          "languages": "Alapértelmezés a Home Assistant rendszer nyelve.",
           "channel": "Bármikor. A Staging a Klar NLU (Staging) felé mutat."
         }
       }

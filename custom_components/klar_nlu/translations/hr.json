@@ -23,33 +23,17 @@
     "step": {
       "init": {
         "title": "Klar NLU",
-        "description": "Osobnost se sprema ovdje i ostaje nakon ponovne instalacije aplikacije Klar.",
+        "description": "Glas, jezici Assista i LLM su u Klar operator UI-ju (Postavke). Ovaj obrazac samo povezuje motor: URL, token i kanal.",
         "data": {
           "mode": "Motor",
-          "personality": "Osobnost",
-          "languages": "Jezici",
-          "allow_llm_tools": "Allow Home Assistant Assist tools on engine chat",
-          "refine_speech": "Neka LLM preformulira NLU odgovore",
-          "refine_prompt": "Prompt za doradu",
           "url": "URL Klar API-ja",
           "token": "Token za pisanje",
           "assist_filter": "Upravljaj samo entitetima izloženima Assistu",
-          "nlu_rag": "NLU-RAG (neobavezno)",
-          "quiet_ack": "Kratka potvrda (zvončić)",
-          "calendar_llm": "Šalji upite kalendara LLM-u",
           "channel": "Kanal izdanja"
         },
         "data_description": {
-          "personality": "U ovoj integraciji, ne u aplikaciji Klar.",
-          "refine_speech": "Klar i dalje upravlja uređajima. Rezervni LLM prepisuje odgovor.",
-          "refine_prompt": "Sistemski prompt glasa. Bez upravljanja uređajima, bez novih činjenica, isti jezik.",
           "token": "Isti token kao u aplikaciji Klar.",
           "assist_filter": "Uključeno: samo što Assist vidi. Isključeno: i skriveni entiteti.",
-          "nlu_rag": "Zadano isključeno. U razgovoru samo prepoznati odsječak ide rezervnom modelu.",
-          "quiet_ack": "Kod jednostavnog paljenja/gašenja svjetla nema govora, samo kratki zvuk na satelitu.",
-          "calendar_llm": "Po defaultu isključeno. Uključeno: Klar čita kalendar, pričuvni LLM izgovara događaje. Isključeno: Klar izgovara popis. Stvaranje, brisanje i premještanje ostaju u Klaru.",
-          "allow_llm_tools": "Off by default. On: after Klar parses, the engine chat model may call Home Assistant Assist tools (names come from Core, already prefixed). Off: conversation only.",
-          "languages": "Zadano prati jezik sustava Home Assistant.",
           "channel": "Bilo kada. Staging pokazuje na Klar NLU (Staging)."
         }
       }

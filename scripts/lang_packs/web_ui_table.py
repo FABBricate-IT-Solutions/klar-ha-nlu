@@ -5,7 +5,7 @@ from __future__ import annotations
 from lang_packs.web_ui_keys import CATALOG_KEYS, FALLBACKS
 
 
-def parse_table(codes: list[str], table: str) -> dict[str, dict[str, str]]:
+def parse_rows(codes: list[str], table: str) -> dict[str, dict[str, str]]:
     packs = {code: {} for code in codes}
     seen: list[str] = []
     for raw in table.splitlines():
@@ -23,7 +23,12 @@ def parse_table(codes: list[str], table: str) -> dict[str, dict[str, str]]:
     extra = [key for key in seen if key not in CATALOG_KEYS]
     if extra:
         raise SystemExit(f"{codes}: extra={extra}")
-    missing = [key for key in CATALOG_KEYS if key not in seen]
+    return packs
+
+
+def parse_table(codes: list[str], table: str) -> dict[str, dict[str, str]]:
+    packs = parse_rows(codes, table)
+    missing = [key for key in CATALOG_KEYS if key not in next(iter(packs.values()), {})]
     unknown = [key for key in missing if key not in FALLBACKS]
     if unknown:
         raise SystemExit(f"{codes}: missing={unknown}")

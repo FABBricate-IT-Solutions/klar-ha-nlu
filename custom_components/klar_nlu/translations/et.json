@@ -23,33 +23,17 @@
     "step": {
       "init": {
         "title": "Klar NLU",
-        "description": "Isiksus salvestatakse siia ja jääb alles pärast Klar rakenduse uuesti paigaldamist.",
+        "description": "Hääl, Assisti keeled ja LLM on Klari operaatori UI-s (Seaded). See vorm ühendab ainult mootori: URL, token ja kanal.",
         "data": {
           "mode": "Mootor",
-          "personality": "Isiksus",
-          "languages": "Keeled",
-          "allow_llm_tools": "Allow Home Assistant Assist tools on engine chat",
-          "refine_speech": "Las LLM sõnastab NLU vastused ümber",
-          "refine_prompt": "Viimistlusviip",
           "url": "Klar API URL",
           "token": "Kirjutamistõend",
           "assist_filter": "Juhi ainult Assistile nähtavaid olemeid",
-          "nlu_rag": "NLU-RAG (valikuline)",
-          "quiet_ack": "Lühike kinnitus (kelluke)",
-          "calendar_llm": "Saada kalendripäringud LLM-ile",
           "channel": "Väljalaskekanal"
         },
         "data_description": {
-          "personality": "Selles integratsioonis, mitte Klar rakenduses.",
-          "refine_speech": "Klar juhib endiselt seadmeid. Varumudel LLM kirjutab vastuse ümber.",
-          "refine_prompt": "Hääle süsteemiviip. Ilma seadmejuhtimiseta, ilma uute faktideta, sama keel.",
           "token": "Sama tõend mis Klar rakenduses.",
           "assist_filter": "Sees: ainult see, mida Assist näeb. Väljas: ka peidetud olemid.",
-          "nlu_rag": "Vaikimisi väljas. Vestluses läheb varumudelile ainult vastav lõik.",
-          "quiet_ack": "Lihtsa tule sisse/välja korral ei räägi, ainult lühike heli satelliidil.",
-          "calendar_llm": "Vaikimisi väljas. Sees: Klar loeb kalendrit, varumudel ütleb sündmused. Väljas: Klar ütleb loendi ise. Loomine, kustutamine ja teisaldamine jäävad Klari juurde.",
-          "allow_llm_tools": "Off by default. On: after Klar parses, the engine chat model may call Home Assistant Assist tools (names come from Core, already prefixed). Off: conversation only.",
-          "languages": "Vaikimisi järgib Home Assistanti süsteemikeelt.",
           "channel": "Igal ajal. Staging osutab Klar NLU (Staging)."
         }
       }

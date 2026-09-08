@@ -1,4 +1,4 @@
-import type { Messages } from "../i18n";
+import { inboxReason, type Messages } from "../i18n";
 import { api } from "../api";
 import type { Assignment, Dashboard, UiState } from "../types";
 
@@ -46,12 +46,25 @@ export function CalibratePage({
             <div className="house-inbox-copy">
               <h2>{row.name}</h2>
               <p className="mono">{row.entity_id}</p>
-              <p className={`conf-${row.confidence}`}>{t[row.confidence]} · {row.reasons.join(", ")}</p>
-              {row.suggested_area && <p>{row.suggested_area.name} · {t.score} {row.suggested_area.score}</p>}
+              <p className={`conf-${row.confidence}`}>{t[row.confidence]} · {row.reasons.map((reason) => inboxReason(reason, t)).join(", ")}</p>
+              {row.suggested_area && (
+                <p>
+                  {row.suggested_area.name} · {t.score} {row.suggested_area.score}
+                  {row.suggested_area.reasons.length > 0
+                    ? ` · ${row.suggested_area.reasons.map((reason) => inboxReason(reason, t)).join(", ")}`
+                    : ""}
+                </p>
+              )}
             </div>
             <div className="house-actions">
               {row.suggested_area && <button className="primary" onClick={() => accept(row)}>{t.accept}</button>}
-              <select value={row.area || ""} onChange={(ev) => ev.target.value && accept(row, ev.target.value)}>
+              <label className="sr-only" htmlFor={`map-room-${row.entity_id}`}>{t.room}</label>
+              <select
+                id={`map-room-${row.entity_id}`}
+                aria-label={t.room}
+                value={row.area || ""}
+                onChange={(ev) => ev.target.value && accept(row, ev.target.value)}
+              >
                 <option value="">{t.otherRoom}</option>
                 {data.rooms.map((room) => <option value={room.area_id} key={room.area_id}>{room.name}</option>)}
               </select>

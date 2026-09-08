@@ -13,12 +13,8 @@ export function canJournalReplay(turn: ConversationTurn): boolean {
   return (turn.tokens ?? []).length > 0;
 }
 
-function isDe(t: Messages): boolean {
-  return t.replay === "Nochmal";
-}
-
 export function whyThisBand(t: Messages): string {
-  return isDe(t) ? "Warum diese Band?" : "Why this band?";
+  return t.whyThisBand;
 }
 
 function formatConfidence(value: number): string {
@@ -36,7 +32,6 @@ export function WhyDrawer({
   t: Messages;
   onClose: () => void;
 }) {
-  const de = isDe(t);
   const kinds = turn.evidence_kinds ?? [];
   const names = turn.last_names ?? [];
   return (
@@ -47,13 +42,13 @@ export function WhyDrawer({
       </p>
       <label>{t.confidence}</label>
       <p>{formatConfidence(turn.confidence)}</p>
-      <label>{de ? "Evidenz" : "Evidence"}</label>
+      <label>{t.evidence}</label>
       <div className="row">
         {kinds.length > 0
           ? kinds.map((kind) => <span className="chip" key={kind}>{kind}</span>)
           : <span className="muted">—</span>}
       </div>
-      <label>{de ? "Namen" : "Names"}</label>
+      <label>{t.names}</label>
       {names.length > 0 ? <p className="mono">{names.join(" · ")}</p> : <p className="muted">—</p>}
       {turn.preferred_area ? (
         <>

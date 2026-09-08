@@ -20,7 +20,7 @@ except ImportError:  # stdlib tests load helpers without Home Assistant
     HomeAssistant = Any
     async_get_clientsession = None  # type: ignore[assignment]
 
-from .const import DOMAIN, engine_url_candidates
+from .const import DOMAIN, engine_headers, engine_url_candidates
 from .stream import emit_delta_stream, iter_token_deltas
 
 _LOGGER = logging.getLogger(__name__)
@@ -65,7 +65,7 @@ async def complete_engine_refine(
     session = _session(hass)
     if session is None:
         raise EngineUnavailable
-    headers = {"X-Klar-Token": tok, "Accept": "application/json"} if tok else {"Accept": "application/json"}
+    headers = engine_headers(tok, extra={"Accept": "application/json"})
     body = {
         "speech": speech,
         "language": language,
@@ -359,7 +359,7 @@ async def complete_engine_chat(
     session = _session(hass)
     if session is None:
         return None
-    headers = {"X-Klar-Token": tok, "Accept": "application/json"} if tok else {"Accept": "application/json"}
+    headers = engine_headers(tok, extra={"Accept": "application/json"})
     body = {"messages": messages, "stream": False, "max_tokens": max_tokens, "temperature": temperature}
     last_err: Exception | None = None
     for host in engine_url_candidates(base):
@@ -455,7 +455,7 @@ async def complete_engine_speech_render(
     session = _session(hass)
     if session is None:
         raise EngineSpeechMissing
-    headers = {"X-Klar-Token": tok, "Accept": "application/json"} if tok else {"Accept": "application/json"}
+    headers = engine_headers(tok, extra={"Accept": "application/json"})
     last_err: Exception | None = None
     for host in engine_url_candidates(base):
         try:
@@ -526,7 +526,7 @@ async def _iter_engine_sse(
     session = _session(hass)
     if session is None:
         raise EngineUnavailable
-    headers = {"X-Klar-Token": tok, "Accept": "text/event-stream"} if tok else {"Accept": "text/event-stream"}
+    headers = engine_headers(tok, extra={"Accept": "text/event-stream"})
     last_err: Exception | None = None
     for host in engine_url_candidates(base):
         try:

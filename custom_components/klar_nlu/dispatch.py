@@ -146,8 +146,9 @@ async def handle_intent(
     if name in LIST_INTENTS:
         name, slots = list_slots(hass, name, slots)
     if name in TIMER_INTENTS:
+        named_timer = _timer_has_name(slots)
         slots = timer_slots(slots)
-        if name == "HassStartTimer" and not any(key in slots for key in ("hours", "minutes", "seconds")):
+        if name == "HassStartTimer" and not any(key in slots for key in ("hours", "minutes", "seconds")) and not named_timer:
             return _fail("missing_timer_duration")
     if name == "HassClimateGetTemperature":
         return await climate_query(hass, user_input, item, slots, pack, assistant, exposed)
@@ -160,6 +161,16 @@ async def handle_intent(
     if "area" in slots and "entity_id" not in slots:
         slots, item = bind_area_name(hass, slots, item)
     return await invoke_intent(hass, user_input, _HA_INTENT_ALIASES.get(name, name), slots, pack, item, assistant)
+
+
+def _timer_has_name(slots: dict[str, Any]) -> bool:
+    for key in ("entity_id", "timer_name", "name"):
+        raw = slots.get(key)
+        value = raw.get("value") if isinstance(raw, dict) else raw
+        text = str(value or "")
+        if text and "abstract" not in text:
+            return True
+    return False
 
 
 def bind_area_name(hass: HomeAssistant, slots: dict[str, Any], item: dict) -> tuple[dict[str, Any], dict]:

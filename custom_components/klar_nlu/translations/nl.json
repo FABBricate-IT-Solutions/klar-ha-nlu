@@ -23,33 +23,17 @@
     "step": {
       "init": {
         "title": "Klar NLU",
-        "description": "De persoonlijkheid staat hier en blijft bewaard na herinstallatie van de Klar-app.",
+        "description": "Stem, Assist-talen en de LLM staan in de Klar-operator-UI (Instellingen). Dit formulier koppelt alleen de engine: URL, token en kanaal.",
         "data": {
           "mode": "Engine",
-          "personality": "Persoonlijkheid",
-          "languages": "Talen",
-          "allow_llm_tools": "Allow Home Assistant Assist tools on engine chat",
-          "refine_speech": "NLU-antwoorden door de LLM laten herschrijven",
-          "refine_prompt": "Verfijningsprompt",
           "url": "Klar-API-URL",
           "token": "Schrijftoken",
           "assist_filter": "Alleen aan Assist vrijgegeven entiteiten bedienen",
-          "nlu_rag": "NLU-RAG (optioneel)",
-          "quiet_ack": "Korte bevestiging (chime)",
-          "calendar_llm": "Agenda-vragen naar het LLM sturen",
           "channel": "Releasekanaal"
         },
         "data_description": {
-          "personality": "Staat in deze integratie, niet in de Klar-app. Assist en de LLM-stem volgen de prompt.",
-          "refine_speech": "Klar bedient nog steeds de apparaten. De fallback-LLM herschrijft daarna het antwoord.",
-          "refine_prompt": "Systeempprompt van de stem. Geen apparaatbediening, geen nieuwe feiten, dezelfde taal.",
           "token": "Dezelfde token als in de Klar-app.",
           "assist_filter": "Aan: alleen wat Assist mag zien. Uit: ook verborgen entiteiten.",
-          "nlu_rag": "Standaard uit. Bij chat alleen het herkende stuk naar het fallback-model.",
-          "quiet_ack": "Bij eenvoudig licht of schakelaar aan/uit geen gesproken antwoord, alleen een korte toon.",
-          "calendar_llm": "Standaard uit. Aan: Klar leest de agenda, het fallback-LLM spreekt de afspraken. Uit: Klar spreekt de lijst zelf. Aanmaken, verwijderen en verplaatsen blijven bij Klar.",
-          "allow_llm_tools": "Off by default. On: after Klar parses, the engine chat model may call Home Assistant Assist tools (names come from Core, already prefixed). Off: conversation only.",
-          "languages": "Standaard is de Home Assistant-systeemtaal.",
           "channel": "Altijd. Staging wijst naar Klar NLU (Staging), Stable naar de app of de meegeleverde engine."
         }
       }

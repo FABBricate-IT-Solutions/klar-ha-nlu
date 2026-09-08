@@ -23,33 +23,17 @@
     "step": {
       "init": {
         "title": "Klar NLU",
-        "description": "La personnalité est stockée ici et survit à la réinstallation de l’app Klar. En la changeant, le prompt de raffinage LLM est copié dans ce formulaire.",
+        "description": "La voix, les langues d’Assist et le LLM sont dans l’UI opérateur Klar (Réglages). Ce formulaire ne fait que connecter le moteur : URL, jeton et canal.",
         "data": {
           "mode": "Moteur",
-          "personality": "Personnalité",
-          "languages": "Langues",
-          "allow_llm_tools": "Allow Home Assistant Assist tools on engine chat",
-          "refine_speech": "Laisser le LLM reformuler les réponses NLU",
-          "refine_prompt": "Prompt de raffinage",
           "url": "URL de l’API Klar",
           "token": "Jeton d’écriture",
           "assist_filter": "Ne commander que les entités exposées à Assist",
-          "nlu_rag": "NLU-RAG (optionnel)",
-          "quiet_ack": "Confirmation courte (carillon)",
-          "calendar_llm": "Envoyer les requêtes agenda à l'LLM",
           "channel": "Canal de publication"
         },
         "data_description": {
-          "personality": "Stockée dans cette intégration, pas dans l’app Klar. Assist et la voix LLM suivent le prompt.",
-          "refine_speech": "Klar commande toujours les appareils. Le LLM de secours reformule ensuite chaque réponse.",
-          "refine_prompt": "Prompt système de la voix. Pas de commande d’appareils, pas de faits nouveaux, même langue.",
           "token": "Le même jeton que dans l’app Klar.",
           "assist_filter": "Activé : seulement ce qu’Assist peut voir. Désactivé : aussi les entités masquées.",
-          "nlu_rag": "Désactivé par défaut. En discussion, seul l’extrait déjà reconnu va au modèle de secours.",
-          "quiet_ack": "Pour un simple allumage ou extinction, pas de phrase : un court carillon sur le satellite.",
-          "calendar_llm": "Désactivé par défaut. Activé : Klar lit l'agenda, puis le LLM de secours dit les événements. Désactivé : Klar dit la liste. Créer, supprimer et déplacer restent dans Klar.",
-          "allow_llm_tools": "Off by default. On: after Klar parses, the engine chat model may call Home Assistant Assist tools (names come from Core, already prefixed). Off: conversation only.",
-          "languages": "Par défaut, la langue système de Home Assistant.",
           "channel": "À tout moment. Staging pointe vers Klar NLU (Staging), Stable vers l’app ou le moteur intégré."
         }
       }

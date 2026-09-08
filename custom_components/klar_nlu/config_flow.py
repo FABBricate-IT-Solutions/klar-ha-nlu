@@ -58,6 +58,7 @@ def _on_supervisor(hass: Any) -> bool:
 
 
 def _options_schema() -> vol.Schema:
+    # Connection glue only. Product knobs stay off this form.
     return vol.Schema(
         {
             vol.Optional(CONF_MODE, default=MODE_LOCAL): selector.SelectSelector(

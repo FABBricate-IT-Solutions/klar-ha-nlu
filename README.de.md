@@ -35,7 +35,7 @@ Jede kompilierte Assist-Locale ist erstklassig. Deutsch und Englisch sind handge
 - Mehrere Klauseln (`Wohnzimmer und Küche`, `mach das Licht aus und die Heizung auf 21`)
 - Rückfragen, wenn ein Gerät nicht eindeutig ist
 - Sitzung: „mach sie aus“ bezieht sich auf das letzte Ziel
-- Persönlichkeiten in Home Assistant (Butler, Grantig, Pirat, …) — Assist, Sprechformel und optionale LLM-Umformulierung folgen derselben Auswahl
+- Persönlichkeiten in der Klar-Operator-UI (Butler, Grantig, Pirat, …) — Assist, Sprechformel und optionale LLM-Umformulierung folgen derselben Auswahl
 - Optionaler LLM-Fallback in Home Assistant für Smalltalk, sobald Klar keinen Hausbefehl sieht
 - Optionale LLM-Verfeinerung fertiger NLU-Antworten (standardmäßig aus; Gerätesteuerung bleibt bei Klar)
 
@@ -65,7 +65,7 @@ Nur **einen** Engine-Host. App und mitgelieferte Engine nicht gleichzeitig.
 4. [![Open your Home Assistant instance and start setting up a new integration.](https://my.home-assistant.io/badges/config_flow_start.svg)](https://my.home-assistant.io/redirect/config_flow_start/?domain=klar_nlu) — mit laufender App **Klar-NLU-App oder Docker verwenden**; ohne App **Mitgelieferte Engine starten (nur HACS)**
 5. Geräte freigeben, mit denen ihr sprechen wollt (Einstellungen → Sprachassistenten → Freigeben)
 6. Assist-Pipeline: Conversation-Engine = **Klar NLU**
-7. Optional in den Optionen einen Conversation-Agent für Smalltalk wählen. Dort auch: Persönlichkeit, und **NLU-Antworten vom LLM verfeinern**, wenn der Agent Bestätigungen umformulieren soll
+7. Persönlichkeit, LLM und Verfeinerung liegen in der Klar-NLU-App / den Operator-Einstellungen — nicht im Home-Assistant-Optionsformular
 
 Schritt für Schritt mit Beispielsätzen: [docs/getting-started.md](docs/getting-started.md). Ausführlich: [docs/home-assistant.md](docs/home-assistant.md).
 
@@ -73,12 +73,12 @@ Release Candidates: Konfigurieren → **Release-Kanal** → Staging. Das zeigt a
 
 ### Docker
 
-Image-Tag auf die Engine-CalVer pinnen (wie `Cargo.toml` / das GitHub-Release). Aktueller Stand: **2026.8.30**.
+Image-Tag auf die Engine-CalVer pinnen (wie `Cargo.toml` / das GitHub-Release). Aktueller Stand: **2026.9.5**.
 
 ```bash
 docker run --rm --network host \
   -v /pfad/zur/homeassistant/config:/config:ro \
-  ghcr.io/fabbricate-it-solutions/klar-nlu:2026.8.30
+  ghcr.io/fabbricate-it-solutions/klar-nlu:2026.9.5
 ```
 
 Integrations-URL: `http://127.0.0.1:10520`. Es gibt auch Images pro Arch (`klar-nlu-amd64`, `klar-nlu-aarch64`). RC-Images: Tag `staging`.

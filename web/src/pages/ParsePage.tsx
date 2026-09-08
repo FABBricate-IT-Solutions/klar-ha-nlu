@@ -47,28 +47,30 @@ function intentNames(result: ParseResult | null): string[] {
   return result?.plan?.steps.map((step) => step.intent.name).filter(Boolean) ?? [];
 }
 
-export function armedPipeline(settings: Settings): string[] {
+export function armedPipeline(settings: Settings, t: Messages): string[] {
   const chips: string[] = [];
   if (settings.personality && settings.personality !== "default") chips.push(settings.personality);
-  if (settings.mode === "context_only") chips.push("context only");
-  if (settings.nlu_rag) chips.push("NLU-RAG");
-  if (settings.semantic_adapters) chips.push("semantic");
-  if (settings.confirm_risky_actions === false) chips.push("no confirm");
-  if (on(settings, "refine_speech")) chips.push("LLM refine");
-  if (on(settings, "calendar_llm")) chips.push("calendar LLM");
-  if (on(settings, "quiet_ack")) chips.push("quiet ack");
-  if (on(settings, "allow_llm_tools")) chips.push("LLM tools");
+  if (settings.mode === "context_only") chips.push(t.labChipContextOnly);
+  if (settings.nlu_rag) chips.push(t.labChipNluRag);
+  if (settings.semantic_adapters) chips.push(t.labChipSemantic);
+  if (settings.confirm_risky_actions === false) chips.push(t.labChipNoConfirm);
+  if (on(settings, "refine_speech")) chips.push(t.labChipLlmRefine);
+  if (on(settings, "calendar_llm")) chips.push(t.labChipCalendarLlm);
+  if (on(settings, "quiet_ack")) chips.push(t.labChipQuietAck);
+  if (on(settings, "allow_llm_tools")) chips.push(t.labChipLlmTools);
   return chips;
 }
 
-export function labDecisionLabel(result: ParseResult | null): string {
+export function labDecisionLabel(result: ParseResult | null, t: Messages): string {
   if (!result) return "…";
   const band = result.decision.type;
   const names = intentNames(result);
   const hit = result.policy_trace?.hit || "";
-  if (band === "execute") return names.join(" · ") || "Klar execute";
-  if (result.briefing) return "briefing";
-  if (hit === "llm" || hit === "template" || hit === "script") return hit;
+  if (band === "execute") return names.join(" · ") || t.labDecisionExecute;
+  if (result.briefing) return t.labDecisionBriefing;
+  if (hit === "llm") return t.effectLlm;
+  if (hit === "template") return t.effectTemplate;
+  if (hit === "script") return t.effectScript;
   return band || "…";
 }
 
@@ -106,40 +108,41 @@ export function labRefineEligible(result: ParseResult | null): boolean {
 export function labPath(
   result: ParseResult | null,
   settings: Settings,
+  t: Messages,
   parseLanguage?: string,
 ): string[] {
-  const parse = parseLanguage ? `Klar parse · ${parseLanguage}` : "Klar parse";
+  const parse = parseLanguage ? `${t.labParse} · ${parseLanguage}` : t.labParse;
   if (!result) return [parse, "…"];
   const steps = [parse];
   const band = result.decision.type;
   const names = intentNames(result);
   const hit = result.policy_trace?.hit || "";
   const chatLike = labChatLike(result);
-  if (settings.nlu_rag && (band === "chat" || band === "reject")) steps.push("NLU-RAG");
-  if (settings.semantic_adapters && band === "reject") steps.push("semantic");
-  if (settings.mode === "context_only") steps.push("context only");
-  steps.push(labDecisionLabel(result));
+  if (settings.nlu_rag && (band === "chat" || band === "reject")) steps.push(t.labChipNluRag);
+  if (settings.semantic_adapters && band === "reject") steps.push(t.labChipSemantic);
+  if (settings.mode === "context_only") steps.push(t.labChipContextOnly);
+  steps.push(labDecisionLabel(result, t));
   const calendar =
     on(settings, "calendar_llm")
     && band === "execute"
     && names.length > 0
     && names.every((name) => name === "KlarGetCalendarEvents");
   const quiet = on(settings, "quiet_ack") && quietAckLikely(result, names);
-  if (chatLike) steps.push("LLM chat");
-  if (calendar) steps.push("calendar LLM");
+  if (chatLike) steps.push(t.labChipLlmChat);
+  if (calendar) steps.push(t.labChipCalendarLlm);
   if (
     !quiet
     && on(settings, "refine_speech")
     && !SKIP_REFINE.has(band)
     && !chatLike
   ) {
-    steps.push("LLM refine");
+    steps.push(t.labChipLlmRefine);
   }
-  if (quiet) steps.push("quiet ack");
+  if (quiet) steps.push(t.labChipQuietAck);
   if (on(settings, "allow_llm_tools") && (hit === "llm" || (band === "chat" && !result.speech))) {
-    steps.push("LLM tools");
+    steps.push(t.labChipLlmTools);
   }
-  if (settings.confirm_risky_actions && band === "confirm") steps.push("confirm risky");
+  if (settings.confirm_risky_actions && band === "confirm") steps.push(t.labChipConfirmRisky);
   return steps;
 }
 
@@ -173,7 +176,7 @@ export function ParsePage({
   const roomOptions = rooms.map((room) => ({ value: room.area_id, label: room.name }));
   const intentOptions = (knownIntents.length ? knownIntents : [teachIntent]).map((name) => ({ value: name, label: name }));
   const band = result?.decision.type;
-  const armed = armedPipeline(settings);
+  const armed = armedPipeline(settings, t);
   const banner = bannerText(error, result);
 
   useEffect(() => {
@@ -295,7 +298,7 @@ export function ParsePage({
           <PolicyPath t={t} trace={result?.policy_trace} />
         </div>
         {armed.length > 0 && (
-          <div className="flow lab-pipeline-armed" aria-label="pipeline">
+          <div className="flow lab-pipeline-armed" aria-label={t.labPipeline}>
             {armed.map((chip) => <span className="chip" key={chip}>{chip}</span>)}
           </div>
         )}

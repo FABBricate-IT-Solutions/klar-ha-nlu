@@ -1,10 +1,4 @@
-"""Emit compiled Klar language packs from compact lexicons.
-
-de/en live in src/lang/packs/{de,en}/ like every other locale. They are
-hand-written and must not be overwritten here. When you add a LanguagePack
-field, update packs/de/pack.rs, packs/en/pack.rs, this template, and
-scripts/check_lang_packs.py (shared field checklist).
-"""
+"""Emit compiled Klar language packs. Never overwrite handwritten de/en."""
 
 from __future__ import annotations
 
@@ -26,31 +20,23 @@ def rust_str(value: str) -> str:
     return '"' + value.replace("\\", "\\\\").replace('"', '\\"') + '"'
 
 
-def rust_list(values: list[str], indent: str = "        ") -> str:
-    items = unique(values)
+def rust_slice(values: list[str], indent: str = "        ", fold: bool = True, width: int = 80) -> str:
+    items = unique(values) if fold else list(values)
     if not items:
         return "&[]"
     rendered = ", ".join(rust_str(item) for item in items)
-    if len(rendered) < 80:
+    if len(rendered) < width:
         return f"&[{rendered}]"
     inner = ",\n".join(f"{indent}    {rust_str(item)}" for item in items)
     return f"&[\n{inner},\n{indent}]"
 
 
-def rust_str_slice(values: list[str], indent: str = "        ") -> str:
-    if not values:
-        return "&[]"
-    rendered = ", ".join(rust_str(item) for item in values)
-    if len(rendered) < 72:
-        return f"&[{rendered}]"
-    inner = ",\n".join(f"{indent}    {rust_str(item)}" for item in values)
-    return f"&[\n{inner},\n{indent}]"
-
+rust_list = rust_slice
 
 def rust_personality(pairs: list[tuple[str, list[str]]], indent: str = "    ") -> str:
     if not pairs:
         return "&[]"
-    inner = ",\n".join(f"{indent}    ({rust_str(key)}, {rust_str_slice(variants, indent + '    ')})" for key, variants in pairs)
+    inner = ",\n".join(f"{indent}    ({rust_str(key)}, {rust_slice(variants, indent + '    ', fold=False, width=72)})" for key, variants in pairs)
     return f"&[\n{inner},\n{indent}]"
 
 
@@ -81,17 +67,24 @@ def unique(values: list[str]) -> list[str]:
     return sorted(out)
 
 
-def write_pack(lang: dict) -> None:
-    code = lang["code"]
-    if code in HANDWRITTEN:
-        raise SystemExit(f"refusing to overwrite hand-written pack {code}")
-    mod = lang["mod"]
-    dest = PACKS / mod
+def pack_dir(lang: dict) -> Path:
+    if lang["code"] in HANDWRITTEN:
+        raise SystemExit(f"refusing to overwrite hand-written pack {lang['code']}")
+    dest = PACKS / lang["mod"]
     dest.mkdir(parents=True, exist_ok=True)
+    return dest
+
+
+def write_pack(lang: dict) -> None:
+    dest = pack_dir(lang)
     (dest / "mod.rs").write_text(f"{RUST_BANNER}mod pack;\nmod speech;\nmod verbs;\n\npub use pack::PACK;\n", encoding="utf-8")
     (dest / "verbs.rs").write_text(verbs_rs(lang), encoding="utf-8")
-    (dest / "speech.rs").write_text(speech_rs(lang), encoding="utf-8")
+    write_speech(lang)
     (dest / "pack.rs").write_text(pack_rs(lang), encoding="utf-8")
+
+
+def write_speech(lang: dict) -> None:
+    (pack_dir(lang) / "speech.rs").write_text(speech_rs(lang), encoding="utf-8")
 
 
 def verbs_rs(lang: dict) -> str:

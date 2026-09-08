@@ -23,33 +23,17 @@
     "step": {
       "init": {
         "title": "Klar NLU",
-        "description": "Kişilik burada saklanır ve Klar uygulaması yeniden kurulunca da kalır.",
+        "description": "Ses, Assist dilleri ve LLM, Klar operatör arayüzünde (Ayarlar). Bu form yalnızca motoru bağlar: URL, jeton ve kanal.",
         "data": {
           "mode": "Motor",
-          "personality": "Kişilik",
-          "languages": "Diller",
-          "allow_llm_tools": "Allow Home Assistant Assist tools on engine chat",
-          "refine_speech": "LLM NLU yanıtlarını yeniden yazsın",
-          "refine_prompt": "İyileştirme istemi",
           "url": "Klar API URL’si",
           "token": "Yazma jetonu",
           "assist_filter": "Yalnız Assist’e açık varlıkları denetle",
-          "nlu_rag": "NLU-RAG (isteğe bağlı)",
-          "quiet_ack": "Kısa onay (zil)",
-          "calendar_llm": "Takvim sorgularını LLM'ye gönder",
           "channel": "Yayın kanalı"
         },
         "data_description": {
-          "personality": "Klar uygulamasında değil, bu entegrasyonda.",
-          "refine_speech": "Klar cihazları denetlemeye devam eder. Yedek LLM yanıtı yeniden yazar.",
-          "refine_prompt": "Sesin sistem istemi. Cihaz denetimi yok, yeni olgu yok, aynı dil.",
           "token": "Klar uygulamasındakiyle aynı jeton.",
           "assist_filter": "Açık: yalnızca Assist’in gördüğü. Kapalı: gizli varlıklar da.",
-          "nlu_rag": "Varsayılan kapalı. Sohbette yedek modele yalnızca eşleşen dilim gider.",
-          "quiet_ack": "Basit ışık aç/kapa konuşulmaz, uydu üzerinde kısa ses.",
-          "calendar_llm": "Varsayılan kapalı. Açık: Klar takvimi okur, yedek LLM etkinlikleri söyler. Kapalı: Klar listeyi söyler. Oluşturma, silme ve taşıma Klar'da kalır.",
-          "allow_llm_tools": "Off by default. On: after Klar parses, the engine chat model may call Home Assistant Assist tools (names come from Core, already prefixed). Off: conversation only.",
-          "languages": "Varsayılan Home Assistant sistem dilidir.",
           "channel": "İstediğiniz zaman. Staging, Klar NLU (Staging)’i gösterir."
         }
       }

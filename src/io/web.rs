@@ -48,7 +48,7 @@ pub fn router(state: AppState) -> Router {
         .layer(DefaultBodyLimit::max(16 * 1024))
         .merge(crate::io::backup::routes())
         .merge(crate::io::llm::routes())
-        .merge(crate::io::speech::routes())
+        .merge(crate::io::speech::routes().layer(DefaultBodyLimit::max(16 * 1024)))
         .fallback_service(ServeDir::new(ui_dir()))
         .with_state(state)
 }

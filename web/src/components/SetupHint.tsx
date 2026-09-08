@@ -1,25 +1,15 @@
 import type { Messages } from "../i18n";
 
-function isDe(t: Messages): boolean {
-  return t.replay === "Nochmal";
-}
-
 export function sentencesEmpty(t: Messages): string {
-  return isDe(t)
-    ? "Ein Satz auf einen bekannten Intent. Nicht für jedes Licht."
-    : "One sentence onto a known intent. Not one phrase per light.";
+  return t.sentencesEmpty;
 }
 
 export function policiesEmpty(t: Messages): string {
-  return isDe(t)
-    ? "Erste zutreffende Regel gewinnt. Gerät/Raum/Etage wählen, nicht tippen."
-    : "First matching rule wins. Pick a device, room, or floor — do not type ids.";
+  return t.policiesEmpty;
 }
 
 export function setupAgainWhere(t: Messages): string {
-  return isDe(t)
-    ? "Setup erneut liegt unter Einstellungen."
-    : "Replay setup is in Settings.";
+  return t.setupAgainWhere;
 }
 
 export function SetupHint({ t }: { t: Messages }) {

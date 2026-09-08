@@ -1,4 +1,8 @@
-"""Assemble flattened HA UI strings from per-locale field maps."""
+"""Assemble flattened HA UI strings from per-locale field maps.
+
+HA Configure options are connection glue only (mode, url, token, assist_filter,
+channel). Personality, LLM, and refine live in the Klar operator Settings.
+"""
 
 from __future__ import annotations
 
@@ -52,33 +56,12 @@ def expand(fields: dict[str, str]) -> dict[str, str]:
         "options.step.init.title": f["title"],
         "options.step.init.description": f["opt_desc"],
         "options.step.init.data.mode": f["mode"],
-        "options.step.init.data.personality": f["personality"],
-        "options.step.init.data.languages": f["languages"],
-        "options.step.init.data.allow_llm_tools": f.get(
-            "allow_llm_tools", "Allow Home Assistant Assist tools on engine chat"
-        ),
-        "options.step.init.data.refine_speech": f["refine_speech"],
-        "options.step.init.data.refine_prompt": f["refine_prompt"],
         "options.step.init.data.url": f["url"],
         "options.step.init.data.token": f["token"],
         "options.step.init.data.assist_filter": f["assist_filter"],
-        "options.step.init.data.nlu_rag": f["nlu_rag"],
-        "options.step.init.data.quiet_ack": f["quiet_ack"],
-        "options.step.init.data.calendar_llm": f["calendar_llm"],
         "options.step.init.data.channel": f["channel"],
-        "options.step.init.data_description.personality": f["help_personality"],
-        "options.step.init.data_description.refine_speech": f["help_refine_speech"],
-        "options.step.init.data_description.refine_prompt": f["help_refine_prompt"],
         "options.step.init.data_description.token": f["help_token"],
         "options.step.init.data_description.assist_filter": f["help_assist"],
-        "options.step.init.data_description.nlu_rag": f["help_rag"],
-        "options.step.init.data_description.quiet_ack": f["help_quiet"],
-        "options.step.init.data_description.calendar_llm": f["help_calendar_llm"],
-        "options.step.init.data_description.allow_llm_tools": f.get(
-            "help_allow_llm_tools",
-            "Off by default. On: after Klar parses, the engine chat model may call Home Assistant Assist tools (names come from Core, already prefixed). Off: conversation only.",
-        ),
-        "options.step.init.data_description.languages": f["help_languages"],
         "options.step.init.data_description.channel": f["help_channel"],
         "options.error.invalid_url": f["invalid"],
         "selector.engine_mode.options.local": f["local"],

@@ -300,7 +300,7 @@ export function App() {
     <TooltipProvider>
     <div className="app-shell" data-theme={theme} data-trainer={trainerOpen ? "open" : "closed"}>
       <Sheet open={navOpen} onOpenChange={setNavOpen}>
-        <SheetContent side="left" id="klar-nav" className="bg-background text-foreground w-64 p-0">
+        <SheetContent side={isRtl(locale) ? "right" : "left"} id="klar-nav" closeLabel={t.close} className="bg-background text-foreground w-64 p-0">
           <SheetHeader>
             <SheetTitle className="px-4 pt-2"><KlarBrand /></SheetTitle>
           </SheetHeader>

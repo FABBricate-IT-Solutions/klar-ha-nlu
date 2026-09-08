@@ -77,6 +77,7 @@ pub(super) fn action_name(action: Action) -> &'static str {
         Action::Unlock => "unlock",
         Action::TimerStart => "timer_start",
         Action::TimerAdd => "timer_add",
+        Action::TimerRemove => "timer_remove",
         Action::TimerCancel => "timer_cancel",
         Action::TimerPause => "timer_pause",
         Action::ListAdd => "list_add",

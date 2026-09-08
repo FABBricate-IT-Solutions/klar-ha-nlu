@@ -12,8 +12,41 @@ pub(super) fn sort_hits(hits: &mut [(f64, EntityRec)], tokens: &[String], home: 
         b.0.partial_cmp(&a.0)
             .unwrap_or(std::cmp::Ordering::Equal)
             .then_with(|| overlap(tokens, &b.1, home).cmp(&overlap(tokens, &a.1, home)))
+            .then_with(|| longest_label_hit(tokens, &b.1, home).cmp(&longest_label_hit(tokens, &a.1, home)))
+            .then_with(|| light_beats_script(&b.1, &a.1))
             .then_with(|| a.1.entity_id.cmp(&b.1.entity_id))
     });
+}
+
+fn longest_label_hit(tokens: &[String], entity: &EntityRec, home: &HomeGraph) -> usize {
+    usable_labels(entity, home)
+        .into_iter()
+        .map(|label| {
+            let folded = fold_umlaut(&label);
+            if super::token_hit(tokens, &folded) {
+                compact(&folded).chars().count()
+            } else {
+                folded
+                    .split([' ', '_'])
+                    .filter(|part| !part.is_empty() && tokens.iter().any(|token| token_eq(token, part)))
+                    .map(|part| part.chars().count())
+                    .max()
+                    .unwrap_or(0)
+            }
+        })
+        .max()
+        .unwrap_or(0)
+}
+
+fn light_beats_script(left: &EntityRec, right: &EntityRec) -> std::cmp::Ordering {
+    fn rank(entity: &EntityRec) -> u8 {
+        match entity.domain.as_str() {
+            "light" => 2,
+            "script" | "scene" => 0,
+            _ => 1,
+        }
+    }
+    rank(left).cmp(&rank(right))
 }
 
 pub(super) fn overlap(tokens: &[String], entity: &EntityRec, home: &HomeGraph) -> usize {

@@ -23,33 +23,17 @@
     "step": {
       "init": {
         "title": "Klar NLU",
-        "description": "人格儲存在此整合，重裝 Klar 應用後仍然有效。",
+        "description": "語音、Assist 語言和 LLM 在 Klar 操作介面（設定）中。此表格只連接引擎：URL、權杖和頻道。",
         "data": {
           "mode": "引擎",
-          "personality": "人格",
-          "languages": "語言",
-          "allow_llm_tools": "Allow Home Assistant Assist tools on engine chat",
-          "refine_speech": "用 LLM 潤飾 NLU 回覆",
-          "refine_prompt": "潤飾提示",
           "url": "Klar API 網址",
           "token": "寫入權杖",
           "assist_filter": "只控制已向 Assist 公開嘅實體",
-          "nlu_rag": "NLU-RAG（可選）",
-          "quiet_ack": "簡短確認（提示音）",
-          "calendar_llm": "將日曆查詢交俾大模型",
           "channel": "發行通道"
         },
         "data_description": {
-          "personality": "存在此整合，唔喺 Klar 應用。",
-          "refine_speech": "Klar 仍然控制裝置。後備 LLM 會改寫回覆。",
-          "refine_prompt": "語音系統提示。唔控制裝置、唔編造事實、用返同一語言。",
           "token": "同 Klar 應用一樣嘅權杖。",
           "assist_filter": "開：只限 Assist 見到嘅實體。關：包括隱藏實體。",
-          "nlu_rag": "預設關閉。傾偈時只將已配對片段交俾後備模型。",
-          "quiet_ack": "簡單開關燈唔講嘢，只喺衛星播短提示音。",
-          "calendar_llm": "預設關閉。開：Klar 讀日曆，後備大模型講行程。關：Klar 自己講清單。新增、刪除同搬動仍然由 Klar 處理。",
-          "allow_llm_tools": "Off by default. On: after Klar parses, the engine chat model may call Home Assistant Assist tools (names come from Core, already prefixed). Off: conversation only.",
-          "languages": "預設跟 Home Assistant 系統語言。",
           "channel": "隨時可改。預發佈指向 Klar NLU（Staging）。"
         }
       }

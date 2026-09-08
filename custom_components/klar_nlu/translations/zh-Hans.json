@@ -23,33 +23,17 @@
     "step": {
       "init": {
         "title": "Klar NLU",
-        "description": "人格保存在此集成中，重装 Klar 应用后仍然有效。",
+        "description": "语音、Assist 语言和 LLM 在 Klar 操作界面（设置）中。此表单只连接引擎：URL、令牌和通道。",
         "data": {
           "mode": "引擎",
-          "personality": "人格",
-          "languages": "语言",
-          "allow_llm_tools": "Allow Home Assistant Assist tools on engine chat",
-          "refine_speech": "用 LLM 润色 NLU 回复",
-          "refine_prompt": "润色提示词",
           "url": "Klar API 地址",
           "token": "写入令牌",
           "assist_filter": "仅控制已向 Assist 公开的实体",
-          "nlu_rag": "NLU-RAG（可选）",
-          "quiet_ack": "短确认（提示音）",
-          "calendar_llm": "把日历查询发给大模型",
           "channel": "发布通道"
         },
         "data_description": {
-          "personality": "保存在此集成中，不在 Klar 应用里。Assist 与 LLM 语音遵循该提示词。",
-          "refine_speech": "Klar 仍控制设备。后备 LLM 会改写已完成的回复。",
-          "refine_prompt": "语音系统提示。不控制设备、不编造事实、保持同一语言。",
           "token": "与 Klar 应用相同的令牌。",
           "assist_filter": "开：仅 Assist 可见实体。关：也包括隐藏实体。",
-          "nlu_rag": "默认关闭。闲聊时只把已匹配片段送给后备模型。",
-          "quiet_ack": "简单开关灯时不说话，只在卫星上播放短提示音。",
-          "calendar_llm": "默认关闭。开：Klar 读取日历，由后备大模型口述日程。关：Klar 自己念列表。创建、删除和移动仍由 Klar 处理。",
-          "allow_llm_tools": "Off by default. On: after Klar parses, the engine chat model may call Home Assistant Assist tools (names come from Core, already prefixed). Off: conversation only.",
-          "languages": "默认跟随 Home Assistant 系统语言。",
           "channel": "随时可改。预发布指向 Klar NLU（Staging）。"
         }
       }

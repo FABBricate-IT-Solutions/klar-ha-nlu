@@ -234,7 +234,7 @@ pub(crate) fn named_scene_or_script(tokens: &[String], home: &HomeGraph) -> Opti
         return None;
     }
     let mentioned = tokens.iter().any(|t| catalog().scene_nouns().contains(t.as_str()) || catalog().script_words().contains(t.as_str()));
-    if !mentioned && catalog().any(tokens, catalog().light_nouns()) {
+    if !mentioned && (catalog().any(tokens, catalog().light_nouns()) || crate::parse::infer::mentions_fixture_noun(tokens)) {
         return None;
     }
     let mut hits: Vec<String> = home
@@ -244,30 +244,39 @@ pub(crate) fn named_scene_or_script(tokens: &[String], home: &HomeGraph) -> Opti
         .filter(|e| matches!(e.domain.as_str(), "scene" | "script"))
         .filter(|e| {
             let tail = e.entity_id.rsplit('.').next().unwrap_or("");
-            let compact_tail = compact(tail);
-            let compact_tokens: String = tokens.iter().map(|token| compact(token)).collect();
             tokens.iter().any(|token| token == tail || scene_token(token) == tail)
-                || (compact_tail.len() > 3 && compact_tokens.contains(&compact_tail))
+                || scene_label_whole(tokens, tail)
                 || scene_name_hit(tokens, &e.name, home)
-                || e.aliases.iter().any(|n| {
-                    let compact_alias = compact(n);
-                    (compact_alias.len() > 3 && compact_tokens.contains(&compact_alias)) || scene_name_hit(tokens, n, home)
-                })
+                || e.aliases.iter().any(|n| scene_label_whole(tokens, n) || scene_name_hit(tokens, n, home))
         })
         .map(|e| e.entity_id.clone())
         .collect();
     if hits.len() > 1 {
-        let blob: String = tokens.iter().map(|token| compact(token)).collect();
-        hits.retain(|id| scene_compact_hit(id, &blob, home));
+        hits.retain(|id| scene_compact_hit(id, tokens, home));
     }
     let named = mentioned || catalog().any(tokens, catalog().scene_named());
-    (hits.len() == 1 && (named || tokens.iter().any(|t| t.len() > 5))).then_some(hits.pop()).flatten()
+    let strong = hits.iter().any(|id| scene_compact_hit(id, tokens, home));
+    (hits.len() == 1 && (named || strong || tokens.iter().any(|t| t.len() > 5))).then_some(hits.pop()).flatten()
 }
 
-fn scene_compact_hit(id: &str, blob: &str, home: &HomeGraph) -> bool {
-    let tail = compact(id.rsplit('.').next().unwrap_or(""));
-    (tail.len() > 3 && blob.contains(&tail))
-        || home.entities.iter().any(|e| e.entity_id == id && e.aliases.iter().any(|a| compact(a).len() > 3 && blob.contains(&compact(a))))
+fn scene_label_whole(tokens: &[String], label: &str) -> bool {
+    let label = compact(label);
+    if label.len() <= 3 {
+        return false;
+    }
+    let parts: Vec<String> = tokens.iter().map(|token| compact(token)).filter(|token| !token.is_empty()).collect();
+    parts.iter().any(|token| token == &label)
+        || (2..=parts.len()).any(|width| parts.windows(width).any(|window| window.join("") == label))
+}
+
+fn scene_compact_hit(id: &str, tokens: &[String], home: &HomeGraph) -> bool {
+    let tail = id.rsplit('.').next().unwrap_or("");
+    scene_label_whole(tokens, tail)
+        || home.entities.iter().any(|entity| {
+            entity.entity_id == id
+                && (scene_name_hit(tokens, &entity.name, home)
+                    || entity.aliases.iter().any(|alias| scene_label_whole(tokens, alias) || scene_name_hit(tokens, alias, home)))
+        })
 }
 
 fn scene_token(token: &str) -> String {
@@ -352,7 +361,10 @@ pub(crate) fn light_aim(home: &HomeGraph, area: &str, tokens: &[String]) -> Ligh
         return LightAim::Unique(id);
     }
     let cat = catalog();
-    let singular = cat.any(tokens, cat.light_singular()) && !cat.any(tokens, cat.light_plural()) && !cat.any(tokens, cat.illuminate());
+    let singular = cat.any(tokens, cat.light_singular())
+        && !cat.any(tokens, cat.light_plural())
+        && !cat.any(tokens, cat.room_level())
+        && !cat.any(tokens, cat.illuminate());
     if singular && area_light_count(home, area) > 1 {
         return LightAim::Clarify;
     }

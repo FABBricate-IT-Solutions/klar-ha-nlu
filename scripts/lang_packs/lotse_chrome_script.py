@@ -2,10 +2,16 @@
 
 from __future__ import annotations
 
-from lang_packs.lotse_chrome import lotse
+import json
+from pathlib import Path
 
-# Long copy stays English so the file cannot be corrupted in transit.
+from lang_packs.lotse_chrome import lotse
+from lang_packs.lotse_chrome_chips import PACKS as CHIPS
+
+_SETTINGS = json.loads(Path(__file__).with_name("web_ui_settings_copy.json").read_text(encoding="utf-8"))
+
 # Short chrome uses native words via unicode escapes.
+# Trainer prompt chips are native UTF-8; they are operator-facing chips, not transit tokens.
 
 def _s(*codes: int) -> str:
     return "".join(chr(code) for code in codes)
@@ -75,3 +81,23 @@ PACKS: dict[str, dict[str, str]] = {
     "ne": _row("Tapai", "Lekhai", "Pathaunuhos", "Anumati", "Ek patak", "Asvikar", "Sodhnuhos", "Settings", "Upakaran", "Clear", "Lotse", "Lotse"),
     "sw": _row("Wewe", "Kuandika", "Tuma", "Ruhusu", "Mara moja", "Kataa", "Uliza tena", "Mipangilio", "Chombo", "Futa", "Lotse", "Lotse"),
 }
+
+for _code, _row_fields in PACKS.items():
+    _name = _SETTINGS[_code]["trainer"]
+    _row_fields["trainer"] = _name
+    _row_fields["trainerEmptyHint"] = _row_fields["trainerEmptyHint"].replace("Lotse", _name)
+    if _row_fields["trainerComposer"] == "Lotse":
+        _row_fields["trainerComposer"] = _name
+    elif _name not in _row_fields["trainerComposer"]:
+        _row_fields["trainerComposer"] = f"{_row_fields['trainerComposer']} {_name}".strip()
+    if _row_fields["trainerForLane"] == "Lotse":
+        _row_fields["trainerForLane"] = _name
+
+_missing_chips = sorted(set(PACKS) - set(CHIPS))
+if _missing_chips:
+    raise SystemExit(f"lotse chrome chips missing locales: {_missing_chips}")
+_extra_chips = sorted(set(CHIPS) - set(PACKS))
+if _extra_chips:
+    raise SystemExit(f"lotse chrome chips extra locales: {_extra_chips}")
+for _code, _fields in CHIPS.items():
+    PACKS[_code].update(_fields)

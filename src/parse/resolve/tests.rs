@@ -86,3 +86,20 @@ fn french_laundry_device_hints_switch() {
     let _bind = bind(&["fr".into()]);
     assert_eq!(domain_hint(&["allumer".into(), "appareil".into(), "buanderie".into()]), Some("switch"));
 }
+
+#[test]
+fn generic_room_light_does_not_clarify_ceiling_versus_lamp() {
+    let _bind = bind(&["fr".into()]);
+    let home = HomeGraph {
+        areas: vec![AreaRec { area_id: "living".into(), name: "Salon".into(), aliases: vec!["salon".into()], floor_id: None }],
+        entities: vec![
+            lamp("light.living_ceiling", "salon plafond", "living"),
+            lamp("light.living_lamp", "salon lampe", "living"),
+        ],
+        ..HomeGraph::default()
+    };
+    let hit = resolve(&["allume".into(), "lumiere".into(), "salon".into()], &home, Some("light"));
+    assert!(hit.ambiguous.is_empty(), "{hit:?}");
+    assert!(hit.entities.is_empty(), "{hit:?}");
+    assert_eq!(hit.areas, ["living"]);
+}

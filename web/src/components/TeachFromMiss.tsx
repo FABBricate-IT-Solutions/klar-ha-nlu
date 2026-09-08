@@ -5,12 +5,8 @@ const MISS_BANDS = new Set(["chat", "reject", "clarify"]);
 export const TEACH_HEARD_KEY = "klar_teach_heard";
 export const TEACH_INTENT_KEY = "klar_teach_intent";
 
-function isDe(t: Messages): boolean {
-  return t.replay === "Nochmal";
-}
-
 export function rememberAsPhrase(t: Messages): string {
-  return isDe(t) ? "Als Phrase merken" : "Remember as phrase";
+  return t.rememberAsPhrase;
 }
 
 export function isLowConfidence(value: number): boolean {

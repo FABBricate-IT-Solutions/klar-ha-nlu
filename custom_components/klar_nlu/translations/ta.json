@@ -23,33 +23,17 @@
     "step": {
       "init": {
         "title": "Klar NLU",
-        "description": "ஆளுமை இங்கே சேமிக்கப்பட்டு Klar செயலியை மீண்டும் நிறுவிய பிறகும் இருக்கும்.",
+        "description": "குரல், Assist மொழிகள் மற்றும் LLM Klar இயக்குநர் UI (அமைப்புகள்) இல் உள்ளன. இந்த படிவம் இயந்திரத்தை மட்டும் இணைக்கிறது: URL, டோக்கன் மற்றும் சேனல்.",
         "data": {
           "mode": "இயந்திரம்",
-          "personality": "ஆளுமை",
-          "languages": "மொழிகள்",
-          "allow_llm_tools": "Allow Home Assistant Assist tools on engine chat",
-          "refine_speech": "LLM NLU பதில்களை மீண்டும் எழுதட்டும்",
-          "refine_prompt": "மேம்பாட்டு அறிவுறுத்தல்",
           "url": "Klar API URL",
           "token": "எழுதும் டோக்கன்",
           "assist_filter": "Assist காணும் அலகுகளை மட்டும் கட்டுப்படுத்து",
-          "nlu_rag": "NLU-RAG (விருப்பம்)",
-          "quiet_ack": "குறுகிய உறுதி (மணி)",
-          "calendar_llm": "நாட்காட்டி கேள்விகளை LLM-க்கு அனுப்பு",
           "channel": "வெளியீட்டு சேனல்"
         },
         "data_description": {
-          "personality": "இந்த ஒருங்கிணைப்பில் உள்ளது, Klar செயலியில் இல்லை.",
-          "refine_speech": "Klar சாதனங்களைக் கட்டுப்படுத்துகிறது. காப்பு LLM பதிலை மீண்டும் எழுதுகிறது.",
-          "refine_prompt": "குரலின் அமைப்பு அறிவுறுத்தல். சாதனக் கட்டுப்பாடு இல்லை, புதிய உண்மை இல்லை, அதே மொழி.",
           "token": "Klar செயலியில் உள்ள அதே டோக்கன்.",
           "assist_filter": "ஆன்: Assist காண்பது மட்டும். ஆஃப்: மறைந்த அலகுகளும்.",
-          "nlu_rag": "இயல்பு ஆஃப். அரட்டையில் பொருந்திய பகுதி மட்டும் காப்பு மாதிரிக்குச் செல்லும்.",
-          "quiet_ack": "எளிய விளக்கு ஆன்/ஆஃப்பில் வாக்கியம் இல்லை, செயற்கைக்கோளில் குறுகிய ஒலி.",
-          "calendar_llm": "இயல்பு ஆஃப். ஆன்: க்ளாா் நாட்காட்டியைப் படிக்கும், காப்பு LLM நிகழ்வைச் சொல்லும். ஆஃப்: க்ளாா் பட்டியலைத் தானே சொல்லும். உருவாக்குதல், நீக்குதல், நகர்த்துதல் க்ளாரிலேயே இருக்கும்.",
-          "allow_llm_tools": "Off by default. On: after Klar parses, the engine chat model may call Home Assistant Assist tools (names come from Core, already prefixed). Off: conversation only.",
-          "languages": "இயல்பு Home Assistant கணினி மொழி.",
           "channel": "எப்போது வேண்டுமானாலும். Staging Klar NLU (Staging) ஐச் சுட்டுகிறது."
         }
       }

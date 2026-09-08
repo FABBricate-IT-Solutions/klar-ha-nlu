@@ -76,3 +76,93 @@ fn timer_haengt_fremden_helper_nicht_an() {
     assert!(slots.iter().any(|(k, v)| *k == "minutes" && *v == "5"), "{slots:?}");
     assert!(!slots.iter().any(|(k, v)| *k == "entity_id" && *v == "timer.5min_warten"), "{slots:?}");
 }
+
+#[test]
+fn decrease_timer_is_not_increase() {
+    for (lang, sentence) in [
+        ("en", "decrease the timer by 5 minutes"),
+        ("en", "reduce the timer by 5 minutes"),
+        ("en", "subtract 5 minutes from the timer"),
+        ("de", "Timer verringern um 5 Minuten"),
+    ] {
+        let result = parse(sentence, &default_home(), &mut Session::new(), &[], &Settings::pinned(lang));
+        assert!(!result.clarify, "{sentence}: {result:?}");
+        assert_eq!(result.intents.len(), 1, "{sentence}: {result:?}");
+        assert_eq!(result.intents[0].name, "HassDecreaseTimer", "{sentence}: {result:?}");
+        assert_ne!(result.intents[0].name, "HassIncreaseTimer", "{sentence}: {result:?}");
+        assert!(result.intents[0].slot("minutes") == Some("5"), "{sentence}: {result:?}");
+    }
+}
+
+#[test]
+fn increase_timer_stays_increase() {
+    let result = parse("increase the timer by 5 minutes", &default_home(), &mut Session::new(), &[], &Settings::pinned("en"));
+    assert_eq!(result.intents[0].name, "HassIncreaseTimer", "{result:?}");
+}
+
+#[test]
+fn cancel_all_timers_cancels_each_named_timer() {
+    let mut home = default_home();
+    home.entities.extend([
+        EntityRec {
+            entity_id: "timer.oven".into(),
+            name: "Oven".into(),
+            domain: "timer".into(),
+            platform: None,
+            area: None,
+            aliases: vec!["oven".into()],
+            tags: Vec::new(),
+        },
+        EntityRec {
+            entity_id: "timer.laundry".into(),
+            name: "Laundry".into(),
+            domain: "timer".into(),
+            platform: None,
+            area: None,
+            aliases: vec!["laundry".into()],
+            tags: Vec::new(),
+        },
+    ]);
+    let result = parse("Cancel all timers", &home, &mut Session::new(), &[], &Settings::pinned("en"));
+    assert!(!result.clarify, "{result:?}");
+    let ids: Vec<_> = result.intents.iter().filter_map(|intent| intent.slot("entity_id")).collect();
+    assert!(result.intents.iter().all(|intent| intent.name == "HassCancelTimer"), "{result:?}");
+    assert!(ids.contains(&"timer.oven") && ids.contains(&"timer.laundry"), "{result:?}");
+}
+
+#[test]
+fn start_timer_without_duration_clarifies() {
+    for (lang, sentence) in [("en", "Start the timer"), ("de", "Stell einen Timer")] {
+        let result = parse(sentence, &default_home(), &mut Session::new(), &[], &Settings::pinned(lang));
+        assert!(result.clarify, "{sentence}: {result:?}");
+        assert!(result.intents.is_empty(), "{sentence}: {result:?}");
+    }
+}
+
+#[test]
+fn resume_named_timer_does_not_ask_duration() {
+    let mut home = default_home();
+    home.entities.push(EntityRec {
+        entity_id: "timer.oven".into(),
+        name: "Oven".into(),
+        domain: "timer".into(),
+        platform: None,
+        area: None,
+        aliases: vec!["oven".into(), "ofen".into()],
+        tags: Vec::new(),
+    });
+    for (lang, sentence) in [("en", "Resume the oven timer"), ("de", "Setze den Ofen-Timer fort")] {
+        let result = parse(sentence, &home, &mut Session::new(), &[], &Settings::pinned(lang));
+        assert!(!result.clarify, "{sentence}: {result:?}");
+        assert_eq!(result.intents.len(), 1, "{sentence}: {result:?}");
+        assert_eq!(result.intents[0].name, "HassStartTimer", "{sentence}: {result:?}");
+        assert_eq!(result.intents[0].slot("entity_id"), Some("timer.oven"), "{sentence}: {result:?}");
+        assert!(result.intents[0].slot("hours").is_none(), "{sentence}: {result:?}");
+        assert!(result.intents[0].slot("minutes").is_none(), "{sentence}: {result:?}");
+        assert!(result.intents[0].slot("seconds").is_none(), "{sentence}: {result:?}");
+    }
+    let restart = parse("Please restart the timer", &home, &mut Session::new(), &[], &Settings::pinned("en"));
+    assert!(!restart.clarify, "{restart:?}");
+    assert_eq!(restart.intents[0].name, "HassStartTimer", "{restart:?}");
+    assert!(restart.intents[0].slot("minutes").is_none(), "{restart:?}");
+}

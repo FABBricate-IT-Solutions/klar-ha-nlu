@@ -121,7 +121,7 @@ export function CustomPage({ t, locale, embedded }: { t: Messages; locale: Local
               value={entityId}
               options={withCurrent(entityOptions, entityId)}
               onChange={setEntityId}
-              placeholder="light.wohnzimmer"
+              placeholder="light.living_room"
             />
             <label>{t.slots}</label>
             <input value={summary} onChange={(ev) => setSummary(ev.target.value)} placeholder="summary" />

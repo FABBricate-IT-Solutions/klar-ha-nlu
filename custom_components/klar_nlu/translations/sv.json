@@ -23,33 +23,17 @@
     "step": {
       "init": {
         "title": "Klar NLU",
-        "description": "Personligheten sparas här och överlever ominstallation av Klar-appen.",
+        "description": "Röst, Assist-språk och LLM finns i Klars operatörsgränssnitt (Inställningar). Det här formuläret kopplar bara motorn: URL, token och kanal.",
         "data": {
           "mode": "Motor",
-          "personality": "Personlighet",
-          "languages": "Språk",
-          "allow_llm_tools": "Allow Home Assistant Assist tools on engine chat",
-          "refine_speech": "Låt LLM skriva om NLU-svar",
-          "refine_prompt": "Förfiningsprompt",
           "url": "Klar-API-URL",
           "token": "Skrivtoken",
           "assist_filter": "Styr bara enheter som Assist får se",
-          "nlu_rag": "NLU-RAG (valfritt)",
-          "quiet_ack": "Kort bekräftelse (pling)",
-          "calendar_llm": "Skicka kalenderfrågor till LLM:et",
           "channel": "Utgivningskanal"
         },
         "data_description": {
-          "personality": "Ligger i den här integrationen, inte i Klar-appen.",
-          "refine_speech": "Klar styr fortfarande enheterna. Reserv-LLM skriver om svaret.",
-          "refine_prompt": "Systemprompt för rösten. Ingen enhetsstyrning, inga nya fakta, samma språk.",
           "token": "Samma token som i Klar-appen.",
           "assist_filter": "På: bara det Assist får se. Av: även dolda enheter.",
-          "nlu_rag": "Av som standard. Vid chatt skickas bara det igenkända utsnittet till reservmodellen.",
-          "quiet_ack": "Vid enkel ljus- eller brytarkommando ingen mening, bara en kort ton.",
-          "calendar_llm": "Av som standard. På: Klar läser kalendern, reserv-LLM:et säger händelserna. Av: Klar säger listan själv. Skapa, ta bort och flytta stannar i Klar.",
-          "allow_llm_tools": "Off by default. On: after Klar parses, the engine chat model may call Home Assistant Assist tools (names come from Core, already prefixed). Off: conversation only.",
-          "languages": "Standard är Home Assistants systemspråk.",
           "channel": "När som helst. Staging pekar på Klar NLU (Staging)."
         }
       }

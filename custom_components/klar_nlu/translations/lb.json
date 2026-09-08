@@ -23,33 +23,17 @@
     "step": {
       "init": {
         "title": "Klar NLU",
-        "description": "D’Perséinlechkeet gëtt hei gespäichert a bleift no der Neiinstallatioun vun der Klar-App.",
+        "description": "Stëmm, Assist-Sproochen an d’LLM sinn an der Klar-Operator-UI (Astellungen). Dëse Formulaire verbënnt nëmmen d’Engine: URL, Token a Kanal.",
         "data": {
           "mode": "Engine",
-          "personality": "Perséinlechkeet",
-          "languages": "Sproochen",
-          "allow_llm_tools": "Allow Home Assistant Assist tools on engine chat",
-          "refine_speech": "Den LLM NLU-Äntwerten ëmformuléieren loossen",
-          "refine_prompt": "Verfeinerungsprompt",
           "url": "Klar API URL",
           "token": "Schreif-Token",
           "assist_filter": "Nëmmen Entitéiten steieren, déi Assist gesäit",
-          "nlu_rag": "NLU-RAG (optional)",
-          "quiet_ack": "Kuerz Bestätegung (Klack)",
-          "calendar_llm": "Kalennerfroen un d'LLM schécken",
           "channel": "Release-Kanal"
         },
         "data_description": {
-          "personality": "An dëser Integratioun, net an der Klar-App.",
-          "refine_speech": "Klar steiert weider Apparater. Den Ersatz-LLM schreift d’Äntwert ëm.",
-          "refine_prompt": "Systemprompt vun der Stëmm. Keng Apparatsteierung, keng nei Fakten, selwecht Sprooch.",
           "token": "Deeselwechten Token wéi an der Klar-App.",
           "assist_filter": "Un: nëmmen wat Assist gesäit. Aus: och verstoppt Entitéiten.",
-          "nlu_rag": "Standard aus. Am Chat geet nëmmen de passenden Ausschnëtt un d’Ersatzmodell.",
-          "quiet_ack": "Bei einfachem Luucht un/aus keng Saz, nëmme kuerze Toun um Satellit.",
-          "calendar_llm": "Standard aus. Un: Klar liest de Kalenner, d'Ersatz-LLM seet d'Terminer. Aus: Klar seet d'Lëscht selwer. Uleeën, läschen a réckelen bleiwen bei Klar.",
-          "allow_llm_tools": "Off by default. On: after Klar parses, the engine chat model may call Home Assistant Assist tools (names come from Core, already prefixed). Off: conversation only.",
-          "languages": "Standard ass d’Systemsprooch vun Home Assistant.",
           "channel": "Jäerzäit. Staging weist op Klar NLU (Staging)."
         }
       }

@@ -120,7 +120,7 @@ Supervisor liest das Add-on-Repo von `main`. **Klar NLU (Staging)** erscheint im
 ```bash
 docker run --rm --network host \
   -v /pfad/zur/homeassistant/config:/config:ro \
-  ghcr.io/fabbricate-it-solutions/klar-nlu:2026.8.30
+  ghcr.io/fabbricate-it-solutions/klar-nlu:2026.9.5
 ```
 
 CalVer der Engine verwenden (`Cargo.toml` / GitHub-Release), kein altes `0.1.x`-Tag. Für einen Release Candidate: `ghcr.io/fabbricate-it-solutions/klar-nlu:staging`.

@@ -49,8 +49,26 @@ pub(super) fn competing_plans_need_clarify(margin: f64, same_intent_names: bool,
 
 pub(super) fn complete_plans_compete(selected_policy: &str, runner_policy: &str, selected: &IntentPlan, runner: &IntentPlan) -> bool {
     !session_replay_is_not_a_competitor(selected_policy, runner_policy)
+        && !area_lights_outrank_fixtures(selected_policy, runner_policy, selected, runner)
         && same_intent_names(selected, runner)
         && distinct_plan_targets(selected, runner)
+}
+
+fn area_lights_outrank_fixtures(selected_policy: &str, runner_policy: &str, selected: &IntentPlan, runner: &IntentPlan) -> bool {
+    let group = selected_policy
+        .split('+')
+        .any(|part| matches!(part, "area_command" | "grounded_areas" | "preferred_area_command" | "all_lights"));
+    let fixture = runner_policy.split('+').any(|part| matches!(part, "grounded_ambiguous" | "grounded_entities"));
+    group
+        && fixture
+        && !selected.steps.is_empty()
+        && selected.steps.iter().all(|step| {
+            matches!(step.intent.name.as_str(), "HassTurnOn" | "HassTurnOff" | "HassToggle")
+                && step.intent.slot("entity_id").is_none()
+                && step.intent.slot("area").is_some()
+                && step.intent.slot("domain") == Some("light")
+        })
+        && runner.steps.iter().all(|step| step.intent.slot("entity_id").is_some_and(|id| id.starts_with("light.")))
 }
 
 pub(super) fn ranking_plans_compete(selected: &IntentCandidate, runner: &IntentCandidate) -> bool {
@@ -227,6 +245,8 @@ mod tests {
             0.88,
             &[],
         );
+        let fixtures = IntentPlan::from_intents(vec![Intent::new("HassTurnOn").with("entity_id", "light.living_ceiling")], 0.88, &[]);
+        assert!(!complete_plans_compete("area_command", "grounded_ambiguous", &living, &fixtures));
         assert!(complete_plans_compete("area_command", "area_command", &living, &kitchen));
         assert!(complete_plans_compete("floor_command", "floor_command", &floors, &other_floors));
         assert!(complete_plans_compete("multi_area", "multi_area", &floors, &other_floors));
