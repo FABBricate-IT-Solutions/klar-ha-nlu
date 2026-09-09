@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Klar NLU</title>
+    <style>
+      html,
+      body {
+        margin: 0;
+        height: 100%;
+        background: var(--primary-background-color, #100e0c);
+        color: #c8c4be;
+        font: 14px/1.4 system-ui, sans-serif;
+      }
+    </style>
+  </head>
+  <body>
+    <script>
+      const UI = "/api/klar_nlu/ui/";
+      const SESSION = "/api/klar_nlu/session";
+
+      function hassFromParent() {
+        try {
+          const ha = window.parent && window.parent.document.querySelector("home-assistant");
+          return ha && ha.hass;
+        } catch (_err) {
+          return null;
+        }
+      }
+
+      async function mintCookie(hass) {
+        const token = hass.auth && hass.auth.data && hass.auth.data.access_token;
+        if (!token) {
+          return false;
+        }
+        const res = await fetch(SESSION, {
+          method: "POST",
+          credentials: "same-origin",
+          headers: { Authorization: "Bearer " + token },
+        });
+        return res.ok;
+      }
+
+      async function signedUi(hass) {
+        if (!hass.callWS) {
+          return null;
+        }
+        const signed = await hass.callWS({ type: "auth/sign_path", path: UI });
+        return signed && signed.path ? signed.path : null;
+      }
+
+      async function openUi() {
+        const hass = hassFromParent();
+        if (!hass) {
+          document.body.textContent = "Open Klar NLU from the Home Assistant sidebar.";
+          return;
+        }
+        try {
+          if (await mintCookie(hass)) {
+            location.replace(UI);
+            return;
+          }
+        } catch (_err) {
+          /* signed path next */
+        }
+        try {
+          const signed = await signedUi(hass);
+          if (signed) {
+            location.replace(signed);
+            return;
+          }
+        } catch (_err) {
+          /* fall through */
+        }
+        document.body.textContent = "Authentication required";
+      }
+
+      openUi();
+    </script>
+  </body>
+</html>

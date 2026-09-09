@@ -24,11 +24,9 @@ except ImportError:
 
 _WWW = Path(__file__).parent / "www"
 _CARD = "/klar_nlu/klar-home-card.js"
-_PANEL_JS = "/klar_nlu/panel.js"
 PANEL_PATH = "klar-nlu"
 PANEL_TITLE = "Klar NLU"
 PANEL_ICON = "mdi:brain"
-PANEL_ELEMENT = "klar-nlu-panel"
 
 
 def _dashboard_config(url_path: str) -> dict[str, object]:
@@ -44,14 +42,9 @@ def _dashboard_config(url_path: str) -> dict[str, object]:
 
 
 def operator_panel_config() -> dict[str, object]:
-    return {
-        "_panel_custom": {
-            "name": PANEL_ELEMENT,
-            "embed_iframe": False,
-            "trust_external": False,
-            "js_url": _PANEL_JS,
-        }
-    }
+    # Same host as Supervisor add-on ingress: ha-panel-iframe + hass-subpage.
+    # Boot mints the UI cookie, then replaces with /api/klar_nlu/ui/.
+    return {"url": "/klar_nlu/boot.html"}
 
 
 async def async_setup_panel(hass: HomeAssistant) -> None:
@@ -96,7 +89,7 @@ def _register_operator_panel(hass: HomeAssistant) -> None:
     try:
         async_register_built_in_panel(
             hass,
-            component_name="custom",
+            component_name="iframe",
             sidebar_title=PANEL_TITLE,
             sidebar_icon=PANEL_ICON,
             frontend_url_path=PANEL_PATH,
@@ -108,7 +101,7 @@ def _register_operator_panel(hass: HomeAssistant) -> None:
         try:
             async_register_built_in_panel(
                 hass,
-                component_name="custom",
+                component_name="iframe",
                 sidebar_title=PANEL_TITLE,
                 sidebar_icon=PANEL_ICON,
                 frontend_url_path=PANEL_PATH,

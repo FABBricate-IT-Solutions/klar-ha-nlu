@@ -121,12 +121,10 @@ class PanelDashboardTests(unittest.TestCase):
         self.assertEqual(config["url_path"], "klar-nlu")
         self.assertEqual(config["mode"], "storage")
 
-    def test_operator_panel_uses_custom_element(self) -> None:
+    def test_operator_panel_uses_ha_iframe(self) -> None:
         config = panel.operator_panel_config()
-        custom = config["_panel_custom"]
-        self.assertEqual(custom["name"], "klar-nlu-panel")
-        self.assertEqual(custom["js_url"], "/klar_nlu/panel.js")
-        self.assertFalse(custom["embed_iframe"])
+        self.assertEqual(config["url"], "/klar_nlu/boot.html")
+        self.assertNotIn("_panel_custom", config)
 
     def test_registers_sidebar_panel(self) -> None:
         hass = _hass(domain={})
@@ -138,14 +136,20 @@ class PanelDashboardTests(unittest.TestCase):
         with patch.object(panel, "async_register_built_in_panel", capture):
             asyncio.run(panel.async_setup_panel(hass))
         self.assertEqual(len(captured), 1)
-        self.assertEqual(captured[0]["component_name"], "custom")
+        self.assertEqual(captured[0]["component_name"], "iframe")
         self.assertEqual(captured[0]["sidebar_title"], "Klar NLU")
         self.assertEqual(captured[0]["sidebar_icon"], "mdi:brain")
         self.assertEqual(captured[0]["frontend_url_path"], "klar-nlu")
         self.assertTrue(captured[0]["require_admin"])
-        self.assertEqual(
-            captured[0]["config"]["_panel_custom"]["name"], "klar-nlu-panel"
+        self.assertEqual(captured[0]["config"]["url"], "/klar_nlu/boot.html")
+
+    def test_boot_html_mints_session_then_opens_ui(self) -> None:
+        source = (ROOT / "custom_components" / "klar_nlu" / "www" / "boot.html").read_text(
+            encoding="utf-8"
         )
+        self.assertIn("/api/klar_nlu/session", source)
+        self.assertIn("/api/klar_nlu/ui/", source)
+        self.assertIn("auth/sign_path", source)
 
     def test_skips_sidebar_when_hassio_addon_panel_exists(self) -> None:
         hass = _hass(
