@@ -5,8 +5,7 @@ from pathlib import Path
 from homeassistant.components.frontend import add_extra_js_url, async_register_built_in_panel
 from homeassistant.core import HomeAssistant
 
-from .const import DOMAIN
-from .ui_proxy import addon_ingress_active
+from .const import DOMAIN, is_addon_engine_url
 
 try:
     from homeassistant.components.frontend import async_remove_panel
@@ -27,6 +26,20 @@ _CARD = "/klar_nlu/klar-home-card.js"
 PANEL_PATH = "klar-nlu"
 PANEL_TITLE = "Klar NLU"
 PANEL_ICON = "mdi:brain"
+_STORE_KEYS = frozenset({"panel", "ui_proxy", "ui_cookie_secret", "operator_panel"})
+
+
+def operator_panel_wanted(hass: HomeAssistant) -> bool:
+    """HACS sidebar only when Assist is not using the Supervisor App."""
+    for key, payload in (hass.data.get(DOMAIN) or {}).items():
+        if key in _STORE_KEYS or not isinstance(payload, dict):
+            continue
+        if payload.get("engine") is not None:
+            return True
+        url = str(payload.get("url") or "")
+        if url and not is_addon_engine_url(url):
+            return True
+    return False
 
 
 def _dashboard_config(url_path: str) -> dict[str, object]:
@@ -49,7 +62,7 @@ def operator_panel_config() -> dict[str, object]:
 
 async def async_setup_panel(hass: HomeAssistant) -> None:
     await _async_register_card(hass)
-    if addon_ingress_active(hass):
+    if not operator_panel_wanted(hass):
         _remove_operator_panel(hass)
         return
     _register_operator_panel(hass)

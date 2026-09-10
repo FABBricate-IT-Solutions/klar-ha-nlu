@@ -23,7 +23,7 @@
     "step": {
       "init": {
         "title": "Klar NLU",
-        "description": "Stëmm, Assist-Sproochen an d’LLM sinn an der Klar-Operator-UI (Astellungen). Dëse Formulaire verbënnt nëmmen d’Engine: URL, Token a Kanal.",
+        "description": "Stëmm, Assist-Sproochen an d’LLM sinn an der Klar-Operator-UI (Astellungen). Dëse Formulaire verbënnt nëmmen d’Engine: URL, Token a Kanal. {apps}",
         "data": {
           "mode": "Engine",
           "url": "Klar API URL",
@@ -32,6 +32,7 @@
           "channel": "Release-Kanal"
         },
         "data_description": {
+          "mode": "App vs bundled engine. Switch anytime. The integration sidebar only appears for the bundled engine.",
           "token": "Deeselwechten Token wéi an der Klar-App.",
           "assist_filter": "Un: nëmmen wat Assist gesäit. Aus: och verstoppt Entitéiten.",
           "channel": "Jäerzäit. Staging weist op Klar NLU (Staging)."

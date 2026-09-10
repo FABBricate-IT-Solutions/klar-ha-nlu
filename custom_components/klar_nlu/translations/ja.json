@@ -23,7 +23,7 @@
     "step": {
       "init": {
         "title": "Klar NLU",
-        "description": "音声、Assist の言語、LLM は Klar オペレーター UI（設定）にあります。このフォームはエンジンの接続だけです：URL、トークン、チャネル。",
+        "description": "音声、Assist の言語、LLM は Klar オペレーター UI（設定）にあります。このフォームはエンジンの接続だけです：URL、トークン、チャネル。 {apps}",
         "data": {
           "mode": "エンジン",
           "url": "Klar API の URL",
@@ -32,6 +32,7 @@
           "channel": "リリースチャネル"
         },
         "data_description": {
+          "mode": "App vs bundled engine. Switch anytime. The integration sidebar only appears for the bundled engine.",
           "token": "Klar アプリと同じトークンです。",
           "assist_filter": "オン：Assist が見えるものだけ。オフ：非表示も含む。",
           "channel": "いつでも変更できます。Staging は Klar NLU（Staging）を指します。"

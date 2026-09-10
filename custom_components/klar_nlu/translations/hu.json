@@ -23,7 +23,7 @@
     "step": {
       "init": {
         "title": "Klar NLU",
-        "description": "A hang, az Assist nyelvei és az LLM a Klar operátori felületén vannak (Beállítások). Ez az űrlap csak a motort köti: URL, token és csatorna.",
+        "description": "A hang, az Assist nyelvei és az LLM a Klar operátori felületén vannak (Beállítások). Ez az űrlap csak a motort köti: URL, token és csatorna. {apps}",
         "data": {
           "mode": "Motor",
           "url": "Klar API URL",
@@ -32,6 +32,7 @@
           "channel": "Kiadási csatorna"
         },
         "data_description": {
+          "mode": "App vs bundled engine. Switch anytime. The integration sidebar only appears for the bundled engine.",
           "token": "Ugyanaz a token, mint a Klar alkalmazásban.",
           "assist_filter": "Be: csak amit az Assist lát. Ki: rejtett entitások is.",
           "channel": "Bármikor. A Staging a Klar NLU (Staging) felé mutat."

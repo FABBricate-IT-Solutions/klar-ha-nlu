@@ -23,7 +23,7 @@
     "step": {
       "init": {
         "title": "Klar NLU",
-        "description": "குரல், Assist மொழிகள் மற்றும் LLM Klar இயக்குநர் UI (அமைப்புகள்) இல் உள்ளன. இந்த படிவம் இயந்திரத்தை மட்டும் இணைக்கிறது: URL, டோக்கன் மற்றும் சேனல்.",
+        "description": "குரல், Assist மொழிகள் மற்றும் LLM Klar இயக்குநர் UI (அமைப்புகள்) இல் உள்ளன. இந்த படிவம் இயந்திரத்தை மட்டும் இணைக்கிறது: URL, டோக்கன் மற்றும் சேனல். {apps}",
         "data": {
           "mode": "இயந்திரம்",
           "url": "Klar API URL",
@@ -32,6 +32,7 @@
           "channel": "வெளியீட்டு சேனல்"
         },
         "data_description": {
+          "mode": "App vs bundled engine. Switch anytime. The integration sidebar only appears for the bundled engine.",
           "token": "Klar செயலியில் உள்ள அதே டோக்கன்.",
           "assist_filter": "ஆன்: Assist காண்பது மட்டும். ஆஃப்: மறைந்த அலகுகளும்.",
           "channel": "எப்போது வேண்டுமானாலும். Staging Klar NLU (Staging) ஐச் சுட்டுகிறது."

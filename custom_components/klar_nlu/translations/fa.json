@@ -23,7 +23,7 @@
     "step": {
       "init": {
         "title": "Klar NLU",
-        "description": "صدا، زبان‌های Assist و مدل زبانی در رابط اپراتور Klar (تنظیمات) هستند. این فرم فقط موتور را وصل می‌کند: نشانی، رمز و کانال.",
+        "description": "صدا، زبان‌های Assist و مدل زبانی در رابط اپراتور Klar (تنظیمات) هستند. این فرم فقط موتور را وصل می‌کند: نشانی، رمز و کانال. {apps}",
         "data": {
           "mode": "موتور",
           "url": "نشانی API کلار",
@@ -32,6 +32,7 @@
           "channel": "کانال انتشار"
         },
         "data_description": {
+          "mode": "App vs bundled engine. Switch anytime. The integration sidebar only appears for the bundled engine.",
           "token": "همان توکن برنامه Klar.",
           "assist_filter": "روشن: فقط آنچه Assist می‌بیند. خاموش: شامل نهادهای پنهان.",
           "channel": "هر زمان. Staging به Klar NLU (Staging) اشاره می‌کند."

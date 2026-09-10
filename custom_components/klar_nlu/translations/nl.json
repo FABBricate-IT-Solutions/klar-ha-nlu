@@ -23,7 +23,7 @@
     "step": {
       "init": {
         "title": "Klar NLU",
-        "description": "Stem, Assist-talen en de LLM staan in de Klar-operator-UI (Instellingen). Dit formulier koppelt alleen de engine: URL, token en kanaal.",
+        "description": "Stem, Assist-talen en de LLM staan in de Klar-operator-UI (Instellingen). Dit formulier koppelt alleen de engine: URL, token en kanaal. {apps}",
         "data": {
           "mode": "Engine",
           "url": "Klar-API-URL",
@@ -32,6 +32,7 @@
           "channel": "Releasekanaal"
         },
         "data_description": {
+          "mode": "App vs bundled engine. Switch anytime. The integration sidebar only appears for the bundled engine.",
           "token": "Dezelfde token als in de Klar-app.",
           "assist_filter": "Aan: alleen wat Assist mag zien. Uit: ook verborgen entiteiten.",
           "channel": "Altijd. Staging wijst naar Klar NLU (Staging), Stable naar de app of de meegeleverde engine."

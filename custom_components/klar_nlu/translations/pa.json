@@ -23,7 +23,7 @@
     "step": {
       "init": {
         "title": "Klar NLU",
-        "description": "ਆਵਾਜ਼, ਭਾਸ਼ਾਵਾਂ ਅਤੇ LLM Klar operator UI (ਸੈਟਿੰਗਾਂ). This form only connects the engine: URL, token, and channel.",
+        "description": "ਆਵਾਜ਼, ਭਾਸ਼ਾਵਾਂ ਅਤੇ LLM Klar operator UI (ਸੈਟਿੰਗਾਂ). This form only connects the engine: URL, token, and channel. {apps}",
         "data": {
           "mode": "ਇੰਜਣ",
           "url": "Klar API URL",
@@ -32,6 +32,7 @@
           "channel": "ਰਿਲੀਜ਼ ਚੈਨਲ"
         },
         "data_description": {
+          "mode": "App vs bundled engine. Switch anytime. The integration sidebar only appears for the bundled engine.",
           "token": "Klar ਐਪ ਵਾਲਾ ਹੀ ਟੋਕਨ।",
           "assist_filter": "On: only what Assist may see. Off: hidden entities too.",
           "channel": "ਕਿਸੇ ਵੀ ਵੇਲੇ। Staging Klar NLU (Staging) ਵੱਲ ਹੈ।"

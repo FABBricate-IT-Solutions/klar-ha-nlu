@@ -3,7 +3,7 @@
     "step": {
       "user": {
         "title": "Klar NLU",
-        "description": "This integration talks to Assist. A separate engine parses speech: the Klar NLU App (add-on), this bundled process, or Docker. On Home Assistant OS install the App as well, then pick Use the Klar NLU App. Without the App, pick Start the bundled engine. Do not run both. Release channel can be changed later.",
+        "description": "This integration talks to Assist. Pick the Klar NLU App or the bundled engine. You can switch later in Configure. Do not run both as the engine host at once. Release channel can be changed later.",
         "data": {
           "mode": "Engine",
           "channel": "Release channel",
@@ -23,7 +23,7 @@
     "step": {
       "init": {
         "title": "Klar NLU",
-        "description": "Voice, Assist languages, and the LLM live in the Klar operator UI (Settings). This form only connects the engine: URL, token, and channel.",
+        "description": "Voice, Assist languages, and the LLM live in the Klar operator UI (Settings). This form only connects the engine: URL, token, and channel. {apps}",
         "data": {
           "mode": "Engine",
           "url": "Klar API URL",
@@ -32,9 +32,10 @@
           "channel": "Release channel"
         },
         "data_description": {
+          "mode": "App vs bundled engine. Switch anytime. The integration sidebar only appears for the bundled engine.",
           "token": "Same token as the Klar add-on. Needed for overlay writes from Home Assistant.",
           "assist_filter": "Developer option. On (default): Klar changes only what Assist may see. Off: match hidden sensors and switches too — easier to hit the wrong device.",
-          "channel": "Works anytime. On Home Assistant OS, Staging points at Klar NLU (Staging) even if setup started the bundled engine. Stable goes back to the Klar NLU app or the bundled engine. A custom URL is left alone. Do not edit `.storage`."
+          "channel": "Stable vs staging for the host you picked above. App uses that add-on; bundled engine downloads that GitHub release. A custom URL is left alone."
         }
       }
     },

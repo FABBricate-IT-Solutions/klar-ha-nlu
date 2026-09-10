@@ -40,6 +40,11 @@ _BRAND = {
 }
 
 
+_DEFAULT_HELP_MODE = (
+    "App vs bundled engine. Switch anytime. The integration sidebar only appears for the bundled engine."
+)
+
+
 def expand(fields: dict[str, str]) -> dict[str, str]:
     f = {**_BRAND, **fields}
     normal, casual, caring = f["normal"], f["casual"], f["caring"]
@@ -54,12 +59,13 @@ def expand(fields: dict[str, str]) -> dict[str, str]:
         "config.error.invalid_url": f["invalid"],
         "config.abort.already_configured": f["already"],
         "options.step.init.title": f["title"],
-        "options.step.init.description": f["opt_desc"],
+        "options.step.init.description": f"{f['opt_desc'].rstrip()} {{apps}}",
         "options.step.init.data.mode": f["mode"],
         "options.step.init.data.url": f["url"],
         "options.step.init.data.token": f["token"],
         "options.step.init.data.assist_filter": f["assist_filter"],
         "options.step.init.data.channel": f["channel"],
+        "options.step.init.data_description.mode": f.get("help_mode") or _DEFAULT_HELP_MODE,
         "options.step.init.data_description.token": f["help_token"],
         "options.step.init.data_description.assist_filter": f["help_assist"],
         "options.step.init.data_description.channel": f["help_channel"],

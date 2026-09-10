@@ -23,7 +23,7 @@
     "step": {
       "init": {
         "title": "Klar NLU",
-        "description": "Stimm, Assist-Sprache und s LLM liged i de Klar-Operator-UI (Istellige). Das Formular verbindet nur d Engine: URL, Token und Kanal.",
+        "description": "Stimm, Assist-Sprache und s LLM liged i de Klar-Operator-UI (Istellige). Das Formular verbindet nur d Engine: URL, Token und Kanal. {apps}",
         "data": {
           "mode": "Engine",
           "url": "URL vo de Klar-API",
@@ -32,9 +32,10 @@
           "channel": "Release-Kanal"
         },
         "data_description": {
+          "mode": "App oder mitglieferte Engine. Jederzit umstelle. D Integrations-Sidebar git s nur bi de mitglieferte Engine.",
           "token": "Glyche Token wie im Klar-Addon.",
           "assist_filter": "Aa: nur was Assist gseht. Us: au versteckti Entitäte.",
-          "channel": "Jederzit. Staging uf Klar NLU (Staging), Stable uf d App oder d mitglieferte Engine."
+          "channel": "Stable oder Staging für de Host obe. App nutzt s Add-on; mitglieferte Engine ladet s GitHub-Release."
         }
       }
     },

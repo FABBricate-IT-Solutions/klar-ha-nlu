@@ -23,7 +23,7 @@
     "step": {
       "init": {
         "title": "Klar NLU",
-        "description": "Hääl, Assisti keeled ja LLM on Klari operaatori UI-s (Seaded). See vorm ühendab ainult mootori: URL, token ja kanal.",
+        "description": "Hääl, Assisti keeled ja LLM on Klari operaatori UI-s (Seaded). See vorm ühendab ainult mootori: URL, token ja kanal. {apps}",
         "data": {
           "mode": "Mootor",
           "url": "Klar API URL",
@@ -32,6 +32,7 @@
           "channel": "Väljalaskekanal"
         },
         "data_description": {
+          "mode": "App vs bundled engine. Switch anytime. The integration sidebar only appears for the bundled engine.",
           "token": "Sama tõend mis Klar rakenduses.",
           "assist_filter": "Sees: ainult see, mida Assist näeb. Väljas: ka peidetud olemid.",
           "channel": "Igal ajal. Staging osutab Klar NLU (Staging)."

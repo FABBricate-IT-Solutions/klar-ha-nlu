@@ -23,7 +23,7 @@
     "step": {
       "init": {
         "title": "Klar NLU",
-        "description": "語音、Assist 語言和 LLM 在 Klar 操作介面（設定）中。此表格只連接引擎：URL、權杖和頻道。",
+        "description": "語音、Assist 語言和 LLM 在 Klar 操作介面（設定）中。此表格只連接引擎：URL、權杖和頻道。 {apps}",
         "data": {
           "mode": "引擎",
           "url": "Klar API 網址",
@@ -32,6 +32,7 @@
           "channel": "發行通道"
         },
         "data_description": {
+          "mode": "App vs bundled engine. Switch anytime. The integration sidebar only appears for the bundled engine.",
           "token": "同 Klar 應用一樣嘅權杖。",
           "assist_filter": "開：只限 Assist 見到嘅實體。關：包括隱藏實體。",
           "channel": "隨時可改。預發佈指向 Klar NLU（Staging）。"

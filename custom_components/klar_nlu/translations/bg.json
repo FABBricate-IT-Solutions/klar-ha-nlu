@@ -23,7 +23,7 @@
     "step": {
       "init": {
         "title": "Klar NLU",
-        "description": "Гласът, езиците на Assist и LLM са в операторския интерфейс на Klar (Настройки). Този формуляр свързва само двигателя: URL, токен и канал.",
+        "description": "Гласът, езиците на Assist и LLM са в операторския интерфейс на Klar (Настройки). Този формуляр свързва само двигателя: URL, токен и канал. {apps}",
         "data": {
           "mode": "Двигател",
           "url": "URL на Klar API",
@@ -32,6 +32,7 @@
           "channel": "Канал за издание"
         },
         "data_description": {
+          "mode": "App vs bundled engine. Switch anytime. The integration sidebar only appears for the bundled engine.",
           "token": "Същият токен като в приложението Klar.",
           "assist_filter": "Вкл.: само каквото вижда Assist. Изкл.: и скрити обекти.",
           "channel": "По всяко време. Staging сочи към Klar NLU (Staging)."

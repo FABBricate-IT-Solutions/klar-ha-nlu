@@ -23,7 +23,7 @@
     "step": {
       "init": {
         "title": "Klar NLU",
-        "description": "Η φωνή, οι γλώσσες του Assist και το LLM βρίσκονται στο UI χειριστή του Klar (Ρυθμίσεις). Αυτή η φόρμα συνδέει μόνο τη μηχανή: URL, διακριτικό και κανάλι.",
+        "description": "Η φωνή, οι γλώσσες του Assist και το LLM βρίσκονται στο UI χειριστή του Klar (Ρυθμίσεις). Αυτή η φόρμα συνδέει μόνο τη μηχανή: URL, διακριτικό και κανάλι. {apps}",
         "data": {
           "mode": "Μηχανή",
           "url": "URL API Klar",
@@ -32,6 +32,7 @@
           "channel": "Κανάλι έκδοσης"
         },
         "data_description": {
+          "mode": "App vs bundled engine. Switch anytime. The integration sidebar only appears for the bundled engine.",
           "token": "Το ίδιο διακριτικό με την εφαρμογή Klar.",
           "assist_filter": "Ενεργό: μόνο όσα βλέπει το Assist. Ανενεργό: και κρυφές οντότητες.",
           "channel": "Οποτεδήποτε. Το Staging δείχνει στο Klar NLU (Staging)."

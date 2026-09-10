@@ -23,7 +23,7 @@
     "step": {
       "init": {
         "title": "Klar NLU",
-        "description": "Голос, мови Assist і LLM у операторському інтерфейсі Klar (Налаштування). Ця форма лише підключає рушій: URL, токен і канал.",
+        "description": "Голос, мови Assist і LLM у операторському інтерфейсі Klar (Налаштування). Ця форма лише підключає рушій: URL, токен і канал. {apps}",
         "data": {
           "mode": "Рушій",
           "url": "URL API Klar",
@@ -32,6 +32,7 @@
           "channel": "Канал випуску"
         },
         "data_description": {
+          "mode": "App vs bundled engine. Switch anytime. The integration sidebar only appears for the bundled engine.",
           "token": "Той самий токен, що в застосунку Klar.",
           "assist_filter": "Увімкнено: лише те, що бачить Assist. Вимкнено: також приховані сутності.",
           "channel": "Будь-коли. Staging вказує на Klar NLU (Staging)."

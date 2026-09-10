@@ -23,7 +23,7 @@
     "step": {
       "init": {
         "title": "Klar NLU",
-        "description": "Stem, Assist-tale en die LLM leef in die Klar-operateur-UI (Instellings). Hierdie vorm verbind net die enjin: URL, token en kanaal.",
+        "description": "Stem, Assist-tale en die LLM leef in die Klar-operateur-UI (Instellings). Hierdie vorm verbind net die enjin: URL, token en kanaal. {apps}",
         "data": {
           "mode": "Enjin",
           "url": "Klar API-URL",
@@ -32,6 +32,7 @@
           "channel": "Vrystellingskanaal"
         },
         "data_description": {
+          "mode": "App vs bundled engine. Switch anytime. The integration sidebar only appears for the bundled engine.",
           "token": "Dieselfde token as in die Klar-app.",
           "assist_filter": "Aan: net wat Assist mag sien. Af: ook versteekte entiteite.",
           "channel": "Enige tyd. Staging wys na Klar NLU (Staging)."

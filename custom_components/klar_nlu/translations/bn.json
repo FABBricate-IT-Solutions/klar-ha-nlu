@@ -23,7 +23,7 @@
     "step": {
       "init": {
         "title": "Klar NLU",
-        "description": "ভয়েস, Assist ভাষা এবং LLM Klar অপারেটর UI (সেটিংস)-এ আছে। এই ফর্ম শুধু ইঞ্জিন সংযোগ করে: URL, টোকেন এবং চ্যানেল।",
+        "description": "ভয়েস, Assist ভাষা এবং LLM Klar অপারেটর UI (সেটিংস)-এ আছে। এই ফর্ম শুধু ইঞ্জিন সংযোগ করে: URL, টোকেন এবং চ্যানেল। {apps}",
         "data": {
           "mode": "ইঞ্জিন",
           "url": "Klar API URL",
@@ -32,6 +32,7 @@
           "channel": "রিলিজ চ্যানেল"
         },
         "data_description": {
+          "mode": "App vs bundled engine. Switch anytime. The integration sidebar only appears for the bundled engine.",
           "token": "Klar অ্যাপের মতোই টোকেন।",
           "assist_filter": "চালু: শুধু Assist যা দেখে। বন্ধ: লুকোনো সত্তাও।",
           "channel": "যখন খুশি। Staging Klar NLU (Staging) দেখায়।"

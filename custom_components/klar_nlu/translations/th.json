@@ -23,7 +23,7 @@
     "step": {
       "init": {
         "title": "Klar NLU",
-        "description": "เสียง ภาษา Assist และ LLM อยู่ใน UI ผู้ปฏิบัติการของ Klar (การตั้งค่า) แบบฟอร์มนี้เชื่อมต่อเอนจินเท่านั้น: URL โทเค็น และช่องทาง",
+        "description": "เสียง ภาษา Assist และ LLM อยู่ใน UI ผู้ปฏิบัติการของ Klar (การตั้งค่า) แบบฟอร์มนี้เชื่อมต่อเอนจินเท่านั้น: URL โทเค็น และช่องทาง {apps}",
         "data": {
           "mode": "เอนจิน",
           "url": "URL ของ Klar API",
@@ -32,6 +32,7 @@
           "channel": "ช่องเผยแพร่"
         },
         "data_description": {
+          "mode": "App vs bundled engine. Switch anytime. The integration sidebar only appears for the bundled engine.",
           "token": "โทเคนเดียวกับแอป Klar",
           "assist_filter": "เปิด: เฉพาะที่ Assist เห็น ปิด: รวมเอนทิตีที่ซ่อน",
           "channel": "เปลี่ยนได้ตลอด Staging ชี้ไปที่ Klar NLU (Staging)"

@@ -127,7 +127,7 @@ class PanelDashboardTests(unittest.TestCase):
         self.assertNotIn("_panel_custom", config)
 
     def test_registers_sidebar_panel(self) -> None:
-        hass = _hass(domain={})
+        hass = _hass(domain={"entry": {"url": "http://127.0.0.1:10520", "engine": object()}})
         captured: list[dict] = []
 
         def capture(_hass, **kwargs) -> None:
@@ -151,9 +151,9 @@ class PanelDashboardTests(unittest.TestCase):
         self.assertIn("/api/klar_nlu/ui/", source)
         self.assertIn("auth/sign_path", source)
 
-    def test_skips_sidebar_when_hassio_addon_panel_exists(self) -> None:
+    def test_skips_sidebar_when_using_app(self) -> None:
         hass = _hass(
-            domain={"entry": {"url": "http://klar-nlu:10520", "token": None}},
+            domain={"entry": {"url": "http://klar-nlu:10520", "engine": None}},
             panels={"klar_nlu": SimpleNamespace(component_name="hassio")},
         )
         captured: list[dict] = []
@@ -163,11 +163,24 @@ class PanelDashboardTests(unittest.TestCase):
             asyncio.run(panel.async_setup_panel(hass))
         self.assertEqual(captured, [])
 
-    def test_registers_hacs_when_addon_panel_missing(self) -> None:
+    def test_skips_sidebar_for_app_url_even_without_hassio_panel(self) -> None:
         hass = _hass(
             components=("hassio",),
-            domain={"entry": {"url": "http://klar-nlu-staging:10520", "token": None}},
+            domain={"entry": {"url": "http://klar-nlu-staging:10520", "engine": None}},
             panels={"klar_nlu": SimpleNamespace(component_name="hassio")},
+        )
+        captured: list[dict] = []
+        with patch.object(
+            panel, "async_register_built_in_panel", lambda *_a, **kwargs: captured.append(kwargs)
+        ):
+            asyncio.run(panel.async_setup_panel(hass))
+        self.assertEqual(captured, [])
+
+    def test_registers_bundled_sidebar_even_if_app_is_installed(self) -> None:
+        hass = _hass(
+            components=("hassio",),
+            domain={"entry": {"url": "http://127.0.0.1:10520", "engine": object()}},
+            panels={"klar_nlu_staging": SimpleNamespace(component_name="hassio")},
         )
         captured: list[dict] = []
         with patch.object(

@@ -23,7 +23,7 @@
     "step": {
       "init": {
         "title": "Klar NLU",
-        "description": "Suara, bahasa Assist, dan LLM ada di UI operator Klar (Pengaturan). Formulir ini hanya menghubungkan mesin: URL, token, dan saluran.",
+        "description": "Suara, bahasa Assist, dan LLM ada di UI operator Klar (Pengaturan). Formulir ini hanya menghubungkan mesin: URL, token, dan saluran. {apps}",
         "data": {
           "mode": "Mesin",
           "url": "URL API Klar",
@@ -32,6 +32,7 @@
           "channel": "Saluran rilis"
         },
         "data_description": {
+          "mode": "App vs bundled engine. Switch anytime. The integration sidebar only appears for the bundled engine.",
           "token": "Token yang sama dengan aplikasi Klar.",
           "assist_filter": "Nyala: hanya yang Assist boleh lihat. Mati: termasuk yang tersembunyi.",
           "channel": "Bisa kapan saja. Staging mengarah ke Klar NLU (Staging)."

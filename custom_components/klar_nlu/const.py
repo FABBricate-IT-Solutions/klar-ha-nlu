@@ -209,26 +209,15 @@ def resolve_engine_target(
     url: object,
     supervisor: bool = False,
 ) -> tuple[str, str]:
+    del supervisor
     text = str(url or "").strip()
     if text and not is_managed_engine_url(text):
         return MODE_REMOTE, text
+    if str(mode or MODE_LOCAL) == MODE_LOCAL:
+        return MODE_LOCAL, DEFAULT_URL
     if text and _supervisor_addon_prefix(_engine_host(text)):
         return MODE_REMOTE, _retarget_addon_url(text, channel)
-    if resolve_channel(channel) == CHANNEL_STAGING:
-        if supervisor or str(mode or "") == MODE_REMOTE:
-            return MODE_REMOTE, DEFAULT_STAGING_ADDON_URL
-        return MODE_LOCAL, DEFAULT_URL
-    if supervisor and (
-        str(mode or "") == MODE_REMOTE
-        or (
-            is_managed_engine_url(text)
-            and _normalize_engine_url(text) != _normalize_engine_url(DEFAULT_URL)
-        )
-    ):
-        return MODE_REMOTE, DEFAULT_ADDON_URL
-    if str(mode or MODE_LOCAL) == MODE_REMOTE:
-        return MODE_REMOTE, DEFAULT_ADDON_URL
-    return MODE_LOCAL, DEFAULT_URL
+    return MODE_REMOTE, addon_url_for_channel(channel)
 
 
 def resolve_engine_url(

@@ -3,7 +3,7 @@
     "step": {
       "user": {
         "title": "Klar NLU",
-        "description": "Diese Integration spricht mit Assist. Die Engine läuft als Klar-NLU-App, mitgelieferter Prozess oder Docker. Unter Home Assistant OS die App wählen, sonst die mitgelieferte Engine. Nicht beides. Der Release-Kanal lässt sich später ändern.",
+        "description": "Diese Integration spricht mit Assist. App oder mitgelieferte Engine wählen — später unter Konfigurieren umstellbar. Nicht beides als Engine-Host. Der Release-Kanal lässt sich später ändern.",
         "data": {
           "mode": "Engine",
           "channel": "Release-Kanal",
@@ -23,7 +23,7 @@
     "step": {
       "init": {
         "title": "Klar NLU",
-        "description": "Stimme, Assist-Sprachen und das LLM liegen in der Klar-Operator-UI (Einstellungen). Dieses Formular verbindet nur die Engine: URL, Token und Kanal.",
+        "description": "Stimme, Assist-Sprachen und das LLM liegen in der Klar-Operator-UI (Einstellungen). Dieses Formular verbindet nur die Engine: URL, Token und Kanal. {apps}",
         "data": {
           "mode": "Engine",
           "url": "URL der Klar-API",
@@ -32,9 +32,10 @@
           "channel": "Release-Kanal"
         },
         "data_description": {
+          "mode": "App oder mitgelieferte Engine. Jederzeit umstellen. Die Integrations-Sidebar erscheint nur bei der mitgelieferten Engine.",
           "token": "Derselbe Token wie im Klar-Addon. Für Overlay-Schreibzugriffe aus Home Assistant.",
           "assist_filter": "An (Standard): nur was Assist sehen darf. Aus: auch versteckte Entitäten — leichter das falsche Gerät.",
-          "channel": "Geht jederzeit. Staging zeigt auf Klar NLU (Staging), Stable auf die App oder die mitgelieferte Engine. Eine eigene URL bleibt."
+          "channel": "Stable oder Staging für den Host oben. App nutzt das Add-on; mitgelieferte Engine lädt das GitHub-Release. Eine eigene URL bleibt."
         }
       }
     },
