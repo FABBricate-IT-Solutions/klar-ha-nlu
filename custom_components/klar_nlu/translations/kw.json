@@ -23,7 +23,7 @@
     "step": {
       "init": {
         "title": "Klar NLU",
-        "description": "Y lev, yethow Assist, ha'n LLM yw y'n UI gwithyas Klar (Settyansow). An furvlen ma a jun an jynn hepken: URL, tokn ha kanel.",
+        "description": "Y lev, yethow Assist, ha'n LLM yw y'n UI gwithyas Klar (Settyansow). An furvlen ma a jun an jynn hepken: URL, tokn ha kanel. {apps}",
         "data": {
           "mode": "Jynn",
           "url": "URL API Klar",
@@ -32,6 +32,7 @@
           "channel": "Kanel dyllo"
         },
         "data_description": {
+          "mode": "App vs bundled engine. Switch anytime. The integration sidebar only appears for the bundled engine.",
           "token": "An keth tokyn avel y’n app Klar.",
           "assist_filter": "War: yn unnik an pyth a wel Assist. Dhe-ves: entites kudh ynwedh.",
           "channel": "Pub termyn. Staging a boynt orth Klar NLU (Staging)."

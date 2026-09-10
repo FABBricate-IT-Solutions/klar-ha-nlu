@@ -23,7 +23,7 @@
     "step": {
       "init": {
         "title": "Klar NLU",
-        "description": "Glas, jeziki Assist in LLM so v Klarjevem operatorskem vmesniku (Nastavitve). Ta obrazec samo poveže motor: URL, žeton in kanal.",
+        "description": "Glas, jeziki Assist in LLM so v Klarjevem operatorskem vmesniku (Nastavitve). Ta obrazec samo poveže motor: URL, žeton in kanal. {apps}",
         "data": {
           "mode": "Pogon",
           "url": "URL Klar API",
@@ -32,6 +32,7 @@
           "channel": "Kanal izdaje"
         },
         "data_description": {
+          "mode": "App vs bundled engine. Switch anytime. The integration sidebar only appears for the bundled engine.",
           "token": "Isti žeton kot v aplikaciji Klar.",
           "assist_filter": "Vklopljeno: samo kar vidi Assist. Izklopljeno: tudi skrite entitete.",
           "channel": "Kadarkoli. Staging kaže na Klar NLU (Staging)."

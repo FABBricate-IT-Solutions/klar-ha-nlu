@@ -23,7 +23,7 @@
     "step": {
       "init": {
         "title": "Klar NLU",
-        "description": "Giọng nói, ngôn ngữ Assist và LLM nằm trong UI vận hành Klar (Cài đặt). Biểu mẫu này chỉ kết nối máy: URL, token và kênh.",
+        "description": "Giọng nói, ngôn ngữ Assist và LLM nằm trong UI vận hành Klar (Cài đặt). Biểu mẫu này chỉ kết nối máy: URL, token và kênh. {apps}",
         "data": {
           "mode": "Động cơ",
           "url": "URL API Klar",
@@ -32,6 +32,7 @@
           "channel": "Kênh phát hành"
         },
         "data_description": {
+          "mode": "App vs bundled engine. Switch anytime. The integration sidebar only appears for the bundled engine.",
           "token": "Cùng token với ứng dụng Klar.",
           "assist_filter": "Bật: chỉ những gì Assist thấy. Tắt: cả thực thể ẩn.",
           "channel": "Đổi bất cứ lúc nào. Staging trỏ tới Klar NLU (Staging)."

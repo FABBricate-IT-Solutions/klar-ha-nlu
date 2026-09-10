@@ -23,7 +23,7 @@
     "step": {
       "init": {
         "title": "Klar NLU",
-        "description": "הקול, שפות Assist והמודל נמצאים בממשק המפעיל של Klar (הגדרות). טופס זה מחבר רק את המנוע: כתובת, אסימון וערוץ.",
+        "description": "הקול, שפות Assist והמודל נמצאים בממשק המפעיל של Klar (הגדרות). טופס זה מחבר רק את המנוע: כתובת, אסימון וערוץ. {apps}",
         "data": {
           "mode": "מנוע",
           "url": "כתובת API של Klar",
@@ -32,6 +32,7 @@
           "channel": "ערוץ הפצה"
         },
         "data_description": {
+          "mode": "App vs bundled engine. Switch anytime. The integration sidebar only appears for the bundled engine.",
           "token": "אותו אסימון כמו באפליקציית Klar.",
           "assist_filter": "דלוק: רק מה ש-Assist רואה. כבוי: גם ישויות מוסתרות.",
           "channel": "בכל עת. Staging מצביע על Klar NLU (Staging)."

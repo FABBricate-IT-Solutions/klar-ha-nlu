@@ -23,7 +23,7 @@
     "step": {
       "init": {
         "title": "Klar NLU",
-        "description": "语音、Assist 语言和 LLM 在 Klar 操作界面（设置）中。此表单只连接引擎：URL、令牌和通道。",
+        "description": "语音、Assist 语言和 LLM 在 Klar 操作界面（设置）中。此表单只连接引擎：URL、令牌和通道。 {apps}",
         "data": {
           "mode": "引擎",
           "url": "Klar API 地址",
@@ -32,6 +32,7 @@
           "channel": "发布通道"
         },
         "data_description": {
+          "mode": "App vs bundled engine. Switch anytime. The integration sidebar only appears for the bundled engine.",
           "token": "与 Klar 应用相同的令牌。",
           "assist_filter": "开：仅 Assist 可见实体。关：也包括隐藏实体。",
           "channel": "随时可改。预发布指向 Klar NLU（Staging）。"

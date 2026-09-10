@@ -130,7 +130,7 @@ class EngineChannelTests(unittest.TestCase):
                 url=const.DEFAULT_URL,
                 supervisor=True,
             ),
-            (const.MODE_REMOTE, const.DEFAULT_STAGING_ADDON_URL),
+            (const.MODE_LOCAL, const.DEFAULT_URL),
         )
         self.assertEqual(
             const.resolve_engine_target(
@@ -139,7 +139,25 @@ class EngineChannelTests(unittest.TestCase):
                 url=const.DEFAULT_STAGING_ADDON_URL,
                 supervisor=True,
             ),
-            (const.MODE_REMOTE, const.DEFAULT_ADDON_URL),
+            (const.MODE_LOCAL, const.DEFAULT_URL),
+        )
+        self.assertEqual(
+            const.resolve_engine_target(
+                mode=const.MODE_REMOTE,
+                channel=const.CHANNEL_STAGING,
+                url=const.DEFAULT_URL,
+                supervisor=True,
+            ),
+            (const.MODE_REMOTE, const.DEFAULT_STAGING_ADDON_URL),
+        )
+        self.assertEqual(
+            const.resolve_engine_target(
+                mode=const.MODE_LOCAL,
+                channel=const.CHANNEL_STAGING,
+                url="http://8db2ab02-klar-nlu-staging.local.hass.io:10520",
+                supervisor=True,
+            ),
+            (const.MODE_LOCAL, const.DEFAULT_URL),
         )
 
     def test_resolve_engine_url_keeps_custom_host(self) -> None:

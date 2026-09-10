@@ -23,7 +23,7 @@
     "step": {
       "init": {
         "title": "Klar NLU",
-        "description": "Balsas, Assist kalbos ir LLM yra Klar operatoriaus sąsajoje (Nuostatos). Ši forma tik prijungia variklį: URL, prieigos raktas ir kanalas.",
+        "description": "Balsas, Assist kalbos ir LLM yra Klar operatoriaus sąsajoje (Nuostatos). Ši forma tik prijungia variklį: URL, prieigos raktas ir kanalas. {apps}",
         "data": {
           "mode": "Variklis",
           "url": "Klar API URL",
@@ -32,6 +32,7 @@
           "channel": "Leidimo kanalas"
         },
         "data_description": {
+          "mode": "App vs bundled engine. Switch anytime. The integration sidebar only appears for the bundled engine.",
           "token": "Tas pats raktas kaip Klar programoje.",
           "assist_filter": "Įjungta: tik tai, ką mato Assist. Išjungta: ir paslėpti objektai.",
           "channel": "Bet kada. Staging nurodo Klar NLU (Staging)."

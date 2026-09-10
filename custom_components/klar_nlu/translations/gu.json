@@ -23,7 +23,7 @@
     "step": {
       "init": {
         "title": "Klar NLU",
-        "description": "અવાજ, Assist ભાષાઓ અને LLM Klar ઓપરેટર UI (સેટિંગ્સ)માં છે. આ ફોર્મ ફક્ત એન્જિન જોડે છે: URL, ટોકન અને ચેનલ.",
+        "description": "અવાજ, Assist ભાષાઓ અને LLM Klar ઓપરેટર UI (સેટિંગ્સ)માં છે. આ ફોર્મ ફક્ત એન્જિન જોડે છે: URL, ટોકન અને ચેનલ. {apps}",
         "data": {
           "mode": "એન્જિન",
           "url": "Klar API URL",
@@ -32,6 +32,7 @@
           "channel": "રિલીઝ ચેનલ"
         },
         "data_description": {
+          "mode": "App vs bundled engine. Switch anytime. The integration sidebar only appears for the bundled engine.",
           "token": "Klar એપ જેવું જ ટોકન.",
           "assist_filter": "ચાલુ: ફક્ત Assist જુએ તે. બંધ: છુપાયેલા એકમો પણ.",
           "channel": "ગમે ત્યારે. Staging Klar NLU (Staging) તરફ છે."

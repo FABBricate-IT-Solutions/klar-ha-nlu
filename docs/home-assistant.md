@@ -111,7 +111,7 @@ Nur **einen** Host. Ein Reload der Integration auf die App-URL beendet das mitge
 
 **Mitgeliefert (keine App):** HACS-Integration → **Mitgelieferte Engine starten (nur HACS)**. Lädt das GitHub-Release nach `/config/klar_nlu/`. Assist funktioniert. Zuordnung/Labor binden `127.0.0.1` in Core, ein Handy kommt nicht ran. Lovelace **Klar** ist nur der letzte Assist-Zug.
 
-**Stable vs Staging:** ein Schalter. Einstellungen → Geräte & Dienste → Klar NLU → Konfigurieren → **Release-Kanal**. Stable zeigt auf die Klar-NLU-App (`http://klar-nlu:10520`) bzw. das CalVer-GitHub-Release. Staging zeigt auf Klar NLU (Staging) (`http://klar-nlu-staging:10520`) bzw. das neueste Prerelease. Eine eigene URL bleibt unverändert. Nach dem Wechsel lädt die Integration neu. Nicht in `.storage` umbiegen.
+**Engine vs Kanal:** zwei Schalter. Einstellungen → Geräte & Dienste → Klar NLU → Konfigurieren → **Engine** wechselt App und mitgelieferte Engine (jederzeit). **Release-Kanal** wählt Stable oder Staging für genau diesen Host: App zeigt auf das Add-on, mitgelieferte Engine lädt das GitHub-Release. Eine eigene URL bleibt unverändert. Die Integrations-Sidebar erscheint nur bei der mitgelieferten Engine. Nach dem Wechsel lädt die Integration neu. Nicht in `.storage` umbiegen.
 
 Supervisor liest das Add-on-Repo von `main`. **Klar NLU (Staging)** erscheint im Store erst, wenn `addon-staging/` dort liegt. Nach einem Merge auf `staging` die Staging-App neu bauen (Version bleibt `staging`).
 

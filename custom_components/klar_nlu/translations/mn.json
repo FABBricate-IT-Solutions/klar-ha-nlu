@@ -23,7 +23,7 @@
     "step": {
       "init": {
         "title": "Klar NLU",
-        "description": "Дуу хоолой, Assist хэл, LLM Klar операторын UI (Тохиргоо)-д байна. Энэ маягт зөвхөн хөдөлгүүрийг холбоно: URL, токен, суваг.",
+        "description": "Дуу хоолой, Assist хэл, LLM Klar операторын UI (Тохиргоо)-д байна. Энэ маягт зөвхөн хөдөлгүүрийг холбоно: URL, токен, суваг. {apps}",
         "data": {
           "mode": "Хөдөлгүүр",
           "url": "Klar API хаяг",
@@ -32,6 +32,7 @@
           "channel": "Гаргалтын суваг"
         },
         "data_description": {
+          "mode": "App vs bundled engine. Switch anytime. The integration sidebar only appears for the bundled engine.",
           "token": "Klar апптай ижил токен.",
           "assist_filter": "Асаалттай: зөвхөн Assist харахыг. Унтраалттай: нуугдсан нэгж ч багтана.",
           "channel": "Хэзээ ч. Staging нь Klar NLU (Staging) руу заана."

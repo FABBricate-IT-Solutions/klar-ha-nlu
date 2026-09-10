@@ -23,7 +23,7 @@
     "step": {
       "init": {
         "title": "Klar NLU",
-        "description": "A voz, as linguas de Assist e o LLM están na IU de operador de Klar (Configuración). Este formulario só conecta o motor: URL, token e canle.",
+        "description": "A voz, as linguas de Assist e o LLM están na IU de operador de Klar (Configuración). Este formulario só conecta o motor: URL, token e canle. {apps}",
         "data": {
           "mode": "Motor",
           "url": "URL da API Klar",
@@ -32,6 +32,7 @@
           "channel": "Canle de publicación"
         },
         "data_description": {
+          "mode": "App vs bundled engine. Switch anytime. The integration sidebar only appears for the bundled engine.",
           "token": "O mesmo token que na app Klar.",
           "assist_filter": "Activado: só o que Assist pode ver. Desactivado: tamén entidades ocultas.",
           "channel": "En calquera momento. Staging apunta a Klar NLU (Staging)."

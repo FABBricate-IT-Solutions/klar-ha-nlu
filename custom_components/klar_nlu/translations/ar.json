@@ -23,7 +23,7 @@
     "step": {
       "init": {
         "title": "Klar NLU",
-        "description": "الصوت ولغات Assist ونموذج اللغة موجودة في واجهة مشغّل Klar (الإعدادات). هذا النموذج يربط المحرك فقط: العنوان والرمز والقناة.",
+        "description": "الصوت ولغات Assist ونموذج اللغة موجودة في واجهة مشغّل Klar (الإعدادات). هذا النموذج يربط المحرك فقط: العنوان والرمز والقناة. {apps}",
         "data": {
           "mode": "المحرك",
           "url": "عنوان واجهة Klar",
@@ -32,6 +32,7 @@
           "channel": "قناة الإصدار"
         },
         "data_description": {
+          "mode": "App vs bundled engine. Switch anytime. The integration sidebar only appears for the bundled engine.",
           "token": "نفس الرمز المستخدم في تطبيق Klar.",
           "assist_filter": "تشغيل: ما يراه Assist فقط. إيقاف: يشمل الكيانات المخفية.",
           "channel": "في أي وقت. Staging يشير إلى Klar NLU (Staging)."

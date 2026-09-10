@@ -23,7 +23,7 @@
     "step": {
       "init": {
         "title": "Klar NLU",
-        "description": "Voice, Assist languages, and the LLM live in the Klar operator UI (Settings). This form only connects the engine: URL, token, and channel.",
+        "description": "Voice, Assist languages, and the LLM live in the Klar operator UI (Settings). This form only connects the engine: URL, token, and channel. {apps}",
         "data": {
           "mode": "Engine",
           "url": "Klar API URL",
@@ -32,9 +32,10 @@
           "channel": "Release channel"
         },
         "data_description": {
+          "mode": "App vs bundled engine. Switch anytime. The integration sidebar only appears for the bundled engine.",
           "token": "Same token as the Klar add-on.",
           "assist_filter": "On (default): only what Assist may see. Off: hidden entities too.",
-          "channel": "Works anytime. Staging points at Klar NLU (Staging). Stable goes back to the app or bundled engine."
+          "channel": "Stable vs staging for the host you picked above. App uses that add-on; bundled engine downloads that GitHub release. A custom URL is left alone."
         }
       }
     },

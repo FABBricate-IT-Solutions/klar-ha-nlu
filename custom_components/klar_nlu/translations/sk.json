@@ -23,7 +23,7 @@
     "step": {
       "init": {
         "title": "Klar NLU",
-        "description": "Hlas, jazyky Assist a LLM sú v operátorskom UI Klar (Nastavenia). Tento formulár len pripája engine: URL, token a kanál.",
+        "description": "Hlas, jazyky Assist a LLM sú v operátorskom UI Klar (Nastavenia). Tento formulár len pripája engine: URL, token a kanál. {apps}",
         "data": {
           "mode": "Engine",
           "url": "URL Klar API",
@@ -32,6 +32,7 @@
           "channel": "Kanál vydania"
         },
         "data_description": {
+          "mode": "App vs bundled engine. Switch anytime. The integration sidebar only appears for the bundled engine.",
           "token": "Rovnaký token ako v aplikácii Klar.",
           "assist_filter": "Zapnuté: len to, čo vidí Assist. Vypnuté: aj skryté entity.",
           "channel": "Kedykoľvek. Staging ukazuje na Klar NLU (Staging)."

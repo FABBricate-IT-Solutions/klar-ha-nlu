@@ -23,7 +23,7 @@
     "step": {
       "init": {
         "title": "Klar NLU",
-        "description": "Ses, Assist dilleri ve LLM, Klar operatör arayüzünde (Ayarlar). Bu form yalnızca motoru bağlar: URL, jeton ve kanal.",
+        "description": "Ses, Assist dilleri ve LLM, Klar operatör arayüzünde (Ayarlar). Bu form yalnızca motoru bağlar: URL, jeton ve kanal. {apps}",
         "data": {
           "mode": "Motor",
           "url": "Klar API URL’si",
@@ -32,6 +32,7 @@
           "channel": "Yayın kanalı"
         },
         "data_description": {
+          "mode": "App vs bundled engine. Switch anytime. The integration sidebar only appears for the bundled engine.",
           "token": "Klar uygulamasındakiyle aynı jeton.",
           "assist_filter": "Açık: yalnızca Assist’in gördüğü. Kapalı: gizli varlıklar da.",
           "channel": "İstediğiniz zaman. Staging, Klar NLU (Staging)’i gösterir."

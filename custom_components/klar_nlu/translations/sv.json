@@ -23,7 +23,7 @@
     "step": {
       "init": {
         "title": "Klar NLU",
-        "description": "Röst, Assist-språk och LLM finns i Klars operatörsgränssnitt (Inställningar). Det här formuläret kopplar bara motorn: URL, token och kanal.",
+        "description": "Röst, Assist-språk och LLM finns i Klars operatörsgränssnitt (Inställningar). Det här formuläret kopplar bara motorn: URL, token och kanal. {apps}",
         "data": {
           "mode": "Motor",
           "url": "Klar-API-URL",
@@ -32,6 +32,7 @@
           "channel": "Utgivningskanal"
         },
         "data_description": {
+          "mode": "App vs bundled engine. Switch anytime. The integration sidebar only appears for the bundled engine.",
           "token": "Samma token som i Klar-appen.",
           "assist_filter": "På: bara det Assist får se. Av: även dolda enheter.",
           "channel": "När som helst. Staging pekar på Klar NLU (Staging)."

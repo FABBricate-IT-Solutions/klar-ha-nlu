@@ -23,7 +23,7 @@
     "step": {
       "init": {
         "title": "Klar NLU",
-        "description": "Ahotsa, Assist hizkuntzak eta LLM Klar operadorearen UIan daude (Ezarpenak). Inprimaki honek motorra soilik konektatzen du: URL, tokena eta kanala.",
+        "description": "Ahotsa, Assist hizkuntzak eta LLM Klar operadorearen UIan daude (Ezarpenak). Inprimaki honek motorra soilik konektatzen du: URL, tokena eta kanala. {apps}",
         "data": {
           "mode": "Motorra",
           "url": "Klar API URLa",
@@ -32,6 +32,7 @@
           "channel": "Argitalpen kanala"
         },
         "data_description": {
+          "mode": "App vs bundled engine. Switch anytime. The integration sidebar only appears for the bundled engine.",
           "token": "Klar aplikazioko token bera.",
           "assist_filter": "Piztuta: Assist-ek ikusten duena soilik. Itzalita: ezkutuko entitateak ere.",
           "channel": "Edozein unetan. Staging-ek Klar NLU (Staging) seinalatzen du."

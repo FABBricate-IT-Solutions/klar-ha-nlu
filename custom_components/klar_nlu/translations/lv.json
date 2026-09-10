@@ -23,7 +23,7 @@
     "step": {
       "init": {
         "title": "Klar NLU",
-        "description": "Balss, Assist valodas un LLM ir Klar operatora saskarnē (Iestatījumi). Šī veidlapa savieno tikai dzinēju: URL, marķieris un kanāls.",
+        "description": "Balss, Assist valodas un LLM ir Klar operatora saskarnē (Iestatījumi). Šī veidlapa savieno tikai dzinēju: URL, marķieris un kanāls. {apps}",
         "data": {
           "mode": "Dzinējs",
           "url": "Klar API URL",
@@ -32,6 +32,7 @@
           "channel": "Izlaides kanāls"
         },
         "data_description": {
+          "mode": "App vs bundled engine. Switch anytime. The integration sidebar only appears for the bundled engine.",
           "token": "Tas pats marķieris kā Klar lietotnē.",
           "assist_filter": "Ieslēgts: tikai to, ko redz Assist. Izslēgts: arī slēptās entītijas.",
           "channel": "Jebkurā laikā. Staging norāda uz Klar NLU (Staging)."

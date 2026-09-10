@@ -23,7 +23,7 @@
     "step": {
       "init": {
         "title": "Klar NLU",
-        "description": "Stimme, Assist-Sprachen und das LLM liegen in der Klar-Operator-UI (Einstellungen). Dieses Formular verbindet nur die Engine: URL, Token und Kanal.",
+        "description": "Stimme, Assist-Sprachen und das LLM liegen in der Klar-Operator-UI (Einstellungen). Dieses Formular verbindet nur die Engine: URL, Token und Kanal. {apps}",
         "data": {
           "mode": "Engine",
           "url": "URL der Klar-API",
@@ -32,9 +32,10 @@
           "channel": "Release-Kanal"
         },
         "data_description": {
+          "mode": "App oder mitgelieferte Engine. Jederzeit umstellen. Die Integrations-Sidebar erscheint nur bei der mitgelieferten Engine.",
           "token": "Derselbe Token wie im Klar-Addon.",
           "assist_filter": "An: nur was Assist sehen darf. Aus: auch versteckte Entitäten.",
-          "channel": "Jederzeit. Staging auf Klar NLU (Staging), Stable auf die App oder die mitgelieferte Engine."
+          "channel": "Stable oder Staging für den Host oben. App nutzt das Add-on; mitgelieferte Engine lädt das GitHub-Release. Eine eigene URL bleibt."
         }
       }
     },

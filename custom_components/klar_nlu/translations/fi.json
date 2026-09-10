@@ -23,7 +23,7 @@
     "step": {
       "init": {
         "title": "Klar NLU",
-        "description": "Ääni, Assist-kielet ja LLM ovat Klarin operaattori-UI:ssa (Asetukset). Tämä lomake yhdistää vain moottorin: URL, tunnus ja kanava.",
+        "description": "Ääni, Assist-kielet ja LLM ovat Klarin operaattori-UI:ssa (Asetukset). Tämä lomake yhdistää vain moottorin: URL, tunnus ja kanava. {apps}",
         "data": {
           "mode": "Moottori",
           "url": "Klar-API:n URL",
@@ -32,6 +32,7 @@
           "channel": "Julkaisukanava"
         },
         "data_description": {
+          "mode": "App vs bundled engine. Switch anytime. The integration sidebar only appears for the bundled engine.",
           "token": "Sama poletti kuin Klar-sovelluksessa.",
           "assist_filter": "Päällä: vain se mitä Assist saa nähdä. Pois: myös piilotetut.",
           "channel": "Milloin tahansa. Staging osoittaa Klar NLU (Staging) -palveluun."

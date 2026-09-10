@@ -23,7 +23,7 @@
     "step": {
       "init": {
         "title": "Klar NLU",
-        "description": "Ձայնը, Assist-ի լեզուները և LLM-ը Klar օպերատորի միջերեսում են (Կարգավորումներ)։ Այս ձևը միայն շարժիչն է կապում՝ URL, նշան և ալիք։",
+        "description": "Ձայնը, Assist-ի լեզուները և LLM-ը Klar օպերատորի միջերեսում են (Կարգավորումներ)։ Այս ձևը միայն շարժիչն է կապում՝ URL, նշան և ալիք։ {apps}",
         "data": {
           "mode": "Շարժիչ",
           "url": "Klar API հասցե",
@@ -32,6 +32,7 @@
           "channel": "Թողարկման ալիք"
         },
         "data_description": {
+          "mode": "App vs bundled engine. Switch anytime. The integration sidebar only appears for the bundled engine.",
           "token": "Նույն նշանը, ինչ Klar հավելվածում։",
           "assist_filter": "Միացված՝ միայն այն, ինչ տեսնում է Assist-ը։ Անջատված՝ նաև թաքնված միավորներ։",
           "channel": "Ցանկացած պահի։ Staging-ը մատնանշում է Klar NLU (Staging)։"

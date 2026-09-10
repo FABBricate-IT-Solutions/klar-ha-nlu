@@ -23,7 +23,7 @@
     "step": {
       "init": {
         "title": "Klar NLU",
-        "description": "Tá an guth, teangacha Assist, agus an LLM i gcomhéadan oibreora Klar (Socruithe). Ní dhéanann an fhoirm seo ach an t-inneall a cheangal: URL, comhartha agus cainéal.",
+        "description": "Tá an guth, teangacha Assist, agus an LLM i gcomhéadan oibreora Klar (Socruithe). Ní dhéanann an fhoirm seo ach an t-inneall a cheangal: URL, comhartha agus cainéal. {apps}",
         "data": {
           "mode": "Inneall",
           "url": "URL API Klar",
@@ -32,6 +32,7 @@
           "channel": "Cainéal eisiúna"
         },
         "data_description": {
+          "mode": "App vs bundled engine. Switch anytime. The integration sidebar only appears for the bundled engine.",
           "token": "An comhartha céanna is atá in aip Klar.",
           "assist_filter": "Ar: an méid a fheiceann Assist amháin. As: eintitis fholaithe freisin.",
           "channel": "Am ar bith. Díríonn Staging ar Klar NLU (Staging)."

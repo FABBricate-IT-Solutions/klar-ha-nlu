@@ -23,7 +23,7 @@
     "step": {
       "init": {
         "title": "Klar NLU",
-        "description": "Vocea, limbile Assist și LLM-ul sunt în UI-ul operator Klar (Setări). Acest formular conectează doar motorul: URL, token și canal.",
+        "description": "Vocea, limbile Assist și LLM-ul sunt în UI-ul operator Klar (Setări). Acest formular conectează doar motorul: URL, token și canal. {apps}",
         "data": {
           "mode": "Motor",
           "url": "URL API Klar",
@@ -32,6 +32,7 @@
           "channel": "Canal de lansare"
         },
         "data_description": {
+          "mode": "App vs bundled engine. Switch anytime. The integration sidebar only appears for the bundled engine.",
           "token": "Același token ca în aplicația Klar.",
           "assist_filter": "Pornit: doar ce vede Assist. Oprit: și entități ascunse.",
           "channel": "Oricând. Staging indică Klar NLU (Staging)."
