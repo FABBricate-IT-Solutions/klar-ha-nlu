@@ -6,6 +6,21 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 Versions follow Home Assistant calendar versioning (`YYYY.M.PATCH`)
 and [Conventional Commits](https://www.conventionalcommits.org/).
 
+## [2026.9.9](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/compare/2026.9.5-staging.1e6593b...2026.9.9) - 2026-09-11
+
+
+
+### Bug Fixes
+
+- keep staging Lotse UI when promoting to main([a89fbc8](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/a89fbc824cc264bfcb8d925fa70da90ca275cbad))
+
+
+### Other
+
+- Merge pull request #255 from FABBricate-IT-Solutions/release/promote-2026.9.9([8891bd6](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/8891bd68c64565b519c239d1f7b9a95168a7d6b4))
+
+- accept staging product over main 2026.9.8([4a9db2e](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/4a9db2ec054d3dd0c5e44f1f349c47e3ccc11ca0))
+
 ## [2026.9.8](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/compare/2026.9.7...2026.9.8) - 2026-09-07
 
 
