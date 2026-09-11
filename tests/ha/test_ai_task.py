@@ -49,18 +49,28 @@ class AITaskHelpers(unittest.TestCase):
         line = ai_task.structure_system({"title": {"selector": {"text": None}}})
         self.assertIn("JSON object", line)
         self.assertIn("title", line)
+        self.assertIn("text", line)
         self.assertNotIn("response_format", line)
 
-    def test_messages_from_log_prepends_schema_and_keeps_roles(self) -> None:
+    def test_messages_from_log_folds_schema_into_user(self) -> None:
         content = [
             {"role": "system", "content": "You are helpful."},
             {"role": "user", "content": "Write a title"},
         ]
-        messages = ai_task.messages_from_log(content, "Write a title", {"title": "text"})
-        self.assertEqual(messages[0]["role"], "system")
-        self.assertIn("JSON object", messages[0]["content"])
-        self.assertEqual(messages[1]["role"], "system")
-        self.assertEqual(messages[2], {"role": "user", "content": "Write a title"})
+        messages = ai_task.messages_from_log(content, "Write a title", {"title": {"selector": {"text": None}}})
+        self.assertEqual(messages[0], {"role": "system", "content": "You are helpful."})
+        self.assertEqual(messages[1]["role"], "user")
+        self.assertIn("Write a title", messages[1]["content"])
+        self.assertIn("JSON object", messages[1]["content"])
+        self.assertIn("title (text)", messages[1]["content"])
+        self.assertEqual(len(messages), 2)
+
+    def test_messages_from_log_accepts_enum_roles(self) -> None:
+        messages = ai_task.messages_from_log(
+            [{"role": "ChatLogRole.USER", "content": "Count the lamps"}],
+            "",
+        )
+        self.assertEqual(messages, [{"role": "user", "content": "Count the lamps"}])
 
     def test_messages_from_log_uses_instructions_when_empty(self) -> None:
         messages = ai_task.messages_from_log(None, "Count the lamps")

@@ -51,6 +51,9 @@ fn start_timer_without_duration_clarifies() {
     let decided = safety_decision(execute_plan(&context, plan, "test", None, None, false, false), &context);
     assert!(matches!(decided.decision, ParseDecision::Clarify { .. }), "{:#?}", decided.decision);
     assert!(decided.plan.is_none());
+    let (options, template) = decided.commit.clarify.expect("timer duration template");
+    assert!(options.is_empty());
+    assert_eq!(template.name, "HassStartTimer");
 }
 
 #[test]
