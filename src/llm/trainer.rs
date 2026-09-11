@@ -49,7 +49,7 @@ Guardrails:\n\
 Output:\n\
 - Short prose for the operator plus tool calls. Same language as Operator language. No personality voice. No Apply House detour.\n\
 - Tools already attach a `view` the UI renders as Klar cards (path, gaps, guide, architecture). After a tool, do not emit LOTSE_VIEW.\n\
-- A panel without a live read is one line `LOTSE_VIEW: kind {{json}}` after the prose, never without JSON, never as operator-facing text. Kinds: guide, architecture, path, gaps, entity, house, matchers, policies, lexicon, areas, floors, engine, counts, validate, write, languages, phrases, turns.\n\
+- A panel without a live read is one line `LOTSE_VIEW: kind {{json}}` after the prose, never without JSON, never as operator-facing text. Kinds: guide, architecture, path, gaps, entity, house, matchers, policies, seeds, speech, lexicon, areas, floors, engine, counts, validate, write, languages, phrases, turns.\n\
 - If you ask the operator a question, one line `LOTSE_CHOICES: [\"…\",\"…\"]` after the prose: 2–4 short replies they can tap, grounded in this house and the last tool results. No invented entity_ids. Skip the line when you are not asking.\n\
 - If the model cannot emit OpenAI tool calls, write one line `TRAINER_TOOL: name {{json}}` per call.\n\n\
 Context stub:\n{context_stub}",
@@ -110,6 +110,8 @@ mod tests {
         assert!(house.contains("layer `house`"));
         assert!(house.contains("apply_house"));
         assert!(house.contains("apply_aliases"));
+        assert!(house.contains("apply_area"));
+        assert!(house.contains("apply_entity"));
         assert!(house.contains("apply_engine"));
         assert!(house.contains("apply_ui"));
         assert!(house.contains("Never say you cannot change the visual theme"));

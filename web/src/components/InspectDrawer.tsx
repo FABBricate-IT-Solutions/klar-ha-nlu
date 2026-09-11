@@ -4,6 +4,8 @@ import type { Messages } from "../i18n";
 import { saveFailMessage, toastSaved, toastSaveFailed } from "../saveToast";
 import type { Assignment, Dashboard } from "../types";
 import { Drawer } from "./common";
+import { Checkbox } from "@/components/ui/checkbox";
+import { Field, FieldContent, FieldDescription, FieldGroup, FieldLabel } from "@/components/ui/field";
 
 export function InspectDrawer({
   row,
@@ -69,15 +71,33 @@ export function InspectDrawer({
         placeholder={t.searchDevice}
         autoComplete="off"
       />
-      <label className="row" style={{ marginTop: 12 }}>
-        <input type="checkbox" checked={preferred} onChange={(ev) => setPreferred(ev.target.checked)} />
-        <span>{t.preferred}</span>
-      </label>
-      <label className="row" style={{ marginTop: 12 }}>
-        <input type="checkbox" checked={nluIgnore} onChange={(ev) => setNluIgnore(ev.target.checked)} />
-        <span>{t.nluIgnore}</span>
-      </label>
-      <p className="muted">{t.nluIgnoreHint}</p>
+      <FieldGroup className="mt-3">
+        <Field orientation="horizontal">
+          <Checkbox
+            id="klar-inspect-preferred"
+            checked={preferred}
+            onCheckedChange={(next) => setPreferred(Boolean(next))}
+          />
+          <FieldContent className="min-w-0">
+            <FieldLabel htmlFor="klar-inspect-preferred" className="max-w-full">
+              {t.preferred}
+            </FieldLabel>
+          </FieldContent>
+        </Field>
+        <Field orientation="horizontal">
+          <Checkbox
+            id="klar-inspect-nlu-ignore"
+            checked={nluIgnore}
+            onCheckedChange={(next) => setNluIgnore(Boolean(next))}
+          />
+          <FieldContent className="min-w-0">
+            <FieldLabel htmlFor="klar-inspect-nlu-ignore" className="max-w-full">
+              {t.nluIgnore}
+            </FieldLabel>
+            <FieldDescription>{t.nluIgnoreHint}</FieldDescription>
+          </FieldContent>
+        </Field>
+      </FieldGroup>
       <label htmlFor="klar-inspect-room">{t.room}</label>
       <select id="klar-inspect-room" value={area} onChange={(ev) => setArea(ev.target.value)}>
         <option value="">{t.otherRoom}</option>

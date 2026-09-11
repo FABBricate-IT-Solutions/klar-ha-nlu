@@ -24,6 +24,7 @@ mod trainer;
 mod trainer_choices;
 mod trainer_handbook;
 mod trainer_tools;
+mod trainer_tools_def;
 mod types;
 
 pub use assist::{assist, assist_on, AssistOutcome, AssistRequest};
