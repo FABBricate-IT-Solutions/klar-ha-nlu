@@ -1,17 +1,10 @@
 import { useEffect, useRef, useState } from "react";
-import { ArrowUpIcon, Loader2Icon, MoreHorizontalIcon, XIcon } from "lucide-react";
+import { Loader2Icon } from "lucide-react";
 import { api } from "../api";
 import type { Messages } from "../i18n";
 import type { LlmPublic, TrainerChatEvent, TrainerConsent, TrainerTurn, TrainerValidateOut } from "../types";
 import { LotseAnswer, lotseFallbackChips, lotseQuickChips, lotseReplyChoices, unansweredAssistant, visibleLotseText } from "./LotseAnswer";
 import { TrainerToolCard } from "./TrainerToolCard";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
 
 type ThreadLine =
   | { role: "user" | "assistant"; content: string }
@@ -172,7 +165,6 @@ export function TrainerDrawer({
   const [yolo, setYolo] = useState(false);
   const [consumedFor, setConsumedFor] = useState("");
   const endRef = useRef<HTMLDivElement>(null);
-  const draftRef = useRef<HTMLTextAreaElement>(null);
   const abortRef = useRef<AbortController | null>(null);
   const genRef = useRef(0);
 
@@ -229,9 +221,6 @@ export function TrainerDrawer({
     const offered = open.length > 0 ? open : lotseFallbackChips(openText, t);
     setConsumedFor(offered.includes(message) ? openText : "");
     setDraft("");
-    if (draftRef.current) {
-      draftRef.current.style.height = "";
-    }
     const history = chatHistory(lines);
     const gen = genRef.current;
     abortRef.current?.abort();
@@ -279,28 +268,19 @@ export function TrainerDrawer({
     }
   };
 
-  const chatting = lines.length > 0 || busy;
-  const modelName = shortModel(endpoint?.model);
-
   if (!endpoint?.configured) {
     const waiting = !endpoint && !endpointError;
     const needLlm = Boolean(endpoint && !endpoint.configured && !endpointError);
     return (
-      <section className="trainer" data-chatting="false">
+      <section className="trainer">
         <header className="trainer-head">
-          <div className="trainer-bar">
-            <div className="trainer-copy">
-              <p className="trainer-kicker">{t.trainer}</p>
-            </div>
-            <div className="trainer-meta">
-              {onClose ? (
-                <button className="ghost trainer-close-icon" type="button" onClick={onClose} aria-label={t.close}>
-                  <XIcon />
-                </button>
-              ) : null}
-            </div>
+          <div>
+            <p className="trainer-kicker">{t.trainer}</p>
+            <p className="muted">{waiting ? t.trainerStreaming : needLlm ? t.trainerNeedLlm : t.trainerFail}</p>
           </div>
-          <p className="muted trainer-hint">{waiting ? t.trainerStreaming : needLlm ? t.trainerNeedLlm : t.trainerFail}</p>
+          {onClose ? (
+            <button className="ghost" type="button" onClick={onClose}>{t.close}</button>
+          ) : null}
         </header>
         {waiting ? null : (
           <div className="trainer-composer">
@@ -318,7 +298,7 @@ export function TrainerDrawer({
   }
 
   return (
-    <section className="trainer" aria-label={t.trainer} data-chatting={chatting ? "true" : "false"}>
+    <section className="trainer" aria-label={t.trainer}>
       <header className="trainer-head">
         <div>
           <p className="trainer-kicker">{t.trainer}</p>
@@ -340,13 +320,12 @@ export function TrainerDrawer({
             <button className="ghost" type="button" onClick={onClose}>{t.close}</button>
           ) : null}
         </div>
-        {chatting ? null : <p className="muted trainer-hint">{t.trainerHint}</p>}
       </header>
       <div className="trainer-thread">
         {lines.length === 0 && !busy ? (
           <div className="trainer-empty">
             <p>{t.trainerEmpty}</p>
-            <p className="muted trainer-empty-hint">{t.trainerEmptyHint}</p>
+            <p className="muted">{t.trainerEmptyHint}</p>
             <div className="trainer-prompts">
               {prompts.map((prompt) => (
                 <button className="trainer-chip" type="button" key={prompt} onClick={() => void send(prompt)}>
@@ -375,7 +354,7 @@ export function TrainerDrawer({
             <p className="trainer-kicker">{t.trainerPermit}</p>
             <p className="mono">{consent.tool}</p>
             <p>{consent.summary}</p>
-            <div className="row trainer-consent-actions">
+            <div className="row">
               <button className="primary" type="button" onClick={() => void decide("allow")}>{t.trainerAllow}</button>
               <button className="secondary" type="button" onClick={() => void decide("allow_once")}>{t.trainerAllowOnce}</button>
               <button className="ghost" type="button" onClick={() => void decide("deny")}>{t.trainerDeny}</button>
@@ -410,15 +389,11 @@ export function TrainerDrawer({
         <label className="visually-hidden" htmlFor="trainer-draft">{t.trainerComposer}</label>
         <textarea
           id="trainer-draft"
-          ref={draftRef}
           value={draft}
           disabled={busy && !consent}
           placeholder={t.trainerComposer}
-          rows={1}
-          onChange={(ev) => {
-            setDraft(ev.target.value);
-            fitDraft(ev.currentTarget);
-          }}
+          rows={2}
+          onChange={(ev) => setDraft(ev.target.value)}
           onKeyDown={(ev) => {
             if (ev.key === "Enter" && !ev.shiftKey) {
               ev.preventDefault();
@@ -426,9 +401,9 @@ export function TrainerDrawer({
             }
           }}
         />
-        <button className="primary trainer-send" type="submit" disabled={(busy && !consent) || !draft.trim()}>
-          {busy && !consent ? <Loader2Icon className="animate-spin" /> : <ArrowUpIcon />}
-          <span className="trainer-send-label">{busy && !consent ? t.trainerStreaming : t.trainerSend}</span>
+        <button className="primary" type="submit" disabled={(busy && !consent) || !draft.trim()}>
+          {busy && !consent ? <Loader2Icon data-icon="inline-start" className="animate-spin" /> : null}
+          {busy && !consent ? t.trainerStreaming : t.trainerSend}
         </button>
       </form>
       {result ? (

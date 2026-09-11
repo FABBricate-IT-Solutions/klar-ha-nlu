@@ -354,8 +354,6 @@ export const en = {
   trainerOk: "Valid",
   trainerFail: "Invalid",
   trainerSend: "Send",
-  trainerMore: "More",
-  trainerDetails: "Details",
   trainerNeedLlm: "Configure an LLM in Settings first. Klar does not need another Home Assistant conversation integration.",
   trainerOpenSettings: "Open Settings",
   trainerApplyHouse: "Apply House",
