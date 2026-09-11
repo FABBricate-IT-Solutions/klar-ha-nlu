@@ -8,8 +8,21 @@ pub struct TrainerTurn {
     pub content: String,
 }
 
+fn write_scope(layer: &str, writes: &str) -> String {
+    if layer == "all" || layer.is_empty() {
+        format!(
+            "- You can read and propose writes across house, match, and language in this same chat. Allowed write tools: {writes}. Infer what the operator needs. Offer 2–4 tap replies (LOTSE_CHOICES) instead of asking them to switch lanes. Never tell the operator to open Match, Language, or House."
+        )
+    } else {
+        format!(
+            "- Writes this session are layer `{layer}` only. Allowed write tools: {writes}. If the operator wants another lane, say so and wait; do not propose those writes."
+        )
+    }
+}
+
 pub fn system_prompt(layer: &str, context_stub: &str, reply_language: &str) -> String {
     let writes = super::trainer_tools::write_tools_for_layer(layer).join(", ");
+    let scope = write_scope(layer, &writes);
     let reply = reply_language.trim();
     let reply = if reply.is_empty() { "en" } else { reply };
     format!(
@@ -19,7 +32,7 @@ Tool names, entity_ids, and JSON stay unchanged. Do not switch to English unless
 You never parse utterances at runtime.\n\n\
 Task:\n\
 - Answer any question about Klar. Architecture, setup, guides, trade-offs — the whole product.\n\
-- Writes this session are layer `{layer}` only. Allowed write tools: {writes}. If the operator wants another lane, say so and wait; do not propose those writes.\n\
+{scope}\n\
 - Cover the household and every Assist language in settings.languages (not only one pinned locale): lexicon slang, match order, house policies, aliases.\n\
 - Use tools to read this house. The stub below is compact on purpose. Do not assume a full graph dump.\n\
 - Read tools run immediately. Write tools persist only after the operator confirms in chat (Allow once / Allow / YOLO).\n\
@@ -40,7 +53,8 @@ Output:\n\
 - If you ask the operator a question, one line `LOTSE_CHOICES: [\"…\",\"…\"]` after the prose: 2–4 short replies they can tap, grounded in this house and the last tool results. No invented entity_ids. Skip the line when you are not asking.\n\
 - If the model cannot emit OpenAI tool calls, write one line `TRAINER_TOOL: name {{json}}` per call.\n\n\
 Context stub:\n{context_stub}",
-        handbook = super::trainer_handbook::HANDBOOK
+        handbook = super::trainer_handbook::HANDBOOK,
+        scope = scope
     )
 }
 
@@ -87,6 +101,11 @@ mod tests {
         assert!(!text.contains("Butler"));
         assert!(text.contains("No Apply House detour"));
         assert!(!text.contains("do not apply yourself"));
+        assert!(text.contains("apply_match"));
+        assert!(text.contains("apply_house"));
+        assert!(text.contains("apply_lexicon"));
+        assert!(text.contains("Infer what the operator needs"));
+        assert!(!text.contains("another lane"));
         let house = system_prompt("house", r#"{"layer":"house"}"#, "de");
         assert!(house.contains("layer `house`"));
         assert!(house.contains("apply_house"));

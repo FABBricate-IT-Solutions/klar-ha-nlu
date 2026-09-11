@@ -2,7 +2,6 @@ import { SparklesIcon } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import { Button } from "@/components/ui/button";
 import type { Messages } from "../i18n";
-import type { PolicyLane } from "./PolicyPath";
 import { TrainerDrawer } from "./TrainerDrawer";
 
 const MIN_W = 300;
@@ -58,7 +57,6 @@ export function TrainerDock({
   t: Messages;
   language?: string;
 }) {
-  const [lane, setLane] = useState<PolicyLane>("house");
   const [status, setStatus] = useState("");
   const [width, setWidth] = useState(readWidth);
   const drag = useRef(false);
@@ -130,10 +128,8 @@ export function TrainerDock({
         />
         <TrainerDrawer
           t={t}
-          lane={lane}
           language={language}
           active={open}
-          onLane={setLane}
           onClose={() => onOpenChange(false)}
           onStatus={setStatus}
         />

@@ -89,26 +89,6 @@
   padding: 8px 18px 12px;
 }
 
-.trainer-lanes {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 6px;
-  margin: 8px 0;
-}
-
-.trainer-lanes button {
-  padding: 4px 10px;
-  color: var(--muted-foreground);
-  border: 1px solid var(--line);
-  border-radius: 8px;
-  background: var(--surface);
-}
-
-.trainer-lanes button[aria-pressed="true"] {
-  color: var(--text);
-  border-color: var(--accent);
-}
-
 .visually-hidden {
   position: absolute;
   width: 1px;
@@ -295,9 +275,10 @@ button.guide-step {
 }
 
 .trainer-prompts {
-  display: grid;
+  display: flex;
+  flex-wrap: wrap;
   gap: 8px;
-  margin-top: 16px;
+  margin-top: 12px;
 }
 
 .trainer-line {
@@ -503,8 +484,7 @@ button.guide-step {
     display: none;
   }
 
-  .trainer-lanes button,
-  .trainer-prompts .guide-step,
+  .trainer-prompts .trainer-chip,
   .trainer-chip,
   .trainer-composer .primary,
   .trainer-composer .ghost,
