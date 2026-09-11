@@ -6,20 +6,34 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 Versions follow Home Assistant calendar versioning (`YYYY.M.PATCH`)
 and [Conventional Commits](https://www.conventionalcommits.org/).
 
-## [2026.9.9](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/compare/2026.9.5-staging.1e6593b...2026.9.9) - 2026-09-11
+## [2026.9.9](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/compare/2026.9.8...2026.9.9) - 2026-09-11
 
+Promotes staging since 2026.9.8. Lotse can write the same overlays as Mapping and Rules. Timers, floor speech, and engine host switching are in the stable cut.
+
+### Features
+
+- Lotse writes Mapping and Rules after Allow: preferred / nlu_ignore, replace or remove aliases, rooms, custom phrases, delete house policies, list govern seeds, speech bank, Lab-like try_sentence([f371d5e](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/f371d5eb5fb064e3cd6ff3f59534f414bddda2fb))
+- Refine spoken NLU replies by kind (status, command, prompt, reject)([429a20f](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/429a20f5b66d4b20d0ea693a30148ad3602e1b8c))
+- AI Task and LLM call console([75b3086](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/75b308662a7baa85413ac73541c1d470848646e5))
+- Native timer decrease and how-long in every locale([3f755ef](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/3f755ef49bc1c0ad9e555369200a3a344ebee56f))
+- Harden writes, HACS sidebar, and locale speech([c76067c](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/c76067c2eeff4d60e5d36d98d25250da7c8bb55e))
 
 
 ### Bug Fixes
 
-- keep staging Lotse UI when promoting to main([a89fbc8](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/a89fbc824cc264bfcb8d925fa70da90ca275cbad))
-
-
-### Other
-
-- Merge pull request #255 from FABBricate-IT-Solutions/release/promote-2026.9.9([8891bd6](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/8891bd68c64565b519c239d1f7b9a95168a7d6b4))
-
-- accept staging product over main 2026.9.8([4a9db2e](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/4a9db2ec054d3dd0c5e44f1f349c47e3ccc11ca0))
+- Lotse suggests without lane tabs([0d82186](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/0d8218679c24f10b70d8eeff89b88126b1b01e85))
+- Pick named lamps after a clarify, start helper timers without a satellite, keep the staging sidebar([e7f6e96](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/e7f6e96cd2b5e7f2bff65ef1749ba766853f0891))
+- Keep a named floor lamp when skipping room lights([aeeca0d](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/aeeca0d49f68e46165e4e8524ab578fd9a892a87))
+- Speak floor status as natural clauses([50df50a](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/50df50acd8fd54135e03d361dc091a77f4511461))
+- List floor temperatures per room([5b22a40](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/5b22a40b4be0604fd4cc195141876825015a76ed))
+- Configure can switch App and bundled engine on Supervisor([158c951](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/158c9514ed25fdf9de4f5fbdcfaa00b827306750))
+- Size the HACS sidebar with HA's iframe panel([0696162](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/0696162a9bcc1614441d627867ff5a8747a88484))
+- List LLM models from addon ingress([7a1ed4f](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/7a1ed4f7f52740a20d97709f3d47f1385cfb10ea))
+- Toast whether a settings save actually landed([23d0c79](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/23d0c7960791781c01eacd3a3e84c7e442577760))
+- Translate settings hints in every locale([7f517f6](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/7f517f6e22d4c177c6fabb2e7cc1ca50cde1e7bb))
+- Do not treat aus/all as an all-off scene([4eff355](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/4eff3559f96db82df37e70535d06deb880b24b77))
+- Keep timer decrease and structured AI Task([a7a82fb](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/a7a82fb7e435dc8002971066d73c5a82274023c2))
+- Align gold with room lights, timers, and music([4ca470c](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/4ca470c4916e3a85c5bb3a6870167749a88630dc))
 
 ## [2026.9.8](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/compare/2026.9.7...2026.9.8) - 2026-09-07
 

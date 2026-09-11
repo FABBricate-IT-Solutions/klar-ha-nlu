@@ -57,7 +57,9 @@ protect_breaking_commits = true
 filter_commits = false
 tag_pattern = "v?[0-9].*"
 skip_tags = ".*-(alpha|beta).*"
-ignore_tags = ""
+# Staging RC tags must not become "previous" on a main cut, or 2026.9.9
+# only lists the promote commits after 2026.9.5-staging.*.
+ignore_tags = ".*-(staging|rc)\\..*"
 topo_order = false
 sort_commits = "newest"
 commit_parsers = [

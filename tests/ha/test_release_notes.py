@@ -27,6 +27,15 @@ mod = _load()
 
 
 class ReleaseNotesTests(unittest.TestCase):
+    def test_extracts_2026_9_9_from_last_stable(self) -> None:
+        notes = mod.section((ROOT / "CHANGELOG.md").read_text(encoding="utf-8"), "2026.9.9")
+        self.assertIn("compare/2026.9.8...2026.9.9", notes)
+        self.assertIn("### Features", notes)
+        self.assertIn("Lotse writes Mapping and Rules", notes)
+        self.assertIn("### Bug Fixes", notes)
+        self.assertNotIn("2026.9.5-staging", notes)
+        self.assertNotIn("## [2026.9.8]", notes)
+
     def test_extracts_2026_8_4(self) -> None:
         notes = mod.section((ROOT / "CHANGELOG.md").read_text(encoding="utf-8"), "2026.8.4")
         self.assertIn("### Security", notes)
