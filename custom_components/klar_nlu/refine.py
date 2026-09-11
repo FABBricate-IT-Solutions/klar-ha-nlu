@@ -35,9 +35,29 @@ _ABBREV_TAIL = re.compile(
 _END = re.compile(r"(?:(?:\.\.\.|…|[.!?。！？])[\"'»”’]*)$")
 
 
-def should_refine(enabled: bool, agent_id: str | None, speech: str) -> bool:
+def should_refine(
+    enabled: bool,
+    agent_id: str | None,
+    speech: str,
+    band: str | None = None,
+    bands: list[str] | None = None,
+) -> bool:
     del agent_id
-    return bool(enabled and speech.strip())
+    return bool(enabled and speech.strip() and refine_band_allowed(band, bands))
+
+
+def refine_band_allowed(band: str | None, bands: list[str] | None) -> bool:
+    if not band or band in {"chat", "llm", "chime", "error", "skip"}:
+        return False
+    allowed = ["status"] if bands is None else [str(item) for item in bands]
+    return band in allowed
+
+
+def refine_band_from_payload(payload: object) -> str | None:
+    if not isinstance(payload, dict):
+        return None
+    band = payload.get("refine_band")
+    return str(band) if isinstance(band, str) and band.strip() else None
 
 
 def isolated_conversation_id() -> str:
@@ -171,8 +191,10 @@ async def async_finish_speech(
     conversation_id: str | None = None,
     chat_log: Any = None,
     publish_agent_id: str | None = None,
+    refine_band: str | None = None,
+    refine_bands: list[str] | None = None,
 ) -> tuple[str, bool]:
-    if not should_refine(enabled, agent_id, speech):
+    if not should_refine(enabled, agent_id, speech, refine_band, refine_bands):
         return style(speech, personality, pack), False
     refined, posted = await async_refine_speech(
         hass,

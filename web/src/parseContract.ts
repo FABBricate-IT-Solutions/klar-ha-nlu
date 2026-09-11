@@ -34,8 +34,9 @@ export function parseV2Response(value: unknown): ParseResult {
       "retrieval",
       "policy_trace",
       "quiet_ack_eligible",
+      "refine_band",
     ],
-    ["selected_candidate_id", "plan", "retrieval", "policy_trace", "quiet_ack_eligible"],
+    ["selected_candidate_id", "plan", "retrieval", "policy_trace", "quiet_ack_eligible", "refine_band"],
   );
   if (payload.schema_version !== "2.0") throw new Error("Unsupported parse schema");
   string(payload.text, "text", 4096, true);
@@ -68,6 +69,13 @@ export function parseV2Response(value: unknown): ParseResult {
   }
   if (payload.quiet_ack_eligible !== undefined && typeof payload.quiet_ack_eligible !== "boolean") {
     throw new Error("quiet_ack_eligible must be boolean");
+  }
+  if (
+    payload.refine_band !== undefined
+    && payload.refine_band !== null
+    && !["status", "command", "prompt", "reject"].includes(String(payload.refine_band))
+  ) {
+    throw new Error("refine_band must be a spoken reply kind");
   }
   if (payload.retrieval !== undefined && payload.retrieval !== null) {
     if (decision !== "chat" && decision !== "reject") {

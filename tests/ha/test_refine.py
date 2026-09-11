@@ -38,28 +38,39 @@ speech = _load("klar_speech", "speech.py")
 
 
 class RefineTests(unittest.TestCase):
-    def test_nlu_home_turn_removed_because_every_reply_refines(self) -> None:
+    def test_nlu_home_turn_stays_gone_bands_gate_instead(self) -> None:
         self.assertFalse(hasattr(refine, "nlu_home_turn"))
         self.assertFalse(hasattr(refine, "accept_refined"))
         self.assertFalse(hasattr(refine, "refine_prompt"))
         self.assertFalse(hasattr(refine, "_async_refine_raw"))
 
-    def test_should_refine_any_spoken_reply(self) -> None:
+    def test_should_refine_follows_bands(self) -> None:
         self.assertTrue(
-            refine.should_refine(True, "conversation.llm", "Licht ist an.")
+            refine.should_refine(True, "conversation.llm", "Im Wohnzimmer sind es 21,5 °C.", "status", ["status"])
         )
-        self.assertTrue(
-            refine.should_refine(True, "conversation.llm", "Im Wohnzimmer sind es 21,5 °C.")
-        )
-        self.assertTrue(refine.should_refine(True, "conversation.llm", "Hallo"))
-        self.assertTrue(refine.should_refine(True, "conversation.llm", "Die Nachrichten."))
         self.assertFalse(
-            refine.should_refine(False, "conversation.llm", "Licht ist an.")
+            refine.should_refine(True, "conversation.llm", "Licht ist an.", "command", ["status"])
         )
-        self.assertTrue(refine.should_refine(True, None, "Licht ist an."))
-        self.assertFalse(refine.should_refine(True, "conversation.llm", ""))
+        self.assertTrue(
+            refine.should_refine(True, "conversation.llm", "Licht ist an.", "command", ["status", "command"])
+        )
+        self.assertFalse(
+            refine.should_refine(True, "conversation.llm", "Welche Lampe?", "prompt", ["status"])
+        )
+        self.assertFalse(
+            refine.should_refine(True, "conversation.llm", "Das kann ich nicht.", "reject", ["status"])
+        )
+        self.assertFalse(refine.should_refine(True, "conversation.llm", "Licht ist an."))
+        self.assertFalse(
+            refine.should_refine(False, "conversation.llm", "Im Wohnzimmer sind es 21,5 °C.", "status", ["status"])
+        )
+        self.assertFalse(refine.should_refine(True, "conversation.llm", "", "status", ["status"]))
         self.assertFalse(hasattr(refine, "_TIMEOUT"))
         self.assertFalse(hasattr(refine, "nlu_home_turn"))
+        self.assertTrue(refine.refine_band_allowed("status", None))
+        self.assertFalse(refine.refine_band_allowed("command", None))
+        self.assertEqual(refine.refine_band_from_payload({"refine_band": "status"}), "status")
+        self.assertIsNone(refine.refine_band_from_payload({"decision": {"type": "execute"}}))
 
     def test_options_personality_switches_style_wrap(self) -> None:
         self.assertEqual(const.resolve_personality("grantig"), "grantig")
@@ -264,6 +275,8 @@ class RefineTests(unittest.TestCase):
         self.assertIn("emit_assistant_speech", spoken)
         self.assertIn("refine_posted", spoken)
         self.assertIn("chat_log", spoken)
+        self.assertIn("refine_band", spoken)
+        self.assertIn("_refine_bands", src)
         calendar = src[src.index('kind="calendar"') : src.index("if self._quiet_ack()")]
         self.assertIn("_was_published(fallback)", calendar)
         self.assertIn('"llm"', calendar)

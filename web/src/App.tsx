@@ -56,6 +56,7 @@ const defaultSettings: Settings = {
   semantic_adapters: false,
   nlu_rag: false,
   refine_speech: false,
+  refine_bands: [],
   calendar_llm: false,
   quiet_ack: false,
   allow_llm_tools: false,

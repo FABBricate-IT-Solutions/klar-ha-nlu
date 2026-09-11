@@ -23,6 +23,11 @@ KEYS = (
     "personalityPromptHint",
     "refineSpeech",
     "refineSpeechHint",
+    "refineBandStatus",
+    "refineBandCommand",
+    "refineBandPrompt",
+    "refineBandReject",
+    "refineBandsHint",
     "quietAck",
     "quietAckHint",
     "unitSystem",
@@ -140,3 +145,9 @@ def apply_settings_copy(packs: dict[str, dict[str, str]]) -> None:
             fields["saveOk"] = row.get("saveOk") or "Gespeichert."
             fields["saveFail"] = row.get("saveFail") or "Speichern fehlgeschlagen."
             fields["saveUnauthorized"] = row.get("saveUnauthorized") or "Nicht gespeichert. Schreib-Token unter Engine eintragen."
+            fields["refineSpeechHint"] = row.get("refineSpeechHint") or "Klar steuert weiter ohne LLM. Hier nur, welche fertigen Sätze die Stimme bekommen."
+            fields["refineBandStatus"] = row.get("refineBandStatus") or "Status"
+            fields["refineBandCommand"] = row.get("refineBandCommand") or "Befehle"
+            fields["refineBandPrompt"] = row.get("refineBandPrompt") or "Rückfragen"
+            fields["refineBandReject"] = row.get("refineBandReject") or "Ablehnung"
+            fields["refineBandsHint"] = row.get("refineBandsHint") or "Chat und Kalender-LLM bleiben unangetastet — kein zweites Refine."

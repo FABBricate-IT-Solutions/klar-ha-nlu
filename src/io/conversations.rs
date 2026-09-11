@@ -259,6 +259,7 @@ mod tests {
             retrieval: None,
             policy_trace: None,
             quiet_ack_eligible: false,
+            refine_band: None,
         };
         let turn = turn_from_outcome(&outcome, false, Vec::new(), None);
         assert_eq!(turn.decision, "confirm");
@@ -292,6 +293,7 @@ mod tests {
             retrieval: None,
             policy_trace: None,
             quiet_ack_eligible: false,
+            refine_band: None,
         };
         let turn = turn_from_outcome(&outcome, true, vec!["Kugel".into()], Some("kueche".into()));
         assert_eq!(turn.preferred_area.as_deref(), Some("kueche"));
@@ -320,6 +322,7 @@ mod tests {
             retrieval: None,
             policy_trace: None,
             quiet_ack_eligible: false,
+            refine_band: None,
         };
         let turn = turn_from_outcome(&outcome, false, vec!["HassTurnOn".into()], None);
         assert!(turn.text.is_none());
@@ -354,6 +357,7 @@ mod tests {
             retrieval: None,
             policy_trace: None,
             quiet_ack_eligible: false,
+            refine_band: None,
         };
         let journal = ConversationJournal::open(&dir);
         journal.append(turn_from_outcome(&outcome, false, Vec::new(), None));
@@ -399,6 +403,7 @@ mod tests {
             retrieval: None,
             policy_trace: None,
             quiet_ack_eligible: false,
+            refine_band: None,
         };
         let journal = ConversationJournal::open(&dir);
         journal.append(turn_from_outcome(&outcome, false, Vec::new(), None));

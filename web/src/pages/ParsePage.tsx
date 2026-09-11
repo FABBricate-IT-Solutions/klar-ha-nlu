@@ -6,7 +6,7 @@ import { Pipeline } from "../components/pipeline";
 import { PolicyPath } from "../components/PolicyPath";
 import { SearchSelect, withCurrent } from "../components/SearchSelect";
 import type { Messages } from "../i18n";
-import type { ParseResult, Settings } from "../types";
+import { effectiveRefineBands, type ParseResult, type RefineBand, type Settings } from "../types";
 import { Button } from "@/components/ui/button";
 
 const SKIP_REFINE = new Set(["chat", "llm", "chime", "error", ""]);
@@ -99,10 +99,39 @@ export function labChatLike(result: ParseResult | null): boolean {
   return Boolean(result.briefing) || hit === "llm" || result.decision.type === "chat";
 }
 
-export function labRefineEligible(result: ParseResult | null): boolean {
+const STATUS_INTENTS = new Set(["HassGetState", "HassClimateGetTemperature", "MassGetQueue", "KlarGetCalendarEvents"]);
+
+export function refineBandOf(result: ParseResult | null): RefineBand | null {
+  if (!result) return null;
+  if (result.refine_band) return result.refine_band;
+  switch (result.decision.type) {
+    case "execute": {
+      const names = intentNames(result);
+      return names.length > 0 && names.every((name) => STATUS_INTENTS.has(name)) ? "status" : "command";
+    }
+    case "clarify":
+    case "confirm":
+      return "prompt";
+    case "reject":
+      return "reject";
+    case "chat":
+    case "error":
+      return null;
+    default: {
+      const exhaustive: never = result.decision;
+      return exhaustive;
+    }
+  }
+}
+
+export function labRefineEligible(result: ParseResult | null, settings?: Settings): boolean {
   if (!result || labChatLike(result)) return false;
-  const band = result.decision.type;
-  return Boolean(result.speech?.trim()) && !SKIP_REFINE.has(band);
+  const decision = result.decision.type;
+  if (!result.speech?.trim() || SKIP_REFINE.has(decision)) return false;
+  const band = refineBandOf(result);
+  if (!band) return false;
+  if (!settings) return true;
+  return Boolean(settings.refine_speech) && effectiveRefineBands(settings).includes(band);
 }
 
 export function labPath(
@@ -130,11 +159,14 @@ export function labPath(
   const quiet = on(settings, "quiet_ack") && quietAckLikely(result, names);
   if (chatLike) steps.push(t.labChipLlmChat);
   if (calendar) steps.push(t.labChipCalendarLlm);
+  const refineBand = refineBandOf(result);
   if (
     !quiet
     && on(settings, "refine_speech")
     && !SKIP_REFINE.has(band)
     && !chatLike
+    && refineBand
+    && effectiveRefineBands(settings).includes(refineBand)
   ) {
     steps.push(t.labChipLlmRefine);
   }
@@ -218,7 +250,7 @@ export function ParsePage({
         } catch (err) {
           setLlm({ ...preview, busy: false, error: llmBanner(err, t) });
         }
-      } else if (labRefineEligible(data)) {
+      } else if (labRefineEligible(data, settings)) {
         try {
           const refined = await api.llmRefine({
             speech: data.speech,
