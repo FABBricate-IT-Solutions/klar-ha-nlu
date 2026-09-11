@@ -1,8 +1,7 @@
 use super::endpoint::{LlmEndpoint, LlmProviderKind};
 use super::sse::{delta_text, delta_tool_calls, SseBuf};
 use super::types::{
-    ChatRequest, CompletionTurn, LlmError, SanitizedChat, TokenUsage, ToolCallAssembler, UpstreamChat, UpstreamCompletion,
-    UpstreamMessage,
+    ChatRequest, CompletionTurn, LlmError, SanitizedChat, TokenUsage, ToolCallAssembler, UpstreamChat, UpstreamCompletion, UpstreamMessage,
 };
 use futures_util::StreamExt;
 use serde_json::Value;

@@ -67,11 +67,7 @@ impl TokenUsage {
         if usage.prompt_tokens.is_none() && usage.completion_tokens.is_none() && usage.total_tokens.is_none() {
             None
         } else {
-            Some(Self {
-                prompt_tokens: usage.prompt_tokens,
-                completion_tokens: usage.completion_tokens,
-                total_tokens: usage.total_tokens,
-            })
+            Some(Self { prompt_tokens: usage.prompt_tokens, completion_tokens: usage.completion_tokens, total_tokens: usage.total_tokens })
         }
     }
 }
