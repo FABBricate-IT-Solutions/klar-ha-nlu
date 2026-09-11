@@ -111,6 +111,9 @@ class OperatorUiParity(unittest.TestCase):
         self.assertIn("t.labParse", lab)
         self.assertIn("armedPipeline", lab)
         self.assertIn("labPath", lab)
+        self.assertIn("lab-pipeline-path", lab)
+        self.assertIn("labThisTurn", lab)
+        self.assertIn("refineBandLabel", lab)
         self.assertIn("void submit()", lab)
         self.assertIn("api.parse", lab)
         self.assertIn("api.llmRefine", lab)
@@ -141,6 +144,13 @@ class OperatorUiParity(unittest.TestCase):
         self.assertNotIn('aria-label="pipeline"', lab)
         self.assertIn("policy_trace?.hit", lab)
         en = EN.read_text(encoding="utf-8")
+        self.assertIn("llmCalls", en)
+        self.assertIn("llmNoCalls", en)
+        self.assertIn("labThisTurn", en)
+        dash_page = (ROOT / "web" / "src" / "pages" / "Dashboard.tsx").read_text(encoding="utf-8")
+        self.assertIn("LlmMix", dash_page)
+        self.assertIn("t.llmCalls", dash_page)
+        self.assertIn("llm.tokens", dash_page)
         self.assertIn("llmModelsEmpty", en)
         self.assertIn("saveOk", en)
         self.assertIn("refineBandStatus", en)
@@ -177,6 +187,22 @@ class OperatorUiParity(unittest.TestCase):
             encoding="utf-8"
         )
         self.assertIn("advertised_languages()", conversation)
+
+    def test_llm_chrome_is_translated(self) -> None:
+        from lang_packs.web_ui_keys import FALLBACKS
+        from lang_packs.web_ui_llm import CHECK_KEYS, KEYS
+
+        expected = set(_supported()) - {"de", "en"}
+        for code in sorted(expected):
+            payload = json.loads((MESSAGES / f"{code}.json").read_text(encoding="utf-8"))
+            for key in KEYS:
+                value = payload[key]
+                self.assertNotIn("\ufffd", value, f"{code}.{key}")
+                self.assertTrue(value.strip(), f"{code}.{key}")
+            if code == "en-GB":
+                continue
+            for key in CHECK_KEYS:
+                self.assertNotEqual(payload[key], FALLBACKS[key], f"{code}.{key}")
 
     def test_settings_hints_are_translated(self) -> None:
         from lang_packs.settings_hints import KEYS

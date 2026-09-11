@@ -1,6 +1,7 @@
 use crate::home::assignment::{build_dashboard, Dashboard};
 use crate::home::overlay::{apply_overlay, load_overlay, save_overlay, UiApplyRow, UiState};
 use crate::io::auth::{reads_allowed, writes_allowed};
+use crate::io::llm_calls::LlmWindow;
 use crate::io::state::AppState;
 use axum::extract::{ConnectInfo, State};
 use axum::http::{HeaderMap, StatusCode};
@@ -21,19 +22,29 @@ async fn get_dashboard(
     State(state): State<AppState>,
     ConnectInfo(peer): ConnectInfo<SocketAddr>,
     headers: HeaderMap,
-) -> Result<Json<Dashboard>, StatusCode> {
+) -> Result<Json<DashboardOut>, StatusCode> {
     if !reads_allowed(Some(peer), &headers, &state.token) {
         return Err(StatusCode::UNAUTHORIZED);
     }
     let home = state.home.snapshot().await;
     let overlay = load_overlay(&state.data_dir);
-    Ok(Json(build_dashboard(
-        &home,
-        &state.bundle.load(),
-        &overlay.ui.dismissed,
-        state.metrics.snapshot(),
-        state.catalog_for_settings().await,
-    )))
+    Ok(Json(DashboardOut {
+        inner: build_dashboard(
+            &home,
+            &state.bundle.load(),
+            &overlay.ui.dismissed,
+            state.metrics.snapshot(),
+            state.catalog_for_settings().await,
+        ),
+        llm: state.llm_calls.snapshot(),
+    }))
+}
+
+#[derive(Serialize)]
+struct DashboardOut {
+    #[serde(flatten)]
+    inner: Dashboard,
+    llm: LlmWindow,
 }
 
 async fn get_ui(
@@ -274,5 +285,13 @@ mod tests {
         assert_eq!(effective_ui_locale_with(&unset, None), "en");
         assert_eq!(locale_from_env(Some("de-DE")).as_deref(), Some("de"));
         assert_eq!(locale_from_env(Some("  ")), None);
+    }
+
+    #[test]
+    fn dashboard_route_rolls_llm_calls_into_payload() {
+        let src = include_str!("dashboard.rs");
+        assert!(src.contains("llm: state.llm_calls.snapshot()"));
+        assert!(src.contains("#[serde(flatten)]"));
+        assert!(!src.contains("prompt") || src.contains("llm_calls"));
     }
 }

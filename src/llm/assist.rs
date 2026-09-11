@@ -6,7 +6,7 @@ use super::assist_yarn::{yarn_asks_permission, yarn_canned, yarn_nudge};
 use super::client::chat;
 use super::endpoint::LlmEndpoint;
 use super::refine_prompt::{refine_prompt_for, usable_extra};
-use super::types::{ChatEvent, ChatMessage, ChatRequest, CompletionTurn, LlmError, ToolCall};
+use super::types::{ChatEvent, ChatMessage, ChatRequest, CompletionTurn, LlmError, TokenUsage, ToolCall};
 use serde::Deserialize;
 
 pub const ASSIST_TEMPERATURE: f32 = 0.65;
@@ -82,6 +82,7 @@ pub struct AssistOutcome {
     pub tool: Option<KlarTool>,
     pub tool_calls: Vec<ToolCall>,
     pub events: Vec<ChatEvent>,
+    pub usage: Option<TokenUsage>,
 }
 
 struct SanitizedAssist {
@@ -227,6 +228,7 @@ where
                     tool: Some(tool.clone()),
                     tool_calls: Vec::new(),
                     events: vec![tool.event(), ChatEvent::Done { text: String::new() }],
+                    usage: turn.usage.clone(),
                 },
                 &mut on_event,
             ));
@@ -279,7 +281,7 @@ fn outcome_from_turn(turn: CompletionTurn, streamed: bool) -> AssistOutcome {
         });
     }
     events.push(ChatEvent::Done { text: turn.text.clone() });
-    AssistOutcome { text: turn.text, tool: None, tool_calls: turn.tool_calls, events }
+    AssistOutcome { text: turn.text, tool: None, tool_calls: turn.tool_calls, events, usage: turn.usage }
 }
 
 async fn complete(endpoint: &LlmEndpoint, request: ChatRequest) -> Result<String, LlmError> {
@@ -333,7 +335,7 @@ where
     }
     if rag {
         if let Some(tool) = parse_tool_reply(&turn.text) {
-            return Ok(emit_streamed_tool(tool, on_event, events));
+            return Ok(emit_streamed_tool(tool, on_event, events, turn.usage));
         }
         if holds_klar_tool_prefix(turn.text.trim_start()) && parse_tool_reply(&turn.text).is_none() {
             turn.text = String::new();
@@ -348,7 +350,7 @@ where
     let done = ChatEvent::Done { text: turn.text.clone() };
     on_event(&done);
     events.push(done);
-    Ok(AssistOutcome { text: turn.text, tool: None, tool_calls: turn.tool_calls, events })
+    Ok(AssistOutcome { text: turn.text, tool: None, tool_calls: turn.tool_calls, events, usage: turn.usage })
 }
 
 fn flush_assist_delta(rag: bool, yarn: bool, acc: &str, released: &mut usize) -> Option<String> {
@@ -370,14 +372,19 @@ fn flush_assist_delta(rag: bool, yarn: bool, acc: &str, released: &mut usize) ->
     }
 }
 
-fn emit_streamed_tool<F: FnMut(&ChatEvent)>(tool: KlarTool, on_event: &mut F, mut events: Vec<ChatEvent>) -> AssistOutcome {
+fn emit_streamed_tool<F: FnMut(&ChatEvent)>(
+    tool: KlarTool,
+    on_event: &mut F,
+    mut events: Vec<ChatEvent>,
+    usage: Option<TokenUsage>,
+) -> AssistOutcome {
     let event = tool.event();
     on_event(&event);
     events.push(event);
     let done = ChatEvent::Done { text: String::new() };
     on_event(&done);
     events.push(done);
-    AssistOutcome { text: tool.spoken_line(), tool: Some(tool), tool_calls: Vec::new(), events }
+    AssistOutcome { text: tool.spoken_line(), tool: Some(tool), tool_calls: Vec::new(), events, usage }
 }
 
 #[cfg(test)]

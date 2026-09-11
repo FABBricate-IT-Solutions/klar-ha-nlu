@@ -101,6 +101,23 @@ export function labChatLike(result: ParseResult | null): boolean {
 
 const STATUS_INTENTS = new Set(["HassGetState", "HassClimateGetTemperature", "MassGetQueue", "KlarGetCalendarEvents"]);
 
+export function refineBandLabel(band: RefineBand, t: Messages): string {
+  switch (band) {
+    case "status":
+      return t.refineBandStatus;
+    case "command":
+      return t.refineBandCommand;
+    case "prompt":
+      return t.refineBandPrompt;
+    case "reject":
+      return t.refineBandReject;
+    default: {
+      const exhaustive: never = band;
+      return exhaustive;
+    }
+  }
+}
+
 export function refineBandOf(result: ParseResult | null): RefineBand | null {
   if (!result) return null;
   if (result.refine_band) return result.refine_band;
@@ -208,7 +225,9 @@ export function ParsePage({
   const roomOptions = rooms.map((room) => ({ value: room.area_id, label: room.name }));
   const intentOptions = (knownIntents.length ? knownIntents : [teachIntent]).map((name) => ({ value: name, label: name }));
   const band = result?.decision.type;
+  const refineBand = refineBandOf(result);
   const armed = armedPipeline(settings, t);
+  const path = result ? labPath(result, settings, t, parseLanguage) : [];
   const banner = bannerText(error, result);
 
   useEffect(() => {
@@ -332,6 +351,14 @@ export function ParsePage({
         {armed.length > 0 && (
           <div className="flow lab-pipeline-armed" aria-label={t.labPipeline}>
             {armed.map((chip) => <span className="chip" key={chip}>{chip}</span>)}
+          </div>
+        )}
+        {result && (
+          <div className="flow lab-pipeline-path" aria-label={t.labThisTurn}>
+            {path.map((chip, index) => (
+              <span className="chip" key={`${chip}-${index}`}>{chip}</span>
+            ))}
+            {refineBand ? <span className="chip">{refineBandLabel(refineBand, t)}</span> : null}
           </div>
         )}
         <p className="caption">{t.triggerFirst}</p>

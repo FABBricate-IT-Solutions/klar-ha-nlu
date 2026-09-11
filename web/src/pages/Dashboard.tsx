@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from "react";
 import { api } from "../api";
-import { AreaTrend, Bars, DecisionMix, Donut, type MixRow } from "../components/charts";
+import { AreaTrend, Bars, DecisionMix, Donut, LlmMix, type MixRow } from "../components/charts";
 import { Empty, Kpi } from "../components/common";
 import { Snackbar } from "../components/Snackbar";
 import { Badge } from "@/components/ui/badge";
@@ -10,6 +10,21 @@ import { WhyDrawer, canJournalReplay, journalHeard, whyThisBand } from "../compo
 import { fill, inboxReason, type Messages } from "../i18n";
 import type { ApplyRow, ConversationTurn, Dashboard as DashboardData, Locale } from "../types";
 
+function llmKindLabel(key: "refine" | "assist" | "chat", t: Messages): string {
+  switch (key) {
+    case "refine":
+      return t.llmKindRefine;
+    case "assist":
+      return t.llmKindAssist;
+    case "chat":
+      return t.llmKindChat;
+    default: {
+      const exhaustive: never = key;
+      return exhaustive;
+    }
+  }
+}
+
 const MISS = new Set(["chat", "reject", "clarify"]);
 const MIX_LEGEND = [
   { key: "execute", color: "var(--high)" },
@@ -17,6 +32,12 @@ const MIX_LEGEND = [
   { key: "clarify", color: "var(--medium)" },
   { key: "reject", color: "var(--danger)" },
   { key: "chat", color: "var(--cyan)" },
+] as const;
+
+const LLM_LEGEND = [
+  { key: "refine", color: "var(--chart-1)" },
+  { key: "assist", color: "var(--chart-2)" },
+  { key: "chat", color: "var(--chart-5)" },
 ] as const;
 
 function trySentences(rooms: DashboardData["rooms"], t: Messages): string[] {
@@ -99,6 +120,9 @@ export function DashboardPage({
     };
   }, [data]);
   const mix = useMemo(() => mixFrom(turns), [turns]);
+  const llm = view.llm;
+  const llmDecided = (llm?.accepted ?? 0) + (llm?.rejected ?? 0);
+  const llmAcceptRate = llmDecided > 0 ? Math.round(((llm?.accepted ?? 0) / llmDecided) * 100) : null;
   const inbox = view.assignment.filter((row) => row.confidence !== "high" && !dismissed.includes(row.entity_id));
   const last = resolveLast(lastTurn, turns);
   const heard = last ? journalHeard(last) : "";
@@ -289,6 +313,58 @@ export function DashboardPage({
             </CardContent>
           </Card>
         </section>
+      <Card className="mb-4 overflow-visible">
+        <CardHeader>
+          <CardTitle>{t.llmCalls}</CardTitle>
+          <CardDescription>{t.llmCallsCaption}</CardDescription>
+        </CardHeader>
+        <CardContent className="flex flex-col gap-3">
+          {!llm || llm.calls === 0 ? <Empty text={t.llmNoCalls} /> : (
+            <>
+              <LlmMix data={llm.by_day} unit={t.unitsTurns} />
+              <div className="flex flex-wrap gap-2">
+                {LLM_LEGEND.map((item) => (
+                  <span className="chip text-foreground" key={item.key}>
+                    <span className="size-2.5 rounded-sm" style={{ background: item.color }} />
+                    {llmKindLabel(item.key, t)}
+                  </span>
+                ))}
+              </div>
+              <div className="flex flex-wrap gap-3 text-sm">
+                <span>{t.llmErrors}: {llm.errors}</span>
+                {llmAcceptRate !== null ? <span>{t.llmAcceptRate}: {llmAcceptRate}{t.unitsPercent}</span> : null}
+              </div>
+              {(llm.p50_ms != null || llm.p90_ms != null) ? (
+                <>
+                  <h3 className="text-sm font-medium">{t.llmLatency}</h3>
+                  <Bars
+                    data={[
+                      { label: "p50", value: llm.p50_ms ?? 0 },
+                      { label: "p90", value: llm.p90_ms ?? 0 },
+                    ]}
+                    unit={t.unitsMs}
+                  />
+                  <p className="caption">{t.llmLatencyCaption}</p>
+                </>
+              ) : null}
+              {llm.tokens ? (
+                <>
+                  <h3 className="text-sm font-medium">{t.llmTokens}</h3>
+                  <Bars
+                    data={[
+                      { label: "prompt", value: llm.tokens.prompt },
+                      { label: "completion", value: llm.tokens.completion },
+                      { label: "total", value: llm.tokens.total },
+                    ]}
+                    unit={t.llmTokens}
+                  />
+                  <p className="caption">{t.llmTokensCaption}</p>
+                </>
+              ) : null}
+            </>
+          )}
+        </CardContent>
+      </Card>
       {whyOpen && last && <WhyDrawer turn={last} t={t} onClose={() => setWhyOpen(false)} />}
       {snackbar && (
         <Snackbar

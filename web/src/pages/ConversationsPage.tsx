@@ -5,7 +5,20 @@ import { SetupHint } from "../components/SetupHint";
 import { canTeachFromMiss, TeachFromMiss, teachIntentFromNames } from "../components/TeachFromMiss";
 import { WhyDrawer, canJournalReplay, journalHeard, whyThisBand } from "../components/WhyDrawer";
 import type { Messages } from "../i18n";
-import type { ConversationTurn } from "../types";
+import { refineBandLabel } from "./ParsePage";
+import type { ConversationTurn, RefineBand } from "../types";
+
+function turnRefineBand(raw: string | null | undefined): RefineBand | null {
+  switch (raw) {
+    case "status":
+    case "command":
+    case "prompt":
+    case "reject":
+      return raw;
+    default:
+      return null;
+  }
+}
 
 function asTurns(rows: unknown): ConversationTurn[] {
   if (!Array.isArray(rows)) {
@@ -68,6 +81,7 @@ export function ConversationsPage({
       )}
       {items.map((turn, index) => {
         const heard = journalHeard(turn);
+        const refineBand = turnRefineBand(turn.refine_band);
         return (
           <article className="card" key={`${turn.conversation_id}-${turn.ts_ms}-${index}`} style={{ marginBottom: 16 }}>
             <div className="conv-head">
@@ -89,6 +103,7 @@ export function ConversationsPage({
               <p className="muted">
                 {turn.speech_source === "chat" ? <span className="chip">{t.speechChat}</span> : null}
                 {turn.speech_source === "refine" ? <span className="chip">{t.speechRefined}</span> : null}
+                {refineBand ? <span className="chip">{refineBandLabel(refineBand, t)}</span> : null}
                 {" "}
                 {turn.speech}
               </p>

@@ -1,7 +1,7 @@
 use super::endpoint::{LlmEndpoint, LlmProviderKind};
 use super::sse::{delta_text, delta_tool_calls, SseBuf};
 use super::types::{
-    ChatRequest, CompletionTurn, LlmError, SanitizedChat, ToolCallAssembler, UpstreamChat, UpstreamCompletion, UpstreamMessage,
+    ChatRequest, CompletionTurn, LlmError, SanitizedChat, TokenUsage, ToolCallAssembler, UpstreamChat, UpstreamCompletion, UpstreamMessage,
 };
 use futures_util::StreamExt;
 use serde_json::Value;
@@ -179,7 +179,7 @@ impl LlmClient {
         if text.is_empty() && tool_calls.is_empty() {
             Err(LlmError::Response)
         } else {
-            Ok(CompletionTurn { text, tool_calls })
+            Ok(CompletionTurn { text, tool_calls, usage: parsed.usage.as_ref().and_then(TokenUsage::from_upstream) })
         }
     }
 
@@ -208,13 +208,17 @@ impl LlmClient {
         let mut buf = SseBuf::default();
         let mut out = String::new();
         let mut assembler = ToolCallAssembler::default();
+        let mut usage = None;
         let mut bytes = response.bytes_stream();
         while let Some(chunk) = bytes.next().await {
             let chunk = chunk.map_err(|_| LlmError::Transport)?;
             let text = String::from_utf8_lossy(&chunk);
             for data in buf.push(&text) {
                 if data == "[DONE]" {
-                    return Ok(CompletionTurn { text: out, tool_calls: assembler.finish() });
+                    return Ok(CompletionTurn { text: out, tool_calls: assembler.finish(), usage });
+                }
+                if let Some(found) = usage_from_data(&data) {
+                    usage = Some(found);
                 }
                 if let Some(delta) = delta_text(&data) {
                     out.push_str(&delta);
@@ -229,7 +233,7 @@ impl LlmClient {
         if out.is_empty() && tool_calls.is_empty() {
             Err(LlmError::Response)
         } else {
-            Ok(CompletionTurn { text: out, tool_calls })
+            Ok(CompletionTurn { text: out, tool_calls, usage })
         }
     }
 
@@ -253,6 +257,11 @@ impl LlmClient {
         );
         req.send().await.map_err(LlmError::from)
     }
+}
+
+fn usage_from_data(data: &str) -> Option<TokenUsage> {
+    let parsed: UpstreamCompletion = serde_json::from_str(data).ok()?;
+    parsed.usage.as_ref().and_then(TokenUsage::from_upstream)
 }
 
 fn apply_provider_headers(mut req: reqwest::RequestBuilder, endpoint: &LlmEndpoint) -> reqwest::RequestBuilder {

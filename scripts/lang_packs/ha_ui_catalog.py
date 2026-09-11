@@ -6,6 +6,7 @@ channel). Personality, LLM, and refine live in the Klar operator Settings.
 
 from __future__ import annotations
 
+from lang_packs.ha_ui_ai_task import apply_ai_task_names
 from lang_packs.ha_ui_asia import ASIA
 from lang_packs.ha_ui_europe import EUROPE
 from lang_packs.ha_ui_europe_north import EUROPE_NORTH
@@ -29,6 +30,7 @@ PACKS.update(MORE)
 PACKS.update(MENA)
 PACKS.update(WEST)
 PACKS.update(INDIC)
+apply_ai_task_names(PACKS)
 
 _BRAND = {
     "title": "Klar NLU",
@@ -100,6 +102,7 @@ def expand(fields: dict[str, str]) -> dict[str, str]:
         "entity.select.personality.state.gollum": f["gollum"],
         "entity.select.personality.state.jarvis": f["jarvis"],
         "entity.switch.quiet_ack.name": f["quiet_name"],
+        "entity.ai_task.ai_task.name": f["ai_task_name"],
         "entity.sensor.last_heard.name": f["heard"],
         "entity.sensor.last_decision.name": f["decision"],
         "entity.sensor.last_speech.name": f["speech"],

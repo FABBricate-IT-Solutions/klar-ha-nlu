@@ -55,10 +55,28 @@ impl ChatMessage {
     }
 }
 
+#[derive(Debug, Clone, Default, PartialEq, Eq)]
+pub struct TokenUsage {
+    pub prompt_tokens: Option<u64>,
+    pub completion_tokens: Option<u64>,
+    pub total_tokens: Option<u64>,
+}
+
+impl TokenUsage {
+    pub fn from_upstream(usage: &UpstreamUsage) -> Option<Self> {
+        if usage.prompt_tokens.is_none() && usage.completion_tokens.is_none() && usage.total_tokens.is_none() {
+            None
+        } else {
+            Some(Self { prompt_tokens: usage.prompt_tokens, completion_tokens: usage.completion_tokens, total_tokens: usage.total_tokens })
+        }
+    }
+}
+
 #[derive(Debug, Clone, Default)]
 pub struct CompletionTurn {
     pub text: String,
     pub tool_calls: Vec<ToolCall>,
+    pub usage: Option<TokenUsage>,
 }
 
 #[derive(Debug, Clone, Deserialize, Default)]
@@ -257,6 +275,18 @@ pub struct UpstreamChat<'a> {
 #[derive(Debug, Deserialize)]
 pub struct UpstreamCompletion {
     pub choices: Vec<UpstreamChoice>,
+    #[serde(default)]
+    pub usage: Option<UpstreamUsage>,
+}
+
+#[derive(Debug, Clone, Deserialize, Default)]
+pub struct UpstreamUsage {
+    #[serde(default)]
+    pub prompt_tokens: Option<u64>,
+    #[serde(default)]
+    pub completion_tokens: Option<u64>,
+    #[serde(default)]
+    pub total_tokens: Option<u64>,
 }
 
 #[derive(Debug, Deserialize)]

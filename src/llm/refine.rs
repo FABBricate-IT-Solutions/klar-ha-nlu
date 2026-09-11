@@ -1,10 +1,10 @@
 //! Assist refine: engine builds the prompt, runs the model, applies accept.
 
-use super::client::{chat, chat_stream};
+use super::client::{chat_stream_turn, chat_turn};
 use super::endpoint::LlmEndpoint;
 use super::refine_accept::{accept_refined, streams_refine_prefix};
 use super::refine_prompt::{refine_input, refine_prompt_for, usable_extra};
-use super::types::{ChatEvent, ChatMessage, ChatRequest, LlmError, MAX_TOKENS_LIMIT};
+use super::types::{ChatEvent, ChatMessage, ChatRequest, LlmError, TokenUsage, MAX_TOKENS_LIMIT};
 use serde::{Deserialize, Serialize};
 
 pub const MAX_SPEECH_CHARS: usize = 8192;
@@ -35,11 +35,18 @@ pub struct RefineOutcome {
     pub kind: &'static str,
     pub text: String,
     pub accepted: bool,
+    #[serde(skip)]
+    pub usage: Option<TokenUsage>,
 }
 
 impl RefineOutcome {
     pub fn done(text: String, accepted: bool) -> Self {
-        Self { kind: "done", text, accepted }
+        Self { kind: "done", text, accepted, usage: None }
+    }
+
+    fn with_usage(mut self, usage: Option<TokenUsage>) -> Self {
+        self.usage = usage;
+        self
     }
 }
 
@@ -104,10 +111,10 @@ where
         tools: None,
         tool_choice: None,
     };
-    let raw = if body.stream {
+    let turn = if body.stream {
         let mut acc = String::new();
         let mut released = 0usize;
-        chat_stream(endpoint, chat_req, |delta| {
+        chat_stream_turn(endpoint, chat_req, |delta| {
             if delta.is_empty() {
                 return;
             }
@@ -120,12 +127,13 @@ where
         })
         .await?
     } else {
-        chat(endpoint, chat_req).await?
+        chat_turn(endpoint, chat_req).await?
     };
-    match accept_refined(&body.speech, &raw) {
-        Some(text) => Ok(RefineOutcome::done(text, true)),
-        None => Ok(RefineOutcome::done(body.speech, false)),
-    }
+    let out = match accept_refined(&body.speech, &turn.text) {
+        Some(text) => RefineOutcome::done(text, true),
+        None => RefineOutcome::done(body.speech, false),
+    };
+    Ok(out.with_usage(turn.usage))
 }
 
 /// Token budget for a rewrite. Accept allows up to `max(chars * 6, 280)`;
