@@ -117,3 +117,36 @@ export function DecisionMix({ data, unit }: { data: MixRow[]; unit: string }) {
 export function StageBars({ data, unit }: { data: { label: string; value: number }[]; unit: string }) {
   return <Bars data={data} unit={unit} />;
 }
+
+export type LlmMixRow = { day: string; refine: number; assist: number; chat: number };
+
+const LLM_MIX_KEYS = ["refine", "assist", "chat"] as const;
+
+const LLM_MIX_CONFIG: ChartConfig = {
+  refine: { label: "refine", color: "var(--chart-1)" },
+  assist: { label: "assist", color: "var(--chart-2)" },
+  chat: { label: "chat", color: "var(--chart-5)" },
+};
+
+export function LlmMix({ data, unit }: { data: LlmMixRow[]; unit: string }) {
+  const rows = data.length ? data : [{ day: "—", refine: 0, assist: 0, chat: 0 }];
+  return (
+    <ChartContainer config={LLM_MIX_CONFIG} className="aspect-auto h-[220px] w-full" aria-label="llm mix">
+      <BarChart data={rows} accessibilityLayer margin={{ left: 8, right: 8 }}>
+        <CartesianGrid vertical={false} strokeDasharray="3 3" />
+        <XAxis dataKey="day" tickLine={false} axisLine={false} tickFormatter={(value) => String(value).slice(-5)} />
+        <YAxis tickLine={false} axisLine={false} width={28} />
+        <ChartTooltip content={<ChartTooltipContent />} />
+        {LLM_MIX_KEYS.map((key, index) => (
+          <Bar
+            key={key}
+            dataKey={key}
+            stackId="llm"
+            fill={`var(--color-${key})`}
+            radius={index === LLM_MIX_KEYS.length - 1 ? 4 : 0}
+          />
+        ))}
+      </BarChart>
+    </ChartContainer>
+  );
+}

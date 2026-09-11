@@ -3,6 +3,7 @@ use crate::home::{HomeStore, LoadedHome};
 use crate::io::bundle::{entry_from_parse, BundleStore};
 use crate::io::conversations::{turn_from_outcome, ConversationJournal};
 use crate::io::llm::load_endpoint;
+use crate::io::llm_calls::LlmCallStore;
 use crate::io::metrics::MetricsStore;
 use crate::io::trainer_consent::TrainerConsentHub;
 use crate::llm::LlmEndpoint;
@@ -25,6 +26,7 @@ pub struct AppState {
     pub journal: ConversationJournal,
     pub bundle: BundleStore,
     pub metrics: Arc<MetricsStore>,
+    pub llm_calls: Arc<LlmCallStore>,
     pub config_dir: PathBuf,
     pub data_dir: PathBuf,
     pub live_sync: Arc<AtomicBool>,
@@ -47,6 +49,7 @@ impl AppState {
             journal: ConversationJournal::open(&data_dir),
             bundle: BundleStore::open(&data_dir),
             metrics: Arc::new(MetricsStore::default()),
+            llm_calls: Arc::new(LlmCallStore::default()),
             config_dir: data_dir.clone(),
             data_dir,
             live_sync: Arc::new(AtomicBool::new(false)),

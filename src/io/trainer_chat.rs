@@ -223,13 +223,14 @@ mod tests {
 
     #[test]
     fn text_fallback_fills_empty_tool_calls() {
-        let turn = CompletionTurn { text: "TRAINER_TOOL: list_gaps {}".into(), tool_calls: Vec::new() };
+        let turn = CompletionTurn { text: "TRAINER_TOOL: list_gaps {}".into(), tool_calls: Vec::new(), usage: None };
         let (prose, calls) = merge_calls(turn);
         assert!(prose.is_empty());
         assert_eq!(calls[0].function.name, "list_gaps");
         let native = merge_calls(CompletionTurn {
             text: "ok".into(),
             tool_calls: vec![ToolCall::function("c1", "get_entity", r#"{"entity_id":"light.x"}"#)],
+            usage: None,
         });
         assert_eq!(native.0, "ok");
         assert_eq!(native.1[0].id, "c1");

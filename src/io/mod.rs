@@ -9,6 +9,7 @@ pub(crate) mod lang_api;
 pub(crate) mod lang_explain;
 pub mod limits;
 pub(crate) mod llm;
+pub(crate) mod llm_calls;
 pub(crate) mod metrics;
 pub(crate) mod policies;
 pub(crate) mod privacy;

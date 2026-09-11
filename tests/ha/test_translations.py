@@ -53,6 +53,15 @@ class TranslationParity(unittest.TestCase):
             keys = _flatten(json.loads((TRANSLATIONS / f"{name}.json").read_text(encoding="utf-8")))
             self.assertEqual(english, keys, name)
 
+    def test_ai_task_entity_name_is_translated(self) -> None:
+        for name in sorted({_ha_file(code) for code in _supported()} - {None}):
+            payload = json.loads((TRANSLATIONS / f"{name}.json").read_text(encoding="utf-8"))
+            label = payload["entity"]["ai_task"]["ai_task"]["name"]
+            self.assertTrue(label.strip(), name)
+            self.assertNotIn("\ufffd", label, name)
+            if name != "en-GB":
+                self.assertNotEqual(label, "AI Task", name)
+
 
 if __name__ == "__main__":
     unittest.main()

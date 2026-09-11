@@ -245,6 +245,7 @@ export type ConversationTurn = {
   candidate_id?: string | null;
   preferred_area?: string | null;
   speech_source?: string | null;
+  refine_band?: RefineBand | null;
 };
 
 export type Suggestion = {
@@ -286,6 +287,19 @@ export type Dashboard = {
     empty: number;
     recent: BundleEntry[];
   };
+  llm?: LlmWindow;
+};
+
+export type LlmWindow = {
+  calls: number;
+  errors: number;
+  accepted: number;
+  rejected: number;
+  by_kind: Record<string, number>;
+  by_day: { day: string; refine: number; assist: number; chat: number }[];
+  p50_ms?: number | null;
+  p90_ms?: number | null;
+  tokens?: { prompt: number; completion: number; total: number; calls_with_usage: number } | null;
 };
 
 export type UiState = {

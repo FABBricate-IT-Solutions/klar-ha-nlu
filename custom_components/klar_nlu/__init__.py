@@ -44,7 +44,13 @@ from .services import async_setup_services
 from .sync import HomeGraphSync, engine_url
 from .ui_proxy import async_setup_ui_proxy
 
-PLATFORMS = [Platform.CONVERSATION, Platform.SELECT, Platform.SENSOR, Platform.SWITCH]
+PLATFORMS = [
+    Platform.AI_TASK,
+    Platform.CONVERSATION,
+    Platform.SELECT,
+    Platform.SENSOR,
+    Platform.SWITCH,
+]
 _LOGGER = logging.getLogger(__name__)
 
 
