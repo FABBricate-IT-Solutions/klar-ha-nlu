@@ -80,13 +80,22 @@ def messages_from_log(
         role, text = _role_text(item)
         if role in _ROLES and text:
             messages.append({"role": role, "content": text})
-    if structure is not None:
-        messages.insert(0, {"role": "system", "content": structure_system(structure)})
     if instructions.strip() and not any(row["role"] == "user" for row in messages):
         messages.append({"role": "user", "content": instructions.strip()})
+    if structure is not None:
+        _attach_structure(messages, structure)
     if not messages:
         messages.append({"role": "user", "content": instructions.strip() or "Generate the requested data."})
     return messages
+
+
+def _attach_structure(messages: list[dict[str, str]], structure: object) -> None:
+    schema = structure_system(structure)
+    for row in reversed(messages):
+        if row["role"] == "user":
+            row["content"] = f"{row['content']}\n\n{schema}"
+            return
+    messages.append({"role": "user", "content": schema})
 
 
 def _json_object_text(text: str) -> str | None:
@@ -110,6 +119,9 @@ def _fenced(text: str) -> str | None:
 
 
 def _structure_text(structure: object) -> str:
+    fields = _structure_fields(structure)
+    if fields:
+        return ", ".join(f"{name} ({kind})" for name, kind in fields)
     if structure is None:
         return ""
     if isinstance(structure, str):
@@ -122,6 +134,31 @@ def _structure_text(structure: object) -> str:
     return str(structure)
 
 
+def _structure_fields(structure: object) -> list[tuple[str, str]]:
+    raw = structure
+    if not isinstance(raw, Mapping):
+        raw = getattr(structure, "schema", None)
+    if not isinstance(raw, Mapping):
+        return []
+    fields: list[tuple[str, str]] = []
+    for key, value in raw.items():
+        name = str(key).strip()
+        if not name:
+            continue
+        fields.append((name, _field_kind(value)))
+    return fields
+
+
+def _field_kind(value: object) -> str:
+    if isinstance(value, Mapping):
+        selector = value.get("selector")
+        if isinstance(selector, Mapping) and selector:
+            return str(next(iter(selector)))
+        if "selector" in value:
+            return "text"
+    return "text"
+
+
 def _dump(value: object) -> str:
     try:
         return json.dumps(value, ensure_ascii=False)
@@ -131,9 +168,15 @@ def _dump(value: object) -> str:
 
 def _role_text(item: object) -> tuple[str, str]:
     if isinstance(item, Mapping):
-        return str(item.get("role") or ""), _content_text(item.get("content"))
-    role = str(getattr(item, "role", "") or "")
-    return role, _content_text(getattr(item, "content", None))
+        return _norm_role(item.get("role")), _content_text(item.get("content"))
+    return _norm_role(getattr(item, "role", "")), _content_text(getattr(item, "content", None))
+
+
+def _norm_role(raw: object) -> str:
+    text = str(raw or "").strip()
+    if "." in text:
+        text = text.rsplit(".", 1)[-1]
+    return text.strip().lower()
 
 
 def _content_text(raw: object) -> str:

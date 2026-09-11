@@ -83,15 +83,46 @@ fn decrease_timer_is_not_increase() {
         ("en", "decrease the timer by 5 minutes"),
         ("en", "reduce the timer by 5 minutes"),
         ("en", "subtract 5 minutes from the timer"),
+        ("en", "make the timer 20 seconds shorter"),
         ("de", "Timer verringern um 5 Minuten"),
+        ("de", "Timer um 20 Sekunden kürzer machen"),
     ] {
         let result = parse(sentence, &default_home(), &mut Session::new(), &[], &Settings::pinned(lang));
         assert!(!result.clarify, "{sentence}: {result:?}");
         assert_eq!(result.intents.len(), 1, "{sentence}: {result:?}");
         assert_eq!(result.intents[0].name, "HassDecreaseTimer", "{sentence}: {result:?}");
         assert_ne!(result.intents[0].name, "HassIncreaseTimer", "{sentence}: {result:?}");
-        assert!(result.intents[0].slot("minutes") == Some("5"), "{sentence}: {result:?}");
+        let amount = if sentence.contains("20") { "20" } else { "5" };
+        let unit = if sentence.contains("second") || sentence.contains("Sekunden") { "seconds" } else { "minutes" };
+        assert_eq!(result.intents[0].slot(unit), Some(amount), "{sentence}: {result:?}");
     }
+}
+
+#[test]
+fn kuerzer_machen_asks_then_takes_seconds() {
+    let home = default_home();
+    let mut session = Session::new();
+    let settings = Settings::pinned("de");
+    let ask = parse("Timer kürzer machen", &home, &mut session, &[], &settings);
+    assert!(ask.clarify, "{ask:?}");
+    assert!(ask.intents.is_empty(), "{ask:?}");
+    let found = parse("20 Sekunden", &home, &mut session, &[], &settings);
+    assert!(!found.clarify, "{found:?}");
+    assert_eq!(found.intents.len(), 1, "{found:?}");
+    assert_eq!(found.intents[0].name, "HassDecreaseTimer", "{found:?}");
+    assert_eq!(found.intents[0].slot("seconds"), Some("20"), "{found:?}");
+}
+
+#[test]
+fn start_timer_how_long_takes_minutes() {
+    let home = default_home();
+    let mut session = Session::new();
+    let settings = Settings::pinned("de");
+    let ask = parse("Stell einen Timer", &home, &mut session, &[], &settings);
+    assert!(ask.clarify, "{ask:?}");
+    let found = parse("5 Minuten", &home, &mut session, &[], &settings);
+    assert_eq!(found.intents[0].name, "HassStartTimer", "{found:?}");
+    assert_eq!(found.intents[0].slot("minutes"), Some("5"), "{found:?}");
 }
 
 #[test]

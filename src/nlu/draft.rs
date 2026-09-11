@@ -5,7 +5,7 @@ use crate::parse::compound::CompoundSplit;
 use crate::parse::infer::{looks_like_correction, match_custom};
 use crate::parse::numbers::first_number;
 use crate::parse::respond::{speak, speak_correction, speak_need_target, speak_unknown};
-use crate::parse::slots::intent_with_entity;
+use crate::parse::slots::{fill_pending_timer_duration, intent_with_entity};
 use crate::types::{
     allow_permitted, first_matching_rule, first_seed_match, Intent, IntentCandidate, IntentPlan, ParseDecision, PolicyHit, PolicyTrace,
     PolicyTraceLayer, PolicyTraceMatch, RejectReason,
@@ -120,6 +120,9 @@ pub(super) fn route_pending(context: &ParseContext<'_>, tokens: &[String]) -> Op
         });
     }
     if context.session.pending_clarify().is_some() {
+        if let Some(intent) = context.session.pending_clarify().and_then(|p| fill_pending_timer_duration(&p.template, tokens)) {
+            return Some(execute(context, vec![intent], "pending_timer_duration", 1.0, 1.0, true, false));
+        }
         let picked = pick_clarification(tokens, context.session, context.home);
         if let Some(chosen) = picked {
             let template = context.session.pending_clarify()?.template.clone();
@@ -242,10 +245,11 @@ pub(super) fn safety_decision(mut draft: Draft, context: &ParseContext<'_>) -> D
     }
     if draft.plan.as_ref().is_some_and(|plan| missing_timer_duration(plan, context.text)) {
         let prompt = context.catalog.speech().timer_how_long.to_string();
+        draft.commit.clarify = draft.plan.as_ref().and_then(|plan| plan.intents().into_iter().next()).map(|intent| (Vec::new(), intent));
+        draft.commit.remember.clear();
         draft.decision = ParseDecision::Clarify { prompt: prompt.clone(), options: Vec::new() };
         draft.speech = prompt;
         draft.plan = None;
-        draft.commit = SessionCommit { briefing: draft.commit.briefing, ..SessionCommit::default() };
         return draft;
     }
     if draft.safety_confirmed {

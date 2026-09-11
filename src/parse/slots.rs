@@ -386,19 +386,56 @@ pub(crate) fn timer_clause(
 }
 
 pub(crate) fn start_timer_missing_duration(intent: &Intent) -> bool {
-    intent.name == "HassStartTimer"
-        && intent.slot("hours").is_none()
-        && intent.slot("minutes").is_none()
-        && intent.slot("seconds").is_none()
-        && !named_timer_target(intent)
+    intent.name == "HassStartTimer" && timer_missing_duration(intent) && !named_timer_target(intent)
 }
 
 fn named_timer_target(intent: &Intent) -> bool {
     intent.slot("timer_name").is_some() || intent.slot("entity_id").is_some_and(|id| id.starts_with("timer.") && !id.contains("abstract"))
 }
 
+fn timer_missing_duration(intent: &Intent) -> bool {
+    intent.slot("hours").is_none() && intent.slot("minutes").is_none() && intent.slot("seconds").is_none()
+}
+
 pub(crate) fn needs_timer_duration_prompt(intent: &Intent, tokens: &[String]) -> bool {
-    start_timer_missing_duration(intent) && !timer_keeps_existing_duration(tokens)
+    match intent.name.as_str() {
+        "HassStartTimer" => start_timer_missing_duration(intent) && !timer_keeps_existing_duration(tokens),
+        "HassIncreaseTimer" | "HassDecreaseTimer" => timer_missing_duration(intent),
+        _ => false,
+    }
+}
+
+pub(crate) fn fill_pending_timer_duration(template: &Intent, tokens: &[String]) -> Option<Intent> {
+    if !matches!(template.name.as_str(), "HassStartTimer" | "HassIncreaseTimer" | "HassDecreaseTimer") {
+        return None;
+    }
+    let number = crate::parse::numbers::first_number(tokens)?;
+    if !duration_reply(tokens) {
+        return None;
+    }
+    Some(template.clone().with_set(timer_unit(tokens), number.to_string()))
+}
+
+fn duration_reply(tokens: &[String]) -> bool {
+    let cat = catalog();
+    if cat.any(tokens, cat.hours())
+        || cat.any(tokens, cat.minutes())
+        || cat.any(tokens, cat.seconds())
+        || tokens.iter().any(|token| {
+            matches!(
+                token.as_str(),
+                "hour" | "hours" | "hrs" | "minute" | "minutes" | "min" | "mins" | "second" | "seconds" | "sec" | "secs"
+            )
+        })
+    {
+        return true;
+    }
+    tokens.len() <= 3
+        && tokens.iter().all(|token| {
+            token.parse::<i32>().is_ok()
+                || matches!(token.as_str(), "um" | "fuer" | "for" | "by" | "eine" | "einen" | "ein" | "a" | "an")
+                || cat.number(token).is_some()
+        })
 }
 
 fn timer_keeps_existing_duration(tokens: &[String]) -> bool {
