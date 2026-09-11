@@ -336,3 +336,25 @@ fn status_der_wohnung_is_one_floor_get_state() {
     assert!(result.intents[0].slots.iter().any(|slot| slot.name == "floor" && slot.value == "wohnung"), "{:#?}", result.intents[0]);
     assert!(result.intents[0].slots.iter().all(|slot| slot.name != "area"), "{:#?}", result.intents[0]);
 }
+
+#[test]
+fn temperatur_der_wohnung_is_floor_climate_query() {
+    let mut home = default_home();
+    home.areas.retain(|area| area.area_id != "wohnung");
+    for area in &mut home.areas {
+        area.floor_id = Some("wohnung".into());
+    }
+    home.floors.push(klar_nlu::types::FloorRec {
+        floor_id: "wohnung".into(),
+        name: "Wohnung".into(),
+        aliases: vec!["zuhause".into(), "home".into(), "apartment".into()],
+        level: Some(0),
+    });
+    let mut session = Session::new();
+    let result = parse("Wie ist die Temperatur der Wohnung?", &home, &mut session, &[], &Settings::pinned("de"));
+    assert!(!result.clarify, "{}", result.speech);
+    assert_eq!(result.intents.len(), 1, "{:#?}", result.intents);
+    assert_eq!(result.intents[0].name, "HassClimateGetTemperature", "{:#?}", result.intents);
+    assert!(result.intents[0].slots.iter().any(|slot| slot.name == "floor" && slot.value == "wohnung"), "{:#?}", result.intents[0]);
+    assert!(result.intents[0].slots.iter().all(|slot| slot.name != "area"), "{:#?}", result.intents[0]);
+}

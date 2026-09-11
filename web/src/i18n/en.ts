@@ -29,6 +29,7 @@ export const en = {
   confidence: "Confidence",
   domains: "Domains",
   rooms: "Rooms",
+  floors: "Floors",
   recent: "Recent sentences",
   replay: "Replay",
   applyAll: "Apply suggestions",

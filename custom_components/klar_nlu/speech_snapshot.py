@@ -158,10 +158,12 @@ def _state_row(state: Any) -> dict[str, Any] | None:
         attrs = {}
     name = str(attrs.get("friendly_name") or getattr(state, "name", "") or "")
     domain = entity_id.split(".", 1)[0]
+    device_class = str(attrs.get("device_class") or "").strip() or None
     return {
         "entity_id": entity_id,
         "name": name,
         "domain": domain,
         "state": str(getattr(state, "state", "") or ""),
+        "device_class": device_class,
         "attributes": attrs,
     }

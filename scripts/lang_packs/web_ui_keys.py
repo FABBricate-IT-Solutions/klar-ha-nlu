@@ -22,6 +22,7 @@ CONSTANTS = {
     "coverageAssist": "Assist",
     "coverageReady": "ready",
     "coverageOpen": "open",
+    "floors": "Floors",
 }
 
 CATALOG_KEYS = (

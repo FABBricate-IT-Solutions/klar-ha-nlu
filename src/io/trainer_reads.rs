@@ -97,8 +97,23 @@ pub async fn try_sentence(state: &AppState, args: &Value) -> Result<Value, Strin
 
 pub async fn list_areas(state: &AppState) -> Result<Value, String> {
     let home = state.home.snapshot().await;
-    let areas: Vec<Value> = home.areas.iter().map(|area| json!({"area_id": area.area_id, "name": area.name})).collect();
+    let areas: Vec<Value> =
+        home.areas.iter().map(|area| json!({"area_id": area.area_id, "name": area.name, "floor": area.floor_id})).collect();
     Ok(with_view("areas", json!({ "areas": areas })))
+}
+
+pub async fn list_floors(state: &AppState) -> Result<Value, String> {
+    let home = state.home.snapshot().await;
+    let floors: Vec<Value> = home
+        .floors
+        .iter()
+        .map(|floor| {
+            let areas: Vec<Value> =
+                home.areas_on_floor(&floor.floor_id).map(|area| json!({"area_id": area.area_id, "name": area.name})).collect();
+            json!({"floor_id": floor.floor_id, "name": floor.name, "aliases": floor.aliases, "areas": areas})
+        })
+        .collect();
+    Ok(with_view("floors", json!({ "floors": floors })))
 }
 
 pub async fn count_house(state: &AppState) -> Result<Value, String> {
@@ -110,6 +125,7 @@ pub async fn count_house(state: &AppState) -> Result<Value, String> {
         json!({
             "entities": home.entities.len(),
             "areas": home.areas.len(),
+            "floors": home.floors.len(),
             "leftover": leftover
         }),
     ))

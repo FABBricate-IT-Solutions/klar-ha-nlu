@@ -29,6 +29,7 @@ export const de = {
   confidence: "Treffsicherheit",
   domains: "Domains",
   rooms: "Räume",
+  floors: "Etagen",
   recent: "Letzte Sätze",
   replay: "Nochmal",
   applyAll: "Vorschläge übernehmen",

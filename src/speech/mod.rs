@@ -3,6 +3,7 @@
 
 mod generated;
 mod render;
+mod render_climate;
 mod render_media;
 mod render_place;
 

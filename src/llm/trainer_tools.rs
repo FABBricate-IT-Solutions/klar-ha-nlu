@@ -16,6 +16,7 @@ pub const READ_TOOLS: &[&str] = &[
     "explain_klar",
     "try_sentence",
     "list_areas",
+    "list_floors",
     "count_house",
     "list_engine",
     "list_phrases",
@@ -66,6 +67,7 @@ const HOUSE_TOOLS: &[&str] = &[
     "search_house",
     "get_entity",
     "list_areas",
+    "list_floors",
     "count_house",
     "list_policies",
     "list_gaps",
@@ -90,6 +92,7 @@ pub fn tools_for_layer(layer: &str) -> &'static [&'static str] {
                 "search_house",
                 "get_entity",
                 "list_areas",
+                "list_floors",
                 "count_house",
                 "list_lexicon_paths",
                 "get_lexicon",
@@ -126,7 +129,7 @@ pub fn openai_tools_for(layer: &str) -> Vec<Value> {
 pub fn openai_tools() -> Vec<Value> {
     vec![
         tool("list_languages", "Assist languages from settings.languages.", json!({"type": "object", "properties": {}})),
-        tool("search_house", "Search entities and areas on the graph.", object(&[("q", str_prop("Name, id, or alias fragment."))], &["q"])),
+        tool("search_house", "Search entities, areas, and floors on the graph. Wohnung is often a floor_id, not an area.", object(&[("q", str_prop("Name, id, or alias fragment."))], &["q"])),
         tool("get_entity", "One graph entity with aliases and area.", object(&[("entity_id", str_prop("entity_id"))], &["entity_id"])),
         tool("list_lexicon_paths", "Known lexicon set paths (SET_KEYS).", json!({"type": "object", "properties": {}})),
         tool(
@@ -147,8 +150,9 @@ pub fn openai_tools() -> Vec<Value> {
             "Parse one utterance on this house. Returns the live policy path view.",
             object(&[("text", str_prop("Utterance as spoken at home")), ("language", str_prop("Assist pack"))], &["text"]),
         ),
-        tool("list_areas", "Rooms on the home graph.", json!({"type": "object", "properties": {}})),
-        tool("count_house", "Entity, area, and leftover counts.", json!({"type": "object", "properties": {}})),
+        tool("list_areas", "Rooms on the home graph. Not floors — Wohnung is often a floor_id.", json!({"type": "object", "properties": {}})),
+        tool("list_floors", "Floors on the home graph (floor_id, name, aliases).", json!({"type": "object", "properties": {}})),
+        tool("count_house", "Entity, area, floor, and leftover counts.", json!({"type": "object", "properties": {}})),
         tool("list_engine", "Public engine and operator-chrome settings. No tokens or URLs.", json!({"type": "object", "properties": {}})),
         tool("list_phrases", "Custom sentence overlays.", json!({"type": "object", "properties": {}})),
         tool(
@@ -204,8 +208,41 @@ pub fn openai_tools() -> Vec<Value> {
         ),
         tool(
             "apply_house",
-            "Upsert house PolicyRule rows by id. Seed enabled:false is allowed. Needs operator consent.",
-            object(&[("policies", json!({"type": "array"}))], &["policies"]),
+            "Upsert house PolicyRule rows by id. Seed enabled:false is allowed. Needs operator consent. when.floor is a floor_id from list_floors, never an area name. template/reply/script/llm require payload. template is Home Assistant Jinja with variables text and rooms (area_id, name, floor, temp). Floor temperature listing is native when try_sentence already matches floor_command — do not write a house rule for that. Unseen language forms: apply_lexicon on the language lane. Household-only phrasing: when.phrase plus template payload.",
+            object(
+                &[(
+                    "policies",
+                    json!({
+                        "type": "array",
+                        "items": {
+                            "type": "object",
+                            "required": ["id", "effect"],
+                            "properties": {
+                                "id": {"type": "string"},
+                                "enabled": {"type": "boolean"},
+                                "label": {"type": "string"},
+                                "when": {
+                                    "type": "object",
+                                    "properties": {
+                                        "intent": {"type": "string"},
+                                        "domain": {"type": "string"},
+                                        "area": {"type": "string", "description": "area_id from list_areas"},
+                                        "entity_id": {"type": "string"},
+                                        "floor": {"type": "string", "description": "floor_id from list_floors"},
+                                        "name": {"type": "string"},
+                                        "phrase": {"type": "string", "description": "Household wording, 4–200 characters"},
+                                        "area_wide": {"type": "boolean"}
+                                    }
+                                },
+                                "effect": {"type": "string", "enum": ["confirm", "block", "allow", "prefer_entity", "prefer_area", "reply", "script", "template", "llm"]},
+                                "prefer": {"type": "string"},
+                                "payload": {"type": "string", "description": "Required for reply/script/template/llm. template: HA Jinja."}
+                            }
+                        }
+                    }),
+                )],
+                &["policies"],
+            ),
         ),
         tool(
             "apply_aliases",
@@ -374,7 +411,15 @@ mod tests {
     fn writes_are_named() {
         assert!(is_write_tool("apply_aliases"));
         assert!(!is_write_tool("get_entity"));
-        assert!(openai_tools().iter().any(|tool| tool["function"]["name"] == "apply_house"));
+        let tools = openai_tools();
+        assert!(tools.iter().any(|tool| tool["function"]["name"] == "list_floors"));
+        let house = tools.iter().find(|tool| tool["function"]["name"] == "apply_house").unwrap();
+        let payload = house["function"]["parameters"]["properties"]["policies"]["items"]["properties"]["payload"]["description"]
+            .as_str()
+            .unwrap_or("");
+        assert!(payload.contains("Jinja"), "{payload}");
+        let search = tools.iter().find(|tool| tool["function"]["name"] == "search_house").unwrap();
+        assert!(search["function"]["description"].as_str().unwrap_or("").contains("floor"), "{search}");
     }
 
     #[test]
@@ -390,6 +435,7 @@ mod tests {
         assert!(!tool_allowed_for_layer("match", "apply_lexicon"));
         assert!(tool_allowed_for_layer("language", "apply_lexicon"));
         assert!(!tool_allowed_for_layer("language", "apply_match"));
+        assert!(tool_allowed_for_layer("house", "list_floors"));
         assert!(tool_allowed_for_layer("house", "apply_house"));
         assert!(tool_allowed_for_layer("house", "apply_aliases"));
         assert!(!tool_allowed_for_layer("house", "apply_match"));

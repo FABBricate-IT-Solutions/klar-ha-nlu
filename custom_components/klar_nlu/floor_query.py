@@ -8,7 +8,7 @@ from typing import Any
 from homeassistant.helpers import area_registry, device_registry, entity_registry, floor_registry
 
 from .intents import _area_hit, resolve_area
-from .speech_status import empty_status_speech, rooms_status_speech
+from .speech_status import _infra_state, empty_status_speech, rooms_status_speech
 
 _STATUS_DOMAINS = (
     "light",
@@ -188,6 +188,78 @@ def entity_area_id(hass: Any, entity_id: str) -> str:
 
 def _wanted_domains(domain: str) -> set[str]:
     return {domain} if domain in _STATUS_DOMAINS else set(_STATUS_DOMAINS)
+
+
+def floor_temperature_rooms(
+    hass: Any,
+    floor_key: str,
+    exposed: Callable[[str], bool],
+) -> list[tuple[str, list[Any]]]:
+    """One temperature reading per area on the floor. Sensor wins over climate."""
+    rooms: list[tuple[str, list[Any]]] = []
+    for area_name, states in floor_status_rooms(hass, floor_key, "", exposed):
+        picked = _pick_temp_state(states)
+        if picked is not None:
+            rooms.append((area_name, [picked]))
+    return rooms
+
+
+def area_temperature_context(hass: Any, exposed: Callable[[str], bool]) -> list[dict[str, Any]]:
+    """Jinja `rooms` for house-rule templates: area_id, name, floor, temp."""
+    rows: list[dict[str, Any]] = []
+    for area in area_registry.async_get(hass).async_list_areas():
+        area_id = str(getattr(area, "id", None) or getattr(area, "area_id", "") or "")
+        if not area_id:
+            continue
+        picked = _pick_temp_state(states_in_area(hass, area_id, {"sensor", "climate"}, exposed))
+        rows.append(
+            {
+                "area_id": area_id,
+                "name": str(getattr(area, "name", None) or area_id),
+                "floor": str(getattr(area, "floor_id", None) or ""),
+                "temp": _temp_number(picked) if picked is not None else None,
+            }
+        )
+    rows.sort(key=lambda row: str(row.get("name") or "").casefold())
+    return rows
+
+
+def _pick_temp_state(states: list[Any]) -> Any | None:
+    usable = [state for state in states if _usable_temp(state)]
+    sensors = [state for state in usable if _temp_class(state) == "temperature"]
+    if sensors:
+        return sensors[0]
+    climates = [state for state in usable if str(getattr(state, "entity_id", "")).startswith("climate.")]
+    return climates[0] if climates else None
+
+
+def _usable_temp(state: Any) -> bool:
+    if _infra_state(state):
+        return False
+    raw = str(getattr(state, "state", "") or "").lower()
+    if raw in {"unavailable", "unknown"}:
+        return False
+    return _temp_number(state) is not None
+
+
+def _temp_class(state: Any) -> str:
+    attrs = getattr(state, "attributes", None) or {}
+    return str(attrs.get("device_class") or "").lower() if isinstance(attrs, dict) else ""
+
+
+def _temp_number(state: Any) -> str | None:
+    attrs = getattr(state, "attributes", None) or {}
+    raw = attrs.get("current_temperature") if isinstance(attrs, dict) else None
+    if raw in (None, ""):
+        raw = getattr(state, "state", None)
+    try:
+        value = float(raw)
+    except (TypeError, ValueError):
+        return None
+    if value == int(value):
+        return str(int(value))
+    text = f"{value:.1f}".rstrip("0").rstrip(".")
+    return text
 
 
 def _floor_items(registry: Any) -> list[Any]:
