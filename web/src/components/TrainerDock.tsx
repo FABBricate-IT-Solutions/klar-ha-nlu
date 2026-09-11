@@ -4,6 +4,8 @@ import { Button } from "@/components/ui/button";
 import type { Messages } from "../i18n";
 import { TrainerDrawer } from "./TrainerDrawer";
 
+const KEYBOARD_GAP = 96;
+
 const MIN_W = 300;
 const STORE = "klar-lotse-width";
 
@@ -81,6 +83,35 @@ export function TrainerDock({
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
   }, [open, onOpenChange]);
+
+  useEffect(() => {
+    if (!open) return;
+    const root = document.documentElement;
+    const view = window.visualViewport;
+    let baseline = Math.max(window.innerHeight, view?.height ?? 0);
+    const apply = () => {
+      const height = view?.height ?? window.innerHeight;
+      const offset = view?.offsetTop ?? 0;
+      if (height > baseline) {
+        baseline = height;
+      }
+      root.style.setProperty("--trainer-vvh", `${Math.round(height)}px`);
+      root.style.setProperty("--trainer-vv-top", `${Math.round(offset)}px`);
+      root.dataset.trainerKeyboard = baseline - height > KEYBOARD_GAP || offset > 16 ? "open" : "closed";
+    };
+    apply();
+    view?.addEventListener("resize", apply);
+    view?.addEventListener("scroll", apply);
+    window.addEventListener("resize", apply);
+    return () => {
+      view?.removeEventListener("resize", apply);
+      view?.removeEventListener("scroll", apply);
+      window.removeEventListener("resize", apply);
+      root.style.removeProperty("--trainer-vvh");
+      root.style.removeProperty("--trainer-vv-top");
+      delete root.dataset.trainerKeyboard;
+    };
+  }, [open]);
 
   const move = (clientX: number) => {
     setWidth(clampWidth(window.innerWidth - clientX));

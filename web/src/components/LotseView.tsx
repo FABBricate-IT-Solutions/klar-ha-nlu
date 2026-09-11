@@ -54,16 +54,19 @@ function flagOn(value: unknown): boolean {
   return value === true;
 }
 
-function Panel({ title, children }: { title?: string; children: ReactNode }) {
+function Panel({ title, children, t }: { title?: string; children: ReactNode; t: Messages }) {
   return (
-    <Card size="sm">
-      {title ? (
-        <CardHeader>
-          <CardTitle>{title}</CardTitle>
-        </CardHeader>
-      ) : null}
-      <CardContent className="grid gap-3">{children}</CardContent>
-    </Card>
+    <details className="trainer-view">
+      <summary className="trainer-view-summary">{title || t.trainerDetails}</summary>
+      <Card size="sm" className="trainer-view-card">
+        {title ? (
+          <CardHeader className="trainer-view-head">
+            <CardTitle>{title}</CardTitle>
+          </CardHeader>
+        ) : null}
+        <CardContent className="grid gap-3">{children}</CardContent>
+      </Card>
+    </details>
   );
 }
 
@@ -222,18 +225,20 @@ export function LotseView({ spec, t }: { spec: LotseViewSpec; t: Messages }) {
     case "guide":
     case "architecture":
       return (
-        <Guide
-          title={textOf(payload, "title") || t.trainer}
-          steps={asRows(payload.steps).map((row, index) => ({
-            id: textOf(row, "id") || String(index),
-            label: textOf(row, "label"),
-            hint: textOf(row, "hint"),
-          }))}
-        />
+        <Panel t={t}  title={textOf(payload, "title") || t.trainer}>
+          <Guide
+            title={textOf(payload, "title") || t.trainer}
+            steps={asRows(payload.steps).map((row, index) => ({
+              id: textOf(row, "id") || String(index),
+              label: textOf(row, "label"),
+              hint: textOf(row, "hint"),
+            }))}
+          />
+        </Panel>
       );
     case "path":
       return (
-        <Panel title={textOf(payload, "speech") || t.speech}>
+        <Panel t={t}  title={textOf(payload, "speech") || t.speech}>
           {textOf(payload, "speech") ? <p>{textOf(payload, "speech")}</p> : null}
           <PolicyPath t={t} trace={asTrace(payload.policy_trace)} />
         </Panel>
@@ -242,7 +247,7 @@ export function LotseView({ spec, t }: { spec: LotseViewSpec; t: Messages }) {
       return <Panel title={t.coverageOpen}><GapRows rows={asRows(payload.gaps)} t={t} /></Panel>;
     case "entity":
       return (
-        <Panel title={textOf(payload, "name") || t.entities}>
+        <Panel t={t}  title={textOf(payload, "name") || t.entities}>
           <p className="mono">{textOf(payload, "entity_id")}</p>
           <div className="flex flex-wrap gap-2">
             {textOf(payload, "area") ? <span className="chip">{textOf(payload, "area")}</span> : <span className="chip">{t.unmapped}</span>}
@@ -257,19 +262,19 @@ export function LotseView({ spec, t }: { spec: LotseViewSpec; t: Messages }) {
       );
     case "house":
       return (
-        <Panel title={t.house}>
+        <Panel t={t}  title={t.house}>
           <Rows rows={asRows(payload.entities)} primary="name" secondary="entity_id" />
           <Rows rows={asRows(payload.areas)} primary="name" secondary="area_id" />
           <Rows rows={asRows(payload.floors)} primary="name" secondary="floor_id" />
         </Panel>
       );
     case "matchers":
-      return <Panel title={t.pathMatch}><MatcherRows rows={asRows(payload.matchers)} /></Panel>;
+      return <Panel t={t}  title={t.pathMatch}><MatcherRows rows={asRows(payload.matchers)} /></Panel>;
     case "policies":
-      return <Panel title={t.pathHouse}><Rows rows={asRows(payload.policies)} primary="label" secondary="id" /></Panel>;
+      return <Panel t={t}  title={t.pathHouse}><Rows rows={asRows(payload.policies)} primary="label" secondary="id" /></Panel>;
     case "lexicon":
       return (
-        <Panel title={textOf(payload, "path") || t.lexiconOverlay}>
+        <Panel t={t}  title={textOf(payload, "path") || t.lexiconOverlay}>
           {textOf(payload, "path") ? <p className="mono">{textOf(payload, "path")}</p> : null}
           <Chips items={asStrings(payload.paths)} />
         </Panel>
@@ -280,7 +285,7 @@ export function LotseView({ spec, t }: { spec: LotseViewSpec; t: Messages }) {
       return <Panel title={t.floors}><Rows rows={asRows(payload.floors)} primary="name" secondary="floor_id" /></Panel>;
     case "engine":
       return (
-        <Panel title={t.engineReady}>
+        <Panel t={t}  title={t.engineReady}>
           <Chips items={asStrings(payload.languages)} hot />
           <div className="flex flex-wrap gap-2">
             {textOf(payload, "personality") ? <span className="chip">{textOf(payload, "personality")}</span> : null}
@@ -304,7 +309,7 @@ export function LotseView({ spec, t }: { spec: LotseViewSpec; t: Messages }) {
       );
     case "validate":
       return (
-        <Panel title={payload.ok === false ? t.trainerFail : t.trainerOk}>
+        <Panel t={t}  title={payload.ok === false ? t.trainerFail : t.trainerOk}>
           <Rows rows={asRows(payload.errors)} primary="code" secondary="path" />
           <Rows rows={asRows(payload.warnings)} primary="code" secondary="path" />
         </Panel>
@@ -322,9 +327,9 @@ export function LotseView({ spec, t }: { spec: LotseViewSpec; t: Messages }) {
         </Panel>
       );
     case "languages":
-      return <Panel title={t.languages}><Chips items={asStrings(payload.languages)} hot /></Panel>;
+      return <Panel t={t}  title={t.languages}><Chips items={asStrings(payload.languages)} hot /></Panel>;
     case "phrases":
-      return <Panel title={t.custom}><Rows rows={asRows(payload.phrases)} primary="phrase" secondary="intent" /></Panel>;
+      return <Panel t={t}  title={t.custom}><Rows rows={asRows(payload.phrases)} primary="phrase" secondary="intent" /></Panel>;
     case "turns":
       return <Panel title={t.conversations}><Rows rows={asRows(payload.turns)} primary="label" secondary="decision" /></Panel>;
     case "seeds":

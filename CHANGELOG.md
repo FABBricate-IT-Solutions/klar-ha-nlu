@@ -6,6 +6,41 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 Versions follow Home Assistant calendar versioning (`YYYY.M.PATCH`)
 and [Conventional Commits](https://www.conventionalcommits.org/).
 
+## [2026.9.8](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/compare/2026.9.7...2026.9.8) - 2026-09-07
+
+
+
+### Other
+
+- Compact Lotse on mobile so the chat keeps the screen (#239)([412108a](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/412108a46b719769ab5a9942dbdc5adf7c4f5590))
+
+## [2026.9.7](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/compare/2026.9.6...2026.9.7) - 2026-09-07
+
+
+
+### Other
+
+- bump recharts from 3.8.0 to 3.10.1 in /web in the npm-minor group (#236)([5796317](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/5796317eb494e56bf3bf64df9d74dea24d195396))
+
+- bump @types/react-dom from 19.2.5 to 19.2.7 in /web in the npm-patch group (#234)([2843919](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/2843919682870b03538952dde82adfb47dc54771))
+
+- bump the rust-patch group with 2 updates (#233)([64c715d](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/64c715de603a22a551571da7def62edf96daada1))
+
+## [2026.9.6](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/compare/2026.9.5...2026.9.6) - 2026-09-06
+
+
+
+### Bug Fixes
+
+- add engineOffline to every Assist locale([eb9146f](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/eb9146ff13591e4fae6e7ebbe7fec8f57da95538))
+
+- fail closed when custom phrases cannot persist([9dbecdd](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/9dbecdd91824ab28c60102501021be01277cac82))
+
+
+### Other
+
+- Merge pull request #231 from FABBricate-IT-Solutions/fix/custom-phrase-live-store([8be8509](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/8be850902cd34588d8fad9bdce77efef4b825ed4))
+
 ## [2026.9.5](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/compare/2026.9.4...2026.9.5) - 2026-09-06
 
 

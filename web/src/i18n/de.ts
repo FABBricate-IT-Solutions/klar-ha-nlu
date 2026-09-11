@@ -354,6 +354,8 @@ export const de = {
   trainerOk: "Gültig",
   trainerFail: "Ungültig",
   trainerSend: "Senden",
+  trainerMore: "Mehr",
+  trainerDetails: "Details",
   trainerNeedLlm: "Zuerst ein LLM unter Einstellungen setzen. Klar braucht keine andere Home-Assistant-Conversation-Integration.",
   trainerOpenSettings: "Einstellungen öffnen",
   trainerApplyHouse: "House anwenden",
