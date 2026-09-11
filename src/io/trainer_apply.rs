@@ -26,6 +26,7 @@ pub async fn dispatch(state: &AppState, name: &str, args: &Value) -> Result<Valu
         "explain_klar" => trainer_reads::explain_klar(args),
         "try_sentence" => trainer_reads::try_sentence(state, args).await,
         "list_areas" => trainer_reads::list_areas(state).await,
+        "list_floors" => trainer_reads::list_floors(state).await,
         "count_house" => trainer_reads::count_house(state).await,
         "list_engine" => trainer_settings::list_engine(state).await,
         "list_phrases" => trainer_reads::list_phrases(state).await,
@@ -119,9 +120,20 @@ async fn search_house(state: &AppState, args: &Value) -> Result<Value, String> {
         .iter()
         .filter(|area| area.area_id.to_lowercase().contains(&query) || area.name.to_lowercase().contains(&query))
         .take(12)
-        .map(|area| json!({"area_id": area.area_id, "name": area.name}))
+        .map(|area| json!({"area_id": area.area_id, "name": area.name, "floor": area.floor_id}))
         .collect();
-    Ok(with_view("house", json!({ "entities": entities, "areas": areas })))
+    let floors: Vec<Value> = home
+        .floors
+        .iter()
+        .filter(|floor| {
+            floor.floor_id.to_lowercase().contains(&query)
+                || floor.name.to_lowercase().contains(&query)
+                || floor.aliases.iter().any(|alias| alias.to_lowercase().contains(&query))
+        })
+        .take(8)
+        .map(|floor| json!({"floor_id": floor.floor_id, "name": floor.name, "aliases": floor.aliases}))
+        .collect();
+    Ok(with_view("house", json!({ "entities": entities, "areas": areas, "floors": floors })))
 }
 
 async fn get_entity(state: &AppState, args: &Value) -> Result<Value, String> {

@@ -40,5 +40,9 @@ Repair from the Assist journal:\n\
 - Wrong device on/off: list_turns + get_entity + aliases or a house rule; try_sentence the uttered text.\n\
 - Status miss: HassGetState / lexicon / expose.\n\
 - Weather miss: weather entity on the graph, then try_sentence.\n\
-- Unknown slang: apply_lexicon on the right SET_KEYS path.\n\n\
+- Unknown slang: apply_lexicon on the right SET_KEYS path.\n\
+- Floors vs rooms: list_floors vs list_areas. A name like Wohnung is often a floor_id. when.area must be an area_id from list_areas.\n\
+- Unseen language forms (other packs): apply_lexicon on that locale's SET_KEYS (e.g. cues.temp_query). Do not invent matcher ids.\n\
+- Household-only phrasing that already tokenizes but needs a custom reply: house rule with when.phrase and effect template. template/reply/script/llm require payload. template is Home Assistant Jinja with `text` and `rooms` (area_id, name, floor, temp). Empty payload → policy payload required.\n\
+- Floor temperature listing is native once try_sentence matches floor_command. Do not write a house rule for that; Lab speech is pre-execute.\n\n\
 Voice / personality never enters this prompt. Extra prompt is Assist/refine only.\n";

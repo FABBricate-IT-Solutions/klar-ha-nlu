@@ -391,6 +391,75 @@ class FloorQueryTests(unittest.TestCase):
         for index in range(6):
             self.assertIn(f"Bot{index} an der Station", spoken)
 
+    def test_floor_temperature_prefers_sensor_per_area(self) -> None:
+        living_sensor = _State(
+            "sensor.heizung_wohnzimmer_air_temperature_2",
+            "21.5",
+            "WZ Temp",
+            device_class="temperature",
+        )
+        living_climate = _State(
+            "climate.better_thermostat_wohnzimmer",
+            "heat",
+            "Heizung Wohnzimmer",
+            current_temperature=20,
+        )
+        kitchen = _State(
+            "sensor.esszimmer_heizung_esszimmer_air_temperature",
+            "22",
+            "EZ Temp",
+            device_class="temperature",
+        )
+        cpu = _State("sensor.cpu_temperature", "64", "CPU", device_class="temperature")
+        sat = _State("sensor.satellite1_temperature", "40", "Satellite1 Temperature", device_class="temperature")
+        hass = SimpleNamespace(states=_States(living_sensor, living_climate, kitchen, cpu, sat))
+        living_area = SimpleNamespace(id="wohnzimmer", name="Wohnzimmer", floor_id="wohnung")
+        kitchen_area = SimpleNamespace(id="esszimmer", name="Esszimmer", floor_id="wohnung")
+        floor = SimpleNamespace(floor_id="wohnung", name="Wohnung", aliases=[])
+        entries = {
+            living_sensor.entity_id: SimpleNamespace(area_id="wohnzimmer", device_id=None),
+            living_climate.entity_id: SimpleNamespace(area_id="wohnzimmer", device_id=None),
+            kitchen.entity_id: SimpleNamespace(area_id="esszimmer", device_id=None),
+            cpu.entity_id: SimpleNamespace(area_id="technik", device_id=None),
+            sat.entity_id: SimpleNamespace(area_id="wohnzimmer", device_id=None),
+        }
+        with (
+            patch.object(floor_query, "resolve_floor", return_value=floor),
+            patch.object(floor_query, "areas_on_floor", return_value=[living_area, kitchen_area]),
+            patch("homeassistant.helpers.entity_registry.async_get", return_value=SimpleNamespace(async_get=entries.get)),
+        ):
+            rooms = floor_query.floor_temperature_rooms(hass, "wohnung", lambda _id: True)
+        picked = {name: states[0].entity_id for name, states in rooms}
+        self.assertEqual(
+            picked,
+            {
+                "Wohnzimmer": living_sensor.entity_id,
+                "Esszimmer": kitchen.entity_id,
+            },
+        )
+        self.assertNotIn("CPU", picked)
+
+    def test_template_rooms_include_floor_and_temp(self) -> None:
+        living = _State(
+            "sensor.heizung_wohnzimmer_air_temperature_2",
+            "21.5",
+            "WZ Temp",
+            device_class="temperature",
+        )
+        hass = SimpleNamespace(states=_States(living))
+        area = SimpleNamespace(id="wohnzimmer", name="Wohnzimmer", floor_id="wohnung")
+        areas = SimpleNamespace(async_list_areas=lambda: [area])
+        entries = {living.entity_id: SimpleNamespace(area_id="wohnzimmer", device_id=None)}
+        with (
+            patch("homeassistant.helpers.area_registry.async_get", return_value=areas),
+            patch("homeassistant.helpers.entity_registry.async_get", return_value=SimpleNamespace(async_get=entries.get)),
+        ):
+            rows = floor_query.area_temperature_context(hass, lambda _id: True)
+        self.assertEqual(
+            rows,
+            [{"area_id": "wohnzimmer", "name": "Wohnzimmer", "floor": "wohnung", "temp": "21.5"}],
+        )
+
     def test_floor_alias_resolves(self) -> None:
         floor = SimpleNamespace(floor_id="wohnung", name="Wohnung", aliases=["zuhause", "home"])
         registry = SimpleNamespace(

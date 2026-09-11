@@ -268,7 +268,7 @@ class KlarConversationEntity(ConversationEntity):
         retrieval = payload.get("retrieval") if isinstance(payload.get("retrieval"), dict) else None
         hit, action = hit_and_payload(payload)
         if hit == "template" and action:
-            rendered = await render_user_template(self.hass, action, user_input.text)
+            rendered = await render_user_template(self.hass, action, user_input.text, self._exposed)
             if rendered:
                 speech = rendered
         if hit == "llm" and action and not clarify and decision_type != "execute" and not payload.get("unreachable"):

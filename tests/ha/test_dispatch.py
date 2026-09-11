@@ -714,6 +714,31 @@ class DispatchTests(unittest.IsolatedAsyncioTestCase):
         self.assertEqual(spoken.speech, "ok.")
         dispatch.intent.async_handle.assert_not_awaited()
 
+    async def test_floor_temperature_does_not_call_ha(self) -> None:
+        living = _State(
+            "sensor.heizung_wohnzimmer_air_temperature_2",
+            "21.5",
+            friendly_name="WZ",
+            device_class="temperature",
+        )
+        hass = _hass(living)
+        with patch.object(
+            dispatch,
+            "floor_temperature_rooms",
+            return_value=[("Wohnzimmer", [living])],
+        ):
+            spoken = await dispatch.handle_intent(
+                hass,
+                _input("Wie ist die Temperatur der Wohnung?"),
+                _item("HassClimateGetTemperature", floor="wohnung"),
+                "de",
+                None,
+                lambda _entity_id: True,
+            )
+        self.assertTrue(spoken.ok)
+        self.assertEqual(spoken.speech, "ok.")
+        dispatch.intent.async_handle.assert_not_awaited()
+
     def test_non_weather_intent_does_not_forward_utterance(self) -> None:
         user = SimpleNamespace(text="What's on my calendar tomorrow?")
         self.assertEqual(dispatch.intent_query_text(user, "HassSetVolume", {}), "HassSetVolume")

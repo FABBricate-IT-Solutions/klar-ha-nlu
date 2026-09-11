@@ -136,8 +136,17 @@ pub fn spoken_unit_word(system: UnitSystem, de: bool) -> &'static str {
 }
 
 pub fn entity_temperature(entity: &SpeechEntity) -> Option<(f64, TempScale)> {
-    let raw = attr_num(entity, "current_temperature").or_else(|| attr_num(entity, "temperature"))?;
+    let raw = attr_num(entity, "current_temperature")
+        .or_else(|| attr_num(entity, "temperature"))
+        .or_else(|| sensor_state_temp(entity))?;
     Some((raw, entity_temp_scale(Some(entity))))
+}
+
+fn sensor_state_temp(entity: &SpeechEntity) -> Option<f64> {
+    if entity.device_class.as_deref() != Some("temperature") {
+        return None;
+    }
+    entity.state.parse().ok()
 }
 
 pub fn entity_temp_scale(entity: Option<&SpeechEntity>) -> TempScale {
@@ -184,6 +193,7 @@ fn nearly_int(value: f64) -> bool {
 #[cfg(test)]
 mod tests {
     use super::*;
+    use crate::types::SpeechEntity;
 
     #[test]
     fn seventy_fahrenheit_round_trips() {
@@ -214,5 +224,37 @@ mod tests {
         assert_eq!(format_temp(convert_value(21.5, TempScale::Celsius, UnitSystem::Metric)), "21.5");
         assert_eq!(spoken_unit_word(UnitSystem::Imperial, true), "Fahrenheit");
         assert_eq!(spoken_unit_word(UnitSystem::Metric, true), "Grad");
+    }
+
+    #[test]
+    fn sensor_state_counts_as_temperature() {
+        let sensor = SpeechEntity {
+            entity_id: "sensor.heizung_wohnzimmer_air_temperature_2".into(),
+            name: "Heizung Wohnzimmer Temperatur".into(),
+            domain: "sensor".into(),
+            state: "21.5".into(),
+            area: Some("wohnzimmer".into()),
+            area_name: Some("Wohnzimmer".into()),
+            device_class: Some("temperature".into()),
+            attributes: std::collections::BTreeMap::from([("unit_of_measurement".into(), serde_json::json!("°C"))]),
+        };
+        let (raw, scale) = entity_temperature(&sensor).expect("sensor temp");
+        assert_eq!(raw, 21.5);
+        assert_eq!(scale, TempScale::Celsius);
+    }
+
+    #[test]
+    fn humidity_sensor_is_not_temperature() {
+        let sensor = SpeechEntity {
+            entity_id: "sensor.wohnzimmer_humidity".into(),
+            name: "Luftfeuchte".into(),
+            domain: "sensor".into(),
+            state: "45".into(),
+            area: Some("wohnzimmer".into()),
+            area_name: Some("Wohnzimmer".into()),
+            device_class: Some("humidity".into()),
+            attributes: std::collections::BTreeMap::new(),
+        };
+        assert!(entity_temperature(&sensor).is_none());
     }
 }

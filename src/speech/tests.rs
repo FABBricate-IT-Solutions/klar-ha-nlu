@@ -400,6 +400,75 @@ fn timer_intents_use_timer_templates_not_or_home() {
 }
 
 #[test]
+fn floor_temperature_lists_each_room() {
+    let living = SpeechEntity {
+        entity_id: "sensor.heizung_wohnzimmer_air_temperature_2".into(),
+        name: "Heizung Wohnzimmer Temperatur".into(),
+        domain: "sensor".into(),
+        state: "21.5".into(),
+        area: Some("wohnzimmer".into()),
+        area_name: Some("Wohnzimmer".into()),
+        device_class: Some("temperature".into()),
+        attributes: BTreeMap::from([("unit_of_measurement".into(), serde_json::json!("°C"))]),
+    };
+    let kitchen = SpeechEntity {
+        entity_id: "sensor.esszimmer_heizung_esszimmer_air_temperature".into(),
+        name: "Heizung Esszimmer Temperatur".into(),
+        domain: "sensor".into(),
+        state: "22".into(),
+        area: Some("esszimmer".into()),
+        area_name: Some("Esszimmer".into()),
+        device_class: Some("temperature".into()),
+        attributes: BTreeMap::from([("unit_of_measurement".into(), serde_json::json!("°C"))]),
+    };
+    let out = render_snapshot(&snap(
+        "HassClimateGetTemperature",
+        vec![SpeechSlot { name: "floor".into(), value: "wohnung".into() }],
+        vec![living, kitchen],
+    ));
+    assert!(out.speech.contains("Wohnzimmer"), "{}", out.speech);
+    assert!(out.speech.contains("Esszimmer"), "{}", out.speech);
+    assert!(out.speech.contains("21.5"), "{}", out.speech);
+    assert!(out.speech.contains("22"), "{}", out.speech);
+    assert!(out.speech.contains("Grad"), "{}", out.speech);
+}
+
+#[test]
+fn area_temperature_stays_one_room_without_floor_slot() {
+    let living = SpeechEntity {
+        entity_id: "sensor.heizung_wohnzimmer_air_temperature_2".into(),
+        name: "Heizung Wohnzimmer Temperatur".into(),
+        domain: "sensor".into(),
+        state: "21.5".into(),
+        area: Some("wohnzimmer".into()),
+        area_name: Some("Wohnzimmer".into()),
+        device_class: Some("temperature".into()),
+        attributes: BTreeMap::from([("unit_of_measurement".into(), serde_json::json!("°C"))]),
+    };
+    let kitchen = SpeechEntity {
+        entity_id: "sensor.esszimmer_heizung_esszimmer_air_temperature".into(),
+        name: "Heizung Esszimmer Temperatur".into(),
+        domain: "sensor".into(),
+        state: "22".into(),
+        area: Some("esszimmer".into()),
+        area_name: Some("Esszimmer".into()),
+        device_class: Some("temperature".into()),
+        attributes: BTreeMap::from([("unit_of_measurement".into(), serde_json::json!("°C"))]),
+    };
+    let out = render_snapshot(&snap(
+        "HassClimateGetTemperature",
+        vec![
+            SpeechSlot { name: "area".into(), value: "wohnzimmer".into() },
+            SpeechSlot { name: "area_name".into(), value: "Wohnzimmer".into() },
+        ],
+        vec![living, kitchen],
+    ));
+    assert!(out.speech.contains("Wohnzimmer"), "{}", out.speech);
+    assert!(out.speech.contains("21.5"), "{}", out.speech);
+    assert!(!out.speech.contains("Esszimmer"), "{}", out.speech);
+}
+
+#[test]
 fn empty_get_state_does_not_say_ist() {
     let out = render_snapshot(&snap(
         "HassGetState",

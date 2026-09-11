@@ -17,6 +17,7 @@ export type LotseViewKind =
   | "policies"
   | "lexicon"
   | "areas"
+  | "floors"
   | "engine"
   | "counts"
   | "validate"
@@ -138,6 +139,8 @@ export function inferLotseView(name: string): LotseViewKind {
       return "path";
     case "list_areas":
       return "areas";
+    case "list_floors":
+      return "floors";
     case "count_house":
       return "counts";
     case "list_engine":
@@ -170,6 +173,7 @@ export function parseLotseViewKind(raw: string): LotseViewKind | null {
     case "policies":
     case "lexicon":
     case "areas":
+    case "floors":
     case "engine":
     case "counts":
     case "validate":
@@ -220,6 +224,7 @@ export function LotseView({ spec, t }: { spec: LotseViewSpec; t: Messages }) {
         <Panel title={t.house}>
           <Rows rows={asRows(payload.entities)} primary="name" secondary="entity_id" />
           <Rows rows={asRows(payload.areas)} primary="name" secondary="area_id" />
+          <Rows rows={asRows(payload.floors)} primary="name" secondary="floor_id" />
         </Panel>
       );
     case "matchers":
@@ -235,6 +240,8 @@ export function LotseView({ spec, t }: { spec: LotseViewSpec; t: Messages }) {
       );
     case "areas":
       return <Panel title={t.rooms}><Rows rows={asRows(payload.areas)} primary="name" secondary="area_id" /></Panel>;
+    case "floors":
+      return <Panel title={t.floors}><Rows rows={asRows(payload.floors)} primary="name" secondary="floor_id" /></Panel>;
     case "engine":
       return (
         <Panel title={t.engineReady}>
@@ -252,10 +259,11 @@ export function LotseView({ spec, t }: { spec: LotseViewSpec; t: Messages }) {
       );
     case "counts":
       return (
-        <div className="grid gap-3 md:grid-cols-3">
+        <div className="grid gap-3 md:grid-cols-4">
           <Kpi value={textOf(payload, "leftover") || "0"} label={t.coverageOpen} hot={Number(textOf(payload, "leftover") || "0") > 0} />
           <Kpi value={textOf(payload, "entities") || "0"} label={t.houseDevices} />
           <Kpi value={textOf(payload, "areas") || "0"} label={t.rooms} />
+          <Kpi value={textOf(payload, "floors") || "0"} label={t.floors} />
         </div>
       );
     case "validate":

@@ -2,8 +2,9 @@
 
 use crate::lang::{LangId, Speech};
 use crate::types::{SpeechEntity, SpeechRenderOut, SpeechSnapshot, UnitSystem};
-use crate::units::{entity_temp_scale, entity_temperature, speak_converted, speak_temp, spoken_unit_word};
+use crate::units::{entity_temp_scale, speak_temp, spoken_unit_word};
 
+use super::render_climate::{area_temp_fact, climate_query, floor_temps};
 use super::render_media::{media_action, media_status};
 use super::render_place::{color_word, empty_place, slot, speak_state};
 
@@ -87,6 +88,10 @@ fn query_speech(snap: &SpeechSnapshot, speech: Speech, de: bool) -> String {
     }
     let entities: Vec<&SpeechEntity> = snap.entities.iter().filter(|entity| !is_infra(entity)).collect();
     if snap.intent.name == "HassClimateGetTemperature" {
+        if slot(snap, "floor").is_some() {
+            let line = floor_temps(snap, speech, &entities, de);
+            return if line.is_empty() { empty_place(&snap.language) } else { line };
+        }
         if entities.is_empty() {
             return String::new();
         }
@@ -127,32 +132,6 @@ fn query_speech(snap: &SpeechSnapshot, speech: Speech, de: bool) -> String {
         })
         .collect::<Vec<_>>()
         .join(" ")
-}
-
-fn climate_query(snap: &SpeechSnapshot, entities: &[&SpeechEntity], de: bool) -> String {
-    let area = slot(snap, "area_name").or_else(|| slot(snap, "area")).unwrap_or("");
-    let unit = spoken_unit_word(snap.unit_system, de);
-    for entity in entities {
-        if entity.domain != "climate" && entity.domain != "weather" {
-            continue;
-        }
-        if let Some((raw, ha)) = entity_temperature(entity) {
-            let temp = speak_converted(raw, ha, snap.unit_system);
-            if de {
-                return format!("{area} {temp} {unit}.").trim().to_string();
-            }
-            return format!("{area} is {temp} {unit}.").trim().to_string();
-        }
-        let spoken = speak_state(&entity.state, if de { "de" } else { "en" });
-        if entity.name.trim().is_empty() && spoken.trim().is_empty() {
-            continue;
-        }
-        if de {
-            return format!("{} ist {spoken}.", entity.name).trim().to_string();
-        }
-        return format!("{} is {spoken}.", entity.name).trim().to_string();
-    }
-    String::new()
 }
 
 fn area_status(area: &str, entities: &[&SpeechEntity], speech: Speech, pack: &str, unit_system: UnitSystem) -> String {
@@ -442,18 +421,6 @@ fn is_infra(entity: &SpeechEntity) -> bool {
     ]
     .iter()
     .any(|needle| blob.contains(needle))
-}
-
-fn area_temp_fact(entities: &[&SpeechEntity], unit_system: UnitSystem, de: bool) -> Option<String> {
-    for entity in entities {
-        let Some((raw, ha)) = entity_temperature(entity) else {
-            continue;
-        };
-        let temp = speak_converted(raw, ha, unit_system);
-        let unit = spoken_unit_word(unit_system, de);
-        return Some(format!("{temp} {unit}"));
-    }
-    None
 }
 
 #[cfg(test)]
