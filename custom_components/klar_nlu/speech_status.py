@@ -1,4 +1,4 @@
-"""Localized floor-status clauses: area, then named devices, presence, sensors."""
+"""Localized floor-status clauses: locative room, then spoken facts."""
 
 from __future__ import annotations
 
@@ -6,8 +6,10 @@ from pathlib import Path
 from typing import Any
 
 try:
+    from .speech_place import status_heading, strip_area_prefix
     from .speech_status_device import _DEVICE, _DEVICE_KEYS
 except ImportError:
+    from speech_place import status_heading, strip_area_prefix
     from speech_status_device import _DEVICE, _DEVICE_KEYS
 
 
@@ -114,6 +116,11 @@ _COMMA = {
 }
 _IDEO = {"zh-CN", "zh-TW", "zh-HK", "ja"}
 _PRESENCE = {"occupancy", "motion", "presence"}
+_PRESENCE_NEEDLES = (
+    "occupancy", "motion", "presence", "belegung", "präsenz", "prasenz",
+    "anwesen", "bewegung", "occupat", "présence", "presenza", "presencia", "aanwezig",
+)
+_TEMP_NEEDLES = ("temperatur", "temperature", "température", "temperatura")
 _ON = {"on", "home", "detected", "open", "unlocked", "playing", "cleaning"}
 _OFF = {"off", "not_home", "clear", "closed", "locked", "idle", "docked", "paused"}
 _EMPTY = {
@@ -197,21 +204,28 @@ def area_status_speech(
 ) -> str:
     words = _words(pack)
     visible = [state for state in states if not _infra_state(state) and _usable(state)]
-    facts = _facts(visible, pack, words, unit_system)
+    facts = _facts(visible, pack, words, unit_system, name)
     if not facts:
         return ""
-    pretty = _title(name)
+    heading = status_heading(name, pack)
     if _base(pack) in _IDEO:
-        return f"{pretty}。{'，'.join(facts)}"
-    return f"{pretty}. {'. '.join(facts)}."
+        return f"{heading}。{'，'.join(facts)}"
+    pretty = _title(name)
+    if heading.casefold() == pretty.casefold():
+        return f"{heading}: {', '.join(facts)}."
+    return f"{heading} {', '.join(facts)}."
 
 
 def _facts(
-    states: list[Any], pack: str, words: dict[str, str], unit_system: str = "metric"
+    states: list[Any],
+    pack: str,
+    words: dict[str, str],
+    unit_system: str,
+    area: str,
 ) -> list[str]:
     lights = [state for state in states if _domain(state) == "light"]
     sockets = [state for state in states if _is_socket(state)]
-    presence = [state for state in states if _class_of(state) in _PRESENCE]
+    presence = [state for state in states if _is_presence(state)]
     temps = [state for state in states if _is_temp(state)]
     luxes = [state for state in states if _class_of(state) == "illuminance"]
     silent = set(map(_eid, lights + sockets + presence + luxes))
@@ -220,13 +234,30 @@ def _facts(
             silent.add(_eid(state))
     others = [state for state in states if _eid(state) not in silent]
     facts: list[str] = []
-    for state in lights + sockets:
-        spoken = _other(state, pack, words)
+    generic_on = False
+    generic_off = False
+    for state in lights:
+        label = _device_label(state, area, words)
+        if _generic_light(label, words):
+            if _is_on(state):
+                generic_on = True
+            else:
+                generic_off = True
+            continue
+        spoken = _clause(label, state, pack, words)
+        if spoken:
+            facts.append(spoken)
+    if generic_on:
+        facts.append(f"{words['light']} {words['on']}")
+    elif generic_off:
+        facts.append(f"{words['light']} {words['off']}")
+    for state in sockets:
+        spoken = _other(state, pack, words, area)
         if spoken:
             facts.append(spoken)
     if presence:
         facts.append(words["present"] if any(_is_on(state) for state in presence) else words["absent"])
-    sensors = [state for state in temps if _class_of(state) == "temperature"]
+    sensors = [state for state in temps if _class_of(state) == "temperature" or _looks_like_temp(state)]
     spoken_temp = _spoken_temp(sensors, None, pack, unit_system)
     if spoken_temp == "":
         spoken_temp = _spoken_temp(temps, "current_temperature", pack, unit_system)
@@ -236,24 +267,66 @@ def _facts(
     lux = _first_number(luxes, None)
     if lux != "":
         facts.append(words["lux"].replace("{n}", _num(lux, pack, digits=0)))
+    have_temp = spoken_temp != ""
     for state in others:
-        spoken = _other(state, pack, words)
+        if have_temp and _domain(state) == "climate" and (_is_off(state) or _numeric(getattr(state, "state", None))):
+            continue
+        if have_temp and _looks_like_temp(state):
+            continue
+        spoken = _other(state, pack, words, area)
         if spoken:
             facts.append(spoken)
     return facts
 
 
-def _other(state: Any, pack: str, words: dict[str, str]) -> str:
-    attrs = getattr(state, "attributes", None) or {}
-    name = _title(str(attrs.get("friendly_name") or getattr(state, "name", "") or _eid(state)))
-    if not name:
+def _other(state: Any, pack: str, words: dict[str, str], area: str = "") -> str:
+    label = _device_label(state, area, words)
+    if not label:
         return ""
+    return _clause(label, state, pack, words)
+
+
+def _clause(name: str, state: Any, pack: str, words: dict[str, str]) -> str:
     raw = str(getattr(state, "state", "") or "")
-    if _numeric(raw):
-        spoken = _num(raw, pack)
-    else:
-        spoken = _device_state(raw, pack, words)
+    spoken = _num(raw, pack) if _numeric(raw) else _device_state(raw, pack, words)
     return f"{name} {spoken}".strip()
+
+
+def _device_label(state: Any, area: str, words: dict[str, str]) -> str:
+    attrs = getattr(state, "attributes", None) or {}
+    raw = str(attrs.get("friendly_name") or getattr(state, "name", "") or _eid(state))
+    stripped = strip_area_prefix(raw, area)
+    if _domain(state) == "light" and _generic_light(stripped, words):
+        return words["light"]
+    return stripped
+
+
+def _generic_light(label: str, words: dict[str, str]) -> bool:
+    if not label:
+        return True
+    folded = label.casefold().replace(" ", "")
+    light = words["light"].casefold().replace(" ", "")
+    lights = words["lights"].casefold().replace(" ", "")
+    return folded in {light, lights, "licht", "light", "lampe", "lamp", "leuchte"}
+
+
+def _is_presence(state: Any) -> bool:
+    if _class_of(state) in _PRESENCE:
+        return True
+    blob = f"{_eid(state)} {_friendly(state)}".casefold()
+    return any(needle in blob for needle in _PRESENCE_NEEDLES)
+
+
+def _friendly(state: Any) -> str:
+    attrs = getattr(state, "attributes", None) or {}
+    return str(attrs.get("friendly_name") or getattr(state, "name", "") or "")
+
+
+def _looks_like_temp(state: Any) -> bool:
+    if _domain(state) not in {"sensor", "climate"}:
+        return False
+    blob = f"{_eid(state)} {_friendly(state)}".casefold()
+    return any(needle in blob for needle in _TEMP_NEEDLES)
 
 
 def _device_state(raw: str, pack: str, words: dict[str, str]) -> str:
@@ -370,7 +443,7 @@ def _is_socket(state: Any) -> bool:
 
 
 def _is_temp(state: Any) -> bool:
-    if _class_of(state) == "temperature":
+    if _class_of(state) == "temperature" or _looks_like_temp(state):
         return True
     if _domain(state) != "climate":
         return False

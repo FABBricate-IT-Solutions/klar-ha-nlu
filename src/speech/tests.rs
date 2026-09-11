@@ -263,12 +263,11 @@ fn kitchen_status_and_french_off_word() {
         vec![entity("light.kuche_kuche", "Licht", "light", "off", BTreeMap::new())],
     );
     let de = render_snapshot(&item);
-    assert!(de.speech.contains("Küche"));
+    assert!(de.speech.contains("In der Küche"));
     assert!(de.speech.contains("Licht aus"));
-    assert!(!de.speech.contains("In der Küche"));
     let mut fr = item;
     fr.language = "fr".into();
-    assert!(render_snapshot(&fr).speech.contains("Licht éteinte"));
+    assert!(render_snapshot(&fr).speech.contains("éteinte"));
 }
 
 #[test]

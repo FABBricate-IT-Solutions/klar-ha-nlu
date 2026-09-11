@@ -99,3 +99,60 @@ def pretty_where(
 def _media_where(item: dict, entity_id: str) -> bool:
     name = str(item.get("name") or "")
     return name.startswith(("HassMedia", "Mass")) or entity_id.startswith("media_player.")
+
+
+_STATUS_LOC = {
+    "en": "In the {room}",
+    "fr": "Dans {room}",
+    "nl": "In de {room}",
+    "es": "En {room}",
+    "it": "In {room}",
+    "pt": "Em {room}",
+    "ca": "A {room}",
+    "ro": "În {room}",
+    "da": "I {room}",
+    "nb": "I {room}",
+    "sv": "I {room}",
+    "pl": "W {room}",
+    "cs": "V {room}",
+    "sk": "V {room}",
+    "hr": "U {room}",
+    "sl": "V {room}",
+    "af": "In die {room}",
+    "lb": "Am {room}",
+}
+
+
+def status_heading(room: str, pack: str) -> str:
+    pretty = _cap(room)
+    base = pack.split("-", 1)[0]
+    if pack in {"de", "de-CH", "de-AT"} or base == "de":
+        folded = pretty.casefold().replace("ü", "u").replace("ä", "a").replace("ö", "o")
+        if folded in {"balkon"}:
+            return f"Auf dem {pretty}"
+        if folded.endswith("e") or folded in {"wohnung", "kuche", "kueche"}:
+            return f"In der {pretty}"
+        return f"Im {pretty}"
+    loc = _STATUS_LOC.get(pack) or _STATUS_LOC.get(base)
+    if not loc:
+        return pretty
+    text = loc.replace("{room}", pretty)
+    return _cap(text)
+
+
+def strip_area_prefix(name: str, area: str) -> str:
+    pretty = _cap(name)
+    if not area:
+        return pretty
+    area_l = area.casefold()
+    pretty_l = pretty.casefold()
+    if pretty_l == area_l:
+        return ""
+    if pretty_l.startswith(area_l + " "):
+        return _cap(pretty[len(area) :].strip())
+    return pretty
+
+
+def _cap(raw: str) -> str:
+    text = " ".join(str(raw).replace("_", " ").split())
+    return text[:1].upper() + text[1:] if text else ""
