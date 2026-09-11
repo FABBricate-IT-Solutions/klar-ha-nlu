@@ -56,9 +56,9 @@ const fieldVariants = cva(
       orientation: {
         vertical: "flex-col *:w-full [&>.sr-only]:w-auto",
         horizontal:
-          "min-w-0 overflow-x-clip flex-row items-center has-[>[data-slot=field-content]]:items-start *:data-[slot=field-label]:flex-auto has-[>[data-slot=field-content]]:[&>[role=checkbox],[role=radio]]:mt-px",
+          "min-w-0 overflow-x-clip flex-row items-start gap-4 *:data-[slot=field-label]:flex-auto [&>[data-slot=switch]]:mt-0.5 [&>[data-slot=switch]]:shrink-0",
         responsive:
-          "flex-col *:w-full @md/field-group:flex-row @md/field-group:items-center @md/field-group:*:w-auto @md/field-group:has-[>[data-slot=field-content]]:items-start @md/field-group:*:data-[slot=field-label]:flex-auto [&>.sr-only]:w-auto @md/field-group:has-[>[data-slot=field-content]]:[&>[role=checkbox],[role=radio]]:mt-px",
+          "flex-col *:w-full @md/field-group:flex-row @md/field-group:items-start @md/field-group:gap-4 @md/field-group:*:w-auto @md/field-group:*:data-[slot=field-label]:flex-auto [&>.sr-only]:w-auto @md/field-group:[&>[data-slot=switch]]:mt-0.5 @md/field-group:[&>[data-slot=switch]]:shrink-0",
       },
     },
     defaultVariants: {

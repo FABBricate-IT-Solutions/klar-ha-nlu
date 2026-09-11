@@ -11,9 +11,9 @@ import {
 } from "../llmProviders";
 import { SearchSelect } from "./SearchSelect";
 import { LlmModelField } from "./LlmModelField";
-import { Field, FieldContent, FieldDescription, FieldGroup, FieldLabel } from "@/components/ui/field";
+import { SettingsToggle } from "./SettingsToggle";
+import { Field, FieldGroup, FieldLabel } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
-import { Switch } from "@/components/ui/switch";
 
 function providerLabel(t: Messages, id: LlmProviderId): string {
   switch (id) {
@@ -130,13 +130,13 @@ export function LlmProviderFields({
           autoComplete="off"
         />
       </Field>
-      <Field orientation="horizontal">
-        <FieldContent>
-          <FieldLabel>{t.llmThinking}</FieldLabel>
-          <FieldDescription>{t.llmThinkingHint}</FieldDescription>
-        </FieldContent>
-        <Switch checked={thinking} onCheckedChange={(checked) => onThinking(Boolean(checked))} />
-      </Field>
+      <SettingsToggle
+        id="klar-llm-thinking"
+        label={t.llmThinking}
+        description={t.llmThinkingHint}
+        checked={thinking}
+        onCheckedChange={(checked) => onThinking(checked)}
+      />
     </FieldGroup>
   );
 }

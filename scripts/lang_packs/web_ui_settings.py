@@ -24,9 +24,13 @@ KEYS = (
     "refineSpeech",
     "refineSpeechHint",
     "refineBandStatus",
+    "refineBandStatusHint",
     "refineBandCommand",
+    "refineBandCommandHint",
     "refineBandPrompt",
+    "refineBandPromptHint",
     "refineBandReject",
+    "refineBandRejectHint",
     "refineBandsHint",
     "quietAck",
     "quietAckHint",
@@ -71,6 +75,12 @@ KEYS = (
     "nluRag",
     "modeFull",
     "modeContext",
+    "modeHint",
+    "confirmRiskyHint",
+    "recordProtocolHint",
+    "includeRawTextHint",
+    "semanticAdaptersHint",
+    "tokenHint",
     "inLab",
     "undoLastCommand",
     "applyDone",
@@ -151,3 +161,13 @@ def apply_settings_copy(packs: dict[str, dict[str, str]]) -> None:
             fields["refineBandPrompt"] = row.get("refineBandPrompt") or "Rückfragen"
             fields["refineBandReject"] = row.get("refineBandReject") or "Ablehnung"
             fields["refineBandsHint"] = row.get("refineBandsHint") or "Chat und Kalender-LLM bleiben unangetastet — kein zweites Refine."
+            fields["refineBandStatusHint"] = row.get("refineBandStatusHint") or "Antworten wie Raum- oder Gerätestatus. An: das LLM schreibt den fertigen Satz um."
+            fields["refineBandCommandHint"] = row.get("refineBandCommandHint") or "Bestätigung, nachdem Klar den Befehl schon ausgeführt hat. An: „Licht ist an“ bekommt diese Stimme."
+            fields["refineBandPromptHint"] = row.get("refineBandPromptHint") or "Rückfragen zu Raum oder Gerät. An: Klars Frage wird umgeschrieben."
+            fields["refineBandRejectHint"] = row.get("refineBandRejectHint") or "Sätze wie „Das habe ich nicht verstanden“. An: auch die bekommen diese Stimme."
+            fields["modeHint"] = row.get("modeHint") or "Geräte auflösen: Klar wählt das Entity. Nur Räume: es bleibt bei der Area."
+            fields["confirmRiskyHint"] = row.get("confirmRiskyHint") or "An: Schlösser, schließende Rollläden und große oder raumweite riskante Befehle fragen einmal nach. Aus: sofort ausführen."
+            fields["recordProtocolHint"] = row.get("recordProtocolHint") or "An: Klar behält die letzten 200 Turns 24 Stunden. Braucht es für die Downloads darunter."
+            fields["includeRawTextHint"] = row.get("includeRawTextHint") or "An: Downloads enthalten den gesprochenen Satz. Aus: nur geschwärzt."
+            fields["semanticAdaptersHint"] = row.get("semanticAdaptersHint") or "Standard aus. An: nach einem Miss kann ein lokaler Bedeutungsabgleich den Intent noch finden. Kein LLM."
+            fields["tokenHint"] = row.get("tokenHint") or "Zum Speichern auf diesem Bildschirm. Derselbe Wert wie das App-Token."
