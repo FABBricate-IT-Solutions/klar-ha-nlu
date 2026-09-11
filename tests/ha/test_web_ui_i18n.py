@@ -5,10 +5,13 @@ from __future__ import annotations
 import ast
 import json
 import re
+import sys
 import unittest
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[2]
+if str(ROOT / "scripts") not in sys.path:
+    sys.path.insert(0, str(ROOT / "scripts"))
 HA = ROOT / "custom_components" / "klar_nlu"
 EN = ROOT / "web" / "src" / "i18n" / "en.ts"
 DE = ROOT / "web" / "src" / "i18n" / "de.ts"
@@ -141,7 +144,10 @@ class OperatorUiParity(unittest.TestCase):
         self.assertIn("llmModelsEmpty", en)
         self.assertIn("saveOk", en)
         self.assertIn("refineBandStatus", en)
+        self.assertIn("refineBandStatusHint", en)
         self.assertIn("refineBandsHint", en)
+        self.assertIn("confirmRiskyHint", en)
+        self.assertIn("SettingsToggle", (ROOT / "web" / "src" / "components" / "SettingsSections.tsx").read_text(encoding="utf-8"))
         self.assertIn("Saved.", en)
         self.assertIn("Could not save.", en)
         card = (ROOT / "web" / "src" / "components" / "LlmSettingsCard.tsx").read_text(encoding="utf-8")
@@ -171,6 +177,25 @@ class OperatorUiParity(unittest.TestCase):
             encoding="utf-8"
         )
         self.assertIn("advertised_languages()", conversation)
+
+    def test_settings_hints_are_translated(self) -> None:
+        from lang_packs.settings_hints import KEYS
+        from lang_packs.web_ui_keys import FALLBACKS
+
+        english = {key: FALLBACKS[key] for key in KEYS}
+        loanwords = {"refineBandStatus": {"Status"}}
+        expected = set(_supported()) - {"de", "en"}
+        for code in sorted(expected):
+            payload = json.loads((MESSAGES / f"{code}.json").read_text(encoding="utf-8"))
+            for key in KEYS:
+                value = payload[key]
+                self.assertNotIn("\ufffd", value, f"{code}.{key}")
+                self.assertTrue(value.strip(), f"{code}.{key}")
+                if code == "en-GB":
+                    continue
+                if value in loanwords.get(key, ()):
+                    continue
+                self.assertNotEqual(value, english[key], f"{code}.{key}")
 
     def test_policy_lanes_clip_lists(self) -> None:
         theme = (ROOT / "web" / "src" / "theme.css").read_text(encoding="utf-8")

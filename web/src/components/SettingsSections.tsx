@@ -1,15 +1,15 @@
 import { CustomVoiceInterview } from "./CustomVoiceInterview";
 import { PersonalityPrompt } from "./PersonalityPrompt";
 import { languageOptions, SearchSelect, withCurrent } from "./SearchSelect";
+import { SettingsToggle } from "./SettingsToggle";
 import type { LanguagePack } from "../api";
 import { dictionaries, type Messages } from "../i18n";
 import { isPersonality, PERSONALITIES, personalityLabel } from "../personality";
 import { REFINE_BANDS, effectiveRefineBands, type BundleList, type Locale, type RefineBand, type Settings, type Theme } from "../types";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
-import { Field, FieldContent, FieldDescription, FieldGroup, FieldLabel } from "@/components/ui/field";
+import { Field, FieldDescription, FieldGroup, FieldLabel } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
-import { Switch } from "@/components/ui/switch";
 import { Textarea } from "@/components/ui/textarea";
 import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
 
@@ -23,6 +23,23 @@ function refineBandLabel(t: Messages, band: RefineBand): string {
       return t.refineBandPrompt;
     case "reject":
       return t.refineBandReject;
+    default: {
+      const exhaustive: never = band;
+      return exhaustive;
+    }
+  }
+}
+
+function refineBandHint(t: Messages, band: RefineBand): string {
+  switch (band) {
+    case "status":
+      return t.refineBandStatusHint;
+    case "command":
+      return t.refineBandCommandHint;
+    case "prompt":
+      return t.refineBandPromptHint;
+    case "reject":
+      return t.refineBandRejectHint;
     default: {
       const exhaustive: never = band;
       return exhaustive;
@@ -95,49 +112,39 @@ export function SettingsVoiceSection({
             />
             <FieldDescription>{t.extraPromptHint}</FieldDescription>
           </Field>
-          <Field orientation="horizontal">
-            <FieldContent>
-              <FieldLabel>{t.refineSpeech}</FieldLabel>
-              <FieldDescription>{t.refineSpeechHint}</FieldDescription>
-            </FieldContent>
-            <Switch
-              checked={Boolean(settings.refine_speech)}
-              onCheckedChange={(checked) => {
-                const on = Boolean(checked);
-                onSettings({
-                  ...settings,
-                  refine_speech: on,
-                  refine_bands: on && effectiveRefineBands(settings).length === 0 ? ["status"] : settings.refine_bands,
-                });
-              }}
-            />
-          </Field>
+          <SettingsToggle
+            id="klar-refine-speech"
+            label={t.refineSpeech}
+            description={t.refineSpeechHint}
+            checked={Boolean(settings.refine_speech)}
+            onCheckedChange={(on) => onSettings({
+              ...settings,
+              refine_speech: on,
+              refine_bands: on && effectiveRefineBands(settings).length === 0 ? ["status"] : settings.refine_bands,
+            })}
+          />
           {settings.refine_speech ? (
-            <>
+            <div className="flex flex-col gap-5 border-l border-border pl-4">
               {REFINE_BANDS.map((band) => (
-                <Field orientation="horizontal" key={band}>
-                  <FieldContent>
-                    <FieldLabel>{refineBandLabel(t, band)}</FieldLabel>
-                  </FieldContent>
-                  <Switch
-                    checked={effectiveRefineBands(settings).includes(band)}
-                    onCheckedChange={(checked) => onSettings({ ...settings, refine_bands: toggleRefineBand(settings, band, Boolean(checked)) })}
-                  />
-                </Field>
+                <SettingsToggle
+                  key={band}
+                  id={`klar-refine-band-${band}`}
+                  label={refineBandLabel(t, band)}
+                  description={refineBandHint(t, band)}
+                  checked={effectiveRefineBands(settings).includes(band)}
+                  onCheckedChange={(checked) => onSettings({ ...settings, refine_bands: toggleRefineBand(settings, band, checked) })}
+                />
               ))}
               <FieldDescription>{t.refineBandsHint}</FieldDescription>
-            </>
+            </div>
           ) : null}
-          <Field orientation="horizontal">
-            <FieldContent>
-              <FieldLabel>{t.quietAck}</FieldLabel>
-              <FieldDescription>{t.quietAckHint}</FieldDescription>
-            </FieldContent>
-            <Switch
-              checked={Boolean(settings.quiet_ack)}
-              onCheckedChange={(checked) => onSettings({ ...settings, quiet_ack: Boolean(checked) })}
-            />
-          </Field>
+          <SettingsToggle
+            id="klar-quiet-ack"
+            label={t.quietAck}
+            description={t.quietAckHint}
+            checked={Boolean(settings.quiet_ack)}
+            onCheckedChange={(checked) => onSettings({ ...settings, quiet_ack: checked })}
+          />
           <Field>
             <FieldLabel>{t.unitSystem}</FieldLabel>
             <ToggleGroup
@@ -193,19 +200,16 @@ export function SettingsLanguagesSection({
         </CardHeader>
         <CardContent>
           <FieldGroup>
-            <Field orientation="horizontal">
-              <FieldContent>
-                <FieldLabel>{t.allAssistLanguages}</FieldLabel>
-                <FieldDescription>{t.languageHint}</FieldDescription>
-              </FieldContent>
-              <Switch
-                checked={allAssist}
-                onCheckedChange={(checked) => onSettings({
-                  ...settings,
-                  languages: checked ? [] : [pinned],
-                })}
-              />
-            </Field>
+            <SettingsToggle
+              id="klar-all-assist-languages"
+              label={t.allAssistLanguages}
+              description={t.languageHint}
+              checked={allAssist}
+              onCheckedChange={(checked) => onSettings({
+                ...settings,
+                languages: checked ? [] : [pinned],
+              })}
+            />
             {allAssist ? null : (
               <Field>
                 <FieldLabel>{t.pinLanguage}</FieldLabel>
@@ -286,46 +290,43 @@ export function SettingsEngineSection({
                 <ToggleGroupItem value="full">{t.modeFull}</ToggleGroupItem>
                 <ToggleGroupItem value="context_only">{t.modeContext}</ToggleGroupItem>
               </ToggleGroup>
+              <FieldDescription>{t.modeHint}</FieldDescription>
             </Field>
-            <Field orientation="horizontal">
-              <FieldContent>
-                <FieldLabel>{t.confirmRisky}</FieldLabel>
-              </FieldContent>
-              <Switch
-                checked={settings.confirm_risky_actions}
-                onCheckedChange={(checked) => onSettings({ ...settings, confirm_risky_actions: Boolean(checked) })}
-              />
-            </Field>
-            <Field orientation="horizontal">
-              <FieldContent>
-                <FieldLabel>{t.nluRag}</FieldLabel>
-                <FieldDescription>{t.nluRagHint}</FieldDescription>
-              </FieldContent>
-              <Switch
-                checked={settings.nlu_rag}
-                onCheckedChange={(checked) => onSettings({ ...settings, nlu_rag: Boolean(checked) })}
-              />
-            </Field>
-            <Field orientation="horizontal">
-              <FieldContent>
-                <FieldLabel>{t.calendarLlm}</FieldLabel>
-                <FieldDescription>{t.calendarLlmHint}</FieldDescription>
-              </FieldContent>
-              <Switch
-                checked={Boolean(settings.calendar_llm)}
-                onCheckedChange={(checked) => onSettings({ ...settings, calendar_llm: Boolean(checked) })}
-              />
-            </Field>
-            <Field orientation="horizontal">
-              <FieldContent>
-                <FieldLabel>{t.allowLlmTools}</FieldLabel>
-                <FieldDescription>{t.allowLlmToolsHint}</FieldDescription>
-              </FieldContent>
-              <Switch
-                checked={Boolean(settings.allow_llm_tools)}
-                onCheckedChange={(checked) => onSettings({ ...settings, allow_llm_tools: Boolean(checked) })}
-              />
-            </Field>
+            <SettingsToggle
+              id="klar-confirm-risky"
+              label={t.confirmRisky}
+              description={t.confirmRiskyHint}
+              checked={settings.confirm_risky_actions}
+              onCheckedChange={(checked) => onSettings({ ...settings, confirm_risky_actions: checked })}
+            />
+            <SettingsToggle
+              id="klar-nlu-rag"
+              label={t.nluRag}
+              description={t.nluRagHint}
+              checked={settings.nlu_rag}
+              onCheckedChange={(checked) => onSettings({ ...settings, nlu_rag: checked })}
+            />
+            <SettingsToggle
+              id="klar-semantic-adapters"
+              label={t.semanticAdapters}
+              description={t.semanticAdaptersHint}
+              checked={settings.semantic_adapters}
+              onCheckedChange={(checked) => onSettings({ ...settings, semantic_adapters: checked })}
+            />
+            <SettingsToggle
+              id="klar-calendar-llm"
+              label={t.calendarLlm}
+              description={t.calendarLlmHint}
+              checked={Boolean(settings.calendar_llm)}
+              onCheckedChange={(checked) => onSettings({ ...settings, calendar_llm: checked })}
+            />
+            <SettingsToggle
+              id="klar-allow-llm-tools"
+              label={t.allowLlmTools}
+              description={t.allowLlmToolsHint}
+              checked={Boolean(settings.allow_llm_tools)}
+              onCheckedChange={(checked) => onSettings({ ...settings, allow_llm_tools: checked })}
+            />
           </FieldGroup>
         </CardContent>
       </Card>
@@ -355,6 +356,7 @@ export function SettingsEngineSection({
             <Field>
               <FieldLabel htmlFor="klar-token">{t.token}</FieldLabel>
               <Input id="klar-token" type="password" value={token} onChange={(ev) => onToken(ev.target.value)} />
+              <FieldDescription>{t.tokenHint}</FieldDescription>
             </Field>
           </FieldGroup>
         </CardContent>
@@ -388,33 +390,20 @@ export function SettingsJournalSection({
       </CardHeader>
       <CardContent>
         <FieldGroup>
-          <Field orientation="horizontal">
-            <FieldContent>
-              <FieldLabel>{t.recordProtocol}</FieldLabel>
-            </FieldContent>
-            <Switch
-              checked={settings.support_bundle}
-              onCheckedChange={(checked) => onToggle({ ...settings, support_bundle: Boolean(checked) })}
-            />
-          </Field>
-          <Field orientation="horizontal">
-            <FieldContent>
-              <FieldLabel>{t.includeRawText}</FieldLabel>
-            </FieldContent>
-            <Switch
-              checked={settings.support_bundle_raw_text}
-              onCheckedChange={(checked) => onToggle({ ...settings, support_bundle_raw_text: Boolean(checked) })}
-            />
-          </Field>
-          <Field orientation="horizontal">
-            <FieldContent>
-              <FieldLabel>{t.semanticAdapters}</FieldLabel>
-            </FieldContent>
-            <Switch
-              checked={settings.semantic_adapters}
-              onCheckedChange={(checked) => onToggle({ ...settings, semantic_adapters: Boolean(checked) })}
-            />
-          </Field>
+          <SettingsToggle
+            id="klar-record-protocol"
+            label={t.recordProtocol}
+            description={t.recordProtocolHint}
+            checked={settings.support_bundle}
+            onCheckedChange={(checked) => onToggle({ ...settings, support_bundle: checked })}
+          />
+          <SettingsToggle
+            id="klar-include-raw-text"
+            label={t.includeRawText}
+            description={t.includeRawTextHint}
+            checked={settings.support_bundle_raw_text}
+            onCheckedChange={(checked) => onToggle({ ...settings, support_bundle_raw_text: checked })}
+          />
           <Field>
             <FieldLabel>{t.journal}</FieldLabel>
             <FieldDescription>{bundle ? `${bundle.count} ${t.recordings}` : "..."}</FieldDescription>

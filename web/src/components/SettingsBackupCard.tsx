@@ -15,8 +15,8 @@ import {
 } from "@/components/ui/alert-dialog";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
-import { Field, FieldContent, FieldDescription, FieldGroup, FieldLabel } from "@/components/ui/field";
-import { Switch } from "@/components/ui/switch";
+import { SettingsToggle } from "./SettingsToggle";
+import { Field, FieldDescription, FieldGroup, FieldLabel } from "@/components/ui/field";
 
 export function SettingsBackupCard({
   t,
@@ -77,17 +77,13 @@ export function SettingsBackupCard({
         </CardHeader>
         <CardContent>
           <FieldGroup>
-            <Field orientation="horizontal">
-              <FieldContent>
-                <FieldLabel htmlFor="klar-backup-secrets">{t.settingsBackupIncludeKey}</FieldLabel>
-                <FieldDescription>{t.settingsBackupIncludeKeyHint}</FieldDescription>
-              </FieldContent>
-              <Switch
-                id="klar-backup-secrets"
-                checked={includeKey}
-                onCheckedChange={(checked) => setIncludeKey(checked === true)}
-              />
-            </Field>
+            <SettingsToggle
+              id="klar-backup-secrets"
+              label={t.settingsBackupIncludeKey}
+              description={t.settingsBackupIncludeKeyHint}
+              checked={includeKey}
+              onCheckedChange={setIncludeKey}
+            />
             <Field>
               <FieldLabel>{t.settingsBackupPickFile}</FieldLabel>
               <input
