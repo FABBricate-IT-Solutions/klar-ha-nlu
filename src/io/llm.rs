@@ -211,7 +211,7 @@ async fn list_endpoint_models(
     headers: HeaderMap,
     Json(body): Json<ModelsIn>,
 ) -> Result<Json<ModelsOut>, StatusCode> {
-    if !writes_allowed(Some(peer), &headers, &state.token) {
+    if !reads_allowed(Some(peer), &headers, &state.token) {
         return Err(StatusCode::UNAUTHORIZED);
     }
     let (base_url, api_key) = {
@@ -476,9 +476,23 @@ mod tests {
     }
 
     #[test]
+    fn model_list_uses_read_gate() {
+        let src = include_str!("llm.rs");
+        let start = src.find("async fn list_endpoint_models").expect("list_endpoint_models");
+        let end = src.find("pub async fn llm_chat").expect("llm_chat");
+        let body = &src[start..end];
+        assert!(body.contains("reads_allowed"));
+        assert!(!body.contains("writes_allowed"));
+    }
+
+    #[test]
     fn clear_missing_file_is_ok() {
         let dir = temp_dir("missing");
         clear_endpoint(&dir).unwrap();
         let _ = std::fs::remove_dir_all(&dir);
     }
 }
+
+#[cfg(test)]
+#[path = "llm_models_auth_tests.rs"]
+mod models_auth_tests;
