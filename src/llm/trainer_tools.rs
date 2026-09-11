@@ -444,6 +444,9 @@ mod tests {
         assert!(names.contains(&"apply_match".into()));
         assert!(!names.iter().any(|name| name == "apply_house"));
         assert_eq!(write_tools_for_layer("house"), vec!["apply_house", "apply_aliases", "apply_engine", "apply_ui"]);
+        assert!(tool_allowed_for_layer("all", "apply_match"));
+        assert!(tool_allowed_for_layer("all", "apply_house"));
+        assert!(tool_allowed_for_layer("all", "apply_lexicon"));
     }
 
     #[test]

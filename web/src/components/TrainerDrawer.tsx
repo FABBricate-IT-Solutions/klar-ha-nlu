@@ -1,7 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { Loader2Icon } from "lucide-react";
 import { api } from "../api";
-import type { PolicyLane } from "./PolicyPath";
 import type { Messages } from "../i18n";
 import type { LlmPublic, TrainerChatEvent, TrainerConsent, TrainerTurn, TrainerValidateOut } from "../types";
 import { LotseAnswer, lotseFallbackChips, lotseQuickChips, lotseReplyChoices, unansweredAssistant, visibleLotseText } from "./LotseAnswer";
@@ -11,38 +10,14 @@ type ThreadLine =
   | { role: "user" | "assistant"; content: string }
   | { role: "tool"; name: string; args: string; result?: string };
 
-function trainerLayer(lane: PolicyLane): "match" | "language" | "house" {
-  switch (lane) {
-    case "match":
-    case "language":
-    case "house":
-      return lane;
-    default: {
-      const _never: never = lane;
-      return _never;
-    }
-  }
-}
-
 function shortModel(model?: string): string {
   if (!model) return "LLM";
   if (/gemma-4-26b/i.test(model) && /mtp/i.test(model)) return "Gemma 26B MTP";
   return model.replace(/-GGUF$/i, "");
 }
 
-function lanePrompts(t: Messages, lane: PolicyLane): [string, string] {
-  switch (lane) {
-    case "match":
-      return [t.trainerPromptMatchers, t.trainerPromptPrecedence];
-    case "language":
-      return [t.trainerPromptLexicon, t.trainerPromptSlang];
-    case "house":
-      return [t.trainerPromptGaps, t.trainerPromptNight];
-    default: {
-      const _never: never = lane;
-      return _never;
-    }
-  }
+function starterPrompts(t: Messages): string[] {
+  return [t.trainerPromptGaps, t.trainerPromptMatchers, t.trainerPromptSlang];
 }
 
 function chatHistory(lines: ThreadLine[]): TrainerTurn[] {
@@ -95,21 +70,6 @@ function lineRole(t: Messages, line: ThreadLine): string {
       return t.trainerTool;
     default: {
       const _never: never = line;
-      return _never;
-    }
-  }
-}
-
-function laneLabel(t: Messages, lane: PolicyLane): string {
-  switch (lane) {
-    case "match":
-      return t.laneMatch;
-    case "language":
-      return t.laneLanguage;
-    case "house":
-      return t.laneHouse;
-    default: {
-      const _never: never = lane;
       return _never;
     }
   }
@@ -182,22 +142,16 @@ function applyEvent(
   }
 }
 
-const LANES: PolicyLane[] = ["match", "language", "house"];
-
 export function TrainerDrawer({
   t,
-  lane,
   language,
   active = true,
-  onLane,
   onClose,
   onStatus,
 }: {
   t: Messages;
-  lane: PolicyLane;
   language?: string;
   active?: boolean;
-  onLane?: (lane: PolicyLane) => void;
   onClose?: () => void;
   onStatus: (status: string) => void;
 }) {
@@ -247,17 +201,16 @@ export function TrainerDrawer({
   }, [active]);
 
   useEffect(() => {
-    resetThread();
     return () => {
       abortRef.current?.abort();
     };
-  }, [lane]);
+  }, []);
 
   useEffect(() => {
     endRef.current?.scrollIntoView({ block: "end" });
   }, [lines, consent, busy]);
 
-  const prompts = lanePrompts(t, lane);
+  const prompts = starterPrompts(t);
   const chips = lotseQuickChips({ lines, busy, consent: Boolean(consent), consumedFor, t });
 
   const send = async (text = draft) => {
@@ -278,7 +231,7 @@ export function TrainerDrawer({
     setResult(null);
     setConsent(null);
     try {
-      await api.trainerChat({ message, layer: trainerLayer(lane), language, history }, (event) => {
+      await api.trainerChat({ message, layer: "all", language, history }, (event) => {
         applyEvent(event, setLines, setConsent, setYolo, setResult, onStatus, t, () => genRef.current === gen);
       }, abort.signal);
     } catch (err) {
@@ -349,22 +302,6 @@ export function TrainerDrawer({
       <header className="trainer-head">
         <div>
           <p className="trainer-kicker">{t.trainer}</p>
-          {onLane ? (
-            <nav className="trainer-lanes" aria-label={t.laneTabs}>
-              {LANES.map((id) => (
-                <button
-                  key={id}
-                  type="button"
-                  aria-pressed={lane === id}
-                  onClick={() => onLane(id)}
-                >
-                  {laneLabel(t, id)}
-                </button>
-              ))}
-            </nav>
-          ) : (
-            <h2>{t.trainerForLane}</h2>
-          )}
           <p className="muted">{t.trainerHint}</p>
         </div>
         <div className="trainer-meta">
@@ -390,14 +327,11 @@ export function TrainerDrawer({
             <p>{t.trainerEmpty}</p>
             <p className="muted">{t.trainerEmptyHint}</p>
             <div className="trainer-prompts">
-              <button className="guide-step" type="button" onClick={() => void send(prompts[0])}>
-                <span className="guide-num" aria-hidden="true">1</span>
-                <span className="guide-copy"><strong>{prompts[0]}</strong></span>
-              </button>
-              <button className="guide-step" type="button" onClick={() => void send(prompts[1])}>
-                <span className="guide-num" aria-hidden="true">2</span>
-                <span className="guide-copy"><strong>{prompts[1]}</strong></span>
-              </button>
+              {prompts.map((prompt) => (
+                <button className="trainer-chip" type="button" key={prompt} onClick={() => void send(prompt)}>
+                  {prompt}
+                </button>
+              ))}
             </div>
           </div>
         ) : null}
