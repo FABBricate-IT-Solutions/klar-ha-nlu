@@ -40,9 +40,10 @@ def validate_v2_payload(value: Any) -> dict[str, Any]:
             "retrieval",
             "policy_trace",
             "quiet_ack_eligible",
+            "refine_band",
         },
         "response",
-        optional={"selected_candidate_id", "plan", "retrieval", "policy_trace", "quiet_ack_eligible"},
+        optional={"selected_candidate_id", "plan", "retrieval", "policy_trace", "quiet_ack_eligible", "refine_band"},
     )
     if payload.get("schema_version") != "2.0":
         raise ValueError("unsupported Klar schema_version")
@@ -82,6 +83,9 @@ def validate_v2_payload(value: Any) -> dict[str, Any]:
     eligible = payload.get("quiet_ack_eligible")
     if eligible is not None and not isinstance(eligible, bool):
         raise ValueError("quiet_ack_eligible must be boolean")
+    band = payload.get("refine_band")
+    if band is not None and band not in {"status", "command", "prompt", "reject"}:
+        raise ValueError("refine_band must be a spoken reply kind")
     return payload
 
 

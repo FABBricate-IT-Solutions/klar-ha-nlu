@@ -2,7 +2,7 @@ use klar_nlu::home::default_home;
 use klar_nlu::nlu;
 use klar_nlu::parse::parse;
 use klar_nlu::session::Session;
-use klar_nlu::types::{Intent, IntentPlan, ParseDecision, ParseOutcome, Settings, PARSE_SCHEMA_VERSION};
+use klar_nlu::types::{Intent, IntentPlan, ParseDecision, ParseOutcome, RefineBand, Settings, PARSE_SCHEMA_VERSION};
 
 fn stable_json(mut outcome: ParseOutcome) -> String {
     for stage in &mut outcome.trace.stages {
@@ -64,6 +64,31 @@ fn v2_json_contract_has_versioned_shape_and_deterministic_ordering() {
     assert!(trace.seed.is_none());
     assert_eq!(json["schema_version"], "2.0");
     assert_eq!(json["quiet_ack_eligible"], true);
+    assert_eq!(json["refine_band"], "command");
+}
+
+#[test]
+fn v2_refine_band_status_for_get_state() {
+    let home = default_home();
+    let mut session = Session::new();
+    let outcome = nlu::parse("Wie ist der Status vom Wohnzimmer", &home, &mut session, &[], &Settings::pinned("de"));
+    assert!(matches!(outcome.decision, ParseDecision::Execute), "{:?}", outcome.decision);
+    assert_eq!(outcome.refine_band, Some(RefineBand::Status));
+}
+
+fn named_plan(name: &str) -> IntentPlan {
+    IntentPlan::from_intents(vec![Intent::new(name)], 1.0, &[])
+}
+
+#[test]
+fn refine_band_classifies_status_command_prompt() {
+    assert_eq!(named_plan("HassGetState").refine_band(), RefineBand::Status);
+    assert_eq!(named_plan("HassClimateGetTemperature").refine_band(), RefineBand::Status);
+    assert_eq!(named_plan("HassTurnOn").refine_band(), RefineBand::Command);
+    assert_eq!(ParseOutcome::classify_refine_band(&ParseDecision::Execute, Some(&named_plan("HassGetState"))), Some(RefineBand::Status));
+    let clarify = ParseDecision::Clarify { prompt: "Which?".into(), options: vec!["a".into()] };
+    assert_eq!(ParseOutcome::classify_refine_band(&clarify, None), Some(RefineBand::Prompt));
+    assert_eq!(ParseOutcome::classify_refine_band(&ParseDecision::Chat, None), None);
 }
 
 #[test]

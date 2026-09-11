@@ -176,6 +176,7 @@ fn explain_speech_speaks_path_ids() {
             ..crate::types::PolicyTrace::default()
         }),
         quiet_ack_eligible: false,
+        refine_band: None,
     };
     let out = explain_outcome("en", &outcome);
     assert_eq!(out.decision, "execute");

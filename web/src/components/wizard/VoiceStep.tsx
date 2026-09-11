@@ -4,7 +4,7 @@ import { SearchSelect } from "../SearchSelect";
 import { isPersonality, PERSONALITIES, personalityLabel } from "../../personality";
 import type { Messages } from "../../i18n";
 import type { WizardMessages } from "../../i18n/wizard";
-import type { Settings } from "../../types";
+import { effectiveRefineBands, type Settings } from "../../types";
 import { Field, FieldContent, FieldDescription, FieldGroup, FieldLabel } from "@/components/ui/field";
 import { Switch } from "@/components/ui/switch";
 
@@ -68,7 +68,14 @@ export function VoiceStep({
           </FieldContent>
           <Switch
             checked={Boolean(settings.refine_speech)}
-            onCheckedChange={(checked) => onSettings({ ...settings, refine_speech: Boolean(checked) })}
+            onCheckedChange={(checked) => {
+              const on = Boolean(checked);
+              onSettings({
+                ...settings,
+                refine_speech: on,
+                refine_bands: on && effectiveRefineBands(settings).length === 0 ? ["status"] : settings.refine_bands,
+              });
+            }}
           />
         </Field>
       ) : null}

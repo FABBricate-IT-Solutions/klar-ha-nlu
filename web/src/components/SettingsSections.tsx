@@ -4,7 +4,7 @@ import { languageOptions, SearchSelect, withCurrent } from "./SearchSelect";
 import type { LanguagePack } from "../api";
 import { dictionaries, type Messages } from "../i18n";
 import { isPersonality, PERSONALITIES, personalityLabel } from "../personality";
-import type { BundleList, Locale, Settings, Theme } from "../types";
+import { REFINE_BANDS, effectiveRefineBands, type BundleList, type Locale, type RefineBand, type Settings, type Theme } from "../types";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Field, FieldContent, FieldDescription, FieldGroup, FieldLabel } from "@/components/ui/field";
@@ -12,6 +12,29 @@ import { Input } from "@/components/ui/input";
 import { Switch } from "@/components/ui/switch";
 import { Textarea } from "@/components/ui/textarea";
 import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
+
+function refineBandLabel(t: Messages, band: RefineBand): string {
+  switch (band) {
+    case "status":
+      return t.refineBandStatus;
+    case "command":
+      return t.refineBandCommand;
+    case "prompt":
+      return t.refineBandPrompt;
+    case "reject":
+      return t.refineBandReject;
+    default: {
+      const exhaustive: never = band;
+      return exhaustive;
+    }
+  }
+}
+
+function toggleRefineBand(settings: Settings, band: RefineBand, on: boolean): RefineBand[] {
+  const current = effectiveRefineBands(settings);
+  if (on) return current.includes(band) ? current : [...current, band];
+  return current.filter((item) => item !== band);
+}
 
 export function SettingsVoiceSection({
   t,
@@ -79,9 +102,32 @@ export function SettingsVoiceSection({
             </FieldContent>
             <Switch
               checked={Boolean(settings.refine_speech)}
-              onCheckedChange={(checked) => onSettings({ ...settings, refine_speech: Boolean(checked) })}
+              onCheckedChange={(checked) => {
+                const on = Boolean(checked);
+                onSettings({
+                  ...settings,
+                  refine_speech: on,
+                  refine_bands: on && effectiveRefineBands(settings).length === 0 ? ["status"] : settings.refine_bands,
+                });
+              }}
             />
           </Field>
+          {settings.refine_speech ? (
+            <>
+              {REFINE_BANDS.map((band) => (
+                <Field orientation="horizontal" key={band}>
+                  <FieldContent>
+                    <FieldLabel>{refineBandLabel(t, band)}</FieldLabel>
+                  </FieldContent>
+                  <Switch
+                    checked={effectiveRefineBands(settings).includes(band)}
+                    onCheckedChange={(checked) => onSettings({ ...settings, refine_bands: toggleRefineBand(settings, band, Boolean(checked)) })}
+                  />
+                </Field>
+              ))}
+              <FieldDescription>{t.refineBandsHint}</FieldDescription>
+            </>
+          ) : null}
           <Field orientation="horizontal">
             <FieldContent>
               <FieldLabel>{t.quietAck}</FieldLabel>

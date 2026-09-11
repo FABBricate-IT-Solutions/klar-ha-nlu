@@ -10,7 +10,7 @@ import { VoiceStep } from "../components/wizard/VoiceStep";
 import type { Messages } from "../i18n";
 import { fillWizard, wizardMessages, type WizardMessages } from "../i18n/wizard";
 import { isProviderId, resolveProvider, writeStoredProvider } from "../llmProviders";
-import type { Locale, Settings, Theme } from "../types";
+import type { Locale, RefineBand, Settings, Theme } from "../types";
 
 export type InstallPath = "addon" | "docker" | "binary" | "sample";
 export type WizardStep = 0 | 1 | 2 | 3 | 4 | 5;
@@ -276,7 +276,7 @@ export function Wizard({
       if (step === 2) {
         const ready = await persistLlm();
         if (ready) {
-          const next = { ...draftRef.current, refine_speech: true };
+          const next = { ...draftRef.current, refine_speech: true, refine_bands: ["status"] as RefineBand[] };
           setDraft(next);
           draftRef.current = next;
           try {

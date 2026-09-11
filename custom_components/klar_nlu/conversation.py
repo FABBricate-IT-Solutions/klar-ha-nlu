@@ -77,6 +77,7 @@ from .refine import (
     async_finish_speech,
     emit_assistant_speech,
     isolated_conversation_id,
+    refine_band_from_payload,
     skip_rewrite,
 )
 from .quiet import play_chime, quiet_ack_applies
@@ -213,6 +214,14 @@ class KlarConversationEntity(ConversationEntity):
             return bool(settings.get(key))
         return bool(self._entry.options.get(option_key, default))
 
+    def _refine_bands(self) -> list[str]:
+        raw = self._engine_settings().get("refine_bands")
+        if isinstance(raw, list):
+            return [str(item) for item in raw if isinstance(item, str)]
+        if self._flag("refine_speech", CONF_REFINE_SPEECH, DEFAULT_REFINE_SPEECH):
+            return ["status"]
+        return []
+
     def _token(self) -> str | None:
         stored = (self.hass.data.get(DOMAIN) or {}).get(self._entry.entry_id) or {}
         token = stored.get("token") or self._entry.options.get(CONF_TOKEN) or self._entry.data.get(CONF_TOKEN)
@@ -343,7 +352,15 @@ class KlarConversationEntity(ConversationEntity):
                     user_input, chat_log, pack, "", conversation_id, False, "chime"
                 )
         return await self._spoken(
-            user_input, chat_log, pack, speech, conversation_id, keeps_conversation(decision_type), decision_type
+            user_input,
+            chat_log,
+            pack,
+            speech,
+            conversation_id,
+            keeps_conversation(decision_type),
+            decision_type,
+            False,
+            refine_band_from_payload(payload),
         )
 
     async def _after_fallback(
@@ -381,6 +398,7 @@ class KlarConversationEntity(ConversationEntity):
         continue_conversation: bool,
         decision: str = "",
         published: bool = False,
+        refine_band: str | None = None,
     ) -> ConversationResult:
         if decision == "chat":
             speech = finish_clock_speech(speech, pack)
@@ -400,6 +418,8 @@ class KlarConversationEntity(ConversationEntity):
                 conversation_id,
                 chat_log,
                 user_input.agent_id,
+                refine_band,
+                self._refine_bands(),
             )
             published = published or refine_posted
         remember_turn(
@@ -525,7 +545,15 @@ class KlarConversationEntity(ConversationEntity):
                     executed = await execute_plan(self.hass, user_input, intents, pack, self._assistant(), self._exposed)
                     speech = str(executed.get("speech") or payload.get("speech") or _cue(_DONE, pack, "OK"))
                     return await self._spoken(
-                        user_input, chat_log, pack, speech, payload.get("conversation_id"), False, "execute"
+                        user_input,
+                        chat_log,
+                        pack,
+                        speech,
+                        payload.get("conversation_id"),
+                        False,
+                        "execute",
+                        False,
+                        refine_band_from_payload(payload) or "command",
                     )
             speech = str(payload.get("speech") or "")
             return await self._spoken(user_input, chat_log, pack, speech, payload.get("conversation_id"), False)
@@ -543,6 +571,8 @@ class KlarConversationEntity(ConversationEntity):
                 user_input.conversation_id,
                 False,
                 "execute",
+                False,
+                "command",
             )
         return None
 

@@ -261,6 +261,7 @@ pub fn openai_tools() -> Vec<Value> {
                     ("mode", str_prop("full or context_only")),
                     ("languages", json!({"type": "array", "items": {"type": "string"}})),
                     ("refine_speech", json!({"type": "boolean"})),
+                    ("refine_bands", json!({"type": "array", "items": {"type": "string", "enum": ["status", "command", "prompt", "reject"]}})),
                     ("calendar_llm", json!({"type": "boolean"})),
                     ("quiet_ack", json!({"type": "boolean"})),
                     ("nlu_rag", json!({"type": "boolean"})),
