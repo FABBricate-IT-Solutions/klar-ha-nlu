@@ -185,8 +185,8 @@ class FloorQueryTests(unittest.TestCase):
             ],
             "de",
         )
-        self.assertTrue(spoken.startswith("Wohnzimmer."))
-        self.assertLess(spoken.index("Wohnzimmer Licht an"), spoken.index("Stecker aus"))
+        self.assertTrue(spoken.startswith("Im Wohnzimmer"))
+        self.assertLess(spoken.index("Licht an"), spoken.index("Stecker aus"))
         self.assertLess(spoken.index("Stecker aus"), spoken.index("jemand da"))
         self.assertLess(spoken.index("jemand da"), spoken.index("22,8 Grad"))
         self.assertLess(spoken.index("22,8 Grad"), spoken.index("40 Lux"))
@@ -209,16 +209,17 @@ class FloorQueryTests(unittest.TestCase):
         states = [_State("light.room", "on", "Room")]
         for pack in locale.SPEECH_PACKS:
             spoken = floor_query.rooms_status_speech([("Room", states)], pack)
-            self.assertTrue(spoken.startswith("Room"), msg=pack)
+            self.assertIn("Room", spoken, msg=pack)
             self.assertTrue("." in spoken or "。" in spoken, msg=pack)
 
     def test_status_uses_local_words(self) -> None:
         states = [_State("light.salon", "on", "Salon"), _State("switch.prise", "off", "Prise")]
         french = floor_query.rooms_status_speech([("Salon", states)], "fr")
         english = floor_query.rooms_status_speech([("Living room", states)], "en")
-        self.assertIn("Salon allumée", french)
+        self.assertIn("allumée", french)
         self.assertIn("Prise éteinte", french)
         self.assertNotIn("light on", french)
+        self.assertIn("In the Living room", english)
         self.assertIn("Salon on", english)
         self.assertIn("Prise off", english)
 
@@ -254,9 +255,9 @@ class FloorQueryTests(unittest.TestCase):
         ):
             rooms = floor_query.area_status_rooms(hass, "wohnzimmer", "", lambda _id: True)
         spoken = floor_query.rooms_status_speech(rooms, "de")
-        self.assertEqual(spoken, "Wohnzimmer. Wohnzimmer an. Stecker aus.")
+        self.assertEqual(spoken, "Im Wohnzimmer Licht an, Stecker aus.")
         french = floor_query.rooms_status_speech(rooms, "fr")
-        self.assertIn("Wohnzimmer allumée", french)
+        self.assertIn("allumée", french)
         self.assertIn("Stecker éteinte", french)
 
     def test_place_get_state_uses_area_not_ha_fallback(self) -> None:
@@ -274,7 +275,7 @@ class FloorQueryTests(unittest.TestCase):
                 "de",
                 lambda _id: True,
             )
-        self.assertEqual(spoken, "Wohnzimmer. Wohnzimmer an.")
+        self.assertEqual(spoken, "Im Wohnzimmer Licht an.")
         skipped = floor_query.place_get_state(
             hass,
             {"area": {"value": "wohnzimmer"}, "device_class": {"value": "temperature"}},
@@ -318,7 +319,7 @@ class FloorQueryTests(unittest.TestCase):
                 "de",
                 lambda _id: True,
             )
-        self.assertEqual(spoken, "Wohnzimmer. Wohnzimmer an.")
+        self.assertEqual(spoken, "Im Wohnzimmer Licht an.")
         self.assertNotIn("Stecker", spoken)
         self.assertNotIn("Rollo", spoken)
 
@@ -349,9 +350,9 @@ class FloorQueryTests(unittest.TestCase):
             spoken = floor_query.place_get_state(
                 hass, {"floor": {"value": "Wohnung"}}, "de", lambda _id: True
             )
-        self.assertTrue(spoken.startswith("Küche."))
-        self.assertIn("Küche. Küche aus.", spoken)
-        self.assertIn("Wohnzimmer. Wohnzimmer an.", spoken)
+        self.assertTrue(spoken.startswith("In der Küche"))
+        self.assertIn("In der Küche Licht aus.", spoken)
+        self.assertIn("Im Wohnzimmer Licht an", spoken)
         self.assertIn("R2D2 Fehler", spoken)
         self.assertIn("Rollo öffnet", spoken)
         self.assertIn("Lüfter nur Lüfter", spoken)
@@ -374,13 +375,60 @@ class FloorQueryTests(unittest.TestCase):
             "de",
         )
         self.assertIn("Kugel an", spoken)
-        self.assertIn("Schlafzimmer Licht an", spoken)
-        self.assertIn("Schlafzimmer TV an", spoken)
-        self.assertIn("Schlafzimmer Klima aus", spoken)
+        self.assertIn("Licht an", spoken)
+        self.assertIn("TV an", spoken)
         self.assertIn("23,6 Grad", spoken)
+        self.assertNotIn("Klima aus", spoken)
         self.assertNotIn("2 Lichter", spoken)
         self.assertNotIn("Steckdose", spoken)
         self.assertNotIn("Heizung Temperatur", spoken)
+
+    def test_floor_status_speaks_natural_clauses(self) -> None:
+        spoken = floor_query.rooms_status_speech(
+            [
+                (
+                    "Arbeitszimmer",
+                    [
+                        _State("binary_sensor.az_occ", "off", "Presence Arbeitszimmer Room Belegung"),
+                        _State("light.az", "off", "Arbeitszimmer Licht"),
+                        _State("fan.az", "off", "Lüfter"),
+                    ],
+                ),
+                (
+                    "Badezimmer",
+                    [
+                        _State("sensor.bad_temp", "22.5", "Heizung Badezimmer Temperatur"),
+                        _State("climate.bad", "off", "Heizung Badezimmer", current_temperature=22.5),
+                    ],
+                ),
+                (
+                    "Kitchen",
+                    [_State("light.kitchen", "on", "Kitchen")],
+                ),
+            ],
+            "de",
+        )
+        self.assertIn("Im Arbeitszimmer", spoken)
+        self.assertIn("niemand da", spoken)
+        self.assertIn("Licht aus", spoken)
+        self.assertNotIn("Presence", spoken)
+        self.assertNotIn("Belegung", spoken)
+        self.assertIn("Im Badezimmer", spoken)
+        self.assertIn("22,5 Grad", spoken)
+        self.assertNotIn("Heizung Badezimmer Temperatur", spoken)
+        self.assertNotIn("Heizung Badezimmer aus", spoken)
+        english = floor_query.rooms_status_speech(
+            [("Kitchen", [_State("light.k", "on", "Kitchen")])],
+            "en",
+        )
+        self.assertIn("In the Kitchen", english)
+        self.assertIn("light on", english)
+        french = floor_query.rooms_status_speech(
+            [("Salon", [_State("light.salon", "off", "Salon")])],
+            "fr",
+        )
+        self.assertIn("Dans Salon", french)
+        self.assertIn("éteinte", french)
 
     def test_all_other_devices_are_spoken(self) -> None:
         states = [

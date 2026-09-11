@@ -1,10 +1,10 @@
 //! Factual post-execute lines from a sanitized snapshot.
 
 use crate::lang::{LangId, Speech};
-use crate::types::{SpeechEntity, SpeechRenderOut, SpeechSnapshot, UnitSystem};
+use crate::types::{SpeechEntity, SpeechRenderOut, SpeechSnapshot};
 use crate::units::{entity_temp_scale, speak_temp, spoken_unit_word};
 
-use super::render_climate::{area_temp_fact, climate_query, floor_temps};
+use super::render_climate::{climate_query, floor_temps};
 use super::render_media::{media_action, media_status};
 use super::render_place::{color_word, empty_place, slot, speak_state};
 
@@ -101,7 +101,7 @@ fn query_speech(snap: &SpeechSnapshot, speech: Speech, de: bool) -> String {
         }
     }
     if is_place_query(snap, &entities) {
-        return place_status(snap, &entities, speech, &snap.language);
+        return crate::speech::render_status::place_status(snap, &entities, speech, &snap.language);
     }
     if entities.iter().any(|entity| entity.domain == "climate" || entity.domain == "weather") {
         let line = climate_query(snap, &entities, de);
@@ -132,67 +132,6 @@ fn query_speech(snap: &SpeechSnapshot, speech: Speech, de: bool) -> String {
         })
         .collect::<Vec<_>>()
         .join(" ")
-}
-
-fn area_status(area: &str, entities: &[&SpeechEntity], speech: Speech, pack: &str, unit_system: UnitSystem) -> String {
-    let pretty = speech.room_name(&fold(area)).map_or_else(|| title(area), str::to_string);
-    let mut facts: Vec<String> =
-        entities.iter().map(|entity| format!("{} {}", title(&entity.name), speak_state(&entity.state, pack))).collect();
-    if let Some(temp) = area_temp_fact(entities, unit_system, is_de(pack)) {
-        facts.push(temp);
-    }
-    if facts.is_empty() {
-        return String::new();
-    }
-    format!("{pretty}. {}.", facts.join(". "))
-}
-
-fn place_status(snap: &SpeechSnapshot, entities: &[&SpeechEntity], speech: Speech, pack: &str) -> String {
-    if entities.is_empty() {
-        return empty_place(pack);
-    }
-    let mut groups: Vec<(String, Vec<&SpeechEntity>)> = Vec::new();
-    for entity in entities {
-        let key = entity
-            .area_name
-            .as_deref()
-            .filter(|name| !name.is_empty())
-            .or(entity.area.as_deref().filter(|name| !name.is_empty()))
-            .unwrap_or("")
-            .to_string();
-        if let Some((_, rows)) = groups.iter_mut().find(|(name, _)| *name == key) {
-            rows.push(*entity);
-        } else {
-            groups.push((key, vec![*entity]));
-        }
-    }
-    if groups.len() == 1 && groups[0].0.is_empty() {
-        let fallback = slot(snap, "area_name").or_else(|| slot(snap, "area")).or_else(|| slot(snap, "floor")).unwrap_or("");
-        let line = area_status(fallback, entities, speech, pack, snap.unit_system);
-        return if line.is_empty() { empty_place(pack) } else { line };
-    }
-    let mut parts = Vec::new();
-    for (name, rows) in groups {
-        let label = if name.is_empty() {
-            slot(snap, "area_name").or_else(|| slot(snap, "area")).or_else(|| slot(snap, "floor")).unwrap_or("")
-        } else {
-            name.as_str()
-        };
-        let line = area_status(label, &rows, speech, pack, snap.unit_system);
-        if !line.is_empty() {
-            parts.push(line);
-        }
-    }
-    if parts.is_empty() {
-        return empty_place(pack);
-    }
-    parts.join(" ")
-}
-
-fn title(raw: &str) -> String {
-    let text = raw.replace('_', " ");
-    let text = text.split_whitespace().collect::<Vec<_>>().join(" ");
-    cap_first(&text)
 }
 
 fn cap_first(text: &str) -> String {
