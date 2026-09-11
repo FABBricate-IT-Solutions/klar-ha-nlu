@@ -444,7 +444,7 @@ export function App() {
         language={locale}
       />
     ) : null}
-    <Toaster theme={theme} />
+    <Toaster theme={theme} position="top-center" closeButton />
     </TooltipProvider>
   );
 }

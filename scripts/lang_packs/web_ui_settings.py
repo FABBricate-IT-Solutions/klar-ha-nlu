@@ -88,6 +88,9 @@ KEYS = (
     "llmConfigured",
     "llmNotConfigured",
     "llmClear",
+    "saveOk",
+    "saveFail",
+    "saveUnauthorized",
     "llmThinking",
     "llmThinkingHint",
     "trainer",
@@ -128,8 +131,12 @@ def apply_settings_copy(packs: dict[str, dict[str, str]]) -> None:
         raise SystemExit(f"settings chrome missing locales: {missing_locales}")
     for code, fields in packs.items():
         row = copy[code]
-        absent = [key for key in KEYS if key not in row]
+        absent = [key for key in KEYS if key not in row and key not in FALLBACKS]
         if absent:
             raise SystemExit(f"{code}: settings chrome missing keys {absent}")
         for key in KEYS:
-            fields[key] = row[key] or FALLBACKS[key]
+            fields[key] = row.get(key) or FALLBACKS[key]
+        if code.startswith("de"):
+            fields["saveOk"] = row.get("saveOk") or "Gespeichert."
+            fields["saveFail"] = row.get("saveFail") or "Speichern fehlgeschlagen."
+            fields["saveUnauthorized"] = row.get("saveUnauthorized") or "Nicht gespeichert. Schreib-Token unter Engine eintragen."
