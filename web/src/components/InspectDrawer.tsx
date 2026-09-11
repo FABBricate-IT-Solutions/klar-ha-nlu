@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { api } from "../api";
 import type { Messages } from "../i18n";
+import { saveFailMessage, toastSaved, toastSaveFailed } from "../saveToast";
 import type { Assignment, Dashboard } from "../types";
 import { Drawer } from "./common";
 
@@ -47,8 +48,10 @@ export function InspectDrawer({
         area: nextArea || undefined,
       });
       onSaved();
+      toastSaved(t);
     } catch (err) {
-      setError(String(err));
+      toastSaveFailed(t, err);
+      setError(saveFailMessage(t, err));
     } finally {
       setBusy(false);
     }

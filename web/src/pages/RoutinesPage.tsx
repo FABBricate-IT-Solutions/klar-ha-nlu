@@ -3,6 +3,7 @@ import { api, type CustomRule } from "../api";
 import { SearchSelect, useHouseCatalog, withCurrent } from "../components/SearchSelect";
 import { SetupHint } from "../components/SetupHint";
 import type { Messages } from "../i18n";
+import { saveFailMessage, toastSaved, toastSaveFailed } from "../saveToast";
 import { useLangOverlay } from "../useLangOverlay";
 
 function isRoutine(rule: CustomRule): boolean {
@@ -27,9 +28,11 @@ export function RoutinesPage({ t }: { t: Messages }) {
   const persist = async (next: CustomRule[], label: string) => {
     try {
       replace(await api.saveLangOverlay({ custom: next, language, label }));
-      setStatus(t.save);
+      toastSaved(t);
+      setStatus(t.saveOk);
     } catch (err) {
-      setStatus(String(err));
+      toastSaveFailed(t, err);
+      setStatus(saveFailMessage(t, err));
     }
   };
 
