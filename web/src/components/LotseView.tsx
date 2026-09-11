@@ -24,7 +24,9 @@ export type LotseViewKind =
   | "write"
   | "languages"
   | "phrases"
-  | "turns";
+  | "turns"
+  | "seeds"
+  | "speech";
 
 export type LotseViewSpec = {
   kind: LotseViewKind;
@@ -98,6 +100,23 @@ function Rows({ rows, primary, secondary }: { rows: Record<string, unknown>[]; p
   );
 }
 
+function GapRows({ rows, t }: { rows: Record<string, unknown>[]; t: Messages }) {
+  if (rows.length === 0) {
+    return <p className="muted">—</p>;
+  }
+  return (
+    <ul className="trainer-card-list">
+      {rows.slice(0, 16).map((row, index) => (
+        <li className="list-row" key={`${textOf(row, "entity_id")}-${index}`}>
+          <span>{textOf(row, "name")}</span>
+          <code className="mono">{textOf(row, "reason") || textOf(row, "entity_id")}</code>
+          {textOf(row, "suggested_name") ? <span className="chip">{textOf(row, "suggested_name")}</span> : textOf(row, "area") ? <span className="chip">{textOf(row, "area")}</span> : <span className="chip">{t.unmapped}</span>}
+        </li>
+      ))}
+    </ul>
+  );
+}
+
 function MatcherRows({ rows }: { rows: Record<string, unknown>[] }) {
   if (rows.length === 0) {
     return <p className="muted">—</p>;
@@ -122,6 +141,10 @@ export function inferLotseView(name: string): LotseViewKind {
       return "matchers";
     case "list_policies":
       return "policies";
+    case "list_seeds":
+      return "seeds";
+    case "list_speech":
+      return "speech";
     case "list_languages":
       return "languages";
     case "list_lexicon_paths":
@@ -150,9 +173,13 @@ export function inferLotseView(name: string): LotseViewKind {
     case "list_turns":
       return "turns";
     case "apply_lexicon":
+    case "apply_phrases":
     case "apply_match":
     case "apply_house":
     case "apply_aliases":
+    case "apply_entity":
+    case "apply_area":
+    case "apply_speech":
     case "apply_engine":
     case "apply_ui":
       return "write";
@@ -181,6 +208,8 @@ export function parseLotseViewKind(raw: string): LotseViewKind | null {
     case "languages":
     case "phrases":
     case "turns":
+    case "seeds":
+    case "speech":
       return raw;
     default:
       return null;
@@ -210,12 +239,19 @@ export function LotseView({ spec, t }: { spec: LotseViewSpec; t: Messages }) {
         </Panel>
       );
     case "gaps":
-      return <Panel title={t.coverageOpen}><Rows rows={asRows(payload.gaps)} primary="name" secondary="entity_id" /></Panel>;
+      return <Panel title={t.coverageOpen}><GapRows rows={asRows(payload.gaps)} t={t} /></Panel>;
     case "entity":
       return (
         <Panel title={textOf(payload, "name") || t.entities}>
           <p className="mono">{textOf(payload, "entity_id")}</p>
-          {textOf(payload, "area") ? <span className="chip">{textOf(payload, "area")}</span> : <span className="chip">{t.unmapped}</span>}
+          <div className="flex flex-wrap gap-2">
+            {textOf(payload, "area") ? <span className="chip">{textOf(payload, "area")}</span> : <span className="chip">{t.unmapped}</span>}
+            {textOf(payload, "suggested_name") ? <span className="chip">{textOf(payload, "suggested_name")}</span> : null}
+            <Flag on={flagOn(payload.exposed)} label={t.assistVisible} />
+            <Flag on={flagOn(payload.preferred)} label={t.preferred} />
+            <Flag on={flagOn(payload.nlu_ignore)} label={t.nluIgnore} />
+          </div>
+          <Chips items={asStrings(payload.tags)} />
           <Chips items={asStrings(payload.aliases)} />
         </Panel>
       );
@@ -274,13 +310,27 @@ export function LotseView({ spec, t }: { spec: LotseViewSpec; t: Messages }) {
         </Panel>
       );
     case "write":
-      return <Panel title={payload.ok === false ? t.trainerFail : t.trainerOk}><p className="muted">{payload.ok === false ? t.trainerFail : t.trainerOk}</p></Panel>;
+      return (
+        <Panel title={payload.ok === false ? t.trainerFail : t.trainerOk}>
+          <p className="muted">{payload.ok === false ? t.trainerFail : t.trainerOk}</p>
+          {textOf(payload, "entity_id") ? <p className="mono">{textOf(payload, "entity_id")}</p> : null}
+          <Rows rows={asRows(payload.assigned)} primary="entity_id" secondary="area" />
+          <Chips items={asStrings(payload.aliases)} />
+          <Chips items={asStrings(payload.remove_aliases)} />
+          <Chips items={asStrings(payload.removed)} />
+          {textOf(payload, "rule_id") ? <span className="chip">{textOf(payload, "rule_id")}</span> : null}
+        </Panel>
+      );
     case "languages":
       return <Panel title={t.languages}><Chips items={asStrings(payload.languages)} hot /></Panel>;
     case "phrases":
       return <Panel title={t.custom}><Rows rows={asRows(payload.phrases)} primary="phrase" secondary="intent" /></Panel>;
     case "turns":
       return <Panel title={t.conversations}><Rows rows={asRows(payload.turns)} primary="label" secondary="decision" /></Panel>;
+    case "seeds":
+      return <Panel title={t.pathHouse}><MatcherRows rows={asRows(payload.seeds)} /></Panel>;
+    case "speech":
+      return <Panel title={t.speech}><Rows rows={asRows(payload.entries)} primary="rule_id" /></Panel>;
     default: {
       const _never: never = kind;
       return _never;

@@ -1,7 +1,8 @@
 //! OpenAI tool schemas and the Gemma text fallback `TRAINER_TOOL: name {json}`.
 
+use super::trainer_tools_def;
 use super::types::ToolCall;
-use serde_json::{json, Value};
+use serde_json::Value;
 
 pub const READ_TOOLS: &[&str] = &[
     "list_languages",
@@ -11,6 +12,8 @@ pub const READ_TOOLS: &[&str] = &[
     "get_lexicon",
     "list_matchers",
     "list_policies",
+    "list_seeds",
+    "list_speech",
     "list_gaps",
     "validate_proposal",
     "explain_klar",
@@ -23,7 +26,18 @@ pub const READ_TOOLS: &[&str] = &[
     "list_turns",
 ];
 
-pub const WRITE_TOOLS: &[&str] = &["apply_lexicon", "apply_match", "apply_house", "apply_aliases", "apply_engine", "apply_ui"];
+pub const WRITE_TOOLS: &[&str] = &[
+    "apply_lexicon",
+    "apply_phrases",
+    "apply_match",
+    "apply_house",
+    "apply_aliases",
+    "apply_entity",
+    "apply_area",
+    "apply_speech",
+    "apply_engine",
+    "apply_ui",
+];
 
 pub fn is_write_tool(name: &str) -> bool {
     WRITE_TOOLS.contains(&name)
@@ -55,6 +69,7 @@ const LANGUAGE_TOOLS: &[&str] = &[
     "get_lexicon",
     "list_phrases",
     "apply_lexicon",
+    "apply_phrases",
     "apply_engine",
     "apply_ui",
 ];
@@ -70,9 +85,14 @@ const HOUSE_TOOLS: &[&str] = &[
     "list_floors",
     "count_house",
     "list_policies",
+    "list_seeds",
+    "list_speech",
     "list_gaps",
     "apply_house",
     "apply_aliases",
+    "apply_entity",
+    "apply_area",
+    "apply_speech",
     "apply_engine",
     "apply_ui",
 ];
@@ -99,12 +119,18 @@ pub fn tools_for_layer(layer: &str) -> &'static [&'static str] {
                 "list_phrases",
                 "list_matchers",
                 "list_policies",
+                "list_seeds",
+                "list_speech",
                 "list_gaps",
                 "validate_proposal",
                 "apply_lexicon",
+                "apply_phrases",
                 "apply_match",
                 "apply_house",
                 "apply_aliases",
+                "apply_entity",
+                "apply_area",
+                "apply_speech",
                 "apply_engine",
                 "apply_ui",
             ];
@@ -127,165 +153,7 @@ pub fn openai_tools_for(layer: &str) -> Vec<Value> {
 }
 
 pub fn openai_tools() -> Vec<Value> {
-    vec![
-        tool("list_languages", "Assist languages from settings.languages.", json!({"type": "object", "properties": {}})),
-        tool("search_house", "Search entities, areas, and floors on the graph. Wohnung is often a floor_id, not an area.", object(&[("q", str_prop("Name, id, or alias fragment."))], &["q"])),
-        tool("get_entity", "One graph entity with aliases and area.", object(&[("entity_id", str_prop("entity_id"))], &["entity_id"])),
-        tool("list_lexicon_paths", "Known lexicon set paths (SET_KEYS).", json!({"type": "object", "properties": {}})),
-        tool(
-            "get_lexicon",
-            "Current lexicon overlay for a path.",
-            object(&[("language", str_prop("Assist pack")), ("path", str_prop("SET_KEYS path"))], &[]),
-        ),
-        tool("list_matchers", "Compiled matcher ids with overlay enable/precedence.", json!({"type": "object", "properties": {}})),
-        tool("list_policies", "House policy rules.", json!({"type": "object", "properties": {}})),
-        tool("list_gaps", "Unmapped entities with name and area.", json!({"type": "object", "properties": {}})),
-        tool(
-            "explain_klar",
-            "Klar architecture, setup path, trade-offs, or engine LLM. Returns a view the UI renders.",
-            object(&[("topic", str_prop("architecture, setup, tradeoffs, or llm"))], &[]),
-        ),
-        tool(
-            "try_sentence",
-            "Parse one utterance on this house. Returns the live policy path view.",
-            object(&[("text", str_prop("Utterance as spoken at home")), ("language", str_prop("Assist pack"))], &["text"]),
-        ),
-        tool("list_areas", "Rooms on the home graph. Not floors — Wohnung is often a floor_id.", json!({"type": "object", "properties": {}})),
-        tool("list_floors", "Floors on the home graph (floor_id, name, aliases).", json!({"type": "object", "properties": {}})),
-        tool("count_house", "Entity, area, floor, and leftover counts.", json!({"type": "object", "properties": {}})),
-        tool("list_engine", "Public engine and operator-chrome settings. No tokens or URLs.", json!({"type": "object", "properties": {}})),
-        tool("list_phrases", "Custom sentence overlays.", json!({"type": "object", "properties": {}})),
-        tool(
-            "list_turns",
-            "Assist journal. Last 24h / 200 turns. Filter by last N, date, time, since/until, query, decision, or all.",
-            object(
-                &[
-                    ("last", json!({"type": "integer", "description": "Newest N turns. Default 12, max 80."})),
-                    ("all", json!({"type": "boolean", "description": "Up to 80 newest matching turns."})),
-                    ("date", str_prop("YYYY-MM-DD")),
-                    ("time", str_prop("HH:MM, with date or today")),
-                    ("since", str_prop("YYYY-MM-DDTHH:MM")),
-                    ("until", str_prop("YYYY-MM-DDTHH:MM")),
-                    ("query", str_prop("Text, speech, device name, or evidence fragment")),
-                    ("decision", str_prop("execute, reject, clarify, confirm, chat")),
-                    ("conversation_id", str_prop("One Assist conversation")),
-                ],
-                &[],
-            ),
-        ),
-        tool(
-            "validate_proposal",
-            "Dry-run a house/match/language proposal without writing.",
-            object(
-                &[
-                    ("layer", str_prop("match, language, house, or all")),
-                    ("language", str_prop("Assist pack")),
-                    ("policies", json!({"type": "array"})),
-                    ("match_controls", json!({"type": "array"})),
-                    ("language_overlay", json!({"type": "object"})),
-                    ("utterances", json!({"type": "array", "items": {"type": "string"}})),
-                ],
-                &[],
-            ),
-        ),
-        tool(
-            "apply_lexicon",
-            "Merge add/remove on a known lexicon path. Needs operator consent.",
-            object(
-                &[
-                    ("language", str_prop("Assist pack from settings.languages")),
-                    ("path", str_prop("SET_KEYS path")),
-                    ("add", json!({"type": "array", "items": {"type": "string"}})),
-                    ("remove", json!({"type": "array", "items": {"type": "string"}})),
-                ],
-                &["language", "path"],
-            ),
-        ),
-        tool(
-            "apply_match",
-            "Merge enable/precedence for known matcher ids. Needs operator consent.",
-            object(&[("match_controls", json!({"type": "array"}))], &["match_controls"]),
-        ),
-        tool(
-            "apply_house",
-            "Upsert house PolicyRule rows by id. Seed enabled:false is allowed. Needs operator consent. when.floor is a floor_id from list_floors, never an area name. template/reply/script/llm require payload. template is Home Assistant Jinja with variables text and rooms (area_id, name, floor, temp). Floor temperature listing is native when try_sentence already matches floor_command — do not write a house rule for that. Unseen language forms: apply_lexicon on the language lane. Household-only phrasing: when.phrase plus template payload.",
-            object(
-                &[(
-                    "policies",
-                    json!({
-                        "type": "array",
-                        "items": {
-                            "type": "object",
-                            "required": ["id", "effect"],
-                            "properties": {
-                                "id": {"type": "string"},
-                                "enabled": {"type": "boolean"},
-                                "label": {"type": "string"},
-                                "when": {
-                                    "type": "object",
-                                    "properties": {
-                                        "intent": {"type": "string"},
-                                        "domain": {"type": "string"},
-                                        "area": {"type": "string", "description": "area_id from list_areas"},
-                                        "entity_id": {"type": "string"},
-                                        "floor": {"type": "string", "description": "floor_id from list_floors"},
-                                        "name": {"type": "string"},
-                                        "phrase": {"type": "string", "description": "Household wording, 4–200 characters"},
-                                        "area_wide": {"type": "boolean"}
-                                    }
-                                },
-                                "effect": {"type": "string", "enum": ["confirm", "block", "allow", "prefer_entity", "prefer_area", "reply", "script", "template", "llm"]},
-                                "prefer": {"type": "string"},
-                                "payload": {"type": "string", "description": "Required for reply/script/template/llm. template: HA Jinja."}
-                            }
-                        }
-                    }),
-                )],
-                &["policies"],
-            ),
-        ),
-        tool(
-            "apply_aliases",
-            "Merge overlay aliases for a graph entity. Needs operator consent.",
-            object(
-                &[("entity_id", str_prop("entity_id")), ("aliases", json!({"type": "array", "items": {"type": "string"}}))],
-                &["entity_id", "aliases"],
-            ),
-        ),
-        tool(
-            "apply_engine",
-            "Patch engine settings (refine, calendar_llm, personality, languages, quiet_ack, nlu_rag, extra_prompt, unit_system, …). Never URL, token, or model. Needs consent.",
-            object(
-                &[
-                    ("personality", str_prop("default, butler, locker, fuersorglich, party, grantig, sarkastisch, pirat, hippie, gollum, jarvis, custom")),
-                    ("mode", str_prop("full or context_only")),
-                    ("languages", json!({"type": "array", "items": {"type": "string"}})),
-                    ("refine_speech", json!({"type": "boolean"})),
-                    ("refine_bands", json!({"type": "array", "items": {"type": "string", "enum": ["status", "command", "prompt", "reject"]}})),
-                    ("calendar_llm", json!({"type": "boolean"})),
-                    ("quiet_ack", json!({"type": "boolean"})),
-                    ("nlu_rag", json!({"type": "boolean"})),
-                    ("allow_llm_tools", json!({"type": "boolean"})),
-                    ("confirm_risky_actions", json!({"type": "boolean"})),
-                    ("semantic_adapters", json!({"type": "boolean"})),
-                    ("support_bundle", json!({"type": "boolean"})),
-                    ("support_bundle_raw_text", json!({"type": "boolean"})),
-                    ("extra_prompt", str_prop("House rule user line. Empty keeps pack voice.")),
-                    ("unit_system", str_prop("metric or imperial")),
-                    ("custom_voice", str_prop("Voice block when personality is custom.")),
-                    ("custom_voice_name", str_prop("Label for the custom voice.")),
-                    ("custom_voice_seed", str_prop("Character seed. Traits only refine delivery.")),
-                    ("custom_voice_traits", json!({"type": "object"})),
-                ],
-                &[],
-            ),
-        ),
-        tool(
-            "apply_ui",
-            "Set operator chrome theme to light or dark, or UI locale. Use this when the operator asks for light mode, helles Design, or appearance. Not Assist language. Needs consent.",
-            object(&[("theme", str_prop("dark or light")), ("locale", str_prop("Operator chrome locale"))], &[]),
-        ),
-    ]
+    trainer_tools_def::openai_tools()
 }
 
 pub fn parse_text_tools(text: &str) -> (String, Vec<ToolCall>) {
@@ -388,22 +256,6 @@ fn cut_lotse_mark(prose: &str) -> String {
     prose[..cut].trim_end().to_string()
 }
 
-fn tool(name: &str, description: &str, parameters: Value) -> Value {
-    json!({"type": "function", "function": {"name": name, "description": description, "parameters": parameters}})
-}
-
-fn str_prop(description: &str) -> Value {
-    json!({"type": "string", "description": description})
-}
-
-fn object(fields: &[(&str, Value)], required: &[&str]) -> Value {
-    let mut properties = serde_json::Map::new();
-    for (name, schema) in fields {
-        properties.insert((*name).into(), schema.clone());
-    }
-    json!({"type": "object", "properties": properties, "required": required})
-}
-
 #[cfg(test)]
 mod tests {
     use super::*;
@@ -411,7 +263,12 @@ mod tests {
     #[test]
     fn writes_are_named() {
         assert!(is_write_tool("apply_aliases"));
+        assert!(is_write_tool("apply_area"));
+        assert!(is_write_tool("apply_entity"));
+        assert!(is_write_tool("apply_phrases"));
+        assert!(is_write_tool("apply_speech"));
         assert!(!is_write_tool("get_entity"));
+        assert!(!is_write_tool("list_seeds"));
         let tools = openai_tools();
         assert!(tools.iter().any(|tool| tool["function"]["name"] == "list_floors"));
         let house = tools.iter().find(|tool| tool["function"]["name"] == "apply_house").unwrap();
@@ -435,15 +292,23 @@ mod tests {
         assert!(!tool_allowed_for_layer("match", "apply_house"));
         assert!(!tool_allowed_for_layer("match", "apply_lexicon"));
         assert!(tool_allowed_for_layer("language", "apply_lexicon"));
+        assert!(tool_allowed_for_layer("language", "apply_phrases"));
         assert!(!tool_allowed_for_layer("language", "apply_match"));
         assert!(tool_allowed_for_layer("house", "list_floors"));
         assert!(tool_allowed_for_layer("house", "apply_house"));
         assert!(tool_allowed_for_layer("house", "apply_aliases"));
+        assert!(tool_allowed_for_layer("house", "apply_entity"));
+        assert!(tool_allowed_for_layer("house", "apply_area"));
+        assert!(tool_allowed_for_layer("house", "list_seeds"));
+        assert!(tool_allowed_for_layer("house", "apply_speech"));
         assert!(!tool_allowed_for_layer("house", "apply_match"));
         let names: Vec<_> = openai_tools_for("match").iter().map(|tool| tool["function"]["name"].as_str().unwrap().to_string()).collect();
         assert!(names.contains(&"apply_match".into()));
         assert!(!names.iter().any(|name| name == "apply_house"));
-        assert_eq!(write_tools_for_layer("house"), vec!["apply_house", "apply_aliases", "apply_engine", "apply_ui"]);
+        assert_eq!(
+            write_tools_for_layer("house"),
+            vec!["apply_house", "apply_aliases", "apply_entity", "apply_area", "apply_speech", "apply_engine", "apply_ui"]
+        );
         assert!(tool_allowed_for_layer("all", "apply_match"));
         assert!(tool_allowed_for_layer("all", "apply_house"));
         assert!(tool_allowed_for_layer("all", "apply_lexicon"));

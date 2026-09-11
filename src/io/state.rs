@@ -102,4 +102,21 @@ impl AppState {
             })
             .await;
     }
+
+    pub async fn apply_areas(&self, rows: &[(String, String)]) {
+        if rows.is_empty() {
+            return;
+        }
+        let mut overlay = load_overlay(&self.data_dir);
+        for (entity_id, area) in rows {
+            overlay.areas.insert(entity_id.clone(), area.clone());
+        }
+        let _ = save_overlay(&self.data_dir, &overlay);
+        self.home
+            .edit(|next| {
+                apply_overlay(next, &overlay);
+                None::<()>
+            })
+            .await;
+    }
 }

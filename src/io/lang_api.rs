@@ -196,6 +196,11 @@ pub(crate) async fn persist_language_overlay(state: &AppState, language: Languag
     persist_rules(state, custom, language, label.to_string()).await.map(|_| ())
 }
 
+pub(crate) async fn persist_custom(state: &AppState, custom: Vec<CustomSentence>, label: &str) -> Result<(), StatusCode> {
+    let language = load_overlay(&state.data_dir).language;
+    persist_rules(state, custom, language, label.to_string()).await.map(|_| ())
+}
+
 async fn persist_rules(
     state: &AppState,
     custom: Vec<CustomSentence>,

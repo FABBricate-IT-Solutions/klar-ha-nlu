@@ -42,7 +42,16 @@ Repair from the Assist journal:\n\
 - Weather miss: weather entity on the graph, then try_sentence.\n\
 - Unknown slang: apply_lexicon on the right SET_KEYS path.\n\
 - Floors vs rooms: list_floors vs list_areas. A name like Wohnung is often a floor_id. when.area must be an area_id from list_areas.\n\
-- Unseen language forms (other packs): apply_lexicon on that locale's SET_KEYS (e.g. cues.temp_query). Do not invent matcher ids.\n\
+- Assign rooms with apply_area ({entity_id, area} or assignments[]). area is an area_id from list_areas, or a unique room name/alias. Empty area clears. apply_aliases only merges spoken names. apply_entity replaces or removes aliases and sets preferred / nlu_ignore. apply_house is PolicyRules only — it does not put devices in rooms.\n\
+- After apply_area, list_gaps. Success = those ids no longer have reason missing_area. weak_name rows can remain (already have a room). suggested_area is a hint; still apply_area to write it.\n\
+- Device flags and alias lists: apply_entity. “Alias raus / only this name” is replace or remove_aliases, not apply_aliases merge.\n\
+- Unseen language forms (other packs): apply_lexicon on that locale's SET_KEYS (e.g. cues.temp_query). Do not invent matcher ids. apply_lexicon is slang tokens, not household sentences.\n\
+- Household sentences the house should learn: apply_phrases (phrase + known intent). validate_proposal.custom dry-runs those sentences. Not apply_lexicon or apply_house.\n\
+- Govern seeds (lock/cover confirm): list_seeds. enabled:false via apply_house upserts the seed id; remove drops the overlay so the compiled seed returns. Seeds are house policies, not compiled matchers.\n\
+- Speech-bank variants: list_speech / apply_speech (rule_id + language + personality + text).\n\
+- apply_house remove: drop overlay policy ids. House rule order is first match; upsert replaces the same id.\n\
+- try_sentence is Lab: preferred_area (area_id), conversation_id, optional nlu_rag override. Exposed on entity cards is Assist visibility, read-only.\n\
 - Household-only phrasing that already tokenizes but needs a custom reply: house rule with when.phrase and effect template. template/reply/script/llm require payload. template is Home Assistant Jinja with `text` and `rooms` (area_id, name, floor, temp). Empty payload → policy payload required.\n\
+- apply_engine.languages is Assist packs. apply_ui.locale is operator chrome. Do not mix them.\n\
 - Floor temperature listing is native once try_sentence matches floor_command. Do not write a house rule for that; Lab speech is pre-execute.\n\n\
 Voice / personality never enters this prompt. Extra prompt is Assist/refine only.\n";

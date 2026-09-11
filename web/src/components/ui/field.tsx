@@ -56,9 +56,9 @@ const fieldVariants = cva(
       orientation: {
         vertical: "flex-col *:w-full [&>.sr-only]:w-auto",
         horizontal:
-          "min-w-0 overflow-x-clip flex-row items-start gap-4 *:data-[slot=field-label]:flex-auto [&>[data-slot=switch]]:mt-0.5 [&>[data-slot=switch]]:shrink-0",
+          "min-w-0 overflow-x-clip flex-row items-start gap-4 *:data-[slot=field-label]:flex-auto [&>[data-slot=switch]]:mt-0.5 [&>[data-slot=switch]]:shrink-0 [&>[data-slot=checkbox]]:mt-0.5 [&>[data-slot=checkbox]]:shrink-0",
         responsive:
-          "flex-col *:w-full @md/field-group:flex-row @md/field-group:items-start @md/field-group:gap-4 @md/field-group:*:w-auto @md/field-group:*:data-[slot=field-label]:flex-auto [&>.sr-only]:w-auto @md/field-group:[&>[data-slot=switch]]:mt-0.5 @md/field-group:[&>[data-slot=switch]]:shrink-0",
+          "flex-col *:w-full @md/field-group:flex-row @md/field-group:items-start @md/field-group:gap-4 @md/field-group:*:w-auto @md/field-group:*:data-[slot=field-label]:flex-auto [&>.sr-only]:w-auto @md/field-group:[&>[data-slot=switch]]:mt-0.5 @md/field-group:[&>[data-slot=switch]]:shrink-0 @md/field-group:[&>[data-slot=checkbox]]:mt-0.5 @md/field-group:[&>[data-slot=checkbox]]:shrink-0",
       },
     },
     defaultVariants: {
@@ -104,7 +104,7 @@ function FieldLabel({
     <Label
       data-slot="field-label"
       className={cn(
-        "group/field-label peer/field-label flex w-fit gap-2 leading-snug group-data-[disabled=true]/field:opacity-50 has-data-checked:border-primary/30 has-data-checked:bg-primary/5 has-[>[data-slot=field]]:rounded-lg has-[>[data-slot=field]]:border has-[>[data-slot=field]]:not-has-[:disabled,[data-disabled]]:hover:bg-muted/50 has-[>[data-slot=field]]:has-[:focus-visible]:border-ring has-[>[data-slot=field]]:has-[:focus-visible]:ring-3 has-[>[data-slot=field]]:has-[:focus-visible]:ring-ring/50 *:data-[slot=field]:p-2.5 dark:has-data-checked:border-primary/20 dark:has-data-checked:bg-primary/10",
+        "group/field-label peer/field-label m-0 flex w-fit gap-2 leading-snug group-data-[disabled=true]/field:opacity-50 has-data-checked:border-primary/30 has-data-checked:bg-primary/5 has-[>[data-slot=field]]:rounded-lg has-[>[data-slot=field]]:border has-[>[data-slot=field]]:not-has-[:disabled,[data-disabled]]:hover:bg-muted/50 has-[>[data-slot=field]]:has-[:focus-visible]:border-ring has-[>[data-slot=field]]:has-[:focus-visible]:ring-3 has-[>[data-slot=field]]:has-[:focus-visible]:ring-ring/50 *:data-[slot=field]:p-2.5 dark:has-data-checked:border-primary/20 dark:has-data-checked:bg-primary/10",
         "has-[>[data-slot=field]]:w-full has-[>[data-slot=field]]:flex-col",
         className
       )}

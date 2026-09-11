@@ -114,7 +114,7 @@ function applyEvent(
       setLines((prev) => [...prev, { role: "tool", name: event.name, args: event.arguments }]);
       return;
     case "tool":
-      if (event.tool === "apply_ui" || event.tool === "apply_engine") {
+      if (typeof event.tool === "string" && event.tool.startsWith("apply_")) {
         window.dispatchEvent(new CustomEvent("klar-lotse-applied", { detail: { tool: event.tool } }));
       }
       setLines((prev) => {

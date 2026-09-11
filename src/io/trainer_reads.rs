@@ -3,9 +3,9 @@
 use crate::home::gaps::leftover;
 use crate::io::limits::MAX_PARSE_CHARS;
 use crate::io::state::AppState;
+use crate::io::trainer_args::arg_str;
 use crate::lang::catalog_for;
 use crate::nlu::parse_with_controls;
-use crate::session::Session;
 use serde_json::{json, Value};
 
 pub fn with_view(view: &str, mut value: Value) -> Value {
@@ -74,23 +74,47 @@ pub async fn try_sentence(state: &AppState, args: &Value) -> Result<Value, Strin
     if text.chars().count() > MAX_PARSE_CHARS {
         return Err("text too long".into());
     }
+    let conversation_id = args.get("conversation_id").and_then(Value::as_str).filter(|item| !item.is_empty());
+    if conversation_id.is_some_and(|id| id.len() > 128) {
+        return Err("conversation_id too long".into());
+    }
     let mut settings = state.settings.lock().await.clone();
     if let Some(language) = args.get("language").and_then(Value::as_str).filter(|item| !item.is_empty()) {
         settings.languages = vec![language.to_string()];
+    }
+    if let Some(nlu_rag) = args.get("nlu_rag").and_then(Value::as_bool) {
+        settings.nlu_rag = nlu_rag;
     }
     let policies = state.policies.lock().await.clone();
     let match_controls = state.match_controls.lock().await.clone();
     let speech_bank = state.speech_bank.lock().await.clone();
     let custom = state.custom.lock().await.clone();
     let home = state.home.snapshot().await;
-    let mut session = Session::new();
+    if let Some(area) = args.get("preferred_area").and_then(Value::as_str) {
+        let area = area.trim();
+        if !area.is_empty() && (area.len() > 128 || !home.areas.iter().any(|record| record.area_id == area)) {
+            return Err("preferred_area is not on the graph".into());
+        }
+    }
+    let mut session = {
+        let mut sessions = state.sessions.lock().await;
+        sessions.take(conversation_id)
+    };
+    if let Some(area) = args.get("preferred_area").and_then(Value::as_str) {
+        let area = area.trim();
+        session.preferred_area = if area.is_empty() { None } else { Some(area.to_string()) };
+    }
     let outcome = parse_with_controls(text, &home, &mut session, &custom, &settings, &policies, &speech_bank, &match_controls);
+    state.sessions.lock().await.put(session);
     Ok(with_view(
         "path",
         json!({
             "text": text,
             "speech": outcome.speech,
-            "policy_trace": outcome.policy_trace
+            "policy_trace": outcome.policy_trace,
+            "conversation_id": conversation_id,
+            "preferred_area": args.get("preferred_area").and_then(Value::as_str),
+            "nlu_rag": settings.nlu_rag,
         }),
     ))
 }
@@ -137,10 +161,6 @@ pub async fn list_phrases(state: &AppState) -> Result<Value, String> {
     Ok(with_view("phrases", json!({ "phrases": phrases })))
 }
 
-fn arg_str<'a>(args: &'a Value, key: &str) -> Result<&'a str, String> {
-    args.get(key).and_then(Value::as_str).filter(|item| !item.is_empty()).ok_or_else(|| format!("{key} required"))
-}
-
 #[cfg(test)]
 mod tests {
     use super::*;
@@ -174,5 +194,13 @@ mod tests {
         let out = try_sentence(&state, &json!({"text":"licht wohnzimmer an"})).await.unwrap();
         assert_eq!(out["view"], "path");
         assert!(!out["speech"].as_str().unwrap_or("").is_empty() || out.get("policy_trace").is_some());
+        let sat = try_sentence(&state, &json!({"text":"aus","preferred_area":"wohnzimmer","conversation_id":"lotse-sat","nlu_rag":true}))
+            .await
+            .unwrap();
+        assert_eq!(sat["preferred_area"], "wohnzimmer");
+        assert_eq!(sat["nlu_rag"], true);
+        let session = state.sessions.lock().await.take(Some("lotse-sat"));
+        assert_eq!(session.preferred_area.as_deref(), Some("wohnzimmer"));
+        assert!(try_sentence(&state, &json!({"text":"aus","preferred_area":"keller"})).await.is_err());
     }
 }
