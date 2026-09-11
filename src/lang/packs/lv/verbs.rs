@@ -23,6 +23,7 @@ pub(super) const VERBS: &[(&str, VerbKind)] = &[
     ("purple", VerbKind::Color),
     ("puteklusucejs", VerbKind::VacuumNoun),
     ("red", VerbKind::Color),
+    ("samazini", VerbKind::Lower),
     ("saraksts", VerbKind::List),
     ("scena", VerbKind::Scene),
     ("silti balts", VerbKind::Color),

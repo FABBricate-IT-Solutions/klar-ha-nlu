@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
+import { toast } from "sonner";
 import { api } from "../api";
 import type { Messages } from "../i18n";
+import { toastSaved, toastSaveFailed } from "../saveToast";
 import type { LlmPublic } from "../types";
 import { isProviderId, resolveProvider, writeStoredProvider } from "../llmProviders";
 import { LlmProviderFields } from "./LlmProviderFields";
@@ -14,7 +16,7 @@ export function LlmSettingsCard({ t }: { t: Messages }) {
   const [model, setModel] = useState("");
   const [apiKey, setApiKey] = useState("");
   const [enableThinking, setEnableThinking] = useState(false);
-  const [status, setStatus] = useState("");
+  const [busy, setBusy] = useState(false);
 
   const load = async () => {
     const next = await api.llmEndpoint();
@@ -27,10 +29,14 @@ export function LlmSettingsCard({ t }: { t: Messages }) {
   };
 
   useEffect(() => {
-    load().catch(() => setStatus(t.trainerFail));
-  }, [t.trainerFail]);
+    load().catch((err) => {
+      const text = err instanceof Error ? err.message : "";
+      toast.error(text.startsWith("401") ? t.saveUnauthorized : t.trainerFail);
+    });
+  }, [t.saveUnauthorized, t.trainerFail]);
 
   const save = async () => {
+    setBusy(true);
     try {
       const next = await api.saveLlmEndpoint({
         base_url: baseUrl,
@@ -42,13 +48,16 @@ export function LlmSettingsCard({ t }: { t: Messages }) {
       });
       setEndpoint(next);
       setApiKey("");
-      setStatus(t.save);
-    } catch {
-      setStatus(t.trainerFail);
+      toastSaved(t, [next.model, next.base_url].filter(Boolean).join(" · "));
+    } catch (err) {
+      toastSaveFailed(t, err);
+    } finally {
+      setBusy(false);
     }
   };
 
   const clear = async () => {
+    setBusy(true);
     try {
       const next = await api.saveLlmEndpoint({ configured: false });
       setEndpoint(next);
@@ -56,9 +65,11 @@ export function LlmSettingsCard({ t }: { t: Messages }) {
       setModel("");
       setApiKey("");
       setEnableThinking(false);
-      setStatus(t.llmClear);
-    } catch {
-      setStatus(t.trainerFail);
+      toastSaved(t, t.llmNotConfigured);
+    } catch (err) {
+      toastSaveFailed(t, err);
+    } finally {
+      setBusy(false);
     }
   };
 
@@ -90,9 +101,8 @@ export function LlmSettingsCard({ t }: { t: Messages }) {
         />
       </CardContent>
       <CardFooter className="flex flex-wrap gap-2">
-        <Button type="button" onClick={() => void save()}>{t.save}</Button>
-        <Button type="button" variant="ghost" disabled={!endpoint.configured} onClick={() => void clear()}>{t.llmClear}</Button>
-        {status ? <p className="text-sm text-muted-foreground">{status}</p> : null}
+        <Button type="button" disabled={busy} onClick={() => void save()}>{t.save}</Button>
+        <Button type="button" variant="ghost" disabled={busy || !endpoint.configured} onClick={() => void clear()}>{t.llmClear}</Button>
       </CardFooter>
     </Card>
   );

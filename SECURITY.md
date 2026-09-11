@@ -9,7 +9,7 @@ There is no public security email. Do not open a public issue for an unfixed vul
 
 ## Supported versions
 
-The current CalVer on `main` and the latest GitHub Release (this tree: **2026.8.30**) are supported. Pre-CalVer tags such as `0.1.0` are V1-only and must not be used with the V2 integration (`POST /api/v2/parse`).
+The current CalVer on `main` and the latest GitHub Release (this tree: **2026.9.5**) are supported. Pre-CalVer tags such as `0.1.0` are V1-only and must not be used with the V2 integration (`POST /api/v2/parse`).
 
 Household token and bundle notes: [docs/en/troubleshooting.md](docs/en/troubleshooting.md).
 

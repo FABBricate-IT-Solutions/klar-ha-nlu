@@ -4,7 +4,7 @@ use crate::lang::catalog;
 use crate::parse::action::Action;
 use crate::parse::clause::{finish_intents, Clause};
 use crate::parse::compound::{light_aim, query_keeps_entity, wants_light_clarify, LightAim};
-use crate::parse::infer::looks_like_named_device;
+use crate::parse::infer::{looks_like_named_device, mentions_fixture_noun};
 use crate::parse::resolve::{query_grounded, unique_in_area};
 use crate::parse::slots::{fill_intent, intent_from_action, pick_singular_lamp, ClauseOut};
 use crate::parse::split::wants_group_clarify;
@@ -50,7 +50,8 @@ pub(crate) fn area_command(ctx: &Clause) -> Option<ClauseOut> {
     if ctx.resolved.areas.len() == 1
         && matches!(ctx.action, Action::On | Action::Off | Action::Toggle)
         && ctx.number.is_none()
-        && (wants_light_clarify(ctx.tokens, ctx.home, &ctx.resolved.areas) || wants_group_clarify(ctx.raw))
+        && (wants_group_clarify(ctx.raw)
+            || (mentions_fixture_noun(ctx.tokens) && wants_light_clarify(ctx.tokens, ctx.home, &ctx.resolved.areas)))
     {
         let lights: Vec<String> = ctx
             .home

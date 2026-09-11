@@ -17,6 +17,7 @@ pub(super) const VERBS: &[(&str, VerbKind)] = &[
     ("igeri", VerbKind::Open),
     ("kans", VerbKind::Percent),
     ("kres", VerbKind::Dim),
+    ("lehe", VerbKind::Lower),
     ("next", VerbKind::Next),
     ("orange", VerbKind::Color),
     ("pink", VerbKind::Color),

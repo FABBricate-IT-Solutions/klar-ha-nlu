@@ -39,6 +39,7 @@ pub struct Speech {
     pub timer_start: &'static str,
     pub timer_cancel: &'static str,
     pub timer_pause: &'static str,
+    pub timer_how_long: &'static str,
     pub list_add: &'static str,
     pub calendar_list: &'static str,
     pub calendar_empty: &'static str,
@@ -76,5 +77,31 @@ impl Speech {
 
     pub fn room_name(self, folded: &str) -> Option<&'static str> {
         self.room_names.iter().find(|(key, _)| *key == folded).map(|(_, name)| *name)
+    }
+}
+
+#[cfg(test)]
+mod tests {
+    use crate::lang::LangId;
+
+    fn speech(code: &str) -> crate::lang::Speech {
+        LangId::from_code(code).unwrap_or_else(|| panic!("missing pack {code}")).pack().speech
+    }
+
+    #[test]
+    fn generated_slots_are_not_need_on() {
+        for code in ["es", "ja", "de-AT", "en-GB", "ar", "fa", "hi"] {
+            let s = speech(code);
+            assert_ne!(s.timer_start, s.need_on, "{code} timer_start");
+            assert_ne!(s.media_search, s.need_on, "{code} media_search");
+            assert_ne!(s.vacuum_default, s.need_on, "{code} vacuum_default");
+            assert_ne!(s.timer_cancel, s.need_off, "{code} timer_cancel");
+            assert_ne!(s.timer_pause, s.need_off, "{code} timer_pause");
+            assert!(!s.timer_how_long.is_empty(), "{code} timer_how_long");
+            assert_ne!(s.heat_noun, s.cool_noun, "{code} heat/cool");
+            assert_ne!(s.loc_home, s.need_on, "{code} loc_home");
+            let jarvis = s.personality_prefixes("jarvis");
+            assert!(!jarvis.iter().any(|prefix| prefix.contains("Of course, sir")), "{code} jarvis should not be English");
+        }
     }
 }

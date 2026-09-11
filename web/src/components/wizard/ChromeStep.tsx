@@ -5,8 +5,8 @@ import type { Messages } from "../../i18n";
 import { dictionaries } from "../../i18n";
 import type { WizardMessages } from "../../i18n/wizard";
 import type { Locale, Settings, Theme } from "../../types";
-import { Field, FieldContent, FieldGroup, FieldLabel } from "@/components/ui/field";
-import { Switch } from "@/components/ui/switch";
+import { SettingsToggle } from "../SettingsToggle";
+import { Field, FieldGroup, FieldLabel } from "@/components/ui/field";
 import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
 
 export function ChromeStep({
@@ -76,18 +76,16 @@ export function ChromeStep({
           placeholder={chrome.languageSearch}
         />
       </Field>
-      <Field orientation="horizontal">
-        <FieldContent>
-          <FieldLabel>{chrome.allAssistLanguages}</FieldLabel>
-        </FieldContent>
-        <Switch
-          checked={allAssist}
-          onCheckedChange={(checked) => onSettings({
-            ...settings,
-            languages: checked ? [] : [pinned],
-          })}
-        />
-      </Field>
+      <SettingsToggle
+        id="wizard-all-assist-languages"
+        label={chrome.allAssistLanguages}
+        description={chrome.languageHint}
+        checked={allAssist}
+        onCheckedChange={(checked) => onSettings({
+          ...settings,
+          languages: checked ? [] : [pinned],
+        })}
+      />
       {allAssist ? null : (
         <Field>
           <FieldLabel>{chrome.pinLanguage}</FieldLabel>

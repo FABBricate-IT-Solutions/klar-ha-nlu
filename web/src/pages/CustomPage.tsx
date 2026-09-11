@@ -4,6 +4,7 @@ import { SearchSelect, useHouseCatalog, withCurrent } from "../components/Search
 import { sentencesEmpty, SetupHint } from "../components/SetupHint";
 import { TEACH_HEARD_KEY, TEACH_INTENT_KEY } from "../components/TeachFromMiss";
 import type { Messages } from "../i18n";
+import { saveFailMessage, toastSaved, toastSaveFailed } from "../saveToast";
 import type { Locale } from "../types";
 import { useLangOverlay } from "../useLangOverlay";
 
@@ -49,9 +50,11 @@ export function CustomPage({ t, locale, embedded }: { t: Messages; locale: Local
   const persist = async (next: CustomRule[], label: string) => {
     try {
       replace(await api.saveLangOverlay({ custom: next, language, label }));
-      setStatus(t.save);
+      toastSaved(t);
+      setStatus(t.saveOk);
     } catch (err) {
-      setStatus(String(err));
+      toastSaveFailed(t, err);
+      setStatus(saveFailMessage(t, err));
     }
   };
 
@@ -121,7 +124,7 @@ export function CustomPage({ t, locale, embedded }: { t: Messages; locale: Local
               value={entityId}
               options={withCurrent(entityOptions, entityId)}
               onChange={setEntityId}
-              placeholder="light.wohnzimmer"
+              placeholder="light.living_room"
             />
             <label>{t.slots}</label>
             <input value={summary} onChange={(ev) => setSummary(ev.target.value)} placeholder="summary" />

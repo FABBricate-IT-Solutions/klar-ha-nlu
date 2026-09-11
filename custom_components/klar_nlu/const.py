@@ -50,6 +50,7 @@ CONF_ALLOW_LLM_TOOLS = "allow_llm_tools"
 CONF_TOKEN = "token"
 CONF_CHANNEL = "channel"
 CONF_PRODUCT_IN_ENGINE = "product_in_engine"
+TOKEN_HEADER = "x-klar-token"
 ENGINE_VERSION = "2026.9.8"
 DEFAULT_ASSIST_FILTER = True
 DEFAULT_PERSONALITY = "default"
@@ -72,6 +73,15 @@ PERSONALITIES = (
     "gollum",
     "jarvis",
 )
+
+
+def engine_headers(token: object, extra: dict[str, str] | None = None) -> dict[str, str]:
+    """Attach the write token when configured. Empty token stays tokenless (loopback)."""
+    headers = dict(extra or {})
+    text = str(token or "").strip()
+    if text:
+        headers[TOKEN_HEADER] = text
+    return headers
 
 
 def resolve_personality(value: object) -> str:
@@ -152,6 +162,20 @@ def addon_url_for_channel(channel: object) -> str:
     return DEFAULT_ADDON_URL
 
 
+def is_addon_engine_url(url: object) -> bool:
+    """True when the engine URL is the Supervisor Klar addon, not loopback or LAN."""
+    return _addon_kind(_engine_host(url)) is not None
+
+
+def addon_sidebar_path(url: object) -> str | None:
+    kind = _addon_kind(_engine_host(url))
+    if kind == CHANNEL_STAGING:
+        return "klar_nlu_staging"
+    if kind == CHANNEL_STABLE:
+        return "klar_nlu"
+    return None
+
+
 def is_managed_engine_url(url: object) -> bool:
     text = _normalize_engine_url(url)
     if text in {
@@ -185,26 +209,15 @@ def resolve_engine_target(
     url: object,
     supervisor: bool = False,
 ) -> tuple[str, str]:
+    del supervisor
     text = str(url or "").strip()
     if text and not is_managed_engine_url(text):
         return MODE_REMOTE, text
+    if str(mode or MODE_LOCAL) == MODE_LOCAL:
+        return MODE_LOCAL, DEFAULT_URL
     if text and _supervisor_addon_prefix(_engine_host(text)):
         return MODE_REMOTE, _retarget_addon_url(text, channel)
-    if resolve_channel(channel) == CHANNEL_STAGING:
-        if supervisor or str(mode or "") == MODE_REMOTE:
-            return MODE_REMOTE, DEFAULT_STAGING_ADDON_URL
-        return MODE_LOCAL, DEFAULT_URL
-    if supervisor and (
-        str(mode or "") == MODE_REMOTE
-        or (
-            is_managed_engine_url(text)
-            and _normalize_engine_url(text) != _normalize_engine_url(DEFAULT_URL)
-        )
-    ):
-        return MODE_REMOTE, DEFAULT_ADDON_URL
-    if str(mode or MODE_LOCAL) == MODE_REMOTE:
-        return MODE_REMOTE, DEFAULT_ADDON_URL
-    return MODE_LOCAL, DEFAULT_URL
+    return MODE_REMOTE, addon_url_for_channel(channel)
 
 
 def resolve_engine_url(

@@ -4,13 +4,13 @@ use crate::home::gaps::leftover;
 use crate::home::overlay::load_overlay;
 use crate::io::auth::reads_allowed;
 use crate::io::state::AppState;
-use crate::lang::{catalog_for, validate_language, LanguageOverlay};
+use crate::lang::{catalog_for, validate_custom, validate_language, LanguageOverlay};
 use crate::nlu::{parse_with_controls, safety_decide_policies};
 use crate::parse::{match_catalog, match_control_warnings, sanitize_match_controls};
 use crate::session::Session;
 use crate::types::{
-    govern_safety_seeds, sanitize_rules, AreaRec, EntityRec, FloorRec, HomeGraph, Intent, IntentPlan, MatchCatalogRow, MatchControl,
-    ParseDecision, PolicyEffect, PolicyRule, Settings, SpeechBank, MAX_POLICY_RULES,
+    govern_safety_seeds, sanitize_rules, AreaRec, CustomSentence, EntityRec, FloorRec, HomeGraph, Intent, IntentPlan, MatchCatalogRow,
+    MatchControl, ParseDecision, PolicyEffect, PolicyRule, Settings, SpeechBank, MAX_POLICY_RULES,
 };
 use axum::extract::{ConnectInfo, Query, State};
 use axum::http::{HeaderMap, StatusCode};
@@ -79,6 +79,8 @@ pub struct ProposalIn {
     pub policies: Option<Vec<PolicyRule>>,
     pub match_controls: Option<Vec<MatchControl>>,
     pub language_overlay: Option<LanguageOverlay>,
+    #[serde(default)]
+    pub custom: Option<Vec<CustomSentence>>,
     pub utterances: Option<Vec<String>>,
 }
 
@@ -165,6 +167,10 @@ pub async fn validate_proposal(
         Some(language) => language,
         None => load_overlay(&state.data_dir).language,
     };
+    let custom = match body.custom.clone() {
+        Some(rows) => rows,
+        None => state.custom.lock().await.clone(),
+    };
     Ok(Json(validate(
         &home,
         &settings,
@@ -175,7 +181,45 @@ pub async fn validate_proposal(
         overlay,
         &speech_bank,
         body.utterances.as_deref().unwrap_or(&[]),
+        &custom,
     )))
+}
+
+pub async fn validate_args(state: &AppState, args: &serde_json::Value) -> Result<serde_json::Value, String> {
+    let proposal: ProposalIn = serde_json::from_value(args.clone()).map_err(|_| "invalid proposal")?;
+    let settings = state.settings.lock().await.clone();
+    let language = proposal.language.clone().or_else(|| settings.languages.first().cloned()).unwrap_or_else(|| "en".into());
+    let home = state.home.snapshot().await;
+    let house = match proposal.policies.clone() {
+        Some(rules) => rules,
+        None => state.policies.lock().await.clone(),
+    };
+    let match_controls = match proposal.match_controls.clone() {
+        Some(rows) => rows,
+        None => state.match_controls.lock().await.clone(),
+    };
+    let overlay = match proposal.language_overlay.clone() {
+        Some(language) => language,
+        None => load_overlay(&state.data_dir).language,
+    };
+    let custom = match proposal.custom.clone() {
+        Some(rows) => rows,
+        None => state.custom.lock().await.clone(),
+    };
+    let speech_bank = state.speech_bank.lock().await.clone();
+    let out = validate(
+        &home,
+        &settings,
+        &language,
+        proposal.layer.as_deref().unwrap_or("all"),
+        house,
+        match_controls,
+        overlay,
+        &speech_bank,
+        proposal.utterances.as_deref().unwrap_or(&[]),
+        &custom,
+    );
+    serde_json::to_value(out).map(|value| crate::io::trainer_reads::with_view("validate", value)).map_err(|_| "validate encode".into())
 }
 
 #[allow(clippy::too_many_arguments)]
@@ -189,6 +233,7 @@ pub fn validate(
     overlay: LanguageOverlay,
     speech_bank: &SpeechBank,
     extra: &[String],
+    custom: &[CustomSentence],
 ) -> ValidateOut {
     let mut errors = Vec::new();
     let mut warnings = Vec::new();
@@ -209,12 +254,18 @@ pub fn validate(
         for row in validate_language(&overlay) {
             errors.push(Issue { path: row.path, message: row.message });
         }
+        for row in validate_custom(custom) {
+            errors.push(Issue { path: row.path, message: row.message });
+        }
         errors.extend(blocked_lexicon_tokens(catalog, &overlay));
     }
     let mut pinned = settings.clone();
     pinned.languages = vec![language.to_string()];
-    let dry_run =
-        if errors.is_empty() { dry_run_rows(home, &pinned, &house, &match_controls, speech_bank, language, extra) } else { Vec::new() };
+    let dry_run = if errors.is_empty() {
+        dry_run_rows(home, &pinned, &house, &match_controls, speech_bank, language, extra, custom)
+    } else {
+        Vec::new()
+    };
     ValidateOut { ok: errors.is_empty(), errors, warnings, dry_run }
 }
 
@@ -328,11 +379,12 @@ fn dry_run_rows(
     speech_bank: &SpeechBank,
     language: &str,
     extra: &[String],
+    custom: &[CustomSentence],
 ) -> Vec<DryRunRow> {
     let mut rows = Vec::new();
     for text in smokes(language).into_iter().chain(extra.iter().map(String::as_str)) {
         let mut session = Session::new();
-        let outcome = parse_with_controls(text, home, &mut session, &[], settings, house, speech_bank, match_controls);
+        let outcome = parse_with_controls(text, home, &mut session, custom, settings, house, speech_bank, match_controls);
         let trace = outcome.policy_trace.clone().unwrap_or_default();
         rows.push(DryRunRow {
             text: text.to_string(),
@@ -383,94 +435,5 @@ fn decision_label(decision: &ParseDecision) -> String {
 }
 
 #[cfg(test)]
-mod tests {
-    use super::*;
-    use crate::home::default_home;
-    use crate::lang::{LanguageOverlay, SetDelta};
-    use std::collections::HashMap;
-
-    fn settings() -> Settings {
-        Settings::pinned("de")
-    }
-
-    #[test]
-    fn unknown_match_id_is_rejected() {
-        let home = default_home();
-        let controls = vec![MatchControl { id: "media_new_matcher".into(), enabled: true, precedence: None }];
-        let out =
-            validate(&home, &settings(), "de", "match", Vec::new(), controls, LanguageOverlay::default(), &SpeechBank::default(), &[]);
-        assert!(!out.ok);
-        assert!(out.errors.iter().any(|row| row.path == "match_controls"));
-    }
-
-    #[test]
-    fn bound_locale_particle_add_is_rejected() {
-        let home = default_home();
-        let mut sets = HashMap::new();
-        sets.insert("nouns.light_nouns".into(), SetDelta { add: vec!["an".into()], remove: Vec::new() });
-        let de = validate(
-            &home,
-            &settings(),
-            "de",
-            "language",
-            Vec::new(),
-            Vec::new(),
-            LanguageOverlay { sets: sets.clone() },
-            &SpeechBank::default(),
-            &[],
-        );
-        assert!(!de.ok, "{de:?}");
-        let mut ja_sets = HashMap::new();
-        ja_sets.insert("nouns.light_nouns".into(), SetDelta { add: vec!["つけて".into()], remove: Vec::new() });
-        let ja = validate(
-            &home,
-            &Settings::pinned("ja"),
-            "ja",
-            "language",
-            Vec::new(),
-            Vec::new(),
-            LanguageOverlay { sets: ja_sets },
-            &SpeechBank::default(),
-            &[],
-        );
-        assert!(!ja.ok, "{ja:?}");
-    }
-
-    #[test]
-    fn missing_entity_is_not_grounded() {
-        let home = default_home();
-        let rules = vec![PolicyRule {
-            id: "ghost".into(),
-            enabled: true,
-            label: "x".into(),
-            when: crate::types::PolicyMatch { entity_id: Some("light.missing".into()), ..crate::types::PolicyMatch::default() },
-            effect: PolicyEffect::Block,
-            prefer: None,
-            payload: None,
-        }];
-        let out = validate(&home, &settings(), "de", "house", rules, Vec::new(), LanguageOverlay::default(), &SpeechBank::default(), &[]);
-        assert!(!out.ok);
-        assert!(out.errors.iter().any(|row| row.path.contains("entity_id")));
-    }
-
-    #[test]
-    fn context_stub_is_compact() {
-        let ctx = TrainerContext {
-            language: "de".into(),
-            layer: "all".into(),
-            prompt_version: "2".into(),
-            graph: GraphOut { areas: Vec::new(), floors: Vec::new(), entities: Vec::new() },
-            gaps: vec!["light.a".into(), "light.b".into()],
-            matches: Vec::new(),
-            seeds: Vec::new(),
-            overlays: OverlaysOut { policies: Vec::new(), match_controls: Vec::new(), language: LanguageOverlay::default() },
-            schema: schema_out(),
-        };
-        let stub = context_stub(&ctx, &["de".into(), "en".into()]);
-        assert!(stub.contains("\"gap_count\":2"));
-        assert!(stub.contains("\"languages\":[\"de\",\"en\"]"));
-        assert!(stub.contains("\"reply_language\":\"de\""));
-        assert!(!stub.contains("light.a"));
-        assert!(!stub.contains("graph"));
-    }
-}
+#[path = "trainer_tests.rs"]
+mod tests;

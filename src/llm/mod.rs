@@ -24,6 +24,7 @@ mod trainer;
 mod trainer_choices;
 mod trainer_handbook;
 mod trainer_tools;
+mod trainer_tools_def;
 mod types;
 
 pub use assist::{assist, assist_on, AssistOutcome, AssistRequest};
@@ -40,7 +41,7 @@ pub use refine_prompt::{personality_preview, personality_preview_for, refine_pro
 pub use trainer::{history_messages, system_prompt, TrainerTurn};
 pub use trainer_choices::{asks_operator, ensure_reply_choices, parse_lotse_choices};
 pub use trainer_tools::{is_write_tool, openai_tools, openai_tools_for, parse_text_tools, tool_allowed_for_layer, WRITE_TOOLS};
-pub use types::{ChatEvent, ChatMessage, ChatRequest, CompletionTurn, LlmError, ToolCall};
+pub use types::{ChatEvent, ChatMessage, ChatRequest, CompletionTurn, LlmError, TokenUsage, ToolCall};
 
 #[cfg(test)]
 mod tests;

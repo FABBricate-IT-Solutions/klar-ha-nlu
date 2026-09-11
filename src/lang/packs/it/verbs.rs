@@ -30,6 +30,7 @@ pub(super) const VERBS: &[(&str, VerbKind)] = &[
     ("percento", VerbKind::Percent),
     ("piuoscuro", VerbKind::Dim),
     ("play", VerbKind::Play),
+    ("riduci", VerbKind::Lower),
     ("riproduci", VerbKind::Play),
     ("rosa", VerbKind::Color),
     ("rosso", VerbKind::Color),

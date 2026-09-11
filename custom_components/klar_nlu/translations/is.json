@@ -23,33 +23,18 @@
     "step": {
       "init": {
         "title": "Klar NLU",
-        "description": "Persónuleikinn er vistaður hér og helst eftir enduruppsetningu á Klar appinu.",
+        "description": "Rödd, Assist-tungumál og LLM eru í Klar-stjórnendaviðmótinu (Stillingar). Þetta eyðublað tengir aðeins vélina: slóð, teikn og rás. {apps}",
         "data": {
           "mode": "Vél",
-          "personality": "Persónuleiki",
-          "languages": "Tungumál",
-          "allow_llm_tools": "Allow Home Assistant Assist tools on engine chat",
-          "refine_speech": "Láta LLM endurskrifa NLU svör",
-          "refine_prompt": "Fínstillingarvísbending",
           "url": "Klar API slóð",
           "token": "Skriftóki",
           "assist_filter": "Stýra aðeins einingum sem Assist sér",
-          "nlu_rag": "NLU-RAG (valfrjálst)",
-          "quiet_ack": "Stutt staðfesting (bjalla)",
-          "calendar_llm": "Senda dagatalsfyrirspurnir til LLM",
           "channel": "Útgáfurás"
         },
         "data_description": {
-          "personality": "Í þessari samþættingu, ekki í Klar appinu.",
-          "refine_speech": "Klar stýrir áfram tækjum. Varas LLM endurskrifar svarið.",
-          "refine_prompt": "Kerfisvísbending raddarinnar. Engin tækjastýring, engar nýjar staðreyndir, sama tungumál.",
+          "mode": "App vs bundled engine. Switch anytime. The integration sidebar only appears for the bundled engine.",
           "token": "Sami tóki og í Klar appinu.",
           "assist_filter": "Kveikt: aðeins það sem Assist sér. Slökkt: líka faldar einingar.",
-          "nlu_rag": "Slökkt sjálfgefið. Í spjalli fer aðeins samsvarandi sneið til varalíkansins.",
-          "quiet_ack": "Við einfalda kveikingu/slökkvun ljóss er ekkert talað, aðeins stuttur hljóð á gervihnettinum.",
-          "calendar_llm": "Slökkt sjálfgefið. Kveikt: Klar les dagatalið, varakerfið segir atburðina. Slökkt: Klar segir listann. Búa til, eyða og færa verða áfram hjá Klar.",
-          "allow_llm_tools": "Off by default. On: after Klar parses, the engine chat model may call Home Assistant Assist tools (names come from Core, already prefixed). Off: conversation only.",
-          "languages": "Sjálfgefið fylgir kerfistungumáli Home Assistant.",
           "channel": "Hvenær sem er. Staging vísar á Klar NLU (Staging)."
         }
       }
@@ -115,6 +100,11 @@
     "switch": {
       "quiet_ack": {
         "name": "Stutt staðfesting"
+      }
+    },
+    "ai_task": {
+      "ai_task": {
+        "name": "Gervigreindarverkefni"
       }
     },
     "sensor": {

@@ -193,6 +193,7 @@ input, textarea, select {
   color: var(--text);
   padding: 10px 12px;
 }
+.sr-only,
 input.sr-only {
   position: absolute;
   width: 1px;
@@ -500,6 +501,7 @@ button.chip { background: transparent; }
 .lab-toolbar .flow { flex: 2 1 280px; }
 .lab-toolbar .lab-policy-path { flex: 1 1 100%; }
 .lab-toolbar .lab-pipeline-armed { flex: 1 1 100%; }
+.lab-toolbar .lab-pipeline-path { flex: 1 1 100%; }
 .lab-toolbar .caption { flex: 1 1 100%; margin: 0; }
 .lab textarea { min-height: 88px; }
 .lab-out { display: grid; gap: 16px; margin-top: 16px; }
@@ -561,3 +563,14 @@ button.chip { background: transparent; }
 [data-theme="light"] .chip.intent,
 [data-theme="light"] .slot-chip { border-color: #7aa3a6; }
 [data-theme="light"] .drawer-backdrop { background: rgba(28, 28, 28, .35); }
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

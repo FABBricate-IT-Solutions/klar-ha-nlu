@@ -12,6 +12,7 @@ pub(super) const VERBS: &[(&str, VerbKind)] = &[
     ("eszena", VerbKind::Scene),
     ("etxe", VerbKind::Dock),
     ("green", VerbKind::Color),
+    ("gutxitu", VerbKind::Lower),
     ("haizagailua", VerbKind::FanNoun),
     ("ilunago", VerbKind::Dim),
     ("ireki", VerbKind::Open),

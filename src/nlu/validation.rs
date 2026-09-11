@@ -19,6 +19,20 @@ pub(super) fn validate_plan(plan: &IntentPlan, home: &HomeGraph) -> Result<(), P
     Ok(())
 }
 
+pub(super) fn fail_closed_intent(intent: &Intent) -> bool {
+    let entity = intent.slot("entity_id").unwrap_or("");
+    let domain = intent.slot("domain");
+    entity.starts_with("lock.")
+        || entity.starts_with("cover.")
+        || entity.starts_with("script.")
+        || matches!(domain, Some("lock" | "cover" | "script"))
+}
+
+pub(super) fn missing_timer_duration(plan: &IntentPlan, text: &str) -> bool {
+    let tokens = crate::parse::normalize::tokenize(text);
+    plan.steps.iter().any(|step| crate::parse::slots::needs_timer_duration_prompt(&step.intent, &tokens))
+}
+
 pub(super) fn filter_valid_steps(plan: &IntentPlan, home: &HomeGraph) -> IntentPlan {
     let steps: Vec<PlanStep> = plan
         .steps
@@ -451,5 +465,13 @@ mod tests {
         assert_eq!(filtered.steps.len(), 1);
         assert_eq!(filtered.steps[0].intent.slot("entity_id"), Some("light.wohnzimmer"));
         assert_eq!(filtered.steps[0].index, 0);
+    }
+
+    #[test]
+    fn lock_cover_script_are_fail_closed() {
+        assert!(fail_closed_intent(&Intent::new("HassTurnOn").with("entity_id", "lock.front")));
+        assert!(fail_closed_intent(&Intent::new("HassTurnOff").with("domain", "cover")));
+        assert!(fail_closed_intent(&Intent::new("HassTurnOn").with("entity_id", "script.bedtime")));
+        assert!(!fail_closed_intent(&Intent::new("HassTurnOn").with("entity_id", "light.wohnzimmer")));
     }
 }

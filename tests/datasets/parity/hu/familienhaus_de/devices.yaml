@@ -175,13 +175,13 @@ devices/light_master_bath_light::light_master_bath_light_turn_off:
 devices/light_master_bath_light::light_master_bath_light_turn_on:
 - kapcsold villany furdomaster
 devices/light_master_bedside_right::light_master_bedside_right_change_brightness:
-- allitsd ejjeliszekreny haloszobamaster 25
+- allitsd ejjeliszekreny right haloszobamaster 25
 devices/light_master_bedside_right::light_master_bedside_right_change_color:
-- allitsd ejjeliszekreny haloszobamaster red
+- allitsd ejjeliszekreny right haloszobamaster red
 devices/light_master_bedside_right::light_master_bedside_right_turn_off:
-- oltsd ejjeliszekreny haloszobamaster
+- oltsd ejjeliszekreny right haloszobamaster
 devices/light_master_bedside_right::light_master_bedside_right_turn_on:
-- kapcsold ejjeliszekreny haloszobamaster
+- kapcsold ejjeliszekreny right haloszobamaster
 devices/light_master_ceiling::light_master_ceiling_change_brightness:
 - allitsd mennyezet haloszobamaster 77
 devices/light_master_ceiling::light_master_ceiling_change_color:

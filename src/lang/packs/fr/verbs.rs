@@ -61,6 +61,7 @@ pub(super) const VERBS: &[(&str, VerbKind)] = &[
     ("quelle", VerbKind::Query),
     ("quels", VerbKind::Query),
     ("quoi", VerbKind::Query),
+    ("reduire", VerbKind::Lower),
     ("regle", VerbKind::Set),
     ("regler", VerbKind::Set),
     ("rentrer", VerbKind::Dock),

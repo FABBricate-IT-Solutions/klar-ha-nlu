@@ -1,3 +1,4 @@
+use crate::types::settings::RefineBand;
 use crate::types::Intent;
 use serde::{Deserialize, Serialize};
 
@@ -35,6 +36,8 @@ pub struct ParseOutcome {
     pub policy_trace: Option<PolicyTrace>,
     #[serde(default, skip_serializing_if = "std::ops::Not::not")]
     pub quiet_ack_eligible: bool,
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub refine_band: Option<RefineBand>,
 }
 
 #[derive(Debug, Clone, Serialize, Deserialize, PartialEq, Default)]
@@ -265,6 +268,18 @@ impl IntentPlan {
         }
         quiet_ack_simple_target(intent)
     }
+
+    pub fn refine_band(&self) -> RefineBand {
+        if !self.steps.is_empty() && self.steps.iter().all(|step| status_refine_intent(&step.intent.name)) {
+            RefineBand::Status
+        } else {
+            RefineBand::Command
+        }
+    }
+}
+
+fn status_refine_intent(name: &str) -> bool {
+    matches!(name, "HassGetState" | "HassClimateGetTemperature" | "MassGetQueue" | "KlarGetCalendarEvents")
 }
 
 const SIMPLE_ACK_DOMAINS: &[&str] = &["light", "switch"];
@@ -291,6 +306,15 @@ impl ParseOutcome {
         PARSE_SCHEMA_VERSION.to_string()
     }
 
+    pub fn classify_refine_band(decision: &ParseDecision, plan: Option<&IntentPlan>) -> Option<RefineBand> {
+        match decision {
+            ParseDecision::Execute => Some(plan.map(IntentPlan::refine_band).unwrap_or(RefineBand::Command)),
+            ParseDecision::Clarify { .. } | ParseDecision::Confirm { .. } => Some(RefineBand::Prompt),
+            ParseDecision::Reject { .. } => Some(RefineBand::Reject),
+            ParseDecision::Chat | ParseDecision::Error { .. } => None,
+        }
+    }
+
     pub fn enforce_output_caps(&mut self) {
         if !matches!(self.decision, ParseDecision::Execute) {
             self.plan = None;
@@ -298,6 +322,7 @@ impl ParseOutcome {
             self.candidates.clear();
             self.quiet_ack_eligible = false;
         }
+        self.refine_band = Self::classify_refine_band(&self.decision, self.plan.as_ref());
         if !matches!(self.decision, ParseDecision::Chat | ParseDecision::Reject { .. }) {
             self.retrieval = None;
         }

@@ -3,34 +3,34 @@ timers/timers::abstract_start:
 timers/timers::abstract_start_hours_minutes:
 - ಹಚ್ಚು ಟೈಮರ್ abstract 20 min
 timers/timers::abstract_start_seconds:
-- ಹಚ್ಚು ಟೈಮರ್ abstract
+- ಹಚ್ಚು ಟೈಮರ್ abstract 45 sec
 timers/timers::cancel_all_timers:
 - ಆರಿಸು ಎಲ್ಲ ಟೈಮರ್
 timers/timers::timer_laundry_cancel:
-- ಹಚ್ಚು ಟೈಮರ್ laundry
+- ಆರಿಸು ಟೈಮರ್ laundry
 timers/timers::timer_laundry_decrease:
 - ಹಚ್ಚು ಟೈಮರ್ laundry 5 min
 timers/timers::timer_laundry_increase:
 - ಹಚ್ಚು ಟೈಮರ್ laundry 16 min
 timers/timers::timer_laundry_pause:
-- ಆರಿಸು ಟೈಮರ್ laundry
+- ನಿಲ್ಲಿಸು ಟೈಮರ್ laundry
 timers/timers::timer_laundry_start:
-- ಹಚ್ಚು ಟೈಮರ್ laundry
+- ಹಚ್ಚು ಟೈಮರ್ laundry 90 sec
 timers/timers::timer_laundry_status:
 - ಏನು ಟೈಮರ್ laundry
 timers/timers::timer_laundry_unpause:
-- ಹಚ್ಚು ಟೈಮರ್ laundry
+- ಹಾಡು ಟೈಮರ್ laundry
 timers/timers::timer_oven_cancel:
-- ಹಚ್ಚು ಟೈಮರ್ oven
+- ಆರಿಸು ಟೈಮರ್ oven
 timers/timers::timer_oven_decrease:
 - ಹಚ್ಚು ಟೈಮರ್ oven 44 min
 timers/timers::timer_oven_increase:
 - ಹಚ್ಚು ಟೈಮರ್ oven 30 min
 timers/timers::timer_oven_pause:
-- ಆರಿಸು ಟೈಮರ್ oven
+- ನಿಲ್ಲಿಸು ಟೈಮರ್ oven
 timers/timers::timer_oven_start:
 - ಹಚ್ಚು ಟೈಮರ್ oven 2 min
 timers/timers::timer_oven_status:
 - ಏನು ಟೈಮರ್ oven
 timers/timers::timer_oven_unpause:
-- ಹಚ್ಚು ಟೈಮರ್ oven
+- ಹಾಡು ಟೈಮರ್ oven

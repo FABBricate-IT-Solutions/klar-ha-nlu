@@ -175,13 +175,13 @@ devices/light_master_bath_light::light_master_bath_light_turn_off:
 devices/light_master_bath_light::light_master_bath_light_turn_on:
 - allume lumiere bainmaster
 devices/light_master_bedside_right::light_master_bedside_right_change_brightness:
-- mets chevet chambremaster 25
+- mets chevet right chambremaster 25
 devices/light_master_bedside_right::light_master_bedside_right_change_color:
-- mets chevet chambremaster rouge
+- mets chevet right chambremaster rouge
 devices/light_master_bedside_right::light_master_bedside_right_turn_off:
-- eteins chevet chambremaster
+- eteins chevet right chambremaster
 devices/light_master_bedside_right::light_master_bedside_right_turn_on:
-- allume chevet chambremaster
+- allume chevet right chambremaster
 devices/light_master_ceiling::light_master_ceiling_change_brightness:
 - mets plafond chambremaster 77
 devices/light_master_ceiling::light_master_ceiling_change_color:

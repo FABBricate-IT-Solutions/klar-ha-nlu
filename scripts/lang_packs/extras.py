@@ -332,7 +332,7 @@ WORDS = {
     "lb": ("eiland", "decken", "kugel", "nuettsdesch", "apparat", "film", "nuets", "fortgoen"),
     "kw": ("enys", "nen", "pel", "gweli", "tol", "film", "nos", "mos"),
     "lt": ("sala", "lubos", "rutulys", "naktinis", "prietaisas", "filmas", "naktis", "isejimas"),
-    "lv": ("sala", "griesti", "lode", "nakts", "ierice", "filma", "nakts", "izeja"),
+    "lv": ("sala", "griesti", "lode", "naktsskapis", "ierice", "filma", "nakts", "izeja"),
     "id": ("pulau", "langit", "bola", "nakas", "alat", "film", "malam", "pergi"),
     "ms": ("pulau", "siling", "bola", "katil", "alat", "filem", "malam", "pergi"),
     "sw": ("kisiwa", "dari", "tufe", "kitanda", "kifaa", "filamu", "usiku", "ondoka"),

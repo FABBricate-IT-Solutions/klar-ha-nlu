@@ -50,6 +50,15 @@ fn clamp_trait(value: u8) -> u8 {
     value.min(10)
 }
 
+#[derive(Debug, Clone, Copy, Serialize, Deserialize, PartialEq, Eq)]
+#[serde(rename_all = "snake_case")]
+pub enum RefineBand {
+    Status,
+    Command,
+    Prompt,
+    Reject,
+}
+
 #[derive(Debug, Clone, Serialize, Deserialize, PartialEq, Eq)]
 pub struct VoiceTraits {
     #[serde(default = "trait_mid")]
@@ -86,6 +95,7 @@ impl VoiceTraits {
 }
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(from = "SettingsJson")]
 pub struct Settings {
     pub personality: Personality,
     pub mode: Mode,
@@ -111,6 +121,9 @@ pub struct Settings {
     /// Rewrite finished NLU speech with the engine LLM. Off by default.
     #[serde(default)]
     pub refine_speech: bool,
+    /// Which spoken reply kinds the LLM may rewrite. Missing + refine on → status only.
+    #[serde(default)]
+    pub refine_bands: Vec<RefineBand>,
     /// Rewrite calendar list speech with the engine LLM. Off by default.
     #[serde(default)]
     pub calendar_llm: bool,
@@ -143,6 +156,80 @@ pub struct Settings {
     pub custom_voice_traits: VoiceTraits,
 }
 
+#[derive(Deserialize)]
+struct SettingsJson {
+    personality: Personality,
+    mode: Mode,
+    #[serde(default = "default_languages")]
+    languages: Vec<String>,
+    #[serde(default)]
+    support_bundle: bool,
+    #[serde(default)]
+    support_bundle_raw_text: bool,
+    #[serde(default = "default_confirm_risky_actions")]
+    confirm_risky_actions: bool,
+    #[serde(default)]
+    semantic_adapters: bool,
+    #[serde(default)]
+    nlu_rag: bool,
+    #[serde(default)]
+    refine_speech: bool,
+    #[serde(default)]
+    refine_bands: Option<Vec<RefineBand>>,
+    #[serde(default)]
+    calendar_llm: bool,
+    #[serde(default)]
+    quiet_ack: bool,
+    #[serde(default)]
+    allow_llm_tools: bool,
+    #[serde(default)]
+    fallback_llm: bool,
+    #[serde(default)]
+    extra_prompt: String,
+    #[serde(default)]
+    unit_system: UnitSystem,
+    #[serde(default)]
+    custom_voice: String,
+    #[serde(default)]
+    custom_voice_name: String,
+    #[serde(default)]
+    custom_voice_seed: String,
+    #[serde(default)]
+    custom_voice_traits: VoiceTraits,
+}
+
+impl From<SettingsJson> for Settings {
+    fn from(raw: SettingsJson) -> Self {
+        let refine_bands = match raw.refine_bands {
+            Some(bands) => bands,
+            None if raw.refine_speech => vec![RefineBand::Status],
+            None => Vec::new(),
+        };
+        Self {
+            personality: raw.personality,
+            mode: raw.mode,
+            languages: raw.languages,
+            support_bundle: raw.support_bundle,
+            support_bundle_raw_text: raw.support_bundle_raw_text,
+            confirm_risky_actions: raw.confirm_risky_actions,
+            semantic_adapters: raw.semantic_adapters,
+            nlu_rag: raw.nlu_rag,
+            refine_speech: raw.refine_speech,
+            refine_bands,
+            calendar_llm: raw.calendar_llm,
+            quiet_ack: raw.quiet_ack,
+            allow_llm_tools: raw.allow_llm_tools,
+            fallback_llm: raw.fallback_llm,
+            extra_prompt: raw.extra_prompt,
+            unit_system: raw.unit_system,
+            custom_voice: raw.custom_voice,
+            custom_voice_name: raw.custom_voice_name,
+            custom_voice_seed: raw.custom_voice_seed,
+            custom_voice_traits: raw.custom_voice_traits,
+        }
+    }
+}
+
 impl Default for Settings {
     fn default() -> Self {
         Self {
@@ -155,6 +242,7 @@ impl Default for Settings {
             semantic_adapters: false,
             nlu_rag: false,
             refine_speech: false,
+            refine_bands: Vec::new(),
             calendar_llm: false,
             quiet_ack: false,
             allow_llm_tools: false,
@@ -228,5 +316,31 @@ mod tests {
         let set: Settings = serde_json::from_str(raw).unwrap();
         assert!(set.languages.is_empty());
         assert!(Settings::default().languages.is_empty());
+        assert!(set.refine_bands.is_empty());
+    }
+
+    #[test]
+    fn missing_bands_with_refine_on_is_status_only() {
+        let raw = r#"{"personality":"default","mode":"full","refine_speech":true}"#;
+        let set: Settings = serde_json::from_str(raw).unwrap();
+        assert!(set.refine_speech);
+        assert_eq!(set.refine_bands, vec![RefineBand::Status]);
+    }
+
+    #[test]
+    fn empty_bands_with_refine_on_stays_empty() {
+        let raw = r#"{"personality":"default","mode":"full","refine_speech":true,"refine_bands":[]}"#;
+        let set: Settings = serde_json::from_str(raw).unwrap();
+        assert!(set.refine_speech);
+        assert!(set.refine_bands.is_empty());
+    }
+
+    #[test]
+    fn explicit_bands_roundtrip() {
+        let raw = r#"{"personality":"default","mode":"full","refine_speech":true,"refine_bands":["status","command"]}"#;
+        let set: Settings = serde_json::from_str(raw).unwrap();
+        assert_eq!(set.refine_bands, vec![RefineBand::Status, RefineBand::Command]);
+        let again: Settings = serde_json::from_str(&serde_json::to_string(&set).unwrap()).unwrap();
+        assert_eq!(again.refine_bands, set.refine_bands);
     }
 }

@@ -28,6 +28,7 @@ pub(super) const VERBS: &[(&str, VerbKind)] = &[
     ("siurblys", VerbKind::VacuumNoun),
     ("spyna", VerbKind::Lock),
     ("stotele", VerbKind::Dock),
+    ("sumazink", VerbKind::Lower),
     ("tamsiau", VerbKind::Dim),
     ("uzdaryk", VerbKind::Close),
     ("ventiliatorius", VerbKind::FanNoun),

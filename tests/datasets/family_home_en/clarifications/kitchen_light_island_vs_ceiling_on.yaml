@@ -5,13 +5,6 @@ conditions:
   state: 'on'
 - type: action
   entity_id: light.kitchen_ceiling
-  state: 'off'
+  state: 'on'
 sentences:
-- - turn on the kitchen light
-  - island
-- - switch on the kitchen lights
-  - island ones
-- - kitchen light on
-  - the island please
-- - can you turn on the kitchen light
-  - island light
+- turn on the kitchen light

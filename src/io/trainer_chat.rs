@@ -59,7 +59,7 @@ pub async fn trainer_chat(
     let mut messages = vec![ChatMessage::new("system", system_prompt(&layer, &stub, &reply_language))];
     messages.extend(history_messages(&body.history).map_err(|_| StatusCode::BAD_REQUEST)?);
     messages.push(ChatMessage::new("user", body.message));
-    let session = TrainerConsentHub::session_key(&state.token, peer);
+    let session = TrainerConsentHub::session_key(&state.token, peer, &headers);
     let (tx, rx) = mpsc::unbounded_channel::<Result<axum::response::sse::Event, Infallible>>();
     tokio::spawn(async move {
         run_loop(state, endpoint, session, layer, messages, tx, reply_language).await;
@@ -76,7 +76,7 @@ pub async fn trainer_consent(
     if !writes_allowed(Some(peer), &headers, &state.token) {
         return Err(StatusCode::UNAUTHORIZED);
     }
-    let key = TrainerConsentHub::session_key(&state.token, peer);
+    let key = TrainerConsentHub::session_key(&state.token, peer, &headers);
     let call_id = body.call_id.unwrap_or_default();
     state.trainer_consent.decide(&key, &call_id, body.decision).await.map_err(|_| StatusCode::NOT_FOUND)?;
     let (yolo, allowed) = state.trainer_consent.snapshot(&key).await;
@@ -223,13 +223,14 @@ mod tests {
 
     #[test]
     fn text_fallback_fills_empty_tool_calls() {
-        let turn = CompletionTurn { text: "TRAINER_TOOL: list_gaps {}".into(), tool_calls: Vec::new() };
+        let turn = CompletionTurn { text: "TRAINER_TOOL: list_gaps {}".into(), tool_calls: Vec::new(), usage: None };
         let (prose, calls) = merge_calls(turn);
         assert!(prose.is_empty());
         assert_eq!(calls[0].function.name, "list_gaps");
         let native = merge_calls(CompletionTurn {
             text: "ok".into(),
             tool_calls: vec![ToolCall::function("c1", "get_entity", r#"{"entity_id":"light.x"}"#)],
+            usage: None,
         });
         assert_eq!(native.0, "ok");
         assert_eq!(native.1[0].id, "c1");

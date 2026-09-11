@@ -207,6 +207,7 @@ mod tests {
             retrieval: None,
             policy_trace: None,
             quiet_ack_eligible: false,
+            refine_band: None,
         }
     }
 

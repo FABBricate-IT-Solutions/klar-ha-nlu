@@ -4,7 +4,7 @@ use crate::home::overlay::{load_overlay, save_overlay};
 use crate::io::state::AppState;
 use crate::io::trainer_reads::with_view;
 use crate::lang::{pin_language, LangId};
-use crate::types::{Mode, Personality, Settings, UnitSystem, VoiceTraits};
+use crate::types::{Mode, Personality, RefineBand, Settings, UnitSystem, VoiceTraits};
 use serde_json::{json, Value};
 
 const FORBIDDEN: &[&str] = &["url", "base_url", "token", "api_key", "model", "endpoint", "llm_url", "fallback_llm", "fallback_agent"];
@@ -19,6 +19,7 @@ const ENGINE_KEYS: &[&str] = &[
     "semantic_adapters",
     "nlu_rag",
     "refine_speech",
+    "refine_bands",
     "calendar_llm",
     "quiet_ack",
     "allow_llm_tools",
@@ -40,6 +41,7 @@ pub fn engine_view(settings: &Settings, theme: &str, locale: &str, locale_set: b
             "personality": settings.personality,
             "mode": settings.mode,
             "refine_speech": settings.refine_speech,
+            "refine_bands": settings.refine_bands,
             "nlu_rag": settings.nlu_rag,
             "calendar_llm": settings.calendar_llm,
             "quiet_ack": settings.quiet_ack,
@@ -121,6 +123,7 @@ fn public_settings(settings: &Settings) -> Value {
         "personality": settings.personality,
         "mode": settings.mode,
         "refine_speech": settings.refine_speech,
+        "refine_bands": settings.refine_bands,
         "nlu_rag": settings.nlu_rag,
         "calendar_llm": settings.calendar_llm,
         "quiet_ack": settings.quiet_ack,
@@ -167,6 +170,12 @@ fn patch_engine(current: &Settings, args: &Value) -> Result<Settings, String> {
     }
     if let Some(flag) = args.get("refine_speech").and_then(Value::as_bool) {
         next.refine_speech = flag;
+        if flag && next.refine_bands.is_empty() && args.get("refine_bands").is_none() {
+            next.refine_bands = vec![RefineBand::Status];
+        }
+    }
+    if let Some(value) = args.get("refine_bands") {
+        next.refine_bands = serde_json::from_value(value.clone()).map_err(|_| "unknown refine_bands")?;
     }
     if let Some(flag) = args.get("calendar_llm").and_then(Value::as_bool) {
         next.calendar_llm = flag;
@@ -300,8 +309,11 @@ mod tests {
         let set = Settings::pinned("de");
         let next = patch_engine(&set, &json!({"refine_speech":true,"personality":"jarvis","quiet_ack":true})).unwrap();
         assert!(next.refine_speech);
+        assert_eq!(next.refine_bands, vec![RefineBand::Status]);
         assert_eq!(next.personality, Personality::Jarvis);
         assert!(next.quiet_ack);
+        let bands = patch_engine(&next, &json!({"refine_bands":["status","command"]})).unwrap();
+        assert_eq!(bands.refine_bands, vec![RefineBand::Status, RefineBand::Command]);
         assert_eq!(next.languages, vec!["de"]);
         let imperial = patch_engine(&set, &json!({"unit_system":"imperial"})).unwrap();
         assert_eq!(imperial.unit_system, UnitSystem::Imperial);

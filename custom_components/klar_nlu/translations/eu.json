@@ -23,33 +23,18 @@
     "step": {
       "init": {
         "title": "Klar NLU",
-        "description": "Nortasuna hemen gordetzen da eta Klar aplikazioa berrinstalatu ostean ere geratzen da.",
+        "description": "Ahotsa, Assist hizkuntzak eta LLM Klar operadorearen UIan daude (Ezarpenak). Inprimaki honek motorra soilik konektatzen du: URL, tokena eta kanala. {apps}",
         "data": {
           "mode": "Motorra",
-          "personality": "Nortasuna",
-          "languages": "Hizkuntzak",
-          "allow_llm_tools": "Allow Home Assistant Assist tools on engine chat",
-          "refine_speech": "Utzi LLM-ari NLU erantzunak birformulatzeko",
-          "refine_prompt": "Fintzeko gonbita",
           "url": "Klar API URLa",
           "token": "Idazteko tokena",
           "assist_filter": "Kontrolatu Assist-i agertutako entitateak soilik",
-          "nlu_rag": "NLU-RAG (aukerakoa)",
-          "quiet_ack": "Berrespen laburra (kanpaia)",
-          "calendar_llm": "Bidali egutegi-kontsultak LLM-ra",
           "channel": "Argitalpen kanala"
         },
         "data_description": {
-          "personality": "Integrazio honetan dago, ez Klar aplikazioan.",
-          "refine_speech": "Klar-ek gailuak kontrolatzen jarraitzen du. Ordezko LLM-ak erantzuna berridazten du.",
-          "refine_prompt": "Ahotsaren sistema-gonbita. Gailu-kontrolik ez, datu berririk ez, hizkuntza bera.",
+          "mode": "App vs bundled engine. Switch anytime. The integration sidebar only appears for the bundled engine.",
           "token": "Klar aplikazioko token bera.",
           "assist_filter": "Piztuta: Assist-ek ikusten duena soilik. Itzalita: ezkutuko entitateak ere.",
-          "nlu_rag": "Itzalita lehenetsita. Berriketan bat datorren zatia bakarrik doa ordezko eredura.",
-          "quiet_ack": "Argia piztu/itzali sinplean ez da hitzik, soinu laburra satelitean.",
-          "calendar_llm": "Itzalita lehenetsita. Piztuta: Klarrek egutegia irakurri eta ordezko LLM-k gertaerak esaten ditu. Itzalita: Klarrek zerrenda esaten du. Sortu, ezabatu eta mugitu Klarrenean geratzen dira.",
-          "allow_llm_tools": "Off by default. On: after Klar parses, the engine chat model may call Home Assistant Assist tools (names come from Core, already prefixed). Off: conversation only.",
-          "languages": "Lehenetsita Home Assistant sistemaren hizkuntza da.",
           "channel": "Edozein unetan. Staging-ek Klar NLU (Staging) seinalatzen du."
         }
       }
@@ -115,6 +100,11 @@
     "switch": {
       "quiet_ack": {
         "name": "Berrespen laburra"
+      }
+    },
+    "ai_task": {
+      "ai_task": {
+        "name": "IA ataza"
       }
     },
     "sensor": {

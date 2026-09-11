@@ -3,6 +3,7 @@ use crate::home::{HomeStore, LoadedHome};
 use crate::io::bundle::{entry_from_parse, BundleStore};
 use crate::io::conversations::{turn_from_outcome, ConversationJournal};
 use crate::io::llm::load_endpoint;
+use crate::io::llm_calls::LlmCallStore;
 use crate::io::metrics::MetricsStore;
 use crate::io::trainer_consent::TrainerConsentHub;
 use crate::llm::LlmEndpoint;
@@ -25,6 +26,7 @@ pub struct AppState {
     pub journal: ConversationJournal,
     pub bundle: BundleStore,
     pub metrics: Arc<MetricsStore>,
+    pub llm_calls: Arc<LlmCallStore>,
     pub config_dir: PathBuf,
     pub data_dir: PathBuf,
     pub live_sync: Arc<AtomicBool>,
@@ -47,6 +49,7 @@ impl AppState {
             journal: ConversationJournal::open(&data_dir),
             bundle: BundleStore::open(&data_dir),
             metrics: Arc::new(MetricsStore::default()),
+            llm_calls: Arc::new(LlmCallStore::default()),
             config_dir: data_dir.clone(),
             data_dir,
             live_sync: Arc::new(AtomicBool::new(false)),
@@ -90,6 +93,23 @@ impl AppState {
         let aliases = overlay.aliases.entry(entity_id.to_string()).or_default();
         if !aliases.iter().any(|existing| existing == alias) {
             aliases.push(alias.to_string());
+        }
+        let _ = save_overlay(&self.data_dir, &overlay);
+        self.home
+            .edit(|next| {
+                apply_overlay(next, &overlay);
+                None::<()>
+            })
+            .await;
+    }
+
+    pub async fn apply_areas(&self, rows: &[(String, String)]) {
+        if rows.is_empty() {
+            return;
+        }
+        let mut overlay = load_overlay(&self.data_dir);
+        for (entity_id, area) in rows {
+            overlay.areas.insert(entity_id.clone(), area.clone());
         }
         let _ = save_overlay(&self.data_dir, &overlay);
         self.home

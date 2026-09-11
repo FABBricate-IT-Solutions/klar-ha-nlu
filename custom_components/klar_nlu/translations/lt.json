@@ -23,33 +23,18 @@
     "step": {
       "init": {
         "title": "Klar NLU",
-        "description": "Asmenybė saugoma čia ir lieka po Klar programos pakartotinio diegimo.",
+        "description": "Balsas, Assist kalbos ir LLM yra Klar operatoriaus sąsajoje (Nuostatos). Ši forma tik prijungia variklį: URL, prieigos raktas ir kanalas. {apps}",
         "data": {
           "mode": "Variklis",
-          "personality": "Asmenybė",
-          "languages": "Kalbos",
-          "allow_llm_tools": "Allow Home Assistant Assist tools on engine chat",
-          "refine_speech": "Leisti LLM perrašyti NLU atsakymus",
-          "refine_prompt": "Tobulinimo užklausa",
           "url": "Klar API URL",
           "token": "Rašymo prieigos raktas",
           "assist_filter": "Valdyti tik Assist matomus objektus",
-          "nlu_rag": "NLU-RAG (neprivaloma)",
-          "quiet_ack": "Trumpas patvirtinimas (skambutis)",
-          "calendar_llm": "Siųsti kalendoriaus užklausas LLM",
           "channel": "Leidimo kanalas"
         },
         "data_description": {
-          "personality": "Šioje integracijoje, ne Klar programoje.",
-          "refine_speech": "Klar ir toliau valdo įrenginius. Atsarginis LLM perrašo atsakymą.",
-          "refine_prompt": "Balso sistemos užklausa. Be įrenginių valdymo, be naujų faktų, ta pati kalba.",
+          "mode": "App vs bundled engine. Switch anytime. The integration sidebar only appears for the bundled engine.",
           "token": "Tas pats raktas kaip Klar programoje.",
           "assist_filter": "Įjungta: tik tai, ką mato Assist. Išjungta: ir paslėpti objektai.",
-          "nlu_rag": "Pagal numatymą išjungta. Pokalbyje atsarginiam modeliui eina tik atpažinta dalis.",
-          "quiet_ack": "Paprastai įjungiant / išjungiant šviesą be sakinio, tik trumpas garsas palydove.",
-          "calendar_llm": "Pagal numatymą išjungta. Įjungta: Klar skaito kalendorių, atsarginis LLM sako įvykius. Išjungta: Klar sako sąrašą. Kūrimas, trynimas ir perkėlimas lieka Klar.",
-          "allow_llm_tools": "Off by default. On: after Klar parses, the engine chat model may call Home Assistant Assist tools (names come from Core, already prefixed). Off: conversation only.",
-          "languages": "Pagal numatymą seka Home Assistant sistemos kalbą.",
           "channel": "Bet kada. Staging nurodo Klar NLU (Staging)."
         }
       }
@@ -115,6 +100,11 @@
     "switch": {
       "quiet_ack": {
         "name": "Trumpas patvirtinimas"
+      }
+    },
+    "ai_task": {
+      "ai_task": {
+        "name": "DI užduotis"
       }
     },
     "sensor": {

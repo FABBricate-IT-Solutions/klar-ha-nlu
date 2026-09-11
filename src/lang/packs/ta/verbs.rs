@@ -12,6 +12,7 @@ pub(super) const VERBS: &[(&str, VerbKind)] = &[
     ("green", VerbKind::Color),
     ("irundal", VerbKind::Dim),
     ("kaatchi", VerbKind::Scene),
+    ("kurai", VerbKind::Lower),
     ("moodu", VerbKind::Close),
     ("nadu", VerbKind::Dim),
     ("orange", VerbKind::Color),

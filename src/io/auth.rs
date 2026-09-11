@@ -34,15 +34,8 @@ pub fn trusted_peer(ip: IpAddr) -> bool {
     ip.is_loopback() || supervisor_peer(ip)
 }
 
-fn ingress_request(headers: &HeaderMap) -> bool {
-    headers.contains_key("x-ingress-path") || headers.contains_key("x-hass-source") || headers.contains_key("x-supervisor-ingress")
-}
-
 pub fn writes_allowed(peer: Option<SocketAddr>, headers: &HeaderMap, token: &Option<String>) -> bool {
     if peer.is_some_and(|addr| addr.ip().is_loopback()) {
-        return true;
-    }
-    if peer.is_some_and(|addr| supervisor_peer(addr.ip())) && ingress_request(headers) {
         return true;
     }
     let Some(expected) = token.as_deref().filter(|s| !s.is_empty()) else {
@@ -56,7 +49,7 @@ pub fn reads_allowed(peer: Option<SocketAddr>, headers: &HeaderMap, token: &Opti
 }
 
 pub fn home_writes_allowed(peer: Option<SocketAddr>, headers: &HeaderMap, token: &Option<String>) -> bool {
-    reads_allowed(peer, headers, token)
+    writes_allowed(peer, headers, token)
 }
 
 pub fn wyoming_allowed(peer: SocketAddr) -> bool {
@@ -75,17 +68,29 @@ mod tests {
     }
 
     #[test]
-    fn supervisor_ingress_can_write_without_klar_token() {
+    fn supervisor_ingress_cannot_write_without_klar_token() {
         let peer = "172.30.32.2:9".parse().unwrap();
         let mut headers = HeaderMap::new();
         headers.insert("x-ingress-path", "/api/hassio_ingress/token".parse().unwrap());
-        assert!(writes_allowed(Some(peer), &headers, &None));
+        assert!(!writes_allowed(Some(peer), &headers, &None));
+        assert!(!home_writes_allowed(Some(peer), &headers, &None));
+        headers.insert("x-klar-token", "secret".parse().unwrap());
+        assert!(writes_allowed(Some(peer), &headers, &Some("secret".into())));
+        assert!(home_writes_allowed(Some(peer), &headers, &Some("secret".into())));
     }
 
     #[test]
     fn plain_supervisor_write_still_needs_token() {
         let peer = "172.30.32.2:9".parse().unwrap();
         assert!(!writes_allowed(Some(peer), &HeaderMap::new(), &None));
+        assert!(!home_writes_allowed(Some(peer), &HeaderMap::new(), &None));
+        assert!(reads_allowed(Some(peer), &HeaderMap::new(), &None));
+    }
+
+    #[test]
+    fn loopback_writes_without_token() {
+        let peer = "127.0.0.1:9".parse().unwrap();
+        assert!(writes_allowed(Some(peer), &HeaderMap::new(), &None));
         assert!(home_writes_allowed(Some(peer), &HeaderMap::new(), &None));
     }
 }

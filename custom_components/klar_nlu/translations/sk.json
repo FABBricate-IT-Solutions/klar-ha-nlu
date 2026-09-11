@@ -23,33 +23,18 @@
     "step": {
       "init": {
         "title": "Klar NLU",
-        "description": "Osobnosť sa ukladá tu a ostane po preinštalovaní aplikácie Klar.",
+        "description": "Hlas, jazyky Assist a LLM sú v operátorskom UI Klar (Nastavenia). Tento formulár len pripája engine: URL, token a kanál. {apps}",
         "data": {
           "mode": "Engine",
-          "personality": "Osobnosť",
-          "languages": "Jazyky",
-          "allow_llm_tools": "Allow Home Assistant Assist tools on engine chat",
-          "refine_speech": "Nech LLM preformuluje odpovede NLU",
-          "refine_prompt": "Výzva na vylepšenie",
           "url": "URL Klar API",
           "token": "Zapisovací token",
           "assist_filter": "Ovládať len entity vystavené Assistu",
-          "nlu_rag": "NLU-RAG (voliteľné)",
-          "quiet_ack": "Krátke potvrdenie (zvonček)",
-          "calendar_llm": "Posielať dopyty na kalendár do LLM",
           "channel": "Kanál vydania"
         },
         "data_description": {
-          "personality": "Je v tejto integrácii, nie v aplikácii Klar.",
-          "refine_speech": "Klar naďalej ovláda zariadenia. Záložné LLM prepíše odpoveď.",
-          "refine_prompt": "Systémová výzva hlasu. Bez ovládania zariadení, bez nových faktov, rovnaký jazyk.",
+          "mode": "App vs bundled engine. Switch anytime. The integration sidebar only appears for the bundled engine.",
           "token": "Rovnaký token ako v aplikácii Klar.",
           "assist_filter": "Zapnuté: len to, čo vidí Assist. Vypnuté: aj skryté entity.",
-          "nlu_rag": "Predvolene vypnuté. Pri chate ide záložnému modelu len zhodný úsek.",
-          "quiet_ack": "Pri jednoduchom zapnutí/vypnutí svetla bez vety, len krátky zvuk na satelite.",
-          "calendar_llm": "Predvolene vypnuté. Zapnuté: Klar prečíta kalendár, záložné LLM povie udalosti. Vypnuté: Klar povie zoznam. Vytvorenie, zmazanie a presun zostanú v Klar.",
-          "allow_llm_tools": "Off by default. On: after Klar parses, the engine chat model may call Home Assistant Assist tools (names come from Core, already prefixed). Off: conversation only.",
-          "languages": "Predvolene nasleduje jazyk systému Home Assistant.",
           "channel": "Kedykoľvek. Staging ukazuje na Klar NLU (Staging)."
         }
       }
@@ -115,6 +100,11 @@
     "switch": {
       "quiet_ack": {
         "name": "Krátke potvrdenie"
+      }
+    },
+    "ai_task": {
+      "ai_task": {
+        "name": "Úloha AI"
       }
     },
     "sensor": {

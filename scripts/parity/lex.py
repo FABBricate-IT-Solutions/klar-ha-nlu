@@ -103,6 +103,7 @@ def lex_of(core: dict) -> dict:
             "ac": (w.get("climate") or ["ac"])[-1],
             "unlock": first("unlock", w.get("open") or ["open"]),
             "minutes": first("minutes", ["min"]),
+            "seconds": first("seconds", ["sec"]),
             "pause": first("pause", ["pause"]),
             "island": first("island", ["island"]),
             "ceiling": first("ceiling", w.get("light") or ["light"]),

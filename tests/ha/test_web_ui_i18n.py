@@ -5,10 +5,13 @@ from __future__ import annotations
 import ast
 import json
 import re
+import sys
 import unittest
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[2]
+if str(ROOT / "scripts") not in sys.path:
+    sys.path.insert(0, str(ROOT / "scripts"))
 HA = ROOT / "custom_components" / "klar_nlu"
 EN = ROOT / "web" / "src" / "i18n" / "en.ts"
 DE = ROOT / "web" / "src" / "i18n" / "de.ts"
@@ -82,6 +85,7 @@ class OperatorUiParity(unittest.TestCase):
         wizard = (ROOT / "web" / "src" / "pages" / "Wizard.tsx").read_text(encoding="utf-8")
         app = (ROOT / "web" / "src" / "App.tsx").read_text(encoding="utf-8")
         self.assertIn("api.saveSettings", wizard)
+        self.assertIn('refine_bands: ["status"]', wizard)
         self.assertIn("api.saveLlmEndpoint", wizard)
         self.assertIn("chrome={t}", app)
         self.assertIn("onSettings={setSettings}", app)
@@ -104,16 +108,22 @@ class OperatorUiParity(unittest.TestCase):
         lab = (ROOT / "web" / "src" / "pages" / "ParsePage.tsx").read_text(encoding="utf-8")
         self.assertNotIn("HA trigger", lab)
         self.assertNotIn("dispatch / intent_script", lab)
-        self.assertIn("Klar parse", lab)
+        self.assertIn("t.labParse", lab)
         self.assertIn("armedPipeline", lab)
         self.assertIn("labPath", lab)
+        self.assertIn("lab-pipeline-path", lab)
+        self.assertIn("labThisTurn", lab)
+        self.assertIn("refineBandLabel", lab)
         self.assertIn("void submit()", lab)
         self.assertIn("api.parse", lab)
         self.assertIn("api.llmRefine", lab)
         self.assertIn("api.llmAssist", lab)
         self.assertIn("labChatLike", lab)
         self.assertIn("labRefineEligible", lab)
-        self.assertIn("LLM chat", lab)
+        self.assertIn("refine_band", lab)
+        self.assertIn("effectiveRefineBands", lab)
+        self.assertIn("refineBandOf", lab)
+        self.assertIn("t.labChipLlmChat", lab)
         self.assertIn("LabSpeechCompare", lab)
         self.assertIn("aria-controls=\"klar-nav\"", app)
         self.assertIn("setNavOpen", app)
@@ -122,18 +132,47 @@ class OperatorUiParity(unittest.TestCase):
         self.assertIn("LlmModelField", llm)
         engine_llm_rs = (ROOT / "src" / "io" / "llm.rs").read_text(encoding="utf-8")
         self.assertIn("/api/v2/llm/models", engine_llm_rs)
-        self.assertIn("LLM refine", lab)
-        self.assertIn("calendar LLM", lab)
-        self.assertIn("quiet ack", lab)
-        self.assertIn("LLM tools", lab)
+        self.assertIn("t.labChipLlmRefine", lab)
+        self.assertIn("t.labChipCalendarLlm", lab)
+        self.assertIn("t.labChipQuietAck", lab)
+        self.assertIn("t.labChipLlmTools", lab)
         self.assertIn("PersonalityPrompt", (ROOT / "web" / "src" / "components" / "SettingsSections.tsx").read_text(encoding="utf-8"))
         self.assertIn("/api/v2/llm/voice", engine_llm_rs)
         self.assertNotIn("fallback LLM", lab)
-        self.assertIn("NLU-RAG", lab)
-        self.assertIn("aria-label=\"pipeline\"", lab)
+        self.assertIn("t.labChipNluRag", lab)
+        self.assertIn("t.labPipeline", lab)
+        self.assertNotIn('aria-label="pipeline"', lab)
         self.assertIn("policy_trace?.hit", lab)
         en = EN.read_text(encoding="utf-8")
+        self.assertIn("llmCalls", en)
+        self.assertIn("llmNoCalls", en)
+        self.assertIn("labThisTurn", en)
+        dash_page = (ROOT / "web" / "src" / "pages" / "Dashboard.tsx").read_text(encoding="utf-8")
+        self.assertIn("LlmMix", dash_page)
+        self.assertIn("t.llmCalls", dash_page)
+        self.assertIn("llm.tokens", dash_page)
         self.assertIn("llmModelsEmpty", en)
+        self.assertIn("saveOk", en)
+        self.assertIn("refineBandStatus", en)
+        self.assertIn("refineBandStatusHint", en)
+        self.assertIn("refineBandsHint", en)
+        self.assertIn("confirmRiskyHint", en)
+        self.assertIn("SettingsToggle", (ROOT / "web" / "src" / "components" / "SettingsSections.tsx").read_text(encoding="utf-8"))
+        self.assertIn("Saved.", en)
+        self.assertIn("Could not save.", en)
+        card = (ROOT / "web" / "src" / "components" / "LlmSettingsCard.tsx").read_text(encoding="utf-8")
+        settings_page = (ROOT / "web" / "src" / "pages" / "SettingsPage.tsx").read_text(encoding="utf-8")
+        self.assertIn("toastSaved", card)
+        self.assertIn("toastSaveFailed", card)
+        self.assertIn("toastSaved", settings_page)
+        self.assertIn("toastSaveFailed", settings_page)
+        self.assertIn("Klar parse", en)
+        self.assertIn("LLM refine", en)
+        self.assertIn("calendar LLM", en)
+        self.assertIn("quiet ack", en)
+        self.assertIn("LLM tools", en)
+        self.assertIn("NLU-RAG", en)
+        self.assertIn("LLM chat", en)
         self.assertIn("Lab is the Assist path for the selected language", en)
         self.assertIn("Sentence triggers run only if Klar is unreachable", en)
         self.assertNotIn("trigger, then Klar, then intent_script", en)
@@ -148,6 +187,41 @@ class OperatorUiParity(unittest.TestCase):
             encoding="utf-8"
         )
         self.assertIn("advertised_languages()", conversation)
+
+    def test_llm_chrome_is_translated(self) -> None:
+        from lang_packs.web_ui_keys import FALLBACKS
+        from lang_packs.web_ui_llm import CHECK_KEYS, KEYS
+
+        expected = set(_supported()) - {"de", "en"}
+        for code in sorted(expected):
+            payload = json.loads((MESSAGES / f"{code}.json").read_text(encoding="utf-8"))
+            for key in KEYS:
+                value = payload[key]
+                self.assertNotIn("\ufffd", value, f"{code}.{key}")
+                self.assertTrue(value.strip(), f"{code}.{key}")
+            if code == "en-GB":
+                continue
+            for key in CHECK_KEYS:
+                self.assertNotEqual(payload[key], FALLBACKS[key], f"{code}.{key}")
+
+    def test_settings_hints_are_translated(self) -> None:
+        from lang_packs.settings_hints import KEYS
+        from lang_packs.web_ui_keys import FALLBACKS
+
+        english = {key: FALLBACKS[key] for key in KEYS}
+        loanwords = {"refineBandStatus": {"Status"}}
+        expected = set(_supported()) - {"de", "en"}
+        for code in sorted(expected):
+            payload = json.loads((MESSAGES / f"{code}.json").read_text(encoding="utf-8"))
+            for key in KEYS:
+                value = payload[key]
+                self.assertNotIn("\ufffd", value, f"{code}.{key}")
+                self.assertTrue(value.strip(), f"{code}.{key}")
+                if code == "en-GB":
+                    continue
+                if value in loanwords.get(key, ()):
+                    continue
+                self.assertNotEqual(value, english[key], f"{code}.{key}")
 
     def test_policy_lanes_clip_lists(self) -> None:
         theme = (ROOT / "web" / "src" / "theme.css").read_text(encoding="utf-8")

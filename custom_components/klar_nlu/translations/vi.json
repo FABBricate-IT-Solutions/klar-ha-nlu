@@ -23,33 +23,18 @@
     "step": {
       "init": {
         "title": "Klar NLU",
-        "description": "Tính cách được lưu ở đây và còn sau khi cài lại ứng dụng Klar.",
+        "description": "Giọng nói, ngôn ngữ Assist và LLM nằm trong UI vận hành Klar (Cài đặt). Biểu mẫu này chỉ kết nối máy: URL, token và kênh. {apps}",
         "data": {
           "mode": "Động cơ",
-          "personality": "Tính cách",
-          "languages": "Ngôn ngữ",
-          "allow_llm_tools": "Allow Home Assistant Assist tools on engine chat",
-          "refine_speech": "Để LLM chỉnh câu trả lời NLU",
-          "refine_prompt": "Lời nhắc tinh chỉnh",
           "url": "URL API Klar",
           "token": "Token ghi",
           "assist_filter": "Chỉ điều khiển thực thể đã mở cho Assist",
-          "nlu_rag": "NLU-RAG (tuỳ chọn)",
-          "quiet_ack": "Xác nhận ngắn (chuông)",
-          "calendar_llm": "Gửi câu hỏi lịch tới LLM",
           "channel": "Kênh phát hành"
         },
         "data_description": {
-          "personality": "Nằm trong tích hợp này, không trong ứng dụng Klar.",
-          "refine_speech": "Klar vẫn điều khiển thiết bị. LLM dự phòng viết lại câu trả lời.",
-          "refine_prompt": "Lời nhắc hệ thống của giọng nói. Không điều khiển thiết bị, không bịa sự thật, cùng ngôn ngữ.",
+          "mode": "App vs bundled engine. Switch anytime. The integration sidebar only appears for the bundled engine.",
           "token": "Cùng token với ứng dụng Klar.",
           "assist_filter": "Bật: chỉ những gì Assist thấy. Tắt: cả thực thể ẩn.",
-          "nlu_rag": "Mặc định tắt. Khi trò chuyện chỉ gửi đoạn đã khớp tới mô hình dự phòng.",
-          "quiet_ack": "Bật/tắt đèn đơn giản thì không nói, chỉ một tiếng ngắn trên vệ tinh.",
-          "calendar_llm": "Mặc định tắt. Bật: Klar đọc lịch, LLM dự phòng nói sự kiện. Tắt: Klar tự nói danh sách. Tạo, xóa, chuyển vẫn do Klar.",
-          "allow_llm_tools": "Off by default. On: after Klar parses, the engine chat model may call Home Assistant Assist tools (names come from Core, already prefixed). Off: conversation only.",
-          "languages": "Mặc định theo ngôn ngữ hệ thống của Home Assistant.",
           "channel": "Đổi bất cứ lúc nào. Staging trỏ tới Klar NLU (Staging)."
         }
       }
@@ -115,6 +100,11 @@
     "switch": {
       "quiet_ack": {
         "name": "Xác nhận ngắn"
+      }
+    },
+    "ai_task": {
+      "ai_task": {
+        "name": "Tác vụ AI"
       }
     },
     "sensor": {

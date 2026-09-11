@@ -23,33 +23,18 @@
     "step": {
       "init": {
         "title": "Klar NLU",
-        "description": "บุคลิกเก็บที่นี่ และยังอยู่หลังติดตั้งแอป Klar ใหม่",
+        "description": "เสียง ภาษา Assist และ LLM อยู่ใน UI ผู้ปฏิบัติการของ Klar (การตั้งค่า) แบบฟอร์มนี้เชื่อมต่อเอนจินเท่านั้น: URL โทเค็น และช่องทาง {apps}",
         "data": {
           "mode": "เอนจิน",
-          "personality": "บุคลิก",
-          "languages": "ภาษา",
-          "allow_llm_tools": "Allow Home Assistant Assist tools on engine chat",
-          "refine_speech": "ให้ LLM ปรับคำตอบ NLU",
-          "refine_prompt": "พรอมต์ปรับแต่ง",
           "url": "URL ของ Klar API",
           "token": "โทเคนเขียน",
           "assist_filter": "ควบคุมเฉพาะเอนทิตีที่เปิดให้ Assist",
-          "nlu_rag": "NLU-RAG (ไม่บังคับ)",
-          "quiet_ack": "ยืนยันสั้น (เสียง ding)",
-          "calendar_llm": "ส่งคำถามปฏิทินไปยัง LLM",
           "channel": "ช่องเผยแพร่"
         },
         "data_description": {
-          "personality": "อยู่ในอินทิเกรชันนี้ ไม่ได้อยู่ในแอป Klar",
-          "refine_speech": "Klar ยังควบคุมอุปกรณ์ LLM สำรองจะเขียนคำตอบใหม่",
-          "refine_prompt": "พรอมต์ระบบของเสียง ไม่ควบคุมอุปกรณ์ ไม่สร้างข้อเท็จจริงใหม่ ภาษาเดิม",
+          "mode": "App vs bundled engine. Switch anytime. The integration sidebar only appears for the bundled engine.",
           "token": "โทเคนเดียวกับแอป Klar",
           "assist_filter": "เปิด: เฉพาะที่ Assist เห็น ปิด: รวมเอนทิตีที่ซ่อน",
-          "nlu_rag": "ปิดเป็นค่าเริ่มต้น ตอนคุยส่งเฉพาะช่วงที่จับได้ไปยังโมเดลสำรอง",
-          "quiet_ack": "เปิดหรือปิดไฟอย่างง่ายจะไม่พูด มีแต่เสียงสั้นที่ดาวเทียม",
-          "calendar_llm": "ปิดเป็นค่าเริ่มต้น เปิด: Klar อ่านปฏิทิน แล้ว LLM สำรองพูดนัด ปิด: Klar พูดรายการเอง สร้าง ลบ ย้ายยังอยู่ที่ Klar",
-          "allow_llm_tools": "Off by default. On: after Klar parses, the engine chat model may call Home Assistant Assist tools (names come from Core, already prefixed). Off: conversation only.",
-          "languages": "ค่าเริ่มต้นคือภาษาของระบบ Home Assistant",
           "channel": "เปลี่ยนได้ตลอด Staging ชี้ไปที่ Klar NLU (Staging)"
         }
       }
@@ -115,6 +100,11 @@
     "switch": {
       "quiet_ack": {
         "name": "ยืนยันสั้น"
+      }
+    },
+    "ai_task": {
+      "ai_task": {
+        "name": "งาน AI"
       }
     },
     "sensor": {

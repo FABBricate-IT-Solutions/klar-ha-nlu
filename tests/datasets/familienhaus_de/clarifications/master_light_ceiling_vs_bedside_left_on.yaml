@@ -5,13 +5,6 @@
     state: 'on'
   - type: action
     entity_id: light.master_bedside_left
-    state: 'off'
+    state: 'on'
   sentences:
-  - - Mach Licht Schlafzimmer an
-    - die Decke
-  - - Mach Licht Schlafzimmer an
-    - die Decke
-  - - Mach Licht Schlafzimmer an
-    - die Decke
-  - - Mach Licht Schlafzimmer an
-    - die Decke
+  - Mach Licht Schlafzimmer an

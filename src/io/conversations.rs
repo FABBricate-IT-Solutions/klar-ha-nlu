@@ -2,7 +2,7 @@ use crate::home::paths::{read_to_string_confined, write_confined};
 use crate::io::auth::reads_allowed;
 use crate::io::privacy::replay_tokens;
 use crate::io::state::AppState;
-use crate::types::{ParseDecision, ParseOutcome};
+use crate::types::{ParseDecision, ParseOutcome, RefineBand};
 use axum::extract::{ConnectInfo, Path, State};
 use axum::http::{HeaderMap, StatusCode};
 use axum::routing::get;
@@ -29,6 +29,8 @@ pub struct ConversationTurn {
     pub speech: String,
     #[serde(default, skip_serializing_if = "Option::is_none")]
     pub speech_source: Option<String>,
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub refine_band: Option<String>,
     pub confidence: f64,
     pub briefing: bool,
     #[serde(default)]
@@ -117,6 +119,7 @@ pub fn turn_from_outcome(
         decision: decision_name(&outcome.decision).into(),
         speech: outcome.speech.clone(),
         speech_source: None,
+        refine_band: outcome.refine_band.map(band_name),
         confidence: outcome.confidence,
         briefing: outcome.briefing,
         evidence_kinds: outcome.evidence.iter().map(|item| item.kind.clone()).take(16).collect(),
@@ -124,6 +127,15 @@ pub fn turn_from_outcome(
         confirm_prompt,
         candidate_id,
         preferred_area,
+    }
+}
+
+fn band_name(band: RefineBand) -> String {
+    match band {
+        RefineBand::Status => "status".into(),
+        RefineBand::Command => "command".into(),
+        RefineBand::Prompt => "prompt".into(),
+        RefineBand::Reject => "reject".into(),
     }
 }
 
@@ -167,6 +179,7 @@ fn llm_turn(conversation_id: String, speech: String, source: &str) -> Conversati
         decision: if source == "chat" { "chat".into() } else { "execute".into() },
         speech,
         speech_source: Some(source.to_string()),
+        refine_band: None,
         confidence: 0.0,
         briefing: false,
         evidence_kinds: Vec::new(),
@@ -259,6 +272,7 @@ mod tests {
             retrieval: None,
             policy_trace: None,
             quiet_ack_eligible: false,
+            refine_band: Some(RefineBand::Status),
         };
         let turn = turn_from_outcome(&outcome, false, Vec::new(), None);
         assert_eq!(turn.decision, "confirm");
@@ -266,6 +280,7 @@ mod tests {
         assert_eq!(turn.tokens, replay_tokens("lock the door"));
         assert_eq!(turn.confirm_prompt.as_deref(), Some("Really?"));
         assert_eq!(turn.candidate_id.as_deref(), Some("sel"));
+        assert_eq!(turn.refine_band.as_deref(), Some("status"));
         let json = serde_json::to_string(&turn).expect("turn json");
         assert!(json.contains("\"last_names\":[]"), "{json}");
         assert!(json.contains("\"evidence_kinds\":[]"), "{json}");
@@ -292,6 +307,7 @@ mod tests {
             retrieval: None,
             policy_trace: None,
             quiet_ack_eligible: false,
+            refine_band: None,
         };
         let turn = turn_from_outcome(&outcome, true, vec!["Kugel".into()], Some("kueche".into()));
         assert_eq!(turn.preferred_area.as_deref(), Some("kueche"));
@@ -320,6 +336,7 @@ mod tests {
             retrieval: None,
             policy_trace: None,
             quiet_ack_eligible: false,
+            refine_band: None,
         };
         let turn = turn_from_outcome(&outcome, false, vec!["HassTurnOn".into()], None);
         assert!(turn.text.is_none());
@@ -354,6 +371,7 @@ mod tests {
             retrieval: None,
             policy_trace: None,
             quiet_ack_eligible: false,
+            refine_band: None,
         };
         let journal = ConversationJournal::open(&dir);
         journal.append(turn_from_outcome(&outcome, false, Vec::new(), None));
@@ -399,6 +417,7 @@ mod tests {
             retrieval: None,
             policy_trace: None,
             quiet_ack_eligible: false,
+            refine_band: None,
         };
         let journal = ConversationJournal::open(&dir);
         journal.append(turn_from_outcome(&outcome, false, Vec::new(), None));

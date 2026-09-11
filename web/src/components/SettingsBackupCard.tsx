@@ -1,4 +1,5 @@
 import { useRef, useState } from "react";
+import { toast } from "sonner";
 import { api, download, uploadSettingsBackup } from "../api";
 import type { Messages } from "../i18n";
 import type { Settings } from "../types";
@@ -14,8 +15,8 @@ import {
 } from "@/components/ui/alert-dialog";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
-import { Field, FieldContent, FieldDescription, FieldGroup, FieldLabel } from "@/components/ui/field";
-import { Switch } from "@/components/ui/switch";
+import { SettingsToggle } from "./SettingsToggle";
+import { Field, FieldDescription, FieldGroup, FieldLabel } from "@/components/ui/field";
 
 export function SettingsBackupCard({
   t,
@@ -36,6 +37,7 @@ export function SettingsBackupCard({
   const pull = async (secrets: boolean) => {
     const path = secrets ? "/api/v2/settings/backup?secrets=1" : "/api/v2/settings/backup";
     await download(path, "klar-settings.tar.gz");
+    toast.success(t.settingsBackupDownload);
     setStatus(t.settingsBackupDownload);
   };
 
@@ -44,7 +46,10 @@ export function SettingsBackupCard({
       setConfirmSecrets(true);
       return;
     }
-    void pull(false).catch(() => setStatus(t.settingsBackupRestoreFail));
+    void pull(false).catch(() => {
+      toast.error(t.settingsBackupRestoreFail);
+      setStatus(t.settingsBackupRestoreFail);
+    });
   };
 
   const restore = async () => {
@@ -59,6 +64,7 @@ export function SettingsBackupCard({
     if (fileRef.current) {
       fileRef.current.value = "";
     }
+    toast.success(t.settingsBackupRestoreOk);
     setStatus(t.settingsBackupRestoreOk);
   };
 
@@ -71,17 +77,13 @@ export function SettingsBackupCard({
         </CardHeader>
         <CardContent>
           <FieldGroup>
-            <Field orientation="horizontal">
-              <FieldContent>
-                <FieldLabel htmlFor="klar-backup-secrets">{t.settingsBackupIncludeKey}</FieldLabel>
-                <FieldDescription>{t.settingsBackupIncludeKeyHint}</FieldDescription>
-              </FieldContent>
-              <Switch
-                id="klar-backup-secrets"
-                checked={includeKey}
-                onCheckedChange={(checked) => setIncludeKey(checked === true)}
-              />
-            </Field>
+            <SettingsToggle
+              id="klar-backup-secrets"
+              label={t.settingsBackupIncludeKey}
+              description={t.settingsBackupIncludeKeyHint}
+              checked={includeKey}
+              onCheckedChange={setIncludeKey}
+            />
             <Field>
               <FieldLabel>{t.settingsBackupPickFile}</FieldLabel>
               <input
@@ -118,7 +120,10 @@ export function SettingsBackupCard({
             <AlertDialogCancel>{t.cancel}</AlertDialogCancel>
             <AlertDialogAction
               onClick={() => {
-                void pull(true).catch(() => setStatus(t.settingsBackupRestoreFail));
+                void pull(true).catch(() => {
+                  toast.error(t.settingsBackupRestoreFail);
+                  setStatus(t.settingsBackupRestoreFail);
+                });
               }}
             >
               {t.settingsBackupDownload}
@@ -136,7 +141,10 @@ export function SettingsBackupCard({
             <AlertDialogCancel>{t.cancel}</AlertDialogCancel>
             <AlertDialogAction
               onClick={() => {
-                void restore().catch(() => setStatus(t.settingsBackupRestoreFail));
+                void restore().catch(() => {
+                  toast.error(t.settingsBackupRestoreFail);
+                  setStatus(t.settingsBackupRestoreFail);
+                });
               }}
             >
               {t.settingsBackupRestore}

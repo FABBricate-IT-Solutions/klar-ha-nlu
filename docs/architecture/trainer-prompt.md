@@ -7,7 +7,7 @@ The Klar engine does **not** parse with a model. Chat completions live in Rust (
 3. Writes wait for chat consent: **Allow once** (this call), **Allow** (this tool name for the session), **YOLO** (all trainer writes this session), or **Deny**. `POST /api/v2/policies/trainer/consent` `{ "call_id", "decision": "allow_once"|"allow"|"yolo"|"deny"|"ask_again" }`
 4. The server `validate()`s every write, including under YOLO. Overlays **merge**, they do not replace.
 
-Read tools run immediately (`list_languages`, `search_house`, `get_entity`, `list_lexicon_paths`, `get_lexicon`, `list_matchers`, `list_policies`, `list_gaps`, `validate_proposal`). Write tools: `apply_lexicon`, `apply_match`, `apply_house`, `apply_aliases`.
+Read tools run immediately (`list_languages`, `search_house`, `get_entity`, `list_lexicon_paths`, `get_lexicon`, `list_matchers`, `list_policies`, `list_gaps`, `validate_proposal`). Write tools: `apply_lexicon`, `apply_match`, `apply_house`, `apply_aliases`, `apply_area`.
 
 `prompt_version` in the chat stub is `2`. The stub lists `settings.languages`, schema ids, and gap counts. Details come from tools. Do not assume a German house.
 
@@ -22,7 +22,8 @@ Manual loop (debug): `GET /api/v2/policies/trainer-context` → JSON → `POST /
 | `match` | `apply_match` with known `schema.match_ids` | New matcher ids |
 | `language` | `apply_lexicon` add/remove on known SET_KEYS paths | Verb flips; fillers/particles/`on`/`off` of **this** locale |
 | `house` | `apply_house` PolicyRule upsert by `id` | Effects outside `schema.effects`; entities/areas/floors not on the graph |
-| aliases | `apply_aliases` | Entities not on the graph |
+| aliases | `apply_aliases` | Entities not on the graph; room assignment (`apply_area`) |
+| rooms | `apply_area` with `entity_id`+`area` or `assignments` | Entities/areas not on the graph |
 
 Same `id` as a govern seed (`seed:confirm-lock`, `seed:confirm-cover-close`, `seed:block-area-lock`) **replaces** that seed. To turn a seed off, post a house row with that id and `enabled: false`. Do not invent new `PolicyId` matchers.
 

@@ -140,6 +140,16 @@ class ConfigFlowSchemaTests(unittest.TestCase):
         german = json.loads((ROOT / "custom_components" / "klar_nlu" / "translations" / "de.json").read_text(encoding="utf-8"))
         self.assertIn("operator UI", strings["options"]["step"]["init"]["description"])
         self.assertIn("Operator-UI", german["options"]["step"]["init"]["description"])
+        self.assertEqual(
+            set(strings["options"]["step"]["init"]["data"]),
+            {"mode", "url", "token", "assist_filter", "channel"},
+        )
+        self.assertEqual(
+            set(strings["options"]["step"]["init"]["data_description"]),
+            {"token", "assist_filter", "channel", "mode"},
+        )
+        self.assertIn("{apps}", strings["options"]["step"]["init"]["description"])
+        self.assertIn("{apps}", german["options"]["step"]["init"]["description"])
         self.assertEqual(strings["selector"]["nlu_language"]["options"]["system"], "System language")
         self.assertEqual(german["selector"]["nlu_language"]["options"]["system"], "Systemsprache")
         self.assertEqual(strings["entity"]["select"]["personality"]["name"], "Personality")
@@ -149,6 +159,24 @@ class ConfigFlowSchemaTests(unittest.TestCase):
         src = (ROOT / "custom_components" / "klar_nlu" / "config_flow.py").read_text(encoding="utf-8")
         self.assertIn('f"http://{host}.local.hass.io:10520"', src)
         self.assertNotIn('f"http://{host}:10520"', src)
+
+
+class AddonDetectionTests(unittest.TestCase):
+    def test_addon_status_note_mentions_detected_app(self) -> None:
+        hass = types.SimpleNamespace(
+            data={
+                "frontend_panels": {
+                    "klar_nlu_staging": types.SimpleNamespace(component_name="hassio")
+                }
+            },
+            config=types.SimpleNamespace(language="de"),
+        )
+        self.assertEqual(config_flow.detected_klar_apps(hass), ["Klar NLU (Staging)"])
+        self.assertIn("Klar NLU (Staging)", config_flow.addon_status_note(hass))
+        hass.config.language = "en"
+        self.assertIn("Detected", config_flow.addon_status_note(hass))
+        hass.data["frontend_panels"] = {}
+        self.assertIn("No Klar App", config_flow.addon_status_note(hass))
 
 
 if __name__ == "__main__":

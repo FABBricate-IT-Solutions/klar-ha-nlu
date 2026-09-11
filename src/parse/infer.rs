@@ -50,7 +50,7 @@ fn refine_tokens(action: Action, tokens: &[String], number: Option<i32>, questio
     if matches!(action, Action::On | Action::Off) && tokens.iter().any(|t| catalog().timer_nouns().contains(t.as_str())) {
         return if matches!(action, Action::Off) { Action::TimerCancel } else { Action::TimerStart };
     }
-    if matches!(action, Action::FanSpeed | Action::TimerStart | Action::TimerAdd)
+    if matches!(action, Action::FanSpeed | Action::TimerStart | Action::TimerAdd | Action::TimerRemove)
         && number.is_none()
         && (matches!(action, Action::FanSpeed) || question || tokens.iter().any(|t| catalog().timer_query().contains(t.as_str())))
     {
@@ -64,6 +64,16 @@ fn refine_tokens(action: Action, tokens: &[String], number: Option<i32>, questio
 
 pub(crate) fn mentions_lamp_fixture(tokens: &[String]) -> bool {
     tokens.iter().any(|token| token == "lamp" || catalog().lamp_fixture().contains(token.as_str()))
+}
+
+pub(crate) fn mentions_fixture_noun(tokens: &[String]) -> bool {
+    let cat = catalog();
+    cat.any(tokens, cat.named_device())
+        || cat.any(tokens, cat.bedside())
+        || cat.any(tokens, cat.ceiling())
+        || cat.any(tokens, cat.island())
+        || cat.any(tokens, cat.pendant())
+        || mentions_lamp_fixture(tokens)
 }
 
 fn session_domain(session: &Session, tokens: &[String]) -> Option<&'static str> {
@@ -129,6 +139,7 @@ fn bind_domain_with(action: Action, tokens: &[String], number: Option<i32>, doma
 pub(crate) fn prefer_action(actions: &[(usize, Action)]) -> Option<Action> {
     const RANK: &[Action] = &[
         Action::TimerAdd,
+        Action::TimerRemove,
         Action::TimerCancel,
         Action::TimerPause,
         Action::TimerStart,
@@ -264,28 +275,6 @@ pub(crate) fn looks_like_correction(tokens: &[String]) -> bool {
     catalog().correction().iter().any(|w| blob.contains(w)) || catalog().correction_phrases().iter().any(|phrase| blob.contains(phrase))
 }
 
-pub(crate) fn pick_clarification(tokens: &[String], session: &Session) -> Option<String> {
-    let pending = &session.pending_clarify()?.options;
-    if tokens.iter().any(|t| catalog().clarify_pick().contains(t.as_str())) {
-        return pending.first().cloned();
-    }
-    let blob = join_tokens(tokens);
-    pending
-        .iter()
-        .find(|id| {
-            let tail = id.rsplit('.').next().unwrap_or(id).replace('_', " ");
-            let folded = fold_umlaut(&tail);
-            blob.contains(&folded)
-                || tokens.iter().any(|t| {
-                    let aliases = fixture_aliases(t);
-                    aliases
-                        .iter()
-                        .any(|a| (folded.contains(a) && a.len() > 2) || tail.split_whitespace().any(|p| a.contains(p) && p.len() > 2))
-                })
-        })
-        .cloned()
-}
-
 pub(crate) fn fixture_matches(entity: &EntityRec, needle: &str) -> bool {
     let blob = format!("{} {} {}", entity.entity_id, fold_umlaut(&entity.name), entity.aliases.join(" "));
     let hits = fixture_aliases(needle);
@@ -298,7 +287,7 @@ pub(crate) fn fixture_matches(entity: &EntityRec, needle: &str) -> bool {
     }
 }
 
-fn fixture_aliases(token: &str) -> Vec<&str> {
+pub(crate) fn fixture_aliases(token: &str) -> Vec<&str> {
     let cat = catalog();
     let aliases = cat.fixture_alias(token);
     let mut out: Vec<&str> = if aliases.is_empty() { vec![token] } else { aliases.to_vec() };
@@ -310,6 +299,7 @@ fn fixture_aliases(token: &str) -> Vec<&str> {
     }
     if token == "lamp" || cat.lamp_fixture().contains(token) {
         out.extend(["lamp", "lampe"]);
+        out.extend(cat.lamp_fixture().iter().copied());
     }
     if cat.bedside().contains(token) {
         out.extend(["nacht", "nachttisch", "bedside"]);

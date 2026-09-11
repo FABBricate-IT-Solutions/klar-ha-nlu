@@ -57,7 +57,51 @@ def _on_supervisor(hass: Any) -> bool:
     return "hassio" in components
 
 
+_ADDON_SIDEBAR = {
+    "klar_nlu": "Klar NLU",
+    "klar_nlu_staging": "Klar NLU (Staging)",
+}
+
+
+def _panel_component(panel: object) -> str:
+    name = getattr(panel, "component_name", None)
+    if name:
+        return str(name)
+    if isinstance(panel, dict):
+        return str(panel.get("component_name") or "")
+    return ""
+
+
+def detected_klar_apps(hass: Any) -> list[str]:
+    panels = (getattr(hass, "data", None) or {}).get("frontend_panels") or {}
+    if not isinstance(panels, dict):
+        return []
+    found: list[str] = []
+    for path, title in _ADDON_SIDEBAR.items():
+        panel = panels.get(path)
+        if panel is not None and _panel_component(panel) == "hassio":
+            found.append(title)
+    return found
+
+
+def addon_status_note(hass: Any) -> str:
+    names = detected_klar_apps(hass)
+    lang = str(getattr(getattr(hass, "config", None), "language", "") or "")
+    german = lang.startswith("de")
+    if not names:
+        return (
+            "Keine Klar-App in der Sidebar erkannt."
+            if german
+            else "No Klar App is currently in the sidebar."
+        )
+    listed = ", ".join(names)
+    if german:
+        return f"Erkannt: {listed}. Engine auf App oder mitgelieferte Engine stellen."
+    return f"Detected: {listed}. Set Engine to the App or the bundled process."
+
+
 def _options_schema() -> vol.Schema:
+    # Connection glue only. Product knobs stay off this form.
     return vol.Schema(
         {
             vol.Optional(CONF_MODE, default=MODE_LOCAL): selector.SelectSelector(
@@ -200,6 +244,7 @@ class KlarOptionsFlow(config_entries.OptionsFlow):
                             _options_schema(), user_input
                         ),
                         errors={"base": "invalid_url"},
+                        description_placeholders={"apps": addon_status_note(self.hass)},
                     )
                 data[CONF_URL] = url
             self.hass.config_entries.async_update_entry(
@@ -253,4 +298,5 @@ class KlarOptionsFlow(config_entries.OptionsFlow):
         return self.async_show_form(
             step_id="init",
             data_schema=self.add_suggested_values_to_schema(_options_schema(), suggested),
+            description_placeholders={"apps": addon_status_note(self.hass)},
         )

@@ -207,6 +207,7 @@ fn finish(
         retrieval: None,
         policy_trace: draft.policy_trace.clone(),
         quiet_ack_eligible: false,
+        refine_band: None,
     };
     let values: Vec<String> = outcome.evidence.iter().map(|item| item.value.clone()).collect();
     outcome.retrieval = retrieval::build(context, &outcome.decision, &values);
@@ -235,6 +236,7 @@ fn finish(
     outcome.enforce_output_caps();
     outcome.quiet_ack_eligible =
         matches!(outcome.decision, ParseDecision::Execute) && outcome.plan.as_ref().is_some_and(IntentPlan::quiet_ack_eligible);
+    outcome.refine_band = ParseOutcome::classify_refine_band(&outcome.decision, outcome.plan.as_ref());
     PipelineResult { outcome, commit: draft.commit }
 }
 
@@ -253,6 +255,9 @@ fn attach_policy_trace(draft: &mut Draft, parse_trace: &ParseTrace) {
 }
 
 fn apply_resolved_lock_pair(ranking: &mut super::ranking::RankingResult, context: &ParseContext<'_>, tokens: &[String]) {
+    if ranking.competing && !paired_lock_command(tokens) {
+        return;
+    }
     let locks = crate::parse::resolve::resolve(tokens, context.home, Some("lock"))
         .entities
         .into_iter()
@@ -305,6 +310,11 @@ fn apply_resolved_lock_pair(ranking: &mut super::ranking::RankingResult, context
             evidence: Vec::new(),
         });
     }
+}
+
+fn paired_lock_command(tokens: &[String]) -> bool {
+    let cat = crate::lang::catalog();
+    tokens.iter().any(|token| cat.is_conj(token)) && (cat.any(tokens, cat.lock_nouns()) || cat.any(tokens, cat.door_nouns()))
 }
 
 fn dedup_intents(intents: &mut Vec<Intent>) {

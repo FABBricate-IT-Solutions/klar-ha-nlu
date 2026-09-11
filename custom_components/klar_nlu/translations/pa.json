@@ -23,33 +23,18 @@
     "step": {
       "init": {
         "title": "Klar NLU",
-        "description": "The personality is stored here, so it survives reinstalling the Klar app.",
+        "description": "ਆਵਾਜ਼, ਭਾਸ਼ਾਵਾਂ ਅਤੇ LLM Klar operator UI (ਸੈਟਿੰਗਾਂ). This form only connects the engine: URL, token, and channel. {apps}",
         "data": {
           "mode": "ਇੰਜਣ",
-          "personality": "ਸ਼ਖਸੀਅਤ",
-          "languages": "ਭਾਸ਼ਾਵਾਂ",
-          "allow_llm_tools": "Allow Home Assistant Assist tools on engine chat",
-          "refine_speech": "LLM ਨੂੰ NLU ਜਵਾਬ ਠੀਕ ਕਰਨ ਦਿਓ",
-          "refine_prompt": "ਸੁਧਾਰ ਪ੍ਰੋੰਪਟ",
           "url": "Klar API URL",
           "token": "ਲਿਖਣ ਟੋਕਨ",
           "assist_filter": "Only control entities exposed to Assist",
-          "nlu_rag": "NLU-RAG (ਵਿਕਲਪਿਕ)",
-          "quiet_ack": "Short confirmation (chime)",
-          "calendar_llm": "ਕੈਲੰਡਰ ਸਵਾਲ LLM ਨੂੰ ਭੇਜੋ",
           "channel": "ਰਿਲੀਜ਼ ਚੈਨਲ"
         },
         "data_description": {
-          "personality": "ਇਸ ਇੰਟੀਗ੍ਰੇਸ਼ਨ ਵਿੱਚ ਹੈ, Klar ਐਪ ਵਿੱਚ ਨਹੀਂ।",
-          "refine_speech": "Klar still controls devices. The fallback LLM rewrites the reply.",
-          "refine_prompt": "ਆਵਾਜ਼ ਦਾ ਸਿਸਟਮ ਪ੍ਰੋੰਪਟ। ਡਿਵਾਈਸ ਕੰਟਰੋਲ ਨਹੀਂ, ਨਵੇਂ ਤੱਥ ਨਹੀਂ, ਉਹੀ ਭਾਸ਼ਾ।",
+          "mode": "App vs bundled engine. Switch anytime. The integration sidebar only appears for the bundled engine.",
           "token": "Klar ਐਪ ਵਾਲਾ ਹੀ ਟੋਕਨ।",
           "assist_filter": "On: only what Assist may see. Off: hidden entities too.",
-          "nlu_rag": "ਡਿਫਾਲਟ ਬੰਦ। ਗੱਲਬਾਤ ਵਿੱਚ ਸਿਰਫ਼ ਮਿਲਿਆ ਟੁਕੜਾ ਬੈਕਅੱਪ ਮਾਡਲ ਨੂੰ ਜਾਂਦਾ ਹੈ।",
-          "quiet_ack": "ਸਧਾਰਨ ਲਾਈਟ ਚਾਲੂ/ਬੰਦ ਤੇ ਵਾਕ ਨਹੀਂ, ਉਪਗ੍ਰਹਿ ਤੇ ਛੋਟੀ ਆਵਾਜ਼।",
-          "calendar_llm": "ਡਿਫਾਲਟ ਬੰਦ। ਗੱਲਬਾਤ ਵਿੱਚ ਸਿਰਫ਼ ਮਿਲਿਆ ਟੁਕੜਾ ਬੈਕਅੱਪ ਮਾਡਲ ਨੂੰ ਜਾਂਦਾ ਹੈ। ਕੈਲੰਡਰ ਸਵਾਲ LLM ਨੂੰ ਭੇਜੋ.",
-          "allow_llm_tools": "Off by default. On: after Klar parses, the engine chat model may call Home Assistant Assist tools (names come from Core, already prefixed). Off: conversation only.",
-          "languages": "ਡਿਫਾਲਟ Home Assistant ਸਿਸਟਮ ਭਾਸ਼ਾ ਹੈ।",
           "channel": "ਕਿਸੇ ਵੀ ਵੇਲੇ। Staging Klar NLU (Staging) ਵੱਲ ਹੈ।"
         }
       }
@@ -115,6 +100,11 @@
     "switch": {
       "quiet_ack": {
         "name": "ਛੋਟੀ ਪੁਸ਼ਟੀ"
+      }
+    },
+    "ai_task": {
+      "ai_task": {
+        "name": "AI ਕਾਰਜ"
       }
     },
     "sensor": {

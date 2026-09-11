@@ -127,7 +127,7 @@ mod tests {
     }
 
     #[tokio::test]
-    async fn supervisor_snapshot_without_token_is_accepted() {
+    async fn supervisor_snapshot_without_token_is_rejected() {
         let dir = std::env::temp_dir().join(format!("klar-home-sync-sup-{}", std::process::id()));
         let state = AppState::new(
             LoadedHome {
@@ -149,10 +149,37 @@ mod tests {
             "assist": ["light.living"]
         }))
         .expect("snapshot json");
-        let ack = api_home(State(state.clone()), ConnectInfo("172.30.32.1:9".parse().unwrap()), HeaderMap::new(), Json(body))
-            .await
-            .expect("accepted")
-            .0;
+        let err = api_home(State(state), ConnectInfo("172.30.32.1:9".parse().unwrap()), HeaderMap::new(), Json(body)).await.unwrap_err();
+        assert_eq!(err, StatusCode::UNAUTHORIZED);
+    }
+
+    #[tokio::test]
+    async fn supervisor_snapshot_with_token_is_accepted() {
+        let dir = std::env::temp_dir().join(format!("klar-home-sync-sup-tok-{}", std::process::id()));
+        let state = AppState::new(
+            LoadedHome {
+                graph: HomeGraph::default(),
+                settings: Settings::default(),
+                custom: Vec::new(),
+                language: Default::default(),
+                policies: Vec::new(),
+                speech_bank: Default::default(),
+                match_controls: Vec::new(),
+            },
+            dir,
+            Some("secret".into()),
+        );
+        let body = serde_json::from_value::<HomeSnapshot>(json!({
+            "schema_version": HOME_SCHEMA_VERSION,
+            "entities": [{"entity_id": "light.living", "name": "Living", "area_id": "living"}],
+            "areas": [{"id": "living", "name": "Wohnzimmer"}],
+            "assist": ["light.living"]
+        }))
+        .expect("snapshot json");
+        let mut headers = HeaderMap::new();
+        headers.insert("x-klar-token", "secret".parse().unwrap());
+        let ack =
+            api_home(State(state.clone()), ConnectInfo("172.30.32.1:9".parse().unwrap()), headers, Json(body)).await.expect("accepted").0;
         assert_eq!(ack.entities, 1);
         assert!(state.live_sync.load(Ordering::Relaxed));
     }

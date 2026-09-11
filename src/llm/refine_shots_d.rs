@@ -73,9 +73,9 @@ La temperatura Y. → Si. La temperatura Y.",
     (
         "it",
         "jarvis",
-        "X e acceso. → Of course, sir. X e acceso.
+        "X e acceso. → Certo, signore. X e acceso.
 X e spento. → X e spento.
-La temperatura Y. → Of course, sir. La temperatura Y.",
+La temperatura Y. → Certo, signore. La temperatura Y.",
     ),
     (
         "sv",
@@ -150,9 +150,9 @@ Temperaturen Y. → Ja. Temperaturen Y.",
     (
         "sv",
         "jarvis",
-        "X är på. → Of course, sir. X är på.
+        "X är på. → Javisst, sir. X är på.
 X är av. → X är av.
-Temperaturen Y. → Of course, sir. Temperaturen Y.",
+Temperaturen Y. → Javisst, sir. Temperaturen Y.",
     ),
     (
         "af",
@@ -227,9 +227,9 @@ Die temperatuur Y. → Ja. Die temperatuur Y.",
     (
         "af",
         "jarvis",
-        "X is aan. → Of course, sir. X is aan.
+        "X is aan. → Natuurlik, meneer. X is aan.
 X is af. → X is af.
-Die temperatuur Y. → Of course, sir. Die temperatuur Y.",
+Die temperatuur Y. → Natuurlik, meneer. Die temperatuur Y.",
     ),
     (
         "sl",
@@ -304,9 +304,9 @@ Temperatura Y. → Da. Temperatura Y.",
     (
         "sl",
         "jarvis",
-        "X je prizgan. → Of course, sir. X je prizgan.
+        "X je prizgan. → Seveda, gospod. X je prizgan.
 X je ugasnjen. → X je ugasnjen.
-Temperatura Y. → Of course, sir. Temperatura Y.",
+Temperatura Y. → Seveda, gospod. Temperatura Y.",
     ),
     (
         "zh-CN",
@@ -381,9 +381,9 @@ X关了。 → X关了。
     (
         "zh-CN",
         "jarvis",
-        "X开了。 → Of course, sir. X开了。
+        "X开了。 → 当然，先生。 X开了。
 X关了。 → X关了。
-温度Y。 → Of course, sir. 温度Y。",
+温度Y。 → 当然，先生。 温度Y。",
     ),
     (
         "ur",
@@ -458,9 +458,9 @@ X بند ہے۔ → X بند ہے۔
     (
         "ur",
         "jarvis",
-        "X چالو ہے۔ → Of course, sir. X چالو ہے۔
+        "X چالو ہے۔ → جی ہاں، سر۔ X چالو ہے۔
 X بند ہے۔ → X بند ہے۔
-درجہ حرارت Y۔ → Of course, sir. درجہ حرارت Y۔",
+درجہ حرارت Y۔ → جی ہاں، سر۔ درجہ حرارت Y۔",
     ),
     (
         "et",
@@ -535,9 +535,9 @@ Temperatuur Y. → Jah. Temperatuur Y.",
     (
         "et",
         "jarvis",
-        "X on sees. → Of course, sir. X on sees.
+        "X on sees. → Muidugi, härra. X on sees.
 X on valjas. → X on valjas.
-Temperatuur Y. → Of course, sir. Temperatuur Y.",
+Temperatuur Y. → Muidugi, härra. Temperatuur Y.",
     ),
     (
         "kw",
@@ -612,9 +612,9 @@ An tempredh Y. → Ya. An tempredh Y.",
     (
         "kw",
         "jarvis",
-        "X yw enowys. → Of course, sir. X yw enowys.
+        "X yw enowys. → Yn sur, syrra. X yw enowys.
 X yw difygys. → X yw difygys.
-An tempredh Y. → Of course, sir. An tempredh Y.",
+An tempredh Y. → Yn sur, syrra. An tempredh Y.",
     ),
     (
         "vi",
@@ -689,162 +689,162 @@ Nhiet do Y. → Co. Nhiet do Y.",
     (
         "vi",
         "jarvis",
-        "X dang bat. → Of course, sir. X dang bat.
+        "X dang bat. → Dạ, thưa ông. X dang bat.
 X dang tat. → X dang tat.
-Nhiet do Y. → Of course, sir. Nhiet do Y.",
+Nhiet do Y. → Dạ, thưa ông. Nhiet do Y.",
     ),
     (
         "mr",
         "default",
-        "X चालू आहे। → X चालू आहे।
-X बंद आहे। → X बंद आहे।
-Tapman Y. → Tapman Y.",
+        "X चालू आहे. → X चालू आहे.
+X बंद आहे. → X बंद आहे.
+तापमान Y. → तापमान Y.",
     ),
     (
         "mr",
         "butler",
-        "X चालू आहे। → Theek. X चालू आहे।
-X बंद आहे। → X बंद आहे।
-Tapman Y. → Theek. Tapman Y.",
+        "X चालू आहे. → ठीक. X चालू आहे.
+X बंद आहे. → X बंद आहे.
+तापमान Y. → ठीक. तापमान Y.",
     ),
     (
         "mr",
         "locker",
-        "X चालू आहे। → Kalale. X चालू आहे।
-X बंद आहे। → X बंद आहे।
-Tapman Y. → Kalale. Tapman Y.",
+        "X चालू आहे. → कळाले. X चालू आहे.
+X बंद आहे. → X बंद आहे.
+तापमान Y. → कळाले. तापमान Y.",
     ),
     (
         "mr",
         "fuersorglich",
-        "X चालू आहे। → Aata karto. X चालू आहे।
-X बंद आहे। → X बंद आहे।
-Tapman Y. → Aata karto. Tapman Y.",
+        "X चालू आहे. → आता करतो. X चालू आहे.
+X बंद आहे. → X बंद आहे.
+तापमान Y. → आता करतो. तापमान Y.",
     ),
     (
         "mr",
         "party",
-        "X चालू आहे। → Chala. X चालू आहे।
-X बंद आहे। → X बंद आहे।
-Tapman Y. → Chala. Tapman Y.",
+        "X चालू आहे. → चला. X चालू आहे.
+X बंद आहे. → X बंद आहे.
+तापमान Y. → चला. तापमान Y.",
     ),
     (
         "mr",
         "grantig",
-        "X चालू आहे। → Theek aahe. X चालू आहे।
-X बंद आहे। → X बंद आहे।
-Tapman Y. → Theek aahe. Tapman Y.",
+        "X चालू आहे. → ठीक आहे. X चालू आहे.
+X बंद आहे. → X बंद आहे.
+तापमान Y. → ठीक आहे. तापमान Y.",
     ),
     (
         "mr",
         "sarkastisch",
-        "X चालू आहे। → Nakkich. X चालू आहे।
-X बंद आहे। → X बंद आहे।
-Tapman Y. → Nakkich. Tapman Y.",
+        "X चालू आहे. → नक्कीच. X चालू आहे.
+X बंद आहे. → X बंद आहे.
+तापमान Y. → नक्कीच. तापमान Y.",
     ),
     (
         "mr",
         "pirat",
-        "X चालू आहे। → Aye. X चालू आहे।
-X बंद आहे। → X बंद आहे।
-Tapman Y. → Aye. Tapman Y.",
+        "X चालू आहे. → Aye. X चालू आहे.
+X बंद आहे. → X बंद आहे.
+तापमान Y. → Aye. तापमान Y.",
     ),
     (
         "mr",
         "hippie",
-        "X चालू आहे। → Shant. X चालू आहे।
-X बंद आहे। → X बंद आहे।
-Tapman Y. → Shant. Tapman Y.",
+        "X चालू आहे. → शांत. X चालू आहे.
+X बंद आहे. → X बंद आहे.
+तापमान Y. → शांत. तापमान Y.",
     ),
     (
         "mr",
         "gollum",
-        "X चालू आहे। → Ho. X चालू आहे।
-X बंद आहे। → X बंद आहे।
-Tapman Y. → Ho. Tapman Y.",
+        "X चालू आहे. → हो. X चालू आहे.
+X बंद आहे. → X बंद आहे.
+तापमान Y. → हो. तापमान Y.",
     ),
     (
         "mr",
         "jarvis",
-        "X चालू आहे। → Of course, sir. X चालू आहे।
-X बंद आहे। → X बंद आहे।
-Tapman Y. → Of course, sir. Tapman Y.",
+        "X चालू आहे. → हो, सर. X चालू आहे.
+X बंद आहे. → X बंद आहे.
+तापमान Y. → हो, सर. तापमान Y.",
     ),
     (
         "ka",
         "default",
         "X ჩართულია. → X ჩართულია.
 X გამორთულია. → X გამორთულია.
-Temperatura Y. → Temperatura Y.",
+ტემპერატურა Y. → ტემპერატურა Y.",
     ),
     (
         "ka",
         "butler",
-        "X ჩართულია. → Kargi. X ჩართულია.
+        "X ჩართულია. → კარგი. X ჩართულია.
 X გამორთულია. → X გამორთულია.
-Temperatura Y. → Kargi. Temperatura Y.",
+ტემპერატურა Y. → კარგი. ტემპერატურა Y.",
     ),
     (
         "ka",
         "locker",
-        "X ჩართულია. → Gavige. X ჩართულია.
+        "X ჩართულია. → გავიგე. X ჩართულია.
 X გამორთულია. → X გამორთულია.
-Temperatura Y. → Gavige. Temperatura Y.",
+ტემპერატურა Y. → გავიგე. ტემპერატურა Y.",
     ),
     (
         "ka",
         "fuersorglich",
-        "X ჩართულია. → Ekhla vaketeb. X ჩართულია.
+        "X ჩართულია. → ახლა გავაკეთებ. X ჩართულია.
 X გამორთულია. → X გამორთულია.
-Temperatura Y. → Ekhla vaketeb. Temperatura Y.",
+ტემპერატურა Y. → ახლა გავაკეთებ. ტემპერატურა Y.",
     ),
     (
         "ka",
         "party",
-        "X ჩართულია. → Tsavidet. X ჩართულია.
+        "X ჩართულია. → წავიდეთ. X ჩართულია.
 X გამორთულია. → X გამორთულია.
-Temperatura Y. → Tsavidet. Temperatura Y.",
+ტემპერატურა Y. → წავიდეთ. ტემპერატურა Y.",
     ),
     (
         "ka",
         "grantig",
-        "X ჩართულია. → Kargi. X ჩართულია.
+        "X ჩართულია. → კარგი. X ჩართულია.
 X გამორთულია. → X გამორთულია.
-Temperatura Y. → Kargi. Temperatura Y.",
+ტემპერატურა Y. → კარგი. ტემპერატურა Y.",
     ),
     (
         "ka",
         "sarkastisch",
-        "X ჩართულია. → Rataqmaunda. X ჩართულია.
+        "X ჩართულია. → რა თქმა უნდა. X ჩართულია.
 X გამორთულია. → X გამორთულია.
-Temperatura Y. → Rataqmaunda. Temperatura Y.",
+ტემპერატურა Y. → რა თქმა უნდა. ტემპერატურა Y.",
     ),
     (
         "ka",
         "pirat",
         "X ჩართულია. → Aye. X ჩართულია.
 X გამორთულია. → X გამორთულია.
-Temperatura Y. → Aye. Temperatura Y.",
+ტემპერატურა Y. → Aye. ტემპერატურა Y.",
     ),
     (
         "ka",
         "hippie",
-        "X ჩართულია. → Mshvidad. X ჩართულია.
+        "X ჩართულია. → მშვიდად. X ჩართულია.
 X გამორთულია. → X გამორთულია.
-Temperatura Y. → Mshvidad. Temperatura Y.",
+ტემპერატურა Y. → მშვიდად. ტემპერატურა Y.",
     ),
     (
         "ka",
         "gollum",
-        "X ჩართულია. → Ki. X ჩართულია.
+        "X ჩართულია. → დიახ. X ჩართულია.
 X გამორთულია. → X გამორთულია.
-Temperatura Y. → Ki. Temperatura Y.",
+ტემპერატურა Y. → დიახ. ტემპერატურა Y.",
     ),
     (
         "ka",
         "jarvis",
-        "X ჩართულია. → Of course, sir. X ჩართულია.
+        "X ჩართულია. → რა თქმა უნდა, ბატონო. X ჩართულია.
 X გამორთულია. → X გამორთულია.
-Temperatura Y. → Of course, sir. Temperatura Y.",
+ტემპერატურა Y. → რა თქმა უნდა, ბატონო. ტემპერატურა Y.",
     ),
 ];

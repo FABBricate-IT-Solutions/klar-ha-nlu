@@ -3,34 +3,34 @@ timers/timers::abstract_start:
 timers/timers::abstract_start_hours_minutes:
 - জ্বালাও টাইমার abstract 20 min
 timers/timers::abstract_start_seconds:
-- জ্বালাও টাইমার abstract
+- জ্বালাও টাইমার abstract 45 sec
 timers/timers::cancel_all_timers:
 - নিভাও সব টাইমার
 timers/timers::timer_laundry_cancel:
-- জ্বালাও টাইমার laundry
+- নিভাও টাইমার laundry
 timers/timers::timer_laundry_decrease:
 - জ্বালাও টাইমার laundry 5 min
 timers/timers::timer_laundry_increase:
 - জ্বালাও টাইমার laundry 16 min
 timers/timers::timer_laundry_pause:
-- নিভাও টাইমার laundry
+- থামাও টাইমার laundry
 timers/timers::timer_laundry_start:
-- জ্বালাও টাইমার laundry
+- জ্বালাও টাইমার laundry 90 sec
 timers/timers::timer_laundry_status:
 - কি টাইমার laundry
 timers/timers::timer_laundry_unpause:
-- জ্বালাও টাইমার laundry
+- চালাও টাইমার laundry
 timers/timers::timer_oven_cancel:
-- জ্বালাও টাইমার oven
+- নিভাও টাইমার oven
 timers/timers::timer_oven_decrease:
 - জ্বালাও টাইমার oven 44 min
 timers/timers::timer_oven_increase:
 - জ্বালাও টাইমার oven 30 min
 timers/timers::timer_oven_pause:
-- নিভাও টাইমার oven
+- থামাও টাইমার oven
 timers/timers::timer_oven_start:
 - জ্বালাও টাইমার oven 2 min
 timers/timers::timer_oven_status:
 - কি টাইমার oven
 timers/timers::timer_oven_unpause:
-- জ্বালাও টাইমার oven
+- চালাও টাইমার oven

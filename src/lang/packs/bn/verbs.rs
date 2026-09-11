@@ -14,6 +14,7 @@ pub(super) const VERBS: &[(&str, VerbKind)] = &[
     ("jharu", VerbKind::VacuumNoun),
     ("khol", VerbKind::Open),
     ("ki", VerbKind::Query),
+    ("komau", VerbKind::Lower),
     ("madhyam", VerbKind::Dim),
     ("nibhao", VerbKind::Off),
     ("orange", VerbKind::Color),

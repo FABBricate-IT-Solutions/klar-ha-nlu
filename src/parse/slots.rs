@@ -174,7 +174,13 @@ pub(crate) fn fill_intent(
         if let Some(d) = domain {
             if !matches!(
                 action,
-                Action::TimerStart | Action::TimerAdd | Action::TimerCancel | Action::TimerPause | Action::ListAdd | Action::ListComplete
+                Action::TimerStart
+                    | Action::TimerAdd
+                    | Action::TimerRemove
+                    | Action::TimerCancel
+                    | Action::TimerPause
+                    | Action::ListAdd
+                    | Action::ListComplete
             ) {
                 intent = intent.with("domain", d);
             }
@@ -208,7 +214,7 @@ pub(crate) fn fill_intent(
                 intent = intent.with("position", n.to_string());
             }
         }
-        Action::TimerStart | Action::TimerAdd => {
+        Action::TimerStart | Action::TimerAdd | Action::TimerRemove => {
             if let Some(n) = number {
                 intent = intent.with(timer_unit(tokens), n.to_string());
             }
@@ -240,9 +246,11 @@ pub(crate) fn fill_list_intent(action: Action, tokens: &[String], target: Option
 }
 
 fn timer_unit(tokens: &[String]) -> &'static str {
-    if catalog().any(tokens, catalog().hours()) {
+    if catalog().any(tokens, catalog().hours()) || tokens.iter().any(|token| matches!(token.as_str(), "hour" | "hours" | "hrs")) {
         "hours"
-    } else if catalog().any(tokens, catalog().seconds()) {
+    } else if catalog().any(tokens, catalog().seconds())
+        || tokens.iter().any(|token| matches!(token.as_str(), "second" | "seconds" | "sec" | "secs"))
+    {
         "seconds"
     } else {
         "minutes"
@@ -308,6 +316,7 @@ pub(crate) fn intent_from_action(action: Action, tokens: &[String]) -> Intent {
         Action::Unlock => Intent::new("HassTurnOff").with("domain", "lock"),
         Action::TimerStart => Intent::new("HassStartTimer"),
         Action::TimerAdd => Intent::new("HassIncreaseTimer"),
+        Action::TimerRemove => Intent::new("HassDecreaseTimer"),
         Action::TimerCancel => Intent::new("HassCancelTimer"),
         Action::TimerPause => Intent::new("HassPauseTimer"),
         Action::ListAdd => Intent::new("HassListAddItem"),
@@ -361,12 +370,84 @@ pub(crate) fn timer_clause(
         .iter()
         .map(|id| fill_intent(action, tokens, number, Some(id), None, Some("timer")))
         .collect();
-    let start = matches!(action, Action::TimerStart | Action::TimerAdd) && number.is_some();
+    if matches!(action, Action::TimerStart) && number.is_none() {
+        if intents.is_empty() {
+            intents.push(fill_intent(action, tokens, None, None, None, None));
+        }
+        intents.retain(|i| i.name != "Unknown");
+        return (!intents.is_empty()).then_some(ClauseOut::Intents(intents));
+    }
+    let start = matches!(action, Action::TimerStart | Action::TimerAdd | Action::TimerRemove) && number.is_some();
     if intents.is_empty() && (start || matches!(action, Action::TimerCancel | Action::TimerPause)) {
         intents.push(fill_intent(action, tokens, number, None, None, None));
     }
     intents.retain(|i| i.name != "Unknown");
     (!intents.is_empty()).then_some(ClauseOut::Intents(intents))
+}
+
+pub(crate) fn start_timer_missing_duration(intent: &Intent) -> bool {
+    intent.name == "HassStartTimer" && timer_missing_duration(intent) && !named_timer_target(intent)
+}
+
+fn named_timer_target(intent: &Intent) -> bool {
+    intent.slot("timer_name").is_some() || intent.slot("entity_id").is_some_and(|id| id.starts_with("timer.") && !id.contains("abstract"))
+}
+
+fn timer_missing_duration(intent: &Intent) -> bool {
+    intent.slot("hours").is_none() && intent.slot("minutes").is_none() && intent.slot("seconds").is_none()
+}
+
+pub(crate) fn needs_timer_duration_prompt(intent: &Intent, tokens: &[String]) -> bool {
+    match intent.name.as_str() {
+        "HassStartTimer" => start_timer_missing_duration(intent) && !timer_keeps_existing_duration(tokens),
+        "HassIncreaseTimer" | "HassDecreaseTimer" => timer_missing_duration(intent),
+        _ => false,
+    }
+}
+
+pub(crate) fn fill_pending_timer_duration(template: &Intent, tokens: &[String]) -> Option<Intent> {
+    if !matches!(template.name.as_str(), "HassStartTimer" | "HassIncreaseTimer" | "HassDecreaseTimer") {
+        return None;
+    }
+    let number = crate::parse::numbers::first_number(tokens)?;
+    if !duration_reply(tokens) {
+        return None;
+    }
+    Some(template.clone().with_set(timer_unit(tokens), number.to_string()))
+}
+
+fn duration_reply(tokens: &[String]) -> bool {
+    let cat = catalog();
+    if cat.any(tokens, cat.hours())
+        || cat.any(tokens, cat.minutes())
+        || cat.any(tokens, cat.seconds())
+        || tokens.iter().any(|token| {
+            matches!(
+                token.as_str(),
+                "hour" | "hours" | "hrs" | "minute" | "minutes" | "min" | "mins" | "second" | "seconds" | "sec" | "secs"
+            )
+        })
+    {
+        return true;
+    }
+    tokens.len() <= 3
+        && tokens.iter().all(|token| {
+            token.parse::<i32>().is_ok()
+                || matches!(token.as_str(), "um" | "fuer" | "for" | "by" | "eine" | "einen" | "ein" | "a" | "an")
+                || cat.number(token).is_some()
+        })
+}
+
+fn timer_keeps_existing_duration(tokens: &[String]) -> bool {
+    let cat = catalog();
+    cat.any(tokens, cat.playback_resume())
+        || cat.any(tokens, cat.timer_pause())
+        || cat.any(tokens, cat.timer_cancel())
+        || cat.any(tokens, cat.timer_add())
+        || tokens.iter().any(|token| {
+            matches!(cat.verb(token), Some(VerbKind::Play | VerbKind::Pause))
+                || matches!(token.as_str(), "hold" | "halt" | "unpause" | "resume" | "restart")
+        })
 }
 
 pub(crate) fn laundry_switch_clause(

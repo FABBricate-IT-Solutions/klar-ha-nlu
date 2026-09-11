@@ -1,39 +1,46 @@
 //! Trainer tool handlers. Writes merge and always validate first.
 
-use crate::home::gaps::leftover;
-use crate::home::overlay::{load_overlay, save_overlay};
+use crate::home::overlay::load_overlay;
 use crate::io::lang_api::persist_language_overlay;
 use crate::io::state::AppState;
-use crate::io::trainer::{validate, ProposalIn};
-use crate::io::trainer_reads::{self, with_view};
-use crate::io::{trainer_settings, trainer_turns};
-use crate::lang::{catalog_for, is_lexicon_path, lexicon_set_paths, LanguageOverlay};
+use crate::io::trainer::validate_args;
+use crate::io::trainer_args::{arg_str, string_list};
+use crate::io::trainer_reads::with_view;
+use crate::io::{trainer_entity, trainer_house, trainer_phrases, trainer_reads, trainer_settings, trainer_turns};
+use crate::lang::{is_lexicon_path, lexicon_set_paths, LanguageOverlay};
 use crate::parse::{match_catalog, sanitize_match_controls};
-use crate::types::{sanitize_rules, MatchControl, PolicyRule};
+use crate::types::MatchControl;
 use serde_json::{json, Value};
 
 pub async fn dispatch(state: &AppState, name: &str, args: &Value) -> Result<Value, String> {
     match name {
         "list_languages" => Ok(with_view("languages", json!({ "languages": state.settings.lock().await.languages }))),
-        "search_house" => search_house(state, args).await,
-        "get_entity" => get_entity(state, args).await,
+        "search_house" => trainer_entity::search_house(state, args).await,
+        "get_entity" => trainer_entity::get_entity(state, args).await,
         "list_lexicon_paths" => Ok(with_view("lexicon", json!({ "paths": lexicon_set_paths() }))),
         "get_lexicon" => get_lexicon(state, args).await,
         "list_matchers" => list_matchers(state).await,
         "list_policies" => Ok(with_view("policies", json!({ "policies": state.policies.lock().await.clone() }))),
-        "list_gaps" => list_gaps(state).await,
-        "validate_proposal" => validate_now(state, args).await,
+        "list_seeds" => trainer_house::list_seeds(state).await,
+        "list_speech" => trainer_house::list_speech(state).await,
+        "list_gaps" => trainer_entity::list_gaps(state).await,
+        "validate_proposal" => validate_args(state, args).await,
         "explain_klar" => trainer_reads::explain_klar(args),
         "try_sentence" => trainer_reads::try_sentence(state, args).await,
         "list_areas" => trainer_reads::list_areas(state).await,
+        "list_floors" => trainer_reads::list_floors(state).await,
         "count_house" => trainer_reads::count_house(state).await,
         "list_engine" => trainer_settings::list_engine(state).await,
         "list_phrases" => trainer_reads::list_phrases(state).await,
         "list_turns" => trainer_turns::list_turns(state, args).await,
         "apply_lexicon" => apply_lexicon(state, args).await,
+        "apply_phrases" => trainer_phrases::apply_phrases(state, args).await,
         "apply_match" => apply_match(state, args).await,
-        "apply_house" => apply_house(state, args).await,
+        "apply_house" => trainer_house::apply_house(state, args).await,
         "apply_aliases" => apply_aliases(state, args).await,
+        "apply_entity" => trainer_entity::apply_entity(state, args).await,
+        "apply_area" => apply_area(state, args).await,
+        "apply_speech" => trainer_house::apply_speech(state, args).await,
         "apply_engine" => trainer_settings::apply_engine(state, args).await,
         "apply_ui" => trainer_settings::apply_ui(state, args).await,
         _ => Err(format!("unknown tool {name}")),
@@ -44,31 +51,22 @@ pub async fn preview_write(state: &AppState, name: &str, args: &Value) -> Result
     match name {
         "apply_lexicon" => {
             let proposal = lexicon_proposal(state, args).await?;
-            let out = validate_now(state, &proposal).await?;
-            Ok(out)
+            validate_args(state, &proposal).await
         }
+        "apply_phrases" => trainer_phrases::preview_phrases(state, args).await,
         "apply_match" => {
             let mut body = args.clone();
             body["layer"] = json!("match");
-            validate_now(state, &body).await
+            validate_args(state, &body).await
         }
-        "apply_house" => {
-            let mut body = args.clone();
-            body["layer"] = json!("house");
-            validate_now(state, &body).await
+        "apply_house" => trainer_house::preview_house(state, args).await,
+        "apply_aliases" => preview_aliases(state, args).await,
+        "apply_entity" => trainer_entity::preview_entity(state, args).await,
+        "apply_area" => {
+            let assigned = resolve_area_rows(state, args).await?;
+            Ok(json!({"ok": true, "errors": [], "warnings": [], "dry_run": [], "assigned": assigned}))
         }
-        "apply_aliases" => {
-            let entity_id = arg_str(args, "entity_id")?;
-            let aliases = string_list(args, "aliases");
-            if aliases.is_empty() {
-                return Err("aliases required".into());
-            }
-            let home = state.home.snapshot().await;
-            if !home.entities.iter().any(|entity| entity.entity_id == entity_id) {
-                return Err("entity is not on the graph".into());
-            }
-            Ok(json!({"ok": true, "errors": [], "warnings": [], "dry_run": []}))
-        }
+        "apply_speech" => trainer_house::preview_speech(state, args).await,
         "apply_engine" => {
             let settings = state.settings.lock().await.clone();
             trainer_settings::preview_engine(&settings, args)
@@ -89,49 +87,43 @@ pub fn write_summary(name: &str, args: &Value) -> String {
             string_list(args, "add").len(),
             string_list(args, "remove").len()
         ),
+        "apply_phrases" => format!(
+            "phrases +{} −{}",
+            args.get("add").and_then(Value::as_array).map(Vec::len).unwrap_or(0),
+            string_list(args, "remove").len()
+        ),
         "apply_match" => format!("match ×{}", args.get("match_controls").and_then(Value::as_array).map(Vec::len).unwrap_or(0)),
-        "apply_house" => format!("house ×{}", args.get("policies").and_then(Value::as_array).map(Vec::len).unwrap_or(0)),
+        "apply_house" => format!(
+            "house ×{} −{}",
+            args.get("policies").and_then(Value::as_array).map(Vec::len).unwrap_or(0),
+            string_list(args, "remove").len()
+        ),
         "apply_aliases" => {
             format!("aliases {} +{}", args.get("entity_id").and_then(Value::as_str).unwrap_or("?"), string_list(args, "aliases").len())
         }
+        "apply_entity" => format!("entity {}", args.get("entity_id").and_then(Value::as_str).unwrap_or("?")),
+        "apply_area" => {
+            let n = args.get("assignments").and_then(Value::as_array).map(Vec::len).unwrap_or(1);
+            format!("area ×{n}")
+        }
+        "apply_speech" => format!("speech {}", args.get("rule_id").and_then(Value::as_str).unwrap_or("?")),
         "apply_engine" => trainer_settings::engine_summary(args),
         "apply_ui" => trainer_settings::ui_summary(args),
         _ => name.to_string(),
     }
 }
 
-async fn search_house(state: &AppState, args: &Value) -> Result<Value, String> {
-    let query = arg_str(args, "q")?.to_lowercase();
-    let home = state.home.snapshot().await;
-    let entities: Vec<Value> = home
-        .entities
-        .iter()
-        .filter(|entity| {
-            entity.entity_id.to_lowercase().contains(&query)
-                || entity.name.to_lowercase().contains(&query)
-                || entity.aliases.iter().any(|alias| alias.to_lowercase().contains(&query))
-        })
-        .take(24)
-        .map(|entity| json!({"entity_id": entity.entity_id, "name": entity.name, "area": entity.area, "aliases": entity.aliases}))
-        .collect();
-    let areas: Vec<Value> = home
-        .areas
-        .iter()
-        .filter(|area| area.area_id.to_lowercase().contains(&query) || area.name.to_lowercase().contains(&query))
-        .take(12)
-        .map(|area| json!({"area_id": area.area_id, "name": area.name}))
-        .collect();
-    Ok(with_view("house", json!({ "entities": entities, "areas": areas })))
-}
-
-async fn get_entity(state: &AppState, args: &Value) -> Result<Value, String> {
+async fn preview_aliases(state: &AppState, args: &Value) -> Result<Value, String> {
     let entity_id = arg_str(args, "entity_id")?;
+    let aliases = string_list(args, "aliases");
+    if aliases.is_empty() {
+        return Err("aliases required".into());
+    }
     let home = state.home.snapshot().await;
-    home.entities
-        .iter()
-        .find(|entity| entity.entity_id == entity_id)
-        .map(|entity| with_view("entity", serde_json::to_value(entity).unwrap_or(json!({}))))
-        .ok_or_else(|| "entity is not on the graph".into())
+    if !home.entities.iter().any(|entity| entity.entity_id == entity_id) {
+        return Err("entity is not on the graph".into());
+    }
+    Ok(json!({"ok": true, "errors": [], "warnings": [], "dry_run": []}))
 }
 
 async fn get_lexicon(state: &AppState, args: &Value) -> Result<Value, String> {
@@ -152,49 +144,6 @@ async fn list_matchers(state: &AppState) -> Result<Value, String> {
         })
         .collect();
     Ok(with_view("matchers", json!({ "matchers": rows })))
-}
-
-async fn list_gaps(state: &AppState) -> Result<Value, String> {
-    let settings = state.settings.lock().await.clone();
-    let home = state.home.snapshot().await;
-    let catalog = catalog_for(&settings.languages);
-    let gaps: Vec<Value> = leftover(&home, catalog)
-        .into_iter()
-        .map(|entity| json!({"entity_id": entity.entity_id, "name": entity.name, "area": entity.area}))
-        .collect();
-    Ok(with_view("gaps", json!({ "gaps": gaps })))
-}
-
-async fn validate_now(state: &AppState, args: &Value) -> Result<Value, String> {
-    let proposal: ProposalIn = serde_json::from_value(args.clone()).map_err(|_| "invalid proposal")?;
-    let settings = state.settings.lock().await.clone();
-    let language = proposal.language.clone().or_else(|| settings.languages.first().cloned()).unwrap_or_else(|| "en".into());
-    let home = state.home.snapshot().await;
-    let house = match proposal.policies.clone() {
-        Some(rules) => rules,
-        None => state.policies.lock().await.clone(),
-    };
-    let match_controls = match proposal.match_controls.clone() {
-        Some(rows) => rows,
-        None => state.match_controls.lock().await.clone(),
-    };
-    let overlay = match proposal.language_overlay.clone() {
-        Some(language) => language,
-        None => load_overlay(&state.data_dir).language,
-    };
-    let speech_bank = state.speech_bank.lock().await.clone();
-    let out = validate(
-        &home,
-        &settings,
-        &language,
-        proposal.layer.as_deref().unwrap_or("all"),
-        house,
-        match_controls,
-        overlay,
-        &speech_bank,
-        proposal.utterances.as_deref().unwrap_or(&[]),
-    );
-    serde_json::to_value(out).map(|value| with_view("validate", value)).map_err(|_| "validate encode".into())
 }
 
 async fn apply_lexicon(state: &AppState, args: &Value) -> Result<Value, String> {
@@ -257,30 +206,7 @@ async fn apply_match(state: &AppState, args: &Value) -> Result<Value, String> {
         }
         current
     };
-    persist_policy_bundle(state, None, Some(merged)).await?;
-    Ok(with_view("write", json!({ "ok": true })))
-}
-
-async fn apply_house(state: &AppState, args: &Value) -> Result<Value, String> {
-    let preview = preview_write(state, "apply_house", args).await?;
-    if preview.get("ok") != Some(&json!(true)) {
-        return Err(preview.to_string());
-    }
-    let incoming: Vec<PolicyRule> =
-        serde_json::from_value(args.get("policies").cloned().unwrap_or(json!([]))).map_err(|_| "invalid policies")?;
-    let incoming = sanitize_rules(incoming)?;
-    let merged = {
-        let mut current = state.policies.lock().await.clone();
-        for rule in incoming {
-            if let Some(existing) = current.iter_mut().find(|item| item.id == rule.id) {
-                *existing = rule;
-            } else {
-                current.push(rule);
-            }
-        }
-        current
-    };
-    persist_policy_bundle(state, Some(merged), None).await?;
+    trainer_house::persist_policy_bundle(state, None, Some(merged)).await?;
     Ok(with_view("write", json!({ "ok": true })))
 }
 
@@ -293,37 +219,73 @@ async fn apply_aliases(state: &AppState, args: &Value) -> Result<Value, String> 
     for alias in string_list(args, "aliases") {
         state.apply_teach(entity_id, &alias).await;
     }
-    Ok(with_view("write", json!({ "ok": true })))
+    Ok(with_view("write", json!({ "ok": true, "entity_id": entity_id, "aliases": string_list(args, "aliases") })))
 }
 
-async fn persist_policy_bundle(
-    state: &AppState,
-    policies: Option<Vec<PolicyRule>>,
-    match_controls: Option<Vec<MatchControl>>,
-) -> Result<(), String> {
-    let mut overlay = load_overlay(&state.data_dir);
-    if let Some(policies) = policies {
-        overlay.policies = policies.clone();
-        *state.policies.lock().await = policies;
+async fn apply_area(state: &AppState, args: &Value) -> Result<Value, String> {
+    let preview = preview_write(state, "apply_area", args).await?;
+    if preview.get("ok") != Some(&json!(true)) {
+        return Err(preview.to_string());
     }
-    if let Some(match_controls) = match_controls {
-        overlay.match_controls = match_controls.clone();
-        *state.match_controls.lock().await = match_controls;
+    let assigned = resolve_area_rows(state, args).await?;
+    let rows: Vec<(String, String)> = assigned
+        .iter()
+        .filter_map(|row| Some((row.get("entity_id")?.as_str()?.to_string(), row.get("area")?.as_str()?.to_string())))
+        .collect();
+    state.apply_areas(&rows).await;
+    Ok(with_view("write", json!({ "ok": true, "assigned": assigned })))
+}
+
+async fn resolve_area_rows(state: &AppState, args: &Value) -> Result<Vec<Value>, String> {
+    let home = state.home.snapshot().await;
+    let mut out = Vec::new();
+    for (entity_id, raw_area) in area_assignments(args)? {
+        if !home.entities.iter().any(|entity| entity.entity_id == entity_id) {
+            return Err(format!("entity is not on the graph: {entity_id}"));
+        }
+        let area = resolve_area(&home, &raw_area)?;
+        out.push(json!({"entity_id": entity_id, "area": area}));
     }
-    overlay.speech_bank = state.speech_bank.lock().await.clone();
-    save_overlay(&state.data_dir, &overlay).map_err(|_| "save overlay")?;
-    Ok(())
+    Ok(out)
 }
 
-fn arg_str<'a>(args: &'a Value, key: &str) -> Result<&'a str, String> {
-    args.get(key).and_then(Value::as_str).filter(|item| !item.is_empty()).ok_or_else(|| format!("{key} required"))
+fn area_assignments(args: &Value) -> Result<Vec<(String, String)>, String> {
+    if let Some(rows) = args.get("assignments").and_then(Value::as_array) {
+        if rows.is_empty() {
+            return Err("assignments required".into());
+        }
+        if rows.len() > 40 {
+            return Err("too many assignments".into());
+        }
+        return rows.iter().map(|row| Ok((arg_str(row, "entity_id")?.to_string(), arg_area(row)?))).collect();
+    }
+    Ok(vec![(arg_str(args, "entity_id")?.to_string(), arg_area(args)?)])
 }
 
-fn string_list(args: &Value, key: &str) -> Vec<String> {
-    args.get(key)
-        .and_then(Value::as_array)
-        .map(|rows| rows.iter().filter_map(Value::as_str).map(str::trim).filter(|item| !item.is_empty()).map(str::to_string).collect())
-        .unwrap_or_default()
+fn arg_area(args: &Value) -> Result<String, String> {
+    args.get("area").and_then(Value::as_str).map(|item| item.trim().to_string()).ok_or_else(|| "area required".into())
+}
+
+fn resolve_area(home: &crate::types::HomeGraph, raw: &str) -> Result<String, String> {
+    if raw.is_empty() {
+        return Ok(String::new());
+    }
+    let folded = crate::parse::normalize::compact(raw);
+    let hits: Vec<&str> = home
+        .areas
+        .iter()
+        .filter(|area| {
+            crate::parse::normalize::compact(&area.area_id) == folded
+                || crate::parse::normalize::compact(&area.name) == folded
+                || area.aliases.iter().any(|alias| crate::parse::normalize::compact(alias) == folded)
+        })
+        .map(|area| area.area_id.as_str())
+        .collect();
+    match hits.as_slice() {
+        [area_id] => Ok((*area_id).to_string()),
+        [] => Err(format!("area is not on the graph: {raw}")),
+        _ => Err(format!("area is ambiguous: {raw}")),
+    }
 }
 
 #[cfg(test)]
@@ -360,6 +322,31 @@ mod tests {
         let entity = home.entities.iter().find(|item| item.entity_id == "light.wohnzimmer").unwrap();
         assert!(entity.aliases.iter().any(|alias| alias == "decke"));
         assert!(preview_write(&state, "apply_aliases", &json!({"entity_id":"light.missing","aliases":["x"]})).await.is_err());
+    }
+
+    #[tokio::test]
+    async fn apply_area_sets_room_and_rejects_bad_ids() {
+        let state = state("area");
+        let ok = apply_area(&state, &json!({"entity_id":"light.wohnzimmer","area":"Büro"})).await.unwrap();
+        assert_eq!(ok["ok"], true);
+        assert_eq!(ok["assigned"][0]["area"], "arbeitszimmer");
+        let home = state.home.snapshot().await;
+        let entity = home.entities.iter().find(|item| item.entity_id == "light.wohnzimmer").unwrap();
+        assert_eq!(entity.area.as_deref(), Some("arbeitszimmer"));
+        let overlay = load_overlay(&state.data_dir);
+        assert_eq!(overlay.areas.get("light.wohnzimmer").map(String::as_str), Some("arbeitszimmer"));
+        let batch = apply_area(
+            &state,
+            &json!({"assignments":[
+                {"entity_id":"light.wohnzimmer","area":"wohnzimmer"},
+                {"entity_id":"light.kuche_kuche","area":""}
+            ]}),
+        )
+        .await
+        .unwrap();
+        assert_eq!(batch["assigned"][1]["area"], "");
+        assert!(preview_write(&state, "apply_area", &json!({"entity_id":"light.missing","area":"wohnzimmer"})).await.is_err());
+        assert!(preview_write(&state, "apply_area", &json!({"entity_id":"light.wohnzimmer","area":"keller"})).await.is_err());
     }
 
     #[tokio::test]

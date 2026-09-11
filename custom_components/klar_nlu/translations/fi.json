@@ -23,33 +23,18 @@
     "step": {
       "init": {
         "title": "Klar NLU",
-        "description": "Persoonallisuus tallennetaan tähän ja säilyy Klar-sovelluksen uudelleenasennuksen jälkeen.",
+        "description": "Ääni, Assist-kielet ja LLM ovat Klarin operaattori-UI:ssa (Asetukset). Tämä lomake yhdistää vain moottorin: URL, tunnus ja kanava. {apps}",
         "data": {
           "mode": "Moottori",
-          "personality": "Persoonallisuus",
-          "languages": "Kielet",
-          "allow_llm_tools": "Allow Home Assistant Assist tools on engine chat",
-          "refine_speech": "Anna LLM:n muotoilla NLU-vastaukset",
-          "refine_prompt": "Viimeistelykehote",
           "url": "Klar-API:n URL",
           "token": "Kirjoituspoletti",
           "assist_filter": "Ohjaa vain Assistille näkyviä entiteettejä",
-          "nlu_rag": "NLU-RAG (valinnainen)",
-          "quiet_ack": "Lyhyt vahvistus (kello)",
-          "calendar_llm": "Lähetä kalenterikyselyt LLM:lle",
           "channel": "Julkaisukanava"
         },
         "data_description": {
-          "personality": "Tässä integraatiossa, ei Klar-sovelluksessa.",
-          "refine_speech": "Klar ohjaa edelleen laitteita. Varalla oleva LLM muotoilee vastauksen.",
-          "refine_prompt": "Äänen järjestelmäkehote. Ei laiteohjausta, ei uusia faktoja, sama kieli.",
+          "mode": "App vs bundled engine. Switch anytime. The integration sidebar only appears for the bundled engine.",
           "token": "Sama poletti kuin Klar-sovelluksessa.",
           "assist_filter": "Päällä: vain se mitä Assist saa nähdä. Pois: myös piilotetut.",
-          "nlu_rag": "Oletuksena pois. Keskustelussa vain tunnistettu ote menee varamalliin.",
-          "quiet_ack": "Yksinkertaisessa valon tai kytkimen päälle/pois-komennossa ei lausetta, vain lyhyt ääni.",
-          "calendar_llm": "Oletuksena pois. Päällä: Klar lukee kalenterin, varamalli sanoo tapahtumat. Pois: Klar sanoo listan itse. Luonti, poisto ja siirto jäävät Klariin.",
-          "allow_llm_tools": "Off by default. On: after Klar parses, the engine chat model may call Home Assistant Assist tools (names come from Core, already prefixed). Off: conversation only.",
-          "languages": "Oletus on Home Assistantin järjestelmäkieli.",
           "channel": "Milloin tahansa. Staging osoittaa Klar NLU (Staging) -palveluun."
         }
       }
@@ -115,6 +100,11 @@
     "switch": {
       "quiet_ack": {
         "name": "Lyhyt vahvistus"
+      }
+    },
+    "ai_task": {
+      "ai_task": {
+        "name": "Tekoälytehtävä"
       }
     },
     "sensor": {

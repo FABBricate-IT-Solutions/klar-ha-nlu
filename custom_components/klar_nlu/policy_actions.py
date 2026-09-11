@@ -26,15 +26,23 @@ def keeps_engine_chat(hit: str, chat: bool, speech: str) -> bool:
     return bool(chat and speech.strip() and hit not in {"llm", "template"})
 
 
-async def render_user_template(hass: Any, raw: str, text: str) -> str | None:
+async def render_user_template(hass: Any, raw: str, text: str, exposed: Any | None = None) -> str | None:
     from homeassistant.exceptions import TemplateError
     from homeassistant.helpers.template import Template
 
     source = raw.strip()
     if not source:
         return None
+    rooms: list[dict[str, Any]] = []
     try:
-        rendered = Template(source, hass).async_render({"text": text}, parse_result=False)
+        from .floor_query import area_temperature_context
+
+        visible = exposed if callable(exposed) else (lambda _id: True)
+        rooms = area_temperature_context(hass, visible)
+    except ImportError:
+        rooms = []
+    try:
+        rendered = Template(source, hass).async_render({"text": text, "rooms": rooms}, parse_result=False)
     except (TemplateError, ValueError, TypeError) as err:
         _LOGGER.warning("Policy-Template fehlgeschlagen: %s", err)
         return None

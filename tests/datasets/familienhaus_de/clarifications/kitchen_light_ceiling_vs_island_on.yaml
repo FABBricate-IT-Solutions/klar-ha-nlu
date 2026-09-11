@@ -5,13 +5,6 @@
     state: 'on'
   - type: action
     entity_id: light.kitchen_island
-    state: 'off'
+    state: 'on'
   sentences:
-  - - Mach Licht Küche an
-    - die Decke
-  - - Mach Licht Küche an
-    - die Decke
-  - - Mach Licht Küche an
-    - die Decke
-  - - Mach Licht Küche an
-    - die Decke
+  - Mach Licht Küche an

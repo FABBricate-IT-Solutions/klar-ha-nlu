@@ -5,6 +5,7 @@ pub(super) const VERBS: &[(&str, VerbKind)] = &[
     ("ac", VerbKind::Open),
     ("active", VerbKind::On),
     ("ayarla", VerbKind::Set),
+    ("azalt", VerbKind::Lower),
     ("black", VerbKind::Color),
     ("blue", VerbKind::Color),
     ("daha", VerbKind::Dim),

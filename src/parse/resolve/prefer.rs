@@ -85,6 +85,19 @@ fn has_tv_alias(entity: &EntityRec) -> bool {
     entity.aliases.iter().any(|alias| tv_token(alias))
 }
 
+pub(super) fn prefer_light_over_script(tokens: &[String], candidates: &mut Vec<(f64, EntityRec)>) {
+    let cat = catalog();
+    if cat.any(tokens, cat.script_words()) || cat.any(tokens, cat.scene_nouns()) || cat.any(tokens, cat.scene_named()) {
+        return;
+    }
+    if !crate::parse::infer::mentions_fixture_noun(tokens) {
+        return;
+    }
+    if candidates.iter().any(|(_, entity)| entity.domain == "light") {
+        candidates.retain(|(_, entity)| entity.domain != "script" && entity.domain != "scene");
+    }
+}
+
 pub(super) fn prefer_entry_lock(tokens: &[String], home: &HomeGraph, candidates: &mut Vec<(f64, EntityRec)>) {
     let cat = catalog();
     if crate::parse::action::is_garage_cover(tokens) && !cat.any(tokens, cat.lock_verbs()) {

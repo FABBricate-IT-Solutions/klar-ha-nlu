@@ -20,6 +20,7 @@ pub(super) const VERBS: &[(&str, VerbKind)] = &[
     ("как", VerbKind::Query),
     ("какво", VerbKind::Query),
     ("ключалка", VerbKind::Lock),
+    ("намали", VerbKind::Lower),
     ("отвори", VerbKind::Open),
     ("по-тъмно", VerbKind::Dim),
     ("прахосмукачка", VerbKind::VacuumNoun),

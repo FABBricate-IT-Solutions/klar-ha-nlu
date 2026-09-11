@@ -175,13 +175,13 @@ devices/light_master_bath_light::light_master_bath_light_turn_off:
 devices/light_master_bath_light::light_master_bath_light_turn_on:
 - encen llum banymaster
 devices/light_master_bedside_right::light_master_bedside_right_change_brightness:
-- posa tauleta habitaciomaster 25
+- posa tauleta right habitaciomaster 25
 devices/light_master_bedside_right::light_master_bedside_right_change_color:
-- posa tauleta habitaciomaster vermell
+- posa tauleta right habitaciomaster vermell
 devices/light_master_bedside_right::light_master_bedside_right_turn_off:
-- apaga tauleta habitaciomaster
+- apaga tauleta right habitaciomaster
 devices/light_master_bedside_right::light_master_bedside_right_turn_on:
-- encen tauleta habitaciomaster
+- encen tauleta right habitaciomaster
 devices/light_master_ceiling::light_master_ceiling_change_brightness:
 - posa sostre habitaciomaster 77
 devices/light_master_ceiling::light_master_ceiling_change_color:

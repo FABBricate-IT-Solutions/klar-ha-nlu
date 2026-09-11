@@ -1,10 +1,11 @@
 use crate::parse::chat::{briefing_followup, is_news, is_news_dismiss, is_ood, wants_llm};
+use crate::parse::clarify::pick_clarification;
 use crate::parse::clause_support::last_visible;
 use crate::parse::compound::CompoundSplit;
-use crate::parse::infer::{looks_like_correction, match_custom, pick_clarification};
+use crate::parse::infer::{looks_like_correction, match_custom};
 use crate::parse::numbers::first_number;
 use crate::parse::respond::{speak, speak_correction, speak_need_target, speak_unknown};
-use crate::parse::slots::intent_with_entity;
+use crate::parse::slots::{fill_pending_timer_duration, intent_with_entity};
 use crate::types::{
     allow_permitted, first_matching_rule, first_seed_match, Intent, IntentCandidate, IntentPlan, ParseDecision, PolicyHit, PolicyTrace,
     PolicyTraceLayer, PolicyTraceMatch, RejectReason,
@@ -13,8 +14,10 @@ use crate::types::{
 use super::context::ParseContext;
 use super::decision::{decide_band, PolicyBand};
 use super::ranking::RankingResult;
-use super::speech::{apply_rule_speech, confirmation_prompt};
-use super::validation::{filter_valid_steps, requires_confirmation, validate_plan, PlanInvalid};
+use super::speech::{affirmative, apply_rule_speech, confirmation_prompt, mark_competing};
+use super::validation::{
+    fail_closed_intent, filter_valid_steps, missing_timer_duration, requires_confirmation, validate_plan, PlanInvalid,
+};
 
 #[derive(Default)]
 pub(super) struct SessionCommit {
@@ -117,7 +120,10 @@ pub(super) fn route_pending(context: &ParseContext<'_>, tokens: &[String]) -> Op
         });
     }
     if context.session.pending_clarify().is_some() {
-        let picked = pick_clarification(tokens, context.session);
+        if let Some(intent) = context.session.pending_clarify().and_then(|p| fill_pending_timer_duration(&p.template, tokens)) {
+            return Some(execute(context, vec![intent], "pending_timer_duration", 1.0, 1.0, true, false));
+        }
+        let picked = pick_clarification(tokens, context.session, context.home);
         if let Some(chosen) = picked {
             let template = context.session.pending_clarify()?.template.clone();
             let intent = if context.home.areas.iter().any(|area| area.area_id == chosen) {
@@ -205,7 +211,7 @@ pub(super) fn replay_or_decide(
         draft.commit.briefing = Some(false);
         draft
     } else if let Some(plan) = selected_plan.filter(|plan| plan.intents() == intents) {
-        with_competing(
+        mark_competing(
             execute_plan(
                 context,
                 plan,
@@ -218,7 +224,7 @@ pub(super) fn replay_or_decide(
             ranking.competing,
         )
     } else {
-        with_competing(
+        mark_competing(
             execute(
                 context,
                 intents,
@@ -235,6 +241,15 @@ pub(super) fn replay_or_decide(
 
 pub(super) fn safety_decision(mut draft: Draft, context: &ParseContext<'_>) -> Draft {
     if !matches!(draft.decision, ParseDecision::Execute) {
+        return draft;
+    }
+    if draft.plan.as_ref().is_some_and(|plan| missing_timer_duration(plan, context.text)) {
+        let prompt = context.catalog.speech().timer_how_long.to_string();
+        draft.commit.clarify = draft.plan.as_ref().and_then(|plan| plan.intents().into_iter().next()).map(|intent| (Vec::new(), intent));
+        draft.commit.remember.clear();
+        draft.decision = ParseDecision::Clarify { prompt: prompt.clone(), options: Vec::new() };
+        draft.speech = prompt;
+        draft.plan = None;
         return draft;
     }
     if draft.safety_confirmed {
@@ -254,6 +269,10 @@ pub(super) fn safety_decision(mut draft: Draft, context: &ParseContext<'_>) -> D
             return invalid_plan(draft, reason);
         }
         if filtered.steps.len() != plan.steps.len() {
+            if plan.steps.iter().any(|step| fail_closed_intent(&step.intent)) {
+                draft.plan = Some(plan);
+                return invalid_plan(draft, PlanInvalid::UnsafeTarget);
+            }
             let intents = filtered.intents();
             draft.speech = speak(&intents, context.settings.personality, false, Some(context.home));
             draft.commit.remember = intents;
@@ -455,11 +474,6 @@ pub(super) fn chat(speech: String, response_briefing: bool, next_briefing: bool)
     }
 }
 
-fn with_competing(mut draft: Draft, competing: bool) -> Draft {
-    draft.competing = competing;
-    draft
-}
-
 pub(super) fn decide_execute_plan(
     home: &crate::types::HomeGraph,
     settings: &crate::types::Settings,
@@ -477,10 +491,6 @@ pub(super) fn decide_execute_plan(
     draft.margin = margin;
     draft.competing = competing;
     safety_decision(draft, &context)
-}
-
-fn affirmative(tokens: &[String], catalog: &crate::lang::Catalog) -> bool {
-    !tokens.is_empty() && tokens.iter().all(|token| catalog.is_affirm(token))
 }
 
 #[cfg(test)]

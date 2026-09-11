@@ -41,6 +41,7 @@ export type LangExplain = {
 export type LanguagePack = { code: string; native_name: string; script: string; variants: string[] };
 
 const jsonHeaders = () => {
+  // localStorage is readable by any script on this origin if XSS lands.
   const token = localStorage.getItem("klar_token") || "";
   return {
     "content-type": "application/json",

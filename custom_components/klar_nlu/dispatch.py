@@ -20,7 +20,8 @@ from .dispatch_media import (
     start_idle_music,
 )
 from .dispatch_result import IntentStepResult, fail as _fail, ok as _ok
-from .floor_query import place_status_rooms
+from .dispatch_timer import prepare_timer_slots, run_timer_helper
+from .floor_query import floor_temperature_rooms, place_status_rooms
 from .intents import (
     ENTITY_SERVICES,
     LIST_INTENTS,
@@ -30,7 +31,6 @@ from .intents import (
     item_slots,
     list_slots,
     resolve_area,
-    timer_slots,
 )
 from .lang_select import speak_tag
 from .speech_render import spoken_after_execute
@@ -82,6 +82,11 @@ async def handle_intent(
             return await run_mass(hass, "MassPlayMedia", slots, pack, item, exposed)
     if name in MASS_INTENTS:
         return await run_mass(hass, name, slots, pack, item, exposed)
+    if name in TIMER_INTENTS:
+        slots, missing = prepare_timer_slots(name, slots)
+        if missing:
+            return _fail(missing)
+        return await run_timer(hass, user_input, name, slots, pack, item, assistant)
     media_status = str(slots.get("media_status", {}).get("value") or "")
     if name == "HassGetState" and media_status:
         # Custom now-playing speech; HA has no media_status intent.
@@ -145,10 +150,6 @@ async def handle_intent(
         slots.pop("area", None)
     if name in LIST_INTENTS:
         name, slots = list_slots(hass, name, slots)
-    if name in TIMER_INTENTS:
-        slots = timer_slots(slots)
-        if name == "HassStartTimer" and not any(key in slots for key in ("hours", "minutes", "seconds")):
-            return _fail("missing_timer_duration")
     if name == "HassClimateGetTemperature":
         return await climate_query(hass, user_input, item, slots, pack, assistant, exposed)
     if name == "HassGetState" and slots.get("device_class", {}).get("value") == "temperature":
@@ -160,6 +161,28 @@ async def handle_intent(
     if "area" in slots and "entity_id" not in slots:
         slots, item = bind_area_name(hass, slots, item)
     return await invoke_intent(hass, user_input, _HA_INTENT_ALIASES.get(name, name), slots, pack, item, assistant)
+
+
+async def run_timer(
+    hass: HomeAssistant,
+    user_input: ConversationInput,
+    name: str,
+    slots: dict[str, Any],
+    pack: str,
+    item: dict,
+    assistant: str | None,
+) -> IntentStepResult:
+    device_id = getattr(user_input, "device_id", None)
+    satellite_id = getattr(user_input, "satellite_id", None)
+    ha_result: IntentStepResult | None = None
+    if device_id or satellite_id:
+        ha_result = await invoke_intent(hass, user_input, name, slots, pack, item, assistant)
+        if ha_result.ok:
+            return ha_result
+    helper = await run_timer_helper(hass, name, slots, pack, item)
+    if helper.ok:
+        return helper
+    return ha_result or helper
 
 
 def bind_area_name(hass: HomeAssistant, slots: dict[str, Any], item: dict) -> tuple[dict[str, Any], dict]:
@@ -176,6 +199,13 @@ def bind_area_name(hass: HomeAssistant, slots: dict[str, Any], item: dict) -> tu
     return slots, {**item, "slots": [*existing, {"name": "area_name", "value": label}]}
 
 
+def _with_slot(item: dict, name: str, value: str) -> dict:
+    slots = list(item.get("slots") or [])
+    if any(isinstance(slot, dict) and slot.get("name") == name for slot in slots):
+        return item
+    return {**item, "slots": [*slots, {"name": name, "value": value}]}
+
+
 async def climate_query(
     hass: HomeAssistant,
     user_input: ConversationInput,
@@ -186,6 +216,25 @@ async def climate_query(
     exposed: Callable[[str], bool],
 ) -> IntentStepResult:
     entity_id = str(slots.get("entity_id", {}).get("value") or "")
+    floor_key = str(slots.get("floor", {}).get("value") or "")
+    if not entity_id and floor_key:
+        rooms = floor_temperature_rooms(hass, floor_key, exposed)
+        extra: list[dict[str, Any]] = []
+        for area_name, states in rooms:
+            for state in states:
+                row = entity_from_state(state)
+                if not row:
+                    continue
+                row["area_name"] = area_name
+                extra.append(row)
+        spoken = await spoken_after_execute(
+            hass,
+            pack,
+            "default",
+            {**_with_slot(item, "floor", floor_key), "name": "HassClimateGetTemperature"},
+            extra_entities=extra,
+        )
+        return _ok(spoken) if spoken else _fail("place_speech_missing")
     state = hass.states.get(entity_id) if entity_id else None
     shaped = {key: val for key, val in slots.items() if key not in {"entity_id", "domain", "device_class"}}
     if entity_id and state is not None:
@@ -261,6 +310,8 @@ async def invoke_intent(
             user_input.context,
             speak_tag(pack),
             assistant=assistant,
+            device_id=getattr(user_input, "device_id", None),
+            satellite_id=getattr(user_input, "satellite_id", None),
         )
     except Exception as err:  # noqa: BLE001 — HA intent system is a boundary
         _LOGGER.debug("Intent %s nicht ausgeführt: %s", name, err)

@@ -105,7 +105,7 @@ fn protected_media_followup(tokens: &[String], home: &HomeGraph) -> Option<usize
 }
 
 fn explicit_query_start(tokens: &[String]) -> bool {
-    tokens.first().is_some_and(|token| matches!(token.as_str(), "was" | "wie" | "ist" | "sind" | "what" | "whats" | "is" | "are" | "how"))
+    tokens.first().is_some_and(|token| catalog().is_question_start(token) || catalog().is_question_word(token))
 }
 
 fn protected_media_status(tokens: &[String]) -> bool {
@@ -246,14 +246,14 @@ fn is_same_command(a: Action, b: Action) -> bool {
             | (Action::CoverClose, Action::CoverOpen)
             | (
                 Action::On | Action::Off | Action::SetLight | Action::MediaPause | Action::MediaPlay,
-                Action::TimerStart | Action::TimerAdd | Action::TimerCancel | Action::TimerPause
+                Action::TimerStart | Action::TimerAdd | Action::TimerRemove | Action::TimerCancel | Action::TimerPause
             )
             | (
-                Action::TimerStart | Action::TimerAdd | Action::TimerCancel | Action::TimerPause,
+                Action::TimerStart | Action::TimerAdd | Action::TimerRemove | Action::TimerCancel | Action::TimerPause,
                 Action::On | Action::Off | Action::SetLight | Action::MediaPause | Action::MediaPlay
             )
-            | (Action::GetState, Action::TimerStart | Action::TimerAdd | Action::TimerCancel | Action::TimerPause)
-            | (Action::TimerStart | Action::TimerAdd | Action::TimerCancel | Action::TimerPause, Action::GetState)
+            | (Action::GetState, Action::TimerStart | Action::TimerAdd | Action::TimerRemove | Action::TimerCancel | Action::TimerPause)
+            | (Action::TimerStart | Action::TimerAdd | Action::TimerRemove | Action::TimerCancel | Action::TimerPause, Action::GetState)
             | (Action::GetState, Action::VacuumDock | Action::VacuumStart)
             | (Action::VacuumDock | Action::VacuumStart, Action::GetState)
             | (Action::VacuumStart | Action::VacuumDock, Action::On | Action::Off)

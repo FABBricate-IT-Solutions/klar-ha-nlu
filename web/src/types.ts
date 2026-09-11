@@ -6,6 +6,10 @@ export type Theme = "dark" | "light";
 export type SettingsView = "llm" | "voice" | "languages" | "engine" | "backup";
 export type Confidence = "high" | "medium" | "low";
 
+export type RefineBand = "status" | "command" | "prompt" | "reject";
+
+export const REFINE_BANDS: RefineBand[] = ["status", "command", "prompt", "reject"];
+
 export type Settings = {
   personality: string;
   mode: "full" | "context_only";
@@ -16,6 +20,7 @@ export type Settings = {
   semantic_adapters: boolean;
   nlu_rag: boolean;
   refine_speech?: boolean;
+  refine_bands?: RefineBand[];
   calendar_llm?: boolean;
   quiet_ack?: boolean;
   allow_llm_tools?: boolean;
@@ -27,6 +32,11 @@ export type Settings = {
   custom_voice_seed?: string;
   custom_voice_traits?: VoiceTraits;
 };
+
+export function effectiveRefineBands(settings: Settings): RefineBand[] {
+  if (Array.isArray(settings.refine_bands)) return settings.refine_bands;
+  return settings.refine_speech ? ["status"] : [];
+}
 
 export type VoiceTraits = {
   warmth: number;
@@ -106,6 +116,7 @@ export type ParseResult = {
   retrieval?: Retrieval;
   policy_trace?: PolicyTrace;
   quiet_ack_eligible?: boolean;
+  refine_band?: RefineBand | null;
 };
 
 export type RetrievalHit = { entity_id: string; name: string; domain: string; area?: string | null };
@@ -234,6 +245,7 @@ export type ConversationTurn = {
   candidate_id?: string | null;
   preferred_area?: string | null;
   speech_source?: string | null;
+  refine_band?: RefineBand | null;
 };
 
 export type Suggestion = {
@@ -275,6 +287,19 @@ export type Dashboard = {
     empty: number;
     recent: BundleEntry[];
   };
+  llm?: LlmWindow;
+};
+
+export type LlmWindow = {
+  calls: number;
+  errors: number;
+  accepted: number;
+  rejected: number;
+  by_kind: Record<string, number>;
+  by_day: { day: string; refine: number; assist: number; chat: number }[];
+  p50_ms?: number | null;
+  p90_ms?: number | null;
+  tokens?: { prompt: number; completion: number; total: number; calls_with_usage: number } | null;
 };
 
 export type UiState = {

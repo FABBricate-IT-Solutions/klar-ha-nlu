@@ -7,6 +7,7 @@ import { MatchLane } from "../components/MatchLane";
 import { PolicyPath, type PolicyLane } from "../components/PolicyPath";
 import { useHouseCatalog } from "../components/SearchSelect";
 import type { Messages } from "../i18n";
+import { saveFailMessage, toastSaved, toastSaveFailed } from "../saveToast";
 import { bakeVariants } from "../speechBank";
 import type { EvaluateOut, Locale, MatchCatalogRow, MatchControl, PolicyRule, RulesView, SpeechBank } from "../types";
 import { CustomPage } from "./CustomPage";
@@ -116,11 +117,17 @@ export function RulesPage({
   }, []);
 
   const persist = async (next: PolicyRule[], nextBank = bank, nextControls = matchControls) => {
-    const saved = await api.savePolicies({ policies: next, speech_bank: nextBank, match_controls: nextControls });
-    setRules(saved.policies);
-    setBank(saved.speech_bank);
-    setMatchControls(saved.match_controls || []);
-    setStatus(t.save);
+    try {
+      const saved = await api.savePolicies({ policies: next, speech_bank: nextBank, match_controls: nextControls });
+      setRules(saved.policies);
+      setBank(saved.speech_bank);
+      setMatchControls(saved.match_controls || []);
+      toastSaved(t);
+      setStatus(t.saveOk);
+    } catch (err) {
+      toastSaveFailed(t, err);
+      setStatus(saveFailMessage(t, err));
+    }
   };
 
   const update = (patch: Partial<PolicyRule>) => {

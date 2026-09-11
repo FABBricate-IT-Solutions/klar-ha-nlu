@@ -23,33 +23,18 @@
     "step": {
       "init": {
         "title": "Klar NLU",
-        "description": "Зан чанар энд хадгалагдаж, Klar аппыг дахин суулгасны дараа ч үлдэнэ.",
+        "description": "Дуу хоолой, Assist хэл, LLM Klar операторын UI (Тохиргоо)-д байна. Энэ маягт зөвхөн хөдөлгүүрийг холбоно: URL, токен, суваг. {apps}",
         "data": {
           "mode": "Хөдөлгүүр",
-          "personality": "Зан чанар",
-          "languages": "Хэлнүүд",
-          "allow_llm_tools": "Allow Home Assistant Assist tools on engine chat",
-          "refine_speech": "LLM-ээр NLU хариуг дахин бичүүлэх",
-          "refine_prompt": "Засварын сануулга",
           "url": "Klar API хаяг",
           "token": "Бичих токен",
           "assist_filter": "Зөвхөн Assist-д харагдсан нэгжүүдийг удирдах",
-          "nlu_rag": "NLU-RAG (сонголттой)",
-          "quiet_ack": "Богино баталгаа (хонх)",
-          "calendar_llm": "Хуанлийн асуултыг LLM руу илгээх",
           "channel": "Гаргалтын суваг"
         },
         "data_description": {
-          "personality": "Klar апп биш, энэ нэгтгэлд хадгалагдана.",
-          "refine_speech": "Klar төхөөрөмжүүдийг удирдсаар байна. Нөөц LLM хариуг дахин бичнэ.",
-          "refine_prompt": "Дууны системийн сануулга. Төхөөрөмж удирдахгүй, шинэ баримтгүй, ижил хэл.",
+          "mode": "App vs bundled engine. Switch anytime. The integration sidebar only appears for the bundled engine.",
           "token": "Klar апптай ижил токен.",
           "assist_filter": "Асаалттай: зөвхөн Assist харахыг. Унтраалттай: нуугдсан нэгж ч багтана.",
-          "nlu_rag": "Анхдагч унтраалттай. Чатад нөөц загварт зөвхөн таарсан хэсэг очно.",
-          "quiet_ack": "Энгийн гэрэл асаах/унтраахад яриагүй, хиймэл дагуул дээр богино дуу.",
-          "calendar_llm": "Анхдагч унтраалттай. Асаалттай: Klar хуанли уншиж, нөөц LLM үйл явдлыг хэлнэ. Унтраалттай: Klar жагсаалтыг өөрөө хэлнэ. Үүсгэх, устгах, зөөх нь Klar дээр үлдэнэ.",
-          "allow_llm_tools": "Off by default. On: after Klar parses, the engine chat model may call Home Assistant Assist tools (names come from Core, already prefixed). Off: conversation only.",
-          "languages": "Анхдагч нь Home Assistant системийн хэл.",
           "channel": "Хэзээ ч. Staging нь Klar NLU (Staging) руу заана."
         }
       }
@@ -115,6 +100,11 @@
     "switch": {
       "quiet_ack": {
         "name": "Богино баталгаа"
+      }
+    },
+    "ai_task": {
+      "ai_task": {
+        "name": "Хиймэл оюуны даалгавар"
       }
     },
     "sensor": {

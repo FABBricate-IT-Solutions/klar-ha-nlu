@@ -175,13 +175,13 @@ devices/light_master_bath_light::light_master_bath_light_turn_off:
 devices/light_master_bath_light::light_master_bath_light_turn_on:
 - sytyta valo kylpymaster
 devices/light_master_bedside_right::light_master_bedside_right_change_brightness:
-- aseta yopoyta makuuhuonemaster 25
+- aseta yopoyta right makuuhuonemaster 25
 devices/light_master_bedside_right::light_master_bedside_right_change_color:
-- aseta yopoyta makuuhuonemaster punainen
+- aseta yopoyta right makuuhuonemaster punainen
 devices/light_master_bedside_right::light_master_bedside_right_turn_off:
-- sammuta yopoyta makuuhuonemaster
+- sammuta yopoyta right makuuhuonemaster
 devices/light_master_bedside_right::light_master_bedside_right_turn_on:
-- sytyta yopoyta makuuhuonemaster
+- sytyta yopoyta right makuuhuonemaster
 devices/light_master_ceiling::light_master_ceiling_change_brightness:
 - aseta katto makuuhuonemaster 77
 devices/light_master_ceiling::light_master_ceiling_change_color:

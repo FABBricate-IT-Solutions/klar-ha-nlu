@@ -2,7 +2,7 @@
 use crate::lang::speech::Speech;
 
 pub(super) const SPEECH: Speech = Speech {
-    unknown: "Dat begreep ik niet.",
+    unknown: "Dat begreep ik niet. Zeg bijvoorbeeld welk licht aan moet.",
     need_on: "Wat moet ik aanzetten?",
     need_off: "Wat moet ik uitzetten?",
     need_which: "Welk apparaat bedoel je?",
@@ -30,16 +30,17 @@ pub(super) const SPEECH: Speech = Speech {
     media_mute: "Geluid is uit.",
     media_unmute: "Geluid is aan.",
     media_volume: "Volume staat.",
-    media_search: "Muziek start.",
+    media_search: "Wat moet ik afspelen?",
     media_transfer: "Muziek verplaatst.",
-    media_favorite: "Favoriet.",
+    media_favorite: "Favoriet toegevoegd.",
     fan_set: "Ventilator op {n} procent.",
     vacuum_start: "{target} stofzuigt.",
     vacuum_dock: "{target} gaat naar het station.",
     vacuum_default: "De stofzuiger",
     timer_start: "Timer loopt.",
     timer_cancel: "Timer uit.",
-    timer_pause: "Timer pauze.",
+    timer_pause: "Timer gepauzeerd.",
+    timer_how_long: "Hoe lang?",
     list_add: "Staat op de lijst.",
     calendar_list: "{items}",
     calendar_empty: "Geen afspraken.",
@@ -60,7 +61,7 @@ pub(super) const SPEECH: Speech = Speech {
     loc_in_der: "in de {room}",
     loc_home: "in huis",
     or_home: "het apparaat",
-    room_names: &[("wohnzimmer", "woonkamer"), ("kuche", "keuken"), ("schlafzimmer", "slaapkamer")],
+    room_names: &[("wohnzimmer", "woonkamer"), ("kuche", "keuken"), ("schlafzimmer", "slaapkamer"), ("badezimmer", "badkamer")],
     loc_der_rooms: &["keuken", "woonkamer"],
     personality: &[
         ("butler", &["Goed. ", "Graag. ", ""]),
@@ -72,7 +73,7 @@ pub(super) const SPEECH: Speech = Speech {
         ("pirat", &["Aye. ", "Kapitein. ", ""]),
         ("hippie", &["Relax. ", "Rustig. ", ""]),
         ("gollum", &["Ja. ", "Ja, mijn schat. ", ""]),
-        ("jarvis", &["Of course, sir. ", "Right away. ", ""]),
+        ("jarvis", &["Natuurlijk. ", "Ik doe het meteen. ", ""]),
     ],
     confirm: "Moet ik dat echt doen?",
 };

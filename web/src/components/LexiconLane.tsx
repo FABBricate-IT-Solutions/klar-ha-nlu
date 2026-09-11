@@ -2,6 +2,7 @@ import { useState } from "react";
 import { api, type LangOverlay } from "../api";
 import { OriginChip } from "./OriginChip";
 import { fill, type Messages } from "../i18n";
+import { saveFailMessage, toastSaved, toastSaveFailed } from "../saveToast";
 import type { LanguageOverlay, PolicyRule } from "../types";
 
 const LEXICON_PATHS = [
@@ -87,7 +88,8 @@ export function LexiconLane({
       label,
     });
     onSaved(saved);
-    onStatus(t.save);
+    toastSaved(t);
+    onStatus(t.saveOk);
   };
 
   const apply = async (op: "add" | "remove") => {
@@ -98,7 +100,8 @@ export function LexiconLane({
       await persist(patchSet(overlay?.language, nextPath, nextToken, op), `lexicon-${op}`);
       setToken("");
     } catch (err) {
-      onStatus(String(err));
+      toastSaveFailed(t, err);
+      onStatus(saveFailMessage(t, err));
     }
   };
 

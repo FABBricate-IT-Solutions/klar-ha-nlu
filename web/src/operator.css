@@ -20,7 +20,9 @@
 
 .trainer-dock {
   position: fixed;
-  inset: 0 0 0 auto;
+  inset-block: 0;
+  inset-inline-end: 0;
+  inset-inline-start: auto;
   z-index: 12;
   display: flex;
   flex-direction: column;
@@ -33,7 +35,9 @@
 
 .trainer-resize {
   position: absolute;
-  inset: 0 auto 0 0;
+  inset-block: 0;
+  inset-inline-start: 0;
+  inset-inline-end: auto;
   z-index: 2;
   width: 14px;
   margin: 0;
@@ -49,11 +53,15 @@
   position: absolute;
   top: 20%;
   bottom: 20%;
-  left: 5px;
+  inset-inline-start: 5px;
   width: 3px;
   border-radius: 2px;
   background: var(--accent);
   opacity: 0.55;
+}
+
+[dir="rtl"] [data-slot="switch"][data-checked] [data-slot="switch-thumb"] {
+  transform: translateX(calc(-100% + 2px));
 }
 
 .trainer-dock[hidden] {
@@ -79,26 +87,6 @@
 .trainer-dock-status {
   margin: 0;
   padding: 8px 18px 12px;
-}
-
-.trainer-lanes {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 6px;
-  margin: 8px 0;
-}
-
-.trainer-lanes button {
-  padding: 4px 10px;
-  color: var(--muted-foreground);
-  border: 1px solid var(--line);
-  border-radius: 8px;
-  background: var(--surface);
-}
-
-.trainer-lanes button[aria-pressed="true"] {
-  color: var(--text);
-  border-color: var(--accent);
 }
 
 .visually-hidden {
@@ -230,65 +218,11 @@ button.guide-step {
 
 .trainer-head {
   display: flex;
-  flex-direction: column;
-  align-items: stretch;
-  gap: 8px;
-  border-bottom: 1px solid var(--line);
-}
-
-.trainer-bar {
-  display: flex;
   flex-wrap: wrap;
-  align-items: center;
+  align-items: flex-start;
   justify-content: space-between;
-  gap: 8px 12px;
-}
-
-.trainer-bar .trainer-kicker {
-  margin: 0;
-}
-
-.trainer-icon,
-.trainer-close-icon {
-  display: inline-flex;
-  width: 36px;
-  min-width: 36px;
-  height: 36px;
-  padding: 0;
-  align-items: center;
-  justify-content: center;
-}
-
-.trainer-icon {
-  display: none;
-}
-
-.trainer-lane-pick,
-.trainer-more {
-  display: none;
-}
-
-.trainer-close-label {
-  display: none;
-}
-
-.trainer-hint {
-  margin: 0;
-}
-
-.trainer-send {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 6px;
-}
-
-.trainer-view-summary {
-  display: none;
-}
-
-.trainer-view-head {
-  display: block;
+  gap: 12px;
+  border-bottom: 1px solid var(--line);
 }
 
 .trainer-kicker {
@@ -341,9 +275,10 @@ button.guide-step {
 }
 
 .trainer-prompts {
-  display: grid;
+  display: flex;
+  flex-wrap: wrap;
   gap: 8px;
-  margin-top: 16px;
+  margin-top: 12px;
 }
 
 .trainer-line {
@@ -465,169 +400,6 @@ button.guide-step {
   background: var(--bg);
 }
 
-.trainer-copy {
-  display: grid;
-  gap: 8px;
-  min-width: 0;
-  flex: 1;
-}
-
-@media (min-width: 961px) {
-  .trainer-head {
-    padding: 8px 12px 8px 16px;
-    gap: 0;
-  }
-
-  .trainer-bar {
-    flex-wrap: nowrap;
-    min-height: 44px;
-    gap: 8px;
-  }
-
-  .trainer-copy {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    min-width: 0;
-  }
-
-  .trainer-lanes {
-    flex-wrap: nowrap;
-    margin: 0;
-    gap: 4px;
-  }
-
-  .trainer-lanes button {
-    padding: 4px 8px;
-  }
-
-  .trainer-icon,
-  .trainer-close-icon,
-  .trainer-more {
-    display: inline-flex;
-    width: 36px;
-    min-width: 36px;
-    height: 36px;
-  }
-
-  .trainer-close-label,
-  .trainer-clear-label,
-  .trainer-yolo-label,
-  .trainer-model,
-  .trainer[aria-label] .trainer-hint,
-  .trainer-empty-hint {
-    display: none;
-  }
-
-  .trainer-meta {
-    flex-wrap: nowrap;
-    gap: 0;
-  }
-
-  .trainer-thread {
-    padding: 12px 14px;
-    gap: 10px;
-  }
-
-  .trainer-empty {
-    margin: 8px 0 0;
-  }
-
-  .trainer-empty p {
-    margin: 0 0 10px;
-  }
-
-  .trainer-prompts {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
-    margin-top: 0;
-  }
-
-  .trainer-quick {
-    flex-wrap: nowrap;
-    overflow-x: auto;
-    padding: 8px 14px 0;
-    scrollbar-width: none;
-  }
-
-  .trainer-quick::-webkit-scrollbar {
-    display: none;
-  }
-
-  .trainer-composer {
-    padding: 8px 12px 10px 16px;
-    gap: 8px;
-    align-items: end;
-  }
-
-  .trainer-composer textarea {
-    min-height: 40px;
-    max-height: 8rem;
-    padding: 8px 12px;
-    resize: none;
-  }
-
-  .trainer-send {
-    min-height: 40px;
-    padding: 8px 12px;
-  }
-
-  .trainer-result {
-    padding: 8px 14px 12px;
-  }
-
-  .trainer-card > .trainer-kicker {
-    display: none;
-  }
-
-  .trainer-view-summary {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    min-height: 36px;
-    padding: 6px 10px;
-    cursor: pointer;
-    list-style: none;
-    font-weight: 600;
-    border: 1px solid var(--line);
-    border-radius: 8px;
-    background: var(--surface);
-  }
-
-  .trainer-view-summary::-webkit-details-marker {
-    display: none;
-  }
-
-  .trainer-view-summary::after {
-    content: "";
-    width: 0.4rem;
-    height: 0.4rem;
-    border-inline-end: 2px solid var(--muted-foreground);
-    border-bottom: 2px solid var(--muted-foreground);
-    transform: rotate(45deg);
-  }
-
-  .trainer-view[open] .trainer-view-summary {
-    border-bottom-left-radius: 0;
-    border-bottom-right-radius: 0;
-  }
-
-  .trainer-view[open] .trainer-view-summary::after {
-    transform: rotate(225deg);
-    translate: 0 2px;
-  }
-
-  .trainer-view-head {
-    display: none;
-  }
-
-  .trainer-view-card {
-    border-top-left-radius: 0;
-    border-top-right-radius: 0;
-  }
-}
-
 .trainer-chip {
   max-width: 100%;
   padding: 6px 10px;
@@ -701,10 +473,8 @@ button.guide-step {
   }
 
   .trainer-dock {
-    top: var(--trainer-vv-top, 0px);
     width: 100vw;
-    height: var(--trainer-vvh, 100dvh);
-    max-height: var(--trainer-vvh, 100dvh);
+    height: 100dvh;
     padding-top: env(safe-area-inset-top, 0);
     padding-bottom: env(safe-area-inset-bottom, 0);
     box-shadow: none;
@@ -714,207 +484,27 @@ button.guide-step {
     display: none;
   }
 
-  .trainer-head {
-    padding: 8px 12px;
-    gap: 0;
-  }
-
-  .trainer-bar {
-    flex-wrap: nowrap;
-    min-height: 48px;
-    gap: 8px;
-  }
-
-  .trainer-copy {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    min-width: 0;
-  }
-
-  .trainer-card > .trainer-kicker {
-    display: none;
-  }
-
-  .trainer-icon,
-  .trainer-close-icon,
-  .trainer-more {
-    display: inline-flex;
-    width: 44px;
-    min-width: 44px;
-    height: 44px;
-  }
-
-  .trainer-lane-pick {
-    display: block;
-    min-width: 0;
-    flex: 1;
-    margin: 0;
-  }
-
-  .trainer-lane-pick select {
-    width: 100%;
-    min-height: 40px;
-    padding: 6px 10px;
-    font-size: 15px;
-  }
-
-  .trainer-lanes,
-  .trainer-close-label,
-  .trainer-clear-label,
-  .trainer-yolo-label,
-  .trainer-model,
-  .trainer[aria-label] .trainer-hint,
-  .trainer-empty-hint,
-  .trainer-send-label {
-    display: none;
-  }
-
-  .trainer-head h2 {
-    flex: 1;
-    min-width: 0;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    font-size: 15px;
-  }
-
-  .trainer-meta {
-    flex-wrap: nowrap;
-    gap: 0;
-  }
-
-  .trainer-thread {
-    padding: 12px 12px 8px;
-    gap: 10px;
-  }
-
-  .trainer-empty {
-    margin: 12px 0 0;
-    max-width: none;
-  }
-
-  .trainer-empty p {
-    margin: 0 0 10px;
-  }
-
-  .trainer-prompts,
-  .trainer-quick {
-    display: flex;
-    flex-wrap: nowrap;
-    overflow-x: auto;
-    padding: 8px 12px 0;
-    scrollbar-width: none;
-  }
-
-  .trainer-prompts {
-    padding: 0;
-  }
-
-  .trainer-prompts::-webkit-scrollbar,
-  .trainer-quick::-webkit-scrollbar {
-    display: none;
-  }
-
+  .trainer-prompts .trainer-chip,
   .trainer-chip,
-  .trainer-consent button {
-    flex: 0 0 auto;
-    min-height: 36px;
-    padding: 6px 12px;
-  }
-
-  .trainer-composer {
-    grid-template-columns: minmax(0, 1fr) 44px;
-    align-items: end;
-    gap: 8px;
-    padding: 8px 12px calc(8px + env(safe-area-inset-bottom, 0));
+  .trainer-composer .primary,
+  .trainer-composer .ghost,
+  .trainer-consent button,
+  .trainer-meta .ghost {
+    min-height: 44px;
   }
 
   .trainer-composer textarea {
-    min-height: 44px;
-    max-height: 8rem;
-    padding: 10px 12px;
+    min-height: 72px;
     font-size: 16px;
-    resize: none;
-    border-radius: 22px;
   }
 
-  .trainer-send {
-    width: 44px;
-    min-width: 44px;
-    height: 44px;
-    padding: 0;
-    border-radius: 22px;
+  .trainer-head,
+  .trainer-composer,
+  .trainer-result,
+  .trainer-thread {
+    padding-inline: 16px;
   }
 
-  .trainer-result {
-    padding: 8px 12px 12px;
-  }
-
-  .trainer-consent {
-    padding: 10px 12px;
-  }
-
-  .trainer-consent-actions {
-    flex-wrap: nowrap;
-    overflow-x: auto;
-  }
-
-  .trainer-view-summary {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    min-height: 40px;
-    padding: 8px 10px;
-    cursor: pointer;
-    list-style: none;
-    font-weight: 600;
-    border: 1px solid var(--line);
-    border-radius: 8px;
-    background: var(--surface);
-  }
-
-  .trainer-view-summary::-webkit-details-marker {
-    display: none;
-  }
-
-  .trainer-view-summary::after {
-    content: "";
-    width: 0.45rem;
-    height: 0.45rem;
-    border-inline-end: 2px solid var(--muted-foreground);
-    border-bottom: 2px solid var(--muted-foreground);
-    transform: rotate(45deg);
-  }
-
-  .trainer-view[open] .trainer-view-summary {
-    border-bottom-left-radius: 0;
-    border-bottom-right-radius: 0;
-  }
-
-  .trainer-view[open] .trainer-view-summary::after {
-    transform: rotate(225deg);
-    translate: 0 3px;
-  }
-
-  .trainer-view-head {
-    display: none;
-  }
-
-  .trainer-view-card {
-    border-top-left-radius: 0;
-    border-top-right-radius: 0;
-  }
-
-  html[data-trainer-keyboard="open"] .trainer-quick,
-  html[data-trainer-keyboard="open"] .trainer-prompts {
-    display: none;
-  }
-
-  html[data-trainer-keyboard="open"] .trainer-kicker,
-  html[data-trainer-keyboard="open"] .trainer-lane-pick {
-    display: none;
-  }
 }
 
 @media (max-width: 860px) {
@@ -928,4 +518,7 @@ button.guide-step {
     width: 100%;
   }
 
+  .trainer-composer {
+    grid-template-columns: minmax(0, 1fr);
+  }
 }

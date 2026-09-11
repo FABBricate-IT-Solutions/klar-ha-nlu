@@ -183,6 +183,31 @@ fn schlafzimmerlicht_trifft_hue_kugel_nicht_gruppe() {
     assert!(!slots.iter().any(|(k, v)| *k == "entity_id" && *v == "light.schlafzimmer_licht"), "{slots:?}");
 }
 
+/// Live: „Lampe im Schlafzimmer“ fragt nach, Follow-up „die Kugel“ muss den Namen treffen.
+#[test]
+fn lamp_clarify_followup_picks_friendly_name() {
+    let mut home = default_home();
+    home.entities.retain(|e| e.entity_id != "light.schlafzimmer_kugel");
+    home.entities.push(EntityRec {
+        entity_id: "light.schlafzimmer".into(),
+        name: "Kugel".into(),
+        domain: "light".into(),
+        platform: None,
+        area: Some("schlafzimmer".into()),
+        aliases: vec!["kugel".into()],
+        tags: Vec::new(),
+    });
+    let mut session = Session::new();
+    let settings = Settings::pinned("de");
+    let first = parse("mach die Lampe im Schlafzimmer an", &home, &mut session, &[], &settings);
+    assert!(first.clarify, "{}", first.speech);
+    assert!(first.intents.is_empty(), "{:?} {}", first.intents, first.speech);
+    let second = parse("die Kugel", &home, &mut session, &[], &settings);
+    assert!(!second.clarify, "{}", second.speech);
+    assert_eq!(second.intents[0].name, "HassTurnOn", "{:?} {}", second.intents, second.speech);
+    assert_eq!(second.intents[0].slot("entity_id"), Some("light.schlafzimmer"), "{:?} {}", second.intents, second.speech);
+}
+
 #[test]
 fn follow_up_aus() {
     let home = default_home();
@@ -208,9 +233,17 @@ fn follow_up_ein_across_conversation_ids() {
     sessions.put(first);
     let mut second = sessions.take(Some("wake-on"));
     let on = parse("schalte es wieder ein", &home, &mut second, &[], &settings);
-    assert!(!on.clarify, "{}", on.speech);
-    assert_eq!(on.intents[0].name, "HassTurnOn", "{:?} {}", on.intents, on.speech);
-    assert_eq!(on.intents[0].slot("entity_id"), off_id, "{:?} {}", on.intents, on.speech);
+    assert!(on.clarify, "{}", on.speech);
+    assert!(on.intents.is_empty(), "{:?} {}", on.intents, on.speech);
+
+    let mut same = sessions.take_with_area(Some("wake-off"), "wohnzimmer");
+    parse("Wohnzimmerlicht aus", &home, &mut same, &[], &settings);
+    sessions.put(same);
+    let mut seeded = sessions.take_with_area(Some("wake-on"), "wohnzimmer");
+    let replay = parse("schalte es wieder ein", &home, &mut seeded, &[], &settings);
+    assert!(!replay.clarify, "{}", replay.speech);
+    assert_eq!(replay.intents[0].name, "HassTurnOn", "{:?} {}", replay.intents, replay.speech);
+    assert_eq!(replay.intents[0].slot("entity_id"), off_id, "{:?} {}", replay.intents, replay.speech);
 }
 
 #[test]
@@ -263,6 +296,27 @@ fn wohn_und_esszimmer_auf_rot() {
 }
 
 #[test]
+fn nachttisch_schlafzimmer_is_bedside_not_good_night() {
+    let home = klar_nlu::home::load_home_config(std::path::Path::new("tests/datasets/full_home/de/home_config.yaml")).expect("home");
+    let mut session = Session::new();
+    let result = parse("nachttisch schlafzimmer an", &home, &mut session, &[], &Settings::pinned("de"));
+    assert!(!result.clarify, "{}", result.speech);
+    assert_eq!(result.intents[0].name, "HassTurnOn", "{:?} {}", result.intents, result.speech);
+    let id = result.intents[0].slot("entity_id").unwrap_or("");
+    assert!(id.starts_with("light."), "{:?} {}", result.intents, result.speech);
+    assert_ne!(id, "script.good_night", "{:?} {}", result.intents, result.speech);
+}
+
+#[test]
+fn nacht_an_still_runs_good_night() {
+    let home = klar_nlu::home::load_home_config(std::path::Path::new("tests/datasets/full_home/de/home_config.yaml")).expect("home");
+    let mut session = Session::new();
+    let result = parse("nacht an", &home, &mut session, &[], &Settings::pinned("de"));
+    assert!(!result.clarify, "{}", result.speech);
+    assert_eq!(result.intents[0].slot("entity_id"), Some("script.good_night"), "{:?} {}", result.intents, result.speech);
+}
+
+#[test]
 fn status_der_wohnung_is_one_floor_get_state() {
     let mut home = default_home();
     home.areas.retain(|area| area.area_id != "wohnung");
@@ -279,6 +333,28 @@ fn status_der_wohnung_is_one_floor_get_state() {
     let result = parse("Wie ist der Status der Wohnung", &home, &mut session, &[], &Settings::pinned("de"));
     assert_eq!(result.intents.len(), 1, "{:#?}", result.intents);
     assert_eq!(result.intents[0].name, "HassGetState");
+    assert!(result.intents[0].slots.iter().any(|slot| slot.name == "floor" && slot.value == "wohnung"), "{:#?}", result.intents[0]);
+    assert!(result.intents[0].slots.iter().all(|slot| slot.name != "area"), "{:#?}", result.intents[0]);
+}
+
+#[test]
+fn temperatur_der_wohnung_is_floor_climate_query() {
+    let mut home = default_home();
+    home.areas.retain(|area| area.area_id != "wohnung");
+    for area in &mut home.areas {
+        area.floor_id = Some("wohnung".into());
+    }
+    home.floors.push(klar_nlu::types::FloorRec {
+        floor_id: "wohnung".into(),
+        name: "Wohnung".into(),
+        aliases: vec!["zuhause".into(), "home".into(), "apartment".into()],
+        level: Some(0),
+    });
+    let mut session = Session::new();
+    let result = parse("Wie ist die Temperatur der Wohnung?", &home, &mut session, &[], &Settings::pinned("de"));
+    assert!(!result.clarify, "{}", result.speech);
+    assert_eq!(result.intents.len(), 1, "{:#?}", result.intents);
+    assert_eq!(result.intents[0].name, "HassClimateGetTemperature", "{:#?}", result.intents);
     assert!(result.intents[0].slots.iter().any(|slot| slot.name == "floor" && slot.value == "wohnung"), "{:#?}", result.intents[0]);
     assert!(result.intents[0].slots.iter().all(|slot| slot.name != "area"), "{:#?}", result.intents[0]);
 }

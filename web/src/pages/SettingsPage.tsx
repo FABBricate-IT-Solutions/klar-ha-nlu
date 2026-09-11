@@ -10,6 +10,7 @@ import {
   SettingsVoiceSection,
 } from "../components/SettingsSections";
 import { type Messages } from "../i18n";
+import { toastSaved, toastSaveFailed } from "../saveToast";
 import { settingsViews } from "../routes";
 import type { BundleList, Locale, Settings, SettingsView, Theme } from "../types";
 import {
@@ -97,6 +98,7 @@ export function SettingsPage({
   const [packs, setPacks] = useState<LanguagePack[]>([]);
   const [llmEpoch, setLlmEpoch] = useState(0);
   const [llmReady, setLlmReady] = useState(false);
+  const [saving, setSaving] = useState(false);
   const view = settingsView;
   const refresh = () => api.bundle().then(setBundle).catch(() => undefined);
   useEffect(() => {
@@ -111,8 +113,16 @@ export function SettingsPage({
   }, [theme]);
   const save = async (next = settings) => {
     setToken(token);
-    onSettings(await api.saveSettings(next));
-    refresh();
+    setSaving(true);
+    try {
+      onSettings(await api.saveSettings(next));
+      refresh();
+      toastSaved(t);
+    } catch (err) {
+      toastSaveFailed(t, err);
+    } finally {
+      setSaving(false);
+    }
   };
   const clear = async () => {
     await api.clearBundle();
@@ -141,7 +151,7 @@ export function SettingsPage({
           <Button variant="ghost" type="button" onClick={() => onReplayWizard?.()}>
             {t.setupReplay}
           </Button>
-          <Button type="button" onClick={() => void save()}>{t.save}</Button>
+          <Button type="button" disabled={saving} onClick={() => void save()}>{t.save}</Button>
         </div>
       </section>
       <nav className="subnav" aria-label={t.settings}>

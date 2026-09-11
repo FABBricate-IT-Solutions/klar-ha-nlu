@@ -16,6 +16,7 @@ pub(super) const VERBS: &[(&str, VerbKind)] = &[
     ("listi", VerbKind::List),
     ("lokadu", VerbKind::Close),
     ("midlungs", VerbKind::Dim),
+    ("minnka", VerbKind::Lower),
     ("next", VerbKind::Next),
     ("opnadu", VerbKind::Open),
     ("orange", VerbKind::Color),

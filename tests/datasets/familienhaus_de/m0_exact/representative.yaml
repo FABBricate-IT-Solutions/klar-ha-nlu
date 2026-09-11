@@ -68,8 +68,9 @@
   sentences:
     - Mach Licht Wohnzimmer an
   nlu_expect:
-    intents: []
-    clarify: true
+    intents:
+      - intent: HassTurnOn
+        slots: {area: living, domain: light}
 
 - name: exact_reject
   sentences:

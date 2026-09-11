@@ -106,7 +106,7 @@ class AssistToolsTests(unittest.TestCase):
         de = (PKG / "translations" / "de.json").read_text(encoding="utf-8")
         self.assertNotIn("chit-chat agent", strings)
         self.assertNotIn("Smalltalk-Agenten", de)
-        self.assertIn("already prefixed", strings)
+        self.assertNotIn("already prefixed", strings)
 
 
 if __name__ == "__main__":

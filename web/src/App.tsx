@@ -56,6 +56,7 @@ const defaultSettings: Settings = {
   semantic_adapters: false,
   nlu_rag: false,
   refine_speech: false,
+  refine_bands: [],
   calendar_llm: false,
   quiet_ack: false,
   allow_llm_tools: false,
@@ -300,7 +301,7 @@ export function App() {
     <TooltipProvider>
     <div className="app-shell" data-theme={theme} data-trainer={trainerOpen ? "open" : "closed"}>
       <Sheet open={navOpen} onOpenChange={setNavOpen}>
-        <SheetContent side="left" id="klar-nav" className="bg-background text-foreground w-64 p-0">
+        <SheetContent side={isRtl(locale) ? "right" : "left"} id="klar-nav" closeLabel={t.close} className="bg-background text-foreground w-64 p-0">
           <SheetHeader>
             <SheetTitle className="px-4 pt-2"><KlarBrand /></SheetTitle>
           </SheetHeader>
@@ -444,7 +445,7 @@ export function App() {
         language={locale}
       />
     ) : null}
-    <Toaster theme={theme} />
+    <Toaster theme={theme} position="top-center" closeButton />
     </TooltipProvider>
   );
 }

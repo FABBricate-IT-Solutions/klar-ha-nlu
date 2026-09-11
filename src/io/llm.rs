@@ -1,9 +1,11 @@
 use crate::home::paths::{read_to_string_confined, remove_confined, write_atomic_confined};
 use crate::io::auth::{reads_allowed, writes_allowed};
+use crate::io::llm_calls::record_llm;
 use crate::io::state::AppState;
 use crate::llm::{
-    assist, assist_on, chat, chat_stream, generate_custom_voice, list_models, personality_preview_for, refine, refine_on, AssistRequest,
-    ChatEvent, ChatRequest, CustomVoiceRequest, LlmEndpoint, LlmError, LlmProviderKind, LlmPublic, PersonalityPreview, RefineRequest,
+    assist, assist_on, chat_stream_turn, chat_turn, generate_custom_voice, list_models, personality_preview_for, refine, refine_on,
+    AssistRequest, ChatEvent, ChatRequest, CustomVoiceRequest, LlmEndpoint, LlmError, LlmProviderKind, LlmPublic, PersonalityPreview,
+    RefineRequest,
 };
 use axum::extract::{ConnectInfo, DefaultBodyLimit, Query, State};
 use axum::http::{HeaderMap, StatusCode};
@@ -15,6 +17,7 @@ use serde::{Deserialize, Serialize};
 use std::convert::Infallible;
 use std::net::SocketAddr;
 use std::path::Path;
+use std::time::Instant;
 use tokio_stream::wrappers::UnboundedReceiverStream;
 
 pub(crate) const LLM_FILE: &str = "llm_endpoint.json";
@@ -211,7 +214,7 @@ async fn list_endpoint_models(
     headers: HeaderMap,
     Json(body): Json<ModelsIn>,
 ) -> Result<Json<ModelsOut>, StatusCode> {
-    if !writes_allowed(Some(peer), &headers, &state.token) {
+    if !reads_allowed(Some(peer), &headers, &state.token) {
         return Err(StatusCode::UNAUTHORIZED);
     }
     let (base_url, api_key) = {
@@ -248,27 +251,39 @@ pub async fn llm_chat(
     }
     let endpoint = state.llm.lock().await.clone().ok_or(StatusCode::SERVICE_UNAVAILABLE)?;
     let stream = body.stream.unwrap_or(true);
+    let model = endpoint.model.clone();
+    let calls = state.llm_calls.clone();
     if stream {
         let (tx, rx) = tokio::sync::mpsc::unbounded_channel::<Result<Event, Infallible>>();
         tokio::spawn(async move {
-            let result = chat_stream(&endpoint, body, |delta| {
+            let started = Instant::now();
+            let result = chat_stream_turn(&endpoint, body, |delta| {
                 let _ = tx.send(Ok(json_event(&ChatEvent::Delta { text: delta.to_string() })));
             })
             .await;
             match result {
-                Ok(text) => {
-                    let _ = tx.send(Ok(json_event(&ChatEvent::Done { text })));
+                Ok(turn) => {
+                    record_llm(&calls, "chat", started, &model, true, None, turn.usage.as_ref());
+                    let _ = tx.send(Ok(json_event(&ChatEvent::Done { text: turn.text })));
                 }
                 Err(err) => {
+                    record_llm(&calls, "chat", started, &model, false, None, None);
                     let _ = tx.send(Ok(json_event(&ChatEvent::Error { message: err.to_string() })));
                 }
             }
         });
         Ok(Sse::new(UnboundedReceiverStream::new(rx)).keep_alive(KeepAlive::default()).into_response())
     } else {
-        match chat(&endpoint, body).await {
-            Ok(text) => Ok(Json(ChatEvent::Done { text }).into_response()),
-            Err(err) => Err(status_for(&err)),
+        let started = Instant::now();
+        match chat_turn(&endpoint, body).await {
+            Ok(turn) => {
+                record_llm(&calls, "chat", started, &model, true, None, turn.usage.as_ref());
+                Ok(Json(ChatEvent::Done { text: turn.text }).into_response())
+            }
+            Err(err) => {
+                record_llm(&calls, "chat", started, &model, false, None, None);
+                Err(status_for(&err))
+            }
         }
     }
 }
@@ -290,35 +305,45 @@ pub async fn llm_refine(
     let conversation_id = body.conversation_id.clone();
     let endpoint = state.llm.lock().await.clone().ok_or(StatusCode::SERVICE_UNAVAILABLE)?;
     let journal = state.journal.clone();
+    let model = endpoint.model.clone();
+    let calls = state.llm_calls.clone();
     if stream {
         let (tx, rx) = tokio::sync::mpsc::unbounded_channel::<Result<Event, Infallible>>();
         tokio::spawn(async move {
+            let started = Instant::now();
             match refine_on(&endpoint, body, |event| {
                 let _ = tx.send(Ok(json_event(event)));
             })
             .await
             {
                 Ok(out) => {
+                    record_llm(&calls, "refine", started, &model, true, Some(out.accepted), out.usage.as_ref());
                     if out.accepted {
                         journal.note_spoken(Some(&conversation_id), &out.text, "refine");
                     }
                     let _ = tx.send(Ok(json_data(&out)));
                 }
                 Err(err) => {
+                    record_llm(&calls, "refine", started, &model, false, None, None);
                     let _ = tx.send(Ok(json_event(&ChatEvent::Error { message: err.to_string() })));
                 }
             }
         });
         Ok(Sse::new(UnboundedReceiverStream::new(rx)).keep_alive(KeepAlive::default()).into_response())
     } else {
+        let started = Instant::now();
         match refine(&endpoint, body).await {
             Ok(out) => {
+                record_llm(&calls, "refine", started, &model, true, Some(out.accepted), out.usage.as_ref());
                 if out.accepted {
                     journal.note_spoken(Some(&conversation_id), &out.text, "refine");
                 }
                 Ok(Json(out).into_response())
             }
-            Err(err) => Err(status_for(&err)),
+            Err(err) => {
+                record_llm(&calls, "refine", started, &model, false, None, None);
+                Err(status_for(&err))
+            }
         }
     }
 }
@@ -340,28 +365,35 @@ pub async fn llm_assist(
     let conversation_id = body.conversation_id.clone();
     let endpoint = state.llm.lock().await.clone().ok_or(StatusCode::SERVICE_UNAVAILABLE)?;
     let journal = state.journal.clone();
+    let model = endpoint.model.clone();
+    let calls = state.llm_calls.clone();
     if stream {
         let (tx, rx) = tokio::sync::mpsc::unbounded_channel::<Result<Event, Infallible>>();
         tokio::spawn(async move {
+            let started = Instant::now();
             let result = assist_on(&endpoint, body, |event| {
                 let _ = tx.send(Ok(json_event(event)));
             })
             .await;
             match result {
                 Ok(out) => {
+                    record_llm(&calls, "assist", started, &model, true, None, out.usage.as_ref());
                     if out.tool.is_none() {
                         journal.note_spoken(Some(&conversation_id), &out.text, "chat");
                     }
                 }
                 Err(err) => {
+                    record_llm(&calls, "assist", started, &model, false, None, None);
                     let _ = tx.send(Ok(json_event(&ChatEvent::Error { message: err.to_string() })));
                 }
             }
         });
         Ok(Sse::new(UnboundedReceiverStream::new(rx)).keep_alive(KeepAlive::default()).into_response())
     } else {
+        let started = Instant::now();
         match assist(&endpoint, body).await {
             Ok(out) => {
+                record_llm(&calls, "assist", started, &model, true, None, out.usage.as_ref());
                 if out.tool.is_none() {
                     journal.note_spoken(Some(&conversation_id), &out.text, "chat");
                 }
@@ -371,7 +403,10 @@ pub async fn llm_assist(
                     Ok(Json(ChatEvent::Done { text: out.text }).into_response())
                 }
             }
-            Err(err) => Err(status_for(&err)),
+            Err(err) => {
+                record_llm(&calls, "assist", started, &model, false, None, None);
+                Err(status_for(&err))
+            }
         }
     }
 }
@@ -395,90 +430,9 @@ pub fn status_for(err: &LlmError) -> StatusCode {
 }
 
 #[cfg(test)]
-mod tests {
-    use super::*;
+#[path = "llm_endpoint_tests.rs"]
+mod tests;
 
-    fn temp_dir(tag: &str) -> std::path::PathBuf {
-        let dir = std::env::temp_dir().join(format!("klar-llm-{tag}-{}", std::process::id()));
-        let _ = std::fs::remove_dir_all(&dir);
-        std::fs::create_dir_all(&dir).unwrap();
-        dir
-    }
-
-    #[test]
-    fn persists_endpoint_and_keeps_key_off_public() {
-        let dir = temp_dir("save");
-        let endpoint = LlmEndpoint::from_parts("http://127.0.0.1:11434/v1", "sk-secret", "llama3").unwrap();
-        save_endpoint(&dir, &endpoint).unwrap();
-        let loaded = from_file(&dir).unwrap();
-        assert_eq!(loaded.model, "llama3");
-        assert_eq!(loaded.api_key, "sk-secret");
-        assert_eq!(loaded.base_url, "http://127.0.0.1:11434/v1");
-        let public = loaded.public();
-        let json = serde_json::to_string(&public).unwrap();
-        assert!(!json.contains("sk-secret"));
-        assert!(json.contains("llama3"));
-        assert!(!loaded.enable_thinking);
-        assert!(!public.enable_thinking);
-        assert_eq!(public.provider.as_deref(), Some("custom"));
-        clear_endpoint(&dir).unwrap();
-        assert!(from_file(&dir).is_none());
-        let _ = std::fs::remove_dir_all(&dir);
-    }
-
-    #[test]
-    fn unknown_provider_still_loads() {
-        let dir = temp_dir("unknown-provider");
-        std::fs::write(
-            dir.join("llm_endpoint.json"),
-            r#"{"base_url":"http://192.168.178.15:8000/v1","api_key":"k","model":"gemma","provider":"not-a-host"}"#,
-        )
-        .unwrap();
-        let loaded = from_file(&dir).unwrap();
-        assert_eq!(loaded.model, "gemma");
-        assert_eq!(loaded.base_url, "http://192.168.178.15:8000/v1");
-        let _ = std::fs::remove_dir_all(&dir);
-    }
-
-    #[test]
-    fn old_file_defaults_thinking_off_and_roundtrips_on() {
-        let dir = temp_dir("legacy");
-        std::fs::write(dir.join("llm_endpoint.json"), r#"{"base_url":"http://127.0.0.1:8000/v1","api_key":"k","model":"gemma"}"#).unwrap();
-        let loaded = from_file(&dir).unwrap();
-        assert!(!loaded.enable_thinking);
-        save_endpoint(&dir, &loaded.clone().with_thinking(true)).unwrap();
-        let again = from_file(&dir).unwrap();
-        assert!(again.enable_thinking);
-        let _ = std::fs::remove_dir_all(&dir);
-    }
-
-    #[test]
-    fn assist_sse_forwards_deltas_live() {
-        let src = include_str!("llm.rs");
-        let start = src.find("pub async fn llm_assist").expect("llm_assist");
-        let end = src.find("pub fn json_event").expect("json_event");
-        let body = &src[start..end];
-        assert!(body.contains("assist_on"));
-        assert!(body.contains("unbounded_channel"));
-        assert!(!body.contains("blocking_send"));
-        assert!(!body.contains("try_send"));
-        assert!(!body.contains("for event in out.events"));
-    }
-
-    #[test]
-    fn custom_voice_route_requires_write_and_endpoint() {
-        let src = include_str!("llm.rs");
-        let start = src.find("async fn make_custom_voice").expect("make_custom_voice");
-        let body = &src[start..start + 900];
-        assert!(body.contains("writes_allowed"));
-        assert!(body.contains("SERVICE_UNAVAILABLE"));
-        assert!(body.contains("generate_custom_voice"));
-    }
-
-    #[test]
-    fn clear_missing_file_is_ok() {
-        let dir = temp_dir("missing");
-        clear_endpoint(&dir).unwrap();
-        let _ = std::fs::remove_dir_all(&dir);
-    }
-}
+#[cfg(test)]
+#[path = "llm_models_auth_tests.rs"]
+mod models_auth_tests;

@@ -73,9 +73,9 @@ La temperatura Y. → Si. La temperatura Y.",
     (
         "es",
         "jarvis",
-        "X esta encendido. → Of course, sir. X esta encendido.
+        "X esta encendido. → Claro, señor. X esta encendido.
 X esta apagado. → X esta apagado.
-La temperatura Y. → Of course, sir. La temperatura Y.",
+La temperatura Y. → Claro, señor. La temperatura Y.",
     ),
     (
         "nb",
@@ -150,9 +150,9 @@ Temperaturen Y. → Ja. Temperaturen Y.",
     (
         "nb",
         "jarvis",
-        "X er pa. → Of course, sir. X er pa.
+        "X er pa. → Selvsagt, sir. X er pa.
 X er av. → X er av.
-Temperaturen Y. → Of course, sir. Temperaturen Y.",
+Temperaturen Y. → Selvsagt, sir. Temperaturen Y.",
     ),
     (
         "pt-BR",
@@ -227,9 +227,9 @@ A temperatura Y. → Sim. A temperatura Y.",
     (
         "pt-BR",
         "jarvis",
-        "X esta ligado. → Of course, sir. X esta ligado.
+        "X esta ligado. → Claro, senhor. X esta ligado.
 X esta desligado. → X esta desligado.
-A temperatura Y. → Of course, sir. A temperatura Y.",
+A temperatura Y. → Claro, senhor. A temperatura Y.",
     ),
     (
         "hr",
@@ -304,9 +304,9 @@ Temperatura Y. → Da. Temperatura Y.",
     (
         "hr",
         "jarvis",
-        "X je upaljen. → Of course, sir. X je upaljen.
+        "X je upaljen. → Naravno, gospodine. X je upaljen.
 X je ugasen. → X je ugasen.
-Temperatura Y. → Of course, sir. Temperatura Y.",
+Temperatura Y. → Naravno, gospodine. Temperatura Y.",
     ),
     (
         "uk",
@@ -381,9 +381,9 @@ X вимкнено. → X вимкнено.
     (
         "uk",
         "jarvis",
-        "X увімкнено. → Of course, sir. X увімкнено.
+        "X увімкнено. → Звичайно, сер. X увімкнено.
 X вимкнено. → X вимкнено.
-Температура Y. → Of course, sir. Температура Y.",
+Температура Y. → Звичайно, сер. Температура Y.",
     ),
     (
         "fa",
@@ -458,9 +458,9 @@ X خاموش است. → X خاموش است.
     (
         "fa",
         "jarvis",
-        "X روشن است. → Of course, sir. X روشن است.
+        "X روشن است. → البته، قربان. X روشن است.
 X خاموش است. → X خاموش است.
-دما Y. → Of course, sir. دما Y.",
+دما Y. → البته، قربان. دما Y.",
     ),
     (
         "cy",
@@ -535,9 +535,9 @@ Y tymheredd Y. → Ie. Y tymheredd Y.",
     (
         "cy",
         "jarvis",
-        "X yn ymlaen. → Of course, sir. X yn ymlaen.
+        "X yn ymlaen. → Wrth gwrs, syr. X yn ymlaen.
 X yn diffodd. → X yn diffodd.
-Y tymheredd Y. → Of course, sir. Y tymheredd Y.",
+Y tymheredd Y. → Wrth gwrs, syr. Y tymheredd Y.",
     ),
     (
         "lb",
@@ -612,9 +612,9 @@ D Temperatur Y. → Jo. D Temperatur Y.",
     (
         "lb",
         "jarvis",
-        "X ass un. → Of course, sir. X ass un.
+        "X ass un. → Natierlech, Här. X ass un.
 X ass aus. → X ass aus.
-D Temperatur Y. → Of course, sir. D Temperatur Y.",
+D Temperatur Y. → Natierlech, Här. D Temperatur Y.",
     ),
     (
         "sw",
@@ -689,162 +689,162 @@ Joto Y. → Ndiyo. Joto Y.",
     (
         "sw",
         "jarvis",
-        "X imewashwa. → Of course, sir. X imewashwa.
+        "X imewashwa. → Bila shaka, bwana. X imewashwa.
 X imezimwa. → X imezimwa.
-Joto Y. → Of course, sir. Joto Y.",
+Joto Y. → Bila shaka, bwana. Joto Y.",
     ),
     (
         "ml",
         "default",
         "X തെളിഞ്ഞു. → X തെളിഞ്ഞു.
 X അണഞ്ഞു. → X അണഞ്ഞു.
-Temperature Y. → Temperature Y.",
+താപനില Y. → താപനില Y.",
     ),
     (
         "ml",
         "butler",
-        "X തെളിഞ്ഞു. → Nannayi. X തെളിഞ്ഞു.
+        "X തെളിഞ്ഞു. → നന്നായി. X തെളിഞ്ഞു.
 X അണഞ്ഞു. → X അണഞ്ഞു.
-Temperature Y. → Nannayi. Temperature Y.",
+താപനില Y. → നന്നായി. താപനില Y.",
     ),
     (
         "ml",
         "locker",
-        "X തെളിഞ്ഞു. → Manasilayi. X തെളിഞ്ഞു.
+        "X തെളിഞ്ഞു. → മനസിലായി. X തെളിഞ്ഞു.
 X അണഞ്ഞു. → X അണഞ്ഞു.
-Temperature Y. → Manasilayi. Temperature Y.",
+താപനില Y. → മനസിലായി. താപനില Y.",
     ),
     (
         "ml",
         "fuersorglich",
-        "X തെളിഞ്ഞു. → Ippol cheyyunnu. X തെളിഞ്ഞു.
+        "X തെളിഞ്ഞു. → ഇപ്പോൾ ചെയ്യുന്നു. X തെളിഞ്ഞു.
 X അണഞ്ഞു. → X അണഞ്ഞു.
-Temperature Y. → Ippol cheyyunnu. Temperature Y.",
+താപനില Y. → ഇപ്പോൾ ചെയ്യുന്നു. താപനില Y.",
     ),
     (
         "ml",
         "party",
-        "X തെളിഞ്ഞു. → Pokaam. X തെളിഞ്ഞു.
+        "X തെളിഞ്ഞു. → പോകാം. X തെളിഞ്ഞു.
 X അണഞ്ഞു. → X അണഞ്ഞു.
-Temperature Y. → Pokaam. Temperature Y.",
+താപനില Y. → പോകാം. താപനില Y.",
     ),
     (
         "ml",
         "grantig",
-        "X തെളിഞ്ഞു. → Sheri. X തെളിഞ്ഞു.
+        "X തെളിഞ്ഞു. → ശരി. X തെളിഞ്ഞു.
 X അണഞ്ഞു. → X അണഞ്ഞു.
-Temperature Y. → Sheri. Temperature Y.",
+താപനില Y. → ശരി. താപനില Y.",
     ),
     (
         "ml",
         "sarkastisch",
-        "X തെളിഞ്ഞു. → Theerchayayi. X തെളിഞ്ഞു.
+        "X തെളിഞ്ഞു. → തീർച്ചയായി. X തെളിഞ്ഞു.
 X അണഞ്ഞു. → X അണഞ്ഞു.
-Temperature Y. → Theerchayayi. Temperature Y.",
+താപനില Y. → തീർച്ചയായി. താപനില Y.",
     ),
     (
         "ml",
         "pirat",
         "X തെളിഞ്ഞു. → Aye. X തെളിഞ്ഞു.
 X അണഞ്ഞു. → X അണഞ്ഞു.
-Temperature Y. → Aye. Temperature Y.",
+താപനില Y. → Aye. താപനില Y.",
     ),
     (
         "ml",
         "hippie",
-        "X തെളിഞ്ഞു. → Shaantam. X തെളിഞ്ഞു.
+        "X തെളിഞ്ഞു. → ശാന്തം. X തെളിഞ്ഞു.
 X അണഞ്ഞു. → X അണഞ്ഞു.
-Temperature Y. → Shaantam. Temperature Y.",
+താപനില Y. → ശാന്തം. താപനില Y.",
     ),
     (
         "ml",
         "gollum",
-        "X തെളിഞ്ഞു. → Athe. X തെളിഞ്ഞു.
+        "X തെളിഞ്ഞു. → അതെ. X തെളിഞ്ഞു.
 X അണഞ്ഞു. → X അണഞ്ഞു.
-Temperature Y. → Athe. Temperature Y.",
+താപനില Y. → അതെ. താപനില Y.",
     ),
     (
         "ml",
         "jarvis",
-        "X തെളിഞ്ഞു. → Of course, sir. X തെളിഞ്ഞു.
+        "X തെളിഞ്ഞു. → അതെ, സർ. X തെളിഞ്ഞു.
 X അണഞ്ഞു. → X അണഞ്ഞു.
-Temperature Y. → Of course, sir. Temperature Y.",
+താപനില Y. → അതെ, സർ. താപനില Y.",
     ),
     (
         "hy",
         "default",
         "X միացված է։ → X միացված է։
 X անջատված է։ → X անջատված է։
-Jermastichane Y. → Jermastichane Y.",
+Ջերմաստիճանը Y։ → Ջերմաստիճանը Y։",
     ),
     (
         "hy",
         "butler",
-        "X միացված է։ → Lav. X միացված է։
+        "X միացված է։ → Լավ։ X միացված է։
 X անջատված է։ → X անջատված է։
-Jermastichane Y. → Lav. Jermastichane Y.",
+Ջերմաստիճանը Y։ → Լավ։ Ջերմաստիճանը Y։",
     ),
     (
         "hy",
         "locker",
-        "X միացված է։ → Hasatsa. X միացված է։
+        "X միացված է։ → Հասկացա։ X միացված է։
 X անջատված է։ → X անջատված է։
-Jermastichane Y. → Hasatsa. Jermastichane Y.",
+Ջերմաստիճանը Y։ → Հասկացա։ Ջերմաստիճանը Y։",
     ),
     (
         "hy",
         "fuersorglich",
-        "X միացված է։ → Hima k anem. X միացված է։
+        "X միացված է։ → Հիմա կանեմ։ X միացված է։
 X անջատված է։ → X անջատված է։
-Jermastichane Y. → Hima k anem. Jermastichane Y.",
+Ջերմաստիճանը Y։ → Հիմա կանեմ։ Ջերմաստիճանը Y։",
     ),
     (
         "hy",
         "party",
-        "X միացված է։ → Gnanq. X միացված է։
+        "X միացված է։ → Գնանք։ X միացված է։
 X անջատված է։ → X անջատված է։
-Jermastichane Y. → Gnanq. Jermastichane Y.",
+Ջերմաստիճանը Y։ → Գնանք։ Ջերմաստիճանը Y։",
     ),
     (
         "hy",
         "grantig",
-        "X միացված է։ → Lav. X միացված է։
+        "X միացված է։ → Լավ։ X միացված է։
 X անջատված է։ → X անջատված է։
-Jermastichane Y. → Lav. Jermastichane Y.",
+Ջերմաստիճանը Y։ → Լավ։ Ջերմաստիճանը Y։",
     ),
     (
         "hy",
         "sarkastisch",
-        "X միացված է։ → Ihayt. X միացված է։
+        "X միացված է։ → Իհարկե։ X միացված է։
 X անջատված է։ → X անջատված է։
-Jermastichane Y. → Ihayt. Jermastichane Y.",
+Ջերմաստիճանը Y։ → Իհարկե։ Ջերմաստիճանը Y։",
     ),
     (
         "hy",
         "pirat",
         "X միացված է։ → Aye. X միացված է։
 X անջատված է։ → X անջատված է։
-Jermastichane Y. → Aye. Jermastichane Y.",
+Ջերմաստիճանը Y։ → Aye. Ջերմաստիճանը Y։",
     ),
     (
         "hy",
         "hippie",
-        "X միացված է։ → Hangelist. X միացված է։
+        "X միացված է։ → Հանգիստ։ X միացված է։
 X անջատված է։ → X անջատված է։
-Jermastichane Y. → Hangelist. Jermastichane Y.",
+Ջերմաստիճանը Y։ → Հանգիստ։ Ջերմաստիճանը Y։",
     ),
     (
         "hy",
         "gollum",
-        "X միացված է։ → Ayo. X միացված է։
+        "X միացված է։ → Այո։ X միացված է։
 X անջատված է։ → X անջատված է։
-Jermastichane Y. → Ayo. Jermastichane Y.",
+Ջերմաստիճանը Y։ → Այո։ Ջերմաստիճանը Y։",
     ),
     (
         "hy",
         "jarvis",
-        "X միացված է։ → Of course, sir. X միացված է։
+        "X միացված է։ → Իհարկե, պարոն։ X միացված է։
 X անջատված է։ → X անջատված է։
-Jermastichane Y. → Of course, sir. Jermastichane Y.",
+Ջերմաստիճանը Y։ → Իհարկե, պարոն։ Ջերմաստիճանը Y։",
     ),
 ];

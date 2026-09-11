@@ -17,6 +17,7 @@ pub(super) const VERBS: &[(&str, VerbKind)] = &[
     ("folusaire", VerbKind::VacuumNoun),
     ("glas", VerbKind::Lock),
     ("green", VerbKind::Color),
+    ("laghdaigh", VerbKind::Lower),
     ("liosta", VerbKind::List),
     ("meanach", VerbKind::Dim),
     ("much", VerbKind::Off),

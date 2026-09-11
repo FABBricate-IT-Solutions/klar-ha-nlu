@@ -23,33 +23,18 @@
     "step": {
       "init": {
         "title": "Klar NLU",
-        "description": "La personalitat es desa aquí i sobreviu a la reinstal·lació de l’app Klar.",
+        "description": "La veu, les llengües d’Assist i l’LLM són a la UI d’operador de Klar (Configuració). Aquest formulari només connecta el motor: URL, testimoni i canal. {apps}",
         "data": {
           "mode": "Motor",
-          "personality": "Personalitat",
-          "languages": "Llengües",
-          "allow_llm_tools": "Allow Home Assistant Assist tools on engine chat",
-          "refine_speech": "Deixar que l'LLM reformuli les respostes NLU",
-          "refine_prompt": "Indicació de refinament",
           "url": "URL de l’API Klar",
           "token": "Testimoni d’escriptura",
           "assist_filter": "Controlar només entitats exposades a Assist",
-          "nlu_rag": "NLU-RAG (opcional)",
-          "quiet_ack": "Confirmació breu (timbre)",
-          "calendar_llm": "Enviar les consultes de calendari a l'LLM",
           "channel": "Canal de publicació"
         },
         "data_description": {
-          "personality": "És en aquesta integració, no a l’app Klar.",
-          "refine_speech": "Klar continua controlant els aparells. L'LLM de reserva reformula la resposta.",
-          "refine_prompt": "Indicació de sistema de la veu. Sense control d’aparells, sense fets nous, mateixa llengua.",
+          "mode": "App vs bundled engine. Switch anytime. The integration sidebar only appears for the bundled engine.",
           "token": "El mateix testimoni que a l’app Klar.",
           "assist_filter": "Activat: només el que Assist pot veure. Desactivat: també entitats ocultes.",
-          "nlu_rag": "Desactivat per defecte. Al xat només el fragment reconegut va al model de reserva.",
-          "quiet_ack": "En encendre o apagar simple, sense frase: només un timbre curt al satèl·lit.",
-          "calendar_llm": "Desactivat per defecte. Activat: Klar llegeix el calendari i l'LLM de reserva diu els esdeveniments. Desactivat: Klar diu la llista. Crear, esborrar i moure queden a Klar.",
-          "allow_llm_tools": "Off by default. On: after Klar parses, the engine chat model may call Home Assistant Assist tools (names come from Core, already prefixed). Off: conversation only.",
-          "languages": "Per defecte, la llengua del sistema de Home Assistant.",
           "channel": "En qualsevol moment. Staging apunta a Klar NLU (Staging)."
         }
       }
@@ -115,6 +100,11 @@
     "switch": {
       "quiet_ack": {
         "name": "Confirmació breu"
+      }
+    },
+    "ai_task": {
+      "ai_task": {
+        "name": "Tasca d'IA"
       }
     },
     "sensor": {

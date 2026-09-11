@@ -23,33 +23,18 @@
     "step": {
       "init": {
         "title": "Klar NLU",
-        "description": "პიროვნება აქ ინახება და რჩება Klar აპის ხელახლა დაყენების შემდეგ.",
+        "description": "ხმა, Assist-ის ენები და LLM Klar-ის ოპერატორის UI-შია (პარამეტრები). ეს ფორმა მხოლოდ ძრავს აკავშირებს: URL, ტოკენი და არხი. {apps}",
         "data": {
           "mode": "ძრავა",
-          "personality": "პიროვნება",
-          "languages": "ენები",
-          "allow_llm_tools": "Allow Home Assistant Assist tools on engine chat",
-          "refine_speech": "LLM-მა გადააფორმოს NLU პასუხები",
-          "refine_prompt": "დახვეწის მოთხოვნა",
           "url": "Klar API URL",
           "token": "ჩაწერის ტოკენი",
           "assist_filter": "მართე მხოლოდ Assist-ისთვის გამოჩენილი ერთეულები",
-          "nlu_rag": "NLU-RAG (არასავალდებულო)",
-          "quiet_ack": "მოკლე დადასტურება (ზარი)",
-          "calendar_llm": "Kalendaris motkhovnebi gaaagzavne LLM-s",
           "channel": "გამოშვების არხი"
         },
         "data_description": {
-          "personality": "ამ ინტეგრაციაშია, არა Klar აპში.",
-          "refine_speech": "Klar კვლავ მართავს მოწყობილობებს. სარეზერვო LLM გადაწერს პასუხს.",
-          "refine_prompt": "ხმის სისტემური მოთხოვნა. მოწყობილობის კონტროლი არა, ახალი ფაქტები არა, იგივე ენა.",
+          "mode": "App vs bundled engine. Switch anytime. The integration sidebar only appears for the bundled engine.",
           "token": "იგივე ტოკენი, რაც Klar აპში.",
           "assist_filter": "ჩართული: მხოლოდ ის, რასაც Assist ხედავს. გამორთული: დამალული ერთეულებიც.",
-          "nlu_rag": "ნაგულისხმევად გამორთული. ჩატში სარეზერვო მოდელს მხოლოდ დამთხვეული ნაწილი მიდის.",
-          "quiet_ack": "მარტივი სინათლის ჩართვა/გამორთვა უსიტყვოდ, მხოლოდ მოკლე ხმა თანამგზავრზე.",
-          "calendar_llm": "Standartulad gamtishulia. Chartuli: Klari kitkhulobs kalendars, rezervuli LLM ambobs movlenebs. Gamortuli: Klari ambobs sias. Shekmna, washla da gadatanili rcheba Klartan.",
-          "allow_llm_tools": "Off by default. On: after Klar parses, the engine chat model may call Home Assistant Assist tools (names come from Core, already prefixed). Off: conversation only.",
-          "languages": "ნაგულისხმევი მიჰყვება Home Assistant სისტემის ენას.",
           "channel": "ნებისმიერ დროს. Staging მიუთითებს Klar NLU (Staging)."
         }
       }
@@ -115,6 +100,11 @@
     "switch": {
       "quiet_ack": {
         "name": "მოკლე დადასტურება"
+      }
+    },
+    "ai_task": {
+      "ai_task": {
+        "name": "ხელოვნური ინტელექტის ამოცანა"
       }
     },
     "sensor": {

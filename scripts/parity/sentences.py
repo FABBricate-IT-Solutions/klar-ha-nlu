@@ -59,7 +59,7 @@ def action_verb(lex: dict, cond: dict) -> str:
         return lex["lock_v"]
     if domain == "media_player" and state == "paused":
         return lex["pause"]
-    if state in {"off", "closed", "unlocked", "paused"}:
+    if state in {"off", "closed", "unlocked", "paused", "idle"}:
         return lex["off"]
     if state == "open":
         return lex["open"]
@@ -100,7 +100,8 @@ def target_words(lex: dict, cond: dict, suite: str) -> str:
         if domain == "light" and info["area"] and any(key in ident or key in info["name"].lower() for key in ("lampe", "lamp")):
             return f"{lex['lamp']} {room(lex, info['area'])}"
         if domain == "light" and info["area"] and any(key in ident or key in info["name"].lower() for key in ("nacht", "bedside")):
-            return f"{lex['bedside']} {room(lex, info['area'])}"
+            side = "right" if "right" in ident or "rechts" in ident else "left" if "left" in ident or "links" in ident else ""
+            return f"{lex['bedside']} {side} {room(lex, info['area'])}".strip()
         if domain == "light" and info["area"] and any(key in ident or key in info["name"].lower() for key in ("insel", "island")):
             return f"{lex['island']} {room(lex, info['area'])}"
         if domain == "light" and info["area"] and "ensuite" in ident:
@@ -158,6 +159,10 @@ def phrase(lex: dict, cond: dict, suite: str) -> str:
         return f"{lex['set']} {target} {attrs['position']}"
     if cond.get("minutes") is not None:
         return f"{lex['on']} {target} {cond['minutes']} {lex['minutes']}"
+    if cond.get("seconds") is not None:
+        return f"{lex['on']} {target} {cond['seconds']} {lex.get('seconds', 'sec')}"
+    if cond.get("hours") is not None:
+        return f"{lex['on']} {target} {cond['hours']} {lex.get('hours', 'hour')}"
     return f"{verb} {target}"
 
 
@@ -255,6 +260,14 @@ def sentence_for(case: dict, lex: dict, suite: str) -> list[str] | list[list[str
         return [f"{verb} {item} {'aufgabenliste' if chores else lex['list']}"]
     if name == "cancel_all_timers":
         return [f"{lex['off']} {lex['all']} {lex['timer']}"]
+    if "timer" in name or name.startswith("abstract_"):
+        entity = str((conds[0] if conds else {}).get("entity_id") or "timer.oven").split(".")[-1]
+        if "cancel" in name:
+            return [f"{lex['off']} {lex['timer']} {entity}"]
+        if "unpause" in name:
+            return [f"{lex['play']} {lex['timer']} {entity}"]
+        if name.endswith("_pause") or name.endswith("pause"):
+            return [f"{lex['pause']} {lex['timer']} {entity}"]
     if "kugel_und_decke" in name:
         return [f"{lex['globe']} {lex['and']} {lex['ceiling']} {room(lex, 'schlafzimmer')} {lex['off']}"]
     if "ausser" in name or "except" in name:
@@ -284,7 +297,8 @@ def clarify_turns(case: dict, lex: dict, suite: str) -> list[str]:
         pick = lex["bedside"]
     else:
         pick = lex["yes"]
-    return [f"{lex['on']} {lex['light']} {where}", pick]
+    noun = lex["lamp"] if "lampe" in name else lex["light"]
+    return [f"{lex['on']} {noun} {where}", pick]
 
 
 def multi_turn(case: dict, lex: dict, suite: str) -> list[str]:

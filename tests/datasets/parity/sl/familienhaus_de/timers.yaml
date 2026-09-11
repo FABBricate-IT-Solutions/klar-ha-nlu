@@ -3,34 +3,34 @@ timers/timers::abstract_start:
 timers/timers::abstract_start_hours_minutes:
 - prizgi casovnik abstract 20 min
 timers/timers::abstract_start_seconds:
-- prizgi casovnik abstract
+- prizgi casovnik abstract 45 sec
 timers/timers::cancel_all_timers:
 - ugasni vse casovnik
 timers/timers::timer_laundry_cancel:
-- prizgi casovnik laundry
+- ugasni casovnik laundry
 timers/timers::timer_laundry_decrease:
 - prizgi casovnik laundry 5 min
 timers/timers::timer_laundry_increase:
 - prizgi casovnik laundry 16 min
 timers/timers::timer_laundry_pause:
-- ugasni casovnik laundry
+- pause casovnik laundry
 timers/timers::timer_laundry_start:
-- prizgi casovnik laundry
+- prizgi casovnik laundry 90 sec
 timers/timers::timer_laundry_status:
 - kaj casovnik laundry
 timers/timers::timer_laundry_unpause:
-- prizgi casovnik laundry
+- predvajaj casovnik laundry
 timers/timers::timer_oven_cancel:
-- prizgi casovnik oven
+- ugasni casovnik oven
 timers/timers::timer_oven_decrease:
 - prizgi casovnik oven 44 min
 timers/timers::timer_oven_increase:
 - prizgi casovnik oven 30 min
 timers/timers::timer_oven_pause:
-- ugasni casovnik oven
+- pause casovnik oven
 timers/timers::timer_oven_start:
 - prizgi casovnik oven 2 min
 timers/timers::timer_oven_status:
 - kaj casovnik oven
 timers/timers::timer_oven_unpause:
-- prizgi casovnik oven
+- predvajaj casovnik oven

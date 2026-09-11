@@ -3,34 +3,34 @@ timers/timers::abstract_start:
 timers/timers::abstract_start_hours_minutes:
 - mach timer abstract 20 min
 timers/timers::abstract_start_seconds:
-- mach timer abstract
+- mach timer abstract 45 sec
 timers/timers::cancel_all_timers:
 - schalt alle timer
 timers/timers::timer_laundry_cancel:
-- mach timer laundry
+- schalt timer laundry
 timers/timers::timer_laundry_decrease:
 - mach timer laundry 5 min
 timers/timers::timer_laundry_increase:
 - mach timer laundry 16 min
 timers/timers::timer_laundry_pause:
-- schalt timer laundry
+- pause timer laundry
 timers/timers::timer_laundry_start:
-- mach timer laundry
+- mach timer laundry 90 sec
 timers/timers::timer_laundry_status:
 - was timer laundry
 timers/timers::timer_laundry_unpause:
-- mach timer laundry
+- spiel timer laundry
 timers/timers::timer_oven_cancel:
-- mach timer oven
+- schalt timer oven
 timers/timers::timer_oven_decrease:
 - mach timer oven 44 min
 timers/timers::timer_oven_increase:
 - mach timer oven 30 min
 timers/timers::timer_oven_pause:
-- schalt timer oven
+- pause timer oven
 timers/timers::timer_oven_start:
 - mach timer oven 2 min
 timers/timers::timer_oven_status:
 - was timer oven
 timers/timers::timer_oven_unpause:
-- mach timer oven
+- spiel timer oven

@@ -23,33 +23,18 @@
     "step": {
       "init": {
         "title": "Klar NLU",
-        "description": "La personalidad se guarda aquí y sobrevive a reinstalar la app Klar.",
+        "description": "La voz, los idiomas de Assist y el LLM están en la UI de operador de Klar (Ajustes). Este formulario solo conecta el motor: URL, token y canal. {apps}",
         "data": {
           "mode": "Motor",
-          "personality": "Personalidad",
-          "languages": "Idiomas",
-          "allow_llm_tools": "Allow Home Assistant Assist tools on engine chat",
-          "refine_speech": "Dejar que el LLM reformule las respuestas NLU",
-          "refine_prompt": "Indicación de refinamiento",
           "url": "URL de la API de Klar",
           "token": "Token de escritura",
           "assist_filter": "Controlar solo entidades expuestas a Assist",
-          "nlu_rag": "NLU-RAG (opcional)",
-          "quiet_ack": "Confirmación breve (timbre)",
-          "calendar_llm": "Enviar consultas de calendario al LLM",
           "channel": "Canal de publicación"
         },
         "data_description": {
-          "personality": "Está en esta integración, no en la app Klar. Assist y la voz LLM siguen el prompt.",
-          "refine_speech": "Klar sigue controlando los dispositivos. El LLM de reserva reformula la respuesta.",
-          "refine_prompt": "Prompt del sistema de la voz. Sin control de dispositivos, sin hechos nuevos, mismo idioma.",
+          "mode": "App vs bundled engine. Switch anytime. The integration sidebar only appears for the bundled engine.",
           "token": "El mismo token que en la app Klar.",
           "assist_filter": "Activado: solo lo que Assist puede ver. Desactivado: también entidades ocultas.",
-          "nlu_rag": "Desactivado por defecto. En el chat solo el fragmento reconocido va al modelo de reserva.",
-          "quiet_ack": "En encender o apagar simple, sin frase: solo un timbre corto en el satélite.",
-          "calendar_llm": "Desactivado por defecto. Activado: Klar lee el calendario y el LLM de reserva dice los eventos. Desactivado: Klar dice la lista. Crear, borrar y mover siguen en Klar.",
-          "allow_llm_tools": "Off by default. On: after Klar parses, the engine chat model may call Home Assistant Assist tools (names come from Core, already prefixed). Off: conversation only.",
-          "languages": "Por defecto, el idioma del sistema de Home Assistant.",
           "channel": "En cualquier momento. Staging apunta a Klar NLU (Staging); Stable a la app o al motor incluido."
         }
       }
@@ -115,6 +100,11 @@
     "switch": {
       "quiet_ack": {
         "name": "Confirmación breve"
+      }
+    },
+    "ai_task": {
+      "ai_task": {
+        "name": "Tarea de IA"
       }
     },
     "sensor": {

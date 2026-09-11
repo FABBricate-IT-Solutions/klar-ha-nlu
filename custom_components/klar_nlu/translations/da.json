@@ -23,33 +23,18 @@
     "step": {
       "init": {
         "title": "Klar NLU",
-        "description": "Personligheden gemmes her og overlever geninstallation af Klar-appen.",
+        "description": "Stemme, Assist-sprog og LLM ligger i Klar-operatør-UI (Indstillinger). Denne formular forbinder kun motoren: URL, token og kanal. {apps}",
         "data": {
           "mode": "Motor",
-          "personality": "Personlighed",
-          "languages": "Sprog",
-          "allow_llm_tools": "Allow Home Assistant Assist tools on engine chat",
-          "refine_speech": "Lad LLM omskrive NLU-svar",
-          "refine_prompt": "Forfiningsprompt",
           "url": "Klar-API-URL",
           "token": "Skrivetoken",
           "assist_filter": "Styr kun enheder synlige for Assist",
-          "nlu_rag": "NLU-RAG (valgfrit)",
-          "quiet_ack": "Kort bekræftelse (klokke)",
-          "calendar_llm": "Send kalenderforespørgsler til LLM'et",
           "channel": "Udgivelseskanal"
         },
         "data_description": {
-          "personality": "Ligger i denne integration, ikke i Klar-appen.",
-          "refine_speech": "Klar styrer stadig enhederne. Fallback-LLM omskriver svaret.",
-          "refine_prompt": "Systemprompt til stemmen. Ingen enhedsstyring, ingen nye fakta, samme sprog.",
+          "mode": "App vs bundled engine. Switch anytime. The integration sidebar only appears for the bundled engine.",
           "token": "Samme token som i Klar-appen.",
           "assist_filter": "Til: kun det Assist må se. Fra: også skjulte enheder.",
-          "nlu_rag": "Fra som standard. Ved chat sendes kun det genkendte udsnit til fallback-modellen.",
-          "quiet_ack": "Ved simpelt lys eller kontakt tænd/sluk ingen sætning, kun en kort tone.",
-          "calendar_llm": "Slået fra som standard. Til: Klar læser kalenderen, fallback-LLM'et siger aftalerne. Fra: Klar siger listen selv. Opret, slet og flyt bliver i Klar.",
-          "allow_llm_tools": "Off by default. On: after Klar parses, the engine chat model may call Home Assistant Assist tools (names come from Core, already prefixed). Off: conversation only.",
-          "languages": "Standard er Home Assistants systemsprog.",
           "channel": "Når som helst. Staging peger på Klar NLU (Staging)."
         }
       }
@@ -115,6 +100,11 @@
     "switch": {
       "quiet_ack": {
         "name": "Kort bekræftelse"
+      }
+    },
+    "ai_task": {
+      "ai_task": {
+        "name": "AI-opgave"
       }
     },
     "sensor": {

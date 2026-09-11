@@ -2,13 +2,44 @@ from __future__ import annotations
 
 from pathlib import Path
 
-from homeassistant.components.frontend import add_extra_js_url
+from homeassistant.components.frontend import add_extra_js_url, async_register_built_in_panel
 from homeassistant.core import HomeAssistant
 
-from .const import DOMAIN
+from .const import DOMAIN, is_addon_engine_url
+
+try:
+    from homeassistant.components.frontend import async_remove_panel
+except ImportError:
+
+    def async_remove_panel(hass: HomeAssistant, frontend_url_path: str) -> None:
+        panels = hass.data.get("frontend_panels")
+        if isinstance(panels, dict):
+            panels.pop(frontend_url_path, None)
+
+try:
+    from homeassistant.components.http import StaticPathConfig
+except ImportError:
+    StaticPathConfig = None
 
 _WWW = Path(__file__).parent / "www"
 _CARD = "/klar_nlu/klar-home-card.js"
+PANEL_PATH = "klar-nlu"
+PANEL_TITLE = "Klar NLU"
+PANEL_ICON = "mdi:brain"
+_STORE_KEYS = frozenset({"panel", "ui_proxy", "ui_cookie_secret", "operator_panel"})
+
+
+def operator_panel_wanted(hass: HomeAssistant) -> bool:
+    """HACS sidebar only when Assist is not using the Supervisor App."""
+    for key, payload in (hass.data.get(DOMAIN) or {}).items():
+        if key in _STORE_KEYS or not isinstance(payload, dict):
+            continue
+        if payload.get("engine") is not None:
+            return True
+        url = str(payload.get("url") or "")
+        if url and not is_addon_engine_url(url):
+            return True
+    return False
 
 
 def _dashboard_config(url_path: str) -> dict[str, object]:
@@ -23,65 +54,85 @@ def _dashboard_config(url_path: str) -> dict[str, object]:
     }
 
 
+def operator_panel_config() -> dict[str, object]:
+    # Same host as Supervisor add-on ingress: ha-panel-iframe + hass-subpage.
+    # Boot mints the UI cookie, then replaces with /api/klar_nlu/ui/.
+    return {"url": "/klar_nlu/boot.html"}
+
+
 async def async_setup_panel(hass: HomeAssistant) -> None:
+    await _async_register_card(hass)
+    if not operator_panel_wanted(hass):
+        _remove_operator_panel(hass)
+        return
+    _register_operator_panel(hass)
+
+
+async def async_unload_panel(hass: HomeAssistant) -> None:
+    remaining = [
+        key
+        for key, payload in (hass.data.get(DOMAIN) or {}).items()
+        if key not in {"panel", "ui_proxy", "ui_cookie_secret", "operator_panel"}
+        and isinstance(payload, dict)
+    ]
+    if remaining:
+        return
+    _remove_operator_panel(hass)
+
+
+async def _async_register_card(hass: HomeAssistant) -> None:
     if hass.data.get(DOMAIN, {}).get("panel"):
         return
     hass.data.setdefault(DOMAIN, {})["panel"] = True
-    try:
-        from homeassistant.components.http import StaticPathConfig
-
-        await hass.http.async_register_static_paths(
-            [StaticPathConfig("/klar_nlu", str(_WWW), False)]
-        )
-    except (AttributeError, TypeError, ImportError):
+    if StaticPathConfig is not None:
+        try:
+            await hass.http.async_register_static_paths(
+                [StaticPathConfig("/klar_nlu", str(_WWW), False)]
+            )
+        except (AttributeError, TypeError):
+            hass.http.register_static_path("/klar_nlu", str(_WWW), cache_headers=False)
+    else:
         hass.http.register_static_path("/klar_nlu", str(_WWW), cache_headers=False)
     add_extra_js_url(hass, _CARD)
-    await _async_register_dashboard(hass)
 
 
-async def _async_register_dashboard(hass: HomeAssistant) -> None:
-    """Sidebar Lovelace view with klar-home-card so a family sees it on first run."""
+def _register_operator_panel(hass: HomeAssistant) -> None:
+    if hass.data.get(DOMAIN, {}).get("operator_panel"):
+        return
     try:
-        from homeassistant.components.frontend import async_register_built_in_panel
-        from homeassistant.components.lovelace.dashboard import LovelaceStorage
-    except ImportError:
-        return
-    data = hass.data.get("lovelace")
-    if data is None:
-        return
-    url_path = "klar-nlu"
-    dashboards = getattr(data, "dashboards", None)
-    if not isinstance(dashboards, dict) or url_path in dashboards:
-        return
-    config = _dashboard_config(url_path)
-    try:
-        dash = LovelaceStorage(hass, config)
-        await dash.async_load(False)
-        current = getattr(dash, "config", None) or {}
-        if not current.get("views"):
-            await dash.async_save(
-                {
-                    "title": "Klar",
-                    "views": [
-                        {
-                            "title": "Klar",
-                            "path": "klar",
-                            "cards": [{"type": "custom:klar-home-card"}],
-                        }
-                    ],
-                }
-            )
-        dashboards[url_path] = dash
         async_register_built_in_panel(
             hass,
-            component_name="lovelace",
-            sidebar_title="Klar",
-            sidebar_icon="mdi:waveform",
-            frontend_url_path=url_path,
-            config={"mode": "storage"},
-            require_admin=False,
+            component_name="iframe",
+            sidebar_title=PANEL_TITLE,
+            sidebar_icon=PANEL_ICON,
+            frontend_url_path=PANEL_PATH,
+            config=operator_panel_config(),
+            require_admin=True,
+            update=True,
         )
-    except (AttributeError, KeyError, TypeError, ValueError, RuntimeError, OSError):
+    except TypeError:
+        try:
+            async_register_built_in_panel(
+                hass,
+                component_name="iframe",
+                sidebar_title=PANEL_TITLE,
+                sidebar_icon=PANEL_ICON,
+                frontend_url_path=PANEL_PATH,
+                config=operator_panel_config(),
+                require_admin=True,
+            )
+        except ValueError:
+            return
+    except ValueError:
         return
-    except Exception:
+    hass.data.setdefault(DOMAIN, {})["operator_panel"] = True
+
+
+def _remove_operator_panel(hass: HomeAssistant) -> None:
+    store = hass.data.get(DOMAIN)
+    if isinstance(store, dict):
+        store.pop("operator_panel", None)
+    try:
+        async_remove_panel(hass, PANEL_PATH)
+    except (AttributeError, KeyError, ValueError):
         return

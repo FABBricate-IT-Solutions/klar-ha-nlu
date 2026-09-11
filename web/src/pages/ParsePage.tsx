@@ -6,7 +6,7 @@ import { Pipeline } from "../components/pipeline";
 import { PolicyPath } from "../components/PolicyPath";
 import { SearchSelect, withCurrent } from "../components/SearchSelect";
 import type { Messages } from "../i18n";
-import type { ParseResult, Settings } from "../types";
+import { effectiveRefineBands, type ParseResult, type RefineBand, type Settings } from "../types";
 import { Button } from "@/components/ui/button";
 
 const SKIP_REFINE = new Set(["chat", "llm", "chime", "error", ""]);
@@ -47,28 +47,30 @@ function intentNames(result: ParseResult | null): string[] {
   return result?.plan?.steps.map((step) => step.intent.name).filter(Boolean) ?? [];
 }
 
-export function armedPipeline(settings: Settings): string[] {
+export function armedPipeline(settings: Settings, t: Messages): string[] {
   const chips: string[] = [];
   if (settings.personality && settings.personality !== "default") chips.push(settings.personality);
-  if (settings.mode === "context_only") chips.push("context only");
-  if (settings.nlu_rag) chips.push("NLU-RAG");
-  if (settings.semantic_adapters) chips.push("semantic");
-  if (settings.confirm_risky_actions === false) chips.push("no confirm");
-  if (on(settings, "refine_speech")) chips.push("LLM refine");
-  if (on(settings, "calendar_llm")) chips.push("calendar LLM");
-  if (on(settings, "quiet_ack")) chips.push("quiet ack");
-  if (on(settings, "allow_llm_tools")) chips.push("LLM tools");
+  if (settings.mode === "context_only") chips.push(t.labChipContextOnly);
+  if (settings.nlu_rag) chips.push(t.labChipNluRag);
+  if (settings.semantic_adapters) chips.push(t.labChipSemantic);
+  if (settings.confirm_risky_actions === false) chips.push(t.labChipNoConfirm);
+  if (on(settings, "refine_speech")) chips.push(t.labChipLlmRefine);
+  if (on(settings, "calendar_llm")) chips.push(t.labChipCalendarLlm);
+  if (on(settings, "quiet_ack")) chips.push(t.labChipQuietAck);
+  if (on(settings, "allow_llm_tools")) chips.push(t.labChipLlmTools);
   return chips;
 }
 
-export function labDecisionLabel(result: ParseResult | null): string {
+export function labDecisionLabel(result: ParseResult | null, t: Messages): string {
   if (!result) return "…";
   const band = result.decision.type;
   const names = intentNames(result);
   const hit = result.policy_trace?.hit || "";
-  if (band === "execute") return names.join(" · ") || "Klar execute";
-  if (result.briefing) return "briefing";
-  if (hit === "llm" || hit === "template" || hit === "script") return hit;
+  if (band === "execute") return names.join(" · ") || t.labDecisionExecute;
+  if (result.briefing) return t.labDecisionBriefing;
+  if (hit === "llm") return t.effectLlm;
+  if (hit === "template") return t.effectTemplate;
+  if (hit === "script") return t.effectScript;
   return band || "…";
 }
 
@@ -97,49 +99,99 @@ export function labChatLike(result: ParseResult | null): boolean {
   return Boolean(result.briefing) || hit === "llm" || result.decision.type === "chat";
 }
 
-export function labRefineEligible(result: ParseResult | null): boolean {
+const STATUS_INTENTS = new Set(["HassGetState", "HassClimateGetTemperature", "MassGetQueue", "KlarGetCalendarEvents"]);
+
+export function refineBandLabel(band: RefineBand, t: Messages): string {
+  switch (band) {
+    case "status":
+      return t.refineBandStatus;
+    case "command":
+      return t.refineBandCommand;
+    case "prompt":
+      return t.refineBandPrompt;
+    case "reject":
+      return t.refineBandReject;
+    default: {
+      const exhaustive: never = band;
+      return exhaustive;
+    }
+  }
+}
+
+export function refineBandOf(result: ParseResult | null): RefineBand | null {
+  if (!result) return null;
+  if (result.refine_band) return result.refine_band;
+  switch (result.decision.type) {
+    case "execute": {
+      const names = intentNames(result);
+      return names.length > 0 && names.every((name) => STATUS_INTENTS.has(name)) ? "status" : "command";
+    }
+    case "clarify":
+    case "confirm":
+      return "prompt";
+    case "reject":
+      return "reject";
+    case "chat":
+    case "error":
+      return null;
+    default: {
+      const exhaustive: never = result.decision;
+      return exhaustive;
+    }
+  }
+}
+
+export function labRefineEligible(result: ParseResult | null, settings?: Settings): boolean {
   if (!result || labChatLike(result)) return false;
-  const band = result.decision.type;
-  return Boolean(result.speech?.trim()) && !SKIP_REFINE.has(band);
+  const decision = result.decision.type;
+  if (!result.speech?.trim() || SKIP_REFINE.has(decision)) return false;
+  const band = refineBandOf(result);
+  if (!band) return false;
+  if (!settings) return true;
+  return Boolean(settings.refine_speech) && effectiveRefineBands(settings).includes(band);
 }
 
 export function labPath(
   result: ParseResult | null,
   settings: Settings,
+  t: Messages,
   parseLanguage?: string,
 ): string[] {
-  const parse = parseLanguage ? `Klar parse · ${parseLanguage}` : "Klar parse";
+  const parse = parseLanguage ? `${t.labParse} · ${parseLanguage}` : t.labParse;
   if (!result) return [parse, "…"];
   const steps = [parse];
   const band = result.decision.type;
   const names = intentNames(result);
   const hit = result.policy_trace?.hit || "";
   const chatLike = labChatLike(result);
-  if (settings.nlu_rag && (band === "chat" || band === "reject")) steps.push("NLU-RAG");
-  if (settings.semantic_adapters && band === "reject") steps.push("semantic");
-  if (settings.mode === "context_only") steps.push("context only");
-  steps.push(labDecisionLabel(result));
+  if (settings.nlu_rag && (band === "chat" || band === "reject")) steps.push(t.labChipNluRag);
+  if (settings.semantic_adapters && band === "reject") steps.push(t.labChipSemantic);
+  if (settings.mode === "context_only") steps.push(t.labChipContextOnly);
+  steps.push(labDecisionLabel(result, t));
   const calendar =
     on(settings, "calendar_llm")
     && band === "execute"
     && names.length > 0
     && names.every((name) => name === "KlarGetCalendarEvents");
   const quiet = on(settings, "quiet_ack") && quietAckLikely(result, names);
-  if (chatLike) steps.push("LLM chat");
-  if (calendar) steps.push("calendar LLM");
+  if (chatLike) steps.push(t.labChipLlmChat);
+  if (calendar) steps.push(t.labChipCalendarLlm);
+  const refineBand = refineBandOf(result);
   if (
     !quiet
     && on(settings, "refine_speech")
     && !SKIP_REFINE.has(band)
     && !chatLike
+    && refineBand
+    && effectiveRefineBands(settings).includes(refineBand)
   ) {
-    steps.push("LLM refine");
+    steps.push(t.labChipLlmRefine);
   }
-  if (quiet) steps.push("quiet ack");
+  if (quiet) steps.push(t.labChipQuietAck);
   if (on(settings, "allow_llm_tools") && (hit === "llm" || (band === "chat" && !result.speech))) {
-    steps.push("LLM tools");
+    steps.push(t.labChipLlmTools);
   }
-  if (settings.confirm_risky_actions && band === "confirm") steps.push("confirm risky");
+  if (settings.confirm_risky_actions && band === "confirm") steps.push(t.labChipConfirmRisky);
   return steps;
 }
 
@@ -173,7 +225,9 @@ export function ParsePage({
   const roomOptions = rooms.map((room) => ({ value: room.area_id, label: room.name }));
   const intentOptions = (knownIntents.length ? knownIntents : [teachIntent]).map((name) => ({ value: name, label: name }));
   const band = result?.decision.type;
-  const armed = armedPipeline(settings);
+  const refineBand = refineBandOf(result);
+  const armed = armedPipeline(settings, t);
+  const path = result ? labPath(result, settings, t, parseLanguage) : [];
   const banner = bannerText(error, result);
 
   useEffect(() => {
@@ -215,7 +269,7 @@ export function ParsePage({
         } catch (err) {
           setLlm({ ...preview, busy: false, error: llmBanner(err, t) });
         }
-      } else if (labRefineEligible(data)) {
+      } else if (labRefineEligible(data, settings)) {
         try {
           const refined = await api.llmRefine({
             speech: data.speech,
@@ -295,8 +349,16 @@ export function ParsePage({
           <PolicyPath t={t} trace={result?.policy_trace} />
         </div>
         {armed.length > 0 && (
-          <div className="flow lab-pipeline-armed" aria-label="pipeline">
+          <div className="flow lab-pipeline-armed" aria-label={t.labPipeline}>
             {armed.map((chip) => <span className="chip" key={chip}>{chip}</span>)}
+          </div>
+        )}
+        {result && (
+          <div className="flow lab-pipeline-path" aria-label={t.labThisTurn}>
+            {path.map((chip, index) => (
+              <span className="chip" key={`${chip}-${index}`}>{chip}</span>
+            ))}
+            {refineBand ? <span className="chip">{refineBandLabel(refineBand, t)}</span> : null}
           </div>
         )}
         <p className="caption">{t.triggerFirst}</p>

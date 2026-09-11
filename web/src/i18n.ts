@@ -73,3 +73,16 @@ export function assistParseLanguage(languages: string[], chrome?: string): strin
 export function fill(template: string, slots: Record<string, string>): string {
   return Object.entries(slots).reduce((text, [name, value]) => text.replaceAll(`{${name}}`, value), template);
 }
+
+const REASON_KEYS = {
+  missing_area: "reasonMissingArea",
+  weak_name: "reasonWeakName",
+  ready: "reasonReady",
+} as const;
+
+export function inboxReason(reason: string, t: Messages): string {
+  const known = REASON_KEYS[reason as keyof typeof REASON_KEYS];
+  if (known) return t[known];
+  if (reason.startsWith("match:")) return `${t.reasonMatch}: ${reason.slice("match:".length)}`;
+  return reason;
+}

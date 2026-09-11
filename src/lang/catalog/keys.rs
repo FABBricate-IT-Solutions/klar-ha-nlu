@@ -78,6 +78,7 @@ pub enum WordKey {
     TimerCancel,
     TimerPause,
     TimerAdd,
+    TimerRemove,
     ListComplete,
     PlaybackResume,
     CalendarQuery,

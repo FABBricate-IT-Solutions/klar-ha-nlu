@@ -34,5 +34,6 @@ pub(super) const VERBS: &[(&str, VerbKind)] = &[
     ("zamok", VerbKind::Lock),
     ("zapni", VerbKind::On),
     ("zatvor", VerbKind::Close),
+    ("zniz", VerbKind::Lower),
     ("zoznam", VerbKind::List),
 ];

@@ -175,13 +175,13 @@ devices/light_master_bath_light::light_master_bath_light_turn_off:
 devices/light_master_bath_light::light_master_bath_light_turn_on:
 - enable light ensuite
 devices/light_master_bedside_right::light_master_bedside_right_change_brightness:
-- set bedside bedroommaster 25
+- set bedside right bedroommaster 25
 devices/light_master_bedside_right::light_master_bedside_right_change_color:
-- set bedside bedroommaster red
+- set bedside right bedroommaster red
 devices/light_master_bedside_right::light_master_bedside_right_turn_off:
-- extinguish bedside bedroommaster
+- extinguish bedside right bedroommaster
 devices/light_master_bedside_right::light_master_bedside_right_turn_on:
-- enable bedside bedroommaster
+- enable bedside right bedroommaster
 devices/light_master_ceiling::light_master_ceiling_change_brightness:
 - set ceiling bedroommaster 77
 devices/light_master_ceiling::light_master_ceiling_change_color:

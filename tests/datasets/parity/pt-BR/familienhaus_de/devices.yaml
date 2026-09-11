@@ -175,13 +175,13 @@ devices/light_master_bath_light::light_master_bath_light_turn_off:
 devices/light_master_bath_light::light_master_bath_light_turn_on:
 - liga luz suitemaster
 devices/light_master_bedside_right::light_master_bedside_right_change_brightness:
-- poe cabeceira quartomaster 25
+- poe cabeceira right quartomaster 25
 devices/light_master_bedside_right::light_master_bedside_right_change_color:
-- poe cabeceira quartomaster vermelho
+- poe cabeceira right quartomaster vermelho
 devices/light_master_bedside_right::light_master_bedside_right_turn_off:
-- desliga cabeceira quartomaster
+- desliga cabeceira right quartomaster
 devices/light_master_bedside_right::light_master_bedside_right_turn_on:
-- liga cabeceira quartomaster
+- liga cabeceira right quartomaster
 devices/light_master_ceiling::light_master_ceiling_change_brightness:
 - poe teto quartomaster 77
 devices/light_master_ceiling::light_master_ceiling_change_color:

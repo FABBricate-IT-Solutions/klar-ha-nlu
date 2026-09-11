@@ -257,7 +257,10 @@ pub fn inflected_eq(token: &str, label: &str) -> bool {
 
 pub(crate) fn is_time_unit(token: &str) -> bool {
     let cat = catalog();
-    cat.hours().contains(token) || cat.minutes().contains(token) || cat.seconds().contains(token)
+    cat.hours().contains(token)
+        || cat.minutes().contains(token)
+        || cat.seconds().contains(token)
+        || matches!(token, "hour" | "hours" | "hrs" | "minute" | "minutes" | "min" | "mins" | "second" | "seconds" | "sec" | "secs")
 }
 
 pub(crate) fn article_one(token: &str) -> bool {

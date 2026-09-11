@@ -1,5 +1,8 @@
 use crate::lang::{catalog, VerbKind};
 
+#[path = "action_timer.rs"]
+mod timer_ops;
+
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
 pub enum Action {
     On,
@@ -23,6 +26,7 @@ pub enum Action {
     Unlock,
     TimerStart,
     TimerAdd,
+    TimerRemove,
     TimerCancel,
     TimerPause,
     ListAdd,
@@ -38,7 +42,7 @@ pub fn domain_for(action: Action, tokens: &[String]) -> Option<&'static str> {
 
 fn forced_domain(action: Action) -> Option<&'static str> {
     match action {
-        Action::TimerStart | Action::TimerAdd | Action::TimerCancel | Action::TimerPause => Some("timer"),
+        Action::TimerStart | Action::TimerAdd | Action::TimerRemove | Action::TimerCancel | Action::TimerPause => Some("timer"),
         Action::SetTemp => Some("climate"),
         Action::CoverOpen | Action::CoverClose | Action::CoverSet => Some("cover"),
         Action::FanSpeed => Some("fan"),
@@ -57,7 +61,7 @@ fn implied_domain(action: Action) -> Option<&'static str> {
         Action::VacuumStart | Action::VacuumDock => Some("vacuum"),
         Action::MediaPause | Action::MediaPlay | Action::MediaNext | Action::MediaMute => Some("media_player"),
         Action::Scene => Some("scene"),
-        Action::TimerStart | Action::TimerAdd | Action::TimerCancel | Action::TimerPause => Some("timer"),
+        Action::TimerStart | Action::TimerAdd | Action::TimerRemove | Action::TimerCancel | Action::TimerPause => Some("timer"),
         Action::ListAdd | Action::ListComplete => Some("todo"),
         _ => None,
     }
@@ -90,7 +94,9 @@ pub(crate) fn detect_actions_bounded(tokens: &[String], maximum: usize) -> Vec<(
             Some(VerbKind::OpenDoor) => open_door_action(tokens),
             Some(VerbKind::Off) => off_action(tokens),
             Some(VerbKind::Lower) => {
-                if crate::parse::numbers::first_number(tokens).is_some() {
+                if catalog().any(tokens, catalog().timer_nouns()) {
+                    Some(Action::TimerRemove)
+                } else if crate::parse::numbers::first_number(tokens).is_some() {
                     Some(set_by_number(tokens))
                 } else {
                     Some(Action::CoverClose)
@@ -108,7 +114,13 @@ pub(crate) fn detect_actions_bounded(tokens: &[String], maximum: usize) -> Vec<(
             Some(VerbKind::Auf) => auf_action(tokens),
             Some(VerbKind::Stop) => stop_action(tokens),
             Some(VerbKind::Toggle) => Some(Action::Toggle),
-            Some(VerbKind::Dim) => Some(Action::SetLight),
+            Some(VerbKind::Dim) => {
+                Some(if catalog().any(tokens, catalog().timer_nouns()) && crate::parse::numbers::first_number(tokens).is_some() {
+                    Action::TimerRemove
+                } else {
+                    Action::SetLight
+                })
+            }
             Some(VerbKind::Brightness) => Some(
                 if crate::parse::numbers::first_number(tokens).is_some()
                     || tokens.iter().any(|token| matches!(token.as_str(), "voll" | "volle" | "full" | "maximal" | "maximum"))
@@ -153,7 +165,7 @@ pub(crate) fn detect_actions_bounded(tokens: &[String], maximum: usize) -> Vec<(
             }
             Some(VerbKind::Flick) => flick_action(tokens),
             Some(VerbKind::ClarifyWrong) => Some(Action::ClarifyWrong),
-            Some(VerbKind::Timer) => Some(timer_kind(tokens)),
+            Some(VerbKind::Timer) => Some(timer_ops::timer_kind(tokens)),
             Some(VerbKind::List) => {
                 Some(if catalog().any(tokens, catalog().list_complete()) { Action::ListComplete } else { Action::ListAdd })
             }
@@ -195,6 +207,7 @@ pub(crate) fn is_hard_command(command: Option<Action>, tokens: &[String]) -> boo
                 | Action::VacuumDock
                 | Action::TimerStart
                 | Action::TimerAdd
+                | Action::TimerRemove
                 | Action::TimerCancel
                 | Action::TimerPause
                 | Action::ListAdd
@@ -325,6 +338,8 @@ fn down_action(tokens: &[String]) -> Option<Action> {
     let cat = catalog();
     if cat.any(tokens, cat.list_down()) || cat.any(tokens, cat.timer_add()) {
         None
+    } else if cat.any(tokens, cat.timer_nouns()) && timer_ops::timer_decrease(tokens) {
+        Some(Action::TimerRemove)
     } else if crate::parse::numbers::first_number(tokens).is_some() {
         Some(set_by_number(tokens))
     } else if has_cover_noun(tokens) {
@@ -353,19 +368,6 @@ fn auf_action(tokens: &[String]) -> Option<Action> {
         Some(Action::CoverSet)
     } else {
         None
-    }
-}
-
-fn timer_kind(tokens: &[String]) -> Action {
-    let cat = catalog();
-    if cat.any(tokens, cat.timer_cancel()) {
-        Action::TimerCancel
-    } else if cat.any(tokens, cat.timer_pause()) {
-        Action::TimerPause
-    } else if cat.any(tokens, cat.timer_add()) {
-        Action::TimerAdd
-    } else {
-        Action::TimerStart
     }
 }
 
@@ -452,7 +454,13 @@ fn add_action(tokens: &[String]) -> Option<Action> {
     if cat.any(tokens, cat.list_nouns()) || cat.any(tokens, cat.chores()) {
         Some(if cat.any(tokens, cat.list_complete()) { Action::ListComplete } else { Action::ListAdd })
     } else if cat.any(tokens, cat.timer_nouns()) {
-        Some(Action::TimerAdd)
+        Some(if timer_ops::timer_decrease(tokens) {
+            Action::TimerRemove
+        } else if cat.any(tokens, cat.timer_pause()) {
+            Action::TimerPause
+        } else {
+            Action::TimerAdd
+        })
     } else {
         None
     }

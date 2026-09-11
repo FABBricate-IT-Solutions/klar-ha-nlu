@@ -12,6 +12,7 @@ pub(super) const VERBS: &[(&str, VerbKind)] = &[
     ("hidupkan", VerbKind::On),
     ("kipas", VerbKind::FanNoun),
     ("kuncikan", VerbKind::Lock),
+    ("kurang", VerbKind::Lower),
     ("lebihgelap", VerbKind::Dim),
     ("mainkan", VerbKind::Play),
     ("matikan", VerbKind::Off),

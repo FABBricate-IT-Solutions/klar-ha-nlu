@@ -137,6 +137,7 @@ const SET_KEYS: &[(&str, WordKey)] = &[
     ("cues.timer_cancel", WordKey::TimerCancel),
     ("cues.timer_pause", WordKey::TimerPause),
     ("cues.timer_add", WordKey::TimerAdd),
+    ("cues.timer_remove", WordKey::TimerRemove),
     ("cues.list_complete", WordKey::ListComplete),
     ("cues.playback_resume", WordKey::PlaybackResume),
     ("cues.calendar_query", WordKey::CalendarQuery),

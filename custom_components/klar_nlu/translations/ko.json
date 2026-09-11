@@ -23,33 +23,18 @@
     "step": {
       "init": {
         "title": "Klar NLU",
-        "description": "성격은 여기에 저장되며 Klar 앱을 다시 설치해도 유지됩니다.",
+        "description": "음성, Assist 언어, LLM은 Klar 운영자 UI(설정)에 있습니다. 이 양식은 엔진만 연결합니다: URL, 토큰, 채널. {apps}",
         "data": {
           "mode": "엔진",
-          "personality": "성격",
-          "languages": "언어",
-          "allow_llm_tools": "Allow Home Assistant Assist tools on engine chat",
-          "refine_speech": "LLM으로 NLU 답변 다듬기",
-          "refine_prompt": "다듬기 프롬프트",
           "url": "Klar API URL",
           "token": "쓰기 토큰",
           "assist_filter": "Assist에 공개된 엔티티만 제어",
-          "nlu_rag": "NLU-RAG(선택)",
-          "quiet_ack": "짧은 확인(차임)",
-          "calendar_llm": "캘린더 질의를 LLM으로 보내기",
           "channel": "릴리스 채널"
         },
         "data_description": {
-          "personality": "Klar 앱이 아니라 이 통합에 저장됩니다.",
-          "refine_speech": "Klar는 계속 기기를 제어합니다. 예비 LLM이 답변을 다시 씁니다.",
-          "refine_prompt": "음성 시스템 프롬프트. 기기 제어 없음, 새 사실 없음, 같은 언어.",
+          "mode": "App vs bundled engine. Switch anytime. The integration sidebar only appears for the bundled engine.",
           "token": "Klar 앱과 같은 토큰입니다.",
           "assist_filter": "켜짐: Assist가 볼 수 있는 것만. 꺼짐: 숨긴 엔티티 포함.",
-          "nlu_rag": "기본은 꺼짐. 잡담에서는 이미 맞춘 조각만 예비 모델로 보냅니다.",
-          "quiet_ack": "간단한 조명 켜기/끄기에서는 말하지 않고 위성에서 짧은 소리만 냅니다.",
-          "calendar_llm": "기본은 끔. 켬: Klar가 캘린더를 읽고 예비 LLM이 일정을 말함. 끔: Klar가 목록을 말함. 만들기, 삭제, 이동은 Klar에 남음.",
-          "allow_llm_tools": "Off by default. On: after Klar parses, the engine chat model may call Home Assistant Assist tools (names come from Core, already prefixed). Off: conversation only.",
-          "languages": "기본값은 Home Assistant 시스템 언어입니다.",
           "channel": "언제든 변경할 수 있습니다. Staging은 Klar NLU(Staging)를 가리킵니다."
         }
       }
@@ -115,6 +100,11 @@
     "switch": {
       "quiet_ack": {
         "name": "짧은 확인"
+      }
+    },
+    "ai_task": {
+      "ai_task": {
+        "name": "AI 작업"
       }
     },
     "sensor": {

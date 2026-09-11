@@ -23,33 +23,18 @@
     "step": {
       "init": {
         "title": "Klar NLU",
-        "description": "Անհատականությունը պահվում է այստեղ և մնում է Klar հավելվածը վերատեղադրելուց հետո։",
+        "description": "Ձայնը, Assist-ի լեզուները և LLM-ը Klar օպերատորի միջերեսում են (Կարգավորումներ)։ Այս ձևը միայն շարժիչն է կապում՝ URL, նշան և ալիք։ {apps}",
         "data": {
           "mode": "Շարժիչ",
-          "personality": "Անհատականություն",
-          "languages": "Լեզուներ",
-          "allow_llm_tools": "Allow Home Assistant Assist tools on engine chat",
-          "refine_speech": "Թող LLM-ը վերաձևակերպի NLU պատասխանները",
-          "refine_prompt": "Հղկման հուշում",
           "url": "Klar API հասցե",
           "token": "Գրման նշան",
           "assist_filter": "Կառավարել միայն Assist-ին երևացող միավորները",
-          "nlu_rag": "NLU-RAG (ըստ ցանկության)",
-          "quiet_ack": "Կարճ հաստատում (զանգ)",
-          "calendar_llm": "Oracuyci harcumnern ugharkel LLM-in",
           "channel": "Թողարկման ալիք"
         },
         "data_description": {
-          "personality": "Այս ինտեգրման մեջ է, ոչ Klar հավելվածում։",
-          "refine_speech": "Klar-ը շարունակում է կառավարել սարքերը։ Պահեստային LLM-ը վերագրում է պատասխանը։",
-          "refine_prompt": "Ձայնի համակարգային հուշում։ Առանց սարքի կառավարման, առանց նոր փաստերի, նույն լեզուն։",
+          "mode": "App vs bundled engine. Switch anytime. The integration sidebar only appears for the bundled engine.",
           "token": "Նույն նշանը, ինչ Klar հավելվածում։",
           "assist_filter": "Միացված՝ միայն այն, ինչ տեսնում է Assist-ը։ Անջատված՝ նաև թաքնված միավորներ։",
-          "nlu_rag": "Լռելյայն անջատված։ Զրույցում պահեստային մոդելին գնում է միայն համընկած հատվածը։",
-          "quiet_ack": "Պարզ լույս միացնել/անջատելիս խոսք չկա, միայն կարճ ձայն արբանյակի վրա։",
-          "calendar_llm": "Lreljyayn anjatkan. Miacvac: Klary kardum e oracuycy, reservayin LLM-n asum e iradarjutyunnery. Anjatkan: Klary asum e cucaky. Steghtsumn, jnjumn u teghapoxumn mnun en Klary tesakum.",
-          "allow_llm_tools": "Off by default. On: after Klar parses, the engine chat model may call Home Assistant Assist tools (names come from Core, already prefixed). Off: conversation only.",
-          "languages": "Լռելյայն հետևում է Home Assistant համակարգի լեզվին։",
           "channel": "Ցանկացած պահի։ Staging-ը մատնանշում է Klar NLU (Staging)։"
         }
       }
@@ -115,6 +100,11 @@
     "switch": {
       "quiet_ack": {
         "name": "Կարճ հաստատում"
+      }
+    },
+    "ai_task": {
+      "ai_task": {
+        "name": "ԱԲ առաջադրանք"
       }
     },
     "sensor": {

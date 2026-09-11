@@ -33,6 +33,7 @@ pub(super) const VERBS: &[(&str, VerbKind)] = &[
     ("play", VerbKind::Play),
     ("posa", VerbKind::Set),
     ("que", VerbKind::Query),
+    ("redueix", VerbKind::Lower),
     ("reprodueix", VerbKind::Play),
     ("rosa", VerbKind::Color),
     ("tanca", VerbKind::Close),

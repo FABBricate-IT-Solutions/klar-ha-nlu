@@ -7,6 +7,7 @@ pub(super) const VERBS: &[(&str, VerbKind)] = &[
     ("allomas", VerbKind::Dock),
     ("black", VerbKind::Color),
     ("blue", VerbKind::Color),
+    ("csokkent", VerbKind::Lower),
     ("csukd", VerbKind::Close),
     ("dimmel", VerbKind::Dim),
     ("green", VerbKind::Color),

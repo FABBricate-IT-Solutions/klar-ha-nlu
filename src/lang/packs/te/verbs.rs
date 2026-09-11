@@ -22,6 +22,7 @@ pub(super) const VERBS: &[(&str, VerbKind)] = &[
     ("satam", VerbKind::Percent),
     ("set", VerbKind::Set),
     ("station", VerbKind::Dock),
+    ("tagginchu", VerbKind::Lower),
     ("talam", VerbKind::Lock),
     ("theruvu", VerbKind::Open),
     ("timer", VerbKind::Timer),

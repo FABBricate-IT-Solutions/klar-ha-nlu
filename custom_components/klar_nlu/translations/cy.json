@@ -23,33 +23,18 @@
     "step": {
       "init": {
         "title": "Klar NLU",
-        "description": "Mae’r personoliaeth yn cael ei storio yma ac yn aros ar ôl ailosod ap Klar.",
+        "description": "Mae’r llais, ieithoedd Assist, a’r LLM yn UI gweithredwr Klar (Gosodiadau). Dim ond cysylltu’r peiriant mae’r ffurflen hon: URL, tocyn a sianel. {apps}",
         "data": {
           "mode": "Peiriant",
-          "personality": "Personoliaeth",
-          "languages": "Ieithoedd",
-          "allow_llm_tools": "Allow Home Assistant Assist tools on engine chat",
-          "refine_speech": "Gadael i’r LLM ailysgrifennu atebion NLU",
-          "refine_prompt": "Anogwr mireinio",
           "url": "URL API Klar",
           "token": "Tocyn ysgrifennu",
           "assist_filter": "Rheoli dim ond endidau sy’n weladwy i Assist",
-          "nlu_rag": "NLU-RAG (dewisol)",
-          "quiet_ack": "Cadarnhad byr (cloch)",
-          "calendar_llm": "Anfon ymholiadau calendr at yr LLM",
           "channel": "Sianel rhyddhau"
         },
         "data_description": {
-          "personality": "Yn yr integreiddiad hwn, nid yn ap Klar.",
-          "refine_speech": "Mae Klar yn dal i reoli dyfeisiau. Mae’r LLM wrth gefn yn ailysgrifennu’r ateb.",
-          "refine_prompt": "Anogwr system y llais. Dim rheoli dyfais, dim ffeithiau newydd, yr un iaith.",
+          "mode": "App vs bundled engine. Switch anytime. The integration sidebar only appears for the bundled engine.",
           "token": "Yr un tocyn ag yn ap Klar.",
           "assist_filter": "Ymlaen: dim ond beth mae Assist yn ei weld. I ffwrdd: endidau cudd hefyd.",
-          "nlu_rag": "I ffwrdd yn ddiofyn. Mewn sgwrs dim ond y darn sy’n cyfateb sy’n mynd at y model wrth gefn.",
-          "quiet_ack": "Ar oleuadau syml ymlaen/i ffwrdd, dim brawddeg, dim ond sain fer ar y lloeren.",
-          "calendar_llm": "I ffwrdd yn ddiofyn. Ymlaen: Mae Klar yn darllen y calendr, y LLM wrth gefn sy'n dweud y digwyddiadau. I ffwrdd: Klar sy'n dweud y rhestr. Creu, dileu a symud yn aros gyda Klar.",
-          "allow_llm_tools": "Off by default. On: after Klar parses, the engine chat model may call Home Assistant Assist tools (names come from Core, already prefixed). Off: conversation only.",
-          "languages": "Yn ddiofyn, iaith system Home Assistant.",
           "channel": "Unrhyw bryd. Mae Staging yn pwyntio at Klar NLU (Staging)."
         }
       }
@@ -115,6 +100,11 @@
     "switch": {
       "quiet_ack": {
         "name": "Cadarnhad byr"
+      }
+    },
+    "ai_task": {
+      "ai_task": {
+        "name": "Tasg AI"
       }
     },
     "sensor": {
