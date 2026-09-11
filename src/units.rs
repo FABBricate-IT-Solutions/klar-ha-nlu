@@ -136,9 +136,7 @@ pub fn spoken_unit_word(system: UnitSystem, de: bool) -> &'static str {
 }
 
 pub fn entity_temperature(entity: &SpeechEntity) -> Option<(f64, TempScale)> {
-    let raw = attr_num(entity, "current_temperature")
-        .or_else(|| attr_num(entity, "temperature"))
-        .or_else(|| sensor_state_temp(entity))?;
+    let raw = attr_num(entity, "current_temperature").or_else(|| attr_num(entity, "temperature")).or_else(|| sensor_state_temp(entity))?;
     Some((raw, entity_temp_scale(Some(entity))))
 }
 
