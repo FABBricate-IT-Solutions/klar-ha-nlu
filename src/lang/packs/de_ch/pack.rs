@@ -105,7 +105,7 @@ pub const PACK: LanguagePack = LanguagePack {
         timer_cancel: &["loesch"],
         timer_pause: &["halt", "hold"],
         timer_add: &[],
-        timer_remove: &["minus", "verringere", "kuerzer", "kuerze"],
+        timer_remove: &["minus", "verringere"],
         list_complete: &[],
         playback_resume: &["spiel", "wiiter", "witer"],
         calendar_query: &["choemend", "staht"],
