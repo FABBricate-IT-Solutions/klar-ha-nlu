@@ -8,7 +8,7 @@ pub(super) const RAIN: &[&str] = &[
     "вали", "βροχη", "βρεχει", "βροχή", "киша", "дощ", "дощить", "下雨", "会下雨", "會下雨", "下雨吗", "下雨嗎", "雨が", "雨降", "비가", "مطر", "تمطر", "גשם",
     "باران", "بارش", "yagmur", "yagacak", "yağmur", "ฝน", "glaw", "vihm", "sajab", "euri", "baisteach", "choiva", "rigning", "rignir",
     "lietus", "lyja", "hujan", "mvua", "बारिश", "वर्षा", "বৃষ্টি", "ಮಳೆ", "മഴ", "पाऊस", "மழை", "వర్షం", "ਮੀਂਹ", "વરસાદ", "անձրև", "წვიმა",
-    "бороо", "deigh", "bwrw glaw", "līst", "reën", "prší", "kiša", "dež", "mưa", "hujan"
+    "бороо", "deigh", "bwrw glaw", "reën", "prší", "kiša", "dež", "mưa"
 ];
 
 #[rustfmt::skip]

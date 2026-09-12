@@ -86,11 +86,18 @@ impl DayPart {
     }
 }
 
+const QUERY_STOP: &[&str] = &[
+    "what", "whats", "which", "how", "about", "the", "a", "an", "is", "it", "please", "wie", "was", "ist", "das", "der", "die", "den",
+    "dem", "ein", "eine", "bitte", "hoe", "wat", "het", "een", "quel", "quelle", "comment", "le", "la", "les", "un", "une", "est", "el",
+    "lo", "que", "cual", "como", "che", "quale", "come", "il", "o", "os", "as", "qual", "und", "et", "y", "en", "in", "im", "am", "of",
+    "my", "me", "i", "ich", "je", "ik", "fuer", "for", "to", "too", "auf", "um", "mit",
+];
+
 pub(super) fn classify(blob: &str, pack_weather: bool) -> Option<WeatherClass> {
     let fold = fold_umlaut(blob).replace(['\'', '’', '`'], "");
     let rain = hit(&fold, RAIN);
     let umbrella = umbrella_hit(&fold, rain, pack_weather);
-    let weather = pack_weather || hit(&fold, WEATHER) || hit(&fold, FORECAST);
+    let weather = weather_topic(&fold, pack_weather);
     let part = part_hint(&fold);
     let day = day_hint(&fold);
     if umbrella {
@@ -109,6 +116,61 @@ pub(super) fn classify(blob: &str, pack_weather: bool) -> Option<WeatherClass> {
         DayHint::Current => WeatherAsk::Now,
     };
     Some(WeatherClass { ask, day, part })
+}
+
+fn weather_topic(fold: &str, pack_weather: bool) -> bool {
+    if pack_weather {
+        return true;
+    }
+    if distinctive_hit(fold, WEATHER) || distinctive_hit(fold, FORECAST) {
+        return true;
+    }
+    (hit(fold, WEATHER) || hit(fold, FORECAST)) && leftover_is_weather_ask(fold)
+}
+
+fn distinctive_hit(fold: &str, words: &[&str]) -> bool {
+    words.iter().any(|word| {
+        let needle = fold_umlaut(word);
+        if needle.is_empty() {
+            return false;
+        }
+        let distinctive = !needle.is_ascii() || needle.contains(|ch: char| ch.is_whitespace() || ch == '-');
+        distinctive && fold.contains(&needle)
+    })
+}
+
+fn leftover_is_weather_ask(fold: &str) -> bool {
+    let stripped = strip_morning_words(fold);
+    let mut any = false;
+    for token in tokens(&stripped) {
+        any = true;
+        if !weather_function_token(token) {
+            return false;
+        }
+    }
+    any
+}
+
+fn weather_function_token(token: &str) -> bool {
+    ascii_in(token, QUERY_STOP)
+        || ascii_in(token, WEATHER)
+        || ascii_in(token, FORECAST)
+        || ascii_in(token, TODAY)
+        || ascii_in(token, TOMORROW)
+        || ascii_in(token, FUTURE)
+        || ascii_in(token, WEEKEND)
+        || ascii_in(token, MORNING)
+        || ascii_in(token, AFTERNOON)
+        || ascii_in(token, EVENING)
+        || ascii_in(token, NIGHT)
+        || DAYS.iter().any(|(word, _)| fold_umlaut(word) == token)
+}
+
+fn ascii_in(token: &str, words: &[&str]) -> bool {
+    words.iter().any(|word| {
+        let needle = fold_umlaut(word);
+        needle == token && needle.is_ascii() && !needle.contains(|ch: char| ch.is_whitespace() || ch == '-')
+    })
 }
 
 fn day_hint(fold: &str) -> DayHint {
@@ -240,6 +302,11 @@ mod tests {
         assert_eq!(ask("het weer", false), Some(WeatherAsk::Now));
         assert_eq!(ask("weer", false), None);
         assert_eq!(ask("ma", false), None);
+        assert_eq!(ask("weather france", false), None);
+        assert_eq!(ask("weather france", true), Some(WeatherAsk::Now));
+        assert_eq!(ask("add milk to the shopping list", false), None);
+        assert_eq!(ask("weather", false), Some(WeatherAsk::Now));
+        assert_eq!(ask("what's the weather", false), Some(WeatherAsk::Now));
     }
 
     #[test]
