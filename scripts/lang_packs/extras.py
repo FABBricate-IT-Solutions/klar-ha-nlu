@@ -261,7 +261,7 @@ HOUSEHOLD = {
         "explain": ["was hesch ghoert", "was hast du gehoert", "warum hast du gestoppt"],
         "undo": ["rueckgaengig", "nimm das zurueck"],
         "clock": ["wie spaet", "wie viel uhr", "d uhrzit"],
-        "weather": ["wie isch s wetter", "wetterbericht", "wetter", "regenschirm", "wird es regnen"],
+        "weather": ["wie isch s wetter", "wetterbericht", "wetter"],
         "clock_skip": ["timer", "wecker"],
     },
     "de-AT": {
@@ -269,7 +269,7 @@ HOUSEHOLD = {
         "explain": ["was hast du gehoert", "was hast du verstanden", "warum hast du gestoppt"],
         "undo": ["rueckgaengig", "nimm das zurueck"],
         "clock": ["wie spaet", "wie viel uhr", "die uhrzeit"],
-        "weather": ["wie ist das wetter", "wetterbericht", "wetter", "regenschirm", "wird es regnen"],
+        "weather": ["wie ist das wetter", "wetterbericht", "wetter"],
         "clock_skip": ["timer", "wecker"],
     },
     "en-GB": {
@@ -277,7 +277,7 @@ HOUSEHOLD = {
         "explain": ["what did you hear", "what did you understand", "why did you stop"],
         "undo": ["undo that", "undo", "take that back"],
         "clock": ["what time", "whats the time"],
-        "weather": ["whats the weather", "what is the weather", "weather forecast", "will it rain", "do i need an umbrella"],
+        "weather": ["whats the weather", "what is the weather", "weather forecast"],
         "clock_skip": ["timer", "alarm"],
     },
 }
