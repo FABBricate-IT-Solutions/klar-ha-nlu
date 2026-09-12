@@ -59,6 +59,7 @@ class SpeechSnapshotTests(unittest.TestCase):
             ],
             calendar_events=[{"summary": "Zahnarzt", "start": "2026-09-06T09:00:00+02:00"}],
             media_queue=[{"title": "Song"}],
+            forecast=[{"datetime": "2026-09-06T00:00:00+02:00", "condition": "rainy", "temperature": 18.0, "secret": "drop"}],
         )
         self.assertEqual(body["schema_version"], "1")
         self.assertEqual(body["language"], "de")
@@ -75,6 +76,9 @@ class SpeechSnapshotTests(unittest.TestCase):
         self.assertNotIn("friendly_name", attrs)
         self.assertEqual(body["calendar_events"][0]["summary"], "Zahnarzt")
         self.assertEqual(body["media_queue"][0]["title"], "Song")
+        self.assertEqual(body["forecast"][0]["condition"], "rainy")
+        self.assertEqual(body["forecast"][0]["temperature"], 18.0)
+        self.assertNotIn("secret", body["forecast"][0])
 
     def test_caps_and_attr_length(self) -> None:
         entities = [{"entity_id": f"light.n{i}", "name": "n", "domain": "light", "state": "on"} for i in range(120)]

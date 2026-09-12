@@ -270,7 +270,7 @@ pub const PACK: LanguagePack = LanguagePack {
         explain: &["warum hast du gestoppt", "was hast du gehoert", "was hast du verstanden", "was schalt stell"],
         undo: &["nimm das zurueck", "rueckgaengig", "schalt tuer"],
         clock: &["die uhrzeit", "was timer", "wie spaet", "wie viel uhr"],
-        weather: &["was temperatur", "wetter", "wetterbericht", "wie ist das wetter"],
+        weather: &["was temperatur", "wetter", "wetterbericht", "wie ist das wetter", "regenschirm", "wird es regnen"],
         clock_skip: &["timer", "wecker"],
         heard_nothing: "Des hob i ned verstanden. Sags ma zum Beispiel, welches Licht an soll.",
         heard: "{text}",

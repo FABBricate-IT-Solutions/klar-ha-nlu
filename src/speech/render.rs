@@ -7,6 +7,7 @@ use crate::units::{entity_temp_scale, speak_temp, spoken_unit_word};
 use super::render_climate::{climate_query, floor_temps};
 use super::render_media::{media_action, media_status};
 use super::render_place::{color_word, empty_place, slot, speak_state};
+use super::render_weather::weather_query;
 
 pub fn render_snapshot(snap: &SpeechSnapshot) -> SpeechRenderOut {
     let speech = pack_for(&snap.language);
@@ -103,7 +104,10 @@ fn query_speech(snap: &SpeechSnapshot, speech: Speech, de: bool) -> String {
     if is_place_query(snap, &entities) {
         return crate::speech::render_status::place_status(snap, &entities, speech, &snap.language);
     }
-    if entities.iter().any(|entity| entity.domain == "climate" || entity.domain == "weather") {
+    if let Some(line) = weather_query(snap) {
+        return line;
+    }
+    if entities.iter().any(|entity| entity.domain == "climate") {
         let line = climate_query(snap, &entities, de);
         if !line.is_empty() {
             return line;
