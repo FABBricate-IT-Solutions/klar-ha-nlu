@@ -6,6 +6,39 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 Versions follow Home Assistant calendar versioning (`YYYY.M.PATCH`)
 and [Conventional Commits](https://www.conventionalcommits.org/).
 
+## [2026.9.10](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/compare/2026.9.9...2026.9.10) - 2026-09-12
+
+
+
+### Bug Fixes
+
+- keep hallway and timer phrases from matching weather stems([cd8a8e8](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/cd8a8e8633d4962f25fac7c654d52a1a3bf7fb18))
+
+- drop banned bitte token from weather query stop list([6e34a59](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/6e34a59cc0f1bf6c41efdec86b0b977814f854aa))
+
+- keep shopping lists and OOD weather phrases out of weather lex([02c2ed3](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/02c2ed3bec39026546f55ec503b4f66cdccd0a11))
+
+- leave generated weather lists to the pack generator([b70aa0a](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/b70aa0aa6278f67c794467f355b7c9622795f2f9))
+
+- use Range::contains for night hours([b29933a](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/b29933a6a8157f6f248e40a5dfa20b3dce1081c7))
+
+- keep handwritten de and en packs under 500 lines([6c52d5e](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/6c52d5e3742a33b534d1033cdf13fccb61ceda12))
+
+
+### Features
+
+- **weather:** parse and speak forecast in every locale([2623e62](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/2623e62cb762a79c322797cd728a2b6856b9f773))
+
+
+### Other
+
+- Merge pull request #258 from FABBricate-IT-Solutions/feat/weather-all-langs([8913939](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/8913939292023fafdc8aa42a360e9ff6f64bb4d6))
+
+
+### Testing
+
+- load weather_forecast in the executor harness([ec9f62a](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/ec9f62a870d1ab196bdd1719de0948d51c72f48b))
+
 ## [2026.9.9](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/compare/2026.9.5-staging.1e6593b...2026.9.9) - 2026-09-11
 
 
