@@ -4,7 +4,7 @@
 pub(super) const RAIN: &[&str] = &[
     "regen", "regnen", "regnerisch", "niederschlag", "rain", "raining", "rainy", "rainfall", "pluie", "pleut", "pleuvoir", "regenen",
     "regent", "lluvia", "llueve", "llover", "pioggia", "piove", "piovere", "chuva", "chove", "chover", "pluja", "plou", "ploaie", "ploua",
-    "regn", "regner", "regne", "regnar", "regna", "sataa", "sadetta", "prset", "dazd", "prsat", "deszcz", "esik", "dezuje", "дождь", "дъжд",
+    "regn", "regner", "regne", "regnar", "regna", "sataa", "sadetta", "prset", "dazd", "prsat", "deszcz", "esni", "dezuje", "дождь", "дъжд",
     "вали", "βροχη", "βρεχει", "βροχή", "киша", "дощ", "дощить", "下雨", "会下雨", "會下雨", "下雨吗", "下雨嗎", "雨が", "雨降", "비가", "مطر", "تمطر", "גשם",
     "باران", "بارش", "yagmur", "yagacak", "yağmur", "ฝน", "glaw", "vihm", "sajab", "euri", "baisteach", "choiva", "rigning", "rignir",
     "lietus", "lyja", "hujan", "mvua", "बारिश", "वर्षा", "বৃষ্টি", "ಮಳೆ", "മഴ", "पाऊस", "மழை", "వర్షం", "ਮੀਂਹ", "વરસાદ", "անձրև", "წვიმა",

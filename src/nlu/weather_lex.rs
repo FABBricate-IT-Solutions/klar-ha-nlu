@@ -135,7 +135,13 @@ fn distinctive_hit(fold: &str, words: &[&str]) -> bool {
             return false;
         }
         let distinctive = !needle.is_ascii() || needle.contains(|ch: char| ch.is_whitespace() || ch == '-');
-        distinctive && fold.contains(&needle)
+        if !distinctive {
+            return false;
+        }
+        if needle.contains(|ch: char| ch.is_whitespace() || ch == '-') {
+            return bounded_contains(fold, &needle);
+        }
+        fold.contains(&needle)
     })
 }
 
@@ -227,7 +233,7 @@ fn hit(fold: &str, words: &[&str]) -> bool {
             return false;
         }
         if needle.contains(|ch: char| ch.is_whitespace() || ch == '-') {
-            return fold.contains(&needle);
+            return bounded_contains(fold, &needle);
         }
         if needle.is_ascii() {
             tokens(fold).any(|token| token == needle)
@@ -235,6 +241,21 @@ fn hit(fold: &str, words: &[&str]) -> bool {
             fold.contains(&needle)
         }
     })
+}
+
+fn bounded_contains(hay: &str, needle: &str) -> bool {
+    let mut from = 0;
+    while let Some(rel) = hay[from..].find(needle) {
+        let start = from + rel;
+        let end = start + needle.len();
+        let before = start == 0 || !hay[..start].chars().next_back().is_some_and(char::is_alphanumeric);
+        let after = end == hay.len() || !hay[end..].chars().next().is_some_and(char::is_alphanumeric);
+        if before && after {
+            return true;
+        }
+        from = end;
+    }
+    false
 }
 
 fn tokens(fold: &str) -> impl Iterator<Item = &str> {
@@ -307,6 +328,11 @@ mod tests {
         assert_eq!(ask("add milk to the shopping list", false), None);
         assert_eq!(ask("weather", false), Some(WeatherAsk::Now));
         assert_eq!(ask("what's the weather", false), Some(WeatherAsk::Now));
+        assert_eq!(ask("apaga todo temporizador", false), None);
+        assert_eq!(ask("desliga tudo temporizador", false), None);
+        assert_eq!(ask("como esta o tempo", false), Some(WeatherAsk::Now));
+        assert_eq!(ask("lukk lukk esik", false), None);
+        assert_eq!(ask("vali esik", false), None);
     }
 
     #[test]
