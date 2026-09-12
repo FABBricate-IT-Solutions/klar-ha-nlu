@@ -50,6 +50,12 @@ fn casual_und_sonderfaelle_gehen_an_llm() {
         assert!(result.intents.is_empty(), "{text}: {:?}", result.intents);
         assert!(result.chat, "{text}: Wetter ohne Entity ist household chat");
     }
+    for text in ["Wird es heute regnen?", "Brauche ich heute einen Regenschirm?"] {
+        let mut session = Session::new();
+        let result = parse(text, &home, &mut session, &[], &settings);
+        assert!(result.chat, "{text}: Regen ohne Entity ist household chat: {}", result.speech);
+        assert!(result.intents.is_empty(), "{text}: {:?}", result.intents);
+    }
     for text in ["Licht im Wohnzimmer an", "Wie ist der Status der Küche", "Wie warm ist es im Schlafzimmer", "asdfghjkl qwerty"] {
         let mut session = Session::new();
         let result = parse(text, &home, &mut session, &[], &settings);

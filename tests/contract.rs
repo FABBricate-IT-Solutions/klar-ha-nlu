@@ -433,6 +433,8 @@ fn speech_snapshot_drops_unknown_attrs_and_rejects_missing_schema() {
         }],
         calendar_events: vec![],
         media_queue: vec![],
+        forecast: vec![],
+        hourly: vec![],
     };
     let clean = snap.sanitize().expect("valid snapshot");
     assert!(clean.entities[0].attributes.contains_key("media_title"));

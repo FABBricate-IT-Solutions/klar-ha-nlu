@@ -30,11 +30,15 @@ pub(super) fn route(context: &ParseContext<'_>, tokens: &[String]) -> Option<Dra
     if looks_like_clock(context, &blob, tokens) {
         return Some(clock(context));
     }
-    if context.catalog.household_hit(&blob, |pack| pack.household.weather)
-        && !climate_overrides_weather(context, tokens)
-        && !calendar_overrides_weather(context, tokens)
-    {
-        return Some(weather(context));
+    let pack_weather = context.catalog.household_hit(&blob, |pack| pack.household.weather);
+    if let Some(class) = super::weather_lex::classify(&blob, pack_weather) {
+        if calendar_overrides_weather(context, tokens) {
+            return None;
+        }
+        if !class.ask.skips_climate() && climate_overrides_weather(context, tokens) {
+            return None;
+        }
+        return Some(weather(context, class));
     }
     None
 }
@@ -134,19 +138,23 @@ fn clock(context: &ParseContext<'_>) -> Draft {
     chat(spoken_clock(house), false, false)
 }
 
-fn weather(context: &ParseContext<'_>) -> Draft {
+fn weather(context: &ParseContext<'_>, class: super::weather_lex::WeatherClass) -> Draft {
     let house = templates(context);
     let entity = context.home.entities.iter().find(|entity| entity.domain == "weather" && assist_visible(entity, context.home));
     match entity {
-        Some(entity) => execute(
-            context,
-            vec![Intent::new("HassGetState").with("entity_id", &entity.entity_id).with("domain", "weather")],
-            "household_weather",
-            1.0,
-            1.0,
-            false,
-            false,
-        ),
+        Some(entity) => {
+            let mut intent = Intent::new("HassGetState")
+                .with("entity_id", &entity.entity_id)
+                .with("domain", "weather")
+                .with("weather_ask", class.ask.as_str());
+            if let Some(day) = class.day.as_str() {
+                intent = intent.with("weather_day", day);
+            }
+            if let Some(part) = class.part {
+                intent = intent.with("weather_part", part.as_str());
+            }
+            execute(context, vec![intent], "household_weather", 1.0, 1.0, false, false)
+        }
         None => chat(house.no_weather.into(), false, false),
     }
 }
@@ -362,6 +370,7 @@ mod tests {
         let draft = route(&context, &["wie".into(), "ist".into(), "das".into(), "wetter".into()]).expect("weather");
         assert!(matches!(draft.decision, ParseDecision::Execute));
         assert_eq!(draft.plan.as_ref().unwrap().intents()[0].slot("entity_id"), Some("weather.home"));
+        assert_eq!(draft.plan.as_ref().unwrap().intents()[0].slot("weather_ask"), Some("now"));
     }
 
     #[test]
@@ -383,6 +392,7 @@ mod tests {
         assert!(matches!(draft.decision, ParseDecision::Execute));
         assert_eq!(draft.plan.as_ref().unwrap().intents()[0].name, "HassGetState");
         assert_eq!(draft.plan.as_ref().unwrap().intents()[0].slot("entity_id"), Some("weather.home"));
+        assert_eq!(draft.plan.as_ref().unwrap().intents()[0].slot("weather_ask"), Some("tomorrow"));
     }
 
     #[test]

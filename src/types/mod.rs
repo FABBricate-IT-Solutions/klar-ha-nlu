@@ -22,6 +22,6 @@ pub use policy::{
 };
 pub use settings::{Mode, Personality, RefineBand, Settings, UnitSystem, VoiceTraits};
 pub use speech_snapshot::{
-    SnapshotError, SpeechCalendarEvent, SpeechEntity, SpeechIntent, SpeechQueueItem, SpeechRenderOut, SpeechSlot, SpeechSnapshot,
-    SNAPSHOT_SCHEMA,
+    SnapshotError, SpeechCalendarEvent, SpeechEntity, SpeechForecast, SpeechIntent, SpeechQueueItem, SpeechRenderOut, SpeechSlot,
+    SpeechSnapshot, SNAPSHOT_SCHEMA,
 };

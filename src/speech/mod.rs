@@ -7,6 +7,8 @@ mod render_climate;
 mod render_media;
 mod render_place;
 mod render_status;
+mod render_weather;
+mod weather_i18n;
 
 pub use generated::ACTION_TEMPLATES;
 pub use render::render_snapshot;

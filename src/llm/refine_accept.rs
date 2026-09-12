@@ -39,6 +39,20 @@ const WEATHER_WORDS: &[&str] = &[
     "regnerisch",
     "bewölkt",
     "bewolkt",
+    "schirm",
+    "umbrella",
+    "paraplu",
+    "parapluie",
+    "paraguas",
+    "ombrello",
+    "sambreel",
+    "graden",
+    "grados",
+    "gradi",
+    "graus",
+    "天気",
+    "雨",
+    "날씨",
 ];
 const WEATHER_STEMS: &[&str] = &["°c", "°f", "luftfeucht"];
 
@@ -124,6 +138,35 @@ pub fn invents_weather(original: &str, refined: &str) -> bool {
     weather_claim(refined) && !weather_claim(original)
 }
 
+const WEATHER_PLACE: &[&str] = &[
+    "im raum",
+    "in the room",
+    "wohnzimmer",
+    "living room",
+    "schlafzimmer",
+    "bedroom",
+    "esszimmer",
+    "kueche",
+    "küche",
+    "kitchen",
+    "arbeitszimmer",
+    "badezimmer",
+    "bathroom",
+    "dining room",
+    "dans la piece",
+    "dans la pièce",
+    "in de kamer",
+];
+
+fn invents_weather_place(original: &str, refined: &str) -> bool {
+    if !weather_claim(original) {
+        return false;
+    }
+    let original_fold = original.to_lowercase();
+    let refined_fold = refined.to_lowercase();
+    WEATHER_PLACE.iter().any(|place| refined_fold.contains(place) && !original_fold.contains(place))
+}
+
 pub fn strip_clock_seconds(speech: &str) -> String {
     let chars: Vec<char> = speech.chars().collect();
     let mut out = String::with_capacity(speech.len());
@@ -196,6 +239,9 @@ fn refine_facts_ok(original: &str, speech: &str, exact_digits: bool) -> bool {
         return false;
     }
     if invents_weather(original, speech) {
+        return false;
+    }
+    if invents_weather_place(original, speech) {
         return false;
     }
     if FAIL_CLAIM.iter().any(|word| original_fold.contains(word)) && DONE_CLAIM.iter().any(|word| folded.contains(word)) {
@@ -357,6 +403,10 @@ mod tests {
         assert_eq!(accept_refined("Licht ist an.", "Licht ist an..."), None);
         assert_eq!(accept_refined("Wohnzimmer TV ist an.", "Das Licht im Wohnzimmer ist an."), None);
         assert_eq!(accept_refined("Nothing tomorrow.", "Tomorrow will be sunny."), None);
+        assert_eq!(accept_refined("Bewölkt, 25,6 Grad.", "Im Wohnzimmer sind es 25,6 Grad."), None);
+        assert_eq!(accept_refined("Bewölkt, 25,6 Grad.", "Im Raum sind es 25,6 Grad."), None);
+        assert_eq!(accept_refined("Cloudy, 25.6 degrees.", "It is 25.6 degrees in the room."), None);
+        assert_eq!(accept_refined("Nein, du brauchst keinen Schirm.", "Im Wohnzimmer brauchst du keinen Schirm."), None);
         assert_eq!(accept_refined("Team training at 3.", "Team training is at 3.").as_deref(), Some("Team training is at 3."));
         assert_eq!(accept_refined("Der Fernseher ist gerade nicht erreichbar.", "Das Licht im Wohnzimmer ist an."), None);
         assert_eq!(accept_refined("Temperatur im Schlafzimmer.", "Wie ist die Temperatur im Schlafzimmer?"), None);

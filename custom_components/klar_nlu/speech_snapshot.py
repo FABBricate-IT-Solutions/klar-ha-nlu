@@ -8,6 +8,8 @@ SNAPSHOT_SCHEMA = "1"
 MAX_ENTITIES = 96
 MAX_EVENTS = 16
 MAX_QUEUE = 8
+MAX_FORECAST = 8
+MAX_HOURLY = 48
 MAX_ATTR = 256
 ALLOWED_ATTRS = (
     "current_temperature",
@@ -34,6 +36,8 @@ def build_snapshot(
     entities: list[dict[str, Any]] | None = None,
     calendar_events: list[dict[str, Any]] | None = None,
     media_queue: list[dict[str, Any]] | None = None,
+    forecast: list[dict[str, Any]] | None = None,
+    hourly: list[dict[str, Any]] | None = None,
     unit_system: str = "metric",
 ) -> dict[str, Any]:
     return {
@@ -62,6 +66,27 @@ def build_snapshot(
             for row in (media_queue or [])[:MAX_QUEUE]
             if isinstance(row, dict)
         ],
+        "forecast": [_forecast(row) for row in (forecast or [])[:MAX_FORECAST] if isinstance(row, dict)],
+        "hourly": [_forecast(row) for row in (hourly or [])[:MAX_HOURLY] if isinstance(row, dict)],
+    }
+
+
+def _num(value: Any) -> float | None:
+    if isinstance(value, bool) or value is None:
+        return None
+    if isinstance(value, (int, float)):
+        return float(value)
+    return None
+
+
+def _forecast(row: dict[str, Any]) -> dict[str, Any]:
+    return {
+        "datetime": str(row.get("datetime") or "")[:64],
+        "condition": str(row.get("condition") or "")[:64],
+        "temperature": _num(row.get("temperature")),
+        "templow": _num(row.get("templow")),
+        "precipitation": _num(row.get("precipitation")),
+        "precipitation_probability": _num(row.get("precipitation_probability")),
     }
 
 
