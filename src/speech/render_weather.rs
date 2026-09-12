@@ -163,7 +163,7 @@ fn hour_in_part(iso: &str, part: &str) -> bool {
         "morning" => (6..12).contains(&hour),
         "afternoon" => (12..18).contains(&hour),
         "evening" => (18..22).contains(&hour),
-        "night" => hour >= 22 || hour < 6,
+        "night" => !(6..22).contains(&hour),
         _ => true,
     }
 }
