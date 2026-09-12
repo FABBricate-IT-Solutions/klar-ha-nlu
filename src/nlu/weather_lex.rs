@@ -88,9 +88,9 @@ impl DayPart {
 
 const QUERY_STOP: &[&str] = &[
     "what", "whats", "which", "how", "about", "the", "a", "an", "is", "it", "please", "wie", "was", "ist", "das", "der", "die", "den",
-    "dem", "ein", "eine", "bitte", "hoe", "wat", "het", "een", "quel", "quelle", "comment", "le", "la", "les", "un", "une", "est", "el",
-    "lo", "que", "cual", "como", "che", "quale", "come", "il", "o", "os", "as", "qual", "und", "et", "y", "en", "in", "im", "am", "of",
-    "my", "me", "i", "ich", "je", "ik", "fuer", "for", "to", "too", "auf", "um", "mit",
+    "dem", "ein", "eine", "hoe", "wat", "het", "een", "quel", "quelle", "comment", "le", "la", "les", "un", "une", "est", "el", "lo",
+    "que", "cual", "como", "che", "quale", "come", "il", "o", "os", "as", "qual", "und", "et", "y", "en", "in", "im", "am", "of", "my",
+    "me", "i", "ich", "je", "ik", "fuer", "for", "to", "too", "auf", "um", "mit",
 ];
 
 pub(super) fn classify(blob: &str, pack_weather: bool) -> Option<WeatherClass> {
