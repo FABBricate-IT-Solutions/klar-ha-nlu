@@ -124,10 +124,32 @@ fn wants_status_query(tokens: &[String]) -> bool {
     if cat.any(tokens, cat.status_words()) {
         return true;
     }
-    if tokens.first().is_some_and(|token| cat.is_question_start(token)) {
+    tokens.iter().enumerate().any(|(index, token)| {
+        if cat.is_question_word(token) {
+            return true;
+        }
+        // Bare mid-sentence "ist"/"are" is ASR chatter, not a status ask. Keep real
+        // "Ist Flur an" / "Which lights are on?" via start position or power neighbor.
+        if matches!(token.as_str(), "ist" | "sind" | "is" | "are") {
+            return copula_status_context(tokens, index);
+        }
+        cat.is_query_hint(token) || cat.is_question_start(token)
+    })
+}
+
+fn copula_status_context(tokens: &[String], index: usize) -> bool {
+    if index == 0 {
         return true;
     }
-    tokens.iter().any(|token| cat.is_question_word(token) || (cat.is_query_hint(token) && !crate::parse::action::is_copula_query(token)))
+    let cat = catalog();
+    let power = |token: &str| cat.on_words().contains(token) || cat.off_words().contains(token);
+    tokens[..index].iter().any(|prev| {
+        cat.is_question_word(prev)
+            || cat.status_words().contains(prev.as_str())
+            || matches!(prev.as_str(), "if" | "ob" | "whether" | "confirm" | "which" | "welche")
+            || (cat.is_query_hint(prev) && !matches!(prev.as_str(), "ist" | "sind" | "is" | "are"))
+    }) || tokens.get(index + 1).is_some_and(|next| power(next))
+        || index.checked_sub(1).and_then(|i| tokens.get(i)).is_some_and(|prev| power(prev))
 }
 
 fn last_turn_targets(session: &Session, home: &HomeGraph, domain: Option<&str>) -> (Vec<String>, Vec<String>) {
