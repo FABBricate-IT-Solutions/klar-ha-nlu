@@ -23,10 +23,11 @@ async def post_parse(
                 f"{base}/api/v2/parse",
                 json=body,
                 headers=headers,
-                timeout=aiohttp.ClientTimeout(total=5),
+                timeout=aiohttp.ClientTimeout(total=30),
             ) as resp:
                 resp.raise_for_status()
                 return validate_v2_payload(await resp.json()), None
         except Exception as err:  # noqa: BLE001 — boundary to the local engine
-            last_err = err
+            # TimeoutError stringifies to "" in Python — keep a readable hint.
+            last_err = TimeoutError("Klar parse timed out") if isinstance(err, TimeoutError) else err
     return None, last_err
