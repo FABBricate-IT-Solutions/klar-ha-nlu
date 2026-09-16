@@ -121,8 +121,13 @@ fn session_light_areas(session: &Session, home: &HomeGraph) -> Vec<String> {
 
 fn wants_status_query(tokens: &[String]) -> bool {
     let cat = catalog();
-    cat.any(tokens, cat.status_words())
-        || tokens.iter().any(|token| cat.is_query_hint(token) || cat.is_question_word(token) || cat.is_question_start(token))
+    if cat.any(tokens, cat.status_words()) {
+        return true;
+    }
+    if tokens.first().is_some_and(|token| cat.is_question_start(token)) {
+        return true;
+    }
+    tokens.iter().any(|token| cat.is_question_word(token) || (cat.is_query_hint(token) && !crate::parse::action::is_copula_query(token)))
 }
 
 fn last_turn_targets(session: &Session, home: &HomeGraph, domain: Option<&str>) -> (Vec<String>, Vec<String>) {

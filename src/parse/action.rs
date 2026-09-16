@@ -88,7 +88,13 @@ pub(crate) fn detect_actions_bounded(tokens: &[String], maximum: usize) -> Vec<(
     for (i, t) in tokens.iter().enumerate() {
         let verb = cat.verb(t).or_else(|| fuzzy.and_then(|(index, kind)| (index == i).then_some(kind)));
         let action = match verb {
-            Some(VerbKind::On) => Some(Action::On),
+            Some(VerbKind::On) => {
+                if crate::parse::normalize::article_one(t) && !article_power_particle(tokens, i) {
+                    None
+                } else {
+                    Some(Action::On)
+                }
+            }
             Some(VerbKind::OnParticle) => on_action(tokens, i),
             Some(VerbKind::Open) => open_action(tokens),
             Some(VerbKind::OpenDoor) => open_door_action(tokens),
@@ -136,7 +142,7 @@ pub(crate) fn detect_actions_bounded(tokens: &[String], maximum: usize) -> Vec<(
             Some(VerbKind::Climate) | Some(VerbKind::Temperature) => {
                 Some(if crate::parse::numbers::first_number(tokens).is_some() { Action::SetTemp } else { Action::GetState })
             }
-            Some(VerbKind::Query) => Some(Action::GetState),
+            Some(VerbKind::Query) => query_action(tokens, i, t),
             Some(VerbKind::Switch) => Some(if cat.any(tokens, cat.off_words()) { Action::Off } else { Action::On }),
             Some(VerbKind::Pause) => Some(if cat.any(tokens, cat.timer_nouns()) { Action::TimerPause } else { Action::MediaPause }),
             Some(VerbKind::Playback) => playback_action(tokens),
@@ -386,6 +392,38 @@ fn playback_action(tokens: &[String]) -> Option<Action> {
         Some(Action::MediaPlay)
     } else {
         Some(Action::MediaPause)
+    }
+}
+
+pub(crate) fn is_copula_query(token: &str) -> bool {
+    matches!(token, "ist" | "sind" | "is" | "are")
+}
+
+fn query_action(tokens: &[String], index: usize, token: &str) -> Option<Action> {
+    if is_copula_query(token) && !copula_query_context(tokens, index) {
+        return None;
+    }
+    Some(Action::GetState)
+}
+
+fn copula_query_context(tokens: &[String], index: usize) -> bool {
+    if index == 0 {
+        return true;
+    }
+    let cat = catalog();
+    tokens[..index].iter().any(|prev| {
+        cat.is_question_word(prev)
+            || cat.status_words().contains(prev.as_str())
+            || matches!(cat.verb(prev), Some(VerbKind::Query) if !is_copula_query(prev))
+    })
+}
+
+/// German "ein" is both the indefinite article and a power-on particle ("Licht ein").
+fn article_power_particle(tokens: &[String], index: usize) -> bool {
+    match tokens.get(index + 1).map(String::as_str) {
+        None => true,
+        Some(next) if catalog().is_conj(next) || catalog().on_words().contains(next) || catalog().off_words().contains(next) => true,
+        Some(_) => false,
     }
 }
 
