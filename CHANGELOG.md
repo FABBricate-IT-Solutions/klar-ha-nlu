@@ -6,6 +6,37 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 Versions follow Home Assistant calendar versioning (`YYYY.M.PATCH`)
 and [Conventional Commits](https://www.conventionalcommits.org/).
 
+## [2026.9.11](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/compare/2026.9.10...2026.9.11) - 2026-09-16
+
+
+
+### Bug Fixes
+
+- raise parse timeout and stop false mid-sentence status([c844436](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/c8444365789b59585bb2bb75149dfa8320bc902a))
+
+- raise parse timeout and stop mid-sentence status replay([1039fb1](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/1039fb190f27a53030f99279165f792049f7a9e5))
+
+
+### Other
+
+- Merge pull request #262 from FABBricate-IT-Solutions/dependabot/npm_and_yarn/web/npm-minor-d15a6bbb73([27e6479](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/27e64795529b379fb12a6e07e6701efbe9113981))
+
+- merge main (rustls + parse fixes) into npm-minor([89fe881](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/89fe881472525ccfcd38df981392b917f43bf22c))
+
+- Merge pull request #263 from FABBricate-IT-Solutions/fix/parse-timeout-and-false-status([e2dc377](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/e2dc37722e63934bd0fe53e1d0b79beb016a545b))
+
+- merge main into npm-minor; keep cn 0.2.6 and minor bumps([6c1139a](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/6c1139aec37198bc4bcee2441795d7333ff03357))
+
+- Merge pull request #261 from FABBricate-IT-Solutions/dependabot/npm_and_yarn/web/npm-patch-5812b47994([fdbe4c5](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/fdbe4c5e8732ae78bd8d338b04a515e410d4fced))
+
+- bump cn from 0.2.5 to 0.2.6 in /web in the npm-patch group([91aa9b9](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/91aa9b9a66adbf3e845718490b44395700989b0b))
+
+- Merge pull request #260 from FABBricate-IT-Solutions/dependabot/cargo/rust-patch-98b7f37da0([12c17a2](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/12c17a2fdb52ab0bac2e19011d409d6a19334fce))
+
+- bump uuid from 1.26.0 to 1.26.1 in the rust-patch group([379b00e](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/379b00ec665be321545e4bcbda214ad1a47f27c5))
+
+- bump the npm-minor group in /web with 6 updates([771e840](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/771e840867c4e631455da2f6e166d6f6e44b3419))
+
 ## [2026.9.10](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/compare/2026.9.9...2026.9.10) - 2026-09-12
 
 
