@@ -88,7 +88,19 @@ pub(crate) fn detect_actions_bounded(tokens: &[String], maximum: usize) -> Vec<(
     for (i, t) in tokens.iter().enumerate() {
         let verb = cat.verb(t).or_else(|| fuzzy.and_then(|(index, kind)| (index == i).then_some(kind)));
         let action = match verb {
-            Some(VerbKind::On) => Some(Action::On),
+            Some(VerbKind::On) => {
+                // German "ein" is article + power particle. English "an" must keep DE "an".
+                if matches!(t.as_str(), "ein" | "eine" | "einen" | "einer" | "einem")
+                    && tokens.get(i + 1).is_some_and(|next| {
+                        let cat = catalog();
+                        !cat.is_conj(next) && !cat.on_words().contains(next.as_str()) && !cat.off_words().contains(next.as_str())
+                    })
+                {
+                    None
+                } else {
+                    Some(Action::On)
+                }
+            }
             Some(VerbKind::OnParticle) => on_action(tokens, i),
             Some(VerbKind::Open) => open_action(tokens),
             Some(VerbKind::OpenDoor) => open_door_action(tokens),

@@ -63,6 +63,8 @@ class SessionIsolationTests(unittest.TestCase):
         self.assertIn("keeps_engine_chat", src)
         http = (ROOT / "custom_components" / "klar_nlu" / "engine_http.py").read_text(encoding="utf-8")
         self.assertIn("engine_url_candidates(url)", http)
+        self.assertIn("ClientTimeout(total=30)", http)
+        self.assertNotIn("ClientTimeout(total=5)", http)
         self.assertNotIn('"conversation_id": engine_session_id(device_id, satellite_id)', body)
 
     def test_empty_plan_does_not_say_done(self) -> None:
