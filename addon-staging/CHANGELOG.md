@@ -6,6 +6,20 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 Versions follow Home Assistant calendar versioning (`YYYY.M.PATCH`)
 and [Conventional Commits](https://www.conventionalcommits.org/).
 
+## [2026.9.12](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/compare/2026.9.11...2026.9.12) - 2026-09-26
+
+
+
+### Other
+
+- Merge pull request #265 from FABBricate-IT-Solutions/dependabot/cargo/rust-patch-722c7a5dc4([58dc96a](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/58dc96af1b0dce34dd8e72df6e4b6a5d9eb338f6))
+
+- bump clap from 4.6.6 to 4.6.7 in the rust-patch group([032ead4](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/032ead46e941b6aa40952cd328a39c8e03e8ca2a))
+
+- Merge pull request #266 from FABBricate-IT-Solutions/dependabot/npm_and_yarn/web/npm-minor-7bee64aca0([da0793f](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/da0793fd90807b05992483a549536d2b92022f28))
+
+- bump the npm-minor group in /web with 2 updates([35b7b11](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/35b7b117224314bb79bdea9c921ba1e2687bdd6e))
+
 ## [2026.9.11](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/compare/2026.9.10...2026.9.11) - 2026-09-16
 
 
