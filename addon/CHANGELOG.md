@@ -6,6 +6,164 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 Versions follow Home Assistant calendar versioning (`YYYY.M.PATCH`)
 and [Conventional Commits](https://www.conventionalcommits.org/).
 
+## [2026.10.1](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/compare/2026.10.0...2026.10.1) - 2026-10-04
+
+
+
+### Other
+
+- bump brace-expansion from 5.0.9 to 5.0.12 in /web([a2efb85](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/a2efb853c3f8b3a593186b94660c6017a02e3452))
+
+- bump brace-expansion from 5.0.9 to 5.0.12 in /web([e17711a](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/e17711a4310f28867166be45d1d7ca6d8ce45c52))
+
+- bump ip-address from 10.7.0 to 10.7.3 in /web([af5de6d](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/af5de6dba1f500c567e619cc40610afef2744adb))
+
+- bump ip-address from 10.7.0 to 10.7.3 in /web([e542fc4](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/e542fc40897dcfde13a759baa2606f7d22e4c326))
+
+- bump fast-uri from 3.1.7 to 3.1.8 in /web([a7e4f4c](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/a7e4f4c2c4e30b1f72e1e217c8a76121f1bca49b))
+
+- bump fast-uri from 3.1.7 to 3.1.8 in /web([70d1ce9](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/70d1ce90312d009bcfc6bbe8005aed77066ccdc5))
+
+## [2026.10.0](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/compare/2026.9.11...2026.10.0) - 2026-10-04
+
+
+
+### Other
+
+- bump the npm-minor group in /web with 2 updates([2fb41d0](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/2fb41d0c65af4ff5b0207dc6ef720098d535bc27))
+
+- bump the npm-minor group in /web with 2 updates([d1ca1e0](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/d1ca1e0690d82c1a7b9e29a2386e5d404f5cf424))
+
+- bump vite from 8.3.0 to 8.3.1 in /web in the npm-patch group([cda77aa](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/cda77aa6bcaf31f2515e261af0ddf3a8267182a2))
+
+- bump vite from 8.3.0 to 8.3.1 in /web in the npm-patch group([5f1536e](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/5f1536e352ea0d5300e175e67f145762b16ebb73))
+
+- bump thiserror from 2.0.20 to 2.0.21 in the rust-patch group([eb6b605](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/eb6b6059cedf7865a66ffb8d841e5c943cd00b33))
+
+- bump thiserror from 2.0.20 to 2.0.21 in the rust-patch group([cbe6fbc](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/cbe6fbcc0e4805598bebbc96cb838b7d15ca790a))
+
+- Merge pull request #265 from FABBricate-IT-Solutions/dependabot/cargo/rust-patch-722c7a5dc4([58dc96a](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/58dc96af1b0dce34dd8e72df6e4b6a5d9eb338f6))
+
+- bump clap from 4.6.6 to 4.6.7 in the rust-patch group([032ead4](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/032ead46e941b6aa40952cd328a39c8e03e8ca2a))
+
+- Merge pull request #266 from FABBricate-IT-Solutions/dependabot/npm_and_yarn/web/npm-minor-7bee64aca0([da0793f](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/da0793fd90807b05992483a549536d2b92022f28))
+
+- bump the npm-minor group in /web with 2 updates([35b7b11](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/35b7b117224314bb79bdea9c921ba1e2687bdd6e))
+
+## [2026.9.11](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/compare/2026.9.10...2026.9.11) - 2026-09-16
+
+
+
+### Bug Fixes
+
+- raise parse timeout and stop false mid-sentence status([c844436](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/c8444365789b59585bb2bb75149dfa8320bc902a))
+
+- raise parse timeout and stop mid-sentence status replay([1039fb1](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/1039fb190f27a53030f99279165f792049f7a9e5))
+
+
+### Other
+
+- Merge pull request #262 from FABBricate-IT-Solutions/dependabot/npm_and_yarn/web/npm-minor-d15a6bbb73([27e6479](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/27e64795529b379fb12a6e07e6701efbe9113981))
+
+- merge main (rustls + parse fixes) into npm-minor([89fe881](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/89fe881472525ccfcd38df981392b917f43bf22c))
+
+- Merge pull request #263 from FABBricate-IT-Solutions/fix/parse-timeout-and-false-status([e2dc377](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/e2dc37722e63934bd0fe53e1d0b79beb016a545b))
+
+- merge main into npm-minor; keep cn 0.2.6 and minor bumps([6c1139a](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/6c1139aec37198bc4bcee2441795d7333ff03357))
+
+- Merge pull request #261 from FABBricate-IT-Solutions/dependabot/npm_and_yarn/web/npm-patch-5812b47994([fdbe4c5](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/fdbe4c5e8732ae78bd8d338b04a515e410d4fced))
+
+- bump cn from 0.2.5 to 0.2.6 in /web in the npm-patch group([91aa9b9](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/91aa9b9a66adbf3e845718490b44395700989b0b))
+
+- Merge pull request #260 from FABBricate-IT-Solutions/dependabot/cargo/rust-patch-98b7f37da0([12c17a2](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/12c17a2fdb52ab0bac2e19011d409d6a19334fce))
+
+- bump uuid from 1.26.0 to 1.26.1 in the rust-patch group([379b00e](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/379b00ec665be321545e4bcbda214ad1a47f27c5))
+
+- bump the npm-minor group in /web with 6 updates([771e840](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/771e840867c4e631455da2f6e166d6f6e44b3419))
+
+## [2026.9.10](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/compare/2026.9.9...2026.9.10) - 2026-09-12
+
+
+
+### Bug Fixes
+
+- keep hallway and timer phrases from matching weather stems([cd8a8e8](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/cd8a8e8633d4962f25fac7c654d52a1a3bf7fb18))
+
+- drop banned bitte token from weather query stop list([6e34a59](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/6e34a59cc0f1bf6c41efdec86b0b977814f854aa))
+
+- keep shopping lists and OOD weather phrases out of weather lex([02c2ed3](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/02c2ed3bec39026546f55ec503b4f66cdccd0a11))
+
+- leave generated weather lists to the pack generator([b70aa0a](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/b70aa0aa6278f67c794467f355b7c9622795f2f9))
+
+- use Range::contains for night hours([b29933a](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/b29933a6a8157f6f248e40a5dfa20b3dce1081c7))
+
+- keep handwritten de and en packs under 500 lines([6c52d5e](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/6c52d5e3742a33b534d1033cdf13fccb61ceda12))
+
+
+### Features
+
+- **weather:** parse and speak forecast in every locale([2623e62](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/2623e62cb762a79c322797cd728a2b6856b9f773))
+
+
+### Other
+
+- Merge pull request #258 from FABBricate-IT-Solutions/feat/weather-all-langs([8913939](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/8913939292023fafdc8aa42a360e9ff6f64bb4d6))
+
+
+### Testing
+
+- load weather_forecast in the executor harness([ec9f62a](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/ec9f62a870d1ab196bdd1719de0948d51c72f48b))
+
+## [2026.9.9](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/compare/2026.9.5-staging.1e6593b...2026.9.9) - 2026-09-11
+
+
+
+### Bug Fixes
+
+- keep staging Lotse UI when promoting to main([a89fbc8](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/a89fbc824cc264bfcb8d925fa70da90ca275cbad))
+
+
+### Other
+
+- Merge pull request #255 from FABBricate-IT-Solutions/release/promote-2026.9.9([8891bd6](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/8891bd68c64565b519c239d1f7b9a95168a7d6b4))
+
+- accept staging product over main 2026.9.8([4a9db2e](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/4a9db2ec054d3dd0c5e44f1f349c47e3ccc11ca0))
+
+## [2026.9.8](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/compare/2026.9.7...2026.9.8) - 2026-09-07
+
+
+
+### Other
+
+- Compact Lotse on mobile so the chat keeps the screen (#239)([412108a](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/412108a46b719769ab5a9942dbdc5adf7c4f5590))
+
+## [2026.9.7](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/compare/2026.9.6...2026.9.7) - 2026-09-07
+
+
+
+### Other
+
+- bump recharts from 3.8.0 to 3.10.1 in /web in the npm-minor group (#236)([5796317](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/5796317eb494e56bf3bf64df9d74dea24d195396))
+
+- bump @types/react-dom from 19.2.5 to 19.2.7 in /web in the npm-patch group (#234)([2843919](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/2843919682870b03538952dde82adfb47dc54771))
+
+- bump the rust-patch group with 2 updates (#233)([64c715d](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/64c715de603a22a551571da7def62edf96daada1))
+
+## [2026.9.6](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/compare/2026.9.5...2026.9.6) - 2026-09-06
+
+
+
+### Bug Fixes
+
+- add engineOffline to every Assist locale([eb9146f](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/eb9146ff13591e4fae6e7ebbe7fec8f57da95538))
+
+- fail closed when custom phrases cannot persist([9dbecdd](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/9dbecdd91824ab28c60102501021be01277cac82))
+
+
+### Other
+
+- Merge pull request #231 from FABBricate-IT-Solutions/fix/custom-phrase-live-store([8be8509](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/8be850902cd34588d8fad9bdce77efef4b825ed4))
+
 ## [2026.9.5](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/compare/2026.9.4...2026.9.5) - 2026-09-06
 
 

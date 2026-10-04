@@ -1,5 +1,5 @@
 use super::*;
-use crate::types::{SpeechCalendarEvent, SpeechEntity, SpeechIntent, SpeechSlot, SpeechSnapshot, UnitSystem};
+use crate::types::{SpeechCalendarEvent, SpeechEntity, SpeechForecast, SpeechIntent, SpeechSlot, SpeechSnapshot, UnitSystem};
 use std::collections::BTreeMap;
 
 fn snap(name: &str, slots: Vec<SpeechSlot>, entities: Vec<SpeechEntity>) -> SpeechSnapshot {
@@ -14,6 +14,8 @@ fn snap(name: &str, slots: Vec<SpeechSlot>, entities: Vec<SpeechEntity>) -> Spee
         entities,
         calendar_events: vec![],
         media_queue: vec![],
+        forecast: vec![],
+        hourly: vec![],
     }
 }
 
@@ -494,7 +496,148 @@ fn weather_get_state_speaks_temperature() {
             BTreeMap::from([("temperature".into(), serde_json::json!(27.1)), ("temperature_unit".into(), serde_json::json!("°C"))]),
         )],
     ));
-    assert!(out.speech.contains("27"));
+    assert!(out.speech.contains("27,1"), "{}", out.speech);
     assert!(out.speech.contains("Grad"));
+    assert!(out.speech.contains("bewölkt"));
     assert!(!out.speech.contains("cloudy"));
+    assert!(!out.speech.contains("Raum"));
+}
+
+#[test]
+fn weather_rain_and_umbrella_use_forecast() {
+    let mut rainy = snap(
+        "HassGetState",
+        vec![
+            SpeechSlot { name: "entity_id".into(), value: "weather.home".into() },
+            SpeechSlot { name: "weather_ask".into(), value: "rain".into() },
+        ],
+        vec![entity("weather.home", "Home", "weather", "cloudy", BTreeMap::from([("temperature".into(), serde_json::json!(18.0))]))],
+    );
+    rainy.forecast = vec![SpeechForecast {
+        datetime: "2026-09-05T00:00:00+02:00".into(),
+        condition: "rainy".into(),
+        temperature: Some(16.0),
+        templow: Some(10.0),
+        precipitation: Some(2.0),
+        precipitation_probability: Some(80.0),
+    }];
+    assert_eq!(render_snapshot(&rainy).speech, "Ja, Regen ist gemeldet.");
+    rainy.intent.slots[1].value = "umbrella".into();
+    assert_eq!(render_snapshot(&rainy).speech, "Ja, nimm einen Schirm mit.");
+    rainy.forecast[0].condition = "sunny".into();
+    rainy.forecast[0].precipitation = Some(0.0);
+    rainy.forecast[0].precipitation_probability = Some(5.0);
+    rainy.intent.slots[1].value = "rain".into();
+    assert_eq!(render_snapshot(&rainy).speech, "Nein, heute kein Regen.");
+}
+
+#[test]
+fn weather_today_uses_forecast_day() {
+    let mut today = snap(
+        "HassGetState",
+        vec![
+            SpeechSlot { name: "entity_id".into(), value: "weather.home".into() },
+            SpeechSlot { name: "weather_ask".into(), value: "today".into() },
+        ],
+        vec![entity("weather.home", "Home", "weather", "sunny", BTreeMap::from([("temperature".into(), serde_json::json!(30.0))]))],
+    );
+    today.forecast = vec![SpeechForecast {
+        datetime: "2026-09-05T00:00:00+02:00".into(),
+        condition: "cloudy".into(),
+        temperature: Some(22.0),
+        templow: None,
+        precipitation: None,
+        precipitation_probability: None,
+    }];
+    let spoken = render_snapshot(&today).speech;
+    assert!(spoken.contains("Heute"));
+    assert!(spoken.contains("bewölkt"));
+    assert!(spoken.contains("22"));
+    today.forecast.clear();
+    let fallback = render_snapshot(&today).speech;
+    assert!(fallback.contains("sonnig"), "{fallback}");
+    assert!(fallback.contains("30"), "{fallback}");
+    assert!(!fallback.contains("Heute"), "{fallback}");
+}
+
+#[test]
+fn weather_monday_and_afternoon_rain() {
+    let mut monday = snap(
+        "HassGetState",
+        vec![
+            SpeechSlot { name: "weather_ask".into(), value: "today".into() },
+            SpeechSlot { name: "weather_day".into(), value: "mon".into() },
+        ],
+        vec![entity("weather.home", "Home", "weather", "sunny", BTreeMap::from([("temperature".into(), serde_json::json!(30.0))]))],
+    );
+    monday.now = "2026-09-12T10:00:00+02:00".into();
+    monday.forecast = vec![
+        SpeechForecast {
+            datetime: "2026-09-12T00:00:00+02:00".into(),
+            condition: "sunny".into(),
+            temperature: Some(24.0),
+            templow: None,
+            precipitation: None,
+            precipitation_probability: None,
+        },
+        SpeechForecast {
+            datetime: "2026-09-14T00:00:00+02:00".into(),
+            condition: "rainy".into(),
+            temperature: Some(17.0),
+            templow: None,
+            precipitation: Some(3.0),
+            precipitation_probability: Some(70.0),
+        },
+    ];
+    let spoken = render_snapshot(&monday).speech;
+    assert!(spoken.contains("Montag"), "{spoken}");
+    assert!(spoken.contains("regnerisch"), "{spoken}");
+    assert!(spoken.contains("17"), "{spoken}");
+    monday.intent.slots = vec![
+        SpeechSlot { name: "weather_ask".into(), value: "rain".into() },
+        SpeechSlot { name: "weather_day".into(), value: "today".into() },
+        SpeechSlot { name: "weather_part".into(), value: "afternoon".into() },
+    ];
+    monday.hourly = vec![
+        SpeechForecast {
+            datetime: "2026-09-12T09:00:00+02:00".into(),
+            condition: "sunny".into(),
+            temperature: Some(22.0),
+            templow: None,
+            precipitation: Some(0.0),
+            precipitation_probability: Some(5.0),
+        },
+        SpeechForecast {
+            datetime: "2026-09-12T15:00:00+02:00".into(),
+            condition: "rainy".into(),
+            temperature: Some(18.0),
+            templow: None,
+            precipitation: Some(1.2),
+            precipitation_probability: Some(60.0),
+        },
+    ];
+    assert_eq!(render_snapshot(&monday).speech, "Ja, Regen ist gemeldet.");
+}
+
+#[test]
+fn weather_frames_follow_snapshot_language() {
+    let mut rainy = snap(
+        "HassGetState",
+        vec![
+            SpeechSlot { name: "entity_id".into(), value: "weather.home".into() },
+            SpeechSlot { name: "weather_ask".into(), value: "rain".into() },
+        ],
+        vec![entity("weather.home", "Home", "weather", "rainy", BTreeMap::new())],
+    );
+    rainy.language = "nl".into();
+    assert_eq!(render_snapshot(&rainy).speech, "Ja, regen wordt verwacht.");
+    rainy.language = "ja".into();
+    assert_eq!(render_snapshot(&rainy).speech, "はい、雨です。");
+    rainy.intent.slots[1].value = "now".into();
+    rainy.language = "nl".into();
+    rainy.entities[0].state = "cloudy".into();
+    rainy.entities[0].attributes = BTreeMap::from([("temperature".into(), serde_json::json!(18.0))]);
+    let spoken = render_snapshot(&rainy).speech;
+    assert!(spoken.contains("bewolkt"), "{spoken}");
+    assert!(spoken.contains("graden"), "{spoken}");
 }

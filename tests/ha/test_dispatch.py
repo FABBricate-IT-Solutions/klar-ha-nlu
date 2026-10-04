@@ -96,6 +96,7 @@ def _load_dispatch() -> types.ModuleType:
         _load(f"{PACKAGE}.engine_llm", "engine_llm.py")
         _load(f"{PACKAGE}.speech_snapshot", "speech_snapshot.py")
         _load(f"{PACKAGE}.speech_render", "speech_render.py")
+        _load(f"{PACKAGE}.weather_forecast", "weather_forecast.py")
         media = _load(f"{PACKAGE}.dispatch_media", "dispatch_media.py")
         timer = _load(f"{PACKAGE}.dispatch_timer", "dispatch_timer.py")
         return _load(f"{PACKAGE}.dispatch", "dispatch.py"), media, timer
@@ -748,7 +749,7 @@ class DispatchTests(unittest.IsolatedAsyncioTestCase):
         )
         self.assertEqual(
             dispatch.intent_query_text(user, "HassGetState", {"entity_id": {"value": "weather.home"}}),
-            user.text,
+            "HassGetState",
         )
 
     async def test_timer_without_satellite_uses_helper(self) -> None:

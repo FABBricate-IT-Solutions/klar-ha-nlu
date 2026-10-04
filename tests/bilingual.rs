@@ -118,6 +118,8 @@ fn en_casual_and_special_are_chat() {
     assert!(!ood.chat, "OOD darf nicht chat sein");
     let weather = parse("What's the weather", &home, &mut Session::new(), &[], &settings("en"));
     assert!(weather.chat || !weather.intents.is_empty(), "What's the weather: {}", weather.speech);
+    let rain = parse("Will it rain today", &home, &mut Session::new(), &[], &settings("en"));
+    assert!(rain.chat || !rain.intents.is_empty(), "Will it rain today: {}", rain.speech);
     assert!(
         weather.intents.is_empty()
             || weather.intents.iter().any(|intent| intent.slot("entity_id").unwrap_or_default().starts_with("weather.")),
@@ -213,4 +215,45 @@ fn hot_tub_light_clarify_speech_is_english_not_german() {
         assert!(result.speech.contains("Do you mean"), "{langs:?} {}", result.speech);
         assert!(result.speech.contains(" or "), "{langs:?} {}", result.speech);
     }
+}
+
+#[test]
+fn weather_asks_bind_entity_and_day() {
+    let mut home = default_home();
+    home.entities.push(EntityRec {
+        entity_id: "weather.home".into(),
+        name: "Home".into(),
+        domain: "weather".into(),
+        platform: None,
+        area: None,
+        aliases: Vec::new(),
+        tags: Vec::new(),
+    });
+    let cases = [
+        ("Wie ist das Wetter?", "de", "now"),
+        ("Wie wird das Wetter?", "de", "today"),
+        ("Wie wird das Wetter heute?", "de", "today"),
+        ("Wird es heute regnen?", "de", "rain"),
+        ("Brauche ich heute einen Schirm?", "de", "umbrella"),
+        ("Brauche ich heute einen Regenschirm?", "de", "umbrella"),
+        ("Will it rain tomorrow?", "en", "rain"),
+        ("Va-t-il pleuvoir ?", "fr", "rain"),
+        ("Regent het vandaag?", "nl", "rain"),
+        ("Llueve hoy?", "es", "rain"),
+        ("雨が降る", "ja", "rain"),
+        ("Hoe is het weer?", "nl", "now"),
+        ("¿Qué tiempo hace?", "es", "now"),
+    ];
+    for (text, lang, ask) in cases {
+        let result = parse(text, &home, &mut Session::new(), &[], &settings(lang));
+        assert_eq!(result.intents.len(), 1, "{text}: {:?} {}", result.intents, result.speech);
+        assert_eq!(result.intents[0].name, "HassGetState", "{text}");
+        assert_eq!(result.intents[0].slot("entity_id"), Some("weather.home"), "{text}");
+        assert_eq!(result.intents[0].slot("weather_ask"), Some(ask), "{text}");
+    }
+    let monday = parse("Wie wird das Wetter am Montag?", &home, &mut Session::new(), &[], &settings("de"));
+    assert_eq!(monday.intents[0].slot("weather_day"), Some("mon"), "{:?}", monday.intents);
+    let later = parse("Wird es morgen regnen?", &home, &mut Session::new(), &[], &settings("de"));
+    assert_eq!(later.intents[0].slot("weather_ask"), Some("rain"));
+    assert_eq!(later.intents[0].slot("weather_day"), Some("tomorrow"));
 }

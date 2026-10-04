@@ -35,6 +35,7 @@ from .intents import (
 from .lang_select import speak_tag
 from .speech_render import spoken_after_execute
 from .speech_snapshot import entity_from_state
+from .weather_forecast import forecasts
 
 _LOGGER = logging.getLogger(__name__)
 
@@ -282,13 +283,23 @@ def climate_states_in_area(hass: HomeAssistant, area_key: str) -> list[Any]:
     return found
 
 
-def intent_query_text(user_input: ConversationInput, name: str, slots: dict[str, Any]) -> str:
-    """HA weather GetState reads the utterance for 'tomorrow'. Keep that only for weather."""
+def intent_query_text(_user_input: ConversationInput, name: str, _slots: dict[str, Any]) -> str:
+    """Klar owns today/tomorrow/rain from get_forecasts. HA GetState only needs the intent name."""
+    return name
+
+
+def _ha_slots(name: str, slots: dict[str, Any]) -> dict[str, Any]:
+    if name != "HassGetState":
+        return slots
+    return {key: value for key, value in slots.items() if key not in {"weather_ask", "weather_day", "weather_part"}}
+
+
+def _weather_entity(name: str, slots: dict[str, Any]) -> str:
     entity_id = str(slots.get("entity_id", {}).get("value") or "")
     domain = str(slots.get("domain", {}).get("value") or "")
     if name == "HassGetState" and (domain == "weather" or entity_id.startswith("weather.")):
-        return user_input.text
-    return name
+        return entity_id
+    return ""
 
 
 async def invoke_intent(
@@ -305,7 +316,7 @@ async def invoke_intent(
             hass,
             "klar_nlu",
             name,
-            slots,
+            _ha_slots(name, slots),
             intent_query_text(user_input, name, slots),
             user_input.context,
             speak_tag(pack),
@@ -316,7 +327,11 @@ async def invoke_intent(
     except Exception as err:  # noqa: BLE001 — HA intent system is a boundary
         _LOGGER.debug("Intent %s nicht ausgeführt: %s", name, err)
         return _fail(str(err) or name)
-    return _ok(await spoken_after_execute(hass, pack, "default", {**item, "name": name}, handled))
+    entity_id = _weather_entity(name, slots)
+    daily, hourly = await forecasts(hass, entity_id) if entity_id else ([], [])
+    return _ok(
+        await spoken_after_execute(hass, pack, "default", {**item, "name": name}, handled, forecast=daily, hourly=hourly)
+    )
 
 
 async def run_entity(
