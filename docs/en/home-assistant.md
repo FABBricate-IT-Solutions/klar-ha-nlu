@@ -30,9 +30,41 @@ One instance only. The URL stays in the first step. Voice and the engine LLM liv
 Settings → Voice assistants → edit the pipeline:
 
 - **Conversation engine:** Klar NLU
-- STT/TTS as you like (local or cloud)
+- STT/TTS as you like (local or cloud) — Klar does not host Whisper or Piper
 
 Do not set the LLM agent as the engine. Assist would skip Klar and the LLM could control devices.
+
+Feature work and RC testing go through the **`staging`** git branch → prerelease tag → HA release channel **Staging** (see [Releases](releases.md#staging-release-candidates)). Promote to stable only after eval: `staging` → `main`.
+
+## ASR boost (Whisper)
+
+Klar serves a ranked name list from the home graph, language pack, and custom phrases (`GET /api/v2/speech/asr_boost`). The integration writes it after each registry sync to `config/klar_nlu_asr_boost.txt` and via service:
+
+```yaml
+service: klar_nlu.export_asr_boost
+data:
+  language: de
+  max_tokens: 200
+  # path: klar_nlu_asr_boost.txt   # optional, relative to config/
+```
+
+In [wyoming-faster-whisper](https://github.com/rhasspy/wyoming-faster-whisper) set the prompt, for example:
+
+```text
+--initial-prompt "$(cat /path/to/klar_nlu_asr_boost.txt)"
+```
+
+or paste the file into the add-on config. If Klar already syncs exposed names, do **not** also spend a full `--hass-token` budget — that doubles names and wastes Whisper’s cap.
+
+**Distil warning:** do not run Distil-Whisper checkpoints with `--initial-prompt` (wyoming-faster-whisper warns explicitly). Prefer `large-v3-turbo` / non-distil.
+
+## Speech pipeline spikes (staging)
+
+| Spike | Result |
+|-------|--------|
+| Sentence TTS / TTFA | **Go** for existing `speech_chunks` + `async_add_delta_content_stream` in Assist. Extra early ack before execute: **No-Go** (double TTS with quiet_ack/chime). |
+| TTS phrase cache | **No-Go** — no clean Assist/Wyoming hook for pre-rendered audio without a fork. Keep `quiet_ack` + sentence streaming. |
+| `POST /api/v2/speech/render` | **Go** — sole post-execute speech source; missing route fails closed. |
 
 ## LLM fallback
 

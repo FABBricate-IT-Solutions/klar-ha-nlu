@@ -2,7 +2,7 @@
 
 [Deutsch](architecture.md) · [English](en/architecture.md)
 
-Klar ist eine regelbasierte NLU. Ein Satz wird tokenisiert, gegen Wortlisten geprüft und in Home-Assistant-Intents übersetzt. `nlu::parse` enthält kein Modell und kein Netz.
+Klar ist eine regelbasierte NLU. Ein Satz wird tokenisiert, gegen Wortlisten geprüft und in Home-Assistant-Intents übersetzt. `nlu::parse` enthält kein Modell und kein Netz. STT/TTS (Whisper/Piper) liegen außerhalb; Klar liefert optional einen ASR-Boost-Prompt und post-execute Speech über die Engine-HTTP-API.
 
 Optional spricht die Engine eine **OpenAI-kompatible** Chat-API (`src/llm/`, SSE-Streaming) für Trainer und Sprach-Fallback. Python in der Integration ist nur Kleber: Endpoint aus dem HA-Agenten kopieren, Tokens ins Assist-Chat-Log schieben. Siehe [adr-0002-openai-llm-client.md](architecture/adr-0002-openai-llm-client.md).
 

@@ -13,6 +13,7 @@ from homeassistant.core import Event, HomeAssistant, callback
 from homeassistant.helpers import area_registry, device_registry, entity_registry, floor_registry, label_registry
 from homeassistant.helpers.aiohttp_client import async_get_clientsession
 
+from .asr_boost import export_asr_boost
 from .const import CONF_ASSIST_FILTER, DEFAULT_ASSIST_FILTER, DEFAULT_URL, CONF_URL, engine_headers, engine_url_candidates
 
 _LOGGER = logging.getLogger(__name__)
@@ -101,6 +102,7 @@ class HomeGraphSync:
                     if resp.status >= 400:
                         _LOGGER.warning("Klar home snapshot rejected: %s", resp.status)
                         return False
+                    await self._refresh_asr_boost()
                     return True
             except (ClientError, TimeoutError, OSError) as err:
                 last_err = err
@@ -108,6 +110,14 @@ class HomeGraphSync:
         if last_err is not None:
             _LOGGER.debug("Klar home snapshot not pushed: %s", last_err)
         return False
+
+    async def _refresh_asr_boost(self) -> None:
+        """Keep wyoming --initial-prompt file in sync after graph changes."""
+        language = str(getattr(self.hass.config, "language", None) or "").strip() or None
+        try:
+            await export_asr_boost(self.hass, self._entry, language=language)
+        except Exception as err:  # noqa: BLE001 — boost export must not break home sync
+            _LOGGER.debug("Klar asr_boost refresh skipped: %s", err)
 
     def build_snapshot(self) -> dict[str, Any]:
         er = entity_registry.async_get(self.hass)

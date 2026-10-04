@@ -14,3 +14,27 @@ teach_alias:
       required: false
       selector:
         entity:
+export_asr_boost:
+  name: Export ASR boost prompt
+  description: >
+    Write Klar's ranked Whisper initial_prompt (home graph + pack + custom anchors)
+    to a file for wyoming-faster-whisper. Klar does not run STT.
+  fields:
+    language:
+      required: false
+      example: de
+      selector:
+        text:
+    max_tokens:
+      required: false
+      example: 200
+      selector:
+        number:
+          min: 1
+          max: 223
+          mode: box
+    path:
+      required: false
+      example: klar_nlu_asr_boost.txt
+      selector:
+        text:

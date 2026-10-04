@@ -30,9 +30,41 @@ Nur eine Instanz. Die URL bleibt im ersten Schritt. Stimme und Engine-LLM liegen
 Einstellungen → Sprachassistenten → Pipeline bearbeiten:
 
 - **Conversation-Engine:** Klar NLU
-- STT/TTS beliebig (lokal oder Cloud)
+- STT/TTS beliebig (lokal oder Cloud) — Klar hostet weder Whisper noch Piper
 
 Nicht den LLM-Agenten direkt als Engine wählen. Sonst umgeht Assist Klar und das LLM darf Geräte anfassen.
+
+Feature-Arbeit und RC-Tests laufen über den Git-Branch **`staging`** → Prerelease-Tag → HA-Release-Kanal **Staging** (siehe [Releases](releases.md#staging-release-candidates)). Stabil erst nach Eval: `staging` → `main`.
+
+## ASR-Boost (Whisper)
+
+Klar liefert eine gerankte Namensliste aus Home-Graph, Sprachpack und Custom-Phrasen (`GET /api/v2/speech/asr_boost`). Die Integration schreibt sie nach jedem Registry-Sync nach `config/klar_nlu_asr_boost.txt` und per Service:
+
+```yaml
+service: klar_nlu.export_asr_boost
+data:
+  language: de
+  max_tokens: 200
+  # path: klar_nlu_asr_boost.txt   # optional, relativ zu config/
+```
+
+In [wyoming-faster-whisper](https://github.com/rhasspy/wyoming-faster-whisper) den Prompt setzen, z. B.:
+
+```text
+--initial-prompt "$(cat /path/to/klar_nlu_asr_boost.txt)"
+```
+
+oder den Dateiinhalt in die Add-on-Config kopieren. Wenn Klar die exposed Namen schon synct, **kein** volles `--hass-token`-Budget zusätzlich — sonst doppelt und knappes Whisper-Budget.
+
+**Distil-Warnung:** Distil-Whisper-Checkpoints mit `--initial-prompt` nicht betreiben (wyoming-faster-whisper warnt ausdrücklich). Standard: `large-v3-turbo` / non-distil.
+
+## Speech-Pipeline-Spikes (staging)
+
+| Spike | Ergebnis |
+|-------|----------|
+| Satzweises TTS / TTFA | **Go** für bestehendes `speech_chunks` + `async_add_delta_content_stream` in Assist. Extra Early-Ack vor Execute: **No-Go** (Doppel-TTS mit quiet_ack/Chime). |
+| TTS-Phrase-Cache | **No-Go** — kein sauberer Assist/Wyoming-Hook für vorgerenderte Audio-Injektion ohne Fork. Weiter `quiet_ack` + Sentence-Streaming. |
+| `POST /api/v2/speech/render` | **Go** — einzige Post-Execute-Sprachquelle; fehlende Route fällt geschlossen fehl. |
 
 ## LLM-Fallback
 
