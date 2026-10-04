@@ -137,7 +137,15 @@ mod tests {
         assert_eq!(out.language, "de");
         assert_eq!(out.max_tokens, 80);
         assert!(!out.prompt.is_empty());
-        assert!(out.prompt.contains("Wohnzimmer") || out.terms.iter().any(|t| t.text.contains("Wohnzimmer")), "{:?}", out.prompt);
+        assert!(
+            out.terms.iter().any(|t| {
+                let t = t.text.as_str();
+                t.eq_ignore_ascii_case("kugel") || t.eq_ignore_ascii_case("rollo") || t.contains("Vorhang")
+            }),
+            "expected hard name in {:?}",
+            out.prompt
+        );
+        assert!(!out.prompt.split_whitespace().any(|w| w.eq_ignore_ascii_case("licht")), "generic Licht leaked: {}", out.prompt);
     }
 
     #[tokio::test]

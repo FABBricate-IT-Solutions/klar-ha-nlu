@@ -155,15 +155,15 @@ Engine owns Yarn/chat/RAG/calendar/news prompts and `yarn_canned` / `yarn_nudge`
 
 Ranked bias list for external Whisper (`wyoming-faster-whisper --initial-prompt`). Klar does **not** host STT/TTS or Whisper/Piper. Query: `language` (pack code, default from settings), `max_tokens` (default 200, cap 223). Auth like other read APIs (Supervisor/loopback without a token, otherwise a token).
 
-Priority: areas/floors → entity names/aliases (fuzzy-prone first) → custom-phrase anchor words → pack device-class/verb terms. Not included: full Assist sentences, live state, secrets, infra, unexposed entities.
+Hard names only: fuzzy-prone entity names/aliases (short, umlauts, cover/curtain class, hyphen/digits) and custom-phrase anchors. Not included: common rooms, pack verbs/device words (`light`, `on`, …), full Assist sentences, live state, secrets, infra, unexposed entities.
 
 ```json
 {
   "schema_version": "1",
   "language": "de",
   "max_tokens": 200,
-  "prompt": "Wohnzimmer Studio Stehlampe Vorhang Rollo …",
-  "terms": [{"text": "Stehlampe", "tier": 2, "entity_id": "light.stehlampe"}],
+  "prompt": "Kugel Vorhang Rollo Studio-Vorhang Papiertonne …",
+  "terms": [{"text": "Vorhang", "tier": 3, "entity_id": "cover.studio_vorhang"}],
   "dropped": 42,
   "updated_at": "a1b2c3…"
 }

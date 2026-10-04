@@ -38,7 +38,7 @@ Feature work and RC testing go through the **`staging`** git branch → prerelea
 
 ## ASR boost (Whisper)
 
-Klar serves a ranked name list from the home graph, language pack, and custom phrases (`GET /api/v2/speech/asr_boost`). The integration writes it after each registry sync to `config/klar_nlu_asr_boost.txt` and via service:
+Klar serves a short bias list of hard names only (short/umlauts/cover-curtain class, custom anchors) — not common rooms or switch verbs (`GET /api/v2/speech/asr_boost`). The integration writes it after each registry sync to `config/klar_nlu_asr_boost.txt` and via service:
 
 ```yaml
 service: klar_nlu.export_asr_boost
