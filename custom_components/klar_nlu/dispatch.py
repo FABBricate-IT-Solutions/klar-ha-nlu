@@ -77,10 +77,11 @@ async def handle_intent(
     entity_id = str(slots.get("entity_id", {}).get("value") or "")
     if name == "HassMediaSearchAndPlay" and music_assistant_player(hass, entity_id):
         query = str(slots.get("media_id", {}).get("value") or slots.get("search_query", {}).get("value") or "")
-        if query:
-            slots = {**slots, "media_id": {"value": query}}
-            item = {**item, "name": "MassPlayMedia"}
-            return await run_mass(hass, "MassPlayMedia", slots, pack, item, exposed)
+        if not query.strip():
+            return _fail("missing_media_query")
+        slots = {**slots, "media_id": {"value": query}}
+        item = {**item, "name": "MassPlayMedia"}
+        return await run_mass(hass, "MassPlayMedia", slots, pack, item, exposed)
     if name in MASS_INTENTS:
         return await run_mass(hass, name, slots, pack, item, exposed)
     if name in TIMER_INTENTS:

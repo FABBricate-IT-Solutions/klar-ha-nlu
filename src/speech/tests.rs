@@ -138,6 +138,20 @@ fn tv_turn_on_does_not_claim_lights() {
 }
 
 #[test]
+fn media_play_names_title_from_snapshot() {
+    let mut attrs = BTreeMap::new();
+    attrs.insert("media_title".into(), serde_json::json!("Ich will nicht nach Berlin"));
+    attrs.insert("media_artist".into(), serde_json::json!("Kraftklub"));
+    let out = render_snapshot(&snap(
+        "MassPlayMedia",
+        vec![SpeechSlot { name: "entity_id".into(), value: "media_player.satellite".into() }],
+        vec![entity("media_player.satellite", "Satellite", "media_player", "playing", attrs)],
+    ));
+    assert!(out.speech.contains("Ich will nicht nach Berlin"), "{out:?}");
+    assert!(out.speech.contains("Kraftklub"), "{out:?}");
+}
+
+#[test]
 fn media_now_playing_uses_snapshot_attrs() {
     let mut attrs = BTreeMap::new();
     attrs.insert("media_title".into(), serde_json::json!("Bohemian Rhapsody"));
