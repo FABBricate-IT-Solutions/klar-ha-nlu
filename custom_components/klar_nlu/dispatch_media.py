@@ -88,9 +88,11 @@ async def run_mass(
             )
             if "radio_mode" in data:
                 data["radio_mode"] = str(data["radio_mode"]).lower() == "true"
-            await hass.services.async_call(
-                "music_assistant", "play_media", data, blocking=True, target={"entity_id": entity_id}
-            )
+            await play_mass_media(hass, entity_id, data)
+            state = hass.states.get(entity_id) or state
+            query = str(data.get("media_id") or "")
+            if not media_query_matches(query, state):
+                return fail("mass_wrong_match")
         else:
             return fail("unsupported_mass_intent")
     except Exception as err:  # noqa: BLE001 — Music Assistant is a service boundary
@@ -127,6 +129,89 @@ def clean_service_data(slots: dict[str, Any], names: list[str]) -> dict[str, Any
 
 def media_missing(state: Any) -> bool:
     return str(getattr(state, "state", "")).lower() in {"unavailable", "unknown"}
+
+
+_MEDIA_STOP = frozenset(
+    {
+        "a",
+        "an",
+        "and",
+        "das",
+        "dem",
+        "den",
+        "der",
+        "des",
+        "die",
+        "ein",
+        "eine",
+        "einem",
+        "einen",
+        "einer",
+        "or",
+        "the",
+        "und",
+    }
+)
+_GENERIC_MUSIC = frozenset({"musik", "music", "lied", "song", "track", "titel", "radio"})
+
+
+async def play_mass_media(hass: HomeAssistant, entity_id: str, data: dict[str, Any]) -> None:
+    """Play on Music Assistant; retry without media_type when typed search fails."""
+    try:
+        await hass.services.async_call(
+            "music_assistant", "play_media", data, blocking=True, target={"entity_id": entity_id}
+        )
+        return
+    except Exception as err:  # noqa: BLE001 — Music Assistant is a service boundary
+        if "media_type" not in data:
+            raise
+        _LOGGER.debug("Music Assistant typed play failed for %s (%s); retry without media_type", entity_id, err)
+    retry = {key: value for key, value in data.items() if key != "media_type"}
+    await hass.services.async_call(
+        "music_assistant", "play_media", retry, blocking=True, target={"entity_id": entity_id}
+    )
+
+
+def media_query_matches(query: str, state: Any) -> bool:
+    """Reject fuzzy MASS hits that barely overlap the spoken search."""
+    folded = " ".join(query.casefold().split())
+    if not folded or folded in _GENERIC_MUSIC or "://" in folded:
+        return True
+    wanted = _media_tokens(folded)
+    if not wanted:
+        return True
+    attrs = getattr(state, "attributes", None) or {}
+    if not isinstance(attrs, dict):
+        return True
+    hay = " ".join(
+        str(attrs.get(key) or "")
+        for key in ("media_title", "media_artist", "media_album_name", "media_album_artist")
+    ).casefold()
+    if not hay.strip():
+        return True
+    have = _media_tokens(hay)
+    if not have:
+        return True
+    hits = sum(1 for token in wanted if _token_hit(token, have))
+    need = max(1, (len(wanted) + 1) // 2)
+    return hits >= need
+
+
+def _media_tokens(text: str) -> set[str]:
+    out: set[str] = set()
+    for raw in text.replace("(", " ").replace(")", " ").replace("[", " ").replace("]", " ").split():
+        token = "".join(ch for ch in raw if ch.isalnum())
+        if len(token) >= 2 and token not in _MEDIA_STOP:
+            out.add(token)
+    return out
+
+
+def _token_hit(token: str, have: set[str]) -> bool:
+    if token in have:
+        return True
+    if len(token) < 4:
+        return False
+    return any(token in other or other in token for other in have if len(other) >= 4)
 
 
 def _queue_rows(response: Any) -> list[dict[str, Any]]:

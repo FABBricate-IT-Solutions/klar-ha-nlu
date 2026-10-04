@@ -291,6 +291,8 @@ class DispatchTests(unittest.IsolatedAsyncioTestCase):
             "media_player.wohnzimmer",
             mass_player_type="player",
             friendly_name="Wohnzimmer",
+            media_title="In the End",
+            media_artist="Linkin Park",
         )
         hass = _hass(player)
         spoken = await dispatch.handle_intent(
@@ -310,6 +312,78 @@ class DispatchTests(unittest.IsolatedAsyncioTestCase):
         self.assertEqual(call.args[:2], ("music_assistant", "play_media"))
         self.assertEqual(call.args[2]["media_id"], "linkin park")
         dispatch.intent.async_handle.assert_not_awaited()
+
+    async def test_mass_play_rejects_weak_title_match(self) -> None:
+        player = _State(
+            "media_player.wohnzimmer",
+            mass_player_type="player",
+            friendly_name="Wohnzimmer",
+            media_title="Marry Me (Live Berlin Wuhlheide)",
+            media_artist="Peter Fox",
+        )
+        hass = _hass(player)
+        spoken = await dispatch.handle_intent(
+            hass,
+            _input(),
+            _item(
+                "MassPlayMedia",
+                entity_id=player.entity_id,
+                media_id="Ich will nicht nach Berlin",
+            ),
+            "de",
+            None,
+            lambda _entity_id: True,
+        )
+        self.assertFalse(spoken.ok)
+        self.assertEqual(spoken.error, "mass_wrong_match")
+
+    async def test_mass_play_retries_without_media_type(self) -> None:
+        player = _State(
+            "media_player.wohnzimmer",
+            mass_player_type="player",
+            friendly_name="Wohnzimmer",
+            media_title="Ich will nicht nach Berlin",
+            media_artist="Kraftklub",
+        )
+        hass = _hass(player)
+
+        async def _call(domain: str, service: str, data: dict, **kwargs: object) -> None:
+            del domain, service, kwargs
+            if "media_type" in data:
+                raise RuntimeError("typed search failed")
+
+        hass.services.async_call = AsyncMock(side_effect=_call)
+        spoken = await dispatch.handle_intent(
+            hass,
+            _input(),
+            _item(
+                "MassPlayMedia",
+                entity_id=player.entity_id,
+                media_id="Ich will nicht nach Berlin",
+                media_type="track",
+            ),
+            "de",
+            None,
+            lambda _entity_id: True,
+        )
+        self.assertTrue(spoken.ok)
+        self.assertEqual(hass.services.async_call.await_count, 2)
+        self.assertNotIn("media_type", hass.services.async_call.await_args.args[2])
+
+    def test_media_query_match_helpers(self) -> None:
+        wrong = _State(
+            "media_player.x",
+            media_title="Marry Me (Live Berlin Wuhlheide)",
+            media_artist="Peter Fox",
+        )
+        right = _State(
+            "media_player.x",
+            media_title="Ich will nicht nach Berlin",
+            media_artist="Kraftklub",
+        )
+        self.assertFalse(dispatch_media.media_query_matches("Ich will nicht nach Berlin", wrong))
+        self.assertTrue(dispatch_media.media_query_matches("Ich will nicht nach Berlin", right))
+        self.assertTrue(dispatch_media.media_query_matches("Musik", wrong))
 
     async def test_unpause_uses_media_play_service(self) -> None:
         player = _State("media_player.wohnzimmer", "paused", friendly_name="Wohnzimmer")
