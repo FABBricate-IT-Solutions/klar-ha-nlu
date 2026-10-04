@@ -6,6 +6,32 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 Versions follow Home Assistant calendar versioning (`YYYY.M.PATCH`)
 and [Conventional Commits](https://www.conventionalcommits.org/).
 
+## [2026.10.0](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/compare/2026.9.11...2026.10.0) - 2026-10-04
+
+
+
+### Other
+
+- bump the npm-minor group in /web with 2 updates([2fb41d0](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/2fb41d0c65af4ff5b0207dc6ef720098d535bc27))
+
+- bump the npm-minor group in /web with 2 updates([d1ca1e0](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/d1ca1e0690d82c1a7b9e29a2386e5d404f5cf424))
+
+- bump vite from 8.3.0 to 8.3.1 in /web in the npm-patch group([cda77aa](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/cda77aa6bcaf31f2515e261af0ddf3a8267182a2))
+
+- bump vite from 8.3.0 to 8.3.1 in /web in the npm-patch group([5f1536e](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/5f1536e352ea0d5300e175e67f145762b16ebb73))
+
+- bump thiserror from 2.0.20 to 2.0.21 in the rust-patch group([eb6b605](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/eb6b6059cedf7865a66ffb8d841e5c943cd00b33))
+
+- bump thiserror from 2.0.20 to 2.0.21 in the rust-patch group([cbe6fbc](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/cbe6fbcc0e4805598bebbc96cb838b7d15ca790a))
+
+- Merge pull request #265 from FABBricate-IT-Solutions/dependabot/cargo/rust-patch-722c7a5dc4([58dc96a](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/58dc96af1b0dce34dd8e72df6e4b6a5d9eb338f6))
+
+- bump clap from 4.6.6 to 4.6.7 in the rust-patch group([032ead4](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/032ead46e941b6aa40952cd328a39c8e03e8ca2a))
+
+- Merge pull request #266 from FABBricate-IT-Solutions/dependabot/npm_and_yarn/web/npm-minor-7bee64aca0([da0793f](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/da0793fd90807b05992483a549536d2b92022f28))
+
+- bump the npm-minor group in /web with 2 updates([35b7b11](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/35b7b117224314bb79bdea9c921ba1e2687bdd6e))
+
 ## [2026.9.11](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/compare/2026.9.10...2026.9.11) - 2026-09-16
 
 
