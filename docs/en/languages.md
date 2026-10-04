@@ -4,9 +4,52 @@
 
 Every compiled Assist locale is first-class. German and English are hand-written reference packs; generated packs use the same `LanguagePack` path and the same enablement UX. `GET /api/v2/languages` lists the compiled set.
 
-YAML under `packs/` is for user overlays and `klar lang import-hassil`, not Assist coverage. Packs are never silently merged into one giant default catalog.
+## Supported locales
 
-Russian (`ru`, `ru-RU`) is not shipped: no pack, no registry row, `pin_language("ru")` stays unknown.
+**67** compiled Assist locales (source of truth: `custom_components/klar_nlu/languages.py` / `GET /api/v2/languages`).
+
+| Code | Name | Code | Name |
+|------|------|------|------|
+| `de` | Deutsch | `en` | English |
+| `fr` | Français | `nl` | Nederlands |
+| `es` | Español | `it` | Italiano |
+| `pt` | Português | `pt-BR` | Português (Brasil) |
+| `ca` | Català | `ro` | Română |
+| `da` | Dansk | `nb` | Norsk Bokmål |
+| `sv` | Svenska | `fi` | Suomi |
+| `de-CH` | Schwyzerdütsch | `de-AT` | Deutsch (Österreich) |
+| `en-GB` | English (UK) | `af` | Afrikaans |
+| `cs` | Čeština | `sk` | Slovenčina |
+| `pl` | Polski | `hu` | Magyar |
+| `hr` | Hrvatski | `sl` | Slovenščina |
+| `bg` | Български | `el` | Ελληνικά |
+| `sr` | Српски | `sr-Latn` | Srpski |
+| `uk` | Українська | `tr` | Türkçe |
+| `zh-CN` | 简体中文 | `zh-TW` | 繁體中文（台灣） |
+| `zh-HK` | 繁體中文（香港） | `ja` | 日本語 |
+| `ko` | 한국어 | `th` | ภาษาไทย |
+| `ar` | العربية | `he` | עברית |
+| `fa` | فارسی | `ur` | اُردُو |
+| `cy` | Cymraeg | `et` | Eesti |
+| `eu` | Euskara | `ga` | Gaeilge |
+| `gl` | Galician | `is` | islenska |
+| `lb` | Letzebuergesch | `kw` | kernewek |
+| `lt` | Lietuviu | `lv` | Latviesu |
+| `id` | Bahasa Indonesia | `ms` | Bahasa Melayu |
+| `sw` | Kiswahili | `vi` | Tieng Viet |
+| `hi` | Hindi | `bn` | Bangla |
+| `gu` | Gujarati | `kn` | Kannada |
+| `ml` | Malayalam | `mr` | Marathi |
+| `ta` | Tamil | `te` | Telugu |
+| `pa` | Punjabi | `ne` | Nepali |
+| `hy` | Armenian | `ka` | Georgian |
+| `mn` | Mongolian | | |
+
+`de` / `en` are hand-written reference packs. Other locales are generated and smoke-tested; quality varies.
+
+**Not shipped:** Russian (`ru`, `ru-RU`) — no pack, no registry row, `pin_language("ru")` stays unknown.
+
+YAML under `packs/` is for user overlays and `klar lang import-hassil`, not Assist coverage. Packs are never silently merged into one giant default catalog.
 
 Import HassIL into an overlay (not into a merged default catalog):
 
