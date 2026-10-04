@@ -41,6 +41,23 @@ pub(super) const WEATHER: &[&str] = &[
     "ამინდი", "цаг агаар", "laika", "oras", "hali ya hewa", "weersvoorspelling", "weerbericht", "สภาพอากาศ", "هوا"
 ];
 
+/// Outdoor cue. With a temp stem this is outdoor weather, not indoor climate.
+#[rustfmt::skip]
+pub(super) const OUTDOOR: &[&str] = &[
+    "outside", "outdoor", "outdoors", "draussen", "draußen", "aussen", "außen", "dehors", "afuera", "fuera", "fuori", "buiten", "ute",
+    "utomhus", "ulkona", "venku", "vonku", "na zewnatrz", "na zewnątrz", "kint", "έξω", "снаружи", "навън", "на улице", "外面",
+    "外", "밖", "خارج", "בחוץ", "بیرون", "disarida", "dışarıda", "ข้างนอก", "ngoai troi", "ngoài trời", "bahar", "बाहर", "বাইরে"
+];
+
+/// Temp / feel stems paired with OUTDOOR for outdoor weather asks.
+#[rustfmt::skip]
+pub(super) const OUTDOOR_TEMP: &[&str] = &[
+    "temperature", "temperatures", "temp", "temps", "degrees", "degree", "hot", "cold", "warm", "cool", "temperatur", "temperaturen",
+    "grad", "grade", "kalt", "heiß", "heiss", "kühle", "kuehle", "degres", "degrés", "chaud", "froid", "temperatuur", "graden",
+    "temperatura", "grados", "caliente", "frio", "frío", "caldo", "freddo", "graus", "quente", "teplota", "teplo", "zima",
+    "homerseklet", "hömérséklet", "θερμοκρασια", "температура", "温度", "気温", "기온", "درجة", "טמפרטורה", "sicaklik", "sıcaklık", "อุณหภูมิ"
+];
+
 #[rustfmt::skip]
 pub(super) const FORECAST: &[&str] = &[
     "vorhersage", "wetterbericht", "forecast", "previsions", "pronostico", "previsioni", "voorspelling", "prognose", "prognoza", "ennuste",
