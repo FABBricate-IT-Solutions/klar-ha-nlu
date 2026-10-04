@@ -6,6 +6,24 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 Versions follow Home Assistant calendar versioning (`YYYY.M.PATCH`)
 and [Conventional Commits](https://www.conventionalcommits.org/).
 
+## [2026.10.1](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/compare/2026.10.0...2026.10.1) - 2026-10-04
+
+
+
+### Other
+
+- bump brace-expansion from 5.0.9 to 5.0.12 in /web([a2efb85](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/a2efb853c3f8b3a593186b94660c6017a02e3452))
+
+- bump brace-expansion from 5.0.9 to 5.0.12 in /web([e17711a](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/e17711a4310f28867166be45d1d7ca6d8ce45c52))
+
+- bump ip-address from 10.7.0 to 10.7.3 in /web([af5de6d](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/af5de6dba1f500c567e619cc40610afef2744adb))
+
+- bump ip-address from 10.7.0 to 10.7.3 in /web([e542fc4](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/e542fc40897dcfde13a759baa2606f7d22e4c326))
+
+- bump fast-uri from 3.1.7 to 3.1.8 in /web([a7e4f4c](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/a7e4f4c2c4e30b1f72e1e217c8a76121f1bca49b))
+
+- bump fast-uri from 3.1.7 to 3.1.8 in /web([70d1ce9](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/70d1ce90312d009bcfc6bbe8005aed77066ccdc5))
+
 ## [2026.10.0](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/compare/2026.9.11...2026.10.0) - 2026-10-04
 
 
