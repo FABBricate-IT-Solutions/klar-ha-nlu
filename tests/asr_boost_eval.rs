@@ -39,6 +39,9 @@ fn boost_includes_vorhang_alias_and_short_names_before_budget_exhaustion() {
 
     // Prompt must not contain the common ASR confusable as a preferred term.
     assert!(!out.prompt.split_whitespace().any(|w| w == "Vorrang"), "prompt leaked Vorrang: {}", out.prompt);
+    // Everyday command lexicon / common rooms must not dominate the bias list.
+    assert!(!out.prompt.split_whitespace().any(|w| w.eq_ignore_ascii_case("licht")), "prompt leaked Licht: {}", out.prompt);
+    assert!(!texts.iter().any(|t| *t == "Wohnzimmer"), "common place leaked: {texts:?}");
 }
 
 #[test]
@@ -52,11 +55,7 @@ fn boost_stays_under_token_budget() {
 }
 
 #[test]
-fn empty_home_still_emits_pack_device_words() {
+fn empty_home_emits_no_pack_device_words() {
     let out = build_asr_boost(&HomeGraph::default(), de(), &[], "de", 40);
-    assert!(
-        out.terms.iter().any(|t| t.tier == 5 && (t.text.contains("rollo") || t.text.contains("Rollo") || t.text == "rollo")),
-        "expected pack cover/curtain word in {:?}",
-        out.terms
-    );
+    assert!(out.terms.is_empty(), "hard-name boost must stay empty without hard names: {:?}", out.terms);
 }

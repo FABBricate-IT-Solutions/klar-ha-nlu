@@ -1,11 +1,10 @@
-//! Ranked ASR bias terms for wyoming-faster-whisper `--initial-prompt`.
-//! Built from the Klar home graph + pack lexicon + custom phrase anchors.
-//! Never touches audio or Whisper itself.
+//! Ranked ASR bias terms for wyoming-faster-whisper / openai `prompt`.
+//! Only hard, ASR-confusable names — not common rooms, verbs, or pack lexicon.
+//! Never touches audio or Whisper/Parakeet itself.
 
 use crate::home::expose::assist_visible;
 use crate::home::policy::{is_infra, is_nlu_ignored};
 use crate::lang::Catalog;
-use crate::lang::VerbKind;
 use crate::parse::normalize::fold_umlaut;
 use crate::types::{CustomSentence, HomeGraph};
 use serde::Serialize;
@@ -16,9 +15,11 @@ pub const ASR_BOOST_SCHEMA: &str = "1";
 pub const DEFAULT_MAX_TOKENS: usize = 200;
 pub const MAX_MAX_TOKENS: usize = 223;
 
-const MIN_TERM_CHARS: usize = 2;
+const MIN_TERM_CHARS: usize = 3;
 const MAX_TERM_CHARS: usize = 40;
+/// Prefer short confusable names, but ignore 1–2 letter noise (`pc`, `ac`).
 const FUZZY_SHORT_CHARS: usize = 6;
+const MIN_FUZZY_SHORT_CHARS: usize = 4;
 
 #[derive(Debug, Clone, Serialize, PartialEq, Eq)]
 pub struct AsrBoostTerm {
@@ -44,47 +45,43 @@ struct Candidate {
     text: String,
     tier: u8,
     entity_id: Option<String>,
-    /// Lower fills the prompt first (areas → fuzzy entities → other entities → …).
+    /// Lower fills the prompt first (fuzzy entities → custom anchors).
     sort_group: u8,
 }
 
 /// Build a capped ASR boost prompt. Pure: no I/O, no network.
+///
+/// Only difficult names: short / umlaut / cover-curtain confusables and
+/// distinctive custom-phrase anchors. Common places, pack verbs, and
+/// generic device words (`Licht`, `an`, …) are intentionally omitted so
+/// they cannot bias everyday commands.
 pub fn build_asr_boost(home: &HomeGraph, catalog: &Catalog, custom: &[CustomSentence], language: &str, max_tokens: usize) -> AsrBoostOut {
     let budget = max_tokens.clamp(1, MAX_MAX_TOKENS);
     let mut seen_fold = HashSet::new();
     let mut candidates: Vec<Candidate> = Vec::new();
 
-    push_places(home, &mut candidates, &mut seen_fold);
-    push_entities(home, &mut candidates, &mut seen_fold, catalog);
+    push_hard_entities(home, &mut candidates, &mut seen_fold, catalog);
     push_custom_anchors(custom, catalog, &mut candidates, &mut seen_fold);
-    push_pack_terms(catalog, &mut candidates, &mut seen_fold);
 
     candidates.sort_by(|a, b| {
         a.sort_group
             .cmp(&b.sort_group)
             .then_with(|| a.tier.cmp(&b.tier))
             .then_with(|| {
-                // Places + custom anchors: prefer longer distinctive words.
-                // Entities: prefer short/fuzzy names.
-                if matches!(a.sort_group, 1 | 4) {
-                    b.text.len().cmp(&a.text.len())
-                } else {
+                // Prefer short confusable entity names; longer custom anchors next.
+                if a.sort_group == 1 {
                     a.text.len().cmp(&b.text.len())
+                } else {
+                    b.text.len().cmp(&a.text.len())
                 }
             })
             .then_with(|| a.text.to_lowercase().cmp(&b.text.to_lowercase()))
     });
 
-    // Keep ~15% for custom anchors + pack verbs so large graphs cannot starve them.
-    let tail_reserve = (budget * 15 / 100).max(8).min(budget / 3);
-    let head_budget = budget.saturating_sub(tail_reserve);
-    let (head, tail): (Vec<_>, Vec<_>) = candidates.into_iter().partition(|c| c.sort_group <= 3);
-
     let mut terms = Vec::new();
     let mut used_tokens = 0usize;
     let mut dropped = 0usize;
-    fill_terms(&head, head_budget, &mut terms, &mut used_tokens, &mut dropped);
-    fill_terms(&tail, budget, &mut terms, &mut used_tokens, &mut dropped);
+    fill_terms(&candidates, budget, &mut terms, &mut used_tokens, &mut dropped);
 
     let prompt = terms.iter().map(|t| t.text.as_str()).collect::<Vec<_>>().join(" ");
     let updated_at = content_stamp(language, budget, &terms);
@@ -100,43 +97,41 @@ pub fn build_asr_boost(home: &HomeGraph, catalog: &Catalog, custom: &[CustomSent
     }
 }
 
-fn push_places(home: &HomeGraph, out: &mut Vec<Candidate>, seen: &mut HashSet<String>) {
-    for floor in &home.floors {
-        accept(out, seen, &floor.name, 1, None, 1);
-        for alias in &floor.aliases {
-            // Skip tiny aliases (OG, ess) — they burn budget and barely help Whisper.
-            if alias.chars().count() < 4 {
-                continue;
-            }
-            accept(out, seen, alias, 1, None, 1);
-        }
-    }
-    for area in &home.areas {
-        if crate::home::policy::is_whole_home(area) {
-            continue;
-        }
-        accept(out, seen, &area.name, 1, None, 1);
-        for alias in &area.aliases {
-            if alias.chars().count() < 4 {
-                continue;
-            }
-            accept(out, seen, alias, 1, None, 1);
-        }
-    }
-}
-
-fn push_entities(home: &HomeGraph, out: &mut Vec<Candidate>, seen: &mut HashSet<String>, catalog: &Catalog) {
+fn push_hard_entities(home: &HomeGraph, out: &mut Vec<Candidate>, seen: &mut HashSet<String>, catalog: &Catalog) {
+    let places = place_folds(home);
     for entity in &home.entities {
         if !assist_visible(entity, home) || is_infra(entity) || is_nlu_ignored(entity) {
             continue;
         }
         let names: Vec<&str> = std::iter::once(entity.name.as_str()).chain(entity.aliases.iter().map(String::as_str)).collect();
         for name in names {
-            let fuzzy = is_fuzzy_prone(name, catalog);
-            let (tier, group) = if fuzzy { (3, 2) } else { (2, 3) };
-            accept(out, seen, name, tier, Some(entity.entity_id.clone()), group);
+            // Prefer individual hard tokens ("Rollo", "Kugel") over "Rollo Wohnzimmer" / "Küche Licht".
+            for token in tokenize_phrase(name) {
+                if !is_boost_token(&token, catalog, &places) {
+                    continue;
+                }
+                let tier = if is_fuzzy_prone(&token, catalog) || is_cover_curtain_noun(&token, catalog) { 3 } else { 2 };
+                accept(out, seen, &token, tier, Some(entity.entity_id.clone()), 1);
+            }
         }
     }
+}
+
+fn place_folds(home: &HomeGraph) -> HashSet<String> {
+    let mut places = HashSet::new();
+    for floor in &home.floors {
+        places.insert(fold_umlaut(&floor.name));
+        for alias in &floor.aliases {
+            places.insert(fold_umlaut(alias));
+        }
+    }
+    for area in &home.areas {
+        places.insert(fold_umlaut(&area.name));
+        for alias in &area.aliases {
+            places.insert(fold_umlaut(alias));
+        }
+    }
+    places
 }
 
 fn push_custom_anchors(custom: &[CustomSentence], catalog: &Catalog, out: &mut Vec<Candidate>, seen: &mut HashSet<String>) {
@@ -145,59 +140,10 @@ fn push_custom_anchors(custom: &[CustomSentence], catalog: &Catalog, out: &mut V
             if token.chars().count() < 5 {
                 continue;
             }
-            let folded = fold_umlaut(&token);
-            let lower = token.to_ascii_lowercase();
-            if catalog.is_filler(&folded)
-                || catalog.is_filler(&lower)
-                || catalog.is_particle(&folded)
-                || catalog.is_conj(&folded)
-                || catalog.open_words().contains(folded.as_str())
-                || catalog.close_words().contains(folded.as_str())
-            {
+            if is_generic_lexicon(&token, catalog) {
                 continue;
             }
-            if catalog.verb(&folded).is_some() || catalog.verb(&lower).is_some() {
-                continue;
-            }
-            accept(out, seen, &token, 4, None, 4);
-        }
-    }
-}
-
-fn push_pack_terms(catalog: &Catalog, out: &mut Vec<Candidate>, seen: &mut HashSet<String>) {
-    const BOOST_VERBS: &[VerbKind] = &[
-        VerbKind::Dim,
-        VerbKind::Open,
-        VerbKind::Close,
-        VerbKind::Brightness,
-        VerbKind::Climate,
-        VerbKind::Temperature,
-        VerbKind::Lock,
-        VerbKind::Unlock,
-        VerbKind::Pause,
-        VerbKind::Play,
-        VerbKind::Mute,
-        VerbKind::Position,
-    ];
-    for word in catalog
-        .cover_nouns()
-        .iter()
-        .chain(catalog.curtain_nouns().iter())
-        .chain(catalog.climate_nouns().iter())
-        .chain(catalog.light_singular().iter())
-        .chain(catalog.lock_nouns().iter())
-        .chain(catalog.fan_nouns().iter())
-        .chain(catalog.media_nouns().iter())
-        .chain(catalog.vacuum_nouns().iter())
-    {
-        if catalog.is_filler(word) {
-            continue;
-        }
-        accept(out, seen, word, 5, None, 5);
-    }
-    for (word, kind) in catalog.verb_entries() {
-        if BOOST_VERBS.contains(&kind) && word.chars().count() >= 4 {
-            accept(out, seen, word, 5, None, 5);
+            accept(out, seen, &token, 4, None, 2);
         }
     }
 }
@@ -247,6 +193,25 @@ fn tokenize_phrase(phrase: &str) -> Vec<String> {
         .collect()
 }
 
+/// Single token worth biasing (never common rooms / Licht / an / aus).
+fn is_boost_token(text: &str, catalog: &Catalog, places: &HashSet<String>) -> bool {
+    let folded = fold_umlaut(text);
+    if folded.chars().count() < MIN_TERM_CHARS {
+        return false;
+    }
+    if places.contains(&folded) || is_generic_lexicon(text, catalog) || is_noise_token(text) {
+        return false;
+    }
+    if is_cover_curtain_noun(text, catalog) {
+        return true;
+    }
+    if has_non_ascii_letter(text) || has_digit(text) || text.contains('-') {
+        return true;
+    }
+    // Short distinctive nicknames: Kugel, Rollo — not kitchen/light lexicon.
+    is_fuzzy_prone(text, catalog)
+}
+
 fn is_fuzzy_prone(text: &str, catalog: &Catalog) -> bool {
     let folded = fold_umlaut(text);
     let chars = folded.chars().count();
@@ -256,15 +221,78 @@ fn is_fuzzy_prone(text: &str, catalog: &Catalog) -> bool {
     if has_non_ascii_letter(text) {
         return true;
     }
-    if chars <= FUZZY_SHORT_CHARS {
+    if (MIN_FUZZY_SHORT_CHARS..=FUZZY_SHORT_CHARS).contains(&chars) {
         return true;
     }
-    let needle = folded.as_str();
+    is_cover_curtain_noun(text, catalog)
+}
+
+fn is_cover_curtain_noun(text: &str, catalog: &Catalog) -> bool {
+    let needle = fold_umlaut(text);
     catalog.curtain_nouns().iter().any(|w| fold_umlaut(w) == needle) || catalog.cover_nouns().iter().any(|w| fold_umlaut(w) == needle)
+}
+
+fn is_noise_token(text: &str) -> bool {
+    matches!(
+        fold_umlaut(text).as_str(),
+        "all"
+            | "alle"
+            | "ac"
+            | "pc"
+            | "tv"
+            | "led"
+            | "amp"
+            | "usb"
+            | "rgb"
+            | "og"
+            | "eg"
+            | "kg"
+            | "ml"
+            | "front"
+            | "door"
+            | "night"
+            | "movie"
+            | "decke"
+            | "termin"
+    )
+}
+
+/// Everyday command lexicon — never boost these (they poison "Licht aus" / "schalte ein").
+fn is_generic_lexicon(text: &str, catalog: &Catalog) -> bool {
+    let folded = fold_umlaut(text);
+    let lower = text.to_ascii_lowercase();
+    if catalog.is_filler(&folded)
+        || catalog.is_filler(&lower)
+        || catalog.is_particle(&folded)
+        || catalog.is_conj(&folded)
+        || catalog.open_words().contains(folded.as_str())
+        || catalog.close_words().contains(folded.as_str())
+        || catalog.verb(&folded).is_some()
+        || catalog.verb(&lower).is_some()
+    {
+        return true;
+    }
+    catalog
+        .light_singular()
+        .iter()
+        .chain(catalog.light_plural().iter())
+        .chain(catalog.light_nouns().iter())
+        .chain(catalog.fan_nouns().iter())
+        .chain(catalog.media_nouns().iter())
+        .chain(catalog.climate_nouns().iter())
+        .chain(catalog.door_nouns().iter())
+        .chain(catalog.lock_nouns().iter())
+        .chain(catalog.vacuum_nouns().iter())
+        .chain(catalog.calendar_nouns().iter())
+        .any(|w| fold_umlaut(w) == folded)
 }
 
 fn has_non_ascii_letter(text: &str) -> bool {
     text.chars().any(|c| c.is_alphabetic() && !c.is_ascii())
+}
+
+fn has_digit(text: &str) -> bool {
+    text.chars().any(|c| c.is_ascii_digit())
 }
 
 /// Whisper-style rough budget: ~4 chars per token, at least 1 per whitespace word.
@@ -301,32 +329,56 @@ mod tests {
     }
 
     #[test]
-    fn budget_drops_overflow_and_keeps_high_priority() {
-        let mut home = default_home();
-        home.assist = Some(home.entities.iter().map(|e| e.entity_id.clone()).collect());
+    fn budget_drops_overflow_and_keeps_hard_names() {
+        let mut home = HomeGraph {
+            entities: vec![
+                EntityRec {
+                    entity_id: "light.kugel".into(),
+                    name: "Kugel".into(),
+                    domain: "light".into(),
+                    platform: None,
+                    area: None,
+                    aliases: vec![],
+                    tags: Vec::new(),
+                },
+                EntityRec {
+                    entity_id: "cover.rollo".into(),
+                    name: "Rollo".into(),
+                    domain: "cover".into(),
+                    platform: None,
+                    area: None,
+                    aliases: vec![],
+                    tags: Vec::new(),
+                },
+            ],
+            assist: Some(["light.kugel".into(), "cover.rollo".into()].into()),
+            ..Default::default()
+        };
         for i in 0..80 {
+            let id = format!("cover.extra_{i}");
             home.entities.push(EntityRec {
-                entity_id: format!("light.extra_{i}"),
-                name: format!("Extra Langname Gerät Nummer {i}"),
-                domain: "light".into(),
+                entity_id: id.clone(),
+                name: format!("Vx{i:02}"),
+                domain: "cover".into(),
                 platform: None,
-                area: Some("wohnzimmer".into()),
-                aliases: vec![format!("alias lang {i}")],
+                area: None,
+                aliases: vec![],
                 tags: Vec::new(),
             });
-            home.assist.as_mut().unwrap().insert(format!("light.extra_{i}"));
+            home.assist.as_mut().unwrap().insert(id);
         }
-        let out = build_asr_boost(&home, cat(), &[], "de", 40);
-        assert!(estimate_tokens(&out.prompt) <= 40, "prompt tokens {}", estimate_tokens(&out.prompt));
+        let out = build_asr_boost(&home, cat(), &[], "de", 12);
+        assert!(estimate_tokens(&out.prompt) <= 12, "prompt tokens {}", estimate_tokens(&out.prompt));
         assert!(out.dropped > 0);
-        assert!(out.prompt.contains("Wohnzimmer"), "{:?}", out.prompt);
+        assert!(out.prompt.contains("Kugel") || out.prompt.contains("Rollo") || out.prompt.contains("Vx"), "{:?}", out.prompt);
+        assert!(!out.prompt.split_whitespace().any(|w| w == "Wohnzimmer"), "places must not leak: {}", out.prompt);
         assert_eq!(out.schema_version, "1");
         assert_eq!(out.language, "de");
-        assert_eq!(out.max_tokens, 40);
+        assert_eq!(out.max_tokens, 12);
     }
 
     #[test]
-    fn areas_and_fuzzy_names_rank_before_long_entity_names() {
+    fn only_hard_entity_names_not_easy_places_or_lights() {
         let home = HomeGraph {
             floors: vec![FloorRec { floor_id: "og".into(), name: "Obergeschoss".into(), aliases: vec!["OG".into()], level: Some(1) }],
             areas: vec![AreaRec { area_id: "studio".into(), name: "Studio".into(), aliases: vec![], floor_id: Some("og".into()) }],
@@ -341,25 +393,25 @@ mod tests {
                     tags: Vec::new(),
                 },
                 EntityRec {
-                    entity_id: "light.sehr_langer_name".into(),
-                    name: "Sehr Langer Alias Name Stehlampe Wohnbereich".into(),
+                    entity_id: "light.wohnzimmer".into(),
+                    name: "Wohnzimmer Licht".into(),
                     domain: "light".into(),
                     platform: None,
                     area: Some("studio".into()),
-                    aliases: vec![],
+                    aliases: vec!["Licht".into()],
                     tags: Vec::new(),
                 },
             ],
-            assist: Some(["cover.studio_vorhang".into(), "light.sehr_langer_name".into()].into()),
+            assist: Some(["cover.studio_vorhang".into(), "light.wohnzimmer".into()].into()),
             ..Default::default()
         };
-        let out = build_asr_boost(&home, cat(), &[], "de", 12);
+        let out = build_asr_boost(&home, cat(), &[], "de", 40);
         let texts: Vec<&str> = out.terms.iter().map(|t| t.text.as_str()).collect();
-        assert!(texts.contains(&"Studio"), "{texts:?}");
         assert!(texts.contains(&"Vorhang"), "{texts:?}");
-        let studio = texts.iter().position(|t| *t == "Studio").unwrap();
-        let vorhang = texts.iter().position(|t| *t == "Vorhang").unwrap();
-        assert!(studio < vorhang, "{texts:?}");
+        assert!(texts.iter().any(|t| t.contains("Studio-Vorhang") || *t == "Studio-Vorhang"), "{texts:?}");
+        assert!(!texts.iter().any(|t| *t == "Studio" || *t == "Obergeschoss"), "places leaked: {texts:?}");
+        assert!(!texts.iter().any(|t| t.eq_ignore_ascii_case("licht")), "generic light leaked: {texts:?}");
+        assert!(!texts.iter().any(|t| *t == "Wohnzimmer Licht"), "easy light name leaked: {texts:?}");
         let vorhang_term = out.terms.iter().find(|t| t.text == "Vorhang").unwrap();
         assert_eq!(vorhang_term.tier, 3);
         assert_eq!(vorhang_term.entity_id.as_deref(), Some("cover.studio_vorhang"));
@@ -432,5 +484,12 @@ mod tests {
         let out = build_asr_boost(&home, cat(), &[], "de", 20);
         assert!(out.terms.iter().any(|t| t.text == "Vorhang"), "{:?}", out.terms);
         assert!(!out.prompt.split_whitespace().any(|w| w == "Vorrang"));
+    }
+
+    #[test]
+    fn empty_home_emits_no_pack_lexicon() {
+        let out = build_asr_boost(&HomeGraph::default(), cat(), &[], "de", 40);
+        assert!(out.terms.is_empty(), "expected empty hard-name prompt, got {:?}", out.terms);
+        assert!(out.prompt.is_empty());
     }
 }

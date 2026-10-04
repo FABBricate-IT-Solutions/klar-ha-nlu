@@ -38,7 +38,7 @@ Feature-Arbeit und RC-Tests laufen über den Git-Branch **`staging`** → Prerel
 
 ## ASR-Boost (Whisper)
 
-Klar liefert eine gerankte Namensliste aus Home-Graph, Sprachpack und Custom-Phrasen (`GET /api/v2/speech/asr_boost`). Die Integration schreibt sie nach jedem Registry-Sync nach `config/klar_nlu_asr_boost.txt` und per Service:
+Klar liefert eine knappe Bias-Liste nur für schwierige Namen (kurz/Umlaute/Rollo-Vorhang-Klasse, Custom-Anker) — keine üblichen Räume oder Schalt-Verben (`GET /api/v2/speech/asr_boost`). Die Integration schreibt sie nach jedem Registry-Sync nach `config/klar_nlu_asr_boost.txt` und per Service:
 
 ```yaml
 service: klar_nlu.export_asr_boost

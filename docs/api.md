@@ -155,15 +155,15 @@ Die Engine besitzt Yarn/Chat/RAG/Kalender/News-Prompts und `yarn_canned` / `yarn
 
 Gerankte Bias-Liste für externes Whisper (`wyoming-faster-whisper --initial-prompt`). Klar hostet **kein** STT/TTS und kein Whisper/Piper. Query: `language` (Pack-Code, Default aus Settings), `max_tokens` (Default 200, Cap 223). Auth wie andere Read-APIs (Supervisor/Loopback ohne Token, sonst Token).
 
-Priorität: Areas/Floors → Entity-Namen/Aliasse (fuzzy-anfällige zuerst) → Custom-Phrase-Ankerwörter → Pack-Geräteklassen/Verben. Nicht enthalten: volle Assist-Sätze, Live-Zustand, Secrets, Infra, nicht freigegebene Entities.
+Nur schwierige Namen: fuzzy-anfällige Entity-Namen/Aliasse (kurz, Umlaute, Rollo/Vorhang-Klasse, Bindestrich/Ziffern) und Custom-Phrase-Anker. Nicht enthalten: übliche Räume, Pack-Verben/Gerätewörter (`Licht`, `an`, …), volle Assist-Sätze, Live-Zustand, Secrets, Infra, nicht freigegebene Entities.
 
 ```json
 {
   "schema_version": "1",
   "language": "de",
   "max_tokens": 200,
-  "prompt": "Wohnzimmer Studio Stehlampe Vorhang Rollo …",
-  "terms": [{"text": "Stehlampe", "tier": 2, "entity_id": "light.stehlampe"}],
+  "prompt": "Kugel Vorhang Rollo Studio-Vorhang Papiertonne …",
+  "terms": [{"text": "Vorhang", "tier": 3, "entity_id": "cover.studio_vorhang"}],
   "dropped": 42,
   "updated_at": "a1b2c3…"
 }
