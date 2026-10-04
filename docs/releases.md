@@ -32,7 +32,7 @@ chore(release): prepare for 2026.8.0
 
 Sprach- und Feature-Arbeit landet zuerst auf **`staging`**, nicht auf `main`. `staging` und `main` sind **geschützt**: per PR/MR mergen, nicht direkt pushen.
 
-Jeder Merge auf `staging` startet **Staging** (dieselben Quality- und Security-Jobs wie Release, nicht language-parity / full_home). Danach:
+Jeder Merge auf `staging` startet **Staging** (Quality + Security mit nextest-Profil `ci-staging`: ohne `parity_langs` / `voice_suite` / `full_home`; die volle Locale-Matrix bleibt bei [language-parity.yml](../.github/workflows/language-parity.yml)). Danach:
 
 1. Tag `{CalVer}-staging.{sha7}` aus `Cargo.toml` plus Merge-SHA (Beispiel: `2026.8.30-staging.a1b2c3d`)
 2. **Build** mit `prerelease: true`
