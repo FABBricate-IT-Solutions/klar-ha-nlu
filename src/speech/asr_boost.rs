@@ -110,11 +110,7 @@ fn push_hard_entities(home: &HomeGraph, out: &mut Vec<Candidate>, seen: &mut Has
                 if !is_boost_token(&token, catalog, &places) {
                     continue;
                 }
-                let tier = if is_fuzzy_prone(&token, catalog) || is_cover_curtain_noun(&token, catalog) {
-                    3
-                } else {
-                    2
-                };
+                let tier = if is_fuzzy_prone(&token, catalog) || is_cover_curtain_noun(&token, catalog) { 3 } else { 2 };
                 accept(out, seen, &token, tier, Some(entity.entity_id.clone()), 1);
             }
         }
@@ -374,11 +370,7 @@ mod tests {
         let out = build_asr_boost(&home, cat(), &[], "de", 12);
         assert!(estimate_tokens(&out.prompt) <= 12, "prompt tokens {}", estimate_tokens(&out.prompt));
         assert!(out.dropped > 0);
-        assert!(
-            out.prompt.contains("Kugel") || out.prompt.contains("Rollo") || out.prompt.contains("Vx"),
-            "{:?}",
-            out.prompt
-        );
+        assert!(out.prompt.contains("Kugel") || out.prompt.contains("Rollo") || out.prompt.contains("Vx"), "{:?}", out.prompt);
         assert!(!out.prompt.split_whitespace().any(|w| w == "Wohnzimmer"), "places must not leak: {}", out.prompt);
         assert_eq!(out.schema_version, "1");
         assert_eq!(out.language, "de");
