@@ -49,13 +49,7 @@ struct Candidate {
 }
 
 /// Build a capped ASR boost prompt. Pure: no I/O, no network.
-pub fn build_asr_boost(
-    home: &HomeGraph,
-    catalog: &Catalog,
-    custom: &[CustomSentence],
-    language: &str,
-    max_tokens: usize,
-) -> AsrBoostOut {
+pub fn build_asr_boost(home: &HomeGraph, catalog: &Catalog, custom: &[CustomSentence], language: &str, max_tokens: usize) -> AsrBoostOut {
     let budget = max_tokens.clamp(1, MAX_MAX_TOKENS);
     let mut seen_fold = HashSet::new();
     let mut candidates: Vec<Candidate> = Vec::new();
@@ -208,13 +202,7 @@ fn push_pack_terms(catalog: &Catalog, out: &mut Vec<Candidate>, seen: &mut HashS
     }
 }
 
-fn fill_terms(
-    candidates: &[Candidate],
-    budget: usize,
-    terms: &mut Vec<AsrBoostTerm>,
-    used_tokens: &mut usize,
-    dropped: &mut usize,
-) {
+fn fill_terms(candidates: &[Candidate], budget: usize, terms: &mut Vec<AsrBoostTerm>, used_tokens: &mut usize, dropped: &mut usize) {
     for cand in candidates {
         let cost = estimate_tokens(&cand.text);
         if *used_tokens + cost > budget {
@@ -232,7 +220,7 @@ fn accept(out: &mut Vec<Candidate>, seen: &mut HashSet<String>, raw: &str, tier:
         return;
     }
     let chars = text.chars().count();
-    if chars < MIN_TERM_CHARS || chars > MAX_TERM_CHARS {
+    if !(MIN_TERM_CHARS..=MAX_TERM_CHARS).contains(&chars) {
         return;
     }
     let key = fold_umlaut(&text);
@@ -272,8 +260,7 @@ fn is_fuzzy_prone(text: &str, catalog: &Catalog) -> bool {
         return true;
     }
     let needle = folded.as_str();
-    catalog.curtain_nouns().iter().any(|w| fold_umlaut(w) == needle)
-        || catalog.cover_nouns().iter().any(|w| fold_umlaut(w) == needle)
+    catalog.curtain_nouns().iter().any(|w| fold_umlaut(w) == needle) || catalog.cover_nouns().iter().any(|w| fold_umlaut(w) == needle)
 }
 
 fn has_non_ascii_letter(text: &str) -> bool {
@@ -341,18 +328,8 @@ mod tests {
     #[test]
     fn areas_and_fuzzy_names_rank_before_long_entity_names() {
         let home = HomeGraph {
-            floors: vec![FloorRec {
-                floor_id: "og".into(),
-                name: "Obergeschoss".into(),
-                aliases: vec!["OG".into()],
-                level: Some(1),
-            }],
-            areas: vec![AreaRec {
-                area_id: "studio".into(),
-                name: "Studio".into(),
-                aliases: vec![],
-                floor_id: Some("og".into()),
-            }],
+            floors: vec![FloorRec { floor_id: "og".into(), name: "Obergeschoss".into(), aliases: vec!["OG".into()], level: Some(1) }],
+            areas: vec![AreaRec { area_id: "studio".into(), name: "Studio".into(), aliases: vec![], floor_id: Some("og".into()) }],
             entities: vec![
                 EntityRec {
                     entity_id: "cover.studio_vorhang".into(),
@@ -410,11 +387,8 @@ mod tests {
             aliases: vec![],
             tags: vec!["infra".into()],
         });
-        let custom = vec![CustomSentence {
-            phrase: "bitte die Papiertonne rausstellen".into(),
-            intent: "HassTurnOn".into(),
-            slots: HashMap::new(),
-        }];
+        let custom =
+            vec![CustomSentence { phrase: "bitte die Papiertonne rausstellen".into(), intent: "HassTurnOn".into(), slots: HashMap::new() }];
         let out = build_asr_boost(&home, cat(), &custom, "de", 200);
         let texts: BTreeSet<&str> = out.terms.iter().map(|t| t.text.as_str()).collect();
         assert!(!texts.contains("Geheimlampe"), "{texts:?}");
@@ -426,11 +400,7 @@ mod tests {
     #[test]
     fn custom_anchors_are_tier_four() {
         let home = HomeGraph::default();
-        let custom = vec![CustomSentence {
-            phrase: "Mülltonne raus".into(),
-            intent: "HassTurnOn".into(),
-            slots: HashMap::new(),
-        }];
+        let custom = vec![CustomSentence { phrase: "Mülltonne raus".into(), intent: "HassTurnOn".into(), slots: HashMap::new() }];
         let out = build_asr_boost(&home, cat(), &custom, "de", 50);
         let muell = out.terms.iter().find(|t| fold_umlaut(&t.text).contains("mulltonne") || t.text.contains("Mülltonne"));
         assert!(muell.is_some(), "{:?}", out.terms);

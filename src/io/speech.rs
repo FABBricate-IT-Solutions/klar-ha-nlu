@@ -10,9 +10,7 @@ use serde::Deserialize;
 use std::net::SocketAddr;
 
 pub fn routes() -> Router<AppState> {
-    Router::new()
-        .route("/api/v2/speech/render", post(speech_render))
-        .route("/api/v2/speech/asr_boost", get(asr_boost))
+    Router::new().route("/api/v2/speech/render", post(speech_render)).route("/api/v2/speech/asr_boost", get(asr_boost))
 }
 
 #[derive(Debug, Deserialize)]
@@ -128,15 +126,11 @@ mod tests {
     #[tokio::test]
     async fn supervisor_reads_asr_boost() {
         let peer = ConnectInfo("172.30.32.1:9".parse().unwrap());
-        let out = asr_boost(
-            State(state()),
-            peer,
-            HeaderMap::new(),
-            Query(AsrBoostQuery { language: Some("de".into()), max_tokens: Some(80) }),
-        )
-        .await
-        .expect("asr boost")
-        .0;
+        let out =
+            asr_boost(State(state()), peer, HeaderMap::new(), Query(AsrBoostQuery { language: Some("de".into()), max_tokens: Some(80) }))
+                .await
+                .expect("asr boost")
+                .0;
         assert_eq!(out.schema_version, "1");
         assert_eq!(out.language, "de");
         assert_eq!(out.max_tokens, 80);
@@ -147,9 +141,8 @@ mod tests {
     #[tokio::test]
     async fn lan_asr_boost_without_token_is_unauthorized() {
         let peer = ConnectInfo("10.0.0.8:9".parse().unwrap());
-        let err = asr_boost(State(state()), peer, HeaderMap::new(), Query(AsrBoostQuery { language: None, max_tokens: None }))
-            .await
-            .unwrap_err();
+        let err =
+            asr_boost(State(state()), peer, HeaderMap::new(), Query(AsrBoostQuery { language: None, max_tokens: None })).await.unwrap_err();
         assert_eq!(err, StatusCode::UNAUTHORIZED);
     }
 

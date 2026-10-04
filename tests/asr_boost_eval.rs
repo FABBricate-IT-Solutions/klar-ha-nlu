@@ -25,21 +25,14 @@ fn boost_includes_vorhang_alias_and_short_names_before_budget_exhaustion() {
     });
     home.assist = Some(home.entities.iter().map(|e| e.entity_id.clone()).collect());
 
-    let custom = vec![CustomSentence {
-        phrase: "Papiertonne raus".into(),
-        intent: "HassTurnOn".into(),
-        slots: HashMap::new(),
-    }];
+    let custom = vec![CustomSentence { phrase: "Papiertonne raus".into(), intent: "HassTurnOn".into(), slots: HashMap::new() }];
 
     let out = build_asr_boost(&home, de(), &custom, "de", 200);
     let texts: Vec<&str> = out.terms.iter().map(|t| t.text.as_str()).collect();
 
     assert!(texts.iter().any(|t| t.contains("Vorhang")), "missing Vorhang in {texts:?}");
     assert!(texts.iter().any(|t| *t == "Kugel" || t.contains("Kugel")), "missing Kugel alias in {texts:?}");
-    assert!(
-        texts.iter().any(|t| t.contains("Papiertonne") || t.eq_ignore_ascii_case("papiertonne")),
-        "missing custom anchor in {texts:?}"
-    );
+    assert!(texts.iter().any(|t| t.contains("Papiertonne") || t.eq_ignore_ascii_case("papiertonne")), "missing custom anchor in {texts:?}");
 
     let vorhang = out.terms.iter().find(|t| t.text == "Vorhang" || t.text.contains("Vorhang")).expect("vorhang term");
     assert!(vorhang.tier == 2 || vorhang.tier == 3, "tier {}", vorhang.tier);
