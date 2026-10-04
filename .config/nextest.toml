@@ -8,8 +8,19 @@ test-threads = "num-cpus"
 slow-timeout = { period = "120s", terminate-after = 2 }
 status-level = "fail"
 final-status-level = "flaky"
-# Full Wohn+Family+m0+m2 for every compiled locale. voice_suite / full_home stay local.
+# Full Wohn+Family+m0+m2 for every compiled locale via parity_langs.
+# voice_suite / full_home stay local (or language-parity.yml).
 default-filter = "not (binary(voice_suite) | binary(full_home))"
+
+# Staging RC + PRs into staging: keep assist_langs / unit smoke, skip the
+# multi-locale parity matrix (weekly language-parity.yml owns that).
+[profile.ci-staging]
+fail-fast = false
+test-threads = "num-cpus"
+slow-timeout = { period = "120s", terminate-after = 2 }
+status-level = "fail"
+final-status-level = "flaky"
+default-filter = "not (binary(voice_suite) | binary(full_home) | binary(parity_langs))"
 
 [profile.ci-lang]
 fail-fast = false

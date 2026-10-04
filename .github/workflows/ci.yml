@@ -4,6 +4,12 @@ on:
   pull_request:
   workflow_dispatch:
   workflow_call:
+    inputs:
+      nextest_profile:
+        description: "nextest profile (ci or ci-staging)"
+        type: string
+        required: false
+        default: ci
 
 concurrency:
   group: ci-${{ github.workflow }}-${{ github.ref }}
@@ -105,9 +111,30 @@ jobs:
         with:
           shared-key: ci-linux
           cache-on-failure: true
+      - name: Nextest profile
+        id: nextest
+        run: |
+          set -euo pipefail
+          profile="${{ inputs.nextest_profile }}"
+          if [[ -z "${profile}" ]]; then
+            if [[ "${{ github.base_ref }}" == "staging" ]]; then
+              profile=ci-staging
+            else
+              profile=ci
+            fi
+          fi
+          case "${profile}" in
+            ci|ci-staging|ci-lang) ;;
+            *)
+              echo "unsupported nextest profile: ${profile}" >&2
+              exit 1
+              ;;
+          esac
+          echo "profile=${profile}" >> "$GITHUB_OUTPUT"
+          echo "Using nextest profile: ${profile}"
       - name: Test
         timeout-minutes: 30
-        run: cargo nextest run --locked --profile ci --no-fail-fast
+        run: cargo nextest run --locked --profile ${{ steps.nextest.outputs.profile }} --no-fail-fast
 
   web:
     name: web
