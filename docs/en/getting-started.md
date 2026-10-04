@@ -51,9 +51,11 @@ If Assist says the device is missing, it is usually not exposed — not a langua
 Settings → Voice assistants → edit the pipeline:
 
 - **Conversation engine:** Klar NLU
-- Speech-to-text / text-to-speech: your choice (local or cloud)
+- Speech-to-text / text-to-speech: your choice (local or cloud) — Klar does not embed Whisper or Piper
 
 Do not set an LLM as the conversation engine. Assist would skip Klar and the model could control devices.
+
+Local Faster Whisper: Klar exports a bias list (`klar_nlu.export_asr_boost` → `config/klar_nlu_asr_boost.txt`) for `--initial-prompt`. Details and Distil warning: [Home Assistant — ASR boost](home-assistant.md#asr-boost-whisper). RC testing uses release channel **Staging** ([Releases](releases.md#staging-release-candidates)).
 
 The integration registers the **Klar home** Lovelace card (`klar-home-card`) and adds a **Klar** sidebar view on first setup so the last Assist turn is visible without hunting the card picker. That is not the operator console.
 

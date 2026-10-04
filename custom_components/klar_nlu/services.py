@@ -9,12 +9,14 @@ from homeassistant.core import HomeAssistant, ServiceCall
 from homeassistant.helpers import entity_registry as er
 from homeassistant.helpers.aiohttp_client import async_get_clientsession
 
+from .asr_boost import export_asr_boost
 from .const import CONF_TOKEN, CONF_URL, DEFAULT_URL, DOMAIN, engine_headers
 
 _LOGGER = logging.getLogger(__name__)
 
 SERVICE_UNDO = "undo"
 SERVICE_TEACH = "teach_alias"
+SERVICE_EXPORT_ASR_BOOST = "export_asr_boost"
 
 
 def _entry(hass: HomeAssistant) -> ConfigEntry | None:
@@ -82,5 +84,24 @@ async def async_setup_services(hass: HomeAssistant) -> None:
         except (aiohttp.ClientError, TimeoutError, OSError) as err:
             _LOGGER.warning("Klar teach_alias failed: %s", err)
 
+    async def export_boost(call: ServiceCall) -> None:
+        entry = _entry(hass)
+        if entry is None:
+            return
+        language = str(call.data.get("language") or "").strip() or None
+        path = str(call.data.get("path") or "").strip() or None
+        raw_tokens = call.data.get("max_tokens")
+        max_tokens = int(raw_tokens) if isinstance(raw_tokens, (int, float, str)) and str(raw_tokens).isdigit() else None
+        result = await export_asr_boost(
+            hass,
+            entry,
+            language=language,
+            max_tokens=max_tokens,
+            path=path,
+        )
+        if result is None:
+            _LOGGER.warning("Klar export_asr_boost failed (engine unreachable or route missing)")
+
     hass.services.async_register(DOMAIN, SERVICE_UNDO, undo)
     hass.services.async_register(DOMAIN, SERVICE_TEACH, teach)
+    hass.services.async_register(DOMAIN, SERVICE_EXPORT_ASR_BOOST, export_boost)

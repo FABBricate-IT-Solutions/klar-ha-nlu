@@ -1,4 +1,8 @@
-"""Call engine post-execute speech. Missing route fails closed (no Python templates)."""
+"""Call engine post-execute speech (sole Assist speech source after execute).
+
+Missing ``POST /api/v2/speech/render`` fails closed — no Python ``from_handled``
+templates and no second product path. Empty/missing speech → dispatch ``empty_speech``.
+"""
 
 from __future__ import annotations
 

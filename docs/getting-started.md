@@ -51,9 +51,11 @@ Sagt Assist, das Gerät fehle, ist es meist nicht freigegeben — kein Sprachpro
 Einstellungen → Sprachassistenten → Pipeline bearbeiten:
 
 - **Conversation-Engine:** Klar NLU
-- Sprache-zu-Text / Text-zu-Sprache: beliebig (lokal oder Cloud)
+- Sprache-zu-Text / Text-zu-Sprache: beliebig (lokal oder Cloud) — Klar embeddet weder Whisper noch Piper
 
 Nicht den LLM-Agenten als Engine wählen. Sonst umgeht Assist Klar und das Modell darf Geräte anfassen.
+
+Lokal mit Faster Whisper: Klar exportiert eine Bias-Liste (`klar_nlu.export_asr_boost` → `config/klar_nlu_asr_boost.txt`) für `--initial-prompt`. Details und Distil-Warnung: [Home Assistant — ASR-Boost](home-assistant.md#asr-boost-whisper). RC-Tests über Release-Kanal **Staging** ([Releases](releases.md#staging-release-candidates)).
 
 Die Integration registriert die Lovelace-Karte **Klar home** (`klar-home-card`) und legt beim ersten Start eine **Klar**-Seitenleiste an, damit der letzte Assist-Zug ohne Kartensuche sichtbar ist. Das ist nicht die Operator-Konsole.
 

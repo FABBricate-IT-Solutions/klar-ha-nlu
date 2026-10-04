@@ -151,6 +151,26 @@ Engine baut den Refine-Systemprompt (Pack + Stimme) und schickt Extra als User-N
 
 Die Engine besitzt Yarn/Chat/RAG/Kalender/News-Prompts und `yarn_canned` / `yarn_nudge`. `kind`: `auto` | `yarn` | `chat` | `rag` | `calendar` | `news` | `news_follow`. `auto` nutzt `yarn_request` / RAG-Flag. `facts` sind Schlagzeilen oder Kalender-Readback aus HA. Persönlichkeit sitzt hier — `refine_prompt` nicht zusätzlich voranstellen. SSE ergänzt `{"type":"tool","tool":"klar.parse","text":"licht an"}` / `klar.act`, damit TTS nie `KLAR_PARSE:` spricht. Write-Token. 503 ohne Endpoint. Fehlende Route fällt geschlossen fehl — Home Assistant baut den Python-Prompt nicht nach.
 
+### `GET /api/v2/speech/asr_boost`
+
+Gerankte Bias-Liste für externes Whisper (`wyoming-faster-whisper --initial-prompt`). Klar hostet **kein** STT/TTS und kein Whisper/Piper. Query: `language` (Pack-Code, Default aus Settings), `max_tokens` (Default 200, Cap 223). Auth wie andere Read-APIs (Supervisor/Loopback ohne Token, sonst Token).
+
+Priorität: Areas/Floors → Entity-Namen/Aliasse (fuzzy-anfällige zuerst) → Custom-Phrase-Ankerwörter → Pack-Geräteklassen/Verben. Nicht enthalten: volle Assist-Sätze, Live-Zustand, Secrets, Infra, nicht freigegebene Entities.
+
+```json
+{
+  "schema_version": "1",
+  "language": "de",
+  "max_tokens": 200,
+  "prompt": "Wohnzimmer Studio Stehlampe Vorhang Rollo …",
+  "terms": [{"text": "Stehlampe", "tier": 2, "entity_id": "light.stehlampe"}],
+  "dropped": 42,
+  "updated_at": "a1b2c3…"
+}
+```
+
+`updated_at` ist ein Inhalts-Fingerprint (nicht Wanduhr). Die Integration schreibt den Prompt nach Homograph-Sync nach `config/klar_nlu_asr_boost.txt` und per Service `klar_nlu.export_asr_boost`. Setup: [Home Assistant — ASR-Boost](home-assistant.md#asr-boost-whisper).
+
 ### `POST /api/v2/speech/render`
 
 Post-Execute-Snapshot aus Home Assistant. Die Engine interpoliert Pack-Templates zu einem faktischen Satz (`source: "post_execute"`). Persönlichkeit kommt später beim Assist-Finish. Assist ruft das nach Execute; fehlende Route fällt geschlossen fehl (kein Python-`from_handled`). Gleiche Auth wie Parse: Supervisor-Netz und Loopback ohne Token, sonst Token.
