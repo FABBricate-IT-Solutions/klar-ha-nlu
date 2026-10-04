@@ -26,6 +26,28 @@ The integration option **Only control entities exposed to Assist** is a develope
 - Pause / next / mute use the `media_player` you named or the one in that room.
 - `Play Queen` / `Spiel Queen` needs a Music Assistant player (or a media player Klar can search on). Klar does not invent a library.
 - Unavailable players are skipped. Expose the player you want.
+- If Assist says Done but nothing plays, Klar rejected a weak or empty Music Assistant match. Name the playlist/track clearly and the room’s MASS player.
+
+## Weather, climate, calendar
+
+| You say | Klar uses |
+|---------|-----------|
+| What’s the weather? / Will it rain? | Exposed `weather.*` |
+| What’s the temperature outside? | Same outdoor weather entity |
+| How warm is it in the living room? | `climate.*` / room sensors |
+| What’s on my calendar tomorrow? | `KlarGetCalendarEvents` — not weather |
+
+Lab is parse-only (`speech` stays empty until Assist executes). If Lab shows `KlarGetCalendarEvents` but Assist speaks something else, check the pipeline conversation engine is still **Klar NLU**, and turn off calendar LLM rewrite while testing.
+
+°F vs °C: App → Settings → **unit system** (`imperial` / `metric`). That converts spoken temps; it does not change HA’s stored unit.
+
+## Custom phrases
+
+Phrases saved in Rules persist under the engine data dir (`klar_nlu.json` → `custom`). A restart reloads them. If `/api/custom` is `[]` after reboot on an old build (&lt; 2026.9.5), update engine + integration together. The operator UI clears the phrase list when the engine is offline — a stale tab can look full when the store is empty.
+
+## Languages
+
+Compiled Assist locales (codes + names): [languages](languages.md). German and English are the hand-tuned packs; other locales are generated and smoke-tested.
 
 ## Write token
 

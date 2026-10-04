@@ -26,6 +26,28 @@ Die Integrationsoption **Nur für Assist freigegebene Entitäten steuern** ist e
 - Pause / weiter / stumm nutzen den genannten `media_player` oder den im Raum.
 - `Spiel Queen` / `Play Queen` braucht einen Music-Assistant-Player (oder einen Player, auf dem Klar suchen kann). Klar erfindet keine Bibliothek.
 - Nicht erreichbare Player werden übersprungen. Den gewünschten Player freigeben.
+- Sagt Assist Fertig, aber nichts spielt: Klar hat einen schwachen oder leeren Music-Assistant-Treffer verworfen. Playlist/Titel klar nennen und den MASS-Player im Raum prüfen.
+
+## Wetter, Klima, Kalender
+
+| Sagen | Klar nutzt |
+|-------|------------|
+| Wie ist das Wetter? / Wird es regnen? | Freigegebenes `weather.*` |
+| Wie warm ist es draußen? | Dieselbe Outdoor-Wetter-Entität |
+| Wie warm ist es im Wohnzimmer? | `climate.*` / Raumsensoren |
+| Was steht morgen im Kalender? | `KlarGetCalendarEvents` — nicht Wetter |
+
+Lab ist Parse-only (`speech` bleibt leer bis Assist ausführt). Zeigt Lab `KlarGetCalendarEvents`, spricht Assist aber etwas anderes: Pipeline-Conversation-Engine noch **Klar NLU**? Kalender-LLM-Rewrite zum Testen aus.
+
+°F vs °C: App → Settings → **Einheitensystem** (`imperial` / `metric`). Das wandelt gesprochene Temps um, nicht die HA-Speichereinheit.
+
+## Eigene Sätze
+
+Unter Rules gespeicherte Phrasen liegen im Engine-Data-Dir (`klar_nlu.json` → `custom`) und laden nach Restart. Ist `/api/custom` nach Reboot leer auf einem alten Build (&lt; 2026.9.5): Engine + Integration gemeinsam updaten. Die Operator-UI leert die Phrasenliste, wenn die Engine offline ist — ein alter Tab kann voll aussehen, obwohl der Store leer ist.
+
+## Sprachen
+
+Kompilierte Assist-Locales (Codes + Namen): [Sprachen](languages.md). Deutsch und Englisch sind die handgepflegten Packs; andere Locales sind generiert und smoke-getestet.
 
 ## Write-Token
 

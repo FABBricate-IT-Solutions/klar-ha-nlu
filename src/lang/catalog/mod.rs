@@ -40,6 +40,11 @@ impl Catalog {
         self.verbs.get(t).copied().or_else(|| extra_verb(t))
     }
 
+    /// Lexicon verb tokens for ASR boost (read-only).
+    pub fn verb_entries(&self) -> impl Iterator<Item = (&'static str, VerbKind)> + '_ {
+        self.verbs.iter().map(|(word, kind)| (*word, *kind))
+    }
+
     pub fn is_filler(&self, t: &str) -> bool {
         self.fillers().contains(t)
     }

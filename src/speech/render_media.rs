@@ -55,13 +55,7 @@ pub(super) fn media_action(name: &str, where_: &str, snap: &SpeechSnapshot, de: 
                 "Marked as a favorite.".into()
             }
         }
-        "HassMediaSearchAndPlay" | "MassPlayMedia" => {
-            if de {
-                "Die Wiedergabe wurde gestartet.".into()
-            } else {
-                "Playback started.".into()
-            }
-        }
+        "HassMediaSearchAndPlay" | "MassPlayMedia" => media_started(snap, de),
         "MassTransferQueue" => {
             if de {
                 "Die Warteschlange wurde übertragen.".into()
@@ -88,6 +82,20 @@ pub(super) fn media_action(name: &str, where_: &str, snap: &SpeechSnapshot, de: 
         "MassGetQueue" => queue_speech(snap, de),
         _ => return None,
     })
+}
+
+fn media_started(snap: &SpeechSnapshot, de: bool) -> String {
+    let player = snap.entities.iter().find(|entity| entity.domain == "media_player");
+    let title = player.and_then(|entity| attr_str(entity, "media_title"));
+    let artist = player.and_then(|entity| attr_str(entity, "media_artist"));
+    match (title.as_deref(), artist.as_deref(), de) {
+        (Some(title), Some(artist), true) => format!("Ich spiele {title} von {artist}."),
+        (Some(title), None, true) => format!("Ich spiele {title}."),
+        (Some(title), Some(artist), false) => format!("Playing {title} by {artist}."),
+        (Some(title), None, false) => format!("Playing {title}."),
+        (_, _, true) => "Die Wiedergabe wurde gestartet.".into(),
+        (_, _, false) => "Playback started.".into(),
+    }
 }
 
 pub(super) fn media_status(snap: &SpeechSnapshot, status: &str, de: bool) -> String {

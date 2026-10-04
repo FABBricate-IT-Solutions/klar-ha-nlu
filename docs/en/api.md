@@ -151,6 +151,26 @@ The engine builds the refine system prompt (pack + voice only) and sends extra a
 
 Engine owns Yarn/chat/RAG/calendar/news prompts and `yarn_canned` / `yarn_nudge`. `kind`: `auto` | `yarn` | `chat` | `rag` | `calendar` | `news` | `news_follow`. `auto` uses `yarn_request` / the RAG flag. `facts` is a headline list or calendar readback gathered by HA. Personality is applied here — do not also prepend `refine_prompt`. SSE adds `{"type":"tool","tool":"klar.parse","text":"licht an"}` / `klar.act` so TTS never speaks `KLAR_PARSE:`. Write token required. `503` when no endpoint. Missing route fails closed — Home Assistant does not rebuild the Python prompt.
 
+### `GET /api/v2/speech/asr_boost`
+
+Ranked bias list for external Whisper (`wyoming-faster-whisper --initial-prompt`). Klar does **not** host STT/TTS or Whisper/Piper. Query: `language` (pack code, default from settings), `max_tokens` (default 200, cap 223). Auth like other read APIs (Supervisor/loopback without a token, otherwise a token).
+
+Hard names only: fuzzy-prone entity names/aliases (short, umlauts, cover/curtain class, hyphen/digits) and custom-phrase anchors. Not included: common rooms, pack verbs/device words (`light`, `on`, …), full Assist sentences, live state, secrets, infra, unexposed entities.
+
+```json
+{
+  "schema_version": "1",
+  "language": "de",
+  "max_tokens": 200,
+  "prompt": "Kugel Vorhang Rollo Studio-Vorhang Papiertonne …",
+  "terms": [{"text": "Vorhang", "tier": 3, "entity_id": "cover.studio_vorhang"}],
+  "dropped": 42,
+  "updated_at": "a1b2c3…"
+}
+```
+
+`updated_at` is a content fingerprint (not wall-clock). The integration writes the prompt after home-graph sync to `config/klar_nlu_asr_boost.txt` and via service `klar_nlu.export_asr_boost`. Setup: [Home Assistant — ASR boost](home-assistant.md#asr-boost-whisper).
+
 ### `POST /api/v2/speech/render`
 
 Post-execute snapshot from Home Assistant. The engine interpolates pack templates into a factual sentence (`source: "post_execute"`). Personality prefix is applied later at Assist finish. Assist calls this after execute; missing route fails closed (no Python `from_handled`). Same auth as parse: Supervisor network and loopback without a token, otherwise a token.

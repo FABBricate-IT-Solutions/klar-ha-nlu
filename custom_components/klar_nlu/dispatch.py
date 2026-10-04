@@ -39,8 +39,10 @@ from .weather_forecast import forecasts
 
 _LOGGER = logging.getLogger(__name__)
 
-# HA has no native intent for these Music Assistant / mute / relative-volume actions.
+# HA intent matching fails for Music Assistant / mute / volume by entity name —
+# call media_player services directly instead of invoke_intent.
 _SERVICE_ONLY = {
+    "HassSetVolume",
     "HassSetVolumeRelative",
     "HassMediaPause",
     "HassMediaUnpause",
@@ -77,10 +79,11 @@ async def handle_intent(
     entity_id = str(slots.get("entity_id", {}).get("value") or "")
     if name == "HassMediaSearchAndPlay" and music_assistant_player(hass, entity_id):
         query = str(slots.get("media_id", {}).get("value") or slots.get("search_query", {}).get("value") or "")
-        if query:
-            slots = {**slots, "media_id": {"value": query}}
-            item = {**item, "name": "MassPlayMedia"}
-            return await run_mass(hass, "MassPlayMedia", slots, pack, item, exposed)
+        if not query.strip():
+            return _fail("missing_media_query")
+        slots = {**slots, "media_id": {"value": query}}
+        item = {**item, "name": "MassPlayMedia"}
+        return await run_mass(hass, "MassPlayMedia", slots, pack, item, exposed)
     if name in MASS_INTENTS:
         return await run_mass(hass, name, slots, pack, item, exposed)
     if name in TIMER_INTENTS:
@@ -373,6 +376,9 @@ async def run_entity(
             service = "volume_down" if step == "down" else "volume_up"
         elif name in {"HassMediaPlayerMute", "HassMediaPlayerUnmute"}:
             data["is_volume_muted"] = name == "HassMediaPlayerMute"
+    elif domain == "cover" and name in ENTITY_SERVICES:
+        # Covers expose open/close, not light-style turn_on/turn_off.
+        service = {"HassTurnOn": "open_cover", "HassTurnOff": "close_cover", "HassToggle": "toggle"}[name]
     else:
         service = ENTITY_SERVICES.get(name)
         if not service:

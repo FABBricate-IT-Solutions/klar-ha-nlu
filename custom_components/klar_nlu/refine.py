@@ -158,6 +158,11 @@ def _assistant_content(agent_id: str | None, speech: str) -> Any:
 
 
 async def emit_assistant_speech(chat_log: Any, agent_id: str | None, speech: str) -> None:
+    """Publish assistant speech; prefer sentence deltas for earlier TTS (TTFA).
+
+    Early pre-execute ack is intentionally not added here — it would double-speak
+    with quiet_ack/chime. No Assist/Wyoming hook for a Klar-side TTS audio cache.
+    """
     drop_same_turn_assistant(getattr(chat_log, "content", None))
     streamer = getattr(chat_log, "async_add_delta_content_stream", None)
     if callable(streamer) and speech.strip():

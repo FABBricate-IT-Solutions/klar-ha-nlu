@@ -138,6 +138,20 @@ fn tv_turn_on_does_not_claim_lights() {
 }
 
 #[test]
+fn media_play_names_title_from_snapshot() {
+    let mut attrs = BTreeMap::new();
+    attrs.insert("media_title".into(), serde_json::json!("Ich will nicht nach Berlin"));
+    attrs.insert("media_artist".into(), serde_json::json!("Kraftklub"));
+    let out = render_snapshot(&snap(
+        "MassPlayMedia",
+        vec![SpeechSlot { name: "entity_id".into(), value: "media_player.satellite".into() }],
+        vec![entity("media_player.satellite", "Satellite", "media_player", "playing", attrs)],
+    ));
+    assert!(out.speech.contains("Ich will nicht nach Berlin"), "{out:?}");
+    assert!(out.speech.contains("Kraftklub"), "{out:?}");
+}
+
+#[test]
 fn media_now_playing_uses_snapshot_attrs() {
     let mut attrs = BTreeMap::new();
     attrs.insert("media_title".into(), serde_json::json!("Bohemian Rhapsody"));
@@ -321,6 +335,21 @@ fn calendar_list_and_empty_use_pack_lines() {
     assert!(spoken.contains("tomorrow 3pm"));
     let none = snap("KlarGetCalendarEvents", vec![SpeechSlot { name: "cue".into(), value: "none".into() }], vec![]);
     assert_eq!(render_snapshot(&none).speech, pack_for("de").calendar_none);
+}
+
+#[test]
+fn calendar_speech_ignores_weather_entities_in_snapshot() {
+    let mut listed = snap(
+        "KlarGetCalendarEvents",
+        vec![SpeechSlot { name: "day".into(), value: "tomorrow".into() }],
+        vec![entity("weather.home", "Home", "weather", "sunny", BTreeMap::from([("temperature".into(), serde_json::json!(22.0))]))],
+    );
+    listed.language = "en".into();
+    listed.calendar_events = vec![SpeechCalendarEvent { summary: "dentist".into(), start: "tomorrow 3pm".into() }];
+    let spoken = render_snapshot(&listed).speech;
+    assert!(spoken.contains("dentist"), "{spoken}");
+    assert!(!spoken.to_lowercase().contains("sunny"), "{spoken}");
+    assert!(!spoken.contains("22"), "{spoken}");
 }
 
 #[test]

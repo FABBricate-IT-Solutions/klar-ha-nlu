@@ -63,12 +63,19 @@ def _load_sync() -> types.ModuleType:
         f"{PACKAGE}.languages": _load_languages(),
         f"{PACKAGE}.const": _load_const(),
     }
+    asr_path = ROOT / "custom_components" / "klar_nlu" / "asr_boost.py"
+    asr_spec = importlib.util.spec_from_file_location(f"{PACKAGE}.asr_boost", asr_path)
+    if asr_spec is None or asr_spec.loader is None:
+        raise RuntimeError(f"cannot load {asr_path}")
+    asr_module = importlib.util.module_from_spec(asr_spec)
     path = ROOT / "custom_components" / "klar_nlu" / "sync.py"
     spec = importlib.util.spec_from_file_location(f"{PACKAGE}.sync", path)
     if spec is None or spec.loader is None:
         raise RuntimeError(f"cannot load {path}")
     module = importlib.util.module_from_spec(spec)
     with patch.dict(sys.modules, modules):
+        sys.modules[f"{PACKAGE}.asr_boost"] = asr_module
+        asr_spec.loader.exec_module(asr_module)
         spec.loader.exec_module(module)
     return module
 
