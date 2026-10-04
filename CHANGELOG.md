@@ -6,6 +6,14 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 Versions follow Home Assistant calendar versioning (`YYYY.M.PATCH`)
 and [Conventional Commits](https://www.conventionalcommits.org/).
 
+## [2026.10.3](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/compare/2026.10.2-staging.26f701f...2026.10.3) - 2026-10-04
+
+
+
+### Other
+
+- Merge pull request #284 from FABBricate-IT-Solutions/staging([b1c467f](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/b1c467f12a1454713ac2e35874661c8a0c0ee0cd))
+
 ## [2026.10.1](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/compare/2026.10.0...2026.10.1) - 2026-10-04
 
 
