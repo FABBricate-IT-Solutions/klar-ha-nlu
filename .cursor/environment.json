@@ -1,0 +1,15 @@
+{
+  "name": "Klar NLU",
+  "install": "set -e; if ! command -v cargo-nextest >/dev/null 2>&1; then curl -LsSf https://get.nexte.st/latest/linux | tar zxf - -C \"${CARGO_HOME:-$HOME/.cargo}/bin\"; fi; cargo fetch --locked; (cd web && npm ci && npm run build); cargo build --locked",
+  "terminals": [
+    {
+      "name": "klar-server",
+      "command": "cargo run --locked -- --http 0.0.0.0:10520 --wyoming 0.0.0.0:10500",
+      "description": "Klar NLU engine: React operator UI + parse API on :10520, Wyoming intent server on :10500. Uses the built-in sample home when no HA config is mounted."
+    }
+  ],
+  "ports": [
+    { "name": "Web UI and parse API", "port": 10520 },
+    { "name": "Wyoming intent", "port": 10500 }
+  ]
+}

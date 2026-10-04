@@ -89,6 +89,8 @@ mod tests {
             entities: vec![],
             calendar_events: vec![],
             media_queue: vec![],
+            forecast: vec![],
+            hourly: vec![],
         }
     }
 

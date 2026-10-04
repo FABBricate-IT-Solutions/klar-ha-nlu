@@ -9,6 +9,8 @@ mod render_climate;
 mod render_media;
 mod render_place;
 mod render_status;
+mod render_weather;
+mod weather_i18n;
 
 pub use asr_boost::{build_asr_boost, AsrBoostOut, AsrBoostTerm, ASR_BOOST_SCHEMA, DEFAULT_MAX_TOKENS, MAX_MAX_TOKENS};
 pub use generated::ACTION_TEMPLATES;

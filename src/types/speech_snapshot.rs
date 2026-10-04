@@ -8,6 +8,8 @@ pub const SNAPSHOT_SCHEMA: &str = "1";
 pub const MAX_SNAPSHOT_ENTITIES: usize = 32;
 pub const MAX_SNAPSHOT_EVENTS: usize = 16;
 pub const MAX_SNAPSHOT_QUEUE: usize = 8;
+pub const MAX_SNAPSHOT_FORECAST: usize = 8;
+pub const MAX_SNAPSHOT_HOURLY: usize = 48;
 pub const MAX_ATTR_CHARS: usize = 256;
 pub const MAX_NAME_CHARS: usize = 128;
 
@@ -45,6 +47,10 @@ pub struct SpeechSnapshot {
     pub calendar_events: Vec<SpeechCalendarEvent>,
     #[serde(default)]
     pub media_queue: Vec<SpeechQueueItem>,
+    #[serde(default)]
+    pub forecast: Vec<SpeechForecast>,
+    #[serde(default)]
+    pub hourly: Vec<SpeechForecast>,
 }
 
 #[derive(Debug, Clone, Serialize, Deserialize, PartialEq, Eq)]
@@ -88,6 +94,22 @@ pub struct SpeechCalendarEvent {
 pub struct SpeechQueueItem {
     #[serde(default)]
     pub title: String,
+}
+
+#[derive(Debug, Clone, Serialize, Deserialize, PartialEq)]
+pub struct SpeechForecast {
+    #[serde(default)]
+    pub datetime: String,
+    #[serde(default)]
+    pub condition: String,
+    #[serde(default)]
+    pub temperature: Option<f64>,
+    #[serde(default)]
+    pub templow: Option<f64>,
+    #[serde(default)]
+    pub precipitation: Option<f64>,
+    #[serde(default)]
+    pub precipitation_probability: Option<f64>,
 }
 
 #[derive(Debug, Clone, Serialize, Deserialize, PartialEq, Eq)]
@@ -152,6 +174,16 @@ impl SpeechSnapshot {
         for item in &mut self.media_queue {
             truncate_chars(&mut item.title, MAX_NAME_CHARS);
         }
+        self.forecast.truncate(MAX_SNAPSHOT_FORECAST);
+        for day in &mut self.forecast {
+            truncate_chars(&mut day.datetime, 64);
+            truncate_chars(&mut day.condition, 64);
+        }
+        self.hourly.truncate(MAX_SNAPSHOT_HOURLY);
+        for hour in &mut self.hourly {
+            truncate_chars(&mut hour.datetime, 64);
+            truncate_chars(&mut hour.condition, 64);
+        }
         Ok(self)
     }
 
@@ -203,6 +235,8 @@ mod tests {
             }],
             calendar_events: Vec::new(),
             media_queue: Vec::new(),
+            forecast: Vec::new(),
+            hourly: Vec::new(),
         }
     }
 

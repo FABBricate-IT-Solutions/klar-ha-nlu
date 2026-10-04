@@ -13,6 +13,8 @@ mod retrieval;
 pub mod semantic;
 mod speech;
 mod validation;
+mod weather_lex;
+mod weather_words;
 
 use crate::session::Session;
 use crate::types::{

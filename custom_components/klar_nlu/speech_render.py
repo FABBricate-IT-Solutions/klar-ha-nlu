@@ -52,6 +52,8 @@ async def try_engine_speech(
     calendar_events: list[dict[str, Any]] | None = None,
     media_queue: list[dict[str, Any]] | None = None,
     extra_entities: list[dict[str, Any]] | None = None,
+    forecast: list[dict[str, Any]] | None = None,
+    hourly: list[dict[str, Any]] | None = None,
     url: str | None = None,
     token: str | None = None,
 ) -> str | None:
@@ -64,6 +66,8 @@ async def try_engine_speech(
         entities=extra_entities if extra_entities is not None else entities_from_handled(handled, item, hass),
         calendar_events=calendar_events,
         media_queue=media_queue,
+        forecast=forecast,
+        hourly=hourly,
         unit_system=_unit_system(hass),
     )
     try:
@@ -87,6 +91,8 @@ async def spoken_after_execute(
     calendar_events: list[dict[str, Any]] | None = None,
     media_queue: list[dict[str, Any]] | None = None,
     extra_entities: list[dict[str, Any]] | None = None,
+    forecast: list[dict[str, Any]] | None = None,
+    hourly: list[dict[str, Any]] | None = None,
     url: str | None = None,
     token: str | None = None,
 ) -> str | None:
@@ -100,6 +106,8 @@ async def spoken_after_execute(
         calendar_events=calendar_events,
         media_queue=media_queue,
         extra_entities=extra_entities,
+        forecast=forecast,
+        hourly=hourly,
         url=url,
         token=token,
     )

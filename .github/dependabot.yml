@@ -13,8 +13,12 @@ updates:
       rust-minor:
         update-types:
           - minor
-    labels:
-      - dependencies
+    # Pinned in Cargo.toml for MSRV 1.85: newer idna/idna_adapter pull ICU4X
+    # (rustc 1.86+ / 1.88). See #235.
+    ignore:
+      - dependency-name: url
+      - dependency-name: idna
+      - dependency-name: idna_adapter
     commit-message:
       prefix: cargo
 
@@ -23,8 +27,6 @@ updates:
     schedule:
       interval: weekly
       day: monday
-    labels:
-      - dependencies
     commit-message:
       prefix: ci
 
@@ -41,8 +43,6 @@ updates:
       npm-minor:
         update-types:
           - minor
-    labels:
-      - dependencies
     commit-message:
       prefix: npm
 
@@ -55,8 +55,6 @@ updates:
       docker-patch:
         update-types:
           - patch
-    labels:
-      - dependencies
     commit-message:
       prefix: docker
 
@@ -69,8 +67,6 @@ updates:
       docker-patch:
         update-types:
           - patch
-    labels:
-      - dependencies
     commit-message:
       prefix: docker
 
