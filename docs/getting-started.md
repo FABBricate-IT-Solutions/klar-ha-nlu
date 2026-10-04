@@ -70,10 +70,14 @@ Nach dem Speichern der Pipeline Assist nutzen. Unter Home Assistant OS hat die A
 | mach das Licht aus und die Heizung auf 21 | Zwei Schritte: Licht aus, Klima 21 |
 | Wohnzimmer Fernseher pausieren | Media-Pause auf dem Player |
 | Spiel Queen | Music-Assistant-Suche auf einem Musik-Player |
+| Wie warm ist es draußen? | Outdoor-`weather.*` (kein Thermostat) |
+| Was steht morgen im Kalender? | Kalenderliste für morgen |
 
 Englisch läuft in derselben Pipeline: `Turn on the living room light`, `Play Queen`.
 
-Player im Raum? Den Raum mitnennen (`Play the playlist Chill in the living room` / Playlist plus Raum). Klar erfindet keine Playlists oder Interpreten, die Music Assistant nicht auflösen kann.
+Player im Raum? Den Raum mitnennen (`Play the playlist Chill in the living room` / Playlist plus Raum). Klar erfindet keine Playlists oder Interpreten, die Music Assistant nicht auflösen kann. Sagt Assist Fertig, aber es läuft nichts, hat Music Assistant keinen passenden Treffer gelandet — klareren Titel nennen oder den MASS-Player im Raum prüfen.
+
+Temperaturen in °F: App → **Settings → Einheitensystem → imperial** (HA-Werte werden umgerechnet).
 
 ## 5. Haus → Zuordnung
 

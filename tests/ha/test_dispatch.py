@@ -385,6 +385,9 @@ class DispatchTests(unittest.IsolatedAsyncioTestCase):
         self.assertFalse(dispatch_media.media_query_matches("Ich will nicht nach Berlin", wrong))
         self.assertTrue(dispatch_media.media_query_matches("Ich will nicht nach Berlin", right))
         self.assertTrue(dispatch_media.media_query_matches("Musik", wrong))
+        empty = _State("media_player.x", friendly_name="Wohnzimmer")
+        self.assertFalse(dispatch_media.media_query_matches("infinite library playlist", empty))
+        self.assertTrue(dispatch_media.media_query_matches("Musik", empty))
 
     async def test_unpause_uses_media_play_service(self) -> None:
         player = _State("media_player.wohnzimmer", "paused", friendly_name="Wohnzimmer")

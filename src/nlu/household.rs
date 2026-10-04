@@ -50,6 +50,10 @@ fn calendar_overrides_weather(context: &ParseContext<'_>, tokens: &[String]) -> 
 /// Generated packs store `{query} {climate}` as a weather phrase. A room or
 /// extra tokens means indoor climate, not the forecast entity.
 fn climate_overrides_weather(context: &ParseContext<'_>, tokens: &[String]) -> bool {
+    let blob = fold_umlaut(context.text.trim()).replace(['\'', '’', '`'], "");
+    if super::weather_lex::outdoor_temp_ask(&blob) {
+        return false;
+    }
     let cat = context.catalog;
     if !cat.any(tokens, cat.climate_nouns()) {
         return false;
@@ -484,5 +488,40 @@ mod tests {
         let context = ParseContext::new("What's the weather?", &home, &session, &custom, settings, catalog);
         let draft = route(&context, &["what".into(), "s".into(), "the".into(), "weather".into()]).expect("weather");
         assert!(matches!(draft.decision, ParseDecision::Chat | ParseDecision::Execute), "{:?}", draft.decision);
+    }
+
+    #[test]
+    fn outdoor_temperature_binds_weather_not_climate() {
+        let mut home = default_home();
+        home.entities.push(EntityRec {
+            entity_id: "weather.home".into(),
+            name: "Home".into(),
+            domain: "weather".into(),
+            platform: None,
+            area: None,
+            aliases: Vec::new(),
+            tags: Vec::new(),
+        });
+        home.entities.push(EntityRec {
+            entity_id: "climate.thermostat".into(),
+            name: "Thermostat".into(),
+            domain: "climate".into(),
+            platform: None,
+            area: None,
+            aliases: Vec::new(),
+            tags: Vec::new(),
+        });
+        let session = Session::new();
+        let custom = Vec::new();
+        let settings = Box::leak(Box::new(Settings::pinned("en")));
+        let catalog = catalog_for(&["en".into()]);
+        let context = ParseContext::new("What's the temperature outside?", &home, &session, &custom, settings, catalog);
+        let draft =
+            route(&context, &["what".into(), "s".into(), "the".into(), "temperature".into(), "outside".into()]).expect("outdoor temp");
+        assert!(matches!(draft.decision, ParseDecision::Execute), "{:?}", draft.decision);
+        let intent = &draft.plan.as_ref().unwrap().intents()[0];
+        assert_eq!(intent.name, "HassGetState");
+        assert_eq!(intent.slot("entity_id"), Some("weather.home"));
+        assert_eq!(intent.slot("domain"), Some("weather"));
     }
 }

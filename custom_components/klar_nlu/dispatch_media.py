@@ -183,10 +183,11 @@ def media_query_matches(query: str, state: Any) -> bool:
         return True
     hay = _media_hay(state)
     if not hay.strip():
-        return True
+        # Specific search with no now-playing metadata — do not claim success.
+        return False
     have = _media_tokens(hay)
     if not have:
-        return True
+        return False
     hits = sum(1 for token in wanted if _token_hit(token, have))
     need = max(1, (len(wanted) + 1) // 2)
     return hits >= need

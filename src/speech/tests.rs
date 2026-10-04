@@ -338,6 +338,21 @@ fn calendar_list_and_empty_use_pack_lines() {
 }
 
 #[test]
+fn calendar_speech_ignores_weather_entities_in_snapshot() {
+    let mut listed = snap(
+        "KlarGetCalendarEvents",
+        vec![SpeechSlot { name: "day".into(), value: "tomorrow".into() }],
+        vec![entity("weather.home", "Home", "weather", "sunny", BTreeMap::from([("temperature".into(), serde_json::json!(22.0))]))],
+    );
+    listed.language = "en".into();
+    listed.calendar_events = vec![SpeechCalendarEvent { summary: "dentist".into(), start: "tomorrow 3pm".into() }];
+    let spoken = render_snapshot(&listed).speech;
+    assert!(spoken.contains("dentist"), "{spoken}");
+    assert!(!spoken.to_lowercase().contains("sunny"), "{spoken}");
+    assert!(!spoken.contains("22"), "{spoken}");
+}
+
+#[test]
 fn floor_status_groups_rooms_and_empty_uses_pack_line() {
     let living = SpeechEntity {
         entity_id: "light.wohnzimmer".into(),
