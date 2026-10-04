@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import asyncio
 import logging
 from collections.abc import Callable
 from typing import Any
@@ -89,8 +90,8 @@ async def run_mass(
             if "radio_mode" in data:
                 data["radio_mode"] = str(data["radio_mode"]).lower() == "true"
             await play_mass_media(hass, entity_id, data)
-            state = hass.states.get(entity_id) or state
             query = str(data.get("media_id") or "")
+            state = await wait_media_query_match(hass, entity_id, query, state)
             if not media_query_matches(query, state):
                 return fail("mass_wrong_match")
         else:
@@ -180,13 +181,7 @@ def media_query_matches(query: str, state: Any) -> bool:
     wanted = _media_tokens(folded)
     if not wanted:
         return True
-    attrs = getattr(state, "attributes", None) or {}
-    if not isinstance(attrs, dict):
-        return True
-    hay = " ".join(
-        str(attrs.get(key) or "")
-        for key in ("media_title", "media_artist", "media_album_name", "media_album_artist")
-    ).casefold()
+    hay = _media_hay(state)
     if not hay.strip():
         return True
     have = _media_tokens(hay)
@@ -195,6 +190,40 @@ def media_query_matches(query: str, state: Any) -> bool:
     hits = sum(1 for token in wanted if _token_hit(token, have))
     need = max(1, (len(wanted) + 1) // 2)
     return hits >= need
+
+
+def _media_hay(state: Any) -> str:
+    attrs = getattr(state, "attributes", None) or {}
+    if not isinstance(attrs, dict):
+        return ""
+    return " ".join(
+        str(attrs.get(key) or "")
+        for key in ("media_title", "media_artist", "media_album_name", "media_album_artist")
+    ).casefold()
+
+
+async def wait_media_query_match(
+    hass: HomeAssistant,
+    entity_id: str,
+    query: str,
+    state: Any,
+    *,
+    attempts: int = 20,
+    delay: float = 0.15,
+) -> Any:
+    """Wait until MASS updates now-playing metadata that matches the query."""
+    prev_hay = _media_hay(state)
+    current = hass.states.get(entity_id) or state
+    for _ in range(max(1, attempts)):
+        current = hass.states.get(entity_id) or current
+        hay = _media_hay(current)
+        if hay.strip() and media_query_matches(query, current):
+            return current
+        if hay.strip() and hay != prev_hay and not media_query_matches(query, current):
+            # Metadata settled on a different track — fail without more waiting.
+            return current
+        await asyncio.sleep(delay)
+    return hass.states.get(entity_id) or current
 
 
 def _media_tokens(text: str) -> set[str]:
