@@ -39,8 +39,10 @@ from .weather_forecast import forecasts
 
 _LOGGER = logging.getLogger(__name__)
 
-# HA has no native intent for these Music Assistant / mute / relative-volume actions.
+# HA intent matching fails for Music Assistant / mute / volume by entity name —
+# call media_player services directly instead of invoke_intent.
 _SERVICE_ONLY = {
+    "HassSetVolume",
     "HassSetVolumeRelative",
     "HassMediaPause",
     "HassMediaUnpause",
@@ -374,6 +376,9 @@ async def run_entity(
             service = "volume_down" if step == "down" else "volume_up"
         elif name in {"HassMediaPlayerMute", "HassMediaPlayerUnmute"}:
             data["is_volume_muted"] = name == "HassMediaPlayerMute"
+    elif domain == "cover" and name in ENTITY_SERVICES:
+        # Covers expose open/close, not light-style turn_on/turn_off.
+        service = {"HassTurnOn": "open_cover", "HassTurnOff": "close_cover", "HassToggle": "toggle"}[name]
     else:
         service = ENTITY_SERVICES.get(name)
         if not service:

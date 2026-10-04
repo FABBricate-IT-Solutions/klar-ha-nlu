@@ -322,18 +322,19 @@ class DispatchTests(unittest.IsolatedAsyncioTestCase):
             media_artist="Peter Fox",
         )
         hass = _hass(player)
-        spoken = await dispatch.handle_intent(
-            hass,
-            _input(),
-            _item(
-                "MassPlayMedia",
-                entity_id=player.entity_id,
-                media_id="Ich will nicht nach Berlin",
-            ),
-            "de",
-            None,
-            lambda _entity_id: True,
-        )
+        with patch.object(dispatch_media.asyncio, "sleep", new=AsyncMock()):
+            spoken = await dispatch.handle_intent(
+                hass,
+                _input(),
+                _item(
+                    "MassPlayMedia",
+                    entity_id=player.entity_id,
+                    media_id="Ich will nicht nach Berlin",
+                ),
+                "de",
+                None,
+                lambda _entity_id: True,
+            )
         self.assertFalse(spoken.ok)
         self.assertEqual(spoken.error, "mass_wrong_match")
 
@@ -401,10 +402,9 @@ class DispatchTests(unittest.IsolatedAsyncioTestCase):
         self.assertEqual(call.args[:2], ("media_player", "media_play"))
         dispatch.intent.async_handle.assert_not_awaited()
 
-    async def test_volume_uses_native_intent(self) -> None:
+    async def test_volume_uses_media_player_service(self) -> None:
         player = _State("media_player.wohnzimmer", friendly_name="Wohnzimmer")
         hass = _hass(player)
-        dispatch.intent.async_handle.return_value = object()
         with patch.object(dispatch, "spoken_after_execute", new=AsyncMock(return_value="Wohnzimmer auf 35 Prozent.")):
             spoken = await dispatch.handle_intent(
                 hass,
@@ -418,11 +418,30 @@ class DispatchTests(unittest.IsolatedAsyncioTestCase):
                 None,
                 lambda _entity_id: True,
             )
-        dispatch.intent.async_handle.assert_awaited()
-        self.assertEqual(dispatch.intent.async_handle.await_args.args[2], "HassSetVolume")
-        hass.services.async_call.assert_not_awaited()
+        dispatch.intent.async_handle.assert_not_awaited()
+        hass.services.async_call.assert_awaited()
+        call = hass.services.async_call.await_args
+        self.assertEqual(call.args[:2], ("media_player", "volume_set"))
+        self.assertEqual(call.args[2].get("volume_level"), 0.35)
         self.assertTrue(spoken.ok)
         self.assertIn("35 Prozent", spoken.speech or "")
+
+    async def test_cover_uses_open_close_services(self) -> None:
+        cover = _State("cover.wohnzimmer_rollo", friendly_name="Wohnzimmer Rollo")
+        hass = _hass(cover)
+        with patch.object(dispatch, "spoken_after_execute", new=AsyncMock(return_value="Wohnzimmer Rollo ist an.")):
+            spoken = await dispatch.handle_intent(
+                hass,
+                _input(),
+                _item("HassTurnOn", entity_id=cover.entity_id, domain="cover"),
+                "de",
+                None,
+                lambda _entity_id: True,
+            )
+        dispatch.intent.async_handle.assert_not_awaited()
+        call = hass.services.async_call.await_args
+        self.assertEqual(call.args[:2], ("cover", "open_cover"))
+        self.assertTrue(spoken.ok)
 
     async def test_transfer_rejects_missing_or_identical_source(self) -> None:
         target = _State(
