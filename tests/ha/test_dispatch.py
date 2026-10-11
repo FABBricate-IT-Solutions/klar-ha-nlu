@@ -469,6 +469,18 @@ class DispatchTests(unittest.IsolatedAsyncioTestCase):
                 self.assertFalse(spoken.ok)
                 hass.services.async_call.assert_not_awaited()
 
+    async def test_window_list_preserves_filters_and_strips_response_for_ha(self) -> None:
+        hass = _hass()
+        dispatch.intent.async_handle.return_value = SimpleNamespace(matched_states=[], unmatched_states=[])
+        spoken = await dispatch.handle_intent(hass, _input(),
+            _item("HassGetState", domain="binary_sensor", device_class="window", state="on", response="list"),
+            "nl", None, lambda _: True)
+        self.assertTrue(spoken.ok)
+        slots = dispatch.intent.async_handle.await_args.args[3]
+        self.assertEqual({key: val["value"] for key, val in slots.items()},
+            {"domain": "binary_sensor", "device_class": "window", "state": "on"})
+        hass.services.async_call.assert_not_awaited()
+
     async def test_climate_get_strips_entity_id_for_ha(self) -> None:
         climate = _State(
             "climate.better_thermostat_wohnzimmer",

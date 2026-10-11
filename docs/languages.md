@@ -135,3 +135,32 @@ python3 scripts/parity/generate.py
 python3 scripts/check_lang_packs.py
 cargo nextest run --test assist_langs --test language --test parity_langs --test voice_suite
 ```
+
+## Natürliche niederländische Befehle
+
+Das niederländische Paket unterstützt getrennte Partikeln (`doe … uit`,
+`schakel … aan`), zusammengesetzte Verben (`uitdoen`, `aandoen`, `uitschakelen`,
+`inschakelen`), höfliche Modalfragen und die Pluralformen `lampen`/`lichten`.
+Die Regeln gelten für verschiedene Räume und Geräte, ohne einzelne Sätze zu
+speichern. Quelle: `scripts/lang_packs/lexicons_west.py`; bei Änderungen nur das
+niederländische Paket neu erzeugen.
+
+Fensterfragen wie `Welke ramen staan er open?` erzeugen eine reine Leseabfrage
+`HassGetState` mit `domain: binary_sensor`, `device_class: window`, `state: on`
+und `response: list`. Geschlossene Fenster verwenden `state: off`. Ein bekannter
+Raum begrenzt die Abfrage; unbekannte Räume und widersprüchliche Zustände werden
+abgelehnt. Home Assistant ermittelt den aktuellen Zustand der für Assist
+freigegebenen Fenstersensoren. Die niederländische Antwort nennt nur passende
+Sensoren und meldet auch leere Ergebnisse. `response` steuert Klars Sprachausgabe
+und wird vor dem HA-Intent-Aufruf entfernt.
+
+Verneinungen (`niet`, `geen`, `nooit`, `nee`, `zonder`) werden vor eigenen
+Satzregeln, Bestätigung und Kontextwiederholung geprüft. Die gesamte Anfrage
+wird abgelehnt und ausstehende Rückfragen/Bestätigungen werden gelöscht.
+Auch verneinte Abfragen und Freitext mit diesen Wörtern werden vorsorglich
+abgelehnt, bis der Geltungsbereich sicher darstellbar ist. Verneinung wird weder
+als Füllwort entfernt noch in einen gegenteiligen Befehl umgewandelt.
+
+Regressionstests: `cargo test --test dutch`, niederländische Paritätstests sowie
+HA-Dispatch-, Raumabfrage- und Sprachsnapshot-Tests. Die Tests verwenden lokale
+Testdaten und greifen nicht auf eine laufende Home-Assistant-Installation zu.

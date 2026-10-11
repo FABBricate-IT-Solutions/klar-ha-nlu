@@ -67,7 +67,11 @@ fn validate_target(intent: &Intent, home: &HomeGraph) -> Result<(), PlanInvalid>
     let area = intent.slot("area");
     let floor = intent.slot("floor");
     let domain = intent.slot("domain");
-    if requires_target(&intent.name) && entity_id.is_none() && area.is_none() && floor.is_none() {
+    if domain == Some("binary_sensor") && intent.name != "HassGetState" {
+        return Err(PlanInvalid::Schema);
+    }
+    let window_query = intent.name == "HassGetState" && domain == Some("binary_sensor") && intent.slot("device_class") == Some("window");
+    if requires_target(&intent.name) && !window_query && entity_id.is_none() && area.is_none() && floor.is_none() {
         return Err(PlanInvalid::MissingTarget);
     }
     if let Some(entity_id) = entity_id {
@@ -237,6 +241,7 @@ fn allowed_domain(domain: &str) -> bool {
     matches!(
         domain,
         "light"
+            | "binary_sensor"
             | "switch"
             | "lock"
             | "cover"
@@ -254,7 +259,7 @@ fn allowed_domain(domain: &str) -> bool {
 fn allowed_slots(name: &str) -> &'static [&'static str] {
     match name {
         "HassTurnOn" | "HassTurnOff" | "HassToggle" => &["entity_id", "area", "floor", "domain"],
-        "HassGetState" => &["entity_id", "area", "floor", "domain", "media_status"],
+        "HassGetState" => &["entity_id", "area", "floor", "domain", "media_status", "device_class", "state", "response"],
         "HassLightSet" => &["entity_id", "area", "floor", "domain", "brightness", "color", "brightness_step"],
         "HassClimateSetTemperature" => &["entity_id", "area", "floor", "domain", "temperature"],
         "HassClimateGetTemperature" => &["entity_id", "area", "floor", "domain"],

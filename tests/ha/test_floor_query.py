@@ -94,6 +94,13 @@ class _States:
 
 
 class FloorQueryTests(unittest.TestCase):
+    def test_filtered_window_query_uses_ha_state_matcher(self) -> None:
+        for filters in ({"device_class": {"value": "window"}}, {"state": {"value": "on"}}, {"response": {"value": "list"}}):
+            slots = {"area": {"value": "kantoor"}, "domain": {"value": "binary_sensor"}, **filters}
+            with patch.object(floor_query, "area_status_rooms") as rooms:
+                self.assertIsNone(floor_query.place_status_rooms(object(), slots, lambda _: True))
+                rooms.assert_not_called()
+
     def test_rooms_status_names_each_area(self) -> None:
         spoken = floor_query.rooms_status_speech(
             [
