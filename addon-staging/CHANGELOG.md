@@ -6,6 +6,23 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 Versions follow Home Assistant calendar versioning (`YYYY.M.PATCH`)
 and [Conventional Commits](https://www.conventionalcommits.org/).
 
+## [2026.10.4](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/compare/2026.10.3...2026.10.4) - 2026-10-12
+
+
+
+### Documentation
+
+- bump rust from 1.98-bookworm to 1.99-bookworm (#286)([a43d39b](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/a43d39b484c1474bda11d872a85de9dcd004fe53))
+
+
+### Other
+
+- bump source-map-js from 1.2.1 to 1.2.2 in /web (#291)([0c395f1](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/0c395f1d2a6371656ffb4d3629f128d9d8436efa))
+
+- bump lucide-react from 1.48.0 to 1.49.0 in /web in the npm-minor group (#288)([70b99dc](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/70b99dc4098b196861340369b364094d5f5261fa))
+
+- bump vite from 8.3.1 to 8.3.2 in /web in the npm-patch group (#287)([a82789c](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/a82789c6ce70d6af7c2b363791e12a431bdf95e2))
+
 ## [2026.10.3](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/compare/2026.10.2-staging.26f701f...2026.10.3) - 2026-10-04
 
 
