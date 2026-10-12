@@ -35,6 +35,9 @@ tower-http = { version = "0.7.0", features = ["fs"] }
 tar = "0.4"
 flate2 = { version = "1", default-features = false, features = ["rust_backend"] }
 
+[dev-dependencies]
+tower = { version = "0.5", features = ["util"] }
+
 [profile.test]
 opt-level = 1
 debug = "line-tables-only"

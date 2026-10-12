@@ -226,7 +226,7 @@ The engine loads trainer context, streams the model, extracts JSON, and appends 
 
 ### `POST /api/v2/home`
 
-Live home-graph snapshot from the Home Assistant integration. `schema_version` must be `"1"`. Caps and error codes: [home-assistant.md](home-assistant.md#registry-sync-ha-is-the-source-of-truth). After a valid push, HA is the live source; the `.storage` watcher no longer overwrites that graph.
+Live home-graph snapshot from the Home Assistant integration. The complete request has an 8 MiB byte ceiling, separate from the 16 KiB budget for ordinary JSON routes. Collection and field caps still apply; unauthorized requests are rejected before the body is read. `schema_version` must be `"1"`. Caps and error codes: [home-assistant.md](home-assistant.md#registry-sync-ha-is-the-source-of-truth). After a valid push, HA is the live source; the `.storage` watcher no longer overwrites that graph.
 
 ### `GET /api/v2/languages`
 

@@ -4,15 +4,34 @@ use crate::io::auth::home_writes_allowed;
 use crate::io::limits::MAX_HOME_SNAPSHOT_BYTES;
 use crate::io::state::AppState;
 use crate::types::HomeGraph;
-use axum::extract::{ConnectInfo, DefaultBodyLimit, State};
+use axum::extract::{ConnectInfo, DefaultBodyLimit, Request, State};
 use axum::http::{HeaderMap, StatusCode};
+use axum::middleware::{from_fn_with_state, Next};
+use axum::response::Response;
 use axum::routing::post;
 use axum::{Json, Router};
 use std::net::SocketAddr;
 use std::sync::atomic::Ordering;
 
-pub fn routes() -> Router<AppState> {
-    Router::new().route("/api/v2/home", post(api_home)).layer(DefaultBodyLimit::max(MAX_HOME_SNAPSHOT_BYTES))
+pub fn routes(state: AppState) -> Router<AppState> {
+    Router::new()
+        .route("/api/v2/home", post(api_home))
+        .layer(DefaultBodyLimit::max(MAX_HOME_SNAPSHOT_BYTES))
+        .layer(from_fn_with_state(state, authorize_home))
+}
+
+// Reject untrusted writers before Json buffers/deserializes a multi-megabyte body.
+async fn authorize_home(
+    State(state): State<AppState>,
+    ConnectInfo(peer): ConnectInfo<SocketAddr>,
+    headers: HeaderMap,
+    request: Request,
+    next: Next,
+) -> Result<Response, StatusCode> {
+    if !home_writes_allowed(Some(peer), &headers, &state.token) {
+        return Err(StatusCode::UNAUTHORIZED);
+    }
+    Ok(next.run(request).await)
 }
 
 #[derive(Debug, serde::Serialize)]
@@ -209,3 +228,7 @@ mod tests {
         assert_eq!(err, StatusCode::UNAUTHORIZED);
     }
 }
+
+#[cfg(test)]
+#[path = "home_sync_http_tests.rs"]
+mod http_tests;
