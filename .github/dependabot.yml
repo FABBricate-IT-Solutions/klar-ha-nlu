@@ -15,10 +15,12 @@ updates:
           - minor
     # Pinned in Cargo.toml for MSRV 1.85: newer idna/idna_adapter pull ICU4X
     # (rustc 1.86+ / 1.88). See #235.
+    # uuid 1.27+ sets rust-version 1.89. Cargo.toml caps it at <1.27.
     ignore:
       - dependency-name: url
       - dependency-name: idna
       - dependency-name: idna_adapter
+      - dependency-name: uuid
     commit-message:
       prefix: cargo
 

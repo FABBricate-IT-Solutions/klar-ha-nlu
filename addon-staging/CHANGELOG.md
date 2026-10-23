@@ -6,6 +6,70 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 Versions follow Home Assistant calendar versioning (`YYYY.M.PATCH`)
 and [Conventional Commits](https://www.conventionalcommits.org/).
 
+## [2026.10.6](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/compare/2026.10.5...2026.10.6) - 2026-10-23
+
+
+
+### Bug Fixes
+
+- bump tokio to 1.53.3 for the unsound advisory([464fedd](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/464fedd24aafa17942bb8f126d018ff762064ae9))
+
+- patch rustls advisories that block dependency CI([b1bfc76](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/b1bfc761cc725181650feeae17a3781a386521ba))
+
+- bump tokio to 1.53.3 for the unsound advisory([7e936c8](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/7e936c808c58db85975a82e561f91474df5033fe))
+
+- patch rustls advisories that block dependency CI([956bdeb](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/956bdeb39f39bbb57a6076332fdff0d10eb38559))
+
+- bump tokio to 1.53.3 for the unsound advisory([db8e71b](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/db8e71b0dee7cfab4432c8778aa756247dbbdb95))
+
+- patch rustls advisories that block dependency CI([c098eee](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/c098eee7ef24bd27e564862fe00d1a7bc4124d82))
+
+
+### Other
+
+- Merge pull request #300 from FABBricate-IT-Solutions/dependabot/npm_and_yarn/web/npm-patch-1715934af3([2720c88](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/2720c8801aedd289414ecdc65cc4905754ee4a98))
+
+- bump the npm-patch group in /web with 3 updates([09091a1](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/09091a11557fa445653a72fbbb5fbbc3e1ba4904))
+
+- Merge pull request #299 from FABBricate-IT-Solutions/dependabot/cargo/rust-patch-2d79467faa([7f59374](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/7f59374e3898650c41ab37f4547d56473d687a7b))
+
+- bump the rust-patch group with 2 updates([90927fb](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/90927fb4089988fadaac2fa5f5c1dfe0b752dd42))
+
+- Merge pull request #303 from FABBricate-IT-Solutions/fix/rustls-0.23.46([02740b2](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/02740b23a6935562b6793f8154f4fbb22d5bd562))
+
+## [2026.10.5](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/compare/2026.10.4...2026.10.5) - 2026-10-13
+
+
+
+### Bug Fixes
+
+- unblock dependency CI on Rust 1.85([be69fb9](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/be69fb936161c69de15840925c8b9a52fc67fb0f))
+
+## [2026.10.4](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/compare/2026.10.3...2026.10.4) - 2026-10-12
+
+
+
+### Documentation
+
+- bump rust from 1.98-bookworm to 1.99-bookworm (#286)([a43d39b](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/a43d39b484c1474bda11d872a85de9dcd004fe53))
+
+
+### Other
+
+- bump source-map-js from 1.2.1 to 1.2.2 in /web (#291)([0c395f1](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/0c395f1d2a6371656ffb4d3629f128d9d8436efa))
+
+- bump lucide-react from 1.48.0 to 1.49.0 in /web in the npm-minor group (#288)([70b99dc](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/70b99dc4098b196861340369b364094d5f5261fa))
+
+- bump vite from 8.3.1 to 8.3.2 in /web in the npm-patch group (#287)([a82789c](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/a82789c6ce70d6af7c2b363791e12a431bdf95e2))
+
+## [2026.10.3](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/compare/2026.10.2-staging.26f701f...2026.10.3) - 2026-10-04
+
+
+
+### Other
+
+- Merge pull request #284 from FABBricate-IT-Solutions/staging([b1c467f](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/b1c467f12a1454713ac2e35874661c8a0c0ee0cd))
+
 ## [2026.10.1](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/compare/2026.10.0...2026.10.1) - 2026-10-04
 
 
