@@ -6,6 +6,37 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 Versions follow Home Assistant calendar versioning (`YYYY.M.PATCH`)
 and [Conventional Commits](https://www.conventionalcommits.org/).
 
+## [2026.10.6](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/compare/2026.10.5...2026.10.6) - 2026-10-23
+
+
+
+### Bug Fixes
+
+- bump tokio to 1.53.3 for the unsound advisory([464fedd](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/464fedd24aafa17942bb8f126d018ff762064ae9))
+
+- patch rustls advisories that block dependency CI([b1bfc76](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/b1bfc761cc725181650feeae17a3781a386521ba))
+
+- bump tokio to 1.53.3 for the unsound advisory([7e936c8](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/7e936c808c58db85975a82e561f91474df5033fe))
+
+- patch rustls advisories that block dependency CI([956bdeb](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/956bdeb39f39bbb57a6076332fdff0d10eb38559))
+
+- bump tokio to 1.53.3 for the unsound advisory([db8e71b](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/db8e71b0dee7cfab4432c8778aa756247dbbdb95))
+
+- patch rustls advisories that block dependency CI([c098eee](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/c098eee7ef24bd27e564862fe00d1a7bc4124d82))
+
+
+### Other
+
+- Merge pull request #300 from FABBricate-IT-Solutions/dependabot/npm_and_yarn/web/npm-patch-1715934af3([2720c88](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/2720c8801aedd289414ecdc65cc4905754ee4a98))
+
+- bump the npm-patch group in /web with 3 updates([09091a1](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/09091a11557fa445653a72fbbb5fbbc3e1ba4904))
+
+- Merge pull request #299 from FABBricate-IT-Solutions/dependabot/cargo/rust-patch-2d79467faa([7f59374](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/7f59374e3898650c41ab37f4547d56473d687a7b))
+
+- bump the rust-patch group with 2 updates([90927fb](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/90927fb4089988fadaac2fa5f5c1dfe0b752dd42))
+
+- Merge pull request #303 from FABBricate-IT-Solutions/fix/rustls-0.23.46([02740b2](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/02740b23a6935562b6793f8154f4fbb22d5bd562))
+
 ## [2026.10.5](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/compare/2026.10.4...2026.10.5) - 2026-10-13
 
 
