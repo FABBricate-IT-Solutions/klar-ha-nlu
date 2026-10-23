@@ -61,7 +61,6 @@ def write_version(version: str) -> None:
         r'(?<=name = "klar-nlu"\nversion = ")[^"]+',
         version,
     )
-    replace_once(ROOT / "config.yaml", r'^version: "[^"]+"', f'version: "{version}"')
     replace_once(ROOT / "addon/config.yaml", r'^version: "[^"]+"', f'version: "{version}"')
     replace_once(
         ROOT / "custom_components/klar_nlu/manifest.json",

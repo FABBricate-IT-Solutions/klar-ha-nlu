@@ -14,7 +14,9 @@ Household path: [getting started](../docs/en/getting-started.md) · [Einstieg](.
 
 Do not also pick **Start the bundled engine (HACS only)** while this App is running.
 
-UI: open **Klar NLU** from the Home Assistant sidebar (the App). Lovelace **Klar** is only the last Assist turn. Direct access still works at `http://<home-assistant-host>:10520` if you expose the port.
+UI: on the App page turn **Show in sidebar** on, then open **Klar NLU**. That entry stays under Settings → Apps. **Klar engine** is the bundled engine and is not an App. Lovelace **Klar** is only the last Assist turn.
+
+The setup screen returns on every open until the App **token** and the integration **Write token** are the same string, and that string is pasted into operator **Settings**. The App sidebar cannot save without it. Direct access still works at `http://<home-assistant-host>:10520` if you expose the port.
 
 ## Add-on options
 

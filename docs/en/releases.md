@@ -57,7 +57,7 @@ Home Assistant switch: [home-assistant.md](home-assistant.md) — Configure → 
 Every merge to `main` cuts the next `YYYY.M.PATCH` automatically. The Release workflow:
 
 1. Computes the next CalVer
-2. Writes it into `Cargo.toml`, `config.yaml`, `addon/config.yaml`, and the HA manifest
+2. Writes it into `Cargo.toml`, `addon/config.yaml`, and the HA manifest
 3. Regenerates `CHANGELOG.md`
 4. Opens or updates `chore/release-YYYY.M.PATCH`, waits for the 10 required checks, merges with `gh pr merge` (no `--admin`), and tags
 5. Calls **Build** in the same run (`workflow_call`)

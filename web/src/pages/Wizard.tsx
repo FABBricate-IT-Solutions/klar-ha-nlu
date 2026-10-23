@@ -40,6 +40,7 @@ export type WizardProps = {
   leftover?: number;
   entityIds?: readonly string[];
   ingress?: boolean;
+  notice?: string;
 };
 
 function focusable(root: HTMLElement): HTMLElement[] {
@@ -138,6 +139,7 @@ export function Wizard({
   leftover = 0,
   entityIds,
   ingress,
+  notice,
 }: WizardProps) {
   const root = useRef<HTMLElement>(null);
   const prior = useRef<HTMLElement | null>(null);
@@ -387,6 +389,7 @@ export function Wizard({
           <div ref={scrollRef} className={scrollable ? "wizard-scroll is-scrollable" : "wizard-scroll"}>
             <div className="wizard-body">{body}</div>
           </div>
+          {notice ? <p className="caption">{notice}</p> : null}
           <div className="wizard-foot">
             <button type="button" className="secondary" onClick={() => setStep(clampStep(step - 1))} disabled={step === 0}>
               {copy.back}

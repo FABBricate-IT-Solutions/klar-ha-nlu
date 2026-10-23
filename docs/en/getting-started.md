@@ -29,8 +29,12 @@ Lovelace **Klar** is the last Assist turn (`klar-home-card`). The operator conso
 [![Open your Home Assistant instance and open a repository inside the Home Assistant Community Store.](https://my.home-assistant.io/badges/hacs_repository.svg)](https://my.home-assistant.io/redirect/hacs_repository/?owner=FABBricate-IT-Solutions&repository=klar-ha-nlu&category=integration)
 
 1. HACS → Integrations → ⋮ → Custom repositories → `https://github.com/FABBricate-IT-Solutions/klar-ha-nlu` → **Integration**. Download **Klar NLU** and restart Home Assistant.
-2. [Add the App repository](https://my.home-assistant.io/redirect/supervisor_add_addon_repository/?repository_url=https%3A%2F%2Fgithub.com%2FFABBricate-IT-Solutions%2Fklar-ha-nlu), install **Klar NLU**, and start it. Details: [App docs](../../addon/DOCS.md).
-3. [Add the integration](https://my.home-assistant.io/redirect/config_flow_start/?domain=klar_nlu) and pick **Use the Klar NLU App or Docker**. URL: `http://klar-nlu:10520`.
+2. [Add the App repository](https://my.home-assistant.io/redirect/supervisor_add_addon_repository/?repository_url=https%3A%2F%2Fgithub.com%2FFABBricate-IT-Solutions%2Fklar-ha-nlu), install **Klar NLU** (not **Klar NLU (Staging)**), and start it. Staging is a second App for release candidates. A reboot starts the App; it does not install another copy. Details: [App docs](../../addon/DOCS.md).
+3. On the App page, turn **Show in sidebar** on. That sidebar entry is the App and it stays listed under Settings → Apps.
+4. [Add the integration](https://my.home-assistant.io/redirect/config_flow_start/?domain=klar_nlu) and pick **Use the Klar NLU App or Docker**. URL: `http://klar-nlu:10520`. If the App is already in the sidebar, the form suggests this. Do not also start the bundled engine.
+5. Set the same write token on the App and on the integration (**Write token**). Paste it into the operator UI under **Settings** as well. Without that match, the setup screen comes back every time you open the App. The App sidebar is not allowed to save on its own.
+
+**Klar engine** in the sidebar is the bundled engine inside Home Assistant. It is not an App, so it does not appear under Settings → Apps. If you can open Klar from the sidebar after removing the App, that is this panel. Reinstall **Klar NLU** under Apps and point the integration at the App.
 
 ### Without Supervisor — HACS only
 
@@ -50,14 +54,25 @@ If Assist says the device is missing, it is usually not exposed — not a langua
 
 Settings → Voice assistants → edit the pipeline:
 
-- **Conversation engine:** Klar NLU
-- Speech-to-text / text-to-speech: your choice (local or cloud) — Klar does not embed Whisper or Piper
+- **Conversation agent:** Klar NLU
+- Speech-to-text / text-to-speech: your choice. Klar does not embed Whisper or Piper. Home Assistant Cloud is the only row until you install a local speech App (Wyoming Whisper or Speech-to-Phrase, and Piper).
+
+**Expose** lists assistants, not conversation agents. Klar does not add a column. You will see Assist, and Alexa if that integration is installed. Expose lights and other devices to **Assist**. Alexa is a different assistant. Then edit the Assist pipeline and set the conversation agent to Klar NLU.
+
+## Voice satellite
+
+A 3rd Reality Voice & Music Assistant (and any other Assist satellite) is the microphone and the speaker. Klar is only the language understanding.
+
+- Wake word: Klar has none. On that speaker the default is **Okay Nabu**. Change it on the ESPHome device page under Configuration (Okay Nabu, Hey Jarvis, Hey Mycroft). Say the wake word, then the command.
+- The pipeline that satellite uses must have conversation agent **Klar NLU**, plus whatever speech-to-text and text-to-speech you chose above. “Local” means those speech Apps run in the house. Klar does not replace them.
 
 Do not set an LLM as the conversation engine. Assist would skip Klar and the model could control devices.
 
 Local Faster Whisper: Klar exports a bias list (`klar_nlu.export_asr_boost` → `config/klar_nlu_asr_boost.txt`) for `--initial-prompt`. Details and Distil warning: [Home Assistant — ASR boost](home-assistant.md#asr-boost-whisper). RC testing uses release channel **Staging** ([Releases](releases.md#staging-release-candidates)).
 
-The integration registers the **Klar home** Lovelace card (`klar-home-card`) and adds a **Klar** sidebar view on first setup so the last Assist turn is visible without hunting the card picker. That is not the operator console.
+The integration registers the **Klar home** Lovelace card (`klar-home-card`) and adds a **Klar** sidebar view on first setup so the last Assist turn is visible without hunting the card picker. That is not the operator console. The bundled engine’s operator UI is the sidebar item **Klar engine**.
+
+The Klar device lists eight entities. The starred one is the conversation agent **Klar NLU**. If it says Disabled, enable it — Assist will not offer a disabled agent. The four last-turn sensors are diagnostic. **Personality** is the voice. The bell under Configuration is **Short confirmation**. Leave it off. On, a single successful light or switch on/off plays a short chime instead of a spoken reply.
 
 ## 4. Five phrases
 
