@@ -294,7 +294,7 @@ def intent_query_text(_user_input: ConversationInput, name: str, _slots: dict[st
 def _ha_slots(name: str, slots: dict[str, Any]) -> dict[str, Any]:
     if name != "HassGetState":
         return slots
-    return {key: value for key, value in slots.items() if key not in {"weather_ask", "weather_day", "weather_part"}}
+    return {key: value for key, value in slots.items() if key not in {"weather_ask", "weather_day", "weather_part", "response"}}
 
 
 def _weather_entity(name: str, slots: dict[str, Any]) -> str:

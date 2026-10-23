@@ -135,3 +135,32 @@ python3 scripts/parity/generate.py       # per-locale datasets
 python3 scripts/check_lang_packs.py
 cargo nextest run --test assist_langs --test language --test parity_langs --test voice_suite
 ```
+
+## Natural Dutch commands
+
+The Dutch pack supports separated particles (`doe … uit`, `schakel … aan`),
+joined verbs (`uitdoen`, `aandoen`, `uitschakelen`, `inschakelen`), polite modal
+requests, and plural `lampen`/`lichten`. These are lexical rules shared across
+rooms and devices, not stored sentence matches. The source lexicon is
+`scripts/lang_packs/lexicons_west.py`; regenerate only the Dutch pack when
+changing it.
+
+Window questions such as `Welke ramen staan er open?` produce a read-only
+`HassGetState` query with `domain: binary_sensor`, `device_class: window`,
+`state: on`, and `response: list`. Closed-window questions use `state: off`.
+An explicit known room scopes the query; unknown rooms and conflicting states
+are rejected. Home Assistant matches exposed window sensors at query time;
+Klar does not infer live state from its home graph. The list is spoken in Dutch,
+including an explicit empty result, and does not include unmatched sensors.
+`response` controls Klar's speech and is removed before invoking the HA intent.
+
+Dutch negation (`niet`, `geen`, `nooit`, `nee`, `zonder`) fails closed before
+custom rules, confirmation, and session replay. A negated utterance rejects
+the whole request and clears pending clarification/confirmation. Negated
+queries and free-text payloads containing these words are conservatively
+rejected until their scope can be represented safely; negation is never removed
+as filler or turned into an opposite action.
+
+Regression coverage: `cargo test --test dutch`, plus the Dutch parity suite and
+HA dispatch, floor-query, and speech-snapshot tests. All tests run against local
+fixtures; they do not contact a running Home Assistant installation.

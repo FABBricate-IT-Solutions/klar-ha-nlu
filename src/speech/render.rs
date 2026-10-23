@@ -83,6 +83,9 @@ fn timer_action(name: &str, speech: Speech) -> Option<String> {
 }
 
 fn query_speech(snap: &SpeechSnapshot, speech: Speech, de: bool) -> String {
+    if let Some(line) = super::render_window::window_list(snap) {
+        return line;
+    }
     let status = slot(snap, "media_status").unwrap_or("");
     if !status.is_empty() {
         return media_status(snap, status, de);
