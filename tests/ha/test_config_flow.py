@@ -178,6 +178,17 @@ class AddonDetectionTests(unittest.TestCase):
         hass.data["frontend_panels"] = {}
         self.assertIn("No Klar App", config_flow.addon_status_note(hass))
 
+    def test_suggested_setup_prefers_the_running_app(self) -> None:
+        stable = config_flow.suggested_setup(["Klar NLU", "Klar NLU (Staging)"])
+        self.assertEqual(stable[config_flow.CONF_MODE], config_flow.MODE_REMOTE)
+        self.assertEqual(stable[config_flow.CONF_URL], config_flow.DEFAULT_ADDON_URL)
+        self.assertEqual(stable[config_flow.CONF_CHANNEL], config_flow.CHANNEL_STABLE)
+        staging = config_flow.suggested_setup(["Klar NLU (Staging)"])
+        self.assertEqual(staging[config_flow.CONF_URL], config_flow.DEFAULT_STAGING_ADDON_URL)
+        bundled = config_flow.suggested_setup([])
+        self.assertEqual(bundled[config_flow.CONF_MODE], config_flow.MODE_LOCAL)
+        self.assertEqual(bundled[config_flow.CONF_URL], config_flow.DEFAULT_URL)
+
 
 if __name__ == "__main__":
     unittest.main()

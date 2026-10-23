@@ -143,7 +143,7 @@ Add `https://github.com/FABBricate-IT-Solutions/klar-ha-nlu` as an App repositor
 
 **Bundled (no App):** HACS integration → **Start the bundled engine (HACS only)**. Downloads the GitHub Release into `/config/klar_nlu/`. Assist works. Mapping/Lab bind `127.0.0.1` inside Core, so a phone cannot open them. Lovelace **Klar** is only the last Assist turn.
 
-**Engine vs channel:** two switches. Settings → Devices & services → Klar NLU → Configure → **Engine** switches App and bundled engine anytime. **Release channel** picks stable or staging for that host: the App uses that add-on, the bundled engine downloads that GitHub release. A custom URL is left alone. The integration sidebar appears only for the bundled engine. The integration reloads after the switch. Do not edit `.storage`.
+**Engine vs channel:** two switches. Settings → Devices & services → Klar NLU → Configure → **Engine** switches App and bundled engine anytime. **Release channel** picks stable or staging for that host: the App uses that add-on, the bundled engine downloads that GitHub release. A custom URL is left alone. The bundled engine adds a sidebar item titled **Klar engine**. It is not listed under Settings → Apps. The integration reloads after the switch. Do not edit `.storage`.
 
 The Supervisor reads the add-on repo from `main`. **Klar NLU (Staging)** shows in the store only after `addon-staging/` is on that branch. After a merge to `staging`, rebuild the staging app (version stays `staging`).
 
@@ -196,7 +196,7 @@ The integration is the official sync path. After setup and on registry/expose up
 }
 ```
 
-`schema_version` must be `"1"`. The engine validates the snapshot at the API boundary: unknown fields and invalid JSON are rejected with `422`, empty IDs, control characters, and schema errors with `400`, and oversized bodies or collections with `413`. None of these crash the process. Caps: 4096 entities, 2048 devices, 256 areas, 64 floors, 256 labels, 4096 Assist IDs, 32 aliases per item. `assist: null` means no expose filter; an array limits visible IDs.
+`schema_version` must be `"1"`. The home-sync endpoint accepts at most **8 MiB (8,388,608 bytes)** of JSON, including all entity, device, area, floor, label, and Assist exposure data. This endpoint has its own body budget; ordinary JSON routes such as parse/settings/custom retain their 16 KiB limit. Authorization is checked before reading the home-sync body. The engine validates the snapshot at the API boundary: unknown fields and invalid JSON field types are rejected with `422`, invalid JSON syntax, empty IDs, control characters, and schema-version errors with `400`, and oversized bodies or collections with `413`. None of these crash the process. Caps: 4096 entities, 2048 devices, 256 areas, 64 floors, 256 labels, 4096 Assist IDs, 32 aliases per item. `assist: null` means no expose filter; an array limits visible IDs. Byte and collection caps are independent and apply to both fixed-length and chunked requests. A rejected request leaves the last accepted graph and live-sync status intact. The integration still sends every enabled entity; reducing the snapshot to Assist-exposed or command-capable entities is not a size workaround.
 
 After a valid push, HA is the live source. The `.storage` file watcher no longer overwrites that graph. Overlay calibration (aliases, manual areas, preferred, infra) is still applied on top.
 

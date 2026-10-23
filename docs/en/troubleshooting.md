@@ -4,6 +4,27 @@
 
 Household setup first: [getting started](getting-started.md). This page covers misses, the write token, and what stays in the house.
 
+## App twice, sidebar, setup screen again
+
+Install **Klar NLU** once. **Klar NLU (Staging)** is a second App. A reboot starts the App (`boot: auto`); it does not install a copy.
+
+| What you see | What it is |
+|--------------|------------|
+| Settings → Apps → **Klar NLU**, and a sidebar entry after **Show in sidebar** | The App. Point the integration at `http://klar-nlu:10520`. |
+| Sidebar **Klar engine**, not listed under Apps | The bundled engine inside Home Assistant. Not a second App. |
+| Sidebar **Klar** | Lovelace card for the last Assist turn. Not the operator UI. |
+| Setup screen every time the App opens | The App could not save. Set one write token on the App, restart it, paste it into operator **Settings** and into the integration **Write token**. |
+
+If the integration keeps asking to be set up, it is on the bundled engine and that download has not finished, or it is pointed at an App you removed. Configure → **Use the Klar NLU App or Docker**.
+
+## Voice satellite (3rd Reality and others)
+
+Expose does not list Klar. Expose devices to **Assist**. Edit that pipeline: conversation agent **Klar NLU**. Speech-to-text and text-to-speech show Home Assistant Cloud until a local speech App is installed. Klar does not provide them.
+
+Wake word on the 3rd Reality Voice & Music Assistant: **Okay Nabu** (or Hey Jarvis / Hey Mycroft on the ESPHome device page). Klar has no wake word.
+
+The bell on the Klar device (**Short confirmation**) stays off unless you want a chime instead of speech for a simple on/off. The starred entity is the conversation agent; enable it if it says Disabled.
+
 ## Device not found
 
 1. **Expose.** Settings → Voice assistants → Expose. Klar’s option **Only control entities exposed to Assist** is on by default. Hidden sensors and switches are not targets.

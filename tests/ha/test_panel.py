@@ -137,7 +137,7 @@ class PanelDashboardTests(unittest.TestCase):
             asyncio.run(panel.async_setup_panel(hass))
         self.assertEqual(len(captured), 1)
         self.assertEqual(captured[0]["component_name"], "iframe")
-        self.assertEqual(captured[0]["sidebar_title"], "Klar NLU")
+        self.assertEqual(captured[0]["sidebar_title"], "Klar engine")
         self.assertEqual(captured[0]["sidebar_icon"], "mdi:brain")
         self.assertEqual(captured[0]["frontend_url_path"], "klar-nlu")
         self.assertTrue(captured[0]["require_admin"])

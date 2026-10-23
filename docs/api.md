@@ -226,7 +226,7 @@ Die Engine lädt Trainer-Context, streamt das Modell, extrahiert JSON und hängt
 
 ### `POST /api/v2/home`
 
-Live-Home-Graph von der Home-Assistant-Integration. `schema_version` muss `"1"` sein. Caps und Fehlercodes: [home-assistant.md](home-assistant.md#registry-sync-ha-ist-quelle). Nach einem gültigen Push ist HA die laufende Quelle; die `.storage`-Überwachung überschreibt diesen Graph nicht mehr.
+Live-Home-Graph von der Home-Assistant-Integration. Der vollständige Request hat eine Byte-Grenze von 8 MiB, getrennt vom 16-KiB-Budget gewöhnlicher JSON-Routen. Die Caps für Sammlungen und Felder gelten weiterhin; nicht autorisierte Requests werden vor dem Lesen des Bodys abgewiesen. `schema_version` muss `"1"` sein. Caps und Fehlercodes: [home-assistant.md](home-assistant.md#registry-sync-ha-ist-quelle). Nach einem gültigen Push ist HA die laufende Quelle; die `.storage`-Überwachung überschreibt diesen Graph nicht mehr.
 
 ### `GET /api/v2/languages`
 

@@ -107,6 +107,7 @@ export function App() {
   const [confirmApply, setConfirmApply] = useState(false);
   const [replayText, setReplayText] = useState("");
   const [error, setError] = useState("");
+  const [wizardNotice, setWizardNotice] = useState("");
   const uiLoaded = useRef(false);
   const [inspectId, setInspectId] = useState("");
   const [booted, setBooted] = useState(false);
@@ -253,14 +254,22 @@ export function App() {
     refresh();
   };
   const finishWizard = () => {
-    setUi((prev) => {
-      const next = { ...prev, wizard_done: true };
-      api.saveUi({
-        ...next,
-        locale: next.locale_set ? locale : "",
-        locale_set: Boolean(next.locale_set),
-      }).catch(() => undefined);
-      return next;
+    const next = {
+      ...ui,
+      wizard_done: true,
+      locale: ui.locale_set ? locale : "",
+      locale_set: Boolean(ui.locale_set),
+    };
+    void api.saveUi(next).then(() => {
+      setWizardNotice("");
+      setUi((prev) => ({ ...prev, wizard_done: true }));
+    }).catch(() => {
+      const german = locale === "de" || locale.startsWith("de-");
+      setWizardNotice(
+        german
+          ? "Nicht gespeichert. Dieselbe Zeichenkette als Token in der Klar-NLU-App setzen, die App neu starten, den Wert hier unter Einstellungen einfügen und in der Integration unter Write-Token. Ohne das kommt dieser Dialog bei jedem Öffnen wieder."
+          : "Not saved. Set the same string as the token on the Klar NLU App, restart the App, paste it here under Settings, and into the integration Write token. Until that matches, this screen comes back every time you open the App.",
+      );
     });
   };
   const replayWizard = () => setUi((prev) => ({ ...prev, wizard_done: false }));
@@ -423,6 +432,7 @@ export function App() {
           onSettings={setSettings}
           onDone={finishWizard}
           onClose={() => undefined}
+          notice={wizardNotice}
         />
       )}
 

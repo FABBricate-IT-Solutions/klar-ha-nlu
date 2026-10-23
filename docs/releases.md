@@ -57,7 +57,7 @@ Home-Assistant-Wechsel: [home-assistant.md](home-assistant.md) — Konfigurieren
 Jeder Merge auf `main` schneidet automatisch die nächste `YYYY.M.PATCH`. Der Release-Workflow:
 
 1. berechnet die nächste CalVer-Version
-2. schreibt sie nach `Cargo.toml`, `config.yaml`, `addon/config.yaml` und das HA-Manifest
+2. schreibt sie nach `Cargo.toml`, `addon/config.yaml` und das HA-Manifest
 3. erzeugt `CHANGELOG.md` neu
 4. öffnet oder aktualisiert `chore/release-YYYY.M.PATCH`, wartet auf die 10 Required Checks, merget mit `gh pr merge` (kein `--admin`) und taggt
 5. ruft **Build** im selben Lauf auf (`workflow_call`)

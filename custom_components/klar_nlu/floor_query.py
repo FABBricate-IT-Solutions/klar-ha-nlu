@@ -30,7 +30,8 @@ def place_status_rooms(
     exposed: Callable[[str], bool],
 ) -> list[tuple[str, list[Any]]] | None:
     """Collect floor/area states. None = not a place query."""
-    if str(slots.get("device_class", {}).get("value") or "") == "temperature":
+    # Filtered queries need HA's state matcher and list response.
+    if slots.get("state") or slots.get("response") or slots.get("device_class"):
         return None
     if slots.get("floor"):
         return floor_status_rooms(

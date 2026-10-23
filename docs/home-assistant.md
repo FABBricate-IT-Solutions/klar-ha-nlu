@@ -143,7 +143,7 @@ Nur **einen** Host. Ein Reload der Integration auf die App-URL beendet das mitge
 
 **Mitgeliefert (keine App):** HACS-Integration → **Mitgelieferte Engine starten (nur HACS)**. Lädt das GitHub-Release nach `/config/klar_nlu/`. Assist funktioniert. Zuordnung/Labor binden `127.0.0.1` in Core, ein Handy kommt nicht ran. Lovelace **Klar** ist nur der letzte Assist-Zug.
 
-**Engine vs Kanal:** zwei Schalter. Einstellungen → Geräte & Dienste → Klar NLU → Konfigurieren → **Engine** wechselt App und mitgelieferte Engine (jederzeit). **Release-Kanal** wählt Stable oder Staging für genau diesen Host: App zeigt auf das Add-on, mitgelieferte Engine lädt das GitHub-Release. Eine eigene URL bleibt unverändert. Die Integrations-Sidebar erscheint nur bei der mitgelieferten Engine. Nach dem Wechsel lädt die Integration neu. Nicht in `.storage` umbiegen.
+**Engine vs Kanal:** zwei Schalter. Einstellungen → Geräte & Dienste → Klar NLU → Konfigurieren → **Engine** wechselt App und mitgelieferte Engine (jederzeit). **Release-Kanal** wählt Stable oder Staging für genau diesen Host: App zeigt auf das Add-on, mitgelieferte Engine lädt das GitHub-Release. Eine eigene URL bleibt unverändert. Die mitgelieferte Engine legt einen Seitenleisteneintrag **Klar engine** an. Er steht nicht unter Einstellungen → Apps. Nach dem Wechsel lädt die Integration neu. Nicht in `.storage` umbiegen.
 
 Supervisor liest das Add-on-Repo von `main`. **Klar NLU (Staging)** erscheint im Store erst, wenn `addon-staging/` dort liegt. Nach einem Merge auf `staging` die Staging-App neu bauen (Version bleibt `staging`).
 
@@ -196,7 +196,7 @@ Die Integration ist der offizielle Sync-Pfad. Nach dem Setup und bei Registry-/E
 }
 ```
 
-`schema_version` muss `"1"` sein. Die Engine prüft den Snapshot an der API-Grenze: unbekannte Felder und ungültiges JSON mit `422`, leere IDs, Steuerzeichen und Schemafehler mit `400`, zu große Bodies oder Listen mit `413`. Keiner dieser Fälle stürzt den Prozess ab. Caps: 4096 Entities, 2048 Devices, 256 Areas, 64 Etagen, 256 Labels, 4096 Assist-IDs, 32 Aliase je Eintrag. `assist: null` bedeutet keine Expose-Filterung; ein Array begrenzt die sichtbaren IDs.
+`schema_version` muss `"1"` sein. Der Home-Sync-Endpunkt akzeptiert höchstens **8 MiB (8.388.608 Bytes)** JSON einschließlich aller Entity-, Device-, Area-, Etagen-, Label- und Assist-Expose-Daten. Nur dieser Endpunkt erhält das größere Body-Budget; normale JSON-Routen wie Parse/Settings/Custom behalten ihr 16-KiB-Limit. Die Berechtigung wird vor dem Lesen des Home-Sync-Bodys geprüft. Die Engine prüft den Snapshot an der API-Grenze: unbekannte Felder und ungültige JSON-Feldtypen mit `422`, ungültige JSON-Syntax, leere IDs, Steuerzeichen und Schema-Versionsfehler mit `400`, zu große Bodies oder Listen mit `413`. Keiner dieser Fälle stürzt den Prozess ab. Caps: 4096 Entities, 2048 Devices, 256 Areas, 64 Etagen, 256 Labels, 4096 Assist-IDs, 32 Aliase je Eintrag. `assist: null` bedeutet keine Expose-Filterung; ein Array begrenzt die sichtbaren IDs. Byte- und Listenlimits gelten unabhängig voneinander, auch für Chunked-Requests. Abgelehnte Requests ändern weder den zuletzt akzeptierten Graph noch den Live-Sync-Status. Die Integration sendet weiterhin alle aktivierten Entities; eine Begrenzung auf Assist-freigegebene oder steuerbare Entities ist keine Größenlösung.
 
 Nach einem gültigen Push ist HA die laufende Quelle. Die `.storage`-Dateiüberwachung überschreibt diesen Live-Graph nicht mehr. Overlay-Kalibrierung (Aliase, manuelle Areas, Preferred, Infra) wird weiterhin darübergelegt.
 

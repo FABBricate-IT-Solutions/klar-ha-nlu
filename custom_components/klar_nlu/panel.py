@@ -24,7 +24,7 @@ except ImportError:
 _WWW = Path(__file__).parent / "www"
 _CARD = "/klar_nlu/klar-home-card.js"
 PANEL_PATH = "klar-nlu"
-PANEL_TITLE = "Klar NLU"
+PANEL_TITLE = "Klar engine"
 PANEL_ICON = "mdi:brain"
 _STORE_KEYS = frozenset({"panel", "ui_proxy", "ui_cookie_secret", "operator_panel"})
 

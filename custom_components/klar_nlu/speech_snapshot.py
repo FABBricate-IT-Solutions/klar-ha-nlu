@@ -126,7 +126,12 @@ def entities_from_handled(
     hass: Any = None,
 ) -> list[dict[str, Any]]:
     states = list(getattr(handled, "matched_states", None) or [])
-    if not states:
+    filtered_list = any(
+        slot.get("name") == "response" and slot.get("value") == "list"
+        for slot in (item or {}).get("slots", [])
+        if isinstance(slot, dict)
+    )
+    if not states and not filtered_list:
         states = list(getattr(handled, "unmatched_states", None) or [])
     rows = [_state_row(state) for state in states]
     rows = [row for row in rows if row]

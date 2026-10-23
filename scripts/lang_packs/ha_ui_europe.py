@@ -189,7 +189,7 @@ EUROPE: dict[str, dict[str, str]] = {
         "help_allow_llm_tools": 'Off by default. On: after Klar parses, the engine chat model may call Home Assistant Assist tools (names come from Core, already prefixed). Off: conversation only.',
         "help_languages": 'Default follows the Home Assistant system language.',
         "help_channel": 'Stable vs staging for the host you picked above. App uses that add-on; bundled engine downloads that GitHub release. A custom URL is left alone.',
-        "help_mode": 'App vs bundled engine. Switch anytime. The integration sidebar only appears for the bundled engine.',
+        "help_mode": 'App vs bundled engine. Switch anytime. The bundled engine sidebar is titled Klar engine and is not listed under Apps.',
         "local": 'Start the bundled engine (HACS only)',
         "remote": 'Use the Klar NLU App or Docker',
         "stable": 'Stable (production)',

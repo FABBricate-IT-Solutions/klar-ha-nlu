@@ -115,6 +115,14 @@ class SpeechSnapshotTests(unittest.TestCase):
         self.assertEqual(len(long_title["entities"][0]["attributes"]["media_title"]), 256)
         self.assertEqual(long_title["entities"][0]["attributes"]["volume_level"], 0.4)
 
+    def test_empty_filtered_list_does_not_speak_unmatched_windows(self) -> None:
+        closed = types.SimpleNamespace(entity_id="binary_sensor.raam", state="off", name="Raam", attributes={"device_class": "window"})
+        item = {"slots": [{"name": "response", "value": "list"}, {"name": "state", "value": "on"}]}
+        handled = types.SimpleNamespace(matched_states=[], unmatched_states=[closed])
+        self.assertEqual(snapshot.entities_from_handled(handled, item), [])
+        handled.matched_states = [closed]
+        self.assertEqual(len(snapshot.entities_from_handled(handled, item)), 1)
+
     def test_hydrate_fills_empty_slot_stub(self) -> None:
         class States:
             def get(self, entity_id: str):

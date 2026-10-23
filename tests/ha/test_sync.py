@@ -4,6 +4,7 @@
 from __future__ import annotations
 
 import importlib.util
+import json
 import sys
 import types
 import unittest
@@ -173,6 +174,38 @@ class SyncTests(unittest.TestCase):
         sync.label_registry.async_get = lambda _hass: SimpleNamespace(labels=_Map())
         snapshot = sync.HomeGraphSync(hass, entry, "http://127.0.0.1:10520", None).build_snapshot()
         self.assertEqual(snapshot["assist"], [])
+
+    def test_large_snapshot_keeps_every_enabled_entity_regardless_of_exposure_or_domain(self) -> None:
+        count = 2216
+        domains = ["light", "sensor", "automation", "button", "binary_sensor", "update", "person"]
+        entities = [SimpleNamespace(
+            entity_id=f"{domains[index % len(domains)]}.fixture_{index}", name=f"Fixture {index}",
+            original_name="Original fixture name " * 4, has_entity_name=True, area_id=None,
+            device_id=f"device_{index % 300}", platform="fixture",
+            aliases=[f"fixture alias {index}", "alias " * 12], labels=["lighting"], disabled_by=None,
+        ) for index in range(count)]
+        devices = [SimpleNamespace(id=f"device_{index}", name=f"Device {index}", name_by_user=None,
+            area_id=f"area_{index % 24}") for index in range(300)]
+        areas = [SimpleNamespace(id=f"area_{index}", name=f"Area {index}", aliases=[],
+            floor_id=f"floor_{index % 4}") for index in range(24)]
+        floors = [SimpleNamespace(floor_id=f"floor_{index}", name=f"Floor {index}", aliases=[], level=index)
+            for index in range(4)]
+        label = SimpleNamespace(label_id="lighting", name="Lighting")
+        sync.entity_registry.async_get = lambda _: SimpleNamespace(entities=_Map(*entities))
+        sync.device_registry.async_get = lambda _: SimpleNamespace(devices=_Map(*devices))
+        sync.area_registry.async_get = lambda _: SimpleNamespace(areas=_Map(*areas))
+        sync.floor_registry.async_get = lambda _: SimpleNamespace(floors=_Map(*floors))
+        sync.label_registry.async_get = lambda _: SimpleNamespace(labels=_Map(label))
+        with patch.object(sync, "_exposed", side_effect=lambda _, entity_id: entity_id == entities[0].entity_id):
+            snapshot = sync.HomeGraphSync(SimpleNamespace(), SimpleNamespace(options={"assist_filter": True}, data={}),
+                "http://127.0.0.1:10520", None).build_snapshot()
+        self.assertGreater(len(json.dumps(snapshot["entities"]).encode("utf-8")), 538_682)
+        self.assertEqual([row["entity_id"] for row in snapshot["entities"]], [entity.entity_id for entity in entities])
+        self.assertEqual(snapshot["assist"], [entities[0].entity_id])
+        self.assertEqual(len(snapshot["devices"]), 300)
+        self.assertEqual(len(snapshot["areas"]), 24)
+        self.assertEqual(len(snapshot["floors"]), 4)
+        self.assertEqual(snapshot["labels"], [{"label_id": "lighting", "name": "Lighting"}])
 
     def test_live_sync_retries_when_engine_is_gone(self) -> None:
         src = (ROOT / "custom_components" / "klar_nlu" / "sync.py").read_text(encoding="utf-8")
