@@ -43,7 +43,7 @@ _BRAND = {
 
 
 _DEFAULT_HELP_MODE = (
-    "App vs bundled engine. Switch anytime. The integration sidebar only appears for the bundled engine."
+    "App vs bundled engine. Switch anytime. The bundled engine sidebar is titled Klar engine and is not listed under Apps."
 )
 
 

@@ -195,7 +195,7 @@ land_via_pr() {
   local tag="$1"
   local branch="chore/release-${tag}"
   git checkout -B "$branch"
-  git add Cargo.toml Cargo.lock config.yaml addon/config.yaml \
+  git add Cargo.toml Cargo.lock addon/config.yaml \
     custom_components/klar_nlu/manifest.json \
     custom_components/klar_nlu/const.py CHANGELOG.md \
     addon/CHANGELOG.md addon-staging/CHANGELOG.md

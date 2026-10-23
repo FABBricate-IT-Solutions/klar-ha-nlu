@@ -281,8 +281,17 @@ class EngineChannelTests(unittest.TestCase):
         ):
             self.assertIn(flag, init)
         self.assertIn("pipeline=_pipeline_flags(entry)", init)
+        self.assertFalse(
+            (ROOT / "config.yaml").exists(),
+            "root config.yaml duplicates addon/config.yaml; Supervisor globs every config.yaml",
+        )
+        slugs = []
+        for rel in ("addon/config.yaml", "addon-staging/config.yaml"):
+            for line in (ROOT / rel).read_text().splitlines():
+                if line.startswith("slug:"):
+                    slugs.append(line.split(":", 1)[1].strip())
+        self.assertEqual(slugs, ["klar_nlu", "klar_nlu_staging"])
         for rel in (
-            "config.yaml",
             "addon/config.yaml",
             "addon-staging/config.yaml",
             "addon/build.yaml",

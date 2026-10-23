@@ -143,7 +143,7 @@ Add `https://github.com/FABBricate-IT-Solutions/klar-ha-nlu` as an App repositor
 
 **Bundled (no App):** HACS integration → **Start the bundled engine (HACS only)**. Downloads the GitHub Release into `/config/klar_nlu/`. Assist works. Mapping/Lab bind `127.0.0.1` inside Core, so a phone cannot open them. Lovelace **Klar** is only the last Assist turn.
 
-**Engine vs channel:** two switches. Settings → Devices & services → Klar NLU → Configure → **Engine** switches App and bundled engine anytime. **Release channel** picks stable or staging for that host: the App uses that add-on, the bundled engine downloads that GitHub release. A custom URL is left alone. The integration sidebar appears only for the bundled engine. The integration reloads after the switch. Do not edit `.storage`.
+**Engine vs channel:** two switches. Settings → Devices & services → Klar NLU → Configure → **Engine** switches App and bundled engine anytime. **Release channel** picks stable or staging for that host: the App uses that add-on, the bundled engine downloads that GitHub release. A custom URL is left alone. The bundled engine adds a sidebar item titled **Klar engine**. It is not listed under Settings → Apps. The integration reloads after the switch. Do not edit `.storage`.
 
 The Supervisor reads the add-on repo from `main`. **Klar NLU (Staging)** shows in the store only after `addon-staging/` is on that branch. After a merge to `staging`, rebuild the staging app (version stays `staging`).
 

@@ -3,7 +3,7 @@
     "step": {
       "user": {
         "title": "Klar NLU",
-        "description": "This integration talks to Assist. Pick the Klar NLU App or the bundled engine. You can switch later in Configure. Do not run both as the engine host at once. Release channel can be changed later.",
+        "description": "This integration talks to Assist. If Klar NLU is already in the sidebar, keep Use the Klar NLU App. Install that App only — Klar NLU (Staging) is a second App. Do not also start the bundled engine. {apps}",
         "data": {
           "mode": "Engine",
           "channel": "Release channel",
@@ -32,7 +32,7 @@
           "channel": "Release channel"
         },
         "data_description": {
-          "mode": "App vs bundled engine. Switch anytime. The integration sidebar only appears for the bundled engine.",
+          "mode": "App vs bundled engine. Switch anytime. The bundled engine sidebar is titled Klar engine and is not listed under Apps.",
           "token": "Same token as the Klar add-on. Needed for overlay writes from Home Assistant.",
           "assist_filter": "Developer option. On (default): Klar changes only what Assist may see. Off: match hidden sensors and switches too — easier to hit the wrong device.",
           "channel": "Stable vs staging for the host you picked above. App uses that add-on; bundled engine downloads that GitHub release. A custom URL is left alone."

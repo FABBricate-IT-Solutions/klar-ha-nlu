@@ -29,8 +29,12 @@ Lovelace **Klar** ist der letzte Assist-Zug (`klar-home-card`). Die Operator-Kon
 [![Open your Home Assistant instance and open a repository inside the Home Assistant Community Store.](https://my.home-assistant.io/badges/hacs_repository.svg)](https://my.home-assistant.io/redirect/hacs_repository/?owner=FABBricate-IT-Solutions&repository=klar-ha-nlu&category=integration)
 
 1. HACS → Integrationen → ⋮ → Benutzerdefinierte Repositories → `https://github.com/FABBricate-IT-Solutions/klar-ha-nlu` → **Integration**. **Klar NLU** herunterladen und Home Assistant neu starten.
-2. [App-Repository hinzufügen](https://my.home-assistant.io/redirect/supervisor_add_addon_repository/?repository_url=https%3A%2F%2Fgithub.com%2FFABBricate-IT-Solutions%2Fklar-ha-nlu), **Klar NLU** installieren und starten. Details: [App-Doku](../addon/DOCS.md).
-3. [Integration hinzufügen](https://my.home-assistant.io/redirect/config_flow_start/?domain=klar_nlu) und **Klar-NLU-App oder Docker verwenden** wählen. URL: `http://klar-nlu:10520`.
+2. [App-Repository hinzufügen](https://my.home-assistant.io/redirect/supervisor_add_addon_repository/?repository_url=https%3A%2F%2Fgithub.com%2FFABBricate-IT-Solutions%2Fklar-ha-nlu), **Klar NLU** installieren (nicht **Klar NLU (Staging)**) und starten. Staging ist eine zweite App für Release-Kandidaten. Ein Neustart startet die App; er installiert keine zweite Kopie. Details: [App-Doku](../addon/DOCS.md).
+3. Auf der App-Seite **In der Seitenleiste anzeigen** einschalten. Dieser Eintrag ist die App und bleibt unter Einstellungen → Apps gelistet.
+4. [Integration hinzufügen](https://my.home-assistant.io/redirect/config_flow_start/?domain=klar_nlu) und **Klar-NLU-App oder Docker verwenden** wählen. URL: `http://klar-nlu:10520`. Steht die App schon in der Seitenleiste, schlägt das Formular das vor. Die mitgelieferte Engine nicht zusätzlich starten.
+5. Dieselbe Zeichenkette als Token in der App und in der Integration (**Write-Token**) setzen. Denselben Wert in der Operator-UI unter **Einstellungen** einfügen. Ohne diese Übereinstimmung kommt der Einrichtungsdialog bei jedem Öffnen der App wieder. Die App-Seitenleiste darf allein nicht speichern.
+
+**Klar engine** in der Seitenleiste ist die mitgelieferte Engine in Home Assistant. Das ist keine App und erscheint nicht unter Einstellungen → Apps. Lässt sich Klar nach dem Entfernen der App noch aus der Seitenleiste öffnen, ist das dieses Panel. **Klar NLU** unter Apps neu installieren und die Integration auf die App stellen.
 
 ### Ohne Supervisor — nur HACS
 
@@ -50,14 +54,25 @@ Sagt Assist, das Gerät fehle, ist es meist nicht freigegeben — kein Sprachpro
 
 Einstellungen → Sprachassistenten → Pipeline bearbeiten:
 
-- **Conversation-Engine:** Klar NLU
-- Sprache-zu-Text / Text-zu-Sprache: beliebig (lokal oder Cloud) — Klar embeddet weder Whisper noch Piper
+- **Conversation-Agent:** Klar NLU
+- Sprache-zu-Text / Text-zu-Sprache: beliebig. Klar embeddet weder Whisper noch Piper. Home Assistant Cloud ist der einzige Eintrag, bis eine lokale Sprach-App installiert ist (Wyoming Whisper oder Speech-to-Phrase, und Piper).
+
+**Freigeben** listet Assistenten, keine Conversation-Agents. Klar fügt keine Spalte hinzu. Sichtbar sind Assist und, falls installiert, Alexa. Geräte für **Assist** freigeben. Alexa ist ein anderer Assistent. Danach die Assist-Pipeline bearbeiten und den Conversation-Agent auf Klar NLU stellen.
+
+## Sprachsatellit
+
+Ein 3rd-Reality-Voice-&-Music-Assistant (und jeder andere Assist-Satellit) ist Mikrofon und Lautsprecher. Klar ist nur das Sprachverständnis.
+
+- Wakeword: Klar hat keines. Auf diesem Lautsprecher ist der Standard **Okay Nabu**. Ändern auf der ESPHome-Geräteseite unter Konfiguration (Okay Nabu, Hey Jarvis, Hey Mycroft). Erst das Wakeword, dann der Satz.
+- Die Pipeline dieses Satelliten braucht den Conversation-Agent **Klar NLU** plus die oben gewählte Sprache-zu-Text- und Text-zu-Sprache-Engine. „Lokal“ heißt: diese Sprach-Apps laufen im Haus. Klar ersetzt sie nicht.
 
 Nicht den LLM-Agenten als Engine wählen. Sonst umgeht Assist Klar und das Modell darf Geräte anfassen.
 
 Lokal mit Faster Whisper: Klar exportiert eine Bias-Liste (`klar_nlu.export_asr_boost` → `config/klar_nlu_asr_boost.txt`) für `--initial-prompt`. Details und Distil-Warnung: [Home Assistant — ASR-Boost](home-assistant.md#asr-boost-whisper). RC-Tests über Release-Kanal **Staging** ([Releases](releases.md#staging-release-candidates)).
 
-Die Integration registriert die Lovelace-Karte **Klar home** (`klar-home-card`) und legt beim ersten Start eine **Klar**-Seitenleiste an, damit der letzte Assist-Zug ohne Kartensuche sichtbar ist. Das ist nicht die Operator-Konsole.
+Die Integration registriert die Lovelace-Karte **Klar home** (`klar-home-card`) und legt beim ersten Start eine **Klar**-Seitenleiste an, damit der letzte Assist-Zug ohne Kartensuche sichtbar ist. Das ist nicht die Operator-Konsole. Die Operator-UI der mitgelieferten Engine heißt in der Seitenleiste **Klar engine**.
+
+Das Klar-Gerät hat acht Entitäten. Die mit dem Stern ist der Conversation-Agent **Klar NLU**. Steht dort Deaktiviert, aktivieren — Assist bietet einen deaktivierten Agenten nicht an. Die vier Sensoren zum letzten Zug sind diagnostisch. **Persönlichkeit** ist die Stimme. Die Glocke unter Konfiguration ist **Kurze Bestätigung**. Aus lassen. An spielt bei einem einzelnen erfolgreichen Licht- oder Schalter-An/Aus einen kurzen Ton statt einer gesprochenen Antwort.
 
 ## 4. Fünf Sätze
 

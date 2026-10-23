@@ -4,6 +4,27 @@
 
 Zuerst der Haushaltsweg: [Einstieg](getting-started.md). Hier: Fehltreffer, Write-Token, was im Haus bleibt.
 
+## App zweimal, Seitenleiste, Einrichten kommt wieder
+
+**Klar NLU** einmal installieren. **Klar NLU (Staging)** ist eine zweite App. Ein Neustart startet die App (`boot: auto`); er installiert keine Kopie.
+
+| Was sichtbar ist | Was es ist |
+|------------------|------------|
+| Einstellungen → Apps → **Klar NLU**, plus Seitenleiste nach **In der Seitenleiste anzeigen** | Die App. Integration auf `http://klar-nlu:10520` stellen. |
+| Seitenleiste **Klar engine**, nicht unter Apps | Die mitgelieferte Engine in Home Assistant. Keine zweite App. |
+| Seitenleiste **Klar** | Lovelace-Karte für den letzten Assist-Zug. Nicht die Operator-UI. |
+| Einrichten bei jedem Öffnen der App | Die App konnte nicht speichern. Ein Write-Token in der App setzen, App neu starten, denselben Wert unter Operator-**Einstellungen** und in der Integration unter **Write-Token** einfügen. |
+
+Fragt die Integration immer wieder nach dem Einrichten, hängt sie an der mitgelieferten Engine und der Download ist nicht fertig, oder sie zeigt auf eine entfernte App. Konfigurieren → **Klar-NLU-App oder Docker verwenden**.
+
+## Sprachsatellit (3rd Reality und andere)
+
+Freigeben listet Klar nicht. Geräte für **Assist** freigeben. Diese Pipeline bearbeiten: Conversation-Agent **Klar NLU**. Sprache-zu-Text und Text-zu-Sprache zeigen Home Assistant Cloud, bis eine lokale Sprach-App installiert ist. Klar liefert sie nicht.
+
+Wakeword am 3rd-Reality-Voice-&-Music-Assistant: **Okay Nabu** (oder Hey Jarvis / Hey Mycroft auf der ESPHome-Geräteseite). Klar hat kein Wakeword.
+
+Die Glocke am Klar-Gerät (**Kurze Bestätigung**) bleibt aus, außer ein Ton statt Sprache bei einfachem An/Aus gewünscht ist. Die Entität mit dem Stern ist der Conversation-Agent; aktivieren, wenn dort Deaktiviert steht.
+
 ## Gerät nicht gefunden
 
 1. **Freigabe.** Einstellungen → Sprachassistenten → Freigeben. Die Option **Nur für Assist freigegebene Entitäten steuern** ist standardmäßig an. Versteckte Sensoren und Schalter sind keine Ziele.

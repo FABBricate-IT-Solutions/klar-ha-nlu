@@ -26,8 +26,10 @@ from .const import (
     CONF_REFINE_SPEECH,
     CONF_TOKEN,
     CONF_URL,
+    DEFAULT_ADDON_URL,
     DEFAULT_ASSIST_FILTER,
     DEFAULT_CHANNEL,
+    DEFAULT_STAGING_ADDON_URL,
     DEFAULT_URL,
     DOMAIN,
     MODE_LOCAL,
@@ -158,6 +160,27 @@ def _keep_product_options(existing: dict[str, Any]) -> dict[str, Any]:
     return {key: existing[key] for key in _PRODUCT_OPTION_KEYS if key in existing}
 
 
+def suggested_setup(apps: list[str]) -> dict[str, str]:
+    """Prefer the running App over a second bundled engine."""
+    if "Klar NLU" in apps:
+        return {
+            CONF_MODE: MODE_REMOTE,
+            CONF_URL: DEFAULT_ADDON_URL,
+            CONF_CHANNEL: CHANNEL_STABLE,
+        }
+    if "Klar NLU (Staging)" in apps:
+        return {
+            CONF_MODE: MODE_REMOTE,
+            CONF_URL: DEFAULT_STAGING_ADDON_URL,
+            CONF_CHANNEL: CHANNEL_STAGING,
+        }
+    return {
+        CONF_MODE: MODE_LOCAL,
+        CONF_URL: DEFAULT_URL,
+        CONF_CHANNEL: CHANNEL_STABLE,
+    }
+
+
 class KlarConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
     VERSION = 1
 
@@ -174,11 +197,7 @@ class KlarConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
             )
             channel = resolve_channel(user_input.get(CONF_CHANNEL))
             if not _valid_engine_url(url):
-                return self.async_show_form(
-                    step_id="user",
-                    data_schema=USER_SCHEMA,
-                    errors={"base": "invalid_url"},
-                )
+                return self._user_form(errors={"base": "invalid_url"}, suggested=user_input)
             data = {
                 CONF_MODE: mode,
                 CONF_URL: url,
@@ -191,7 +210,24 @@ class KlarConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
                 title="Klar NLU",
                 data=data,
             )
-        return self.async_show_form(step_id="user", data_schema=USER_SCHEMA)
+        return self._user_form()
+
+    def _user_form(
+        self,
+        *,
+        errors: dict[str, str] | None = None,
+        suggested: dict[str, Any] | None = None,
+    ) -> FlowResult:
+        apps = detected_klar_apps(self.hass)
+        return self.async_show_form(
+            step_id="user",
+            data_schema=self.add_suggested_values_to_schema(
+                USER_SCHEMA,
+                suggested if suggested is not None else suggested_setup(apps),
+            ),
+            errors=errors,
+            description_placeholders={"apps": addon_status_note(self.hass)},
+        )
 
     async def async_step_hassio(self, discovery_info) -> FlowResult:
         slug = getattr(discovery_info, "slug", None) or "klar-nlu"
