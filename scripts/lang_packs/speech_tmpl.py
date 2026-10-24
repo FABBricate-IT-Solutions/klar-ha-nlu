@@ -49,6 +49,10 @@ def speech(
     loc_home,
     or_home,
     confirm,
+    cover_open="{target}.",
+    cover_close="{target}.",
+    lock="{target}.",
+    unlock="{target}.",
 ) -> dict:
     return {
         "unknown": unknown,
@@ -65,6 +69,10 @@ def speech(
         "turn_on_scene": turn_on_scene,
         "turn_off": turn_off,
         "toggle": toggle,
+        "cover_open": cover_open,
+        "cover_close": cover_close,
+        "lock": lock,
+        "unlock": unlock,
         "light_set": light_set,
         "light_color": light_color,
         "climate_set": climate_set,
