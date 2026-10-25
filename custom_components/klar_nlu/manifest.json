@@ -1,7 +1,7 @@
 {
   "domain": "klar_nlu",
   "name": "Klar NLU",
-  "after_dependencies": ["lovelace"],
+  "after_dependencies": ["hassio", "lovelace"],
   "codeowners": ["@lbentivegni"],
   "config_flow": true,
   "dependencies": ["conversation", "frontend", "http"],

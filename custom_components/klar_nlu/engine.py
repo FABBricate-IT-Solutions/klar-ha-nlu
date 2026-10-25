@@ -41,10 +41,11 @@ from .const import (
     GITHUB_REPO,
     LANGUAGE_ALL,
     LANGUAGE_SYSTEM,
+    engine_headers,
+    engine_url_candidates,
     pick_staging_release,
     resolve_channel,
     resolve_personality,
-    engine_headers,
 )
 
 _LOGGER = logging.getLogger(__name__)
@@ -362,18 +363,21 @@ async def async_fetch_settings(
 ) -> dict[str, object] | None:
     session = async_get_clientsession(hass)
     timeout = ClientTimeout(total=3)
-    try:
-        async with session.get(
-            f"{url.rstrip('/')}/api/settings",
-            headers=engine_headers(token),
-            timeout=timeout,
-        ) as resp:
-            resp.raise_for_status()
-            payload = await resp.json()
-    except (ClientError, TimeoutError, OSError, ValueError) as err:
-        _LOGGER.debug("Klar settings not fetched: %s", err)
-        return None
-    return payload if isinstance(payload, dict) else None
+    headers = engine_headers(token)
+    for base in engine_url_candidates(url):
+        try:
+            async with session.get(
+                f"{base}/api/settings",
+                headers=headers,
+                timeout=timeout,
+            ) as resp:
+                resp.raise_for_status()
+                payload = await resp.json()
+        except (ClientError, TimeoutError, OSError, ValueError) as err:
+            _LOGGER.debug("Klar settings not fetched from %s: %s", base, err)
+            continue
+        return payload if isinstance(payload, dict) else None
+    return None
 
 
 async def async_put_settings(
@@ -384,19 +388,22 @@ async def async_put_settings(
 ) -> dict[str, object] | None:
     session = async_get_clientsession(hass)
     timeout = ClientTimeout(total=3)
-    try:
-        async with session.post(
-            f"{url.rstrip('/')}/api/settings",
-            json=payload,
-            headers=engine_headers(token),
-            timeout=timeout,
-        ) as resp:
-            resp.raise_for_status()
-            body = await resp.json()
-    except (ClientError, TimeoutError, OSError, ValueError) as err:
-        _LOGGER.debug("Klar settings not written: %s", err)
-        return None
-    return body if isinstance(body, dict) else payload
+    headers = engine_headers(token)
+    for base in engine_url_candidates(url):
+        try:
+            async with session.post(
+                f"{base}/api/settings",
+                json=payload,
+                headers=headers,
+                timeout=timeout,
+            ) as resp:
+                resp.raise_for_status()
+                body = await resp.json()
+        except (ClientError, TimeoutError, OSError, ValueError) as err:
+            _LOGGER.debug("Klar settings not written to %s: %s", base, err)
+            continue
+        return body if isinstance(body, dict) else payload
+    return None
 
 
 def _entry_url_token(hass: HomeAssistant, entry: ConfigEntry) -> tuple[str, str | None]:

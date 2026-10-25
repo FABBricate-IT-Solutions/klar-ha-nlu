@@ -14,6 +14,7 @@ from homeassistant.helpers import area_registry, device_registry, entity_registr
 from homeassistant.helpers.aiohttp_client import async_get_clientsession
 
 from .asr_boost import export_asr_boost
+from .addon_host import async_refresh_klar_hosts
 from .const import CONF_ASSIST_FILTER, DEFAULT_ASSIST_FILTER, DEFAULT_URL, CONF_URL, engine_headers, engine_url_candidates
 
 _LOGGER = logging.getLogger(__name__)
@@ -87,6 +88,7 @@ class HomeGraphSync:
         self.hass.async_create_task(self.async_push())
 
     async def async_push(self) -> bool:
+        await async_refresh_klar_hosts(self.hass)
         snapshot = self.build_snapshot()
         session = async_get_clientsession(self.hass)
         headers = engine_headers(self._token)

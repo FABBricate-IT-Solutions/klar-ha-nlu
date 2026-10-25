@@ -265,6 +265,10 @@ def sp(
         living or "{room}",
         door or lamp or vacuum,
         body("confirm", confirm),
+        cover_open=body("cover_open", "{target}."),
+        cover_close=body("cover_close", "{target}."),
+        lock=body("lock", "{target}."),
+        unlock=body("unlock", "{target}."),
     )
 
 

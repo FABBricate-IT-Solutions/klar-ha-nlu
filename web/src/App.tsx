@@ -272,7 +272,10 @@ export function App() {
       );
     });
   };
-  const replayWizard = () => setUi((prev) => ({ ...prev, wizard_done: false }));
+  const replayWizard = () => {
+    setWizardNotice("");
+    setUi((prev) => ({ ...prev, wizard_done: false }));
+  };
   const persistHouse = (next: UiState) => {
     setUi((prev) => ({
       ...prev,
@@ -345,6 +348,7 @@ export function App() {
         </header>
         <div className="app-body">
         {error && <div className="page"><div className="card danger">{error}</div></div>}
+        {wizardNotice && ui.wizard_done ? <div className="page"><div className="card danger">{wizardNotice}</div></div> : null}
         {!dashboard && !error && <div className="page"><div className="card">{t.loading}</div></div>}
         {dashboard && ui.tab === "home" && (
           <DashboardPage
@@ -431,7 +435,7 @@ export function App() {
           settings={settings}
           onSettings={setSettings}
           onDone={finishWizard}
-          onClose={() => undefined}
+          onClose={() => setUi((prev) => ({ ...prev, wizard_done: true }))}
           notice={wizardNotice}
         />
       )}
