@@ -10,7 +10,7 @@ from homeassistant.helpers import entity_registry as er
 from homeassistant.helpers.aiohttp_client import async_get_clientsession
 
 from .asr_boost import export_asr_boost
-from .const import CONF_TOKEN, CONF_URL, DEFAULT_URL, DOMAIN, engine_headers
+from .const import CONF_TOKEN, CONF_URL, DEFAULT_URL, DOMAIN, engine_headers, engine_url_candidates
 
 _LOGGER = logging.getLogger(__name__)
 
@@ -73,16 +73,21 @@ async def async_setup_services(hass: HomeAssistant) -> None:
         url, token = _url_token(hass, entry)
         headers = engine_headers(token)
         session = async_get_clientsession(hass)
-        try:
-            async with session.post(
-                f"{url}/api/entities",
-                json={"entity_id": entity_id, "aliases": [alias]},
-                headers=headers,
-                timeout=aiohttp.ClientTimeout(total=5),
-            ) as resp:
-                resp.raise_for_status()
-        except (aiohttp.ClientError, TimeoutError, OSError) as err:
-            _LOGGER.warning("Klar teach_alias failed: %s", err)
+        last_err: Exception | None = None
+        for base in engine_url_candidates(url):
+            try:
+                async with session.post(
+                    f"{base}/api/entities",
+                    json={"entity_id": entity_id, "aliases": [alias]},
+                    headers=headers,
+                    timeout=aiohttp.ClientTimeout(total=5),
+                ) as resp:
+                    resp.raise_for_status()
+                return
+            except (aiohttp.ClientError, TimeoutError, OSError) as err:
+                last_err = err
+        if last_err is not None:
+            _LOGGER.warning("Klar teach_alias failed: %s", last_err)
 
     async def export_boost(call: ServiceCall) -> None:
         entry = _entry(hass)
