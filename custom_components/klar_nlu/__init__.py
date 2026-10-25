@@ -7,6 +7,7 @@ from homeassistant.const import EVENT_HOMEASSISTANT_STOP, Platform
 from homeassistant.core import HomeAssistant
 from homeassistant.exceptions import ConfigEntryNotReady
 
+from .addon_host import async_refresh_klar_hosts
 from .const import (
     CONF_ALLOW_LLM_TOOLS,
     CONF_ASSIST_FILTER,
@@ -87,6 +88,7 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
         "applied_options": dict(entry.options),
         "engine_settings": {},
     }
+    await async_refresh_klar_hosts(hass)
     await hass.config_entries.async_forward_entry_setups(entry, PLATFORMS)
     await sync.async_start()
     await async_setup_services(hass)

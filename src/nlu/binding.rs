@@ -65,10 +65,7 @@ pub(super) fn build_analyses(
     for (index, (clause, hypotheses)) in clauses.into_iter().zip(action_rows).enumerate() {
         let question = looks_like_question(&clause);
         let cat = context.catalog;
-        let question_context = question
-            || clause
-                .first()
-                .is_some_and(|token| matches!(token.as_str(), "ist" | "sind" | "wie" | "was" | "are" | "is" | "how" | "what" | "whats"));
+        let question_context = question || clause.first().is_some_and(|token| cat.is_question_start(token) || cat.is_query_hint(token));
         let list_marker = clause.iter().any(|token| token == "list" || token == "liste");
         let complete_marker = cat.any(&clause, cat.list_complete())
             || cat.any(&clause, cat.off_words())
