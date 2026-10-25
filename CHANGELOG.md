@@ -6,6 +6,21 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 Versions follow Home Assistant calendar versioning (`YYYY.M.PATCH`)
 and [Conventional Commits](https://www.conventionalcommits.org/).
 
+## [2026.10.8](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/compare/2026.10.2-staging.ac19120...2026.10.8) - 2026-10-25
+
+
+
+### Bug Fixes
+
+- keep what as an en-GB status word so short device questions still match([e500ef8](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/e500ef8d0c39f627f102dd0c0fdf187c7321d454))
+
+
+### Other
+
+- Merge pull request #314 from FABBricate-IT-Solutions/release/promote-2026.10.8([8303b75](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/8303b757fcab305e81519017e94537764c17745a))
+
+- merge staging into main for the next production release([f0710b8](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/f0710b83ce0558ef76c113caa9a99b1b5a602a91))
+
 ## [2026.10.7](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/compare/2026.10.6...2026.10.7) - 2026-10-23
 
 
