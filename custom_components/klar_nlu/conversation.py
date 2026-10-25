@@ -21,6 +21,7 @@ from homeassistant.helpers import device_registry
 from homeassistant.helpers.device_registry import DeviceInfo
 from homeassistant.helpers.entity_platform import AddEntitiesCallback
 
+from .addon_host import async_refresh_klar_hosts
 from .const import (
     CONF_ALLOW_LLM_TOOLS,
     CONF_ASSIST_FILTER,
@@ -244,6 +245,7 @@ class KlarConversationEntity(ConversationEntity):
         user_input: ConversationInput,
         chat_log: ChatLog,
     ) -> ConversationResult:
+        await async_refresh_klar_hosts(self.hass)
         await async_refresh_engine_settings(self.hass, self._entry)
         pack = self._request_pack(user_input.language)
         payload = await self._parse(

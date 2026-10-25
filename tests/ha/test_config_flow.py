@@ -99,6 +99,7 @@ def _load_config_flow() -> types.ModuleType:
     with patch.dict(sys.modules, modules):
         _load(f"{PACKAGE}.languages", "languages.py")
         _load(f"{PACKAGE}.const", "const.py")
+        _load(f"{PACKAGE}.addon_host", "addon_host.py")
         _load(f"{PACKAGE}.lang_select", "lang_select.py")
         return _load(f"{PACKAGE}.config_flow", "config_flow.py")
 
@@ -188,6 +189,18 @@ class AddonDetectionTests(unittest.TestCase):
         bundled = config_flow.suggested_setup([])
         self.assertEqual(bundled[config_flow.CONF_MODE], config_flow.MODE_LOCAL)
         self.assertEqual(bundled[config_flow.CONF_URL], config_flow.DEFAULT_URL)
+
+    def test_suggested_setup_uses_supervisor_hostname(self) -> None:
+        stable = config_flow.suggested_setup(
+            ["Klar NLU"], {"stable": "8db2ab02-klar-nlu"}
+        )
+        self.assertEqual(stable[config_flow.CONF_URL], "http://8db2ab02-klar-nlu:10520")
+        staging = config_flow.suggested_setup(
+            ["Klar NLU (Staging)"], {"staging": "8db2ab02-klar-nlu-staging"}
+        )
+        self.assertEqual(
+            staging[config_flow.CONF_URL], "http://8db2ab02-klar-nlu-staging:10520"
+        )
 
 
 if __name__ == "__main__":

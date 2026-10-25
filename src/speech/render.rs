@@ -30,6 +30,10 @@ fn interpolate(snap: &SpeechSnapshot, speech: Speech, de: bool) -> String {
     }
     match name {
         "HassTurnOn" if domain_of(snap) == "scene" => fill(speech.turn_on_scene, &where_, "", ""),
+        "HassTurnOn" if domain_of(snap) == "cover" => fill(speech.cover_open, &where_, "", ""),
+        "HassTurnOff" if domain_of(snap) == "cover" => fill(speech.cover_close, &where_, "", ""),
+        "HassTurnOn" if domain_of(snap) == "lock" => fill(speech.lock, &where_, "", ""),
+        "HassTurnOff" if domain_of(snap) == "lock" => fill(speech.unlock, &where_, "", ""),
         "HassTurnOn" => fill(speech.turn_on, &where_, "", ""),
         "HassTurnOff" => fill(speech.turn_off, &where_, "", ""),
         "HassToggle" => fill(speech.toggle, &where_, "", ""),
@@ -372,3 +376,7 @@ fn is_infra(entity: &SpeechEntity) -> bool {
 #[cfg(test)]
 #[path = "tests.rs"]
 mod tests;
+
+#[cfg(test)]
+#[path = "cover_lock_tests.rs"]
+mod cover_lock_tests;

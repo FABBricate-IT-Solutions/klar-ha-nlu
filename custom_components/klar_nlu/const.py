@@ -146,8 +146,7 @@ def _url_with_host(url: str, host: str) -> str:
     return parsed._replace(netloc=netloc).geturl()
 
 
-def engine_url_candidates(url: object) -> list[str]:
-    """Try the configured host first, then Supervisor's `.local.hass.io` name."""
+def _alias_candidates(url: str) -> list[str]:
     text = _normalize_engine_url(url)
     host = _engine_host(text)
     if not text or not host or "." in host or host in {"localhost", "127.0.0.1"}:
@@ -156,10 +155,67 @@ def engine_url_candidates(url: object) -> list[str]:
     return [text, fqdn] if fqdn != text else [text]
 
 
+def engine_url_candidates(url: object) -> list[str]:
+    """Try a discovered Supervisor hostname, then the configured host and its FQDN."""
+    text = _normalize_engine_url(url)
+    if not text:
+        return []
+    ordered: list[str] = []
+    for candidate in (apply_discovered_host(text), text):
+        for item in _alias_candidates(candidate):
+            if item not in ordered:
+                ordered.append(item)
+    return ordered
+
+
 def addon_url_for_channel(channel: object) -> str:
     if resolve_channel(channel) == CHANNEL_STAGING:
         return DEFAULT_STAGING_ADDON_URL
     return DEFAULT_ADDON_URL
+
+
+def installed_klar_channel(slug: object) -> str | None:
+    """Channel for a Supervisor slug, including `<repo>_<slug>` installs."""
+    name = str(slug or "").strip().replace("-", "_").lower()
+    if not name:
+        return None
+    if name == STAGING_ADDON_SLUG or name.endswith(f"_{STAGING_ADDON_SLUG}"):
+        return CHANNEL_STAGING
+    if name == "klar_nlu" or name.endswith("_klar_nlu"):
+        return CHANNEL_STABLE
+    return None
+
+
+_discovered_addon_hosts: dict[str, str] = {}
+
+
+def remember_addon_hosts(hosts: dict[str, str] | None) -> None:
+    """Cache Supervisor hostnames so later engine calls can use them."""
+    _discovered_addon_hosts.clear()
+    for channel, hostname in (hosts or {}).items():
+        if str(channel) not in {CHANNEL_STABLE, CHANNEL_STAGING}:
+            continue
+        label = str(hostname or "").strip().split(".")[0]
+        if label:
+            _discovered_addon_hosts[str(channel)] = label
+
+
+def discovered_addon_hosts() -> dict[str, str]:
+    return dict(_discovered_addon_hosts)
+
+
+def apply_discovered_host(url: str, hosts: dict[str, str] | None = None) -> str:
+    """Use Supervisor's real hostname when the stored URL still says `klar-nlu`."""
+    text = _normalize_engine_url(url)
+    host = _engine_host(text)
+    kind = _addon_kind(host)
+    if not text or kind is None or _supervisor_addon_prefix(host):
+        return text
+    table = _discovered_addon_hosts if hosts is None else hosts
+    discovered = str(table.get(kind) or "").strip().split(".")[0]
+    if not discovered or discovered == _addon_label(host):
+        return text
+    return _url_with_host(text, discovered)
 
 
 def is_addon_engine_url(url: object) -> bool:
@@ -208,6 +264,7 @@ def resolve_engine_target(
     channel: object,
     url: object,
     supervisor: bool = False,
+    addon_hosts: dict[str, str] | None = None,
 ) -> tuple[str, str]:
     del supervisor
     text = str(url or "").strip()
@@ -217,7 +274,10 @@ def resolve_engine_target(
         return MODE_LOCAL, DEFAULT_URL
     if text and _supervisor_addon_prefix(_engine_host(text)):
         return MODE_REMOTE, _retarget_addon_url(text, channel)
-    return MODE_REMOTE, addon_url_for_channel(channel)
+    chosen = addon_url_for_channel(channel)
+    if addon_hosts:
+        chosen = apply_discovered_host(chosen, addon_hosts)
+    return MODE_REMOTE, chosen
 
 
 def resolve_engine_url(

@@ -227,6 +227,52 @@ class EngineChannelTests(unittest.TestCase):
             (const.MODE_REMOTE, discovered),
         )
 
+    def test_installed_klar_channel_includes_repository_prefix(self) -> None:
+        self.assertEqual(const.installed_klar_channel("8db2ab02_klar_nlu"), const.CHANNEL_STABLE)
+        self.assertEqual(const.installed_klar_channel("8db2ab02-klar-nlu"), const.CHANNEL_STABLE)
+        self.assertEqual(
+            const.installed_klar_channel("8db2ab02_klar_nlu_staging"),
+            const.CHANNEL_STAGING,
+        )
+        self.assertEqual(const.installed_klar_channel("klar_nlu"), const.CHANNEL_STABLE)
+        self.assertIsNone(const.installed_klar_channel("mosquitto"))
+        self.assertIsNone(const.installed_klar_channel(""))
+
+    def test_engine_url_candidates_try_discovered_supervisor_host_first(self) -> None:
+        const.remember_addon_hosts(
+            {
+                "stable": "8db2ab02-klar-nlu",
+                "staging": "8db2ab02-klar-nlu-staging.local.hass.io",
+            }
+        )
+        try:
+            self.assertEqual(
+                const.engine_url_candidates("http://klar-nlu:10520"),
+                [
+                    "http://8db2ab02-klar-nlu:10520",
+                    "http://8db2ab02-klar-nlu.local.hass.io:10520",
+                    "http://klar-nlu:10520",
+                    "http://klar-nlu.local.hass.io:10520",
+                ],
+            )
+            self.assertEqual(
+                const.resolve_engine_target(
+                    mode=const.MODE_REMOTE,
+                    channel=const.CHANNEL_STABLE,
+                    url="http://klar-nlu:10520",
+                    addon_hosts={"stable": "8db2ab02-klar-nlu"},
+                ),
+                (const.MODE_REMOTE, "http://8db2ab02-klar-nlu:10520"),
+            )
+            prefixed = "http://abc123-klar-nlu:10520"
+            self.assertEqual(const.apply_discovered_host(prefixed), prefixed)
+            self.assertEqual(
+                const.engine_url_candidates("http://klar-nlu-staging:10520")[0],
+                "http://8db2ab02-klar-nlu-staging:10520",
+            )
+        finally:
+            const.remember_addon_hosts({})
+
     def test_engine_url_candidates_add_hassio_fqdn(self) -> None:
         self.assertEqual(
             const.engine_url_candidates("http://klar-nlu:10520"),

@@ -151,6 +151,16 @@ class PanelDashboardTests(unittest.TestCase):
         self.assertIn("/api/klar_nlu/ui/", source)
         self.assertIn("auth/sign_path", source)
 
+    def test_does_not_remove_a_panel_that_was_never_registered(self) -> None:
+        hass = _hass(
+            domain={"entry": {"url": "http://klar-nlu:10520", "engine": None}},
+            panels={"klar_nlu": SimpleNamespace(component_name="hassio")},
+        )
+        removed: list[str] = []
+        with patch.object(panel, "async_remove_panel", lambda _hass, path: removed.append(path)):
+            asyncio.run(panel.async_setup_panel(hass))
+        self.assertEqual(removed, [])
+
     def test_skips_sidebar_when_using_app(self) -> None:
         hass = _hass(
             domain={"entry": {"url": "http://klar-nlu:10520", "engine": None}},

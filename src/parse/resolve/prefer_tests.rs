@@ -279,6 +279,26 @@ fn named_room_tv_does_not_fall_back_to_bedroom() {
 }
 
 #[test]
+fn en_gb_status_questions_match_english() {
+    let path = std::path::Path::new(env!("CARGO_MANIFEST_DIR")).join("tests/datasets/family_home_en/home_config.yaml");
+    let home = crate::home::load_home_config(&path).expect("family home");
+    let sentences = [
+        "Are the living room lights on?",
+        "Is the living room light on?",
+        "What's the status of the living room lights?",
+        "Please check the living room lights for me.",
+        "Living room lights state.",
+    ];
+    for sentence in sentences {
+        for lang in ["en", "en-GB"] {
+            let result = parse(sentence, &home, &mut Session::new(), &[], &Settings::pinned(lang));
+            assert!(!result.clarify, "{lang} {sentence}: {result:?}");
+            assert!(result.intents.iter().any(|intent| intent.name == "HassGetState"), "{lang} {sentence}: {result:?}");
+        }
+    }
+}
+
+#[test]
 fn lock_it_follows_last_door() {
     let home = lock_home();
     let mut session = Session::new();

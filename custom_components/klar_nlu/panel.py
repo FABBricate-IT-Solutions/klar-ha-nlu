@@ -132,6 +132,9 @@ def _remove_operator_panel(hass: HomeAssistant) -> None:
     store = hass.data.get(DOMAIN)
     if isinstance(store, dict):
         store.pop("operator_panel", None)
+    panels = hass.data.get("frontend_panels")
+    if isinstance(panels, dict) and PANEL_PATH not in panels:
+        return
     try:
         async_remove_panel(hass, PANEL_PATH)
     except (AttributeError, KeyError, ValueError):

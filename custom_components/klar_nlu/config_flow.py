@@ -9,6 +9,7 @@ from homeassistant.core import callback
 from homeassistant.data_entry_flow import FlowResult
 from homeassistant.helpers import selector
 
+from .addon_host import async_refresh_klar_hosts
 from .const import (
     CHANNEL_STABLE,
     CHANNEL_STAGING,
@@ -34,6 +35,7 @@ from .const import (
     DOMAIN,
     MODE_LOCAL,
     MODE_REMOTE,
+    apply_discovered_host,
     channel_for_addon_slug,
     is_managed_engine_url,
     resolve_channel,
@@ -160,18 +162,21 @@ def _keep_product_options(existing: dict[str, Any]) -> dict[str, Any]:
     return {key: existing[key] for key in _PRODUCT_OPTION_KEYS if key in existing}
 
 
-def suggested_setup(apps: list[str]) -> dict[str, str]:
+def suggested_setup(
+    apps: list[str], hosts: dict[str, str] | None = None
+) -> dict[str, str]:
     """Prefer the running App over a second bundled engine."""
+    found = hosts or {}
     if "Klar NLU" in apps:
         return {
             CONF_MODE: MODE_REMOTE,
-            CONF_URL: DEFAULT_ADDON_URL,
+            CONF_URL: apply_discovered_host(DEFAULT_ADDON_URL, found),
             CONF_CHANNEL: CHANNEL_STABLE,
         }
     if "Klar NLU (Staging)" in apps:
         return {
             CONF_MODE: MODE_REMOTE,
-            CONF_URL: DEFAULT_STAGING_ADDON_URL,
+            CONF_URL: apply_discovered_host(DEFAULT_STAGING_ADDON_URL, found),
             CONF_CHANNEL: CHANNEL_STAGING,
         }
     return {
@@ -187,6 +192,7 @@ class KlarConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
     async def async_step_user(self, user_input: dict | None = None) -> FlowResult:
         if self._async_current_entries():
             return self.async_abort(reason="already_configured")
+        hosts = await async_refresh_klar_hosts(self.hass)
         if user_input is not None:
             await self.async_set_unique_id(DOMAIN)
             mode, url = resolve_engine_target(
@@ -194,6 +200,7 @@ class KlarConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
                 channel=resolve_channel(user_input.get(CONF_CHANNEL)),
                 url=user_input.get(CONF_URL),
                 supervisor=_on_supervisor(self.hass),
+                addon_hosts=hosts,
             )
             channel = resolve_channel(user_input.get(CONF_CHANNEL))
             if not _valid_engine_url(url):
@@ -210,20 +217,21 @@ class KlarConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
                 title="Klar NLU",
                 data=data,
             )
-        return self._user_form()
+        return self._user_form(hosts=hosts)
 
     def _user_form(
         self,
         *,
         errors: dict[str, str] | None = None,
         suggested: dict[str, Any] | None = None,
+        hosts: dict[str, str] | None = None,
     ) -> FlowResult:
         apps = detected_klar_apps(self.hass)
         return self.async_show_form(
             step_id="user",
             data_schema=self.add_suggested_values_to_schema(
                 USER_SCHEMA,
-                suggested if suggested is not None else suggested_setup(apps),
+                suggested if suggested is not None else suggested_setup(apps, hosts),
             ),
             errors=errors,
             description_placeholders={"apps": addon_status_note(self.hass)},
@@ -252,6 +260,7 @@ class KlarOptionsFlow(config_entries.OptionsFlow):
     async def async_step_init(
         self, user_input: dict[str, Any] | None = None
     ) -> FlowResult:
+        hosts = await async_refresh_klar_hosts(self.hass)
         if user_input is not None:
             data = _keep_product_options(dict(self.config_entry.options))
             data.pop(CONF_FALLBACK_AGENT, None)
@@ -269,6 +278,7 @@ class KlarOptionsFlow(config_entries.OptionsFlow):
                 or self.config_entry.data.get(CONF_URL)
                 or "",
                 supervisor=_on_supervisor(self.hass),
+                addon_hosts=hosts,
             )
             data[CONF_MODE] = mode
             data[CONF_CHANNEL] = channel
@@ -330,6 +340,7 @@ class KlarOptionsFlow(config_entries.OptionsFlow):
                 channel=suggested[CONF_CHANNEL],
                 url=suggested.get(CONF_URL),
                 supervisor=_on_supervisor(self.hass),
+                addon_hosts=hosts,
             )
         return self.async_show_form(
             step_id="init",

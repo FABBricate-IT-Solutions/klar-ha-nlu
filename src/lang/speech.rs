@@ -15,6 +15,10 @@ pub struct Speech {
     pub turn_on_scene: &'static str,
     pub turn_off: &'static str,
     pub toggle: &'static str,
+    pub cover_open: &'static str,
+    pub cover_close: &'static str,
+    pub lock: &'static str,
+    pub unlock: &'static str,
     pub light_set: &'static str,
     pub light_color: &'static str,
     pub climate_set: &'static str,
@@ -102,6 +106,18 @@ mod tests {
             assert_ne!(s.loc_home, s.need_on, "{code} loc_home");
             let jarvis = s.personality_prefixes("jarvis");
             assert!(!jarvis.iter().any(|prefix| prefix.contains("Of course, sir")), "{code} jarvis should not be English");
+        }
+    }
+
+    #[test]
+    fn cover_and_lock_words_are_not_on_off() {
+        for code in ["en", "de"] {
+            let s = speech(code);
+            for word in [s.cover_open, s.cover_close, s.lock, s.unlock] {
+                assert!(word.contains("{target}"), "{code} missing target: {word}");
+                assert_ne!(word, s.turn_on, "{code}");
+                assert_ne!(word, s.turn_off, "{code}");
+            }
         }
     }
 }
