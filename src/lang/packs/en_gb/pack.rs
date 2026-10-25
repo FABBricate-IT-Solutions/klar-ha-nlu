@@ -169,7 +169,7 @@ pub const PACK: LanguagePack = LanguagePack {
         seconds: &["second", "seconds"],
         list_skip: &["a", "add", "done", "erledigt", "fertig", "fuege", "hinzu", "in", "the"],
         shopping_names: &["list"],
-        status_words: &["state", "status"],
+        status_words: &["state", "status", "what"],
         window_words: &["curtain"],
         open_close: &["close", "open"],
         laundry_hint: &["utility"],

@@ -301,7 +301,7 @@ def north() -> list[dict]:
             extra_w={
                 "on_particles": ["on"],
                 "off_particles": ["off"],
-                "status": ["status", "state"],
+                "status": ["what", "status", "state"],
             },
             smoke=[("turn on the lounge light", "HassTurnOn"), ("switch off the kitchen light", "HassTurnOff")],
             and_join=" and ",
