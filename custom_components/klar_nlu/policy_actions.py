@@ -21,6 +21,17 @@ def skips_llm_fallback(hit: str) -> bool:
     return hit in {"reply", "template", "script"}
 
 
+def routes_general_chat(decision_type: str, reason: str) -> bool:
+    """Send real chat, and general questions, to the configured LLM.
+
+    Failed device commands stay a normal reject. Only ``out_of_domain``
+    (trivia, advice, open questions with no home target) is forwarded.
+    """
+    if decision_type == "chat":
+        return True
+    return decision_type == "reject" and reason == "out_of_domain"
+
+
 def keeps_engine_chat(hit: str, chat: bool, speech: str) -> bool:
     """Clock and other household replies already have speech — do not ask the LLM."""
     return bool(chat and speech.strip() and hit not in {"llm", "template"})

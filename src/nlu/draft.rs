@@ -76,7 +76,7 @@ pub(super) fn route_special(context: &ParseContext<'_>, raw: &[String], split: &
         return Some(chat(String::new(), context.session.briefing, context.session.briefing));
     }
     if is_ood(raw, context.home) || is_ood(tokens, context.home) {
-        return Some(reject(RejectReason::NoAction, speak_unknown()));
+        return Some(reject(RejectReason::OutOfDomain, speak_unknown()));
     }
     if looks_like_correction(tokens) && context.session.pending_confirm().is_none() {
         let mut draft = reject(RejectReason::Unsupported, speak_correction());

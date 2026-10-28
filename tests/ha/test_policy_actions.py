@@ -40,6 +40,11 @@ class PolicyActionTests(unittest.TestCase):
         self.assertFalse(actions.keeps_engine_chat("llm", True, "Es ist 14:44."))
         self.assertFalse(actions.keeps_engine_chat("", True, ""))
         self.assertFalse(actions.keeps_engine_chat("", False, "Es ist 14:44."))
+        self.assertTrue(actions.routes_general_chat("chat", ""))
+        self.assertTrue(actions.routes_general_chat("reject", "out_of_domain"))
+        self.assertFalse(actions.routes_general_chat("reject", "no_action"))
+        self.assertFalse(actions.routes_general_chat("reject", "no_target"))
+        self.assertFalse(actions.routes_general_chat("execute", "out_of_domain"))
 
 
 if __name__ == "__main__":

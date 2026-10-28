@@ -12,12 +12,12 @@ ROOT = Path(__file__).resolve().parents[2]
 class ConversationFallbackTests(unittest.TestCase):
     def test_reject_does_not_require_nlu_rag(self) -> None:
         src = (ROOT / "custom_components" / "klar_nlu" / "conversation.py").read_text(encoding="utf-8")
-        start = src.index("if (\n            decision_type == \"chat\"\n            and not skips_llm_fallback(hit)")
+        start = src.index("if (\n            routes_general_chat(decision_type, reason)\n            and not skips_llm_fallback(hit)")
         end = src.index("fallback = await self._fallback", start)
         block = src[start:end]
         self.assertNotIn("self._fallback_agent_id()", block)
         self.assertIn("keeps_engine_chat(hit, chat, engine_speech)", block)
-        self.assertIn("decision_type == \"chat\"", block)
+        self.assertIn("routes_general_chat(decision_type, reason)", block)
         self.assertNotIn("_nlu_rag()", block)
         self.assertNotIn("decision_type != \"reject\"", block)
 
@@ -76,7 +76,7 @@ class ConversationFallbackTests(unittest.TestCase):
         self.assertIn('if payload.get("unreachable"):', block)
         self.assertNotIn('if decision_type != "execute":', block)
         self.assertIn("keep_lab_plan(", src)
-        self.assertIn('decision_type != "execute"', src[src.index("if hit == \"llm\"") : src.index("if (\n            decision_type == \"chat\"")])
+        self.assertIn('decision_type != "execute"', src[src.index("if hit == \"llm\"") : src.index("if (\n            routes_general_chat(decision_type, reason)")])
 
     def test_execute_closes_conversation_and_keeps_stable_session(self) -> None:
         src = (ROOT / "custom_components" / "klar_nlu" / "conversation.py").read_text(
