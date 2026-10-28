@@ -72,6 +72,7 @@ from .policy_actions import (
     hit_and_payload,
     keeps_engine_chat,
     render_user_template,
+    routes_general_chat,
     skips_llm_fallback,
 )
 from .refine import (
@@ -292,8 +293,9 @@ class KlarConversationEntity(ConversationEntity):
             )
             if replied is not None:
                 return replied
+        reason = str(decision.get("reason") or "")
         if (
-            decision_type == "chat"
+            routes_general_chat(decision_type, reason)
             and not skips_llm_fallback(hit)
             and not keeps_engine_chat(hit, chat, engine_speech)
             and not clarify
