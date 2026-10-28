@@ -160,6 +160,7 @@ pub enum RejectReason {
     EmptyInput,
     InvalidInput,
     NoAction,
+    OutOfDomain,
     NoTarget,
     Ambiguous,
     Unsafe,

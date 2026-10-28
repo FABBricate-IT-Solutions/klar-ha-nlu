@@ -1,7 +1,8 @@
 FROM debian:bookworm-slim
 RUN apt-get update \
     && DEBIAN_FRONTEND=noninteractive apt-get upgrade -y --no-install-recommends \
-    && DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends ca-certificates \
+    && DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
+        ca-certificates "openssl=3.0.22-1~deb12u2" "libssl3=3.0.22-1~deb12u2" \
     && rm -rf /var/lib/apt/lists/*
 COPY klar /usr/local/bin/klar
 COPY klar-entry.sh /usr/local/bin/klar-entry.sh

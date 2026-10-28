@@ -44,27 +44,25 @@ fn say(language: &str, intent: &str, id: &str, name: &str, domain: &str) -> Stri
 #[test]
 fn cover_open_and_close_use_cover_words() {
     let open = say("en", "HassTurnOn", "cover.bedroom_blinds", "Bedroom Blinds", "cover");
-    assert!(open.contains("Opened"), "{open}");
-    assert!(!open.contains(" is on"), "{open}");
+    assert_eq!(open, "Opened Bedroom Blinds.");
     let close = say("en", "HassTurnOff", "cover.bedroom_blinds", "Bedroom Blinds", "cover");
-    assert!(close.contains("Closed"), "{close}");
-    assert!(!close.contains(" is off"), "{close}");
+    assert_eq!(close, "Closed Bedroom Blinds.");
 }
 
 #[test]
 fn lock_and_unlock_use_lock_words() {
     let lock = say("en", "HassTurnOn", "lock.front_door", "Front Door", "lock");
-    assert!(lock.contains("Locked"), "{lock}");
+    assert_eq!(lock, "Locked Front Door.");
     let unlock = say("en", "HassTurnOff", "lock.front_door", "Front Door", "lock");
-    assert!(unlock.contains("Unlocked"), "{unlock}");
+    assert_eq!(unlock, "Unlocked Front Door.");
 }
 
 #[test]
 fn german_cover_words() {
     let open = say("de", "HassTurnOn", "cover.rollo", "Rollo", "cover");
-    assert!(open.contains("geöffnet"), "{open}");
+    assert_eq!(open, "Rollo ist geöffnet.");
     let close = say("de", "HassTurnOff", "cover.rollo", "Rollo", "cover");
-    assert!(close.contains("geschlossen"), "{close}");
+    assert_eq!(close, "Rollo ist geschlossen.");
 }
 
 #[test]
@@ -74,15 +72,15 @@ fn area_wide_covers_use_cover_words() {
         entity("cover.bedroom_curtains", "Bedroom Curtains", "cover", "open"),
     ];
     let out = render_snapshot(&snap("en", "HassTurnOn", &[("area", "bedroom"), ("domain", "cover")], entities)).speech;
-    assert!(out.starts_with("Opened"), "{out}");
+    assert_eq!(out, "Opened Bedroom Blinds.");
 }
 
 #[test]
 fn lights_still_say_on_and_off() {
     let on = say("en", "HassTurnOn", "light.bedroom_light", "Bedroom Light", "light");
-    assert!(on.contains("is on"), "{on}");
+    assert_eq!(on, "Bedroom Light is on.");
     let off = say("en", "HassTurnOff", "light.bedroom_light", "Bedroom Light", "light");
-    assert!(off.contains("is off"), "{off}");
+    assert_eq!(off, "Bedroom Light is off.");
 }
 
 #[test]

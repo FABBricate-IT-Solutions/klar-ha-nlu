@@ -78,10 +78,10 @@ fn inferred_actions_never_claim_perfect_confidence() {
 fn ood_sentences_reject_in_german_and_english() {
     let home = default_home();
     for (language, text, expected) in [
-        ("de", "Was ist die Hauptstadt von Frankreich", RejectReason::NoAction),
-        ("de", "Was soll ich kochen", RejectReason::NoAction),
+        ("de", "Was ist die Hauptstadt von Frankreich", RejectReason::OutOfDomain),
+        ("de", "Was soll ich kochen", RejectReason::OutOfDomain),
         ("de", "bitte mal doch", RejectReason::EmptyInput),
-        ("en", "What is the capital of France", RejectReason::NoAction),
+        ("en", "What is the capital of France", RejectReason::OutOfDomain),
         ("en", "please please", RejectReason::EmptyInput),
     ] {
         let outcome =
@@ -91,6 +91,10 @@ fn ood_sentences_reject_in_german_and_english() {
         assert!(outcome.candidates.is_empty());
         assert!(!matches!(outcome.decision, ParseDecision::Chat | ParseDecision::Execute), "{language} {text}");
     }
+    let missed = parse_en("turn on the flurble", &home, &mut Session::new());
+    assert_ne!(reject_reason(&missed.decision), Some(&RejectReason::OutOfDomain), "{missed:#?}");
+    let garbage = parse_de("asdfghjkl qwerty", &home, &mut Session::new());
+    assert_ne!(reject_reason(&garbage.decision), Some(&RejectReason::OutOfDomain), "{garbage:#?}");
 }
 
 #[test]
