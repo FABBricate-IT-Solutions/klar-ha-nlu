@@ -1,6 +1,6 @@
 use crate::parse::calendar::speak_calendar_need;
 use crate::parse::compound::expand_compounds;
-use crate::parse::normalize::{strip_fillers, tokenize};
+use crate::parse::normalize::{strip_fillers_for_areas, tokenize};
 use crate::parse::respond::{speak_clarify, speak_unknown};
 use crate::parse::split::split_clauses;
 use crate::session::Session;
@@ -30,7 +30,7 @@ pub(super) fn run(context: ParseContext<'_>) -> PipelineResult {
     let mut trace = ParseTrace::default();
     let started = Instant::now();
     let raw_tokens = tokenize(context.text);
-    let split = expand_compounds(&strip_fillers(&raw_tokens), context.home);
+    let split = expand_compounds(&strip_fillers_for_areas(&raw_tokens, &context.home.areas), context.home);
     trace.tokens = split.tokens.iter().take(MAX_NORMALIZED_TOKENS).cloned().collect();
     trace.normalized = trace.tokens.join(" ");
     record_stage(&mut trace, "normalize", started, format!("{} normalized tokens", split.tokens.len()));

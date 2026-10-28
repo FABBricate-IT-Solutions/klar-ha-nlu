@@ -302,6 +302,8 @@ def north() -> list[dict]:
                 "on_particles": ["on"],
                 "off_particles": ["off"],
                 "status": ["status", "state"],
+                # "telly" stays first: generated test sentences use the first word. "tv" is still what most people say.
+                "tv": ["telly", "tv", "television"],
             },
             smoke=[("turn on the lounge light", "HassTurnOn"), ("switch off the kitchen light", "HassTurnOff")],
             and_join=" and ",

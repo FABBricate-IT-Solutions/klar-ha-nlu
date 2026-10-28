@@ -1,4 +1,5 @@
 use crate::lang::catalog;
+use crate::types::AreaRec;
 
 /// Fold German umlauts and common European accents so packs can list ASCII tokens.
 pub fn fold_latin(s: &str) -> String {
@@ -209,6 +210,44 @@ fn longest_match(parts: &[String]) -> Vec<String> {
         }
         out.push(parts[i..i + best].join(""));
         i += best;
+    }
+    out
+}
+
+/// Like [`strip_fillers`], but a multi-word area name that contains a filler ("living room",
+/// "tv room") is first collapsed to one compact `area_id` token ("livingroom"), the form area
+/// matching already compares against. Otherwise "room" is stripped and the name is lost, and
+/// its other words ("tv", "play", "front") read as commands or devices.
+pub fn strip_fillers_for_areas(tokens: &[String], areas: &[AreaRec]) -> Vec<String> {
+    strip_fillers(&collapse_area_names(tokens, areas))
+}
+
+fn collapse_area_names(tokens: &[String], areas: &[AreaRec]) -> Vec<String> {
+    let cat = catalog();
+    let mut names: Vec<(Vec<String>, String)> = areas
+        .iter()
+        .flat_map(|area| {
+            let labels = std::iter::once(area.name.as_str()).chain(area.aliases.iter().map(String::as_str));
+            let token = compact(&area.area_id);
+            labels.map(move |label| (tokenize(label), token.clone()))
+        })
+        .filter(|(words, _)| words.len() > 1 && words.iter().any(|w| cat.is_filler(w)) && !words.iter().all(|w| cat.is_filler(w)))
+        .collect();
+    // Longest names first, so "guest bed room" wins over "bed room".
+    names.sort_by(|a, b| b.0.len().cmp(&a.0.len()));
+    let mut out = Vec::with_capacity(tokens.len());
+    let mut i = 0;
+    while i < tokens.len() {
+        match names.iter().find(|(words, _)| tokens[i..].starts_with(words)) {
+            Some((words, token)) => {
+                out.push(token.clone());
+                i += words.len();
+            }
+            None => {
+                out.push(tokens[i].clone());
+                i += 1;
+            }
+        }
     }
     out
 }
