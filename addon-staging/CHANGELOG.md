@@ -6,6 +6,24 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 Versions follow Home Assistant calendar versioning (`YYYY.M.PATCH`)
 and [Conventional Commits](https://www.conventionalcommits.org/).
 
+## [2026.10.9](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/compare/2026.10.8...2026.10.9) - 2026-10-28
+
+
+
+### Other
+
+- Merge pull request #318 from FABBricate-IT-Solutions/dependabot/npm_and_yarn/web/npm-minor-9f26ffa250([c72aa00](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/c72aa00204c933dafe42712f4cf2a7e11e4a6798))
+
+- bump lucide-react in /web in the npm-minor group([67886f8](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/67886f85a4d05d5dd30fd338b399ac8aa09819c4))
+
+- Merge pull request #317 from FABBricate-IT-Solutions/dependabot/npm_and_yarn/web/npm-patch-e6386c2419([1587049](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/158704998afe86f037e98e3e9b03cd45efbfece7))
+
+- bump vite from 8.3.4 to 8.3.5 in /web in the npm-patch group([f4a9500](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/f4a9500fcee5d70f457132cec27678fb4183f9e6))
+
+- Merge pull request #316 from FABBricate-IT-Solutions/dependabot/cargo/rust-minor-3a28fe187f([a6e0b8e](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/a6e0b8edd75521db9d06014de4f2b5005d7a88c5))
+
+- bump tokio from 1.53.3 to 1.54.1 in the rust-minor group([3b756ea](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/3b756ea599b5fcec277bb8926f3fdddd527a6e4a))
+
 ## [2026.10.8](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/compare/2026.10.2-staging.ac19120...2026.10.8) - 2026-10-25
 
 
