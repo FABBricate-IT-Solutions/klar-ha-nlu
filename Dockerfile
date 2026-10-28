@@ -19,7 +19,8 @@ RUN cargo build --release --locked \
 FROM debian:bookworm-slim
 RUN apt-get update \
     && DEBIAN_FRONTEND=noninteractive apt-get upgrade -y --no-install-recommends \
-    && DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends ca-certificates \
+    && DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
+        ca-certificates "openssl=3.0.22-1~deb12u2" "libssl3=3.0.22-1~deb12u2" \
     && rm -rf /var/lib/apt/lists/*
 COPY --from=build /src/target/release/klar /usr/local/bin/klar
 COPY --from=build /src/THIRD_PARTY /usr/share/doc/klar/THIRD_PARTY
