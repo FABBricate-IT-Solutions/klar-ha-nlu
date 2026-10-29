@@ -43,7 +43,9 @@ pub(super) fn run(context: ParseContext<'_>) -> PipelineResult {
     let clauses = split_clauses(&split.tokens, context.home);
     record_stage(&mut trace, "features", started, format!("{} clauses", clauses.len()));
 
-    if let Some(draft) = super::dutch::route(&context, &raw_tokens, &split.tokens).or_else(|| route_special(&context, &raw_tokens, &split))
+    if let Some(draft) = super::dutch::route(&context, &raw_tokens, &split.tokens)
+        .or_else(|| super::windows::route(&context, &split.tokens))
+        .or_else(|| route_special(&context, &raw_tokens, &split))
     {
         record_stage(&mut trace, "safety_decision", Instant::now(), decision_name(&draft.decision).into());
         let candidates = draft.output_candidate.clone().into_iter().collect();
