@@ -1,5 +1,5 @@
 name: Staging
-# Pin Ubuntu 24.04. ubuntu-latest moves to 26.04 through November 2026.
+# Pin Ubuntu 26.04. ubuntu-latest moves to this image through November 2026.
 
 # Merge to protected `staging` (via PR) → quality + security (slim nextest)
 # → annotated tag `{CalVer}-staging.{sha7}` → Build as a GitHub prerelease.
@@ -46,7 +46,7 @@ jobs:
   tag:
     name: tag
     needs: [quality, security]
-    runs-on: ubuntu-24.04
+    runs-on: ubuntu-26.04
     outputs:
       tag: ${{ steps.tag.outputs.tag }}
     steps:

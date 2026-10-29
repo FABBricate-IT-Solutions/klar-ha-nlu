@@ -1,5 +1,5 @@
 name: Release
-# Pin Ubuntu 24.04. ubuntu-latest moves to 26.04 through November 2026.
+# Pin Ubuntu 26.04. ubuntu-latest moves to this image through November 2026.
 
 on:
   push:
@@ -47,7 +47,7 @@ jobs:
   cut:
     name: cut
     needs: [quality, security]
-    runs-on: ubuntu-24.04
+    runs-on: ubuntu-26.04
     timeout-minutes: 90
     permissions:
       contents: write

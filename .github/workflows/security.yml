@@ -1,5 +1,5 @@
 name: Security
-# Pin Ubuntu 24.04. ubuntu-latest moves to 26.04 through November 2026.
+# Pin Ubuntu 26.04. ubuntu-latest moves to this image through November 2026.
 
 on:
   pull_request:
@@ -16,7 +16,7 @@ permissions:
 jobs:
   audit:
     name: cargo-audit
-    runs-on: ubuntu-24.04
+    runs-on: ubuntu-26.04
     steps:
       - uses: actions/checkout@v7
       - uses: dtolnay/rust-toolchain@1.85
@@ -26,7 +26,7 @@ jobs:
 
   deny:
     name: cargo-deny
-    runs-on: ubuntu-24.04
+    runs-on: ubuntu-26.04
     steps:
       - uses: actions/checkout@v7
       - uses: EmbarkStudios/cargo-deny-action@v2
@@ -36,7 +36,7 @@ jobs:
 
   gitleaks:
     name: gitleaks
-    runs-on: ubuntu-24.04
+    runs-on: ubuntu-26.04
     steps:
       - uses: actions/checkout@v7
         with:
@@ -51,7 +51,7 @@ jobs:
 
   semgrep:
     name: semgrep
-    runs-on: ubuntu-24.04
+    runs-on: ubuntu-26.04
     container:
       image: semgrep/semgrep
     steps:
@@ -63,7 +63,7 @@ jobs:
   codeql:
     name: codeql-rust
     if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
-    runs-on: ubuntu-24.04
+    runs-on: ubuntu-26.04
     timeout-minutes: 120
     permissions:
       contents: read
@@ -84,7 +84,7 @@ jobs:
   trivy:
     name: trivy-ghcr
     if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
-    runs-on: ubuntu-24.04
+    runs-on: ubuntu-26.04
     timeout-minutes: 20
     permissions:
       contents: read
