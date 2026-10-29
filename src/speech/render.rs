@@ -17,37 +17,80 @@ pub fn render_snapshot(snap: &SpeechSnapshot) -> SpeechRenderOut {
 }
 
 fn interpolate(snap: &SpeechSnapshot, speech: Speech, de: bool) -> String {
+    let target = pretty_where(snap, speech);
+    let line = interpolate_line(snap, speech, de, &target.phrase);
+    match plural_verbs(&snap.language) {
+        Some(verbs) if target.plural => pluralize(&line, &target.phrase, verbs),
+        _ => line,
+    }
+}
+
+/// What the reply calls the devices acted on, and whether that phrase lists several.
+struct Target {
+    phrase: String,
+    plural: bool,
+}
+
+impl Target {
+    fn one(phrase: String) -> Self {
+        Self { phrase, plural: false }
+    }
+}
+
+/// Singular/plural verb for packs whose templates read "{target} is …".
+/// Regional packs are matched first: de-AT says "is", de-CH "isch".
+/// Stopgap until packs carry their own plural templates.
+fn plural_verbs(language: &str) -> Option<(&'static str, &'static str)> {
+    let code = language.to_ascii_lowercase().replace('-', "_");
+    match code.as_str() {
+        "de_at" => return Some(("is", "san")),
+        "de_ch" => return Some(("isch", "sind")),
+        _ => {}
+    }
+    match code.split('_').next()? {
+        "en" => Some(("is", "are")),
+        "de" => Some(("ist", "sind")),
+        "nl" => Some(("staat", "staan")),
+        _ => None,
+    }
+}
+
+/// "A and B is on" → "A and B are on". Only the verb right after the target changes.
+fn pluralize(line: &str, target: &str, (one, many): (&str, &str)) -> String {
+    line.replacen(&format!("{target} {one} "), &format!("{target} {many} "), 1)
+}
+
+fn interpolate_line(snap: &SpeechSnapshot, speech: Speech, de: bool, where_: &str) -> String {
     let name = snap.intent.name.as_str();
-    let where_ = pretty_where(snap, speech);
     if is_query(name) {
         return query_speech(snap, speech, de);
     }
-    if let Some(line) = media_action(name, &where_, snap, de) {
+    if let Some(line) = media_action(name, where_, snap, de) {
         return line;
     }
     if let Some(line) = timer_action(name, speech) {
         return line;
     }
     match name {
-        "HassTurnOn" if domain_of(snap) == "scene" => fill(speech.turn_on_scene, &where_, "", ""),
-        "HassTurnOn" if domain_of(snap) == "cover" => fill(speech.cover_open, &where_, "", ""),
-        "HassTurnOff" if domain_of(snap) == "cover" => fill(speech.cover_close, &where_, "", ""),
-        "HassTurnOn" if domain_of(snap) == "lock" => fill(speech.lock, &where_, "", ""),
-        "HassTurnOff" if domain_of(snap) == "lock" => fill(speech.unlock, &where_, "", ""),
-        "HassTurnOn" => fill(speech.turn_on, &where_, "", ""),
-        "HassTurnOff" => fill(speech.turn_off, &where_, "", ""),
-        "HassToggle" => fill(speech.toggle, &where_, "", ""),
-        "HassLightSet" => light_set(snap, speech, &where_, de),
-        "HassClimateSetTemperature" => climate_set(snap, speech, &where_, de),
-        "HassVacuumStart" => fill(speech.vacuum_start, &where_, "", ""),
-        "HassVacuumReturnToBase" => fill(speech.vacuum_dock, &where_, "", ""),
-        "HassFanSetSpeed" | "HassFanSetPercentage" => fill(speech.fan_set, &where_, slot(snap, "percentage").unwrap_or(""), ""),
+        "HassTurnOn" if domain_of(snap) == "scene" => fill(speech.turn_on_scene, where_, "", ""),
+        "HassTurnOn" if domain_of(snap) == "cover" => fill(speech.cover_open, where_, "", ""),
+        "HassTurnOff" if domain_of(snap) == "cover" => fill(speech.cover_close, where_, "", ""),
+        "HassTurnOn" if domain_of(snap) == "lock" => fill(speech.lock, where_, "", ""),
+        "HassTurnOff" if domain_of(snap) == "lock" => fill(speech.unlock, where_, "", ""),
+        "HassTurnOn" => fill(speech.turn_on, where_, "", ""),
+        "HassTurnOff" => fill(speech.turn_off, where_, "", ""),
+        "HassToggle" => fill(speech.toggle, where_, "", ""),
+        "HassLightSet" => light_set(snap, speech, where_, de),
+        "HassClimateSetTemperature" => climate_set(snap, speech, where_, de),
+        "HassVacuumStart" => fill(speech.vacuum_start, where_, "", ""),
+        "HassVacuumReturnToBase" => fill(speech.vacuum_dock, where_, "", ""),
+        "HassFanSetSpeed" | "HassFanSetPercentage" => fill(speech.fan_set, where_, slot(snap, "percentage").unwrap_or(""), ""),
         "KlarGetCalendarEvents" | "KlarCreateCalendarEvent" | "KlarDeleteCalendarEvent" | "KlarMoveCalendarEvent" | "KlarNoMusicPlayer" => {
             calendar_speech(snap, speech)
         }
         _ => {
             if !where_.is_empty() {
-                fill(speech.done, &where_, "", "")
+                fill(speech.done, where_, "", "")
             } else {
                 speech.unknown.to_string()
             }
@@ -225,11 +268,11 @@ fn fill_named(template: &str, snap: &SpeechSnapshot) -> String {
     template.replace("{summary}", slot(snap, "summary").unwrap_or("")).replace("{when}", slot(snap, "when").unwrap_or(""))
 }
 
-fn pretty_where(snap: &SpeechSnapshot, speech: Speech) -> String {
+fn pretty_where(snap: &SpeechSnapshot, speech: Speech) -> Target {
     let media = is_media(snap);
-    let name_slot = slot(snap, "name").filter(|name| !name.is_empty() && !name.contains('.'));
+    let name_slot = named_device(snap);
     if let Some(name) = name_slot.filter(|name| !generic_light(name) || media) {
-        return spoken_device(name, slot(snap, "entity_id").unwrap_or(""), speech);
+        return Target::one(spoken_device(name, slot(snap, "entity_id").unwrap_or(""), speech));
     }
     let room = room_from_id(slot(snap, "entity_id").or_else(|| snap.entities.first().map(|entity| entity.entity_id.as_str())), speech)
         .or_else(|| slot(snap, "area_name").or_else(|| slot(snap, "area")).map(|area| roomish(area, speech)));
@@ -239,22 +282,65 @@ fn pretty_where(snap: &SpeechSnapshot, speech: Speech) -> String {
             || name_slot.is_some_and(generic_light)
             || (entity_name.is_none() && domain_of(snap) == "light")
         {
-            return area_light_phrase(room, speech);
+            return Target::one(area_light_phrase(room, speech));
         }
     }
     if let Some(name) = name_slot {
-        return spoken_device(name, slot(snap, "entity_id").unwrap_or(""), speech);
+        return Target::one(spoken_device(name, slot(snap, "entity_id").unwrap_or(""), speech));
+    }
+    if let Some(names) = listed_targets(snap, speech) {
+        return Target { phrase: join_list(&names, speech.and_join), plural: true };
     }
     if let Some(name) = entity_name {
-        return spoken_device(name, slot(snap, "entity_id").unwrap_or(""), speech);
+        return Target::one(spoken_device(name, slot(snap, "entity_id").unwrap_or(""), speech));
     }
     if let Some(room) = room.filter(|_| !media) {
-        return area_light_phrase(&room, speech);
+        return Target::one(area_light_phrase(&room, speech));
     }
     if let Some(entity_id) = slot(snap, "entity_id") {
-        return spoken_device("", entity_id, speech);
+        return Target::one(spoken_device("", entity_id, speech));
     }
-    speech.or_home.to_string()
+    Target::one(speech.or_home.to_string())
+}
+
+/// Most devices read out by name; beyond this the reply falls back to the room.
+const MAX_SPOKEN_TARGETS: usize = 4;
+
+/// The user named one device ("close the bedroom blinds"), so speak only that.
+fn named_device(snap: &SpeechSnapshot) -> Option<&str> {
+    slot(snap, "name").filter(|name| !name.is_empty() && !name.contains('.'))
+}
+
+/// Distinct spoken names of the devices acted on, in snapshot order.
+fn spoken_targets(snap: &SpeechSnapshot, speech: Speech) -> Vec<String> {
+    let mut names: Vec<String> = Vec::new();
+    for entity in snap.entities.iter().filter(|entity| !is_infra(entity)) {
+        let name = entity.name.trim();
+        if name.is_empty() || name.contains('.') {
+            continue;
+        }
+        let spoken = spoken_device(name, &entity.entity_id, speech);
+        let folded = spoken.to_lowercase();
+        if !spoken.is_empty() && !names.iter().any(|seen| seen.to_lowercase() == folded) {
+            names.push(spoken);
+        }
+    }
+    names
+}
+
+/// Two to MAX_SPOKEN_TARGETS devices, all to be named in the reply.
+fn listed_targets(snap: &SpeechSnapshot, speech: Speech) -> Option<Vec<String>> {
+    let names = spoken_targets(snap, speech);
+    (2..=MAX_SPOKEN_TARGETS).contains(&names.len()).then_some(names)
+}
+
+/// "A", "A and B", "A, B and C".
+fn join_list(names: &[String], and: &str) -> String {
+    match names {
+        [] => String::new(),
+        [one] => one.clone(),
+        [rest @ .., last] => format!("{}{and}{last}", rest.join(", ")),
+    }
 }
 
 fn is_media(snap: &SpeechSnapshot) -> bool {
@@ -380,3 +466,6 @@ mod tests;
 #[cfg(test)]
 #[path = "cover_lock_tests.rs"]
 mod cover_lock_tests;
+#[cfg(test)]
+#[path = "multi_target_tests.rs"]
+mod multi_target_tests;

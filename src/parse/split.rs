@@ -47,6 +47,10 @@ pub fn split_clauses(tokens: &[String], home: &HomeGraph) -> Vec<Vec<String>> {
         if i1 <= i0 {
             continue;
         }
+        if let Some(start) = verb_final_boundary(tokens, i0, i1) {
+            cuts.push(start);
+            continue;
+        }
         let between = &tokens[i0 + 1..i1];
         let has_conj = between.iter().any(|t| is_conj(t));
         // Same verb twice ("mach … an") is one clause. A new verb, or
@@ -192,6 +196,32 @@ fn is_shared_tail(token: &str) -> bool {
         || matches!(catalog().verb(token), Some(crate::lang::VerbKind::Off | crate::lang::VerbKind::On | crate::lang::VerbKind::OnParticle))
 }
 
+/// Verb-final clauses ("Licht an, mach Rollo zu und mach Vorhang zu",
+/// "Licht aus und Rollo und Vorhang auf"): a particle closes its clause, a new device
+/// follows, and another particle closes that clause. The next clause starts right after
+/// the first particle (and after "und" if one follows). Commas are gone by now, so this
+/// shape is the only sign of the boundary. Cutting at the last "und" instead would split
+/// "Rollo und Vorhang" apart.
+fn verb_final_boundary(tokens: &[String], i0: usize, i1: usize) -> Option<usize> {
+    if !is_particle(&tokens[i0]) || !is_particle(&tokens[i1]) {
+        return None;
+    }
+    // "Heizung auf 20 und Licht an": a number after the particle makes it a set-point,
+    // not the end of a clause.
+    if tokens.get(i0 + 1).is_some_and(|t| crate::parse::numbers::first_number(std::slice::from_ref(t)).is_some()) {
+        return None;
+    }
+    if !tokens.get(i1 + 1).is_none_or(|t| is_conj(t)) {
+        return None;
+    }
+    let start = if tokens.get(i0 + 1).is_some_and(|t| is_conj(t)) { i0 + 2 } else { i0 + 1 };
+    (start < i1 && names_device(&tokens[start..i1])).then_some(start)
+}
+
+fn names_device(tokens: &[String]) -> bool {
+    device_side(tokens) || catalog().any(tokens, catalog().curtain_nouns())
+}
+
 fn is_conj(t: &str) -> bool {
     catalog().is_conj(t)
 }
@@ -293,7 +323,7 @@ pub(crate) fn follow_fixture(tokens: &[String], home: &crate::types::HomeGraph, 
 
 #[cfg(test)]
 mod tests {
-    use super::split_clauses;
+    use super::{split_clauses, verb_final_boundary};
     use crate::parse::parse;
     use crate::session::Session;
     use crate::types::{AreaRec, EntityRec, FloorRec, HomeGraph, Settings};
@@ -467,5 +497,79 @@ mod tests {
                 .any(|intent| intent.slot("area") == Some("living") || intent.slot("entity_id").is_some_and(|id| id.contains("living"))),
             "{result:?}"
         );
+    }
+
+    fn clauses_of(sentence: &str) -> Vec<String> {
+        let _bound = crate::lang::bind_catalog(crate::lang::catalog_for(&["de".into(), "en".into()]));
+        let tokens: Vec<String> = sentence.split_whitespace().map(str::to_string).collect();
+        split_clauses(&tokens, &leftover_home()).iter().map(|clause| clause.join(" ")).collect()
+    }
+
+    #[test]
+    fn verb_final_clauses_split_where_each_particle_ends_its_clause() {
+        for (sentence, expected) in [
+            // Comma between clauses (gone after tokenising), then "und".
+            (
+                "mach licht schlafzimmer an mach rollo schlafzimmer zu und mach vorhang schlafzimmer zu",
+                vec!["mach licht schlafzimmer an", "mach rollo schlafzimmer zu und", "mach vorhang schlafzimmer zu"],
+            ),
+            // "Rollo und Vorhang" share one particle and must stay together.
+            (
+                "mach licht schlafzimmer aus und rollo und vorhang schlafzimmer auf",
+                vec!["mach licht schlafzimmer aus und", "rollo und vorhang schlafzimmer auf"],
+            ),
+            (
+                "mach licht schlafzimmer an und rollo und vorhang schlafzimmer zu",
+                vec!["mach licht schlafzimmer an und", "rollo und vorhang schlafzimmer zu"],
+            ),
+            (
+                "mach rollo und vorhang schlafzimmer zu und licht schlafzimmer an",
+                vec!["mach rollo und vorhang schlafzimmer zu und", "licht schlafzimmer an"],
+            ),
+            // No verb, comma only.
+            ("licht schlafzimmer an rollo schlafzimmer zu", vec!["licht schlafzimmer an", "rollo schlafzimmer zu"]),
+            // Two rooms.
+            (
+                "schalte licht wohnzimmer aus mach vorhang schlafzimmer zu",
+                vec!["schalte licht wohnzimmer aus", "mach vorhang schlafzimmer zu"],
+            ),
+        ] {
+            assert_eq!(clauses_of(sentence), expected, "{sentence}");
+        }
+    }
+
+    #[test]
+    fn verb_final_rule_leaves_single_clauses_alone() {
+        for sentence in
+            ["mach rollo und vorhang schlafzimmer zu", "mach licht schlafzimmer an", "mach heizung schlafzimmer und wohnzimmer an"]
+        {
+            assert_eq!(clauses_of(sentence).len(), 1, "{sentence}: {:?}", clauses_of(sentence));
+        }
+    }
+
+    #[test]
+    fn verb_final_rule_ignores_verb_first_english() {
+        let _bound = crate::lang::bind_catalog(crate::lang::catalog_for(&["de".into(), "en".into()]));
+        let tokens = |sentence: &str| sentence.split_whitespace().map(str::to_string).collect::<Vec<_>>();
+        // "open" is a particle in English too, but it starts its clause, so the rule must not fire.
+        let open = tokens("off bedroom light and open bedroom blinds and curtains");
+        assert_eq!(verb_final_boundary(&open, 0, 4), None);
+        let close = tokens("on bedroom light close bedroom blinds and close bedroom curtains");
+        assert_eq!(verb_final_boundary(&close, 0, 3), None);
+        assert_eq!(verb_final_boundary(&close, 3, 7), None);
+    }
+
+    #[test]
+    fn verb_final_rule_keeps_a_set_point_with_its_device() {
+        // "auf 20" is a set-point: cutting after "auf" sent 20 to the light and left the heating unset.
+        for (sentence, expected) in [
+            (
+                "stell heizung schlafzimmer auf 20 und mach licht schlafzimmer an",
+                vec!["stell heizung schlafzimmer auf 20 und", "mach licht schlafzimmer an"],
+            ),
+            ("mach rollo schlafzimmer auf 50 und licht schlafzimmer an", vec!["mach rollo schlafzimmer auf 50", "licht schlafzimmer an"]),
+        ] {
+            assert_eq!(clauses_of(sentence), expected, "{sentence}");
+        }
     }
 }

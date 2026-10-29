@@ -13,15 +13,12 @@ pub(super) fn route(context: &ParseContext<'_>, tokens: &[String]) -> Option<Dra
     }
     let open = context.catalog.any(tokens, context.catalog.open_words());
     let closed = context.catalog.any(tokens, context.catalog.close_words());
-    if open && closed {
-        return Some(reject(RejectReason::Unsupported, speak_unknown()));
-    }
     let resolved = resolve(tokens, context.home, Some("binary_sensor"));
     if !tokens.iter().all(|word| allowed(word, context.catalog, &resolved.areas, context.home)) {
-        return Some(reject(RejectReason::NoTarget, speak_unknown()));
+        return None;
     }
     if resolved.areas.len() > 1 || !resolved.floors.is_empty() {
-        return Some(reject(RejectReason::Unsupported, speak_unknown()));
+        return None;
     }
     let mut intent = Intent::new("HassGetState").with("domain", "binary_sensor").with("device_class", "window").with("response", "list");
     if open || closed {
@@ -29,9 +26,19 @@ pub(super) fn route(context: &ParseContext<'_>, tokens: &[String]) -> Option<Dra
     }
     if let Some(area) = resolved.areas.first() {
         intent = intent.with("area", area);
+        // Blinds/curtains but no sensor named like a window: a motion or door sensor
+        // in the room must not swallow the question; let the cover parser answer.
+        if !has_window_sensor(context.catalog, context.home, area) && has_cover(context.home, area) {
+            return None;
+        }
     }
+    // No window contact here (e.g. the "windows" are blinds): let the cover parser answer.
     if super::validation::validate_plan(&IntentPlan::from_intents(vec![intent.clone()], 1.0, &[]), context.home).is_err() {
-        return Some(reject(RejectReason::NoTarget, speak_unknown()));
+        return None;
+    }
+    // "open or closed?" on real window contacts has no single state filter yet.
+    if open && closed {
+        return Some(reject(RejectReason::Unsupported, speak_unknown()));
     }
     Some(execute(context, vec![intent], "window_state_query", 1.0, 1.0, false, false))
 }
@@ -53,6 +60,19 @@ fn is_status_question(cat: &Catalog, tokens: &[String]) -> bool {
         return false;
     }
     question || state_after
+}
+
+fn has_window_sensor(cat: &Catalog, home: &HomeGraph, area: &str) -> bool {
+    home.entities.iter().any(|entity| {
+        entity.domain == "binary_sensor" && entity.area.as_deref() == Some(area) && {
+            let blob = format!("{} {}", entity.entity_id, entity.name).to_lowercase();
+            cat.window_words().iter().any(|word| glazing(word) && blob.contains(*word))
+        }
+    })
+}
+
+fn has_cover(home: &HomeGraph, area: &str) -> bool {
+    home.entities.iter().any(|entity| entity.domain == "cover" && entity.area.as_deref() == Some(area))
 }
 
 fn glazing(word: &str) -> bool {

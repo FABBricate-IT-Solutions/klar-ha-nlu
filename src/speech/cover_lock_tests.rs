@@ -72,7 +72,7 @@ fn area_wide_covers_use_cover_words() {
         entity("cover.bedroom_curtains", "Bedroom Curtains", "cover", "open"),
     ];
     let out = render_snapshot(&snap("en", "HassTurnOn", &[("area", "bedroom"), ("domain", "cover")], entities)).speech;
-    assert_eq!(out, "Opened Bedroom Blinds.");
+    assert_eq!(out, "Opened Bedroom Blinds and Bedroom Curtains.");
 }
 
 #[test]
@@ -81,6 +81,65 @@ fn lights_still_say_on_and_off() {
     assert_eq!(on, "Bedroom Light is on.");
     let off = say("en", "HassTurnOff", "light.bedroom_light", "Bedroom Light", "light");
     assert_eq!(off, "Bedroom Light is off.");
+}
+
+#[test]
+fn area_wide_covers_close_names_both() {
+    let entities = vec![
+        entity("cover.bedroom_blinds", "Bedroom Blinds", "cover", "open"),
+        entity("cover.bedroom_curtains", "Bedroom Curtains", "cover", "open"),
+    ];
+    let out = render_snapshot(&snap("en", "HassTurnOff", &[("area", "bedroom"), ("domain", "cover")], entities)).speech;
+    assert_eq!(out, "Closed Bedroom Blinds and Bedroom Curtains.");
+}
+
+#[test]
+fn two_lights_use_plural_group_line() {
+    let lights = || {
+        vec![entity("light.bedroom_light", "Bedroom Light", "light", "off"), entity("light.bedroom_lamp", "Bedroom Lamp", "light", "off")]
+    };
+    let on = render_snapshot(&snap("en", "HassTurnOn", &[("area", "bedroom"), ("domain", "light")], lights())).speech;
+    assert_eq!(on, "Bedroom Light and Bedroom Lamp are on.");
+    let off = render_snapshot(&snap("en", "HassTurnOff", &[("area", "bedroom"), ("domain", "light")], lights())).speech;
+    assert_eq!(off, "Bedroom Light and Bedroom Lamp are off.");
+}
+
+#[test]
+fn three_targets_use_commas_then_and() {
+    let entities = vec![
+        entity("light.bedroom_light", "Bedroom Light", "light", "off"),
+        entity("light.bedroom_lamp", "Bedroom Lamp", "light", "off"),
+        entity("light.bedside_lamp", "Bedside Lamp", "light", "off"),
+    ];
+    let out = render_snapshot(&snap("en", "HassTurnOn", &[("area", "bedroom"), ("domain", "light")], entities)).speech;
+    assert_eq!(out, "Bedroom Light, Bedroom Lamp and Bedside Lamp are on.");
+}
+
+#[test]
+fn duplicate_names_are_spoken_once() {
+    let entities = vec![
+        entity("light.bedroom_light", "Bedroom Light", "light", "off"),
+        entity("light.bedroom_light_2", "Bedroom Light", "light", "off"),
+    ];
+    let out = render_snapshot(&snap("en", "HassTurnOn", &[("area", "bedroom"), ("domain", "light")], entities)).speech;
+    assert_eq!(out, "Bedroom Light is on.");
+}
+
+#[test]
+fn five_targets_fall_back_to_the_room() {
+    let entities: Vec<_> = (1..=5).map(|n| entity(&format!("light.bedroom_{n}"), &format!("Bedroom Lamp {n}"), "light", "off")).collect();
+    let out = render_snapshot(&snap("en", "HassTurnOn", &[("area", "bedroom"), ("domain", "light")], entities)).speech;
+    assert!(!out.contains(" and "), "expected room fallback, got {out:?}");
+}
+
+#[test]
+fn german_two_lights_use_plural() {
+    let entities = vec![
+        entity("light.schlafzimmer_licht", "Deckenlicht", "light", "off"),
+        entity("light.schlafzimmer_lampe", "Nachttischlampe", "light", "off"),
+    ];
+    let out = render_snapshot(&snap("de", "HassTurnOn", &[("area", "schlafzimmer"), ("domain", "light")], entities)).speech;
+    assert!(out.ends_with("sind an."), "got {out:?}");
 }
 
 #[test]
