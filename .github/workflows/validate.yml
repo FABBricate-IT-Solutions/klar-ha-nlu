@@ -1,4 +1,5 @@
 name: Validate
+# Pin Ubuntu 24.04. ubuntu-latest moves to 26.04 through November 2026.
 
 on:
   pull_request:
@@ -11,14 +12,14 @@ permissions: {}
 jobs:
   hassfest:
     name: hassfest
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     steps:
       - uses: actions/checkout@v7
       - uses: home-assistant/actions/hassfest@master
 
   hacs:
     name: hacs
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     steps:
       - uses: hacs/action@main
         with:
