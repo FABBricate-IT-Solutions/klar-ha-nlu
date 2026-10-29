@@ -4,7 +4,7 @@ use crate::parse::compound::CompoundSplit;
 use crate::parse::infer::looks_like_question;
 use crate::parse::normalize::tokenize;
 use crate::parse::policy::{overlaid_candidate, MatchOverlay, PolicyId};
-use crate::parse::resolve::{resolve_scored, ResolveReport};
+use crate::parse::resolve::{cache_scope, resolve_scored, ResolveReport};
 use crate::parse::slots::{intent_from_action, ClauseOut};
 use crate::types::{Evidence, HomeGraph, Intent, ParseTrace, StageTrace, MAX_CLARIFY_OPTIONS, MAX_PLAN_STEPS};
 use std::time::Instant;
@@ -53,7 +53,9 @@ pub(super) fn build_analyses(
         })
         .collect::<Vec<_>>();
     record_stage(trace, "action_candidates", started, format!("{} action hypotheses", action_rows.iter().map(Vec::len).sum::<usize>()));
-    let targets_started = Instant::now();
+    let _score_cache = cache_scope();
+    let mut score_us: u128 = 0;
+    let mut bind_us: u128 = 0;
     let mut working = context.session.clone();
     working.begin_remember_batch();
     let pending_action = context.session.pending_clarify().and_then(|pending| action_for_intent(&pending.template.name));
@@ -72,6 +74,7 @@ pub(super) fn build_analyses(
             || clause.iter().any(|token| matches!(cat.verb(token), Some(crate::lang::VerbKind::ListComplete)));
         let explicit_list_completion = list_marker && complete_marker;
         let mut bindings = Vec::new();
+        let scored_at = Instant::now();
         let mut baseline = parse_clause_candidates_for_action(
             &clause,
             raw_tokens,
@@ -82,6 +85,8 @@ pub(super) fn build_analyses(
             None,
             context.match_controls,
         );
+        score_us += scored_at.elapsed().as_micros();
+        let mut bound_at = Instant::now();
         baseline.retain(|policy| !invalid_named_list_fallback(&clause, context.home, policy));
         if baseline.len() > MAX_POLICIES_PER_ACTION {
             return Err(ComplexityLimit);
@@ -115,7 +120,11 @@ pub(super) fn build_analyses(
                 action_evidence.score = 0.86;
                 action_evidence.exact = false;
             }
+            bind_us += bound_at.elapsed().as_micros();
+            let scored_at = Instant::now();
             let targets = capped_report(resolve_scored(&clause, context.home, domain_for(policy.action, &clause)));
+            score_us += scored_at.elapsed().as_micros();
+            bound_at = Instant::now();
             let narrowed = lexical_disambiguation(&clause, context.home, &policy);
             push_binding(
                 &mut bindings,
@@ -155,7 +164,11 @@ pub(super) fn build_analyses(
             forced.push(ActionHypothesis { action, evidence });
         }
         forced.truncate(MAX_ACTION_HYPOTHESES);
+        bind_us += bound_at.elapsed().as_micros();
+        bound_at = Instant::now();
         for hypothesis in forced {
+            bind_us += bound_at.elapsed().as_micros();
+            let scored_at = Instant::now();
             let targets = capped_report(resolve_scored(&clause, context.home, domain_for(hypothesis.action, &clause)));
             let policies = parse_clause_candidates_for_action(
                 &clause,
@@ -167,6 +180,8 @@ pub(super) fn build_analyses(
                 Some(hypothesis.action),
                 context.match_controls,
             );
+            score_us += scored_at.elapsed().as_micros();
+            bound_at = Instant::now();
             if policies.len() > MAX_POLICIES_PER_ACTION {
                 return Err(ComplexityLimit);
             }
@@ -220,12 +235,13 @@ pub(super) fn build_analyses(
                 }
             }
         }
+        bind_us += bound_at.elapsed().as_micros();
         analyses.push(analysis);
     }
     let target_count = analyses.iter().flat_map(|analysis| &analysis.bindings).map(|binding| binding.targets.ranked.len()).sum::<usize>();
-    record_stage(trace, "target_resolution", targets_started, format!("{target_count} scored targets"));
     let binding_count = analyses.iter().map(|analysis| analysis.bindings.len()).sum::<usize>();
-    record_stage(trace, "binding", Instant::now(), format!("{binding_count} complete candidate plans"));
+    record_us(trace, "target_resolution", score_us, format!("{target_count} scored targets"));
+    record_us(trace, "binding", bind_us, format!("{binding_count} complete candidate plans"));
     Ok(analyses)
 }
 
@@ -296,7 +312,11 @@ fn policy_too_complex(policy: &ClauseCandidate) -> bool {
 }
 
 fn record_stage(trace: &mut ParseTrace, stage: &str, started: Instant, detail: String) {
-    trace.stages.push(StageTrace { stage: stage.into(), duration_us: started.elapsed().as_micros() as u64, detail });
+    record_us(trace, stage, started.elapsed().as_micros(), detail);
+}
+
+fn record_us(trace: &mut ParseTrace, stage: &str, duration_us: u128, detail: String) {
+    trace.stages.push(StageTrace { stage: stage.into(), duration_us: u64::try_from(duration_us).unwrap_or(u64::MAX), detail });
 }
 
 fn lexical_disambiguation(tokens: &[String], home: &HomeGraph, policy: &ClauseCandidate) -> Option<Intent> {

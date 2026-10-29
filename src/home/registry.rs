@@ -140,7 +140,9 @@ pub fn load_home(config_dir: &Path, fallback: HomeGraph) -> HomeGraph {
         }
     }
     tracing::info!("{} Entitäten, {} Räume, {} Etagen aus Home Assistant geladen", entities.len(), areas.len(), floors.len());
-    HomeGraph { entities, areas, floors, assist: crate::home::expose::load_assist(config_dir), ..fallback }
+    let mut graph = HomeGraph { entities, areas, floors, assist: crate::home::expose::load_assist(config_dir), ..fallback };
+    crate::home::labels::rebuild_label_index(&mut graph);
+    graph
 }
 
 fn read_devices(path: &Path) -> HashMap<String, DeviceInfo> {

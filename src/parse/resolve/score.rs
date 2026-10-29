@@ -83,7 +83,7 @@ pub(crate) fn has_fuzzy_target_token(tokens: &[String], home: &HomeGraph) -> boo
 }
 
 pub(super) fn score_entity(tokens: &[String], fuzzy_tokens: &[&str], entity: &EntityRec, home: &HomeGraph) -> Option<f64> {
-    let labels: Vec<String> = usable_labels(entity, home).into_iter().map(|label| fold_umlaut(&label)).collect();
+    let labels = folded_usable_labels(entity, home);
     let mut best = 0.0_f64;
     for label in labels {
         if label.is_empty() {
@@ -172,6 +172,9 @@ pub(crate) fn known_target_token(token: &str, home: &HomeGraph) -> bool {
     {
         return true;
     }
+    if home.label_index.as_ref().is_some_and(|index| index.tokens.contains(token)) {
+        return true;
+    }
     home.areas.iter().any(|area| {
         label_has_token(token, &area.area_id)
             || label_has_token(token, &area.name)
@@ -240,6 +243,21 @@ fn short_name_token(entity: &EntityRec) -> Option<String> {
             && !cat.on_words().contains(part.as_str())
             && !cat.off_words().contains(part.as_str())
     })
+}
+
+fn folded_usable_labels(entity: &EntityRec, home: &HomeGraph) -> Vec<String> {
+    let Some(index) = home.label_index.as_ref() else {
+        return usable_labels(entity, home).into_iter().map(|label| fold_umlaut(&label)).collect();
+    };
+    let Some(rows) = index.entities.get(&entity.entity_id) else {
+        return usable_labels(entity, home).into_iter().map(|label| fold_umlaut(&label)).collect();
+    };
+    let generic = is_generic_room_light(entity, home, catalog());
+    rows.iter()
+        .filter(|row| !row.tag || !crate::home::roles::is_role_tag(&row.raw, catalog()))
+        .filter(|row| !generic || !stolen_label(&row.raw, entity, home))
+        .map(|row| row.folded.clone())
+        .collect()
 }
 
 fn usable_labels(entity: &EntityRec, home: &HomeGraph) -> Vec<String> {

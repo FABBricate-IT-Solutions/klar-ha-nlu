@@ -6,7 +6,7 @@ mod corpus;
 mod metrics;
 mod scorecard;
 
-pub use bench::{bench_warm, BenchReport};
+pub use bench::{bench_language, bench_warm, format_language_bench, BenchReport, LanguageBench};
 pub use corpus::{load_corpus, EvalItem, GoldIntent, Split, MIN_HELD_OUT};
 pub use metrics::{score_items, EvalMetrics};
 pub use scorecard::{write_scorecard, Comparison, Scorecard};
@@ -62,7 +62,7 @@ pub fn run_scorecard(out: Option<&Path>) -> Result<Scorecard, String> {
         languages.push(scorecard::LanguageCard { language: language.into(), utterances: items.len(), metrics });
     }
     let home = family_home("en")?;
-    let bench = bench_warm(&home, "Turn on the Entryway Light", 128);
+    let bench = bench_warm(&home, "Turn on the Entryway Light", "en", 128);
     let comparison = vec![
         compare::compare_assist(
             "assist_oracle",
@@ -123,7 +123,7 @@ pub fn gate_scorecard(card: &Scorecard) -> Result<(), String> {
 pub use cli::{run as run_cli, Command as EvalCommand};
 
 mod cli {
-    use super::{bench_warm, family_home, gate_scorecard, run_scorecard};
+    use super::{bench_language, family_home, format_language_bench, gate_scorecard, run_scorecard};
     use std::path::PathBuf;
 
     pub fn run(command: Command) -> Result<String, String> {
@@ -139,12 +139,8 @@ mod cli {
             }
             Command::Bench { language, repeat } => {
                 let home = family_home(&language)?;
-                let text = if language.starts_with("de") { "Mach das Eingangslicht an" } else { "Turn on the Entryway Light" };
-                let report = bench_warm(&home, text, repeat.max(8));
-                Ok(format!(
-                    "language={language} n={} p50_us={} p95_us={} p99_us={} rss_hint_kb={}",
-                    report.samples, report.p50_us, report.p95_us, report.p99_us, report.rss_kb
-                ))
+                let bench = bench_language(&home, &language, repeat)?;
+                Ok(format_language_bench(repeat, &bench))
             }
         }
     }

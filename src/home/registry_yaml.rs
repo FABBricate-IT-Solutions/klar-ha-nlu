@@ -163,7 +163,18 @@ pub fn load_home_config(path: &Path) -> Result<HomeGraph, String> {
             });
         }
     }
-    Ok(HomeGraph { entities, areas, floors, scene_members, assist: None, policy: file.policy, registered_intents: Vec::new() })
+    let mut graph = HomeGraph {
+        entities,
+        areas,
+        floors,
+        scene_members,
+        assist: None,
+        policy: file.policy,
+        registered_intents: Vec::new(),
+        label_index: None,
+    };
+    crate::home::labels::rebuild_label_index(&mut graph);
+    Ok(graph)
 }
 
 fn yaml_entity_ids(value: &serde_yaml::Value) -> Vec<String> {

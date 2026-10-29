@@ -174,7 +174,9 @@ pub fn ingest(snapshot: HomeSnapshot) -> Result<HomeGraph, SnapshotError> {
         .collect();
     let assist = snapshot.assist.map(|ids| ids.into_iter().filter(|id| id.contains('.')).collect());
     let registered_intents = snapshot.registered_intents.into_iter().filter(|name| !name.is_empty() && name.len() <= 64).take(64).collect();
-    Ok(HomeGraph { entities, areas, floors, assist, registered_intents, ..HomeGraph::default() })
+    let mut graph = HomeGraph { entities, areas, floors, assist, registered_intents, ..HomeGraph::default() };
+    crate::home::labels::rebuild_label_index(&mut graph);
+    Ok(graph)
 }
 
 fn validate(snapshot: &HomeSnapshot) -> Result<(), SnapshotError> {
