@@ -1,7 +1,7 @@
 //! Outdoor weather lines. Never names a room.
 
 use crate::types::{SpeechEntity, SpeechForecast, SpeechSnapshot};
-use crate::units::{entity_temperature, speak_converted};
+use crate::units::{entity_temp_scale, entity_temperature, speak_converted};
 
 use super::render_place::slot;
 use super::weather_i18n::{frames_for, locale_temp, speak_condition, unit_word, weekday_label};
@@ -44,10 +44,9 @@ fn is_weather(snap: &SpeechSnapshot) -> bool {
 fn facts(snap: &SpeechSnapshot) -> Option<(String, String, bool)> {
     if let Some(day) = pick_day(snap) {
         let condition = speak_condition(&day.condition, &snap.language);
-        let temp = day
-            .temperature
-            .map(|raw| locale_temp(speak_converted(raw, crate::units::TempScale::Celsius, snap.unit_system), &snap.language))
-            .unwrap_or_default();
+        let scale = entity_temp_scale(weather_entity(snap));
+        let temp =
+            day.temperature.map(|raw| locale_temp(speak_converted(raw, scale, snap.unit_system), &snap.language)).unwrap_or_default();
         if !condition.is_empty() || !temp.is_empty() {
             return Some((condition, temp, true));
         }

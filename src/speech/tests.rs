@@ -561,6 +561,38 @@ fn weather_rain_and_umbrella_use_forecast() {
 }
 
 #[test]
+fn weather_forecast_keeps_fahrenheit_reading() {
+    let mut today = snap(
+        "HassGetState",
+        vec![
+            SpeechSlot { name: "entity_id".into(), value: "weather.home".into() },
+            SpeechSlot { name: "weather_ask".into(), value: "today".into() },
+        ],
+        vec![entity(
+            "weather.home",
+            "Home",
+            "weather",
+            "cloudy",
+            BTreeMap::from([("temperature".into(), serde_json::json!(70.0)), ("temperature_unit".into(), serde_json::json!("°F"))]),
+        )],
+    );
+    today.language = "en".into();
+    today.unit_system = UnitSystem::Imperial;
+    today.forecast = vec![SpeechForecast {
+        datetime: "2026-09-05T00:00:00-04:00".into(),
+        condition: "cloudy".into(),
+        temperature: Some(68.0),
+        templow: None,
+        precipitation: None,
+        precipitation_probability: None,
+    }];
+    let spoken = render_snapshot(&today).speech;
+    assert!(spoken.contains("68"), "{spoken}");
+    assert!(spoken.contains("Fahrenheit"), "{spoken}");
+    assert!(!spoken.contains("154"), "{spoken}");
+}
+
+#[test]
 fn weather_today_uses_forecast_day() {
     let mut today = snap(
         "HassGetState",
