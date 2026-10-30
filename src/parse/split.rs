@@ -32,7 +32,11 @@ pub fn split_clauses(tokens: &[String], home: &HomeGraph) -> Vec<Vec<String>> {
             }
         }
         if !left.is_empty() && !right.is_empty() {
-            return vec![left, right];
+            // A side can hold several commands joined by a comma, which is gone by now:
+            // "turn off the TV, turn off the kitchen lights and turn on the hall light".
+            let mut clauses = split_clauses(&left, home);
+            clauses.extend(split_clauses(&right, home));
+            return clauses;
         }
     }
     let actions = detect_actions(tokens);
@@ -53,9 +57,14 @@ pub fn split_clauses(tokens: &[String], home: &HomeGraph) -> Vec<Vec<String>> {
         }
         let between = &tokens[i0 + 1..i1];
         let has_conj = between.iter().any(|t| is_conj(t));
-        // Same verb twice ("mach … an") is one clause. A new verb, or
-        // the same verb after "und", starts another.
+        // Same verb twice ("mach … an") is one clause. A new verb, or the same verb
+        // restated for another device ("turn off the TV and turn off the kitchen
+        // lights", or with a comma instead of "and"), starts another: merged, the
+        // second target took the first one's domain.
         if a0 == a1 {
+            if is_conj(&tokens[i1 - 1]) || restated_verb_first(tokens, i0, i1) {
+                cuts.push(i1);
+            }
             continue;
         }
         if is_same_command(a0, a1) && !has_conj {
@@ -73,6 +82,9 @@ pub fn split_clauses(tokens: &[String], home: &HomeGraph) -> Vec<Vec<String>> {
         }
     }
 
+    cuts.extend(opener_cuts(tokens));
+    cuts.sort_unstable();
+    cuts.dedup();
     if cuts.is_empty() {
         return vec![tokens.to_vec()];
     }
@@ -216,6 +228,43 @@ fn verb_final_boundary(tokens: &[String], i0: usize, i1: usize) -> Option<usize>
     }
     let start = if tokens.get(i0 + 1).is_some_and(|t| is_conj(t)) { i0 + 2 } else { i0 + 1 };
     (start < i1 && names_device(&tokens[start..i1])).then_some(start)
+}
+
+/// "off tv livingroom off kitchen lights": the verb comes again with a device on each
+/// side of it, so it opens a new command (the comma between them is gone by now).
+fn restated_verb_first(tokens: &[String], i0: usize, i1: usize) -> bool {
+    let after = &tokens[i1 + 1..];
+    let next = after.split(|t| is_conj(t)).next().unwrap_or(after);
+    // "off … off" restates the verb. In "schalte … aus" the particle closes the clause
+    // its verb opened, and a verb right after ("aus schalte …") means the same.
+    let restated = is_particle(&tokens[i0]) && is_particle(&tokens[i1]);
+    let verb_follows = after.first().is_some_and(|t| catalog().verb(t).is_some());
+    restated && !verb_follows && names_device(&tokens[i0 + 1..i1]) && names_device(next)
+}
+
+/// "schalte Fernseher Wohnzimmer aus schalte Licht Küche aus": an opening verb that comes
+/// again after a device starts a new command, wherever the particles sit.
+fn opener_cuts(tokens: &[String]) -> Vec<usize> {
+    let mut cuts = Vec::new();
+    let mut start = 0;
+    for p in 1..tokens.len() {
+        if !opens_clause(&tokens[p]) || is_conj(&tokens[p - 1]) {
+            continue;
+        }
+        let rest = &tokens[p + 1..];
+        let end = rest.iter().position(|t| is_conj(t) || opens_clause(t)).unwrap_or(rest.len());
+        if names_device(&tokens[start..p]) && names_device(&rest[..end]) {
+            cuts.push(p);
+            start = p;
+        }
+    }
+    cuts
+}
+
+/// Only switch verbs ("schalte"): colours and other set verbs ("red") also sit in the
+/// verb list but never open a clause of their own.
+fn opens_clause(token: &str) -> bool {
+    matches!(catalog().verb(token), Some(crate::lang::VerbKind::Switch)) && !is_particle(token)
 }
 
 fn names_device(tokens: &[String]) -> bool {
