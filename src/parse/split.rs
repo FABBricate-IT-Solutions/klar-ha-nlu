@@ -1,4 +1,4 @@
-use crate::lang::catalog;
+use crate::lang::{catalog, VerbKind};
 use crate::parse::action::{detect_actions, Action};
 use crate::parse::normalize::fold_umlaut;
 use crate::types::HomeGraph;
@@ -59,8 +59,7 @@ pub fn split_clauses(tokens: &[String], home: &HomeGraph) -> Vec<Vec<String>> {
         let has_conj = between.iter().any(|t| is_conj(t));
         // Same verb twice ("mach … an") is one clause. A new verb, or the same verb
         // restated for another device ("turn off the TV and turn off the kitchen
-        // lights", or with a comma instead of "and"), starts another: merged, the
-        // second target took the first one's domain.
+        // lights", or with a comma instead of "and"), starts another.
         if a0 == a1 {
             if is_conj(&tokens[i1 - 1]) || restated_verb_first(tokens, i0, i1) {
                 cuts.push(i1);
@@ -204,8 +203,7 @@ fn device_side(tokens: &[String]) -> bool {
 }
 
 fn is_shared_tail(token: &str) -> bool {
-    is_particle(token)
-        || matches!(catalog().verb(token), Some(crate::lang::VerbKind::Off | crate::lang::VerbKind::On | crate::lang::VerbKind::OnParticle))
+    is_particle(token) || matches!(catalog().verb(token), Some(VerbKind::Off | VerbKind::On | VerbKind::OnParticle))
 }
 
 /// Verb-final clauses ("Licht an, mach Rollo zu und mach Vorhang zu",
@@ -233,13 +231,18 @@ fn verb_final_boundary(tokens: &[String], i0: usize, i1: usize) -> Option<usize>
 /// "off tv livingroom off kitchen lights": the verb comes again with a device on each
 /// side of it, so it opens a new command (the comma between them is gone by now).
 fn restated_verb_first(tokens: &[String], i0: usize, i1: usize) -> bool {
-    let after = &tokens[i1 + 1..];
-    let next = after.split(|t| is_conj(t)).next().unwrap_or(after);
     // "off … off" restates the verb. In "schalte … aus" the particle closes the clause
-    // its verb opened, and a verb right after ("aus schalte …") means the same.
-    let restated = is_particle(&tokens[i0]) && is_particle(&tokens[i1]);
-    let verb_follows = after.first().is_some_and(|t| catalog().verb(t).is_some());
-    restated && !verb_follows && names_device(&tokens[i0 + 1..i1]) && names_device(next)
+    // its verb opened instead.
+    if !is_particle(&tokens[i0]) || !is_particle(&tokens[i1]) {
+        return false;
+    }
+    // "… aus schalte …": a verb right after means "aus" ended its clause.
+    let after = &tokens[i1 + 1..];
+    if after.first().is_some_and(|t| catalog().verb(t).is_some()) {
+        return false;
+    }
+    let next = after.split(|t| is_conj(t)).next().unwrap_or(after);
+    names_device(&tokens[i0 + 1..i1]) && names_device(next)
 }
 
 /// "schalte Fernseher Wohnzimmer aus schalte Licht Küche aus": an opening verb that comes
@@ -264,7 +267,7 @@ fn opener_cuts(tokens: &[String]) -> Vec<usize> {
 /// Only switch verbs ("schalte"): colours and other set verbs ("red") also sit in the
 /// verb list but never open a clause of their own.
 fn opens_clause(token: &str) -> bool {
-    matches!(catalog().verb(token), Some(crate::lang::VerbKind::Switch)) && !is_particle(token)
+    matches!(catalog().verb(token), Some(VerbKind::Switch))
 }
 
 fn names_device(tokens: &[String]) -> bool {
