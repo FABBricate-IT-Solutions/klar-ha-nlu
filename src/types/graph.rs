@@ -59,6 +59,22 @@ pub struct HomeGraph {
     /// Extra HA-registered intent names (intent_script). Compiled plans stay on KNOWN_INTENTS.
     #[serde(default)]
     pub registered_intents: Vec<String>,
+    /// Folded names built at load. `None` means callers fold on the fly.
+    #[serde(skip)]
+    pub label_index: Option<LabelIndex>,
+}
+
+#[derive(Debug, Clone)]
+pub struct StoredLabel {
+    pub raw: String,
+    pub folded: String,
+    pub tag: bool,
+}
+
+#[derive(Debug, Clone, Default)]
+pub struct LabelIndex {
+    pub tokens: HashSet<String>,
+    pub entities: HashMap<String, Vec<StoredLabel>>,
 }
 
 impl HomeGraph {

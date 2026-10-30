@@ -9,8 +9,8 @@ use crate::parse::infer::fixture_matches;
 use crate::parse::normalize::{compact, fold_umlaut, inflected_eq, is_time_unit, umlaut_eq};
 use crate::types::{AreaRec, EntityRec, FloorRec, HomeGraph};
 pub(crate) use report::{resolve_scored, ResolveEvidence, ResolveReport};
-use score::{fuzzy_tokens, overlap, score_entity, sort_hits};
 pub(crate) use score::{has_fuzzy_target_token, known_target_token};
+use score::{overlap, sort_hits};
 
 mod prefer;
 mod report;
@@ -27,6 +27,19 @@ pub struct Resolved {
 }
 
 pub fn resolve(tokens: &[String], home: &HomeGraph, domain: Option<&str>) -> Resolved {
+    report::resolve_scored(tokens, home, domain).resolved
+}
+
+pub(crate) fn cache_scope() -> report::Guard {
+    report::Guard::enter()
+}
+
+pub(super) fn resolve_from_candidates(
+    tokens: &[String],
+    home: &HomeGraph,
+    domain: Option<&str>,
+    mut candidates: Vec<(f64, EntityRec)>,
+) -> Resolved {
     let mut areas = match_areas(tokens, &home.areas);
     let floors = match_floors(tokens, &home.floors);
     if !floors.is_empty() && areas.len() == 1 {
@@ -46,17 +59,6 @@ pub fn resolve(tokens: &[String], home: &HomeGraph, domain: Option<&str>) -> Res
     let floor_areas: Vec<String> =
         floors.iter().flat_map(|floor_id| home.areas_on_floor(floor_id).map(|area| area.area_id.clone())).collect();
     let scope = if areas.is_empty() { floor_areas.as_slice() } else { areas.as_slice() };
-    let fuzzy_tokens = fuzzy_tokens(tokens, home);
-    let mut candidates: Vec<(f64, EntityRec)> = home
-        .entities
-        .iter()
-        .filter(|e| assist_visible(e, home))
-        .filter(|e| !is_infra(e))
-        .filter(|e| !crate::home::policy::is_nlu_ignored(e))
-        .filter(|e| !crate::parse::calendar::is_calendar_control(e))
-        .filter(|e| domain.is_none_or(|d| matches_domain(e, d, catalog())))
-        .filter_map(|e| score_entity(tokens, &fuzzy_tokens, e, home).map(|s| (s, e.clone())))
-        .collect();
     if domain == Some("climate") {
         if let Some(kind) = crate::home::roles::wanted_climate_kind(tokens, catalog()) {
             candidates.retain(|(_, entity)| crate::home::roles::climate_kind(entity, catalog()) == Some(kind));

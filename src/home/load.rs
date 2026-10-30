@@ -49,6 +49,7 @@ pub fn load_merged(config_dir: &Path, data_dir: &Path) -> LoadedHome {
         }
     }
 
+    crate::home::labels::rebuild_label_index(&mut graph);
     LoadedHome { graph, settings, custom, language, policies, speech_bank, match_controls }
 }
 
