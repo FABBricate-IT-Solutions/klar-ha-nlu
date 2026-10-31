@@ -532,3 +532,31 @@ fn vacuum_off_stop_and_home_send_it_to_the_dock() {
         assert_eq!(effects(&out, &home), BTreeSet::from([wanted.to_string()]), "[{lang}] {text}: {}", describe(&out));
     }
 }
+
+#[test]
+fn a_room_name_inside_another_room_name_stays_with_its_room() {
+    let synced = serde_json::from_value(serde_json::json!({
+        "schema_version": "1",
+        "areas": [{"id": "office", "name": "Office"}, {"id": "ela_s_office", "name": "Ela's Office"}],
+        "devices": [{"id": "tuya_bulb", "name": "Ela’s office light", "name_by_user": "Ela's Office Light", "area_id": "ela_s_office"}],
+        "entities": [
+            {"entity_id": "light.office_light", "name": "Office Light", "area_id": "office"},
+            {"entity_id": "light.hall", "has_entity_name": true, "device_id": "tuya_bulb"}
+        ]
+    }))
+    .expect("valid snapshot");
+    let home = klar_nlu::home::snapshot::ingest(synced).expect("ingest");
+    let office = "HassTurnOn light.office_light";
+    let ela = "HassTurnOn light.hall";
+    for (text, wanted) in [
+        ("turn on the light in the office", vec![office]),
+        ("turn on the light in Ela's office", vec![ela]),
+        ("turn on everything in my office", vec![office]),
+        ("turn on the light in the office and turn on the light in Ela's office", vec![office, ela]),
+    ] {
+        let out = run("en", &home, text);
+        let wanted: BTreeSet<String> = wanted.iter().map(|s| s.to_string()).collect();
+        assert_eq!(effects(&out, &home), wanted, "{text}: {}", describe(&out));
+        assert_eq!(out.plan.as_ref().map_or(0, |plan| plan.intents().len()), wanted.len(), "{text}: {}", describe(&out));
+    }
+}

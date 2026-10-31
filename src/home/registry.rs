@@ -268,7 +268,7 @@ fn read_areas(path: &Path) -> Result<Vec<AreaRec>, String> {
         AreaData::Wrapped { areas } => areas,
         AreaData::Flat(areas) => areas,
     };
-    Ok(areas
+    let mut areas: Vec<AreaRec> = areas
         .into_iter()
         .map(|a| {
             let area_id = a.id.or(a.area_id).unwrap_or_else(|| fold_umlaut(&a.name));
@@ -279,7 +279,9 @@ fn read_areas(path: &Path) -> Result<Vec<AreaRec>, String> {
                 floor_id: a.floor_id.filter(|id| !id.is_empty()),
             }
         })
-        .collect())
+        .collect();
+    drop_borrowed_area_names(&mut areas);
+    Ok(areas)
 }
 
 fn read_floors(path: &Path) -> Result<Vec<FloorRec>, String> {
@@ -324,7 +326,7 @@ pub(crate) fn keep_domain(entity_id: &str) -> bool {
 }
 
 pub use crate::home::registry_yaml::load_home_config;
-use crate::home::registry_yaml::merge_area_aliases;
+use crate::home::registry_yaml::{drop_borrowed_area_names, merge_area_aliases};
 
 #[cfg(test)]
 mod tests {
