@@ -134,11 +134,24 @@ fn en_three_and_four_targets_use_commas_then_and() {
 }
 
 #[test]
-fn en_five_or_more_targets_fall_back_to_one_phrase() {
+fn en_five_or_more_covers_are_all_named() {
+    // No room phrase exists for covers, so every name is read out rather than just the first.
     let covers: Vec<_> = (1..=5).map(|n| ent(&format!("cover.bedroom_{n}"), &format!("Bedroom Blind {n}"))).collect();
-    let out = say("en", "HassTurnOff", COVER_AREA, covers);
-    assert!(!out.contains(" and "), "expected a single phrase, got {out:?}");
-    assert!(out.starts_with("Closed "), "got {out:?}");
+    assert_eq!(
+        say("en", "HassTurnOff", COVER_AREA, covers),
+        "Closed Bedroom Blind 1, Bedroom Blind 2, Bedroom Blind 3, Bedroom Blind 4 and Bedroom Blind 5."
+    );
+}
+
+#[test]
+fn en_five_or_more_lights_are_spoken_as_the_room() {
+    let lights: Vec<_> = ["Living Room Lamp", "Living Room Main Light", "Left Wall Light", "Right Wall Light", "Left Floor Light"]
+        .iter()
+        .enumerate()
+        .map(|(n, name)| ent(&format!("light.living_{n}"), name))
+        .collect();
+    let slots = [("area", "Living Room"), ("domain", "light")];
+    assert_eq!(say("en", "HassTurnOff", &slots, lights), "the light in the Living Room is off.");
 }
 
 #[test]

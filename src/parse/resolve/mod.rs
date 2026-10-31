@@ -1,21 +1,23 @@
 use crate::home::classify::is_generic_room_light;
 use crate::home::expose::assist_visible;
 use crate::home::policy::is_infra;
-use crate::home::roles::{looks_like_tv, matches_domain, tv_asked};
+use crate::home::roles::{hot_water_asked, is_hot_water, looks_like_tv, matches_domain, tv_asked};
 use crate::lang::catalog;
 use crate::parse::action::{has_light_noun, is_garage_cover, is_query_token};
 use crate::parse::fuzzy::{evidence, Profile};
 use crate::parse::infer::fixture_matches;
-use crate::parse::normalize::{compact, fold_umlaut, inflected_eq, is_time_unit, umlaut_eq};
+use crate::parse::normalize::{compact, fold_label, inflected_eq, is_time_unit, umlaut_eq};
 use crate::types::{AreaRec, EntityRec, FloorRec, HomeGraph};
 pub(crate) use report::{resolve_scored, ResolveEvidence, ResolveReport};
 pub(crate) use score::{has_fuzzy_target_token, known_target_token};
 use score::{overlap, sort_hits};
+use specific::{area_within, keep_most_specific, narrow_to_scope, prefer_fully_named};
 
 mod prefer;
 mod report;
 mod scope;
 mod score;
+mod specific;
 pub(crate) use scope::{light_rooms_for_clarify, mentions_home, query_grounded};
 
 #[derive(Debug, Clone)]
@@ -64,16 +66,7 @@ pub(super) fn resolve_from_candidates(
             candidates.retain(|(_, entity)| crate::home::roles::climate_kind(entity, catalog()) == Some(kind));
         }
     }
-    if !scope.is_empty() {
-        let in_area: Vec<(f64, EntityRec)> =
-            candidates.iter().filter(|(_, e)| e.area.as_ref().is_some_and(|a| scope.contains(a))).cloned().collect();
-        let named: Vec<(f64, EntityRec)> =
-            candidates.iter().filter(|(s, e)| *s >= 0.96 && !e.area.as_ref().is_some_and(|a| scope.contains(a))).cloned().collect();
-        if !in_area.is_empty() {
-            candidates = in_area;
-            candidates.extend(named);
-        }
-    }
+    narrow_to_scope(tokens, scope, &mut candidates);
     prefer::prefer_entry_lock(tokens, home, &mut candidates);
     prefer::prefer_tv(tokens, home, &mut candidates);
     prefer::prefer_light_over_script(tokens, &mut candidates);
@@ -95,7 +88,7 @@ pub(super) fn resolve_from_candidates(
             named.into_iter().filter(|entity| entity.area.as_ref().is_some_and(|area| scope.contains(area))).collect()
         };
         if scoped.len() > 1 {
-            return Resolved { areas, floors, entities: scoped, ambiguous: Vec::new() };
+            return Resolved { areas, floors, entities: keep_most_specific(tokens, scoped), ambiguous: Vec::new() };
         }
     }
 
@@ -190,6 +183,8 @@ pub(super) fn resolve_from_candidates(
         }
     }
 
+    prefer_fully_named(tokens, &mut entities, &mut ambiguous);
+    let entities = keep_most_specific(tokens, entities);
     Resolved { areas, floors, entities, ambiguous }
 }
 
@@ -284,9 +279,9 @@ fn pick_bedside(hits: &[EntityRec]) -> EntityRec {
 fn match_areas(tokens: &[String], areas: &[AreaRec]) -> Vec<String> {
     let mut scored: Vec<(usize, String)> = Vec::new();
     for area in areas {
-        let names: Vec<String> = std::iter::once(fold_umlaut(&area.name))
+        let names: Vec<String> = std::iter::once(fold_label(&area.name))
             .chain(std::iter::once(area.area_id.clone()))
-            .chain(area.aliases.iter().map(|a| fold_umlaut(a)))
+            .chain(area.aliases.iter().map(|a| fold_label(a)))
             .collect();
         let mut best = 0usize;
         for n in &names {
@@ -304,6 +299,7 @@ fn match_areas(tokens: &[String], areas: &[AreaRec]) -> Vec<String> {
     let mut ids: Vec<String> = scored
         .into_iter()
         .filter(|(s, id)| *s == max || !strong.iter().any(|other| other.split('_').next() == id.split('_').next()))
+        .filter(|(s, id)| *s == max || !area_within(id, &strong, areas))
         .map(|(_, id)| id)
         .collect();
     if ids.is_empty() {
@@ -325,9 +321,9 @@ fn match_areas(tokens: &[String], areas: &[AreaRec]) -> Vec<String> {
 fn match_floors(tokens: &[String], floors: &[FloorRec]) -> Vec<String> {
     let mut scored: Vec<(usize, String)> = Vec::new();
     for floor in floors {
-        let names: Vec<String> = std::iter::once(fold_umlaut(&floor.name))
+        let names: Vec<String> = std::iter::once(fold_label(&floor.name))
             .chain(std::iter::once(floor.floor_id.clone()))
-            .chain(floor.aliases.iter().map(|alias| fold_umlaut(alias)))
+            .chain(floor.aliases.iter().map(|alias| fold_label(alias)))
             .collect();
         let mut best = 0usize;
         for name in &names {
@@ -463,12 +459,14 @@ pub(crate) fn pick_timers(tokens: &[String], home: &HomeGraph) -> Vec<String> {
 
 pub(crate) fn unique_in_area(home: &HomeGraph, area: &str, domain: &str, tokens: &[String]) -> Option<String> {
     let kind = (domain == "climate").then(|| crate::home::roles::wanted_climate_kind(tokens, catalog())).flatten();
+    let water = hot_water_asked(tokens);
     let hits: Vec<&str> = home
         .entities
         .iter()
         .filter(|e| assist_visible(e, home))
         .filter(|e| matches_domain(e, domain, catalog()) && !is_infra(e) && e.area.as_deref() == Some(area))
         .filter(|e| kind.is_none_or(|want| crate::home::roles::climate_kind(e, catalog()) == Some(want)))
+        .filter(|e| domain != "climate" || is_hot_water(e) == water)
         .map(|e| e.entity_id.as_str())
         .collect();
     (hits.len() == 1).then(|| hits[0].to_string())
@@ -476,11 +474,13 @@ pub(crate) fn unique_in_area(home: &HomeGraph, area: &str, domain: &str, tokens:
 
 pub(crate) fn climates_of_kind(home: &HomeGraph, tokens: &[String]) -> Vec<String> {
     let kind = crate::home::roles::wanted_climate_kind(tokens, catalog());
+    let water = hot_water_asked(tokens);
     home.entities
         .iter()
         .filter(|e| assist_visible(e, home))
         .filter(|e| matches_domain(e, "climate", catalog()) && !is_infra(e))
         .filter(|e| kind.is_none_or(|want| crate::home::roles::climate_kind(e, catalog()) == Some(want)))
+        .filter(|e| is_hot_water(e) == water)
         .map(|e| e.entity_id.clone())
         .collect()
 }

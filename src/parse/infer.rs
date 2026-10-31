@@ -6,11 +6,15 @@ use crate::parse::normalize::{fold_umlaut, join_tokens};
 use crate::session::Session;
 use crate::types::{known_intent, CustomSentence, EntityRec, Intent};
 
-fn dock_hint(tokens: &[String]) -> bool {
-    tokens.iter().any(|token| {
-        matches!(catalog().verb(token), Some(VerbKind::Dock))
-            || matches!(token.as_str(), "dock" | "docking" | "station" | "base" | "zurueck")
-    })
+/// "Dock", "stop", "pause", "turn off" or "send it home": Home Assistant's off for a vacuum is return to base.
+pub(crate) fn dock_hint(tokens: &[String]) -> bool {
+    let sent_home = tokens.first().is_some_and(|first| !matches!(catalog().verb(first), Some(VerbKind::Vacuum)));
+    catalog().any(tokens, catalog().off_words())
+        || tokens.iter().any(|token| {
+            matches!(catalog().verb(token), Some(VerbKind::Dock | VerbKind::Stop | VerbKind::Pause))
+                || matches!(token.as_str(), "dock" | "docking" | "station" | "base" | "zurueck")
+                || (token == "home" && sent_home)
+        })
 }
 
 fn last_domain(session: &Session, prefix: &str) -> bool {

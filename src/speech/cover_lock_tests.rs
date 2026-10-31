@@ -129,7 +129,7 @@ fn duplicate_names_are_spoken_once() {
 fn five_targets_fall_back_to_the_room() {
     let entities: Vec<_> = (1..=5).map(|n| entity(&format!("light.bedroom_{n}"), &format!("Bedroom Lamp {n}"), "light", "off")).collect();
     let out = render_snapshot(&snap("en", "HassTurnOn", &[("area", "bedroom"), ("domain", "light")], entities)).speech;
-    assert!(!out.contains(" and "), "expected room fallback, got {out:?}");
+    assert_eq!(out, "the light in the bedroom is on.");
 }
 
 #[test]

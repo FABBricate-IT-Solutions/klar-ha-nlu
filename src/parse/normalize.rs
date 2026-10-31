@@ -6,6 +6,8 @@ pub fn fold_latin(s: &str) -> String {
     let mut out = String::with_capacity(s.len());
     for c in s.chars() {
         match c {
+            // Phones type curly apostrophes.
+            '\u{2019}' | '\u{2018}' => out.push('\''),
             'ä' | 'Ä' => out.push_str("ae"),
             'ö' | 'Ö' => out.push_str("oe"),
             'ü' | 'Ü' => out.push_str("ue"),
@@ -37,6 +39,17 @@ pub fn fold_latin(s: &str) -> String {
 
 pub fn fold_umlaut(s: &str) -> String {
     fold_latin(s)
+}
+
+/// "Anna's" → "anna", the same for speech and for names, so "Anna's Office" matches.
+fn drop_apostrophes(word: &str) -> String {
+    let word = if word.len() > 2 && (word.ends_with("'s") || word.ends_with("'S")) { &word[..word.len() - 2] } else { word };
+    word.replace('\'', "")
+}
+
+/// A device or room name folded the way `tokenize` treats speech.
+pub fn fold_label(s: &str) -> String {
+    fold_latin(s).split(' ').map(drop_apostrophes).collect::<Vec<_>>().join(" ")
 }
 
 /// Home Assistant slugify strips marks (`ü`→`u`). Klar's pack fold uses digraphs (`ü`→`ue`).
@@ -130,11 +143,7 @@ pub fn tokenize(text: &str) -> Vec<String> {
         folded
             .split(|c: char| !is_word_char(c))
             .filter(|token| !token.is_empty())
-            .map(|token| {
-                let token =
-                    if token.len() > 2 && (token.ends_with("'s") || token.ends_with("'S")) { &token[..token.len() - 2] } else { token };
-                token.replace('\'', "")
-            })
+            .map(drop_apostrophes)
             .filter(|token| !token.is_empty())
             .collect()
     }

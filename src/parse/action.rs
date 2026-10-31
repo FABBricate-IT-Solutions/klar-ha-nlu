@@ -162,6 +162,7 @@ pub(crate) fn detect_actions_bounded(tokens: &[String], maximum: usize) -> Vec<(
                     Some(Action::FanSpeed)
                 }
             }
+            Some(VerbKind::Vacuum) if tokens[..i].iter().any(|token| cat.verb(token).is_some()) => None,
             Some(VerbKind::Vacuum) => Some(Action::VacuumStart),
             Some(VerbKind::Dock) => Some(Action::VacuumDock),
             Some(VerbKind::Scene) => Some(Action::Scene),
@@ -404,10 +405,7 @@ fn playback_action(tokens: &[String]) -> Option<Action> {
 fn vacuum_noun_action(tokens: &[String]) -> Option<Action> {
     if is_query_token(tokens) {
         Some(Action::GetState)
-    } else if tokens.iter().any(|token| {
-        matches!(catalog().verb(token), Some(VerbKind::Dock))
-            || matches!(token.as_str(), "dock" | "docking" | "station" | "base" | "zurueck")
-    }) {
+    } else if crate::parse::infer::dock_hint(tokens) {
         Some(Action::VacuumDock)
     } else if catalog().any(tokens, catalog().vacuum_start()) || catalog().any(tokens, catalog().start_words()) {
         Some(Action::VacuumStart)
