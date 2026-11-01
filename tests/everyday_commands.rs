@@ -560,3 +560,26 @@ fn a_room_name_inside_another_room_name_stays_with_its_room() {
         assert_eq!(out.plan.as_ref().map_or(0, |plan| plan.intents().len()), wanted.len(), "{text}: {}", describe(&out));
     }
 }
+
+#[test]
+fn a_device_named_after_its_room_beats_the_whole_room() {
+    let synced = serde_json::from_value(serde_json::json!({
+        "schema_version": "1",
+        "areas": [{"id": "living_room", "name": "Living Room"}],
+        "entities": [
+            {"entity_id": "media_player.living_room_tv", "original_name": "Living Room TV", "area_id": "living_room"},
+            {"entity_id": "media_player.living_room_fire_tv", "name": "Living Room Fire TV", "area_id": "living_room"},
+            {"entity_id": "media_player.living_room_homepod", "name": "Living Room HomePod", "area_id": "living_room"}
+        ]
+    }))
+    .expect("valid snapshot");
+    let home = klar_nlu::home::snapshot::ingest(synced).expect("ingest");
+    for (text, wanted) in [
+        ("turn off the living room tv", "HassTurnOff media_player.living_room_tv"),
+        ("turn off the living room fire tv", "HassTurnOff media_player.living_room_fire_tv"),
+        ("turn on the living room tv", "HassTurnOn media_player.living_room_tv"),
+    ] {
+        let out = run("en", &home, text);
+        assert_eq!(effects(&out, &home), BTreeSet::from([wanted.to_string()]), "{text}: {}", describe(&out));
+    }
+}

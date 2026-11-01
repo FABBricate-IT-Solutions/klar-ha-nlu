@@ -8,8 +8,11 @@ fn words(name: &str) -> Vec<String> {
     fold_label(name).split([' ', '_', '-']).filter(|word| !word.is_empty()).map(str::to_string).collect()
 }
 
+/// Normalising joins some word pairs ("living room" → "livingroom"), so a pair counts as said.
 fn all_said(tokens: &[String], words: &[String]) -> bool {
-    !words.is_empty() && words.iter().all(|word| tokens.iter().any(|token| token_eq(token, word)))
+    let said = |word: &str| tokens.iter().any(|token| token_eq(token, word));
+    let joined = |i: usize, j: usize| words.get(i.max(j)).is_some_and(|_| said(&format!("{}{}", words[i.min(j)], words[i.max(j)])));
+    !words.is_empty() && (0..words.len()).all(|i| said(&words[i]) || joined(i, i + 1) || (i > 0 && joined(i - 1, i)))
 }
 
 fn contains_all(longer: &[String], shorter: &[String]) -> bool {
