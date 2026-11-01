@@ -60,6 +60,7 @@ pub struct Speech {
     pub done: &'static str,
     pub light_suffix: &'static str,
     pub area_light: &'static str,
+    pub area_lights: &'static str,
     pub loc_in: &'static str,
     pub loc_in_der: &'static str,
     pub loc_home: &'static str,

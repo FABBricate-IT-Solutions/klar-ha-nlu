@@ -80,6 +80,7 @@ pub(super) const SPEECH: Speech = Speech {{
     done: {rust_str(s["done"])},
     light_suffix: {rust_str(s["light_suffix"])},
     area_light: {rust_str(s["area_light"])},
+    area_lights: {rust_str(s.get("area_lights", s["area_light"]))},
     loc_in: {rust_str(s["loc_in"])},
     loc_in_der: {rust_str(s["loc_in_der"])},
     loc_home: {rust_str(s["loc_home"])},

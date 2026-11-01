@@ -151,7 +151,7 @@ fn en_five_or_more_lights_are_spoken_as_the_room() {
         .map(|(n, name)| ent(&format!("light.living_{n}"), name))
         .collect();
     let slots = [("area", "Living Room"), ("domain", "light")];
-    assert_eq!(say("en", "HassTurnOff", &slots, lights), "the light in the Living Room is off.");
+    assert_eq!(say("en", "HassTurnOff", &slots, lights), "The lights in the Living Room are off.");
 }
 
 #[test]
