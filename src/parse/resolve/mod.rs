@@ -17,8 +17,10 @@ mod prefer;
 mod report;
 mod scope;
 mod score;
+mod shared_room;
 mod specific;
 pub(crate) use scope::{light_rooms_for_clarify, mentions_home, query_grounded};
+pub(crate) use shared_room::narrow_shared_rooms;
 
 #[derive(Debug, Clone)]
 pub struct Resolved {
@@ -26,6 +28,8 @@ pub struct Resolved {
     pub floors: Vec<String>,
     pub entities: Vec<EntityRec>,
     pub ambiguous: Vec<EntityRec>,
+    /// Same room name on more than one floor. Ask instead of running every floor.
+    pub ask_areas: Vec<String>,
 }
 
 pub fn resolve(tokens: &[String], home: &HomeGraph, domain: Option<&str>) -> Resolved {
@@ -78,7 +82,7 @@ pub(super) fn resolve_from_candidates(
     }
     sort_hits(&mut candidates, tokens, home);
     if let Some(locks) = prefer::mentioned_locks(tokens, &candidates) {
-        return Resolved { areas, floors, entities: locks, ambiguous: Vec::new() };
+        return Resolved { areas, floors, entities: locks, ambiguous: Vec::new(), ask_areas: Vec::new() };
     }
 
     if let Some(named) = crate::parse::resolve_named::collect_named_devices(tokens, home) {
@@ -88,7 +92,7 @@ pub(super) fn resolve_from_candidates(
             named.into_iter().filter(|entity| entity.area.as_ref().is_some_and(|area| scope.contains(area))).collect()
         };
         if scoped.len() > 1 {
-            return Resolved { areas, floors, entities: keep_most_specific(tokens, scoped), ambiguous: Vec::new() };
+            return Resolved { areas, floors, entities: keep_most_specific(tokens, scoped), ambiguous: Vec::new(), ask_areas: Vec::new() };
         }
     }
 
@@ -140,13 +144,13 @@ pub(super) fn resolve_from_candidates(
             .cloned()
             .collect();
         if fixtures.len() == 1 {
-            return Resolved { areas, floors, entities: fixtures, ambiguous: Vec::new() };
+            return Resolved { areas, floors, entities: fixtures, ambiguous: Vec::new(), ask_areas: Vec::new() };
         }
     }
 
     if domain.is_none_or(|d| d == "light") && !catalog().any(tokens, catalog().timer_nouns()) {
         if let Some(picked) = pick_fixture(tokens, home, scope) {
-            return Resolved { areas, floors, entities: picked, ambiguous: Vec::new() };
+            return Resolved { areas, floors, entities: picked, ambiguous: Vec::new(), ask_areas: Vec::new() };
         }
     }
     if !areas.is_empty()
@@ -162,7 +166,7 @@ pub(super) fn resolve_from_candidates(
             .cloned()
             .collect();
         if lights.len() > 1 {
-            return Resolved { areas, floors, entities: Vec::new(), ambiguous: lights };
+            return Resolved { areas, floors, entities: Vec::new(), ambiguous: lights, ask_areas: Vec::new() };
         }
     }
 
@@ -185,7 +189,7 @@ pub(super) fn resolve_from_candidates(
 
     prefer_fully_named(tokens, &mut entities, &mut ambiguous);
     let entities = keep_most_specific(tokens, entities);
-    Resolved { areas, floors, entities, ambiguous }
+    Resolved { areas, floors, entities, ambiguous, ask_areas: Vec::new() }
 }
 
 pub(crate) fn entity_has_name_evidence(tokens: &[String], entity: &EntityRec, home: &HomeGraph) -> bool {

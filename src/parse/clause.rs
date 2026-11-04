@@ -84,6 +84,7 @@ pub(crate) fn parse_clause_candidates_for_action(
 
     let mut resolved = resolve_targets(tokens, home, settings, domain, early);
     apply_compound_light(home, tokens, light_areas, &mut resolved);
+    crate::parse::resolve::narrow_shared_rooms(&mut resolved, tokens, home, session.preferred_area.as_deref());
     let target = resolved.entities.first().map(|e| e.domain.as_str());
     let action = match target {
         Some(domain) => infer_action(guessed, tokens, number, question, session, Some(domain)),
@@ -117,6 +118,9 @@ pub(crate) fn parse_clause_candidates_for_action(
     ];
     for (policy, evaluate) in policies {
         if !overlay.enabled(*policy) {
+            continue;
+        }
+        if !ctx.resolved.ask_areas.is_empty() && *policy != PolicyId::AreaCommand {
             continue;
         }
         if except_all
