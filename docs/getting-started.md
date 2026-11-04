@@ -14,7 +14,7 @@ Klar kommt in zwei Teilen. Sie machen unterschiedliche Jobs. Beides zu installie
 
 | Teil | Rolle | Braucht ihr das? |
 |------|-------|------------------|
-| **HACS-Integration** | Conversation-Agent für Assist. Räume und Geräte synchronisieren, Intents ausführen. | Ja, wenn Assist Klar nutzen soll. |
+| **Integration** | Conversation-Agent für Assist. Räume und Geräte synchronisieren, Intents ausführen. | Ja, wenn Assist Klar nutzen soll. |
 | **App (Add-on)** | NLU-Engine im eigenen Container. Operator-Konsole (Settings, Haus, Labor, Regeln) in der Seitenleiste **Klar NLU**. | Home Assistant OS, wenn ihr diese UI wollt. |
 | **Mitgelieferte Engine** | Die Integration lädt das GitHub-Release und startet dieselbe Engine in Core auf `127.0.0.1:10520`. | Wenn keine App da ist. |
 
@@ -28,7 +28,7 @@ Lovelace **Klar** ist der letzte Assist-Zug (`klar-home-card`). Die Operator-Kon
 
 [![Open your Home Assistant instance and open a repository inside the Home Assistant Community Store.](https://my.home-assistant.io/badges/hacs_repository.svg)](https://my.home-assistant.io/redirect/hacs_repository/?owner=FABBricate-IT-Solutions&repository=klar-ha-nlu&category=integration)
 
-1. HACS → Integrationen → ⋮ → Benutzerdefinierte Repositories → `https://github.com/FABBricate-IT-Solutions/klar-ha-nlu` → **Integration**. **Klar NLU** herunterladen und Home Assistant neu starten.
+1. Einstellungen → Marketplace → Über Link hinzufügen → `https://github.com/FABBricate-IT-Solutions/klar-ha-nlu` → **Integration**. Ein eigenes Repository braucht eine GitHub-Verbindung. Vor 2026.11 liegt dieselbe URL unter HACS → Integrationen → ⋮ → Benutzerdefinierte Repositories. **Klar NLU** herunterladen und Home Assistant neu starten. Eine bestehende HACS-Installation zieht beim ersten Start von 2026.11 mit.
 2. [App-Repository hinzufügen](https://my.home-assistant.io/redirect/supervisor_add_addon_repository/?repository_url=https%3A%2F%2Fgithub.com%2FFABBricate-IT-Solutions%2Fklar-ha-nlu), **Klar NLU** installieren (nicht **Klar NLU (Staging)**) und starten. Staging ist eine zweite App für Release-Kandidaten. Ein Neustart startet die App; er installiert keine zweite Kopie. Details: [App-Doku](../addon/DOCS.md).
 3. Auf der App-Seite **In der Seitenleiste anzeigen** einschalten. Dieser Eintrag ist die App und bleibt unter Einstellungen → Apps gelistet.
 4. [Integration hinzufügen](https://my.home-assistant.io/redirect/config_flow_start/?domain=klar_nlu) und **Klar-NLU-App oder Docker verwenden** wählen. URL: `http://klar-nlu:10520`. Steht die App schon in der Seitenleiste, schlägt das Formular das vor. Die mitgelieferte Engine nicht zusätzlich starten.
@@ -36,9 +36,9 @@ Lovelace **Klar** ist der letzte Assist-Zug (`klar-home-card`). Die Operator-Kon
 
 **Klar engine** in der Seitenleiste ist die mitgelieferte Engine in Home Assistant. Das ist keine App und erscheint nicht unter Einstellungen → Apps. Lässt sich Klar nach dem Entfernen der App noch aus der Seitenleiste öffnen, ist das dieses Panel. **Klar NLU** unter Apps neu installieren und die Integration auf die App stellen.
 
-### Ohne Supervisor — nur HACS
+### Ohne Supervisor — nur Integration
 
-Dieselben HACS-Schritte, dann [Integration hinzufügen](https://my.home-assistant.io/redirect/config_flow_start/?domain=klar_nlu) und **Mitgelieferte Engine starten (nur HACS)** behalten. Assist funktioniert. Settings und Labor sind nicht in der Seitenleiste (die Engine bindet Loopback in Core).
+Dieselben Marketplace-Schritte, dann [Integration hinzufügen](https://my.home-assistant.io/redirect/config_flow_start/?domain=klar_nlu) und **Mitgelieferte Engine starten (ohne App)** behalten. Assist funktioniert. Settings und Labor sind nicht in der Seitenleiste (die Engine bindet Loopback in Core).
 
 Docker statt mitgeliefert: Image starten, dann **Klar-NLU-App oder Docker verwenden** mit `http://127.0.0.1:10520`. Siehe [Home Assistant](home-assistant.md).
 

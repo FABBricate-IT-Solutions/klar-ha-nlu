@@ -107,7 +107,7 @@ export const wizardDe: WizardMessages = {
     "Der Graph kommt von Home Assistant. In der Integration „Klar-NLU-App oder Docker“ wählen. Die Konsole läuft hier.",
   pathBinaryTitle: "Mitgelieferte Engine",
   pathBinaryBody:
-    "HACS-only oder Binary auf Loopback (127.0.0.1:10520). Assist funktioniert. Settings und Labor erreicht ein Telefon nicht.",
+    "Mitgelieferte Engine (ohne App) oder Binary auf Loopback (127.0.0.1:10520). Assist funktioniert. Settings und Labor erreicht ein Telefon nicht.",
   pathSampleTitle: "Beispielhaus",
   pathSampleBody:
     "Noch das eingebaute default_home, kein HA-Snapshot. Assist-Pipeline speichern — dann erscheint euer Haus.",
@@ -195,7 +195,7 @@ export const wizardEn: WizardMessages = {
     "The graph was pushed from Home Assistant. In the integration pick “Use the Klar NLU App or Docker”. This console runs here.",
   pathBinaryTitle: "Bundled engine",
   pathBinaryBody:
-    "HACS-only or a binary on loopback (127.0.0.1:10520). Assist works. A phone cannot reach Settings or Lab.",
+    "Bundled engine (no App), or a binary on loopback (127.0.0.1:10520). Assist works. A phone cannot reach Settings or Lab.",
   pathSampleTitle: "Sample house",
   pathSampleBody:
     "Still the built-in default_home, not an HA snapshot. Save the Assist pipeline — then your house appears.",

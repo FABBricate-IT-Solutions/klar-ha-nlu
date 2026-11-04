@@ -30,7 +30,7 @@ _STORE_KEYS = frozenset({"panel", "ui_proxy", "ui_cookie_secret", "operator_pane
 
 
 def operator_panel_wanted(hass: HomeAssistant) -> bool:
-    """HACS sidebar only when Assist is not using the Supervisor App."""
+    """Sidebar only when Assist is not using the Supervisor App."""
     for key, payload in (hass.data.get(DOMAIN) or {}).items():
         if key in _STORE_KEYS or not isinstance(payload, dict):
             continue

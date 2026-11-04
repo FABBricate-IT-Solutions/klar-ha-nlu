@@ -47,22 +47,22 @@ Klar is two pieces. They do different jobs. Installing both does **not** make pa
 
 | Piece | Role | Install it if… |
 |-------|------|----------------|
-| **HACS integration** | Conversation agent for Assist: syncs rooms/devices, runs intents | You want Assist to use Klar (always) |
+| **Integration** | Conversation agent for Assist: syncs rooms/devices, runs intents | You want Assist to use Klar (always) |
 | **App (add-on)** | Runs the NLU engine in its own container and serves Mapping / Lab | You are on Home Assistant OS and want that UI |
 | **Bundled engine** | Same integration downloads the GitHub Release and starts the engine inside Core | You have no App (Container / Core, or HAOS without the App) |
 
 Pick **one** engine host. Do not run the App and the bundled engine together.
 
-- **Home Assistant OS:** install **both** — HACS for Assist, the App for the engine and Mapping/Lab. Sidebar **Klar NLU** is the App; Lovelace **Klar** is only the last Assist turn.
-- **No Supervisor:** HACS only, and keep **Start the bundled engine (HACS only)** at setup.
-- **App without HACS:** Mapping/Lab can open, but Assist will not use Klar.
+- **Home Assistant OS:** install **both** — the integration for Assist, the App for the engine and Mapping/Lab. Sidebar **Klar NLU** is the App; Lovelace **Klar** is only the last Assist turn.
+- **No Supervisor:** the integration only, and keep **Start the bundled engine (no App)** at setup.
+- **App without the integration:** Mapping/Lab can open, but Assist will not use Klar.
 
 [![Open your Home Assistant instance and open a repository inside the Home Assistant Community Store.](https://my.home-assistant.io/badges/hacs_repository.svg)](https://my.home-assistant.io/redirect/hacs_repository/?owner=FABBricate-IT-Solutions&repository=klar-ha-nlu&category=integration)
 
-1. Click the badge, or in HACS → Integrations → ⋮ → Custom repositories add `https://github.com/FABBricate-IT-Solutions/klar-ha-nlu` as **Integration**
+1. Click the badge, or Settings → Marketplace → Add from link → `https://github.com/FABBricate-IT-Solutions/klar-ha-nlu` as **Integration**. A custom repository needs a GitHub connection. Before 2026.11 the same URL is HACS → Integrations → ⋮ → Custom repositories. An existing HACS install moves over on the first start of 2026.11.
 2. Download **Klar NLU** and restart Home Assistant
 3. On Home Assistant OS, also add the [App repository](https://my.home-assistant.io/redirect/supervisor_add_addon_repository/?repository_url=https%3A%2F%2Fgithub.com%2FFABBricate-IT-Solutions%2Fklar-ha-nlu), install **Klar NLU**, and start it
-4. [![Open your Home Assistant instance and start setting up a new integration.](https://my.home-assistant.io/badges/config_flow_start.svg)](https://my.home-assistant.io/redirect/config_flow_start/?domain=klar_nlu) — with the App running pick **Use the Klar NLU App or Docker**; without it pick **Start the bundled engine (HACS only)**
+4. [![Open your Home Assistant instance and start setting up a new integration.](https://my.home-assistant.io/badges/config_flow_start.svg)](https://my.home-assistant.io/redirect/config_flow_start/?domain=klar_nlu) — with the App running pick **Use the Klar NLU App or Docker**; without it pick **Start the bundled engine (no App)**
 5. Expose the devices you want to talk to (Settings → Voice assistants → Expose)
 6. Assist pipeline: conversation engine = **Klar NLU**
 7. Personality, LLM, and refine live in the Klar NLU App / operator Settings — not in the Home Assistant options form

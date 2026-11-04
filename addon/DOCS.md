@@ -1,18 +1,18 @@
 # Klar NLU
 
-Runs the Klar NLU **engine** next to Home Assistant (Mapping / Lab in sidebar **Klar NLU**). Assist still needs the **HACS integration** — this App does not replace it, and installing both does not make parsing more accurate.
+Runs the Klar NLU **engine** next to Home Assistant (Mapping / Lab in sidebar **Klar NLU**). Assist still needs the **integration** — this App does not replace it, and installing both does not make parsing more accurate.
 
 Household path: [getting started](../docs/en/getting-started.md) · [Einstieg](../docs/getting-started.md). Token, expose, bundle: [troubleshooting](../docs/en/troubleshooting.md).
 
 ## After start
 
-1. Install **Klar NLU** via HACS (category Integration) if it is not already there.
+1. Install **Klar NLU** from Settings → Marketplace → Add from link (category Integration) if it is not already there. The badge on the repository README opens the same dialog. Before 2026.11 that was HACS → Integrations → Custom repositories.
 2. Add the integration and choose **Use the Klar NLU App or Docker**.
 3. URL: `http://klar-nlu:10520`
 4. If you set the App **token**, paste the same value into the integration **Write token**. Overlay writes from Home Assistant need it (Supervisor is not loopback).
 5. Personality, LLM, and refine live in the Klar NLU App / operator Settings — not in the Home Assistant options form. Assist’s conversation engine must stay **Klar NLU**.
 
-Do not also pick **Start the bundled engine (HACS only)** while this App is running.
+Do not also pick **Start the bundled engine (no App)** while this App is running.
 
 UI: on the App page turn **Show in sidebar** on, then open **Klar NLU**. That entry stays under Settings → Apps. **Klar engine** is the bundled engine and is not an App. Lovelace **Klar** is only the last Assist turn.
 
