@@ -178,13 +178,28 @@ def entity_area_id(hass: Any, entity_id: str) -> str:
     entry = entity_registry.async_get(hass).async_get(entity_id)
     if entry is None:
         return ""
-    if getattr(entry, "area_id", None):
-        return str(entry.area_id)
-    device_id = getattr(entry, "device_id", None)
-    if not device_id:
-        return ""
-    device = device_registry.async_get(hass).async_get(device_id)
-    return str(getattr(device, "area_id", None) or "") if device is not None else ""
+    area = getattr(entry, "area_id", None)
+    if isinstance(area, str) and area:
+        return area
+    return _device_area(hass, getattr(entry, "device_id", None))
+
+
+def _device_area(hass: Any, device_id: Any) -> str:
+    """Area of this device, or of the parent it is attached to (2026.11 child devices)."""
+    seen: set[str] = set()
+    while isinstance(device_id, str) and device_id and device_id not in seen:
+        seen.add(device_id)
+        try:
+            device = device_registry.async_get(hass).async_get(device_id)
+        except (AttributeError, TypeError, KeyError):
+            return ""
+        if device is None:
+            return ""
+        area = getattr(device, "area_id", None)
+        if isinstance(area, str) and area:
+            return area
+        device_id = getattr(device, "via_device_id", None)
+    return ""
 
 
 def _wanted_domains(domain: str) -> set[str]:
