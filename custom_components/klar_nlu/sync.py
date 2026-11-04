@@ -128,7 +128,7 @@ class HomeGraphSync:
         fr = floor_registry.async_get(self.hass)
         lr = label_registry.async_get(self.hass)
         assist_filter = self._entry.options.get(CONF_ASSIST_FILTER, DEFAULT_ASSIST_FILTER)
-        entities = [_entity(entry) for entry in er.entities.values() if not getattr(entry, "disabled_by", None)]
+        entities = [_entity(self.hass, entry) for entry in er.entities.values() if not getattr(entry, "disabled_by", None)]
         devices = [_device(device) for device in dr.devices.values()]
         areas = [_area(area) for area in ar.areas.values()]
         floors = [_floor(floor) for floor in fr.floors.values()]
@@ -168,19 +168,70 @@ def _exposed(hass: HomeAssistant, entity_id: str) -> bool:
         return False
 
 
-def _entity(entry: Any) -> dict[str, Any]:
+def _entity(hass: HomeAssistant, entry: Any) -> dict[str, Any]:
+    short = _opt(getattr(entry, "name", None), _NAME_CAP)
+    # 2026.11 stores only the entity part in `name` and builds "device entity" for Assist.
+    full = _registry_name(hass, entry)
+    name = full or short
+    aliases = _entity_aliases(hass, entry)
+    if full and full != short:
+        for extra in (
+            short,
+            _opt(getattr(entry, "original_name", None), _NAME_CAP),
+            _opt(getattr(entry, "compat_name", None), _NAME_CAP),
+        ):
+            if extra and extra != name and extra not in aliases and len(aliases) < _ALIAS_CAP:
+                aliases.append(extra)
+    area = _opt(getattr(entry, "area_id", None), _ID_CAP) or _opt(_device_area(hass, getattr(entry, "device_id", None)), _ID_CAP)
     return {
         "entity_id": _cap(getattr(entry, "entity_id", ""), _ID_CAP),
-        "name": _opt(getattr(entry, "name", None), _NAME_CAP),
+        "name": name,
         "original_name": _opt(getattr(entry, "original_name", None), _NAME_CAP),
         "has_entity_name": bool(getattr(entry, "has_entity_name", False)),
-        "area_id": _opt(getattr(entry, "area_id", None), _ID_CAP),
+        "area_id": area,
         "device_id": _opt(getattr(entry, "device_id", None), _ID_CAP),
         "platform": _opt(getattr(entry, "platform", None), _ID_CAP),
-        "aliases": _aliases(getattr(entry, "aliases", None)),
+        "aliases": aliases,
         "labels": _aliases(getattr(entry, "labels", None)),
         "disabled": False,
     }
+
+
+def _registry_name(hass: HomeAssistant, entry: Any) -> str | None:
+    getter = getattr(entity_registry, "async_get_full_entity_name", None)
+    if not callable(getter):
+        return None
+    try:
+        return _opt(getter(hass, entry), _NAME_CAP)
+    except Exception:  # noqa: BLE001 — name helper is a system boundary
+        return None
+
+
+def _entity_aliases(hass: HomeAssistant, entry: Any) -> list[str]:
+    getter = getattr(entity_registry, "async_get_entity_aliases", None)
+    if callable(getter):
+        try:
+            return _aliases(getter(hass, entry))
+        except Exception:  # noqa: BLE001 — alias helper is a system boundary
+            pass
+    return _aliases(getattr(entry, "aliases", None))
+
+
+def _device_area(hass: HomeAssistant, device_id: Any) -> str | None:
+    seen: set[str] = set()
+    while isinstance(device_id, str) and device_id and device_id not in seen:
+        seen.add(device_id)
+        try:
+            device = device_registry.async_get(hass).async_get(device_id)
+        except (AttributeError, TypeError, KeyError):
+            return None
+        if device is None:
+            return None
+        area = getattr(device, "area_id", None)
+        if isinstance(area, str) and area:
+            return area
+        device_id = getattr(device, "via_device_id", None)
+    return None
 
 
 def _device(device: Any) -> dict[str, Any]:
@@ -220,8 +271,10 @@ def _label(label: Any) -> dict[str, Any]:
 def _aliases(values: Any) -> list[str]:
     if not values:
         return []
+    # 2026.11 aliases mix strings with a computed-name sentinel. Stringifying that sentinel is not a name.
+    strings = [value for value in list(values) if isinstance(value, str)]
     out: list[str] = []
-    for value in list(values)[:_ALIAS_CAP]:
+    for value in strings[:_ALIAS_CAP]:
         text = _opt(value, _NAME_CAP)
         if text:
             out.append(text)

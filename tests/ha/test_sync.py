@@ -214,6 +214,47 @@ class SyncTests(unittest.TestCase):
         self.assertEqual(len(snapshot["floors"]), 4)
         self.assertEqual(snapshot["labels"], [{"label_id": "lighting", "name": "Lighting"}])
 
+    def test_home_assistant_2026_11_names_and_child_device_area(self) -> None:
+        computed = object()
+        entity = SimpleNamespace(
+            entity_id="light.living",
+            name="Living",
+            original_name="Ceiling",
+            compat_name="Hue Living",
+            has_entity_name=True,
+            area_id=None,
+            device_id="dev1",
+            platform="hue",
+            aliases=[computed, "decke"],
+            labels=[],
+            disabled_by=None,
+        )
+        child = SimpleNamespace(id="dev1", name="Hue", name_by_user=None, area_id=None, via_device_id="strip")
+        parent = SimpleNamespace(id="strip", name="Power strip", name_by_user=None, area_id="living", via_device_id=None)
+        devices = {"dev1": child, "strip": parent}
+        sync.entity_registry.async_get = lambda _hass: SimpleNamespace(entities=_Map(entity))
+        sync.device_registry.async_get = lambda _hass: SimpleNamespace(
+            async_get=lambda device_id: devices.get(device_id), devices=_Map(child, parent)
+        )
+        sync.area_registry.async_get = lambda _hass: SimpleNamespace(areas=_Map())
+        sync.floor_registry.async_get = lambda _hass: SimpleNamespace(floors=_Map())
+        sync.label_registry.async_get = lambda _hass: SimpleNamespace(labels=_Map())
+        entry = SimpleNamespace(options={"assist_filter": False}, data={})
+        before = sync.HomeGraphSync(SimpleNamespace(), entry, "http://127.0.0.1:10520", None).build_snapshot()["entities"][0]
+        self.assertEqual(before["name"], "Living")
+        self.assertEqual(before["aliases"], ["decke"])
+        self.assertEqual(before["area_id"], "living")
+        sync.entity_registry.async_get_full_entity_name = lambda _hass, _entry: "Power strip Hue Living"
+        sync.entity_registry.async_get_entity_aliases = lambda _hass, _entry: ["Power strip Hue Living", "decke"]
+        try:
+            row = sync.HomeGraphSync(SimpleNamespace(), entry, "http://127.0.0.1:10520", None).build_snapshot()["entities"][0]
+        finally:
+            del sync.entity_registry.async_get_full_entity_name
+            del sync.entity_registry.async_get_entity_aliases
+        self.assertEqual(row["name"], "Power strip Hue Living")
+        self.assertEqual(row["aliases"], ["Power strip Hue Living", "decke", "Living", "Ceiling", "Hue Living"])
+        self.assertEqual(row["area_id"], "living")
+
     def test_live_sync_retries_when_engine_is_gone(self) -> None:
         src = (ROOT / "custom_components" / "klar_nlu" / "sync.py").read_text(encoding="utf-8")
         self.assertIn("_PUSH_EVERY_S", src)
