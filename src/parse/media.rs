@@ -87,7 +87,10 @@ fn status_intent(tokens: &[String]) -> Option<Intent> {
 }
 
 fn volume_intent(tokens: &[String], session: &Session, number: Option<i32>) -> Option<Intent> {
+    // "Rollo hoch" moves the cover, not the volume.
     if catalog().any(tokens, catalog().climate_nouns())
+        || catalog().any(tokens, catalog().cover_nouns())
+        || catalog().any(tokens, catalog().curtain_nouns())
         || crate::parse::action::has_light_noun(tokens)
         || crate::parse::calendar::mentions_calendar(tokens)
     {

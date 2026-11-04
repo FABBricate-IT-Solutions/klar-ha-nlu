@@ -16,12 +16,22 @@ pub fn render_snapshot(snap: &SpeechSnapshot) -> SpeechRenderOut {
     SpeechRenderOut { speech: spoken, quiet_ack: false, source: "post_execute" }
 }
 
+fn capitalize(line: &str) -> String {
+    let mut chars = line.chars();
+    chars.next().map(|first| first.to_uppercase().chain(chars).collect()).unwrap_or_default()
+}
+
 fn interpolate(snap: &SpeechSnapshot, speech: Speech, de: bool) -> String {
     let target = pretty_where(snap, speech);
     let line = interpolate_line(snap, speech, de, &target.phrase);
-    match plural_verbs(&snap.language) {
+    let line = match plural_verbs(&snap.language) {
         Some(verbs) if target.plural => pluralize(&line, &target.phrase, verbs),
         _ => line,
+    };
+    if line.starts_with(&target.phrase) {
+        capitalize(&line)
+    } else {
+        line
     }
 }
 
@@ -288,7 +298,13 @@ fn pretty_where(snap: &SpeechSnapshot, speech: Speech) -> Target {
     if let Some(name) = name_slot {
         return Target::one(spoken_device(name, slot(snap, "entity_id").unwrap_or(""), speech));
     }
-    if let Some(names) = listed_targets(snap, speech) {
+    let names = spoken_targets(snap, speech);
+    if names.len() > MAX_SPOKEN_TARGETS && domain_of(snap) == "light" {
+        if let Some(room) = room.as_deref() {
+            return Target { phrase: room_phrase(speech.area_lights, room, speech), plural: speech.area_lights != speech.area_light };
+        }
+    }
+    if names.len() > 1 {
         return Target { phrase: join_list(&names, speech.and_join), plural: true };
     }
     if let Some(name) = entity_name {
@@ -303,7 +319,7 @@ fn pretty_where(snap: &SpeechSnapshot, speech: Speech) -> Target {
     Target::one(speech.or_home.to_string())
 }
 
-/// Most devices read out by name; beyond this the reply falls back to the room.
+/// More lights than this in one room are spoken as the room ("the lights in the Living Room").
 const MAX_SPOKEN_TARGETS: usize = 4;
 
 /// The user named one device ("close the bedroom blinds"), so speak only that.
@@ -326,12 +342,6 @@ fn spoken_targets(snap: &SpeechSnapshot, speech: Speech) -> Vec<String> {
         }
     }
     names
-}
-
-/// Two to MAX_SPOKEN_TARGETS devices, all to be named in the reply.
-fn listed_targets(snap: &SpeechSnapshot, speech: Speech) -> Option<Vec<String>> {
-    let names = spoken_targets(snap, speech);
-    (2..=MAX_SPOKEN_TARGETS).contains(&names.len()).then_some(names)
 }
 
 /// "A", "A and B", "A, B and C".
@@ -360,13 +370,17 @@ fn light_word(name: &str) -> bool {
 }
 
 fn area_light_phrase(room: &str, speech: Speech) -> String {
+    room_phrase(speech.area_light, room, speech)
+}
+
+fn room_phrase(template: &str, room: &str, speech: Speech) -> String {
     let folded = fold(room);
     let loc = if speech.loc_der_rooms.iter().any(|key| folded.contains(key)) || folded.ends_with('e') {
         speech.loc_in_der.replace("{room}", room)
     } else {
         speech.loc_in.replace("{room}", room)
     };
-    speech.area_light.replace("{loc}", &loc)
+    template.replace("{loc}", &loc)
 }
 
 fn spoken_device(name: &str, entity_id: &str, speech: Speech) -> String {

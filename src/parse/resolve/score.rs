@@ -2,7 +2,7 @@ use crate::home::classify::is_generic_room_light;
 use crate::home::policy::is_infra_light;
 use crate::lang::catalog;
 use crate::parse::fuzzy::{evidence, Evidence, Profile};
-use crate::parse::normalize::{compact, fold_umlaut};
+use crate::parse::normalize::{compact, fold_label, fold_umlaut};
 use crate::types::{EntityRec, HomeGraph};
 
 use super::token_eq;
@@ -22,7 +22,7 @@ fn longest_label_hit(tokens: &[String], entity: &EntityRec, home: &HomeGraph) ->
     usable_labels(entity, home)
         .into_iter()
         .map(|label| {
-            let folded = fold_umlaut(&label);
+            let folded = fold_label(&label);
             if super::token_hit(tokens, &folded) {
                 compact(&folded).chars().count()
             } else {
@@ -52,7 +52,7 @@ fn light_beats_script(left: &EntityRec, right: &EntityRec) -> std::cmp::Ordering
 pub(super) fn overlap(tokens: &[String], entity: &EntityRec, home: &HomeGraph) -> usize {
     usable_labels(entity, home)
         .into_iter()
-        .map(|label| fold_umlaut(&label).split([' ', '_']).filter(|p| !p.is_empty() && tokens.iter().any(|t| token_eq(t, p))).count())
+        .map(|label| fold_label(&label).split([' ', '_']).filter(|p| !p.is_empty() && tokens.iter().any(|t| token_eq(t, p))).count())
         .max()
         .unwrap_or(0)
 }
@@ -191,11 +191,11 @@ pub(crate) fn known_target_token(token: &str, home: &HomeGraph) -> bool {
 }
 
 fn label_has_token(token: &str, label: &str) -> bool {
-    fold_umlaut(label).split([' ', '_']).filter(|part| !part.is_empty()).any(|part| token_eq(token, part))
+    fold_label(label).split([' ', '_']).filter(|part| !part.is_empty()).any(|part| token_eq(token, part))
 }
 
 fn fuzzy_label_token(token: &str, label: &str) -> bool {
-    let folded = fold_umlaut(label);
+    let folded = fold_label(label);
     evidence(token, &compact(&folded), Profile::Target).is_some()
         || folded.split([' ', '_']).filter(|part| !part.is_empty()).any(|part| evidence(token, part, Profile::Target).is_some())
 }
@@ -247,10 +247,10 @@ fn short_name_token(entity: &EntityRec) -> Option<String> {
 
 fn folded_usable_labels(entity: &EntityRec, home: &HomeGraph) -> Vec<String> {
     let Some(index) = home.label_index.as_ref() else {
-        return usable_labels(entity, home).into_iter().map(|label| fold_umlaut(&label)).collect();
+        return usable_labels(entity, home).into_iter().map(|label| fold_label(&label)).collect();
     };
     let Some(rows) = index.entities.get(&entity.entity_id) else {
-        return usable_labels(entity, home).into_iter().map(|label| fold_umlaut(&label)).collect();
+        return usable_labels(entity, home).into_iter().map(|label| fold_label(&label)).collect();
     };
     let generic = is_generic_room_light(entity, home, catalog());
     rows.iter()

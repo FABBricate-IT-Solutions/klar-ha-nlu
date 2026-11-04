@@ -42,6 +42,17 @@ pub fn wanted_climate_kind(tokens: &[String], cat: &Catalog) -> Option<ClimateKi
     }
 }
 
+/// Hot-water controllers are climate entities too, but "set the heating to 20" never means them.
+const HOT_WATER: &[&str] = &["water", "wasser"];
+
+pub fn is_hot_water(entity: &EntityRec) -> bool {
+    entity.domain == "climate" && HOT_WATER.iter().any(|word| climate_blob(entity).contains(word))
+}
+
+pub fn hot_water_asked(tokens: &[String]) -> bool {
+    tokens.iter().any(|token| HOT_WATER.iter().any(|word| compact(token).contains(word)))
+}
+
 pub fn climate_kind(entity: &EntityRec, cat: &Catalog) -> Option<ClimateKind> {
     if entity.domain != "climate" && !has_role(entity, "climate", cat) {
         return None;

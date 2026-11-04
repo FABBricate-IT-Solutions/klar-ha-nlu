@@ -90,7 +90,7 @@ pub const PACK: LanguagePack = LanguagePack {
         timer_nouns: &["timer", "timers", "countdown"],
         list_nouns: &["list", "shopping", "chores"],
         calendar_nouns: &["calendar", "calendars", "event", "events", "agenda", "appointment", "appointments"],
-        vacuum_nouns: &["vacuum", "r2d2"],
+        vacuum_nouns: &["vacuum", "vacuuming", "r2d2"],
         scene_nouns: &["scene"],
         script_words: &["script"],
         switch_plural: &["switches"],

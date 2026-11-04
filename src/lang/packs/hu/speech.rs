@@ -61,6 +61,7 @@ pub(super) const SPEECH: Speech = Speech {
     done: "{name}",
     light_suffix: " villany",
     area_light: "villany {loc}",
+    area_lights: "villany {loc}",
     loc_in: "{room}",
     loc_in_der: "{room}",
     loc_home: "otthon",

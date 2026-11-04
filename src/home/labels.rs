@@ -1,4 +1,4 @@
-use crate::parse::normalize::fold_umlaut;
+use crate::parse::normalize::fold_label;
 use crate::types::{HomeGraph, LabelIndex, StoredLabel};
 
 pub fn rebuild_label_index(home: &mut HomeGraph) {
@@ -32,13 +32,13 @@ pub fn rebuild_label_index(home: &mut HomeGraph) {
 }
 
 fn push_label(index: &mut LabelIndex, labels: &mut Vec<StoredLabel>, raw: &str, tag: bool) {
-    let folded = fold_umlaut(raw);
+    let folded = fold_label(raw);
     push_parts(index, &folded);
     labels.push(StoredLabel { raw: raw.to_string(), folded, tag });
 }
 
 fn push_tokens(index: &mut LabelIndex, raw: &str) {
-    push_parts(index, &fold_umlaut(raw));
+    push_parts(index, &fold_label(raw));
 }
 
 fn push_parts(index: &mut LabelIndex, folded: &str) {

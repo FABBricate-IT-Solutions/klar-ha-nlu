@@ -1,5 +1,5 @@
 use crate::home::registry::keep_domain;
-use crate::home::registry_yaml::{merge_area_aliases, merge_floor_aliases};
+use crate::home::registry_yaml::{drop_borrowed_area_names, merge_area_aliases, merge_floor_aliases};
 use crate::home::roles::expand_entity_tags;
 use crate::types::{AreaRec, EntityRec, FloorRec, HomeGraph};
 use serde::Deserialize;
@@ -134,7 +134,7 @@ pub fn ingest(snapshot: HomeSnapshot) -> Result<HomeGraph, SnapshotError> {
         })
         .collect::<Vec<_>>();
     let floor_ids = floors.iter().map(|floor| floor.floor_id.as_str()).collect::<HashSet<_>>();
-    let areas = snapshot
+    let mut areas = snapshot
         .areas
         .into_iter()
         .map(|area| AreaRec {
@@ -144,6 +144,7 @@ pub fn ingest(snapshot: HomeSnapshot) -> Result<HomeGraph, SnapshotError> {
             floor_id: area.floor_id.filter(|id| floor_ids.contains(id.as_str())),
         })
         .collect::<Vec<_>>();
+    drop_borrowed_area_names(&mut areas);
     let area_ids = areas.iter().map(|area| area.area_id.as_str()).collect::<HashSet<_>>();
     let assist_ids: HashSet<String> =
         snapshot.assist.as_ref().map(|ids| ids.iter().filter(|id| id.contains('.')).cloned().collect()).unwrap_or_default();

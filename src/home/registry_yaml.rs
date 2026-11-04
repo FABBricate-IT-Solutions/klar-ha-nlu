@@ -95,7 +95,7 @@ pub fn load_home_config(path: &Path) -> Result<HomeGraph, String> {
             level: floor.level,
         })
         .collect();
-    let areas = file
+    let mut areas = file
         .areas
         .into_iter()
         .map(|a| AreaRec {
@@ -104,7 +104,8 @@ pub fn load_home_config(path: &Path) -> Result<HomeGraph, String> {
             aliases: merge_area_aliases(&a.id, &a.name, a.aliases),
             floor_id: a.floor_id.filter(|id| !id.is_empty()),
         })
-        .collect();
+        .collect::<Vec<_>>();
+    drop_borrowed_area_names(&mut areas);
     let mut entities: Vec<EntityRec> = file
         .devices
         .into_iter()
@@ -291,6 +292,16 @@ pub(crate) fn merge_area_aliases(area_id: &str, name: &str, existing: Vec<String
     aliases.sort();
     aliases.dedup();
     aliases
+}
+
+/// "Ela's Office" must not answer to "office" when another area is called Office.
+pub(crate) fn drop_borrowed_area_names(areas: &mut [AreaRec]) {
+    let owned: Vec<(String, [String; 2])> =
+        areas.iter().map(|area| (area.area_id.clone(), [area.area_id.clone(), fold_umlaut(&area.name)])).collect();
+    for area in areas.iter_mut() {
+        let borrowed = |alias: &String| owned.iter().any(|(id, names)| *id != area.area_id && names.contains(alias));
+        area.aliases.retain(|alias| !borrowed(alias));
+    }
 }
 
 fn extra_area_aliases(id: &str) -> Vec<String> {

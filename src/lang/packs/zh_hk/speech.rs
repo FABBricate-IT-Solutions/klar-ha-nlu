@@ -61,6 +61,7 @@ pub(super) const SPEECH: Speech = Speech {
     done: "{name}",
     light_suffix: "燈",
     area_light: "{loc}嘅燈",
+    area_lights: "{loc}嘅燈",
     loc_in: "{room}",
     loc_in_der: "{room}",
     loc_home: "屋企",

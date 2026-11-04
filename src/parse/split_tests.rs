@@ -231,6 +231,21 @@ fn verb_final_rule_ignores_verb_first_english() {
 }
 
 #[test]
+fn restated_verb_after_and_starts_a_new_clause() {
+    for (sentence, expected) in [
+        (
+            "off tv livingroom and off kitchen lights and on hall light",
+            vec!["off tv livingroom and", "off kitchen lights and", "on hall light"],
+        ),
+        ("off kitchen lights and off hall light", vec!["off kitchen lights", "off hall light"]),
+    ] {
+        assert_eq!(clauses_of(sentence), expected, "{sentence}");
+    }
+    // The verb is not restated: one command over two rooms.
+    assert_eq!(clauses_of("mach licht kueche an und flur an").len(), 1);
+}
+
+#[test]
 fn verb_final_rule_keeps_a_set_point_with_its_device() {
     // "auf 20" is a set-point: cutting after "auf" sent 20 to the light and left the heating unset.
     for (sentence, expected) in [

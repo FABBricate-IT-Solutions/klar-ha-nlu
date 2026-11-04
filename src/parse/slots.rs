@@ -4,6 +4,7 @@ use crate::home::roles::is_light_like;
 use crate::lang::catalog;
 use crate::lang::VerbKind;
 use crate::parse::action::Action;
+use crate::parse::all_lights::{every_light, room_light_steps};
 use crate::parse::clause_area::area_slots;
 use crate::parse::infer::{
     bind_domain, color_word, except_focus, except_tail, light_level, mentions_lamp_fixture, wants_all_lights, LightLevel,
@@ -36,17 +37,10 @@ pub(crate) fn all_lights_clause(
     let home_wide = whole_home_lights(home);
     let rooms: Vec<&String> = areas.iter().filter(|a| home_wide.is_none_or(|e| e.area.as_deref() != Some(a.as_str()))).collect();
     if rooms.is_empty() {
-        let e = home_wide?;
+        let Some(e) = home_wide else { return every_light(tokens, home, action, number) };
         return Some(ClauseOut::Intents(vec![fill_intent(action, tokens, number, Some(&e.entity_id), e.area.as_deref(), Some("light"))]));
     }
-    let intents: Vec<Intent> = rooms
-        .into_iter()
-        .filter_map(|area| {
-            let (id, slot, dom) = area_slots(action, area, Some("light"), home, tokens);
-            let intent = fill_intent(action, tokens, number, id.as_deref(), slot.as_deref(), dom.as_deref());
-            (intent.name != "Unknown").then_some(intent)
-        })
-        .collect();
+    let intents = room_light_steps(rooms.into_iter().map(String::as_str), tokens, home, action, number);
     (!intents.is_empty()).then_some(ClauseOut::Intents(intents))
 }
 
