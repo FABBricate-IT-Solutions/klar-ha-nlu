@@ -6,6 +6,16 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 Versions follow Home Assistant calendar versioning (`YYYY.M.PATCH`)
 and [Conventional Commits](https://www.conventionalcommits.org/).
 
+## [2026.11.0](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/compare/2026.10.10...2026.11.0) - 2026-11-04
+
+
+
+### Other
+
+- Merge pull request #336 from FABBricate-IT-Solutions/dependabot/npm_and_yarn/web/npm-minor-2ad8443266([0936569](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/093656923b84086ed0fb9f64e2f94cbf5489d32a))
+
+- bump the npm-minor group in /web with 2 updates([8c5ce58](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/8c5ce58bab4121e1715cfd1a75c36cacf115f179))
+
 ## [2026.10.10](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/compare/2026.10.2-staging.660cc40...2026.10.10) - 2026-10-28
 
 
