@@ -23,6 +23,7 @@ pub(crate) fn resolve_targets(
             floors: resolved.floors,
             entities: Vec::new(),
             ambiguous: Vec::new(),
+            ask_areas: Vec::new(),
         };
     }
     let first = resolve(tokens, home, domain);

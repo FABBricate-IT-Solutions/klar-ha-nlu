@@ -217,6 +217,12 @@ fn area_label(area: &str, domain: &str, intent: &str, home: Option<&HomeGraph>) 
 }
 
 fn clarify_label(id: &str, home: Option<&HomeGraph>) -> String {
+    if let Some(area) = home.and_then(|graph| graph.areas.iter().find(|area| area.area_id == id)) {
+        let pretty = pretty_device(&area.name);
+        if !pretty.is_empty() {
+            return pretty;
+        }
+    }
     if let Some(ent) = home.and_then(|h| h.entities.iter().find(|e| e.entity_id == id)) {
         let pretty = pretty_device(&ent.name);
         if !pretty.is_empty() {

@@ -11,6 +11,13 @@ use crate::parse::split::wants_group_clarify;
 use crate::types::HomeGraph;
 
 pub(crate) fn area_command(ctx: &Clause) -> Option<ClauseOut> {
+    if !ctx.resolved.ask_areas.is_empty() {
+        let mut template = intent_from_action(ctx.action, ctx.tokens);
+        if let Some(domain) = ctx.domain {
+            template = template.with("domain", domain);
+        }
+        return Some(ClauseOut::Clarify(ctx.resolved.ask_areas.clone(), template));
+    }
     if ctx.resolved.areas.is_empty() || looks_like_named_device(ctx.tokens) || !ctx.resolved.entities.is_empty() {
         return None;
     }

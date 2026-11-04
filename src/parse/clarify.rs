@@ -35,6 +35,7 @@ fn clarify_option_score(id: &str, blob: &str, tokens: &[String], home: &HomeGrap
         for alias in &area.aliases {
             score = score.max(phrase_score(blob, alias));
         }
+        score = score.max(floor_score(area, blob, tokens, home));
         return score.max(id_tail_score(id, blob, tokens));
     }
     if let Some(entity) = home.entities.iter().find(|entity| entity.entity_id == id) {
@@ -45,6 +46,29 @@ fn clarify_option_score(id: &str, blob: &str, tokens: &[String], home: &HomeGrap
         return score.max(id_tail_score(id, blob, tokens));
     }
     id_tail_score(id, blob, tokens)
+}
+
+fn floor_score(area: &crate::types::AreaRec, blob: &str, tokens: &[String], home: &HomeGraph) -> usize {
+    let Some(floor_id) = area.floor_id.as_deref() else {
+        return 0;
+    };
+    let Some(floor) = home.floors.iter().find(|floor| floor.floor_id == floor_id) else {
+        return 0;
+    };
+    let mut score = phrase_score(blob, &floor.name).max(phrase_score(blob, &floor.floor_id));
+    for alias in &floor.aliases {
+        score = score.max(phrase_score(blob, alias)).max(exact_alias_score(tokens, alias));
+    }
+    score
+}
+
+fn exact_alias_score(tokens: &[String], alias: &str) -> usize {
+    let folded = fold_umlaut(alias);
+    if !folded.is_empty() && tokens.iter().any(|token| fold_umlaut(token) == folded) {
+        folded.len().max(1) * 4
+    } else {
+        0
+    }
 }
 
 fn phrase_score(blob: &str, phrase: &str) -> usize {

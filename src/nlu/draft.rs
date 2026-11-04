@@ -127,7 +127,8 @@ pub(super) fn route_pending(context: &ParseContext<'_>, tokens: &[String]) -> Op
         if let Some(chosen) = picked {
             let template = context.session.pending_clarify()?.template.clone();
             let intent = if context.home.areas.iter().any(|area| area.area_id == chosen) {
-                template.with_set("area", &chosen).with_set("domain", "light")
+                let domain = template.slot("domain").unwrap_or("light").to_string();
+                template.with_set("area", &chosen).with_set("domain", domain)
             } else {
                 intent_with_entity(template, &chosen)
             };
