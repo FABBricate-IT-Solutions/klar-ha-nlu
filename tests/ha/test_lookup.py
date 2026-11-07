@@ -53,6 +53,72 @@ class LookupTests(unittest.TestCase):
         self.assertIn("kein eigenes Wissen", lookup.lookup_instruction("de", [SOURCE]))
         self.assertTrue(lookup.source_speech([SOURCE]).startswith("Präsident"))
 
+    def test_country_facts_come_from_wikidata(self) -> None:
+        self.assertEqual(lookup.fact_kind("Wie groß ist Deutschland?"), "area")
+        self.assertEqual(lookup.fact_kind("wie gross ist deutschland"), "area")
+        self.assertEqual(lookup.fact_kind("Wer ist der Präsident von Deutschland?"), "head")
+        self.assertEqual(lookup.fact_subject("Wer ist der Präsident von Deutschland?", "head"), "deutschland")
+        self.assertEqual(lookup.fact_subject("Wie viele Einwohner hat Deutschland?", "population"), "deutschland")
+        self.assertEqual(lookup.fact_kind("How big is France?"), "area")
+        self.assertEqual(lookup.fact_subject("How big is France?", "area"), "france")
+        self.assertEqual(lookup.fact_subject("Wer ist der Bundeskanzler?", "government"), "deutschland")
+        self.assertEqual(lookup.fact_subject("wie groß ist denn deutschland", "area"), "deutschland")
+        search = {
+            "search": [
+                {"id": "Q1299", "description": "song by Rammstein"},
+                {"id": "Q183", "description": "country in Central Europe"},
+                {"id": "Q7318", "description": "Germany from 1933 to 1945"},
+            ]
+        }
+        self.assertEqual(lookup.pick_country(search), "Q183")
+        self.assertEqual(
+            lookup.pick_country({"search": [{"id": "Q980", "description": "federated state in the south of Germany"}, {"id": "Q183", "description": "country in Central Europe"}]}),
+            "Q183",
+        )
+        self.assertEqual(lookup.pick_country({"search": [{"id": "Q980", "description": "federated state in the south of Germany"}]}), "Q980")
+        self.assertEqual(
+            lookup.entity_label({"entities": {"Q22686": {"labels": {"mul": {"value": "Donald Trump"}}}}}, "Q22686", "de"),
+            "Donald Trump",
+        )
+        self.assertEqual(lookup.spoken_number("83467117", "de"), "83,5 Millionen")
+        self.assertEqual(lookup.spoken_number("357588", "de"), "357588")
+        claims = {
+            "claims": {
+                "P1082": [
+                    {"rank": "normal", "mainsnak": {"snaktype": "value", "datavalue": {"value": {"amount": "+70945000", "unit": "1"}}}},
+                    {"rank": "preferred", "mainsnak": {"snaktype": "value", "datavalue": {"value": {"amount": "+83467117", "unit": "1"}}}},
+                ],
+                "P2046": [
+                    {"rank": "preferred", "mainsnak": {"snaktype": "value", "datavalue": {"value": {"amount": "+357587.77", "unit": "km"}}}},
+                ],
+                "P35": [
+                    {"rank": "preferred", "mainsnak": {"snaktype": "value", "datavalue": {"value": {"id": "Q76658"}}}},
+                ],
+            }
+        }
+        self.assertEqual(lookup.plain_amount(lookup.preferred_value(claims, "P1082")), "83467117")
+        self.assertEqual(lookup.plain_amount(lookup.preferred_value(claims, "P2046")), "357588")
+        labels = {"entities": {"Q183": {"labels": {"de": {"value": "Deutschland"}}}, "Q76658": {"labels": {"de": {"value": "Frank-Walter Steinmeier"}}}}}
+        self.assertEqual(
+            lookup.measure_sentence("de", "area", lookup.entity_label(labels, "Q183", "de"), "357588"),
+            "Deutschland hat eine Fläche von 357588 Quadratkilometern.",
+        )
+        self.assertEqual(
+            lookup.office_sentence("de", "head", "Deutschland", lookup.entity_label(labels, "Q76658", "de")),
+            "Staatsoberhaupt von Deutschland ist Frank-Walter Steinmeier.",
+        )
+        self.assertIn("P2046", lookup.wikidata_claims_url("Q183", "P2046"))
+        ranked = lookup.search_title(
+            {"query": {"search": [{"title": "Vincent Gross"}, {"title": "Deutschland"}]}},
+            "wie gross ist deutschland",
+        )
+        self.assertEqual(ranked, "Deutschland")
+        priced = lookup.search_title(
+            {"query": {"search": [{"title": "Großer Preis von Deutschland"}, {"title": "Deutschland"}]}},
+            "wie groß ist denn deutschland",
+        )
+        self.assertEqual(priced, "Deutschland")
+
     def test_conversation_looks_up_before_the_model(self) -> None:
         src = (ROOT / "custom_components" / "klar_nlu" / "conversation.py").read_text(encoding="utf-8")
         start = src.index('reason == "out_of_domain"')
