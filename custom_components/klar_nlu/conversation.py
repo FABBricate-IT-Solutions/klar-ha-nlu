@@ -481,11 +481,14 @@ class KlarConversationEntity(ConversationEntity):
         facts = await lookup_facts(self.hass, pack, user_input.text)
         if not facts:
             return await self._spoken(user_input, chat_log, pack, lookup_miss(pack), conversation_id, False, "chat")
+        # Do not stream the draft. _spoken emits the final sentence, and a second
+        # stream makes the satellite say the fact twice.
         fallback = await self._fallback(
             user_input,
             chat_log,
             pack,
             True,
+            publish=False,
             extra_system=lookup_instruction(pack, facts),
             conversation_id=conversation_id,
         )
