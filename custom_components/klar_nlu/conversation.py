@@ -72,11 +72,10 @@ from .news import (
     asked_for_more,
     bare_topic,
     collect_headlines,
-    collect_stories,
     compose_speech,
     load_article,
     nudge,
-    pick_story,
+    resolve_story,
     spoken_headlines,
     spoken_story,
     wants_read,
@@ -514,8 +513,9 @@ class KlarConversationEntity(ConversationEntity):
         earlier = " ".join(user for user, _answer in self._llm_turns(self._llm_session_id(user_input)))
         if wants_read(utterance) or not intro:
             story_topic = "" if wants_read(utterance) else topic
-            stories = await collect_stories(self.hass, pack, story_topic, self._engine_settings().get("news_feeds"))
-            story = pick_story(utterance, stories, earlier)
+            story = await resolve_story(
+                self.hass, pack, story_topic, self._engine_settings().get("news_feeds"), utterance, earlier
+            )
             if story is not None:
                 spoken = spoken_story(story, await load_article(self.hass, story.get("link", "")))
                 self._note_llm_turn(user_input, spoken)

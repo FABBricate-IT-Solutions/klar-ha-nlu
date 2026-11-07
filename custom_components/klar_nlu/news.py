@@ -219,11 +219,51 @@ _STORY_STOP = _READ_ALOUD | frozenset(
         "ja",
         "ueber",
         "über",
+        "darueber",
+        "darüber",
+        "dazu",
         "news",
         "nachricht",
         "nachrichten",
         "meldung",
         "meldungen",
+        "artikel",
+        "article",
+        "diese",
+        "dieser",
+        "dieses",
+        "diesem",
+        "diesen",
+        "mehr",
+        "ich",
+        "du",
+        "dich",
+        "dir",
+        "im",
+        "in",
+        "fuer",
+        "für",
+        "fall",
+        "aehm",
+        "aeh",
+        "kannst",
+        "koennen",
+        "moechte",
+        "moechten",
+        "erfahren",
+        "genauer",
+        "genaue",
+        "vollstaendig",
+        "aktuelle",
+        "aktuellen",
+        "aktueller",
+        "aktuelles",
+        "digitale",
+        "digitalen",
+        "digitaler",
+        "digitales",
+        "mal",
+        "noch",
     }
 )
 _LAST_STORY = frozenset({"letzte", "letzten", "letzter", "letztes", "last"})
@@ -253,7 +293,10 @@ _CHROME = ("newsletter", "cookie", "subscribe", "sign in", "anmelden", "datensch
 
 
 def _words(text: str) -> list[str]:
-    return [word for word in (text or "").casefold().replace("über", "ueber").split() if word]
+    folded = (text or "").casefold()
+    for src, dst in (("ä", "ae"), ("ö", "oe"), ("ü", "ue"), ("ß", "ss")):
+        folded = folded.replace(src, dst)
+    return [word for word in folded.split() if word]
 
 
 def wants_read(text: str) -> bool:
@@ -302,18 +345,30 @@ def stories_from_xml(raw: str, limit: int = 5) -> list[dict[str, str]]:
 def pick_story(text: str, stories: list[dict[str, str]], earlier: str = "") -> dict[str, str] | None:
     if not stories:
         return None
+    announced = stories[:_LIMIT]
     words = _words(text)
     if any(word in _LAST_STORY for word in words):
-        return stories[-1]
+        return announced[-1]
     for word, index in _STORY_INDEX.items():
-        if word in words and index < len(stories):
-            return stories[index]
+        if word in words and index < len(announced):
+            return announced[index]
     matched = _best_story(words, stories)
     if matched is not None:
         return matched
     if wants_read(text):
         return _best_story(_words(earlier), stories)
     return None
+
+
+def story_query(text: str) -> str:
+    words: list[str] = []
+    seen: set[str] = set()
+    for word in _needles(_words(text)):
+        if word in seen:
+            continue
+        seen.add(word)
+        words.append(word)
+    return " ".join(words)[:80]
 
 
 def spoken_story(story: dict[str, str], article: str = "") -> str:
@@ -392,15 +447,33 @@ def _plain(text: str) -> str:
     return " ".join(_TAG.sub(" ", html.unescape(text or "")).split())
 
 
+def _needles(words: list[str]) -> list[str]:
+    return [word for word in words if len(word) >= 3 and word not in _STORY_STOP and word not in _LAST_STORY and word not in _STORY_INDEX]
+
+
+def _story_parts(story: dict[str, str]) -> set[str]:
+    parts: set[str] = set()
+    for token in _words(f"{story.get('title', '')} {story.get('text', '')}"):
+        parts.add(token)
+        if "-" in token:
+            parts.update(piece for piece in token.split("-") if piece)
+    return parts
+
+
 def _best_story(words: list[str], stories: list[dict[str, str]]) -> dict[str, str] | None:
+    needles = _needles(words)
+    if not needles:
+        return None
     best: dict[str, str] | None = None
     best_score = 0
     for story in stories:
-        hay = f"{story.get('title', '')} {story.get('text', '')}".casefold().replace("über", "ueber")
-        score = sum(1 for word in words if len(word) >= 3 and word not in _STORY_STOP and word in hay)
+        parts = _story_parts(story)
+        score = sum(1 for word in needles if word in parts)
         if score > best_score:
             best = story
             best_score = score
+    if best_score == 0 or (best_score == 1 and len(needles) >= 2):
+        return None
     return best
 
 
@@ -680,12 +753,58 @@ async def load_article(hass: HomeAssistant, url: str) -> str:
     return article_body_from_html(await _fetch_raw(hass, target, 8))
 
 
-async def collect_stories(hass: HomeAssistant, pack: str, topic: str = "", feeds: object = None) -> list[dict[str, str]]:
+def story_feed_urls(pack: str, topic: str, feeds: object, reader_urls: list[str]) -> list[str]:
+    urls: list[str] = []
+    seen: set[str] = set()
+    for url in reader_urls:
+        if url and url not in seen:
+            seen.add(url)
+            urls.append(url)
     _kind, url = choose_feed(pack, topic, feeds)
-    stories = stories_from_xml(await _fetch_raw(hass, url), _LIMIT)
+    if url and url not in seen:
+        urls.append(url)
+    return urls
+
+
+def _add_stories(stories: list[dict[str, str]], seen: set[str], found: list[dict[str, str]]) -> None:
+    for story in found:
+        title = story.get("title") or ""
+        if not title or title in seen:
+            continue
+        if len(stories) >= 30:
+            return
+        seen.add(title)
+        stories.append(story)
+
+
+async def collect_stories(hass: HomeAssistant, pack: str, topic: str = "", feeds: object = None) -> list[dict[str, str]]:
+    _stored, reader_urls = feedreader_sources(hass)
+    stories: list[dict[str, str]] = []
+    seen: set[str] = set()
+    for url in story_feed_urls(pack, topic, feeds, reader_urls):
+        _add_stories(stories, seen, stories_from_xml(await _fetch_raw(hass, url), 20))
     if stories or not (topic or "").strip():
         return stories
-    return stories_from_xml(await _fetch_raw(hass, feed_url(pack)), _LIMIT)
+    _add_stories(stories, seen, stories_from_xml(await _fetch_raw(hass, feed_url(pack)), 20))
+    return stories
+
+
+async def resolve_story(
+    hass: HomeAssistant,
+    pack: str,
+    topic: str,
+    feeds: object,
+    utterance: str,
+    earlier: str = "",
+) -> dict[str, str] | None:
+    story = pick_story(utterance, await collect_stories(hass, pack, topic, feeds), earlier)
+    if story is not None:
+        return story
+    query = story_query(utterance) or (story_query(earlier) if wants_read(utterance) else "")
+    if not query:
+        return None
+    found = stories_from_xml(await _fetch_raw(hass, search_url(pack, query)), 8)
+    return pick_story(query, found)
 
 
 async def fetch_headlines(hass: HomeAssistant, pack: str, limit: int = _LIMIT) -> list[str]:
