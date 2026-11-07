@@ -5,6 +5,7 @@ from __future__ import annotations
 import logging
 import xml.etree.ElementTree as ET
 from typing import Any
+from urllib.parse import urlencode
 
 try:
     import aiohttp
@@ -51,6 +52,40 @@ _FEEDS = {
 }
 _DEFAULT_FEED = _FEEDS["en"]
 _UA = "KlarNLU/2026.8.9 (Home Assistant news briefing)"
+_LIMIT = 5
+_TOPICS = {
+    "sport": "sport",
+    "sports": "sport",
+    "fussball": "sport",
+    "football": "sport",
+    "soccer": "sport",
+    "politik": "politik",
+    "politics": "politik",
+    "political": "politik",
+    "wirtschaft": "wirtschaft",
+    "business": "wirtschaft",
+    "economy": "wirtschaft",
+    "kultur": "kultur",
+    "culture": "kultur",
+    "wissenschaft": "wissenschaft",
+    "science": "wissenschaft",
+    "wissen": "wissenschaft",
+    "lokal": "lokal",
+    "local": "lokal",
+}
+_SECTION = {
+    ("de", "sport"): "https://www.tagesschau.de/sport/index~rss2.xml",
+    ("de", "politik"): "https://www.tagesschau.de/inland/index~rss2.xml",
+    ("de", "wirtschaft"): "https://www.tagesschau.de/wirtschaft/index~rss2.xml",
+    ("de", "kultur"): "https://www.tagesschau.de/kultur/index~rss2.xml",
+    ("de", "wissenschaft"): "https://www.tagesschau.de/wissen/index~rss2.xml",
+    ("en", "sport"): "https://feeds.bbci.co.uk/sport/rss.xml",
+    ("en", "politik"): "https://feeds.bbci.co.uk/news/politics/rss.xml",
+    ("en", "wirtschaft"): "https://feeds.bbci.co.uk/news/business/rss.xml",
+    ("en", "kultur"): "https://feeds.bbci.co.uk/news/entertainment_and_arts/rss.xml",
+    ("en", "wissenschaft"): "https://feeds.bbci.co.uk/news/science_and_environment/rss.xml",
+}
+_REGIONS = {"de": "DE", "en": "US", "fr": "FR", "es": "ES", "it": "IT", "pt": "PT", "ja": "JP", "nl": "NL"}
 
 _NUDGE = {
     "de": "Möchtest du zu einer der Meldungen mehr erfahren?",
@@ -160,10 +195,137 @@ def headlines_from_xml(raw: str, limit: int = 5) -> list[str]:
     return titles
 
 
-async def fetch_headlines(hass: HomeAssistant, pack: str, limit: int = 5) -> list[str]:
-    if aiohttp is None:
+def _http_url(url: str) -> str:
+    text = url.strip()
+    if len(text) > 200 or not text.startswith(("http://", "https://")):
+        return ""
+    rest = text.split("://", 1)[1]
+    host = rest.split("/", 1)[0].split("?", 1)[0].split("#", 1)[0]
+    if not host or host.startswith("@") or "@" in host or not _host_ok(host):
+        return ""
+    return text
+
+
+def _host_ok(host: str) -> bool:
+    if host.startswith("["):
+        return "]" in host
+    name = host.split(":", 1)[0]
+    return name.casefold() == "localhost" or "." in name
+
+
+def custom_feed(pack: str, feeds: object) -> str:
+    if not isinstance(feeds, list):
+        return ""
+    for item in feeds:
+        if not isinstance(item, dict):
+            continue
+        if str(item.get("pack") or "") != pack:
+            continue
+        url = _http_url(str(item.get("url") or ""))
+        if url:
+            return url
+    return ""
+
+
+def topic_key(topic: str) -> str:
+    words = [word for word in (topic or "").casefold().split() if word]
+    if not words:
+        return ""
+    if words[0] in _TOPICS:
+        return _TOPICS[words[0]]
+    return ""
+
+
+def section_feed(pack: str, topic: str) -> str:
+    key = topic_key(topic)
+    if not key:
+        return ""
+    lang = "de" if pack.lower().startswith("de") else "en" if pack.lower().startswith("en") else pack.split("-", 1)[0]
+    return _SECTION.get((lang, key), "")
+
+
+def search_url(pack: str, topic: str) -> str:
+    raw = (pack or "en").strip() or "en"
+    lang = raw.split("-", 1)[0].lower() or "en"
+    tail = raw.split("-", 1)[1] if "-" in raw else ""
+    region = tail.upper() if len(tail) == 2 and tail.isalpha() else _REGIONS.get(lang, "US")
+    query = " ".join((topic or "").split())[:80]
+    return "https://news.google.com/rss/search?" + urlencode({"q": query, "hl": lang, "gl": region, "ceid": f"{region}:{lang}"})
+
+
+def choose_feed(pack: str, topic: str, feeds: object) -> tuple[str, str]:
+    if (topic or "").strip():
+        section = section_feed(pack, topic)
+        if section:
+            return "section", section
+        return "search", search_url(pack, topic)
+    custom = custom_feed(pack, feeds)
+    if custom:
+        return "custom", custom
+    return "builtin", feed_url(pack)
+
+
+def spoken_headlines(titles: list[str]) -> str:
+    parts = [title.strip().rstrip(".") for title in titles if title and title.strip()]
+    return ". ".join(parts)
+
+
+def feedreader_sources(hass: HomeAssistant) -> tuple[list[str], list[str]]:
+    titles: list[str] = []
+    urls: list[str] = []
+    data = getattr(hass, "data", None)
+    blob = data.get("feedreader") if isinstance(data, dict) else None
+    titles.extend(_titles_of(blob))
+    config = getattr(hass, "config_entries", None)
+    entries = []
+    if config is not None and hasattr(config, "async_entries"):
+        try:
+            entries = list(config.async_entries("feedreader"))
+        except Exception:  # noqa: BLE001 — feedreader is optional
+            entries = []
+    for entry in entries:
+        payload = getattr(entry, "data", None)
+        if not isinstance(payload, dict):
+            continue
+        url = _http_url(str(payload.get("url") or payload.get("feed_url") or ""))
+        if url:
+            urls.append(url)
+    return titles, urls
+
+
+def _titles_of(blob: object) -> list[str]:
+    found: list[str] = []
+    if isinstance(blob, dict):
+        for key in ("titles", "headlines"):
+            values = blob.get(key)
+            if isinstance(values, list):
+                found.extend(str(item).strip() for item in values)
+        for value in blob.values():
+            if isinstance(value, dict):
+                title = value.get("title")
+                if isinstance(title, str):
+                    found.append(title.strip())
+    elif isinstance(blob, list):
+        for item in blob:
+            if isinstance(item, str):
+                found.append(item.strip())
+            elif isinstance(item, dict) and isinstance(item.get("title"), str):
+                found.append(item["title"].strip())
+    return [item for item in found if item]
+
+
+def _take(titles: list[str], seen: set[str], items: list[str]) -> None:
+    for item in items:
+        text = item.strip()
+        if not text or text in seen or len(titles) >= _LIMIT:
+            continue
+        seen.add(text)
+        titles.append(text)
+
+
+async def fetch_url(hass: HomeAssistant, url: str, limit: int = _LIMIT) -> list[str]:
+    if aiohttp is None or not _http_url(url):
         return []
-    url = feed_url(pack)
     try:
         session = async_get_clientsession(hass)
         async with session.get(
@@ -177,6 +339,26 @@ async def fetch_headlines(hass: HomeAssistant, pack: str, limit: int = 5) -> lis
         _LOGGER.warning("Nachrichten-Feed nicht erreichbar: %s", err)
         return []
     return headlines_from_xml(raw, limit)
+
+
+async def fetch_headlines(hass: HomeAssistant, pack: str, limit: int = _LIMIT) -> list[str]:
+    return await fetch_url(hass, feed_url(pack), limit)
+
+
+async def collect_headlines(hass: HomeAssistant, pack: str, topic: str = "", feeds: object = None) -> list[str]:
+    titles: list[str] = []
+    seen: set[str] = set()
+    stored, urls = feedreader_sources(hass)
+    _take(titles, seen, stored)
+    if not stored:
+        for url in urls:
+            if len(titles) >= _LIMIT:
+                break
+            _take(titles, seen, await fetch_url(hass, url, _LIMIT))
+    if len(titles) < _LIMIT:
+        _kind, url = choose_feed(pack, topic, feeds)
+        _take(titles, seen, await fetch_url(hass, url, _LIMIT))
+    return titles
 
 
 async def announce(hass: HomeAssistant, user_input: Any, text: str) -> bool:

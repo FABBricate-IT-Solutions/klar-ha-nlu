@@ -6,6 +6,7 @@ from lang_packs.calendar_lex import calendar_for
 from lang_packs.convo import with_warm_white
 from lang_packs.extras import pack_extras
 from lang_packs.native_apply import apply_native, is_script_pack
+from lang_packs.news_lex import apply_news
 from lang_packs.speech_slots import apply_speech_slots, pick_room_names
 from lang_packs.timer_lex import apply_to_words, how_long
 from lang_packs.voices import normalize_personality
@@ -41,7 +42,7 @@ def expand(core: dict) -> dict:
     speech, personality = apply_speech_slots(core["code"], speech, core, personality)
     speech.setdefault("timer_how_long", how_long(core["code"]))
     chat = dict(core["chat"])
-    chat["news_intro"] = speech["unknown"]
+    apply_news(core["code"], chat)
     colors = with_warm_white(core["code"], list(core.get("colors") or default_colors()))
     numbers = list(core.get("numbers", []))
     rooms = list(core.get("rooms", []))

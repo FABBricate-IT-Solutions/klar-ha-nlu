@@ -382,7 +382,7 @@ def pack(
                 "door": _first(door, light0),
             },
         ),
-        euro_chat([on0], [confirm], [on0], [on0], [off0], unknown, confirm, confirm),
+        euro_chat([on0], [confirm], [on0], [on0], ["news"], "News.", "More?", "OK."),
         living_kitchen(living, kitchen),
         colors or [],
         nums(numbers),

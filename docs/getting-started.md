@@ -87,6 +87,7 @@ Nach dem Speichern der Pipeline Assist nutzen. Unter Home Assistant OS hat die A
 | Spiel Queen | Music-Assistant-Suche auf einem Musik-Player |
 | Wie warm ist es draußen? | Outdoor-`weather.*` (kein Thermostat) |
 | Was steht morgen im Kalender? | Kalenderliste für morgen |
+| Was gibt es für Neuigkeiten? | Kurze Übersicht ([Nachrichten](home-assistant.md#nachrichten)) |
 
 Englisch läuft in derselben Pipeline: `Turn on the living room light`, `Play Queen`.
 

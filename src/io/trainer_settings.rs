@@ -4,7 +4,7 @@ use crate::home::overlay::{load_overlay, save_overlay};
 use crate::io::state::AppState;
 use crate::io::trainer_reads::with_view;
 use crate::lang::{pin_language, LangId};
-use crate::types::{Mode, Personality, RefineBand, Settings, UnitSystem, VoiceTraits};
+use crate::types::{checked_news_feeds, Mode, NewsFeed, Personality, RefineBand, Settings, UnitSystem, VoiceTraits};
 use serde_json::{json, Value};
 
 const FORBIDDEN: &[&str] = &["url", "base_url", "token", "api_key", "model", "endpoint", "llm_url", "fallback_llm", "fallback_agent"];
@@ -29,6 +29,7 @@ const ENGINE_KEYS: &[&str] = &[
     "custom_voice_name",
     "custom_voice_seed",
     "custom_voice_traits",
+    "news_feeds",
 ];
 
 const UI_KEYS: &[&str] = &["theme", "locale"];
@@ -56,6 +57,7 @@ pub fn engine_view(settings: &Settings, theme: &str, locale: &str, locale_set: b
             "custom_voice_name": settings.custom_voice_name,
             "custom_voice_seed": settings.custom_voice_seed,
             "custom_voice_traits": settings.custom_voice_traits,
+            "news_feeds": settings.news_feeds,
             "theme": theme,
             "locale": locale,
             "locale_set": locale_set,
@@ -137,7 +139,8 @@ fn public_settings(settings: &Settings) -> Value {
         "custom_voice": settings.custom_voice,
         "custom_voice_name": settings.custom_voice_name,
         "custom_voice_seed": settings.custom_voice_seed,
-        "custom_voice_traits": settings.custom_voice_traits
+        "custom_voice_traits": settings.custom_voice_traits,
+        "news_feeds": settings.news_feeds
     })
 }
 
@@ -215,6 +218,10 @@ fn patch_engine(current: &Settings, args: &Value) -> Result<Settings, String> {
     }
     if let Some(value) = args.get("custom_voice_traits") {
         next.custom_voice_traits = serde_json::from_value::<VoiceTraits>(value.clone()).map_err(|_| "bad custom_voice_traits")?.clamp();
+    }
+    if let Some(value) = args.get("news_feeds") {
+        let feeds = serde_json::from_value::<Vec<NewsFeed>>(value.clone()).map_err(|_| "bad news_feeds")?;
+        next.news_feeds = checked_news_feeds(feeds)?;
     }
     Ok(next)
 }

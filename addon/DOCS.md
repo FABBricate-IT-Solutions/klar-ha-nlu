@@ -10,7 +10,7 @@ Household path: [getting started](../docs/en/getting-started.md) · [Einstieg](.
 2. Add the integration and choose **Use the Klar NLU App or Docker**.
 3. URL: `http://klar-nlu:10520`
 4. If you set the App **token**, paste the same value into the integration **Write token**. Overlay writes from Home Assistant need it (Supervisor is not loopback).
-5. Personality, LLM, and refine live in the Klar NLU App / operator Settings — not in the Home Assistant options form. Assist’s conversation engine must stay **Klar NLU**.
+5. Personality, LLM, and refine live in the Klar NLU App / operator Settings — not in the Home Assistant options form. Assist’s conversation engine must stay **Klar NLU**. News briefing (what to say, topic, feeds, Feedreader): [Nachrichten](../docs/home-assistant.md#nachrichten) · [News](../docs/en/home-assistant.md#news).
 
 Do not also pick **Start the bundled engine (no App)** while this App is running.
 

@@ -66,6 +66,7 @@ const defaultSettings: Settings = {
   custom_voice: "",
   custom_voice_name: "",
   custom_voice_seed: "",
+  news_feeds: [],
   custom_voice_traits: {
     warmth: 5,
     humor: 4,

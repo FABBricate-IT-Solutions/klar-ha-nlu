@@ -67,7 +67,7 @@ from .rag_tools import (
 )
 from .assist_tools import stream_assist_with_ha_tools
 from .engine_llm import EngineAssistMissing, stream_engine_assist
-from .news import announce, asked_for_more, compose_speech, fetch_headlines, nudge
+from .news import announce, asked_for_more, collect_headlines, compose_speech, nudge, spoken_headlines
 from .policy_actions import (
     hit_and_payload,
     keeps_engine_chat,
@@ -267,8 +267,9 @@ class KlarConversationEntity(ConversationEntity):
 
         if payload.get("briefing"):
             if chat:
+                topic = str(payload.get("news_topic") or "").strip()
                 briefing = await self._briefing(
-                    user_input, chat_log, pack, engine_speech, conversation_id
+                    user_input, chat_log, pack, engine_speech, conversation_id, topic
                 )
                 if briefing is not None:
                     return briefing
@@ -455,17 +456,20 @@ class KlarConversationEntity(ConversationEntity):
         pack: str,
         intro: str,
         conversation_id: str | None,
+        topic: str = "",
     ) -> ConversationResult | None:
         extra = getattr(user_input, "extra_system_prompt", None)
         extra_s = extra if isinstance(extra, str) else None
+        if topic:
+            note = f"Thema: {topic}." if pack == "de" or pack.startswith("de-") else f"Topic: {topic}."
+            extra_s = f"{note}\n{extra_s}" if extra_s else note
         announced = False
-        headlines: list[str] = []
         if intro:
             announced = await announce(self.hass, user_input, intro)
-            headlines = await fetch_headlines(self.hass, pack)
             kind = "news"
         else:
             kind = "news_follow"
+        headlines = await collect_headlines(self.hass, pack, topic, self._engine_settings().get("news_feeds"))
         result = await self._fallback(
             user_input,
             chat_log,
@@ -478,6 +482,8 @@ class KlarConversationEntity(ConversationEntity):
             conversation_id=conversation_id,
         )
         llm = _speech_from_result(result) if result is not None else ""
+        if not llm and headlines:
+            llm = spoken_headlines(headlines)
         extra_nudge = nudge(pack) if intro and not asked_for_more(llm) else ""
         spoken = compose_speech(intro, llm, extra_nudge, announced) or intro or _cue(_DONE, pack, "OK")
         self._note_llm_turn(user_input, spoken)

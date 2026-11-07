@@ -82,6 +82,18 @@ Ablauf:
 
 Chat-Fallback nutzt das Klar-Engine-LLM. **Assist-Werkzeuge beim Chat** ist standardmäßig aus. Ist sie an, darf das Modell nach dem Klar-Parse Home-Assistant-Assist-Werkzeuge mit den Namen von Core nutzen (2026.9-Präfixe wie `intent__HassTurnOn`). Gerätebefehle laufen zuerst durch Klar-Parse.
 
+## Nachrichten
+
+„Was gibt es für Neuigkeiten?“, „aktuelle Nachrichten“, „was gibt’s Neues“, „what’s new“, „morning briefing“. Ein Thema geht mit: „Sportnachrichten“, „Nachrichten über Sport“. Danach „mehr zur ersten Meldung“ oder „erzähl mehr“; Abschluss mit „das reicht“, „nein“ oder „danke“. Ohne LLM liest Klar die Titel auch bei der Nachfrage noch einmal vor.
+
+Voraussetzung: Engine-LLM unter Einstellungen → LLM. Sonst liest Klar die Titel selbst vor. Leere Quellen bleiben eine knappe Auskunft, ohne erfundene Meldungen.
+
+Eigene Feeds: Einstellungen, Feld **Nachrichten-Feeds** (`news_feeds`). Eine `http`- oder `https`-URL pro Sprache, zum Beispiel `de=https://…`. Leer heißt Tagesschau, BBC oder NHK. Ein Eintrag ersetzt nur den Feed dieser Sprache.
+
+Feedreader: vorhandene Home-Assistant-Feeds kommen dazu, nichts extra einrichten.
+
+Die Suche springt ein, wenn das Thema keinen Bereichs-Feed hat. Bereichs-Feeds gibt es für Sport, Politik, Wirtschaft, Kultur und Wissenschaft.
+
 ## Persönlichkeit
 
 Klar-Operator-UI → Einstellungen → **Stimme**, oder die Select-Entity **Persönlichkeit** am Klar-Gerät (schreibt die Engine).

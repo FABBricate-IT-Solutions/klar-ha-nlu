@@ -154,6 +154,15 @@ pub struct Settings {
     /// Delivery sliders 0–10. Independent of the seed identity.
     #[serde(default)]
     pub custom_voice_traits: VoiceTraits,
+    /// Optional headline feeds, one http(s) URL per Assist pack. Empty uses the built-in feed.
+    #[serde(default)]
+    pub news_feeds: Vec<NewsFeed>,
+}
+
+#[derive(Debug, Clone, Serialize, Deserialize, PartialEq, Eq)]
+pub struct NewsFeed {
+    pub pack: String,
+    pub url: String,
 }
 
 #[derive(Deserialize)]
@@ -196,6 +205,8 @@ struct SettingsJson {
     custom_voice_seed: String,
     #[serde(default)]
     custom_voice_traits: VoiceTraits,
+    #[serde(default)]
+    news_feeds: Vec<NewsFeed>,
 }
 
 impl From<SettingsJson> for Settings {
@@ -226,6 +237,7 @@ impl From<SettingsJson> for Settings {
             custom_voice_name: raw.custom_voice_name,
             custom_voice_seed: raw.custom_voice_seed,
             custom_voice_traits: raw.custom_voice_traits,
+            news_feeds: kept_news_feeds(raw.news_feeds),
         }
     }
 }
@@ -253,8 +265,53 @@ impl Default for Settings {
             custom_voice_name: String::new(),
             custom_voice_seed: String::new(),
             custom_voice_traits: VoiceTraits::default(),
+            news_feeds: Vec::new(),
         }
     }
+}
+
+pub fn kept_news_feeds(feeds: Vec<NewsFeed>) -> Vec<NewsFeed> {
+    feeds.into_iter().filter(news_feed_ok).take(8).collect()
+}
+
+pub fn checked_news_feeds(feeds: Vec<NewsFeed>) -> Result<Vec<NewsFeed>, String> {
+    if feeds.len() > 8 {
+        return Err("news_feeds too many".into());
+    }
+    if let Some(feed) = feeds.iter().find(|feed| !news_feed_ok(feed)) {
+        return Err(format!("bad news feed {}", feed.pack));
+    }
+    Ok(feeds)
+}
+
+fn news_feed_ok(feed: &NewsFeed) -> bool {
+    valid_pack(&feed.pack) && valid_feed_url(&feed.url)
+}
+
+fn valid_pack(pack: &str) -> bool {
+    let count = pack.chars().count();
+    (2..=16).contains(&count)
+        && pack.chars().any(|c| c.is_ascii_alphabetic())
+        && pack.chars().all(|c| c.is_ascii_alphanumeric() || c == '-')
+}
+
+fn valid_feed_url(url: &str) -> bool {
+    if url.len() > 200 || url.chars().any(|c| c.is_whitespace() || c.is_control()) {
+        return false;
+    }
+    let Some(rest) = url.strip_prefix("https://").or_else(|| url.strip_prefix("http://")) else {
+        return false;
+    };
+    let host = rest.split(['/', '?', '#']).next().unwrap_or("");
+    !host.is_empty() && !host.contains('@') && host_ok(host)
+}
+
+fn host_ok(host: &str) -> bool {
+    if let Some(name) = host.strip_prefix('[') {
+        return name.contains(']');
+    }
+    let name = host.split(':').next().unwrap_or("");
+    name.eq_ignore_ascii_case("localhost") || name.contains('.')
 }
 
 impl Settings {
@@ -288,6 +345,18 @@ mod tests {
         assert_eq!(set.custom_voice_traits, VoiceTraits::default());
         assert_eq!(set.unit_system, UnitSystem::Metric);
         assert_eq!(set.languages, vec!["de"]);
+        assert!(set.news_feeds.is_empty());
+    }
+
+    #[test]
+    fn news_feeds_drop_passwords_and_keep_plain_urls() {
+        let raw = r#"{"personality":"default","mode":"full","news_feeds":[{"pack":"de","url":"https://example.com/rss"},{"pack":"en","url":"https://user:pass@example.com/rss"}]}"#;
+        let set: Settings = serde_json::from_str(raw).unwrap();
+        assert_eq!(set.news_feeds.len(), 1);
+        assert_eq!(set.news_feeds[0].pack, "de");
+        assert!(checked_news_feeds(vec![NewsFeed { pack: "nope".into(), url: "ftp://example.com".into() }]).is_err());
+        assert!(checked_news_feeds(vec![NewsFeed { pack: "de".into(), url: "https://e".into() }]).is_err());
+        assert!(checked_news_feeds(vec![NewsFeed { pack: "de".into(), url: "http://localhost/rss".into() }]).is_ok());
     }
 
     #[test]

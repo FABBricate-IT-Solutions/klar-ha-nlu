@@ -393,7 +393,7 @@ pub const PACK: LanguagePack = LanguagePack {
         world: &["capital", "weather", "forecast", "recipe", "translate", "mean", "means", "explain"],
         advice: &["idea", "should"],
         open: &["who", "why", "when", "where", "how"],
-        news: &["news", "headlines", "headline", "bulletin", "bulletins"],
+        news: &["news", "headlines", "headline", "bulletin", "bulletins", "briefing", "flash", "what new", "whats new"],
         news_dismiss: &["enough", "stop", "later", "nevermind", "skip", "done", "fine", "no"],
         news_intro: "Sure, let me look up the latest news and give you a short overview.",
         news_nudge: "Would you like to hear more about any of those stories?",

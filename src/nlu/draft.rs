@@ -1,4 +1,4 @@
-use crate::parse::chat::{briefing_followup, is_news, is_news_dismiss, is_ood, wants_llm};
+use crate::parse::chat::{briefing_followup, is_news, is_news_dismiss, is_ood, news_story_followup, news_topic, wants_llm};
 use crate::parse::clarify::pick_clarification;
 use crate::parse::clause_support::last_visible;
 use crate::parse::compound::CompoundSplit;
@@ -26,6 +26,8 @@ pub(super) struct SessionCommit {
     pub confirm: Option<(String, IntentPlan, String)>,
     pub clear_pending: bool,
     pub briefing: Option<bool>,
+    pub news_topic: Option<String>,
+    pub replace_news_topic: bool,
     pub mark_wrong: bool,
     pub teach: Option<(String, String)>,
 }
@@ -59,8 +61,15 @@ pub(super) fn route_special(context: &ParseContext<'_>, raw: &[String], split: &
     if let Some(draft) = super::policy_route::route_phrase(context) {
         return Some(draft);
     }
-    if is_news(raw, context.home) || is_news(tokens, context.home) {
-        return Some(chat(context.catalog.news_intro.to_string(), true, true));
+    let raw_news = is_news(raw, context.home);
+    let token_news = is_news(tokens, context.home);
+    let story = |side: &[String]| !is_news(side, context.home) || news_story_followup(side, context.home, context.session);
+    if (raw_news || token_news) && !(story(raw) && story(tokens)) {
+        let topic = news_topic(raw).or_else(|| news_topic(tokens));
+        let mut draft = chat(context.catalog.news_intro.to_string(), true, true);
+        draft.commit.replace_news_topic = true;
+        draft.commit.news_topic = topic;
+        return Some(draft);
     }
     if context.session.briefing && (is_news_dismiss(tokens) || is_news_dismiss(raw)) {
         let mut draft = reject(RejectReason::Unsupported, context.catalog.news_done.to_string());

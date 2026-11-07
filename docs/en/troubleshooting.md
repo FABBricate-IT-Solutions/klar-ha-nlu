@@ -62,6 +62,16 @@ Lab is parse-only (`speech` stays empty until Assist executes). If Lab shows `Kl
 
 °F vs °C: App → Settings → **unit system** (`imperial` / `metric`). That converts spoken temps; it does not change HA’s stored unit.
 
+## News
+
+| Situation | What Klar does |
+|-----------|----------------|
+| No engine LLM | Read the headlines, then the follow-up question |
+| Empty feed | Short reply, no invented stories |
+| `de-AT` / `de-CH` | Their own packs, not the `de` pack |
+
+How to use it: [Home Assistant — News](home-assistant.md#news).
+
 ## Custom phrases
 
 Phrases saved in Rules persist under the engine data dir (`klar_nlu.json` → `custom`). A restart reloads them. If `/api/custom` is `[]` after reboot on an old build (&lt; 2026.9.5), update engine + integration together. The operator UI clears the phrase list when the engine is offline — a stale tab can look full when the store is empty.

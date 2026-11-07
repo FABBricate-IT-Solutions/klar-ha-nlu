@@ -202,6 +202,10 @@ pub fn openai_tools() -> Vec<Value> {
                     ("custom_voice_name", str_prop("Label for the custom voice.")),
                     ("custom_voice_seed", str_prop("Character seed. Traits only refine delivery.")),
                     ("custom_voice_traits", json!({"type": "object"})),
+                    (
+                        "news_feeds",
+                        json!({"type": "array", "items": {"type": "object", "required": ["pack", "url"], "properties": {"pack": {"type": "string"}, "url": {"type": "string"}}}, "description": "Headline RSS URLs, one http(s) address per Assist pack. Not the engine URL."}),
+                    ),
                 ],
                 &[],
             ),

@@ -160,6 +160,8 @@ export const de = {
   unitImperial: "Imperial",
   calendarLlm: "Kalender über das LLM",
   calendarLlmHint: "Klar liest den Kalender weiter. An: das LLM spricht die Termine. Aus: Klar spricht die Liste.",
+  newsFeeds: "Nachrichten-Feeds",
+  newsFeedsHint: "Eine Zeile pro Sprache, de=https://… Leer heißt Tagesschau, BBC oder NHK. Nur http oder https, kein Passwort in der URL.",
   allowLlmTools: "Assist-Werkzeuge beim Chat",
   allowLlmToolsHint: "Standard aus. An: nach dem Klar-Parse darf das Engine-Chat-Modell Home-Assistant-Assist-Werkzeuge nutzen (Namen von Core). Aus: nur Gespräch.",
   missTitle: "Wenn Klar danebenliegt",
