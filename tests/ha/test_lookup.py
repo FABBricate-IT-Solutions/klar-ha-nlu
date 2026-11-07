@@ -126,6 +126,7 @@ class LookupTests(unittest.TestCase):
         self.assertIn("return await self._sourced_answer", block)
         body = src[src.index("async def _sourced_answer") : src.index("async def _briefing")]
         self.assertIn("lookup_facts", body)
+        self.assertIn("publish=False", body)
         self.assertIn("lookup_instruction", body)
         self.assertIn("grounded", body)
         self.assertIn("source_speech", body)
