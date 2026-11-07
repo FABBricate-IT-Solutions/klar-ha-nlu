@@ -143,6 +143,13 @@ class NewsTests(unittest.TestCase):
         self.assertEqual(titles, ["Aus dem Reader"])
         self.assertEqual(urls, ["https://example.com/mine.xml"])
 
+    def test_briefing_is_one_reply_and_does_not_reopen_the_microphone(self) -> None:
+        src = (ROOT / "custom_components" / "klar_nlu" / "conversation.py").read_text()
+        briefing = src[src.index("async def _briefing") : src.index("def _nlu_rag")]
+        self.assertNotIn("announce(", briefing)
+        self.assertEqual(briefing.count(', False, "chat")'), 2)
+        self.assertNotIn(', True, "chat")', briefing)
+
     def test_spoken_titles_when_the_model_is_silent(self) -> None:
         self.assertEqual(news.spoken_headlines(["Erste Meldung", "Zweite."]), "Erste Meldung. Zweite")
         spoken = news.compose_speech("Intro.", news.spoken_headlines(["Eine Meldung"]), "Mehr?", False)
