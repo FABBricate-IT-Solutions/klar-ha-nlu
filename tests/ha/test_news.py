@@ -122,6 +122,27 @@ class NewsTests(unittest.TestCase):
             news.pick_story("lesen sie vor", stories, "ja ueber das afd verbotsverfahren")["title"],
             "Hubig prüft das AfD-Verbotsverfahren",
         )
+        named = [
+            {"title": "Ilse Aigner im Porträt", "text": "Sie spricht über Krisen und wird bald Staatsoberhaupt.", "link": ""},
+            {"title": "Digitaler Neustart der Kreisverwaltung OSL", "text": "Die Kreisverwaltung startet ihre Verwaltung neu.", "link": ""},
+            {"title": "Eine andere Sicherheitslücke", "text": "Experten warnen vor einer alten Lücke.", "link": ""},
+        ]
+        self.assertEqual(
+            news.pick_story("kannst du mir den artikel ueber den neustart der kreisverwaltung osl vorlesen", named)["title"],
+            "Digitaler Neustart der Kreisverwaltung OSL",
+        )
+        self.assertIsNone(news.pick_story("kannst du mir den artikel darueber vorlesen", named))
+        self.assertEqual(
+            news.pick_story("lese die nachricht ueber die sicherheitsluecke vor", named)["title"],
+            "Eine andere Sicherheitslücke",
+        )
+        self.assertIsNone(
+            news.pick_story("lese die nachricht ueber die sicherheitsluecke phptoshell vor", [named[2]])
+        )
+        self.assertEqual(news.story_query("lese mir die nachricht ueber den neustart der kreisverwaltung osl vor"), "neustart kreisverwaltung osl")
+        urls = news.story_feed_urls("de", "", None, ["https://example.com/mine.xml"])
+        self.assertEqual(urls[0], "https://example.com/mine.xml")
+        self.assertIn("tagesschau", urls[1])
         kind, url = news.choose_feed("de", "lese sport vor", None)
         self.assertEqual(kind, "section")
         self.assertIn("tagesschau.de/sport", url)
