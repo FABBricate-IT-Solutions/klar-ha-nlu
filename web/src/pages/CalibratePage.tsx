@@ -1,5 +1,6 @@
 import { inboxReason, type Messages } from "../i18n";
 import { api } from "../api";
+import { toastSaveFailed } from "../saveToast";
 import type { Assignment, Dashboard, UiState } from "../types";
 
 export function CalibratePage({
@@ -21,7 +22,16 @@ export function CalibratePage({
 }) {
   const inbox = data.assignment.filter((row) => row.confidence !== "high" && !ui.dismissed.includes(row.entity_id));
   const accept = async (row: Assignment, area = row.suggested_area?.area_id || "") => {
-    await api.tagEntity({ entity_id: row.entity_id, aliases: row.aliases, preferred: row.tags.includes("preferred"), area });
+    try {
+      await api.tagEntity({ entity_id: row.entity_id, aliases: row.aliases, preferred: row.tags.includes("preferred"), area });
+    } catch (err) {
+      toastSaveFailed(t, err);
+      return;
+    }
+    // The room is already the suggestion. Writing it again leaves a weak name open.
+    if (area && area === (row.area || "")) {
+      onUi({ ...ui, dismissed: [...new Set([...ui.dismissed, row.entity_id])] });
+    }
     onRefresh();
   };
   const dismiss = (row: Assignment) => {

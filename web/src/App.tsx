@@ -227,8 +227,8 @@ export function App() {
   }, []);
 
   const applyCandidates = useMemo(
-    () => dashboard?.assignment.filter((row) => (row.suggested_area?.score || 0) >= 3 && row.area !== row.suggested_area?.area_id) || [],
-    [dashboard],
+    () => dashboard?.assignment.filter((row) => (row.suggested_area?.score || 0) >= 3 && row.confidence !== "high" && !ui.dismissed.includes(row.entity_id)) || [],
+    [dashboard, ui.dismissed],
   );
 
   const go = (tab: Tab, extra: Partial<Pick<UiState, "house_view" | "rules_view" | "settings_view">> = {}) => {
@@ -244,8 +244,13 @@ export function App() {
     go("lab");
   };
   const apply = async () => {
+    const already = applyCandidates.filter((row) => row.area && row.area === row.suggested_area?.area_id).map((row) => row.entity_id);
     const out = await api.applySuggestions();
-    setUi((prev) => ({ ...prev, last_apply: out.rows }));
+    setUi((prev) => ({
+      ...prev,
+      last_apply: out.rows,
+      dismissed: [...new Set([...prev.dismissed, ...already])],
+    }));
     setConfirmApply(false);
     refresh();
   };
