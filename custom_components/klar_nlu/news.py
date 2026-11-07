@@ -2,10 +2,13 @@
 
 from __future__ import annotations
 
+import html
+import json
 import logging
+import re
 import xml.etree.ElementTree as ET
 from typing import Any
-from urllib.parse import urlencode
+from urllib.parse import parse_qs, quote, urlencode, urlparse
 
 try:
     import aiohttp
@@ -52,7 +55,27 @@ _FEEDS = {
 }
 _DEFAULT_FEED = _FEEDS["en"]
 _UA = "KlarNLU/2026.8.9 (Home Assistant news briefing)"
+_BROWSER = "Mozilla/5.0"
+_GOOGLE_BATCH = "https://news.google.com/_/DotsSplashUi/data/batchexecute"
+_GOOGLE_SG = re.compile(r'data-n-a-sg="([^"]+)"')
+_GOOGLE_TS = re.compile(r'data-n-a-ts="([^"]+)"')
+_GOOGLE_URL = re.compile(r'garturlres\\",\\"(https://[^\\"]+)')
 _LIMIT = 5
+_READ_ALOUD = frozenset(
+    {
+        "read",
+        "aloud",
+        "lese",
+        "lies",
+        "lesen",
+        "lest",
+        "les",
+        "vorlesen",
+        "vorlese",
+        "vorliest",
+        "vor",
+    }
+)
 _TOPICS = {
     "sport": "sport",
     "sports": "sport",
@@ -171,6 +194,216 @@ def compose_speech(intro: str, llm: str, extra: str, announced: bool) -> str:
     return " ".join(part for part in parts if part)
 
 
+_STORY_STOP = _READ_ALOUD | frozenset(
+    {
+        "die",
+        "der",
+        "das",
+        "den",
+        "dem",
+        "des",
+        "und",
+        "oder",
+        "mit",
+        "von",
+        "zu",
+        "zur",
+        "zum",
+        "sie",
+        "mir",
+        "bitte",
+        "eine",
+        "einer",
+        "einem",
+        "eines",
+        "ja",
+        "ueber",
+        "über",
+        "news",
+        "nachricht",
+        "nachrichten",
+        "meldung",
+        "meldungen",
+    }
+)
+_LAST_STORY = frozenset({"letzte", "letzten", "letzter", "letztes", "last"})
+_STORY_INDEX = {
+    "erste": 0,
+    "ersten": 0,
+    "erster": 0,
+    "erstes": 0,
+    "first": 0,
+    "zweite": 1,
+    "zweiten": 1,
+    "zweiter": 1,
+    "zweites": 1,
+    "second": 1,
+    "dritte": 2,
+    "dritten": 2,
+    "dritter": 2,
+    "drittes": 2,
+    "third": 2,
+}
+_TAG = re.compile(r"<[^>]+>")
+_LDJSON = re.compile(r"<script\b[^>]*type=[\"']application/ld\+json[\"'][^>]*>(.*?)</script>", re.I | re.S)
+_ARTICLE = re.compile(r"<article\b[^>]*>(.*?)</article>", re.I | re.S)
+_MAIN = re.compile(r"<main\b[^>]*>(.*?)</main>", re.I | re.S)
+_PARAGRAPH = re.compile(r"<p\b[^>]*>(.*?)</p>", re.I | re.S)
+_CHROME = ("newsletter", "cookie", "subscribe", "sign in", "anmelden", "datenschutz")
+
+
+def _words(text: str) -> list[str]:
+    return [word for word in (text or "").casefold().replace("über", "ueber").split() if word]
+
+
+def wants_read(text: str) -> bool:
+    return any(word in _READ_ALOUD for word in _words(text))
+
+
+def stories_from_xml(raw: str, limit: int = 5) -> list[dict[str, str]]:
+    if not raw.strip():
+        return []
+    try:
+        root = ET.fromstring(raw)
+    except ET.ParseError:
+        return []
+    stories: list[dict[str, str]] = []
+    seen: set[str] = set()
+    for node in root.iter():
+        tag = node.tag.split("}")[-1]
+        if tag not in {"item", "entry"}:
+            continue
+        title = ""
+        body = ""
+        link = ""
+        for child in node:
+            name = child.tag.split("}")[-1]
+            text = " ".join(part.strip() for part in child.itertext() if part and part.strip())
+            if name == "title" and text and not title:
+                title = text
+            elif name == "link" and not link:
+                href = text if text.startswith("http") else str(child.get("href") or "")
+                if href.startswith("http"):
+                    link = href
+            elif name in {"description", "summary", "content", "encoded"} and text:
+                plain = _plain(text)
+                if len(plain) > len(body):
+                    body = plain
+        title = title.strip()
+        if not title or title in seen:
+            continue
+        seen.add(title)
+        stories.append({"title": title, "text": body[:12000], "link": link})
+        if len(stories) >= limit:
+            break
+    return stories
+
+
+def pick_story(text: str, stories: list[dict[str, str]], earlier: str = "") -> dict[str, str] | None:
+    if not stories:
+        return None
+    words = _words(text)
+    if any(word in _LAST_STORY for word in words):
+        return stories[-1]
+    for word, index in _STORY_INDEX.items():
+        if word in words and index < len(stories):
+            return stories[index]
+    matched = _best_story(words, stories)
+    if matched is not None:
+        return matched
+    if wants_read(text):
+        return _best_story(_words(earlier), stories)
+    return None
+
+
+def spoken_story(story: dict[str, str], article: str = "") -> str:
+    title = (story.get("title") or "").strip().rstrip(".")
+    body = (article or story.get("text") or "").strip()
+    if title and body:
+        return f"{title}. {body}"
+    return title or body
+
+
+def article_body_from_html(raw: str) -> str:
+    if not raw:
+        return ""
+    structured = _structured_body(raw)
+    written = _paragraph_body(raw)
+    if len(structured) >= 400 and len(structured) + 200 >= len(written):
+        return structured[:12000]
+    if len(written) >= 400:
+        return written[:12000]
+    return (structured or written)[:12000]
+
+
+def _structured_body(raw: str) -> str:
+    best = ""
+    for block in _LDJSON.findall(raw):
+        try:
+            data = json.loads(block)
+        except json.JSONDecodeError:
+            continue
+        body = _article_body(data)
+        if len(body) > len(best):
+            best = body
+    return best
+
+
+def _paragraph_body(raw: str) -> str:
+    region = _ARTICLE.search(raw) or _MAIN.search(raw)
+    chunk = region.group(1) if region else raw
+    parts: list[str] = []
+    for block in _PARAGRAPH.findall(chunk):
+        text = _plain(block)
+        if len(text) < 80:
+            continue
+        folded = text.casefold()
+        if any(hint in folded for hint in _CHROME) and len(text) < 300:
+            continue
+        parts.append(text)
+        if sum(len(part) for part in parts) >= 12000:
+            break
+    return " ".join(parts)
+
+
+def _article_body(data: object) -> str:
+    if isinstance(data, list):
+        for item in data:
+            found = _article_body(item)
+            if found:
+                return found
+        return ""
+    if not isinstance(data, dict):
+        return ""
+    kind = data.get("@type")
+    kinds = kind if isinstance(kind, list) else [kind]
+    if any(str(item) in {"NewsArticle", "Article", "ReportageNewsArticle"} for item in kinds):
+        text = data.get("articleBody")
+        if isinstance(text, str) and text.strip():
+            return " ".join(text.split())
+    for key in ("@graph", "mainEntity"):
+        found = _article_body(data.get(key))
+        if found:
+            return found
+    return ""
+
+
+def _plain(text: str) -> str:
+    return " ".join(_TAG.sub(" ", html.unescape(text or "")).split())
+
+
+def _best_story(words: list[str], stories: list[dict[str, str]]) -> dict[str, str] | None:
+    best: dict[str, str] | None = None
+    best_score = 0
+    for story in stories:
+        hay = f"{story.get('title', '')} {story.get('text', '')}".casefold().replace("über", "ueber")
+        score = sum(1 for word in words if len(word) >= 3 and word not in _STORY_STOP and word in hay)
+        if score > best_score:
+            best = story
+            best_score = score
+    return best
+
+
 def headlines_from_xml(raw: str, limit: int = 5) -> list[str]:
     if not raw.strip():
         return []
@@ -227,6 +460,11 @@ def custom_feed(pack: str, feeds: object) -> str:
     return ""
 
 
+def bare_topic(topic: str) -> str:
+    words = [word for word in (topic or "").split() if word.casefold() not in _READ_ALOUD]
+    return " ".join(words)
+
+
 def topic_key(topic: str) -> str:
     words = [word for word in (topic or "").casefold().split() if word]
     if not words:
@@ -254,7 +492,8 @@ def search_url(pack: str, topic: str) -> str:
 
 
 def choose_feed(pack: str, topic: str, feeds: object) -> tuple[str, str]:
-    if (topic or "").strip():
+    topic = bare_topic(topic)
+    if topic.strip():
         section = section_feed(pack, topic)
         if section:
             return "section", section
@@ -323,22 +562,130 @@ def _take(titles: list[str], seen: set[str], items: list[str]) -> None:
         titles.append(text)
 
 
-async def fetch_url(hass: HomeAssistant, url: str, limit: int = _LIMIT) -> list[str]:
+async def _fetch_raw(hass: HomeAssistant, url: str, timeout: float = 4, user_agent: str = "") -> str:
     if aiohttp is None or not _http_url(url):
-        return []
+        return ""
     try:
         session = async_get_clientsession(hass)
         async with session.get(
             url,
-            timeout=aiohttp.ClientTimeout(total=4),
-            headers={"User-Agent": _UA},
+            timeout=aiohttp.ClientTimeout(total=timeout),
+            headers={"User-Agent": user_agent or _UA},
         ) as resp:
             resp.raise_for_status()
-            raw = await resp.text()
+            return await resp.text()
     except Exception as err:  # noqa: BLE001 — outbound news feed is a boundary
         _LOGGER.warning("Nachrichten-Feed nicht erreichbar: %s", err)
-        return []
-    return headlines_from_xml(raw, limit)
+        return ""
+
+
+async def _post_form(hass: HomeAssistant, url: str, body: str, timeout: float = 8) -> str:
+    if aiohttp is None or not _http_url(url):
+        return ""
+    try:
+        session = async_get_clientsession(hass)
+        async with session.post(
+            url,
+            data=body,
+            timeout=aiohttp.ClientTimeout(total=timeout),
+            headers={"User-Agent": _BROWSER, "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8"},
+        ) as resp:
+            resp.raise_for_status()
+            return await resp.text()
+    except Exception as err:  # noqa: BLE001 — outbound news feed is a boundary
+        _LOGGER.warning("Nachrichten-Feed nicht erreichbar: %s", err)
+        return ""
+
+
+async def fetch_url(hass: HomeAssistant, url: str, limit: int = _LIMIT) -> list[str]:
+    return headlines_from_xml(await _fetch_raw(hass, url), limit)
+
+
+def google_article_id(url: str) -> str:
+    parsed = urlparse(url or "")
+    if parsed.hostname != "news.google.com":
+        return ""
+    parts = [part for part in parsed.path.split("/") if part]
+    if len(parts) >= 2 and parts[-2] in {"articles", "read"}:
+        return parts[-1]
+    return ""
+
+
+def google_params_url(url: str, art_id: str) -> str:
+    found = parse_qs(urlparse(url).query)
+    hl = (found.get("hl") or ["en-US"])[0]
+    gl = (found.get("gl") or ["US"])[0]
+    ceid = (found.get("ceid") or ["US:en"])[0]
+    query = urlencode({"hl": hl, "gl": gl, "ceid": ceid})
+    return f"https://news.google.com/rss/articles/{art_id}?{query}"
+
+
+def google_signature(page: str) -> tuple[str, str] | None:
+    signature = _GOOGLE_SG.search(page or "")
+    timestamp = _GOOGLE_TS.search(page or "")
+    if signature and timestamp:
+        return signature.group(1), timestamp.group(1)
+    return None
+
+
+def google_batch_body(art_id: str, timestamp: str, signature: str) -> str:
+    context = [
+        ["X", "X", ["X", "X"], None, None, 1, 1, "US:en", None, 1, None, None, None, None, None, 0, 1],
+        "X",
+        "X",
+        1,
+        [1, 1, 1],
+        1,
+        1,
+        None,
+        0,
+        0,
+        None,
+        0,
+    ]
+    stamp: int | str = int(timestamp) if str(timestamp).isdigit() else timestamp
+    inner = ["garturlreq", context, art_id, stamp, signature]
+    envelope = [["Fbv4je", json.dumps(inner, separators=(",", ":")), None, "0"]]
+    return "f.req=" + quote(json.dumps([envelope], separators=(",", ":")))
+
+
+def google_decoded_url(raw: str) -> str:
+    match = _GOOGLE_URL.search(raw or "")
+    if not match:
+        return ""
+    found = match.group(1)
+    host = urlparse(found).hostname or ""
+    if host == "news.google.com" or host.endswith(".google.com"):
+        return ""
+    return found
+
+
+async def resolve_article_url(hass: HomeAssistant, url: str) -> str:
+    art_id = google_article_id(url)
+    if not art_id:
+        return url
+    page = await _fetch_raw(hass, google_params_url(url, art_id), 8, _BROWSER)
+    found = google_signature(page)
+    if not found:
+        return ""
+    signature, timestamp = found
+    raw = await _post_form(hass, _GOOGLE_BATCH, google_batch_body(art_id, timestamp, signature), 8)
+    return google_decoded_url(raw)
+
+
+async def load_article(hass: HomeAssistant, url: str) -> str:
+    target = await resolve_article_url(hass, url)
+    if not _http_url(target):
+        return ""
+    return article_body_from_html(await _fetch_raw(hass, target, 8))
+
+
+async def collect_stories(hass: HomeAssistant, pack: str, topic: str = "", feeds: object = None) -> list[dict[str, str]]:
+    _kind, url = choose_feed(pack, topic, feeds)
+    stories = stories_from_xml(await _fetch_raw(hass, url), _LIMIT)
+    if stories or not (topic or "").strip():
+        return stories
+    return stories_from_xml(await _fetch_raw(hass, feed_url(pack)), _LIMIT)
 
 
 async def fetch_headlines(hass: HomeAssistant, pack: str, limit: int = _LIMIT) -> list[str]:

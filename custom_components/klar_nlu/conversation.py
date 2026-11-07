@@ -67,7 +67,20 @@ from .rag_tools import (
 )
 from .assist_tools import stream_assist_with_ha_tools
 from .engine_llm import EngineAssistMissing, stream_engine_assist
-from .news import announce, asked_for_more, collect_headlines, compose_speech, nudge, spoken_headlines
+from .news import (
+    announce,
+    asked_for_more,
+    bare_topic,
+    collect_headlines,
+    collect_stories,
+    compose_speech,
+    load_article,
+    nudge,
+    pick_story,
+    spoken_headlines,
+    spoken_story,
+    wants_read,
+)
 from .policy_actions import (
     hit_and_payload,
     keeps_engine_chat,
@@ -267,7 +280,7 @@ class KlarConversationEntity(ConversationEntity):
 
         if payload.get("briefing"):
             if chat:
-                topic = str(payload.get("news_topic") or "").strip()
+                topic = bare_topic(str(payload.get("news_topic") or "").strip())
                 briefing = await self._briefing(
                     user_input, chat_log, pack, engine_speech, conversation_id, topic
                 )
@@ -463,6 +476,16 @@ class KlarConversationEntity(ConversationEntity):
         if topic:
             note = f"Thema: {topic}." if pack == "de" or pack.startswith("de-") else f"Topic: {topic}."
             extra_s = f"{note}\n{extra_s}" if extra_s else note
+        utterance = getattr(user_input, "text", "") or ""
+        earlier = " ".join(user for user, _answer in self._llm_turns(self._llm_session_id(user_input)))
+        if wants_read(utterance) or not intro:
+            story_topic = "" if wants_read(utterance) else topic
+            stories = await collect_stories(self.hass, pack, story_topic, self._engine_settings().get("news_feeds"))
+            story = pick_story(utterance, stories, earlier)
+            if story is not None:
+                spoken = spoken_story(story, await load_article(self.hass, story.get("link", "")))
+                self._note_llm_turn(user_input, spoken)
+                return await self._spoken(user_input, chat_log, pack, spoken, conversation_id, True, "chat")
         announced = False
         if intro:
             announced = await announce(self.hass, user_input, intro)
