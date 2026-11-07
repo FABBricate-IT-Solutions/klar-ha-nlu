@@ -211,7 +211,8 @@ pub fn news_story_followup(tokens: &[String], home: &HomeGraph, session: &Sessio
 
 const FOLLOW_CUES: &[&str] = &[
     "mehr", "more", "erste", "ersten", "erster", "erstes", "first", "zweite", "zweiten", "zweiter", "zweites", "second", "dritte",
-    "dritten", "dritter", "drittes", "third", "weitere", "weiteren", "weiterer", "weiteres", "another", "dazu",
+    "dritten", "dritter", "drittes", "third", "weitere", "weiteren", "weiterer", "weiteres", "another", "dazu", "letzte", "letzten",
+    "letzter", "letztes", "last",
 ];
 
 pub fn briefing_followup(tokens: &[String], home: &HomeGraph, session: &Session) -> bool {
@@ -360,6 +361,8 @@ mod tests {
         assert_eq!(news_topic(&toks("Nachrichten über Sport")).as_deref(), Some("sport"));
         assert_eq!(news_topic(&toks("news about sports")).as_deref(), Some("sports"));
         assert!(news_topic(&toks("mehr zur ersten Meldung")).is_none());
+        assert!(news_topic(&toks("mehr über die letzte Meldung")).is_none());
+        assert!(news_topic(&toks("letzte Nachrichten")).is_none());
     }
 
     #[test]
@@ -395,6 +398,10 @@ mod tests {
         let story = crate::nlu::parse("mehr zur ersten Meldung", &home, &mut session, &[], &settings);
         assert!(story.briefing, "{}", story.speech);
         assert_eq!(story.news_topic.as_deref(), Some("sport"));
+        assert_eq!(session.news_topic.as_deref(), Some("sport"));
+        let last = crate::nlu::parse("mehr über die letzte Meldung", &home, &mut session, &[], &settings);
+        assert!(last.briefing, "{}", last.speech);
+        assert_eq!(last.news_topic.as_deref(), Some("sport"));
         assert_eq!(session.news_topic.as_deref(), Some("sport"));
         let fresh = crate::nlu::parse("Was gibt es für Neuigkeiten", &home, &mut session, &[], &settings);
         assert!(fresh.briefing, "{}", fresh.speech);

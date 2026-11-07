@@ -74,6 +74,19 @@ def _payload(decision: dict[str, object], plan: dict[str, object] | None = None)
 
 
 class ContractTests(unittest.TestCase):
+    def test_news_topic_is_optional_on_a_briefing(self) -> None:
+        payload = _payload({"type": "chat"})
+        payload["briefing"] = True
+        payload["news_topic"] = "sport"
+        self.assertEqual(contracts.validate_v2_payload(payload)["news_topic"], "sport")
+        payload["news_topic"] = 1
+        with self.assertRaises(ValueError):
+            contracts.validate_v2_payload(payload)
+        bare = _payload({"type": "chat"})
+        bare["news_topic"] = "sport"
+        with self.assertRaises(ValueError):
+            contracts.validate_v2_payload(bare)
+
     def test_confirm_never_extracts_intents(self) -> None:
         payload = contracts.validate_v2_payload(
             _payload({"type": "confirm", "prompt": "Confirm?", "candidate_id": "selected-000"})
