@@ -2,6 +2,7 @@ use crate::lang::groups::{Chat, Cues, Fixtures, Household, LanguagePack, Maps, N
 use crate::lang::morphology::PackMorphology;
 use crate::lang::LangId;
 
+use super::news::NEWS;
 use super::speech::SPEECH;
 use super::verbs::VERBS;
 
@@ -461,20 +462,7 @@ pub const PACK: LanguagePack = LanguagePack {
         ],
         advice: &["empfiehl", "empfehlen", "tipp", "rat", "idee", "soll", "vorschlag"],
         open: &["wer", "wo", "warum", "wieso", "weshalb", "wozu", "wann"],
-        news: &[
-            "nachrichten",
-            "nachricht",
-            "news",
-            "meldungen",
-            "meldung",
-            "schlagzeilen",
-            "headlines",
-            "neuigkeiten",
-            "neuigkeit",
-            "neues",
-            "briefing",
-            "flash",
-        ],
+        news: NEWS,
         news_dismiss: &["reicht", "genug", "stopp", "stop", "egal", "spaeter", "fertig", "schluss", "nein"],
         news_intro: "Klar, lass mich kurz die aktuellen Nachrichten suchen und dir einen Überblick geben.",
         news_nudge: "Möchtest du zu einer der Meldungen mehr erfahren?",
