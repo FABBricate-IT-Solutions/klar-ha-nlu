@@ -83,6 +83,16 @@ const TOPIC_GLUE: &[&str] = &[
     "sag",
     "say",
     "read",
+    "aloud",
+    "lese",
+    "lies",
+    "lesen",
+    "lest",
+    "les",
+    "vorlesen",
+    "vorlese",
+    "vorliest",
+    "vor",
     "the",
     "a",
     "an",
@@ -363,6 +373,11 @@ mod tests {
         assert!(news_topic(&toks("mehr zur ersten Meldung")).is_none());
         assert!(news_topic(&toks("mehr über die letzte Meldung")).is_none());
         assert!(news_topic(&toks("letzte Nachrichten")).is_none());
+        for text in ["lese nachrichten vor", "lies mir die news vor", "nachrichten vorlesen"] {
+            assert!(news_topic(&toks(text)).is_none(), "{text} {:?}", news_topic(&toks(text)));
+        }
+        assert_eq!(news_topic(&toks("lese news sport vor")).as_deref(), Some("sport"));
+        assert_eq!(news_topic(&toks("lies die sportnachrichten vor")).as_deref(), Some("sport"));
     }
 
     #[test]

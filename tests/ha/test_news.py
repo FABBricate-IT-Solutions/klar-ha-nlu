@@ -83,6 +83,48 @@ class NewsTests(unittest.TestCase):
         self.assertIn("news.google.com/rss/search", url)
         self.assertIn("q=berlin", url)
         self.assertIn("hl=de", url)
+        self.assertEqual(news.bare_topic("lese vor"), "")
+        self.assertEqual(news.bare_topic("lese sport vor"), "sport")
+        self.assertEqual(news.choose_feed("de", "lese vor", None)[0], "builtin")
+        described = """<?xml version="1.0" encoding="UTF-8"?>
+        <rss><channel>
+          <item><title>Erste Meldung</title><description>Text eins.</description></item>
+          <item><title>Hubig prüft das AfD-Verbotsverfahren</title><description>Die E-Mails werden untersucht.</description></item>
+          <item><title>Letzte Meldung</title><description>&lt;p&gt;Dürre-Übung.&lt;/p&gt;</description></item>
+        </channel></rss>"""
+        stories = news.stories_from_xml(described)
+        self.assertEqual(stories[2]["text"], "Dürre-Übung.")
+        self.assertEqual(news.pick_story("lese die letzte nachricht vor", stories)["title"], "Letzte Meldung")
+        self.assertEqual(news.pick_story("ja ueber das afd verbotsverfahren", stories)["title"], "Hubig prüft das AfD-Verbotsverfahren")
+        self.assertIsNone(news.pick_story("lese nachrichten vor", stories))
+        self.assertIn("E-Mails", news.spoken_story(stories[1]))
+        page = """<html><script type="application/ld+json">{"@type":"NewsArticle","articleBody":"Erster Absatz. Zweiter Absatz der ganzen Meldung."}</script></html>"""
+        self.assertEqual(news.article_body_from_html(page), "Erster Absatz. Zweiter Absatz der ganzen Meldung.")
+        bbc = """<html><script data-rh="true" type="application/ld+json">{"@type":"ReportageNewsArticle","description":"Kurz."}</script>
+        <article><p>In the aftermath of the vote the president elevated his adviser to chief of staff and prepared for a fight with Congress.</p>
+        <p>Follow the twists of this term with the newsletter.</p>
+        <p>On Friday he installed a partisan firebrand and signaled that compromise with the new majority was off the table.</p></article></html>"""
+        body = news.article_body_from_html(bbc)
+        self.assertIn("chief of staff", body)
+        self.assertIn("firebrand", body)
+        self.assertNotIn("newsletter", body)
+        embedded = """<rss xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><item><title>Lang</title><description>Kurz.</description><content:encoded><![CDATA[<p>Das ist der volle Text der Meldung mit genug Länge für den Vorlese-Pfad und noch einem zweiten Satz.</p>]]></content:encoded></item></channel></rss>"""
+        self.assertIn("volle Text", news.stories_from_xml(embedded)[0]["text"])
+        google = "https://news.google.com/rss/articles/CBMiabc?oc=5"
+        self.assertEqual(news.google_article_id(google), "CBMiabc")
+        self.assertEqual(news.google_article_id("https://www.bbc.co.uk/news/articles/abc"), "")
+        signed = '<div data-n-a-sg="sig-1" data-n-a-ts="1700000000000"></div>'
+        self.assertEqual(news.google_signature(signed), ("sig-1", "1700000000000"))
+        decoded = '[["wrb.fr","Fbv4je","[\\"garturlres\\",\\"https://www.tagesspiegel.de/berlin/live.html\\",1]"]]'
+        self.assertEqual(news.google_decoded_url(decoded), "https://www.tagesspiegel.de/berlin/live.html")
+        self.assertIn("ganzen Meldung", news.spoken_story(stories[1], news.article_body_from_html(page)))
+        self.assertEqual(
+            news.pick_story("lesen sie vor", stories, "ja ueber das afd verbotsverfahren")["title"],
+            "Hubig prüft das AfD-Verbotsverfahren",
+        )
+        kind, url = news.choose_feed("de", "lese sport vor", None)
+        self.assertEqual(kind, "section")
+        self.assertIn("tagesschau.de/sport", url)
 
     def test_feedreader_titles_and_urls(self) -> None:
         class Entry:
