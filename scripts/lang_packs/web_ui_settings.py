@@ -40,6 +40,8 @@ KEYS = (
     "unitImperial",
     "calendarLlm",
     "calendarLlmHint",
+    "newsFeeds",
+    "newsFeedsHint",
     "allowLlmTools",
     "allowLlmToolsHint",
     "missTitle",

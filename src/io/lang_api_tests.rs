@@ -164,6 +164,7 @@ fn explain_speech_speaks_path_ids() {
         evidence: Vec::new(),
         trace: crate::types::ParseTrace { stages: Vec::new(), discarded: Vec::new(), tokens: Vec::new(), normalized: String::new() },
         briefing: false,
+        news_topic: None,
         retrieval: None,
         policy_trace: Some(crate::types::PolicyTrace {
             match_node: Some(crate::types::PolicyTraceMatch { id: "area_command".into(), score: 0.93, origin: "engine".into() }),

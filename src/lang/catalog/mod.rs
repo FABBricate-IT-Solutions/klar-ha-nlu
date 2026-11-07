@@ -208,6 +208,8 @@ impl Catalog {
             || self.affirm().contains(token)
             || self.clarify_pick().contains(token)
             || self.is_except(token)
+            || self.chat_news().contains(token)
+            || self.chat_news_dismiss().contains(token)
             || self.synonym_pairs.iter().any(|(alias, _)| *alias == token)
     }
 

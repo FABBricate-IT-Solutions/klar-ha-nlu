@@ -62,6 +62,16 @@ Lab ist Parse-only (`speech` bleibt leer bis Assist ausführt). Zeigt Lab `KlarG
 
 °F vs °C: App → Settings → **Einheitensystem** (`imperial` / `metric`). Das wandelt gesprochene Temps um, nicht die HA-Speichereinheit.
 
+## Nachrichten
+
+| Lage | Was Klar tut |
+|------|----------------|
+| Kein Engine-LLM | Titel vorlesen, plus die Nachfrage |
+| Leerer Feed | Knappe Auskunft, keine erfundenen Meldungen |
+| `de-AT` / `de-CH` | Eigene Packs, nicht das `de`-Pack |
+
+Bedienung: [Home Assistant — Nachrichten](home-assistant.md#nachrichten).
+
 ## Eigene Sätze
 
 Unter Rules gespeicherte Phrasen liegen im Engine-Data-Dir (`klar_nlu.json` → `custom`) und laden nach Restart. Ist `/api/custom` nach Reboot leer auf einem alten Build (&lt; 2026.9.5): Engine + Integration gemeinsam updaten. Die Operator-UI leert die Phrasenliste, wenn die Engine offline ist — ein alter Tab kann voll aussehen, obwohl der Store leer ist.

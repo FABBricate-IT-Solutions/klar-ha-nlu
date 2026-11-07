@@ -87,6 +87,7 @@ Use Assist after the pipeline is saved. On Home Assistant OS, the App sidebar **
 | Play Queen | Music Assistant search-and-play on a music player |
 | What’s the temperature outside? | Outdoor `weather.*` reading (not a thermostat) |
 | What’s on my calendar tomorrow? | Calendar list for tomorrow |
+| What’s new? | Short overview ([News](home-assistant.md#news)) |
 
 German works in the same pipeline: `Licht im Wohnzimmer an`, `Spiel Queen`.
 

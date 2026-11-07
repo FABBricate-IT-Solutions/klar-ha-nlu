@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { CustomVoiceInterview } from "./CustomVoiceInterview";
 import { PersonalityPrompt } from "./PersonalityPrompt";
 import { languageOptions, SearchSelect, withCurrent } from "./SearchSelect";
@@ -247,6 +248,61 @@ export function SettingsLanguagesSection({
   );
 }
 
+function hostOk(host: string): boolean {
+  if (!host || host.includes("@")) return false;
+  if (host.startsWith("[")) return host.includes("]");
+  const name = host.split(":")[0] ?? "";
+  return name.toLowerCase() === "localhost" || name.includes(".");
+}
+
+function parseFeeds(text: string): { pack: string; url: string }[] | null {
+  const feeds: { pack: string; url: string }[] = [];
+  for (const line of text.split("\n")) {
+    const trimmed = line.trim();
+    if (!trimmed) continue;
+    const eq = trimmed.indexOf("=");
+    if (eq < 2) return null;
+    const pack = trimmed.slice(0, eq).trim();
+    const url = trimmed.slice(eq + 1).trim();
+    if (!/^[A-Za-z][A-Za-z0-9-]{1,15}$/.test(pack)) return null;
+    const host = url.split("://")[1]?.split(/[/?#]/)[0] ?? "";
+    if (!/^https?:\/\//.test(url) || !hostOk(host) || host.includes("@") || /\s/.test(url) || url.length > 200) return null;
+    feeds.push({ pack, url });
+    if (feeds.length > 8) return null;
+  }
+  return feeds;
+}
+
+function NewsFeedsField({
+  t,
+  settings,
+  onSettings,
+}: {
+  t: Messages;
+  settings: Settings;
+  onSettings: (next: Settings) => void;
+}) {
+  const saved = (settings.news_feeds || []).map((feed) => `${feed.pack}=${feed.url}`).join("\n");
+  const [draft, setDraft] = useState<string | null>(null);
+  return (
+    <Field>
+      <FieldLabel htmlFor="klar-news-feeds">{t.newsFeeds}</FieldLabel>
+      <Textarea
+        id="klar-news-feeds"
+        value={draft ?? saved}
+        placeholder="de=https://"
+        onChange={(ev) => {
+          const text = ev.target.value;
+          setDraft(text);
+          const parsed = parseFeeds(text);
+          if (parsed) onSettings({ ...settings, news_feeds: parsed });
+        }}
+      />
+      <FieldDescription>{t.newsFeedsHint}</FieldDescription>
+    </Field>
+  );
+}
+
 export function SettingsEngineSection({
   t,
   settings,
@@ -320,6 +376,7 @@ export function SettingsEngineSection({
               checked={Boolean(settings.calendar_llm)}
               onCheckedChange={(checked) => onSettings({ ...settings, calendar_llm: checked })}
             />
+            <NewsFeedsField t={t} settings={settings} onSettings={onSettings} />
             <SettingsToggle
               id="klar-allow-llm-tools"
               label={t.allowLlmTools}

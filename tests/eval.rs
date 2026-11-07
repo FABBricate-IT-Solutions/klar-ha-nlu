@@ -108,6 +108,7 @@ fn metrics_are_not_vacuous_on_mismatched_gold() {
         evidence: Vec::new(),
         trace: Default::default(),
         briefing: false,
+        news_topic: None,
         retrieval: None,
         policy_trace: None,
         quiet_ack_eligible: false,

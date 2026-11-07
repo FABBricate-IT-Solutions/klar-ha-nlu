@@ -204,6 +204,7 @@ mod tests {
             evidence: Vec::new(),
             trace: Default::default(),
             briefing: false,
+            news_topic: None,
             retrieval: None,
             policy_trace: None,
             quiet_ack_eligible: false,

@@ -50,7 +50,7 @@ Response:
 }
 ```
 
-`text` is limited to 4096 characters. The HTTP body is limited to 16 KiB.
+`text` is limited to 4096 characters. The HTTP body is limited to 16 KiB. `news_topic` appears next to `briefing` only for a news briefing that named a topic, and is omitted otherwise.
 
 `language` is optional (`de`, `en`, `fr`, or a BCP-47 tag such as `en-US`). When set, Klar binds only that pack for the request. `speech` follows the pinned pack.
 
@@ -109,6 +109,7 @@ The token comes from `--token`, `KLAR_TOKEN`, or `--token-file`.
 | `extra_prompt` | House rule as a user message. Empty uses the pack voice only. Does not replace personality. |
 | `quiet_ack` | `true` chimes instead of TTS on simple on/off. Off by default. |
 | `calendar_llm` | `true` lets the engine LLM speak calendar events. Off by default. |
+| `news_feeds` | List of `{ "pack", "url" }`. One `http` or `https` URL per pack code, no userinfo, at most eight entries. Empty uses the built-in feeds. |
 | `allow_llm_tools` | `true` lets the engine chat model call Home Assistant Assist tools after Klar parse (2026.9 prefixed names). Off by default. |
 
 ### `GET` / `POST /api/v2/llm/endpoint`

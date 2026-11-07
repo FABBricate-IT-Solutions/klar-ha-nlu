@@ -148,6 +148,12 @@ impl PipelineResult {
         }
         if let Some(briefing) = self.commit.briefing {
             session.briefing = briefing;
+            if !briefing {
+                session.news_topic = None;
+            }
+        }
+        if self.commit.replace_news_topic {
+            session.news_topic = self.commit.news_topic.clone().filter(|topic| !topic.is_empty());
         }
         if self.commit.mark_wrong {
             session.mark_wrong();
@@ -157,6 +163,20 @@ impl PipelineResult {
         }
         session.note_heard(&self.outcome);
         self.outcome
+    }
+}
+
+fn outcome_topic(draft: &Draft, session: &Session) -> Option<String> {
+    if draft.commit.briefing == Some(false) {
+        return None;
+    }
+    if draft.commit.replace_news_topic {
+        return draft.commit.news_topic.clone().filter(|topic| !topic.is_empty());
+    }
+    if draft.response_briefing {
+        session.news_topic.clone()
+    } else {
+        None
     }
 }
 
@@ -193,6 +213,7 @@ fn finish(
         started,
         format!("{} executable plan steps", executable_plan.as_ref().map_or(0, |value| value.steps.len())),
     );
+    let news_topic = outcome_topic(&draft, context.session);
     let mut outcome = ParseOutcome {
         schema_version: ParseOutcome::schema_version(),
         text: context.text.to_string(),
@@ -207,6 +228,7 @@ fn finish(
         evidence,
         trace,
         briefing: draft.response_briefing,
+        news_topic,
         retrieval: None,
         policy_trace: draft.policy_trace.clone(),
         quiet_ack_eligible: false,

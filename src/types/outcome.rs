@@ -31,6 +31,8 @@ pub struct ParseOutcome {
     #[serde(default)]
     pub briefing: bool,
     #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub news_topic: Option<String>,
+    #[serde(default, skip_serializing_if = "Option::is_none")]
     pub retrieval: Option<Retrieval>,
     #[serde(default, skip_serializing_if = "Option::is_none")]
     pub policy_trace: Option<PolicyTrace>,

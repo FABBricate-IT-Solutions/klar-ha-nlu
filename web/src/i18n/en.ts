@@ -160,6 +160,8 @@ export const en = {
   unitImperial: "Imperial",
   calendarLlm: "Calendar through the LLM",
   calendarLlmHint: "Klar still reads the calendar. On: the LLM speaks the events. Off: Klar speaks the list.",
+  newsFeeds: "News feeds",
+  newsFeedsHint: "One line per language, de=https://… Empty uses Tagesschau, BBC, or NHK. http or https only, no password in the URL.",
   allowLlmTools: "Allow Assist tools on chat",
   allowLlmToolsHint: "Off by default. On: after Klar parses, the engine chat model may call Home Assistant Assist tools (names from Core). Off: conversation only.",
   missTitle: "When Klar misses",

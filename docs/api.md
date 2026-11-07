@@ -50,7 +50,7 @@ Antwort:
 }
 ```
 
-`text` ist auf 4096 Zeichen begrenzt. Der HTTP-Body ist auf 16 KiB begrenzt.
+`text` ist auf 4096 Zeichen begrenzt. Der HTTP-Body ist auf 16 KiB begrenzt. `news_topic` steht nur bei einer Nachrichtenansage mit Thema neben `briefing` und fehlt sonst.
 
 `language` ist optional (`de`, `en`, `fr` oder ein BCP-47-Tag wie `en-US`). Ist es gesetzt, bindet Klar nur dieses Paket. `speech` folgt dem gesetzten Paket.
 
@@ -109,6 +109,7 @@ Der Token kommt aus `--token`, `KLAR_TOKEN` oder `--token-file`.
 | `extra_prompt` | Hausregel als User-Nachricht. Leer = nur Pack-Stimme. Ersetzt die Persönlichkeit nicht. |
 | `quiet_ack` | `true` spielt bei einfachem An/Aus einen Chime statt TTS. Standard aus. |
 | `calendar_llm` | `true` lässt das Engine-LLM Kalendertermine sprechen. Standard aus. |
+| `news_feeds` | Liste aus `{ "pack", "url" }`. Eine `http`- oder `https`-URL pro Pack-Code, ohne Benutzerinfo, höchstens acht Einträge. Leer heißt die eingebauten Feeds. |
 | `allow_llm_tools` | `true` lässt das Engine-Chat-Modell nach dem Klar-Parse Home-Assistant-Assist-Werkzeuge nutzen (2026.9, prefixierte Namen). Standard aus. |
 
 ### `GET` / `POST /api/v2/llm/endpoint`

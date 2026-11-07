@@ -38,7 +38,146 @@ pub fn is_news(tokens: &[String], home: &HomeGraph) -> bool {
     if tokens.is_empty() || looks_like_home(tokens, home) {
         return false;
     }
-    catalog().any(tokens, catalog().chat_news())
+    catalog().any(tokens, catalog().chat_news()) || tokens.iter().any(|token| compound_stem(token).is_some())
+}
+
+const TOPIC_GLUE: &[&str] = &[
+    "was",
+    "what",
+    "whats",
+    "gibt",
+    "gib",
+    "sind",
+    "ist",
+    "is",
+    "are",
+    "there",
+    "any",
+    "aktuelle",
+    "aktuellen",
+    "aktueller",
+    "aktuelles",
+    "latest",
+    "current",
+    "heute",
+    "today",
+    "some",
+    "give",
+    "get",
+    "lass",
+    "let",
+    "ueber",
+    "about",
+    "on",
+    "aus",
+    "from",
+    "zum",
+    "zur",
+    "short",
+    "neue",
+    "neuer",
+    "neuen",
+    "tell",
+    "hor",
+    "hear",
+    "sag",
+    "say",
+    "read",
+    "the",
+    "a",
+    "an",
+    "one",
+    "ones",
+    "eine",
+    "einen",
+    "einer",
+    "einem",
+    "eines",
+];
+
+/// Leftover words after the news cue. `sportnachrichten` yields `sport`.
+pub fn news_topic(tokens: &[String]) -> Option<String> {
+    if tokens.is_empty() {
+        return None;
+    }
+    let marked = news_marks(tokens);
+    let mut parts = Vec::new();
+    for (index, token) in tokens.iter().enumerate() {
+        if marked[index] {
+            continue;
+        }
+        if let Some(stem) = compound_stem(token) {
+            if !topic_glue(&stem) {
+                parts.push(stem);
+            }
+            continue;
+        }
+        if topic_glue(token) {
+            continue;
+        }
+        parts.push(token.clone());
+    }
+    let topic = parts.join(" ");
+    if topic.is_empty() {
+        None
+    } else {
+        Some(topic)
+    }
+}
+
+fn news_marks(tokens: &[String]) -> Vec<bool> {
+    let news = catalog().chat_news();
+    let mut hit = vec![false; tokens.len()];
+    for phrase in news {
+        let parts: Vec<&str> = phrase.split_whitespace().collect();
+        if parts.is_empty() {
+            continue;
+        }
+        if parts.len() == 1 {
+            for (index, token) in tokens.iter().enumerate() {
+                if token == parts[0] {
+                    hit[index] = true;
+                }
+            }
+            continue;
+        }
+        if tokens.len() < parts.len() {
+            continue;
+        }
+        for start in 0..=tokens.len() - parts.len() {
+            if tokens[start..start + parts.len()].iter().map(String::as_str).eq(parts.iter().copied()) {
+                hit[start..start + parts.len()].fill(true);
+            }
+        }
+    }
+    hit
+}
+
+fn compound_stem(token: &str) -> Option<String> {
+    let news = catalog().chat_news();
+    let mut best: Option<&str> = None;
+    for word in news {
+        if word.contains(' ') || word.len() < 4 || token.len() < word.len() + 3 || !token.ends_with(word) {
+            continue;
+        }
+        if best.is_none_or(|current| word.len() > current.len()) {
+            best = Some(word);
+        }
+    }
+    best.map(|word| token[..token.len() - word.len()].to_string())
+}
+
+fn topic_glue(token: &str) -> bool {
+    let cat = catalog();
+    TOPIC_GLUE.contains(&token)
+        || FOLLOW_CUES.contains(&token)
+        || cat.fillers().contains(token)
+        || cat.particles().contains(token)
+        || cat.question_words().contains(token)
+        || cat.affirm().contains(token)
+        || cat.chat_thanks().contains(token)
+        || cat.conjunctions().contains(token)
+        || cat.chat_news_dismiss().contains(token)
 }
 
 pub fn is_news_dismiss(tokens: &[String]) -> bool {
@@ -61,6 +200,19 @@ pub fn is_news_dismiss(tokens: &[String]) -> bool {
             || cat.affirm().contains(t.as_str())
     })
 }
+
+/// „Mehr zur ersten Meldung“ names a story inside the briefing. It is not a new topic.
+pub fn news_story_followup(tokens: &[String], home: &HomeGraph, session: &Session) -> bool {
+    session.briefing
+        && is_news(tokens, home)
+        && tokens.iter().any(|token| FOLLOW_CUES.contains(&token.as_str()))
+        && news_topic(tokens).is_none()
+}
+
+const FOLLOW_CUES: &[&str] = &[
+    "mehr", "more", "erste", "ersten", "erster", "erstes", "first", "zweite", "zweiten", "zweiter", "zweites", "second", "dritte",
+    "dritten", "dritter", "drittes", "third", "weitere", "weiteren", "weiterer", "weiteres", "another", "dazu",
+];
 
 pub fn briefing_followup(tokens: &[String], home: &HomeGraph, session: &Session) -> bool {
     if !in_llm_turn(session) || tokens.is_empty() || looks_like_home(tokens, home) {
@@ -200,6 +352,74 @@ mod tests {
         assert!(!is_news(&toks("Licht im Wohnzimmer an"), &home));
         assert!(!is_news(&toks("Was ist die Hauptstadt von Frankreich"), &home));
         assert!(!is_news(&toks("Wie ist das Wetter"), &home));
+        for text in ["Was gibt es für Neuigkeiten", "was gibt es Neues", "what's new", "whats new"] {
+            assert!(is_news(&toks(text), &home), "{text}");
+            assert!(news_topic(&toks(text)).is_none(), "{text} {:?}", news_topic(&toks(text)));
+        }
+        assert_eq!(news_topic(&toks("Sportnachrichten")).as_deref(), Some("sport"));
+        assert_eq!(news_topic(&toks("Nachrichten über Sport")).as_deref(), Some("sport"));
+        assert_eq!(news_topic(&toks("news about sports")).as_deref(), Some("sports"));
+        assert!(news_topic(&toks("mehr zur ersten Meldung")).is_none());
+    }
+
+    #[test]
+    fn generated_packs_use_news_words_not_the_off_verb() {
+        let home = default_home();
+        let _es = crate::lang::bind(&["es".into()]);
+        assert!(is_news(&toks("noticias"), &home));
+        assert!(!is_news(&toks("apaga"), &home));
+        drop(_es);
+        let _at = crate::lang::bind(&["de-AT".into()]);
+        assert!(is_news(&toks("Nachrichten"), &home));
+        assert!(!is_news(&toks("schalt"), &home));
+        assert_eq!(news_topic(&toks("Sportnachrichten")).as_deref(), Some("sport"));
+    }
+
+    #[test]
+    fn sport_news_sets_the_topic_on_the_outcome() {
+        let home = default_home();
+        let mut session = Session::new();
+        let settings = crate::types::Settings::pinned("de");
+        let sport = crate::nlu::parse("Sportnachrichten", &home, &mut session, &[], &settings);
+        assert!(sport.briefing, "{}", sport.speech);
+        assert_eq!(sport.news_topic.as_deref(), Some("sport"));
+        assert_eq!(session.news_topic.as_deref(), Some("sport"));
+        let about = crate::nlu::parse("Nachrichten über Sport", &home, &mut Session::new(), &[], &settings);
+        assert_eq!(about.news_topic.as_deref(), Some("sport"));
+        let plain = crate::nlu::parse("Was gibt es für Neuigkeiten", &home, &mut Session::new(), &[], &settings);
+        assert!(plain.briefing, "{}", plain.speech);
+        assert!(plain.news_topic.is_none(), "{:?}", plain.news_topic);
+        let follow = crate::nlu::parse("erzähl mehr", &home, &mut session, &[], &settings);
+        assert!(follow.briefing);
+        assert_eq!(follow.news_topic.as_deref(), Some("sport"));
+        let story = crate::nlu::parse("mehr zur ersten Meldung", &home, &mut session, &[], &settings);
+        assert!(story.briefing, "{}", story.speech);
+        assert_eq!(story.news_topic.as_deref(), Some("sport"));
+        assert_eq!(session.news_topic.as_deref(), Some("sport"));
+        let fresh = crate::nlu::parse("Was gibt es für Neuigkeiten", &home, &mut session, &[], &settings);
+        assert!(fresh.briefing, "{}", fresh.speech);
+        assert!(fresh.news_topic.is_none(), "{:?}", fresh.news_topic);
+        assert!(session.news_topic.is_none());
+    }
+
+    #[test]
+    fn short_news_words_stay_out_of_everyday_speech() {
+        let home = default_home();
+        let _lv = crate::lang::bind(&["lv".into()]);
+        assert!(is_news(&toks("zinas"), &home));
+        assert!(!is_news(&toks("zina"), &home));
+        drop(_lv);
+        let _gl = crate::lang::bind(&["gl".into()]);
+        assert!(is_news(&toks("novas"), &home));
+        assert!(!is_news(&toks("nova"), &home));
+        drop(_gl);
+        let _cy = crate::lang::bind(&["cy".into()]);
+        assert!(is_news(&toks("newyddion"), &home));
+        assert!(!is_news(&toks("newydd"), &home));
+        drop(_cy);
+        let _el = crate::lang::bind(&["el".into()]);
+        assert!(is_news(&toks("ειδήσεις"), &home));
+        assert!(!is_news(&toks("νέα"), &home));
     }
 
     #[test]

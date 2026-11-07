@@ -82,6 +82,18 @@ Flow:
 
 Chat fallback uses Klar’s engine LLM. **Allow Assist tools on chat** is off by default. When it is on, after Klar parse the model may call Home Assistant Assist tools with the names Core provides (2026.9 prefixes such as `intent__HassTurnOn`). Device commands still go through Klar parse first.
 
+## News
+
+“What’s new?”, “latest news”, “morning briefing”, and the same kind of sentence in the Assist language. A topic goes with it: “sports news”, “news about sports”. Then “more on the first one”; close with “that’s enough”, “no”, or “thanks”. Without an LLM, Klar reads the headlines again on a follow-up.
+
+Needs the engine LLM under Settings → LLM. Otherwise Klar reads the headlines itself. Empty sources stay a short reply, with no invented stories.
+
+Custom feeds: Settings, field **News feeds** (`news_feeds`). One `http` or `https` URL per language, for example `de=https://…`. Empty uses Tagesschau, BBC, or NHK. One entry replaces only that language’s feed.
+
+Feedreader: feeds already configured in Home Assistant are included. Nothing extra to set up.
+
+Search steps in when the topic has no section feed. Section feeds exist for sport, politics, business, culture, and science.
+
 ## Personality
 
 Klar operator UI → Settings → **Voice**, or the **Personality** select entity on the Klar device (it patches the engine).

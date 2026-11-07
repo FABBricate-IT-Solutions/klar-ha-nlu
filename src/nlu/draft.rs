@@ -1,4 +1,4 @@
-use crate::parse::chat::{briefing_followup, is_news, is_news_dismiss, is_ood, wants_llm};
+use crate::parse::chat::{briefing_followup, is_news, is_news_dismiss, is_ood, news_story_followup, news_topic, wants_llm};
 use crate::parse::clarify::pick_clarification;
 use crate::parse::clause_support::last_visible;
 use crate::parse::compound::CompoundSplit;
@@ -7,8 +7,7 @@ use crate::parse::numbers::first_number;
 use crate::parse::respond::{speak, speak_correction, speak_need_target, speak_unknown};
 use crate::parse::slots::{fill_pending_timer_duration, intent_with_entity};
 use crate::types::{
-    allow_permitted, first_matching_rule, first_seed_match, Intent, IntentCandidate, IntentPlan, ParseDecision, PolicyHit, PolicyTrace,
-    PolicyTraceLayer, PolicyTraceMatch, RejectReason,
+    allow_permitted, first_matching_rule, first_seed_match, Intent, IntentCandidate, IntentPlan, ParseDecision, PolicyHit, RejectReason,
 };
 
 use super::context::ParseContext;
@@ -26,6 +25,8 @@ pub(super) struct SessionCommit {
     pub confirm: Option<(String, IntentPlan, String)>,
     pub clear_pending: bool,
     pub briefing: Option<bool>,
+    pub news_topic: Option<String>,
+    pub replace_news_topic: bool,
     pub mark_wrong: bool,
     pub teach: Option<(String, String)>,
 }
@@ -59,8 +60,15 @@ pub(super) fn route_special(context: &ParseContext<'_>, raw: &[String], split: &
     if let Some(draft) = super::policy_route::route_phrase(context) {
         return Some(draft);
     }
-    if is_news(raw, context.home) || is_news(tokens, context.home) {
-        return Some(chat(context.catalog.news_intro.to_string(), true, true));
+    let raw_news = is_news(raw, context.home);
+    let token_news = is_news(tokens, context.home);
+    let story = |side: &[String]| !is_news(side, context.home) || news_story_followup(side, context.home, context.session);
+    if (raw_news || token_news) && !(story(raw) && story(tokens)) {
+        let topic = news_topic(raw).or_else(|| news_topic(tokens));
+        let mut draft = chat(context.catalog.news_intro.to_string(), true, true);
+        draft.commit.replace_news_topic = true;
+        draft.commit.news_topic = topic;
+        return Some(draft);
     }
     if context.session.briefing && (is_news_dismiss(tokens) || is_news_dismiss(raw)) {
         let mut draft = reject(RejectReason::Unsupported, context.catalog.news_done.to_string());
@@ -298,7 +306,7 @@ pub(super) fn safety_decision(mut draft: Draft, context: &ParseContext<'_>) -> D
     }
     let matched = first_matching_rule(context.policies, plan);
     let seed_matched = first_seed_match(context.policies, plan);
-    let policy_trace = overlay_trace(&draft, matched, seed_matched, compiled_risky, "reject");
+    let policy_trace = super::policy_route::overlay_trace(&draft, matched, seed_matched, compiled_risky, "reject");
     if matches!(matched.map(|(_, hit)| hit), Some(PolicyHit::Block)) {
         let mut rejected = reject(RejectReason::Unsafe, speak_unknown());
         rejected.confidence = draft.confidence;
@@ -347,28 +355,9 @@ pub(super) fn safety_decision(mut draft: Draft, context: &ParseContext<'_>) -> D
     if let (ParseDecision::Confirm { prompt, .. }, Some((_, _, stored))) = (&decided.decision, decided.commit.confirm.as_mut()) {
         *stored = prompt.clone();
     }
-    decided.policy_trace = Some(overlay_trace(&decided, matched, seed_matched, compiled_risky, decided.decision.type_name()));
+    decided.policy_trace =
+        Some(super::policy_route::overlay_trace(&decided, matched, seed_matched, compiled_risky, decided.decision.type_name()));
     decided
-}
-
-fn overlay_trace(
-    draft: &Draft,
-    matched: Option<(&crate::types::PolicyRule, PolicyHit)>,
-    seed_matched: Option<(&crate::types::PolicyRule, PolicyHit)>,
-    compiled_risky: bool,
-    band: &str,
-) -> PolicyTrace {
-    PolicyTrace {
-        matched_rule: matched.map(|(rule, _)| rule.id.clone()).or_else(|| seed_matched.map(|(rule, _)| rule.id.clone())),
-        hit: matched.map(|(_, hit)| hit.as_str().into()).or_else(|| seed_matched.map(|(_, hit)| hit.as_str().into())),
-        compiled_risky,
-        payload: matched.and_then(|(rule, _)| rule.payload.clone()).or_else(|| seed_matched.and_then(|(rule, _)| rule.payload.clone())),
-        match_node: draft.output_candidate.as_ref().and_then(PolicyTraceMatch::from_candidate),
-        seed: seed_matched.map(|(rule, hit)| PolicyTraceLayer::seed(rule.id.clone(), hit.as_str())),
-        house: matched.map(|(rule, hit)| PolicyTraceLayer::house(rule.id.clone(), hit.as_str())),
-        band: Some(band.into()),
-        ..PolicyTrace::default()
-    }
 }
 
 pub(super) fn reject(reason: RejectReason, speech: String) -> Draft {

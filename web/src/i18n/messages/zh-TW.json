@@ -157,6 +157,8 @@
   "unitImperial": "英制",
   "calendarLlm": "日曆走 LLM",
   "calendarLlmHint": "Klar 仍讀取日曆。開：由 LLM 唸事件。關：由 Klar 唸清單。",
+  "newsFeeds": "新聞來源",
+  "newsFeedsHint": "每種語言一行，de=https://… 留空就用 Tagesschau、BBC 或 NHK。只限 http 或 https，網址裡不要寫密碼。",
   "allowLlmTools": "聊天時允許 Assist 工具",
   "allowLlmToolsHint": "預設關閉。開：聊天模型可以控制 Home Assistant。關：該代理帶工具時 Klar 會跳過它。",
   "missTitle": "當 Klar 沒聽懂",

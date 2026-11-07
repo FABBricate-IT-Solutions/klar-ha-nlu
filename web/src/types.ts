@@ -31,6 +31,7 @@ export type Settings = {
   custom_voice_name?: string;
   custom_voice_seed?: string;
   custom_voice_traits?: VoiceTraits;
+  news_feeds?: { pack: string; url: string }[];
 };
 
 export function effectiveRefineBands(settings: Settings): RefineBand[] {

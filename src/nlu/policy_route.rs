@@ -2,6 +2,7 @@ use crate::parse::fuzzy::{evidence, Profile};
 use crate::parse::normalize::{fold_umlaut, join_tokens, tokenize};
 use crate::types::{
     first_matching_rule, script_entity_id, Intent, IntentPlan, PolicyHit, PolicyMatch, PolicyRule, PolicyTrace, PolicyTraceLayer,
+    PolicyTraceMatch,
 };
 
 use super::context::ParseContext;
@@ -79,6 +80,26 @@ fn matches_phrase(when: &PolicyMatch, text: &str) -> bool {
         return false;
     }
     evidence(&join_tokens(&tokens), &candidate, Profile::Phrase).is_some()
+}
+
+pub(super) fn overlay_trace(
+    draft: &Draft,
+    matched: Option<(&PolicyRule, PolicyHit)>,
+    seed_matched: Option<(&PolicyRule, PolicyHit)>,
+    compiled_risky: bool,
+    band: &str,
+) -> PolicyTrace {
+    PolicyTrace {
+        matched_rule: matched.map(|(rule, _)| rule.id.clone()).or_else(|| seed_matched.map(|(rule, _)| rule.id.clone())),
+        hit: matched.map(|(_, hit)| hit.as_str().into()).or_else(|| seed_matched.map(|(_, hit)| hit.as_str().into())),
+        compiled_risky,
+        payload: matched.and_then(|(rule, _)| rule.payload.clone()).or_else(|| seed_matched.and_then(|(rule, _)| rule.payload.clone())),
+        match_node: draft.output_candidate.as_ref().and_then(PolicyTraceMatch::from_candidate),
+        seed: seed_matched.map(|(rule, hit)| PolicyTraceLayer::seed(rule.id.clone(), hit.as_str())),
+        house: matched.map(|(rule, hit)| PolicyTraceLayer::house(rule.id.clone(), hit.as_str())),
+        band: Some(band.into()),
+        ..PolicyTrace::default()
+    }
 }
 
 #[cfg(test)]
