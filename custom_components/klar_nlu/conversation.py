@@ -51,6 +51,7 @@ from .const import (
 from .engine import async_refresh_engine_settings, cached_engine_settings
 from .engine_http import post_parse
 from .lang_select import advertised_languages, default_pack, enabled_packs, resolve_pack, speak_tag
+from .lookup import grounded, lookup_facts, lookup_instruction, lookup_miss, source_speech
 from .contracts import executable_intents
 from .executor import execute_plan
 from .fallback import (
@@ -309,6 +310,16 @@ class KlarConversationEntity(ConversationEntity):
                 return replied
         reason = str(decision.get("reason") or "")
         if (
+            reason == "out_of_domain"
+            and routes_general_chat(decision_type, reason)
+            and not skips_llm_fallback(hit)
+            and not keeps_engine_chat(hit, chat, engine_speech)
+            and not clarify
+            and not intents
+            and not payload.get("unreachable")
+        ):
+            return await self._sourced_answer(user_input, chat_log, pack, conversation_id)
+        if (
             routes_general_chat(decision_type, reason)
             and not skips_llm_fallback(hit)
             and not keeps_engine_chat(hit, chat, engine_speech)
@@ -461,6 +472,30 @@ class KlarConversationEntity(ConversationEntity):
             response=response,
             continue_conversation=continue_conversation,
         )
+
+    async def _sourced_answer(
+        self,
+        user_input: ConversationInput,
+        chat_log: ChatLog,
+        pack: str,
+        conversation_id: str | None,
+    ) -> ConversationResult:
+        facts = await lookup_facts(self.hass, pack, user_input.text)
+        if not facts:
+            return await self._spoken(user_input, chat_log, pack, lookup_miss(pack), conversation_id, False, "chat")
+        fallback = await self._fallback(
+            user_input,
+            chat_log,
+            pack,
+            True,
+            extra_system=lookup_instruction(pack, facts),
+            conversation_id=conversation_id,
+        )
+        llm = _speech_from_result(fallback) if fallback is not None else ""
+        if not grounded(user_input.text, llm, "\n".join(facts)):
+            llm = source_speech(facts)
+        self._note_llm_turn(user_input, llm)
+        return await self._spoken(user_input, chat_log, pack, llm, conversation_id, False, "chat")
 
     async def _briefing(
         self,
