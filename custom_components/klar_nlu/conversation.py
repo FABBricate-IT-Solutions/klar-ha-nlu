@@ -69,7 +69,6 @@ from .rag_tools import (
 from .assist_tools import stream_assist_with_ha_tools
 from .engine_llm import EngineAssistMissing, stream_engine_assist
 from .news import (
-    announce,
     asked_for_more,
     bare_topic,
     collect_headlines,
@@ -520,10 +519,10 @@ class KlarConversationEntity(ConversationEntity):
             if story is not None:
                 spoken = spoken_story(story, await load_article(self.hass, story.get("link", "")))
                 self._note_llm_turn(user_input, spoken)
-                return await self._spoken(user_input, chat_log, pack, spoken, conversation_id, True, "chat")
-        announced = False
+                # One pipeline reply. A separate satellite announce of the intro ends the
+                # voice run, and listening again stops the article before it finishes.
+                return await self._spoken(user_input, chat_log, pack, spoken, conversation_id, False, "chat")
         if intro:
-            announced = await announce(self.hass, user_input, intro)
             kind = "news"
         else:
             kind = "news_follow"
@@ -543,9 +542,9 @@ class KlarConversationEntity(ConversationEntity):
         if not llm and headlines:
             llm = spoken_headlines(headlines)
         extra_nudge = nudge(pack) if intro and not asked_for_more(llm) else ""
-        spoken = compose_speech(intro, llm, extra_nudge, announced) or intro or _cue(_DONE, pack, "OK")
+        spoken = compose_speech(intro, llm, extra_nudge, False) or intro or _cue(_DONE, pack, "OK")
         self._note_llm_turn(user_input, spoken)
-        return await self._spoken(user_input, chat_log, pack, spoken, conversation_id, True, "chat")
+        return await self._spoken(user_input, chat_log, pack, spoken, conversation_id, False, "chat")
 
     def _nlu_rag(self) -> bool:
         return self._flag("nlu_rag", CONF_NLU_RAG, DEFAULT_NLU_RAG)

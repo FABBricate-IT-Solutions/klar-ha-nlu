@@ -706,21 +706,3 @@ async def collect_headlines(hass: HomeAssistant, pack: str, topic: str = "", fee
         _kind, url = choose_feed(pack, topic, feeds)
         _take(titles, seen, await fetch_url(hass, url, _LIMIT))
     return titles
-
-
-async def announce(hass: HomeAssistant, user_input: Any, text: str) -> bool:
-    sat = getattr(user_input, "satellite_id", None)
-    if not sat or "." not in str(sat) or not text:
-        return False
-    try:
-        await hass.services.async_call(
-            "assist_satellite",
-            "announce",
-            {"message": text},
-            target={"entity_id": str(sat)},
-            blocking=False,
-        )
-        return True
-    except Exception as err:  # noqa: BLE001 — satellite announce is optional
-        _LOGGER.debug("Intro nicht angesagt: %s", err)
-        return False
