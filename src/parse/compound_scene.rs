@@ -7,7 +7,8 @@ use crate::parse::normalize::{compact, fold_umlaut};
 use crate::types::HomeGraph;
 
 pub(crate) fn named_scene_or_script(tokens: &[String], home: &HomeGraph) -> Option<String> {
-    if is_media_move_or_play(tokens) || catalog().any(tokens, catalog().media_nouns()) {
+    let media = is_media_move_or_play(tokens) || catalog().any(tokens, catalog().media_nouns());
+    if media && !explicit_named_script(tokens, home) {
         return None;
     }
     let mentioned = tokens.iter().any(|t| catalog().scene_nouns().contains(t.as_str()) || catalog().script_words().contains(t.as_str()));
@@ -34,6 +35,35 @@ pub(crate) fn named_scene_or_script(tokens: &[String], home: &HomeGraph) -> Opti
     let named = mentioned || catalog().any(tokens, catalog().scene_named());
     let strong = hits.iter().any(|id| scene_compact_hit(id, tokens, home));
     (hits.len() == 1 && (named || strong || tokens.iter().any(|t| t.len() > 5))).then_some(hits.pop()).flatten()
+}
+
+/// A media noun inside a script name ("Musique HA") is still that script.
+/// A sentence that only says the media noun stays on the media path.
+fn explicit_named_script(tokens: &[String], home: &HomeGraph) -> bool {
+    home.entities
+        .iter()
+        .filter(|entity| assist_visible(entity, home))
+        .filter(|entity| matches!(entity.domain.as_str(), "scene" | "script"))
+        .any(|entity| {
+            let tail = entity.entity_id.rsplit('.').next().unwrap_or("");
+            explicit_label(tokens, tail)
+                || explicit_label(tokens, &entity.name)
+                || entity.aliases.iter().any(|alias| explicit_label(tokens, alias))
+        })
+}
+
+fn explicit_label(tokens: &[String], label: &str) -> bool {
+    scene_label_whole(tokens, label) && !media_only(label)
+}
+
+fn media_only(label: &str) -> bool {
+    let parts: Vec<String> = label
+        .split(|c: char| !crate::parse::normalize::is_word_char(c))
+        .filter(|part| !part.is_empty())
+        .map(compact)
+        .filter(|part| !part.is_empty())
+        .collect();
+    !parts.is_empty() && parts.iter().all(|part| catalog().media_nouns().contains(part.as_str()))
 }
 
 fn scene_label_whole(tokens: &[String], label: &str) -> bool {

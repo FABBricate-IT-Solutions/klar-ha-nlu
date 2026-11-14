@@ -61,6 +61,25 @@ fn dishwasher_off_is_not_the_all_off_scene() {
 }
 
 #[test]
+fn french_media_noun_in_explicit_script_name() {
+    let _bind = crate::lang::bind(&["fr".into()]);
+    let home = crate::types::HomeGraph {
+        entities: vec![crate::types::EntityRec {
+            entity_id: "script.musique_ha".into(),
+            name: "Musique HA".into(),
+            domain: "script".into(),
+            platform: None,
+            area: None,
+            aliases: vec!["Musique HA".into()],
+            tags: vec![],
+        }],
+        ..crate::types::HomeGraph::default()
+    };
+    assert_eq!(named_scene_or_script(&["lance".into(), "musique".into(), "ha".into()], &home).as_deref(), Some("script.musique_ha"));
+    assert_eq!(named_scene_or_script(&["joue".into(), "de".into(), "la".into(), "musique".into()], &home), None);
+}
+
+#[test]
 fn all_lamps_off_is_not_the_all_off_scene() {
     let _bind = crate::lang::bind(&["en".into()]);
     let home = crate::home::load_home_config(std::path::Path::new("tests/datasets/wohnung_mittel/home_config.yaml")).expect("home");

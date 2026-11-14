@@ -1,17 +1,18 @@
 //! One spoken room name can match the same room on several floors.
 //! Prefer the floor that heard the sentence. Otherwise ask.
+//! `Küche` and the Home Assistant slug `kuche` are the same stem.
 
 use super::token_hit;
-use crate::parse::normalize::{compact, fold_label};
+use crate::parse::normalize::{compact, fold_label, umlaut_eq};
 use crate::parse::resolve::Resolved;
 use crate::types::{AreaRec, HomeGraph};
-use std::collections::{BTreeMap, BTreeSet};
+use std::collections::BTreeSet;
 
 pub(crate) fn narrow_shared_rooms(resolved: &mut Resolved, tokens: &[String], home: &HomeGraph, preferred_area: Option<&str>) {
     if resolved.areas.len() < 2 {
         return;
     }
-    let mut groups: BTreeMap<String, Vec<String>> = BTreeMap::new();
+    let mut groups: Vec<(String, Vec<String>)> = Vec::new();
     for id in &resolved.areas {
         let Some(area) = home.areas.iter().find(|area| area.area_id == *id) else {
             continue;
@@ -19,9 +20,13 @@ pub(crate) fn narrow_shared_rooms(resolved: &mut Resolved, tokens: &[String], ho
         let Some(stem) = matched_stem(tokens, area) else {
             continue;
         };
-        groups.entry(stem).or_default().push(id.clone());
+        if let Some((_, ids)) = groups.iter_mut().find(|(key, _)| key == &stem || umlaut_eq(key, &stem)) {
+            ids.push(id.clone());
+        } else {
+            groups.push((stem, vec![id.clone()]));
+        }
     }
-    let crowded: Vec<Vec<String>> = groups.into_values().filter(|ids| ids.len() >= 2).collect();
+    let crowded: Vec<Vec<String>> = groups.into_iter().map(|(_, ids)| ids).filter(|ids| ids.len() >= 2).collect();
     if crowded.is_empty() {
         return;
     }
