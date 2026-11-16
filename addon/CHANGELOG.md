@@ -6,6 +6,25 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 Versions follow Home Assistant calendar versioning (`YYYY.M.PATCH`)
 and [Conventional Commits](https://www.conventionalcommits.org/).
 
+## [2026.11.1](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/compare/2026.11.0...2026.11.1) - 2026-11-16
+
+
+
+### Bug Fixes
+
+- upgrade quinn-udp past the truncated datagram spin([eb32dc5](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/eb32dc5b5719b6915a0fc37491c24a582799b949))
+
+
+### Other
+
+- Merge pull request #352 from FABBricate-IT-Solutions/dependabot/npm_and_yarn/web/npm-patch-9c968aaf24([0eb51f0](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/0eb51f052b8a31ff968447288c28ad0e4645e615))
+
+- bump the npm-patch group in /web with 4 updates([0bd7a09](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/0bd7a098d4852e2755c6f07b146b5b28f2cbd839))
+
+- Merge pull request #355 from FABBricate-IT-Solutions/dependabot/cargo/rust-patch-dbeece9def([e567a33](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/e567a3387f02ed052611a46d921b0e4da48a59f8))
+
+- bump flate2 from 1.1.10 to 1.1.11 in the rust-patch group([7180233](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/7180233b025d13c2bc1adbcc3ee7a0e63e667b90))
+
 ## [2026.11.0](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/compare/2026.10.10...2026.11.0) - 2026-11-04
 
 
