@@ -46,6 +46,8 @@ pub(super) const SPEECH: Speech = Speech {
     timer_pause: "Το χρονόμετρο είναι σε παύση.",
     timer_how_long: "Πόσο ώρα;",
     list_add: "Ειναι στη λιστα.",
+    list_remove: "{item}",
+    list_complete: "{item}",
     calendar_list: "{items}",
     calendar_empty: "Δεν υπαρχουν γεγονοτα.",
     calendar_none: "Δεν υπαρχει ημερολογιο.",

@@ -57,6 +57,13 @@ fn vacuum_speech_uses_device_name() {
 }
 
 #[test]
+fn vacuum_start_does_not_repeat_vacuum() {
+    let _en = bind(&["en".into()]);
+    let speech = speak(&[Intent::new("HassVacuumStart")], Personality::Default, false, None);
+    assert_eq!(speech, "The vacuum has started cleaning.");
+}
+
+#[test]
 fn climate_speech_does_not_repeat_heizung() {
     let home = crate::home::default_home();
     let intent =
@@ -157,4 +164,30 @@ fn clarify_and_confirm_follow_pinned_locale() {
         }
         assert_eq!(crate::lang::catalog().speech().confirm, confirm, "{code}");
     }
+}
+
+#[test]
+fn list_add_speech_repeats_the_item() {
+    let intent = Intent::new("HassListAddItem").with("name", "shopping_list").with("item", "painkillers");
+    let _en = bind(&["en".into()]);
+    assert_eq!(speak(std::slice::from_ref(&intent), Personality::Default, false, None), "Added painkillers to the list.");
+    drop(_en);
+    let _de = bind(&["de".into()]);
+    let milch = Intent::new("HassShoppingListAddItem").with("item", "milch");
+    assert_eq!(speak(&[milch], Personality::Default, false, None), "Milch auf die Liste gesetzt.");
+    assert_eq!(speak(&[Intent::new("HassListAddItem")], Personality::Default, false, None), "Auf die Liste gesetzt.");
+}
+
+#[test]
+fn list_complete_and_remove_speech_repeat_the_item() {
+    let _en = bind(&["en".into()]);
+    let item = |name: &str| Intent::new(name).with("name", "shopping_list").with("item", "painkillers");
+    assert_eq!(speak(&[item("HassListCompleteItem")], Personality::Default, false, None), "Ticked painkillers off the list.");
+    assert_eq!(speak(&[item("HassShoppingListCompleteItem")], Personality::Default, false, None), "Ticked painkillers off the list.");
+    assert_eq!(speak(&[item("HassListRemoveItem")], Personality::Default, false, None), "Removed painkillers from the list.");
+    drop(_en);
+    let _de = bind(&["de".into()]);
+    let milch = |name: &str| Intent::new(name).with("item", "milch");
+    assert_eq!(speak(&[milch("HassListCompleteItem")], Personality::Default, false, None), "Milch abgehakt.");
+    assert_eq!(speak(&[milch("HassListRemoveItem")], Personality::Default, false, None), "Milch von der Liste entfernt.");
 }

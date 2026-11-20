@@ -32,6 +32,85 @@ fn entity(id: &str, name: &str, domain: &str, state: &str, attrs: BTreeMap<Strin
     }
 }
 
+fn list_snap(intent: &str, language: &str, item: Option<&str>) -> SpeechSnapshot {
+    let mut slots = vec![SpeechSlot { name: "name".into(), value: "Shopping list".into() }];
+    if let Some(item) = item {
+        slots.push(SpeechSlot { name: "item".into(), value: item.into() });
+    }
+    SpeechSnapshot { language: language.into(), ..snap(intent, slots, vec![]) }
+}
+
+#[test]
+fn list_replies_repeat_the_item() {
+    const ADD: &[&str] = &["HassListAddItem", "HassShoppingListAddItem"];
+    const COMPLETE: &[&str] = &["HassListCompleteItem", "HassShoppingListCompleteItem"];
+    const REMOVE: &[&str] = &["HassListRemoveItem"];
+    for (intents, language, item, expected) in [
+        (ADD, "en", Some("painkillers"), "Added painkillers to the list."),
+        (ADD, "en", None, "Added to the list."),
+        (ADD, "en-GB", Some("painkillers"), "Added painkillers to the list."),
+        (ADD, "de", Some("milch"), "Milch auf die Liste gesetzt."),
+        (ADD, "de", None, "Auf die Liste gesetzt."),
+        (ADD, "de-AT", Some("milch"), "Milch auf die Liste gesetzt."),
+        (COMPLETE, "en", Some("painkillers"), "Ticked painkillers off the list."),
+        (COMPLETE, "en", None, "Ticked off the list."),
+        (COMPLETE, "en-GB", Some("painkillers"), "Ticked painkillers off the list."),
+        (COMPLETE, "de", Some("milch"), "Milch abgehakt."),
+        (COMPLETE, "de", None, "Abgehakt."),
+        (COMPLETE, "de-AT", Some("milch"), "Milch abgehakt."),
+        (REMOVE, "en", Some("painkillers"), "Removed painkillers from the list."),
+        (REMOVE, "en", None, "Removed from the list."),
+        (REMOVE, "en-GB", Some("painkillers"), "Removed painkillers from the list."),
+        (REMOVE, "de", Some("milch"), "Milch von der Liste entfernt."),
+        (REMOVE, "de", None, "Von der Liste entfernt."),
+        (REMOVE, "de-AT", Some("milch"), "Milch von der Liste entfernt."),
+    ] {
+        for intent in intents {
+            let out = render_snapshot(&list_snap(intent, language, item));
+            assert_eq!(out.speech, expected, "{intent} {language} {item:?}");
+        }
+    }
+}
+
+#[test]
+fn list_replies_do_not_fall_back_to_done_with_list_name() {
+    for intent in ["HassListAddItem", "HassListCompleteItem", "HassListRemoveItem"] {
+        let out = render_snapshot(&list_snap(intent, "en", Some("painkillers")));
+        assert!(!out.speech.contains("Done"), "{intent}: {}", out.speech);
+        assert!(!out.speech.contains("Shopping list"), "{intent}: {}", out.speech);
+    }
+}
+
+#[test]
+fn every_pack_has_a_list_reply_that_mentions_the_item() {
+    for lang in crate::lang::LangId::all() {
+        let speech = lang.pack().speech;
+        for intent in ["HassListAddItem", "HassListCompleteItem", "HassListRemoveItem"] {
+            let line = speech.list_reply(intent, Some("zzitem")).unwrap_or_default();
+            assert!(!line.is_empty(), "{} {intent}: empty reply", lang.code());
+            if intent != "HassListAddItem" {
+                assert!(line.to_lowercase().contains("zzitem"), "{} {intent}: {line:?}", lang.code());
+            }
+        }
+    }
+}
+
+#[test]
+fn vacuum_start_does_not_repeat_vacuum() {
+    for (language, name, expected) in [
+        ("en", "Vacuum", "Vacuum has started cleaning."),
+        ("en", "R2D2", "R2D2 has started cleaning."),
+        ("en-GB", "Hoover", "Hoover has started cleaning."),
+    ] {
+        let slots = vec![
+            SpeechSlot { name: "entity_id".into(), value: "vacuum.vacuum".into() },
+            SpeechSlot { name: "name".into(), value: name.into() },
+        ];
+        let out = render_snapshot(&SpeechSnapshot { language: language.into(), ..snap("HassVacuumStart", slots, vec![]) });
+        assert_eq!(out.speech, expected, "{language} {name}");
+    }
+}
+
 #[test]
 fn turn_on_uses_friendly_name_not_entity_id() {
     let out = render_snapshot(&snap(

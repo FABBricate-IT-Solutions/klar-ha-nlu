@@ -81,6 +81,9 @@ fn interpolate_line(snap: &SpeechSnapshot, speech: Speech, de: bool, where_: &st
     if let Some(line) = timer_action(name, speech) {
         return line;
     }
+    if let Some(line) = speech.list_reply(name, slot(snap, "item")) {
+        return line;
+    }
     match name {
         "HassTurnOn" if domain_of(snap) == "scene" => fill(speech.turn_on_scene, where_, "", ""),
         "HassTurnOn" if domain_of(snap) == "cover" => fill(speech.cover_open, where_, "", ""),

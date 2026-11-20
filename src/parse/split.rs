@@ -340,8 +340,8 @@ fn is_same_command(a: Action, b: Action) -> bool {
             | (Action::VacuumDock | Action::VacuumStart, Action::GetState)
             | (Action::VacuumStart | Action::VacuumDock, Action::On | Action::Off)
             | (Action::On | Action::Off, Action::VacuumStart | Action::VacuumDock)
-            | (Action::ListAdd | Action::ListComplete, Action::On | Action::Off | Action::SetLight)
-            | (Action::On | Action::Off | Action::SetLight, Action::ListAdd | Action::ListComplete)
+            | (Action::ListAdd | Action::ListComplete | Action::ListRemove, Action::On | Action::Off | Action::SetLight)
+            | (Action::On | Action::Off | Action::SetLight, Action::ListAdd | Action::ListComplete | Action::ListRemove)
     )
 }
 

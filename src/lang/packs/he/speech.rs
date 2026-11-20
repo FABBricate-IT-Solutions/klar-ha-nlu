@@ -46,6 +46,8 @@ pub(super) const SPEECH: Speech = Speech {
     timer_pause: "הטיימר מושהה.",
     timer_how_long: "לכמה זמן?",
     list_add: "נוסף לרשימה.",
+    list_remove: "{item}",
+    list_complete: "{item}",
     calendar_list: "{items}",
     calendar_empty: "אין אירועים.",
     calendar_none: "אין יומן.",

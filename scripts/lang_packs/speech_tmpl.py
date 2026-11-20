@@ -53,6 +53,8 @@ def speech(
     cover_close="{target}.",
     lock="{target}.",
     unlock="{target}.",
+    list_remove=None,
+    list_complete=None,
 ) -> dict:
     return {
         "unknown": unknown,
@@ -98,6 +100,8 @@ def speech(
         "timer_cancel": timer_cancel,
         "timer_pause": timer_pause,
         "list_add": list_add,
+        "list_remove": list_remove or done.replace("{name}", "{item}"),
+        "list_complete": list_complete or done.replace("{name}", "{item}"),
         "done": done,
         "light_suffix": light_suffix,
         "area_light": area_light,

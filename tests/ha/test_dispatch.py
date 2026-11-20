@@ -938,6 +938,31 @@ class DispatchTests(unittest.IsolatedAsyncioTestCase):
         self.assertEqual(shaped["seconds"], {"value": 30})
         self.assertNotIn("entity_id", shaped)
 
+    async def test_list_intents_reach_ha_with_item_and_list_name(self) -> None:
+        for sent, expected in (
+            ("HassListAddItem", "HassListAddItem"),
+            ("HassListCompleteItem", "HassListCompleteItem"),
+            ("HassListRemoveItem", "HassListRemoveItem"),
+            ("HassShoppingListAddItem", "HassListAddItem"),
+            ("HassShoppingListCompleteItem", "HassListCompleteItem"),
+        ):
+            with self.subTest(intent=sent):
+                hass = _hass()
+                dispatch.intent.async_handle = AsyncMock(
+                    return_value=SimpleNamespace(matched_states=[], unmatched_states=[], success_results=[])
+                )
+                item = {"name": sent, "slots": [{"name": "name", "value": "shopping_list"}, {"name": "item", "value": "milk"}]}
+                spoken = await dispatch.handle_intent(hass, _input(), item, "en", None, lambda _: True)
+                self.assertTrue(spoken.ok)
+                args = dispatch.intent.async_handle.await_args.args
+                self.assertEqual(args[2], expected)
+                self.assertEqual({key: val["value"] for key, val in args[3].items()}, {"name": "shopping_list", "item": "milk"})
+
+    def test_list_remove_is_an_allowed_home_intent(self) -> None:
+        home_intents = dispatch.list_slots.__globals__["home_intents"]
+        kept = home_intents([_item("HassListRemoveItem", item="milk")])
+        self.assertEqual([item["name"] for item in kept], ["HassListRemoveItem"])
+
 
 if __name__ == "__main__":
     unittest.main()

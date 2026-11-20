@@ -46,6 +46,8 @@ pub(super) const SPEECH: Speech = Speech {
     timer_pause: "Timer gepauzeerd.",
     timer_how_long: "Hoe lang?",
     list_add: "Staat op de lijst.",
+    list_remove: "Klaar: {item}.",
+    list_complete: "Klaar: {item}.",
     calendar_list: "{items}",
     calendar_empty: "Geen afspraken.",
     calendar_none: "Geen kalender.",

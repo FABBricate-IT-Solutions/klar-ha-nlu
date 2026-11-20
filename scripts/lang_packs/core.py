@@ -269,6 +269,8 @@ def sp(
         cover_close=body("cover_close", "{target}."),
         lock=body("lock", "{target}."),
         unlock=body("unlock", "{target}."),
+        list_remove=body("list_remove", None),
+        list_complete=body("list_complete", None),
     )
 
 

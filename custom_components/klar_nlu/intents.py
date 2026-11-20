@@ -24,6 +24,7 @@ ENTITY_SERVICES = {
 LIST_INTENTS = {
     "HassListAddItem",
     "HassListCompleteItem",
+    "HassListRemoveItem",
     "HassShoppingListAddItem",
     "HassShoppingListCompleteItem",
 }

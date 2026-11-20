@@ -287,6 +287,8 @@ def spoken_home(
     volume: str,
     list_add: str,
     need_which: str | None = None,
+    list_remove: str | None = None,
+    list_complete: str | None = None,
 ) -> dict[str, str]:
     data = {
         "correction": correction,
@@ -306,6 +308,10 @@ def spoken_home(
     }
     if need_which:
         data["need_which"] = need_which
+    if list_remove:
+        data["list_remove"] = list_remove
+    if list_complete:
+        data["list_complete"] = list_complete
     return data
 
 

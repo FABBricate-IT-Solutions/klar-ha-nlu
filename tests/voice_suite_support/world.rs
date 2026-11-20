@@ -129,6 +129,22 @@ impl TestWorld {
                 self.shopping_list.insert(item.to_string(), true);
                 return Ok(());
             }
+            "HassListRemoveItem" => {
+                let list_name = intent
+                    .slot("entity_id")
+                    .or_else(|| intent.slot("name"))
+                    .ok_or_else(|| format!("{} requires entity_id or name", intent.name))?;
+                let item = required_slot(intent, "item")?;
+                let items = if list_name == "shopping_list" {
+                    &mut self.shopping_list
+                } else {
+                    self.todo_lists.entry(list_name.to_string()).or_default()
+                };
+                if items.remove(item).is_none() {
+                    return Err(format!("cannot remove missing item {item:?} from {list_name:?}"));
+                }
+                return Ok(());
+            }
             "HassListAddItem" | "HassListCompleteItem" => {
                 let list_name = intent
                     .slot("entity_id")

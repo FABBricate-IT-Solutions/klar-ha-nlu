@@ -23,6 +23,7 @@ impl Catalog {
                         | VerbKind::List
                         | VerbKind::Add
                         | VerbKind::ListComplete
+                        | VerbKind::ListRemove
                 )
             {
                 continue;
