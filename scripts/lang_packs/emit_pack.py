@@ -65,6 +65,8 @@ pub(super) const SPEECH: Speech = Speech {{
     timer_pause: {rust_str(s["timer_pause"])},
     timer_how_long: {rust_str(s.get("timer_how_long", "How long?"))},
     list_add: {rust_str(s["list_add"])},
+    list_remove: {rust_str(s["list_remove"])},
+    list_complete: {rust_str(s["list_complete"])},
     calendar_list: {rust_str(s.get("calendar_list", "{items}"))},
     calendar_empty: {rust_str(s.get("calendar_empty", s["unknown"]))},
     calendar_none: {rust_str(s.get("calendar_none", s["unknown"]))},

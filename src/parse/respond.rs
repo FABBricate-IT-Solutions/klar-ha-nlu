@@ -81,6 +81,9 @@ fn join_names(names: &[String]) -> String {
 
 fn describe(intent: &Intent, home: Option<&HomeGraph>) -> String {
     let pack = speech();
+    if let Some(line) = pack.list_reply(&intent.name, intent.slot("item")) {
+        return line;
+    }
     let where_ = spoken_where(intent, home);
     let area = intent.slot("area").unwrap_or("");
     let target = or_home(&where_);
@@ -120,7 +123,6 @@ fn describe(intent: &Intent, home: Option<&HomeGraph>) -> String {
         "HassStartTimer" | "HassIncreaseTimer" | "HassDecreaseTimer" => pack.timer_start.to_string(),
         "HassCancelTimer" => pack.timer_cancel.to_string(),
         "HassPauseTimer" => pack.timer_pause.to_string(),
-        "HassListAddItem" | "HassShoppingListAddItem" => pack.list_add.to_string(),
         "KlarGetCalendarEvents" => pack.calendar_list.replace("{items}", "").replace("{count}", "0"),
         "KlarCreateCalendarEvent" if intent.slot("need") == Some("title") => pack.calendar_need_title.to_string(),
         "KlarCreateCalendarEvent" if intent.slot("need") == Some("when") => pack.calendar_need_when.to_string(),

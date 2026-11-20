@@ -447,6 +447,7 @@ class KlarConversationEntity(ConversationEntity):
                 user_input.agent_id,
                 refine_band,
                 self._refine_bands(),
+                cue=decision == "execute",
             )
             published = published or refine_posted
         remember_turn(

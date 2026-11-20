@@ -46,6 +46,8 @@ pub(super) const SPEECH: Speech = Speech {
     timer_pause: "計時器暫停咗。",
     timer_how_long: "幾耐？",
     list_add: "加咗入清單。",
+    list_remove: "{item}",
+    list_complete: "{item}",
     calendar_list: "{items}",
     calendar_empty: "冇行程。",
     calendar_none: "冇日曆。",

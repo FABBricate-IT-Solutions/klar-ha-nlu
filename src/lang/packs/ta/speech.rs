@@ -46,6 +46,8 @@ pub(super) const SPEECH: Speech = Speech {
     timer_pause: "டைமர் இடைநிறுத்தம்.",
     timer_how_long: "எவ்வளவு நேரம்?",
     list_add: "பட்டியலில் உள்ளது.",
+    list_remove: "{item}",
+    list_complete: "{item}",
     calendar_list: "{items}",
     calendar_empty: "சந்திப்பு இல்லை.",
     calendar_none: "நாட்காட்டி இல்லை.",

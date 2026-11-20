@@ -181,6 +181,10 @@ async def emit_assistant_speech(chat_log: Any, agent_id: str | None, speech: str
     chat_log.async_add_assistant_content_without_tools(body)
 
 
+def _cued(speech: str, personality: str, pack: str, cue: bool) -> str:
+    return style(speech, personality, pack) if cue else speech
+
+
 async def async_finish_speech(
     hass: HomeAssistant,
     enabled: bool,
@@ -198,9 +202,10 @@ async def async_finish_speech(
     publish_agent_id: str | None = None,
     refine_band: str | None = None,
     refine_bands: list[str] | None = None,
+    cue: bool = True,
 ) -> tuple[str, bool]:
     if not should_refine(enabled, agent_id, speech, refine_band, refine_bands):
-        return style(speech, personality, pack), False
+        return _cued(speech, personality, pack, cue), False
     refined, posted = await async_refine_speech(
         hass,
         str(agent_id),
@@ -216,7 +221,7 @@ async def async_finish_speech(
         chat_log,
         publish_agent_id,
     )
-    return (refined or style(speech, personality, pack), posted)
+    return (refined or _cued(speech, personality, pack, cue), posted)
 
 
 async def async_refine_speech(

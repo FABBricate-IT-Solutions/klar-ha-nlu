@@ -46,6 +46,8 @@ pub(super) const SPEECH: Speech = Speech {
     timer_pause: "Tíminn er í bið.",
     timer_how_long: "Hversu lengi?",
     list_add: "A listanum.",
+    list_remove: "{item}",
+    list_complete: "{item}",
     calendar_list: "{items}",
     calendar_empty: "Eg skildi thetta ekki.",
     calendar_none: "Eg skildi thetta ekki.",

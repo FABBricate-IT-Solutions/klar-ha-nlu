@@ -164,7 +164,7 @@ fn validate_slots(intent: &Intent) -> Result<(), PlanInvalid> {
         "HassMediaSearchAndPlay" | "MassPlayMedia" if intent.slot("search_query").is_none() && intent.slot("media_id").is_none() => {
             Err(PlanInvalid::Schema)
         }
-        "HassListAddItem" | "HassListCompleteItem" | "HassShoppingListAddItem" | "HassShoppingListCompleteItem"
+        "HassListAddItem" | "HassListCompleteItem" | "HassListRemoveItem" | "HassShoppingListAddItem" | "HassShoppingListCompleteItem"
             if intent.slot("item").is_none() =>
         {
             Err(PlanInvalid::Schema)
@@ -203,6 +203,7 @@ pub(super) fn requires_target(name: &str) -> bool {
             | "HassPauseTimer"
             | "HassListAddItem"
             | "HassListCompleteItem"
+            | "HassListRemoveItem"
             | "HassShoppingListAddItem"
             | "HassShoppingListCompleteItem"
             | "KlarGetCalendarEvents"
@@ -280,7 +281,7 @@ fn allowed_slots(name: &str) -> &'static [&'static str] {
         "HassVacuumStart" | "HassVacuumReturnToBase" => &["entity_id", "area", "floor", "domain"],
         "HassStartTimer" | "HassIncreaseTimer" | "HassDecreaseTimer" => &["entity_id", "hours", "minutes", "seconds", "timer_name"],
         "HassCancelTimer" | "HassPauseTimer" => &["entity_id", "timer_name"],
-        "HassListAddItem" | "HassListCompleteItem" | "HassShoppingListAddItem" | "HassShoppingListCompleteItem" => {
+        "HassListAddItem" | "HassListCompleteItem" | "HassListRemoveItem" | "HassShoppingListAddItem" | "HassShoppingListCompleteItem" => {
             &["entity_id", "name", "item"]
         }
         "KlarGetCalendarEvents" => &["entity_id", "domain", "day", "hour", "in_days"],

@@ -147,6 +147,7 @@ pub(crate) fn prefer_action(actions: &[(usize, Action)]) -> Option<Action> {
         Action::TimerCancel,
         Action::TimerPause,
         Action::TimerStart,
+        Action::ListRemove,
         Action::ListComplete,
         Action::ListAdd,
         Action::VacuumDock,

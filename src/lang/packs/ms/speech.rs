@@ -46,6 +46,8 @@ pub(super) const SPEECH: Speech = Speech {
     timer_pause: "Pemasa dijeda.",
     timer_how_long: "Berapa lama?",
     list_add: "Ada dalam senarai.",
+    list_remove: "{item}",
+    list_complete: "{item}",
     calendar_list: "{items}",
     calendar_empty: "Saya tidak faham.",
     calendar_none: "Saya tidak faham.",

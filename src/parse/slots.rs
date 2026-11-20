@@ -175,6 +175,7 @@ pub(crate) fn fill_intent(
                     | Action::TimerPause
                     | Action::ListAdd
                     | Action::ListComplete
+                    | Action::ListRemove
             ) {
                 intent = intent.with("domain", d);
             }
@@ -213,7 +214,7 @@ pub(crate) fn fill_intent(
                 intent = intent.with(timer_unit(tokens), n.to_string());
             }
         }
-        Action::ListAdd | Action::ListComplete => {
+        Action::ListAdd | Action::ListComplete | Action::ListRemove => {
             if let Some(item) = list_item(tokens, None) {
                 intent = intent.with("item", item);
             }
@@ -260,7 +261,10 @@ fn list_item(tokens: &[String], target: Option<&EntityRec>) -> Option<String> {
             !cat.list_skip().contains(token)
                 && !cat.list_nouns().contains(token)
                 && !cat.shopping_names().contains(token)
-                && !matches!(cat.verb(token), Some(VerbKind::Add | VerbKind::ListComplete | VerbKind::List))
+                && !matches!(
+                    cat.verb(token),
+                    Some(VerbKind::Add | VerbKind::ListComplete | VerbKind::ListRemove | VerbKind::Stop | VerbKind::List)
+                )
                 && !target.is_some_and(|entity| target_label_token(token, entity))
         })
         .collect();
@@ -315,6 +319,7 @@ pub(crate) fn intent_from_action(action: Action, tokens: &[String]) -> Intent {
         Action::TimerPause => Intent::new("HassPauseTimer"),
         Action::ListAdd => Intent::new("HassListAddItem"),
         Action::ListComplete => Intent::new("HassListCompleteItem"),
+        Action::ListRemove => Intent::new("HassListRemoveItem"),
         Action::ClarifyWrong => Intent::new("Unknown"),
     }
 }

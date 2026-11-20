@@ -46,6 +46,8 @@ pub(super) const SPEECH: Speech = Speech {
     timer_pause: "Mae'r amserydd ar seibiant.",
     timer_how_long: "Am faint?",
     list_add: "Ar y rhestr.",
+    list_remove: "{item}",
+    list_complete: "{item}",
     calendar_list: "{items}",
     calendar_empty: "Do ddeallais i ddim.",
     calendar_none: "Do ddeallais i ddim.",
