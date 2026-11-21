@@ -23,6 +23,7 @@ export type Settings = {
   refine_bands?: RefineBand[];
   calendar_llm?: boolean;
   quiet_ack?: boolean;
+  satellite_followup?: boolean;
   allow_llm_tools?: boolean;
   fallback_llm?: boolean;
   extra_prompt?: string;

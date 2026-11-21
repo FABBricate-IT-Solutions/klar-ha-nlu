@@ -108,6 +108,7 @@ Der Token kommt aus `--token`, `KLAR_TOKEN` oder `--token-file`.
 | `refine_speech` | `true` formuliert fertige NLU-Sprache mit dem Engine-LLM um. Standard aus. |
 | `extra_prompt` | Hausregel als User-Nachricht. Leer = nur Pack-Stimme. Ersetzt die Persönlichkeit nicht. |
 | `quiet_ack` | `true` spielt bei einfachem An/Aus einen Chime statt TTS. Standard aus. |
+| `satellite_followup` | `true` lässt das Satellitenmikrofon nach einer fertigen Chat-Antwort offen. Standard aus, damit Mikrofon und Lautsprecher am selben Gerät die eigene Sprache nicht wieder hören. Rückfragen und Bestätigungen bleiben offen. Getippter Assist hat keine Satelliten-ID und bleibt unverändert. |
 | `calendar_llm` | `true` lässt das Engine-LLM Kalendertermine sprechen. Standard aus. |
 | `news_feeds` | Liste aus `{ "pack", "url" }`. Eine `http`- oder `https`-URL pro Pack-Code, ohne Benutzerinfo, höchstens acht Einträge. Leer heißt die eingebauten Feeds. |
 | `allow_llm_tools` | `true` lässt das Engine-Chat-Modell nach dem Klar-Parse Home-Assistant-Assist-Werkzeuge nutzen (2026.9, prefixierte Namen). Standard aus. |

@@ -108,6 +108,7 @@ The token comes from `--token`, `KLAR_TOKEN`, or `--token-file`.
 | `refine_speech` | `true` rewrites finished NLU speech with the engine LLM. Off by default. |
 | `extra_prompt` | House rule as a user message. Empty uses the pack voice only. Does not replace personality. |
 | `quiet_ack` | `true` chimes instead of TTS on simple on/off. Off by default. |
+| `satellite_followup` | `true` keeps the satellite microphone open after a finished chat reply. Off by default, so a shared mic and speaker does not hear its own speech. Clarify and confirm stay open either way. Typed Assist has no satellite id and is unchanged. |
 | `calendar_llm` | `true` lets the engine LLM speak calendar events. Off by default. |
 | `news_feeds` | List of `{ "pack", "url" }`. One `http` or `https` URL per pack code, no userinfo, at most eight entries. Empty uses the built-in feeds. |
 | `allow_llm_tools` | `true` lets the engine chat model call Home Assistant Assist tools after Klar parse (2026.9 prefixed names). Off by default. |

@@ -130,6 +130,9 @@ pub struct Settings {
     /// Chime instead of TTS on simple on/off. Off by default.
     #[serde(default)]
     pub quiet_ack: bool,
+    /// Keep the satellite microphone open after a finished reply. Off by default.
+    #[serde(default)]
+    pub satellite_followup: bool,
     /// Allow Assist tools on the chit-chat LLM. Off by default.
     #[serde(default)]
     pub allow_llm_tools: bool,
@@ -193,6 +196,8 @@ struct SettingsJson {
     #[serde(default)]
     quiet_ack: bool,
     #[serde(default)]
+    satellite_followup: bool,
+    #[serde(default)]
     allow_llm_tools: bool,
     #[serde(default)]
     fallback_llm: bool,
@@ -234,6 +239,7 @@ impl From<SettingsJson> for Settings {
             refine_bands,
             calendar_llm: raw.calendar_llm,
             quiet_ack: raw.quiet_ack,
+            satellite_followup: raw.satellite_followup,
             allow_llm_tools: raw.allow_llm_tools,
             fallback_llm: raw.fallback_llm,
             time_zone: raw.time_zone,
@@ -263,6 +269,7 @@ impl Default for Settings {
             refine_bands: Vec::new(),
             calendar_llm: false,
             quiet_ack: false,
+            satellite_followup: false,
             allow_llm_tools: false,
             fallback_llm: false,
             time_zone: String::new(),
@@ -343,6 +350,7 @@ mod tests {
         assert!(!set.refine_speech);
         assert!(!set.calendar_llm);
         assert!(!set.quiet_ack);
+        assert!(!set.satellite_followup);
         assert!(!set.allow_llm_tools);
         assert!(!set.fallback_llm);
         assert!(set.time_zone.is_empty());

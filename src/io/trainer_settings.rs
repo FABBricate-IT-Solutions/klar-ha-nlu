@@ -22,6 +22,7 @@ const ENGINE_KEYS: &[&str] = &[
     "refine_bands",
     "calendar_llm",
     "quiet_ack",
+    "satellite_followup",
     "allow_llm_tools",
     "extra_prompt",
     "unit_system",
@@ -46,6 +47,7 @@ pub fn engine_view(settings: &Settings, theme: &str, locale: &str, locale_set: b
             "nlu_rag": settings.nlu_rag,
             "calendar_llm": settings.calendar_llm,
             "quiet_ack": settings.quiet_ack,
+            "satellite_followup": settings.satellite_followup,
             "allow_llm_tools": settings.allow_llm_tools,
             "confirm_risky_actions": settings.confirm_risky_actions,
             "semantic_adapters": settings.semantic_adapters,
@@ -129,6 +131,7 @@ fn public_settings(settings: &Settings) -> Value {
         "nlu_rag": settings.nlu_rag,
         "calendar_llm": settings.calendar_llm,
         "quiet_ack": settings.quiet_ack,
+        "satellite_followup": settings.satellite_followup,
         "allow_llm_tools": settings.allow_llm_tools,
         "confirm_risky_actions": settings.confirm_risky_actions,
         "semantic_adapters": settings.semantic_adapters,
@@ -185,6 +188,9 @@ fn patch_engine(current: &Settings, args: &Value) -> Result<Settings, String> {
     }
     if let Some(flag) = args.get("quiet_ack").and_then(Value::as_bool) {
         next.quiet_ack = flag;
+    }
+    if let Some(flag) = args.get("satellite_followup").and_then(Value::as_bool) {
+        next.satellite_followup = flag;
     }
     if let Some(flag) = args.get("allow_llm_tools").and_then(Value::as_bool) {
         next.allow_llm_tools = flag;

@@ -29,6 +29,24 @@ def keeps_conversation(decision: object) -> bool:
     return str(decision or "") in {"clarify", "confirm", "chat"}
 
 
+def is_voice_satellite(satellite_id: object = None) -> bool:
+    """Voice pipelines set this. Typed Assist does not."""
+    return bool(str(satellite_id or "").strip())
+
+
+def continue_after_reply(requested: bool, decision: object, satellite: bool, followup: bool) -> bool:
+    """Close a finished satellite reply so a shared mic does not hear its own speech.
+
+    Clarify and confirm stay open. Text with no satellite id keeps ``requested``.
+    ``followup`` is the operator setting that re-opens chat on a satellite.
+    """
+    if str(decision or "") in {"clarify", "confirm"}:
+        return True
+    if satellite and not followup:
+        return False
+    return bool(requested)
+
+
 DEFAULT_URL = "http://127.0.0.1:10520"
 DEFAULT_ADDON_URL = "http://klar-nlu:10520"
 DEFAULT_STAGING_ADDON_URL = "http://klar-nlu-staging:10520"
@@ -45,6 +63,7 @@ CONF_REFINE_PROMPT = "refine_prompt"
 CONF_REFINE_SPEECH = "refine_speech"
 CONF_NLU_RAG = "nlu_rag"
 CONF_QUIET_ACK = "quiet_ack"
+CONF_SATELLITE_FOLLOWUP = "satellite_followup"
 CONF_CALENDAR_LLM = "calendar_llm"
 CONF_ALLOW_LLM_TOOLS = "allow_llm_tools"
 CONF_TOKEN = "token"
@@ -58,6 +77,7 @@ DEFAULT_REFINE_PROMPT = ""
 DEFAULT_REFINE_SPEECH = False
 DEFAULT_NLU_RAG = False
 DEFAULT_QUIET_ACK = False
+DEFAULT_SATELLITE_FOLLOWUP = False
 DEFAULT_CALENDAR_LLM = False
 DEFAULT_ALLOW_LLM_TOOLS = False
 PERSONALITIES = (

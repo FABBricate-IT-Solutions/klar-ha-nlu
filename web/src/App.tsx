@@ -59,6 +59,7 @@ const defaultSettings: Settings = {
   refine_bands: [],
   calendar_llm: false,
   quiet_ack: false,
+  satellite_followup: false,
   allow_llm_tools: false,
   fallback_llm: false,
   extra_prompt: "",

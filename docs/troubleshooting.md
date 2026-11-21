@@ -25,6 +25,8 @@ Wakeword am 3rd-Reality-Voice-&-Music-Assistant: **Okay Nabu** (oder Hey Jarvis 
 
 Die Glocke am Klar-Gerät (**Kurze Bestätigung**) bleibt aus, außer ein Ton statt Sprache bei einfachem An/Aus gewünscht ist. Die Entität mit dem Stern ist der Conversation-Agent; aktivieren, wenn dort Deaktiviert steht.
 
+Wiederholt ein Satellit die eigene Antwort, hört das Mikrofon den Lautsprecher am selben Gerät. **Am Satelliten weiter zuhören** (Einstellungen → Stimme) bleibt aus. Eine fertige Antwort schließt dann das Mikrofon. Eine Rückfrage wie „welches Licht?“ wartet weiter auf die Antwort. Die Einstellung nur einschalten, wenn der Satellit nach einem Chat weiter zuhören soll.
+
 ## Gerät nicht gefunden
 
 1. **Freigabe.** Einstellungen → Sprachassistenten → Freigeben. Die Option **Nur für Assist freigegebene Entitäten steuern** ist standardmäßig an. Versteckte Sensoren und Schalter sind keine Ziele.

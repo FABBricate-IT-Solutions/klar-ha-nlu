@@ -25,6 +25,8 @@ Wake word on the 3rd Reality Voice & Music Assistant: **Okay Nabu** (or Hey Jarv
 
 The bell on the Klar device (**Short confirmation**) stays off unless you want a chime instead of speech for a simple on/off. The starred entity is the conversation agent; enable it if it says Disabled.
 
+A satellite that repeats its own answer is hearing the speaker on a shared microphone. **Keep listening on the satellite** (Settings → Voice) stays off. A finished reply then closes the microphone. A question such as “which light?” still waits for the answer. Turn the setting on only when the satellite should keep listening after chat.
+
 ## Device not found
 
 1. **Expose.** Settings → Voice assistants → Expose. Klar’s option **Only control entities exposed to Assist** is on by default. Hidden sensors and switches are not targets.
