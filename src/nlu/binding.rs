@@ -377,6 +377,7 @@ fn action_for_intent(name: &str) -> Option<Action> {
         "HassPauseTimer" => Some(Action::TimerPause),
         "HassListAddItem" | "HassShoppingListAddItem" => Some(Action::ListAdd),
         "HassListCompleteItem" | "HassShoppingListCompleteItem" => Some(Action::ListComplete),
+        "HassListRemoveItem" => Some(Action::ListRemove),
         _ => None,
     }
 }

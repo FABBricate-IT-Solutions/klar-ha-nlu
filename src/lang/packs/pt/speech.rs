@@ -46,6 +46,8 @@ pub(super) const SPEECH: Speech = Speech {
     timer_pause: "Temporizador em pausa.",
     timer_how_long: "Quanto tempo?",
     list_add: "Na lista.",
+    list_remove: "{item}",
+    list_complete: "{item}",
     calendar_list: "{items}",
     calendar_empty: "Sem eventos.",
     calendar_none: "Sem calendario.",

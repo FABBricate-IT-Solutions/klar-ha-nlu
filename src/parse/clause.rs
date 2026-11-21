@@ -177,7 +177,7 @@ fn media(ctx: &Clause) -> Option<ClauseOut> {
 }
 
 fn list(ctx: &Clause) -> Option<ClauseOut> {
-    if !matches!(ctx.action, Action::ListAdd | Action::ListComplete) {
+    if !matches!(ctx.action, Action::ListAdd | Action::ListComplete | Action::ListRemove) {
         return None;
     }
     if !ctx.resolved.ambiguous.is_empty() || ctx.resolved.entities.len() > 1 {

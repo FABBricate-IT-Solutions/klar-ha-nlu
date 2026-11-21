@@ -46,6 +46,8 @@ pub(super) const SPEECH: Speech = Speech {
     timer_pause: "Ժամաչափը դադարեց։",
     timer_how_long: "Որքա՞ն?",
     list_add: "Ցուցակում է։",
+    list_remove: "{item}",
+    list_complete: "{item}",
     calendar_list: "{items}",
     calendar_empty: "Հանդիպում չկա։",
     calendar_none: "Օրացույց չկա։",

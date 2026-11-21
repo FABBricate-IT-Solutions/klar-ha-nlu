@@ -44,6 +44,7 @@ pub const KNOWN_INTENTS: &[&str] = &[
     "HassPauseTimer",
     "HassListAddItem",
     "HassListCompleteItem",
+    "HassListRemoveItem",
     "HassShoppingListAddItem",
     "HassShoppingListCompleteItem",
     "KlarGetCalendarEvents",

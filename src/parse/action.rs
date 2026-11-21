@@ -1,7 +1,10 @@
 use crate::lang::{catalog, VerbKind};
 
+#[path = "action_list.rs"]
+mod list_ops;
 #[path = "action_timer.rs"]
 mod timer_ops;
+use list_ops::{add_action, has_list_noun, list_action};
 
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
 pub enum Action {
@@ -31,6 +34,7 @@ pub enum Action {
     TimerPause,
     ListAdd,
     ListComplete,
+    ListRemove,
     ClarifyWrong,
 }
 
@@ -62,7 +66,7 @@ fn implied_domain(action: Action) -> Option<&'static str> {
         Action::MediaPause | Action::MediaPlay | Action::MediaNext | Action::MediaMute => Some("media_player"),
         Action::Scene => Some("scene"),
         Action::TimerStart | Action::TimerAdd | Action::TimerRemove | Action::TimerCancel | Action::TimerPause => Some("timer"),
-        Action::ListAdd | Action::ListComplete => Some("todo"),
+        Action::ListAdd | Action::ListComplete | Action::ListRemove => Some("todo"),
         _ => None,
     }
 }
@@ -179,11 +183,10 @@ pub(crate) fn detect_actions_bounded(tokens: &[String], maximum: usize) -> Vec<(
             Some(VerbKind::Flick) => flick_action(tokens),
             Some(VerbKind::ClarifyWrong) => Some(Action::ClarifyWrong),
             Some(VerbKind::Timer) => Some(timer_ops::timer_kind(tokens)),
-            Some(VerbKind::List) => {
-                Some(if catalog().any(tokens, catalog().list_complete()) { Action::ListComplete } else { Action::ListAdd })
-            }
+            Some(VerbKind::List) => Some(list_action(tokens)),
             Some(VerbKind::Add) => add_action(tokens),
             Some(VerbKind::ListComplete) => Some(Action::ListComplete),
+            Some(VerbKind::ListRemove) => has_list_noun(tokens).then_some(Action::ListRemove),
             Some(VerbKind::Make) => {
                 Some(if crate::parse::numbers::first_number(tokens).is_some() { set_by_number(tokens) } else { Action::On })
             }
@@ -225,6 +228,7 @@ pub(crate) fn is_hard_command(command: Option<Action>, tokens: &[String]) -> boo
                 | Action::TimerPause
                 | Action::ListAdd
                 | Action::ListComplete
+                | Action::ListRemove
         )
     ) || (matches!(command, Some(Action::On))
         && tokens.iter().any(|token| catalog().scene_nouns().contains(token.as_str()) || catalog().script_words().contains(token.as_str())))
@@ -387,6 +391,8 @@ fn auf_action(tokens: &[String]) -> Option<Action> {
 fn stop_action(tokens: &[String]) -> Option<Action> {
     if catalog().any(tokens, catalog().timer_nouns()) {
         Some(Action::TimerCancel)
+    } else if has_list_noun(tokens) {
+        Some(Action::ListRemove)
     } else if has_media_noun(tokens) {
         Some(Action::MediaPause)
     } else {
@@ -454,23 +460,6 @@ fn flick_action(tokens: &[String]) -> Option<Action> {
         Some(if has_cover_noun(tokens) || is_garage_cover(tokens) { Action::CoverClose } else { Action::Off })
     } else if crate::parse::numbers::first_number(tokens).is_some() && (has_cover_noun(tokens) || is_garage_cover(tokens)) {
         Some(Action::CoverSet)
-    } else {
-        None
-    }
-}
-
-fn add_action(tokens: &[String]) -> Option<Action> {
-    let cat = catalog();
-    if cat.any(tokens, cat.list_nouns()) || cat.any(tokens, cat.chores()) {
-        Some(if cat.any(tokens, cat.list_complete()) { Action::ListComplete } else { Action::ListAdd })
-    } else if cat.any(tokens, cat.timer_nouns()) {
-        Some(if timer_ops::timer_decrease(tokens) {
-            Action::TimerRemove
-        } else if cat.any(tokens, cat.timer_pause()) {
-            Action::TimerPause
-        } else {
-            Action::TimerAdd
-        })
     } else {
         None
     }

@@ -193,6 +193,7 @@ pub const PACK: LanguagePack = LanguagePack {
             "finished",
             "on",
             "off",
+            "from",
         ],
         shopping_names: &["shopping"],
         status_words: &["status", "state"],

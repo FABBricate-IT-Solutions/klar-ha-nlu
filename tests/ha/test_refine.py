@@ -99,6 +99,19 @@ class RefineTests(unittest.TestCase):
         variants = set((speech._locale("de").get("personality") or {}).get("butler") or [])
         self.assertIn(spoken, {f"{prefix}{source}" for prefix in variants})
 
+    def test_cue_only_on_executed_turns(self) -> None:
+        source = "I did not catch that."
+        variants = [prefix for prefix in speech._locale("en")["personality"]["jarvis"] if prefix]
+
+        def finish(cue: bool) -> str:
+            spoken, _posted = asyncio.run(
+                refine.async_finish_speech(None, False, None, False, source, None, "en", "en", "jarvis", None, cue=cue)
+            )
+            return spoken
+
+        self.assertEqual({finish(False) for _ in range(12)}, {source})
+        self.assertTrue({f"{prefix}{source}" for prefix in variants} & {finish(True) for _ in range(12)})
+
     def test_refine_calls_engine_and_fails_closed(self) -> None:
         src = (PKG / "refine.py").read_text(encoding="utf-8")
         self.assertIn("complete_engine_refine", src)

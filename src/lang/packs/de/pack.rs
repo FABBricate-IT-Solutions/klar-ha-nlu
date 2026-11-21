@@ -223,7 +223,7 @@ pub const PACK: LanguagePack = LanguagePack {
             "abziehen",
             "minus",
         ],
-        list_complete: &["haken", "erledigt", "abgehakt"],
+        list_complete: &["haken", "hake", "hak", "abhaken", "erledigt", "abgehakt"],
         playback_resume: &["weiter", "fortsetzen"],
         calendar_query: &["steht", "anstehend", "kommende", "naechste"],
         calendar_create: &["anlegen", "eintragen", "eintrag", "planen", "setz", "trage", "trag", "lege", "leg"],
@@ -238,7 +238,7 @@ pub const PACK: LanguagePack = LanguagePack {
         seconds: &["sekunde", "sekunden"],
         list_skip: &[
             "setze", "setz", "fuege", "fuegen", "hinzu", "hake", "ab", "als", "erledigt", "chores", "auf", "zur", "zu", "die", "der",
-            "das", "den",
+            "das", "den", "von", "vom", "runter", "weg", "abhaken", "hak",
         ],
         shopping_names: &["einkauf", "einkaufsliste"],
         status_words: &["status", "zustand"],

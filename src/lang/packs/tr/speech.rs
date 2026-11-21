@@ -46,6 +46,8 @@ pub(super) const SPEECH: Speech = Speech {
     timer_pause: "Zamanlayıcı duraklatıldı.",
     timer_how_long: "Ne kadar?",
     list_add: "Listeye eklendi.",
+    list_remove: "{item}",
+    list_complete: "{item}",
     calendar_list: "{items}",
     calendar_empty: "Etkinlik yok.",
     calendar_none: "Takvim yok.",

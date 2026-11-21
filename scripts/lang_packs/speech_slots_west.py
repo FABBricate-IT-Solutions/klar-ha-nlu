@@ -102,7 +102,7 @@ WEST = {
     "en-GB": S(
         "Timer is running.", "Timer is off.", "Timer is paused.",
         "What should I play?", "Music moved.", "Added to favourites.",
-        "{target} is hoovering.", "{target} is heading to the dock.", "The hoover",
+        "{target} has started cleaning.", "{target} is heading to the dock.", "The hoover",
         "heating", "air con", "at home", "Fan is at {n} percent.",
         light_suffix=" light", area_light="light {loc}", or_home="the device",
         jarvis=("Certainly, sir. ", "Right away. ", ""),

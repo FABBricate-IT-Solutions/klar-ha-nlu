@@ -46,6 +46,8 @@ pub(super) const SPEECH: Speech = Speech {
     timer_pause: "Tenporizadorea pausatuta.",
     timer_how_long: "Zenbat denbora?",
     list_add: "Zerrendan dago.",
+    list_remove: "{item}",
+    list_complete: "{item}",
     calendar_list: "{items}",
     calendar_empty: "Ez dut ulertu.",
     calendar_none: "Ez dut ulertu.",

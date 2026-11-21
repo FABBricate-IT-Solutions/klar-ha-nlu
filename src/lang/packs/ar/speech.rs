@@ -46,6 +46,8 @@ pub(super) const SPEECH: Speech = Speech {
     timer_pause: "توقف المؤقت.",
     timer_how_long: "كم المدة؟",
     list_add: "أضيف إلى القائمة.",
+    list_remove: "{item}",
+    list_complete: "{item}",
     calendar_list: "{items}",
     calendar_empty: "لا مواعيد.",
     calendar_none: "لا تقويم.",

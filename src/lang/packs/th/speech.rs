@@ -46,6 +46,8 @@ pub(super) const SPEECH: Speech = Speech {
     timer_pause: "หยุดตั้งเวลาชั่วคราว",
     timer_how_long: "นานเท่าไหร่",
     list_add: "ใส่ในรายการแล้ว.",
+    list_remove: "{item}",
+    list_complete: "{item}",
     calendar_list: "{items}",
     calendar_empty: "ไม่มีนัด",
     calendar_none: "ไม่มีปฏิทิน",

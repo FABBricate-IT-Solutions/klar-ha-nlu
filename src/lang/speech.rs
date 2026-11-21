@@ -1,4 +1,4 @@
-/// Spoken templates for one language. The engine interpolates `{target}`, `{n}`, `{names}`, `{noun}`, `{loc}`.
+/// Spoken templates for one language. The engine interpolates `{target}`, `{n}`, `{names}`, `{noun}`, `{loc}`, `{item}`.
 #[derive(Clone, Copy)]
 pub struct Speech {
     pub unknown: &'static str,
@@ -45,6 +45,8 @@ pub struct Speech {
     pub timer_pause: &'static str,
     pub timer_how_long: &'static str,
     pub list_add: &'static str,
+    pub list_remove: &'static str,
+    pub list_complete: &'static str,
     pub calendar_list: &'static str,
     pub calendar_empty: &'static str,
     pub calendar_none: &'static str,
@@ -82,6 +84,24 @@ impl Speech {
 
     pub fn room_name(self, folded: &str) -> Option<&'static str> {
         self.room_names.iter().find(|(key, _)| *key == folded).map(|(_, name)| *name)
+    }
+
+    /// Reply for a to-do list intent, with `{item}` filled in or dropped when nothing was heard.
+    pub fn list_reply(self, intent: &str, item: Option<&str>) -> Option<String> {
+        let template = match intent {
+            "HassListAddItem" | "HassShoppingListAddItem" => self.list_add,
+            "HassListCompleteItem" | "HassShoppingListCompleteItem" => self.list_complete,
+            "HassListRemoveItem" => self.list_remove,
+            _ => return None,
+        };
+        let line = match item {
+            Some(item) => template.replace("{item}", item),
+            None => template.replace("{item} ", "").replace("{item}", ""),
+        };
+        let line = line.trim();
+        let mut chars = line.chars();
+        let first = chars.next()?;
+        Some(first.to_uppercase().chain(chars).collect())
     }
 }
 

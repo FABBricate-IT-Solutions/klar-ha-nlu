@@ -82,6 +82,7 @@ pub(super) fn action_name(action: Action) -> &'static str {
         Action::TimerPause => "timer_pause",
         Action::ListAdd => "list_add",
         Action::ListComplete => "list_complete",
+        Action::ListRemove => "list_remove",
         Action::ClarifyWrong => "clarify_wrong",
     }
 }

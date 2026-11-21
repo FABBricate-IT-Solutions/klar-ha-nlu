@@ -46,6 +46,8 @@ pub(super) const SPEECH: Speech = Speech {
     timer_pause: "Y termyn yw pausys.",
     timer_how_long: "Pys termyn?",
     list_add: "War an rol.",
+    list_remove: "{item}",
+    list_complete: "{item}",
     calendar_list: "{items}",
     calendar_empty: "Ny gonvedhis.",
     calendar_none: "Ny gonvedhis.",

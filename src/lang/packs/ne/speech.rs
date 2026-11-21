@@ -46,6 +46,8 @@ pub(super) const SPEECH: Speech = Speech {
     timer_pause: "टाइमर रोकियो।",
     timer_how_long: "कति बेर?",
     list_add: "सूचीमा छ।",
+    list_remove: "{item}",
+    list_complete: "{item}",
     calendar_list: "{items}",
     calendar_empty: "भेट छैन।",
     calendar_none: "पात्रो छैन।",
