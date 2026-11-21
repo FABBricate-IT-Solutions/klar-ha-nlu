@@ -218,6 +218,61 @@ fn hot_tub_light_clarify_speech_is_english_not_german() {
 }
 
 #[test]
+fn current_temperature_is_the_weather_not_the_hot_tub() {
+    use klar_nlu::nlu::parse;
+    use klar_nlu::types::{AreaRec, ParseDecision};
+    let home = HomeGraph {
+        areas: vec![AreaRec { area_id: "kitchen".into(), name: "Kitchen".into(), aliases: vec![], floor_id: None }],
+        entities: vec![
+            EntityRec {
+                entity_id: "weather.home".into(),
+                name: "Home".into(),
+                domain: "weather".into(),
+                platform: None,
+                area: None,
+                aliases: vec![],
+                tags: vec![],
+            },
+            EntityRec {
+                entity_id: "climate.hot_tub".into(),
+                name: "Hot Tub".into(),
+                domain: "climate".into(),
+                platform: None,
+                area: None,
+                aliases: vec![],
+                tags: vec![],
+            },
+            EntityRec {
+                entity_id: "climate.kitchen".into(),
+                name: "Kitchen Thermostat".into(),
+                domain: "climate".into(),
+                platform: None,
+                area: Some("kitchen".into()),
+                aliases: vec![],
+                tags: vec![],
+            },
+        ],
+        ..HomeGraph::default()
+    };
+    let settings = Settings::pinned("en");
+    let now = parse("what is  the temperature right now?", &home, &mut Session::new(), &[], &settings);
+    assert_eq!(now.decision, ParseDecision::Execute, "{now:?}");
+    let intent = &now.plan.as_ref().unwrap().intents()[0];
+    assert_eq!(intent.slot("entity_id"), Some("weather.home"), "{now:?}");
+    assert_eq!(intent.slot("weather_ask"), Some("now"), "{now:?}");
+
+    let tub = parse("what is the hot tub temperature", &home, &mut Session::new(), &[], &settings);
+    let tub_intent = &tub.plan.as_ref().expect("hot tub").intents()[0];
+    assert_eq!(tub_intent.slot("entity_id"), Some("climate.hot_tub"), "{tub:?}");
+
+    let kitchen = parse("what is the temperature in the kitchen", &home, &mut Session::new(), &[], &settings);
+    let kitchen_plan = kitchen.plan.as_ref().expect("kitchen").intents();
+    let kitchen_ids: Vec<_> = kitchen_plan.iter().filter_map(|intent| intent.slot("entity_id")).collect();
+    assert!(!kitchen_ids.contains(&"weather.home"), "{kitchen:?}");
+    assert!(!kitchen_ids.contains(&"climate.hot_tub"), "{kitchen:?}");
+}
+
+#[test]
 fn weather_asks_bind_entity_and_day() {
     let mut home = default_home();
     home.entities.push(EntityRec {

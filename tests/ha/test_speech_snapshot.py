@@ -30,6 +30,10 @@ snapshot = _load("speech_snapshot", "speech_snapshot.py")
 
 class SpeechSnapshotTests(unittest.TestCase):
     def test_allow_listed_attributes_keep_unknown_dropped(self) -> None:
+        class Fahrenheit:
+            def __str__(self) -> str:
+                return "°F"
+
         body = snapshot.build_snapshot(
             language="de",
             personality="butler",
@@ -55,7 +59,14 @@ class SpeechSnapshotTests(unittest.TestCase):
                         "secret": "drop-me",
                         "friendly_name": "nope",
                     },
-                }
+                },
+                {
+                    "entity_id": "climate.hot_tub",
+                    "name": "Hot Tub",
+                    "domain": "climate",
+                    "state": "heat",
+                    "attributes": {"current_temperature": 97.0, "temperature_unit": Fahrenheit()},
+                },
             ],
             calendar_events=[{"summary": "Zahnarzt", "start": "2026-09-06T09:00:00+02:00"}],
             media_queue=[{"title": "Song"}],
@@ -70,6 +81,7 @@ class SpeechSnapshotTests(unittest.TestCase):
         self.assertEqual(attrs["current_temperature"], 21.5)
         self.assertEqual(attrs["temperature"], 18.0)
         self.assertEqual(attrs["temperature_unit"], "°C")
+        self.assertEqual(body["entities"][1]["attributes"]["temperature_unit"], "°F")
         self.assertEqual(body["unit_system"], "metric")
         self.assertEqual(attrs["hvac_mode"], "heat")
         self.assertNotIn("secret", attrs)

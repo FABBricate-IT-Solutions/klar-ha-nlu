@@ -38,9 +38,17 @@ pub(super) fn route(context: &ParseContext<'_>, tokens: &[String]) -> Option<Dra
         if !class.ask.skips_climate() && climate_overrides_weather(context, tokens) {
             return None;
         }
+        // No forecast entity: a bare "what is the temperature" can still read a thermostat.
+        if super::weather_lex::bare_temperature_ask(&blob) && !has_weather(context) {
+            return None;
+        }
         return Some(weather(context, class));
     }
     None
+}
+
+fn has_weather(context: &ParseContext<'_>) -> bool {
+    context.home.entities.iter().any(|entity| entity.domain == "weather" && assist_visible(entity, context.home))
 }
 
 fn calendar_overrides_weather(context: &ParseContext<'_>, tokens: &[String]) -> bool {
@@ -51,7 +59,7 @@ fn calendar_overrides_weather(context: &ParseContext<'_>, tokens: &[String]) -> 
 /// extra tokens means indoor climate, not the forecast entity.
 fn climate_overrides_weather(context: &ParseContext<'_>, tokens: &[String]) -> bool {
     let blob = fold_umlaut(context.text.trim()).replace(['\'', '’', '`'], "");
-    if super::weather_lex::outdoor_temp_ask(&blob) {
+    if super::weather_lex::outdoor_temp_ask(&blob) || super::weather_lex::bare_temperature_ask(&blob) {
         return false;
     }
     let cat = context.catalog;
