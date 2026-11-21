@@ -211,6 +211,9 @@ pub(super) fn requires_target(name: &str) -> bool {
             | "KlarDeleteCalendarEvent"
             | "KlarMoveCalendarEvent"
             | "KlarNoMusicPlayer"
+            | "SetReminderRelative"
+            | "SetReminderAbsolute"
+            | "SetReminderDaypart"
     )
 }
 
@@ -289,6 +292,8 @@ fn allowed_slots(name: &str) -> &'static [&'static str] {
             &["entity_id", "domain", "summary", "day", "hour", "in_days", "need"]
         }
         "KlarNoMusicPlayer" => &[],
+        "SetReminderRelative" => &["count", "unit", "task"],
+        "SetReminderAbsolute" | "SetReminderDaypart" => &["hour", "minute", "meridiem", "hourshift", "dayref", "task"],
         _ => &[],
     }
 }

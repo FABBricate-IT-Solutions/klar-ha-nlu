@@ -1,6 +1,6 @@
 use crate::lang::catalog;
 use crate::lang::VerbKind;
-use crate::parse::normalize::fold_umlaut;
+use crate::parse::normalize::{compact, fold_umlaut};
 use crate::parse::resolve::Resolved;
 use crate::types::{EntityRec, HomeGraph};
 
@@ -159,4 +159,35 @@ pub(crate) fn is_media_move_or_play(tokens: &[String]) -> bool {
 fn label_has_word(label: &str, word: &str) -> bool {
     let folded = fold_umlaut(label);
     folded.split(|c: char| !crate::parse::normalize::is_word_char(c)).any(|part| part == word)
+}
+
+/// Music Assistant players are often named for the room while the satellite
+/// speaker is the entity that actually carries the area id.
+pub(super) fn mass_player_named_for_area<'a>(players: &[&'a EntityRec], home: &HomeGraph, area_id: &str) -> Option<&'a EntityRec> {
+    let area = home.areas.iter().find(|area| area.area_id == area_id)?;
+    let mut keys = vec![compact(&area.area_id), compact(&area.name)];
+    keys.extend(area.aliases.iter().map(|alias| compact(alias)));
+    keys.retain(|key| key.len() >= 3);
+    keys.sort();
+    keys.dedup();
+    if keys.is_empty() {
+        return None;
+    }
+    let matches: Vec<&EntityRec> = players
+        .iter()
+        .copied()
+        .filter(|player| player.area.as_deref() != Some(area_id))
+        .filter(|player| identity_has_key(player, &keys))
+        .collect();
+    (matches.len() == 1).then(|| matches[0])
+}
+
+fn identity_has_key(player: &EntityRec, keys: &[String]) -> bool {
+    let mut parts = vec![player.entity_id.clone(), player.name.clone()];
+    parts.extend(player.aliases.iter().cloned());
+    parts
+        .iter()
+        .flat_map(|part| part.split(|c: char| !c.is_ascii_alphanumeric()))
+        .map(compact)
+        .any(|token| !token.is_empty() && keys.iter().any(|key| token == *key))
 }

@@ -60,6 +60,9 @@ ALLOWED_INTENTS = TIMER_INTENTS | set(ENTITY_SERVICES) | LIST_INTENTS | {
     "KlarDeleteCalendarEvent",
     "KlarMoveCalendarEvent",
     "KlarNoMusicPlayer",
+    "SetReminderRelative",
+    "SetReminderAbsolute",
+    "SetReminderDaypart",
 }
 
 

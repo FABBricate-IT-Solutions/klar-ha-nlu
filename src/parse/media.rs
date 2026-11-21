@@ -340,6 +340,14 @@ fn music_request(tokens: &[String]) -> bool {
 }
 
 fn music_in_named_area<'a>(home: &'a HomeGraph, players: &[&'a EntityRec], area: &str, session: &Session) -> Option<&'a EntityRec> {
+    let in_area_mass: Vec<&EntityRec> = mass_players(home).into_iter().filter(|player| player.area.as_deref() == Some(area)).collect();
+    if !in_area_mass.is_empty() {
+        return select_player(&in_area_mass, session);
+    }
+    let mass = mass_players(home);
+    if let Some(player) = mass_player_named_for_area(&mass, home, area) {
+        return Some(player);
+    }
     select_area_player(players, area, session).or_else(|| select_area_player(&music_players(home), area, session))
 }
 

@@ -136,6 +136,9 @@ pub struct Settings {
     /// A Home Assistant leftover conversation agent is configured.
     #[serde(default)]
     pub fallback_llm: bool,
+    /// IANA timezone from Home Assistant. Empty uses the process timezone, then UTC.
+    #[serde(default)]
+    pub time_zone: String,
     /// Extra line on the packed personality prompt. Empty uses the pack voice only.
     #[serde(default)]
     pub extra_prompt: String,
@@ -194,6 +197,8 @@ struct SettingsJson {
     #[serde(default)]
     fallback_llm: bool,
     #[serde(default)]
+    time_zone: String,
+    #[serde(default)]
     extra_prompt: String,
     #[serde(default)]
     unit_system: UnitSystem,
@@ -231,6 +236,7 @@ impl From<SettingsJson> for Settings {
             quiet_ack: raw.quiet_ack,
             allow_llm_tools: raw.allow_llm_tools,
             fallback_llm: raw.fallback_llm,
+            time_zone: raw.time_zone,
             extra_prompt: raw.extra_prompt,
             unit_system: raw.unit_system,
             custom_voice: raw.custom_voice,
@@ -259,6 +265,7 @@ impl Default for Settings {
             quiet_ack: false,
             allow_llm_tools: false,
             fallback_llm: false,
+            time_zone: String::new(),
             extra_prompt: String::new(),
             unit_system: UnitSystem::Metric,
             custom_voice: String::new(),
@@ -338,6 +345,7 @@ mod tests {
         assert!(!set.quiet_ack);
         assert!(!set.allow_llm_tools);
         assert!(!set.fallback_llm);
+        assert!(set.time_zone.is_empty());
         assert!(set.extra_prompt.is_empty());
         assert!(set.custom_voice.is_empty());
         assert!(set.custom_voice_name.is_empty());

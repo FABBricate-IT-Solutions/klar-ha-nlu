@@ -623,3 +623,51 @@ fn protected_media_followup_splits_explicit_query() {
     assert_eq!(clauses[0].join(" "), "wie laut ist die musik");
     assert_eq!(clauses[1].first().map(String::as_str), Some("was"));
 }
+
+fn bedroom_with_satellite_and_display() -> HomeGraph {
+    let mut home = default_home();
+    home.entities.push(entity(
+        "media_player.bedroom_echo",
+        "Bedroom Echo",
+        "media_player",
+        Some("esphome"),
+        Some("schlafzimmer"),
+        &[],
+        &["music"],
+    ));
+    home.entities.push(entity(
+        "media_player.bedroom_display_2",
+        "Bedroom Display",
+        "media_player",
+        Some("music_assistant"),
+        None,
+        &[],
+        &[],
+    ));
+    home
+}
+
+#[test]
+fn play_in_the_bedroom_targets_the_music_assistant_display() {
+    let home = bedroom_with_satellite_and_display();
+    let mut session = Session::new();
+    for sentence in ["play katelyn tarver in the bedroom", "play the artist katelyn tarver in the bedroom"] {
+        let result = parse(sentence, &home, &mut session, &[], &settings("en"));
+        assert_eq!(result.intents.len(), 1, "{sentence}: {result:?}");
+        let intent = &result.intents[0];
+        assert_eq!(intent.name, "MassPlayMedia", "{sentence}: {intent:?}");
+        assert_eq!(slot(intent, "entity_id"), Some("media_player.bedroom_display_2"), "{sentence}");
+        assert_eq!(slot(intent, "media_id"), Some("katelyn tarver"), "{sentence}: {intent:?}");
+    }
+}
+
+#[test]
+fn play_in_the_bedroom_prefers_music_assistant_when_both_share_the_area() {
+    let mut home = bedroom_with_satellite_and_display();
+    let display = home.entities.iter_mut().find(|entity| entity.entity_id == "media_player.bedroom_display_2").expect("display");
+    display.area = Some("schlafzimmer".into());
+    let mut session = Session::new();
+    let result = parse("play katelyn tarver in the bedroom", &home, &mut session, &[], &settings("en"));
+    assert_eq!(result.intents.len(), 1, "{result:?}");
+    assert_eq!(slot(&result.intents[0], "entity_id"), Some("media_player.bedroom_display_2"));
+}

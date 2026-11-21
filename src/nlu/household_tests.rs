@@ -172,10 +172,15 @@ fn clock_does_not_steal_timer() {
 }
 
 #[test]
-fn clock_formats_in_process() {
-    let spoken = spoken_clock(&FALLBACK);
-    assert!(spoken.contains(':') || spoken.is_empty());
-    assert!(!spoken.contains("date"));
+fn clock_formats_in_home_assistant_zone() {
+    let home = default_home();
+    let session = Session::new();
+    let custom = Vec::new();
+    let settings = Box::leak(Box::new(Settings { time_zone: "America/New_York".into(), ..Settings::pinned("en") }));
+    let catalog = catalog_for(&["en".into()]);
+    let context = ParseContext::new("what time is it", &home, &session, &custom, settings, catalog);
+    let spoken = spoken_clock(&context);
+    assert!(spoken.starts_with("It is "), "{spoken}");
     assert_eq!(spoken.matches(':').count(), 1, "{spoken}");
     assert!(!spoken.contains("sekunde"));
 }

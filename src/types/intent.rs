@@ -52,6 +52,9 @@ pub const KNOWN_INTENTS: &[&str] = &[
     "KlarDeleteCalendarEvent",
     "KlarMoveCalendarEvent",
     "KlarNoMusicPlayer",
+    "SetReminderRelative",
+    "SetReminderAbsolute",
+    "SetReminderDaypart",
 ];
 
 pub fn known_intent(name: &str) -> bool {
