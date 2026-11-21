@@ -146,6 +146,13 @@ export function SettingsVoiceSection({
             checked={Boolean(settings.quiet_ack)}
             onCheckedChange={(checked) => onSettings({ ...settings, quiet_ack: checked })}
           />
+          <SettingsToggle
+            id="klar-satellite-followup"
+            label={t.satelliteFollowup}
+            description={t.satelliteFollowupHint}
+            checked={Boolean(settings.satellite_followup)}
+            onCheckedChange={(checked) => onSettings({ ...settings, satellite_followup: checked })}
+          />
           <Field>
             <FieldLabel>{t.unitSystem}</FieldLabel>
             <ToggleGroup

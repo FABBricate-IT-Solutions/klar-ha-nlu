@@ -30,6 +30,7 @@ from .const import (
     CONF_NLU_RAG,
     CONF_PERSONALITY,
     CONF_QUIET_ACK,
+    CONF_SATELLITE_FOLLOWUP,
     CONF_REFINE_PROMPT,
     CONF_REFINE_SPEECH,
     CONF_TOKEN,
@@ -39,11 +40,14 @@ from .const import (
     DEFAULT_CALENDAR_LLM,
     DEFAULT_NLU_RAG,
     DEFAULT_QUIET_ACK,
+    DEFAULT_SATELLITE_FOLLOWUP,
     DEFAULT_REFINE_SPEECH,
     DEFAULT_URL,
     DOMAIN,
     LANGUAGE_ALL,
+    continue_after_reply,
     engine_session_id,
+    is_voice_satellite,
     keeps_conversation,
     parse_session_id,
     resolve_personality,
@@ -472,10 +476,16 @@ class KlarConversationEntity(ConversationEntity):
         if query is not None and decision in {"chat", "llm"}:
             response.response_type = query
         response.async_set_speech(speech)
+        open_mic = continue_after_reply(
+            continue_conversation,
+            decision,
+            is_voice_satellite(getattr(user_input, "satellite_id", None)),
+            self._satellite_followup(),
+        )
         return ConversationResult(
             conversation_id=conversation_id,
             response=response,
-            continue_conversation=continue_conversation,
+            continue_conversation=open_mic,
         )
 
     async def _sourced_answer(
@@ -561,6 +571,9 @@ class KlarConversationEntity(ConversationEntity):
 
     def _quiet_ack(self) -> bool:
         return self._flag("quiet_ack", CONF_QUIET_ACK, DEFAULT_QUIET_ACK)
+
+    def _satellite_followup(self) -> bool:
+        return self._flag("satellite_followup", CONF_SATELLITE_FOLLOWUP, DEFAULT_SATELLITE_FOLLOWUP)
 
     def _calendar_llm(self) -> bool:
         return self._flag("calendar_llm", CONF_CALENDAR_LLM, DEFAULT_CALENDAR_LLM)

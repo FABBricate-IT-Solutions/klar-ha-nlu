@@ -34,6 +34,8 @@ KEYS = (
     "refineBandsHint",
     "quietAck",
     "quietAckHint",
+    "satelliteFollowup",
+    "satelliteFollowupHint",
     "unitSystem",
     "unitSystemHint",
     "unitMetric",

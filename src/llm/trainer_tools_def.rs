@@ -190,6 +190,7 @@ pub fn openai_tools() -> Vec<Value> {
                     ("refine_bands", json!({"type": "array", "items": {"type": "string", "enum": ["status", "command", "prompt", "reject"]}})),
                     ("calendar_llm", json!({"type": "boolean"})),
                     ("quiet_ack", json!({"type": "boolean"})),
+                    ("satellite_followup", json!({"type": "boolean"})),
                     ("nlu_rag", json!({"type": "boolean"})),
                     ("allow_llm_tools", json!({"type": "boolean"})),
                     ("confirm_risky_actions", json!({"type": "boolean"})),
