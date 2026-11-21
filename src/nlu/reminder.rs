@@ -40,12 +40,34 @@ fn reminder_intent(tokens: &[String]) -> Option<Intent> {
     if !tokens.iter().any(|token| token == "remind" || token == "reminder") {
         return None;
     }
-    let relative = relative_intent(tokens);
-    let absolute = absolute_intent(tokens);
-    match (relative, absolute) {
-        (Some(intent), None) | (None, Some(intent)) => Some(intent),
-        _ => None,
+    // "in 20 minutes at 10 am" is two times. Leave it for the default agent
+    // instead of filing the delay and swallowing the clock time into the task.
+    if relative_marker(tokens) && absolute_marker(tokens) {
+        return None;
     }
+    if relative_marker(tokens) {
+        return relative_intent(tokens);
+    }
+    if absolute_marker(tokens) {
+        return absolute_intent(tokens);
+    }
+    None
+}
+
+fn relative_marker(tokens: &[String]) -> bool {
+    tokens.windows(4).any(|window| window[0] == "in" && window[1] == "half" && window[2] == "an" && window[3] == "hour")
+        || tokens.windows(3).any(|window| {
+            window[0] == "in"
+                && (matches!(window[1].as_str(), "a" | "an")
+                    || window[1].parse::<u32>().ok().is_some_and(|count| (1..=600).contains(&count)))
+                && unit_name(&window[2]).is_some()
+        })
+}
+
+fn absolute_marker(tokens: &[String]) -> bool {
+    tokens.windows(2).any(|window| {
+        matches!(window[0].as_str(), "at" | "for") && window[1].parse::<u32>().ok().is_some_and(|hour| (1..=23).contains(&hour))
+    })
 }
 
 fn relative_intent(tokens: &[String]) -> Option<Intent> {
