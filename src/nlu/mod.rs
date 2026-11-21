@@ -1,6 +1,7 @@
 #![cfg_attr(not(test), deny(clippy::unwrap_used, clippy::expect_used, clippy::panic))]
 
 mod binding;
+mod clock_time;
 mod context;
 mod decision;
 mod draft;
@@ -10,6 +11,7 @@ mod household;
 mod pipeline;
 mod policy_route;
 mod ranking;
+mod reminder;
 mod retrieval;
 pub mod semantic;
 mod speech;

@@ -48,7 +48,7 @@ from .const import (
     parse_session_id,
     resolve_personality,
 )
-from .engine import async_refresh_engine_settings, cached_engine_settings
+from .engine import async_refresh_engine_settings, async_sync_time_zone, cached_engine_settings
 from .engine_http import post_parse
 from .lang_select import advertised_languages, default_pack, enabled_packs, resolve_pack, speak_tag
 from .lookup import grounded, lookup_facts, lookup_instruction, lookup_miss, source_speech
@@ -61,6 +61,7 @@ from .fallback import (
     llm_conversation_id,
 )
 from .intents import keep_lab_plan, registered_intent_names
+from .reminders import async_delegate_reminder, should_delegate
 from .rag_tools import (
     act_payload,
     leaks_klar_tools,
@@ -260,6 +261,7 @@ class KlarConversationEntity(ConversationEntity):
     ) -> ConversationResult:
         await async_refresh_klar_hosts(self.hass)
         await async_refresh_engine_settings(self.hass, self._entry)
+        await async_sync_time_zone(self.hass, self._entry)
         pack = self._request_pack(user_input.language)
         payload = await self._parse(
             user_input.text, user_input.conversation_id, pack, user_input.device_id, getattr(user_input, "satellite_id", None)
@@ -268,6 +270,10 @@ class KlarConversationEntity(ConversationEntity):
         decision = payload.get("decision") if isinstance(payload.get("decision"), dict) else {}
         decision_type = str(decision.get("type") or "")
         intents = keep_lab_plan(executable_intents(payload), registered_intent_names(self.hass))
+        if should_delegate(user_input.text, intents):
+            delegated = await async_delegate_reminder(self.hass, user_input)
+            if delegated is not None:
+                return delegated
         if payload.get("unreachable"):
             triggered = await self._sentence_triggers(user_input, chat_log, pack)
             if triggered is not None:

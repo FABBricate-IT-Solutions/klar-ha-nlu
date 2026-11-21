@@ -54,6 +54,9 @@ pub(super) fn route_special(context: &ParseContext<'_>, raw: &[String], split: &
     if context.text.chars().any(|character| character.is_control() && !character.is_whitespace()) {
         return Some(reject(RejectReason::InvalidInput, speak_unknown()));
     }
+    if let Some(draft) = super::reminder::route(context, raw) {
+        return Some(draft);
+    }
     if let Some(draft) = super::household::route(context, tokens) {
         return Some(draft);
     }

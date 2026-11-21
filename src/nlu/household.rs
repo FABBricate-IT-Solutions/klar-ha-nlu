@@ -138,8 +138,7 @@ fn teach(context: &ParseContext<'_>, alias: &str) -> Draft {
 }
 
 fn clock(context: &ParseContext<'_>) -> Draft {
-    let house = templates(context);
-    chat(spoken_clock(house), false, false)
+    chat(spoken_clock(context), false, false)
 }
 
 fn weather(context: &ParseContext<'_>, class: super::weather_lex::WeatherClass) -> Draft {
@@ -190,17 +189,12 @@ fn looks_like_clock(context: &ParseContext<'_>, blob: &str, tokens: &[String]) -
     context.catalog.household_hit(blob, |pack| pack.household.clock)
 }
 
-fn spoken_clock(house: &Household) -> String {
-    match utc_hhmm() {
+fn spoken_clock(context: &ParseContext<'_>) -> String {
+    let house = templates(context);
+    match super::clock_time::hhmm_now(&context.settings.time_zone) {
         Some(time) => house.clock_ok.replace("{time}", &time),
         None => house.clock_missing.to_string(),
     }
-}
-
-fn utc_hhmm() -> Option<String> {
-    let secs = std::time::SystemTime::now().duration_since(std::time::UNIX_EPOCH).ok()?.as_secs();
-    let minutes = (secs / 60) % (24 * 60);
-    Some(format!("{:02}:{:02}", minutes / 60, minutes % 60))
 }
 
 const FALLBACK: Household = Household {

@@ -16,6 +16,7 @@ from homeassistant.helpers import issue_registry as ir
 from homeassistant.helpers.aiohttp_client import async_get_clientsession
 
 from .archive import extract_klar_archive, require_sha256
+from .time_zone import time_zone_name, time_zone_needs_sync
 from .const import (
     CHANNEL_STAGING,
     CONF_ALLOW_LLM_TOOLS,
@@ -481,6 +482,14 @@ async def async_patch_engine_settings(
     if posted is not None:
         store_engine_settings(hass, entry, posted)
     return posted
+
+
+async def async_sync_time_zone(hass: HomeAssistant, entry: ConfigEntry) -> None:
+    """Keep the engine clock on Home Assistant's configured timezone."""
+    zone = time_zone_name(getattr(getattr(hass, "config", None), "time_zone", None))
+    if not time_zone_needs_sync(cached_engine_settings(hass, entry), zone):
+        return
+    await async_patch_engine_settings(hass, entry, {"time_zone": zone})
 
 
 async def async_push_fallback_flag(

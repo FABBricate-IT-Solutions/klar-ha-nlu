@@ -139,6 +139,9 @@ fn describe(intent: &Intent, home: Option<&HomeGraph>) -> String {
             .replace("{summary}", intent.slot("summary").unwrap_or(""))
             .replace("{when}", intent.slot("day").unwrap_or("")),
         "KlarNoMusicPlayer" => pack.no_music_player.to_string(),
+        "SetReminderRelative" | "SetReminderAbsolute" | "SetReminderDaypart" => {
+            format!("Reminder: {}.", intent.slot("task").unwrap_or("reminder"))
+        }
         other => pack.done.replace("{name}", other),
     }
 }
