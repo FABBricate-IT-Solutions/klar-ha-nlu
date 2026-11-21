@@ -344,40 +344,11 @@ fn music_in_named_area<'a>(home: &'a HomeGraph, players: &[&'a EntityRec], area:
     if !in_area_mass.is_empty() {
         return select_player(&in_area_mass, session);
     }
-    if let Some(player) = mass_player_matching_area(home, area) {
+    let mass = mass_players(home);
+    if let Some(player) = mass_player_named_for_area(&mass, home, area) {
         return Some(player);
     }
     select_area_player(players, area, session).or_else(|| select_area_player(&music_players(home), area, session))
-}
-
-/// Music Assistant players are often named for the room while the satellite
-/// speaker is the entity that actually carries the area id.
-fn mass_player_matching_area<'a>(home: &'a HomeGraph, area_id: &str) -> Option<&'a EntityRec> {
-    let area = home.areas.iter().find(|area| area.area_id == area_id)?;
-    let mut keys = vec![compact(&area.area_id), compact(&area.name)];
-    keys.extend(area.aliases.iter().map(|alias| compact(alias)));
-    keys.retain(|key| key.len() >= 3);
-    keys.sort();
-    keys.dedup();
-    if keys.is_empty() {
-        return None;
-    }
-    let matches: Vec<&EntityRec> = mass_players(home)
-        .into_iter()
-        .filter(|player| player.area.as_deref() != Some(area_id))
-        .filter(|player| identity_has_key(player, &keys))
-        .collect();
-    (matches.len() == 1).then(|| matches[0])
-}
-
-fn identity_has_key(player: &EntityRec, keys: &[String]) -> bool {
-    let mut parts = vec![player.entity_id.clone(), player.name.clone()];
-    parts.extend(player.aliases.iter().cloned());
-    parts
-        .iter()
-        .flat_map(|part| part.split(|c: char| !c.is_ascii_alphanumeric()))
-        .map(compact)
-        .any(|token| !token.is_empty() && keys.iter().any(|key| token == *key))
 }
 
 fn music_players(home: &HomeGraph) -> Vec<&EntityRec> {
