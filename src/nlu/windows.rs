@@ -28,7 +28,7 @@ pub(super) fn route(context: &ParseContext<'_>, tokens: &[String]) -> Option<Dra
         intent = intent.with("area", area);
         // Blinds/curtains but no sensor named like a window: a motion or door sensor
         // in the room must not swallow the question; let the cover parser answer.
-        if !has_window_sensor(context.catalog, context.home, area) && has_cover(context.home, area) {
+        if !has_window_sensor(context.catalog, context.home, area) && has_window_cover(context.catalog, context.home, area) {
             return None;
         }
     }
@@ -71,8 +71,13 @@ fn has_window_sensor(cat: &Catalog, home: &HomeGraph, area: &str) -> bool {
     })
 }
 
-fn has_cover(home: &HomeGraph, area: &str) -> bool {
-    home.entities.iter().any(|entity| entity.domain == "cover" && entity.area.as_deref() == Some(area))
+fn has_window_cover(cat: &Catalog, home: &HomeGraph, area: &str) -> bool {
+    home.entities.iter().any(|entity| entity.domain == "cover" && entity.area.as_deref() == Some(area) && !is_garage_door(cat, entity))
+}
+
+fn is_garage_door(cat: &Catalog, entity: &crate::types::EntityRec) -> bool {
+    let blob = format!("{} {}", entity.entity_id, entity.name).to_lowercase();
+    cat.garage_words().iter().any(|word| word.len() >= 4 && blob.contains(word)) || blob.contains("garagentor")
 }
 
 fn glazing(word: &str) -> bool {
@@ -87,7 +92,29 @@ fn allowed(word: &str, cat: &Catalog, areas: &[String], home: &HomeGraph) -> boo
         || cat.open_words().contains(word)
         || cat.close_words().contains(word)
         || cat.all_words().contains(word)
-        || matches!(word, "any" | "there" | "which" | "do" | "does" | "did" | "i" | "have" | "has" | "got" | "we" | "our" | "opened")
+        || matches!(
+            word,
+            "any"
+                | "there"
+                | "which"
+                | "do"
+                | "does"
+                | "did"
+                | "i"
+                | "have"
+                | "has"
+                | "got"
+                | "we"
+                | "our"
+                | "opened"
+                | "tell"
+                | "check"
+                | "see"
+                | "know"
+                | "whether"
+                | "about"
+                | "show"
+        )
         || areas
             .iter()
             .any(|area| area_label(home, area).iter().any(|label| crate::parse::normalize::tokenize(label).contains(&word.to_string())))

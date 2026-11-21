@@ -123,7 +123,7 @@ fn weather_topic(fold: &str, pack_weather: bool) -> bool {
     if pack_weather {
         return true;
     }
-    if outdoor_temp_ask(fold) {
+    if outdoor_temp_ask(fold) || bare_temperature_ask(fold) {
         return true;
     }
     if distinctive_hit(fold, WEATHER) || distinctive_hit(fold, FORECAST) {
@@ -135,6 +135,23 @@ fn weather_topic(fold: &str, pack_weather: bool) -> bool {
 /// "What's the temperature outside?" — outdoor weather, not a thermostat.
 pub(super) fn outdoor_temp_ask(fold: &str) -> bool {
     hit(fold, OUTDOOR) && hit(fold, OUTDOOR_TEMP)
+}
+
+const NOW_WORDS: &[&str] = &["now", "right", "currently", "current", "jetzt", "gerade", "aktuell", "nun", "moment"];
+
+const TEMP_QUESTION: &[&str] = &["what", "whats", "how", "is", "are", "wie", "ist", "quel", "quelle", "como", "que"];
+
+/// "What is the temperature right now?" — outside, unless a room or device name is left over.
+pub(super) fn bare_temperature_ask(fold: &str) -> bool {
+    let specific =
+        tokens(fold).any(|token| matches!(token, "temperature" | "temperatures" | "temp" | "temps" | "temperatur" | "temperaturen"));
+    let question = hit(fold, TEMP_QUESTION);
+    if !hit(fold, OUTDOOR_TEMP) || (!specific && !question) {
+        return false;
+    }
+    tokens(fold).all(|token| {
+        weather_function_token(token) || ascii_in(token, NOW_WORDS) || ascii_in(token, OUTDOOR_TEMP) || ascii_in(token, TEMP_QUESTION)
+    })
 }
 
 fn distinctive_hit(fold: &str, words: &[&str]) -> bool {
@@ -330,7 +347,10 @@ mod tests {
         assert_eq!(ask("wie warm ist es draussen", false), Some(WeatherAsk::Now));
         assert_eq!(ask("wie kalt ist es aussen", false), Some(WeatherAsk::Now));
         assert_eq!(ask("temperature outside", false), Some(WeatherAsk::Now));
-        assert_eq!(ask("what's the temperature", false), None);
+        assert_eq!(ask("what's the temperature", false), Some(WeatherAsk::Now));
+        assert_eq!(ask("what is the temperature right now", false), Some(WeatherAsk::Now));
+        assert_eq!(ask("what is the hot tub temperature", false), None);
+        assert_eq!(ask("what is the temperature in the kitchen", false), None);
         assert_eq!(ask("outside", false), None);
     }
 

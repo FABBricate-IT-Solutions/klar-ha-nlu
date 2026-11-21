@@ -19,10 +19,9 @@ impl TempScale {
 
     pub fn from_label(raw: &str) -> Self {
         let compact: String = raw.chars().filter(|ch| !ch.is_whitespace()).collect::<String>().to_ascii_lowercase();
-        if compact.contains("fahrenheit") || compact.contains("°f") || compact.ends_with('f') && compact.contains('°') {
-            return Self::Fahrenheit;
-        }
-        if matches!(compact.as_str(), "f" | "°f") {
+        let letters: String = compact.chars().filter(|ch| ch.is_ascii_alphabetic()).collect();
+        // "°F", "ºF", and "℉" are Fahrenheit. A missing label stays Celsius.
+        if letters == "f" || letters.contains("fahrenheit") || compact.contains('℉') {
             return Self::Fahrenheit;
         }
         Self::Celsius
@@ -213,6 +212,16 @@ mod tests {
         assert_eq!(to_ha_celsius(70, &explicit, UnitSystem::Metric), 21);
         let celsius = ["21".into(), "celsius".into()];
         assert_eq!(to_ha_celsius(21, &celsius, UnitSystem::Imperial), 21);
+    }
+
+    #[test]
+    fn fahrenheit_labels_stay_fahrenheit() {
+        for label in ["°F", "ºF", "℉", "F", "fahrenheit"] {
+            assert_eq!(TempScale::from_label(label), TempScale::Fahrenheit, "{label}");
+            assert_eq!(format_temp(convert_value(97.0, TempScale::from_label(label), UnitSystem::Imperial)), "97", "{label}");
+        }
+        assert_eq!(TempScale::from_label("°C"), TempScale::Celsius);
+        assert_eq!(format_temp(convert_value(97.0, TempScale::Celsius, UnitSystem::Imperial)), "207");
     }
 
     #[test]

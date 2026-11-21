@@ -57,6 +57,37 @@ fn open_window_questions_use_window_sensors_not_the_garage_cover() {
 }
 
 #[test]
+fn window_questions_do_not_answer_with_the_only_garage_door() {
+    let mut graph = home();
+    graph.entities.retain(|entity| entity.entity_id != "binary_sensor.kitchen_window");
+    graph.entities.push(EntityRec {
+        entity_id: "binary_sensor.left_contact".into(),
+        name: "Left Contact".into(),
+        domain: "binary_sensor".into(),
+        platform: None,
+        area: Some("kitchen".into()),
+        aliases: vec![],
+        tags: vec![],
+    });
+    if let Some(door) = graph.entities.iter_mut().find(|entity| entity.entity_id == "cover.garage_door") {
+        door.area = Some("kitchen".into());
+    }
+    let settings = Settings::pinned("en");
+    for text in [
+        "are any windows open",
+        "Are any of my windows open?",
+        "if any of my windows are open",
+        "tell me if any windows are open",
+        "are the kitchen windows open",
+    ] {
+        let out = parse(text, &graph, &mut Session::new(), &[], &settings);
+        let intents = out.plan.as_ref().map(|plan| plan.intents()).unwrap_or_default();
+        assert!(intents.iter().all(|intent| intent.slot("entity_id") != Some("cover.garage_door")), "{text}: {out:?}");
+        assert!(intents.iter().any(|intent| intent.slot("device_class") == Some("window")), "{text}: {out:?}");
+    }
+}
+
+#[test]
 fn window_commands_and_garage_questions_stay_covers() {
     let graph = home();
     let settings = Settings::pinned("en");

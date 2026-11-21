@@ -189,6 +189,23 @@ fn climate_speech_uses_operator_unit() {
 }
 
 #[test]
+fn climate_fahrenheit_reading_is_not_converted_again() {
+    let climate = entity(
+        "climate.hot_tub",
+        "Hot Tub",
+        "climate",
+        "heat",
+        BTreeMap::from([("current_temperature".into(), serde_json::json!(97.0)), ("temperature_unit".into(), serde_json::json!("°F"))]),
+    );
+    let mut query = snap("HassClimateGetTemperature", vec![], vec![climate]);
+    query.language = "en".into();
+    query.unit_system = UnitSystem::Imperial;
+    let spoken = render_snapshot(&query).speech;
+    assert!(spoken.contains("97"), "{spoken}");
+    assert!(!spoken.contains("207"), "{spoken}");
+}
+
+#[test]
 fn warm_white_speaks_color_not_percent() {
     let out = render_snapshot(&snap(
         "HassLightSet",

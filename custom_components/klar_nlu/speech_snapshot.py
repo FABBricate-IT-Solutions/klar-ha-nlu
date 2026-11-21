@@ -101,6 +101,8 @@ def _entity(row: dict[str, Any]) -> dict[str, Any]:
             attrs[key] = value[:MAX_ATTR]
         elif isinstance(value, (int, float, bool)) or value is None:
             attrs[key] = value
+        elif key in {"temperature_unit", "unit_of_measurement"}:
+            attrs[key] = str(value)[:MAX_ATTR]
     return {
         "entity_id": str(row.get("entity_id") or "")[:128],
         "name": str(row.get("name") or "")[:128],
