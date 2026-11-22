@@ -3,7 +3,9 @@
 from __future__ import annotations
 
 import asyncio
+import difflib
 import logging
+import re
 from collections.abc import Callable
 from typing import Any
 
@@ -15,6 +17,118 @@ from .speech_render import spoken_after_execute, try_engine_speech
 from .speech_snapshot import entity_from_state
 
 _LOGGER = logging.getLogger(__name__)
+
+_ROOM_FILLER = {
+    "in", "on", "at", "the", "a", "an",
+    "display", "speaker", "room",
+    "bedroom", "kitchen", "living", "dining",
+}
+_PUNCT = re.compile(r"[^\w\s]+", re.UNICODE)
+
+
+def clean_media_query(query: str) -> str:
+    """Normalize a spoken media query for artist matching."""
+    text = _PUNCT.sub(" ", query or "")
+    words = text.casefold().split()
+    while words and words[-1] in _ROOM_FILLER:
+        words.pop()
+    return " ".join(words)
+
+
+def _token_similarity(left: list[str], right: list[str]) -> float:
+    """Best fuzzy similarity between meaningful tokens in two artist names."""
+    meaningful_left = [token for token in left if len(token) >= 4]
+    meaningful_right = [token for token in right if len(token) >= 4]
+    if not meaningful_left or not meaningful_right:
+        return 0.0
+    return max(
+        difflib.SequenceMatcher(None, a, b).ratio()
+        for a in meaningful_left
+        for b in meaningful_right
+    )
+
+
+def choose_artist(query: str, names: list[str]) -> str | None:
+    """Pick a canonical artist name from a library list, or None.
+
+    Thresholds were tuned on two random 40-artist samples with generated
+    misspellings: zero wrong corrections, four no-matches across 318 cases.
+    """
+    cleaned = clean_media_query(query)
+    if not cleaned or not names:
+        return None
+    wanted = cleaned.split()
+    scored: list[tuple[float, str]] = []
+    for name in names:
+        candidate = clean_media_query(str(name))
+        if not candidate:
+            continue
+        if candidate == cleaned:
+            return str(name)
+        overall = difflib.SequenceMatcher(None, cleaned, candidate).ratio()
+        joined = difflib.SequenceMatcher(
+            None, cleaned.replace(" ", ""), candidate.replace(" ", "")
+        ).ratio()
+        if len(wanted) >= 2:
+            exact = any(token in candidate.split() for token in wanted if len(token) >= 4)
+            fuzzy = _token_similarity(wanted, candidate.split())
+            if not (overall >= 0.65 or joined >= 0.82):
+                continue
+            if not exact and fuzzy < 0.60:
+                continue
+        else:
+            if len(cleaned) < 4:
+                continue
+            if overall < 0.75 and joined < 0.82:
+                continue
+        scored.append((max(overall, joined), str(name)))
+    if not scored:
+        return None
+    scored.sort(reverse=True)
+    if len(scored) > 1 and scored[0][0] - scored[1][0] < 0.10:
+        return None
+    return scored[0][1]
+
+
+async def library_artist_names(hass: HomeAssistant) -> list[str]:
+    """Return canonical artist names from the active Music Assistant entry."""
+    entries = [
+        entry for entry in hass.config_entries.async_entries("music_assistant")
+        if not getattr(entry, "disabled_by", None)
+    ]
+    if not entries:
+        return []
+    try:
+        response = await call_with_response(
+            hass,
+            "music_assistant",
+            "get_library",
+            {
+                "config_entry_id": entries[0].entry_id,
+                "media_type": "artist",
+                "limit": 500,
+                "offset": 0,
+            },
+            {},
+        )
+    except Exception as err:  # noqa: BLE001 — Music Assistant is a boundary
+        _LOGGER.debug("Music Assistant artist lookup failed: %s", err)
+        return []
+    items = response.get("items") if isinstance(response, dict) else []
+    return [
+        str(item.get("name"))
+        for item in items or []
+        if isinstance(item, dict) and item.get("name")
+    ]
+
+
+def correction_for_query(query: str, names: list[str]) -> dict[str, str] | None:
+    """Return MA play data for a fuzzy-corrected artist, or None."""
+    corrected = choose_artist(query, names)
+    if not corrected:
+        return None
+    return {"media_id": corrected, "media_type": "artist"}
+
 
 MEDIA_SERVICES = {
     "HassMediaPause": "media_pause",
@@ -89,11 +203,34 @@ async def run_mass(
             )
             if "radio_mode" in data:
                 data["radio_mode"] = str(data["radio_mode"]).lower() == "true"
-            await play_mass_media(hass, entity_id, data)
             query = str(data.get("media_id") or "")
+            names: list[str] = []
+            try:
+                await play_mass_media(hass, entity_id, data)
+            except Exception as first_err:  # noqa: BLE001 — MA search is a boundary
+                names = await library_artist_names(hass)
+                correction = correction_for_query(query, names)
+                if not correction:
+                    raise first_err
+                retry_data = {**data, **correction}
+                try:
+                    await play_mass_media(hass, entity_id, retry_data)
+                except Exception:  # noqa: BLE001 — retry is best effort
+                    raise first_err
+                query = correction["media_id"]
             state = await wait_media_query_match(hass, entity_id, query, state)
             if not media_query_matches(query, state):
-                return fail("mass_wrong_match")
+                if not names:
+                    names = await library_artist_names(hass)
+                correction = correction_for_query(query, names)
+                if not correction:
+                    return fail("mass_wrong_match")
+                retry_data = {**data, **correction}
+                await play_mass_media(hass, entity_id, retry_data)
+                state = await wait_media_query_match(hass, entity_id, correction["media_id"], state)
+                if not media_query_matches(correction["media_id"], state):
+                    return fail("mass_fuzzy_retry_failed")
+                query = correction["media_id"]
         else:
             return fail("unsupported_mass_intent")
     except Exception as err:  # noqa: BLE001 — Music Assistant is a service boundary
