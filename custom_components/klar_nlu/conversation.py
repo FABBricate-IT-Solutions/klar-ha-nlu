@@ -65,7 +65,11 @@ from .fallback import (
     llm_conversation_id,
 )
 from .intents import keep_lab_plan, registered_intent_names
-from .reminders import async_delegate_reminder, should_delegate
+from .reminders import (
+    async_delegate_reminder,
+    keep_parsed_speech_for_reminders,
+    should_delegate,
+)
 from .rag_tools import (
     act_payload,
     leaks_klar_tools,
@@ -349,7 +353,7 @@ class KlarConversationEntity(ConversationEntity):
             executed = await execute_plan(
                 self.hass, user_input, plan, pack, self._assistant(), self._exposed
             )
-            if executed.get("speech"):
+            if executed.get("speech") and not keep_parsed_speech_for_reminders(intents, engine_speech):
                 speech = str(executed["speech"])
             if executed.get("outcome") == "error":
                 decision_type = "error"
