@@ -38,6 +38,7 @@ Every merge to `staging` runs **Staging** (quality + security with nextest profi
 2. Calls **Build** with `prerelease: true`
 3. Publishes a GitHub **prerelease** (`prerelease: true`, `make_latest: false`)
 4. Pushes Docker tags `{rc}` and **`staging`** — never `latest`
+5. Publishes the staging app to branch **`staging-store`** with version `{rc}`. Home Assistant users add `https://github.com/FABBricate-IT-Solutions/klar-ha-nlu#staging-store` once and get each RC as an app update. Leave `staging-store` unprotected so the workflow can push it.
 
 Stable cuts stay on **`main` + CalVer tags** as below.
 

@@ -2,7 +2,8 @@ name: Staging
 # Pin Ubuntu 26.04. ubuntu-latest moves to this image through November 2026.
 
 # Merge to protected `staging` (via PR) → quality + security (slim nextest)
-# → annotated tag `{CalVer}-staging.{sha7}` → Build as a GitHub prerelease.
+# → annotated tag `{CalVer}-staging.{sha7}` → Build as a GitHub prerelease
+# → staging app store branch `staging-store` with that version (Supervisor updates).
 # Skips parity_langs / voice_suite / full_home (language-parity.yml owns those).
 # Does not bump CalVer, does not push to `staging`/`main`, does not tag `latest`.
 on:
@@ -90,3 +91,19 @@ jobs:
       contents: write
       packages: write
       security-events: write
+
+  store:
+    name: store
+    needs: [tag, publish]
+    runs-on: ubuntu-26.04
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          token: ${{ github.token }}
+
+      - name: Publish staging app store branch
+        env:
+          VERSION: ${{ needs.tag.outputs.tag }}
+        run: bash scripts/publish-staging-store.sh "$VERSION"

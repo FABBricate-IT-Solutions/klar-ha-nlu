@@ -1,6 +1,18 @@
 # Klar NLU (Staging)
 
-Release-candidate **App**. Supervisor pulls `ghcr.io/fabbricate-it-solutions/klar-nlu-{arch}:staging`. Assist still uses the integration; this App only hosts the engine. Not production — use **Klar NLU** for the last CalVer cut.
+Release-candidate **App**. Assist still uses the integration; this App only hosts the engine. Not production — use **Klar NLU** for the last CalVer cut.
+
+## Install
+
+Settings → Apps → App store → ⋮ → Repositories, add:
+
+```
+https://github.com/FABBricate-IT-Solutions/klar-ha-nlu#staging-store
+```
+
+Every merge to `staging` publishes that branch with the new RC version (`{CalVer}-staging.{sha7}`), so Home Assistant offers it as a normal app update. With auto-update on, it installs by itself.
+
+The copy of this App in the main repository keeps the fixed version `staging` and never updates. If you installed that one, uninstall it and install from the URL above. Copy the **token** first and paste it back after the install. The integration finds the new hostname by itself.
 
 ## Switch
 
@@ -10,7 +22,7 @@ Settings → Devices & services → Klar NLU → Configure → **Release channel
 - **Stable** points back at `http://klar-nlu:10520` (or the CalVer release).
 - A custom URL is left alone.
 
-Install and start this app before switching to Staging. After a merge to `staging`, rebuild (the app version stays `staging`). Do not edit `.storage`.
+Install and start this app before switching to Staging. Do not edit `.storage`.
 
 If you set the app **token**, paste the same value into the integration write token.
 

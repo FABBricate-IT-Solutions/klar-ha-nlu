@@ -64,6 +64,8 @@ jobs:
         run: python3 scripts/bump-version.py --self-test
       - name: Release cut script
         run: bash scripts/cut-release.sh --self-test
+      - name: Staging store script
+        run: bash scripts/publish-staging-store.sh --self-test
       - name: Path-scoped language mapper
         run: python3 scripts/ci_lang_tests.py --self-test
       - name: Python tests
