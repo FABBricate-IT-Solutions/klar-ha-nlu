@@ -65,6 +65,7 @@ from .fallback import (
     llm_conversation_id,
 )
 from .intents import keep_lab_plan, registered_intent_names
+from .number_words import normalize_number_words
 from .reminders import async_delegate_reminder, should_delegate
 from .rag_tools import (
     act_payload,
@@ -267,8 +268,9 @@ class KlarConversationEntity(ConversationEntity):
         await async_refresh_engine_settings(self.hass, self._entry)
         await async_sync_time_zone(self.hass, self._entry)
         pack = self._request_pack(user_input.language)
+        parse_text = normalize_number_words(user_input.text)
         payload = await self._parse(
-            user_input.text, user_input.conversation_id, pack, user_input.device_id, getattr(user_input, "satellite_id", None)
+            parse_text, user_input.conversation_id, pack, user_input.device_id, getattr(user_input, "satellite_id", None)
         )
         engine_speech = str(payload.get("speech") or "")
         decision = payload.get("decision") if isinstance(payload.get("decision"), dict) else {}
