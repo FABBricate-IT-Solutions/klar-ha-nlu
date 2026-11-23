@@ -101,6 +101,7 @@ from .refine import (
 )
 from .quiet import play_chime, quiet_ack_applies
 from .sensor import remember_turn
+from .clock_query import clock_query_speech
 from .speech import finish_clock_speech
 
 _LOGGER = logging.getLogger(__name__)
@@ -267,6 +268,12 @@ class KlarConversationEntity(ConversationEntity):
         await async_refresh_engine_settings(self.hass, self._entry)
         await async_sync_time_zone(self.hass, self._entry)
         pack = self._request_pack(user_input.language)
+        clock_reply = clock_query_speech(user_input.text, pack)
+        if clock_reply is not None:
+            return await self._spoken(
+                user_input, chat_log, pack, clock_reply,
+                user_input.conversation_id, False, "clock",
+            )
         payload = await self._parse(
             user_input.text, user_input.conversation_id, pack, user_input.device_id, getattr(user_input, "satellite_id", None)
         )
