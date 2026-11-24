@@ -1,5 +1,7 @@
 #![cfg_attr(not(test), deny(clippy::unwrap_used, clippy::expect_used, clippy::panic))]
 
+mod answer;
+mod ask;
 mod binding;
 mod clock_time;
 mod context;
@@ -8,6 +10,7 @@ mod draft;
 mod dutch;
 mod evidence;
 mod household;
+mod pending;
 mod phrase;
 mod pipeline;
 mod policy_route;
@@ -30,7 +33,7 @@ use crate::types::{
 pub use context::ParseContext;
 
 pub fn plan_requires_confirmation(plan: &IntentPlan) -> bool {
-    validation::requires_confirmation(plan)
+    risk::requires_confirmation(plan)
 }
 
 /// Production `safety_decision` on an execute draft. Used by calibration tests.

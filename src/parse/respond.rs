@@ -146,7 +146,7 @@ fn describe(intent: &Intent, home: Option<&HomeGraph>) -> String {
     }
 }
 
-fn spoken_where(intent: &Intent, home: Option<&HomeGraph>) -> String {
+pub(crate) fn spoken_where(intent: &Intent, home: Option<&HomeGraph>) -> String {
     if let Some(id) = intent.slot("entity_id") {
         if looks_started(id) {
             return scene_label(id, home);

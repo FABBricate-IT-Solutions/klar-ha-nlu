@@ -33,6 +33,24 @@ impl<'a> ParseContext<'a> {
         self
     }
 
+    /// The same request seen through another session state.
+    pub fn with_session<'b>(&'b self, session: &'b Session) -> ParseContext<'b>
+    where
+        'a: 'b,
+    {
+        ParseContext {
+            text: self.text,
+            home: self.home,
+            session,
+            custom: self.custom,
+            settings: self.settings,
+            catalog: self.catalog,
+            policies: self.policies,
+            speech_bank: self.speech_bank,
+            match_controls: self.match_controls,
+        }
+    }
+
     pub fn with_match_controls(mut self, match_controls: &'a [MatchControl]) -> Self {
         self.match_controls = match_controls;
         self

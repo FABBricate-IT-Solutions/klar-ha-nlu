@@ -48,13 +48,6 @@ pub(super) fn filter_valid_steps(plan: &IntentPlan, home: &HomeGraph) -> IntentP
     IntentPlan::from_steps(steps, plan.margin)
 }
 
-/// A plan this broad asks first, whatever its steps are.
-pub(super) const BROAD_PLAN_STEPS: usize = 8;
-
-pub(super) fn requires_confirmation(plan: &IntentPlan) -> bool {
-    plan.steps.len() >= BROAD_PLAN_STEPS || plan.steps.iter().any(|step| risky_intent(&step.intent))
-}
-
 fn validate_intent(intent: &Intent, home: &HomeGraph) -> Result<(), PlanInvalid> {
     if !home.allows_intent(&intent.name) || conflicting_slots(intent) {
         return Err(PlanInvalid::Schema);
@@ -339,6 +332,7 @@ pub(super) fn risky_intent(intent: &Intent) -> bool {
 mod tests {
     use super::*;
     use crate::home::default_home;
+    use crate::nlu::risk::requires_confirmation;
     use crate::types::PlanStep;
 
     fn plan(intent: Intent) -> IntentPlan {
