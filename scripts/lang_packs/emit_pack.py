@@ -120,7 +120,7 @@ def pack_rs(lang: dict) -> str:
     colors = rust_pairs(m["colors"], "            ")
     domains = rust_pairs(m["domain_map"], "            ")
     style = m.get("number_style", "ListedOnly")
-    return f"""{RUST_BANNER}use crate::lang::groups::{{Chat, Cues, Fixtures, GroupClarify, Household, LanguagePack, Maps, Nouns, NumberStyle, Talk}};
+    return f"""{RUST_BANNER}use crate::lang::groups::{{Answers, Chat, Cues, Fixtures, GroupClarify, Household, LanguagePack, Maps, Nouns, NumberStyle, Talk}};
 use crate::lang::morphology::PackMorphology;
 use crate::lang::LangId;
 
@@ -305,6 +305,14 @@ pub const PACK: LanguagePack = LanguagePack {{
         clock_ok: {rust_str(lang.get("household", {}).get("clock_ok") or "{{time}}")},
         clock_missing: {rust_str(lang.get("household", {}).get("clock_missing") or s.get("unknown", ""))},
         no_weather: {rust_str(lang.get("household", {}).get("no_weather") or s.get("unknown", ""))},
+    }},
+    answers: Answers {{
+        yes: {rust_list(lang["answers"]["yes"])},
+        no: {rust_list(lang["answers"]["no"])},
+        cancel: {rust_list(lang["answers"]["cancel"])},
+        ask: "",
+        actions: &[],
+        many: "",
     }},
     speech: SPEECH,
     morphology: PackMorphology::EMPTY,

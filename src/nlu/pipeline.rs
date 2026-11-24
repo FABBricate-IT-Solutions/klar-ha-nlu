@@ -11,14 +11,17 @@ use crate::types::{
 use std::collections::BTreeSet;
 use std::time::Instant;
 
+use super::answer::MAX_ANSWER_WORDS;
 use super::binding::{build_analyses, MAX_CLAUSES};
 use super::context::ParseContext;
-use super::draft::{reject, replay_or_decide, route_pending, route_special, safety_decision, Draft, SessionCommit};
+use super::draft::{reject, replay_or_decide, route_custom, route_special, safety_decision, Draft, SessionCommit};
 use super::ranking::rank_candidates;
 use super::retrieval;
 use super::semantic;
 
 const MAX_NORMALIZED_TOKENS: usize = 256;
+/// A reply to an open question is short; longer text is a command of its own.
+const MAX_REPLY_WORDS: usize = 12;
 
 pub(super) struct PipelineResult {
     pub outcome: ParseOutcome,
@@ -27,6 +30,68 @@ pub(super) struct PipelineResult {
 
 pub(super) fn run(context: ParseContext<'_>) -> PipelineResult {
     let _bound = crate::lang::bind_catalog(context.catalog);
+    if context.session.pending().is_none() {
+        return decide(&context);
+    }
+    // 1. An answer to the open question. Read on the words as spoken, before any other route.
+    let said = super::phrase::words(context.text);
+    let tokens = expand_compounds(&strip_fillers_for_areas(&tokenize(context.text), &context.home.areas), context.home).tokens;
+    let readable =
+        said.len() <= MAX_ANSWER_WORDS.max(MAX_REPLY_WORDS) && !context.text.chars().any(|c| c.is_control() && !c.is_whitespace());
+    if let Some(draft) = readable.then(|| super::pending::answer(&context, &said, &tokens)).flatten() {
+        let mut trace = ParseTrace::default();
+        let started = Instant::now();
+        let draft = safety_decision(draft, &context);
+        record_stage(&mut trace, "safety_decision", started, decision_name(&draft.decision).into());
+        let candidates = draft.output_candidate.clone().into_iter().collect();
+        return finish(&context, draft, candidates, Vec::new(), trace);
+    }
+    // 2. A complete new command. It is read as if nothing had been asked and replaces the question.
+    let unasked = context.session.as_new_command();
+    let mut fresh = decide(&context.with_session(&unasked));
+    if replaces_question(&fresh, false) {
+        fresh.commit.clear_pending = true;
+        return fresh;
+    }
+    // 3. A reply that only makes sense with the question in mind ("turn on the office one").
+    if let Some(draft) = super::pending::named_option(&context, &tokens) {
+        let draft = safety_decision(draft, &context);
+        let candidates = draft.output_candidate.clone().into_iter().collect();
+        return finish(&context, draft, candidates, Vec::new(), fresh.outcome.trace);
+    }
+    if let Some(clarify) = context.session.pending_clarify() {
+        let mut reply = decide(&context);
+        let steps = match &reply.outcome.decision {
+            ParseDecision::Execute => reply.outcome.plan.as_ref().map(IntentPlan::intents),
+            ParseDecision::Confirm { .. } => reply.commit.confirm.as_ref().map(|(_, plan, _)| plan.intents()),
+            ParseDecision::Clarify { .. } | ParseDecision::Reject { .. } | ParseDecision::Chat | ParseDecision::Error { .. } => None,
+        };
+        if steps.is_some_and(|steps| super::pending::stays_inside(&steps, clarify, context.home)) {
+            reply.commit.clear_pending = true;
+            return reply;
+        }
+    }
+    // 4. A command that needs a question of its own: the new question replaces the old one.
+    if replaces_question(&fresh, true) {
+        fresh.commit.clear_pending = true;
+        return fresh;
+    }
+    // 5. None of these: the question stands and is asked again.
+    finish(&context, super::pending::ask_again(&context), Vec::new(), Vec::new(), fresh.outcome.trace)
+}
+
+/// Whether the new utterance is a command of its own, so the open question gives way.
+/// A command that only leads to another question counts when `asking` is set.
+fn replaces_question(result: &PipelineResult, asking: bool) -> bool {
+    match &result.outcome.decision {
+        ParseDecision::Execute | ParseDecision::Confirm { .. } | ParseDecision::Chat => true,
+        ParseDecision::Clarify { .. } => asking && result.commit.clarify.is_some(),
+        ParseDecision::Reject { .. } | ParseDecision::Error { .. } => result.commit.clear_pending || result.commit.mark_wrong,
+    }
+}
+
+/// One utterance with no question open: routes, ranking and the safety decision.
+fn decide(context: &ParseContext<'_>) -> PipelineResult {
     let mut trace = ParseTrace::default();
     let started = Instant::now();
     let raw_tokens = tokenize(context.text);
@@ -36,7 +101,7 @@ pub(super) fn run(context: ParseContext<'_>) -> PipelineResult {
     record_stage(&mut trace, "normalize", started, format!("{} normalized tokens", split.tokens.len()));
     if split.tokens.len() > MAX_NORMALIZED_TOKENS {
         let draft = reject(RejectReason::InvalidInput, speak_unknown());
-        return finish(&context, draft, Vec::new(), Vec::new(), trace);
+        return finish(context, draft, Vec::new(), Vec::new(), trace);
     }
 
     let started = Instant::now();
@@ -45,33 +110,33 @@ pub(super) fn run(context: ParseContext<'_>) -> PipelineResult {
 
     // Every route ends in the same safety decision: undo, routines and the other specials
     // get no way around validation, the user's rules or the confirmation.
-    if let Some(draft) = super::dutch::route(&context, &raw_tokens, &split.tokens)
-        .or_else(|| super::windows::route(&context, &split.tokens))
-        .or_else(|| route_special(&context, &raw_tokens, &split))
-        .or_else(|| route_pending(&context, &split.tokens))
+    if let Some(draft) = super::dutch::route(context, &raw_tokens, &split.tokens)
+        .or_else(|| super::windows::route(context, &split.tokens))
+        .or_else(|| route_special(context, &raw_tokens, &split))
+        .or_else(|| route_custom(context, &split.tokens))
     {
         let started = Instant::now();
-        let draft = safety_decision(draft, &context);
+        let draft = safety_decision(draft, context);
         record_stage(&mut trace, "safety_decision", started, decision_name(&draft.decision).into());
         let candidates = draft.output_candidate.clone().into_iter().collect();
-        return finish(&context, draft, candidates, Vec::new(), trace);
+        return finish(context, draft, candidates, Vec::new(), trace);
     }
 
     if clauses.len() > MAX_CLAUSES {
         let draft = reject(RejectReason::InvalidInput, speak_unknown());
-        return finish(&context, draft, Vec::new(), Vec::new(), trace);
+        return finish(context, draft, Vec::new(), Vec::new(), trace);
     }
-    let analyses = match build_analyses(&context, clauses, &raw_tokens, &split, &mut trace) {
+    let analyses = match build_analyses(context, clauses, &raw_tokens, &split, &mut trace) {
         Ok(analyses) => analyses,
         Err(_) => {
             let draft = reject(RejectReason::InvalidInput, speak_unknown());
-            return finish(&context, draft, Vec::new(), Vec::new(), trace);
+            return finish(context, draft, Vec::new(), Vec::new(), trace);
         }
     };
 
     let started = Instant::now();
     let mut ranking = rank_candidates(&analyses, context.home, context.policies, &mut trace);
-    apply_resolved_lock_pair(&mut ranking, &context, &split.tokens);
+    apply_resolved_lock_pair(&mut ranking, context, &split.tokens);
     record_stage(&mut trace, "ranking", started, format!("{} ranked candidates", ranking.candidates.len()));
     let clarify = ranking.clarification.clone();
     let mut intents = ranking.selected.as_ref().map_or_else(Vec::new, |candidate| candidate.plan.intents());
@@ -96,14 +161,14 @@ pub(super) fn run(context: ParseContext<'_>) -> PipelineResult {
             policy_trace: None,
         }
     } else {
-        replay_or_decide(&context, &split.tokens, intents, selected_plan, &ranking)
+        replay_or_decide(context, &split.tokens, intents, selected_plan, &ranking)
     };
     let started = Instant::now();
-    let mut draft = safety_decision(draft, &context);
+    let mut draft = safety_decision(draft, context);
     record_stage(&mut trace, "safety_decision", started, decision_name(&draft.decision).into());
-    if let Some(adapted) = semantic::consider(&context, &split.tokens, &draft) {
+    if let Some(adapted) = semantic::consider(context, &split.tokens, &draft) {
         let started = Instant::now();
-        draft = safety_decision(adapted, &context);
+        draft = safety_decision(adapted, context);
         record_stage(&mut trace, "semantic_adapter", started, decision_name(&draft.decision).into());
     }
     let mut candidates = ranking.candidates;
@@ -122,7 +187,7 @@ pub(super) fn run(context: ParseContext<'_>) -> PipelineResult {
             }
         }
     }
-    finish(&context, draft, candidates, evidence, trace)
+    finish(context, draft, candidates, evidence, trace)
 }
 
 impl PipelineResult {
@@ -131,7 +196,7 @@ impl PipelineResult {
             session.clear_pending();
         }
         if let Some((options, template)) = self.commit.clarify {
-            session.set_clarify(options, template);
+            session.set_clarify_prompt(options, template, self.outcome.speech.clone());
         }
         if let Some((candidate_id, plan, prompt)) = self.commit.confirm {
             session.set_confirm(candidate_id, plan, prompt);

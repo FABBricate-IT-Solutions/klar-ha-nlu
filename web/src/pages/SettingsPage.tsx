@@ -73,7 +73,9 @@ export function SettingsPage({
   locale,
   onLocale,
   settings,
+  loaded,
   onSettings,
+  onTokenApplied,
   onReplayWizard,
   theme,
   onTheme,
@@ -84,7 +86,11 @@ export function SettingsPage({
   locale: Locale;
   onLocale: (locale: Locale) => void;
   settings: Settings;
+  /** False until the engine's settings were read; `settings` then holds placeholders only. */
+  loaded: boolean;
   onSettings: (s: Settings) => void;
+  /** The write token changed; everything that failed to load should be read again. */
+  onTokenApplied: () => void;
   onReplayWizard?: () => void;
   theme?: Theme;
   onTheme?: (theme: Theme) => void;
@@ -101,18 +107,17 @@ export function SettingsPage({
   const [saving, setSaving] = useState(false);
   const view = settingsView;
   const refresh = () => api.bundle().then(setBundle).catch(() => undefined);
-  useEffect(() => {
+  const loadExtras = () => {
     refresh();
-  }, []);
-  useEffect(() => {
     api.languages().then(setPacks).catch(() => undefined);
     api.llmEndpoint().then((next) => setLlmReady(Boolean(next.configured))).catch(() => undefined);
-  }, []);
+  };
+  useEffect(loadExtras, []);
   useEffect(() => {
     if (theme === "light" || theme === "dark") setPicked(theme);
   }, [theme]);
   const save = async (next = settings) => {
-    setToken(token);
+    if (!loaded) return;
     setSaving(true);
     try {
       onSettings(await api.saveSettings(next));
@@ -123,6 +128,11 @@ export function SettingsPage({
     } finally {
       setSaving(false);
     }
+  };
+  const applyToken = () => {
+    setToken(token);
+    loadExtras();
+    onTokenApplied();
   };
   const clear = async () => {
     await api.clearBundle();
@@ -151,7 +161,7 @@ export function SettingsPage({
           <Button variant="ghost" type="button" onClick={() => onReplayWizard?.()}>
             {t.setupReplay}
           </Button>
-          <Button type="button" disabled={saving} onClick={() => void save()}>{t.save}</Button>
+          <Button type="button" disabled={saving || !loaded} onClick={() => void save()}>{t.save}</Button>
         </div>
       </section>
       <nav className="subnav" aria-label={t.settings}>
@@ -170,10 +180,10 @@ export function SettingsPage({
       <Guide title={t.settingsGuide} steps={[{ id: view, label: settingsLabel(t, view), hint: settingsHint(t, view) }]} />
       <p className="caption" style={{ marginTop: -8 }}>{t.haGlueHint}</p>
       {view === "llm" ? <LlmSettingsCard key={llmEpoch} t={t} /> : null}
-      {view === "voice" ? (
+      {view === "voice" && loaded ? (
         <SettingsVoiceSection t={t} settings={settings} onSettings={onSettings} locale={locale} llmReady={llmReady} />
       ) : null}
-      {view === "languages" ? (
+      {view === "languages" && loaded ? (
         <SettingsLanguagesSection
           t={t}
           locale={locale}
@@ -187,9 +197,11 @@ export function SettingsPage({
         <SettingsEngineSection
           t={t}
           settings={settings}
+          loaded={loaded}
           onSettings={onSettings}
           token={token}
           onToken={setTokenValue}
+          onApplyToken={applyToken}
           theme={picked}
           onTheme={setTheme}
         />
@@ -197,7 +209,7 @@ export function SettingsPage({
       {view === "backup" ? (
         <div className="flex min-w-0 flex-col gap-4">
           <SettingsBackupCard t={t} onSettings={onSettings} onRestored={() => setLlmEpoch((epoch) => epoch + 1)} />
-          <SettingsJournalSection
+          {loaded ? <SettingsJournalSection
             t={t}
             settings={settings}
             bundle={bundle}
@@ -205,7 +217,7 @@ export function SettingsPage({
             onDownloadDataset={() => download("/api/bundle/dataset", "klar-assist-dataset.yaml")}
             onDownloadProtocol={() => download("/api/bundle/protocol", "klar-support-bundle.jsonl")}
             onClear={() => setConfirmClear(true)}
-          />
+          /> : null}
         </div>
       ) : null}
       <AlertDialog open={confirmClear} onOpenChange={setConfirmClear}>

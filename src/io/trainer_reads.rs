@@ -75,8 +75,8 @@ pub async fn try_sentence(state: &AppState, args: &Value) -> Result<Value, Strin
         return Err("text too long".into());
     }
     let conversation_id = args.get("conversation_id").and_then(Value::as_str).filter(|item| !item.is_empty());
-    if conversation_id.is_some_and(|id| id.len() > 128) {
-        return Err("conversation_id too long".into());
+    if conversation_id.is_some_and(|id| !crate::session::valid_id(id)) {
+        return Err("conversation_id is too long or has control characters".into());
     }
     let mut settings = state.settings.lock().await.clone();
     if let Some(language) = args.get("language").and_then(Value::as_str).filter(|item| !item.is_empty()) {
