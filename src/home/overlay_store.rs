@@ -30,7 +30,7 @@ pub enum OverlayRead {
     /// No file, or an empty one. There is nothing to lose.
     Missing,
     /// The file was read. `dropped` lists values that did not fit and fell back to defaults.
-    Loaded { overlay: Overlay, dropped: Vec<String> },
+    Loaded { overlay: Box<Overlay>, dropped: Vec<String> },
     /// The file exists but cannot be read. It must not be overwritten by an edit.
     Unreadable(String),
 }
@@ -120,7 +120,7 @@ impl OverlayStore {
             return (raw, OverlayRead::Missing);
         }
         let read = match parse_tolerant(&raw) {
-            Ok(parsed) => OverlayRead::Loaded { overlay: parsed.overlay, dropped: parsed.dropped },
+            Ok(parsed) => OverlayRead::Loaded { overlay: Box::new(parsed.overlay), dropped: parsed.dropped },
             Err(reason) => OverlayRead::Unreadable(reason),
         };
         (raw, read)
@@ -179,7 +179,7 @@ impl OverlayStore {
     pub fn load(&self) -> Overlay {
         match self.inspect().1 {
             OverlayRead::Missing => Overlay::default(),
-            OverlayRead::Loaded { overlay, .. } => overlay,
+            OverlayRead::Loaded { overlay, .. } => *overlay,
             OverlayRead::Unreadable(_) => self.last_good().unwrap_or_default(),
         }
     }
@@ -188,7 +188,7 @@ impl OverlayStore {
     pub fn load_strict(&self) -> io::Result<Overlay> {
         match self.inspect().1 {
             OverlayRead::Missing => Ok(Overlay::default()),
-            OverlayRead::Loaded { overlay, .. } => Ok(overlay),
+            OverlayRead::Loaded { overlay, .. } => Ok(*overlay),
             OverlayRead::Unreadable(reason) => Err(unreadable(&reason)),
         }
     }
@@ -215,7 +215,7 @@ impl OverlayStore {
             let (raw, read) = self.inspect();
             let mut overlay = match read {
                 OverlayRead::Missing => Overlay::default(),
-                OverlayRead::Loaded { overlay, .. } => overlay,
+                OverlayRead::Loaded { overlay, .. } => *overlay,
                 OverlayRead::Unreadable(reason) => return Err(unreadable(&reason)),
             };
             match edit(&mut overlay) {
