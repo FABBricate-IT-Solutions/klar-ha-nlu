@@ -212,13 +212,14 @@ async fn persist_entity(state: &AppState, change: &EntityChange) -> Result<(), S
 #[cfg(test)]
 mod tests {
     use super::*;
+    use crate::home::test_dir::TestDir;
     use crate::home::{default_home, LoadedHome};
     use crate::types::Settings;
 
-    fn state(tag: &str) -> AppState {
-        let dir = std::env::temp_dir().join(format!("klar-trainer-entity-{tag}-{}", std::process::id()));
-        let _ = std::fs::create_dir_all(&dir);
-        AppState::new(
+    fn state(tag: &str) -> (TestDir, AppState) {
+        let scratch = TestDir::new(&format!("trainer-entity-{tag}"));
+        let dir = scratch.path().to_path_buf();
+        let state = AppState::new(
             LoadedHome {
                 graph: default_home(),
                 settings: Settings::pinned("de"),
@@ -230,12 +231,13 @@ mod tests {
             },
             dir,
             None,
-        )
+        );
+        (scratch, state)
     }
 
     #[tokio::test]
     async fn apply_entity_sets_flags_and_replaces_aliases() {
-        let state = state("flags");
+        let (_scratch, state) = state("flags");
         apply_entity(&state, &json!({"entity_id":"light.wohnzimmer","aliases":["kugel"],"preferred":true,"nlu_ignore":true}))
             .await
             .unwrap();
@@ -254,7 +256,7 @@ mod tests {
 
     #[tokio::test]
     async fn list_gaps_includes_suggested_area() {
-        let state = state("gaps");
+        let (_scratch, state) = state("gaps");
         state.apply_areas(&[("light.wohnzimmer".into(), String::new())]).await;
         let out = list_gaps(&state).await.unwrap();
         let gaps = out["gaps"].as_array().unwrap();

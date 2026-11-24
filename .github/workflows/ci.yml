@@ -121,7 +121,21 @@ jobs:
         timeout-minutes: 30
         env:
           NEXTEST_PROFILE: ${{ steps.nextest.outputs.profile }}
-        run: cargo nextest run --locked --profile "${NEXTEST_PROFILE}" --no-fail-fast
+        run: |
+          set -euo pipefail
+          # A temp directory of its own, so the next step sees what the tests left behind.
+          export TMPDIR="${RUNNER_TEMP}/klar-tests"
+          mkdir -p "${TMPDIR}"
+          cargo nextest run --locked --profile "${NEXTEST_PROFILE}" --no-fail-fast
+      - name: Tests left nothing in the temp directory
+        run: |
+          set -euo pipefail
+          left="$(ls -A "${RUNNER_TEMP}/klar-tests")"
+          if [[ -n "$left" ]]; then
+            echo "$left"
+            echo "tests left files behind; use a scratch directory that is removed on drop (TestDir or tempfile)" >&2
+            exit 1
+          fi
 
   # Klar's own dataset suites (wohnung_*, full_home, per-locale wohnung overlay).
   # The filter lives in .config/nextest.toml, profile ci-datasets. The full tier is

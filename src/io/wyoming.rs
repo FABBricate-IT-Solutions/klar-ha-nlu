@@ -259,6 +259,7 @@ async fn write_event<W: AsyncWriteExt + Unpin>(writer: &mut W, typ: &str, data: 
 #[cfg(test)]
 mod tests {
     use super::*;
+    use crate::home::test_dir::TestDir;
     use crate::home::{default_home, LoadedHome};
     use crate::session::Session;
     use crate::types::Settings;
@@ -268,10 +269,10 @@ mod tests {
         timeout(Duration::from_secs(2), lines.next_line()).await.expect("wyoming reply").unwrap().expect("eof")
     }
 
-    fn test_state() -> AppState {
-        let dir = std::env::temp_dir().join(format!("klar-wy-{}-{}", std::process::id(), uuid::Uuid::new_v4()));
-        let _ = std::fs::create_dir_all(&dir);
-        AppState::new(
+    fn test_state() -> (TestDir, AppState) {
+        let scratch = TestDir::new("wy");
+        let dir = scratch.path().to_path_buf();
+        let state = AppState::new(
             LoadedHome {
                 graph: default_home(),
                 settings: Settings::default(),
@@ -283,7 +284,8 @@ mod tests {
             },
             dir,
             None,
-        )
+        );
+        (scratch, state)
     }
 
     async fn exchange(state: AppState, requests: &[&str]) -> Vec<String> {
@@ -311,8 +313,8 @@ mod tests {
     async fn describe_and_recognize_reuse_conversation() {
         let listener = TcpListener::bind("127.0.0.1:0").await.unwrap();
         let addr = listener.local_addr().unwrap();
-        let dir = std::env::temp_dir().join(format!("klar-wy-{}", std::process::id()));
-        let _ = std::fs::create_dir_all(&dir);
+        let scratch = TestDir::new("wy");
+        let dir = scratch.path().to_path_buf();
         let state = AppState::new(
             LoadedHome {
                 graph: default_home(),
@@ -399,8 +401,9 @@ mod tests {
     async fn recognize_errors_write_not_recognized() {
         let oversized = format!(r#"{{"type":"recognize","data":{{"text":"{}"}}}}"#, "x".repeat(MAX_PARSE_CHARS + 1));
         let long_id = format!(r#"{{"type":"recognize","data":{{"text":"hi","conversation_id":"{}"}}}}"#, "c".repeat(129));
+        let (_scratch, state) = test_state();
         let replies = exchange(
-            test_state(),
+            state,
             &["{not-json", &oversized, &long_id, r#"{"type":"recognize","data":{"text":"Licht im Wohnzimmer an","language":"de"}}"#],
         )
         .await;
@@ -416,7 +419,7 @@ mod tests {
 
     #[tokio::test]
     async fn preferred_area_omitted_keeps_invalid_ignored() {
-        let state = test_state();
+        let (_scratch, state) = test_state();
         let mut seeded = Session::new();
         seeded.id = "area-1".into();
         seeded.preferred_area = Some("wohnzimmer".into());

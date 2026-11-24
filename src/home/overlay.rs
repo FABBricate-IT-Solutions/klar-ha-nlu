@@ -207,6 +207,7 @@ fn merge_policy(home: &mut HomeGraph, overlay: &Overlay) {
 #[cfg(test)]
 mod tests {
     use super::*;
+    use crate::home::test_dir::TestDir;
     use crate::types::EntityRec;
 
     #[test]
@@ -231,19 +232,18 @@ mod tests {
 
     #[test]
     fn settings_survive_roundtrip() {
-        let dir = std::env::temp_dir().join(format!("klar-overlay-set-{}", std::process::id()));
-        let _ = std::fs::create_dir_all(&dir);
+        let scratch = TestDir::new("overlay-set");
+        let dir = scratch.path().to_path_buf();
         let overlay = Overlay { settings: Some(Settings { support_bundle: true, ..Settings::default() }), ..Default::default() };
         save_overlay(&dir, &overlay).unwrap();
         let loaded = load_overlay(&dir);
         assert!(loaded.settings.unwrap().support_bundle);
-        let _ = std::fs::remove_dir_all(&dir);
     }
 
     #[test]
     fn ui_survives_roundtrip() {
-        let dir = std::env::temp_dir().join(format!("klar-overlay-ui-{}", std::process::id()));
-        let _ = std::fs::create_dir_all(&dir);
+        let scratch = TestDir::new("overlay-ui");
+        let dir = scratch.path().to_path_buf();
         let overlay = Overlay {
             ui: UiState {
                 tab: "graph".into(),
@@ -277,7 +277,6 @@ mod tests {
         assert_eq!(loaded.ui.rules_view, "policies");
         assert_eq!(loaded.ui.settings_view, "voice");
         assert_eq!(loaded.ui.theme, "light");
-        let _ = std::fs::remove_dir_all(&dir);
     }
 
     #[test]
@@ -294,8 +293,8 @@ mod tests {
 
     #[test]
     fn custom_sentences_survive_roundtrip() {
-        let dir = std::env::temp_dir().join(format!("klar-overlay-{}", std::process::id()));
-        let _ = std::fs::create_dir_all(&dir);
+        let scratch = TestDir::new("overlay");
+        let dir = scratch.path().to_path_buf();
         let overlay = Overlay {
             custom: vec![CustomSentence { phrase: "filmabend".into(), intent: "HassTurnOn".into(), slots: HashMap::new() }],
             ..Default::default()
@@ -303,7 +302,6 @@ mod tests {
         save_overlay(&dir, &overlay).unwrap();
         let loaded = load_overlay(&dir);
         assert_eq!(loaded.custom[0].phrase, "filmabend");
-        let _ = std::fs::remove_dir_all(&dir);
     }
 
     #[test]
@@ -350,8 +348,8 @@ mod tests {
 
     #[test]
     fn match_controls_survive_roundtrip() {
-        let dir = std::env::temp_dir().join(format!("klar-overlay-match-{}", std::process::id()));
-        let _ = std::fs::create_dir_all(&dir);
+        let scratch = TestDir::new("overlay-match");
+        let dir = scratch.path().to_path_buf();
         let overlay = Overlay {
             match_controls: vec![MatchControl { id: "media".into(), enabled: false, precedence: Some(3) }],
             ..Default::default()
@@ -364,6 +362,5 @@ mod tests {
         assert_eq!(loaded.match_controls[0].precedence, Some(3));
         let empty: Overlay = serde_json::from_str("{}").unwrap();
         assert!(empty.match_controls.is_empty());
-        let _ = std::fs::remove_dir_all(&dir);
     }
 }

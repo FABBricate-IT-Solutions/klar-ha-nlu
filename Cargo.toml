@@ -39,6 +39,8 @@ flate2 = { version = "1", default-features = false, features = ["rust_backend"] 
 jiff = { version = "0.2", default-features = false, features = ["std", "tz-system", "tzdb-bundle-always"] }
 
 [dev-dependencies]
+# Scratch directories for tests; removed on drop, also when a test panics.
+tempfile = "3"
 tower = { version = "0.5", features = ["util"] }
 
 [profile.test]

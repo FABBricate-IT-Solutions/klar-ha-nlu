@@ -168,17 +168,17 @@ fn load_language_packs(explicit: Option<&Path>) {
 #[cfg(test)]
 mod tests {
     use super::*;
+    use crate::home::test_dir::TestDir;
     use std::os::unix::fs::PermissionsExt;
 
     #[test]
     fn token_file_is_owner_rw_only() {
-        let dir = std::env::temp_dir().join(format!("klar-token-{}", uuid::Uuid::new_v4().simple()));
-        let _ = std::fs::create_dir_all(&dir);
+        let scratch = TestDir::new("token");
+        let dir = scratch.path().to_path_buf();
         let path = dir.join("klar.token");
         let token = resolve_token(None, Some(&path)).expect("token");
         assert!(!token.is_empty());
         let mode = std::fs::metadata(&path).unwrap().permissions().mode() & 0o777;
         assert_eq!(mode, 0o600);
-        let _ = std::fs::remove_dir_all(&dir);
     }
 }

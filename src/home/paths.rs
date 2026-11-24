@@ -173,25 +173,19 @@ mod tests {
     use super::*;
     use crate::home::test_dir::TestDir;
 
-    fn temp(tag: &str) -> PathBuf {
-        let dir = std::env::temp_dir().join(format!("klar-paths-{tag}-{}", std::process::id()));
-        let _ = std::fs::remove_dir_all(&dir);
-        std::fs::create_dir_all(&dir).unwrap();
-        dir
-    }
-
     #[test]
     fn rejects_parent_dir_in_name_and_dir() {
-        let dir = temp("reject");
+        let scratch = TestDir::new("paths-reject");
+        let dir = scratch.path().to_path_buf();
         assert!(confined_file(&dir, "../passwd").is_err());
         assert!(confined_file(&dir, "a/b").is_err());
         assert!(confined_file(&dir.join(".."), "klar_nlu.json").is_err());
-        let _ = std::fs::remove_dir_all(&dir);
     }
 
     #[test]
     fn roundtrip_stays_under_dir() {
-        let dir = temp("ok");
+        let scratch = TestDir::new("paths-ok");
+        let dir = scratch.path().to_path_buf();
         write_atomic_confined(&dir, "klar_nlu.json", b"{\"aliases\":{}}").unwrap();
         let raw = read_to_string_confined(&dir, "klar_nlu.json").unwrap();
         assert!(raw.contains("aliases"));
@@ -199,7 +193,6 @@ mod tests {
         assert!(path.starts_with(dir.canonicalize().unwrap()));
         remove_confined(&dir, "klar_nlu.json").unwrap();
         assert!(read_confined(&dir, "klar_nlu.json").is_err());
-        let _ = std::fs::remove_dir_all(&dir);
     }
 
     #[test]

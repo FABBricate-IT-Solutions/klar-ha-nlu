@@ -221,7 +221,8 @@ fn cli_preview_pins_english() {
 
 #[test]
 fn cli_import_hassil_dry_run() {
-    let path = std::env::temp_dir().join("klar-m4-hassil.yaml");
+    let scratch = tempfile::tempdir().unwrap();
+    let path = scratch.path().join("hassil.yaml");
     std::fs::write(
         &path,
         r#"

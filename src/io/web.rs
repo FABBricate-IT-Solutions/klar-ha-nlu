@@ -328,6 +328,7 @@ async fn tag_entity(
 #[cfg(test)]
 mod tests {
     use super::*;
+    use crate::home::test_dir::TestDir;
     use crate::home::{default_home, LoadedHome};
     use crate::types::ParseDecision;
 
@@ -408,7 +409,8 @@ mod tests {
 
     #[tokio::test]
     async fn confirmation_never_exposes_plan_before_affirmation() {
-        let dir = std::env::temp_dir().join(format!("klar-http-confirm-{}", std::process::id()));
+        let scratch = TestDir::new("http-confirm");
+        let dir = scratch.path().to_path_buf();
         let state = AppState::new(
             LoadedHome {
                 graph: default_home(),
@@ -466,8 +468,9 @@ mod tests {
 
     #[tokio::test]
     async fn set_custom_fails_closed_when_overlay_cannot_write() {
-        let path = std::env::temp_dir().join(format!("klar-custom-notdir-{}", std::process::id()));
-        let _ = std::fs::remove_file(&path);
+        // A file where the data directory should be: every write into it fails.
+        let scratch = TestDir::new("custom-notdir");
+        let path = scratch.file("not-a-directory");
         std::fs::write(&path, b"x").unwrap();
         let state = AppState::new(
             LoadedHome {
@@ -487,6 +490,5 @@ mod tests {
         let err = super::set_custom(State(state.clone()), peer, HeaderMap::new(), Json(body)).await.unwrap_err();
         assert_eq!(err, StatusCode::INTERNAL_SERVER_ERROR);
         assert!(state.custom.lock().await.is_empty());
-        let _ = std::fs::remove_file(&path);
     }
 }

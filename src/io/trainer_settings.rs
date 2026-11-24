@@ -296,13 +296,14 @@ fn reject_unknown(args: &Value, allowed: &[&str]) -> Result<(), String> {
 #[cfg(test)]
 mod tests {
     use super::*;
+    use crate::home::test_dir::TestDir;
     use crate::home::{default_home, LoadedHome};
     use crate::io::state::AppState;
 
-    fn state() -> AppState {
-        let dir = std::env::temp_dir().join(format!("klar-lotse-settings-{}", std::process::id()));
-        let _ = std::fs::create_dir_all(&dir);
-        AppState::new(
+    fn state() -> (TestDir, AppState) {
+        let scratch = TestDir::new("lotse-settings");
+        let dir = scratch.path().to_path_buf();
+        let state = AppState::new(
             LoadedHome {
                 graph: default_home(),
                 settings: Settings::pinned("de"),
@@ -314,7 +315,8 @@ mod tests {
             },
             dir,
             None,
-        )
+        );
+        (scratch, state)
     }
 
     #[test]
@@ -352,7 +354,7 @@ mod tests {
 
     #[tokio::test]
     async fn persist_theme_and_engine() {
-        let state = state();
+        let (_scratch, state) = state();
         apply_ui(&state, &json!({"theme":"light","locale":"fr"})).await.unwrap();
         apply_engine(&state, &json!({"calendar_llm":true})).await.unwrap();
         let view = list_engine(&state).await.unwrap();
