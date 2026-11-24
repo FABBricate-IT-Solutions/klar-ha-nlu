@@ -140,6 +140,12 @@ class NewsTests(unittest.TestCase):
             news.pick_story("lese die nachricht ueber die sicherheitsluecke phptoshell vor", [named[2]])
         )
         self.assertEqual(news.story_query("lese mir die nachricht ueber den neustart der kreisverwaltung osl vor"), "neustart kreisverwaltung osl")
+        schools = [
+            {"title": "Drohmails gegen Schulen", "text": "Die Polizei vermutet Destabilisierung.", "link": ""},
+            {"title": "DAX fällt zurück", "text": "Tech-Aktien sinken.", "link": ""},
+        ]
+        self.assertEqual(news.pick_story("zu den schulen bitte mehr", schools)["title"], "Drohmails gegen Schulen")
+        self.assertEqual(news.story_query("gib mir dazu alle aktuellen nachrichten"), "")
         urls = news.story_feed_urls("de", "", None, ["https://example.com/mine.xml"])
         self.assertEqual(urls[0], "https://example.com/mine.xml")
         self.assertIn("tagesschau", urls[1])
