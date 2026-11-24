@@ -4,7 +4,7 @@ import unittest
 from datetime import datetime
 from pathlib import Path
 
-sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+sys.path.insert(0, str(Path(__file__).resolve().parents[2] / "custom_components" / "klar_nlu"))
 from clock_query import clock_query_speech
 
 NOW = datetime(2026, 11, 23, 13, 5)
