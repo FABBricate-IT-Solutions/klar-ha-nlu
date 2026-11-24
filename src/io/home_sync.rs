@@ -1,3 +1,4 @@
+use crate::home::labels::rebuild_label_index;
 use crate::home::overlay::{apply_overlay, load_overlay};
 use crate::home::snapshot::{ingest, HomeSnapshot, SnapshotError};
 use crate::io::auth::home_writes_allowed;
@@ -12,6 +13,7 @@ use axum::routing::post;
 use axum::{Json, Router};
 use std::net::SocketAddr;
 use std::sync::atomic::Ordering;
+use std::sync::Arc;
 
 pub fn routes(state: AppState) -> Router<AppState> {
     Router::new()
@@ -56,6 +58,7 @@ async fn api_home(
         Err(SnapshotError::Caps) => return Err(StatusCode::PAYLOAD_TOO_LARGE),
         Err(SnapshotError::Schema | SnapshotError::Malformed(_)) => return Err(StatusCode::BAD_REQUEST),
     };
+    *state.live_base.lock().await = Some(Arc::new(ingested.clone()));
     let graph = apply_live_overlays(&state, ingested);
     let ack = HomeAck {
         entities: graph.entities.len(),
@@ -68,11 +71,14 @@ async fn api_home(
     Ok(Json(ack))
 }
 
-fn apply_live_overlays(state: &AppState, mut graph: HomeGraph) -> HomeGraph {
+/// The pushed home with the calibration of both directories on top. The label index is built
+/// again afterwards: the one from ingest does not know the aliases the overlays add.
+pub(crate) fn apply_live_overlays(state: &AppState, mut graph: HomeGraph) -> HomeGraph {
     apply_overlay(&mut graph, &load_overlay(&state.config_dir));
     if state.data_dir != state.config_dir {
         apply_overlay(&mut graph, &load_overlay(&state.data_dir));
     }
+    rebuild_label_index(&mut graph);
     graph
 }
 
