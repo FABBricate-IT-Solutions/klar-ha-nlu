@@ -19,10 +19,10 @@ tokio = { version = "1", features = ["full"] }
 tokio-stream = { version = "0.1", default-features = false, features = ["sync"] }
 reqwest = { version = "0.12.12", default-features = false, features = ["json", "rustls-tls", "stream"] }
 futures-util = { version = "0.3", default-features = false, features = ["std"] }
-# url 2.5.4 + idna 1.0.3 fix RUSTSEC-2024-0421. idna_adapter 1.1 is the
-# unicode-rs back end so rustc 1.85 does not pull ICU4X (MSRV 1.86+).
-url = "=2.5.4"
-idna = "=1.0.3"
+# url 2.5.9 fixes RUSTSEC-2026-0592. idna 1.1.0 still uses idna_adapter;
+# pin adapter 1.1 so rustc 1.85 does not pull ICU4X (adapter 1.2 needs 1.86).
+url = "=2.5.9"
+idna = "=1.1.0"
 idna_adapter = "=1.1.0"
 tracing = "0.1"
 tracing-subscriber = { version = "0.3", features = ["env-filter"] }
