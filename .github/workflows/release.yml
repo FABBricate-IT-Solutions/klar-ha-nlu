@@ -15,15 +15,10 @@ concurrency:
   group: release-main
   cancel-in-progress: false
 
-# Must cover every permission callee jobs declare (including skipped ones).
-# Otherwise GitHub rejects the run as startup_failure before any job starts.
-permissions:
-  actions: read
-  contents: write
-  issues: write
-  packages: write
-  pull-requests: write
-  security-events: write
+# Nothing by default: every job states its own permissions. For a job that calls a
+# reusable workflow those must cover every permission the called jobs declare
+# (including skipped ones), otherwise GitHub rejects the run as startup_failure.
+permissions: {}
 
 # Tag/publish only after fmt, clippy, nextest, pack freshness, web, audit, deny, and gitleaks.
 jobs:
@@ -36,11 +31,12 @@ jobs:
   security:
     name: security
     uses: ./.github/workflows/security.yml
-    secrets: inherit
+    # The repository has no secrets of its own; the callee only reads GITHUB_TOKEN.
+    secrets: inherit # zizmor: ignore[secrets-inherit]
+    # What the jobs of security.yml declare, taken together.
     permissions:
       actions: read
       contents: read
-      issues: write
       packages: read
       security-events: write
 
@@ -55,13 +51,14 @@ jobs:
     outputs:
       tag: ${{ steps.cut.outputs.tag }}
     steps:
-      - uses: actions/checkout@v7
-        with:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        # scripts/cut-release.sh pushes with this checkout's credentials.
+        with: # zizmor: ignore[artipacked]
           ref: main
           fetch-depth: 0
           token: ${{ github.token }}
 
-      - uses: taiki-e/install-action@v2
+      - uses: taiki-e/install-action@fe3acb53a98b62c772db35de75ce0e4595e7ca8c # v2.90.8
         with:
           tool: git-cliff
 
@@ -80,7 +77,8 @@ jobs:
     uses: ./.github/workflows/build.yml
     with:
       release_tag: ${{ needs.cut.outputs.tag }}
-    secrets: inherit
+    # As above. Dropping it is untested on a publishing run, so it stays for now.
+    secrets: inherit # zizmor: ignore[secrets-inherit]
     permissions:
       contents: write
       packages: write

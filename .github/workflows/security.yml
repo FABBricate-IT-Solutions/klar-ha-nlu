@@ -8,21 +8,24 @@ on:
   workflow_dispatch:
   workflow_call:
 
+# Read-only by default. codeql and trivy ask for what they need themselves.
 permissions:
   contents: read
-  issues: write
-  security-events: write
 
 jobs:
   audit:
     name: cargo-audit
     runs-on: ubuntu-26.04
     steps:
-      - uses: actions/checkout@v7
-      - uses: dtolnay/rust-toolchain@1.85
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: dtolnay/rust-toolchain@df2a88e9fe4098bad09cb42c3dec7187f15861fc # master
+        with:
+          toolchain: "1.85"
       # Prebuilt binary instead of `cargo install` (that compiled for about three minutes
       # on every run). Same version as before; 0.22.2+ does not build with the MSRV 1.85.
-      - uses: taiki-e/install-action@v2
+      - uses: taiki-e/install-action@fe3acb53a98b62c772db35de75ce0e4595e7ca8c # v2.90.8
         with:
           tool: cargo-audit@0.22.1
       - run: cargo audit
@@ -31,8 +34,10 @@ jobs:
     name: cargo-deny
     runs-on: ubuntu-26.04
     steps:
-      - uses: actions/checkout@v7
-      - uses: EmbarkStudios/cargo-deny-action@v2
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: EmbarkStudios/cargo-deny-action@81891abc19297b21343b15ef67dc61e4aea74fda # v2.1.4
         with:
           command: check
           arguments: --all-features
@@ -41,8 +46,9 @@ jobs:
     name: gitleaks
     runs-on: ubuntu-26.04
     steps:
-      - uses: actions/checkout@v7
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
+          persist-credentials: false
           fetch-depth: 0
       # The GitHub Action requires an org license; the CLI does not.
       - name: Gitleaks
@@ -56,9 +62,12 @@ jobs:
     name: semgrep
     runs-on: ubuntu-26.04
     container:
-      image: semgrep/semgrep
+      # Pinned by digest; raise tag and digest together.
+      image: semgrep/semgrep:1.186.0@sha256:6e1b04340e60e910fbb4ddbf3c857ab0918f064417ad5ac530014ccb3cf8c8f1
     steps:
-      - uses: actions/checkout@v7
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
       - name: Default catalog rules
         run: semgrep scan --config .semgrep/klar.yml --error --quiet
 
@@ -73,13 +82,15 @@ jobs:
       actions: read
       security-events: write
     steps:
-      - uses: actions/checkout@v7
-      - uses: github/codeql-action/init@v4
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: github/codeql-action/init@915412ff23e8b7659517e607487dbeae018f2934 # v4.39.5
         with:
           languages: rust
           build-mode: none
           config-file: .github/codeql/codeql-config.yml
-      - uses: github/codeql-action/analyze@v4
+      - uses: github/codeql-action/analyze@915412ff23e8b7659517e607487dbeae018f2934 # v4.39.5
         with:
           category: "/language:rust"
 
@@ -94,7 +105,7 @@ jobs:
       packages: read
       security-events: write
     steps:
-      - uses: docker/login-action@v4
+      - uses: docker/login-action@8aa5831fb8d48d8f76594c7ddde61ae58019f550 # v4.8.0
         with:
           registry: ghcr.io
           username: ${{ github.actor }}
@@ -109,7 +120,7 @@ jobs:
           else
             echo "present=false" >> "$GITHUB_OUTPUT"
           fi
-      - uses: aquasecurity/trivy-action@v0.36.0
+      - uses: aquasecurity/trivy-action@ed142fd0673e97e23eac54620cfb913e5ce36c25 # v0.36.0
         if: steps.image.outputs.present == 'true'
         with:
           version: v0.74.0
@@ -123,7 +134,7 @@ jobs:
         env:
           TRIVY_USERNAME: ${{ github.actor }}
           TRIVY_PASSWORD: ${{ secrets.GITHUB_TOKEN }}
-      - uses: github/codeql-action/upload-sarif@v4
+      - uses: github/codeql-action/upload-sarif@915412ff23e8b7659517e607487dbeae018f2934 # v4.39.5
         if: always() && steps.image.outputs.present == 'true'
         with:
           sarif_file: trivy-results.sarif
