@@ -358,7 +358,7 @@ fn phrase_tokens_present(tokens: &[String], phrase: &str) -> bool {
     !words.is_empty() && words.iter().all(|word| tokens.contains(word))
 }
 
-fn action_for_intent(name: &str) -> Option<Action> {
+pub(super) fn action_for_intent(name: &str) -> Option<Action> {
     match name {
         "HassTurnOn" => Some(Action::On),
         "HassTurnOff" => Some(Action::Off),

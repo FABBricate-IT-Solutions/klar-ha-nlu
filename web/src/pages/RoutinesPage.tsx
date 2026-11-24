@@ -26,6 +26,8 @@ export function RoutinesPage({ t }: { t: Messages }) {
   const { scriptOptions } = useHouseCatalog();
 
   const persist = async (next: CustomRule[], label: string) => {
+    // `rules` and `language` are empty placeholders until the overlay is loaded.
+    if (!overlay) return;
     try {
       replace(await api.saveLangOverlay({ custom: next, language, label }));
       toastSaved(t);
@@ -70,7 +72,7 @@ export function RoutinesPage({ t }: { t: Messages }) {
           allowEmpty={false}
         />
         <div className="row" style={{ marginTop: 12 }}>
-          <button className="primary" type="button" onClick={() => void add()} disabled={offline}>{t.addRoutine}</button>
+          <button className="primary" type="button" onClick={() => void add()} disabled={!overlay}>{t.addRoutine}</button>
         </div>
         {status && <p className="caption">{status}</p>}
       </div>

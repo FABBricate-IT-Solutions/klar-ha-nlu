@@ -2,6 +2,7 @@
 //! of our own, and requests against the assembled production router.
 #![allow(dead_code)]
 
+pub mod fake_llm;
 pub mod process;
 
 use axum::body::{to_bytes, Body};
@@ -142,6 +143,11 @@ pub struct Engine {
 
 impl Engine {
     pub fn start(dir: &Path) -> Self {
+        Self::start_with_token(dir, None)
+    }
+
+    /// Like [`Self::start`], with the write token the engine was started with.
+    pub fn start_with_token(dir: &Path, token: Option<&str>) -> Self {
         let overlay = load_overlay(dir);
         let mut graph = house();
         apply_overlay(&mut graph, &overlay);
@@ -154,7 +160,7 @@ impl Engine {
             speech_bank: overlay.speech_bank,
             match_controls: overlay.match_controls,
         };
-        Self { state: AppState::new(loaded, dir.to_path_buf(), None) }
+        Self { state: AppState::new(loaded, dir.to_path_buf(), token.map(str::to_string)) }
     }
 
     /// The state as startup builds it from a config directory with registry files and a
@@ -176,12 +182,35 @@ impl Engine {
 
     /// One request from loopback through the production router.
     pub async fn send(&self, method: Method, path: &str, content_type: &str, body: Vec<u8>) -> (StatusCode, Vec<u8>) {
-        let mut request = Request::builder().method(method).uri(path).header("content-type", content_type).body(Body::from(body)).unwrap();
-        request.extensions_mut().insert(ConnectInfo("127.0.0.1:9".parse::<SocketAddr>().unwrap()));
+        self.send_as("127.0.0.1:9", None, method, path, content_type, body).await
+    }
+
+    /// One request from `peer`, with `X-Klar-Token` when a token is given.
+    pub async fn send_as(
+        &self,
+        peer: &str,
+        token: Option<&str>,
+        method: Method,
+        path: &str,
+        content_type: &str,
+        body: Vec<u8>,
+    ) -> (StatusCode, Vec<u8>) {
+        let mut builder = Request::builder().method(method).uri(path).header("content-type", content_type);
+        if let Some(token) = token {
+            builder = builder.header("x-klar-token", token);
+        }
+        let mut request = builder.body(Body::from(body)).unwrap();
+        request.extensions_mut().insert(ConnectInfo(peer.parse::<SocketAddr>().unwrap()));
         let response = web::router(self.state.clone()).oneshot(request).await.unwrap();
         let status = response.status();
         let bytes = to_bytes(response.into_body(), 16 * 1024 * 1024).await.unwrap();
         (status, bytes.to_vec())
+    }
+
+    /// `POST` JSON, answer as JSON (`null` when the body is not JSON).
+    pub async fn post_json(&self, path: &str, body: Value) -> (StatusCode, Value) {
+        let (status, bytes) = self.send(Method::POST, path, "application/json", serde_json::to_vec(&body).unwrap()).await;
+        (status, serde_json::from_slice(&bytes).unwrap_or(Value::Null))
     }
 
     pub async fn post(&self, path: &str, body: Value) -> StatusCode {

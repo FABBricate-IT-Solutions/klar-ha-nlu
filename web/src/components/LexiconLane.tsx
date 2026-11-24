@@ -58,6 +58,7 @@ export function LexiconLane({
   onSaved,
   onHouse,
   onStatus,
+  houseLoaded = true,
 }: {
   t: Messages;
   overlay: LangOverlay | null;
@@ -68,6 +69,8 @@ export function LexiconLane({
   onSaved: (next: LangOverlay) => void;
   onHouse: (next: PolicyRule[]) => void;
   onStatus: (status: string) => void;
+  /** False while the house rules are not loaded: a seed toggle would save an empty rule list. */
+  houseLoaded?: boolean;
 }) {
   const [path, setPath] = useState("nouns.media_nouns");
   const [token, setToken] = useState("");
@@ -81,12 +84,10 @@ export function LexiconLane({
     ? fill(t.lexiconOverlayPlus, { count: String(lexiconRows.length) })
     : t.lexiconOverlay;
 
+  // Only the lexicon is sent. The phrase list belongs to the Phrases and Routines views; this
+  // lane's copy of it can be stale, so sending it would undo what was added there.
   const persist = async (language: LanguageOverlay, label: string) => {
-    const saved = await api.saveLangOverlay({
-      custom: overlay?.custom || [],
-      language,
-      label,
-    });
+    const saved = await api.saveLangOverlay({ language, label });
     onSaved(saved);
     toastSaved(t);
     onStatus(t.saveOk);
@@ -95,9 +96,9 @@ export function LexiconLane({
   const apply = async (op: "add" | "remove") => {
     const nextToken = token.trim();
     const nextPath = path.trim();
-    if (!nextToken || !nextPath) return;
+    if (!overlay || !nextToken || !nextPath) return;
     try {
-      await persist(patchSet(overlay?.language, nextPath, nextToken, op), `lexicon-${op}`);
+      await persist(patchSet(overlay.language, nextPath, nextToken, op), `lexicon-${op}`);
       setToken("");
     } catch (err) {
       toastSaveFailed(t, err);
@@ -132,6 +133,7 @@ export function LexiconLane({
         <button
           className="secondary"
           type="button"
+          disabled={!overlay}
           onClick={(ev) => {
             ev.stopPropagation();
             void apply("add");
@@ -142,6 +144,7 @@ export function LexiconLane({
         <button
           className="ghost"
           type="button"
+          disabled={!overlay}
           onClick={(ev) => {
             ev.stopPropagation();
             void apply("remove");
@@ -167,6 +170,7 @@ export function LexiconLane({
               <input
                 type="checkbox"
                 checked={enabled}
+                disabled={!houseLoaded}
                 onChange={(ev) => onHouse(toggleSeed(house, seed, ev.target.checked))}
               />
               {enabled ? t.seedOn : t.seedOff}

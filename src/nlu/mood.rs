@@ -18,7 +18,8 @@ use crate::types::{Intent, ParseDecision, RejectReason};
 
 /// Returns the draft to finish with and whether the guard replaced it.
 pub(super) fn guard(context: &ParseContext<'_>, draft: Draft) -> (Draft, bool) {
-    if context.probe {
+    // "Do it" answers the confirmation. Its sentence was judged when the question was asked.
+    if context.probe || draft.safety_confirmed {
         return (draft, false);
     }
     let Some(pending) = Pending::of(&draft) else {

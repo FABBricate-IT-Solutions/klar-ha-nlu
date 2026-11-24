@@ -115,6 +115,16 @@ impl Catalog {
         self.packs.iter().flat_map(move |pack| pick(pack).iter().copied())
     }
 
+    /// Answer phrases of every active pack. Matching is the caller's job, on whole utterances.
+    pub fn answers(&self) -> impl Iterator<Item = &'static crate::lang::Answers> + '_ {
+        self.packs.iter().map(|pack| &pack.answers)
+    }
+
+    /// Wording of the confirmation question in the language that speaks the reply.
+    pub fn ask_wording(&self) -> Option<&'static crate::lang::Answers> {
+        self.packs.first().map(|pack| &pack.answers).filter(|answers| !answers.ask.is_empty())
+    }
+
     pub fn color(&self, t: &str) -> Option<&'static str> {
         self.colors.get(t).copied().or_else(|| {
             self.morphology

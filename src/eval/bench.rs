@@ -251,8 +251,9 @@ mod tests {
         let mut session = Session::new();
         let first = nlu::parse("mach die lampe im schlafzimmer an", &home, &mut session, &[], &settings);
         assert!(matches!(first.decision, ParseDecision::Clarify { .. } | ParseDecision::Confirm { .. }), "{:?}", first.decision);
+        // "Ja" names none of the lamps asked about: the question stays open, nothing runs.
         let second = nlu::parse("ja", &home, &mut session, &[], &settings);
-        assert!(matches!(second.decision, ParseDecision::Execute), "{:?}", second.decision);
+        assert!(matches!(second.decision, ParseDecision::Clarify { .. }), "{:?}", second.decision);
 
         let home = super::super::family_home("en").expect("home");
         let settings = settings_for("en");

@@ -1,3 +1,4 @@
+use super::target::blocked_url;
 use super::types::{AnthropicThinking, ChatTemplateKwargs, LlmError, ThinkingExtras};
 use serde::{Deserialize, Serialize};
 use serde_json::json;
@@ -91,6 +92,19 @@ impl LlmEndpoint {
         let base_url = normalize_base(base_url)?;
         let provider = LlmProviderKind::from_url(&base_url);
         Ok(Self { base_url, api_key: sanitize_key(api_key)?, model: String::new(), enable_thinking: false, provider })
+    }
+
+    /// Whether `raw` names the address this endpoint is stored for: same scheme, host, port
+    /// and path. The stored key goes nowhere else.
+    pub fn same_base(&self, raw: &str) -> bool {
+        let parts = |base: &str| {
+            let url = url::Url::parse(base).ok()?;
+            Some((url.scheme().to_string(), url.host_str()?.to_ascii_lowercase(), url.port_or_known_default(), url.path().to_string()))
+        };
+        match (parts(&self.base_url), normalize_base(raw).ok().and_then(|base| parts(&base))) {
+            (Some(stored), Some(asked)) => stored == asked,
+            _ => false,
+        }
     }
 
     pub fn chat_url(&self) -> String {
@@ -233,17 +247,6 @@ fn sanitize_key(api_key: &str) -> Result<String, LlmError> {
     Ok(api_key.to_string())
 }
 
-fn blocked_llm_target(url: &url::Url) -> bool {
-    match url.host() {
-        Some(url::Host::Ipv4(ip)) => ip.is_link_local(),
-        Some(url::Host::Ipv6(ip)) => ip.is_unicast_link_local() || ip.to_ipv4_mapped().is_some_and(|v4| v4.is_link_local()),
-        Some(url::Host::Domain(name)) => {
-            matches!(name.trim_end_matches('.').to_ascii_lowercase().as_str(), "metadata.google.internal" | "metadata")
-        }
-        None => true,
-    }
-}
-
 fn normalize_base(raw: &str) -> Result<String, LlmError> {
     let trimmed = raw.trim();
     let base = if trimmed.is_empty() { DEFAULT_BASE } else { trimmed };
@@ -258,7 +261,7 @@ fn normalize_base(raw: &str) -> Result<String, LlmError> {
         return Err(LlmError::InvalidEndpoint("base_url"));
     }
     let parsed = url::Url::parse(no_slash).map_err(|_| LlmError::InvalidEndpoint("base_url"))?;
-    if !parsed.username().is_empty() || parsed.password().is_some() || blocked_llm_target(&parsed) {
+    if !parsed.username().is_empty() || parsed.password().is_some() || blocked_url(&parsed) {
         return Err(LlmError::InvalidEndpoint("base_url"));
     }
     let path = no_slash.splitn(4, '/').nth(3).unwrap_or("");

@@ -313,23 +313,27 @@ function NewsFeedsField({
 export function SettingsEngineSection({
   t,
   settings,
+  loaded,
   onSettings,
   token,
   onToken,
+  onApplyToken,
   theme,
   onTheme,
 }: {
   t: Messages;
   settings: Settings;
+  loaded: boolean;
   onSettings: (s: Settings) => void;
   token: string;
   onToken: (value: string) => void;
+  onApplyToken: () => void;
   theme: Theme;
   onTheme: (theme: Theme) => void;
 }) {
   return (
     <div className="grid min-w-0 gap-4">
-      <Card>
+      {loaded ? <Card>
         <CardHeader>
           <CardTitle>{t.missTitle}</CardTitle>
           <CardDescription>{t.missHint}</CardDescription>
@@ -393,7 +397,7 @@ export function SettingsEngineSection({
             />
           </FieldGroup>
         </CardContent>
-      </Card>
+      </Card> : null}
       <Card>
         <CardHeader>
           <CardTitle>{t.operatorChrome}</CardTitle>
@@ -419,7 +423,10 @@ export function SettingsEngineSection({
             </Field>
             <Field>
               <FieldLabel htmlFor="klar-token">{t.token}</FieldLabel>
-              <Input id="klar-token" type="password" value={token} onChange={(ev) => onToken(ev.target.value)} />
+              <div className="flex gap-2">
+                <Input id="klar-token" type="password" value={token} onChange={(ev) => onToken(ev.target.value)} />
+                <Button type="button" variant="outline" disabled={!token.trim()} onClick={onApplyToken}>{t.apply}</Button>
+              </div>
               <FieldDescription>{t.tokenHint}</FieldDescription>
             </Field>
           </FieldGroup>

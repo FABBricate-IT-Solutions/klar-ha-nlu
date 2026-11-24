@@ -91,6 +91,8 @@ export function RulesPage({
   const [seeds, setSeeds] = useState<PolicyRule[]>([]);
   const [matchControls, setMatchControls] = useState<MatchControl[]>([]);
   const [overlay, setOverlay] = useState<LangOverlay | null>(null);
+  // False until the engine's rules were read; `rules` is an empty placeholder until then.
+  const [rulesLoaded, setRulesLoaded] = useState(false);
   const [lane, setLane] = useState<PolicyLane>("match");
   const [selectedMatch, setSelectedMatch] = useState(0);
   const [selectedSeed, setSelectedSeed] = useState<string | undefined>();
@@ -107,6 +109,7 @@ export function RulesPage({
       setRules(bundle.policies);
       setBank(bundle.speech_bank);
       setMatchControls(bundle.match_controls || []);
+      setRulesLoaded(true);
     }).catch((err) => setStatus(String(err)));
     api.policiesCatalog().then((body) => {
       setCatalog(body.matches);
@@ -117,6 +120,7 @@ export function RulesPage({
   }, []);
 
   const persist = async (next: PolicyRule[], nextBank = bank, nextControls = matchControls) => {
+    if (!rulesLoaded) return;
     try {
       const saved = await api.savePolicies({ policies: next, speech_bank: nextBank, match_controls: nextControls });
       setRules(saved.policies);
@@ -227,8 +231,8 @@ export function RulesPage({
         </div>
         {view === "policies" && (
           <div className="row">
-            <button className="secondary" type="button" onClick={() => persist(rules)}>{t.save}</button>
-            <button className="primary" type="button" onClick={addRule}>{t.addRule}</button>
+            <button className="secondary" type="button" disabled={!rulesLoaded} onClick={() => persist(rules)}>{t.save}</button>
+            <button className="primary" type="button" disabled={!rulesLoaded} onClick={addRule}>{t.addRule}</button>
           </div>
         )}
       </section>
@@ -329,6 +333,7 @@ export function RulesPage({
                 onSaved={setOverlay}
                 onHouse={(next) => { void persist(next); }}
                 onStatus={setStatus}
+                houseLoaded={rulesLoaded}
               />
             </div>
             <div

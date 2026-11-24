@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+from lang_packs.answers import answers_for
 from lang_packs.calendar_lex import calendar_for
 from lang_packs.convo import with_warm_white
 from lang_packs.extras import pack_extras
@@ -164,6 +165,7 @@ def expand(core: dict) -> dict:
         "room_names": pick_room_names(rooms),
         "loc_der_rooms": [r[0] for r in rooms[:2]],
         "personality": personality,
+        "answers": answers_for(core["code"], w),
         "talk": {
             "fillers": unique(w["fillers"]),
             "action_keep": unique(on[:2] + off[:2] + opn[:1] + close[:1]),
@@ -181,7 +183,7 @@ def expand(core: dict) -> dict:
             "question_starts": talk_q,
             "question_words": talk_q,
             "correction": w.get("wrong", []),
-            "clarify_pick": w["yes"][:2],
+            "clarify_pick": [],
         },
         "nouns": {
             "light_nouns": light,

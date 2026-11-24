@@ -228,6 +228,20 @@ pub struct Household {
     pub no_weather: &'static str,
 }
 
+/// Answers to an open question, and how a confirmation is asked. Phrases are whole
+/// utterances; a list a language cannot vouch for stays empty and the question expires.
+pub struct Answers {
+    pub yes: &'static [&'static str],
+    pub no: &'static [&'static str],
+    pub cancel: &'static [&'static str],
+    /// "Should I really {actions}?" Empty when the language has no action wording.
+    pub ask: &'static str,
+    /// Action wording by key ("lock", "close", "percent"), with `{target}` and `{n}`.
+    pub actions: &'static [(&'static str, &'static str)],
+    /// "{n} devices", spoken instead of a long list of names.
+    pub many: &'static str,
+}
+
 /// Static word lists for one compiled language. Register new packs in `registry.rs`.
 pub struct LanguagePack {
     pub id: LangId,
@@ -239,6 +253,7 @@ pub struct LanguagePack {
     pub maps: Maps,
     pub chat: Chat,
     pub household: Household,
+    pub answers: Answers,
     pub speech: Speech,
     pub morphology: PackMorphology,
     pub mood: MoodWords,
