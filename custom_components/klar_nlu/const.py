@@ -1,28 +1,48 @@
 from urllib.parse import urlparse
+from uuid import uuid4
 
 from .languages import LANGUAGE_VARIANTS, SUPPORTED_LANGUAGES
 
 DOMAIN = "klar_nlu"
-FOLLOWUP_SESSION = "klar-followup"
+_SESSION_ID_CAP = 128
+# Per config entry: the conversation that spoke last, the one that acted last, and
+# the conversations that service calls address (keyed by the call's context id).
+LAST_SESSION = "last_session"
+LAST_EXECUTE_SESSION = "last_execute_session"
+SERVICE_TURNS = "service_turns"
 
 
-def engine_session_id(device_id: object = None, satellite_id: object = None) -> str:
+def _id_text(value: object) -> str:
+    return str(value or "").strip()
+
+
+def engine_session_id(device_id: object = None, satellite_id: object = None) -> str | None:
+    """One engine session per voice device. None when the turn names no device."""
     for candidate in (satellite_id, device_id):
-        text = str(candidate or "").strip()
+        text = _id_text(candidate)
         if text:
-            return f"dev:{text}"[:128]
-    return FOLLOWUP_SESSION
+            return f"dev:{text}"[:_SESSION_ID_CAP]
+    return None
 
 
 def parse_session_id(
     assist_id: object = None,
     device_id: object = None,
     satellite_id: object = None,
+    chat_id: object = None,
 ) -> str:
-    text = str(assist_id or "").strip()
-    if text:
-        return text[:128]
-    return engine_session_id(device_id, satellite_id)
+    """The engine session for one turn. Never an id that two callers share by default.
+
+    ``assist_id`` is what the caller sent, ``chat_id`` the chat session Home Assistant
+    opened for the turn. A caller that continues a conversation stays in that chat
+    session. A voice device that sent no id keeps one session per device. Everyone else
+    gets the chat session Home Assistant just created, which no other client knows.
+    """
+    supplied = _id_text(assist_id)
+    chat = _id_text(chat_id)
+    if supplied:
+        return (chat or supplied)[:_SESSION_ID_CAP]
+    return engine_session_id(device_id, satellite_id) or chat[:_SESSION_ID_CAP] or f"turn-{uuid4().hex}"
 
 
 def keeps_conversation(decision: object) -> bool:
