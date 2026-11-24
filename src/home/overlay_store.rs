@@ -8,7 +8,7 @@
 
 use super::overlay::Overlay;
 use super::overlay_read::{parse_strict, parse_tolerant, OVERLAY_VERSION};
-use super::paths::{confined_file, read_confined, sweep_temp_files, write_atomic_confined, write_checked_confined};
+use super::paths::{confined_file, read_confined, remove_confined, sweep_temp_files, write_atomic_confined, write_checked_confined};
 use std::collections::hash_map::DefaultHasher;
 use std::collections::HashMap;
 use std::convert::Infallible;
@@ -23,6 +23,8 @@ pub const OVERLAY_FILE: &str = "klar_nlu.json";
 pub const BAD_FILE: &str = "klar_nlu.json.bad";
 /// The file as the engine last wrote it.
 pub const LAST_GOOD_FILE: &str = "klar_nlu.json.last-good";
+/// The file as it was before the last restore replaced it.
+pub const BEFORE_RESTORE_FILE: &str = "klar_nlu.json.before-restore";
 
 /// What is on disk right now.
 #[derive(Debug)]
@@ -232,6 +234,42 @@ impl OverlayStore {
             let _held = locked(&self.gate.write);
             let (raw, _) = self.inspect();
             self.write(overlay, &raw)
+        })
+    }
+
+    /// Like [`Self::replace`], for a restore: the file as it was is kept as
+    /// `klar_nlu.json.before-restore` first. When that copy cannot be written, nothing changes.
+    pub fn restore(&self, overlay: &Overlay) -> io::Result<()> {
+        off_the_reactor(|| {
+            let _held = locked(&self.gate.write);
+            let (raw, _) = self.inspect();
+            // Refuse what cannot be stored before the copy of the old file is replaced.
+            storable_bytes(overlay)?;
+            if raw.is_empty() {
+                // No file to keep. A copy from an earlier restore would be undone to instead.
+                match remove_confined(&self.dir, BEFORE_RESTORE_FILE) {
+                    Err(err) if err.kind() != ErrorKind::NotFound => return Err(err),
+                    Ok(()) | Err(_) => {}
+                }
+            } else {
+                write_atomic_confined(&self.dir, BEFORE_RESTORE_FILE, &raw)?;
+            }
+            self.write(overlay, &raw)
+        })
+    }
+
+    /// Put the file back as it was before the last [`Self::restore`], byte for byte.
+    pub fn undo_restore(&self) -> io::Result<()> {
+        off_the_reactor(|| {
+            let _held = locked(&self.gate.write);
+            match read_confined(&self.dir, BEFORE_RESTORE_FILE) {
+                Ok(before) => write_atomic_confined(&self.dir, OVERLAY_FILE, &before),
+                Err(err) if err.kind() == ErrorKind::NotFound => match remove_confined(&self.dir, OVERLAY_FILE) {
+                    Err(err) if err.kind() != ErrorKind::NotFound => Err(err),
+                    Ok(()) | Err(_) => Ok(()),
+                },
+                Err(err) => Err(err),
+            }
         })
     }
 

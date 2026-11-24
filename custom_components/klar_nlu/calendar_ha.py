@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 from collections.abc import Callable
-from datetime import datetime, timedelta
+from datetime import date, datetime, timedelta
 from typing import Any
 
 from homeassistant.core import HomeAssistant
@@ -24,6 +24,10 @@ except ImportError:
         async def try_engine_speech(*_args: Any, **_kwargs: Any) -> str | None:
             return None
 
+# More candidates than this are not read out; Klar only asks which one is meant.
+MAX_NAMED = 3
+_LISTING = {"name": "KlarGetCalendarEvents", "slots": []}
+
 CALENDAR_INTENTS = {
     "KlarGetCalendarEvents",
     "KlarCreateCalendarEvent",
@@ -40,21 +44,58 @@ def _slot(item: dict, name: str) -> str:
     return ""
 
 
-def _when_bounds(item: dict, hass: HomeAssistant) -> tuple[datetime, datetime, bool]:
+def _when_bounds(item: dict, hass: HomeAssistant) -> tuple[datetime, datetime, bool] | None:
+    """Start, end and all-day flag from the engine's slots.
+
+    None when a slot holds something this code does not understand. The caller then
+    asks for the date instead of silently writing the event for today.
+    """
     now = datetime.now(calendar_entity.timezone(hass)).replace(second=0, microsecond=0)
     day = _slot(item, "day")
     hour_raw = _slot(item, "hour")
     in_days = _slot(item, "in_days")
+    if day not in ("", "today", "tomorrow") or (in_days and not in_days.isdigit()):
+        return None
+    if hour_raw and not (hour_raw.isdigit() and int(hour_raw) <= 23):
+        return None
     start = now.replace(hour=0, minute=0)
     if day == "tomorrow":
         start = start + timedelta(days=1)
-    elif in_days.isdigit():
+    elif in_days:
         start = start + timedelta(days=int(in_days))
-    all_day = not hour_raw
-    if hour_raw.isdigit():
-        start = start.replace(hour=max(0, min(23, int(hour_raw))), minute=0)
+    if hour_raw:
+        start = start.replace(hour=int(hour_raw), minute=0)
         return start, start + timedelta(hours=1), False
-    return start, start + timedelta(days=1), all_day
+    return start, start + timedelta(days=1), True
+
+
+def _already_over(hass: HomeAssistant, start: datetime, all_day: bool) -> bool:
+    """A timed event that would start before now. Nobody adds an event to the past by voice."""
+    return not all_day and start < datetime.now(calendar_entity.timezone(hass))
+
+
+def _moved_bounds(
+    hass: HomeAssistant, hit: dict[str, str], start: datetime, end: datetime, all_day: bool
+) -> tuple[datetime, datetime, bool]:
+    """The new times of a moved event: what the user did not change stays as it was."""
+    old_start = calendar_entity.parse_stamp(hit.get("start", ""))
+    old_end = calendar_entity.parse_stamp(hit.get("end", ""))
+    if not isinstance(old_start, datetime):
+        if all_day and isinstance(old_end, date) and isinstance(old_start, date) and old_end > old_start:
+            return start, start + (old_end - old_start), True
+        return start, end, all_day
+    if old_start.tzinfo is None:
+        old_start = old_start.replace(tzinfo=calendar_entity.timezone(hass))
+    if all_day:
+        # Only a day was named: the event keeps its time of day.
+        local = old_start.astimezone(calendar_entity.timezone(hass))
+        start = start.replace(hour=local.hour, minute=local.minute)
+    if isinstance(old_end, datetime):
+        if old_end.tzinfo is None:
+            old_end = old_end.replace(tzinfo=calendar_entity.timezone(hass))
+        if old_end > old_start:
+            return start, start + (old_end - old_start), False
+    return start, start + timedelta(hours=1), False
 
 
 def _calendars(hass: HomeAssistant, item: dict, exposed: Callable[[str], bool]) -> list[str]:
@@ -66,7 +107,8 @@ def _calendars(hass: HomeAssistant, item: dict, exposed: Callable[[str], bool]) 
 
 
 def _pick(conversation_id: str | None, summary: str, records: list[dict[str, str]]) -> list[dict[str, str]]:
-    pooled = calendar_session.last_events(conversation_id) + records
+    # What the calendar holds now comes first, so a remembered copy never wins over it.
+    pooled = records + calendar_session.last_events(conversation_id)
     seen: set[tuple[str, str]] = set()
     unique: list[dict[str, str]] = []
     for item in pooled:
@@ -100,6 +142,23 @@ async def _speak(
     )
 
 
+async def _speak_naming(
+    hass: HomeAssistant, pack: str, item: dict, events: list[dict[str, str]], extra_slots: list[dict[str, str]]
+) -> str | None:
+    """Say the events by name, then the sentence for ``item``.
+
+    The engine's sentences for deleting and for "which event?" do not carry a title, so
+    the events are read out the way a calendar listing reads them.
+    """
+    names = None
+    if 0 < len(events) <= MAX_NAMED:
+        names = await _speak(hass, pack, _LISTING, calendar_events=[_event_snapshot(row, pack, hass) for row in events])
+    if names and names[-1] not in ".!?。":
+        names += "."  # the engine joins listed events with ". " and leaves the end open
+    said = await _speak(hass, pack, item, extra_slots=extra_slots)
+    return " ".join(part for part in (names, said) if part) or None
+
+
 async def handle_calendar_intent(
     hass: HomeAssistant,
     item: dict,
@@ -131,10 +190,10 @@ async def _list(
     targets = _calendars(hass, item, exposed)
     if not targets:
         return True, await _speak(hass, pack, item, extra_slots=[{"name": "cue", "value": "none"}]), None
-    day = _slot(item, "day")
     start = end = None
-    if day or _slot(item, "in_days"):
-        start, end, _ = _when_bounds(item, hass)
+    bounds = _when_bounds(item, hass) if _slot(item, "day") or _slot(item, "in_days") else None
+    if bounds is not None:
+        start, end, _ = bounds
     events, records = await calendar_entity.collect(hass, targets, start, end)
     calendar_session.remember(conversation_id, records)
     snapshot = [_event_snapshot(event, pack, hass) for event in events]
@@ -154,18 +213,21 @@ async def _delete(
     if not targets:
         return True, await _speak(hass, pack, item, extra_slots=[{"name": "cue", "value": "none"}]), None
     _, records = await calendar_entity.collect(hass, targets)
-    hits = _pick(conversation_id, _slot(item, "summary"), records)
-    if len(hits) != 1:
-        return True, await _speak(hass, pack, item, extra_slots=[{"name": "need", "value": "which"}]), None
+    summary = _slot(item, "summary")
+    hits = _pick(conversation_id, summary, records)
+    if not summary or len(hits) != 1:
+        # Without a title Klar never guesses: it names what is there and asks.
+        return True, await _speak_naming(hass, pack, item, hits, [{"name": "need", "value": "which"}]), None
     hit = hits[0]
     if not hit.get("uid"):
         return True, await _speak(hass, pack, item, extra_slots=[{"name": "cue", "value": "no_uid"}]), None
-    if not await calendar_entity.delete_event(hass, hit):
+    writable = calendar_entity.supports(hass, hit["entity_id"], calendar_entity.DELETE_EVENT)
+    if not writable or not await calendar_entity.delete_event(hass, hit):
         return True, await _speak(hass, pack, item, extra_slots=[{"name": "cue", "value": "readonly"}]), None
     leftover = [row for row in calendar_session.last_events(conversation_id) if row.get("uid") != hit.get("uid")]
     calendar_session.remember(conversation_id, leftover)
-    return True, await _speak(
-        hass, pack, item, extra_slots=[{"name": "summary", "value": hit.get("summary", "")}]
+    return True, await _speak_naming(
+        hass, pack, item, [hit], [{"name": "summary", "value": hit.get("summary", "")}]
     ), None
 
 
@@ -189,8 +251,16 @@ async def _move(
     if len(hits) != 1:
         return True, await _speak(hass, pack, item, extra_slots=[{"name": "need", "value": "which"}]), None
     hit = hits[0]
-    start, end, all_day = _when_bounds(item, hass)
+    if not hit.get("uid"):
+        return True, await _speak(hass, pack, item, extra_slots=[{"name": "cue", "value": "no_uid"}]), None
+    bounds = _when_bounds(item, hass)
+    if bounds is None:
+        return True, await _speak(hass, pack, item, extra_slots=[{"name": "need", "value": "when"}]), None
+    start, end, all_day = _moved_bounds(hass, hit, *bounds)
+    if _already_over(hass, start, all_day):
+        return True, await _speak(hass, pack, item, extra_slots=[{"name": "need", "value": "when"}]), None
     data = _event_data(hit.get("summary") or _slot(item, "summary"), start, end, all_day)
+    data.update({key: hit[key] for key in ("description", "location") if hit.get(key)})
     if not await calendar_entity.move_event(hass, hit, data, start, end, all_day):
         return True, await _speak(hass, pack, item, extra_slots=[{"name": "cue", "value": "readonly"}]), None
     when = calendar_say.when_from_bounds(start, all_day, pack, hass)
@@ -220,11 +290,16 @@ async def _create(
     targets = _calendars(hass, item, exposed)
     if not targets:
         return True, await _speak(hass, pack, item, extra_slots=[{"name": "cue", "value": "none"}]), None
-    start, end, all_day = _when_bounds(item, hass)
+    bounds = _when_bounds(item, hass)
+    if bounds is None or _already_over(hass, bounds[0], bounds[2]):
+        return True, await _speak(hass, pack, item, extra_slots=[{"name": "need", "value": "when"}]), None
+    start, end, all_day = bounds
     data = _event_data(summary, start, end, all_day)
-    if not await calendar_entity.create_event(hass, targets[0], data):
+    # The first calendar may be a read-only one (holidays, birthdays): write where writing works.
+    writable = [target for target in targets if calendar_entity.supports(hass, target, calendar_entity.CREATE_EVENT)]
+    if not writable or not await calendar_entity.create_event(hass, writable[0], data):
         return True, await _speak(hass, pack, item, extra_slots=[{"name": "cue", "value": "readonly"}]), None
-    _, records = await calendar_entity.collect(hass, targets[:1])
+    _, records = await calendar_entity.collect(hass, writable[:1])
     calendar_session.remember(conversation_id, records)
     when = calendar_say.when_from_bounds(start, all_day, pack, hass)
     return True, await _speak(
