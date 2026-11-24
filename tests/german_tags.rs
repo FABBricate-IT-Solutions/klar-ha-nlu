@@ -254,9 +254,10 @@ fn news_briefing_then_followup_not_device_replay() {
     assert!(!session.briefing);
     assert!(stop.speech.contains("klar") || stop.speech.contains("Klar"), "{}", stop.speech);
 
-    let replay = parse("ja", &home, &mut session, &[], &settings);
-    assert!(!replay.chat, "{:?}", replay.intents);
-    assert!(replay.intents.iter().any(|i| i.name.starts_with("Hass")), "{:?}", replay.intents);
+    // No question is open any more: a bare "ja" answers nothing and switches nothing.
+    let bare = parse("ja", &home, &mut session, &[], &settings);
+    assert!(!bare.chat, "{}", bare.speech);
+    assert!(bare.intents.is_empty(), "{:?}", bare.intents);
 }
 
 #[test]

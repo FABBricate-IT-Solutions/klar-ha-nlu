@@ -221,6 +221,21 @@ pub fn first_matching_rule<'a>(rules: &'a [PolicyRule], plan: &IntentPlan) -> Op
     })
 }
 
+/// The first enabled rule for each step, in plan order. A rule speaks only for the steps
+/// it matched: an allow on one device says nothing about the rest of a compound plan.
+pub fn step_rules<'a>(rules: &'a [PolicyRule], plan: &IntentPlan) -> Vec<Option<(&'a PolicyRule, PolicyHit)>> {
+    plan.steps
+        .iter()
+        .map(|step| {
+            rules
+                .iter()
+                .filter(|rule| rule.enabled)
+                .find(|rule| matches_when(&rule.when, &step.intent))
+                .map(|rule| (rule, PolicyHit::from_effect(rule.effect)))
+        })
+        .collect()
+}
+
 pub fn matches_when(when: &PolicyMatch, intent: &Intent) -> bool {
     if when.phrase.is_some() {
         return false;
@@ -246,13 +261,15 @@ fn domain_of(entity_id: &str) -> Option<&str> {
 }
 
 pub fn allow_permitted(plan: &IntentPlan) -> bool {
-    plan.steps.iter().all(|step| {
-        let intent = &step.intent;
-        intent.slot("entity_id").is_some()
-            && intent.slot("area").is_none()
-            && intent.slot("floor").is_none()
-            && !area_wide_lock_or_cover(intent)
-    })
+    plan.steps.iter().all(|step| allow_permitted_step(&step.intent))
+}
+
+/// An allow rule may lift the prompt only for one named device, never for a room or floor.
+pub fn allow_permitted_step(intent: &Intent) -> bool {
+    intent.slot("entity_id").is_some()
+        && intent.slot("area").is_none()
+        && intent.slot("floor").is_none()
+        && !area_wide_lock_or_cover(intent)
 }
 
 fn area_wide_lock_or_cover(intent: &Intent) -> bool {

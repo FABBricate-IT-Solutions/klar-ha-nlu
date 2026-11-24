@@ -16,9 +16,9 @@ pub use outcome::{
     PARSE_SCHEMA_VERSION,
 };
 pub use policy::{
-    allow_permitted, fill_speech, first_matching_rule, matches_when, pick_speech, sanitize_rules, sanitize_speech_bank, script_entity_id,
-    MatchCatalogRow, MatchControl, PolicyEffect, PolicyHit, PolicyMatch, PolicyRule, SpeechBank, SpeechBankEntry, SpeechVariant,
-    MAX_POLICY_RULES, MAX_SPEECH_VARIANTS,
+    allow_permitted, allow_permitted_step, fill_speech, first_matching_rule, matches_when, pick_speech, sanitize_rules,
+    sanitize_speech_bank, script_entity_id, step_rules, MatchCatalogRow, MatchControl, PolicyEffect, PolicyHit, PolicyMatch, PolicyRule,
+    SpeechBank, SpeechBankEntry, SpeechVariant, MAX_POLICY_RULES, MAX_SPEECH_VARIANTS,
 };
 pub use settings::{checked_news_feeds, Mode, NewsFeed, Personality, RefineBand, Settings, UnitSystem, VoiceTraits};
 pub use speech_snapshot::{
