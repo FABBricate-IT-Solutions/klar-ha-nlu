@@ -41,30 +41,56 @@ struct LocaleRooms {
     floors: BTreeMap<String, Vec<String>>,
 }
 
+/// Klar's own apartment suite for one locale: `wohnung_en` for English, `wohnung_mittel`
+/// for German, and the `wohnung_mittel` overlay for every generated locale.
+pub(crate) fn run_parity_own(lang: &str) -> RunStats {
+    let stats = match lang {
+        "en" => run_groups("wohnung_en", WOHNUNG, suite_home("wohnung_en")),
+        "de" => run_groups("wohnung_mittel", WOHNUNG, suite_home("wohnung_mittel")),
+        _ => run_wohnung_overlay(lang, WOHNUNG),
+    };
+    print_stats(&format!("Klar NLU · parity own {lang}"), &stats);
+    stats
+}
+
+/// Conversation cases of the own apartment suite. Generated locales are not at zero yet.
+pub(crate) fn run_parity_conversation(lang: &str) -> RunStats {
+    let stats = conversation(lang);
+    print_stats(&format!("Klar NLU · parity conversation {lang}"), &stats);
+    stats
+}
+
+fn conversation(lang: &str) -> RunStats {
+    match lang {
+        "en" => run_groups_lang("wohnung_en", &["conversation"], suite_home("wohnung_en"), Some("en-only"), None),
+        "de" => run_groups("wohnung_mittel", &["conversation"], suite_home("wohnung_mittel")),
+        _ => run_wohnung_overlay(lang, &["conversation"]),
+    }
+}
+
+fn run_wohnung_overlay(lang: &str, groups: &[&str]) -> RunStats {
+    let rooms = load_rooms(lang);
+    let overlay = overlay_for(lang, "wohnung_mittel");
+    run_groups_lang("wohnung_mittel", groups, with_aliases(suite_home("wohnung_mittel"), &rooms), Some(lang), Some(&overlay))
+}
+
 pub(crate) fn run_parity(lang: &str) -> RunStats {
     let rooms = load_rooms(lang);
     let mut stats = RunStats { ok: 0, fail: 0, fails: Vec::new() };
     if lang == "en" {
         stats.absorb(run_groups("wohnung_en", WOHNUNG, suite_home("wohnung_en")));
-        stats.absorb(run_groups_lang("wohnung_en", &["conversation"], suite_home("wohnung_en"), Some("en-only"), None));
+        stats.absorb(conversation(lang));
         stats.absorb(run_groups("family_home_en", FAMILY, suite_home("family_home_en")));
         stats.absorb(run_groups("family_home_en", &["m0_exact"], suite_home("family_home_en")));
         stats.absorb(run_groups("family_home_en", &["m2_floors"], suite_home("family_home_en")));
     } else if lang == "de" {
         stats.absorb(run_groups("wohnung_mittel", WOHNUNG, suite_home("wohnung_mittel")));
-        stats.absorb(run_groups("wohnung_mittel", &["conversation"], suite_home("wohnung_mittel")));
+        stats.absorb(conversation(lang));
         stats.absorb(run_groups("familienhaus_de", FAMILY, suite_home("familienhaus_de")));
         stats.absorb(run_groups("familienhaus_de", &["m0_exact"], suite_home("familienhaus_de")));
         stats.absorb(run_groups("familienhaus_de", &["m2_floors"], suite_home("familienhaus_de")));
     } else {
-        let wohnung = overlay_for(lang, "wohnung_mittel");
-        stats.absorb(run_groups_lang(
-            "wohnung_mittel",
-            WOHNUNG,
-            with_aliases(suite_home("wohnung_mittel"), &rooms),
-            Some(lang),
-            Some(&wohnung),
-        ));
+        stats.absorb(run_wohnung_overlay(lang, WOHNUNG));
         let family_home = with_aliases(suite_home("familienhaus_de"), &rooms);
         let family = overlay_for(lang, "familienhaus_de");
         stats.absorb(run_groups_lang("familienhaus_de", FAMILY, family_home.clone(), Some(lang), Some(&family)));
@@ -72,15 +98,6 @@ pub(crate) fn run_parity(lang: &str) -> RunStats {
         stats.absorb(run_groups_lang("familienhaus_de", &["m0_exact"], family_home.clone(), Some(lang), Some(&exact)));
         let floors = overlay_for(lang, "m2_floors");
         stats.absorb(run_groups_lang("familienhaus_de", &["m2_floors"], family_home, Some(lang), Some(&floors)));
-        if std::env::var_os("KLAR_PARITY_REPORT").is_some() {
-            stats.absorb(run_groups_lang(
-                "wohnung_mittel",
-                &["conversation"],
-                with_aliases(suite_home("wohnung_mittel"), &rooms),
-                Some(lang),
-                Some(&wohnung),
-            ));
-        }
     }
     print_stats(&format!("Klar NLU · parity {lang}"), &stats);
     stats

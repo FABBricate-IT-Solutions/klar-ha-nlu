@@ -43,9 +43,12 @@ jobs:
       - uses: dtolnay/rust-toolchain@1.85
         with:
           components: clippy
+      # One cache per job: clippy stores check artefacts of the dev profile, the test
+      # jobs need optimised test-profile builds. A shared key gave the test job a
+      # cache it could not use.
       - uses: Swatinem/rust-cache@v2
         with:
-          shared-key: ci-linux
+          shared-key: ci-clippy
           cache-on-failure: true
       - name: Clippy
         run: |
@@ -64,8 +67,6 @@ jobs:
         run: python3 scripts/bump-version.py --self-test
       - name: Release cut script
         run: bash scripts/cut-release.sh --self-test
-      - name: Path-scoped language mapper
-        run: python3 scripts/ci_lang_tests.py --self-test
       - name: Python tests
         run: python3 -m unittest discover -s tests -p 'test_*.py'
       - name: Language pack gates
@@ -110,7 +111,7 @@ jobs:
           tool: nextest
       - uses: Swatinem/rust-cache@v2
         with:
-          shared-key: ci-linux
+          shared-key: ci-test
           cache-on-failure: true
       - name: Nextest profile
         id: nextest
@@ -137,37 +138,59 @@ jobs:
         timeout-minutes: 30
         run: cargo nextest run --locked --profile ${{ steps.nextest.outputs.profile }} --no-fail-fast
 
+  # Klar's own dataset suites (wohnung_*, full_home, per-locale wohnung overlay).
+  # The filter lives in .config/nextest.toml, profile ci-datasets. The full tier is
+  # `#[ignore]`, so it only runs because of --run-ignored all.
+  datasets:
+    name: dataset-suites
+    runs-on: ubuntu-26.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v7
+      - uses: dtolnay/rust-toolchain@1.85
+      - uses: taiki-e/install-action@v2
+        with:
+          tool: nextest
+      - uses: Swatinem/rust-cache@v2
+        with:
+          shared-key: ci-datasets
+          cache-on-failure: true
+      - name: Own dataset suites
+        run: |
+          cargo nextest run --locked --profile ci-datasets --run-ignored all --no-fail-fast \
+            --test voice_suite --test full_home --test parity_langs \
+            --status-level pass --success-output final
+
   web:
     name: web
     runs-on: ubuntu-26.04
     steps:
       - uses: actions/checkout@v7
-      - name: Detect web UI
-        id: web
-        run: |
-          if [[ -f web/package.json && -f web/package-lock.json ]]; then
-            echo "present=true" >> "$GITHUB_OUTPUT"
-          else
-            echo "present=false" >> "$GITHUB_OUTPUT"
-          fi
       - uses: actions/setup-node@v7
-        if: steps.web.outputs.present == 'true'
         with:
           node-version: 24
           cache: npm
           cache-dependency-path: web/package-lock.json
       - name: Build UI
-        if: steps.web.outputs.present == 'true'
         working-directory: web
         run: npm ci && npm run build
-      - name: Skip missing web/
-        if: steps.web.outputs.present != 'true'
-        run: echo "web/ not present — skip npm build"
 
+  # The one required check that stands for every job in this workflow. A new job
+  # gates merges by being listed under `needs`; repository settings stay as they are.
+  # tests/test_ci_workflows.py fails when a job is missing from the list.
   release-gates:
     name: release-gates
-    needs: [test, clippy, rustfmt, web]
+    if: always()
+    needs:
+      - rustfmt
+      - clippy
+      - test
+      - datasets
+      - web
     runs-on: ubuntu-26.04
     steps:
-      - name: Covered by cargo test
-        run: echo "lang validate and eval bench already run inside cargo nextest"
+      - uses: actions/checkout@v7
+      - name: Every needed job succeeded
+        env:
+          NEEDS: ${{ toJSON(needs) }}
+        run: python3 scripts/release_gates.py

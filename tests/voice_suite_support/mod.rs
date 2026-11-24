@@ -1,3 +1,4 @@
+pub(crate) mod bounds;
 mod expect;
 mod legacy;
 pub(crate) mod parity;
