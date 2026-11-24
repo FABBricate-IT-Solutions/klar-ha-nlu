@@ -7,6 +7,8 @@ use uuid::Uuid;
 
 const MAX_SESSIONS: usize = 256;
 const SESSION_TTL: Duration = Duration::from_secs(2 * 60 * 60);
+/// An open question waits this long for its answer. After that a "yes" answers nothing.
+pub const PENDING_TTL: Duration = Duration::from_secs(60);
 const RECENT_FOLLOW_TTL: Duration = Duration::from_secs(15 * 60);
 #[cfg(test)]
 const FOLLOWUP_ID: &str = "klar-followup";
@@ -36,6 +38,8 @@ pub struct LastHeard {
 pub struct ClarifyState {
     pub options: Vec<String>,
     pub template: Intent,
+    /// The question as it was asked, so it can be asked again word for word.
+    pub prompt: String,
 }
 
 #[derive(Debug, Clone)]
@@ -55,7 +59,10 @@ pub enum PendingInteraction {
 pub struct Session {
     pub id: String,
     pub last: Vec<LastTurn>,
-    pub pending: Option<PendingInteraction>,
+    pending: Option<PendingInteraction>,
+    pending_since: Option<Instant>,
+    /// This copy took the open question out of the store; only it may answer or drop it.
+    owns_pending: bool,
     pub wrong_log: Vec<String>,
     pub briefing: bool,
     pub news_topic: Option<String>,
@@ -79,6 +86,8 @@ impl Session {
             id: Uuid::new_v4().to_string(),
             last: Vec::new(),
             pending: None,
+            pending_since: None,
+            owns_pending: false,
             wrong_log: Vec::new(),
             briefing: false,
             news_topic: None,
@@ -146,26 +155,56 @@ impl Session {
         self.last.truncate(LAST_KEEP);
     }
 
+    /// The open question, if one was asked within `PENDING_TTL`.
+    pub fn pending(&self) -> Option<&PendingInteraction> {
+        let asked = self.pending_since?;
+        if Instant::now().duration_since(asked) >= PENDING_TTL {
+            return None;
+        }
+        self.pending.as_ref()
+    }
+
     pub fn pending_clarify(&self) -> Option<&ClarifyState> {
-        match self.pending.as_ref() {
+        match self.pending() {
             Some(PendingInteraction::Clarify(state)) => Some(state),
             Some(PendingInteraction::Confirm(_)) | None => None,
         }
     }
 
     pub fn pending_confirm(&self) -> Option<&ConfirmState> {
-        match self.pending.as_ref() {
+        match self.pending() {
             Some(PendingInteraction::Confirm(state)) => Some(state),
             Some(PendingInteraction::Clarify(_)) | None => None,
         }
     }
 
-    pub fn set_clarify(&mut self, mut options: Vec<String>, template: Intent) {
+    /// How a complete new command sees the session while a question is open: nothing was
+    /// asked, and "it" or a bare "50" have no earlier device to fall back on.
+    pub fn as_new_command(&self) -> Self {
+        let mut copy = self.clone();
+        copy.pending = None;
+        copy.pending_since = None;
+        copy.last.clear();
+        copy
+    }
+
+    /// Moves the open question into the past, as if it had been asked `by` earlier.
+    pub fn backdate_pending(&mut self, by: Duration) {
+        self.pending_since = self.pending_since.and_then(|asked| asked.checked_sub(by));
+    }
+
+    pub fn set_clarify(&mut self, options: Vec<String>, template: Intent) {
+        self.set_clarify_prompt(options, template, String::new());
+    }
+
+    pub fn set_clarify_prompt(&mut self, mut options: Vec<String>, template: Intent, mut prompt: String) {
         options.truncate(MAX_CLARIFY_OPTIONS);
         for option in &mut options {
             truncate_chars(option, 128);
         }
-        self.pending = Some(PendingInteraction::Clarify(ClarifyState { options, template }));
+        truncate_chars(&mut prompt, MAX_DETAIL_CHARS);
+        self.pending = Some(PendingInteraction::Clarify(ClarifyState { options, template, prompt }));
+        self.pending_since = Some(Instant::now());
     }
 
     pub fn set_confirm(&mut self, candidate_id: String, mut plan: IntentPlan, mut prompt: String) -> bool {
@@ -183,11 +222,21 @@ impl Session {
         }
         truncate_chars(&mut prompt, MAX_DETAIL_CHARS);
         self.pending = Some(PendingInteraction::Confirm(ConfirmState { candidate_id, plan, prompt }));
+        self.pending_since = Some(Instant::now());
         true
     }
 
     pub fn clear_pending(&mut self) {
         self.pending = None;
+        self.pending_since = None;
+    }
+
+    /// Hands the open question to the caller and leaves none behind.
+    fn claim_pending(&mut self) -> Self {
+        let mut taken = self.clone();
+        taken.owns_pending = self.pending.take().is_some();
+        self.pending_since = None;
+        taken
     }
 
     pub fn mark_wrong(&mut self) {
@@ -207,13 +256,13 @@ pub struct Sessions {
 impl Sessions {
     pub fn get_or_create(&mut self, id: Option<&str>) -> &mut Session {
         self.sweep_ttl();
-        match id {
-            Some(existing) if existing.len() <= 128 && self.inner.contains_key(existing) => {
+        match id.filter(|id| valid_id(id)) {
+            Some(existing) if self.inner.contains_key(existing) => {
                 let session = self.inner.get_mut(existing).expect("checked");
                 session.last_used = Instant::now();
                 session
             }
-            Some(existing) if existing.len() <= 128 => {
+            Some(existing) => {
                 self.make_room();
                 let mut s = Session::new();
                 s.id = existing.to_string();
@@ -230,8 +279,10 @@ impl Sessions {
         }
     }
 
+    /// A working copy for one parse. An open question travels with the first copy only:
+    /// two answers that arrive together cannot both confirm the same plan.
     pub fn take(&mut self, id: Option<&str>) -> Session {
-        let mut session = self.get_or_create(id).clone();
+        let mut session = self.get_or_create(id).claim_pending();
         self.seed_followup(&mut session);
         session
     }
@@ -262,7 +313,7 @@ impl Sessions {
     }
 
     pub fn take_with_area(&mut self, id: Option<&str>, area: &str) -> Session {
-        let mut session = self.get_or_create(id).clone();
+        let mut session = self.get_or_create(id).claim_pending();
         session.preferred_area = Some(area.to_string());
         self.seed_followup(&mut session);
         session
@@ -271,9 +322,17 @@ impl Sessions {
     pub fn put(&mut self, mut session: Session) {
         self.sweep_ttl();
         session.last_used = Instant::now();
-        if session.id.chars().count() > 128 || session.id.chars().any(char::is_control) {
+        if !valid_id(&session.id) {
             session.id = Uuid::new_v4().to_string();
         }
+        // A copy that did not hold the question must not erase one asked in the meantime.
+        if !session.owns_pending && session.pending.is_none() {
+            if let Some(stored) = self.inner.get_mut(&session.id) {
+                session.pending = stored.pending.take();
+                session.pending_since = stored.pending_since;
+            }
+        }
+        session.owns_pending = false;
         if !session.last.is_empty() {
             self.recent_id = Some(session.id.clone());
         }
@@ -294,8 +353,9 @@ impl Sessions {
     }
 
     fn make_room(&mut self) {
+        // Sessions that wait for an answer go last: new ids cannot push an open confirmation out.
         while self.inner.len() >= MAX_SESSIONS {
-            let oldest = self.inner.iter().min_by_key(|(_, s)| s.last_used).map(|(id, _)| id.clone());
+            let oldest = self.inner.iter().min_by_key(|(_, s)| (s.pending().is_some(), s.last_used)).map(|(id, _)| id.clone());
             if let Some(id) = oldest {
                 self.inner.remove(&id);
             } else {
@@ -303,6 +363,11 @@ impl Sessions {
             }
         }
     }
+}
+
+/// A conversation id the store accepts as a key: not empty, at most 128 bytes, no control characters.
+pub fn valid_id(id: &str) -> bool {
+    !id.trim().is_empty() && id.len() <= 128 && !id.chars().any(char::is_control)
 }
 
 fn same_satellite_hint(session: &Session, recent: &Session) -> bool {
@@ -336,138 +401,5 @@ fn truncate_chars(value: &mut String, maximum: usize) {
 }
 
 #[cfg(test)]
-mod tests {
-    use super::*;
-
-    #[test]
-    fn rejects_oversized_conversation_id() {
-        let mut sessions = Sessions::default();
-        let huge = "x".repeat(200);
-        let session = sessions.get_or_create(Some(&huge));
-        assert_ne!(session.id, huge);
-        assert!(session.id.len() <= 128);
-    }
-
-    #[test]
-    fn reuses_same_id() {
-        let mut sessions = Sessions::default();
-        sessions.get_or_create(Some("assist-1")).remember_entity("light.a");
-        assert_eq!(sessions.get_or_create(Some("assist-1")).last_entities().collect::<Vec<_>>(), ["light.a"]);
-    }
-
-    #[test]
-    fn same_conversation_followup_keeps_last() {
-        let mut sessions = Sessions::default();
-        let mut first = sessions.take(Some("assist-1"));
-        first.remember_entity("light.wohnzimmer");
-        sessions.put(first);
-        let follow = sessions.take(Some("assist-1"));
-        assert_eq!(follow.last_entities().collect::<Vec<_>>(), ["light.wohnzimmer"]);
-    }
-
-    #[test]
-    fn new_conversation_does_not_inherit_without_satellite_hint() {
-        let mut sessions = Sessions::default();
-        let mut first = sessions.take(Some("assist-music"));
-        first.remember_entity("media_player.kuchenbereich_2");
-        first.remember_entity("light.wohnzimmer");
-        sessions.put(first);
-        let follow = sessions.take(Some("assist-calendar"));
-        assert_eq!(follow.id, "assist-calendar");
-        assert!(follow.last_entities().next().is_none());
-    }
-
-    #[test]
-    fn same_satellite_inherits_light_not_media() {
-        let mut sessions = Sessions::default();
-        let mut first = sessions.take_with_area(Some("assist-music"), "kueche");
-        first.remember_entity("media_player.kuchenbereich_2");
-        first.remember_entity("light.wohnzimmer");
-        sessions.put(first);
-        let follow = sessions.take_with_area(Some("assist-calendar"), "kueche");
-        assert_eq!(follow.last_entities().collect::<Vec<_>>(), ["light.wohnzimmer"]);
-    }
-
-    #[test]
-    fn different_satellite_does_not_inherit() {
-        let mut sessions = Sessions::default();
-        let mut first = sessions.take_with_area(Some("wake-1"), "kueche");
-        first.remember_entity("light.wohnzimmer");
-        sessions.put(first);
-        let follow = sessions.take_with_area(Some(FOLLOWUP_ID), "wohnzimmer");
-        assert!(follow.last_entities().next().is_none());
-    }
-
-    #[test]
-    fn followup_fallback_needs_shared_satellite() {
-        let mut sessions = Sessions::default();
-        let mut first = sessions.take(Some("wake-1"));
-        first.remember_entity("light.wohnzimmer");
-        sessions.put(first);
-        let follow = sessions.take(Some(FOLLOWUP_ID));
-        assert_eq!(follow.id, FOLLOWUP_ID);
-        assert!(follow.last_entities().next().is_none());
-    }
-
-    #[test]
-    fn existing_last_is_not_replaced_by_recent() {
-        let mut sessions = Sessions::default();
-        let mut first = sessions.take(Some("wake-1"));
-        first.remember_entity("light.wohnzimmer");
-        sessions.put(first);
-        let mut second = sessions.take(Some("wake-2"));
-        second.last.clear();
-        second.remember_entity("light.kueche");
-        sessions.put(second);
-        let follow = sessions.take(Some("wake-2"));
-        assert_eq!(follow.last_entities().collect::<Vec<_>>(), ["light.kueche"]);
-    }
-
-    #[test]
-    fn evicts_when_over_cap() {
-        let mut sessions = Sessions::default();
-        for i in 0..300 {
-            sessions.get_or_create(Some(&format!("id-{i}")));
-        }
-        assert!(sessions.len() <= MAX_SESSIONS, "{}", sessions.len());
-    }
-
-    #[test]
-    fn caps_wrong_log() {
-        let mut session = Session::new();
-        for _ in 0..100 {
-            session.mark_wrong();
-        }
-        assert_eq!(session.wrong_log.len(), WRONG_LOG_KEEP);
-    }
-
-    #[test]
-    fn caps_pending_interaction_storage() {
-        let mut session = Session::new();
-        session.set_clarify(vec!["x".repeat(200); MAX_CLARIFY_OPTIONS + 10], Intent::new("HassTurnOn"));
-        let clarify = session.pending_clarify().expect("clarification");
-        assert_eq!(clarify.options.len(), MAX_CLARIFY_OPTIONS);
-        assert!(clarify.options.iter().all(|option| option.chars().count() <= 128));
-
-        let evidence = crate::types::Evidence { kind: "test".into(), source: "test".into(), value: "test".into(), score: 1.0, exact: true };
-        let mut plan = IntentPlan::from_intents(vec![Intent::new("HassTurnOn").with("entity_id", "lock.front")], 1.0, &[]);
-        plan.evidence = vec![evidence.clone(); MAX_EVIDENCE_PER_ITEM + 10];
-        plan.steps[0].evidence = vec![evidence; MAX_EVIDENCE_PER_ITEM + 10];
-        assert!(session.set_confirm("candidate".into(), plan, "p".repeat(MAX_DETAIL_CHARS + 10)));
-        let confirm = session.pending_confirm().expect("confirmation");
-        assert_eq!(confirm.plan.evidence.len(), MAX_EVIDENCE_PER_ITEM);
-        assert_eq!(confirm.plan.steps[0].evidence.len(), MAX_EVIDENCE_PER_ITEM);
-        assert_eq!(confirm.prompt.chars().count(), MAX_DETAIL_CHARS);
-    }
-
-    #[test]
-    fn rejects_invalid_pending_confirm_ids_and_steps() {
-        let mut session = Session::new();
-        let plan = IntentPlan::from_intents(vec![Intent::new("HassTurnOn").with("entity_id", "lock.front")], 1.0, &[]);
-        assert!(!session.set_confirm("x".repeat(129), plan.clone(), "confirm".into()));
-        assert!(session.pending_confirm().is_none());
-        let oversized = IntentPlan::from_intents(vec![Intent::new("HassTurnOn"); MAX_PLAN_STEPS + 1], 1.0, &[]);
-        assert!(!session.set_confirm("candidate".into(), oversized, "confirm".into()));
-        assert!(session.pending_confirm().is_none());
-    }
-}
+#[path = "session_tests.rs"]
+mod tests;

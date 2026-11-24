@@ -8,6 +8,7 @@ import { expect, test } from "./engine";
 type Settings = { nlu_rag: boolean; languages: string[] };
 type UiState = { wizard_done: boolean; locale: string };
 type Policies = { policies: { id: string; label: string; enabled: boolean }[] };
+type Overlay = { custom: { phrase: string }[]; language: { sets: Record<string, { add?: string[] }> } };
 
 // The page loads its typeface from Google Fonts (theme.css). That is the one known reason for the
 // operator's browser to contact another host; any other host showing up here is a regression.
@@ -101,6 +102,27 @@ test("a new house rule is stored by the engine and the rule lanes scroll inside 
     });
     expect(style.overflowY).toBe("auto");
   }
+});
+
+test("a phrase added under Phrases survives a lexicon change under Policies in the same visit", async ({ page, engine }) => {
+  await engine.finishSetup();
+  const phrases = async () => (await engine.api<Overlay>("/api/lang/overlay")).custom.map((row) => row.phrase);
+  await page.goto(`${engine.url}/#/rules/sentences`);
+
+  await page.locator("section.grid.two .card").first().locator("input").first().fill("film ab bitte");
+  await page.getByRole("button", { name: en.addPhrase, exact: true }).click();
+  await expect.poll(phrases).toEqual(["film ab bitte"]);
+
+  // The Rules page read the phrase list before the phrase existed; its copy is stale now.
+  await page.locator("nav.subnav").getByRole("button", { name: en.policies, exact: true }).click();
+  const lane = page.locator('[data-lane="language"]');
+  await lane.locator("input").nth(1).fill("glotze");
+  await lane.getByRole("button", { name: en.lexiconAdd, exact: true }).click();
+
+  await expect
+    .poll(async () => (await engine.api<Overlay>("/api/lang/overlay")).language.sets["nouns.media_nouns"]?.add)
+    .toEqual(["glotze"]);
+  expect(await phrases()).toEqual(["film ab bitte"]);
 });
 
 test("the navigation menu opens on a phone-sized screen and leads to Settings", async ({ page, engine }) => {

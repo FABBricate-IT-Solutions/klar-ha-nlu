@@ -1,22 +1,18 @@
 use crate::parse::chat::{is_ood, wants_llm};
-use crate::parse::clarify::pick_clarification;
 use crate::parse::clause_support::last_visible;
 use crate::parse::compound::CompoundSplit;
 use crate::parse::infer::{looks_like_correction, match_custom};
 use crate::parse::news::{briefing_followup, is_news_dismiss, news_turn, NewsTurn};
 use crate::parse::numbers::first_number;
 use crate::parse::respond::{speak, speak_correction, speak_need_target, speak_unknown};
-use crate::parse::slots::{fill_pending_timer_duration, intent_with_entity};
 use crate::types::{first_seed_match, Intent, IntentCandidate, IntentPlan, ParseDecision, RejectReason};
 
 use super::context::ParseContext;
 use super::decision::{decide_band, PolicyBand};
 use super::ranking::RankingResult;
-use super::risk::judge;
-use super::speech::{affirmative, apply_rule_speech, confirmation_prompt, mark_competing};
-use super::validation::{
-    fail_closed_intent, filter_valid_steps, missing_timer_duration, requires_confirmation, validate_plan, PlanInvalid,
-};
+use super::risk::{judge, requires_confirmation};
+use super::speech::{apply_rule_speech, mark_competing};
+use super::validation::{fail_closed_intent, filter_valid_steps, missing_timer_duration, validate_plan, PlanInvalid};
 
 #[derive(Default)]
 pub(super) struct SessionCommit {
@@ -91,7 +87,7 @@ pub(super) fn route_special(context: &ParseContext<'_>, raw: &[String], split: &
     if is_ood(raw, context.home) || is_ood(tokens, context.home) {
         return Some(reject(RejectReason::OutOfDomain, speak_unknown()));
     }
-    if looks_like_correction(tokens) && context.session.pending_confirm().is_none() {
+    if looks_like_correction(tokens) {
         let mut draft = reject(RejectReason::Unsupported, speak_correction());
         draft.commit.mark_wrong = true;
         return Some(draft);
@@ -99,57 +95,9 @@ pub(super) fn route_special(context: &ParseContext<'_>, raw: &[String], split: &
     None
 }
 
-pub(super) fn route_pending(context: &ParseContext<'_>, tokens: &[String]) -> Option<Draft> {
-    if let Some(confirm) = context.session.pending_confirm() {
-        if affirmative(tokens, context.catalog) {
-            return Some(execute_plan(
-                context,
-                confirm.plan.clone(),
-                "pending_confirm",
-                Some(confirm.candidate_id.clone()),
-                None,
-                true,
-                true,
-            ));
-        }
-        if is_news_dismiss(tokens) {
-            let mut draft = reject(RejectReason::Unsupported, speak_unknown());
-            draft.commit.clear_pending = true;
-            return Some(draft);
-        }
-        return Some(Draft {
-            decision: ParseDecision::Confirm { prompt: confirm.prompt.clone(), candidate_id: confirm.candidate_id.clone() },
-            plan: Some(confirm.plan.clone()),
-            speech: confirm.prompt.clone(),
-            confidence: confirm.plan.confidence,
-            margin: confirm.plan.margin,
-            selected_candidate_id: Some(confirm.candidate_id.clone()),
-            output_candidate: None,
-            safety_confirmed: false,
-            inherits_risk: false,
-            response_briefing: false,
-            competing: false,
-            commit: SessionCommit::default(),
-            policy_trace: None,
-        });
-    }
-    if context.session.pending_clarify().is_some() {
-        if let Some(intent) = context.session.pending_clarify().and_then(|p| fill_pending_timer_duration(&p.template, tokens)) {
-            return Some(execute(context, vec![intent], "pending_timer_duration", 1.0, 1.0, true, false));
-        }
-        let picked = pick_clarification(tokens, context.session, context.home);
-        if let Some(chosen) = picked {
-            let template = context.session.pending_clarify()?.template.clone();
-            let intent = if context.home.areas.iter().any(|area| area.area_id == chosen) {
-                let domain = template.slot("domain").unwrap_or("light").to_string();
-                template.with_set("area", &chosen).with_set("domain", domain)
-            } else {
-                intent_with_entity(template, &chosen)
-            };
-            return Some(execute(context, vec![intent], "pending_clarify", 1.0, 1.0, true, false));
-        }
-    }
-    // A bare "yes" with no open question answers nothing and must not replay the last device.
+/// A sentence the user taught as a custom rule. A bare "yes" with no open question
+/// answers nothing and never replays the last device.
+pub(super) fn route_custom(context: &ParseContext<'_>, tokens: &[String]) -> Option<Draft> {
     match_custom(tokens, context.text, context.custom, &context.home.registered_intents)
         .map(|intent| execute(context, vec![intent], "custom_sentence", 1.0, 1.0, false, false))
 }
@@ -321,7 +269,7 @@ pub(super) fn safety_decision(mut draft: Draft, context: &ParseContext<'_>) -> D
         PolicyBand::Execute => draft,
         PolicyBand::Confirm => {
             let candidate_id = draft.selected_candidate_id.clone().unwrap_or_else(|| "selected-000".into());
-            let prompt = confirmation_prompt(context);
+            let prompt = super::ask::confirmation_prompt(context, plan);
             draft.decision = ParseDecision::Confirm { prompt: prompt.clone(), candidate_id: candidate_id.clone() };
             draft.speech = prompt.clone();
             draft.commit.remember.clear();
@@ -406,7 +354,7 @@ pub(super) fn from_adapter_plan(context: &ParseContext<'_>, plan: IntentPlan, pr
     execute_plan(context, plan, "semantic_adapter", Some(format!("adapter-{provider}")), None, false, false)
 }
 
-fn execute_plan(
+pub(super) fn execute_plan(
     context: &ParseContext<'_>,
     plan: IntentPlan,
     policy: &str,

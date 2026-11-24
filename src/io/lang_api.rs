@@ -71,8 +71,9 @@ struct HistoryRow {
 
 #[derive(Deserialize)]
 struct OverlayIn {
+    /// Absent means "leave the phrases alone"; an empty list clears them.
     #[serde(default)]
-    custom: Vec<CustomSentence>,
+    custom: Option<Vec<CustomSentence>>,
     #[serde(default)]
     language: Option<LanguageOverlay>,
     #[serde(default)]
@@ -131,7 +132,11 @@ async fn set_overlay(
         Some(language) => language,
         None => load_overlay(&state.data_dir).language,
     };
-    persist_rules(&state, body.custom, language, body.label.unwrap_or_else(|| "save".into())).await
+    let custom = match body.custom {
+        Some(custom) => custom,
+        None => state.custom.lock().await.clone(),
+    };
+    persist_rules(&state, custom, language, body.label.unwrap_or_else(|| "save".into())).await
 }
 
 async fn preview(

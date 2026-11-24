@@ -28,7 +28,7 @@ pub use external::{ExternalPack, PackRegistry};
 pub use hassil::{import_hassil as parse_hassil, HassilImport};
 pub use locale::{LocaleError, LocaleId};
 pub use morphology::Morphology;
-pub use pack::{GroupClarify, Household, LanguagePack, NumberStyle};
+pub use pack::{Answers, GroupClarify, Household, LanguagePack, NumberStyle};
 pub use registry::{languages, LangMeta};
 pub use resolver::{
     bind_preview_user, install_runtime_packs, install_user_overlay, installed_user_overlay, is_known, load_runtime_dir, pin_language,

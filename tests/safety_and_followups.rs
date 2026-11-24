@@ -89,7 +89,6 @@ fn block_rule_never_runs_the_device() {
 }
 
 #[test]
-#[ignore = "bug: a new command while a confirmation is pending re-asks the old question, so the new command never runs and a later yes runs the old one"]
 fn new_command_while_confirming_replaces_the_pending_one() {
     for (lang, risky, other, yes) in [
         ("en", "close the office blinds", "turn on the hall light", "yes"),

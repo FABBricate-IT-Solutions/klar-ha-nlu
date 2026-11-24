@@ -68,7 +68,7 @@ fn parse_with_home(sentence: &str, home: HomeGraph) -> crate::types::ParseResult
 }
 
 #[test]
-fn ja_yes_picks_laundry_switch_and_th_open_unlocks() {
+fn ja_yes_does_not_pick_a_laundry_switch_and_th_open_unlocks() {
     use crate::types::AreaRec;
     let laundry = HomeGraph {
         areas: vec![AreaRec { area_id: "laundry".into(), name: "Laundry".into(), aliases: vec!["sentakushitsu".into()], floor_id: None }],
@@ -78,7 +78,10 @@ fn ja_yes_picks_laundry_switch_and_th_open_unlocks() {
     let mut session = Session::new();
     let first = parse("点ける kiki sentakushitsu", &laundry, &mut session, &[], &Settings::pinned("ja"));
     assert!(first.clarify, "{first:?}");
-    let picked = parse("はい", &laundry, &mut session, &[], &Settings::pinned("ja"));
+    // "Yes" names neither switch: the either-or question stays open and nothing runs.
+    let again = parse("はい", &laundry, &mut session, &[], &Settings::pinned("ja"));
+    assert!(again.clarify && again.intents.is_empty(), "{again:?}");
+    let picked = parse("washing machine", &laundry, &mut session, &[], &Settings::pinned("ja"));
     assert!(!picked.clarify, "{picked:?}");
     assert_eq!(picked.intents[0].slot("entity_id"), Some("switch.washing_machine"), "{picked:?}");
 
