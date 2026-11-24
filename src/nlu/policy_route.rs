@@ -18,6 +18,20 @@ pub(super) fn apply_matched_action(context: &ParseContext<'_>, plan: &IntentPlan
     hit.is_action().then(|| apply_action(context, rule, hit)).flatten()
 }
 
+/// A script the operator named in a rule or a routine. It starts whether or not Home
+/// Assistant exposes it to Assist: the operator chose it in Klar, and that is how rules
+/// and routines worked before every route went through the safety decision. The user's
+/// block and confirm rules still apply to it.
+pub(super) fn operator_script(draft: &Draft) -> bool {
+    let named = matches!(draft.selected_candidate_id.as_deref(), Some("direct-policy-script" | "direct-household-routine"));
+    let script = |intent: &Intent| {
+        intent.name == "HassTurnOn"
+            && intent.slot("domain") == Some("script")
+            && intent.slot("entity_id").is_some_and(|id| script_entity_id(id).as_deref() == Some(id))
+    };
+    named && draft.plan.as_ref().is_some_and(|plan| matches!(plan.intents().as_slice(), [only] if script(only)))
+}
+
 pub(super) fn action_trace(rule: &PolicyRule, hit: PolicyHit) -> PolicyTrace {
     PolicyTrace {
         matched_rule: Some(rule.id.clone()),

@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import logging
+from dataclasses import replace
 from typing import Any
 
 from homeassistant.components import conversation
@@ -45,8 +46,10 @@ from .const import (
     DEFAULT_URL,
     DOMAIN,
     LANGUAGE_ALL,
+    LAST_EXECUTE_SESSION,
+    LAST_SESSION,
+    SERVICE_TURNS,
     continue_after_reply,
-    engine_session_id,
     is_voice_satellite,
     keeps_conversation,
     parse_session_id,
@@ -62,6 +65,7 @@ from .fallback import (
     append_llm_turn,
     calendar_query_only,
     calendar_readback,
+    forget_old_llm_sessions,
     llm_conversation_id,
 )
 from .intents import keep_lab_plan, registered_intent_names
@@ -267,6 +271,18 @@ class KlarConversationEntity(ConversationEntity):
         user_input: ConversationInput,
         chat_log: ChatLog,
     ) -> ConversationResult:
+        # Bind the turn to Home Assistant's chat session (or the voice device) before
+        # anything reads the id. A turn without an id must not land in a shared session.
+        user_input = replace(
+            user_input,
+            conversation_id=self._service_session(user_input)
+            or parse_session_id(
+                user_input.conversation_id,
+                user_input.device_id,
+                getattr(user_input, "satellite_id", None),
+                getattr(chat_log, "conversation_id", None),
+            ),
+        )
         await async_refresh_klar_hosts(self.hass)
         await async_refresh_engine_settings(self.hass, self._entry)
         await async_sync_time_zone(self.hass, self._entry)
@@ -297,6 +313,7 @@ class KlarConversationEntity(ConversationEntity):
         clarify = decision_type in {"clarify", "confirm"}
         chat = decision_type == "chat"
         conversation_id = payload.get("conversation_id") or user_input.conversation_id
+        self._remember_session(LAST_SESSION, conversation_id)
 
         if payload.get("briefing"):
             if chat:
@@ -364,6 +381,8 @@ class KlarConversationEntity(ConversationEntity):
                 speech = str(executed["speech"])
             if executed.get("outcome") == "error":
                 decision_type = "error"
+            else:
+                self._remember_session(LAST_EXECUTE_SESSION, conversation_id)
             if (
                 executed.get("outcome") != "error"
                 and self._calendar_llm()
@@ -799,12 +818,27 @@ class KlarConversationEntity(ConversationEntity):
             "unreachable": True,
         }
 
+    def _entry_store(self) -> dict[str, Any]:
+        stored = (self.hass.data.get(DOMAIN) or {}).get(self._entry.entry_id)
+        return stored if isinstance(stored, dict) else {}
+
+    def _remember_session(self, key: str, conversation_id: str | None) -> None:
+        """Let the Klar services reach the conversation that spoke or acted last."""
+        if conversation_id:
+            self._entry_store()[key] = conversation_id
+
+    def _service_session(self, user_input: ConversationInput) -> str | None:
+        """The conversation a Klar service call addresses, found by the call's context."""
+        context = getattr(user_input, "context", None)
+        return (self._entry_store().get(SERVICE_TURNS) or {}).get(getattr(context, "id", None))
+
     def _llm_session_id(self, user_input: ConversationInput) -> str:
-        assist_id = str(user_input.conversation_id or "").strip()
-        if assist_id:
-            return llm_conversation_id(assist_id[:128])
         return llm_conversation_id(
-            engine_session_id(user_input.device_id, getattr(user_input, "satellite_id", None))
+            parse_session_id(
+                user_input.conversation_id,
+                user_input.device_id,
+                getattr(user_input, "satellite_id", None),
+            )
         )
 
     def _llm_turns(self, session_id: str) -> list[tuple[str, str]]:
@@ -814,4 +848,5 @@ class KlarConversationEntity(ConversationEntity):
     def _note_llm_turn(self, user_input: ConversationInput, speech: str) -> None:
         session_id = self._llm_session_id(user_input)
         store = self.hass.data.setdefault(DOMAIN, {}).setdefault("llm_turns", {})
-        store[session_id] = append_llm_turn(store.get(session_id), user_input.text, speech)
+        store[session_id] = append_llm_turn(store.pop(session_id, None), user_input.text, speech)
+        forget_old_llm_sessions(store)
