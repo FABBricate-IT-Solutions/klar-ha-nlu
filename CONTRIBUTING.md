@@ -23,6 +23,13 @@ Do **not** run `python3 scripts/lang_packs/generate.py` in pre-commit or as a dr
 
 Per-locale **datasets** (Wohn+Family+m0+m2 overlays): `python3 scripts/parity/generate.py`. Same rubric for every generated locale. DE/EN oracles: `python3 scripts/gen_voice_suite.py`, then re-run the parity generator.
 
+Two checks CI runs that you can run before pushing:
+
+- `bash scripts/check_generated.sh` runs every generator and fails when a file in the tree changes, translations included. Change the generator source, not its output.
+- `bash scripts/lint_ci.sh` lints the workflows and shell scripts (actionlint, zizmor, shellcheck; needs `uv`). `python3 scripts/check_links.py` checks the links between the Markdown files.
+
+Workflows pin every action by commit SHA with the release in a trailing comment. Tests take scratch directories from `tempfile` (`TestDir` in unit tests), never a fixed name under `/tmp`.
+
 ## Language packs
 
 - Hand-written reference: `src/lang/packs/de/`, `src/lang/packs/en/`
