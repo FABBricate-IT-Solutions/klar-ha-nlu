@@ -1,9 +1,10 @@
 //! Operator settings backup: allowlisted tar.gz of overlay + LLM endpoint.
 
-use crate::home::overlay::{apply_overlay, Overlay};
+use crate::home::overlay::Overlay;
 use crate::home::overlay_store::{check_storable, OverlayStore, OVERLAY_FILE};
 use crate::io::auth::writes_allowed;
-use crate::io::llm::{load_endpoint, load_stored_endpoint, save_stored_endpoint, StoredEndpoint, LLM_FILE};
+use crate::io::llm::{load_stored_endpoint, LLM_FILE};
+use crate::io::restore::{check, install, Packed};
 use crate::io::state::AppState;
 use axum::body::Bytes;
 use axum::extract::{ConnectInfo, DefaultBodyLimit, Query, State};
@@ -43,12 +44,6 @@ struct BackupQuery {
     secrets: Option<String>,
 }
 
-#[derive(Debug)]
-struct Packed {
-    overlay: Overlay,
-    endpoint: Option<StoredEndpoint>,
-}
-
 pub fn routes() -> Router<AppState> {
     Router::new()
         .route("/api/v2/settings/backup", get(download_backup))
@@ -79,19 +74,27 @@ async fn restore_backup(
     ConnectInfo(peer): ConnectInfo<SocketAddr>,
     headers: HeaderMap,
     body: Bytes,
-) -> Result<StatusCode, StatusCode> {
+) -> Result<StatusCode, (StatusCode, String)> {
     if !writes_allowed(Some(peer), &headers, &state.token) {
-        return Err(StatusCode::UNAUTHORIZED);
+        return Err((StatusCode::UNAUTHORIZED, String::new()));
     }
     if body.len() > MAX_ARCHIVE {
-        return Err(StatusCode::PAYLOAD_TOO_LARGE);
+        return Err((StatusCode::PAYLOAD_TOO_LARGE, String::new()));
     }
-    let packed = unpack(&body).map_err(|err| match err.kind() {
-        io::ErrorKind::InvalidData | io::ErrorKind::InvalidInput => StatusCode::BAD_REQUEST,
-        _ => StatusCode::BAD_REQUEST,
+    let packed = unpack(&body).map_err(|err| refused(&err.to_string()))?;
+    let checked = check(packed).map_err(|section| refused(&format!("invalid section: {section}")))?;
+    install(&state, checked).await.map_err(|err| {
+        tracing::error!("Restore fehlgeschlagen, Dateien unverändert: {err}");
+        (StatusCode::INTERNAL_SERVER_ERROR, String::new())
     })?;
-    apply_packed(&state, packed).await.map_err(|_| StatusCode::INTERNAL_SERVER_ERROR)?;
+    tracing::info!("Einstellungen aus Backup eingespielt, Vorher-Kopie in klar_nlu.json.before-restore");
     Ok(StatusCode::NO_CONTENT)
+}
+
+/// The archive was not installed and nothing changed. The body names the reason.
+fn refused(reason: &str) -> (StatusCode, String) {
+    tracing::warn!("Restore abgelehnt: {reason}");
+    (StatusCode::BAD_REQUEST, reason.to_string())
 }
 
 fn wants_secrets(raw: Option<&str>) -> bool {
@@ -221,34 +224,6 @@ fn allowed_name(name: &str) -> bool {
     ALLOWED.contains(&name) && !name.contains("..") && !name.contains('/') && !name.contains('\\')
 }
 
-async fn apply_packed(state: &AppState, packed: Packed) -> io::Result<()> {
-    state.overlay.replace(&packed.overlay)?;
-    if let Some(mut stored) = packed.endpoint {
-        if stored.api_key.is_empty() {
-            if let Some(local) = load_stored_endpoint(&state.data_dir) {
-                stored.api_key = local.api_key;
-            }
-        }
-        if !stored.base_url.trim().is_empty() && !stored.model.trim().is_empty() {
-            save_stored_endpoint(&state.data_dir, &stored)?;
-        }
-    }
-    *state.settings.lock().await = packed.overlay.settings.clone().unwrap_or_default();
-    *state.custom.lock().await = packed.overlay.custom.clone();
-    *state.policies.lock().await = packed.overlay.policies.clone();
-    *state.speech_bank.lock().await = packed.overlay.speech_bank.clone();
-    *state.match_controls.lock().await = packed.overlay.match_controls.clone();
-    crate::lang::install_user_overlay(if packed.overlay.language.sets.is_empty() { None } else { Some(packed.overlay.language.clone()) });
-    state
-        .home
-        .edit(|graph| {
-            apply_overlay(graph, &packed.overlay);
-        })
-        .await;
-    *state.llm.lock().await = load_endpoint(&state.data_dir);
-    Ok(())
-}
-
 fn utc_stamp() -> String {
     let secs = SystemTime::now().duration_since(UNIX_EPOCH).unwrap_or_default().as_secs();
     let (year, month, day) = utc_ymd(secs);
@@ -276,202 +251,5 @@ fn utc_ymd(secs: u64) -> (i32, u32, u32) {
 }
 
 #[cfg(test)]
-mod tests {
-    use super::*;
-    use crate::home::load::LoadedHome;
-    use crate::home::sample::default_home;
-    use crate::types::{PolicyEffect, PolicyMatch, PolicyRule, Settings};
-
-    fn temp(tag: &str) -> std::path::PathBuf {
-        let dir = std::env::temp_dir().join(format!("klar-backup-{tag}-{}", std::process::id()));
-        let _ = std::fs::remove_dir_all(&dir);
-        std::fs::create_dir_all(&dir).unwrap();
-        dir
-    }
-
-    fn sample_overlay() -> Overlay {
-        let mut overlay =
-            Overlay { settings: Some(Settings { refine_speech: true, nlu_rag: true, ..Settings::default() }), ..Overlay::default() };
-        overlay.aliases.insert("light.wohnzimmer".into(), vec!["kugel".into()]);
-        overlay.areas.insert("light.wohnzimmer".into(), "wohnzimmer".into());
-        overlay.policies.push(PolicyRule {
-            id: "block-lock".into(),
-            enabled: true,
-            label: "lock".into(),
-            when: PolicyMatch { domain: Some("lock".into()), ..Default::default() },
-            effect: PolicyEffect::Block,
-            prefer: None,
-            payload: None,
-        });
-        overlay
-    }
-
-    fn write_overlay(dir: &Path, overlay: &Overlay) {
-        OverlayStore::open(dir).replace(overlay).unwrap();
-    }
-
-    #[test]
-    fn roundtrip_keeps_settings_alias_and_policy() {
-        let dir = temp("round");
-        write_overlay(&dir, &sample_overlay());
-        let bytes = pack_dir(&dir, false).unwrap();
-        let packed = unpack(&bytes).unwrap();
-        assert!(packed.overlay.settings.as_ref().is_some_and(|s| s.refine_speech && s.nlu_rag));
-        assert_eq!(packed.overlay.aliases.get("light.wohnzimmer").map(Vec::as_slice), Some(["kugel".to_string()].as_slice()));
-        assert_eq!(packed.overlay.policies[0].id, "block-lock");
-        let _ = std::fs::remove_dir_all(&dir);
-    }
-
-    #[test]
-    fn default_export_omits_api_key() {
-        let dir = temp("secret");
-        write_overlay(&dir, &Overlay::default());
-        save_stored_endpoint(
-            &dir,
-            &StoredEndpoint {
-                base_url: "http://127.0.0.1:8000/v1".into(),
-                api_key: "sk-secret".into(),
-                model: "gemma".into(),
-                enable_thinking: false,
-                provider: crate::llm::LlmProviderKind::Custom,
-            },
-        )
-        .unwrap();
-        let packed = unpack(&pack_dir(&dir, false).unwrap()).unwrap();
-        assert_eq!(packed.endpoint.as_ref().map(|e| e.api_key.as_str()), Some(""));
-        assert!(!String::from_utf8_lossy(&pack_dir(&dir, false).unwrap()).contains("sk-secret"));
-        let with = unpack(&pack_dir(&dir, true).unwrap()).unwrap();
-        assert_eq!(with.endpoint.as_ref().map(|e| e.api_key.as_str()), Some("sk-secret"));
-        let _ = std::fs::remove_dir_all(&dir);
-    }
-
-    fn octal_field(slot: &mut [u8], value: u64) {
-        let text = format!("{:0width$o}", value, width = slot.len().saturating_sub(1));
-        slot[..text.len()].copy_from_slice(text.as_bytes());
-        if text.len() < slot.len() {
-            slot[text.len()] = 0;
-        }
-    }
-
-    fn gnu_header(name: &str, size: u64) -> [u8; 512] {
-        let mut header = [0u8; 512];
-        let bytes = name.as_bytes();
-        header[..bytes.len()].copy_from_slice(bytes);
-        octal_field(&mut header[100..108], 0o644);
-        octal_field(&mut header[124..136], size);
-        header[156] = b'0';
-        header[257..263].copy_from_slice(b"ustar\0");
-        header[263..265].copy_from_slice(b"00");
-        header[148..156].copy_from_slice(b"        ");
-        let sum: u32 = header.iter().map(|b| u32::from(*b)).sum();
-        let checksum = format!("{sum:06o}\0 ");
-        header[148..156].copy_from_slice(checksum.as_bytes());
-        header
-    }
-
-    fn raw_tar_gz(files: &[(&str, &[u8])]) -> Vec<u8> {
-        let mut tar_bytes = Vec::new();
-        for (name, data) in files {
-            tar_bytes.extend_from_slice(&gnu_header(name, data.len() as u64));
-            tar_bytes.extend_from_slice(data);
-            let pad = (512 - (data.len() % 512)) % 512;
-            tar_bytes.extend(std::iter::repeat(0u8).take(pad));
-        }
-        tar_bytes.extend_from_slice(&[0u8; 1024]);
-        let mut gz = Vec::new();
-        let mut enc = GzEncoder::new(&mut gz, Compression::default());
-        enc.write_all(&tar_bytes).unwrap();
-        enc.finish().unwrap();
-        gz
-    }
-
-    #[test]
-    fn rejects_traversal_and_extra_files() {
-        let evil = raw_tar_gz(&[(MANIFEST, b"{}"), ("../evil", b"no")]);
-        assert!(unpack(&evil).is_err());
-        let extra = raw_tar_gz(&[
-            (MANIFEST, b"{\"format\":\"klar-settings-v1\",\"engine\":\"1\",\"created_at\":\"t\",\"include_secrets\":false,\"files\":[]}"),
-            (OVERLAY_FILE, b"{}"),
-            ("notes.txt", b"no"),
-        ]);
-        assert!(unpack(&extra).is_err());
-    }
-
-    #[test]
-    fn unknown_format_leaves_disk() {
-        let dir = temp("fmt");
-        write_overlay(&dir, &sample_overlay());
-        let before = std::fs::read(dir.join(OVERLAY_FILE)).unwrap();
-        let bad = pack_files(&[
-            (
-                MANIFEST,
-                serde_json::to_vec(&Manifest {
-                    format: "klar-settings-v0".into(),
-                    engine: "1".into(),
-                    created_at: "t".into(),
-                    include_secrets: false,
-                    files: vec![OVERLAY_FILE.into()],
-                })
-                .unwrap(),
-            ),
-            (OVERLAY_FILE, b"{}".to_vec()),
-        ])
-        .unwrap();
-        assert!(unpack(&bad).is_err());
-        assert_eq!(std::fs::read(dir.join(OVERLAY_FILE)).unwrap(), before);
-        let _ = std::fs::remove_dir_all(&dir);
-    }
-
-    #[tokio::test]
-    async fn restore_empty_key_keeps_local() {
-        let dir = temp("keep-key");
-        write_overlay(&dir, &Overlay::default());
-        save_stored_endpoint(
-            &dir,
-            &StoredEndpoint {
-                base_url: "http://127.0.0.1:8000/v1".into(),
-                api_key: "sk-local".into(),
-                model: "old".into(),
-                enable_thinking: false,
-                provider: crate::llm::LlmProviderKind::Custom,
-            },
-        )
-        .unwrap();
-        let incoming = StoredEndpoint {
-            base_url: "http://192.168.1.2:8000/v1".into(),
-            api_key: String::new(),
-            model: "gemma".into(),
-            enable_thinking: true,
-            provider: crate::llm::LlmProviderKind::Lemonade,
-        };
-        let state = AppState::new(
-            LoadedHome {
-                graph: default_home(),
-                settings: Settings::default(),
-                custom: Vec::new(),
-                language: Default::default(),
-                policies: Vec::new(),
-                speech_bank: Default::default(),
-                match_controls: Vec::new(),
-            },
-            dir.clone(),
-            None,
-        );
-        apply_packed(&state, Packed { overlay: sample_overlay(), endpoint: Some(incoming) }).await.unwrap();
-        let stored = load_stored_endpoint(&dir).unwrap();
-        assert_eq!(stored.api_key, "sk-local");
-        assert_eq!(stored.model, "gemma");
-        assert_eq!(stored.base_url, "http://192.168.1.2:8000/v1");
-        assert!(state.settings.lock().await.refine_speech);
-        crate::lang::reset_runtime_packs();
-        let _ = std::fs::remove_dir_all(&dir);
-    }
-
-    #[test]
-    fn allowed_names_are_leaves() {
-        assert!(allowed_name("klar_nlu.json"));
-        assert!(!allowed_name("../klar_nlu.json"));
-        assert!(!allowed_name("dir/klar_nlu.json"));
-        assert!(!allowed_name("notes.txt"));
-    }
-}
+#[path = "backup_tests.rs"]
+mod tests;

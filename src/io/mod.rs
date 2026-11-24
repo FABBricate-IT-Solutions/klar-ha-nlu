@@ -13,6 +13,7 @@ pub(crate) mod llm_calls;
 pub(crate) mod metrics;
 pub(crate) mod policies;
 pub(crate) mod privacy;
+pub(crate) mod restore;
 pub(crate) mod speech;
 pub mod state;
 pub(crate) mod trainer;

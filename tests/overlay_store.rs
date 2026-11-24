@@ -3,12 +3,9 @@
 mod state_support;
 
 use axum::http::{Method, StatusCode};
-use flate2::write::GzEncoder;
-use flate2::Compression;
 use klar_nlu::home::overlay::load_overlay;
 use serde_json::{json, Value};
-use state_support::{lamp_id, process, read_json, Engine, TempDir, OVERLAY_FILE};
-use std::io::Write;
+use state_support::{lamp_id, process, read_json, settings_archive, Engine, TempDir, OVERLAY_FILE};
 use std::os::unix::fs::PermissionsExt;
 use std::sync::Arc;
 
@@ -22,26 +19,6 @@ const ODD_BUT_VALUABLE: &str = r#"{
   "settings": {"mode": "full", "languages": ["de"], "quiet_ack": true},
   "ui": {"theme": "light", "graph": {"light.lampe_03": {"x": null, "y": 1}, "light.lampe_04": {"x": 2, "y": 3}}}
 }"#;
-
-fn settings_archive(overlay: &str) -> Vec<u8> {
-    let manifest =
-        json!({"format": "klar-settings-v1", "engine": "test", "created_at": "t", "include_secrets": false, "files": [OVERLAY_FILE]});
-    let mut tar_bytes = Vec::new();
-    {
-        let mut builder = tar::Builder::new(&mut tar_bytes);
-        for (name, data) in [("manifest.json", serde_json::to_vec(&manifest).unwrap()), (OVERLAY_FILE, overlay.as_bytes().to_vec())] {
-            let mut header = tar::Header::new_gnu();
-            header.set_size(data.len() as u64);
-            header.set_mode(0o644);
-            header.set_cksum();
-            builder.append_data(&mut header, name, data.as_slice()).unwrap();
-        }
-        builder.finish().unwrap();
-    }
-    let mut encoder = GzEncoder::new(Vec::new(), Compression::default());
-    encoder.write_all(&tar_bytes).unwrap();
-    encoder.finish().unwrap()
-}
 
 #[tokio::test(flavor = "multi_thread", worker_threads = 8)]
 async fn twenty_four_parallel_saves_keep_twenty_four_aliases() {
@@ -165,9 +142,8 @@ async fn a_restore_with_a_number_too_large_is_refused_and_the_file_stays_readabl
     let engine = Engine::start(dir.path());
     assert_eq!(engine.post("/api/entities", json!({"entity_id": lamp_id(2), "aliases": ["saegelicht"]})).await, StatusCode::OK);
     let before = std::fs::read(dir.file(OVERLAY_FILE)).unwrap();
-    let archive = settings_archive(r#"{"ui": {"graph": {"light.lampe_02": {"x": 1e39, "y": 4}}}}"#);
-    let (status, _) = engine.send(Method::POST, "/api/v2/settings/restore", "application/gzip", archive).await;
-    assert_eq!(status, StatusCode::BAD_REQUEST);
+    let archive = settings_archive(r#"{"ui": {"graph": {"light.lampe_02": {"x": 1e39, "y": 4}}}}"#, None);
+    assert_eq!(engine.restore(archive).await, StatusCode::BAD_REQUEST);
     assert_eq!(std::fs::read(dir.file(OVERLAY_FILE)).unwrap(), before, "a refused restore leaves the file alone");
     assert_eq!(read_json(&dir.file(OVERLAY_FILE))["aliases"]["light.lampe_02"], json!(["saegelicht"]));
 }
