@@ -246,7 +246,7 @@ Benutzer-Sprach-Overlay plus Custom Sentences, unter `/data/klar_nlu.json`.
 }
 ```
 
-Antwort enthält `history` (`hash`, `label`, `saved_at`). Ohne `language` im POST bleiben gespeicherte Set-Deltas. Ungültiges Custom/Overlay → `422`. Write-Token außer Loopback.
+Antwort enthält `history` (`hash`, `label`, `saved_at`). Ohne `language` im POST bleiben gespeicherte Set-Deltas, ohne `custom` die eigenen Sätze; `"custom": []` löscht sie. Ungültiges Custom/Overlay → `422`. Write-Token außer Loopback.
 
 ### `POST /api/lang/preview`
 
