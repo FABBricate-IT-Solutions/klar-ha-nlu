@@ -1,6 +1,7 @@
 use crate::parse::calendar::speak_calendar_need;
 use crate::parse::compound::expand_compounds;
 use crate::parse::normalize::{strip_fillers_for_areas, tokenize};
+use crate::parse::numbers::fold_spoken_numbers;
 use crate::parse::respond::{speak_clarify, speak_unknown};
 use crate::parse::split::split_clauses;
 use crate::session::Session;
@@ -35,7 +36,8 @@ pub(super) fn run(context: ParseContext<'_>) -> PipelineResult {
     }
     // 1. An answer to the open question. Read on the words as spoken, before any other route.
     let said = super::phrase::words(context.text);
-    let tokens = expand_compounds(&strip_fillers_for_areas(&tokenize(context.text), &context.home.areas), context.home).tokens;
+    let heard = fold_spoken_numbers(&tokenize(context.text));
+    let tokens = expand_compounds(&strip_fillers_for_areas(&heard, &context.home.areas), context.home).tokens;
     let readable =
         said.len() <= MAX_ANSWER_WORDS.max(MAX_REPLY_WORDS) && !context.text.chars().any(|c| c.is_control() && !c.is_whitespace());
     if let Some(draft) = readable.then(|| super::pending::answer(&context, &said, &tokens)).flatten() {
@@ -94,7 +96,7 @@ fn replaces_question(result: &PipelineResult, asking: bool) -> bool {
 fn decide(context: &ParseContext<'_>) -> PipelineResult {
     let mut trace = ParseTrace::default();
     let started = Instant::now();
-    let raw_tokens = tokenize(context.text);
+    let raw_tokens = fold_spoken_numbers(&tokenize(context.text));
     let split = expand_compounds(&strip_fillers_for_areas(&raw_tokens, &context.home.areas), context.home);
     trace.tokens = split.tokens.iter().take(MAX_NORMALIZED_TOKENS).cloned().collect();
     trace.normalized = trace.tokens.join(" ");
