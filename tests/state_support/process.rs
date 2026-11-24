@@ -39,6 +39,7 @@ pub fn command(root: &TempDir, http: SocketAddr, wyoming: SocketAddr) -> Command
         .env("NO_COLOR", "1")
         .env_remove("KLAR_TOKEN")
         .env_remove("KLAR_SUPPORT_BUNDLE")
+        .env_remove("KLAR_LLM_MODEL")
         .stdin(Stdio::null())
         .stdout(log.try_clone().expect("clone log"))
         .stderr(log);
