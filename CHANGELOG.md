@@ -6,6 +6,20 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 Versions follow Home Assistant calendar versioning (`YYYY.M.PATCH`)
 and [Conventional Commits](https://www.conventionalcommits.org/).
 
+## [2026.11.3](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/compare/2026.11.2...2026.11.3) - 2026-11-24
+
+
+
+### Other
+
+- Merge pull request #374 from FABBricate-IT-Solutions/dependabot/npm_and_yarn/web/npm-minor-12ec588354([541e127](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/541e127cb5cbe7125ee522dfafc8aa4c816184ad))
+
+- Merge remote-tracking branch 'origin/main' into dep-npm-374([025e358](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/025e3589140a2f9374f6cb8dbfd034d06e773399))
+
+- merge main so the url 2.5.9 pin clears the security checks([ee3f395](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/ee3f39531a64fb740929f52e1f307f6feb69a8b0))
+
+- bump the npm-minor group in /web with 2 updates([7394147](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/739414718fce42faa50a54579147460f0b8666f6))
+
 ## [2026.11.2](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/compare/2026.11.1...2026.11.2) - 2026-11-24
 
 
