@@ -1,6 +1,5 @@
-use crate::home::overlay::{load_overlay, save_overlay};
 use crate::io::auth::{reads_allowed, writes_allowed};
-use crate::io::state::AppState;
+use crate::io::state::{save_failed, AppState};
 use crate::nlu::parse_with_controls;
 use crate::types::{sanitize_rules, sanitize_speech_bank, MatchCatalogRow, MatchControl, ParseOutcome, PolicyRule, SpeechBank};
 use axum::extract::{ConnectInfo, State};
@@ -92,14 +91,17 @@ async fn set_policies(
     let policies = sanitize_rules(body.policies).map_err(|_| StatusCode::BAD_REQUEST)?;
     let speech_bank = sanitize_speech_bank(body.speech_bank).map_err(|_| StatusCode::BAD_REQUEST)?;
     let match_controls = crate::parse::sanitize_match_controls(body.match_controls).map_err(|_| StatusCode::BAD_REQUEST)?;
+    state
+        .overlay
+        .update(|overlay| {
+            overlay.policies = policies.clone();
+            overlay.speech_bank = speech_bank.clone();
+            overlay.match_controls = match_controls.clone();
+        })
+        .map_err(save_failed)?;
     *state.policies.lock().await = policies.clone();
     *state.speech_bank.lock().await = speech_bank.clone();
     *state.match_controls.lock().await = match_controls.clone();
-    let mut overlay = load_overlay(&state.data_dir);
-    overlay.policies = policies.clone();
-    overlay.speech_bank = speech_bank.clone();
-    overlay.match_controls = match_controls.clone();
-    let _ = save_overlay(&state.data_dir, &overlay);
     Ok(Json(bundle(policies, speech_bank, match_controls)))
 }
 

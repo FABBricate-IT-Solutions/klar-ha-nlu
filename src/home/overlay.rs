@@ -1,14 +1,28 @@
-use super::paths::{confined_file, read_to_string_confined, write_atomic_confined};
+use super::overlay_store::OverlayStore;
 use crate::lang::{LanguageOverlay, LanguageRevision};
 use crate::types::{CustomSentence, HomeGraph, MatchControl, PolicyRule, Settings, SpeechBank};
-use serde::{Deserialize, Serialize};
+use serde::de::Error;
+use serde::{Deserialize, Deserializer, Serialize};
 use std::collections::HashMap;
-use std::path::{Path, PathBuf};
+use std::path::Path;
 
 #[derive(Debug, Clone, Default, Serialize, Deserialize)]
 pub struct UiPoint {
+    #[serde(deserialize_with = "finite")]
     pub x: f32,
+    #[serde(deserialize_with = "finite")]
     pub y: f32,
+}
+
+/// A coordinate that is still a number after it is stored. `1e39` does not fit and would be
+/// written as `null`, which no later read accepts.
+fn finite<'de, D: Deserializer<'de>>(source: D) -> Result<f32, D::Error> {
+    let value = f32::deserialize(source)?;
+    if value.is_finite() {
+        Ok(value)
+    } else {
+        Err(D::Error::custom("number out of range"))
+    }
 }
 
 #[derive(Debug, Clone, Default, Serialize, Deserialize)]
@@ -89,6 +103,9 @@ fn default_theme() -> String {
 
 #[derive(Debug, Clone, Default, Serialize, Deserialize)]
 pub struct Overlay {
+    /// Schema version of the file. The store stamps it on every write; old files have none.
+    #[serde(default)]
+    pub version: u32,
     #[serde(default)]
     pub aliases: HashMap<String, Vec<String>>,
     #[serde(default)]
@@ -123,19 +140,19 @@ pub struct Overlay {
     pub match_controls: Vec<MatchControl>,
 }
 
-const OVERLAY_FILE: &str = "klar_nlu.json";
-
 pub fn overlay_path(dir: &Path) -> std::path::PathBuf {
-    confined_file(dir, OVERLAY_FILE).unwrap_or_else(|_| PathBuf::from(OVERLAY_FILE))
+    OverlayStore::open(dir).path()
 }
 
+/// The overlay to run with. See [`OverlayStore::load`] for what an unreadable file gives.
 pub fn load_overlay(dir: &Path) -> Overlay {
-    let raw = read_to_string_confined(dir, OVERLAY_FILE).unwrap_or_default();
-    serde_json::from_str(&raw).unwrap_or_default()
+    OverlayStore::open(dir).load()
 }
 
+/// Write `overlay` as the whole file. Changes to a live file go through
+/// [`OverlayStore::update`] instead, which reads, edits and writes under one lock.
 pub fn save_overlay(dir: &Path, overlay: &Overlay) -> std::io::Result<()> {
-    write_atomic_confined(dir, OVERLAY_FILE, &serde_json::to_vec_pretty(overlay).unwrap_or_default())
+    OverlayStore::open(dir).replace(overlay)
 }
 
 pub fn apply_overlay(home: &mut HomeGraph, overlay: &Overlay) {

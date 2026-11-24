@@ -1,7 +1,6 @@
 //! Lotse house-policy writes: upsert/remove, govern seeds, speech bank.
 
-use crate::home::overlay::{load_overlay, save_overlay};
-use crate::io::state::AppState;
+use crate::io::state::{save_failed, AppState};
 use crate::io::trainer::validate_args;
 use crate::io::trainer_args::{arg_str, string_list};
 use crate::io::trainer_reads::with_view;
@@ -137,17 +136,26 @@ pub async fn persist_policy_bundle(
     policies: Option<Vec<PolicyRule>>,
     match_controls: Option<Vec<MatchControl>>,
 ) -> Result<(), String> {
-    let mut overlay = load_overlay(&state.data_dir);
+    let speech_bank = state.speech_bank.lock().await.clone();
+    state
+        .overlay
+        .update(|overlay| {
+            if let Some(policies) = &policies {
+                overlay.policies = policies.clone();
+            }
+            if let Some(match_controls) = &match_controls {
+                overlay.match_controls = match_controls.clone();
+            }
+            overlay.speech_bank = speech_bank;
+        })
+        .map_err(save_failed)
+        .map_err(|_| "save overlay")?;
     if let Some(policies) = policies {
-        overlay.policies = policies.clone();
         *state.policies.lock().await = policies;
     }
     if let Some(match_controls) = match_controls {
-        overlay.match_controls = match_controls.clone();
         *state.match_controls.lock().await = match_controls;
     }
-    overlay.speech_bank = state.speech_bank.lock().await.clone();
-    save_overlay(&state.data_dir, &overlay).map_err(|_| "save overlay")?;
     Ok(())
 }
 
