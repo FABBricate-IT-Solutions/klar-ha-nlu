@@ -1,0 +1,172 @@
+# Sentences that must never change device state, spoken in the English collision home
+# (tests/common/collision_home.rs). Read by tests/must_not_act.rs.
+#
+# "## name" starts a category. One sentence per line. A line "sentence => id, id" names the
+# only devices that must stay untouched; everything else in that sentence may act.
+# These sentences are our own. Do not add sentences from the nlu.to-derived datasets.
+
+## negation
+do not open the garage door
+don't open the garage door
+never open the garage door
+never turn on the oven
+please do not turn on the oven
+no, don't turn on the oven
+stop, do not turn on the oven
+under no circumstances turn on the oven
+don't turn on the desk lamp
+do not turn on the office light
+do not turn on lamp 1
+please don't unlock the front door
+do not unlock the back door
+never ever unlock the front door
+don't turn off the hall light
+don't switch off the floor lamp
+do not ever switch on the coffee machine
+do not close the blinds in the bedroom
+don't dim the desk lamp
+do not set the thermostat in the bedroom to 25 degrees
+don't activate movie night
+do not run open garage
+don't you dare open the garage door
+don't turn anything on in the kitchen
+turn nothing on in the kitchen
+turn on the hall light, no wait, don't
+turn on the hall light not
+not the hall light
+I don't want the oven on
+I do not want the garage door open
+the oven must not be turned on
+the garage door should not be opened
+you must not open the garage door
+nobody should open the garage door
+
+## question
+did I turn off the oven?
+did i leave the oven on
+did I leave any windows open
+did someone open the garage door
+did you turn on the oven
+did the oven turn off
+why is the hall light on
+why is the garage door open
+why did the garage door open
+what happens if I open the garage door
+what happens if I unlock the front door
+what turned on the hall light
+what does the hall light do
+should I turn on the oven
+shall I close the garage door
+when did the hall light turn on
+when was the front door unlocked
+is the hall light on
+is lamp 1 on
+is the oven off
+is the oven still on
+is the garage door open
+is the garage door open or closed
+is the front door locked
+is the coffee machine running
+is the kitchen window open
+are the kitchen lights on
+are the blinds in the bedroom closed
+are any lights on
+are any windows open
+which lights are on
+which windows are open
+how many lights are on
+how long has the oven been on
+how do I turn on the hall light
+who turned on the hall light
+who unlocked the front door
+who opened the garage door
+I wonder if the hall light is on
+was the front door unlocked today
+has the garage door been opened
+have I locked the front door
+do we have the oven on
+do I need to turn off the oven
+does the hall light turn on automatically
+would it be safe to open the garage door
+am I allowed to open the garage door
+tell me how to open the garage door
+
+## past
+# Reports of what happened or what is the case. Nobody asked for anything.
+I turned on the hall light
+I already turned off the oven
+I opened the garage door earlier
+I have unlocked the front door
+I just closed the garage door
+I left the oven on
+I locked the front door already
+someone opened the garage door
+she switched on the desk lamp
+we turned off the coffee machine
+the oven was turned on this morning
+the garage door has been opened
+the front door was unlocked
+the hall light is on
+the oven is on
+the garage door is open
+
+## condition
+if it rains close the garage door
+if it rains, open the garage door
+if I am not home turn off the oven
+if the kitchen window is open turn off the oven
+in case it rains close the blinds in the bedroom
+when I get home open the garage door
+open the garage door when I arrive
+open the garage door as soon as I arrive
+turn on the hall light when it gets dark
+turn on the hall light if it is dark outside
+unlock the front door when the bell rings
+whenever someone rings unlock the front door
+as soon as it is dark turn on the hall light
+turn on the oven once the coffee machine is off
+turn on the oven unless the kitchen window is open
+only turn on the oven if the kitchen window is closed
+
+## time
+tomorrow turn on the oven
+turn on the oven in 10 minutes
+turn on the oven in half an hour
+turn on the oven at 6
+turn on the oven later
+turn the oven on for 20 minutes
+turn off the oven after 30 minutes
+turn off the oven in two hours
+next week turn on the oven
+turn off the hall light at 10 pm
+turn off the hall light in an hour
+turn on the hall light after 5 minutes
+turn on the hall light at sunset
+open the garage door in five minutes
+open the garage door tonight
+open the garage door at 5 o'clock
+close the garage door at midnight
+on monday open the garage door
+unlock the front door at 8 am
+turn on the coffee machine tomorrow morning
+turn on the coffee machine every day at 7
+every morning turn on the coffee machine
+turn on the desk lamp in a minute
+
+## exception
+turn on everything in the kitchen except the oven => switch.oven
+turn off everything except the oven => switch.oven
+turn on the hall light but not the office light => light.office_light
+turn on lamp 1 but not lamp 2 => light.lamp_2
+turn off all the lights except the hall light => light.hall_light
+turn off all lights in the office except the desk lamp => light.desk_lamp
+turn on the office lights except on air => light.on_air
+turn on the lights in the garage but not the workbench light => light.workbench
+turn off the lights in the hall, but not the floor lamp => light.floor_lamp
+turn off everything in the living room except the tv => media_player.living_room_tv
+turn on all the lights in the kitchen apart from the counter light => light.kitchen_counter
+turn on the kitchen lights excluding the counter light => light.kitchen_counter
+turn on the lights everywhere except in the bedroom => light.bedroom_ceiling, light.bedside_lamp, light.timer_lamp
+turn off all lights except the kitchen => light.kitchen_ceiling, light.kitchen_counter
+turn off the lights upstairs except the office => light.office_light, light.desk_lamp, light.on_air
+close all the blinds except the ones in the bedroom => cover.bedroom_blinds

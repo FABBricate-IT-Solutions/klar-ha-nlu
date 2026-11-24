@@ -1,5 +1,7 @@
 #![allow(dead_code)]
 
+pub mod acts;
+pub mod collision_home;
 pub mod home;
 
 use klar_nlu::home::default_home;

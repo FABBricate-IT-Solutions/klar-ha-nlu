@@ -62,7 +62,10 @@ class FallbackTests(unittest.TestCase):
         self.assertIn("Keine Termine", de)
 
     def test_llm_session_keeps_recent_turns(self) -> None:
-        self.assertEqual(fallback.llm_conversation_id("klar-followup"), "klar-llm-klar-followup")
+        self.assertEqual(fallback.llm_conversation_id("chat-7"), "klar-llm-chat-7")
+        # H-01: no key used to mean the history every caller without an id shared.
+        self.assertNotEqual(fallback.llm_conversation_id(""), fallback.llm_conversation_id(""))
+        self.assertNotEqual(fallback.llm_conversation_id("  "), "klar-llm-klar-followup")
         turns = fallback.append_llm_turn(
             None, "erzähl eine Geschichte", "Kurz oder lang?"
         )
@@ -71,6 +74,15 @@ class FallbackTests(unittest.TestCase):
         self.assertEqual(turns[0][0], "erzähl eine Geschichte")
         trimmed = fallback.append_llm_turn(turns, "a", "b", keep=2)
         self.assertEqual(len(trimmed), 2)
+
+    def test_llm_history_forgets_the_oldest_conversations(self) -> None:
+        store = {f"klar-llm-{index}": [("asked", "answered")] for index in range(70)}
+        fallback.forget_old_llm_sessions(store)
+        self.assertEqual(len(store), 64)
+        self.assertNotIn("klar-llm-0", store)
+        self.assertIn("klar-llm-69", store)
+        fallback.forget_old_llm_sessions(store, keep=1)
+        self.assertEqual(list(store), ["klar-llm-69"])
 
 
 if __name__ == "__main__":

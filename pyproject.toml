@@ -1,0 +1,88 @@
+# Tool settings for the Python side: the Home Assistant integration and its tests.
+# Not a package: there is no [project] table and nothing is built from this file.
+# Install the tools with `uv pip install -r tests/ha_real/requirements.txt` (Python 3.14).
+
+[tool.pytest.ini_options]
+# The tier that needs a real Home Assistant. The stub tests in tests/ha run with unittest.
+testpaths = ["tests/ha_real"]
+pythonpath = [".", "tests/ha_real"]
+asyncio_mode = "auto"
+addopts = "--strict-markers -p no:cacheprovider"
+xfail_strict = true
+
+[tool.ruff]
+# hacs.json allows Home Assistant 2024.12, which runs on Python 3.12.
+target-version = "py312"
+line-length = 120
+include = ["custom_components/klar_nlu/**/*.py", "tests/ha_real/**/*.py"]
+
+[tool.ruff.lint]
+select = [
+    "E4", "E7", "E9", "F",  # syntax, imports, undefined and unused names
+    "B",                    # likely bugs
+    "BLE",                  # blind except needs a reason (`# noqa: BLE001 — why`)
+    "PLE",                  # pylint errors
+    "ASYNC",                # blocking calls and timeouts in async code
+    "PLC0415",              # imports at the top of the module
+    "RUF006",               # keep a reference to created tasks
+    "RUF100",               # no stale `noqa`
+    "S110", "S112",         # no silent `except: pass` / `continue`
+]
+
+# Debt that existed when the check was added. Remove an entry when the file is clean;
+# do not add new ones. New files get the full rule set.
+[tool.ruff.lint.per-file-ignores]
+"custom_components/klar_nlu/calendar_entity.py" = ["PLC0415", "S110", "S112"]
+"custom_components/klar_nlu/clock_query.py" = ["B007", "PLC0415"]
+"custom_components/klar_nlu/clock_speech.py" = ["PLC0415"]
+"custom_components/klar_nlu/const.py" = ["F401"]
+"custom_components/klar_nlu/engine.py" = ["ASYNC109", "PLC0415", "RUF006"]
+"custom_components/klar_nlu/intents.py" = ["PLC0415"]
+"custom_components/klar_nlu/news.py" = ["ASYNC109"]
+"custom_components/klar_nlu/policy_actions.py" = ["PLC0415"]
+"custom_components/klar_nlu/quiet.py" = ["PLC0415"]
+"custom_components/klar_nlu/refine.py" = ["PLC0415"]
+"custom_components/klar_nlu/reminders.py" = ["PLC0415"]
+"custom_components/klar_nlu/speech_render.py" = ["PLC0415"]
+"custom_components/klar_nlu/sync.py" = ["PLC0415", "S110"]
+
+[tool.mypy]
+python_version = "3.14"
+files = ["custom_components/klar_nlu", "tests/ha_real"]
+mypy_path = ["tests/ha_real"]
+explicit_package_bases = true
+warn_unused_ignores = true
+warn_redundant_casts = true
+check_untyped_defs = true
+
+[[tool.mypy.overrides]]
+module = ["pytest_homeassistant_custom_component.*"]
+ignore_missing_imports = true
+
+# Modules with type errors when the check was added. Remove a module when it is clean;
+# do not add new ones. Every other module, and every new one, is checked.
+[[tool.mypy.overrides]]
+module = [
+    "custom_components.klar_nlu.ai_task",
+    "custom_components.klar_nlu.assist_tools",
+    "custom_components.klar_nlu.calendar_entity",
+    "custom_components.klar_nlu.calendar_ha",
+    "custom_components.klar_nlu.calendar_say",
+    "custom_components.klar_nlu.config_flow",
+    "custom_components.klar_nlu.conversation",
+    "custom_components.klar_nlu.dispatch",
+    "custom_components.klar_nlu.engine_llm",
+    "custom_components.klar_nlu.fallback",
+    "custom_components.klar_nlu.floor_query",
+    "custom_components.klar_nlu.lookup",
+    "custom_components.klar_nlu.news",
+    "custom_components.klar_nlu.panel",
+    "custom_components.klar_nlu.policy_actions",
+    "custom_components.klar_nlu.refine",
+    "custom_components.klar_nlu.speech",
+    "custom_components.klar_nlu.speech_snapshot",
+    "custom_components.klar_nlu.speech_status",
+    "custom_components.klar_nlu.stream",
+    "custom_components.klar_nlu.sync",
+]
+ignore_errors = true

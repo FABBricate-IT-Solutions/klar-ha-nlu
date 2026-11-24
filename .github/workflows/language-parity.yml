@@ -1,8 +1,10 @@
 name: Language parity
 # Pin Ubuntu 26.04. ubuntu-latest moves to this image through November 2026.
 
-# Full Wohn+Family+m0+m2 for every compiled locale. Not a PR/release gate —
-# that would multiply CI time by ~65. Run weekly or by hand.
+# Every compiled locale: the full parity rubric, the conversation overlay and both
+# full-home tiers. Too slow for every pull request (about 15 CPU minutes for the
+# full tier alone), so weekly or by hand. Locales that are not at zero have a
+# recorded ceiling in tests/fixtures/suite_bounds.yaml; more failures fail the run.
 on:
   schedule:
     - cron: "27 4 * * 1"
@@ -27,11 +29,10 @@ jobs:
           tool: nextest
       - uses: Swatinem/rust-cache@v2
         with:
-          shared-key: ci-linux
+          shared-key: language-parity
           cache-on-failure: true
-      - name: Per-locale parity
-        run: cargo nextest run --locked --profile ci-lang --no-fail-fast --test parity_langs
-      - name: Full-home quick (every locale)
-        env:
-          KLAR_FULL_HOME_REPORT: "1"
-        run: cargo nextest run --locked --test full_home -- full_home_quick
+      - name: Per-locale parity and conversation overlay
+        run: cargo nextest run --locked --profile ci-lang --no-fail-fast --run-ignored all --test parity_langs
+      - name: Full-home quick and full (every locale)
+        if: ${{ !cancelled() }}
+        run: cargo nextest run --locked --profile ci-lang --no-fail-fast --run-ignored all --test full_home

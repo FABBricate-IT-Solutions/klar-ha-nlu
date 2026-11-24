@@ -10,7 +10,17 @@ from homeassistant.helpers import entity_registry as er
 from homeassistant.helpers.aiohttp_client import async_get_clientsession
 
 from .asr_boost import export_asr_boost
-from .const import CONF_TOKEN, CONF_URL, DEFAULT_URL, DOMAIN, engine_headers, engine_url_candidates
+from .const import (
+    CONF_TOKEN,
+    CONF_URL,
+    DEFAULT_URL,
+    DOMAIN,
+    LAST_EXECUTE_SESSION,
+    LAST_SESSION,
+    SERVICE_TURNS,
+    engine_headers,
+    engine_url_candidates,
+)
 
 _LOGGER = logging.getLogger(__name__)
 
@@ -32,6 +42,28 @@ def _agent_id(hass: HomeAssistant, entry: ConfigEntry) -> str | None:
     return None
 
 
+async def _say_in_session(
+    hass: HomeAssistant, entry: ConfigEntry, key: str, text: str, call: ServiceCall, language: str
+) -> None:
+    """Send a service's sentence into the conversation it is about.
+
+    Klar has no session shared by everyone, so "undo" needs the conversation that
+    acted last. The agent picks that session up by the context of this call, because
+    Home Assistant would replace an idle conversation id with a new one.
+    """
+    stored = (hass.data.get(DOMAIN) or {}).get(entry.entry_id) or {}
+    session = stored.get(key)
+    turns = stored.setdefault(SERVICE_TURNS, {}) if isinstance(stored, dict) else {}
+    if isinstance(session, str) and session:
+        turns[call.context.id] = session
+    try:
+        await conversation.async_converse(
+            hass, text, None, call.context, language=language, agent_id=_agent_id(hass, entry)
+        )
+    finally:
+        turns.pop(call.context.id, None)
+
+
 def _url_token(hass: HomeAssistant, entry: ConfigEntry) -> tuple[str, str | None]:
     stored = (hass.data.get(DOMAIN) or {}).get(entry.entry_id) or {}
     url = str(entry.options.get(CONF_URL) or entry.data.get(CONF_URL) or DEFAULT_URL).rstrip("/")
@@ -48,12 +80,9 @@ async def async_setup_services(hass: HomeAssistant) -> None:
         entry = _entry(hass)
         if entry is None:
             return
-        agent_id = _agent_id(hass, entry)
         language = str(hass.config.language or "en")
         text = "rückgängig" if language.startswith("de") else "undo that"
-        await conversation.async_converse(
-            hass, text, None, call.context, language=language, agent_id=agent_id
-        )
+        await _say_in_session(hass, entry, LAST_EXECUTE_SESSION, text, call, language)
 
     async def teach(call: ServiceCall) -> None:
         entry = _entry(hass)
@@ -66,9 +95,7 @@ async def async_setup_services(hass: HomeAssistant) -> None:
         if entity_id.count(".") != 1:
             language = str(hass.config.language or "en")
             text = f"nenn das {alias}" if language.startswith("de") else f"call this {alias}"
-            await conversation.async_converse(
-                hass, text, None, call.context, language=language, agent_id=_agent_id(hass, entry)
-            )
+            await _say_in_session(hass, entry, LAST_SESSION, text, call, language)
             return
         url, token = _url_token(hass, entry)
         headers = engine_headers(token)

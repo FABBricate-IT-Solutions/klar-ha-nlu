@@ -19,7 +19,7 @@ Gleiche Oracles wie in [tests](testing.md), gleicher Home-Graph je Suite. Assist
 
 **Klar trifft auf diesen Testsätzen etwa 3,2× so oft wie Assist.** Bei echten Hausbefehlen (ohne geschenkte OOD-Treffer, weil nichts matched) **4,1×**. Bei Sätzen, die Assist-Templates ohnehin vorsehen, ist der Abstand klein (etwa 1,06×).
 
-Klar-Zahlen: `cargo nextest run` auf `voice_suite` und `full_home` de/en, `KLAR_FULL_HOME=1`, Profil `default` (`test-threads = num-cpus`). Assist: HassIL 3.11.0 und `home-assistant-intents` 2026.7.30, Slot-Listen `name` / `area` / `floor` aus jeder `home_config.yaml` (wie der Default-Agent in HA Core).
+Klar-Zahlen: `cargo nextest run` auf `voice_suite` und `full_home` de/en, `--run-ignored all`, Profil `default` (`test-threads = num-cpus`). Assist: HassIL 3.11.0 und `home-assistant-intents` 2026.7.30, Slot-Listen `name` / `area` / `floor` aus jeder `home_config.yaml` (wie der Default-Agent in HA Core).
 
 ## Suiten
 
@@ -81,11 +81,11 @@ Rust 1.85+, Python 3.12+, [cargo-nextest](https://nexte.st/). Kein Live-Home-Ass
 ### Klar (Referenz)
 
 ```bash
-cargo nextest run --test voice_suite --test full_home --no-capture \
+cargo nextest run --test voice_suite --test full_home --no-capture --run-ignored all \
   -E 'binary(voice_suite) or test(full_home_quick_de) or test(full_home_quick_en) or test(full_home_full_de) or test(full_home_full_en)'
 ```
 
-`full` für de/en braucht `KLAR_FULL_HOME=1`. Nextest nutzt alle Kerne (`test-threads = num-cpus` in `.config/nextest.toml`). Nicht `--test-threads=1` setzen.
+Die `full`-Tests sind `#[ignore]` und laufen nur mit `--run-ignored all`. CI führt de/en `full` im Job `dataset-suites` auf jedem Pull Request aus; bekannte Fehlschläge stehen als Obergrenze in `tests/fixtures/suite_bounds.yaml`. Nextest nutzt alle Kerne (`test-threads = num-cpus` in `.config/nextest.toml`). Nicht `--test-threads=1` setzen.
 
 Ausgabezeilen wie `394 Sätze  394 ok  0 fehl  100.0%` sind die Klar-Quote.
 

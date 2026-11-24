@@ -59,9 +59,9 @@ class EngineChannelTests(unittest.TestCase):
         self.assertFalse(const.is_voice_satellite("  "))
         self.assertEqual(const.engine_session_id("dev-1", None), "dev:dev-1")
         self.assertEqual(const.engine_session_id(None, "sat-1"), "dev:sat-1")
-        self.assertEqual(const.engine_session_id(None, None), const.FOLLOWUP_SESSION)
+        self.assertIsNone(const.engine_session_id(None, None))
         self.assertEqual(const.parse_session_id("assist-9", None, None), "assist-9")
-        self.assertEqual(const.parse_session_id(None, None, None), const.FOLLOWUP_SESSION)
+        self.assertNotEqual(const.parse_session_id(None, None, None), const.parse_session_id(None, None, None))
 
     def test_resolve_channel_defaults_stable(self) -> None:
         self.assertEqual(const.resolve_channel(None), const.CHANNEL_STABLE)

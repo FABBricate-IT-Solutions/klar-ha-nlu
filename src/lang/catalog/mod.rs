@@ -104,22 +104,10 @@ impl Catalog {
         self.packs.first().map(|pack| &pack.household)
     }
 
-    pub fn household_hit(&self, blob: &str, pick: fn(&Pack) -> &[&str]) -> bool {
-        self.packs.iter().any(|pack| pick(pack).iter().any(|phrase| !phrase.is_empty() && blob.contains(phrase)))
-    }
-
-    pub fn household_prefix(&self, blob: &str, pick: fn(&Pack) -> &[&str]) -> Option<String> {
-        for pack in &self.packs {
-            for prefix in pick(pack) {
-                if let Some(rest) = blob.strip_prefix(prefix) {
-                    let alias = rest.trim().trim_matches(|ch: char| ch == '.' || ch == '!' || ch == '?');
-                    if !alias.is_empty() {
-                        return Some(alias.to_string());
-                    }
-                }
-            }
-        }
-        None
+    /// One household phrase list across the active packs. Matching is the caller's job
+    /// and happens on whole words, never on substrings.
+    pub fn household_phrases(&self, pick: fn(&Pack) -> &[&str]) -> impl Iterator<Item = &'static str> + '_ {
+        self.packs.iter().flat_map(move |pack| pick(pack).iter().copied())
     }
 
     pub fn color(&self, t: &str) -> Option<&'static str> {

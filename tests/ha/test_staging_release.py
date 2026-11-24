@@ -3,7 +3,7 @@ import ast
 import unittest
 from pathlib import Path
 
-SOURCE = Path(__file__).resolve().parents[1] / "const.py"
+SOURCE = Path(__file__).resolve().parents[2] / "custom_components" / "klar_nlu" / "const.py"
 TREE = ast.parse(SOURCE.read_text())
 for node in TREE.body:
     if isinstance(node, ast.FunctionDef) and node.name == "pick_staging_release":

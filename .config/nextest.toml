@@ -2,18 +2,19 @@
 fail-fast = false
 test-threads = "num-cpus"
 
+# Job `test` on main and release: unit and integration tests plus the full
+# Wohn+Family+m0+m2 parity rubric for every compiled locale (parity_langs).
+# voice_suite and full_home belong to the job `dataset-suites` (ci-datasets).
 [profile.ci]
 fail-fast = false
 test-threads = "num-cpus"
 slow-timeout = { period = "120s", terminate-after = 2 }
 status-level = "fail"
 final-status-level = "flaky"
-# Full Wohn+Family+m0+m2 for every compiled locale via parity_langs.
-# voice_suite / full_home stay local (or language-parity.yml).
 default-filter = "not (binary(voice_suite) | binary(full_home))"
 
-# Staging RC + PRs into staging: keep assist_langs / unit smoke, skip the
-# multi-locale parity matrix (weekly language-parity.yml owns that).
+# Job `test` on staging and on pull requests into staging: as `ci`, without the
+# multi-locale parity rubric (weekly language-parity.yml and `ci` on main own it).
 [profile.ci-staging]
 fail-fast = false
 test-threads = "num-cpus"
@@ -22,6 +23,27 @@ status-level = "fail"
 final-status-level = "flaky"
 default-filter = "not (binary(voice_suite) | binary(full_home) | binary(parity_langs))"
 
+# Job `dataset-suites`, on every pull request and on staging and main. Klar's own
+# suites only: wohnung_mittel, wohnung_en, wohnung_live, the wohnung_mittel overlay
+# of every locale, full_home quick for every locale and full_home full for de and en.
+# Run with `--run-ignored all`: the full tier is `#[ignore]`.
+# The family-home suites (see tests/datasets/NOTICE) are not part of this gate.
+[profile.ci-datasets]
+fail-fast = false
+test-threads = "num-cpus"
+slow-timeout = { period = "120s", terminate-after = 2 }
+status-level = "fail"
+final-status-level = "flaky"
+default-filter = '''
+(binary(voice_suite) & (
+    test(/^suite_(deutsch|english_smoke|wohnung_live_assist|conversation_german|conversation_english)$/)
+  | (test(/^voice_suite_support::/) & not test(/::checked_in_(exact_gates|parity_oracles)_/))
+))
+| (binary(full_home) & (test(/^full_home_quick_/) | test(/^full_home_full_(de|en)$/)))
+| (binary(parity_langs) & test(/^parity_own_/))
+'''
+
+# Weekly language-parity.yml: every locale, including the `#[ignore]` tiers.
 [profile.ci-lang]
 fail-fast = false
 test-threads = "num-cpus"
