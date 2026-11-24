@@ -1,5 +1,6 @@
 import "@testing-library/jest-dom/vitest";
 import { cleanup } from "@testing-library/react";
+import { toast } from "sonner";
 import { afterEach, beforeEach, vi } from "vitest";
 
 class ResizeObserverStub implements ResizeObserver {
@@ -32,6 +33,8 @@ beforeEach(() => {
 });
 
 afterEach(() => {
+  // sonner keeps its toasts in a module-level store; without this the next test starts with them.
+  toast.dismiss();
   cleanup();
   localStorage.clear();
   sessionStorage.clear();
