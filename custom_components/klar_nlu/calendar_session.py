@@ -40,11 +40,15 @@ def _stamp(value: Any) -> str:
 
 
 def as_record(entity_id: str, event: dict[str, Any] | Any) -> dict[str, str]:
+    """One event with every field a move has to carry over."""
     if not isinstance(event, dict):
         return {
             "uid": str(getattr(event, "uid", None) or getattr(event, "id", None) or ""),
             "recurrence_id": str(getattr(event, "recurrence_id", None) or ""),
+            "rrule": str(getattr(event, "rrule", None) or ""),
             "summary": str(getattr(event, "summary", None) or getattr(event, "title", None) or "").strip(),
+            "description": str(getattr(event, "description", None) or ""),
+            "location": str(getattr(event, "location", None) or ""),
             "start": _stamp(getattr(event, "start", None)),
             "end": _stamp(getattr(event, "end", None)),
             "entity_id": entity_id,
@@ -54,7 +58,10 @@ def as_record(entity_id: str, event: dict[str, Any] | Any) -> dict[str, str]:
     return {
         "uid": str(event.get("uid") or event.get("id") or ""),
         "recurrence_id": str(event.get("recurrence_id") or ""),
+        "rrule": str(event.get("rrule") or ""),
         "summary": str(event.get("summary") or event.get("title") or "").strip(),
+        "description": str(event.get("description") or ""),
+        "location": str(event.get("location") or ""),
         "start": _stamp(start),
         "end": _stamp(end),
         "entity_id": entity_id,

@@ -5,6 +5,7 @@
 
 from __future__ import annotations
 
+import logging
 from datetime import date, datetime, timedelta
 from typing import Any
 from zoneinfo import ZoneInfo
@@ -15,6 +16,25 @@ try:
     from . import calendar_session
 except ImportError:
     import calendar_session  # type: ignore[no-redef]
+
+
+_LOGGER = logging.getLogger(__name__)
+
+# homeassistant.components.calendar.CalendarEntityFeature
+CREATE_EVENT = 1
+DELETE_EVENT = 2
+UPDATE_EVENT = 4
+
+
+def supports(hass: HomeAssistant, entity_id: str, feature: int) -> bool:
+    """Whether the calendar says it can do this. A calendar that says nothing is read-only."""
+    state = hass.states.get(entity_id)
+    attributes = getattr(state, "attributes", None) or {}
+    try:
+        flags = int(attributes.get("supported_features") or 0)
+    except (TypeError, ValueError):
+        flags = 0
+    return bool(flags & feature)
 
 
 def timezone(hass: HomeAssistant) -> ZoneInfo:
@@ -63,6 +83,9 @@ def as_event(entity_id: str, raw: Any) -> dict[str, Any]:
         "summary": str(getattr(raw, "summary", None) or getattr(raw, "title", None) or "").strip(),
         "uid": str(getattr(raw, "uid", None) or getattr(raw, "id", None) or ""),
         "recurrence_id": str(getattr(raw, "recurrence_id", None) or ""),
+        "rrule": str(getattr(raw, "rrule", None) or ""),
+        "description": str(getattr(raw, "description", None) or ""),
+        "location": str(getattr(raw, "location", None) or ""),
         "start": start,
         "end": end,
         "entity_id": entity_id,
@@ -120,8 +143,12 @@ async def create_event(hass: HomeAssistant, entity_id: str, data: dict[str, str]
         try:
             await entity.async_create_event(**_create_kwargs(data))
             return True
-        except Exception:  # noqa: BLE001
+        except NotImplementedError:
             pass
+        except Exception as err:  # noqa: BLE001 — the calendar integration is a system boundary
+            # One attempt only: asking again through the service could store the event twice.
+            _LOGGER.debug("Calendar %s did not create the event: %s", entity_id, err)
+            return False
     try:
         await hass.services.async_call("calendar", "create_event", data, blocking=True, target={"entity_id": entity_id})
     except Exception:  # noqa: BLE001
@@ -158,41 +185,82 @@ async def delete_event(hass: HomeAssistant, hit: dict[str, str]) -> bool:
     return True
 
 
-async def move_event(hass: HomeAssistant, hit: dict[str, str], data: dict[str, str], start: datetime, end: datetime, all_day: bool) -> bool:
-    entity = calendar_entity(hass, hit["entity_id"])
+async def move_event(
+    hass: HomeAssistant, hit: dict[str, str], data: dict[str, str], start: datetime, end: datetime, all_day: bool
+) -> bool:
+    """Move one event without ever leaving the calendar without it.
+
+    A calendar that can update is updated in place. Otherwise the new event is created
+    first and the old one deleted only afterwards. A recurring event is never rebuilt
+    that way: the copy would be a single event and the series would be gone.
+    """
+    entity_id = hit["entity_id"]
+    entity = calendar_entity(hass, entity_id)
     uid = hit.get("uid") or ""
-    if entity is not None and uid and hasattr(entity, "async_update_event"):
-        payload = _update_payload(data, start, end, all_day)
+    if entity is None or not uid:
+        return False
+    occurrence = hit.get("recurrence_id") or ""
+    recurring = bool(occurrence or hit.get("rrule"))
+    if supports(hass, entity_id, UPDATE_EVENT) and hasattr(entity, "async_update_event") and (occurrence or not recurring):
         try:
-            extra = {"recurrence_id": hit["recurrence_id"]} if hit.get("recurrence_id") else {}
-            await entity.async_update_event(uid, payload, **extra)
+            extra = {"recurrence_id": occurrence} if occurrence else {}
+            await entity.async_update_event(uid, _update_payload(data, start, end, all_day), **extra)
             return True
-        except Exception:  # noqa: BLE001 — not every calendar implements update
-            pass
-    if uid:
-        deleted = await delete_event(hass, hit)
-        if not deleted:
-            return False
-    return await create_event(hass, hit["entity_id"], data)
+        except Exception as err:  # noqa: BLE001 — the calendar integration is a system boundary
+            _LOGGER.debug("Calendar %s did not update the event: %s", entity_id, err)
+    if recurring or not (supports(hass, entity_id, CREATE_EVENT) and supports(hass, entity_id, DELETE_EVENT)):
+        return False
+    known = {row["uid"] for row in await _events_for(hass, entity_id, start, end)}
+    if not await create_event(hass, entity_id, data):
+        return False
+    if await delete_event(hass, hit):
+        return True
+    for row in await _events_for(hass, entity_id, start, end):
+        if row["uid"] and row["uid"] not in known and row["summary"] == data["summary"]:
+            if not await delete_event(hass, calendar_session.as_record(entity_id, row)):
+                _LOGGER.warning("Calendar %s now holds %s twice: the move could not be completed", entity_id, data["summary"])
+    return False
 
 
 def _create_kwargs(data: dict[str, str]) -> dict[str, Any]:
     out: dict[str, Any] = {"summary": data["summary"]}
+    for key in ("description", "location"):
+        if data.get(key):
+            out[key] = data[key]
     if "start_date" in data:
-        out["start_date"] = _as_date(data["start_date"])
-        out["end_date"] = _as_date(data["end_date"])
+        out["dtstart"] = _as_date(data["start_date"])
+        out["dtend"] = _as_date(data["end_date"])
         return out
-    out["start_date_time"] = _as_datetime(data["start_date_time"])
-    out["end_date_time"] = _as_datetime(data["end_date_time"])
+    out["dtstart"] = _as_datetime(data["start_date_time"])
+    out["dtend"] = _as_datetime(data["end_date_time"])
     return out
 
 
 def _update_payload(data: dict[str, str], start: datetime, end: datetime, all_day: bool) -> dict[str, Any]:
+    first: date | datetime
+    last: date | datetime
     if all_day:
         first, last = start.date(), end.date()
     else:
         first, last = start, end
-    return {"summary": data.get("summary", ""), "dtstart": first, "dtend": last, "start": first, "end": last}
+    payload: dict[str, Any] = {"summary": data.get("summary", ""), "dtstart": first, "dtend": last, "start": first, "end": last}
+    for key in ("description", "location"):
+        if data.get(key):
+            payload[key] = data[key]
+    return payload
+
+
+def parse_stamp(value: str) -> date | datetime | None:
+    """A stored event time: a date for all-day events, otherwise a datetime."""
+    text = str(value or "")
+    if not text:
+        return None
+    try:
+        if "T" not in text and len(text) <= 10:
+            return date.fromisoformat(text)
+        return datetime.fromisoformat(text.replace("Z", "+00:00"))
+    except ValueError:
+        return None
 
 
 def _as_date(value: str) -> date:
