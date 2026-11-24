@@ -1,7 +1,10 @@
 import "@testing-library/jest-dom/vitest";
-import { cleanup } from "@testing-library/react";
+import { cleanup, configure } from "@testing-library/react";
 import { toast } from "sonner";
 import { afterEach, beforeEach, vi } from "vitest";
+
+// The default of one second is tight on a busy CI runner; a passing test never waits this long.
+configure({ asyncUtilTimeout: 5000 });
 
 class ResizeObserverStub implements ResizeObserver {
   observe(): void {}

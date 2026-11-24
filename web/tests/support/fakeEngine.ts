@@ -54,6 +54,11 @@ export type FakeEngine = {
   on: (route: string, handler: Handler) => void;
   /** The next `count` requests to the route answer with `status` and no body. */
   failNext: (route: string, status?: number, count?: number) => void;
+  /**
+   * Resolves once the UI has stopped talking: no request for `quietMs`. Use it after a click whose
+   * correct outcome is "nothing is sent", where there is no element to wait for.
+   */
+  idle: (quietMs?: number) => Promise<void>;
 };
 
 export type FakeEngineOptions = {
@@ -181,6 +186,7 @@ export function fakeEngine(options: FakeEngineOptions = {}): FakeEngine {
   const failures = new Map<string, { status: number; left: number }>();
   const calls: Call[] = [];
   const unhandled: Call[] = [];
+  let lastRequest = Date.now();
 
   const handle = async (input: RequestInfo | URL, init?: RequestInit): Promise<Response> => {
     const url = new URL(typeof input === "string" || input instanceof URL ? String(input) : input.url, window.location.href);
@@ -194,6 +200,7 @@ export function fakeEngine(options: FakeEngineOptions = {}): FakeEngine {
       external,
     };
     calls.push(call);
+    lastRequest = Date.now();
     if (external) return respond({ body: {} });
     if (options.requireToken && call.headers["x-klar-token"] !== options.requireToken) {
       return respond({ status: 401 });
@@ -228,6 +235,12 @@ export function fakeEngine(options: FakeEngineOptions = {}): FakeEngine {
     },
     failNext: (route, status = 502, count = 1) => {
       failures.set(route, { status, left: count });
+    },
+    idle: async (quietMs = 150) => {
+      lastRequest = Date.now();
+      while (Date.now() - lastRequest < quietMs) {
+        await new Promise((resolve) => setTimeout(resolve, 10));
+      }
     },
   };
 }

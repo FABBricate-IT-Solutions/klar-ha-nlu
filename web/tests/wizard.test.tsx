@@ -5,7 +5,7 @@ import { en } from "../src/i18n/en";
 import { wizardMessages } from "../src/i18n/wizard";
 import { fakeEngine, type FakeEngineOptions } from "./support/fakeEngine";
 import { storedSettings, storedUi } from "./support/fixtures";
-import { renderUi, settle } from "./support/render";
+import { renderUi } from "./support/render";
 
 // What each wizard step writes to the engine, seen from the requests the engine receives.
 
@@ -55,7 +55,7 @@ describe("the setup wizard", () => {
     await user.type(within(dialog).getByLabelText(en.llmApiKey), "sk-first");
     await user.click(within(dialog).getByRole("button", { name: copy.next }));
     await within(dialog).findByRole("heading", { name: copy.modeTitle });
-    await settle(20);
+    await engine.idle();
 
     const endpoint = engine.to("POST /api/v2/llm/endpoint").at(-1)?.body;
     expect(endpoint).toMatchObject({ base_url: "http://127.0.0.1:8080/v1", api_key: "sk-first", configured: true, provider: "llamacpp" });

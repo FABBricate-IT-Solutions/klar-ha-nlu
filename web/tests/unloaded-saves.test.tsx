@@ -8,7 +8,7 @@ import { RulesPage } from "../src/pages/RulesPage";
 import { fakeEngine } from "./support/fakeEngine";
 import { storedOverlay, storedPolicies, storedSettings, storedUi } from "./support/fixtures";
 import { knownBug } from "./support/knownBug";
-import { renderUi, settle, type User } from "./support/render";
+import { renderUi, type User } from "./support/render";
 
 // Package 1.9: the UI must never save state it did not load. Each test drives the operator flow
 // from the bug hunt against an engine that remembers what was posted to it.
@@ -42,7 +42,7 @@ describe("U-01: entering the write token on a token-protected install", () => {
 
     await user.type(await screen.findByLabelText(en.token), "secret123");
     await user.click(screen.getByRole("button", { name: en.save }));
-    await settle(50);
+    await engine.idle();
 
     expect(engine.stored.settings, "engine settings after token and Save").toEqual(storedSettings);
   });
@@ -65,7 +65,7 @@ describe("U-02: one request fails while the app starts", () => {
     await screen.findByText(/502/);
 
     await user.keyboard("{Escape}");
-    await settle(50);
+    await engine.idle();
 
     expect(engine.writes(), "writes after Escape").toEqual([]);
     expect(engine.stored.settings).toEqual(storedSettings);
@@ -79,7 +79,7 @@ describe("U-02: one request fails while the app starts", () => {
     await screen.findByText(/502/);
 
     await skipWizardIfOpen(user);
-    await settle(50);
+    await engine.idle();
 
     expect(engine.writes(), "writes after Skip").toEqual([]);
     expect(engine.stored.settings).toEqual(storedSettings);
@@ -95,7 +95,7 @@ describe("U-03: the house rules fail to load", () => {
     await screen.findByText(/502/);
 
     await user.click(screen.getByRole("button", { name: en.save }));
-    await settle(50);
+    await engine.idle();
 
     expect(engine.writes("/api/v2/policies"), "rule writes after a failed load").toEqual([]);
     expect(engine.stored.policies).toEqual(storedPolicies);
@@ -155,7 +155,7 @@ describe("U-08: the setup wizard", () => {
     await user.click(within(dialog).getByRole("button", { name: "3" }));
     await user.click(within(dialog).getByRole("button", { name: wizard.next }));
     await within(dialog).findByRole("heading", { name: wizard.modeTitle });
-    await settle(50);
+    await engine.idle();
 
     expect(engine.stored.settings.refine_speech, "refine_speech after replaying the LLM step").toBe(false);
     expect(engine.stored.settings.refine_bands).toEqual(["status", "command", "prompt"]);
@@ -168,7 +168,7 @@ describe("U-08: the setup wizard", () => {
     engine.failNext("POST /api/settings", 401);
 
     await user.click(within(dialog).getByRole("button", { name: wizard.next }));
-    await settle(50);
+    await engine.idle();
 
     expect(within(dialog).getByRole("heading", { level: 1 }).textContent, "wizard step after a rejected save").toBe(wizard.chromeTitle);
   });

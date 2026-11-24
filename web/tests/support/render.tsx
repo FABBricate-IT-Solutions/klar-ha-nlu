@@ -11,7 +11,7 @@ export function renderUi(ui: ReactElement): RenderResult & { user: User } {
   return { user, ...render(<TooltipProvider>{ui}</TooltipProvider>) };
 }
 
-/** Lets pending fetches, state updates and short timers (debounces, delayed saves) run out. */
-export async function settle(ms = 0): Promise<void> {
+/** Waits out a timer in the UI (a debounce, a delayed save). To wait for requests, use `engine.idle()`. */
+export async function settle(ms: number): Promise<void> {
   await new Promise((resolve) => setTimeout(resolve, ms));
 }
