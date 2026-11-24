@@ -1,10 +1,10 @@
 //! Preview, explain, and rollback for user language rules.
 
-use crate::home::overlay::{load_overlay, save_overlay};
+use crate::home::overlay::load_overlay;
 use crate::io::auth::{reads_allowed, writes_allowed};
 use crate::io::lang_explain::{explain_outcome, ExplainOut};
 use crate::io::limits::MAX_PARSE_CHARS;
-use crate::io::state::AppState;
+use crate::io::state::{save_failed, AppState};
 use crate::lang::{
     bind_preview_user, install_user_overlay, pin_language, push_revision, select_revision, validate_custom, validate_language,
     LanguageOverlay, LanguageRevision,
@@ -210,14 +210,18 @@ async fn persist_rules(
     if !validate_custom(&custom).is_empty() || !validate_language(&language).is_empty() {
         return Err(StatusCode::UNPROCESSABLE_ENTITY);
     }
-    let mut overlay = load_overlay(&state.data_dir);
-    push_revision(&mut overlay.language_history, overlay.custom.clone(), overlay.language.clone(), label);
-    overlay.custom = custom.clone();
-    overlay.language = language.clone();
-    save_overlay(&state.data_dir, &overlay).map_err(|_| StatusCode::INTERNAL_SERVER_ERROR)?;
+    let history = state
+        .overlay
+        .update(|overlay| {
+            push_revision(&mut overlay.language_history, overlay.custom.clone(), overlay.language.clone(), label);
+            overlay.custom = custom.clone();
+            overlay.language = language.clone();
+            overlay.language_history.clone()
+        })
+        .map_err(save_failed)?;
     *state.custom.lock().await = custom.clone();
     install_user_overlay(if language.sets.is_empty() { None } else { Some(language.clone()) });
-    Ok(Json(overlay_out(&custom, &language, &overlay.language_history)))
+    Ok(Json(overlay_out(&custom, &language, &history)))
 }
 
 fn overlay_out(custom: &[CustomSentence], language: &LanguageOverlay, history: &[LanguageRevision]) -> OverlayOut {

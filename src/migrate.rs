@@ -9,6 +9,7 @@ use std::collections::{BTreeSet, HashSet};
 use std::path::Path;
 
 const V2_KEYS: &[&str] = &[
+    "version",
     "aliases",
     "preferred",
     "areas",

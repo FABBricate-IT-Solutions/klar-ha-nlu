@@ -3,8 +3,8 @@
 use crate::home::assignment::suggested_area;
 use crate::home::expose::assist_visible;
 use crate::home::gaps::leftover;
-use crate::home::overlay::{apply_overlay, load_overlay, save_overlay};
-use crate::io::state::AppState;
+use crate::home::overlay::apply_overlay;
+use crate::io::state::{save_failed, AppState};
 use crate::io::trainer_args::{arg_bool, arg_str, string_list};
 use crate::io::trainer_reads::with_view;
 use crate::lang::catalog_for;
@@ -155,27 +155,32 @@ fn valid_alias(alias: &str) -> bool {
 }
 
 async fn persist_entity(state: &AppState, change: &EntityChange) -> Result<(), String> {
-    let mut overlay = load_overlay(&state.data_dir);
-    if let Some(aliases) = &change.aliases {
-        overlay.aliases.insert(change.entity_id.clone(), aliases.clone());
-    }
-    if !change.remove_aliases.is_empty() {
-        let list = overlay.aliases.entry(change.entity_id.clone()).or_default();
-        list.retain(|alias| !change.remove_aliases.iter().any(|drop| drop == alias));
-    }
-    if let Some(preferred) = change.preferred {
-        overlay.preferred.retain(|id| id != &change.entity_id);
-        if preferred {
-            overlay.preferred.push(change.entity_id.clone());
-        }
-    }
-    if let Some(ignore) = change.nlu_ignore {
-        overlay.nlu_ignore.retain(|id| id != &change.entity_id);
-        if ignore {
-            overlay.nlu_ignore.push(change.entity_id.clone());
-        }
-    }
-    save_overlay(&state.data_dir, &overlay).map_err(|_| "save overlay")?;
+    let overlay = state
+        .overlay
+        .update(|overlay| {
+            if let Some(aliases) = &change.aliases {
+                overlay.aliases.insert(change.entity_id.clone(), aliases.clone());
+            }
+            if !change.remove_aliases.is_empty() {
+                let list = overlay.aliases.entry(change.entity_id.clone()).or_default();
+                list.retain(|alias| !change.remove_aliases.iter().any(|drop| drop == alias));
+            }
+            if let Some(preferred) = change.preferred {
+                overlay.preferred.retain(|id| id != &change.entity_id);
+                if preferred {
+                    overlay.preferred.push(change.entity_id.clone());
+                }
+            }
+            if let Some(ignore) = change.nlu_ignore {
+                overlay.nlu_ignore.retain(|id| id != &change.entity_id);
+                if ignore {
+                    overlay.nlu_ignore.push(change.entity_id.clone());
+                }
+            }
+            overlay.clone()
+        })
+        .map_err(save_failed)
+        .map_err(|_| "save overlay")?;
     state
         .home
         .edit(|next| {

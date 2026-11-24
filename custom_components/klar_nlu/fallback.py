@@ -2,6 +2,8 @@
 
 from __future__ import annotations
 
+from uuid import uuid4
+
 # homeassistant.components.conversation.ConversationEntityFeature.CONTROL
 _CONTROL = 1
 
@@ -30,8 +32,15 @@ def calendar_readback(pack: str, facts: str) -> str:
 
 
 def llm_conversation_id(session_key: str) -> str:
-    key = (session_key or "klar-followup").strip() or "klar-followup"
+    """Key for one conversation's LLM history. No key means no shared history."""
+    key = (session_key or "").strip() or f"once-{uuid4().hex}"
     return f"klar-llm-{key}"[:128]
+
+
+def forget_old_llm_sessions(store: dict[str, list[tuple[str, str]]], keep: int = 64) -> None:
+    """Drop the oldest conversations so per-conversation history cannot grow without end."""
+    while len(store) > keep:
+        store.pop(next(iter(store)))
 
 
 def append_llm_turn(

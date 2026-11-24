@@ -1,9 +1,9 @@
 use crate::home::expose::assist_visible;
 use crate::home::gaps::leftover;
-use crate::home::overlay::{apply_overlay, load_overlay, save_overlay, Overlay};
+use crate::home::overlay::{apply_overlay, load_overlay, Overlay};
 use crate::io::auth::{reads_allowed, writes_allowed};
 use crate::io::limits::MAX_PARSE_CHARS;
-use crate::io::state::AppState;
+use crate::io::state::{save_failed, AppState};
 use crate::nlu::{legacy_result, parse_with_controls};
 use crate::types::{known_intent, AreaRec, CustomSentence, EntityRec, ParseOutcome, Settings};
 use axum::extract::{ConnectInfo, DefaultBodyLimit, State};
@@ -171,10 +171,8 @@ async fn set_settings(
     Json(body): Json<Settings>,
 ) -> Result<Json<Settings>, StatusCode> {
     gate(peer, &headers, &state.token)?;
+    state.overlay.update(|overlay| overlay.settings = Some(body.clone())).map_err(save_failed)?;
     *state.settings.lock().await = body.clone();
-    let mut overlay = load_overlay(&state.data_dir);
-    overlay.settings = Some(body.clone());
-    let _ = save_overlay(&state.data_dir, &overlay);
     Ok(Json(body))
 }
 
@@ -187,6 +185,12 @@ async fn get_custom(
     Ok(Json(state.custom.lock().await.clone()))
 }
 
+/// What `POST /api/custom` accepts. Restore holds a backup to the same rule.
+pub(crate) fn custom_rows_ok(rows: &[CustomSentence]) -> bool {
+    rows.len() <= 64
+        && rows.iter().all(|row| row.phrase.len() <= 200 && row.phrase.trim().chars().count() >= 4 && known_intent(&row.intent))
+}
+
 async fn set_custom(
     State(state): State<AppState>,
     ConnectInfo(peer): ConnectInfo<SocketAddr>,
@@ -194,15 +198,16 @@ async fn set_custom(
     Json(body): Json<Vec<CustomSentence>>,
 ) -> Result<Json<Vec<CustomSentence>>, StatusCode> {
     gate(peer, &headers, &state.token)?;
-    if body.len() > 64
-        || body.iter().any(|row| row.phrase.len() > 200 || row.phrase.trim().chars().count() < 4 || !known_intent(&row.intent))
-    {
+    if !custom_rows_ok(&body) {
         return Err(StatusCode::BAD_REQUEST);
     }
-    let mut overlay = load_overlay(&state.data_dir);
-    crate::lang::push_revision(&mut overlay.language_history, overlay.custom.clone(), overlay.language.clone(), "custom".into());
-    overlay.custom = body.clone();
-    save_overlay(&state.data_dir, &overlay).map_err(|_| StatusCode::INTERNAL_SERVER_ERROR)?;
+    state
+        .overlay
+        .update(|overlay| {
+            crate::lang::push_revision(&mut overlay.language_history, overlay.custom.clone(), overlay.language.clone(), "custom".into());
+            overlay.custom = body.clone();
+        })
+        .map_err(save_failed)?;
     *state.custom.lock().await = body.clone();
     Ok(Json(body))
 }
@@ -271,26 +276,30 @@ async fn tag_entity(
     if !home.entities.iter().any(|e| e.entity_id == body.entity_id) {
         return Err(StatusCode::NOT_FOUND);
     }
-    let mut overlay = load_overlay(&state.data_dir);
-    if let Some(aliases) = &body.aliases {
-        overlay.aliases.insert(body.entity_id.clone(), aliases.clone());
-    }
-    if let Some(area) = &body.area {
-        overlay.areas.insert(body.entity_id.clone(), area.clone());
-    }
-    if let Some(preferred) = body.preferred {
-        overlay.preferred.retain(|id| id != &body.entity_id);
-        if preferred {
-            overlay.preferred.push(body.entity_id.clone());
-        }
-    }
-    if let Some(ignore) = body.nlu_ignore {
-        overlay.nlu_ignore.retain(|id| id != &body.entity_id);
-        if ignore {
-            overlay.nlu_ignore.push(body.entity_id.clone());
-        }
-    }
-    let _ = save_overlay(&state.data_dir, &overlay);
+    let overlay = state
+        .overlay
+        .update(|overlay| {
+            if let Some(aliases) = &body.aliases {
+                overlay.aliases.insert(body.entity_id.clone(), aliases.clone());
+            }
+            if let Some(area) = &body.area {
+                overlay.areas.insert(body.entity_id.clone(), area.clone());
+            }
+            if let Some(preferred) = body.preferred {
+                overlay.preferred.retain(|id| id != &body.entity_id);
+                if preferred {
+                    overlay.preferred.push(body.entity_id.clone());
+                }
+            }
+            if let Some(ignore) = body.nlu_ignore {
+                overlay.nlu_ignore.retain(|id| id != &body.entity_id);
+                if ignore {
+                    overlay.nlu_ignore.push(body.entity_id.clone());
+                }
+            }
+            overlay.clone()
+        })
+        .map_err(save_failed)?;
     let updated = state
         .home
         .edit(|next| {

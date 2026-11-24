@@ -20,8 +20,11 @@ jobs:
     steps:
       - uses: actions/checkout@v7
       - uses: dtolnay/rust-toolchain@1.85
-      # 0.22.2+ needs rustc 1.88; MSRV is 1.85.
-      - run: cargo install cargo-audit --version 0.22.1 --locked --force
+      # Prebuilt binary instead of `cargo install` (that compiled for about three minutes
+      # on every run). Same version as before; 0.22.2+ does not build with the MSRV 1.85.
+      - uses: taiki-e/install-action@v2
+        with:
+          tool: cargo-audit@0.22.1
       - run: cargo audit
 
   deny:

@@ -1,0 +1,145 @@
+# Failure ceilings for dataset suites that are not at zero yet.
+# suite -> locale -> number of failing sentences. A locale without an entry must be at zero.
+# More failures than recorded fail the test (tests/voice_suite_support/bounds.rs).
+# When a fix lowers a count, lower the number here in the same pull request; remove the
+# line at zero. Never raise a number to get a pull request green.
+#
+# full_home_full: `cargo nextest run --test full_home --run-ignored all -E 'test(/^full_home_full_/)'`
+# de and en run on every pull request (job dataset-suites), every locale weekly.
+full_home_full:
+  af: 10
+  ar: 58
+  bg: 11
+  bn: 11
+  ca: 10
+  cs: 12
+  cy: 57
+  da: 10
+  de: 1
+  de-AT: 10
+  de-CH: 10
+  el: 58
+  en: 1
+  en-GB: 57
+  es: 13
+  et: 21
+  eu: 21
+  fa: 60
+  fi: 21
+  fr: 10
+  ga: 57
+  gl: 13
+  gu: 11
+  he: 58
+  hi: 11
+  hr: 10
+  hu: 10
+  hy: 11
+  id: 16
+  is: 57
+  it: 10
+  ja: 10
+  ka: 11
+  kn: 11
+  ko: 19
+  kw: 57
+  lb: 10
+  lt: 21
+  lv: 21
+  ml: 11
+  mn: 11
+  mr: 11
+  ms: 16
+  nb: 10
+  ne: 15
+  nl: 10
+  pa: 11
+  pl: 57
+  pt: 10
+  pt-BR: 10
+  ro: 10
+  sk: 10
+  sl: 10
+  sr: 11
+  sr-Latn: 10
+  sv: 10
+  sw: 10
+  ta: 11
+  te: 11
+  th: 19
+  tr: 10
+  uk: 11
+  ur: 11
+  vi: 83
+  zh-CN: 11
+  zh-HK: 19
+  zh-TW: 19
+
+# parity_conversation: `cargo nextest run --test parity_langs --run-ignored all -E 'test(/^parity_conversation_/)'`
+# Weekly (language-parity.yml). de and en are at zero and also gated by voice_suite.
+parity_conversation:
+  af: 16
+  ar: 16
+  bg: 16
+  bn: 18
+  ca: 16
+  cs: 16
+  cy: 15
+  da: 14
+  de-AT: 9
+  de-CH: 11
+  el: 16
+  en-GB: 9
+  es: 16
+  et: 16
+  eu: 16
+  fa: 16
+  fi: 16
+  fr: 17
+  ga: 16
+  gl: 17
+  gu: 17
+  he: 16
+  hi: 17
+  hr: 16
+  hu: 18
+  hy: 17
+  id: 15
+  is: 15
+  it: 17
+  ja: 16
+  ka: 19
+  kn: 17
+  ko: 16
+  kw: 16
+  lb: 16
+  lt: 16
+  lv: 16
+  ml: 17
+  mn: 17
+  mr: 17
+  ms: 14
+  nb: 16
+  ne: 17
+  nl: 16
+  pa: 17
+  pl: 16
+  pt: 16
+  pt-BR: 16
+  ro: 16
+  sk: 16
+  sl: 16
+  sr: 16
+  sr-Latn: 16
+  sv: 14
+  sw: 15
+  ta: 19
+  te: 17
+  th: 16
+  tr: 16
+  uk: 16
+  ur: 17
+  vi: 15
+  zh-CN: 16
+  zh-HK: 16
+  zh-TW: 16

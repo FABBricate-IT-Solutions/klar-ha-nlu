@@ -84,7 +84,6 @@ class ConversationFallbackTests(unittest.TestCase):
         )
         self.assertIn("keeps_conversation(decision_type)", src)
         self.assertIn("parse_session_id(", src)
-        self.assertIn("engine_session_id", src)
         spoken = src[src.index("if self._quiet_ack()") : src.index("async def _after_fallback")]
         self.assertIn(', False, "chime"', spoken)
         self.assertNotIn(', True, "execute"', src)

@@ -17,7 +17,7 @@ cargo check
 cargo nextest run
 ```
 
-CI uses `cargo nextest run --locked --profile ci --no-fail-fast`: assist smoke plus the full Wohn+Family+m0+m2 parity suite for every compiled locale. `voice_suite` and `full_home` stay local / `language-parity.yml`.
+CI uses `cargo nextest run --locked --profile ci --no-fail-fast`: assist smoke plus the full Wohn+Family+m0+m2 parity suite for every compiled locale. Pull requests into `staging` use the profile `ci-staging` (no multi-locale parity). Klar's own dataset suites (`voice_suite` apartment suites, `full_home` quick per locale and full for de/en, `parity_own_*`) run on every pull request in the job `dataset-suites`: `cargo nextest run --locked --profile ci-datasets --run-ignored all --test voice_suite --test full_home --test parity_langs`.
 
 Do **not** run `python3 scripts/lang_packs/generate.py` in pre-commit or as a drive-by. Regeneration is a deliberate pack change.
 
