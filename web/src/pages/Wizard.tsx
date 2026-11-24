@@ -9,9 +9,9 @@ import { UnitsStep } from "../components/wizard/UnitsStep";
 import { VoiceStep } from "../components/wizard/VoiceStep";
 import type { Messages } from "../i18n";
 import { fillWizard, wizardMessages, type WizardMessages } from "../i18n/wizard";
-import { isProviderId, resolveProvider, writeStoredProvider } from "../llmProviders";
 import { saveFailMessage } from "../saveToast";
 import type { Locale, RefineBand, Settings, Theme } from "../types";
+import { useLlmForm } from "../useLlmForm";
 
 export type InstallPath = "addon" | "docker" | "binary" | "sample";
 export type WizardStep = 0 | 1 | 2 | 3 | 4 | 5;
@@ -150,11 +150,9 @@ export function Wizard({
   const scrollRef = useRef<HTMLDivElement>(null);
   const [scrollable, setScrollable] = useState(false);
   const [draft, setDraft] = useState<Settings>(settings);
-  const [llmUrl, setLlmUrl] = useState("");
-  const [llmModel, setLlmModel] = useState("");
-  const [llmKey, setLlmKey] = useState("");
-  const [llmThinking, setLlmThinking] = useState(false);
-  const [llmReady, setLlmReady] = useState(false);
+  const llm = useLlmForm();
+  const { load: fillLlm } = llm;
+  const llmReady = llm.saved.configured;
   // True only when the engine said at open that no LLM is configured: this run is the first setup.
   const llmWasMissing = useRef(false);
   const [saveError, setSaveError] = useState("");
@@ -182,17 +180,14 @@ export function Wizard({
   };
 
   const persistLlm = async (): Promise<"untouched" | "saved" | "refused"> => {
-    if (!llmUrl.trim() && !llmModel.trim() && !llmKey.trim()) return "untouched";
+    if (!llm.baseUrl.trim() && !llm.model.trim() && !llm.apiKey.trim()) return "untouched";
+    // The key field shows what is missing: a cloud endpoint at a new address needs its own key.
+    if (llm.keyMissing) {
+      setSaveError(chrome.saveFail);
+      return "refused";
+    }
     try {
-      await api.saveLlmEndpoint({
-        base_url: llmUrl,
-        model: llmModel,
-        ...(llmKey.trim() ? { api_key: llmKey.trim() } : {}),
-        configured: true,
-        enable_thinking: llmThinking,
-        provider: resolveProvider(llmUrl),
-      });
-      setLlmReady(true);
+      fillLlm(await api.saveLlmEndpoint(llm.payload()));
       setSaveError("");
       return "saved";
     } catch (err) {
@@ -216,24 +211,14 @@ export function Wizard({
     if (!open) return;
     setStep(0);
     setDraft(settings);
-    setLlmKey("");
     setSaveError("");
     llmWasMissing.current = false;
     api.languages().then(setPacks).catch(() => undefined);
     api.llmEndpoint().then((next) => {
-      setLlmUrl(next.base_url || "");
-      setLlmModel(next.model || "");
-      setLlmThinking(Boolean(next.enable_thinking));
-      setLlmReady(Boolean(next.configured));
+      fillLlm(next);
       llmWasMissing.current = !next.configured;
-      if (isProviderId(next.provider)) writeStoredProvider(next.provider);
-    }).catch(() => {
-      setLlmUrl("");
-      setLlmModel("");
-      setLlmThinking(false);
-      setLlmReady(false);
-    });
-  }, [open]);
+    }).catch(() => fillLlm({ configured: false }));
+  }, [open, fillLlm]);
 
   useEffect(() => {
     if (!open) return;
@@ -337,20 +322,7 @@ export function Wizard({
       case 1:
         return <UnitsStep copy={copy} chrome={chrome} settings={draft} onSettings={setDraft} />;
       case 2:
-        return (
-          <LlmStep
-            copy={copy}
-            chrome={chrome}
-            url={llmUrl}
-            model={llmModel}
-            apiKey={llmKey}
-            thinking={llmThinking}
-            onUrl={setLlmUrl}
-            onModel={setLlmModel}
-            onKey={setLlmKey}
-            onThinking={setLlmThinking}
-          />
-        );
+        return <LlmStep copy={copy} chrome={chrome} form={llm} />;
       case 3:
         return (
           <VoiceStep
@@ -359,12 +331,7 @@ export function Wizard({
             settings={draft}
             llmReady={llmReady}
             language={assistLang}
-            llm={{
-              baseUrl: llmUrl,
-              model: llmModel,
-              apiKey: llmKey,
-              provider: resolveProvider(llmUrl),
-            }}
+            llm={{ baseUrl: llm.baseUrl, model: llm.model, apiKey: llm.apiKey, provider: llm.provider }}
             onSettings={setDraft}
           />
         );

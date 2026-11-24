@@ -3,55 +3,35 @@ import { toast } from "sonner";
 import { api } from "../api";
 import type { Messages } from "../i18n";
 import { toastSaved, toastSaveFailed } from "../saveToast";
-import type { LlmPublic } from "../types";
-import { isProviderId, resolveProvider, writeStoredProvider } from "../llmProviders";
+import { useLlmForm } from "../useLlmForm";
 import { LlmProviderFields } from "./LlmProviderFields";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 
 export function LlmSettingsCard({ t }: { t: Messages }) {
-  const [endpoint, setEndpoint] = useState<LlmPublic>({ configured: false });
-  const [baseUrl, setBaseUrl] = useState("");
-  const [model, setModel] = useState("");
-  const [apiKey, setApiKey] = useState("");
-  const [enableThinking, setEnableThinking] = useState(false);
+  const form = useLlmForm();
+  const { load: fill, saved: endpoint } = form;
   const [busy, setBusy] = useState(false);
   // False until the stored endpoint was read; the empty fields are placeholders until then.
   const [loaded, setLoaded] = useState(false);
 
-  const load = async () => {
-    const next = await api.llmEndpoint();
-    setLoaded(true);
-    setEndpoint(next);
-    setBaseUrl(next.base_url || "");
-    setModel(next.model || "");
-    setApiKey("");
-    setEnableThinking(Boolean(next.enable_thinking));
-    if (isProviderId(next.provider)) writeStoredProvider(next.provider);
-  };
-
   useEffect(() => {
-    load().catch((err) => {
+    api.llmEndpoint().then((next) => {
+      setLoaded(true);
+      fill(next);
+    }).catch((err) => {
       const text = err instanceof Error ? err.message : "";
       toast.error(text.startsWith("401") ? t.saveUnauthorized : t.trainerFail);
     });
-  }, [t.saveUnauthorized, t.trainerFail]);
+  }, [fill, t.saveUnauthorized, t.trainerFail]);
 
   const save = async () => {
-    if (!loaded) return;
+    if (!loaded || form.keyMissing) return;
     setBusy(true);
     try {
-      const next = await api.saveLlmEndpoint({
-        base_url: baseUrl,
-        model,
-        ...(apiKey.trim() ? { api_key: apiKey.trim() } : {}),
-        configured: true,
-        enable_thinking: enableThinking,
-        provider: resolveProvider(baseUrl, isProviderId(endpoint.provider) ? endpoint.provider : undefined),
-      });
-      setEndpoint(next);
-      setApiKey("");
+      const next = await api.saveLlmEndpoint(form.payload());
+      fill(next);
       toastSaved(t, [next.model, next.base_url].filter(Boolean).join(" · "));
     } catch (err) {
       toastSaveFailed(t, err);
@@ -63,12 +43,7 @@ export function LlmSettingsCard({ t }: { t: Messages }) {
   const clear = async () => {
     setBusy(true);
     try {
-      const next = await api.saveLlmEndpoint({ configured: false });
-      setEndpoint(next);
-      setBaseUrl("");
-      setModel("");
-      setApiKey("");
-      setEnableThinking(false);
+      fill(await api.saveLlmEndpoint({ configured: false }));
       toastSaved(t, t.llmNotConfigured);
     } catch (err) {
       toastSaveFailed(t, err);
@@ -92,20 +67,10 @@ export function LlmSettingsCard({ t }: { t: Messages }) {
         ) : null}
       </CardHeader>
       <CardContent>
-        <LlmProviderFields
-          t={t}
-          baseUrl={baseUrl}
-          model={model}
-          apiKey={apiKey}
-          thinking={enableThinking}
-          onUrl={setBaseUrl}
-          onModel={setModel}
-          onKey={setApiKey}
-          onThinking={setEnableThinking}
-        />
+        <LlmProviderFields t={t} form={form} />
       </CardContent>
       <CardFooter className="flex flex-wrap gap-2">
-        <Button type="button" disabled={busy || !loaded} onClick={() => void save()}>{t.save}</Button>
+        <Button type="button" disabled={busy || !loaded || form.keyMissing} onClick={() => void save()}>{t.save}</Button>
         <Button type="button" variant="ghost" disabled={busy || !endpoint.configured} onClick={() => void clear()}>{t.llmClear}</Button>
       </CardFooter>
     </Card>
