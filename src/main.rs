@@ -4,6 +4,7 @@ use clap::{Parser, Subcommand};
 use klar_nlu::io::{run, RuntimeArgs};
 use std::path::PathBuf;
 use std::process::ExitCode;
+use std::time::Duration;
 
 #[derive(Parser, Debug)]
 #[command(name = "klar", about = "Deutsche NLU für Home Assistant")]
@@ -111,8 +112,25 @@ enum MigrateCommand {
     },
 }
 
-#[tokio::main]
-async fn main() -> ExitCode {
+/// How long work that is still running in the background gets after the engine has stopped.
+const RUNTIME_SHUTDOWN: Duration = Duration::from_millis(300);
+
+fn main() -> ExitCode {
+    let runtime = match tokio::runtime::Builder::new_multi_thread().enable_all().build() {
+        Ok(runtime) => runtime,
+        Err(err) => {
+            eprintln!("tokio runtime: {err}");
+            return ExitCode::FAILURE;
+        }
+    };
+    let code = runtime.block_on(run_command());
+    // Dropping the runtime would wait for blocking work, a name lookup for example, without
+    // limit. A stop must not hang on that.
+    runtime.shutdown_timeout(RUNTIME_SHUTDOWN);
+    code
+}
+
+async fn run_command() -> ExitCode {
     tracing_subscriber::fmt()
         .with_env_filter(tracing_subscriber::EnvFilter::try_from_default_env().unwrap_or_else(|_| "klar=info,klar_nlu=info".into()))
         .init();
@@ -174,7 +192,7 @@ async fn main() -> ExitCode {
         };
     }
 
-    run(RuntimeArgs {
+    let ended = run(RuntimeArgs {
         http: args.http,
         wyoming: args.wyoming,
         config_dir: args.config_dir,
@@ -184,5 +202,11 @@ async fn main() -> ExitCode {
         lang_dir: args.lang_dir,
     })
     .await;
-    ExitCode::SUCCESS
+    match ended {
+        Ok(()) => ExitCode::SUCCESS,
+        Err(err) => {
+            tracing::error!("Klar beendet sich: {err}");
+            ExitCode::FAILURE
+        }
+    }
 }
