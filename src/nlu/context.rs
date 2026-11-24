@@ -13,6 +13,9 @@ pub struct ParseContext<'a> {
     pub policies: &'a [PolicyRule],
     pub speech_bank: &'a SpeechBank,
     pub match_controls: &'a [MatchControl],
+    /// A nested run that only asks what part of a sentence would do. It commits nothing and
+    /// skips the mood guard, which is the one asking.
+    pub(super) probe: bool,
 }
 
 impl<'a> ParseContext<'a> {
@@ -24,7 +27,18 @@ impl<'a> ParseContext<'a> {
         settings: &'a Settings,
         catalog: &'static Catalog,
     ) -> Self {
-        Self { text, home, session, custom, settings, catalog, policies: &[], speech_bank: empty_bank(), match_controls: empty_controls() }
+        Self {
+            text,
+            home,
+            session,
+            custom,
+            settings,
+            catalog,
+            policies: &[],
+            speech_bank: empty_bank(),
+            match_controls: empty_controls(),
+            probe: false,
+        }
     }
 
     pub fn with_policies(mut self, policies: &'a [PolicyRule], speech_bank: &'a SpeechBank) -> Self {
@@ -48,6 +62,7 @@ impl<'a> ParseContext<'a> {
             policies: self.policies,
             speech_bank: self.speech_bank,
             match_controls: self.match_controls,
+            probe: self.probe,
         }
     }
 

@@ -100,6 +100,11 @@ impl Catalog {
         tokens.iter().any(|token| self.pack_has(token, pick))
     }
 
+    /// The mood word classes of every bound pack. A sentence is read once per pack.
+    pub fn moods(&self) -> impl Iterator<Item = &'static crate::lang::mood::MoodWords> + '_ {
+        self.packs.iter().map(|pack| &pack.mood)
+    }
+
     pub fn household(&self) -> Option<&'static crate::lang::groups::Household> {
         self.packs.first().map(|pack| &pack.household)
     }

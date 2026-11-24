@@ -14,7 +14,12 @@ pub(super) fn route(context: &ParseContext<'_>, tokens: &[String]) -> Option<Dra
     let open = context.catalog.any(tokens, context.catalog.open_words());
     let closed = context.catalog.any(tokens, context.catalog.close_words());
     let resolved = resolve(tokens, context.home, Some("binary_sensor"));
-    if !tokens.iter().all(|word| allowed(word, context.catalog, &resolved.areas, context.home)) {
+    // "ein Fenster": an article that is also a command word, right before the window.
+    let article = |at: usize| {
+        context.catalog.article_one().contains(tokens[at].as_str())
+            && tokens.get(at + 1).is_some_and(|next| glazing(next) && context.catalog.window_words().contains(next.as_str()))
+    };
+    if !tokens.iter().enumerate().all(|(at, word)| article(at) || allowed(word, context.catalog, &resolved.areas, context.home)) {
         return None;
     }
     if resolved.areas.len() > 1 || !resolved.floors.is_empty() {
@@ -118,6 +123,17 @@ fn allowed(word: &str, cat: &Catalog, areas: &[String], home: &HomeGraph) -> boo
         || areas
             .iter()
             .any(|area| area_label(home, area).iter().any(|label| crate::parse::normalize::tokenize(label).contains(&word.to_string())))
+        || report_word(word, cat)
+}
+
+/// A word of question or report grammar: "did", "left open", "still", "gelassen", "noch".
+/// It names no room and no device, so a window question may carry it.
+fn report_word(word: &str, cat: &Catalog) -> bool {
+    cat.moods().any(|mood| {
+        [mood.question_starts, mood.subjects, mood.state_verbs, mood.participles, mood.ask_frames, mood.state_padding]
+            .iter()
+            .any(|list| list.iter().any(|entry| entry.split(' ').any(|part| part == word)))
+    })
 }
 
 fn area_label(home: &HomeGraph, area: &str) -> Vec<String> {
