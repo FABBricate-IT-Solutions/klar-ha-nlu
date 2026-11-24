@@ -1,5 +1,6 @@
 use crate::io::auth::wyoming_allowed;
 use crate::io::limits::MAX_PARSE_CHARS;
+use crate::io::listen::{accept_failed, stopped};
 use crate::io::state::AppState;
 use crate::nlu::{legacy_result, parse_with_controls};
 use crate::types::{ParseDecision, ParseOutcome};
@@ -11,6 +12,7 @@ use std::sync::Arc;
 use std::time::Duration;
 use tokio::io::{AsyncBufRead, AsyncBufReadExt, AsyncWriteExt, BufReader};
 use tokio::net::{TcpListener, TcpStream};
+use tokio::sync::{mpsc, watch};
 use tokio::time::timeout;
 
 const MAX_LINE: usize = 8192;
@@ -19,12 +21,24 @@ const IDLE: Duration = Duration::from_secs(30);
 const REJECT_WRITE: Duration = Duration::from_millis(250);
 const NLU_DESCRIPTION: &str = "On-device NLU";
 
-pub async fn serve(bind: &str, state: AppState) -> std::io::Result<()> {
-    let listener = TcpListener::bind(bind).await?;
+/// Serve Wyoming on `listener` until `stop` is set, then let the events that are under way
+/// finish. A failed `accept` is logged and the listener carries on: it used to end the
+/// listener for good, with the process still running.
+pub async fn serve(listener: TcpListener, state: AppState, mut stop: watch::Receiver<bool>) -> std::io::Result<()> {
     let inflight = Arc::new(AtomicUsize::new(0));
-    tracing::info!("Wyoming lauscht auf {bind}");
+    // Every connection holds a sender. When the last one is dropped, `recv` returns.
+    let (alive, mut all_closed) = mpsc::channel::<()>(1);
     loop {
-        let (stream, peer) = listener.accept().await?;
+        let (stream, peer) = tokio::select! {
+            accepted = listener.accept() => match accepted {
+                Ok(accepted) => accepted,
+                Err(err) => {
+                    accept_failed("Wyoming", &err).await;
+                    continue;
+                }
+            },
+            () = stopped(&mut stop) => break,
+        };
         if !should_admit(peer, inflight.load(Ordering::Relaxed)) {
             // Auth and capacity still reject; a short error is best-effort so clients do not hang.
             tokio::spawn(write_reject(stream));
@@ -33,13 +47,19 @@ pub async fn serve(bind: &str, state: AppState) -> std::io::Result<()> {
         inflight.fetch_add(1, Ordering::Relaxed);
         let state = state.clone();
         let inflight = inflight.clone();
+        let (stop, alive) = (stop.clone(), alive.clone());
         tokio::spawn(async move {
-            if let Err(err) = handle(stream, state).await {
+            if let Err(err) = handle(stream, state, stop).await {
                 tracing::debug!("Wyoming-Verbindung: {err}");
             }
             inflight.fetch_sub(1, Ordering::Relaxed);
+            drop(alive);
         });
     }
+    drop(listener);
+    drop(alive);
+    let _ = all_closed.recv().await;
+    Ok(())
 }
 
 fn should_admit(peer: SocketAddr, inflight: usize) -> bool {
@@ -50,18 +70,24 @@ async fn write_reject<W: AsyncWriteExt + Unpin>(mut writer: W) {
     let _ = timeout(REJECT_WRITE, write_event(&mut writer, "error", json!({ "text": "" }))).await;
 }
 
-async fn handle(stream: TcpStream, state: AppState) -> std::io::Result<()> {
+async fn handle(stream: TcpStream, state: AppState, stop: watch::Receiver<bool>) -> std::io::Result<()> {
     let (reader, writer) = stream.into_split();
-    handle_io(BufReader::new(reader), writer, state).await
+    handle_io(BufReader::new(reader), writer, state, stop).await
 }
 
-async fn handle_io<R, W>(mut reader: R, mut writer: W, state: AppState) -> std::io::Result<()>
+/// Answer events until the peer closes, goes idle, or `stop` is set. A stop is only looked
+/// at between events, so an event that was read is always answered.
+async fn handle_io<R, W>(mut reader: R, mut writer: W, state: AppState, mut stop: watch::Receiver<bool>) -> std::io::Result<()>
 where
     R: AsyncBufRead + Unpin,
     W: AsyncWriteExt + Unpin,
 {
     loop {
-        let line = match timeout(IDLE, read_capped_line(&mut reader)).await {
+        let read = tokio::select! {
+            read = timeout(IDLE, read_capped_line(&mut reader)) => read,
+            () = stopped(&mut stop) => break,
+        };
+        let line = match read {
             Ok(Ok(Some(line))) => line,
             Ok(Ok(None)) => break,
             Ok(Err(err)) => return Err(err),
@@ -257,221 +283,5 @@ async fn write_event<W: AsyncWriteExt + Unpin>(writer: &mut W, typ: &str, data: 
 }
 
 #[cfg(test)]
-mod tests {
-    use super::*;
-    use crate::home::{default_home, LoadedHome};
-    use crate::session::Session;
-    use crate::types::Settings;
-    use tokio::io::{duplex, AsyncWriteExt};
-
-    async fn read_line<R: AsyncBufRead + Unpin>(lines: &mut tokio::io::Lines<R>) -> String {
-        timeout(Duration::from_secs(2), lines.next_line()).await.expect("wyoming reply").unwrap().expect("eof")
-    }
-
-    fn test_state() -> AppState {
-        let dir = std::env::temp_dir().join(format!("klar-wy-{}-{}", std::process::id(), uuid::Uuid::new_v4()));
-        let _ = std::fs::create_dir_all(&dir);
-        AppState::new(
-            LoadedHome {
-                graph: default_home(),
-                settings: Settings::default(),
-                custom: Vec::new(),
-                language: Default::default(),
-                policies: Vec::new(),
-                speech_bank: Default::default(),
-                match_controls: Vec::new(),
-            },
-            dir,
-            None,
-        )
-    }
-
-    async fn exchange(state: AppState, requests: &[&str]) -> Vec<String> {
-        let (client, server) = duplex(16 * 1024);
-        let (server_read, server_write) = tokio::io::split(server);
-        let task = tokio::spawn(handle_io(BufReader::new(server_read), server_write, state));
-        let (client_read, mut client_write) = tokio::io::split(client);
-        let mut lines = BufReader::new(client_read).lines();
-        let mut replies = Vec::new();
-        for request in requests {
-            client_write.write_all(request.as_bytes()).await.unwrap();
-            if !request.ends_with('\n') {
-                client_write.write_all(b"\n").await.unwrap();
-            }
-            client_write.flush().await.unwrap();
-            replies.push(read_line(&mut lines).await);
-        }
-        client_write.shutdown().await.unwrap();
-        drop(client_write);
-        timeout(Duration::from_secs(2), task).await.expect("server exit").unwrap().unwrap();
-        replies
-    }
-
-    #[tokio::test]
-    async fn describe_and_recognize_reuse_conversation() {
-        let listener = TcpListener::bind("127.0.0.1:0").await.unwrap();
-        let addr = listener.local_addr().unwrap();
-        let dir = std::env::temp_dir().join(format!("klar-wy-{}", std::process::id()));
-        let _ = std::fs::create_dir_all(&dir);
-        let state = AppState::new(
-            LoadedHome {
-                graph: default_home(),
-                settings: Settings::default(),
-                custom: Vec::new(),
-                language: Default::default(),
-                policies: Vec::new(),
-                speech_bank: Default::default(),
-                match_controls: Vec::new(),
-            },
-            dir,
-            None,
-        );
-        let task = tokio::spawn({
-            let state = state.clone();
-            async move {
-                let (stream, _) = listener.accept().await.unwrap();
-                handle(stream, state).await.unwrap();
-            }
-        });
-
-        let stream = TcpStream::connect(addr).await.unwrap();
-        let (reader, mut writer) = stream.into_split();
-        let mut lines = BufReader::new(reader).lines();
-
-        writer.write_all(br#"{"type":"describe"}"#).await.unwrap();
-        writer.write_all(b"\n").await.unwrap();
-        writer.flush().await.unwrap();
-        let info = read_line(&mut lines).await;
-        assert!(info.contains("Klar NLU"), "{info}");
-        assert!(info.contains(NLU_DESCRIPTION), "{info}");
-        assert!(!info.contains("Deterministische"), "{info}");
-        assert!(info.contains("\"type\":\"info\""), "{info}");
-        assert!(info.contains("\"contract_version\":\"2.0\""), "{info}");
-
-        writer
-            .write_all(br#"{"type":"recognize","data":{"text":"Licht im Wohnzimmer an","conversation_id":"c1","language":"de"}}"#)
-            .await
-            .unwrap();
-        writer.write_all(b"\n").await.unwrap();
-        writer.flush().await.unwrap();
-        let first = read_line(&mut lines).await;
-        assert!(first.contains("HassTurnOn"), "{first}");
-        assert!(first.contains("\"schema_version\":\"2.0\""), "{first}");
-        assert!(first.contains("\"outcome\":"), "{first}");
-
-        writer.write_all(br#"{"type":"recognize","data":{"text":"aus","conversation_id":"c1","language":"de"}}"#).await.unwrap();
-        writer.write_all(b"\n").await.unwrap();
-        writer.flush().await.unwrap();
-        let second = read_line(&mut lines).await;
-        assert!(second.contains("HassTurnOff") || second.contains("intent"), "{second}");
-
-        writer
-            .write_all(
-                r#"{"type":"recognize","data":{"text":"Wohnungstür abschließen","conversation_id":"confirm-1","language":"de"}}"#
-                    .as_bytes(),
-            )
-            .await
-            .unwrap();
-        writer.write_all(b"\n").await.unwrap();
-        writer.flush().await.unwrap();
-        let confirmation = read_line(&mut lines).await;
-        assert!(confirmation.contains("\"type\":\"not-recognized\""), "{confirmation}");
-        assert!(confirmation.contains("\"type\":\"confirm\""), "{confirmation}");
-        assert!(!confirmation.contains("HassTurnOn"), "{confirmation}");
-        for forbidden in ["\"plan\"", "\"intent\"", "\"slots\"", "\"selected_candidate_id\""] {
-            assert!(!confirmation.contains(forbidden), "confirmation leaked {forbidden}: {confirmation}");
-        }
-
-        writer.write_all(br#"{"type":"recognize","data":{"text":"ja","conversation_id":"confirm-1","language":"de"}}"#).await.unwrap();
-        writer.write_all(b"\n").await.unwrap();
-        writer.flush().await.unwrap();
-        let affirmed = read_line(&mut lines).await;
-        assert!(affirmed.contains("\"type\":\"intent\""), "{affirmed}");
-        assert!(affirmed.contains("HassTurnOn"), "{affirmed}");
-
-        drop(writer);
-        timeout(Duration::from_secs(2), task).await.expect("server exit").unwrap();
-        let last: Vec<String> = state.sessions.lock().await.get_or_create(Some("c1")).last_entities().map(str::to_string).collect();
-        assert!(last.iter().any(|id| id.starts_with("light.")), "{last:?}");
-    }
-
-    #[tokio::test]
-    async fn recognize_errors_write_not_recognized() {
-        let oversized = format!(r#"{{"type":"recognize","data":{{"text":"{}"}}}}"#, "x".repeat(MAX_PARSE_CHARS + 1));
-        let long_id = format!(r#"{{"type":"recognize","data":{{"text":"hi","conversation_id":"{}"}}}}"#, "c".repeat(129));
-        let replies = exchange(
-            test_state(),
-            &["{not-json", &oversized, &long_id, r#"{"type":"recognize","data":{"text":"Licht im Wohnzimmer an","language":"de"}}"#],
-        )
-        .await;
-        assert!(replies[0].contains("\"type\":\"not-recognized\""), "{}", replies[0]);
-        assert!(replies[1].contains("\"type\":\"not-recognized\""), "{}", replies[1]);
-        assert!(replies[2].contains("\"type\":\"not-recognized\""), "{}", replies[2]);
-        assert!(replies[3].contains("HassTurnOn"), "{}", replies[3]);
-    }
-
-    async fn area_of(state: &AppState, id: &str) -> Option<String> {
-        state.sessions.lock().await.get_or_create(Some(id)).preferred_area.clone()
-    }
-
-    #[tokio::test]
-    async fn preferred_area_omitted_keeps_invalid_ignored() {
-        let state = test_state();
-        let mut seeded = Session::new();
-        seeded.id = "area-1".into();
-        seeded.preferred_area = Some("wohnzimmer".into());
-        state.sessions.lock().await.put(seeded);
-
-        let (client, server) = duplex(16 * 1024);
-        let (server_read, server_write) = tokio::io::split(server);
-        let task = tokio::spawn(handle_io(BufReader::new(server_read), server_write, state.clone()));
-        let (client_read, mut writer) = tokio::io::split(client);
-        let mut lines = BufReader::new(client_read).lines();
-        for request in [
-            r#"{"type":"recognize","data":{"text":"Licht aus","conversation_id":"area-1","language":"de"}}"#,
-            r#"{"type":"recognize","data":{"text":"Licht an","conversation_id":"area-1","language":"de","preferred_area":""}}"#,
-            r#"{"type":"recognize","data":{"text":"Licht an","conversation_id":"area-1","language":"de","preferred_area":"nope"}}"#,
-        ] {
-            writer.write_all(request.as_bytes()).await.unwrap();
-            writer.write_all(b"\n").await.unwrap();
-            writer.flush().await.unwrap();
-            let reply = read_line(&mut lines).await;
-            assert!(reply.contains("intent") || reply.contains("not-recognized"), "{reply}");
-            assert_eq!(area_of(&state, "area-1").await.as_deref(), Some("wohnzimmer"));
-        }
-
-        writer
-            .write_all(
-                br#"{"type":"recognize","data":{"text":"Licht an","conversation_id":"area-1","language":"de","preferred_area":"kuche"}}"#,
-            )
-            .await
-            .unwrap();
-        writer.write_all(b"\n").await.unwrap();
-        writer.flush().await.unwrap();
-        let set = read_line(&mut lines).await;
-        assert!(set.contains("intent") || set.contains("not-recognized"), "{set}");
-        assert_eq!(area_of(&state, "area-1").await.as_deref(), Some("kuche"));
-
-        writer.shutdown().await.unwrap();
-        drop(writer);
-        timeout(Duration::from_secs(2), task).await.expect("server exit").unwrap().unwrap();
-    }
-
-    #[test]
-    fn admit_keeps_auth_and_cap() {
-        assert!(should_admit("127.0.0.1:9".parse().unwrap(), 0));
-        assert!(should_admit("172.30.32.2:9".parse().unwrap(), 0));
-        assert!(!should_admit("10.1.2.3:9".parse().unwrap(), 0));
-        assert!(!should_admit("127.0.0.1:9".parse().unwrap(), MAX_CONNS));
-    }
-
-    #[tokio::test]
-    async fn reject_writes_error_before_close() {
-        let (client, server) = duplex(1024);
-        let task = tokio::spawn(write_reject(server));
-        let mut lines = BufReader::new(client).lines();
-        let line = read_line(&mut lines).await;
-        assert!(line.contains("\"type\":\"error\""), "{line}");
-        timeout(Duration::from_secs(2), task).await.expect("reject").unwrap();
-    }
-}
+#[path = "wyoming_tests.rs"]
+mod tests;

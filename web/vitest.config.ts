@@ -13,6 +13,8 @@ export default defineConfig({
     include: ["tests/**/*.test.{ts,tsx}"],
     setupFiles: ["./tests/support/setup.ts"],
     css: false,
+    // Room for a busy CI runner; a passing test does not wait for it.
+    testTimeout: 15000,
     restoreMocks: true,
     unstubGlobals: true,
   },

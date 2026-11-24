@@ -13,6 +13,11 @@ path = "src/main.rs"
 
 [dependencies]
 axum = { version = "0.8", features = ["json"] }
+# The HTTP listener drives hyper itself, for the request-head deadline and the connection
+# cap that `axum::serve` does not have. All three are already in the tree through axum.
+hyper = { version = "1", default-features = false, features = ["http1", "server"] }
+hyper-util = { version = "0.1", default-features = false, features = ["tokio"] }
+tower = { version = "0.5", default-features = false }
 serde = { version = "1", features = ["derive"] }
 serde_json = "1"
 serde_path_to_error = "0.1"
@@ -33,7 +38,7 @@ strsim = "0.11"
 # uuid 1.27 sets rust-version 1.89. Stay on 1.26.x for the 1.85 toolchain.
 uuid = { version = ">=1, <1.27", features = ["v4"] }
 serde_yaml = "0.9"
-tower-http = { version = "0.7.0", features = ["fs"] }
+tower-http = { version = "0.7.0", features = ["fs", "timeout"] }
 tar = "0.4"
 flate2 = { version = "1", default-features = false, features = ["rust_backend"] }
 jiff = { version = "0.2", default-features = false, features = ["std", "tz-system", "tzdb-bundle-always"] }
