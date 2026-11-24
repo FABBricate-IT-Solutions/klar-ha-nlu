@@ -1,6 +1,7 @@
 //! Operator settings backup: allowlisted tar.gz of overlay + LLM endpoint.
 
-use crate::home::overlay::{apply_overlay, load_overlay, save_overlay, Overlay};
+use crate::home::overlay::{apply_overlay, Overlay};
+use crate::home::overlay_store::{check_storable, OverlayStore, OVERLAY_FILE};
 use crate::io::auth::writes_allowed;
 use crate::io::llm::{load_endpoint, load_stored_endpoint, save_stored_endpoint, StoredEndpoint, LLM_FILE};
 use crate::io::state::AppState;
@@ -23,7 +24,6 @@ use tar::{Archive, Builder, Header};
 
 const FORMAT: &str = "klar-settings-v1";
 const MANIFEST: &str = "manifest.json";
-const OVERLAY_FILE: &str = "klar_nlu.json";
 const MAX_ARCHIVE: usize = 8 * 1024 * 1024;
 const MAX_ENTRIES: usize = 8;
 const ALLOWED: &[&str] = &[MANIFEST, OVERLAY_FILE, LLM_FILE];
@@ -99,7 +99,8 @@ fn wants_secrets(raw: Option<&str>) -> bool {
 }
 
 fn pack_dir(dir: &Path, include_secrets: bool) -> io::Result<Vec<u8>> {
-    let overlay = load_overlay(dir);
+    // An unreadable file is an error here: an archive of defaults would look like a backup.
+    let overlay = OverlayStore::open(dir).load_strict()?;
     let overlay_bytes = serde_json::to_vec_pretty(&overlay).map_err(|err| io::Error::new(io::ErrorKind::InvalidData, err))?;
     let endpoint = load_stored_endpoint(dir).map(|mut stored| {
         if !include_secrets {
@@ -207,6 +208,8 @@ fn unpack(bytes: &[u8]) -> io::Result<Packed> {
     let overlay: Overlay =
         serde_json::from_slice(found.get(OVERLAY_FILE).ok_or_else(|| io::Error::new(io::ErrorKind::InvalidData, "overlay"))?)
             .map_err(|_| io::Error::new(io::ErrorKind::InvalidData, "overlay"))?;
+    // A value that would not read back from disk (a number too large for its field) is refused here.
+    check_storable(&overlay)?;
     let endpoint = match found.get(LLM_FILE) {
         Some(raw) => Some(serde_json::from_slice(raw).map_err(|_| io::Error::new(io::ErrorKind::InvalidData, "endpoint"))?),
         None => None,
@@ -219,7 +222,7 @@ fn allowed_name(name: &str) -> bool {
 }
 
 async fn apply_packed(state: &AppState, packed: Packed) -> io::Result<()> {
-    save_overlay(&state.data_dir, &packed.overlay)?;
+    state.overlay.replace(&packed.overlay)?;
     if let Some(mut stored) = packed.endpoint {
         if stored.api_key.is_empty() {
             if let Some(local) = load_stored_endpoint(&state.data_dir) {
@@ -304,7 +307,7 @@ mod tests {
     }
 
     fn write_overlay(dir: &Path, overlay: &Overlay) {
-        save_overlay(dir, overlay).unwrap();
+        OverlayStore::open(dir).replace(overlay).unwrap();
     }
 
     #[test]

@@ -173,7 +173,10 @@ pub struct NewsFeed {
 
 #[derive(Deserialize)]
 struct SettingsJson {
+    // Every field has a default, so a file that lacks one still loads with the rest intact.
+    #[serde(default)]
     personality: Personality,
+    #[serde(default)]
     mode: Mode,
     #[serde(default = "default_languages")]
     languages: Vec<String>,
