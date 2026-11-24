@@ -44,6 +44,19 @@ def rust_pairs(pairs: list[tuple[str, str]], indent: str = "        ") -> str:
     return f"&[\n{inner},\n{indent}]"
 
 
+def rust_pair_rows(pairs: list[tuple[str, str]], indent: str = "        ") -> str:
+    """Pairs where the same left word may stand in several rows (`rust_pairs` keeps one row per left word)."""
+    rows: list[tuple[str, str]] = []
+    for left, right in pairs:
+        row = (fold_latin(left), fold_latin(right))
+        if all(row) and row not in rows:
+            rows.append(row)
+    if not rows:
+        return "&[]"
+    inner = ",\n".join(f"{indent}    ({rust_str(a)}, {rust_str(b)})" for a, b in rows)
+    return f"&[\n{inner},\n{indent}]"
+
+
 def unique(values: list[str]) -> list[str]:
     seen: set[str] = set()
     out: list[str] = []

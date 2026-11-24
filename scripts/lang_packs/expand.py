@@ -342,13 +342,14 @@ def household_from(core: dict, w: dict, speech: dict) -> dict:
     off = w.get("off") or []
     climate = w.get("climate") or []
     timer = w.get("timer") or []
-    door = w.get("door") or w.get("light") or []
     q0, s0, o0 = (query[:1] or [""])[0], (sett[:1] or [""])[0], (off[:1] or [""])[0]
-    climate0, timer0, door0 = (climate[-1:] or [""])[0], (timer[:1] or [""])[0], (door[:1] or [""])[0]
+    climate0, timer0 = (climate[-1:] or [""])[0], (timer[:1] or [""])[0]
     add = lambda key, extra_word: unique(w.get(key, []) + extra.get(key, []) + ([extra_word] if extra_word else []))
-    teach = add("teach", f"{s0} {door0} " if s0 and door0 else "")
+    # Teach and undo change the house, so they are hand-written phrases or none at all:
+    # a phrase built from the set or off verb plus the door noun is an ordinary command.
+    teach = add("teach", "")
     explain = add("explain", f"{q0} {o0} {s0}".strip() if q0 and o0 and s0 else "")
-    undo = add("undo", f"{o0} {door0}".strip() if o0 and door0 else "")
+    undo = add("undo", "")
     clock = add("clock", f"{q0} {timer0}".strip() if q0 and timer0 else "")
     weather = add("weather", f"{q0} {climate0}".strip() if q0 and climate0 else "")
     return {

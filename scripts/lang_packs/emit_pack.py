@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from lang_packs.emit_rust import RUST_BANNER, rust_list, rust_pairs, rust_personality, rust_str
+from lang_packs.emit_rust import RUST_BANNER, rust_list, rust_pair_rows, rust_pairs, rust_personality, rust_str
 from lang_packs.fold import fold_latin
 
 
@@ -258,7 +258,7 @@ pub const PACK: LanguagePack = LanguagePack {{
         synonym_pairs: {rust_pairs(c["synonym_pairs"])},
         scene_synonyms: {rust_pairs(c.get("scene_synonyms", []))},
         article_one: {rust_list(c["article_one"])},
-        strip_pairs: {rust_pairs(c.get("strip_pairs", []))},
+        strip_pairs: {rust_pair_rows(c.get("strip_pairs", []))},
         keep_after: &[],
     }},
     maps: Maps {{
