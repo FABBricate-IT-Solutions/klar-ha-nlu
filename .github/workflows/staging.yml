@@ -3,7 +3,8 @@ name: Staging
 
 # Merge to protected `staging` (via PR) → quality + security (slim nextest)
 # → annotated tag `{CalVer}-staging.{sha7}` → Build as a GitHub prerelease.
-# Skips parity_langs / voice_suite / full_home (language-parity.yml owns those).
+# Runs Klar's own dataset suites (job dataset-suites); the multi-locale parity
+# rubric stays with language-parity.yml and the `ci` profile on main.
 # Does not bump CalVer, does not push to `staging`/`main`, does not tag `latest`.
 on:
   push:
