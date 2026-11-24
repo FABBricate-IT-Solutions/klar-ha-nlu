@@ -1,0 +1,17 @@
+# Pinned so a new Home Assistant release cannot turn this check red on its own.
+# pytest-homeassistant-custom-component pins homeassistant (0.13.375 -> 2026.10.4) and
+# needs Python 3.14. Raise the pins together, on purpose, in one pull request.
+pytest-homeassistant-custom-component==0.13.375
+
+# Requirements of the Home Assistant components the tests set up. Home Assistant does
+# not install these under test; the versions are the ones its 2026.10.4 manifests name.
+gazetteer-matcher==1.1.0
+hassil==3.12.1
+home-assistant-frontend==20260930.5
+home-assistant-intents==2026.10.6
+ical==14.3.0
+PyTurboJPEG==1.8.3
+
+# Lint and type check for custom_components/klar_nlu.
+mypy==2.4.1
+ruff==0.17.6
