@@ -70,10 +70,8 @@ def expand(core: dict) -> dict:
     extra_on = ["active"] if not is_script_pack(core) else []
     extra_play = ["play"] if not is_script_pack(core) else []
     extra_next = ["next"] if not is_script_pack(core) else []
-    # A neutral switch verb ("kapcsold") takes its direction from a particle ("be", "ki").
-    neutral = set(w.get("neutral") or [])
     for word in unique(on + extra_on):
-        verbs.append((word, "Switch" if word in neutral else "On"))
+        verbs.append((word, "On"))
     for word in off:
         verbs.append((word, "Off"))
     for word in opn:
@@ -249,7 +247,7 @@ def expand(core: dict) -> dict:
             "unlock_follow": opn[:1] + off[:1],
             "cover_open_follow": opn[:1],
             "garage_lock_block": lock,
-            "on_words": unique([word for word in on[:2] if word not in neutral] + w.get("on_particles", [])),
+            "on_words": unique(on[:2] + w.get("on_particles", [])),
             "off_words": unique(off[:2] + w.get("off_particles", [])),
             "scene_named": unique(w.get("scenes", []) + w.get("good_night", []) + w.get("leaving", []) + scene_lexemes(core)),
             "temp_query": climate[:3],
