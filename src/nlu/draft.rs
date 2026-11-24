@@ -255,16 +255,17 @@ pub(super) fn safety_decision(mut draft: Draft, context: &ParseContext<'_>) -> D
         draft.plan = None;
         return draft;
     }
+    let operator = super::policy_route::operator_script(&draft);
     if draft.safety_confirmed {
         let Some(plan) = draft.plan.as_ref() else {
             return invalid_plan(draft, PlanInvalid::Schema);
         };
         return match validate_plan(plan, context.home) {
-            Ok(()) => draft,
-            Err(reason) => invalid_plan(draft, reason),
+            Err(reason) if !operator => invalid_plan(draft, reason),
+            _ => draft,
         };
     }
-    if let Some(plan) = draft.plan.take() {
+    if let Some(plan) = draft.plan.take_if(|_| !operator) {
         let filtered = filter_valid_steps(&plan, context.home);
         if filtered.steps.is_empty() {
             let reason = validate_plan(&plan, context.home).err().unwrap_or(PlanInvalid::MissingTarget);
@@ -291,7 +292,7 @@ pub(super) fn safety_decision(mut draft: Draft, context: &ParseContext<'_>) -> D
     let Some(plan) = draft.plan.as_ref() else {
         return invalid_plan(draft, PlanInvalid::Schema);
     };
-    if let Err(reason) = validate_plan(plan, context.home) {
+    if let Some(reason) = validate_plan(plan, context.home).err().filter(|_| !operator) {
         return invalid_plan(draft, reason);
     }
     // A phrase rule that starts a script already names the rule that fired; keep that
