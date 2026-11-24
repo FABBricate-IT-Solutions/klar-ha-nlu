@@ -1,11 +1,13 @@
 use super::endpoint::{LlmEndpoint, LlmProviderKind};
 use super::sse::{delta_text, delta_tool_calls, SseBuf};
+use super::target::GuardedResolver;
 use super::types::{
     ChatRequest, CompletionTurn, LlmError, SanitizedChat, TokenUsage, ToolCallAssembler, UpstreamChat, UpstreamCompletion, UpstreamMessage,
 };
 use futures_util::StreamExt;
 use serde_json::Value;
 use std::collections::BTreeSet;
+use std::sync::Arc;
 use std::time::Duration;
 
 const MAX_MODELS: usize = 500;
@@ -18,10 +20,17 @@ pub struct LlmClient {
 }
 
 fn http_client(timeout: Duration, connect_timeout: Duration) -> Result<reqwest::Client, LlmError> {
+    http_client_with(timeout, connect_timeout, GuardedResolver::system())
+}
+
+/// Names are resolved through `resolver`, which refuses the ones that point at a blocked
+/// address. Redirects are not followed, so the first host is the only host.
+fn http_client_with(timeout: Duration, connect_timeout: Duration, resolver: GuardedResolver) -> Result<reqwest::Client, LlmError> {
     reqwest::Client::builder()
         .timeout(timeout)
         .connect_timeout(connect_timeout)
         .redirect(reqwest::redirect::Policy::none())
+        .dns_resolver(Arc::new(resolver))
         .build()
         .map_err(|_| LlmError::Transport)
 }
@@ -65,7 +74,11 @@ where
 }
 
 pub async fn list_models(endpoint: &LlmEndpoint) -> Result<Vec<String>, LlmError> {
-    let http = http_client(Duration::from_secs(20), Duration::from_secs(8))?;
+    list_models_with(endpoint, GuardedResolver::system()).await
+}
+
+pub(crate) async fn list_models_with(endpoint: &LlmEndpoint, resolver: GuardedResolver) -> Result<Vec<String>, LlmError> {
+    let http = http_client_with(Duration::from_secs(20), Duration::from_secs(8), resolver)?;
     let mut last_err = LlmError::Response;
     let mut saw_empty = false;
     for url in model_list_urls(&endpoint.base_url) {
