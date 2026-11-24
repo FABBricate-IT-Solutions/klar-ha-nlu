@@ -15,6 +15,7 @@ from typing import Any
 from unittest.mock import patch
 
 import pytest
+from calendars import MemoryStore
 from engine_fake import ENGINE_URL, TIME_ZONE, FakeEngine
 from homeassistant.config_entries import ConfigEntryState
 from homeassistant.core import HomeAssistant, ServiceRegistry
@@ -23,12 +24,21 @@ from pytest_homeassistant_custom_component.common import MockConfigEntry
 from pytest_homeassistant_custom_component.test_util.aiohttp import AiohttpClientMocker
 from support import ServiceLog
 
+from custom_components.klar_nlu import calendar_session
 from custom_components.klar_nlu.const import CONF_MODE, CONF_URL, DOMAIN, MODE_REMOTE
 
 
 @pytest.fixture(autouse=True)
 def _custom_integrations(enable_custom_integrations: None) -> None:
     """Let Home Assistant load ``custom_components/klar_nlu`` from the repository."""
+
+
+@pytest.fixture(autouse=True)
+def _forget_listed_events() -> Generator[None]:
+    """The events Klar last listed live in a module-level store; keep tests apart."""
+    calendar_session._STORE.clear()
+    yield
+    calendar_session._STORE.clear()
 
 
 @pytest.fixture
@@ -83,3 +93,10 @@ def service_log() -> Generator[ServiceLog]:
 
     with patch.object(ServiceRegistry, "async_call", recording_call):
         yield log
+
+
+@pytest.fixture
+def memory_store() -> Generator[None]:
+    """Keep Home Assistant's local calendar off the disk."""
+    with patch("homeassistant.components.local_calendar.LocalCalendarStore", MemoryStore):
+        yield

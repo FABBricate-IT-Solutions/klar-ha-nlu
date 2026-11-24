@@ -128,6 +128,7 @@ class _Cal:
         self.deleted: list[str] = []
         self.created: list[dict] = []
         self.updated: list[tuple[str, dict]] = []
+        self.calls: list[str] = []
         self.fail_delete = False
         self.fail_update = False
 
@@ -137,13 +138,15 @@ class _Cal:
     async def async_delete_event(self, uid: str, recurrence_id: str | None = None, recurrence_range: str | None = None) -> None:
         if self.fail_delete:
             raise RuntimeError("readonly")
+        self.calls.append("delete")
         self.deleted.append(uid)
         self.events = [event for event in self.events if event.uid != uid]
 
     async def async_create_event(self, **kwargs: object) -> None:
+        # Home Assistant hands a calendar entity ``dtstart`` and ``dtend``.
+        self.calls.append("create")
         self.created.append(kwargs)
-        start = kwargs.get("start_date_time") or kwargs.get("start_date")
-        self.events.append(_Event(str(kwargs.get("summary") or ""), f"new-{len(self.created)}", start or _tomorrow_at(15)))
+        self.events.append(_Event(str(kwargs.get("summary") or ""), f"new-{len(self.created)}", kwargs["dtstart"], kwargs["dtend"]))
 
     async def async_update_event(self, uid: str, event: dict, recurrence_id: str | None = None, recurrence_range: str | None = None) -> None:
         if self.fail_update:
@@ -152,12 +155,15 @@ class _Cal:
 
 
 class _Hass:
-    def __init__(self, cal: _Cal | None = None, language: str = "en") -> None:
+    def __init__(self, cal: _Cal | None = None, language: str = "en", features: int = 7) -> None:
         self.cal = cal or _Cal()
         self.config = SimpleNamespace(language=language, time_zone="UTC")
         self.services = SimpleNamespace(async_call=AsyncMock())
+        # 7 = create, delete and update: what Home Assistant's local calendar reports.
         self.states = SimpleNamespace(
-            get=lambda entity_id: SimpleNamespace(entity_id=entity_id, state="on"),
+            get=lambda entity_id: SimpleNamespace(
+                entity_id=entity_id, state="on", attributes={"supported_features": features}
+            ),
             async_all=lambda domain: [SimpleNamespace(entity_id="calendar.home")] if domain == "calendar" else [],
         )
         self.data = {"calendar": SimpleNamespace(get_entity=lambda entity_id: self.cal if entity_id == "calendar.home" else None)}
@@ -294,7 +300,8 @@ class CalendarDispatchTests(unittest.TestCase):
         self.assertIn("which", (speech or "").lower())
         self.assertEqual(hass.cal.deleted, [])
 
-    def test_delete_uses_session_without_summary(self) -> None:
+    def test_delete_without_summary_names_the_event_and_asks(self) -> None:
+        # H-04: this used to delete the one event the session or the next 36 hours held.
         hass = _Hass(_Cal([_Event("dentist", "uid-1", _tomorrow_at(15))]))
         asyncio.run(
             calendar_ha.handle_calendar_intent(hass, {"name": "KlarGetCalendarEvents", "slots": []}, "en", lambda _: True, "conv-session")
@@ -310,7 +317,23 @@ class CalendarDispatchTests(unittest.TestCase):
         )
         self.assertTrue(ok)
         self.assertIsNone(error)
+        self.assertEqual(hass.cal.deleted, [])
+        self.assertTrue((speech or "").startswith("dentist tomorrow"), speech)
+        self.assertTrue((speech or "").endswith(". Which event?"), speech)
+
+    def test_delete_names_the_deleted_event(self) -> None:
+        hass = _Hass(_Cal([_Event("dentist", "uid-1", _tomorrow_at(15))]))
+        _ok, speech, _error = asyncio.run(
+            calendar_ha.handle_calendar_intent(
+                hass,
+                {"name": "KlarDeleteCalendarEvent", "slots": [{"name": "summary", "value": "dentist"}]},
+                "en",
+                lambda _: True,
+            )
+        )
         self.assertEqual(hass.cal.deleted, ["uid-1"])
+        self.assertTrue((speech or "").startswith("dentist tomorrow"), speech)
+        self.assertTrue((speech or "").endswith(". Event deleted."), speech)
 
     def test_move_updates_instead_of_duplicating(self) -> None:
         hass = _Hass(_Cal([_Event("dentist", "uid-1", _tomorrow_at(15))]))
@@ -359,6 +382,8 @@ class CalendarDispatchTests(unittest.TestCase):
         self.assertIsNone(error)
         self.assertEqual(hass.cal.deleted, ["uid-1"])
         self.assertTrue(hass.cal.created)
+        # H-03: the old event goes only after the new one exists.
+        self.assertEqual(hass.cal.calls, ["create", "delete"])
 
     def test_delete_readonly_speaks_pack(self) -> None:
         cal = _Cal([_Event("dentist", "uid-1", _tomorrow_at(15))])
