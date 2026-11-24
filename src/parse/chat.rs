@@ -49,75 +49,7 @@ fn without_quantifiers(tokens: &[String]) -> Vec<String> {
     tokens.iter().filter(|token| !matches!(token.as_str(), "alle" | "allen" | "allem" | "aller" | "alles" | "all")).cloned().collect()
 }
 
-const TOPIC_GLUE: &[&str] = &[
-    "was",
-    "what",
-    "whats",
-    "gibt",
-    "gib",
-    "sind",
-    "ist",
-    "is",
-    "are",
-    "there",
-    "any",
-    "aktuelle",
-    "aktuellen",
-    "aktueller",
-    "aktuelles",
-    "latest",
-    "current",
-    "heute",
-    "today",
-    "some",
-    "alle",
-    "allen",
-    "allem",
-    "aller",
-    "alles",
-    "all",
-    "give",
-    "get",
-    "lass",
-    "let",
-    "ueber",
-    "about",
-    "on",
-    "aus",
-    "from",
-    "zum",
-    "zur",
-    "short",
-    "neue",
-    "neuer",
-    "neuen",
-    "tell",
-    "hor",
-    "hear",
-    "sag",
-    "say",
-    "read",
-    "aloud",
-    "lese",
-    "lies",
-    "lesen",
-    "lest",
-    "les",
-    "vorlesen",
-    "vorlese",
-    "vorliest",
-    "vor",
-    "the",
-    "a",
-    "an",
-    "one",
-    "ones",
-    "eine",
-    "einen",
-    "einer",
-    "einem",
-    "eines",
-];
+const TOPIC_GLUE: &str = "was what whats gibt gib sind ist is are there any aktuelle aktuellen aktueller aktuelles latest current heute today some alle allen allem aller alles all give get lass let ueber about on aus from zum zur short neue neuer neuen tell hor hear sag say read aloud lese lies lesen lest les vorlesen vorlese vorliest vor the a an one ones eine einen einer einem eines";
 
 /// Leftover words after the news cue. `sportnachrichten` yields `sport`.
 pub fn news_topic(tokens: &[String]) -> Option<String> {
@@ -193,7 +125,7 @@ fn compound_stem(token: &str) -> Option<String> {
 
 fn topic_glue(token: &str) -> bool {
     let cat = catalog();
-    TOPIC_GLUE.contains(&token)
+    TOPIC_GLUE.split_whitespace().any(|word| word == token)
         || FOLLOW_CUES.contains(&token)
         || cat.fillers().contains(token)
         || cat.particles().contains(token)
