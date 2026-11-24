@@ -10,6 +10,7 @@ import { VoiceStep } from "../components/wizard/VoiceStep";
 import type { Messages } from "../i18n";
 import { fillWizard, wizardMessages, type WizardMessages } from "../i18n/wizard";
 import { isProviderId, resolveProvider, writeStoredProvider } from "../llmProviders";
+import { saveFailMessage } from "../saveToast";
 import type { Locale, RefineBand, Settings, Theme } from "../types";
 
 export type InstallPath = "addon" | "docker" | "binary" | "sample";
@@ -154,6 +155,9 @@ export function Wizard({
   const [llmKey, setLlmKey] = useState("");
   const [llmThinking, setLlmThinking] = useState(false);
   const [llmReady, setLlmReady] = useState(false);
+  // True only when the engine said at open that no LLM is configured: this run is the first setup.
+  const llmWasMissing = useRef(false);
+  const [saveError, setSaveError] = useState("");
   const [packs, setPacks] = useState<LanguagePack[]>([]);
   const draftRef = useRef(draft);
   const copy = useMemo(() => wizardMessages(locale), [locale]);
@@ -165,19 +169,20 @@ export function Wizard({
   closeRef.current = onClose;
   draftRef.current = draft;
 
-  const persistSettings = async () => {
-    const next = draftRef.current;
+  /** Saves the draft. A save the engine refuses is not saved: the draft stays in the wizard. */
+  const persistSettings = async (next = draftRef.current): Promise<boolean> => {
     try {
       onSettings(await api.saveSettings(next));
-    } catch {
-      onSettings(next);
+      setSaveError("");
+      return true;
+    } catch (err) {
+      setSaveError(saveFailMessage(chrome, err));
+      return false;
     }
   };
 
-  const persistLlm = async (): Promise<boolean> => {
-    if (!llmUrl.trim() && !llmModel.trim() && !llmKey.trim()) {
-      return llmReady;
-    }
+  const persistLlm = async (): Promise<"untouched" | "saved" | "refused"> => {
+    if (!llmUrl.trim() && !llmModel.trim() && !llmKey.trim()) return "untouched";
     try {
       await api.saveLlmEndpoint({
         base_url: llmUrl,
@@ -188,19 +193,23 @@ export function Wizard({
         provider: resolveProvider(llmUrl),
       });
       setLlmReady(true);
-      return true;
-    } catch {
-      return false;
+      setSaveError("");
+      return "saved";
+    } catch (err) {
+      setSaveError(saveFailMessage(chrome, err));
+      return "refused";
     }
   };
 
+  /** Skip, Escape and the backdrop: leave without writing settings or the LLM endpoint. */
+  const dismiss = () => closeRef.current();
+
   const finish = () => {
-    void persistLlm().finally(() => {
-      void persistSettings().finally(() => {
-        doneRef.current();
-        closeRef.current();
-      });
-    });
+    void (async () => {
+      if ((await persistLlm()) === "refused" || !(await persistSettings())) return;
+      doneRef.current();
+      closeRef.current();
+    })();
   };
 
   useEffect(() => {
@@ -208,12 +217,15 @@ export function Wizard({
     setStep(0);
     setDraft(settings);
     setLlmKey("");
+    setSaveError("");
+    llmWasMissing.current = false;
     api.languages().then(setPacks).catch(() => undefined);
     api.llmEndpoint().then((next) => {
       setLlmUrl(next.base_url || "");
       setLlmModel(next.model || "");
       setLlmThinking(Boolean(next.enable_thinking));
       setLlmReady(Boolean(next.configured));
+      llmWasMissing.current = !next.configured;
       if (isProviderId(next.provider)) writeStoredProvider(next.provider);
     }).catch(() => {
       setLlmUrl("");
@@ -231,7 +243,7 @@ export function Wizard({
     const onKey = (event: KeyboardEvent) => {
       if (event.key === "Escape") {
         event.preventDefault();
-        finish();
+        dismiss();
         return;
       }
       if (event.key !== "Tab" || !node) return;
@@ -274,18 +286,32 @@ export function Wizard({
 
   const goNext = () => {
     void (async () => {
-      if (step === 0 || step === 1 || step === 3 || step === 4) await persistSettings();
-      if (step === 2) {
-        const ready = await persistLlm();
-        if (ready) {
-          const next = { ...draftRef.current, refine_speech: true, refine_bands: ["status"] as RefineBand[] };
-          setDraft(next);
-          draftRef.current = next;
-          try {
-            onSettings(await api.saveSettings(next));
-          } catch {
-            onSettings(next);
+      switch (step) {
+        case 0:
+        case 1:
+        case 3:
+        case 4:
+          if (!(await persistSettings())) return;
+          break;
+        case 2: {
+          const outcome = await persistLlm();
+          if (outcome === "refused") return;
+          // Speech refine is switched on once, when this run configures the first LLM. A replay
+          // over a configured LLM leaves the operator's refine choice alone.
+          if (outcome === "saved" && llmWasMissing.current) {
+            const next = { ...draftRef.current, refine_speech: true, refine_bands: ["status"] as RefineBand[] };
+            if (!(await persistSettings(next))) return;
+            llmWasMissing.current = false;
+            setDraft(next);
+            draftRef.current = next;
           }
+          break;
+        }
+        case 5:
+          break;
+        default: {
+          const _never: never = step;
+          return _never;
         }
       }
       setStep(clampStep(step + 1));
@@ -355,7 +381,7 @@ export function Wizard({
 
   return (
     <>
-      <button type="button" className="wizard-backdrop" aria-label={copy.skip} onClick={finish} />
+      <button type="button" className="wizard-backdrop" aria-label={copy.skip} onClick={dismiss} />
       <div className="wizard-overlay">
         <section
           ref={root}
@@ -369,7 +395,7 @@ export function Wizard({
               <KlarBrand />
               <p className="pill">{copy.title}</p>
             </div>
-            <button type="button" className="ghost" onClick={finish}>{copy.skip}</button>
+            <button type="button" className="ghost" onClick={dismiss}>{copy.skip}</button>
           </div>
           <h1 id="klar-wizard-title">{stepTitle(step, copy)}</h1>
           <p className="caption">{fillWizard(copy.stepOf, { n: String(step + 1), total: "6" })}</p>
@@ -389,6 +415,7 @@ export function Wizard({
           <div ref={scrollRef} className={scrollable ? "wizard-scroll is-scrollable" : "wizard-scroll"}>
             <div className="wizard-body">{body}</div>
           </div>
+          {saveError ? <p className="caption" role="alert" style={{ color: "var(--danger)" }}>{saveError}</p> : null}
           {notice ? <p className="caption">{notice}</p> : null}
           <div className="wizard-foot">
             <button type="button" className="secondary" onClick={() => setStep(clampStep(step - 1))} disabled={step === 0}>

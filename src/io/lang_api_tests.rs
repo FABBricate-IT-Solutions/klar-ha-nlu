@@ -55,7 +55,11 @@ async fn omitted_language_keeps_set_deltas() {
         State(state.clone()),
         peer(),
         HeaderMap::new(),
-        Json(OverlayIn { custom: vec![rule("filmabend", "HassTurnOn")], language: Some(language.clone()), label: Some("sets".into()) }),
+        Json(OverlayIn {
+            custom: Some(vec![rule("filmabend", "HassTurnOn")]),
+            language: Some(language.clone()),
+            label: Some("sets".into()),
+        }),
     )
     .await
     .expect("save with sets");
@@ -88,7 +92,7 @@ async fn default_rollback_restores_latest_history() {
         State(state.clone()),
         peer(),
         HeaderMap::new(),
-        Json(OverlayIn { custom: vec![rule("erste regel", "HassTurnOn")], language: None, label: Some("a".into()) }),
+        Json(OverlayIn { custom: Some(vec![rule("erste regel", "HassTurnOn")]), language: None, label: Some("a".into()) }),
     )
     .await
     .expect("save a");
@@ -96,7 +100,7 @@ async fn default_rollback_restores_latest_history() {
         State(state.clone()),
         peer(),
         HeaderMap::new(),
-        Json(OverlayIn { custom: vec![rule("zweite regel", "HassTurnOff")], language: None, label: Some("b".into()) }),
+        Json(OverlayIn { custom: Some(vec![rule("zweite regel", "HassTurnOff")]), language: None, label: Some("b".into()) }),
     )
     .await
     .expect("save b")
@@ -111,7 +115,7 @@ async fn default_rollback_restores_latest_history() {
         State(state.clone()),
         peer(),
         HeaderMap::new(),
-        Json(OverlayIn { custom: vec![rule("zweite regel", "HassTurnOff")], language: None, label: Some("b2".into()) }),
+        Json(OverlayIn { custom: Some(vec![rule("zweite regel", "HassTurnOff")]), language: None, label: Some("b2".into()) }),
     )
     .await
     .expect("save b again");

@@ -25,7 +25,8 @@ export type Call = {
 };
 
 export type Reply = { status?: number; body?: unknown };
-export type Handler = Reply | ((call: Call) => Reply);
+/** A function may return a promise, for example one that never settles, to keep a request pending. */
+export type Handler = Reply | ((call: Call) => Reply | Promise<Reply>);
 
 /** What the engine holds. A POST that the engine accepts changes it; tests read it to see what was clobbered. */
 export type Stored = {
@@ -216,7 +217,7 @@ export function fakeEngine(options: FakeEngineOptions = {}): FakeEngine {
       unhandled.push(call);
       return respond({ status: 404 });
     }
-    return respond(typeof handler === "function" ? handler(call) : handler);
+    return respond(typeof handler === "function" ? await handler(call) : handler);
   };
 
   vi.stubGlobal("fetch", vi.fn(handle));

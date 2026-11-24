@@ -145,7 +145,8 @@ export const api = {
   custom: () => request<unknown[]>("/api/custom"),
   saveCustom: (body: unknown[]) => request<unknown[]>("/api/custom", { method: "POST", body: JSON.stringify(body) }),
   langOverlay: () => request<LangOverlay>("/api/lang/overlay"),
-  saveLangOverlay: (body: { custom: CustomRule[]; language?: unknown; label?: string }) =>
+  /** The engine changes only the parts the body names: without `custom` the phrases stay as stored. */
+  saveLangOverlay: (body: { custom?: CustomRule[]; language?: unknown; label?: string }) =>
     request<LangOverlay>("/api/lang/overlay", { method: "POST", body: JSON.stringify(body) }),
   previewLang: (body: { text: string; language?: string; custom?: CustomRule[] }) =>
     request<unknown>("/api/lang/preview", { method: "POST", body: JSON.stringify(body) }),
