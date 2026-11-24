@@ -185,6 +185,12 @@ async fn get_custom(
     Ok(Json(state.custom.lock().await.clone()))
 }
 
+/// What `POST /api/custom` accepts. Restore holds a backup to the same rule.
+pub(crate) fn custom_rows_ok(rows: &[CustomSentence]) -> bool {
+    rows.len() <= 64
+        && rows.iter().all(|row| row.phrase.len() <= 200 && row.phrase.trim().chars().count() >= 4 && known_intent(&row.intent))
+}
+
 async fn set_custom(
     State(state): State<AppState>,
     ConnectInfo(peer): ConnectInfo<SocketAddr>,
@@ -192,9 +198,7 @@ async fn set_custom(
     Json(body): Json<Vec<CustomSentence>>,
 ) -> Result<Json<Vec<CustomSentence>>, StatusCode> {
     gate(peer, &headers, &state.token)?;
-    if body.len() > 64
-        || body.iter().any(|row| row.phrase.len() > 200 || row.phrase.trim().chars().count() < 4 || !known_intent(&row.intent))
-    {
+    if !custom_rows_ok(&body) {
         return Err(StatusCode::BAD_REQUEST);
     }
     state

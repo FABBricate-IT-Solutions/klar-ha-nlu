@@ -1,5 +1,6 @@
-use std::fs::{File, OpenOptions};
+use std::fs::{File, OpenOptions, Permissions};
 use std::io::{self, ErrorKind, Write};
+use std::os::unix::fs::{OpenOptionsExt, PermissionsExt};
 use std::path::{Path, PathBuf};
 use uuid::Uuid;
 
@@ -91,11 +92,58 @@ pub fn write_checked_confined(dir: &Path, name: &str, bytes: &[u8], check: impl 
 }
 
 const TEMP_SUFFIX: &str = ".tmp";
+/// Owner may read and write, nobody else. For files that hold a secret.
+const PRIVATE_MODE: u32 = 0o600;
 
 fn write_synced(path: &Path, bytes: &[u8]) -> io::Result<()> {
     let mut file = OpenOptions::new().write(true).create_new(true).open(path)?;
     file.write_all(bytes)?;
     file.sync_all()
+}
+
+/// A file that is written and synced under a temp name and not yet in place. [`Staged::commit`]
+/// renames it over the target; dropping it without a commit removes the temp file.
+pub struct Staged {
+    tmp: PathBuf,
+    path: PathBuf,
+    committed: bool,
+}
+
+impl Staged {
+    pub fn commit(mut self) -> io::Result<()> {
+        std::fs::rename(&self.tmp, &self.path)?;
+        self.committed = true;
+        if let Some(parent) = self.path.parent() {
+            let _ = File::open(parent).and_then(|handle| handle.sync_all());
+        }
+        Ok(())
+    }
+}
+
+impl Drop for Staged {
+    fn drop(&mut self) {
+        if !self.committed {
+            let _ = std::fs::remove_file(&self.tmp);
+        }
+    }
+}
+
+/// Prepare `dir/name` with owner-only permissions, so that the only step left is a rename.
+pub fn stage_private_confined(dir: &Path, name: &str, bytes: &[u8]) -> io::Result<Staged> {
+    let path = safe_path(confined_file(dir, name)?)?;
+    let tmp = safe_path(confined_file(dir, &format!("{name}.{}{TEMP_SUFFIX}", Uuid::new_v4().simple()))?)?;
+    let staged = Staged { tmp, path, committed: false };
+    let mut file = OpenOptions::new().write(true).create_new(true).mode(PRIVATE_MODE).open(&staged.tmp)?;
+    // The mode given at creation is cut by the umask only; set it again in case the name existed.
+    file.set_permissions(Permissions::from_mode(PRIVATE_MODE))?;
+    file.write_all(bytes)?;
+    file.sync_all()?;
+    Ok(staged)
+}
+
+/// Replace `dir/name` in one step with a file only the owner can read.
+pub fn write_private_confined(dir: &Path, name: &str, bytes: &[u8]) -> io::Result<()> {
+    stage_private_confined(dir, name, bytes)?.commit()
 }
 
 /// Remove temp files a crashed write of `dir/name` left behind. Call before the first write.
@@ -162,6 +210,17 @@ mod tests {
         assert!(refused.is_err());
         assert_eq!(read_confined(dir.path(), "state.json").unwrap(), b"old");
         assert_eq!(dir.names(), ["state.json"]);
+    }
+
+    #[test]
+    fn a_private_file_is_owner_only_and_an_uncommitted_one_leaves_nothing() {
+        let dir = TestDir::new("private");
+        write_private_confined(dir.path(), "secret.json", b"one").unwrap();
+        let mode = std::fs::metadata(dir.file("secret.json")).unwrap().permissions().mode() & 0o777;
+        assert_eq!(mode, 0o600);
+        drop(stage_private_confined(dir.path(), "secret.json", b"two").unwrap());
+        assert_eq!(read_confined(dir.path(), "secret.json").unwrap(), b"one");
+        assert_eq!(dir.names(), ["secret.json"]);
     }
 
     #[test]

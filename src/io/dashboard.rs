@@ -106,7 +106,7 @@ fn resolve_ui_locale(raw: &str) -> String {
     "en".into()
 }
 
-fn sanitize_ui(mut ui: UiState) -> UiState {
+pub(crate) fn sanitize_ui(mut ui: UiState) -> UiState {
     if ui.locale_set || !ui.locale.is_empty() {
         ui.locale = resolve_ui_locale(&ui.locale);
     }
@@ -133,7 +133,7 @@ fn sanitize_choice(value: &str, allowed: &[&str], fallback: &str) -> String {
     }
 }
 
-fn valid_entity_id(id: &str) -> bool {
+pub(crate) fn valid_entity_id(id: &str) -> bool {
     let mut parts = id.split('.');
     matches!((parts.next(), parts.next(), parts.next()), (Some(d), Some(n), None) if !d.is_empty() && !n.is_empty() && id.len() <= 128)
 }

@@ -8,7 +8,7 @@ use crate::io::metrics::MetricsStore;
 use crate::io::trainer_consent::TrainerConsentHub;
 use crate::llm::LlmEndpoint;
 use crate::session::Sessions;
-use crate::types::{CustomSentence, MatchControl, ParseOutcome, ParseResult, PolicyRule, Settings, SpeechBank};
+use crate::types::{CustomSentence, HomeGraph, MatchControl, ParseOutcome, ParseResult, PolicyRule, Settings, SpeechBank};
 use axum::http::StatusCode;
 use std::path::PathBuf;
 use std::sync::atomic::AtomicBool;
@@ -33,6 +33,9 @@ pub struct AppState {
     /// The only writer of `klar_nlu.json` in `data_dir`.
     pub overlay: OverlayStore,
     pub live_sync: Arc<AtomicBool>,
+    /// The home as Home Assistant last pushed it, before the overlays. `None` until the
+    /// first push; the registry files are the base until then.
+    pub live_base: Arc<Mutex<Option<Arc<HomeGraph>>>>,
     pub token: Option<String>,
     pub llm: Arc<Mutex<Option<LlmEndpoint>>>,
     pub trainer_consent: Arc<TrainerConsentHub>,
@@ -57,6 +60,7 @@ impl AppState {
             overlay: OverlayStore::open(&data_dir),
             data_dir,
             live_sync: Arc::new(AtomicBool::new(false)),
+            live_base: Arc::new(Mutex::new(None)),
             token,
             llm: Arc::new(Mutex::new(llm)),
             trainer_consent: TrainerConsentHub::new(),
