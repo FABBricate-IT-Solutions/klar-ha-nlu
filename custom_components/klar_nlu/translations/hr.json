@@ -3,7 +3,7 @@
     "step": {
       "user": {
         "title": "Klar NLU",
-        "description": "Ova integracija razgovara s Assistom. Zaseban motor tumači govor: aplikacija Klar NLU, uključeni proces ili Docker. Na Home Assistant OS instalirajte i aplikaciju pa odaberite Koristi aplikaciju Klar NLU. Bez aplikacije pokrenite uključeni motor. Ne pokrećite oboje.",
+        "description": "Ova integracija razgovara s Assistom. Zaseban motor tumači govor: aplikacija Klar NLU, uključeni proces ili Docker. Na Home Assistant OS instalirajte i aplikaciju pa odaberite Koristi aplikaciju Klar NLU. Bez aplikacije pokrenite uključeni motor. Ne pokrećite oboje. {apps}",
         "data": {
           "mode": "Motor",
           "channel": "Kanal izdanja",

@@ -3,7 +3,7 @@
     "step": {
       "user": {
         "title": "Klar NLU",
-        "description": "Ta integracija se pogovarja z Assistom. Ločen pogon razčleni govor: aplikacija Klar NLU, priložen proces ali Docker. Na Home Assistant OS namestite tudi aplikacijo in izberite Uporabi aplikacijo Klar NLU. Brez aplikacije zaženite priložen pogon. Ne zaganjajte obojega.",
+        "description": "Ta integracija se pogovarja z Assistom. Ločen pogon razčleni govor: aplikacija Klar NLU, priložen proces ali Docker. Na Home Assistant OS namestite tudi aplikacijo in izberite Uporabi aplikacijo Klar NLU. Brez aplikacije zaženite priložen pogon. Ne zaganjajte obojega. {apps}",
         "data": {
           "mode": "Pogon",
           "channel": "Kanal izdaje",

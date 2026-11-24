@@ -3,7 +3,7 @@
     "step": {
       "user": {
         "title": "Klar NLU",
-        "description": "Deze integratie praat met Assist. Een aparte engine herkent spraak: de Klar NLU-app, dit meegeleverde proces of Docker. Op Home Assistant OS ook de app installeren en Klar NLU-app gebruiken kiezen. Zonder app de meegeleverde engine starten. Niet allebei. Het releasekanaal kun je later wijzigen.",
+        "description": "Deze integratie praat met Assist. Een aparte engine herkent spraak: de Klar NLU-app, dit meegeleverde proces of Docker. Op Home Assistant OS ook de app installeren en Klar NLU-app gebruiken kiezen. Zonder app de meegeleverde engine starten. Niet allebei. Het releasekanaal kun je later wijzigen. {apps}",
         "data": {
           "mode": "Engine",
           "channel": "Releasekanaal",

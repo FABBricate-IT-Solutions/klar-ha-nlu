@@ -3,7 +3,7 @@
     "step": {
       "user": {
         "title": "Klar NLU",
-        "description": "이 통합은 Assist와 대화합니다. 음성은 Klar NLU 앱, 번들 프로세스 또는 Docker가 분석합니다. Home Assistant OS에서는 앱을 설치하고 Klar NLU 앱 사용을 고르세요. 앱이 없으면 번들 엔진을 시작하세요. 둘 다 실행하지 마세요.",
+        "description": "이 통합은 Assist와 대화합니다. 음성은 Klar NLU 앱, 번들 프로세스 또는 Docker가 분석합니다. Home Assistant OS에서는 앱을 설치하고 Klar NLU 앱 사용을 고르세요. 앱이 없으면 번들 엔진을 시작하세요. 둘 다 실행하지 마세요. {apps}",
         "data": {
           "mode": "엔진",
           "channel": "릴리스 채널",

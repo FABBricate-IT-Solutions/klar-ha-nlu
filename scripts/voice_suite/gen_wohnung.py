@@ -1,12 +1,14 @@
 """Generate YAML voice tests for Klar — German and English, same families."""
 
+from pathlib import Path
+
 from .lib import HOME, ROOT, dump
 from .wohnung import de_area, de_assist, de_devices, de_spoken, en
 
 
-def main() -> None:
-    de = ROOT / "wohnung_mittel"
-    en_root = ROOT / "wohnung_en"
+def main(root: Path = ROOT) -> None:
+    de = root / "wohnung_mittel"
+    en_root = root / "wohnung_en"
     dump(de / "home_config.yaml", HOME)
     dump(en_root / "home_config.yaml", HOME.replace("language: de", "language: en"))
     de_area.write(de)

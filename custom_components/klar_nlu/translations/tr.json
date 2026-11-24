@@ -3,7 +3,7 @@
     "step": {
       "user": {
         "title": "Klar NLU",
-        "description": "Bu entegrasyon Assist ile konuşur. Ayrı bir motor konuşmayı çözer: Klar NLU uygulaması, paket süreç veya Docker. Home Assistant OS’te uygulamayı kurun ve Klar NLU uygulamasını kullan seçin. Uygulama yoksa paket motoru başlatın. İkisini birden çalıştırmayın.",
+        "description": "Bu entegrasyon Assist ile konuşur. Ayrı bir motor konuşmayı çözer: Klar NLU uygulaması, paket süreç veya Docker. Home Assistant OS’te uygulamayı kurun ve Klar NLU uygulamasını kullan seçin. Uygulama yoksa paket motoru başlatın. İkisini birden çalıştırmayın. {apps}",
         "data": {
           "mode": "Motor",
           "channel": "Yayın kanalı",

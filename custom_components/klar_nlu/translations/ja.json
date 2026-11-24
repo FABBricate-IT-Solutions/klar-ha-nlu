@@ -3,7 +3,7 @@
     "step": {
       "user": {
         "title": "Klar NLU",
-        "description": "この連携は Assist と話します。音声は Klar NLU アプリ、同梱プロセス、または Docker が解析します。Home Assistant OS ではアプリも入れ、「Klar NLU アプリを使う」を選んでください。アプリがなければ同梱エンジンを起動します。両方は動かさないでください。",
+        "description": "この連携は Assist と話します。音声は Klar NLU アプリ、同梱プロセス、または Docker が解析します。Home Assistant OS ではアプリも入れ、「Klar NLU アプリを使う」を選んでください。アプリがなければ同梱エンジンを起動します。両方は動かさないでください。 {apps}",
         "data": {
           "mode": "エンジン",
           "channel": "リリースチャネル",

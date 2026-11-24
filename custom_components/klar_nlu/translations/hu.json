@@ -3,7 +3,7 @@
     "step": {
       "user": {
         "title": "Klar NLU",
-        "description": "Ez az integráció az Assisttel beszél. A beszédet külön motor elemzi: a Klar NLU alkalmazás, a csomagolt folyamat vagy Docker. Home Assistant OS-en telepítse az alkalmazást, és válassza a Klar NLU alkalmazás használata. Alkalmazás nélkül indítsa a csomagolt motort. Ne futtassa mindkettőt.",
+        "description": "Ez az integráció az Assisttel beszél. A beszédet külön motor elemzi: a Klar NLU alkalmazás, a csomagolt folyamat vagy Docker. Home Assistant OS-en telepítse az alkalmazást, és válassza a Klar NLU alkalmazás használata. Alkalmazás nélkül indítsa a csomagolt motort. Ne futtassa mindkettőt. {apps}",
         "data": {
           "mode": "Motor",
           "channel": "Kiadási csatorna",

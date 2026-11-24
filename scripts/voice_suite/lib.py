@@ -54,7 +54,7 @@ devices:
   - {id: climate.schlafzimmer_ac, area_id: schlafzimmer, name: Klimaanlage}
   - {id: vacuum.r2d2, area_id: wohnzimmer, name: R2D2}
   - {id: switch.pc_steckdose, area_id: arbeitszimmer, name: PC Steckdose}
-  - {id: switch.schlafzimmer_tv, area_id: schlafzimmer, name: Schlafzimmer TV}
+  - {id: switch.schlafzimmer_tv, area_id: schlafzimmer, name: Schlafzimmer TV, aliases: [Fernseher]}
   - {id: switch.badezimmer_waschmaschine, area_id: badezimmer, name: Waschmaschine}
   - {id: switch.kuche_trockner, area_id: kuche, name: Trockner}
   - {id: switch.kuche_spulmaschine, area_id: kuche, name: Spülmaschine}
@@ -62,6 +62,10 @@ devices:
   - {id: cover.wohnzimmer_rollo, area_id: wohnzimmer, name: Rollo Wohnzimmer}
   - {id: lock.wohnungstuer, area_id: flur, name: Wohnungstür}
   - {id: scene.filmabend, area_id: wohnzimmer, name: Filmabend}
+  - {id: scene.alles_aus, area_id: wohnung, name: Alles aus, aliases: [All off, alloff, allesaus]}
+  - {id: media_player.wohnzimmer, area_id: wohnzimmer, name: Wohnzimmer Player, platform: music_assistant, aliases: [Wohnzimmer Musik]}
+  - {id: media_player.kuchenbereich, area_id: kuche, name: Küche Player, platform: music_assistant, aliases: [Küchenmusik, Kitchen Player]}
+  - {id: media_player.wohnzimmer_tv, area_id: wohnzimmer, name: Wohnzimmer TV}
 """
 
 KUGEL_FORBID = [
@@ -116,6 +120,21 @@ def case(
         for item in speech_forbids:
             lines.append(f"    - {item!r}")
     lines.append("  sentences:")
+    for sentence in sentences:
+        lines.append(f"    - {sentence!r}")
+    return "\n".join(lines) + "\n"
+
+
+def rejected(name: str, sentences: list[str]) -> str:
+    """A case the engine must turn down: nothing in the home can answer it."""
+    lines = [
+        f"- name: {name}",
+        "  nlu_expect:",
+        "    reject: true",
+        "    intents: []",
+        "    clarify: false",
+        "  sentences:",
+    ]
     for sentence in sentences:
         lines.append(f"    - {sentence!r}")
     return "\n".join(lines) + "\n"

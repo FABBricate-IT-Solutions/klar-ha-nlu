@@ -4,7 +4,7 @@ from __future__ import annotations
 
 EUROPE: dict[str, dict[str, str]] = {
     "de": {
-        "user_desc": 'Diese Integration spricht mit Assist. App oder mitgelieferte Engine wählen — später unter Konfigurieren umstellbar. Nicht beides als Engine-Host. Der Release-Kanal lässt sich später ändern.',
+        "user_desc": 'Diese Integration spricht mit Assist. Steht Klar NLU schon in der Sidebar, App verwenden. Nur diese App installieren — Klar NLU (Staging) ist eine zweite App. Die mitgelieferte Engine nicht zusätzlich starten.',
         "mode": 'Engine',
         "channel": 'Release-Kanal',
         "url": 'URL der Klar-API',
@@ -33,7 +33,7 @@ EUROPE: dict[str, dict[str, str]] = {
         "help_allow_llm_tools": 'Standard aus. An: nach dem Klar-Parse darf das Engine-Chat-Modell Home-Assistant-Assist-Werkzeuge nutzen (Namen kommen von Core, bereits prefixiert). Aus: nur Gespräch.',
         "help_languages": 'Standard ist die Home-Assistant-Systemsprache. Alle Sprachen lässt jede kompilierte Assist-Locale aktiv.',
         "help_channel": 'Stable oder Staging für den Host oben. App nutzt das Add-on; mitgelieferte Engine lädt das GitHub-Release. Eine eigene URL bleibt.',
-        "help_mode": 'App oder mitgelieferte Engine. Jederzeit umstellen. Die Integrations-Sidebar erscheint nur bei der mitgelieferten Engine.',
+        "help_mode": 'App oder mitgelieferte Engine. Jederzeit umstellen. Die Sidebar der mitgelieferten Engine heißt Klar engine und steht nicht unter Apps.',
         "help_fallback_agent": 'Leer lassen. Das LLM liegt in der Klar-Operator-UI (Einstellungen → LLM). Assist-Chat und Trainer nutzen denselben Endpoint. Dieses Feld ist nur für eine alte Home-Assistant-Conversation-Integration.',
         "local": 'Mitgelieferte Engine starten (ohne App)',
         "remote": 'Klar-NLU-App oder Docker verwenden',
@@ -160,7 +160,7 @@ EUROPE: dict[str, dict[str, str]] = {
         "down_desc": 'Der mitgelieferte Klar-Prozess läuft nicht. Lade Klar NLU unter Einstellungen → Geräte und Dienste neu.',
     },
     "en-GB": {
-        "user_desc": 'This integration talks to Assist. A separate engine parses speech: the Klar NLU App, this bundled process, or Docker. On Home Assistant OS install the App as well, then pick Use the Klar NLU App. Without the App, pick Start the bundled engine. Do not run both. The release channel can be changed later.',
+        "user_desc": 'This integration talks to Assist. If Klar NLU is already in the sidebar, keep Use the Klar NLU App. Install that App only — Klar NLU (Staging) is a second App. Do not also start the bundled engine.',
         "mode": 'Engine',
         "channel": 'Release channel',
         "url": 'Klar API URL',

@@ -3,7 +3,7 @@
     "step": {
       "user": {
         "title": "Klar NLU",
-        "description": "Această integrare vorbește cu Assist. Un motor separat analizează vorbirea: aplicația Klar NLU, procesul inclus sau Docker. Pe Home Assistant OS instalați și aplicația, apoi alegeți Folosește aplicația Klar NLU. Fără aplicație porniți motorul inclus. Nu rulați ambele.",
+        "description": "Această integrare vorbește cu Assist. Un motor separat analizează vorbirea: aplicația Klar NLU, procesul inclus sau Docker. Pe Home Assistant OS instalați și aplicația, apoi alegeți Folosește aplicația Klar NLU. Fără aplicație porniți motorul inclus. Nu rulați ambele. {apps}",
         "data": {
           "mode": "Motor",
           "channel": "Canal de lansare",
