@@ -112,10 +112,13 @@ fn other_domain_noun(tokens: &[String]) -> bool {
 fn agenda_query(tokens: &[String]) -> bool {
     let cat = catalog();
     let day = cat.any(tokens, cat.calendar_today()) || has_tomorrow(tokens);
-    let ask = looks_like_question(tokens)
-        || any_exact(tokens, cat.calendar_query())
-        || tokens.iter().any(|token| matches!(token.as_str(), "habe" | "haben" | "have" | "got" | "steht"));
+    let ask = looks_like_question(tokens) || any_exact(tokens, cat.calendar_query()) || agenda_verb(tokens);
     day && ask && !other_domain_noun(tokens)
+}
+
+/// "Was habe ich heute": the day word belongs to the diary, not to the news.
+pub(crate) fn agenda_verb(tokens: &[String]) -> bool {
+    tokens.iter().any(|token| matches!(token.as_str(), "habe" | "haben" | "have" | "got" | "steht"))
 }
 
 fn has_tomorrow(tokens: &[String]) -> bool {

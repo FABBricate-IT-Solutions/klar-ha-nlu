@@ -3,6 +3,7 @@ use crate::lang::groups::{Chat, Cues, Fixtures, GroupClarify, Household, Languag
 use crate::lang::morphology::PackMorphology;
 use crate::lang::LangId;
 
+use super::news::NEWS;
 use super::speech::SPEECH;
 use super::verbs::VERBS;
 
@@ -281,11 +282,7 @@ pub const PACK: LanguagePack = LanguagePack {
         world: &["weather"],
         advice: &["idea"],
         open: &["kyeo", "why"],
-        news: &["뉴스", "소식", "헤드라인"],
-        news_dismiss: &["stop", "그만", "아니"],
-        news_intro: "최신 뉴스를 찾아볼게.",
-        news_nudge: "그중 더 들을 소식 있어?",
-        news_done: "알겠어.",
+        news: NEWS,
     },
     household: Household {
         teach: &["설정 문"],

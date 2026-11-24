@@ -3,6 +3,7 @@ use crate::lang::groups::{Chat, Cues, Fixtures, GroupClarify, Household, Languag
 use crate::lang::morphology::PackMorphology;
 use crate::lang::LangId;
 
+use super::news::NEWS;
 use super::speech::SPEECH;
 use super::verbs::VERBS;
 
@@ -255,24 +256,7 @@ pub const PACK: LanguagePack = LanguagePack {
         world: &["weather"],
         advice: &["idea"],
         open: &["mach", "why"],
-        news: &[
-            "briefing",
-            "flash",
-            "headlines",
-            "meldung",
-            "meldungen",
-            "nachricht",
-            "nachrichten",
-            "neues",
-            "neuigkeit",
-            "neuigkeiten",
-            "news",
-            "schlagzeilen",
-        ],
-        news_dismiss: &["genug", "nei", "nein", "reicht", "stop", "stopp"],
-        news_intro: "Ich lueg kurz d Nachrichten noche.",
-        news_nudge: "Wotsch zu einere Meldig meh ghoere?",
-        news_done: "Passt.",
+        news: NEWS,
     },
     household: Household {
         teach: &["das heisst", "nenn das", "nenne das", "stell tuer"],

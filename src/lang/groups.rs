@@ -174,11 +174,30 @@ pub struct Chat {
     pub world: &'static [&'static str],
     pub advice: &'static [&'static str],
     pub open: &'static [&'static str],
-    pub news: &'static [&'static str],
-    pub news_dismiss: &'static [&'static str],
-    pub news_intro: &'static str,
-    pub news_nudge: &'static str,
-    pub news_done: &'static str,
+    pub news: News,
+}
+
+/// News briefing words. Tokens are folded the way speech is tokenized; a phrase may hold spaces.
+pub struct News {
+    pub words: &'static [&'static str],
+    pub dismiss: &'static [&'static str],
+    pub intro: &'static str,
+    pub nudge: &'static str,
+    pub done: &'static str,
+    /// "more", "that", "the first": the user stays on the briefing that is open.
+    pub follow: &'static [&'static str],
+    /// One story ("Meldung", "article"). Asking for it never starts a new roundup.
+    pub story: &'static [&'static str],
+    /// "about": the topic comes after it.
+    pub about: &'static [&'static str],
+    /// Postposition: the topic comes before it.
+    pub about_after: &'static [&'static str],
+    /// Section words and the search words they stand for.
+    pub topics: &'static [(&'static str, &'static str)],
+    /// Request words ("give", "latest", "what"). They are never a topic and never proof of a home command.
+    pub glue: &'static [&'static str],
+    /// The glue list is complete enough that a leftover word may be taken as the topic.
+    pub open: bool,
 }
 
 /// Teach / explain / undo / clock / weather. Same path for every compiled locale.

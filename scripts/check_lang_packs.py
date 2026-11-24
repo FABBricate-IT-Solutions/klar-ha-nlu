@@ -133,6 +133,7 @@ def check_banners() -> None:
         ROOT / "src" / "lang" / "packs" / "mod.rs",
         ROOT / "custom_components" / "klar_nlu" / "languages.py",
         ROOT / "tests" / "assist_langs.rs",
+        ROOT / "tests" / "news_langs.rs",
     ):
         if path.exists() and BANNER not in path.read_text(encoding="utf-8"):
             missing.append(str(path.relative_to(ROOT)))

@@ -383,4 +383,19 @@ impl Catalog {
     pub fn chat_news_dismiss(&self) -> &HashSet<&'static str> {
         self.words(WordKey::ChatNewsDismiss)
     }
+    pub fn chat_news_follow(&self) -> &HashSet<&'static str> {
+        self.words(WordKey::ChatNewsFollow)
+    }
+    pub fn chat_news_story(&self) -> &HashSet<&'static str> {
+        self.words(WordKey::ChatNewsStory)
+    }
+    pub fn chat_news_about(&self) -> &HashSet<&'static str> {
+        self.words(WordKey::ChatNewsAbout)
+    }
+    pub fn chat_news_about_after(&self) -> &HashSet<&'static str> {
+        self.words(WordKey::ChatNewsAboutAfter)
+    }
+    pub fn chat_news_glue(&self) -> &HashSet<&'static str> {
+        self.words(WordKey::ChatNewsGlue)
+    }
 }

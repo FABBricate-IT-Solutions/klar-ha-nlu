@@ -15,6 +15,7 @@ pub mod compound;
 pub(crate) mod fuzzy;
 pub(crate) mod infer;
 pub(crate) mod media;
+pub(crate) mod news;
 pub mod normalize;
 pub mod numbers;
 pub(crate) mod policy;

@@ -10,6 +10,9 @@ import unittest
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[2]
+PKG = ROOT / "custom_components" / "klar_nlu"
+if str(PKG) not in sys.path:
+    sys.path.insert(0, str(PKG))
 SURFACES = json.loads((ROOT / "scripts" / "lang_packs" / "native_surfaces.json").read_text(encoding="utf-8"))
 sys.path.insert(0, str(ROOT / "scripts"))
 from lang_packs.lexicons import ALL_CORES
@@ -103,7 +106,7 @@ class ScriptLanguageTests(unittest.TestCase):
         self.assertNotIn("tagesschau", self.news.feed_url("hi"))
         self.assertNotIn("tagesschau", self.news.feed_url("zh-CN"))
         self.assertNotIn("tagesschau", self.news.feed_url("sw"))
-        self.assertEqual(self.news.feed_url("sw"), self.news.feed_url("en"))
+        self.assertIn("swahili", self.news.feed_url("sw"))
         self.assertNotIn("Möchtest", self.news.nudge("ja"))
         self.assertNotIn("Möchtest", self.news.nudge("hi"))
         self.assertTrue(_has_letters(self.news.nudge("ja")))

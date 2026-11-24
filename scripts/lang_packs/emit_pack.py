@@ -124,6 +124,7 @@ def pack_rs(lang: dict) -> str:
 use crate::lang::morphology::PackMorphology;
 use crate::lang::LangId;
 
+use super::news::NEWS;
 use super::speech::SPEECH;
 use super::verbs::VERBS;
 
@@ -278,11 +279,7 @@ pub const PACK: LanguagePack = LanguagePack {{
         world: {rust_list(ch["world"])},
         advice: {rust_list(ch["advice"])},
         open: {rust_list(ch["open"])},
-        news: {rust_list(ch["news"])},
-        news_dismiss: {rust_list(ch["news_dismiss"])},
-        news_intro: {rust_str(ch["news_intro"])},
-        news_nudge: {rust_str(ch["news_nudge"])},
-        news_done: {rust_str(ch["news_done"])},
+        news: NEWS,
     }},
     household: Household {{
         teach: {rust_list(lang.get("household", {}).get("teach", []))},

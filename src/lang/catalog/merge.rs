@@ -128,8 +128,13 @@ const WORD_SOURCES: &[(WordKey, WordPick)] = &[
     (WordKey::ChatWorld, |p: &Pack| p.chat.world),
     (WordKey::ChatAdvice, |p: &Pack| p.chat.advice),
     (WordKey::ChatOpen, |p: &Pack| p.chat.open),
-    (WordKey::ChatNews, |p: &Pack| p.chat.news),
-    (WordKey::ChatNewsDismiss, |p: &Pack| p.chat.news_dismiss),
+    (WordKey::ChatNews, |p: &Pack| p.chat.news.words),
+    (WordKey::ChatNewsDismiss, |p: &Pack| p.chat.news.dismiss),
+    (WordKey::ChatNewsFollow, |p: &Pack| p.chat.news.follow),
+    (WordKey::ChatNewsStory, |p: &Pack| p.chat.news.story),
+    (WordKey::ChatNewsAbout, |p: &Pack| p.chat.news.about),
+    (WordKey::ChatNewsAboutAfter, |p: &Pack| p.chat.news.about_after),
+    (WordKey::ChatNewsGlue, |p: &Pack| p.chat.news.glue),
 ];
 
 impl Catalog {
@@ -166,9 +171,13 @@ impl Catalog {
                 c.sets.entry(*key).or_default().extend(pick(p).iter().copied());
             }
             if c.news_intro.is_empty() {
-                c.news_intro = p.chat.news_intro;
-                c.news_nudge = p.chat.news_nudge;
-                c.news_done = p.chat.news_done;
+                c.news_intro = p.chat.news.intro;
+                c.news_nudge = p.chat.news.nudge;
+                c.news_done = p.chat.news.done;
+            }
+            c.news_open &= p.chat.news.open;
+            for &(word, query) in p.chat.news.topics {
+                c.news_topics.insert(word, query);
             }
             c.morphology.room_suffixes.extend(p.morphology.room_suffixes.iter().copied());
             c.morphology.color_suffixes.extend(p.morphology.color_suffixes.iter().copied());
@@ -200,6 +209,8 @@ impl Catalog {
             news_intro: "",
             news_nudge: "",
             news_done: "",
+            news_topics: HashMap::new(),
+            news_open: true,
             morphology: Morphology::default(),
             pack_intents: Vec::new(),
         }

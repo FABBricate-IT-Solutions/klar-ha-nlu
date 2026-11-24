@@ -18,6 +18,8 @@ from lang_packs.ha_ui import write_ha_translations
 from lang_packs.web_ui import write_web_ui_translations
 from lang_packs.expand import expand
 from lang_packs.lexicons import ALL_CORES, BUILTINS
+from lang_packs.news_flow import hand_nudge
+from lang_packs.news_test import write_news_test
 from lang_packs.speech_slots import slot_gaps
 from lang_packs.voices import HAND_BUNDLES, locale_bundle, PERSONALITY_KEYS
 
@@ -59,6 +61,11 @@ def main(argv: list[str] | None = None) -> None:
         print("wrote", lang["code"])
     registry = BUILTINS + generated
     write_registry(registry)
+    lights = {"de": ("licht wohnzimmer an", "licht kuche aus"), "en": ("turn on the living room light", "turn off the kitchen light")}
+    for lang in generated:
+        said = {intent: text for text, intent in reversed(lang.get("smoke", []))}
+        lights[lang["code"]] = (said["HassTurnOn"], said["HassTurnOff"])
+    write_news_test(lights)
     smoke = Path(__file__).resolve().parents[2] / "tests" / "assist_langs.rs"
     cases = []
     for code, text, intent in (
@@ -151,13 +158,14 @@ fn russian_is_not_a_compiled_pack() {
 
 
 def write_speech_locale(generated: list[dict]) -> None:
-    packs = dict(HAND_BUNDLES)
+    packs = {code: {**bundle, "news_nudge": hand_nudge(code)} for code, bundle in HAND_BUNDLES.items()}
     shots: dict[str, dict[str, str]] = {
         "de": {},
         "en": {},
     }
     for lang in generated:
         bundle = locale_bundle(lang)
+        bundle["news_nudge"] = lang["chat"]["news"]["nudge"]
         packs[lang["code"]] = bundle
         shots[lang["code"]] = refine_shot_rows(bundle)
     dest = Path(__file__).resolve().parents[2] / "custom_components" / "klar_nlu" / "speech_locale.py"
