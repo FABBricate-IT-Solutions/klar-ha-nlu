@@ -48,6 +48,8 @@ export function CustomPage({ t, locale, embedded }: { t: Messages; locale: Local
   }, [intents]);
 
   const persist = async (next: CustomRule[], label: string) => {
+    // `rules` and `language` are empty placeholders until the overlay is loaded.
+    if (!overlay) return;
     try {
       replace(await api.saveLangOverlay({ custom: next, language, label }));
       toastSaved(t);
@@ -98,14 +100,14 @@ export function CustomPage({ t, locale, embedded }: { t: Messages; locale: Local
         </div>
         <div className="row">
           <button className="ghost" onClick={() => setJsonMode(!jsonMode)}>{t.advancedJson}</button>
-          <button className="primary" disabled={offline} onClick={() => jsonMode ? saveJson() : add()}>{jsonMode ? t.save : t.addPhrase}</button>
+          <button className="primary" disabled={!overlay} onClick={() => jsonMode ? saveJson() : add()}>{jsonMode ? t.save : t.addPhrase}</button>
         </div>
       </section>
       )}
       {embedded && (
         <div className="row" style={{ marginBottom: 16 }}>
           <button className="ghost" onClick={() => setJsonMode(!jsonMode)}>{t.advancedJson}</button>
-          <button className="primary" disabled={offline} onClick={() => jsonMode ? saveJson() : add()}>{jsonMode ? t.save : t.addPhrase}</button>
+          <button className="primary" disabled={!overlay} onClick={() => jsonMode ? saveJson() : add()}>{jsonMode ? t.save : t.addPhrase}</button>
         </div>
       )}
       {jsonMode ? (
