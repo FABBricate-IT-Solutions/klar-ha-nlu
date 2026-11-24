@@ -22,6 +22,8 @@ type SearchSelectProps = {
   allowEmpty?: boolean;
   allowCustom?: boolean;
   id?: string;
+  /** Called each time the operator opens the list, by pointer or keyboard. */
+  onOpen?: () => void;
 };
 
 function floorsFromDashboard(data: Dashboard): SearchOption[] {
@@ -106,6 +108,7 @@ export function SearchSelect({
   allowEmpty = true,
   allowCustom = false,
   id,
+  onOpen,
 }: SearchSelectProps) {
   const [query, setQuery] = useState("");
   const items = useMemo(() => {
@@ -124,6 +127,9 @@ export function SearchSelect({
       value={selected}
       onValueChange={(next) => onChange(next?.value ?? "")}
       onInputValueChange={(next) => setQuery(next)}
+      onOpenChange={(open) => {
+        if (open) onOpen?.();
+      }}
       isItemEqualToValue={(left, right) => left.value === right.value}
       itemToStringLabel={(row) => (row.flag ? `${row.flag} ${row.label}` : row.label)}
       itemToStringValue={(row) => row.value}

@@ -7,6 +7,7 @@ mod fuzzy;
 mod groups;
 mod hassil;
 mod locale;
+mod mood;
 mod morphology;
 mod pack;
 #[allow(clippy::pedantic, clippy::nursery)]
@@ -27,6 +28,7 @@ pub use cli::{import_hassil, preview, validate_path};
 pub use external::{ExternalPack, PackRegistry};
 pub use hassil::{import_hassil as parse_hassil, HassilImport};
 pub use locale::{LocaleError, LocaleId};
+pub use mood::MoodWords;
 pub use morphology::Morphology;
 pub use pack::{Answers, GroupClarify, Household, LanguagePack, NumberStyle};
 pub use registry::{languages, LangMeta};

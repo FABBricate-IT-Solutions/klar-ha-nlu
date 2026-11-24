@@ -3,6 +3,7 @@ use crate::lang::groups::{Answers, Chat, Cues, Fixtures, GroupClarify, Household
 use crate::lang::morphology::PackMorphology;
 use crate::lang::LangId;
 
+use super::mood::MOOD;
 use super::news::NEWS;
 use super::speech::SPEECH;
 use super::verbs::VERBS;
@@ -278,9 +279,9 @@ pub const PACK: LanguagePack = LanguagePack {
         news: NEWS,
     },
     household: Household {
-        teach: &["సెట్ తలుపు"],
+        teach: &[],
         explain: &["ఏమి ఆర్పు సెట్"],
-        undo: &["ఆర్పు తలుపు"],
+        undo: &[],
         clock: &["ఏమి టైమర్"],
         weather: &["ఏమి vedi"],
         clock_skip: &["టైమర్"],
@@ -305,4 +306,5 @@ pub const PACK: LanguagePack = LanguagePack {
     answers: Answers { yes: &["avunu", "అవును"], no: &["కాదు"], cancel: &[], ask: "", actions: &[], many: "" },
     speech: SPEECH,
     morphology: PackMorphology::EMPTY,
+    mood: MOOD,
 };

@@ -1,14 +1,6 @@
-import { useEffect, useState } from "react";
 import type { Messages } from "../i18n";
-import {
-  exactProvider,
-  guessProvider,
-  LLM_PROVIDERS,
-  providerById,
-  resolveProvider,
-  writeStoredProvider,
-  type LlmProviderId,
-} from "../llmProviders";
+import { LLM_PROVIDERS, providerById, type LlmProviderId } from "../llmProviders";
+import type { LlmForm } from "../useLlmForm";
 import { SearchSelect } from "./SearchSelect";
 import { LlmModelField } from "./LlmModelField";
 import { SettingsToggle } from "./SettingsToggle";
@@ -38,41 +30,16 @@ function providerLabel(t: Messages, id: LlmProviderId): string {
 
 export function LlmProviderFields({
   t,
-  baseUrl,
-  model,
-  apiKey,
-  thinking,
-  onUrl,
-  onModel,
-  onKey,
-  onThinking,
+  form,
   modelInputId,
   idPrefix = "",
 }: {
   t: Messages;
-  baseUrl: string;
-  model: string;
-  apiKey: string;
-  thinking: boolean;
-  onUrl: (value: string) => void;
-  onModel: (value: string) => void;
-  onKey: (value: string) => void;
-  onThinking: (value: boolean) => void;
+  form: LlmForm;
   modelInputId?: string;
   idPrefix?: string;
 }) {
-  const [provider, setProvider] = useState<LlmProviderId>(() => resolveProvider(baseUrl));
-  useEffect(() => {
-    const exact = exactProvider(baseUrl);
-    if (exact !== "custom") {
-      setProvider(exact);
-      writeStoredProvider(exact);
-      return;
-    }
-    const next = resolveProvider(baseUrl);
-    setProvider(next);
-    writeStoredProvider(next);
-  }, [baseUrl]);
+  const { baseUrl, model, apiKey, thinking, provider } = form;
   const urlId = `${idPrefix}llm-base-url`;
   const keyId = `${idPrefix}llm-key`;
   const modelId = modelInputId || `${idPrefix}llm-model`;
@@ -86,13 +53,7 @@ export function LlmProviderFields({
           options={LLM_PROVIDERS.map((row) => ({ value: row.id, label: providerLabel(t, row.id) }))}
           onChange={(value) => {
             const next = providerById(value);
-            if (!next || next.id === provider) return;
-            setProvider(next.id);
-            writeStoredProvider(next.id);
-            if (next.id === "custom") return;
-            if (guessProvider(baseUrl) === next.id) return;
-            onUrl(next.url);
-            if (next.model) onModel(next.model);
+            if (next) form.pickProvider(next.id);
           }}
           allowEmpty={false}
           placeholder={t.llmProvider}
@@ -103,7 +64,7 @@ export function LlmProviderFields({
         <Input
           id={urlId}
           value={baseUrl}
-          onChange={(ev) => onUrl(ev.target.value)}
+          onChange={(ev) => form.setUrl(ev.target.value)}
           placeholder={preset?.url || "https://api.openai.com/v1"}
         />
       </Field>
@@ -114,19 +75,23 @@ export function LlmProviderFields({
           baseUrl={baseUrl}
           apiKey={apiKey}
           model={model}
-          onModel={onModel}
+          onModel={form.setModel}
           inputId={modelId}
           provider={provider}
         />
       </Field>
-      <Field>
+      <Field data-invalid={form.keyMissing || undefined}>
         <FieldLabel htmlFor={keyId}>{t.llmApiKey}</FieldLabel>
+        {/* The stored key stays with the stored address. For another address the field stops
+            promising it, and a cloud provider's key becomes required. */}
         <Input
           id={keyId}
           type="password"
           value={apiKey}
-          onChange={(ev) => onKey(ev.target.value)}
-          placeholder={t.llmApiKeyHint}
+          onChange={(ev) => form.setKey(ev.target.value)}
+          placeholder={form.moved ? t.llmApiKey : t.llmApiKeyHint}
+          required={form.keyRequired}
+          aria-invalid={form.keyMissing || undefined}
           autoComplete="off"
         />
       </Field>
@@ -135,7 +100,7 @@ export function LlmProviderFields({
         label={t.llmThinking}
         description={t.llmThinkingHint}
         checked={thinking}
-        onCheckedChange={(checked) => onThinking(checked)}
+        onCheckedChange={(checked) => form.setThinking(checked)}
       />
     </FieldGroup>
   );

@@ -3,6 +3,7 @@ use crate::lang::morphology::PackMorphology;
 use crate::lang::LangId;
 
 use super::answers::ANSWERS;
+use super::mood::MOOD;
 use super::news::NEWS;
 use super::speech::SPEECH;
 use super::verbs::VERBS;
@@ -493,4 +494,5 @@ pub const PACK: LanguagePack = LanguagePack {
     answers: ANSWERS,
     speech: SPEECH,
     morphology: PackMorphology::GERMAN,
+    mood: MOOD,
 };

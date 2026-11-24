@@ -17,8 +17,6 @@ export const LLM_PROVIDERS: LlmProvider[] = [
   { id: "custom", url: "", model: "" },
 ];
 
-const STORAGE = "klar_llm_provider";
-
 function norm(url: string): string {
   return url.trim().replace(/\/+$/, "").toLowerCase();
 }
@@ -51,26 +49,52 @@ export function guessProvider(url: string): LlmProviderId {
   return "custom";
 }
 
-export function readStoredProvider(): LlmProviderId | undefined {
+function baseParts(raw: string): string | undefined {
   try {
-    const raw = localStorage.getItem(STORAGE) ?? undefined;
-    return isProviderId(raw) ? raw : undefined;
+    const url = new URL(raw.trim().replace(/\/+$/, ""));
+    if (url.protocol !== "http:" && url.protocol !== "https:") return undefined;
+    const port = url.port || (url.protocol === "https:" ? "443" : "80");
+    // Like the engine: a base URL without a path means `/v1`.
+    const path = url.pathname.replace(/\/+$/, "") || "/v1";
+    return `${url.protocol}//${url.hostname.toLowerCase()}:${port}${path}`;
   } catch {
     return undefined;
   }
 }
 
-export function writeStoredProvider(id: LlmProviderId) {
-  try {
-    localStorage.setItem(STORAGE, id);
-  } catch {
-    return;
-  }
+/**
+ * Whether two base URLs name the same address: scheme, host, port and path. The engine sends the
+ * stored API key to the stored address only (`LlmEndpoint::same_base`), so this decides whether an
+ * edited URL still gets that key.
+ */
+export function sameBase(left: string, right: string): boolean {
+  const a = baseParts(left);
+  return a !== undefined && a === baseParts(right);
 }
 
-export function resolveProvider(url: string, stored = readStoredProvider()): LlmProviderId {
-  const exact = exactProvider(url);
-  if (exact !== "custom") return exact;
-  if (stored && stored !== "custom") return stored;
+/**
+ * The provider that goes with `url`: the saved one while the URL is still the saved address,
+ * otherwise what the URL itself says.
+ */
+export function providerForUrl(url: string, saved: { base_url?: string; provider?: string } = {}): LlmProviderId {
+  if (saved.base_url && isProviderId(saved.provider) && sameBase(url, saved.base_url)) return saved.provider;
   return guessProvider(url);
+}
+
+/** Cloud providers refuse a request without a key; local servers and unknown endpoints may run without one. */
+export function needsKey(provider: LlmProviderId): boolean {
+  switch (provider) {
+    case "openai":
+    case "anthropic":
+    case "google":
+      return true;
+    case "lemonade":
+    case "llamacpp":
+    case "custom":
+      return false;
+    default: {
+      const _never: never = provider;
+      return _never;
+    }
+  }
 }

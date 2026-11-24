@@ -70,9 +70,9 @@ fn every_compiled_locale_has_assist_and_parity_suites() {
 #[test]
 fn every_compiled_pack_has_household_cues() {
     for id in klar_nlu::lang::LangId::all() {
+        // Teach and undo are hand-written or absent (tests/household_phrases.rs); a pack without
+        // them simply does not offer the feature.
         let house = &id.pack().household;
-        assert!(!house.teach.is_empty(), "{:?} teach", id.code());
-        assert!(!house.undo.is_empty(), "{:?} undo", id.code());
         assert!(!house.clock.is_empty(), "{:?} clock", id.code());
         assert!(!house.weather.is_empty(), "{:?} weather", id.code());
     }

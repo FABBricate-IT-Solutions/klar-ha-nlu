@@ -3,6 +3,7 @@ use crate::lang::groups::{Answers, Chat, Cues, Fixtures, GroupClarify, Household
 use crate::lang::morphology::PackMorphology;
 use crate::lang::LangId;
 
+use super::mood::MOOD;
 use super::news::NEWS;
 use super::speech::SPEECH;
 use super::verbs::VERBS;
@@ -11,17 +12,17 @@ pub const PACK: LanguagePack = LanguagePack {
     id: LangId::new("hu"),
     verbs: VERBS,
     talk: Talk {
-        fillers: &["a", "az", "be"],
+        fillers: &["a", "az"],
         action_keep: &["csukd", "kapcsold", "nyisd", "oltsd"],
         conjunctions: &["es", "then"],
-        particles: &[],
+        particles: &["be", "fel", "ki", "le"],
         affirm: &["igen", "ok"],
         or_words: &["vagy"],
         except_words: &["except", "kiveve", "nelkul"],
         all_words: &["mind"],
-        query_hint: &["hogy", "mi"],
-        question_starts: &["hogy", "mi"],
-        question_words: &["hogy", "mi"],
+        query_hint: &["hogy", "mi", "van", "vannak"],
+        question_starts: &["hogy", "mi", "van", "vannak"],
+        question_words: &["hogy", "mi", "van", "vannak"],
         correction: &[],
         correction_phrases: &[],
         clarify_pick: &[],
@@ -85,11 +86,11 @@ pub const PACK: LanguagePack = LanguagePack {
         unlock_follow: &["nyisd", "oltsd"],
         cover_open_follow: &["nyisd"],
         garage_lock_block: &["zar"],
-        on_words: &["kapcsold"],
-        off_words: &["oltsd"],
+        on_words: &["be", "fel", "kapcsold"],
+        off_words: &["ki", "le", "oltsd"],
         scene_named: &["ejjel", "film", "tavozas"],
         temp_query: &["futes", "homerseklet"],
-        timer_query: &["hogy", "mi"],
+        timer_query: &["hogy", "mi", "van"],
         brightness: &[],
         start_words: &["kapcsold"],
         replay_on_off: &["kapcsold", "oltsd"],
@@ -102,7 +103,7 @@ pub const PACK: LanguagePack = LanguagePack {
         illuminate: &[],
         list_down: &["lista"],
         chores: &["lista"],
-        weak_scene: &["a", "az", "be"],
+        weak_scene: &["a", "az"],
         timer_cancel: &["oltsd"],
         timer_pause: &["halt", "hold"],
         timer_add: &[],
@@ -120,7 +121,7 @@ pub const PACK: LanguagePack = LanguagePack {
         hours: &["ora"],
         minutes: &["perc"],
         seconds: &["masodperc"],
-        list_skip: &["a", "add", "az", "be", "done", "erledigt", "fertig", "fuege", "hinzu"],
+        list_skip: &["a", "add", "az", "done", "erledigt", "fertig", "fuege", "hinzu"],
         shopping_names: &["lista"],
         status_words: &["mi"],
         window_words: &["fuggony"],
@@ -176,7 +177,7 @@ pub const PACK: LanguagePack = LanguagePack {
             ("dinner_time", "dinner_time"),
         ],
         article_one: &[],
-        strip_pairs: &[],
+        strip_pairs: &[("kapcsold", "be"), ("kapcsold", "fel"), ("kapcsold", "ki"), ("kapcsold", "le")],
         keep_after: &[],
     },
     maps: Maps {
@@ -256,9 +257,9 @@ pub const PACK: LanguagePack = LanguagePack {
         news: NEWS,
     },
     household: Household {
-        teach: &["allitsd ajto"],
+        teach: &[],
         explain: &["mi oltsd allitsd"],
-        undo: &["oltsd ajto"],
+        undo: &[],
         clock: &["mi idomer"],
         weather: &["mi homerseklet"],
         clock_skip: &["idomer"],
@@ -283,4 +284,5 @@ pub const PACK: LanguagePack = LanguagePack {
     answers: Answers { yes: &["igen", "ok"], no: &["nem"], cancel: &[], ask: "", actions: &[], many: "" },
     speech: SPEECH,
     morphology: PackMorphology::EMPTY,
+    mood: MOOD,
 };

@@ -117,6 +117,16 @@ fn german_sentences_that_must_not_act() {
     check("de");
 }
 
+/// Categories whose sentences no longer act at all. The baseline stays empty for them.
+const CLOSED: &[&str] = &["negation", "question", "past", "condition", "time"];
+
+#[test]
+fn closed_categories_have_no_baseline() {
+    let open: Vec<String> =
+        baseline().into_iter().filter(|line| line.split(" | ").nth(1).is_some_and(|category| CLOSED.contains(&category))).collect();
+    assert!(open.is_empty(), "these categories are closed and take no baseline lines:\n{}", open.join("\n"));
+}
+
 #[test]
 fn every_category_has_sentences_in_both_languages() {
     for lang in LANGS {

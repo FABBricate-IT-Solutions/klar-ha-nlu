@@ -3,6 +3,7 @@ use crate::lang::groups::{Answers, Chat, Cues, Fixtures, GroupClarify, Household
 use crate::lang::morphology::PackMorphology;
 use crate::lang::LangId;
 
+use super::mood::MOOD;
 use super::news::NEWS;
 use super::speech::SPEECH;
 use super::verbs::VERBS;
@@ -263,9 +264,9 @@ pub const PACK: LanguagePack = LanguagePack {
         news: NEWS,
     },
     household: Household {
-        teach: &["pune usa"],
+        teach: &[],
         explain: &["ce stinge pune"],
-        undo: &["stinge usa"],
+        undo: &[],
         clock: &["ce cronometru"],
         weather: &["ce aer"],
         clock_skip: &["cronometru"],
@@ -290,4 +291,5 @@ pub const PACK: LanguagePack = LanguagePack {
     answers: Answers { yes: &["da", "ok"], no: &["nu"], cancel: &[], ask: "", actions: &[], many: "" },
     speech: SPEECH,
     morphology: PackMorphology::EMPTY,
+    mood: MOOD,
 };
