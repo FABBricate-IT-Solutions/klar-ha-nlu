@@ -2,6 +2,7 @@ use crate::lang::groups::{Chat, Cues, Fixtures, GroupClarify, Household, Languag
 use crate::lang::morphology::PackMorphology;
 use crate::lang::LangId;
 
+use super::answers::ANSWERS;
 use super::news::NEWS;
 use super::speech::SPEECH;
 use super::verbs::VERBS;
@@ -73,7 +74,7 @@ pub const PACK: LanguagePack = LanguagePack {
         question_words: &["what", "whats", "where", "status", "check", "tell", "report", "state", "show", "get", "read", "remaining"],
         correction: &["wrong"],
         correction_phrases: &[],
-        clarify_pick: &["yes", "first"],
+        clarify_pick: &["first"],
     },
     nouns: Nouns {
         light_nouns: &["light", "lights", "lamp", "brightness", "lighting", "illumination"],
@@ -422,6 +423,7 @@ pub const PACK: LanguagePack = LanguagePack {
         clock_missing: "The time is not available right now.",
         no_weather: "I do not see a weather entity.",
     },
+    answers: ANSWERS,
     speech: SPEECH,
     morphology: PackMorphology::EMPTY,
 };

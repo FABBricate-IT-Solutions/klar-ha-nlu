@@ -2,6 +2,7 @@ use crate::lang::groups::{Chat, Cues, Fixtures, Household, LanguagePack, Maps, N
 use crate::lang::morphology::PackMorphology;
 use crate::lang::LangId;
 
+use super::answers::ANSWERS;
 use super::news::NEWS;
 use super::speech::SPEECH;
 use super::verbs::VERBS;
@@ -97,7 +98,7 @@ pub const PACK: LanguagePack = LanguagePack {
         question_words: &["wie", "wiewarm", "status", "zustand", "uebrig"],
         correction: &["falsch", "quatsch", "nein"],
         correction_phrases: &["stimmt nicht"],
-        clarify_pick: &["ja", "erste"],
+        clarify_pick: &["erste", "ersten", "erstes"],
     },
     nouns: Nouns {
         light_nouns: &[
@@ -489,6 +490,7 @@ pub const PACK: LanguagePack = LanguagePack {
         clock_missing: "Die Uhrzeit ist gerade nicht verfügbar.",
         no_weather: "Ich sehe kein Wetter.",
     },
+    answers: ANSWERS,
     speech: SPEECH,
     morphology: PackMorphology::GERMAN,
 };

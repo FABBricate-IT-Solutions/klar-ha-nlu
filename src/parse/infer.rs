@@ -275,9 +275,15 @@ pub(crate) fn looks_like_question(tokens: &[String]) -> bool {
         || tokens.iter().any(|t| cat.is_or(t))
 }
 
+/// "wrong", "nein": the last sentence was misheard. The words count as whole words only,
+/// so "eineinhalb" is a number and not a "nein".
 pub(crate) fn looks_like_correction(tokens: &[String]) -> bool {
-    let blob = join_tokens(tokens);
-    catalog().correction().iter().any(|w| blob.contains(w)) || catalog().correction_phrases().iter().any(|phrase| blob.contains(phrase))
+    let cat = catalog();
+    tokens.iter().any(|token| cat.correction().contains(token.as_str()))
+        || cat.correction_phrases().iter().any(|phrase| {
+            let words: Vec<&str> = phrase.split_whitespace().collect();
+            !words.is_empty() && tokens.windows(words.len()).any(|window| window.iter().map(String::as_str).eq(words.iter().copied()))
+        })
 }
 
 pub(crate) fn fixture_matches(entity: &EntityRec, needle: &str) -> bool {

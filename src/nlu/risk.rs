@@ -1,8 +1,25 @@
 //! What the user's rules and the built-in risk classes say about one plan, step by step.
 
-use crate::types::{allow_permitted_step, step_rules, IntentPlan, PolicyHit, PolicyRule};
+use crate::types::{allow_permitted_step, step_rules, Intent, IntentPlan, PolicyHit, PolicyRule};
 
-use super::validation::{risky_intent, BROAD_PLAN_STEPS};
+use super::validation::risky_intent;
+
+const BROAD_PLAN_STEPS: usize = 8;
+
+/// A plan this broad asks first. Lights are the exception: "all lights off" in a home
+/// with eight rooms is one ordinary command, not eight risky ones.
+fn broad_plan(plan: &IntentPlan) -> bool {
+    plan.steps.len() >= BROAD_PLAN_STEPS && !plan.steps.iter().all(|step| only_a_light(&step.intent))
+}
+
+fn only_a_light(intent: &Intent) -> bool {
+    let light = intent.slot("entity_id").map_or(intent.slot("domain") == Some("light"), |id| id.starts_with("light."));
+    light && matches!(intent.name.as_str(), "HassTurnOn" | "HassTurnOff" | "HassLightSet")
+}
+
+pub(super) fn requires_confirmation(plan: &IntentPlan) -> bool {
+    broad_plan(plan) || plan.steps.iter().any(|step| risky_intent(&step.intent))
+}
 
 pub(super) struct Verdict<'a> {
     /// The rule that decided the outcome, for the trace and for rule speech.
@@ -27,7 +44,7 @@ pub(super) fn judge<'a>(rules: &'a [PolicyRule], plan: &IntentPlan, confirm_on: 
     let every_step_allowed = allowed.iter().all(|allowed| *allowed);
     let asked_by_rule = confirm_on && first(PolicyHit::Confirm).is_some();
     let step_risk = plan.steps.iter().zip(&allowed).any(|(step, allowed)| !allowed && risky_intent(&step.intent));
-    let plan_risk = !every_step_allowed && (inherited || plan.steps.len() >= BROAD_PLAN_STEPS);
+    let plan_risk = !every_step_allowed && (inherited || broad_plan(plan));
     let risky = asked_by_rule || (confirm_on && (step_risk || plan_risk));
     let rule = if asked_by_rule {
         first(PolicyHit::Confirm)
@@ -63,6 +80,18 @@ mod tests {
 
     fn close(entity: &str) -> Intent {
         Intent::new("HassTurnOff").with("entity_id", entity)
+    }
+
+    #[test]
+    fn many_lights_are_not_a_broad_plan_but_many_plugs_are() {
+        let off = |domain: &str| {
+            plan((0..BROAD_PLAN_STEPS).map(|i| Intent::new("HassTurnOff").with("entity_id", format!("{domain}.r{i}"))).collect())
+        };
+        assert!(!requires_confirmation(&off("light")), "all lights off is an ordinary command");
+        assert!(requires_confirmation(&off("switch")), "eight plugs at once still ask");
+        let rooms =
+            plan((0..BROAD_PLAN_STEPS).map(|i| Intent::new("HassTurnOff").with("area", format!("r{i}")).with("domain", "light")).collect());
+        assert!(!requires_confirmation(&rooms));
     }
 
     #[test]
