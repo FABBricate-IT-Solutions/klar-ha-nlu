@@ -266,3 +266,102 @@ impl OverlayStore {
         }
     }
 }
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+    use crate::home::overlay::UiPoint;
+    use crate::home::test_dir::TestDir;
+
+    const HALF_A_FILE: &[u8] = b"{\"aliases\": {\"light.kellertreppe\": [\"stiege\"]}, \"custom\": [";
+
+    #[test]
+    fn a_refused_edit_writes_nothing() {
+        let dir = TestDir::new("refused");
+        let store = OverlayStore::open(dir.path());
+        store.update(|overlay| overlay.preferred.push("light.kellertreppe".into())).unwrap();
+        let before = std::fs::read(dir.file(OVERLAY_FILE)).unwrap();
+        let refused = store.try_update(|overlay| {
+            overlay.preferred.clear();
+            Err::<(), _>("nein")
+        });
+        assert_eq!(refused.unwrap(), Err("nein"));
+        assert_eq!(std::fs::read(dir.file(OVERLAY_FILE)).unwrap(), before);
+        assert_eq!(store.load().preferred, ["light.kellertreppe"]);
+    }
+
+    #[test]
+    fn a_missing_and_an_empty_file_are_not_unreadable() {
+        let dir = TestDir::new("missing");
+        let store = OverlayStore::open(dir.path());
+        assert!(matches!(store.read(), OverlayRead::Missing));
+        std::fs::write(dir.file(OVERLAY_FILE), b" \n").unwrap();
+        assert!(matches!(store.read(), OverlayRead::Missing));
+        store.update(|overlay| overlay.preferred.push("light.kellertreppe".into())).unwrap();
+        assert!(matches!(store.read(), OverlayRead::Loaded { .. }));
+        assert_eq!(dir.names(), [OVERLAY_FILE, LAST_GOOD_FILE]);
+    }
+
+    #[test]
+    fn an_unreadable_file_is_kept_and_the_last_good_copy_is_served() {
+        let dir = TestDir::new("fallback");
+        let store = OverlayStore::open(dir.path());
+        store.update(|overlay| overlay.preferred.push("light.kellertreppe".into())).unwrap();
+        std::fs::write(dir.file(OVERLAY_FILE), HALF_A_FILE).unwrap();
+
+        assert!(matches!(store.read(), OverlayRead::Unreadable(_)));
+        assert_eq!(store.load().preferred, ["light.kellertreppe"], "the last good copy stands in");
+        assert!(store.load_strict().is_err());
+        let refused = store.update(|overlay| overlay.preferred.clear());
+        assert_eq!(refused.unwrap_err().kind(), ErrorKind::InvalidData);
+        assert_eq!(std::fs::read(dir.file(OVERLAY_FILE)).unwrap(), HALF_A_FILE);
+        assert_eq!(std::fs::read(dir.file(BAD_FILE)).unwrap(), HALF_A_FILE);
+    }
+
+    #[test]
+    fn replace_repairs_an_unreadable_file_and_keeps_its_bytes() {
+        let dir = TestDir::new("replace");
+        std::fs::write(dir.file(OVERLAY_FILE), HALF_A_FILE).unwrap();
+        let store = OverlayStore::open(dir.path());
+        let mut next = Overlay::default();
+        next.preferred.push("light.dachboden".into());
+        store.replace(&next).unwrap();
+        assert_eq!(store.load_strict().unwrap().preferred, ["light.dachboden"]);
+        assert_eq!(std::fs::read(dir.file(BAD_FILE)).unwrap(), HALF_A_FILE);
+    }
+
+    #[test]
+    fn every_write_carries_the_version() {
+        let dir = TestDir::new("version");
+        std::fs::write(dir.file(OVERLAY_FILE), br#"{"preferred": ["light.dachboden"]}"#).unwrap();
+        let store = OverlayStore::open(dir.path());
+        assert_eq!(store.load().version, 0, "a file from before the field is version 0");
+        store.update(|_| ()).unwrap();
+        let saved: serde_json::Value = serde_json::from_slice(&std::fs::read(dir.file(OVERLAY_FILE)).unwrap()).unwrap();
+        assert_eq!(saved["version"], OVERLAY_VERSION);
+        assert_eq!(saved["preferred"][0], "light.dachboden");
+    }
+
+    #[test]
+    fn checkpoint_sweeps_temp_files_and_keeps_a_copy_of_a_clean_file() {
+        let dir = TestDir::new("checkpoint");
+        let clean = br#"{"preferred": ["light.dachboden"]}"#;
+        std::fs::write(dir.file(OVERLAY_FILE), clean).unwrap();
+        std::fs::write(dir.file("klar_nlu.json.0f0f.tmp"), b"{").unwrap();
+        std::fs::write(dir.file("klar_nlu.json.tmp"), b"{").unwrap();
+        OverlayStore::open(dir.path()).checkpoint();
+        assert_eq!(dir.names(), [OVERLAY_FILE, LAST_GOOD_FILE]);
+        assert_eq!(std::fs::read(dir.file(LAST_GOOD_FILE)).unwrap(), clean);
+    }
+
+    #[test]
+    fn a_number_that_would_not_read_back_is_not_storable() {
+        let mut overlay = Overlay::default();
+        overlay.ui.graph.insert("light.dachboden".into(), UiPoint { x: f32::INFINITY, y: 1.0 });
+        assert!(check_storable(&overlay).is_err());
+        let dir = TestDir::new("storable");
+        let store = OverlayStore::open(dir.path());
+        assert!(store.replace(&overlay).is_err());
+        assert!(dir.names().is_empty(), "{:?}", dir.names());
+    }
+}
