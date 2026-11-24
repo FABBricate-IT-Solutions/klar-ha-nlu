@@ -320,10 +320,13 @@ def channel_for_addon_slug(slug: object) -> str:
 def pick_staging_release(releases: object) -> dict | None:
     if not isinstance(releases, list):
         return None
+    candidates = []
     for item in releases:
         if not isinstance(item, dict) or not item.get("prerelease"):
             continue
-        tag = str(item.get("tag_name") or "")
-        if "-staging." in tag:
-            return item
-    return None
+        if "-staging." not in str(item.get("tag_name") or ""):
+            continue
+        candidates.append(item)
+    if not candidates:
+        return None
+    return max(candidates, key=lambda item: str(item.get("created_at") or item.get("published_at") or ""))
