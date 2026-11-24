@@ -1,7 +1,10 @@
 version: 2
+# Dependabot reads this file from the default branch only. Each ecosystem is
+# listed twice so main and staging both get update pull requests.
 updates:
   - package-ecosystem: cargo
     directory: /
+    target-branch: main
     schedule:
       interval: weekly
       day: monday
@@ -24,8 +27,40 @@ updates:
     commit-message:
       prefix: cargo
 
+  - package-ecosystem: cargo
+    directory: /
+    target-branch: staging
+    schedule:
+      interval: weekly
+      day: monday
+    open-pull-requests-limit: 10
+    groups:
+      rust-patch:
+        update-types:
+          - patch
+      rust-minor:
+        update-types:
+          - minor
+    ignore:
+      - dependency-name: url
+      - dependency-name: idna
+      - dependency-name: idna_adapter
+      - dependency-name: uuid
+    commit-message:
+      prefix: cargo
+
   - package-ecosystem: github-actions
     directory: /
+    target-branch: main
+    schedule:
+      interval: weekly
+      day: monday
+    commit-message:
+      prefix: ci
+
+  - package-ecosystem: github-actions
+    directory: /
+    target-branch: staging
     schedule:
       interval: weekly
       day: monday
@@ -34,6 +69,24 @@ updates:
 
   - package-ecosystem: npm
     directory: /web
+    target-branch: main
+    schedule:
+      interval: weekly
+      day: monday
+    open-pull-requests-limit: 10
+    groups:
+      npm-patch:
+        update-types:
+          - patch
+      npm-minor:
+        update-types:
+          - minor
+    commit-message:
+      prefix: npm
+
+  - package-ecosystem: npm
+    directory: /web
+    target-branch: staging
     schedule:
       interval: weekly
       day: monday
@@ -50,6 +103,20 @@ updates:
 
   - package-ecosystem: docker
     directory: /
+    target-branch: main
+    schedule:
+      interval: weekly
+      day: monday
+    groups:
+      docker-patch:
+        update-types:
+          - patch
+    commit-message:
+      prefix: docker
+
+  - package-ecosystem: docker
+    directory: /
+    target-branch: staging
     schedule:
       interval: weekly
       day: monday
@@ -62,6 +129,7 @@ updates:
 
   - package-ecosystem: docker
     directory: /docker
+    target-branch: main
     schedule:
       interval: weekly
       day: monday
@@ -72,3 +140,15 @@ updates:
     commit-message:
       prefix: docker
 
+  - package-ecosystem: docker
+    directory: /docker
+    target-branch: staging
+    schedule:
+      interval: weekly
+      day: monday
+    groups:
+      docker-patch:
+        update-types:
+          - patch
+    commit-message:
+      prefix: docker
