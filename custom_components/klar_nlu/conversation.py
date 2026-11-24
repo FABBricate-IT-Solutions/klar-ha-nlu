@@ -78,9 +78,11 @@ from .news import (
     asked_for_more,
     bare_topic,
     collect_headlines,
+    collect_stories,
     compose_speech,
     load_article,
     nudge,
+    pick_story,
     resolve_story,
     spoken_headlines,
     spoken_story,
@@ -540,11 +542,9 @@ class KlarConversationEntity(ConversationEntity):
             extra_s = f"{note}\n{extra_s}" if extra_s else note
         utterance = getattr(user_input, "text", "") or ""
         earlier = " ".join(user for user, _answer in self._llm_turns(self._llm_session_id(user_input)))
-        if wants_read(utterance) or not intro:
-            story_topic = "" if wants_read(utterance) else topic
-            story = await resolve_story(
-                self.hass, pack, story_topic, self._engine_settings().get("news_feeds"), utterance, earlier
-            )
+        feeds = self._engine_settings().get("news_feeds")
+        if wants_read(utterance):
+            story = await resolve_story(self.hass, pack, "", feeds, utterance, earlier)
             if story is not None:
                 spoken = spoken_story(story, await load_article(self.hass, story.get("link", "")))
                 self._note_llm_turn(user_input, spoken)
@@ -553,9 +553,17 @@ class KlarConversationEntity(ConversationEntity):
                 return await self._spoken(user_input, chat_log, pack, spoken, conversation_id, False, "chat")
         if intro:
             kind = "news"
+            headlines = await collect_headlines(self.hass, pack, topic, feeds)
         else:
             kind = "news_follow"
-        headlines = await collect_headlines(self.hass, pack, topic, self._engine_settings().get("news_feeds"))
+            stories = await collect_stories(self.hass, pack, topic, feeds)
+            matched = pick_story(utterance, stories)
+            if matched is not None:
+                headlines = [spoken_story(matched)[:600]]
+            else:
+                headlines = [item["title"] for item in stories[:5] if item.get("title")]
+                if not headlines:
+                    headlines = await collect_headlines(self.hass, pack, topic, feeds)
         result = await self._fallback(
             user_input,
             chat_log,
@@ -697,7 +705,7 @@ class KlarConversationEntity(ConversationEntity):
         assist_kind = kind or "auto"
         assist_text = user_input.text if assist_kind == "calendar" else asked
         try:
-            allow_tools = self._allow_llm_tools() and not self._nlu_rag()
+            allow_tools = self._allow_llm_tools() and not self._nlu_rag() and assist_kind not in {"news", "news_follow"}
             if allow_tools and publish and chat_log is not None:
                 engine_assist = await stream_assist_with_ha_tools(
                     self.hass,

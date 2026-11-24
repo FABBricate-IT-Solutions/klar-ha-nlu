@@ -35,75 +35,21 @@ fn has_home_domain_cue(tokens: &[String]) -> bool {
 }
 
 pub fn is_news(tokens: &[String], home: &HomeGraph) -> bool {
-    if tokens.is_empty() || looks_like_home(tokens, home) {
+    if tokens.is_empty() || !has_news_word(tokens) {
         return false;
     }
+    !looks_like_home(&without_quantifiers(tokens), home)
+}
+
+fn has_news_word(tokens: &[String]) -> bool {
     catalog().any(tokens, catalog().chat_news()) || tokens.iter().any(|token| compound_stem(token).is_some())
 }
 
-const TOPIC_GLUE: &[&str] = &[
-    "was",
-    "what",
-    "whats",
-    "gibt",
-    "gib",
-    "sind",
-    "ist",
-    "is",
-    "are",
-    "there",
-    "any",
-    "aktuelle",
-    "aktuellen",
-    "aktueller",
-    "aktuelles",
-    "latest",
-    "current",
-    "heute",
-    "today",
-    "some",
-    "give",
-    "get",
-    "lass",
-    "let",
-    "ueber",
-    "about",
-    "on",
-    "aus",
-    "from",
-    "zum",
-    "zur",
-    "short",
-    "neue",
-    "neuer",
-    "neuen",
-    "tell",
-    "hor",
-    "hear",
-    "sag",
-    "say",
-    "read",
-    "aloud",
-    "lese",
-    "lies",
-    "lesen",
-    "lest",
-    "les",
-    "vorlesen",
-    "vorlese",
-    "vorliest",
-    "vor",
-    "the",
-    "a",
-    "an",
-    "one",
-    "ones",
-    "eine",
-    "einen",
-    "einer",
-    "einem",
-    "eines",
-];
+fn without_quantifiers(tokens: &[String]) -> Vec<String> {
+    tokens.iter().filter(|token| !matches!(token.as_str(), "alle" | "allen" | "allem" | "aller" | "alles" | "all")).cloned().collect()
+}
+
+const TOPIC_GLUE: &str = "was what whats gibt gib sind ist is are there any aktuelle aktuellen aktueller aktuelles latest current heute today some alle allen allem aller alles all give get lass let ueber about on aus from zum zur short neue neuer neuen tell hor hear sag say read aloud lese lies lesen lest les vorlesen vorlese vorliest vor the a an one ones eine einen einer einem eines";
 
 /// Leftover words after the news cue. `sportnachrichten` yields `sport`.
 pub fn news_topic(tokens: &[String]) -> Option<String> {
@@ -179,7 +125,7 @@ fn compound_stem(token: &str) -> Option<String> {
 
 fn topic_glue(token: &str) -> bool {
     let cat = catalog();
-    TOPIC_GLUE.contains(&token)
+    TOPIC_GLUE.split_whitespace().any(|word| word == token)
         || FOLLOW_CUES.contains(&token)
         || cat.fillers().contains(token)
         || cat.particles().contains(token)
@@ -226,7 +172,8 @@ const FOLLOW_CUES: &[&str] = &[
 ];
 
 pub fn briefing_followup(tokens: &[String], home: &HomeGraph, session: &Session) -> bool {
-    if !in_llm_turn(session) || tokens.is_empty() || looks_like_home(tokens, home) {
+    let homeish = if has_news_word(tokens) { looks_like_home(&without_quantifiers(tokens), home) } else { looks_like_home(tokens, home) };
+    if !in_llm_turn(session) || tokens.is_empty() || homeish {
         return false;
     }
     if session.briefing && is_news_dismiss(tokens) {
@@ -378,6 +325,7 @@ mod tests {
         }
         assert_eq!(news_topic(&toks("lese news sport vor")).as_deref(), Some("sport"));
         assert_eq!(news_topic(&toks("lies die sportnachrichten vor")).as_deref(), Some("sport"));
+        assert!(news_topic(&toks("gib mir dazu alle aktuellen nachrichten")).is_none());
     }
 
     #[test]
@@ -422,6 +370,16 @@ mod tests {
         assert!(fresh.briefing, "{}", fresh.speech);
         assert!(fresh.news_topic.is_none(), "{:?}", fresh.news_topic);
         assert!(session.news_topic.is_none());
+        let mut open = Session::new();
+        let first = crate::nlu::parse("Was sind die aktuellen Nachrichten", &home, &mut open, &[], &settings);
+        assert!(first.briefing);
+        let back = crate::nlu::parse("gib mir dazu alle aktuellen nachrichten", &home, &mut open, &[], &settings);
+        assert!(back.briefing, "{}", back.speech);
+        assert!(back.speech.is_empty(), "dazu stays on the briefing, got {}", back.speech);
+        assert!(back.news_topic.is_none(), "{:?}", back.news_topic);
+        let schools = crate::nlu::parse("zu den schulen bitte mehr", &home, &mut open, &[], &settings);
+        assert!(schools.briefing);
+        assert!(schools.speech.is_empty(), "{}", schools.speech);
     }
 
     #[test]

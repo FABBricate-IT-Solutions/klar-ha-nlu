@@ -25,11 +25,11 @@ const TOOLS_OK: &[(&str, &str)] = &[
 const NEWS: &[(&str, &str)] = &[
     (
         "de",
-        "Der Nutzer will aktuelle Nachrichten. Fasse die folgenden Schlagzeilen in drei bis fünf kurzen Sätzen zusammen. Erfinde keine Meldungen. Wenn du Websuche oder Nachrichten-Werkzeuge hast, nutze sie. Frage am Ende, ob der Nutzer zu einer Meldung mehr erfahren möchte.",
+        "Der Nutzer will aktuelle Nachrichten. Fasse nur die folgenden Schlagzeilen in drei bis fünf kurzen Sätzen zusammen. Erfinde keine Meldungen und suche keine anderen. Frage am Ende, ob der Nutzer zu einer Meldung mehr erfahren möchte.",
     ),
     (
         "en",
-        "The user wants current news. Summarize the following headlines in three to five short sentences. Do not invent stories. If you have web search or news tools, use them. End by asking whether they want more detail on any story.",
+        "The user wants current news. Summarize only the following headlines in three to five short sentences. Do not invent stories and do not look up others. End by asking whether they want more detail on any story.",
     ),
     ("ja", "利用者はニュースを求めています。次の見出しを三〜五文で要約してください。作り話はしないでください。最後に、詳しく聞きたいか尋ねてください。"),
     ("zh-CN", "用户想听新闻。用三到五句概括下面的标题。不要编造。最后问要不要了解其中一条。"),
@@ -40,8 +40,14 @@ const NEWS: &[(&str, &str)] = &[
 ];
 
 const NEWS_FOLLOW: &[(&str, &str)] = &[
-    ("de", "Bleib beim Nachrichtenthema. Antworte knapp. Steuere keine Geräte."),
-    ("en", "Stay on the news topic. Keep it short. Do not control devices."),
+    (
+        "de",
+        "Der Nutzer fragt zu einer der gerade genannten Meldungen nach. Erkläre genau diese in drei bis fünf Sätzen und nur anhand der Schlagzeilen. Passt ein Wort aus der Frage zu einer Schlagzeile, nimm diese. „Dazu“ bleibt bei der zuletzt gefragten Meldung. Frag nicht nach, welche gemeint ist, und hol keine neue Nachrichtenrunde.",
+    ),
+    (
+        "en",
+        "The user is asking about one story from the headlines just given. Explain that story in three to five sentences, using only those headlines. If a word in the question matches one headline, use that one. \"That\" stays on the story they just asked about. Do not ask which story they mean, and do not start a new roundup.",
+    ),
     ("ja", "ニュースの話題から外れないでください。短く。機器は操作しないでください。"),
     ("zh-CN", "继续谈新闻。简短回答。不要控制设备。"),
     ("ko", "뉴스 주제를 유지하세요. 짧게. 기기를 제어하지 마세요."),
@@ -98,7 +104,7 @@ pub fn yarn_prompt(pack: &str, extra: Option<&str>, text: &str) -> String {
 
 pub fn news_prompt(pack: &str, headlines: &[String], extra: Option<&str>) -> String {
     let fallback = format!(
-        "The user wants current news. Summarize the following headlines in three to five short sentences. Do not invent stories. If you have web search or news tools, use them. Answer in the user's language (Assist pack code: {pack})."
+        "The user wants current news. Summarize only the following headlines in three to five short sentences. Do not invent stories and do not look up others. Answer in the user's language (Assist pack code: {pack})."
     );
     let mut body = pick(NEWS, pack, &fallback).to_string();
     if !headlines.is_empty() {
@@ -109,10 +115,17 @@ pub fn news_prompt(pack: &str, headlines: &[String], extra: Option<&str>) -> Str
     chat_only_prompt(pack, Some(&join_extra(extra, &body)), false)
 }
 
-pub fn news_followup_prompt(pack: &str, extra: Option<&str>) -> String {
-    let fallback =
-        format!("Stay on the news topic. Keep it short. Do not control devices. Answer in the user's language (Assist pack code: {pack}).");
-    chat_only_prompt(pack, Some(&join_extra(extra, pick(NEWS_FOLLOW, pack, &fallback))), false)
+pub fn news_followup_prompt(pack: &str, headlines: &[String], extra: Option<&str>) -> String {
+    let fallback = format!(
+        "The user is asking about one story from the headlines just given. Explain that story in three to five sentences, using only those headlines. Do not ask which story they mean, and do not start a new roundup. Answer in the user's language (Assist pack code: {pack})."
+    );
+    let mut body = pick(NEWS_FOLLOW, pack, &fallback).to_string();
+    if !headlines.is_empty() {
+        let lines = headlines.iter().map(|item| format!("- {item}")).collect::<Vec<_>>().join("\n");
+        let label = if pack == "de" || pack.starts_with("de-") { "Schlagzeilen" } else { "Headlines" };
+        body = format!("{body}\n\n{label}:\n{lines}");
+    }
+    chat_only_prompt(pack, Some(&join_extra(extra, &body)), false)
 }
 
 pub fn calendar_prompt(pack: &str, facts: &str, extra: Option<&str>) -> String {
@@ -186,7 +199,7 @@ pub fn system_for(
         AssistKind::Yarn => yarn_prompt(pack, extra, text),
         AssistKind::Rag => rag_prompt(pack, retrieval, extra),
         AssistKind::News => news_prompt(pack, facts, extra),
-        AssistKind::NewsFollow => news_followup_prompt(pack, extra),
+        AssistKind::NewsFollow => news_followup_prompt(pack, facts, extra),
         AssistKind::Calendar => calendar_prompt(pack, &facts.join("\n"), extra),
         AssistKind::Chat | AssistKind::Auto => {
             if yarn_request(text) {
@@ -283,6 +296,15 @@ mod tests {
         assert_eq!(with_personality("Nur reden.", "Stimme: Butler."), "Stimme: Butler.\n\nNur reden.");
         assert_eq!(AssistKind::parse("auto").unwrap().resolve("erzähl einen Witz", false), AssistKind::Yarn);
         assert_eq!(AssistKind::parse("auto").unwrap().resolve("licht an", true), AssistKind::Rag);
+    }
+
+    #[test]
+    fn news_followup_keeps_the_named_headline() {
+        let prompt = news_followup_prompt("de", &["Drohmails gegen Schulen".into()], None);
+        assert!(prompt.contains("Drohmails gegen Schulen"));
+        assert!(prompt.contains("Frag nicht nach"));
+        assert!(prompt.contains("keine neue Nachrichtenrunde"));
+        assert!(!prompt.contains("Websuche"));
     }
 
     #[test]
