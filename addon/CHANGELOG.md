@@ -6,6 +6,21 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 Versions follow Home Assistant calendar versioning (`YYYY.M.PATCH`)
 and [Conventional Commits](https://www.conventionalcommits.org/).
 
+## [2026.11.2](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/compare/2026.11.1...2026.11.2) - 2026-11-24
+
+
+
+### Bug Fixes
+
+- upgrade url past the nested blob origin overflow([9a8643b](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/9a8643b2077aa0f3e553ad24291d15175143ae51))
+
+
+### Other
+
+- Merge pull request #372 from FABBricate-IT-Solutions/dependabot/cargo/rust-patch-3f050ccb20([06d867e](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/06d867e0004db76a398dc4e00c46874c438771b8))
+
+- bump clap from 4.6.7 to 4.6.9 in the rust-patch group([b9cc444](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/b9cc444a9568aa83db9991f714f8d81e8f19a35e))
+
 ## [2026.11.1](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/compare/2026.11.0...2026.11.1) - 2026-11-16
 
 
