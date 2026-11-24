@@ -289,9 +289,9 @@ pub const PACK: LanguagePack = LanguagePack {
         news: NEWS,
     },
     household: Household {
-        teach: &["դիր դոռռ"],
+        teach: &[],
         explain: &["ինչ անջատիր դիր"],
-        undo: &["անջատիր դոռռ"],
+        undo: &[],
         clock: &["ինչ ժամաչափ"],
         weather: &["ինչ jerutsum"],
         clock_skip: &["ժամաչափ"],

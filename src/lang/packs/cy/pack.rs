@@ -254,9 +254,9 @@ pub const PACK: LanguagePack = LanguagePack {
         news: NEWS,
     },
     household: Household {
-        teach: &["gosod drws"],
+        teach: &[],
         explain: &["beth diffodd gosod"],
-        undo: &["diffodd drws"],
+        undo: &[],
         clock: &["beth amserydd"],
         weather: &["beth gwres"],
         clock_skip: &["amserydd"],

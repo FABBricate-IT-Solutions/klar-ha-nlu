@@ -278,9 +278,9 @@ pub const PACK: LanguagePack = LanguagePack {
         news: NEWS,
     },
     household: Household {
-        teach: &["அமை கதவு"],
+        teach: &[],
         explain: &["என்ன அணை அமை"],
-        undo: &["அணை கதவு"],
+        undo: &[],
         clock: &["என்ன டைமர்"],
         weather: &["என்ன veppam"],
         clock_skip: &["டைமர்"],

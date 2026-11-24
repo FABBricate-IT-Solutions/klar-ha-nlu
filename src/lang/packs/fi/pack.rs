@@ -244,9 +244,9 @@ pub const PACK: LanguagePack = LanguagePack {
         news: NEWS,
     },
     household: Household {
-        teach: &["aseta ovi"],
+        teach: &[],
         explain: &["mika sammuta aseta"],
-        undo: &["sammuta ovi"],
+        undo: &[],
         clock: &["mika ajastin"],
         weather: &["mika lammitys"],
         clock_skip: &["ajastin"],

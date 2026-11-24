@@ -285,9 +285,9 @@ pub const PACK: LanguagePack = LanguagePack {
         news: NEWS,
     },
     household: Household {
-        teach: &["セット ドア"],
+        teach: &[],
         explain: &["何 消して セット"],
-        undo: &["消して ドア"],
+        undo: &[],
         clock: &["何 タイマー"],
         weather: &["何 eakon"],
         clock_skip: &["タイマー"],

@@ -240,9 +240,9 @@ pub const PACK: LanguagePack = LanguagePack {
         news: NEWS,
     },
     household: Household {
-        teach: &["weka mlango"],
+        teach: &[],
         explain: &["nini zima weka"],
-        undo: &["zima mlango"],
+        undo: &[],
         clock: &["nini kipima"],
         weather: &["nini joto"],
         clock_skip: &["kipima"],

@@ -343,9 +343,9 @@ pub const PACK: LanguagePack = LanguagePack {
         news: NEWS,
     },
     household: Household {
-        teach: &["mets porte"],
+        teach: &[],
         explain: &["quel eteins mets"],
-        undo: &["eteins porte"],
+        undo: &[],
         clock: &["quel minuteur"],
         weather: &["quel clim"],
         clock_skip: &["minuteur"],

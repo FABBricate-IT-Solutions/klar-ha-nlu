@@ -254,9 +254,9 @@ pub const PACK: LanguagePack = LanguagePack {
         news: NEWS,
     },
     household: Household {
-        teach: &["sea uks"],
+        teach: &[],
         explain: &["mis kustuta sea"],
-        undo: &["kustuta uks"],
+        undo: &[],
         clock: &["mis taimer"],
         weather: &["mis kyte"],
         clock_skip: &["taimer"],

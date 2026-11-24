@@ -254,9 +254,9 @@ pub const PACK: LanguagePack = LanguagePack {
         news: NEWS,
     },
     household: Household {
-        teach: &["iestati durvis"],
+        teach: &[],
         explain: &["kas izsledz iestati"],
-        undo: &["izsledz durvis"],
+        undo: &[],
         clock: &["kas taimeris"],
         weather: &["kas apkure"],
         clock_skip: &["taimeris"],
