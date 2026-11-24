@@ -561,7 +561,8 @@ class KlarConversationEntity(ConversationEntity):
             if matched is not None:
                 headlines = [spoken_story(matched)[:600]]
             else:
-                headlines = [item["title"] for item in stories[:5] if item.get("title")]
+                # Headline plus the feed's own summary: enough for the model to answer in any language.
+                headlines = [spoken_story(item)[:300] for item in stories[:5] if item.get("title")]
                 if not headlines:
                     headlines = await collect_headlines(self.hass, pack, topic, feeds)
         result = await self._fallback(

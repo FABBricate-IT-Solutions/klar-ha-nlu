@@ -21,39 +21,15 @@ except ImportError:  # stdlib tests load this module without Home Assistant
     async def async_get_clientsession(hass: Any) -> Any:
         raise RuntimeError("homeassistant missing")
 
+try:
+    from .news_feeds import DEFAULT_FEED, edition, feed_url, search_url, section_feed
+    from .speech_locale import SPEECH_PACKS
+except ImportError:  # stdlib tests load this module by path
+    from news_feeds import DEFAULT_FEED, edition, feed_url, search_url, section_feed
+    from speech_locale import SPEECH_PACKS
+
 _LOGGER = logging.getLogger(__name__)
 
-_FEEDS = {
-    "de": "https://www.tagesschau.de/infoservices/alle-meldungen-100~rss2.xml",
-    "de-CH": "https://www.tagesschau.de/infoservices/alle-meldungen-100~rss2.xml",
-    "de-AT": "https://www.tagesschau.de/infoservices/alle-meldungen-100~rss2.xml",
-    "en": "https://feeds.bbci.co.uk/news/world/rss.xml",
-    "en-GB": "https://feeds.bbci.co.uk/news/world/rss.xml",
-    "fr": "https://feeds.bbci.co.uk/afrique/rss.xml",
-    "es": "https://feeds.bbci.co.uk/mundo/rss.xml",
-    "ca": "https://feeds.bbci.co.uk/mundo/rss.xml",
-    "gl": "https://feeds.bbci.co.uk/mundo/rss.xml",
-    "pt": "https://feeds.bbci.co.uk/portuguese/rss.xml",
-    "pt-BR": "https://feeds.bbci.co.uk/portuguese/rss.xml",
-    "ar": "https://feeds.bbci.co.uk/arabic/rss.xml",
-    "fa": "https://feeds.bbci.co.uk/arabic/rss.xml",
-    "ur": "https://feeds.bbci.co.uk/urdu/rss.xml",
-    "hi": "https://feeds.bbci.co.uk/hindi/rss.xml",
-    "bn": "https://feeds.bbci.co.uk/bengali/rss.xml",
-    "mr": "https://feeds.bbci.co.uk/hindi/rss.xml",
-    "ne": "https://feeds.bbci.co.uk/hindi/rss.xml",
-    "gu": "https://feeds.bbci.co.uk/hindi/rss.xml",
-    "pa": "https://feeds.bbci.co.uk/hindi/rss.xml",
-    "ta": "https://feeds.bbci.co.uk/tamil/rss.xml",
-    "te": "https://feeds.bbci.co.uk/telugu/rss.xml",
-    "ja": "https://www.nhk.or.jp/rss/news/cat0.xml",
-    "zh-CN": "https://feeds.bbci.co.uk/zhongwen/simp/rss.xml",
-    "zh-TW": "https://feeds.bbci.co.uk/zhongwen/trad/rss.xml",
-    "zh-HK": "https://feeds.bbci.co.uk/zhongwen/trad/rss.xml",
-    "ko": "https://feeds.bbci.co.uk/news/world/rss.xml",
-    "th": "https://feeds.bbci.co.uk/thai/rss.xml",
-}
-_DEFAULT_FEED = _FEEDS["en"]
 _UA = "KlarNLU/2026.8.9 (Home Assistant news briefing)"
 _BROWSER = "Mozilla/5.0"
 _GOOGLE_BATCH = "https://news.google.com/_/DotsSplashUi/data/batchexecute"
@@ -76,58 +52,6 @@ _READ_ALOUD = frozenset(
         "vor",
     }
 )
-_TOPICS = {
-    "sport": "sport",
-    "sports": "sport",
-    "fussball": "sport",
-    "football": "sport",
-    "soccer": "sport",
-    "politik": "politik",
-    "politics": "politik",
-    "political": "politik",
-    "wirtschaft": "wirtschaft",
-    "business": "wirtschaft",
-    "economy": "wirtschaft",
-    "kultur": "kultur",
-    "culture": "kultur",
-    "wissenschaft": "wissenschaft",
-    "science": "wissenschaft",
-    "wissen": "wissenschaft",
-    "lokal": "lokal",
-    "local": "lokal",
-}
-_SECTION = {
-    ("de", "sport"): "https://www.tagesschau.de/sport/index~rss2.xml",
-    ("de", "politik"): "https://www.tagesschau.de/inland/index~rss2.xml",
-    ("de", "wirtschaft"): "https://www.tagesschau.de/wirtschaft/index~rss2.xml",
-    ("de", "kultur"): "https://www.tagesschau.de/kultur/index~rss2.xml",
-    ("de", "wissenschaft"): "https://www.tagesschau.de/wissen/index~rss2.xml",
-    ("en", "sport"): "https://feeds.bbci.co.uk/sport/rss.xml",
-    ("en", "politik"): "https://feeds.bbci.co.uk/news/politics/rss.xml",
-    ("en", "wirtschaft"): "https://feeds.bbci.co.uk/news/business/rss.xml",
-    ("en", "kultur"): "https://feeds.bbci.co.uk/news/entertainment_and_arts/rss.xml",
-    ("en", "wissenschaft"): "https://feeds.bbci.co.uk/news/science_and_environment/rss.xml",
-}
-_REGIONS = {"de": "DE", "en": "US", "fr": "FR", "es": "ES", "it": "IT", "pt": "PT", "ja": "JP", "nl": "NL"}
-
-_NUDGE = {
-    "de": "Möchtest du zu einer der Meldungen mehr erfahren?",
-    "de-CH": "Wotsch zu einere vo de Meldige meh ghöre?",
-    "de-AT": "Möchtest du zu einer der Meldungen mehr erfahren?",
-    "en": "Would you like to hear more about any of those stories?",
-    "en-GB": "Would you like to hear more about any of those stories?",
-    "fr": "Tu veux en savoir plus sur l'une de ces infos ?",
-    "es": "¿Quieres saber más de alguna de estas noticias?",
-    "ja": "どれかについてもっと聞きたいですか？",
-    "zh-CN": "想了解其中哪一条的详情吗？",
-    "zh-TW": "想了解其中哪一則的詳情嗎？",
-    "zh-HK": "想知多啲邊一則？",
-    "ko": "이 중 더 듣고 싶은 소식이 있나요?",
-    "hi": "किसी खबर के बारे में और सुनना है?",
-    "ar": "هل تريد معرفة المزيد عن أحد هذه الأخبار؟",
-    "th": "อยากฟังรายละเอียดข่าวไหนเพิ่มไหม",
-}
-
 _ASKED = (
     "möchtest du",
     "möchten sie",
@@ -164,23 +88,21 @@ _ASKED = (
 )
 
 
-def feed_url(pack: str) -> str:
-    if pack in _FEEDS:
-        return _FEEDS[pack]
-    base = pack.split("-", 1)[0]
-    return _FEEDS.get(base, _DEFAULT_FEED)
+# How a question ends: Latin, full-width, Arabic and Greek. Armenian marks the word instead.
+_QUESTION = ("?", "？", "؟", ";")
 
 
 def nudge(pack: str) -> str:
-    if pack in _NUDGE:
-        return _NUDGE[pack]
-    base = pack.split("-", 1)[0]
-    return _NUDGE.get(base, _NUDGE["en"])
+    """The pack's own "want more on one of them?" line. Empty when the pack is unknown."""
+    return str((SPEECH_PACKS.get(pack) or {}).get("news_nudge") or "")
 
 
 def asked_for_more(text: str) -> bool:
-    lowered = (text or "").casefold()
-    return any(hint in lowered for hint in _ASKED)
+    """The model already closed with a question, in whatever language it answered."""
+    lowered = (text or "").casefold().rstrip(" \t\n\"'»”’)」』")
+    if any(hint in lowered for hint in _ASKED) or lowered.endswith(_QUESTION):
+        return True
+    return "՞" in lowered.rstrip("։").rsplit("։", 1)[-1]
 
 
 def compose_speech(intro: str, llm: str, extra: str, announced: bool) -> str:
@@ -327,11 +249,14 @@ def stories_from_xml(raw: str, limit: int = 5) -> list[dict[str, str]]:
         title = ""
         body = ""
         link = ""
+        source = ""
         for child in node:
             name = child.tag.split("}")[-1]
             text = " ".join(part.strip() for part in child.itertext() if part and part.strip())
             if name == "title" and text and not title:
                 title = text
+            elif name == "source" and text:
+                source = text
             elif name == "link" and not link:
                 href = text if text.startswith("http") else str(child.get("href") or "")
                 if href.startswith("http"):
@@ -341,6 +266,12 @@ def stories_from_xml(raw: str, limit: int = 5) -> list[dict[str, str]]:
                 if len(plain) > len(body):
                     body = plain
         title = title.strip()
+        if source:
+            # Google News appends the publisher to the headline and has no summary: its
+            # description repeats the headline.
+            title = title.removesuffix(f" - {source}").strip()
+            if body.startswith(title):
+                body = ""
         if not title or title in seen:
             continue
         seen.add(title)
@@ -486,27 +417,7 @@ def _best_story(words: list[str], stories: list[dict[str, str]]) -> dict[str, st
 
 
 def headlines_from_xml(raw: str, limit: int = 5) -> list[str]:
-    if not raw.strip():
-        return []
-    try:
-        root = ET.fromstring(raw)
-    except ET.ParseError:
-        return []
-    titles: list[str] = []
-    for node in root.iter():
-        tag = node.tag.split("}")[-1]
-        if tag not in {"item", "entry"}:
-            continue
-        title = ""
-        for child in node:
-            if child.tag.split("}")[-1] == "title" and child.text:
-                title = child.text.strip()
-                break
-        if title and title not in titles:
-            titles.append(title)
-        if len(titles) >= limit:
-            break
-    return titles
+    return [story["title"] for story in stories_from_xml(raw, limit)]
 
 
 def _http_url(url: str) -> str:
@@ -544,32 +455,6 @@ def custom_feed(pack: str, feeds: object) -> str:
 def bare_topic(topic: str) -> str:
     words = [word for word in (topic or "").split() if word.casefold() not in _READ_ALOUD]
     return " ".join(words)
-
-
-def topic_key(topic: str) -> str:
-    words = [word for word in (topic or "").casefold().split() if word]
-    if not words:
-        return ""
-    if words[0] in _TOPICS:
-        return _TOPICS[words[0]]
-    return ""
-
-
-def section_feed(pack: str, topic: str) -> str:
-    key = topic_key(topic)
-    if not key:
-        return ""
-    lang = "de" if pack.lower().startswith("de") else "en" if pack.lower().startswith("en") else pack.split("-", 1)[0]
-    return _SECTION.get((lang, key), "")
-
-
-def search_url(pack: str, topic: str) -> str:
-    raw = (pack or "en").strip() or "en"
-    lang = raw.split("-", 1)[0].lower() or "en"
-    tail = raw.split("-", 1)[1] if "-" in raw else ""
-    region = tail.upper() if len(tail) == 2 and tail.isalpha() else _REGIONS.get(lang, "US")
-    query = " ".join((topic or "").split())[:80]
-    return "https://news.google.com/rss/search?" + urlencode({"q": query, "hl": lang, "gl": region, "ceid": f"{region}:{lang}"})
 
 
 def choose_feed(pack: str, topic: str, feeds: object) -> tuple[str, str]:
@@ -785,15 +670,36 @@ def _add_stories(stories: list[dict[str, str]], seen: set[str], found: list[dict
         stories.append(story)
 
 
+def about(stories: list[dict[str, str]], topic: str) -> list[dict[str, str]]:
+    """The stories whose headline or summary names every word of the topic."""
+    words = bare_topic(topic).casefold().split()
+    if not words:
+        return []
+    return [story for story in stories if all(word in f"{story.get('title', '')} {story.get('text', '')}".casefold() for word in words)]
+
+
+async def _own_topic_stories(hass: HomeAssistant, pack: str, topic: str, feeds: object) -> list[dict[str, str]]:
+    """Topic news for a language without a Google News edition, where a search answers in
+    another language: what the pack's own feed says about the topic today."""
+    if edition(pack) is not None or not bare_topic(topic) or section_feed(pack, topic):
+        return []
+    url = custom_feed(pack, feeds) or feed_url(pack)
+    return about(stories_from_xml(await _fetch_raw(hass, url), 40), topic)
+
+
 async def collect_stories(hass: HomeAssistant, pack: str, topic: str = "", feeds: object = None) -> list[dict[str, str]]:
     _stored, reader_urls = feedreader_sources(hass)
     stories: list[dict[str, str]] = []
     seen: set[str] = set()
-    for url in story_feed_urls(pack, topic, feeds, reader_urls):
+    _add_stories(stories, seen, await _own_topic_stories(hass, pack, topic, feeds))
+    if not stories:
+        for url in story_feed_urls(pack, topic, feeds, reader_urls):
+            _add_stories(stories, seen, stories_from_xml(await _fetch_raw(hass, url), 20))
+    # An empty topic search or an unreachable feed still gets a briefing.
+    for url in dict.fromkeys((feed_url(pack), DEFAULT_FEED)):
+        if stories:
+            break
         _add_stories(stories, seen, stories_from_xml(await _fetch_raw(hass, url), 20))
-    if stories or not (topic or "").strip():
-        return stories
-    _add_stories(stories, seen, stories_from_xml(await _fetch_raw(hass, feed_url(pack)), 20))
     return stories
 
 
@@ -830,6 +736,14 @@ async def collect_headlines(hass: HomeAssistant, pack: str, topic: str = "", fee
                 break
             _take(titles, seen, await fetch_url(hass, url, _LIMIT))
     if len(titles) < _LIMIT:
-        _kind, url = choose_feed(pack, topic, feeds)
+        own = await _own_topic_stories(hass, pack, topic, feeds)
+        if own:
+            _take(titles, seen, [story["title"] for story in own])
+        else:
+            _kind, url = choose_feed(pack, topic, feeds)
+            _take(titles, seen, await fetch_url(hass, url, _LIMIT))
+    for url in dict.fromkeys((feed_url(pack), DEFAULT_FEED)):
+        if titles:
+            break
         _take(titles, seen, await fetch_url(hass, url, _LIMIT))
     return titles

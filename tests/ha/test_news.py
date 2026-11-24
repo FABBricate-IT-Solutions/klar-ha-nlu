@@ -4,10 +4,15 @@
 from __future__ import annotations
 
 import importlib.util
+import sys
 import unittest
 from pathlib import Path
+from urllib.parse import parse_qs, urlparse
 
 ROOT = Path(__file__).resolve().parents[2]
+PKG = ROOT / "custom_components" / "klar_nlu"
+if str(PKG) not in sys.path:
+    sys.path.insert(0, str(PKG))
 
 
 def _load(name: str, rel: str):
@@ -21,6 +26,7 @@ def _load(name: str, rel: str):
 
 
 news = _load("klar_news", "news.py")
+PACKS = _load("klar_languages", "languages.py").SUPPORTED_LANGUAGES
 
 RSS = """<?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0">
@@ -48,6 +54,18 @@ class NewsTests(unittest.TestCase):
         self.assertTrue(news.asked_for_more("Möchten Sie mehr über eine dieser Meldungen erfahren?"))
         self.assertTrue(news.asked_for_more("Would you like to hear more?"))
         self.assertFalse(news.asked_for_more("Hier die drei wichtigsten Meldungen."))
+        for closing in (
+            "Tre nyheter i dag. Vill du höra mer om någon?",
+            "ثلاثة أخبار. هل تريد المزيد؟",
+            "Τρεις ειδήσεις. Θέλεις περισσότερα για κάποια;",
+            "三条新闻。想听哪一条？",
+            'Kolme uutista. "Haluatko kuulla lisää?"',
+            "Երեք լուր։ Ուզո՞ւմ ես ավելին։",
+        ):
+            self.assertTrue(news.asked_for_more(closing), closing)
+        self.assertFalse(news.asked_for_more("Vad hände? Tre skolor stängdes i dag."))
+        self.assertFalse(news.asked_for_more("Tre nyheter i dag."))
+        self.assertFalse(news.asked_for_more("Ի՞նչ եղավ։ Երեք դպրոց փակվեց։"))
 
     def test_compose_keeps_intro_until_announced(self) -> None:
         spoken = news.compose_speech("Intro.", "LLM-Text.", "Nachhaken?", False)
@@ -61,6 +79,58 @@ class NewsTests(unittest.TestCase):
         self.assertNotIn("tagesschau", news.feed_url("ja"))
         self.assertEqual(news.feed_url("xx"), news.feed_url("en"))
         self.assertNotIn("Möchtest", news.nudge("ja"))
+
+    def test_every_pack_reads_and_asks_in_its_own_language(self) -> None:
+        self.assertEqual(len(PACKS), 67)
+        english = {news.feed_url("en"), news.feed_url("en-GB"), news.feed_url("kw")}
+        for pack in PACKS:
+            self.assertTrue(news.nudge(pack).strip(), f"{pack} has no nudge")
+            url = news.feed_url(pack)
+            self.assertTrue(url.startswith("https://"), pack)
+            if pack not in {"en", "en-GB", "kw"}:
+                self.assertNotIn(url, english, f"{pack} reads the English feed")
+            if not pack.startswith("de"):
+                self.assertNotIn("tagesschau", url, pack)
+                self.assertNotEqual(news.nudge(pack), news.nudge("de"), pack)
+        self.assertEqual(news.nudge("xx"), "")
+        self.assertIn("höra", news.nudge("sv"))
+        for pack, hl, ceid in (("it", "it", "IT:it"), ("nb", "no", "NO:no"), ("pt", "pt-PT", "PT:pt-150"), ("sr-Latn", "sr", "RS:sr")):
+            found = parse_qs(urlparse(news.feed_url(pack)).query)
+            self.assertEqual((found["hl"], found["ceid"]), ([hl], [ceid]), pack)
+        self.assertIn("persian", news.feed_url("fa"))
+        self.assertIn("marathi", news.feed_url("mr"))
+
+    def test_topic_search_uses_the_edition_of_the_pack(self) -> None:
+        for pack, hl, gl, ceid in (
+            ("sv", "sv", "SE", "SE:sv"),
+            ("zh-CN", "zh-CN", "CN", "CN:zh-Hans"),
+            ("pt-BR", "pt-BR", "BR", "BR:pt-419"),
+            ("de-AT", "de", "AT", "AT:de"),
+            ("is", "is", "US", "US:is"),
+        ):
+            found = parse_qs(urlparse(news.search_url(pack, "tesla")).query)
+            self.assertEqual((found["q"], found["hl"], found["gl"], found["ceid"]), (["tesla"], [hl], [gl], [ceid]), pack)
+
+    def test_packs_without_an_edition_search_their_own_feed(self) -> None:
+        stories = [
+            {"title": "Tesla innkallar bíla", "text": "Um 100 þúsund bílar.", "link": ""},
+            {"title": "Veðrið í dag", "text": "Rigning.", "link": ""},
+        ]
+        self.assertEqual([story["title"] for story in news.about(stories, "tesla")], ["Tesla innkallar bíla"])
+        self.assertEqual(news.about(stories, "fótbolti"), [])
+        self.assertEqual(news.about(stories, ""), [])
+
+    def test_google_titles_lose_the_publisher(self) -> None:
+        raw = """<rss><channel>
+          <item><title>Tesla återkallar bilar - Aftonbladet</title>
+            <description>&lt;a href="https://a.se/1"&gt;Tesla återkallar bilar&lt;/a&gt;&amp;nbsp;&lt;font&gt;Aftonbladet&lt;/font&gt;</description>
+            <source url="https://a.se">Aftonbladet</source></item>
+          <item><title>Regn - och mer regn</title><description>Hela veckan.</description></item>
+        </channel></rss>"""
+        self.assertEqual(news.headlines_from_xml(raw), ["Tesla återkallar bilar", "Regn - och mer regn"])
+        stories = news.stories_from_xml(raw)
+        self.assertEqual(news.spoken_story(stories[0]), "Tesla återkallar bilar")
+        self.assertEqual(news.spoken_story(stories[1]), "Regn - och mer regn. Hela veckan.")
 
     def test_custom_feed_replaces_only_that_language(self) -> None:
         feeds = [{"pack": "de", "url": "https://example.com/de.xml"}]
