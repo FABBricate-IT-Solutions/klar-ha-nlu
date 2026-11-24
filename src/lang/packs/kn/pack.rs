@@ -3,6 +3,7 @@ use crate::lang::groups::{Answers, Chat, Cues, Fixtures, GroupClarify, Household
 use crate::lang::morphology::PackMorphology;
 use crate::lang::LangId;
 
+use super::mood::MOOD;
 use super::news::NEWS;
 use super::speech::SPEECH;
 use super::verbs::VERBS;
@@ -278,9 +279,9 @@ pub const PACK: LanguagePack = LanguagePack {
         news: NEWS,
     },
     household: Household {
-        teach: &["ಹೊಂದಿಸು ಬಾಗಿಲು"],
+        teach: &[],
         explain: &["ಏನು ಆರಿಸು ಹೊಂದಿಸು"],
-        undo: &["ಆರಿಸು ಬಾಗಿಲು"],
+        undo: &[],
         clock: &["ಏನು ಟೈಮರ್"],
         weather: &["ಏನು bisi"],
         clock_skip: &["ಟೈಮರ್"],
@@ -305,4 +306,5 @@ pub const PACK: LanguagePack = LanguagePack {
     answers: Answers { yes: &["haudu", "ಹೌದು"], no: &["ಇಲ್ಲ"], cancel: &[], ask: "", actions: &[], many: "" },
     speech: SPEECH,
     morphology: PackMorphology::EMPTY,
+    mood: MOOD,
 };

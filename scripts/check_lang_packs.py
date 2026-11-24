@@ -165,7 +165,8 @@ def main() -> None:
             fail(f"{pack.name} has empty speech")
         if "light_nouns: &[]" in body:
             fail(f"{pack.name} has empty light_nouns")
-        for field in ("teach:", "undo:", "clock:", "weather:"):
+        # teach and undo may be empty: they are hand-written or absent, never built from verbs.
+        for field in ("clock:", "weather:"):
             if f"{field} &[]" in body:
                 fail(f"{pack.name} household {field} is empty")
         if not handwritten and (FAKE_SUFFIX.search(body) or FAKE_SUFFIX.search(verbs)):

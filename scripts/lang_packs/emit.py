@@ -7,6 +7,7 @@ from pathlib import Path
 from lang_packs.emit_news import news_rs
 from lang_packs.emit_pack import pack_rs, speech_rs
 from lang_packs.emit_rust import PY_BANNER, RUST_BANNER, rust_str, unique_verbs
+from lang_packs.mood import mood_rs
 
 ROOT = Path(__file__).resolve().parents[2]
 PACKS = ROOT / "src" / "lang" / "packs"
@@ -26,8 +27,11 @@ def pack_dir(lang: dict) -> Path:
 
 def write_pack(lang: dict) -> None:
     dest = pack_dir(lang)
-    (dest / "mod.rs").write_text(f"{RUST_BANNER}mod news;\nmod pack;\nmod speech;\nmod verbs;\n\npub use pack::PACK;\n", encoding="utf-8")
+    (dest / "mod.rs").write_text(
+        f"{RUST_BANNER}mod mood;\nmod news;\nmod pack;\nmod speech;\nmod verbs;\n\npub use pack::PACK;\n", encoding="utf-8"
+    )
     (dest / "verbs.rs").write_text(verbs_rs(lang), encoding="utf-8")
+    (dest / "mood.rs").write_text(mood_rs(lang), encoding="utf-8")
     (dest / "news.rs").write_text(news_rs(lang), encoding="utf-8")
     write_speech(lang)
     (dest / "pack.rs").write_text(pack_rs(lang), encoding="utf-8")

@@ -192,6 +192,27 @@ fn decide(context: &ParseContext<'_>) -> PipelineResult {
     finish(context, draft, candidates, evidence, trace)
 }
 
+/// What `text` alone would do as a command of its own: its plan steps, read without the
+/// mood guard, without an open question and without touching the session. The guard uses
+/// it to tell which clause a step comes from.
+pub(super) struct Probe {
+    pub intents: Vec<Intent>,
+}
+
+pub(super) fn probe(context: &ParseContext<'_>, text: &str) -> Probe {
+    let mut nested = ParseContext::new(text, context.home, context.session, context.custom, context.settings, context.catalog)
+        .with_policies(context.policies, context.speech_bank)
+        .with_match_controls(context.match_controls);
+    nested.probe = true;
+    let result = decide(&nested);
+    let intents = match &result.outcome.decision {
+        ParseDecision::Execute => result.outcome.plan.as_ref().map_or_else(Vec::new, IntentPlan::intents),
+        ParseDecision::Confirm { .. } => result.commit.confirm.as_ref().map_or_else(Vec::new, |(_, plan, _)| plan.intents()),
+        _ => Vec::new(),
+    };
+    Probe { intents }
+}
+
 impl PipelineResult {
     pub(super) fn commit(self, session: &mut Session) -> ParseOutcome {
         if self.commit.clear_pending {
@@ -248,12 +269,17 @@ fn outcome_topic(draft: &Draft, session: &Session) -> Option<String> {
 
 fn finish(
     context: &ParseContext<'_>,
-    mut draft: Draft,
+    draft: Draft,
     mut candidates: Vec<IntentCandidate>,
     evidence: Vec<Evidence>,
     mut trace: ParseTrace,
 ) -> PipelineResult {
     let mut evidence = evidence;
+    let (mut draft, guarded) = super::mood::guard(context, draft);
+    if guarded {
+        candidates = draft.output_candidate.clone().into_iter().collect();
+        record_stage(&mut trace, "mood_guard", Instant::now(), decision_name(&draft.decision).into());
+    }
     if let Some(area) = context.session.preferred_area.as_deref().filter(|area| !area.is_empty()) {
         if !evidence.iter().any(|item| item.kind == "preferred_area") {
             evidence.push(Evidence {
