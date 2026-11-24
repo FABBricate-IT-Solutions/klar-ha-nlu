@@ -31,6 +31,8 @@ pub struct Catalog {
     pub news_intro: &'static str,
     pub news_nudge: &'static str,
     pub news_done: &'static str,
+    pub news_topics: HashMap<&'static str, &'static str>,
+    pub news_open: bool,
     pub morphology: Morphology,
     pub pack_intents: Vec<CustomSentence>,
 }

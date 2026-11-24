@@ -123,4 +123,9 @@ pub enum WordKey {
     ChatOpen,
     ChatNews,
     ChatNewsDismiss,
+    ChatNewsFollow,
+    ChatNewsStory,
+    ChatNewsAbout,
+    ChatNewsAboutAfter,
+    ChatNewsGlue,
 }

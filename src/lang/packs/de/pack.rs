@@ -463,10 +463,6 @@ pub const PACK: LanguagePack = LanguagePack {
         advice: &["empfiehl", "empfehlen", "tipp", "rat", "idee", "soll", "vorschlag"],
         open: &["wer", "wo", "warum", "wieso", "weshalb", "wozu", "wann"],
         news: NEWS,
-        news_dismiss: &["reicht", "genug", "stopp", "stop", "egal", "spaeter", "fertig", "schluss", "nein"],
-        news_intro: "Klar, lass mich kurz die aktuellen Nachrichten suchen und dir einen Überblick geben.",
-        news_nudge: "Möchtest du zu einer der Meldungen mehr erfahren?",
-        news_done: "Alles klar.",
     },
     household: Household {
         teach: &["nenn das ", "nenne das ", "nenns ", "das heisst ", "heisst jetzt ", "nimm "],

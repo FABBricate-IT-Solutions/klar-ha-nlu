@@ -168,7 +168,7 @@ fn is_thai(c: char) -> bool {
     matches!(c, '\u{0E00}'..='\u{0E7F}')
 }
 
-fn is_script_unit(c: char) -> bool {
+pub(crate) fn is_script_unit(c: char) -> bool {
     is_cjk(c) || is_thai(c)
 }
 

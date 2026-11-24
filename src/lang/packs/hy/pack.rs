@@ -3,6 +3,7 @@ use crate::lang::groups::{Chat, Cues, Fixtures, GroupClarify, Household, Languag
 use crate::lang::morphology::PackMorphology;
 use crate::lang::LangId;
 
+use super::news::NEWS;
 use super::speech::SPEECH;
 use super::verbs::VERBS;
 
@@ -285,11 +286,7 @@ pub const PACK: LanguagePack = LanguagePack {
         world: &["weather"],
         advice: &["idea"],
         open: &["miatsu", "why"],
-        news: &["լուր", "լուրեր", "նորություններ"],
-        news_dismiss: &["stop", "բավական", "ոչ"],
-        news_intro: "Նայում եմ թարմ լուրերը.",
-        news_nudge: "Մեկի մասին ավելին?",
-        news_done: "Լավ.",
+        news: NEWS,
     },
     household: Household {
         teach: &["դիր դոռռ"],

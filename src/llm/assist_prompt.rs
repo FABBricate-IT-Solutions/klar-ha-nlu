@@ -48,12 +48,6 @@ const NEWS_FOLLOW: &[(&str, &str)] = &[
         "en",
         "The user is asking about one story from the headlines just given. Explain that story in three to five sentences, using only those headlines. If a word in the question matches one headline, use that one. \"That\" stays on the story they just asked about. Do not ask which story they mean, and do not start a new roundup.",
     ),
-    ("ja", "ニュースの話題から外れないでください。短く。機器は操作しないでください。"),
-    ("zh-CN", "继续谈新闻。简短回答。不要控制设备。"),
-    ("ko", "뉴스 주제를 유지하세요. 짧게. 기기를 제어하지 마세요."),
-    ("hi", "समाचार पर रहो। संक्षेप में। उपकरण मत चलाओ।"),
-    ("ar", "ابقَ عند موضوع الأخبار. أجب باختصار. لا تتحكم في الأجهزة."),
-    ("th", "อยู่ที่ข่าว ตอบสั้น อย่าควบคุมอุปกรณ์"),
 ];
 
 const CALENDAR: &[(&str, &str, &str)] = &[
@@ -104,25 +98,25 @@ pub fn yarn_prompt(pack: &str, extra: Option<&str>, text: &str) -> String {
 
 pub fn news_prompt(pack: &str, headlines: &[String], extra: Option<&str>) -> String {
     let fallback = format!(
-        "The user wants current news. Summarize only the following headlines in three to five short sentences. Do not invent stories and do not look up others. Answer in the user's language (Assist pack code: {pack})."
+        "The user wants current news. Summarize only the following headlines in three to five short sentences. Do not invent stories and do not look up others. End by asking whether they want more detail on any story. Answer in the user's language (Assist pack code: {pack})."
     );
-    let mut body = pick(NEWS, pack, &fallback).to_string();
-    if !headlines.is_empty() {
-        let lines = headlines.iter().map(|item| format!("- {item}")).collect::<Vec<_>>().join("\n");
-        let label = if pack == "de" || pack.starts_with("de-") { "Schlagzeilen" } else { "Headlines" };
-        body = format!("{body}\n\n{label}:\n{lines}");
-    }
-    chat_only_prompt(pack, Some(&join_extra(extra, &body)), false)
+    news_body(NEWS, pack, &fallback, headlines, extra)
 }
 
 pub fn news_followup_prompt(pack: &str, headlines: &[String], extra: Option<&str>) -> String {
     let fallback = format!(
-        "The user is asking about one story from the headlines just given. Explain that story in three to five sentences, using only those headlines. Do not ask which story they mean, and do not start a new roundup. Answer in the user's language (Assist pack code: {pack})."
+        "The user is asking about one story from the headlines just given. Explain that story in three to five sentences, using only those headlines. If a word in the question matches one headline, use that one. \"The second one\" counts down the list, and \"that\" stays on the story they just asked about. Do not ask which story they mean, and do not start a new roundup. Answer in the user's language (Assist pack code: {pack})."
     );
-    let mut body = pick(NEWS_FOLLOW, pack, &fallback).to_string();
+    news_body(NEWS_FOLLOW, pack, &fallback, headlines, extra)
+}
+
+/// A regional pack such as de-AT reads the line of its base language before the English one.
+fn news_body(table: &[(&str, &str)], pack: &str, fallback: &str, headlines: &[String], extra: Option<&str>) -> String {
+    let base = pack.split('-').next().unwrap_or(pack);
+    let mut body = pick(table, pack, pick(table, base, fallback)).to_string();
     if !headlines.is_empty() {
         let lines = headlines.iter().map(|item| format!("- {item}")).collect::<Vec<_>>().join("\n");
-        let label = if pack == "de" || pack.starts_with("de-") { "Schlagzeilen" } else { "Headlines" };
+        let label = if base == "de" { "Schlagzeilen" } else { "Headlines" };
         body = format!("{body}\n\n{label}:\n{lines}");
     }
     chat_only_prompt(pack, Some(&join_extra(extra, &body)), false)
@@ -305,6 +299,13 @@ mod tests {
         assert!(prompt.contains("Frag nicht nach"));
         assert!(prompt.contains("keine neue Nachrichtenrunde"));
         assert!(!prompt.contains("Websuche"));
+        assert!(news_followup_prompt("de-AT", &[], None).contains("Frag nicht nach"));
+        for pack in ["ja", "ko", "sv", "zh-TW"] {
+            let prompt = news_followup_prompt(pack, &["Tesla recalls cars".into()], None);
+            assert!(prompt.contains("do not start a new roundup"), "{pack}");
+            assert!(prompt.contains(&format!("pack code: {pack}")), "{pack}");
+        }
+        assert!(news_prompt("sv", &[], None).contains("End by asking"));
     }
 
     #[test]

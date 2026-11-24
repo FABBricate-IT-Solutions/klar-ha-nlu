@@ -3,6 +3,7 @@ use crate::lang::groups::{Chat, Cues, Fixtures, GroupClarify, Household, Languag
 use crate::lang::morphology::PackMorphology;
 use crate::lang::LangId;
 
+use super::news::NEWS;
 use super::speech::SPEECH;
 use super::verbs::VERBS;
 
@@ -236,11 +237,7 @@ pub const PACK: LanguagePack = LanguagePack {
         world: &["weather"],
         advice: &["idea"],
         open: &["washa", "why"],
-        news: &["briefing", "habari", "taarifa"],
-        news_dismiss: &["basi", "hapana", "stop"],
-        news_intro: "Ninaangalia habari za sasa.",
-        news_nudge: "Unataka zaidi kuhusu moja?",
-        news_done: "Sawa.",
+        news: NEWS,
     },
     household: Household {
         teach: &["weka mlango"],
