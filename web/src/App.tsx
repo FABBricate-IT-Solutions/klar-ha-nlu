@@ -1,5 +1,5 @@
 import { FlaskConicalIcon, HomeIcon, HouseIcon, MenuIcon, MessageSquareIcon, SettingsIcon, ShieldIcon } from "lucide-react";
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { api } from "./api";
 import { Drawer } from "./components/common";
 import { KlarBrand } from "./components/KlarBrand";
@@ -78,6 +78,8 @@ const defaultSettings: Settings = {
   },
 };
 
+type Loaded = { settings: boolean; ui: boolean; dashboard: boolean };
+
 const THEME_KEY = "klar_theme";
 
 function asTheme(value: string | undefined): Theme {
@@ -111,6 +113,7 @@ export function App() {
   const [error, setError] = useState("");
   const [wizardNotice, setWizardNotice] = useState("");
   const uiLoaded = useRef(false);
+  const [loaded, setLoaded] = useState<Loaded>({ settings: false, ui: false, dashboard: false });
   const [inspectId, setInspectId] = useState("");
   const [booted, setBooted] = useState(false);
   const [navOpen, setNavOpen] = useState(false);
@@ -119,53 +122,54 @@ export function App() {
   const t = dictionaries[locale] || dictionaries.en;
   const theme = ui.theme || "dark";
 
-  const refresh = async () => {
-    try {
-      const [nextSettings, nextDashboard] = await Promise.all([api.settings(), api.dashboard()]);
-      setSettings({ ...defaultSettings, ...nextSettings });
-      setDashboard(nextDashboard);
-      setError("");
-    } catch (err) {
-      setError(String(err));
-    }
-  };
+  // Settings, UI state and dashboard load independently. Each counts as loaded only after its own
+  // GET succeeded; until then the built-in defaults are placeholders and must never be saved.
+  const refresh = useCallback(async () => {
+    const applyUi = (nextUi: UiState) => {
+      const route = parseHash(window.location.hash);
+      setUi(applyRoute({
+        ...defaultUi,
+        ...nextUi,
+        locale: chromeLocale(nextUi.locale),
+        locale_set: Boolean(nextUi.locale_set),
+        tab: asTab(nextUi.tab),
+        house_view: asHouseView(nextUi.house_view),
+        rules_view: asRulesView(nextUi.rules_view),
+        settings_view: asSettingsView(nextUi.settings_view),
+        theme: asTheme(readStoredTheme() || nextUi.theme),
+        wizard_done: Boolean(nextUi.wizard_done),
+      }, route || { tab: asTab(nextUi.tab) }));
+      if (route?.entity_id) setInspectId(route.entity_id);
+      uiLoaded.current = true;
+    };
+    const failures: unknown[] = [];
+    const take = <T,>(key: keyof Loaded, request: Promise<T>, apply: (value: T) => void) =>
+      request.then((value) => {
+        apply(value);
+        setLoaded((prev) => ({ ...prev, [key]: true }));
+      }).catch((err: unknown) => {
+        failures.push(err);
+      });
+    await Promise.all([
+      take("settings", api.settings(), (next) => setSettings({ ...defaultSettings, ...next })),
+      take("dashboard", api.dashboard(), setDashboard),
+      uiLoaded.current ? undefined : take("ui", api.ui(), applyUi),
+    ]);
+    setError(failures.length ? String(failures[0]) : "");
+  }, []);
 
   useEffect(() => {
     (async () => {
-      try {
-        const [nextSettings, nextUi, nextDashboard] = await Promise.all([
-          api.settings(),
-          api.ui(),
-          api.dashboard(),
-        ]);
-        const next = { ...defaultSettings, ...nextSettings };
-        const route = parseHash(window.location.hash);
-        setSettings(next);
-        setUi(applyRoute({
-          ...defaultUi,
-          ...nextUi,
-          locale: chromeLocale(nextUi.locale),
-          locale_set: Boolean(nextUi.locale_set),
-          tab: asTab(nextUi.tab),
-          house_view: asHouseView(nextUi.house_view),
-          rules_view: asRulesView(nextUi.rules_view),
-          settings_view: asSettingsView(nextUi.settings_view),
-          theme: asTheme(readStoredTheme() || nextUi.theme),
-          wizard_done: Boolean(nextUi.wizard_done),
-        }, route || { tab: asTab(nextUi.tab) }));
-        if (route?.entity_id) setInspectId(route.entity_id);
-        setDashboard(nextDashboard);
+      await refresh();
+      if (uiLoaded.current) {
         api.conversations().then(setJournal).catch(() => undefined);
-        uiLoaded.current = true;
-        setBooted(true);
-      } catch (err) {
-        setError(String(err));
+      } else {
         const route = parseHash(window.location.hash);
         if (route) setUi((prev) => applyRoute(prev, route));
-        setBooted(true);
       }
+      setBooted(true);
     })();
-  }, []);
+  }, [refresh]);
 
   useEffect(() => {
     if (!uiLoaded.current) return;
@@ -184,12 +188,14 @@ export function App() {
     document.documentElement.classList.toggle("dark", theme !== "light");
   }, [locale, theme]);
 
+  // After the start the address always names the open view, also when the UI state did not load:
+  // a later reload (token applied) then reopens the view the operator is on.
   useEffect(() => {
-    if (!uiLoaded.current) return;
+    if (!booted) return;
     const next = hrefFor(ui.tab, ui, ui.tab === "house" ? (inspectId || undefined) : undefined);
     if (window.location.hash === next) return;
     history.replaceState(null, "", `${window.location.pathname}${window.location.search}${next}`);
-  }, [ui.tab, ui.house_view, ui.rules_view, ui.settings_view, inspectId]);
+  }, [booted, ui.tab, ui.house_view, ui.rules_view, ui.settings_view, inspectId]);
 
   useEffect(() => {
     const onHash = () => {
@@ -225,7 +231,7 @@ export function App() {
     };
     window.addEventListener("klar-lotse-applied", onLotse);
     return () => window.removeEventListener("klar-lotse-applied", onLotse);
-  }, []);
+  }, [refresh]);
 
   const applyCandidates = useMemo(
     () => dashboard?.assignment.filter((row) => (row.suggested_area?.score || 0) >= 3 && row.confidence !== "high" && !ui.dismissed.includes(row.entity_id)) || [],
@@ -412,7 +418,9 @@ export function App() {
             locale={locale}
             onLocale={(next) => setUi((prev) => ({ ...prev, locale: next, locale_set: true }))}
             settings={settings}
+            loaded={loaded.settings}
             onSettings={setSettings}
+            onTokenApplied={() => void refresh()}
             onReplayWizard={replayWizard}
             settingsView={asSettingsView(ui.settings_view)}
             onSettingsView={(view) => go("settings", { settings_view: view })}
@@ -426,7 +434,7 @@ export function App() {
         </div>
       </div>
 
-      {booted && !ui.wizard_done && (
+      {booted && loaded.settings && loaded.ui && loaded.dashboard && !ui.wizard_done && (
         <Wizard
           open
           locale={locale}

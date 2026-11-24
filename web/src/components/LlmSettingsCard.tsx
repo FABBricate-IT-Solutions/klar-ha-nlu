@@ -17,9 +17,12 @@ export function LlmSettingsCard({ t }: { t: Messages }) {
   const [apiKey, setApiKey] = useState("");
   const [enableThinking, setEnableThinking] = useState(false);
   const [busy, setBusy] = useState(false);
+  // False until the stored endpoint was read; the empty fields are placeholders until then.
+  const [loaded, setLoaded] = useState(false);
 
   const load = async () => {
     const next = await api.llmEndpoint();
+    setLoaded(true);
     setEndpoint(next);
     setBaseUrl(next.base_url || "");
     setModel(next.model || "");
@@ -36,6 +39,7 @@ export function LlmSettingsCard({ t }: { t: Messages }) {
   }, [t.saveUnauthorized, t.trainerFail]);
 
   const save = async () => {
+    if (!loaded) return;
     setBusy(true);
     try {
       const next = await api.saveLlmEndpoint({
@@ -101,7 +105,7 @@ export function LlmSettingsCard({ t }: { t: Messages }) {
         />
       </CardContent>
       <CardFooter className="flex flex-wrap gap-2">
-        <Button type="button" disabled={busy} onClick={() => void save()}>{t.save}</Button>
+        <Button type="button" disabled={busy || !loaded} onClick={() => void save()}>{t.save}</Button>
         <Button type="button" variant="ghost" disabled={busy || !endpoint.configured} onClick={() => void clear()}>{t.llmClear}</Button>
       </CardFooter>
     </Card>

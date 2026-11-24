@@ -246,7 +246,7 @@ User language overlay plus custom sentences, persisted under `/data/klar_nlu.jso
 }
 ```
 
-Response includes `history` (`hash`, `label`, `saved_at`). Omitting `language` on POST keeps the stored set deltas. Invalid custom/overlay → `422`. Write token required off-loopback.
+Response includes `history` (`hash`, `label`, `saved_at`). Omitting `language` on POST keeps the stored set deltas, omitting `custom` keeps the stored phrases; `"custom": []` clears them. Invalid custom/overlay → `422`. Write token required off-loopback.
 
 ### `POST /api/lang/preview`
 
