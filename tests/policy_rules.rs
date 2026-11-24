@@ -1,7 +1,9 @@
 use klar_nlu::home::default_home;
 use klar_nlu::nlu::{parse_with_policies, safety_decide_policies};
 use klar_nlu::session::Session;
-use klar_nlu::types::{Intent, IntentPlan, ParseDecision, PolicyEffect, PolicyMatch, PolicyRule, RejectReason, Settings, SpeechBank};
+use klar_nlu::types::{
+    EntityRec, Intent, IntentPlan, ParseDecision, PolicyEffect, PolicyMatch, PolicyRule, RejectReason, Settings, SpeechBank,
+};
 
 fn block_ac() -> PolicyRule {
     PolicyRule {
@@ -85,7 +87,17 @@ fn phrase_reply_skips_intent() {
 
 #[test]
 fn phrase_script_emits_turn_on() {
-    let home = default_home();
+    // The script a rule starts is checked like any other target: it has to exist in the home.
+    let mut home = default_home();
+    home.entities.push(EntityRec {
+        entity_id: "script.leaving_home".into(),
+        name: "Leaving Home".into(),
+        domain: "script".into(),
+        platform: None,
+        area: None,
+        aliases: Vec::new(),
+        tags: Vec::new(),
+    });
     let mut session = Session::new();
     let rules = vec![PolicyRule {
         id: "leave".into(),

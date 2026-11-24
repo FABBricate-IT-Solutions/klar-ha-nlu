@@ -43,15 +43,13 @@ pub(super) fn run(context: ParseContext<'_>) -> PipelineResult {
     let clauses = split_clauses(&split.tokens, context.home);
     record_stage(&mut trace, "features", started, format!("{} clauses", clauses.len()));
 
+    // Every route ends in the same safety decision: undo, routines and the other specials
+    // get no way around validation, the user's rules or the confirmation.
     if let Some(draft) = super::dutch::route(&context, &raw_tokens, &split.tokens)
         .or_else(|| super::windows::route(&context, &split.tokens))
         .or_else(|| route_special(&context, &raw_tokens, &split))
+        .or_else(|| route_pending(&context, &split.tokens))
     {
-        record_stage(&mut trace, "safety_decision", Instant::now(), decision_name(&draft.decision).into());
-        let candidates = draft.output_candidate.clone().into_iter().collect();
-        return finish(&context, draft, candidates, Vec::new(), trace);
-    }
-    if let Some(draft) = route_pending(&context, &split.tokens) {
         let started = Instant::now();
         let draft = safety_decision(draft, &context);
         record_stage(&mut trace, "safety_decision", started, decision_name(&draft.decision).into());
@@ -91,6 +89,7 @@ pub(super) fn run(context: ParseContext<'_>) -> PipelineResult {
             selected_candidate_id: None,
             output_candidate: ranking.selected.clone(),
             safety_confirmed: false,
+            inherits_risk: false,
             response_briefing: false,
             competing: ranking.competing,
             commit: SessionCommit { clarify: Some((options, template)), briefing: Some(false), ..SessionCommit::default() },
