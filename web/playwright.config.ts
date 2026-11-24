@@ -10,10 +10,6 @@ export default defineConfig({
   forbidOnly: Boolean(process.env.CI),
   retries: 0,
   timeout: 30_000,
-  reporter: process.env.CI ? [["list"], ["html", { open: "never" }]] : "list",
-  use: {
-    trace: "retain-on-failure",
-    screenshot: "only-on-failure",
-  },
+  reporter: "list",
   projects: [{ name: "chromium", use: { ...devices["Desktop Chrome"] } }],
 });
