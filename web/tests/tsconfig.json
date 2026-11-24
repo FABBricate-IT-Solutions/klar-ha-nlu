@@ -1,0 +1,7 @@
+{
+  "extends": "../tsconfig.json",
+  "compilerOptions": {
+    "types": ["vite/client", "react", "react-dom", "node"]
+  },
+  "include": [".", "../src", "../vitest.config.ts", "../playwright.config.ts"]
+}
