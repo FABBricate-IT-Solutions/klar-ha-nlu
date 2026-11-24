@@ -131,12 +131,10 @@ fn each_section_is_held_to_its_route_validator() {
     };
     let refused = |overlay: Overlay, incoming: Option<StoredEndpoint>| check(Packed { overlay, endpoint: incoming }).unwrap_err();
 
-    let mut twice = Overlay::default();
-    twice.policies = vec![rule("sperre"), rule("sperre")];
+    let twice = Overlay { policies: vec![rule("sperre"), rule("sperre")], ..Overlay::default() };
     assert_eq!(refused(twice, None), "policies");
 
-    let mut no_id = Overlay::default();
-    no_id.preferred.push("wohnzimmer".into());
+    let no_id = Overlay { preferred: vec!["wohnzimmer".into()], ..Overlay::default() };
     assert_eq!(refused(no_id, None), "preferred");
 
     assert_eq!(refused(Overlay::default(), Some(endpoint("ftp://127.0.0.1/v1", "", "m"))), "llm_endpoint");
