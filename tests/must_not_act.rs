@@ -89,18 +89,22 @@ fn check(lang: &str) {
             (Some(_), true) | (None, false) => {}
         }
     }
-    assert!(
-        regressions.is_empty(),
-        "{} sentence(s) change device state and are not in the baseline. Fix the engine; do not add them to baseline.txt:\n{}",
-        regressions.len(),
-        regressions.join("\n")
-    );
-    assert!(
-        fixed.is_empty(),
-        "{} baseline sentence(s) no longer act. Delete these lines from tests/fixtures/must_not_act/baseline.txt:\n{}",
-        fixed.len(),
-        fixed.join("\n")
-    );
+    let mut report = String::new();
+    if !regressions.is_empty() {
+        report += &format!(
+            "{} sentence(s) change device state and are not in the baseline. Fix the engine; do not add them to baseline.txt:\n{}\n",
+            regressions.len(),
+            regressions.join("\n")
+        );
+    }
+    if !fixed.is_empty() {
+        report += &format!(
+            "{} baseline sentence(s) no longer act. Delete these lines from tests/fixtures/must_not_act/baseline.txt:\n{}\n",
+            fixed.len(),
+            fixed.join("\n")
+        );
+    }
+    assert!(report.is_empty(), "{report}");
 }
 
 #[test]
@@ -151,10 +155,9 @@ fn baseline_lists_only_corpus_sentences_once_and_sorted() {
     for line in &lines {
         assert!(corpus_lines.contains(line), "baseline.txt names a sentence that is not in the corpus: {line}");
     }
-    let mut sorted = lines.clone();
-    sorted.sort();
-    sorted.dedup();
-    assert_eq!(lines, sorted, "baseline.txt must be sorted and free of duplicates");
+    for pair in lines.windows(2) {
+        assert!(pair[0] < pair[1], "baseline.txt must stay sorted and free of duplicates; out of place: {}", pair[1]);
+    }
 }
 
 /// Q-11: the home must really contain the collisions the smaller test homes hide.
