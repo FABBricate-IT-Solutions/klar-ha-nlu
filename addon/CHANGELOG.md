@@ -6,6 +6,181 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 Versions follow Home Assistant calendar versioning (`YYYY.M.PATCH`)
 and [Conventional Commits](https://www.conventionalcommits.org/).
 
+## [2026.11.3](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/compare/2026.11.2...2026.11.3) - 2026-11-24
+
+
+
+### Other
+
+- Merge pull request #374 from FABBricate-IT-Solutions/dependabot/npm_and_yarn/web/npm-minor-12ec588354([541e127](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/541e127cb5cbe7125ee522dfafc8aa4c816184ad))
+
+- Merge remote-tracking branch 'origin/main' into dep-npm-374([025e358](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/025e3589140a2f9374f6cb8dbfd034d06e773399))
+
+- merge main so the url 2.5.9 pin clears the security checks([ee3f395](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/ee3f39531a64fb740929f52e1f307f6feb69a8b0))
+
+- bump the npm-minor group in /web with 2 updates([7394147](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/739414718fce42faa50a54579147460f0b8666f6))
+
+## [2026.11.2](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/compare/2026.11.1...2026.11.2) - 2026-11-24
+
+
+
+### Bug Fixes
+
+- upgrade url past the nested blob origin overflow([9a8643b](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/9a8643b2077aa0f3e553ad24291d15175143ae51))
+
+
+### Other
+
+- Merge pull request #372 from FABBricate-IT-Solutions/dependabot/cargo/rust-patch-3f050ccb20([06d867e](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/06d867e0004db76a398dc4e00c46874c438771b8))
+
+- bump clap from 4.6.7 to 4.6.9 in the rust-patch group([b9cc444](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/b9cc444a9568aa83db9991f714f8d81e8f19a35e))
+
+## [2026.11.1](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/compare/2026.11.0...2026.11.1) - 2026-11-16
+
+
+
+### Bug Fixes
+
+- upgrade quinn-udp past the truncated datagram spin([eb32dc5](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/eb32dc5b5719b6915a0fc37491c24a582799b949))
+
+
+### Other
+
+- Merge pull request #352 from FABBricate-IT-Solutions/dependabot/npm_and_yarn/web/npm-patch-9c968aaf24([0eb51f0](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/0eb51f052b8a31ff968447288c28ad0e4645e615))
+
+- bump the npm-patch group in /web with 4 updates([0bd7a09](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/0bd7a098d4852e2755c6f07b146b5b28f2cbd839))
+
+- Merge pull request #355 from FABBricate-IT-Solutions/dependabot/cargo/rust-patch-dbeece9def([e567a33](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/e567a3387f02ed052611a46d921b0e4da48a59f8))
+
+- bump flate2 from 1.1.10 to 1.1.11 in the rust-patch group([7180233](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/7180233b025d13c2bc1adbcc3ee7a0e63e667b90))
+
+## [2026.11.0](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/compare/2026.10.10...2026.11.0) - 2026-11-04
+
+
+
+### Other
+
+- Merge pull request #336 from FABBricate-IT-Solutions/dependabot/npm_and_yarn/web/npm-minor-2ad8443266([0936569](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/093656923b84086ed0fb9f64e2f94cbf5489d32a))
+
+- bump the npm-minor group in /web with 2 updates([8c5ce58](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/8c5ce58bab4121e1715cfd1a75c36cacf115f179))
+
+## [2026.10.10](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/compare/2026.10.2-staging.660cc40...2026.10.10) - 2026-10-28
+
+
+
+### Other
+
+- Merge pull request #326 from FABBricate-IT-Solutions/release/promote-2026.10.10([844f01c](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/844f01c9015df7e1243eecd4ef7e8341de5b8f60))
+
+- merge staging into main for the next production release([d6152c1](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/d6152c15748f1281913d79c5e47c7fc3fb028aec))
+
+## [2026.10.9](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/compare/2026.10.8...2026.10.9) - 2026-10-28
+
+
+
+### Other
+
+- Merge pull request #318 from FABBricate-IT-Solutions/dependabot/npm_and_yarn/web/npm-minor-9f26ffa250([c72aa00](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/c72aa00204c933dafe42712f4cf2a7e11e4a6798))
+
+- bump lucide-react in /web in the npm-minor group([67886f8](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/67886f85a4d05d5dd30fd338b399ac8aa09819c4))
+
+- Merge pull request #317 from FABBricate-IT-Solutions/dependabot/npm_and_yarn/web/npm-patch-e6386c2419([1587049](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/158704998afe86f037e98e3e9b03cd45efbfece7))
+
+- bump vite from 8.3.4 to 8.3.5 in /web in the npm-patch group([f4a9500](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/f4a9500fcee5d70f457132cec27678fb4183f9e6))
+
+- Merge pull request #316 from FABBricate-IT-Solutions/dependabot/cargo/rust-minor-3a28fe187f([a6e0b8e](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/a6e0b8edd75521db9d06014de4f2b5005d7a88c5))
+
+- bump tokio from 1.53.3 to 1.54.1 in the rust-minor group([3b756ea](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/3b756ea599b5fcec277bb8926f3fdddd527a6e4a))
+
+## [2026.10.8](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/compare/2026.10.2-staging.ac19120...2026.10.8) - 2026-10-25
+
+
+
+### Bug Fixes
+
+- keep what as an en-GB status word so short device questions still match([e500ef8](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/e500ef8d0c39f627f102dd0c0fdf187c7321d454))
+
+
+### Other
+
+- Merge pull request #314 from FABBricate-IT-Solutions/release/promote-2026.10.8([8303b75](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/8303b757fcab305e81519017e94537764c17745a))
+
+- merge staging into main for the next production release([f0710b8](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/f0710b83ce0558ef76c113caa9a99b1b5a602a91))
+
+## [2026.10.7](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/compare/2026.10.6...2026.10.7) - 2026-10-23
+
+
+
+### Other
+
+- Merge pull request #307 from FABBricate-IT-Solutions/release/promote-2026.10.7([0892e3c](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/0892e3c73bb2de548e627334cc00e4cec9e37bca))
+
+- merge staging into main for the next production release([d944514](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/d944514c22c192ebd8998c87d028af12702ca5d4))
+
+## [2026.10.6](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/compare/2026.10.5...2026.10.6) - 2026-10-23
+
+
+
+### Bug Fixes
+
+- bump tokio to 1.53.3 for the unsound advisory([464fedd](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/464fedd24aafa17942bb8f126d018ff762064ae9))
+
+- patch rustls advisories that block dependency CI([b1bfc76](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/b1bfc761cc725181650feeae17a3781a386521ba))
+
+- bump tokio to 1.53.3 for the unsound advisory([7e936c8](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/7e936c808c58db85975a82e561f91474df5033fe))
+
+- patch rustls advisories that block dependency CI([956bdeb](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/956bdeb39f39bbb57a6076332fdff0d10eb38559))
+
+- bump tokio to 1.53.3 for the unsound advisory([db8e71b](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/db8e71b0dee7cfab4432c8778aa756247dbbdb95))
+
+- patch rustls advisories that block dependency CI([c098eee](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/c098eee7ef24bd27e564862fe00d1a7bc4124d82))
+
+
+### Other
+
+- Merge pull request #300 from FABBricate-IT-Solutions/dependabot/npm_and_yarn/web/npm-patch-1715934af3([2720c88](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/2720c8801aedd289414ecdc65cc4905754ee4a98))
+
+- bump the npm-patch group in /web with 3 updates([09091a1](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/09091a11557fa445653a72fbbb5fbbc3e1ba4904))
+
+- Merge pull request #299 from FABBricate-IT-Solutions/dependabot/cargo/rust-patch-2d79467faa([7f59374](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/7f59374e3898650c41ab37f4547d56473d687a7b))
+
+- bump the rust-patch group with 2 updates([90927fb](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/90927fb4089988fadaac2fa5f5c1dfe0b752dd42))
+
+- Merge pull request #303 from FABBricate-IT-Solutions/fix/rustls-0.23.46([02740b2](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/02740b23a6935562b6793f8154f4fbb22d5bd562))
+
+## [2026.10.5](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/compare/2026.10.4...2026.10.5) - 2026-10-13
+
+
+
+### Bug Fixes
+
+- unblock dependency CI on Rust 1.85([be69fb9](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/be69fb936161c69de15840925c8b9a52fc67fb0f))
+
+## [2026.10.4](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/compare/2026.10.3...2026.10.4) - 2026-10-12
+
+
+
+### Documentation
+
+- bump rust from 1.98-bookworm to 1.99-bookworm (#286)([a43d39b](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/a43d39b484c1474bda11d872a85de9dcd004fe53))
+
+
+### Other
+
+- bump source-map-js from 1.2.1 to 1.2.2 in /web (#291)([0c395f1](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/0c395f1d2a6371656ffb4d3629f128d9d8436efa))
+
+- bump lucide-react from 1.48.0 to 1.49.0 in /web in the npm-minor group (#288)([70b99dc](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/70b99dc4098b196861340369b364094d5f5261fa))
+
+- bump vite from 8.3.1 to 8.3.2 in /web in the npm-patch group (#287)([a82789c](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/a82789c6ce70d6af7c2b363791e12a431bdf95e2))
+
+## [2026.10.3](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/compare/2026.10.2-staging.26f701f...2026.10.3) - 2026-10-04
+
+
+
+### Other
+
+- Merge pull request #284 from FABBricate-IT-Solutions/staging([b1c467f](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/b1c467f12a1454713ac2e35874661c8a0c0ee0cd))
+
 ## [2026.10.1](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/compare/2026.10.0...2026.10.1) - 2026-10-04
 
 

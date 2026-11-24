@@ -301,7 +301,7 @@ def north() -> list[dict]:
             extra_w={
                 "on_particles": ["on"],
                 "off_particles": ["off"],
-                "status": ["status", "state"],
+                "status": ["what", "status", "state"],
                 # "telly" stays first: generated test sentences use the first word. "tv" is still what most people say.
                 "tv": ["telly", "tv", "television"],
             },
