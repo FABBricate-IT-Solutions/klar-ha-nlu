@@ -20,8 +20,8 @@ pub(crate) struct Reading {
     pub conditional: bool,
     /// The action is meant for another time.
     pub timed: bool,
-    /// A bare number after a clock word ("at 6", "um 6"). A time, unless it is the value
-    /// the command sets ("set the heating at 21", "um 2 waermer").
+    /// An hour after a clock word ("at 6", "um 6"). A time, unless it is the value the
+    /// command sets ("set the heating at 21", "um 2 waermer").
     pub clock: Option<i32>,
     /// A question or a report: the clause asks about a state or tells one.
     pub asked: bool,
@@ -203,13 +203,27 @@ fn number(token: &str, cat: &Catalog) -> Option<i32> {
     }
 }
 
-/// "at 6", "um 6": a number after a clock word, unless a unit makes it a value ("um 2 grad").
+/// "at 6", "um 6": an hour after a clock word. A unit makes it a value ("um 2 grad"),
+/// and so does a number no clock shows ("at 72").
 fn clock_lead(tokens: &[String], spots: &[Spot], words: &MoodWords, cat: &Catalog) -> Option<i32> {
     (0..tokens.len().saturating_sub(1)).find_map(|at| {
-        let led = spots[at] == Spot::Word && spots[at + 1] == Spot::Word && words.clock_leads.contains(&tokens[at].as_str());
-        let unit = tokens.get(at + 2).is_some_and(|unit| words.measure_units.contains(&unit.as_str()));
-        number(&tokens[at + 1], cat).filter(|_| led && !unit)
+        if spots[at] != Spot::Word || spots[at + 1] != Spot::Word || !words.clock_leads.contains(&tokens[at].as_str()) {
+            return None;
+        }
+        let (value, len) = spoken_number(&tokens[at + 1..], cat)?;
+        let unit = tokens.get(at + 1 + len).is_some_and(|unit| words.measure_units.contains(&unit.as_str()));
+        (!unit && (0..=24).contains(&value)).then_some(value)
     })
+}
+
+/// The number at the start of `tokens` and how many tokens it takes: "55", "fifty five".
+fn spoken_number(tokens: &[String], cat: &Catalog) -> Option<(i32, usize)> {
+    let tens = number(tokens.first()?, cat)?;
+    let ones = tokens.get(1).and_then(|token| number(token, cat));
+    match ones {
+        Some(ones) if tens >= 20 && tens % 10 == 0 && (1..10).contains(&ones) => Some((tens + ones, 2)),
+        _ => Some((tens, 1)),
+    }
 }
 
 /// "10 pm": a number before a clock mark.

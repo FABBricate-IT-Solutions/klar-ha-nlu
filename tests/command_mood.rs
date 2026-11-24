@@ -256,6 +256,13 @@ fn a_number_after_a_clock_word_is_a_value_only_if_the_command_sets_it() {
     let en = collision_home("en");
     let (out, changes) = said("en", &en, "set the bedroom fan at 30");
     assert_eq!(changes, ["HassFanSetSpeed{entity_id=fan.bedroom_fan,percentage=30}"], "{}", describe(&out));
+    let (out, changes) = said("en", &en, "set the bedroom fan at 20");
+    assert_eq!(changes, ["HassFanSetSpeed{entity_id=fan.bedroom_fan,percentage=20}"], "{}", describe(&out));
+    // No clock shows 65: the number is a speed, whatever the verb.
+    let (out, changes) = said("en", &en, "start the bedroom fan at 65");
+    assert_eq!(changes, ["HassFanSetSpeed{entity_id=fan.bedroom_fan,percentage=65}"], "{}", describe(&out));
+    let (out, changes) = said("en", &en, "set the bedroom fan around forty five");
+    assert_eq!(changes, ["HassFanSetSpeed{entity_id=fan.bedroom_fan,percentage=45}"], "{}", describe(&out));
     assert_rejected("en", &en, "start the bedroom fan at 7");
     assert_rejected("en", &en, "turn on the desk lamp at 8");
     assert_rejected("en", &en, "set the bedroom fan to 30 at 7");
