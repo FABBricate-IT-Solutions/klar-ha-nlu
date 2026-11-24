@@ -1,12 +1,15 @@
 use crate::home::{load_merged, registry_stamp};
+use crate::io::http_server::{self, HttpLimits};
+use crate::io::listen::bind;
 use crate::io::llm::secure_endpoint_file;
 use crate::io::state::AppState;
 use crate::io::{web, wyoming};
 use crate::types::Settings;
-use std::net::SocketAddr;
 use std::path::{Path, PathBuf};
 use std::sync::atomic::Ordering;
 use std::time::Duration;
+use tokio::signal::unix::{signal, Signal, SignalKind};
+use tokio::sync::watch;
 use uuid::Uuid;
 
 pub struct RuntimeArgs {
@@ -19,7 +22,21 @@ pub struct RuntimeArgs {
     pub lang_dir: Option<PathBuf>,
 }
 
-pub async fn run(args: RuntimeArgs) {
+/// How long connections get to finish after a stop signal. Home Assistant gives an add-on
+/// ten seconds before it kills it; this stays well inside that.
+const SHUTDOWN_GRACE: Duration = Duration::from_millis(1200);
+
+/// Run the engine until SIGTERM or SIGINT. `Err` means it could not start or one of the two
+/// servers ended on its own; the caller exits non-zero then.
+pub async fn run(args: RuntimeArgs) -> std::io::Result<()> {
+    // Both ports before anything else: a taken port stops the start instead of leaving an
+    // engine that answers on one of them only.
+    let http_listener = bind("HTTP", &args.http).await?;
+    let wyoming_listener = bind("Wyoming", &args.wyoming).await?;
+    // Handlers before the slow part of the start. As PID 1 in a container the kernel only
+    // delivers signals that have a handler.
+    let mut signals = StopSignals::install()?;
+
     let _ = std::fs::create_dir_all(&args.data_dir);
     let data_dir = if args.data_dir.is_dir() { args.data_dir.clone() } else { args.config_dir.clone() };
     let token =
@@ -46,18 +63,56 @@ pub async fn run(args: RuntimeArgs) {
     let config_dir = args.config_dir.clone();
     tokio::spawn(async move { reload_home(reload_state, config_dir, data_dir).await });
 
-    let http_state = state.clone();
-    let http_addr: SocketAddr = args.http.parse().expect("http bind");
-    let http = tokio::spawn(async move {
-        let listener = tokio::net::TcpListener::bind(http_addr).await.expect("http");
-        tracing::info!("UI auf http://{http_addr}");
-        axum::serve(listener, web::router(http_state).into_make_service_with_connect_info::<SocketAddr>()).await.expect("axum");
-    });
+    let (stop, stopping) = watch::channel(false);
+    tracing::info!("UI auf http://{}", args.http);
+    let mut http = tokio::spawn(http_server::serve(http_listener, web::router(state.clone()), HttpLimits::default(), stopping.clone()));
+    tracing::info!("Wyoming lauscht auf {}", args.wyoming);
+    let mut wyoming = tokio::spawn(wyoming::serve(wyoming_listener, state, stopping));
 
-    let wyoming_bind = args.wyoming.clone();
-    let wy = tokio::spawn(async move { wyoming::serve(&wyoming_bind, state).await });
+    tokio::select! {
+        ended = &mut http => Err(server_ended("HTTP", ended)),
+        ended = &mut wyoming => Err(server_ended("Wyoming", ended)),
+        signal = signals.next() => {
+            tracing::info!("{signal} empfangen, fahre herunter");
+            let _ = stop.send(true);
+            let drained = tokio::time::timeout(SHUTDOWN_GRACE, async { tokio::join!(http, wyoming) }).await;
+            match drained {
+                Ok(_) => tracing::info!("Beide Server beendet"),
+                Err(_) => tracing::warn!("Nach {SHUTDOWN_GRACE:?} sind noch Verbindungen offen, beende trotzdem"),
+            }
+            Ok(())
+        }
+    }
+}
 
-    let _ = tokio::join!(http, wy);
+/// A server task that came back without being asked to stop. Whatever the reason, the
+/// engine is no longer whole.
+fn server_ended(server: &str, ended: Result<std::io::Result<()>, tokio::task::JoinError>) -> std::io::Error {
+    let reason = match ended {
+        Ok(Ok(())) => "ohne Fehler".to_string(),
+        Ok(Err(err)) => err.to_string(),
+        Err(err) => err.to_string(),
+    };
+    std::io::Error::other(format!("{server}-Server hat sich beendet: {reason}"))
+}
+
+struct StopSignals {
+    terminate: Signal,
+    interrupt: Signal,
+}
+
+impl StopSignals {
+    fn install() -> std::io::Result<Self> {
+        Ok(Self { terminate: signal(SignalKind::terminate())?, interrupt: signal(SignalKind::interrupt())? })
+    }
+
+    /// The name of the next stop signal.
+    async fn next(&mut self) -> &'static str {
+        tokio::select! {
+            _ = self.terminate.recv() => "SIGTERM",
+            _ = self.interrupt.recv() => "SIGINT",
+        }
+    }
 }
 
 fn env_on(name: &str) -> bool {
