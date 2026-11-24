@@ -8,6 +8,8 @@ mod draft;
 mod dutch;
 mod evidence;
 mod household;
+mod mood;
+mod mood_plan;
 mod pipeline;
 mod policy_route;
 mod ranking;

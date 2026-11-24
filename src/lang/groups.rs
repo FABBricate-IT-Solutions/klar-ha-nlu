@@ -1,3 +1,4 @@
+use super::mood::MoodWords;
 use super::morphology::PackMorphology;
 use super::speech::Speech;
 use super::verbs::VerbKind;
@@ -240,4 +241,5 @@ pub struct LanguagePack {
     pub household: Household,
     pub speech: Speech,
     pub morphology: PackMorphology,
+    pub mood: MoodWords,
 }

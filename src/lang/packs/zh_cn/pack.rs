@@ -3,6 +3,7 @@ use crate::lang::groups::{Chat, Cues, Fixtures, GroupClarify, Household, Languag
 use crate::lang::morphology::PackMorphology;
 use crate::lang::LangId;
 
+use super::mood::MOOD;
 use super::news::NEWS;
 use super::speech::SPEECH;
 use super::verbs::VERBS;
@@ -311,4 +312,5 @@ pub const PACK: LanguagePack = LanguagePack {
     },
     speech: SPEECH,
     morphology: PackMorphology::EMPTY,
+    mood: MOOD,
 };
