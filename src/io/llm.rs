@@ -1,4 +1,4 @@
-use crate::home::paths::{read_to_string_confined, remove_confined, write_atomic_confined};
+use crate::home::paths::{confined_file, read_to_string_confined, remove_confined, sweep_temp_files, write_private_confined};
 use crate::io::auth::{reads_allowed, writes_allowed};
 use crate::io::llm_calls::record_llm;
 use crate::io::state::AppState;
@@ -15,7 +15,9 @@ use axum::routing::{get, post};
 use axum::{Json, Router};
 use serde::{Deserialize, Serialize};
 use std::convert::Infallible;
+use std::fs::Permissions;
 use std::net::SocketAddr;
+use std::os::unix::fs::PermissionsExt;
 use std::path::Path;
 use std::time::Instant;
 use tokio_stream::wrappers::UnboundedReceiverStream;
@@ -38,8 +40,32 @@ pub(crate) fn load_stored_endpoint(dir: &Path) -> Option<StoredEndpoint> {
     serde_json::from_str(&raw).ok()
 }
 
+/// The file holds the API key, so only the owner may read it.
 pub(crate) fn save_stored_endpoint(dir: &Path, stored: &StoredEndpoint) -> std::io::Result<()> {
-    write_atomic_confined(dir, LLM_FILE, &serde_json::to_vec_pretty(stored).unwrap_or_default())
+    write_private_confined(dir, LLM_FILE, &serde_json::to_vec_pretty(stored).unwrap_or_default())
+}
+
+/// Startup: take read access from group and others on a key file an older version wrote,
+/// and remove temp files a crash left behind.
+pub(crate) fn secure_endpoint_file(dir: &Path) {
+    sweep_temp_files(dir, LLM_FILE);
+    let Ok(path) = confined_file(dir, LLM_FILE) else {
+        return;
+    };
+    let Ok(meta) = std::fs::metadata(&path) else {
+        return;
+    };
+    if meta.permissions().mode() & 0o777 != 0o600 {
+        if let Err(err) = std::fs::set_permissions(&path, Permissions::from_mode(0o600)) {
+            tracing::warn!("{LLM_FILE}: Dateirechte nicht auf 0600 gesetzt: {err}");
+        }
+    }
+}
+
+/// The stored key, for the address it is stored for. A request that names another address
+/// gets no key, so the key cannot be sent to a host the operator did not enter it for.
+fn stored_key_for(current: Option<&LlmEndpoint>, base_url: &str) -> String {
+    current.filter(|endpoint| endpoint.same_base(base_url)).map(|endpoint| endpoint.api_key.clone()).unwrap_or_default()
 }
 
 pub fn load_endpoint(dir: &Path) -> Option<LlmEndpoint> {
@@ -174,11 +200,11 @@ async fn set_endpoint(
         return Ok(Json(LlmPublic::empty()));
     }
     let mut current = state.llm.lock().await;
+    let base_url = body.base_url.as_deref().unwrap_or("");
     let api_key = match body.api_key.as_deref() {
         Some(key) if !key.is_empty() => key.to_string(),
-        _ => current.as_ref().map(|ep| ep.api_key.clone()).unwrap_or_default(),
+        _ => stored_key_for(current.as_ref(), base_url),
     };
-    let base_url = body.base_url.as_deref().unwrap_or("");
     let model = body.model.as_deref().unwrap_or("");
     let thinking = body.enable_thinking.unwrap_or_else(|| current.as_ref().map(|ep| ep.enable_thinking).unwrap_or(false));
     let provider = body
@@ -214,18 +240,19 @@ async fn list_endpoint_models(
     headers: HeaderMap,
     Json(body): Json<ModelsIn>,
 ) -> Result<Json<ModelsOut>, StatusCode> {
-    if !reads_allowed(Some(peer), &headers, &state.token) {
+    // The call makes the engine contact a host the caller names, so it is a write.
+    if !writes_allowed(Some(peer), &headers, &state.token) {
         return Err(StatusCode::UNAUTHORIZED);
     }
     let (base_url, api_key) = {
         let current = state.llm.lock().await;
-        let api_key = match body.api_key.as_deref() {
-            Some(key) if !key.is_empty() => key.to_string(),
-            _ => current.as_ref().map(|ep| ep.api_key.clone()).unwrap_or_default(),
-        };
         let base_url = match body.base_url.as_deref() {
             Some(url) if !url.trim().is_empty() => url.to_string(),
             _ => current.as_ref().map(|ep| ep.base_url.clone()).unwrap_or_default(),
+        };
+        let api_key = match body.api_key.as_deref() {
+            Some(key) if !key.is_empty() => key.to_string(),
+            _ => stored_key_for(current.as_ref(), &base_url),
         };
         (base_url, api_key)
     };

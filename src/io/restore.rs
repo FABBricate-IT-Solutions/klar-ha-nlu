@@ -95,9 +95,8 @@ fn with_local_key(mut incoming: StoredEndpoint, local: Option<&StoredEndpoint>) 
     incoming
 }
 
-fn same_base(left: &str, right: &str) -> bool {
-    let normal = |raw: &str| LlmEndpoint::for_discovery(raw, "").map(|endpoint| endpoint.base_url);
-    matches!((normal(left), normal(right)), (Ok(left), Ok(right)) if left == right)
+fn same_base(local: &str, incoming: &str) -> bool {
+    LlmEndpoint::for_discovery(local, "").is_ok_and(|stored| stored.same_base(incoming))
 }
 
 fn stage_endpoint(dir: &Path, incoming: StoredEndpoint) -> io::Result<Staged> {
