@@ -46,6 +46,10 @@ updates:
       - dependency-name: idna
       - dependency-name: idna_adapter
       - dependency-name: uuid
+      # jiff 1.0 removes Timestamp::to_zoned; clock_time.rs still calls it.
+      - dependency-name: jiff
+        update-types:
+          - version-update:semver-major
     commit-message:
       prefix: cargo
 
@@ -55,6 +59,9 @@ updates:
     schedule:
       interval: weekly
       day: monday
+    # @1.85 is the MSRV toolchain pin. Dependabot reads it as an action tag.
+    ignore:
+      - dependency-name: dtolnay/rust-toolchain
     commit-message:
       prefix: ci
 
@@ -64,6 +71,8 @@ updates:
     schedule:
       interval: weekly
       day: monday
+    ignore:
+      - dependency-name: dtolnay/rust-toolchain
     commit-message:
       prefix: ci
 
@@ -111,6 +120,11 @@ updates:
       docker-patch:
         update-types:
           - patch
+    # Node 25 is end of life. CI and the image stay on the 24 LTS line.
+    ignore:
+      - dependency-name: node
+        update-types:
+          - version-update:semver-major
     commit-message:
       prefix: docker
 
@@ -124,6 +138,10 @@ updates:
       docker-patch:
         update-types:
           - patch
+    ignore:
+      - dependency-name: node
+        update-types:
+          - version-update:semver-major
     commit-message:
       prefix: docker
 
