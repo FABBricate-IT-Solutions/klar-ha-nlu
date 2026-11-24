@@ -130,6 +130,24 @@ def correction_for_query(query: str, names: list[str]) -> dict[str, str] | None:
     return {"media_id": corrected, "media_type": "artist"}
 
 
+def canonical_play_data(data: dict[str, Any], names: list[str]) -> dict[str, Any]:
+    """Resolve a spoken artist to the canonical library name before playback."""
+    if str(data.get("media_type") or "").casefold() != "artist":
+        return data
+    query = str(data.get("media_id") or "")
+    corrected = choose_artist(query, names)
+    if not corrected or corrected.casefold() == query.casefold():
+        return data
+    return {**data, "media_id": corrected}
+
+
+async def stop_media_playback(hass: HomeAssistant, entity_id: str) -> None:
+    """Stop a wrong queue before retrying with a corrected query."""
+    await hass.services.async_call(
+        "media_player", "media_stop", {}, blocking=True, target={"entity_id": entity_id}
+    )
+
+
 MEDIA_SERVICES = {
     "HassMediaPause": "media_pause",
     "HassMediaUnpause": "media_play",
@@ -203,8 +221,9 @@ async def run_mass(
             )
             if "radio_mode" in data:
                 data["radio_mode"] = str(data["radio_mode"]).lower() == "true"
+            names = await library_artist_names(hass)
+            data = canonical_play_data(data, names)
             query = str(data.get("media_id") or "")
-            names: list[str] = []
             try:
                 await play_mass_media(hass, entity_id, data)
             except Exception as first_err:  # noqa: BLE001 — MA search is a boundary
@@ -220,6 +239,7 @@ async def run_mass(
                 query = correction["media_id"]
             state = await wait_media_query_match(hass, entity_id, query, state)
             if not media_query_matches(query, state):
+                await stop_media_playback(hass, entity_id)
                 if not names:
                     names = await library_artist_names(hass)
                 correction = correction_for_query(query, names)
