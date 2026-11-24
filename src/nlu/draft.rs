@@ -7,13 +7,12 @@ use crate::parse::news::{briefing_followup, is_news_dismiss, news_turn, NewsTurn
 use crate::parse::numbers::first_number;
 use crate::parse::respond::{speak, speak_correction, speak_need_target, speak_unknown};
 use crate::parse::slots::{fill_pending_timer_duration, intent_with_entity};
-use crate::types::{
-    allow_permitted, first_matching_rule, first_seed_match, Intent, IntentCandidate, IntentPlan, ParseDecision, PolicyHit, RejectReason,
-};
+use crate::types::{first_seed_match, Intent, IntentCandidate, IntentPlan, ParseDecision, RejectReason};
 
 use super::context::ParseContext;
 use super::decision::{decide_band, PolicyBand};
 use super::ranking::RankingResult;
+use super::risk::judge;
 use super::speech::{affirmative, apply_rule_speech, confirmation_prompt, mark_competing};
 use super::validation::{
     fail_closed_intent, filter_valid_steps, missing_timer_duration, requires_confirmation, validate_plan, PlanInvalid,
@@ -41,6 +40,8 @@ pub(super) struct Draft {
     pub selected_candidate_id: Option<String>,
     pub output_candidate: Option<IntentCandidate>,
     pub safety_confirmed: bool,
+    /// Reverses an action that itself needed a confirmation, so it asks as well.
+    pub inherits_risk: bool,
     pub response_briefing: bool,
     pub competing: bool,
     pub commit: SessionCommit,
@@ -125,6 +126,7 @@ pub(super) fn route_pending(context: &ParseContext<'_>, tokens: &[String]) -> Op
             selected_candidate_id: Some(confirm.candidate_id.clone()),
             output_candidate: None,
             safety_confirmed: false,
+            inherits_risk: false,
             response_briefing: false,
             competing: false,
             commit: SessionCommit::default(),
@@ -146,21 +148,8 @@ pub(super) fn route_pending(context: &ParseContext<'_>, tokens: &[String]) -> Op
             };
             return Some(execute(context, vec![intent], "pending_clarify", 1.0, 1.0, true, false));
         }
-    } else if affirmative(tokens, context.catalog) {
-        if let Some(entity_id) = last_visible(context.session, context.home) {
-            let name =
-                context.session.last_names().find(|name| name.starts_with("Hass") && *name != "HassGetState").unwrap_or("HassTurnOn");
-            return Some(execute(
-                context,
-                vec![Intent::new(name).with("entity_id", entity_id)],
-                "affirmative_replay",
-                0.83,
-                1.0,
-                false,
-                false,
-            ));
-        }
     }
+    // A bare "yes" with no open question answers nothing and must not replay the last device.
     match_custom(tokens, context.text, context.custom, &context.home.registered_intents)
         .map(|intent| execute(context, vec![intent], "custom_sentence", 1.0, 1.0, false, false))
 }
@@ -211,6 +200,7 @@ pub(super) fn replay_or_decide(
                 selected_candidate_id: None,
                 output_candidate: None,
                 safety_confirmed: false,
+                inherits_risk: false,
                 response_briefing: false,
                 competing: false,
                 commit: SessionCommit { briefing: Some(false), ..SessionCommit::default() },
@@ -304,14 +294,19 @@ pub(super) fn safety_decision(mut draft: Draft, context: &ParseContext<'_>) -> D
     if let Err(reason) = validate_plan(plan, context.home) {
         return invalid_plan(draft, reason);
     }
-    let compiled_risky = context.settings.confirm_risky_actions && requires_confirmation(plan);
+    // A phrase rule that starts a script already names the rule that fired; keep that
+    // trace when the script runs, Home Assistant reads the hit from it.
+    let phrase_action = draft.policy_trace.clone();
+    let confirm_on = context.settings.confirm_risky_actions;
+    let compiled_risky = confirm_on && (requires_confirmation(plan) || draft.inherits_risk);
     if let Some(action) = super::policy_route::apply_matched_action(context, plan) {
         return action;
     }
-    let matched = first_matching_rule(context.policies, plan);
+    let verdict = judge(context.policies, plan, confirm_on, draft.inherits_risk);
+    let (matched, risky) = (verdict.rule, verdict.risky);
     let seed_matched = first_seed_match(context.policies, plan);
     let policy_trace = super::policy_route::overlay_trace(&draft, matched, seed_matched, compiled_risky, "reject");
-    if matches!(matched.map(|(_, hit)| hit), Some(PolicyHit::Block)) {
+    if verdict.blocked {
         let mut rejected = reject(RejectReason::Unsafe, speak_unknown());
         rejected.confidence = draft.confidence;
         rejected.margin = draft.margin;
@@ -321,11 +316,6 @@ pub(super) fn safety_decision(mut draft: Draft, context: &ParseContext<'_>) -> D
         rejected.policy_trace = Some(policy_trace);
         return rejected;
     }
-    let risky = match matched.map(|(_, hit)| hit) {
-        Some(PolicyHit::Confirm) if context.settings.confirm_risky_actions => true,
-        Some(PolicyHit::Allow) if allow_permitted(plan) => false,
-        _ => compiled_risky,
-    };
     let mut decided = match decide_band(draft.confidence, draft.margin, risky, draft.safety_confirmed, draft.competing) {
         PolicyBand::Execute => draft,
         PolicyBand::Confirm => {
@@ -359,8 +349,10 @@ pub(super) fn safety_decision(mut draft: Draft, context: &ParseContext<'_>) -> D
     if let (ParseDecision::Confirm { prompt, .. }, Some((_, _, stored))) = (&decided.decision, decided.commit.confirm.as_mut()) {
         *stored = prompt.clone();
     }
-    decided.policy_trace =
-        Some(super::policy_route::overlay_trace(&decided, matched, seed_matched, compiled_risky, decided.decision.type_name()));
+    decided.policy_trace = match phrase_action {
+        Some(trace) if matches!(decided.decision, ParseDecision::Execute) => Some(trace),
+        _ => Some(super::policy_route::overlay_trace(&decided, matched, seed_matched, compiled_risky, decided.decision.type_name())),
+    };
     decided
 }
 
@@ -374,6 +366,7 @@ pub(super) fn reject(reason: RejectReason, speech: String) -> Draft {
         selected_candidate_id: None,
         output_candidate: None,
         safety_confirmed: false,
+        inherits_risk: false,
         response_briefing: false,
         competing: false,
         commit: SessionCommit::default(),
@@ -444,6 +437,7 @@ fn execute_plan(
         selected_candidate_id: Some(candidate_id),
         output_candidate,
         safety_confirmed,
+        inherits_risk: false,
         response_briefing: false,
         competing: false,
         commit: SessionCommit { remember: intents, clear_pending, briefing: Some(false), ..SessionCommit::default() },
@@ -461,6 +455,7 @@ pub(super) fn chat(speech: String, response_briefing: bool, next_briefing: bool)
         selected_candidate_id: None,
         output_candidate: None,
         safety_confirmed: false,
+        inherits_risk: false,
         response_briefing,
         competing: false,
         commit: SessionCommit { briefing: Some(next_briefing), ..SessionCommit::default() },

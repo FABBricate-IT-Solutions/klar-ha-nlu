@@ -48,8 +48,11 @@ pub(super) fn filter_valid_steps(plan: &IntentPlan, home: &HomeGraph) -> IntentP
     IntentPlan::from_steps(steps, plan.margin)
 }
 
+/// A plan this broad asks first, whatever its steps are.
+pub(super) const BROAD_PLAN_STEPS: usize = 8;
+
 pub(super) fn requires_confirmation(plan: &IntentPlan) -> bool {
-    plan.steps.len() >= 8 || plan.steps.iter().any(|step| risky_intent(&step.intent))
+    plan.steps.len() >= BROAD_PLAN_STEPS || plan.steps.iter().any(|step| risky_intent(&step.intent))
 }
 
 fn validate_intent(intent: &Intent, home: &HomeGraph) -> Result<(), PlanInvalid> {
@@ -67,7 +70,7 @@ fn validate_target(intent: &Intent, home: &HomeGraph) -> Result<(), PlanInvalid>
     let area = intent.slot("area");
     let floor = intent.slot("floor");
     let domain = intent.slot("domain");
-    if domain == Some("binary_sensor") && intent.name != "HassGetState" {
+    if matches!(domain, Some("binary_sensor" | "weather")) && intent.name != "HassGetState" {
         return Err(PlanInvalid::Schema);
     }
     let window_query = intent.name == "HassGetState" && domain == Some("binary_sensor") && intent.slot("device_class") == Some("window");
@@ -143,9 +146,14 @@ fn validate_target(intent: &Intent, home: &HomeGraph) -> Result<(), PlanInvalid>
 
 fn validate_slots(intent: &Intent) -> Result<(), PlanInvalid> {
     let allowed = allowed_slots(&intent.name);
-    if intent.slots.iter().any(|slot| {
-        slot.name.len() > 64 || slot.value.is_empty() || slot.value.chars().count() > 512 || !allowed.contains(&slot.name.as_str())
-    }) {
+    // A forecast question carries what was asked ("rain", "tomorrow", "evening") for the reply.
+    let forecast = intent.name == "HassGetState" && intent.slot("domain") == Some("weather");
+    let known = |name: &str| allowed.contains(&name) || (forecast && matches!(name, "weather_ask" | "weather_day" | "weather_part"));
+    if intent
+        .slots
+        .iter()
+        .any(|slot| slot.name.len() > 64 || slot.value.is_empty() || slot.value.chars().count() > 512 || !known(&slot.name))
+    {
         return Err(PlanInvalid::Schema);
     }
     match intent.name.as_str() {
@@ -257,6 +265,7 @@ fn allowed_domain(domain: &str) -> bool {
             | "script"
             | "input_boolean"
             | "calendar"
+            | "weather"
     )
 }
 
@@ -306,7 +315,7 @@ fn conflicting_slots(intent: &Intent) -> bool {
         .any(|slot| values.insert(slot.name.as_str(), slot.value.as_str()).is_some_and(|existing| existing != slot.value.as_str()))
 }
 
-fn risky_intent(intent: &Intent) -> bool {
+pub(super) fn risky_intent(intent: &Intent) -> bool {
     if matches!(
         intent.name.as_str(),
         "HassGetState" | "HassClimateGetTemperature" | "HassTimerStatus" | "MassGetQueue" | "KlarGetCalendarEvents" | "KlarNoMusicPlayer"

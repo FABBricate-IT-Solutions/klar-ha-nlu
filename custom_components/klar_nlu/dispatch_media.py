@@ -163,7 +163,7 @@ async def play_mass_media(hass: HomeAssistant, entity_id: str, data: dict[str, A
             "music_assistant", "play_media", data, blocking=True, target={"entity_id": entity_id}
         )
         return
-    except Exception as err:  # noqa: BLE001 — Music Assistant is a service boundary
+    except Exception as err:  # Music Assistant is a service boundary; anything else is re-raised
         if "media_type" not in data:
             raise
         _LOGGER.debug("Music Assistant typed play failed for %s (%s); retry without media_type", entity_id, err)

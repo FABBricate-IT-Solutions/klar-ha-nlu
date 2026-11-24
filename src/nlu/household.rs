@@ -9,28 +9,32 @@ use crate::types::{Intent, RejectReason};
 
 use super::context::ParseContext;
 use super::draft::{chat, execute, reject, Draft};
+use super::phrase::{after_prefix, has_words, is_any_phrase, is_phrase, words, Slack};
+use super::validation::risky_intent;
 
 pub(super) fn route(context: &ParseContext<'_>, tokens: &[String]) -> Option<Draft> {
     if tokens.is_empty() {
         return None;
     }
+    let cat = context.catalog;
     let blob = fold_umlaut(context.text.trim()).replace(['\'', '’', '`'], "");
-    if let Some(draft) = match_routine(context, &blob) {
+    let said = words(context.text);
+    if let Some(draft) = match_routine(context, &said) {
         return Some(draft);
     }
-    if context.catalog.household_hit(&blob, |pack| pack.household.explain) {
+    if is_any_phrase(&said, cat.household_phrases(|pack| pack.household.explain), cat, Slack::Question) {
         return Some(explain(context));
     }
-    if context.catalog.household_hit(&blob, |pack| pack.household.undo) {
+    if is_any_phrase(&said, cat.household_phrases(|pack| pack.household.undo), cat, Slack::Filler) {
         return Some(undo(context));
     }
-    if let Some(alias) = context.catalog.household_prefix(&blob, |pack| pack.household.teach) {
+    if let Some(alias) = taught_name(context, &said) {
         return Some(teach(context, &alias));
     }
-    if looks_like_clock(context, &blob, tokens) {
+    if looks_like_clock(context, &said, tokens) {
         return Some(clock(context));
     }
-    let pack_weather = context.catalog.household_hit(&blob, |pack| pack.household.weather);
+    let pack_weather = cat.household_phrases(|pack| pack.household.weather).any(|phrase| has_words(&said, phrase));
     if let Some(class) = super::weather_lex::classify(&blob, pack_weather) {
         if calendar_overrides_weather(context, tokens) {
             return None;
@@ -78,13 +82,24 @@ fn climate_overrides_weather(context: &ParseContext<'_>, tokens: &[String]) -> b
     has_area || tokens.len() > 2
 }
 
-fn match_routine(context: &ParseContext<'_>, blob: &str) -> Option<Draft> {
+/// "call it reading lamp" names the last device. "call it a day" names nothing: a name
+/// does not open with an indefinite article.
+fn taught_name(context: &ParseContext<'_>, said: &[String]) -> Option<String> {
+    let cat = context.catalog;
+    let rest = cat.household_phrases(|pack| pack.household.teach).find_map(|prefix| after_prefix(said, prefix, cat))?;
+    let named = rest.first().is_some_and(|word| !cat.article_one().contains(word.as_str()));
+    named.then(|| rest.join(" "))
+}
+
+fn match_routine(context: &ParseContext<'_>, said: &[String]) -> Option<Draft> {
     for row in context.custom {
-        let script = row.slots.get("entity_id")?;
+        let Some(script) = row.slots.get("entity_id") else {
+            continue;
+        };
         if row.intent != "HassTurnOn" || !script.starts_with("script.") {
             continue;
         }
-        if !phrase_hit(blob, &row.phrase) {
+        if !is_phrase(said, &row.phrase, context.catalog, Slack::Filler) {
             continue;
         }
         return Some(execute(
@@ -129,7 +144,11 @@ fn undo(context: &ParseContext<'_>) -> Draft {
     if inverted.is_empty() {
         return reject(RejectReason::NoAction, house.nothing_undo.into());
     }
-    execute(context, inverted, "household_undo", 1.0, 1.0, true, true)
+    // Undo is a new action: it is validated, meets the user's rules and asks like any other.
+    // Reversing something that needed a yes needs a yes again, whichever way it moves.
+    let mut draft = execute(context, inverted, "household_undo", 1.0, 1.0, true, false);
+    draft.inherits_risk = context.session.last_execute.iter().any(risky_intent);
+    draft
 }
 
 fn teach(context: &ParseContext<'_>, alias: &str) -> Draft {
@@ -190,11 +209,11 @@ pub(crate) fn invert_intent(intent: &Intent) -> Option<Intent> {
     Some(Intent { name: name.into(), slots: intent.slots.clone() })
 }
 
-fn looks_like_clock(context: &ParseContext<'_>, blob: &str, tokens: &[String]) -> bool {
+fn looks_like_clock(context: &ParseContext<'_>, said: &[String], tokens: &[String]) -> bool {
     if context.catalog.pack_any(tokens, |pack| pack.household.clock_skip) {
         return false;
     }
-    context.catalog.household_hit(blob, |pack| pack.household.clock)
+    is_any_phrase(said, context.catalog.household_phrases(|pack| pack.household.clock), context.catalog, Slack::Question)
 }
 
 fn spoken_clock(context: &ParseContext<'_>) -> String {
@@ -233,11 +252,6 @@ const FALLBACK: Household = Household {
 
 fn templates(context: &ParseContext<'_>) -> &'static Household {
     context.catalog.household().unwrap_or(&FALLBACK)
-}
-
-fn phrase_hit(blob: &str, phrase: &str) -> bool {
-    let candidate = fold_umlaut(phrase.trim());
-    !candidate.is_empty() && (blob == candidate || blob.contains(&candidate))
 }
 
 fn valid_alias(alias: &str) -> bool {

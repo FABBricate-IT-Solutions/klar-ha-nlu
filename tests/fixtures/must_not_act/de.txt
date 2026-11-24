@@ -1,0 +1,164 @@
+# Sätze, die nie einen Gerätezustand ändern dürfen, gesprochen im deutschen Kollisions-Home
+# (tests/common/collision_home.rs). Gelesen von tests/must_not_act.rs.
+#
+# "## name" beginnt eine Kategorie. Ein Satz je Zeile. Eine Zeile "Satz => id, id" nennt die
+# einzigen Geräte, die unberührt bleiben müssen; alles andere in dem Satz darf schalten.
+# Die Sätze sind unsere eigenen. Keine Sätze aus den von nlu.to abgeleiteten Datasets ergänzen.
+
+## negation
+öffne das Garagentor nicht
+öffne nicht das Garagentor
+bitte nicht das Garagentor öffnen
+das Garagentor nicht öffnen
+nicht das Garagentor aufmachen
+mach das Garagentor nicht auf
+mach bloß nicht das Garagentor auf
+nie das Garagentor öffnen
+bitte das Garagentor nicht schließen
+schalte den Backofen nicht ein
+den Backofen bitte nicht einschalten
+nein, den Backofen nicht einschalten
+auf keinen Fall den Backofen einschalten
+niemals den Backofen einschalten
+mach das Flur Licht nicht an
+mach kein Licht im Flur an
+schalte Lampe 1 nicht ein
+schließ die Haustür nicht auf
+schließe die Hintertür nicht auf
+keinesfalls die Haustür aufschließen
+mach die Stehlampe nicht aus
+schalte die Kaffeemaschine nicht aus
+mach das Rollo im Schlafzimmer nicht zu
+dimme die Schreibtischlampe nicht
+stell die Heizung im Schlafzimmer nicht auf 25 Grad
+aktiviere Filmabend nicht
+schalte in der Küche nichts ein
+mach das Licht im Flur an, nein doch nicht
+nicht das Flur Licht
+ich möchte nicht dass der Backofen angeht
+der Backofen soll nicht eingeschaltet werden
+das Garagentor darf nicht geöffnet werden
+niemand soll das Garagentor öffnen
+
+## question
+habe ich den Backofen ausgemacht
+hab ich den Backofen angelassen
+habe ich irgendwo Fenster offen gelassen
+habe ich die Haustür abgeschlossen
+hat jemand das Garagentor geöffnet
+hast du den Backofen eingeschaltet
+warum ist das Licht im Flur an
+warum ist das Licht im Wohnzimmer an
+wieso ist das Garagentor offen
+weshalb wurde das Garagentor geöffnet
+was passiert wenn ich das Garagentor öffne
+soll ich den Backofen einschalten
+soll ich das Garagentor zumachen
+wann wurde das Flur Licht eingeschaltet
+wann wurde die Haustür aufgeschlossen
+ist das Licht im Flur an
+ist Lampe 1 an
+ist der Backofen aus
+ist der Backofen noch an
+ist das Garagentor offen
+ist das Garagentor offen oder zu
+ist die Haustür abgeschlossen
+ist das Küchenfenster offen
+ist das Rollo im Schlafzimmer zu
+ist noch irgendwo Licht an
+sind die Lichter in der Küche an
+sind noch Lichter an
+sind irgendwo Fenster offen
+welche Lichter sind an
+welche Fenster sind offen
+wie viele Lichter sind an
+wie schalte ich das Flur Licht ein
+wer hat das Flur Licht angemacht
+wer hat die Haustür aufgeschlossen
+wurde die Haustür heute aufgeschlossen
+seit wann ist der Backofen an
+läuft die Kaffeemaschine
+brennt im Flur noch Licht
+geht das Flur Licht automatisch an
+darf ich das Garagentor öffnen
+muss ich den Backofen ausschalten
+
+## past
+# Berichte darüber, was passiert ist oder was der Fall ist. Niemand hat um etwas gebeten.
+ich habe das Flur Licht angemacht
+ich habe den Backofen schon ausgemacht
+ich habe das Garagentor vorhin geöffnet
+ich habe das Garagentor gerade zugemacht
+ich habe den Backofen angelassen
+ich habe die Haustür schon abgeschlossen
+jemand hat das Garagentor aufgemacht
+sie hat die Schreibtischlampe eingeschaltet
+wir haben die Kaffeemaschine ausgeschaltet
+der Backofen wurde heute morgen eingeschaltet
+das Garagentor wurde geöffnet
+die Haustür wurde aufgeschlossen
+das Flur Licht ist an
+der Backofen ist an
+das Garagentor ist offen
+das Garagentor war offen
+
+## condition
+wenn es regnet mach das Garagentor zu
+falls es regnet öffne das Garagentor
+wenn ich nicht zu Hause bin schalte den Backofen aus
+wenn das Küchenfenster offen ist schalte den Backofen aus
+falls es regnet mach das Rollo im Schlafzimmer zu
+wenn ich nach Hause komme öffne das Garagentor
+öffne das Garagentor wenn ich ankomme
+öffne das Garagentor sobald ich da bin
+mach das Flur Licht an wenn es dunkel wird
+schalte das Flur Licht ein falls es draußen dunkel ist
+schließ die Haustür auf wenn es klingelt
+immer wenn jemand klingelt schließ die Haustür auf
+sobald es dunkel ist mach das Flur Licht an
+schalte den Backofen ein sobald die Kaffeemaschine aus ist
+schalte den Backofen ein es sei denn das Küchenfenster ist offen
+schalte den Backofen nur ein wenn das Küchenfenster zu ist
+
+## time
+morgen den Backofen einschalten
+schalte den Backofen in 10 Minuten ein
+schalte den Backofen in einer halben Stunde ein
+schalte den Backofen um 6 ein
+schalte den Backofen später ein
+schalte den Backofen für 20 Minuten ein
+schalte den Backofen nach 30 Minuten aus
+schalte den Backofen in zwei Stunden aus
+schalte nächste Woche den Backofen ein
+mach das Flur Licht um 22 Uhr aus
+mach das Flur Licht in einer Stunde aus
+mach das Flur Licht nach 5 Minuten an
+mach das Flur Licht bei Sonnenuntergang an
+öffne das Garagentor in fünf Minuten
+öffne das Garagentor heute Abend
+öffne das Garagentor um 5 Uhr
+schließe das Garagentor um Mitternacht
+öffne am Montag das Garagentor
+schließ die Haustür um 8 Uhr auf
+schalte die Kaffeemaschine morgen früh ein
+schalte die Kaffeemaschine jeden Tag um 7 ein
+schalte jeden Morgen die Kaffeemaschine ein
+mach die Schreibtischlampe in einer Minute an
+
+## exception
+mach alles in der Küche an außer den Backofen => switch.backofen
+schalte alles aus außer dem Backofen => switch.backofen
+mach das Flur Licht an aber nicht das Büro Licht => light.buro_licht
+mach Lampe 1 an aber nicht Lampe 2 => light.lampe_2
+schalte alle Lichter aus außer dem Flur Licht => light.flur_licht
+mach alle Lichter im Büro aus außer der Schreibtischlampe => light.schreibtischlampe
+mach die Lichter im Büro an ausgenommen Auf Sendung => light.auf_sendung
+mach die Lichter in der Garage an aber nicht das Werkbank Licht => light.werkbank
+mach die Lichter im Flur aus, aber nicht die Stehlampe => light.stehlampe
+mach die Lichter in der Küche an, nur nicht die Arbeitsplatte => light.arbeitsplatte
+schalte alles im Wohnzimmer aus außer dem Fernseher => media_player.wohnzimmer_fernseher
+schalte alle Lichter in der Küche ein bis auf die Arbeitsplatte => light.arbeitsplatte
+mach überall das Licht an außer im Schlafzimmer => light.schlafzimmer_decke, light.nachttischlampe, light.timer_lampe
+schalte alle Lichter aus außer in der Küche => light.kuche_decke, light.arbeitsplatte
+schalte oben die Lichter aus außer im Büro => light.buro_licht, light.schreibtischlampe, light.auf_sendung
+mach alle Rollos zu außer im Schlafzimmer => cover.schlafzimmer_rollo
