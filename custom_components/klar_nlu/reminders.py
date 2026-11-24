@@ -30,6 +30,13 @@ def reminder_shaped(text: str) -> bool:
     return bool(_REMINDER.search(text or ""))
 
 
+def keep_parsed_speech_for_reminders(intents: list[Any], speech: str) -> bool:
+    """Keep the engine's reminder confirmation instead of generic execute speech."""
+    if not speech.strip() or not intents:
+        return False
+    return all(_is_reminder_intent(item) for item in intents)
+
+
 def should_delegate(text: str, intents: list[Any]) -> bool:
     if not reminder_shaped(text):
         return False
