@@ -6,6 +6,7 @@ import { LlmSettingsCard } from "../src/components/LlmSettingsCard";
 import { en } from "../src/i18n/en";
 import { wizardMessages } from "../src/i18n/wizard";
 import { CustomPage } from "../src/pages/CustomPage";
+import { RoutinesPage } from "../src/pages/RoutinesPage";
 import { RulesPage } from "../src/pages/RulesPage";
 import { fakeEngine } from "./support/fakeEngine";
 import { storedLlm, storedOverlay, storedPolicies, storedSettings, storedUi } from "./support/fixtures";
@@ -258,6 +259,34 @@ describe("U-04: adding a lexicon token", () => {
     const add = screen.getByRole("button", { name: en.lexiconAdd });
     expect(add).toBeDisabled();
     expect(screen.getByRole("button", { name: en.lexiconRemove })).toBeDisabled();
+    await user.click(add);
+    await engine.idle();
+
+    expect(engine.writes("/api/lang/overlay")).toEqual([]);
+  });
+
+  it("cannot add a phrase while the phrase list is still loading", async () => {
+    const engine = fakeEngine();
+    engine.on("GET /api/lang/overlay", () => new Promise(() => undefined));
+    const { user } = renderUi(<CustomPage t={en} locale="en" embedded />);
+    await user.type(screen.getAllByRole("textbox")[0], "film ab bitte");
+
+    const add = screen.getByRole("button", { name: en.addPhrase });
+    expect(add).toBeDisabled();
+    await user.click(add);
+    await engine.idle();
+
+    expect(engine.writes("/api/lang/overlay")).toEqual([]);
+    expect(engine.stored.overlay).toEqual(storedOverlay);
+  });
+
+  it("cannot add a routine while the phrase list is still loading", async () => {
+    const engine = fakeEngine();
+    engine.on("GET /api/lang/overlay", () => new Promise(() => undefined));
+    const { user } = renderUi(<RoutinesPage t={en} />);
+
+    const add = screen.getByRole("button", { name: en.addRoutine });
+    expect(add).toBeDisabled();
     await user.click(add);
     await engine.idle();
 
