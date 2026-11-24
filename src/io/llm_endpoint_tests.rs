@@ -72,13 +72,29 @@ fn custom_voice_route_requires_write_and_endpoint() {
 }
 
 #[test]
-fn model_list_uses_read_gate() {
-    let src = include_str!("llm.rs");
-    let start = src.find("async fn list_endpoint_models").expect("list_endpoint_models");
-    let end = src.find("pub async fn llm_chat").expect("llm_chat");
-    let body = &src[start..end];
-    assert!(body.contains("reads_allowed"));
-    assert!(!body.contains("writes_allowed"));
+fn the_key_file_is_owner_only_also_when_it_replaces_an_open_one() {
+    let dir = crate::home::test_dir::TestDir::new("llm-mode");
+    std::fs::write(dir.file(LLM_FILE), "{}").unwrap();
+    std::fs::set_permissions(dir.file(LLM_FILE), Permissions::from_mode(0o644)).unwrap();
+    let mode = |name: &str| std::fs::metadata(dir.file(name)).unwrap().permissions().mode() & 0o777;
+
+    secure_endpoint_file(dir.path());
+    assert_eq!(mode(LLM_FILE), 0o600, "a file an older version wrote is closed at start");
+
+    std::fs::set_permissions(dir.file(LLM_FILE), Permissions::from_mode(0o644)).unwrap();
+    let endpoint = LlmEndpoint::from_parts("http://127.0.0.1:11434/v1", "sk-made-up-for-tests", "llama3").unwrap();
+    save_endpoint(dir.path(), &endpoint).unwrap();
+    assert_eq!(mode(LLM_FILE), 0o600, "a save writes the key file owner-only");
+    assert_eq!(dir.names(), [LLM_FILE]);
+}
+
+#[test]
+fn the_stored_key_is_for_the_stored_address_only() {
+    let stored = LlmEndpoint::from_parts("http://127.0.0.1:11434/v1", "sk-made-up-for-tests", "llama3").unwrap();
+    assert_eq!(stored_key_for(Some(&stored), "http://127.0.0.1:11434/v1/"), "sk-made-up-for-tests");
+    assert_eq!(stored_key_for(Some(&stored), "http://127.0.0.1:11435/v1"), "");
+    assert_eq!(stored_key_for(Some(&stored), "http://attacker.example.test/v1"), "");
+    assert_eq!(stored_key_for(None, "http://127.0.0.1:11434/v1"), "");
 }
 
 #[test]

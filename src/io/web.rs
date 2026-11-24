@@ -101,7 +101,7 @@ async fn api_parse(
     }
     if body.text.chars().any(|character| character.is_control() && !character.is_whitespace())
         || body.language.as_ref().is_some_and(|language| language.len() > 35)
-        || body.conversation_id.as_ref().is_some_and(|conversation_id| conversation_id.len() > 128)
+        || body.conversation_id.as_ref().is_some_and(|id| !id.is_empty() && !crate::session::valid_id(id))
     {
         return Err(StatusCode::BAD_REQUEST);
     }
@@ -407,63 +407,59 @@ mod tests {
         assert!(!valid_entity_id("light.kuche.extra"));
     }
 
+    fn parse_state(name: &str) -> (TestDir, AppState) {
+        let scratch = TestDir::new(&format!("http-{name}"));
+        let home = LoadedHome {
+            graph: default_home(),
+            settings: Settings::default(),
+            custom: Vec::new(),
+            language: Default::default(),
+            policies: Vec::new(),
+            speech_bank: Default::default(),
+            match_controls: Vec::new(),
+        };
+        let state = AppState::new(home, scratch.path().to_path_buf(), None);
+        (scratch, state)
+    }
+
+    async fn say(state: &AppState, text: &str, id: &str) -> Result<ParseOutcome, StatusCode> {
+        let peer = ConnectInfo("127.0.0.1:9".parse().unwrap());
+        let body = ParseIn {
+            text: text.into(),
+            conversation_id: Some(id.into()),
+            language: Some("de".into()),
+            personality: None,
+            preferred_area: None,
+            nlu_rag: None,
+        };
+        api_parse(State(state.clone()), peer, HeaderMap::new(), Json(body)).await.map(|Json(outcome)| outcome)
+    }
+
     #[tokio::test]
     async fn confirmation_never_exposes_plan_before_affirmation() {
-        let scratch = TestDir::new("http-confirm");
-        let dir = scratch.path().to_path_buf();
-        let state = AppState::new(
-            LoadedHome {
-                graph: default_home(),
-                settings: Settings::default(),
-                custom: Vec::new(),
-                language: Default::default(),
-                policies: Vec::new(),
-                speech_bank: Default::default(),
-                match_controls: Vec::new(),
-            },
-            dir,
-            None,
-        );
-        let peer = ConnectInfo("127.0.0.1:9".parse().unwrap());
-        let first = api_parse(
-            State(state.clone()),
-            peer,
-            HeaderMap::new(),
-            Json(ParseIn {
-                text: "Wohnungstür abschließen".into(),
-                conversation_id: Some("confirm-http".into()),
-                language: Some("de".into()),
-                personality: None,
-                preferred_area: None,
-                nlu_rag: None,
-            }),
-        )
-        .await
-        .expect("confirmation response")
-        .0;
+        let (_scratch, state) = parse_state("confirm");
+        let first = say(&state, "Wohnungstür abschließen", "confirm-http").await.expect("confirmation response");
         assert!(matches!(first.decision, ParseDecision::Confirm { .. }), "{first:#?}");
         assert!(first.plan.is_none());
         assert_no_executable_shape(&serde_json::to_value(&first).expect("serialize confirmation"));
         assert!(state.sessions.lock().await.get_or_create(Some("confirm-http")).last.is_empty());
 
-        let second = api_parse(
-            State(state.clone()),
-            peer,
-            HeaderMap::new(),
-            Json(ParseIn {
-                text: "ja".into(),
-                conversation_id: Some("confirm-http".into()),
-                language: Some("de".into()),
-                personality: None,
-                preferred_area: None,
-                nlu_rag: None,
-            }),
-        )
-        .await
-        .expect("affirmed response")
-        .0;
+        let second = say(&state, "ja", "confirm-http").await.expect("affirmed response");
         assert!(matches!(second.decision, ParseDecision::Execute), "{second:#?}");
         assert_eq!(second.plan.as_ref().map(|plan| plan.steps.len()), Some(1));
+    }
+
+    #[tokio::test]
+    async fn a_conversation_id_is_checked_at_the_door() {
+        let (_scratch, state) = parse_state("ids");
+        for bad in ["line\nbreak", "bell\u{7}", &"x".repeat(129)] {
+            assert_eq!(say(&state, "Wohnungstür abschließen", bad).await.unwrap_err(), StatusCode::BAD_REQUEST, "{bad:?}");
+        }
+        // An empty id is no id: the question asked under it is not waiting for the next caller.
+        let asked = say(&state, "Wohnungstür abschließen", "").await.expect("empty id is accepted");
+        assert!(matches!(asked.decision, ParseDecision::Confirm { .. }), "{asked:#?}");
+        let stranger = say(&state, "ja", "").await.expect("empty id is accepted");
+        assert!(!matches!(stranger.decision, ParseDecision::Execute), "{stranger:#?}");
     }
 
     #[tokio::test]

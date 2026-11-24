@@ -1,4 +1,5 @@
 use crate::home::{load_merged, registry_stamp};
+use crate::io::llm::secure_endpoint_file;
 use crate::io::state::AppState;
 use crate::io::{web, wyoming};
 use crate::types::Settings;
@@ -38,6 +39,7 @@ pub async fn run(args: RuntimeArgs) {
     let mut state = AppState::new(loaded, data_dir.clone(), token);
     state.config_dir = args.config_dir.clone();
     state.overlay.checkpoint();
+    secure_endpoint_file(&state.data_dir);
     enable_bundle_from_env(&state).await;
 
     let reload_state = state.clone();

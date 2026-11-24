@@ -3,9 +3,8 @@ use crate::home::test_dir::TestDir;
 use crate::home::{default_home, LoadedHome};
 use crate::types::Settings;
 
-fn state(token: Option<String>) -> (TestDir, AppState) {
-    let scratch = TestDir::new("llm-auth");
-    let state = AppState::new(
+fn state(dir: &TestDir, token: Option<String>) -> AppState {
+    AppState::new(
         LoadedHome {
             graph: default_home(),
             settings: Settings::default(),
@@ -15,29 +14,38 @@ fn state(token: Option<String>) -> (TestDir, AppState) {
             speech_bank: Default::default(),
             match_controls: Vec::new(),
         },
-        scratch.path().to_path_buf(),
+        dir.path().to_path_buf(),
         token,
-    );
-    (scratch, state)
+    )
 }
 
-async fn list_without_token(peer: &str) -> StatusCode {
+async fn list_as(peer: &str, sent: Option<&str>) -> StatusCode {
     let peer = ConnectInfo(peer.parse().unwrap());
-    let (_scratch, state) = state(Some("secret".into()));
-    list_endpoint_models(State(state), peer, HeaderMap::new(), Json(ModelsIn::default())).await.unwrap_err()
+    let mut headers = HeaderMap::new();
+    if let Some(token) = sent {
+        headers.insert("x-klar-token", token.parse().unwrap());
+    }
+    let dir = TestDir::new("llm-auth");
+    list_endpoint_models(State(state(&dir, Some("secret".into()))), peer, headers, Json(ModelsIn::default())).await.unwrap_err()
 }
+
+// The list makes the engine contact a host the caller names, so it sits behind the write
+// gate. Past the gate the empty request is a 400: there is no base URL to ask.
 
 #[tokio::test]
-async fn supervisor_ingress_lists_models_without_token() {
-    assert_eq!(list_without_token("172.30.32.1:9").await, StatusCode::BAD_REQUEST);
+async fn supervisor_ingress_needs_the_token_to_list_models() {
+    assert_eq!(list_as("172.30.32.1:9", None).await, StatusCode::UNAUTHORIZED);
+    assert_eq!(list_as("172.30.32.1:9", Some("wrong")).await, StatusCode::UNAUTHORIZED);
+    assert_eq!(list_as("172.30.32.1:9", Some("secret")).await, StatusCode::BAD_REQUEST);
 }
 
 #[tokio::test]
 async fn loopback_lists_models_without_token() {
-    assert_eq!(list_without_token("127.0.0.1:9").await, StatusCode::BAD_REQUEST);
+    assert_eq!(list_as("127.0.0.1:9", None).await, StatusCode::BAD_REQUEST);
 }
 
 #[tokio::test]
-async fn lan_lists_models_without_token_is_unauthorized() {
-    assert_eq!(list_without_token("10.0.0.8:9").await, StatusCode::UNAUTHORIZED);
+async fn lan_needs_the_token_to_list_models() {
+    assert_eq!(list_as("10.0.0.8:9", None).await, StatusCode::UNAUTHORIZED);
+    assert_eq!(list_as("10.0.0.8:9", Some("secret")).await, StatusCode::BAD_REQUEST);
 }
