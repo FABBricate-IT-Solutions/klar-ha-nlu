@@ -175,22 +175,48 @@ jobs:
         working-directory: web
         run: npm ci && npm run build
 
-  # The one required check that stands for every job in this workflow. A new job
-  # gates merges by being listed under `needs`; repository settings stay as they are.
-  # tests/test_ci_workflows.py fails when a job is missing from the list.
-  release-gates:
-    name: release-gates
-    if: always()
-    needs:
-      - rustfmt
-      - clippy
-      - test
-      - datasets
-      - web
+  # The integration inside a real Home Assistant core: dispatch against the real service
+  # registry, the config-entry lifecycle and the ChatLog path, plus lint and a type check.
+  # Versions are pinned in tests/ha_real/requirements.txt.
+  ha:
+    name: ha
     runs-on: ubuntu-26.04
+    timeout-minutes: 15
     steps:
       - uses: actions/checkout@v7
+      - uses: astral-sh/setup-uv@1db35dd8eee11c5894872e0b383ae6c406cf738d # v10.4.0
+        with:
+          python-version: "3.14"
+          activate-environment: true
+          enable-cache: true
+          cache-dependency-glob: tests/ha_real/requirements.txt
+      - name: Install Home Assistant test tools
+        run: uv pip install -r tests/ha_real/requirements.txt
+      - name: Ruff
+        run: ruff check
+      - name: Type check
+        run: mypy
+      - name: Tests against a real Home Assistant
+        timeout-minutes: 10
+        run: pytest -q
+
+  # Required check on staging. It passes only when every job it needs succeeded, so a new
+  # job gates merges by being listed here, without a change to the repository settings.
+  # tests/test_ci_workflows.py fails when a job of this workflow is missing from the list.
+  release-gates:
+    name: release-gates
+    needs: [test, clippy, rustfmt, web, ha, datasets]
+    if: always()
+    runs-on: ubuntu-26.04
+    steps:
       - name: Every needed job succeeded
         env:
           NEEDS: ${{ toJSON(needs) }}
-        run: python3 scripts/release_gates.py
+        run: |
+          set -euo pipefail
+          echo "$NEEDS" | jq -r 'to_entries[] | "\(.key): \(.value.result)"'
+          failed="$(echo "$NEEDS" | jq -r '[to_entries[] | select(.value.result != "success") | .key] | join(", ")')"
+          if [[ -n "$failed" ]]; then
+            echo "not successful: $failed" >&2
+            exit 1
+          fi

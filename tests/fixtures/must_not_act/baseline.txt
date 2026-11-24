@@ -1,0 +1,194 @@
+# Sentences from en.txt and de.txt that the engine still acts on. Format: lang | category | sentence.
+#
+# This file only shrinks. tests/must_not_act.rs fails when a sentence that is not listed here
+# acts, and fails when a listed sentence no longer acts. A fix deletes its lines; nobody adds
+# lines for behaviour that got worse. Lines stay sorted.
+de | condition | falls es regnet mach das Rollo im Schlafzimmer zu
+de | condition | falls es regnet öffne das Garagentor
+de | condition | immer wenn jemand klingelt schließ die Haustür auf
+de | condition | mach das Flur Licht an wenn es dunkel wird
+de | condition | schalte das Flur Licht ein falls es draußen dunkel ist
+de | condition | schließ die Haustür auf wenn es klingelt
+de | condition | sobald es dunkel ist mach das Flur Licht an
+de | condition | wenn es regnet mach das Garagentor zu
+de | condition | wenn ich nach Hause komme öffne das Garagentor
+de | condition | wenn ich nicht zu Hause bin schalte den Backofen aus
+de | condition | öffne das Garagentor sobald ich da bin
+de | condition | öffne das Garagentor wenn ich ankomme
+de | exception | mach Lampe 1 an aber nicht Lampe 2
+de | exception | mach alle Rollos zu außer im Schlafzimmer
+de | exception | mach das Flur Licht an aber nicht das Büro Licht
+de | exception | mach die Lichter im Büro an ausgenommen Auf Sendung
+de | exception | mach die Lichter im Flur aus, aber nicht die Stehlampe
+de | exception | mach die Lichter in der Garage an aber nicht das Werkbank Licht
+de | exception | mach die Lichter in der Küche an, nur nicht die Arbeitsplatte
+de | exception | schalte alle Lichter aus außer dem Flur Licht
+de | exception | schalte alles im Wohnzimmer aus außer dem Fernseher
+de | negation | aktiviere Filmabend nicht
+de | negation | auf keinen Fall den Backofen einschalten
+de | negation | bitte das Garagentor nicht schließen
+de | negation | bitte nicht das Garagentor öffnen
+de | negation | das Garagentor nicht öffnen
+de | negation | den Backofen bitte nicht einschalten
+de | negation | dimme die Schreibtischlampe nicht
+de | negation | keinesfalls die Haustür aufschließen
+de | negation | mach bloß nicht das Garagentor auf
+de | negation | mach das Flur Licht nicht an
+de | negation | mach das Garagentor nicht auf
+de | negation | mach das Rollo im Schlafzimmer nicht zu
+de | negation | mach die Stehlampe nicht aus
+de | negation | mach kein Licht im Flur an
+de | negation | nicht das Garagentor aufmachen
+de | negation | nie das Garagentor öffnen
+de | negation | niemals den Backofen einschalten
+de | negation | niemand soll das Garagentor öffnen
+de | negation | schalte Lampe 1 nicht ein
+de | negation | schalte den Backofen nicht ein
+de | negation | schalte die Kaffeemaschine nicht aus
+de | negation | schalte in der Küche nichts ein
+de | negation | schließ die Haustür nicht auf
+de | negation | schließe die Hintertür nicht auf
+de | negation | stell die Heizung im Schlafzimmer nicht auf 25 Grad
+de | negation | öffne das Garagentor nicht
+de | negation | öffne nicht das Garagentor
+de | past | das Flur Licht ist an
+de | past | der Backofen ist an
+de | question | darf ich das Garagentor öffnen
+de | question | geht das Flur Licht automatisch an
+de | question | muss ich den Backofen ausschalten
+de | question | seit wann ist der Backofen an
+de | question | soll ich das Garagentor zumachen
+de | question | soll ich den Backofen einschalten
+de | question | warum ist das Licht im Flur an
+de | question | warum ist das Licht im Wohnzimmer an
+de | time | mach das Flur Licht bei Sonnenuntergang an
+de | time | mach das Flur Licht in einer Stunde aus
+de | time | mach das Flur Licht nach 5 Minuten an
+de | time | mach das Flur Licht um 22 Uhr aus
+de | time | mach die Schreibtischlampe in einer Minute an
+de | time | morgen den Backofen einschalten
+de | time | schalte den Backofen für 20 Minuten ein
+de | time | schalte den Backofen in 10 Minuten ein
+de | time | schalte den Backofen in einer halben Stunde ein
+de | time | schalte den Backofen in zwei Stunden aus
+de | time | schalte den Backofen nach 30 Minuten aus
+de | time | schalte den Backofen später ein
+de | time | schalte den Backofen um 6 ein
+de | time | schalte die Kaffeemaschine jeden Tag um 7 ein
+de | time | schalte die Kaffeemaschine morgen früh ein
+de | time | schalte jeden Morgen die Kaffeemaschine ein
+de | time | schließ die Haustür um 8 Uhr auf
+de | time | schließe das Garagentor um Mitternacht
+de | time | öffne am Montag das Garagentor
+de | time | öffne das Garagentor heute Abend
+de | time | öffne das Garagentor in fünf Minuten
+de | time | öffne das Garagentor um 5 Uhr
+en | condition | if I am not home turn off the oven
+en | condition | if it rains close the garage door
+en | condition | if it rains, open the garage door
+en | condition | if the kitchen window is open turn off the oven
+en | condition | in case it rains close the blinds in the bedroom
+en | condition | open the garage door as soon as I arrive
+en | condition | open the garage door when I arrive
+en | condition | turn on the hall light when it gets dark
+en | condition | turn on the oven unless the kitchen window is open
+en | condition | unlock the front door when the bell rings
+en | condition | whenever someone rings unlock the front door
+en | exception | close all the blinds except the ones in the bedroom
+en | exception | turn off all lights in the office except the desk lamp
+en | exception | turn off all the lights except the hall light
+en | exception | turn off everything except the oven
+en | exception | turn off everything in the living room except the tv
+en | exception | turn off the lights in the hall, but not the floor lamp
+en | exception | turn on all the lights in the kitchen apart from the counter light
+en | exception | turn on everything in the kitchen except the oven
+en | exception | turn on lamp 1 but not lamp 2
+en | exception | turn on the hall light but not the office light
+en | exception | turn on the kitchen lights excluding the counter light
+en | exception | turn on the lights in the garage but not the workbench light
+en | negation | I do not want the garage door open
+en | negation | I don't want the oven on
+en | negation | do not close the blinds in the bedroom
+en | negation | do not ever switch on the coffee machine
+en | negation | do not open the garage door
+en | negation | do not run open garage
+en | negation | do not set the thermostat in the bedroom to 25 degrees
+en | negation | do not turn on lamp 1
+en | negation | do not turn on the office light
+en | negation | do not unlock the back door
+en | negation | don't activate movie night
+en | negation | don't dim the desk lamp
+en | negation | don't open the garage door
+en | negation | don't switch off the floor lamp
+en | negation | don't turn anything on in the kitchen
+en | negation | don't turn off the hall light
+en | negation | don't turn on the desk lamp
+en | negation | don't you dare open the garage door
+en | negation | never ever unlock the front door
+en | negation | never open the garage door
+en | negation | never turn on the oven
+en | negation | no, don't turn on the oven
+en | negation | nobody should open the garage door
+en | negation | please do not turn on the oven
+en | negation | please don't unlock the front door
+en | negation | stop, do not turn on the oven
+en | negation | the oven must not be turned on
+en | negation | turn nothing on in the kitchen
+en | negation | turn on the hall light not
+en | negation | turn on the hall light, no wait, don't
+en | negation | under no circumstances turn on the oven
+en | negation | you must not open the garage door
+en | past | I already turned off the oven
+en | past | I have unlocked the front door
+en | past | I just closed the garage door
+en | past | I left the oven on
+en | past | I locked the front door already
+en | past | I turned on the hall light
+en | past | she switched on the desk lamp
+en | past | the front door was unlocked
+en | past | the garage door is open
+en | past | the oven was turned on this morning
+en | past | we turned off the coffee machine
+en | question | am I allowed to open the garage door
+en | question | did I leave any windows open
+en | question | did I turn off the oven?
+en | question | did i leave the oven on
+en | question | did someone open the garage door
+en | question | did the oven turn off
+en | question | did you turn on the oven
+en | question | do I need to turn off the oven
+en | question | do we have the oven on
+en | question | does the hall light turn on automatically
+en | question | have I locked the front door
+en | question | shall I close the garage door
+en | question | should I turn on the oven
+en | question | was the front door unlocked today
+en | question | when did the hall light turn on
+en | question | when was the front door unlocked
+en | question | who turned on the hall light
+en | question | who unlocked the front door
+en | question | why did the garage door open
+en | question | why is the garage door open
+en | question | would it be safe to open the garage door
+en | time | close the garage door at midnight
+en | time | every morning turn on the coffee machine
+en | time | next week turn on the oven
+en | time | on monday open the garage door
+en | time | open the garage door in five minutes
+en | time | open the garage door tonight
+en | time | tomorrow turn on the oven
+en | time | turn off the hall light at 10 pm
+en | time | turn off the hall light in an hour
+en | time | turn off the oven after 30 minutes
+en | time | turn off the oven in two hours
+en | time | turn on the coffee machine every day at 7
+en | time | turn on the coffee machine tomorrow morning
+en | time | turn on the desk lamp in a minute
+en | time | turn on the hall light after 5 minutes
+en | time | turn on the hall light at sunset
+en | time | turn on the oven at 6
+en | time | turn on the oven in 10 minutes
+en | time | turn on the oven in half an hour
+en | time | turn on the oven later
+en | time | turn the oven on for 20 minutes
+en | time | unlock the front door at 8 am

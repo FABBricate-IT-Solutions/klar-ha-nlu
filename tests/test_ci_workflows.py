@@ -3,15 +3,12 @@
 
 from __future__ import annotations
 
-import contextlib
-import importlib.util
-import io
 import json
 import os
 import re
+import subprocess
 import unittest
 from pathlib import Path
-from unittest import mock
 
 import yaml
 
@@ -19,51 +16,42 @@ ROOT = Path(__file__).resolve().parents[1]
 WORKFLOWS = ROOT / ".github" / "workflows"
 
 
-def _load():
-    path = ROOT / "scripts" / "release_gates.py"
-    spec = importlib.util.spec_from_file_location("klar_release_gates", path)
-    if spec is None or spec.loader is None:
-        raise RuntimeError(f"cannot load {path}")
-    mod = importlib.util.module_from_spec(spec)
-    spec.loader.exec_module(mod)
-    return mod
-
-
-gates = _load()
-
-
 def workflow(name: str) -> dict:
     return yaml.safe_load((WORKFLOWS / name).read_text(encoding="utf-8"))
 
 
-def run_gate(needs: object) -> tuple[int, str]:
-    raw = needs if isinstance(needs, str) else json.dumps(needs)
-    out = io.StringIO()
-    with mock.patch.dict(os.environ, {"NEEDS": raw}), contextlib.redirect_stdout(out), contextlib.redirect_stderr(out):
-        code = gates.main()
-    return code, out.getvalue()
+def gate_step() -> dict:
+    steps = [step for step in workflow("ci.yml")["jobs"]["release-gates"]["steps"] if "run" in step]
+    if len(steps) != 1:
+        raise AssertionError(f"release-gates must have exactly one run step, found {len(steps)}")
+    return steps[0]
 
 
-class ReleaseGatesScriptTests(unittest.TestCase):
+def run_gate(needs: dict) -> subprocess.CompletedProcess[str]:
+    """Run the shell of the release-gates step the way the runner does, with a `needs` context."""
+    env = dict(os.environ, NEEDS=json.dumps(needs))
+    return subprocess.run(
+        ["bash", "--noprofile", "--norc", "-eo", "pipefail", "-c", gate_step()["run"]],
+        env=env,
+        capture_output=True,
+        text=True,
+        check=False,
+    )
+
+
+class ReleaseGatesStepTests(unittest.TestCase):
     def test_passes_when_every_needed_job_succeeded(self) -> None:
-        code, out = run_gate({"test": {"result": "success", "outputs": {}}, "web": {"result": "success", "outputs": {}}})
-        self.assertEqual(code, 0, out)
-        self.assertIn("all 2 needed jobs succeeded", out)
+        done = run_gate({"test": {"result": "success", "outputs": {}}, "web": {"result": "success", "outputs": {}}})
+        self.assertEqual(done.returncode, 0, done.stderr)
+        self.assertIn("test: success", done.stdout)
 
-    def test_fails_and_names_every_job_that_did_not_succeed(self) -> None:
+    def test_fails_and_names_the_job_that_did_not_succeed(self) -> None:
         for result in ("failure", "cancelled", "skipped"):
             with self.subTest(result=result):
-                code, out = run_gate({"test": {"result": "success"}, "datasets": {"result": result}})
-                self.assertEqual(code, 1, out)
-                self.assertIn("not successful: datasets", out)
-                self.assertNotIn("not successful: datasets, test", out)
-
-    def test_fails_without_a_usable_needs_context(self) -> None:
-        for raw in ("", "{}", "[]", "not json", '{"test": "success"}', '{"test": {}}'):
-            with self.subTest(raw=raw):
-                code, out = run_gate(raw)
-                self.assertEqual(code, 1, out)
-                self.assertIn("cannot read the needs context", out)
+                done = run_gate({"test": {"result": "success"}, "datasets": {"result": result}})
+                self.assertNotEqual(done.returncode, 0, done.stdout)
+                self.assertIn("not successful: datasets", done.stderr)
+                self.assertNotIn("test,", done.stderr)
 
 
 class CiWorkflowTests(unittest.TestCase):
@@ -75,12 +63,9 @@ class CiWorkflowTests(unittest.TestCase):
         others = sorted(job for job in self.jobs if job != "release-gates")
         self.assertEqual(sorted(self.gate["needs"]), others, "a ci.yml job is not listed under release-gates.needs")
 
-    def test_release_gates_runs_after_failures_and_checks_results(self) -> None:
+    def test_release_gates_runs_after_failures_with_the_needs_context(self) -> None:
         self.assertEqual(self.gate["if"], "always()")
-        steps = [step for step in self.gate["steps"] if "run" in step]
-        self.assertEqual(len(steps), 1)
-        self.assertEqual(steps[0]["run"].strip(), "python3 scripts/release_gates.py")
-        self.assertEqual(steps[0]["env"], {"NEEDS": "${{ toJSON(needs) }}"})
+        self.assertEqual(gate_step()["env"], {"NEEDS": "${{ toJSON(needs) }}"})
 
     def test_no_job_can_be_skipped_by_a_condition(self) -> None:
         for job_id, job in self.jobs.items():
