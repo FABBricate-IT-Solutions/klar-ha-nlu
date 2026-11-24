@@ -151,6 +151,8 @@ fn locale_overlay_adds_tokens_without_editing_rust() {
     let gb = catalog_for(&["en-GB".into()]);
     assert_eq!(gb.verb("colour"), Some(VerbKind::Color));
     assert!(gb.light_nouns().contains("bulb"));
+    // en-GB replaces the English status words; without "what" short device questions leave scope.
+    assert!(gb.status_words().contains("what"));
     reset_runtime_packs();
 }
 
