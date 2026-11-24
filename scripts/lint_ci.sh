@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 # Lint the CI definition and the shell scripts:
-#   shellcheck  every tracked shell script
-#   actionlint  the workflows, with shellcheck on every `run:` block
-#   zizmor      the workflows; fails on a finding of medium severity or higher
+#   - every tracked shell script with shellcheck
+#   - the workflows with actionlint, which runs shellcheck on every `run:` block
+#   - the workflows with zizmor; it fails on a finding of medium severity or higher
 # Needs uv (https://docs.astral.sh/uv/). It fetches the tools at the versions pinned here.
 set -euo pipefail
 cd "$(dirname "$0")/.."
@@ -13,6 +13,7 @@ ZIZMOR=1.33.1
 
 # Scripts by shebang, so one without the .sh suffix is not missed.
 mapfile -t scripts < <(
+  # shellcheck disable=SC2016 # an awk program, not a shell expansion
   git ls-files -z | xargs -0 awk 'FNR == 1 { if ($0 ~ /^#!.*[\/ ](ba|da)?sh( |$)/) print FILENAME; nextfile }'
 )
 if [[ ${#scripts[@]} -eq 0 ]]; then
