@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Assist conversation_id is isolated; klar-followup is only the fallback."""
+"""Assist conversation_id is isolated; a turn without an id never lands in a shared session."""
 
 from __future__ import annotations
 
@@ -40,15 +40,42 @@ const = _load_const()
 
 
 class SessionIsolationTests(unittest.TestCase):
-    def test_assist_id_wins_over_device_and_followup(self) -> None:
+    def test_assist_id_wins_over_device(self) -> None:
         self.assertEqual(const.parse_session_id("assist-a", None, None), "assist-a")
         self.assertEqual(const.parse_session_id("  assist-b  ", "dev-1", None), "assist-b")
         self.assertEqual(const.parse_session_id("chat-1", None, "sat-1"), "chat-1")
-        self.assertEqual(const.parse_session_id(None, None, None), const.FOLLOWUP_SESSION)
-        self.assertEqual(const.parse_session_id("", None, None), const.FOLLOWUP_SESSION)
         self.assertEqual(const.parse_session_id("   ", "dev-1", None), "dev:dev-1")
         self.assertEqual(const.parse_session_id(None, None, "sat-1"), "dev:sat-1")
         self.assertNotEqual(const.parse_session_id("chat-a", None, None), const.parse_session_id("chat-b", None, None))
+
+    def test_no_id_and_no_device_is_never_a_shared_session(self) -> None:
+        # H-01: these used to be the constant "klar-followup" for every caller.
+        self.assertFalse(hasattr(const, "FOLLOWUP_SESSION"))
+        for assist_id in (None, "", "   "):
+            first = const.parse_session_id(assist_id, None, None)
+            second = const.parse_session_id(assist_id, None, None)
+            self.assertTrue(first)
+            self.assertNotEqual(first, second)
+        self.assertIsNone(const.engine_session_id(None, None))
+        self.assertIsNone(const.engine_session_id("  ", ""))
+
+    def test_chat_session_decides_when_home_assistant_opened_one(self) -> None:
+        # No id from the caller: the voice device keeps its session, everyone else
+        # gets the chat session Home Assistant just created.
+        self.assertEqual(const.parse_session_id(None, None, None, "chat-new"), "chat-new")
+        self.assertEqual(const.parse_session_id(None, None, "sat-1", "chat-new"), "dev:sat-1")
+        self.assertEqual(const.parse_session_id(None, "dev-1", None, "chat-new"), "dev:dev-1")
+        # An id from the caller: Home Assistant may have replaced an idle one.
+        self.assertEqual(const.parse_session_id("chat-old", None, "sat-1", "chat-new"), "chat-new")
+        self.assertEqual(const.parse_session_id("chat-old", None, None, None), "chat-old")
+        self.assertEqual(len(const.parse_session_id("x" * 400, None, None)), 128)
+        self.assertEqual(const.parse_session_id(7, None, None, "chat-new"), "chat-new")
+
+    def test_turn_is_bound_to_the_chat_log_before_parsing(self) -> None:
+        src = (ROOT / "custom_components" / "klar_nlu" / "conversation.py").read_text(encoding="utf-8")
+        start = src.index("async def _async_handle_message")
+        head = src[start : src.index("await self._parse(", start)]
+        self.assertIn('getattr(chat_log, "conversation_id", None)', head)
 
     def test_parse_forwards_assist_conversation_id(self) -> None:
         src = (ROOT / "custom_components" / "klar_nlu" / "conversation.py").read_text(encoding="utf-8")

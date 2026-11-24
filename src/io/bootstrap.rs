@@ -1,7 +1,7 @@
-use crate::home::overlay::{load_overlay, save_overlay};
 use crate::home::{load_merged, registry_stamp};
 use crate::io::state::AppState;
 use crate::io::{web, wyoming};
+use crate::types::Settings;
 use std::net::SocketAddr;
 use std::path::{Path, PathBuf};
 use std::sync::atomic::Ordering;
@@ -37,6 +37,7 @@ pub async fn run(args: RuntimeArgs) {
     }
     let mut state = AppState::new(loaded, data_dir.clone(), token);
     state.config_dir = args.config_dir.clone();
+    state.overlay.checkpoint();
     enable_bundle_from_env(&state).await;
 
     let reload_state = state.clone();
@@ -65,18 +66,24 @@ async fn enable_bundle_from_env(state: &AppState) {
     if !env_on("KLAR_SUPPORT_BUNDLE") {
         return;
     }
-    if load_overlay(&state.data_dir).settings.is_some() {
-        return;
-    }
     let mut settings = state.settings.lock().await;
-    if settings.support_bundle {
-        return;
+    let wanted = settings.clone();
+    // The saved choice wins: the switch only fills in settings nobody has saved yet.
+    let saved = state.overlay.try_update(|overlay| {
+        if overlay.settings.is_some() || wanted.support_bundle {
+            return Err(());
+        }
+        overlay.settings = Some(Settings { support_bundle: true, ..wanted });
+        Ok(())
+    });
+    match saved {
+        Ok(Ok(())) => {
+            settings.support_bundle = true;
+            tracing::info!("Support-Bundle an (KLAR_SUPPORT_BUNDLE)");
+        }
+        Ok(Err(())) => {}
+        Err(err) => tracing::error!("Support-Bundle (KLAR_SUPPORT_BUNDLE) nicht eingeschaltet, klar_nlu.json nicht gespeichert: {err}"),
     }
-    settings.support_bundle = true;
-    let mut overlay = load_overlay(&state.data_dir);
-    overlay.settings = Some(settings.clone());
-    let _ = save_overlay(&state.data_dir, &overlay);
-    tracing::info!("Support-Bundle an (KLAR_SUPPORT_BUNDLE)");
 }
 
 fn resolve_token(explicit: Option<String>, file: Option<&Path>) -> Option<String> {

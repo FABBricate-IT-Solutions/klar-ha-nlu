@@ -1,5 +1,5 @@
-use crate::home::overlay::{apply_overlay, load_overlay, save_overlay};
-use crate::home::{HomeStore, LoadedHome};
+use crate::home::overlay::apply_overlay;
+use crate::home::{HomeStore, LoadedHome, OverlayStore};
 use crate::io::bundle::{entry_from_parse, BundleStore};
 use crate::io::conversations::{turn_from_outcome, ConversationJournal};
 use crate::io::llm::load_endpoint;
@@ -9,6 +9,7 @@ use crate::io::trainer_consent::TrainerConsentHub;
 use crate::llm::LlmEndpoint;
 use crate::session::Sessions;
 use crate::types::{CustomSentence, MatchControl, ParseOutcome, ParseResult, PolicyRule, Settings, SpeechBank};
+use axum::http::StatusCode;
 use std::path::PathBuf;
 use std::sync::atomic::AtomicBool;
 use std::sync::Arc;
@@ -29,6 +30,8 @@ pub struct AppState {
     pub llm_calls: Arc<LlmCallStore>,
     pub config_dir: PathBuf,
     pub data_dir: PathBuf,
+    /// The only writer of `klar_nlu.json` in `data_dir`.
+    pub overlay: OverlayStore,
     pub live_sync: Arc<AtomicBool>,
     pub token: Option<String>,
     pub llm: Arc<Mutex<Option<LlmEndpoint>>>,
@@ -51,6 +54,7 @@ impl AppState {
             metrics: Arc::new(MetricsStore::default()),
             llm_calls: Arc::new(LlmCallStore::default()),
             config_dir: data_dir.clone(),
+            overlay: OverlayStore::open(&data_dir),
             data_dir,
             live_sync: Arc::new(AtomicBool::new(false)),
             token,
@@ -89,12 +93,16 @@ impl AppState {
         if !home.entities.iter().any(|entity| entity.entity_id == entity_id) {
             return;
         }
-        let mut overlay = load_overlay(&self.data_dir);
-        let aliases = overlay.aliases.entry(entity_id.to_string()).or_default();
-        if !aliases.iter().any(|existing| existing == alias) {
-            aliases.push(alias.to_string());
-        }
-        let _ = save_overlay(&self.data_dir, &overlay);
+        let saved = self.overlay.update(|overlay| {
+            let aliases = overlay.aliases.entry(entity_id.to_string()).or_default();
+            if !aliases.iter().any(|existing| existing == alias) {
+                aliases.push(alias.to_string());
+            }
+            overlay.clone()
+        });
+        let Ok(overlay) = saved.map_err(save_failed) else {
+            return;
+        };
         self.home
             .edit(|next| {
                 apply_overlay(next, &overlay);
@@ -107,11 +115,15 @@ impl AppState {
         if rows.is_empty() {
             return;
         }
-        let mut overlay = load_overlay(&self.data_dir);
-        for (entity_id, area) in rows {
-            overlay.areas.insert(entity_id.clone(), area.clone());
-        }
-        let _ = save_overlay(&self.data_dir, &overlay);
+        let saved = self.overlay.update(|overlay| {
+            for (entity_id, area) in rows {
+                overlay.areas.insert(entity_id.clone(), area.clone());
+            }
+            overlay.clone()
+        });
+        let Ok(overlay) = saved.map_err(save_failed) else {
+            return;
+        };
         self.home
             .edit(|next| {
                 apply_overlay(next, &overlay);
@@ -119,4 +131,11 @@ impl AppState {
             })
             .await;
     }
+}
+
+/// A change that did not reach `klar_nlu.json`: log why and answer 500. The caller must not
+/// have changed the running state yet.
+pub(crate) fn save_failed(err: std::io::Error) -> StatusCode {
+    tracing::error!("klar_nlu.json nicht gespeichert: {err}");
+    StatusCode::INTERNAL_SERVER_ERROR
 }

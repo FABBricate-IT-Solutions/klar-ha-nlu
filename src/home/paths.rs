@@ -1,5 +1,7 @@
-use std::io::{self, ErrorKind};
+use std::fs::{File, OpenOptions};
+use std::io::{self, ErrorKind, Write};
 use std::path::{Path, PathBuf};
+use uuid::Uuid;
 
 fn invalid(message: &str) -> io::Error {
     io::Error::new(ErrorKind::InvalidInput, message)
@@ -58,11 +60,59 @@ pub fn write_confined(dir: &Path, name: &str, bytes: &[u8]) -> io::Result<()> {
     std::fs::write(path, bytes)
 }
 
+/// Replace `dir/name` in one step: the bytes go to a temp file of their own, are synced, and
+/// only then renamed over the target. A crash or a second writer never leaves a half file.
 pub fn write_atomic_confined(dir: &Path, name: &str, bytes: &[u8]) -> io::Result<()> {
+    write_checked_confined(dir, name, bytes, |_| Ok(()))
+}
+
+/// Like [`write_atomic_confined`], but the temp file is read back and handed to `check`
+/// before the rename. When the bytes differ or `check` fails, the target is not touched.
+pub fn write_checked_confined(dir: &Path, name: &str, bytes: &[u8], check: impl Fn(&[u8]) -> io::Result<()>) -> io::Result<()> {
     let path = safe_path(confined_file(dir, name)?)?;
-    let tmp = safe_path(confined_file(dir, &format!("{name}.tmp"))?)?;
-    std::fs::write(&tmp, bytes)?;
-    std::fs::rename(tmp, path)
+    let tmp = safe_path(confined_file(dir, &format!("{name}.{}{TEMP_SUFFIX}", Uuid::new_v4().simple()))?)?;
+    let written = write_synced(&tmp, bytes).and_then(|()| {
+        let back = std::fs::read(&tmp)?;
+        if back != bytes {
+            return Err(io::Error::new(ErrorKind::InvalidData, "temp file does not hold what was written"));
+        }
+        check(&back)?;
+        std::fs::rename(&tmp, &path)
+    });
+    if written.is_err() {
+        let _ = std::fs::remove_file(&tmp);
+        return written;
+    }
+    if let Some(parent) = path.parent() {
+        // Make the rename itself durable. Not every filesystem lets a directory be synced.
+        let _ = File::open(parent).and_then(|handle| handle.sync_all());
+    }
+    Ok(())
+}
+
+const TEMP_SUFFIX: &str = ".tmp";
+
+fn write_synced(path: &Path, bytes: &[u8]) -> io::Result<()> {
+    let mut file = OpenOptions::new().write(true).create_new(true).open(path)?;
+    file.write_all(bytes)?;
+    file.sync_all()
+}
+
+/// Remove temp files a crashed write of `dir/name` left behind. Call before the first write.
+pub fn sweep_temp_files(dir: &Path, name: &str) {
+    let Ok(base) = confined_file(dir, name) else {
+        return;
+    };
+    let Some(parent) = base.parent() else {
+        return;
+    };
+    let prefix = format!("{name}.");
+    for entry in std::fs::read_dir(parent).into_iter().flatten().flatten() {
+        let leaf = entry.file_name().to_string_lossy().into_owned();
+        if leaf.starts_with(&prefix) && leaf.ends_with(TEMP_SUFFIX) {
+            let _ = remove_confined(dir, &leaf);
+        }
+    }
 }
 
 pub fn remove_confined(dir: &Path, name: &str) -> io::Result<()> {
@@ -73,6 +123,7 @@ pub fn remove_confined(dir: &Path, name: &str) -> io::Result<()> {
 #[cfg(test)]
 mod tests {
     use super::*;
+    use crate::home::test_dir::TestDir;
 
     fn temp(tag: &str) -> PathBuf {
         let dir = std::env::temp_dir().join(format!("klar-paths-{tag}-{}", std::process::id()));
@@ -101,5 +152,25 @@ mod tests {
         remove_confined(&dir, "klar_nlu.json").unwrap();
         assert!(read_confined(&dir, "klar_nlu.json").is_err());
         let _ = std::fs::remove_dir_all(&dir);
+    }
+
+    #[test]
+    fn a_failed_check_keeps_the_old_file_and_leaves_no_temp_file() {
+        let dir = TestDir::new("check");
+        write_atomic_confined(dir.path(), "state.json", b"old").unwrap();
+        let refused = write_checked_confined(dir.path(), "state.json", b"new", |_| Err(invalid("no")));
+        assert!(refused.is_err());
+        assert_eq!(read_confined(dir.path(), "state.json").unwrap(), b"old");
+        assert_eq!(dir.names(), ["state.json"]);
+    }
+
+    #[test]
+    fn sweep_removes_only_temp_files_of_that_name() {
+        let dir = TestDir::new("sweep");
+        for name in ["state.json", "state.json.tmp", "state.json.0123.tmp", "state.json.bad", "other.json.tmp"] {
+            std::fs::write(dir.file(name), b"x").unwrap();
+        }
+        sweep_temp_files(dir.path(), "state.json");
+        assert_eq!(dir.names(), ["other.json.tmp", "state.json", "state.json.bad"]);
     }
 }

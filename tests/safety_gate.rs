@@ -7,7 +7,7 @@ mod common;
 use common::home::{area, describe, effects, ent, home, Talk};
 use klar_nlu::nlu::parse_with_policies;
 use klar_nlu::types::{
-    CustomSentence, HomeGraph, ParseDecision, ParseOutcome, PolicyEffect, PolicyMatch, PolicyRule, RejectReason, SpeechBank,
+    CustomSentence, HomeGraph, IntentPlan, ParseDecision, ParseOutcome, PolicyEffect, PolicyMatch, PolicyRule, RejectReason, SpeechBank,
 };
 
 fn test_home(lang: &str) -> HomeGraph {
@@ -237,16 +237,44 @@ fn a_german_routine_phrase_is_the_whole_utterance() {
     }
 }
 
-/// A routine used to return before validation, so a script hidden from Assist still ran.
+fn starts(out: &ParseOutcome, script: &str) -> bool {
+    let named =
+        |plan: &IntentPlan| plan.intents().iter().any(|intent| intent.name == "HassTurnOn" && intent.slot("entity_id") == Some(script));
+    matches!(out.decision, ParseDecision::Execute) && out.plan.as_ref().is_some_and(named)
+}
+
+/// The operator chose the script in Klar, so a routine starts it whether or not Home
+/// Assistant exposes it to Assist, as it did before routines met the safety decision.
+/// Speaking the script's own name still needs the exposure.
 #[test]
-fn a_routine_cannot_start_a_script_that_is_not_exposed() {
+fn a_routine_starts_the_script_the_operator_named_even_when_it_is_not_exposed() {
     let home = test_home("en");
     let routines = [routine("secret mode", "script.hidden"), routine("ghost mode", "script.missing")];
-    for text in ["secret mode", "ghost mode"] {
+    for (text, script) in [("secret mode", "script.hidden"), ("ghost mode", "script.missing")] {
         let out = say_with(&mut Talk::new("en", &home), &routines, text);
-        assert!(out.plan.is_none(), "{text}: {}", describe(&out));
-        assert!(!matches!(out.decision, ParseDecision::Execute), "{text}: {}", describe(&out));
+        assert!(starts(&out, script), "{text}: {}", describe(&out));
     }
+    let out = say_with(&mut Talk::new("en", &home), &routines, "run the hidden routine");
+    assert!(!starts(&out, "script.hidden"), "{}", describe(&out));
+}
+
+/// The exemption covers the exposure check only: the user's rules still decide.
+#[test]
+fn rules_still_govern_a_routine_script_that_is_not_exposed() {
+    let home = test_home("en");
+    let routines = [routine("secret mode", "script.hidden")];
+    let mut talk = Talk::new("en", &home);
+    talk.rules = vec![rule("script.hidden", PolicyEffect::Block)];
+    let out = say_with(&mut talk, &routines, "secret mode");
+    assert!(matches!(out.decision, ParseDecision::Reject { reason: RejectReason::Unsafe }), "{}", describe(&out));
+
+    let mut talk = Talk::new("en", &home);
+    talk.rules = vec![rule("script.hidden", PolicyEffect::Confirm)];
+    let out = say_with(&mut talk, &routines, "secret mode");
+    assert!(matches!(out.decision, ParseDecision::Confirm { .. }), "{}", describe(&out));
+    assert!(out.plan.is_none());
+    let out = say_with(&mut talk, &routines, "yes");
+    assert!(starts(&out, "script.hidden"), "{}", describe(&out));
 }
 
 #[test]
@@ -280,7 +308,7 @@ fn phrase_script(phrase: &str, script: &str) -> PolicyRule {
 }
 
 #[test]
-fn a_rule_script_is_validated_and_keeps_its_trace() {
+fn a_rule_script_runs_and_keeps_its_trace() {
     let home = test_home("en");
     let mut talk = Talk::new("en", &home);
     talk.rules = vec![phrase_script("time for bed", "script.evening")];
@@ -290,10 +318,12 @@ fn a_rule_script_is_validated_and_keeps_its_trace() {
     assert_eq!(trace.hit.as_deref(), Some("script"));
     assert_eq!(trace.matched_rule.as_deref(), Some("phrase-script"));
 
+    // The rule names the script, so it starts without being exposed to Assist.
     for script in ["script.hidden", "script.missing"] {
         let mut talk = Talk::new("en", &home);
         talk.rules = vec![phrase_script("time for bed", script)];
-        does_nothing(&mut talk, "time for bed");
+        let out = talk.say("time for bed");
+        assert!(starts(&out, script), "{script}: {}", describe(&out));
     }
 }
 

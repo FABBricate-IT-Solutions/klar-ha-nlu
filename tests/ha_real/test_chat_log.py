@@ -6,7 +6,6 @@ Assist does, then calls the Klar agent. The stub tests hand the agent a mock cha
 
 from __future__ import annotations
 
-import pytest
 from engine_fake import FakeEngine, intent
 from ha_entities import FakeLock, FakeSwitch, add_entities
 from homeassistant.components import conversation
@@ -114,38 +113,3 @@ async def test_satellite_turn_uses_a_session_of_its_own(
 
     first, second = engine.session_ids()
     assert first != second
-
-
-@pytest.mark.xfail(
-    strict=True,
-    reason="H-01: typed Assist clients without a conversation id share one engine session; fixed by package 1.10",
-)
-async def test_typed_clients_without_an_id_do_not_share_a_session(
-    hass: HomeAssistant, klar: MockConfigEntry, engine: FakeEngine
-) -> None:
-    lock = FakeLock("Front Door", "lock-1")
-    await add_entities(hass, "lock", lock)
-    engine.asks_before(
-        "unlock the front door",
-        "Unlock Front Door?",
-        [intent("HassTurnOff", domain="lock", entity_id=lock.entity_id)],
-    )
-    await _say(hass, "unlock the front door")
-    await _say(hass, "yes")
-
-    first, second = engine.session_ids()
-    assert first != second, "two clients reached the engine with the same session id"
-    assert lock.calls == [], "a stranger's yes unlocked the door"
-
-
-@pytest.mark.xfail(
-    strict=True,
-    reason="H-01: the reply names the shared engine session, not Home Assistant's chat session; fixed by package 1.10",
-)
-async def test_reply_names_the_chat_session_home_assistant_opened(
-    hass: HomeAssistant, klar: MockConfigEntry, engine: FakeEngine
-) -> None:
-    await _coffee_maker(hass, engine)
-    result = await _say(hass, "turn on the coffee maker")
-
-    assert result.conversation_id in _logs(hass)
