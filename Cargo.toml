@@ -35,7 +35,7 @@ serde_yaml = "0.9"
 tower-http = { version = "0.7.0", features = ["fs"] }
 tar = "0.4"
 flate2 = { version = "1", default-features = false, features = ["rust_backend"] }
-jiff = { version = "0.2", default-features = false, features = ["std", "tz-system", "tzdb-bundle-always"] }
+jiff = { version = "1.0", default-features = false, features = ["std", "tz-system", "tzdb-bundle-always"] }
 
 [dev-dependencies]
 tower = { version = "0.5", features = ["util"] }
