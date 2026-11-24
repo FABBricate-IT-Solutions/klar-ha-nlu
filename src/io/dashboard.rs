@@ -1,8 +1,8 @@
 use crate::home::assignment::{build_dashboard, Dashboard};
-use crate::home::overlay::{apply_overlay, load_overlay, save_overlay, UiApplyRow, UiState};
+use crate::home::overlay::{apply_overlay, load_overlay, UiApplyRow, UiState};
 use crate::io::auth::{reads_allowed, writes_allowed};
 use crate::io::llm_calls::LlmWindow;
-use crate::io::state::AppState;
+use crate::io::state::{save_failed, AppState};
 use axum::extract::{ConnectInfo, State};
 use axum::http::{HeaderMap, StatusCode};
 use axum::routing::{get, post};
@@ -69,10 +69,9 @@ async fn set_ui(
     if !writes_allowed(Some(peer), &headers, &state.token) {
         return Err(StatusCode::UNAUTHORIZED);
     }
-    let mut overlay = load_overlay(&state.data_dir);
-    overlay.ui = sanitize_ui(body);
-    let _ = save_overlay(&state.data_dir, &overlay);
-    Ok(Json(overlay.ui))
+    let ui = sanitize_ui(body);
+    state.overlay.update(|overlay| overlay.ui = ui.clone()).map_err(save_failed)?;
+    Ok(Json(ui))
 }
 
 fn locale_from_env(raw: Option<&str>) -> Option<String> {
@@ -158,9 +157,8 @@ async fn apply_suggestions(
         return Err(StatusCode::UNAUTHORIZED);
     }
     let home = state.home.snapshot().await;
-    let mut overlay = load_overlay(&state.data_dir);
-    let dashboard =
-        build_dashboard(&home, &state.bundle.load(), &overlay.ui.dismissed, state.metrics.snapshot(), state.catalog_for_settings().await);
+    let dismissed = load_overlay(&state.data_dir).ui.dismissed;
+    let dashboard = build_dashboard(&home, &state.bundle.load(), &dismissed, state.metrics.snapshot(), state.catalog_for_settings().await);
     let mut rows = Vec::new();
     for row in dashboard.assignment {
         let Some(suggestion) = row.suggested_area else {
@@ -169,11 +167,18 @@ async fn apply_suggestions(
         if suggestion.score < 3 || row.area.as_deref() == Some(suggestion.area_id.as_str()) {
             continue;
         }
-        overlay.areas.insert(row.entity_id.clone(), suggestion.area_id.clone());
         rows.push(UiApplyRow { entity_id: row.entity_id, before: row.area, after: suggestion.area_id });
     }
-    overlay.ui.last_apply = rows.clone();
-    let _ = save_overlay(&state.data_dir, &overlay);
+    let overlay = state
+        .overlay
+        .update(|overlay| {
+            for row in &rows {
+                overlay.areas.insert(row.entity_id.clone(), row.after.clone());
+            }
+            overlay.ui.last_apply = rows.clone();
+            overlay.clone()
+        })
+        .map_err(save_failed)?;
     apply_runtime_overlay(&state, overlay).await;
     Ok(Json(ApplyOut { applied: rows.len(), rows }))
 }
@@ -186,13 +191,16 @@ async fn undo_apply(
     if !writes_allowed(Some(peer), &headers, &state.token) {
         return Err(StatusCode::UNAUTHORIZED);
     }
-    let mut overlay = load_overlay(&state.data_dir);
-    let rows = overlay.ui.last_apply.clone();
-    for row in &rows {
-        overlay.areas.insert(row.entity_id.clone(), row.before.clone().unwrap_or_default());
-    }
-    overlay.ui.last_apply.clear();
-    let _ = save_overlay(&state.data_dir, &overlay);
+    let (rows, overlay) = state
+        .overlay
+        .update(|overlay| {
+            let rows = std::mem::take(&mut overlay.ui.last_apply);
+            for row in &rows {
+                overlay.areas.insert(row.entity_id.clone(), row.before.clone().unwrap_or_default());
+            }
+            (rows, overlay.clone())
+        })
+        .map_err(save_failed)?;
     apply_runtime_overlay(&state, overlay).await;
     Ok(Json(ApplyOut { applied: rows.len(), rows }))
 }

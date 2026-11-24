@@ -1,7 +1,7 @@
 //! Engine and operator-chrome settings Lotse may change. Never the LLM endpoint.
 
-use crate::home::overlay::{load_overlay, save_overlay};
-use crate::io::state::AppState;
+use crate::home::overlay::load_overlay;
+use crate::io::state::{save_failed, AppState};
 use crate::io::trainer_reads::with_view;
 use crate::lang::{pin_language, LangId};
 use crate::types::{checked_news_feeds, Mode, NewsFeed, Personality, RefineBand, Settings, UnitSystem, VoiceTraits};
@@ -77,22 +77,31 @@ pub async fn list_engine(state: &AppState) -> Result<Value, String> {
 
 pub async fn apply_engine(state: &AppState, args: &Value) -> Result<Value, String> {
     let next = patch_engine(&state.settings.lock().await.clone(), args)?;
+    let ui = state
+        .overlay
+        .update(|overlay| {
+            overlay.settings = Some(next.clone());
+            overlay.ui.clone()
+        })
+        .map_err(save_failed)
+        .map_err(|_| "save overlay")?;
     *state.settings.lock().await = next.clone();
-    let mut overlay = load_overlay(&state.data_dir);
-    overlay.settings = Some(next.clone());
-    save_overlay(&state.data_dir, &overlay).map_err(|_| "save overlay")?;
-    let ui = overlay.ui;
     let configured = state.llm.lock().await.is_some();
     Ok(engine_view(&next, &ui.theme, &ui.locale, ui.locale_set, configured))
 }
 
 pub async fn apply_ui(state: &AppState, args: &Value) -> Result<Value, String> {
-    let mut overlay = load_overlay(&state.data_dir);
-    overlay.ui = patch_ui(&overlay.ui, args)?;
-    save_overlay(&state.data_dir, &overlay).map_err(|_| "save overlay")?;
+    let ui = state
+        .overlay
+        .try_update(|overlay| {
+            overlay.ui = patch_ui(&overlay.ui, args)?;
+            Ok::<_, String>(overlay.ui.clone())
+        })
+        .map_err(save_failed)
+        .map_err(|_| "save overlay")??;
     let settings = state.settings.lock().await.clone();
     let configured = state.llm.lock().await.is_some();
-    Ok(engine_view(&settings, &overlay.ui.theme, &overlay.ui.locale, overlay.ui.locale_set, configured))
+    Ok(engine_view(&settings, &ui.theme, &ui.locale, ui.locale_set, configured))
 }
 
 pub fn preview_engine(current: &Settings, args: &Value) -> Result<Value, String> {
