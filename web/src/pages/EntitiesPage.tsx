@@ -86,7 +86,7 @@ function DeviceButton({
         textAlign: "start",
         color: "inherit",
         background: "var(--surface-2)",
-        borderColor: active ? "var(--accent)" : "var(--line)",
+        borderColor: active ? "var(--brand)" : "var(--line)",
       }}
     >
       <div className="house-inbox-copy">

@@ -56,7 +56,7 @@
   inset-inline-start: 5px;
   width: 3px;
   border-radius: 2px;
-  background: var(--accent);
+  background: var(--brand);
   opacity: 0.55;
 }
 
@@ -162,13 +162,13 @@ button.guide-step {
 }
 
 .guide-steps li.active .guide-step {
-  border-color: var(--accent);
+  border-color: var(--brand);
 }
 
 .guide-num {
   flex: 0 0 1.25rem;
   font-weight: 600;
-  color: var(--accent);
+  color: var(--brand);
 }
 
 .guide-copy {
@@ -231,7 +231,7 @@ button.guide-step {
   font-size: 11px;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: var(--accent);
+  color: var(--brand);
 }
 
 .trainer-head h2 {
@@ -301,7 +301,7 @@ button.guide-step {
 
 .trainer-line.user .trainer-role {
   text-align: end;
-  color: var(--accent);
+  color: var(--brand);
 }
 
 .trainer-bubble {
@@ -313,7 +313,7 @@ button.guide-step {
 
 .trainer-line.user .trainer-bubble {
   color: var(--primary-foreground);
-  background: var(--accent);
+  background: var(--brand);
   border-radius: 8px;
 }
 
@@ -411,7 +411,7 @@ button.guide-step {
 }
 
 .trainer-chip:hover:not(:disabled) {
-  border-color: var(--accent);
+  border-color: var(--brand);
 }
 
 .trainer-line.tool {
@@ -425,7 +425,7 @@ button.guide-step {
 .trainer-consent {
   align-self: stretch;
   padding: 12px 14px;
-  border: 1px solid var(--accent);
+  border: 1px solid var(--brand);
   border-radius: 8px;
   background: var(--surface);
 }

@@ -22,11 +22,16 @@ const LANES: PolicyLane[] = ["match", "language", "house"];
 function newRule(): PolicyRule {
   return {
     id: `rule-${Date.now().toString(36)}`,
-    enabled: true,
+    // Disabled until the operator fills a when clause (U-09).
+    enabled: false,
     label: "",
     when: {},
     effect: "confirm",
   };
+}
+
+function whenIsEmpty(when: PolicyRule["when"]): boolean {
+  return !when.intent && !when.domain && !when.area && !when.entity_id && !when.floor && !when.name && !when.phrase && !when.area_wide;
 }
 
 function rulesHint(t: Messages, view: RulesView): string {
@@ -306,7 +311,7 @@ export function RulesPage({
               { id: "test", label: t.guideSentencesTest, hint: t.guideSentencesTestHint },
             ]}
           />
-          <CustomPage t={t} locale={locale} embedded />
+          <CustomPage t={t} locale={locale} languages={languages} embedded />
         </>
       )}
       {view === "policies" && (
@@ -384,6 +389,11 @@ export function RulesPage({
               data-lane="house"
               onClick={() => setLane("house")}
             >
+              {current && whenIsEmpty(current.when) ? (
+                <p className="danger" role="status">
+                  This rule has no when clause — it will not match until you set one.
+                </p>
+              ) : null}
               <HouseLane
                 t={t}
                 rules={rules}

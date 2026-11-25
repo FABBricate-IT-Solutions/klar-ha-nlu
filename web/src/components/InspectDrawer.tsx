@@ -42,12 +42,13 @@ export function InspectDrawer({
     setError("");
     try {
       const aliases = aliasDraft.split(",").map((item) => item.trim()).filter(Boolean);
+      // Always send aliases/area so an empty value clears the overlay (U-36).
       await api.tagEntity({
         entity_id: row.entity_id,
         aliases,
         preferred,
         nlu_ignore: nluIgnore,
-        area: nextArea || undefined,
+        area: nextArea,
       });
       onSaved();
       toastSaved(t);

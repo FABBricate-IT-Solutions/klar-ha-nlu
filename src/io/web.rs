@@ -301,9 +301,15 @@ async fn tag_entity(
         .overlay
         .update(|overlay| {
             if let Some(aliases) = &body.aliases {
-                overlay.aliases.insert(body.entity_id.clone(), aliases.clone());
+                // Empty list clears operator aliases (U-36); a missing field leaves them alone.
+                if aliases.is_empty() {
+                    overlay.aliases.remove(&body.entity_id);
+                } else {
+                    overlay.aliases.insert(body.entity_id.clone(), aliases.clone());
+                }
             }
             if let Some(area) = &body.area {
+                // Empty string clears the room via apply_overlay; removing the key would not.
                 overlay.areas.insert(body.entity_id.clone(), area.clone());
             }
             if let Some(preferred) = body.preferred {
@@ -327,9 +333,7 @@ async fn tag_entity(
             apply_overlay(next, &overlay);
             let ent = next.entities.iter_mut().find(|e| e.entity_id == body.entity_id)?;
             if let Some(aliases) = body.aliases {
-                if !aliases.is_empty() {
-                    ent.aliases = aliases;
-                }
+                ent.aliases = aliases;
             }
             let mut tags = ent.tags.clone();
             tags.retain(|t| t != "preferred" && t != "nlu_ignore");
