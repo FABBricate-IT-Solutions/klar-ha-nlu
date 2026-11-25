@@ -1,4 +1,5 @@
 pub(crate) mod auth;
+pub(crate) mod auth_middleware;
 pub(crate) mod backup;
 pub mod bootstrap;
 pub(crate) mod bundle;

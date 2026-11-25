@@ -2,12 +2,14 @@ use crate::home::expose::assist_visible;
 use crate::home::gaps::leftover;
 use crate::home::overlay::apply_overlay;
 use crate::io::auth::{reads_allowed, writes_allowed};
+use crate::io::auth_middleware::authorize;
 use crate::io::limits::MAX_PARSE_CHARS;
 use crate::io::state::{save_failed, AppState};
 use crate::nlu::{legacy_result, parse_with_controls};
-use crate::types::{known_intent, AreaRec, CustomSentence, EntityRec, ParseOutcome, Settings};
+use crate::types::{known_intent, AreaRec, CustomSentence, EntityRec, ParseOutcome, Settings, TeachProposal};
 use axum::extract::{ConnectInfo, DefaultBodyLimit, State};
 use axum::http::{header, HeaderMap, HeaderValue, StatusCode};
+use axum::middleware::from_fn_with_state;
 use axum::response::Html;
 use axum::routing::{get, post};
 use axum::{Json, Router};
@@ -35,8 +37,7 @@ pub struct ParseIn {
 }
 
 pub fn router(state: AppState) -> Router {
-    Router::new()
-        .route("/", get(index))
+    let api = Router::new()
         .route("/api/v2/parse", post(api_parse))
         .route("/api/settings", get(get_settings).post(set_settings).patch(patch_settings))
         .route("/api/custom", get(get_custom).post(set_custom))
@@ -49,9 +50,13 @@ pub fn router(state: AppState) -> Router {
         .merge(crate::io::policies::routes())
         .layer(DefaultBodyLimit::max(16 * 1024))
         .merge(crate::io::home_sync::routes(state.clone()))
-        .merge(crate::io::backup::routes())
+        .merge(crate::io::backup::routes(state.clone()))
         .merge(crate::io::llm::routes())
         .merge(crate::io::speech::routes().layer(DefaultBodyLimit::max(16 * 1024)))
+        .layer(from_fn_with_state(state.clone(), authorize));
+    Router::new()
+        .route("/", get(index))
+        .merge(api)
         // U-20: gzip UI assets when the client asks; long-cache hashed files, no-cache HTML.
         .fallback_service(
             ServiceBuilder::new()
@@ -139,9 +144,10 @@ async fn api_parse(
         }
     };
     session.preferred_area = body.preferred_area.clone();
-    let outcome = parse_with_controls(&body.text, &home, &mut session, &custom, &settings, &policies, &speech_bank, &match_controls);
+    let mut outcome = parse_with_controls(&body.text, &home, &mut session, &custom, &settings, &policies, &speech_bank, &match_controls);
+    // D-18: teach is a proposal; Assist confirms via POST /api/entities (PersistParse).
     if let Some((entity_id, alias)) = session.pending_teach.take() {
-        state.apply_teach(&entity_id, &alias).await;
+        outcome.teach = Some(TeachProposal { entity_id, alias });
     }
     let last_names = session.last.iter().map(|turn| turn.name.clone()).collect();
     state.sessions.lock().await.put(session);

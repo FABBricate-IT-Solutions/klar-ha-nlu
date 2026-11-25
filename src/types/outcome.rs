@@ -47,6 +47,15 @@ pub struct ParseOutcome {
     pub clock_answer: bool,
     #[serde(default, skip_serializing_if = "Option::is_none")]
     pub refine_band: Option<RefineBand>,
+    /// Teach proposal from “call it …”. Assist confirms via the write-gated entities route.
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub teach: Option<TeachProposal>,
+}
+
+#[derive(Debug, Clone, Serialize, Deserialize, PartialEq, Eq)]
+pub struct TeachProposal {
+    pub entity_id: String,
+    pub alias: String,
 }
 
 #[derive(Debug, Clone, Serialize, Deserialize, PartialEq, Default)]
