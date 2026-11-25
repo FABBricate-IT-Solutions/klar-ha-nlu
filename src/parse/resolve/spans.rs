@@ -95,9 +95,14 @@ pub(crate) fn link_named_spans(tokens: &[String], home: &HomeGraph, floors: &[St
         }
         // Prefer devices whose primary name hit this span over alias-only hits
         // ("Kugel" on the globe lamps, not as an alias on "Schlafzimmer Licht").
-        let primary: Vec<EntityRec> =
-            group.iter().filter(|entity| label_spans(tokens, &entity.name).into_iter().any(|found| found == span)).cloned().collect();
-        let mut group = if primary.is_empty() { group } else { primary };
+        // Only needed when several devices share the span — skip the re-scan otherwise.
+        if group.len() > 1 {
+            let primary: Vec<EntityRec> =
+                group.iter().filter(|entity| label_spans(tokens, &entity.name).into_iter().any(|found| found == span)).cloned().collect();
+            if !primary.is_empty() {
+                group = primary;
+            }
+        }
         match group.len() {
             0 => {}
             1 => linked.entities.push(group.remove(0)),
@@ -187,7 +192,7 @@ fn linkable(label: &str, home: &HomeGraph) -> bool {
 
 fn is_tv_word(word: &str) -> bool {
     let folded = compact(word);
-    folded == "tv" || folded == "fernseher" || folded == "television" || catalog().tv_words().iter().any(|known| folded == compact(known))
+    matches!(folded.as_str(), "tv" | "fernseher" | "television") || catalog().tv_words().iter().any(|known| folded == compact(known))
 }
 
 fn names_floor_or_area(word: &str, home: &HomeGraph) -> bool {

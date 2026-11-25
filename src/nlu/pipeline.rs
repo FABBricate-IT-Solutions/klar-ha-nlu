@@ -420,7 +420,8 @@ fn apply_resolved_lock_pair(ranking: &mut super::ranking::RankingResult, context
     let clarifying_locks =
         ranking.clarification.as_ref().is_some_and(|(options, _)| options.iter().filter(|id| id.starts_with("lock.")).count() >= 2);
     // Named locks ("haustuer und garagentor") may leave ranking empty; still install the pair.
-    if !lock_only && !clarifying_locks && !(ranking.selected.is_none() && paired_lock_command(tokens)) {
+    let install_pair = lock_only || clarifying_locks || (ranking.selected.is_none() && paired_lock_command(tokens));
+    if !install_pair {
         return;
     }
     let name = ranking

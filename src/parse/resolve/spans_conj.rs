@@ -91,7 +91,7 @@ fn stem_names_area(stem: &str, name_compact: &str) -> bool {
     if stem.len() < 3 {
         return false;
     }
-    if name_compact == stem || stem == name_compact {
+    if name_compact == stem {
         return true;
     }
     if !name_compact.starts_with(stem) {
