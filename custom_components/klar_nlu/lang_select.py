@@ -3,7 +3,9 @@
 from __future__ import annotations
 
 from .const import LANGUAGE_ALL, LANGUAGE_SYSTEM, LANGUAGE_VARIANTS, SUPPORTED_LANGUAGES
-from .languages import LANGUAGE_NAMES
+from .languages import EXPERIMENTAL_LANGUAGES, LANGUAGE_NAMES
+
+_EXPERIMENTAL = frozenset(EXPERIMENTAL_LANGUAGES)
 
 
 def _allowed(enabled: list[str] | None) -> list[str]:
@@ -98,9 +100,32 @@ def default_pack(raw: object, hass_language: str | None = None) -> str:
     return choice
 
 
-def advertised_languages() -> list[str]:
-    """Voice-assistants dropdown: always every compiled pack and its variants."""
-    return advertise(list(SUPPORTED_LANGUAGES))
+def offered_packs(
+    *,
+    experimental: bool = False,
+    selected: list[str] | None = None,
+) -> list[str]:
+    """Packs a new HA selection may pick.
+
+    Experimental locales stay hidden unless the engine switch is on or the
+    locale is already configured (package 1.12 follow-up for the HA side).
+    """
+    keep = {code for code in (selected or []) if code in SUPPORTED_LANGUAGES}
+    out: list[str] = []
+    for code in SUPPORTED_LANGUAGES:
+        if code in _EXPERIMENTAL and not experimental and code not in keep:
+            continue
+        out.append(code)
+    return out
+
+
+def advertised_languages(
+    *,
+    experimental: bool = False,
+    selected: list[str] | None = None,
+) -> list[str]:
+    """Voice-assistants dropdown: stable packs, plus kept or unlocked experimental."""
+    return advertise(offered_packs(experimental=experimental, selected=selected))
 
 
 def chrome_locale(hass_language: str | None = None) -> str:
@@ -108,6 +133,14 @@ def chrome_locale(hass_language: str | None = None) -> str:
     if not str(hass_language or "").strip():
         return "en"
     return resolve_pack(hass_language)
+
+
+def engine_default_language(raw: object, hass_language: str | None = None) -> str:
+    """Engine ``default_language`` for a "system" / empty HA language option."""
+    choice = normalize_language_choice(raw)
+    if choice in {LANGUAGE_ALL, LANGUAGE_SYSTEM}:
+        return default_pack(choice, hass_language)
+    return choice
 
 
 def engine_language_state(

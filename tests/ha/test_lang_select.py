@@ -98,12 +98,29 @@ class LangSelectTests(unittest.TestCase):
         self.assertEqual(pinned, ["de"])
         self.assertIsNone(chrome)
 
-    def test_voice_dropdown_always_lists_compiled_packs(self) -> None:
+    def test_voice_dropdown_hides_experimental_by_default(self) -> None:
+        # Follow-up to package 1.12: new HA selections only see stable packs.
+        offered = lang.offered_packs()
+        self.assertEqual(offered, ["de", "en", "en-GB"])
         advertised = lang.advertised_languages()
         self.assertIn("de", advertised)
         self.assertIn("de-DE", advertised)
         self.assertIn("en", advertised)
-        self.assertGreater(len(advertised), 2)
+        self.assertNotIn("fr", advertised)
+        self.assertNotIn("de-AT", advertised)
+
+    def test_experimental_switch_or_kept_locale_opens_the_list(self) -> None:
+        self.assertIn("fr", lang.offered_packs(experimental=True))
+        self.assertIn("de-AT", lang.offered_packs(selected=["de-AT"]))
+        self.assertNotIn("fr", lang.offered_packs(selected=["de-AT"]))
+        self.assertIn("fr", lang.advertised_languages(experimental=True))
+        self.assertIn("de-AT", lang.advertised_languages(selected=["de-AT"]))
+
+    def test_system_option_sets_default_language_from_ha(self) -> None:
+        self.assertEqual(lang.engine_default_language("system", "de"), "de")
+        self.assertEqual(lang.engine_default_language("system", "en-GB"), "en-GB")
+        self.assertEqual(lang.engine_default_language("system", None), "en")
+        self.assertEqual(lang.engine_default_language("nl", "de"), "nl")
         self.assertEqual(lang.resolve_pack("en", lang.enabled_packs("system", "de")), "en")
         self.assertEqual(lang.resolve_pack("de", lang.enabled_packs("system", "en")), "de")
         self.assertEqual(lang.resolve_pack("en", lang.enabled_packs("de", "de")), "de")
