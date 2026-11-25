@@ -19,13 +19,18 @@ pub(super) fn area_conjunction_label(parts: &[String], home: &HomeGraph) -> bool
     if parts.len() < 3 {
         return false;
     }
-    let cat = catalog();
-    let Some(conj_at) = parts.iter().position(|part| cat.is_conj(part)) else {
+    // Device names keep German/English "und"/"and" even under packs that do not list them
+    // as conjunctions (parity overlays bind af/fr/… while the label stays German).
+    let Some(conj_at) = parts.iter().position(|part| is_label_conjunction(part)) else {
         return false;
     };
     let left = &parts[..conj_at];
     let right = &parts[conj_at + 1..];
     !left.is_empty() && !right.is_empty() && area_id_for_stem(left, home).is_some() && area_id_for_stem(right, home).is_some()
+}
+
+fn is_label_conjunction(part: &str) -> bool {
+    catalog().is_conj(part) || matches!(part, "und" | "and" | "en" | "et" | "och" | "og" | "e")
 }
 
 /// Map a "Wohn und Esszimmer" group label onto the two room ids it names.
@@ -37,8 +42,7 @@ pub(super) fn rooms_from_conjunction_entities(entities: &[EntityRec], home: &Hom
             if !area_conjunction_label(&parts, home) {
                 continue;
             }
-            let cat = catalog();
-            let Some(conj_at) = parts.iter().position(|part| cat.is_conj(part)) else {
+            let Some(conj_at) = parts.iter().position(|part| is_label_conjunction(part)) else {
                 continue;
             };
             for side in [&parts[..conj_at], &parts[conj_at + 1..]] {

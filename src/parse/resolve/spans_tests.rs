@@ -157,3 +157,16 @@ fn room_scopes_shared_ceiling_word_to_one_fixture() {
     assert!(resolved.ambiguous.is_empty(), "{resolved:?}");
     assert_eq!(resolved.entities.iter().map(|e| e.entity_id.as_str()).collect::<Vec<_>>(), ["light.living_ceiling"], "{resolved:?}");
 }
+
+#[test]
+fn group_status_survives_when_und_is_not_a_local_conjunction() {
+    // Pidgin parity keeps the German group label under packs where "und" is not a conj.
+    let live: crate::types::HomeGraph = serde_json::from_str(include_str!("../../../tests/fixtures/wohnung_live.json")).expect("live");
+    for lang in ["de", "af", "fr", "en"] {
+        let _bind = crate::lang::bind(&[lang.into()]);
+        let tokens = crate::parse::normalize::tokenize("status wohn und esszimmer");
+        let resolved = crate::parse::resolve::resolve(&tokens, &live, None);
+        assert!(resolved.entities.iter().any(|e| e.entity_id == "light.wohn_und_esszimmer"), "{lang}: {resolved:?}");
+        assert!(resolved.areas.is_empty(), "{lang}: multi_area must not steal status: {resolved:?}");
+    }
+}

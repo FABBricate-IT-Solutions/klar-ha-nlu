@@ -27,6 +27,7 @@ struct Hit {
     parts: usize,
     chars: usize,
     span: Span,
+    from_primary: bool,
 }
 
 /// Devices whose whole label sits in the sentence, plus the token indices that label used.
@@ -49,14 +50,14 @@ pub(crate) fn link_named_spans(tokens: &[String], home: &HomeGraph, floors: &[St
             && e.domain != "scene"
             && e.domain != "script"
     }) {
-        for label in usable_labels(entity) {
+        for (label_index, label) in usable_labels(entity).into_iter().enumerate() {
             if !linkable(&label, home) {
                 continue;
             }
             let parts = word_count(&label);
             let chars = compact(&label).chars().count();
             for span in label_spans(tokens, &label) {
-                hits.push(Hit { entity: entity.clone(), parts, chars, span });
+                hits.push(Hit { entity: entity.clone(), parts, chars, span, from_primary: label_index == 0 });
             }
         }
     }
@@ -69,21 +70,32 @@ pub(crate) fn link_named_spans(tokens: &[String], home: &HomeGraph, floors: &[St
             .then_with(|| left.entity.entity_id.cmp(&right.entity.entity_id))
     });
 
+    // Group hits onto winning spans in one pass — do not rescan the home per span.
     let mut taken: Vec<Span> = Vec::new();
-    let mut by_span: Vec<(Span, usize, usize)> = Vec::new();
+    let mut groups: Vec<(Span, Vec<EntityRec>, BTreeSet<String>)> = Vec::new();
     for hit in hits {
+        if let Some((_, group, primary_ids)) = groups.iter_mut().find(|(span, _, _)| *span == hit.span) {
+            if hit.from_primary {
+                primary_ids.insert(hit.entity.entity_id.clone());
+            }
+            if !group.iter().any(|entity| entity.entity_id == hit.entity.entity_id) {
+                group.push(hit.entity);
+            }
+            continue;
+        }
         if taken.iter().any(|span| overlaps(hit.span, *span)) {
             continue;
         }
         taken.push(hit.span);
-        by_span.push((hit.span, hit.parts, hit.chars));
+        let mut primary_ids = BTreeSet::new();
+        if hit.from_primary {
+            primary_ids.insert(hit.entity.entity_id.clone());
+        }
+        groups.push((hit.span, vec![hit.entity], primary_ids));
     }
 
-    let by_span: Vec<(Span, Vec<EntityRec>)> =
-        by_span.into_iter().map(|(span, parts, chars)| (span, entities_at_span(tokens, home, span, parts, chars))).collect();
-
     let mut linked = LinkedNames::default();
-    for (span, mut group) in by_span {
+    for (span, mut group, primary_ids) in groups {
         if !floors.is_empty() {
             let on_floor: Vec<EntityRec> = group.iter().filter(|entity| entity_on_floors(entity, home, floors)).cloned().collect();
             if !on_floor.is_empty() {
@@ -95,10 +107,8 @@ pub(crate) fn link_named_spans(tokens: &[String], home: &HomeGraph, floors: &[St
         }
         // Prefer devices whose primary name hit this span over alias-only hits
         // ("Kugel" on the globe lamps, not as an alias on "Schlafzimmer Licht").
-        // Only needed when several devices share the span — skip the re-scan otherwise.
-        if group.len() > 1 {
-            let primary: Vec<EntityRec> =
-                group.iter().filter(|entity| label_spans(tokens, &entity.name).into_iter().any(|found| found == span)).cloned().collect();
+        if group.len() > 1 && !primary_ids.is_empty() {
+            let primary: Vec<EntityRec> = group.iter().filter(|entity| primary_ids.contains(&entity.entity_id)).cloned().collect();
             if !primary.is_empty() {
                 group = primary;
             }
@@ -124,27 +134,6 @@ pub(crate) fn free_tokens(tokens: &[String], linked: &LinkedNames) -> Vec<String
 /// A timer noun that is only there as part of a device name does not make a timer intent.
 pub(crate) fn timer_noun_free(tokens: &[String], linked: &LinkedNames) -> bool {
     tokens.iter().enumerate().any(|(index, token)| !linked.consumed.contains(&index) && catalog().timer_nouns().contains(token.as_str()))
-}
-
-fn entities_at_span(tokens: &[String], home: &HomeGraph, span: Span, parts: usize, chars: usize) -> Vec<EntityRec> {
-    let mut out = Vec::new();
-    for entity in home
-        .entities
-        .iter()
-        .filter(|e| assist_visible(e, home) && !is_infra(e) && !is_nlu_ignored(e) && e.domain != "scene" && e.domain != "script")
-    {
-        for label in usable_labels(entity) {
-            if !linkable(&label, home) || word_count(&label) != parts || compact(&label).chars().count() != chars {
-                continue;
-            }
-            if label_spans(tokens, &label).into_iter().any(|found| found == span)
-                && !out.iter().any(|have: &EntityRec| have.entity_id == entity.entity_id)
-            {
-                out.push(entity.clone());
-            }
-        }
-    }
-    out
 }
 
 fn entity_on_floors(entity: &EntityRec, home: &HomeGraph, floors: &[String]) -> bool {
@@ -296,7 +285,8 @@ pub(crate) fn take_linked(
         return None;
     }
     // Link only the command head: exception-tail names must not steal the target.
-    let head = except_at(tokens).map(|at| &tokens[..at]).unwrap_or(tokens);
+    let except = except_at(tokens);
+    let head = except.map(|at| &tokens[..at]).unwrap_or(tokens);
     let linked = link_named_spans(head, home, floors);
     if linked.entities.is_empty() && linked.ambiguous.is_empty() {
         return None;
@@ -304,8 +294,7 @@ pub(crate) fn take_linked(
     let cat = catalog();
     // Free tokens for "more targets" still come from the whole sentence so cover/light
     // nouns after "and" stay visible; exception-tail device names are not in `linked`.
-    let full = link_named_spans(tokens, home, floors);
-    let free = free_tokens(tokens, &full);
+    let free = if except.is_some() { free_tokens(tokens, &link_named_spans(tokens, home, floors)) } else { free_tokens(tokens, &linked) };
     let filtered_entities = filter_domain(linked.entities.clone(), domain);
     let filtered_ambiguous = filter_domain(linked.ambiguous.clone(), domain);
     let (mut entities, mut ambiguous) = if filtered_entities.is_empty() && filtered_ambiguous.is_empty() {
@@ -322,34 +311,40 @@ pub(crate) fn take_linked(
         || cat.any(&free, cat.lock_nouns())
         || cat.any(&free, cat.switch_plural());
     let has_conj = cat.any(tokens, cat.conjunctions());
+    // Group labels carry "und"/"and" in the device name — keep them even when the active
+    // language pack does not list that word as a conjunction (pidgin parity suites).
+    let groupish = entities.iter().chain(ambiguous.iter()).any(|entity| area_conjunction_entity(entity, home));
+    if groupish {
+        let n = entities.len() + ambiguous.len();
+        if n > 1 {
+            return None;
+        }
+        // Group label "Wohn und Esszimmer": lights/covers mean both rooms; status means the group.
+        if more_targets {
+            let mut rooms = areas.to_vec();
+            if rooms.len() < 2 {
+                rooms = rooms_from_conjunction_entities(&entities, home);
+            }
+            if rooms.len() >= 2 {
+                return Some(super::Resolved {
+                    areas: rooms,
+                    floors: floors.to_vec(),
+                    entities: Vec::new(),
+                    ambiguous: Vec::new(),
+                    ask_areas: Vec::new(),
+                });
+            }
+            return None;
+        }
+        // Status / bare group mention — keep the device, drop room areas so multi_area
+        // does not steal the query.
+        return Some(super::Resolved { areas: Vec::new(), floors: floors.to_vec(), entities, ambiguous, ask_areas: Vec::new() });
+    }
     if has_conj {
-        let groupish = entities.iter().chain(ambiguous.iter()).any(|entity| area_conjunction_entity(entity, home));
         let n = entities.len() + ambiguous.len();
         if n > 1 {
             // "haustuer und garagentor" / multi-device lists → scored / mentioned_locks path.
             return None;
-        }
-        if groupish {
-            // Group label "Wohn und Esszimmer": lights/covers mean both rooms; status means the group.
-            if more_targets {
-                let mut rooms = areas.to_vec();
-                if rooms.len() < 2 {
-                    rooms = rooms_from_conjunction_entities(&entities, home);
-                }
-                if rooms.len() >= 2 {
-                    return Some(super::Resolved {
-                        areas: rooms,
-                        floors: floors.to_vec(),
-                        entities: Vec::new(),
-                        ambiguous: Vec::new(),
-                        ask_areas: Vec::new(),
-                    });
-                }
-                return None;
-            }
-            // Status / bare group mention — keep the device, drop room areas so multi_area
-            // does not steal the query.
-            return Some(super::Resolved { areas: Vec::new(), floors: floors.to_vec(), entities, ambiguous, ask_areas: Vec::new() });
         }
         // "Wohn und Esszimmer lichte" may link only "Esszimmer Licht" — drop that so both rooms win.
         if areas.len() >= 2
