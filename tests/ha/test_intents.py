@@ -70,6 +70,13 @@ class IntentPassThroughTests(unittest.TestCase):
         out = intents.home_intents([{"name": "HassGetState", "slots": []}], set())
         self.assertEqual(out, [])
 
+    def test_set_reminder_is_not_an_allowed_intent(self) -> None:
+        # H-12: Home Assistant does not register SetReminder*; Klar must not keep it.
+        for name in ("SetReminderRelative", "SetReminderAbsolute", "SetReminderDaypart"):
+            self.assertNotIn(name, intents.ALLOWED_INTENTS)
+            self.assertEqual(intents.home_intents([{"name": name, "slots": []}], set()), [])
+            self.assertEqual(intents.keep_lab_plan([{"name": name, "slots": []}], set()), [])
+
     def test_umlaut_area_aliases_match_ha_slug(self) -> None:
         self.assertTrue(intents._umlaut_eq("kueche", "kuche"))
         self.assertTrue(intents._area_hit("Küche", "kueche"))

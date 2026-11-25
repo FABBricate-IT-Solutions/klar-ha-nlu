@@ -113,3 +113,17 @@ async def test_satellite_turn_uses_a_session_of_its_own(
 
     first, second = engine.session_ids()
     assert first != second
+
+
+async def test_failed_action_is_reported_as_error(
+    hass: HomeAssistant, klar: MockConfigEntry, engine: FakeEngine
+) -> None:
+    # H-17: a failed plan must not look like action_done.
+    engine.executes(
+        "turn on the ghost switch",
+        [intent("HassTurnOn", entity_id="switch.does_not_exist")],
+    )
+    result = await _say(hass, "turn on the ghost switch", conversation_id="kitchen-tablet")
+
+    assert result.response.response_type is ha_intent.IntentResponseType.ERROR
+    assert "did not work" in _speech(result).casefold() or _speech(result)

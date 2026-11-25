@@ -36,6 +36,8 @@ MASS_INTENTS = {
     "MassGetQueue",
 }
 
+# SetReminder* is intentionally absent (H-12): Home Assistant has no such intents.
+# Reminder sentences go through reminders.async_delegate_reminder instead.
 ALLOWED_INTENTS = TIMER_INTENTS | set(ENTITY_SERVICES) | LIST_INTENTS | {
     "HassLightSet",
     "HassClimateSetTemperature",
@@ -60,9 +62,6 @@ ALLOWED_INTENTS = TIMER_INTENTS | set(ENTITY_SERVICES) | LIST_INTENTS | {
     "KlarDeleteCalendarEvent",
     "KlarMoveCalendarEvent",
     "KlarNoMusicPlayer",
-    "SetReminderRelative",
-    "SetReminderAbsolute",
-    "SetReminderDaypart",
 }
 
 
@@ -120,12 +119,24 @@ def home_intents(intents: list[Any], registered: set[str] | None = None) -> list
     return out
 
 
+# Engine may emit these; Home Assistant has no handler. Never resurrect them for Lab.
+_NON_HA_INTENTS = {
+    "SetReminderRelative",
+    "SetReminderAbsolute",
+    "SetReminderDaypart",
+}
+
+
 def keep_lab_plan(intents: list[Any], registered: set[str] | None = None) -> list[dict[str, Any]]:
     """Assist executes the Lab plan. Do not drop an execute plan into HA fallback."""
     filtered = home_intents(intents, registered)
     if filtered:
         return filtered
-    return [item for item in intents if isinstance(item, dict) and item.get("name")]
+    return [
+        item
+        for item in intents
+        if isinstance(item, dict) and item.get("name") and item["name"] not in _NON_HA_INTENTS
+    ]
 
 
 def get_state_has_target(item: dict[str, Any]) -> bool:

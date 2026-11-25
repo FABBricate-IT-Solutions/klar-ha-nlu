@@ -30,9 +30,10 @@ class ReminderDelegateTests(unittest.TestCase):
         intents = [{"name": "HassLightSet", "slots": []}]
         self.assertTrue(reminders.should_delegate("remind me in 20 minutes to feed the cats", intents))
 
-    def test_parsed_reminder_intent_stays_with_klar(self) -> None:
+    def test_parsed_reminder_intent_is_delegated(self) -> None:
+        # H-12: SetReminder* is not a Home Assistant intent; Klar must hand the turn over.
         intents = [{"name": "SetReminderRelative", "slots": []}]
-        self.assertFalse(reminders.should_delegate("remind me in 20 minutes to feed the cats", intents))
+        self.assertTrue(reminders.should_delegate("remind me in 20 minutes to feed the cats", intents))
 
     def test_ordinary_play_is_not_a_reminder(self) -> None:
         self.assertFalse(reminders.should_delegate("play katelyn tarver in the bedroom", []))
