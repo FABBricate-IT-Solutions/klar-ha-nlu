@@ -92,9 +92,14 @@ def lex_of(core: dict) -> dict:
     lights = w.get("light") or ["light"]
     lamp = (w.get("lamp") or [None])[0] or (lights[1] if len(lights) > 1 else "lamp")
     lex = {key: w[key][0] for key in ("on", "off", "open", "close", "query", "set", "light", "cover", "climate", "media", "lock", "door", "timer", "list", "fan", "vacuum", "scene", "and", "yes")}
+    # German (and its regional packs) put polarity in a trailing particle ("an"/"aus", "aa"/"uus").
+    on_particle = (w.get("on_particles") or [None])[0]
+    off_particle = (w.get("off_particles") or [None])[0]
     lex.update(
         {
             "code": core["code"],
+            "on_particle": on_particle,
+            "off_particle": off_particle,
             "except": (w.get("except") or ["except"])[0],
             "all": w["all"][0],
             "add": first("add", ["add"]),

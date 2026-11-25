@@ -59,6 +59,9 @@ def action_verb(lex: dict, cond: dict) -> str:
         return lex["lock_v"]
     if domain == "media_player" and state == "paused":
         return lex["pause"]
+    # German polarity lives in the particle; keep the on-verb as the stem ("mach … aus").
+    if polarity_particle(lex, cond):
+        return lex["on"]
     if state in {"off", "closed", "unlocked", "paused", "idle"}:
         return lex["off"]
     if state == "open":
@@ -141,6 +144,32 @@ def area_noun(lex: dict, domain: str | None, cond: dict | None = None) -> str:
     return noun
 
 
+def polarity_particle(lex: dict, cond: dict) -> str | None:
+    """Trailing on/off particle for German locales (de, de-AT, de-CH).
+
+    English packs also list on/off particles for the engine, but their parity verbs already
+    carry polarity ("extinguish"), so a trailing particle would make nonsense sentences.
+    """
+    if not str(lex.get("code") or "").startswith("de"):
+        return None
+    if cond.get("type") == "query" or (cond.get("attributes") or {}):
+        return None
+    domain = domain_of(cond)
+    if domain in {"cover", "lock", "media_player"}:
+        return None
+    state = str(cond.get("state") or "")
+    if state in {"off", "closed", "unlocked", "paused", "idle"}:
+        return lex.get("off_particle")
+    if state in {"on", "open", "locked", "playing"}:
+        return lex.get("on_particle")
+    return None
+
+
+def with_particle(lex: dict, cond: dict, body: str) -> str:
+    particle = polarity_particle(lex, cond)
+    return f"{body} {particle}" if particle else body
+
+
 def phrase(lex: dict, cond: dict, suite: str) -> str:
     attrs = cond.get("attributes") or {}
     verb = action_verb(lex, cond)
@@ -163,8 +192,7 @@ def phrase(lex: dict, cond: dict, suite: str) -> str:
         return f"{lex['on']} {target} {cond['seconds']} {lex.get('seconds', 'sec')}"
     if cond.get("hours") is not None:
         return f"{lex['on']} {target} {cond['hours']} {lex.get('hours', 'hour')}"
-    return f"{verb} {target}"
-
+    return with_particle(lex, cond, f"{verb} {target}")
 
 def except_targets(name: str, lex: dict, case: dict) -> list[str]:
     targets: list[str] = []
@@ -201,7 +229,9 @@ def except_sentence(case: dict, lex: dict) -> str:
         return f"{lex['set']} {lex['all']} {lex['light']} {lex['except']} {excluded} {color_word(lex, attrs['color'])}"
     if attrs.get("brightness") is not None:
         return f"{lex['set']} {lex['all']} {lex['light']} {lex['except']} {excluded} {attrs['brightness']}"
-    return f"{action_verb(lex, first)} {lex['all']} {lex['light']} {lex['except']} {excluded}"
+    return with_particle(
+        lex, first, f"{action_verb(lex, first)} {lex['all']} {lex['light']} {lex['except']} {excluded}"
+    )
 
 
 def join_conds(conds: list[dict], lex: dict, suite: str) -> str:
@@ -209,7 +239,8 @@ def join_conds(conds: list[dict], lex: dict, suite: str) -> str:
         areas = unique([entity_info(suite, str(c["entity_id"]))["area"] for c in conds])
         domains = unique([domain_of(c) for c in conds])
         if len(areas) == 1 and areas[0] and len(domains) == 1 and "kugel" not in str(conds):
-            return f"{action_verb(lex, conds[0])} {area_noun(lex, domains[0], conds[0])} {room(lex, areas[0])}"
+            body = f"{action_verb(lex, conds[0])} {area_noun(lex, domains[0], conds[0])} {room(lex, areas[0])}"
+            return with_particle(lex, conds[0], body)
         parts = [phrase(lex, item, suite) for item in conds]
         return f" {lex['then']} ".join(parts)
     parts: list[str] = []
@@ -225,7 +256,7 @@ def join_conds(conds: list[dict], lex: dict, suite: str) -> str:
                 areas.append(room(lex, str(conds[index]["area"])))
                 index += 1
             for area in unique(areas):
-                parts.append(f"{verb} {noun} {area}")
+                parts.append(with_particle(lex, current, f"{verb} {noun} {area}"))
             continue
         parts.append(phrase(lex, current, suite))
         index += 1
@@ -366,7 +397,8 @@ def join_intents(intents: list[dict], lex: dict, suite: str) -> str:
             parts.append(f"{lex['done']} {item} aufgabenliste")
         elif slots.get("floor"):
             verb = lex["off"] if name == "HassTurnOff" else lex["on"]
-            parts.append(f"{verb} {lex['light']} {lex['floors'].get(str(slots['floor']), [str(slots['floor'])])[0]}")
+            body = f"{verb} {lex['light']} {lex['floors'].get(str(slots['floor']), [str(slots['floor'])])[0]}"
+            parts.append(with_particle(lex, cond, body))
         else:
             parts.append(phrase(lex, cond, suite))
     return f" {lex['then']} ".join(parts)
@@ -389,9 +421,11 @@ def followup(lex: dict, cond: dict, original: list[str], suite: str) -> str:
         verb = lex["unlock"] if state in {"off", "unlocked"} else lex["lock_v"]
         return f"{verb} {target}"
     if state == "off":
-        return f"{lex['off']} {target}" if target else lex["off"]
+        body = f"{lex['off']} {target}" if target else lex["off"]
+        return with_particle(lex, cond, body)
     if state == "on":
-        return f"{lex['on']} {target}" if target else lex["on"]
+        body = f"{lex['on']} {target}" if target else lex["on"]
+        return with_particle(lex, cond, body)
     hint = original[1].lower() if len(original) > 1 else ""
     if "kugel" in hint:
         return lex["globe"]

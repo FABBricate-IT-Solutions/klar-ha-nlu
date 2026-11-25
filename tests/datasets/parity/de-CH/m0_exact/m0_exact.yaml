@@ -1,19 +1,19 @@
 m0_exact/representative::exact_clarify:
-- mach alli liecht wohnzimmer
+- Mach liecht Wohnzimmer aa
 m0_exact/representative::exact_list_complete_from_setup:
-- done bread aufgabenliste
+- Setze bread uf d Aufgabenliste als erledigt
 m0_exact/representative::exact_multi_intent:
-- mach decke schlafzimmer3 then loesch liecht eingang
+- Mach d liechter in Kinderzimmer 3 aa und Mach d liechter am Eingang uus
 m0_exact/representative::exact_reject:
-- weather france
+- Was ist d Hauptstadt von Frankreich
 m0_exact/representative::exact_shopping_list:
-- add milk liste
+- Setze milk uf d Einkaufsliste
 m0_exact/representative::exact_state_persistence:
-- - was liecht eingang
-  - '12'
+- - Status liechter Eingang
+  - uf 12
 m0_exact/representative::exact_timer:
-- mach timer oven 2 min
+- Starte den Timer Ofen-Timer für 2 Minuten
 m0_exact/representative::exact_timer_resume_preserves_duration:
-- mach timer oven
+- Setze den Ofen-Timer fort
 m0_exact/representative::exact_todo_list:
-- add apples aufgabenliste
+- Füge apples zur Aufgabenliste hinzu

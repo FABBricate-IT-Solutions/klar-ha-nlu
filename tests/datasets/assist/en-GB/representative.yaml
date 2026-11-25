@@ -1,6 +1,6 @@
 - name: light_on
   sentences:
-    - turn on the lounge light
+    - switch on the living room light
   nlu_expect:
     intents:
       - intent: HassTurnOn

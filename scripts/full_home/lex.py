@@ -405,6 +405,9 @@ def _fill_house(lex: dict) -> None:
 def all_lexes() -> list[dict]:
     out = [lex_de(), lex_en()]
     for core in ALL_CORES:
+        if core.get("parent"):
+            # A regional pack is tested against its parent's dataset; it has no sentences of its own.
+            continue
         lex = _extend_rooms(parity_lex(core))
         lex.setdefault("code", core["code"])
         words = core.get("w") or {}

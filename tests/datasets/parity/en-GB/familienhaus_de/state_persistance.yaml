@@ -1,138 +1,138 @@
 state_persistance/area_bedroom_2_covers::bedroom_2_covers_set_position:
-- - what curtain bedroom2
-  - ' 51'
+- - Status Rollo Kinderzimmer 2
+  - auf 51
 state_persistance/area_bedroom_2_lights::bedroom_2_lights_set_brightness:
-- - what ceiling bedroom2
-  - ' 20'
+- - Status Lichter Kinderzimmer 2
+  - auf 20
 state_persistance/area_bedroom_3_covers::bedroom_3_covers_set_position:
-- - what curtain bedroom3
-  - ' 67'
+- - Status Rollo Kinderzimmer 3
+  - auf 67
 state_persistance/area_bedroom_3_lights::bedroom_3_lights_set_brightness:
-- - what ceiling bedroom3
-  - ' 63'
+- - Status Lichter Kinderzimmer 3
+  - auf 63
 state_persistance/area_bedroom_4_lights::bedroom_4_lights_set_brightness:
-- - what ceiling bedroom4
-  - ' 80'
+- - Status Lichter Kinderzimmer 4
+  - auf 80
 state_persistance/area_dining_lights::dining_lights_set_brightness:
-- - what light loungefamess
-  - ' 68'
+- - Status Lichter Esszimmer
+  - auf 68
 state_persistance/area_entryway_lights::entryway_lights_set_brightness:
-- - what light porch
-  - ' 54'
+- - Status Lichter Eingang
+  - auf 54
 state_persistance/area_family_room_lights::family_room_lights_set_brightness:
-- - what ceiling loungefam
-  - ' 94'
+- - Status Lichter Familienzimmer
+  - auf 94
 state_persistance/area_garage_covers::garage_covers_set_position:
-- - what curtain garage
-  - ' 18'
+- - Status Rollo Garage
+  - auf 18
 state_persistance/area_garage_lights::garage_lights_set_brightness:
-- - what light garage
-  - ' 27'
+- - Status Lichter Garage
+  - auf 27
 state_persistance/area_hallway_and_powder_room_lights::hallway_and_powder_room_lights_set_brightness:
-- - what light porchgang then what light loo
-  - ' 100'
+- - Status Lichter Flur und Gäste-WC
+  - auf 100
 state_persistance/area_hallway_lights::hallway_lights_set_brightness:
-- - what light porchgang
-  - ' 69'
+- - Status Lichter Flur
+  - auf 69
 state_persistance/area_kitchen_lights::kitchen_lights_set_brightness:
-- - what light kitchen
-  - ' 46'
+- - Status Lichter Küche
+  - auf 46
 state_persistance/area_laundry_lights::laundry_lights_set_brightness:
-- - what light utility
-  - ' 62'
+- - Status Lichter Waschküche
+  - auf 62
 state_persistance/area_living_climates::living_climates_set_temperature:
-- - what heating lounge
-  - ' 95'
+- - Status Heizung Wohnzimmer
+  - auf 95
 state_persistance/area_living_covers::living_covers_set_position:
-- - what curtain lounge
-  - ' 86'
+- - Status Rollo Wohnzimmer
+  - auf 86
 state_persistance/area_living_lights::living_lights_set_brightness:
-- - what light lounge
-  - ' 55'
+- - Status Lichter Wohnzimmer
+  - auf 55
 state_persistance/area_main_bath_lights::main_bath_lights_set_brightness:
-- - what light main bath
-  - ' 96'
+- - Status Lichter Badezimmer
+  - auf 96
 state_persistance/area_master_bath_lights::master_bath_lights_set_brightness:
-- - what light ensuite
-  - ' 50'
+- - Status Lichter Elternbad
+  - auf 50
 state_persistance/area_master_bedroom_and_living_climates::master_bedroom_and_living_climates_set_temperature:
-- - what heating bedroommaster then what heating lounge
-  - ' 69'
+- - Status Heizung Schlafzimmer und Wohnzimmer
+  - auf 69
 state_persistance/area_master_bedroom_and_living_covers::master_bedroom_and_living_covers_set_position:
-- - what curtain bedroommaster then what curtain lounge
-  - ' 15'
+- - Status Rollo Schlafzimmer und Wohnzimmer
+  - auf 15
 state_persistance/area_master_bedroom_climates::master_bedroom_climates_set_temperature:
-- - what heating bedroommaster
-  - ' 44'
+- - Status Heizung Schlafzimmer
+  - auf 44
 state_persistance/area_master_bedroom_covers::master_bedroom_covers_set_position:
-- - what curtain bedroommaster
-  - ' 88'
+- - Status Rollo Schlafzimmer
+  - auf 88
 state_persistance/area_powder_room_lights::powder_room_lights_set_brightness:
-- - what light loo
-  - ' 70'
+- - Status Lichter Gäste-WC
+  - auf 70
 state_persistance/device_cover_garage_door::cover_garage_door_close:
-- - what curtain garage
-  - close curtain garage
+- - Status Rollo Garage
+  - mach sie zu
 state_persistance/device_cover_garage_door::cover_garage_door_open:
-- - what curtain garage
-  - open curtain garage
+- - Status Rollo Garage
+  - mach sie auf
 state_persistance/device_cover_garage_door::cover_garage_door_persistance_position:
-- - what curtain garage
-  - '23'
+- - Status Rollo Garage
+  - auf 23
 state_persistance/device_cover_living_blinds::cover_living_blinds_close:
-- - what curtain lounge
-  - close curtain lounge
+- - Status Rollo Wohnzimmer
+  - mach sie zu
 state_persistance/device_cover_living_blinds::cover_living_blinds_open:
-- - what curtain lounge
-  - open curtain lounge
+- - Status Rollo Wohnzimmer
+  - mach sie auf
 state_persistance/device_cover_living_blinds::cover_living_blinds_persistance_position:
-- - what curtain lounge
-  - '85'
+- - Status Rollo Wohnzimmer
+  - auf 85
 state_persistance/device_fan_family_fan::fan_family_fan_persistance_percentage:
-- - what fan loungefam
-  - ' 43'
+- - Status Lüfter Familienzimmer
+  - auf 43
 state_persistance/device_fan_family_fan::fan_family_fan_turn_off:
-- - what fan loungefam
-  - extinguish fan loungefam
+- - Status Lüfter Familienzimmer
+  - mach sie aus
 state_persistance/device_fan_family_fan::fan_family_fan_turn_on:
-- - what fan loungefam
-  - enable fan loungefam
+- - Status Lüfter Familienzimmer
+  - mach sie an
 state_persistance/device_light_entryway_light::light_entryway_light_persistance_brightness:
-- - what light porch
-  - '12'
+- - Status Lichter Eingang
+  - auf 12
 state_persistance/device_light_entryway_light::light_entryway_light_turn_off:
-- - what light porch
-  - extinguish light porch
+- - Status Licht Eingang
+  - mach sie aus
 state_persistance/device_light_entryway_light::light_entryway_light_turn_on:
-- - what light porch
-  - enable light porch
+- - Status Licht Eingang
+  - mach sie an
 state_persistance/device_lock_front_door::lock_front_door_lock:
-- - what lock porch
-  - lock lock porch
+- - Status Schloss Eingang
+  - mach sie an
 state_persistance/device_lock_front_door::lock_front_door_unlock:
-- - what lock porch
-  - open lock porch
+- - Status Schloss Eingang
+  - mach sie aus
 state_persistance/device_lock_garage_entry::lock_garage_entry_lock:
-- - what lock garage
-  - lock lock garage
+- - Status Schloss Garage
+  - mach sie an
 state_persistance/device_lock_garage_entry::lock_garage_entry_unlock:
-- - what lock garage
-  - open lock garage
+- - Status Schloss Garage
+  - mach sie aus
 state_persistance/device_media_player_family_tv::media_player_family_tv_persistance_volume_level:
-- - what telly loungefam
-  - ' 21'
+- - Status Fernseher Familienzimmer
+  - auf 21
 state_persistance/device_media_player_family_tv::media_player_family_tv_turn_off:
-- - what telly loungefam
-  - extinguish telly loungefam
+- - Status Fernseher Familienzimmer
+  - mach sie aus
 state_persistance/device_media_player_family_tv::media_player_family_tv_turn_on:
-- - what telly loungefam
-  - enable telly loungefam
+- - Status Fernseher Familienzimmer
+  - mach sie an
 state_persistance/device_media_player_living_tv::media_player_living_tv_persistance_volume_level:
-- - what telly lounge
-  - ' 21'
+- - Status Fernseher Wohnzimmer
+  - auf 21
 state_persistance/device_media_player_living_tv::media_player_living_tv_turn_off:
-- - what telly lounge
-  - extinguish telly lounge
+- - Status Fernseher Wohnzimmer
+  - mach sie aus
 state_persistance/device_media_player_living_tv::media_player_living_tv_turn_on:
-- - what telly lounge
-  - enable telly lounge
+- - Status Fernseher Wohnzimmer
+  - mach sie an

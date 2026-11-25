@@ -6,5 +6,4 @@ mod pack;
 mod speech;
 mod verbs;
 
-pub(crate) use mood::MOOD;
 pub use pack::PACK;

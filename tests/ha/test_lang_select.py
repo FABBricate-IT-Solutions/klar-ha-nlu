@@ -99,22 +99,23 @@ class LangSelectTests(unittest.TestCase):
         self.assertIsNone(chrome)
 
     def test_voice_dropdown_hides_experimental_by_default(self) -> None:
-        # Follow-up to package 1.12: new HA selections only see stable packs.
+        # Package 1.12: regional overlays make de-AT and de-CH stable with their parents.
         offered = lang.offered_packs()
-        self.assertEqual(offered, ["de", "en", "en-GB"])
+        self.assertEqual(offered, ["de", "en", "de-CH", "de-AT", "en-GB"])
         advertised = lang.advertised_languages()
         self.assertIn("de", advertised)
         self.assertIn("de-DE", advertised)
+        self.assertIn("de-AT", advertised)
+        self.assertIn("de-CH", advertised)
         self.assertIn("en", advertised)
         self.assertNotIn("fr", advertised)
-        self.assertNotIn("de-AT", advertised)
 
     def test_experimental_switch_or_kept_locale_opens_the_list(self) -> None:
         self.assertIn("fr", lang.offered_packs(experimental=True))
-        self.assertIn("de-AT", lang.offered_packs(selected=["de-AT"]))
-        self.assertNotIn("fr", lang.offered_packs(selected=["de-AT"]))
+        self.assertIn("pt-BR", lang.offered_packs(selected=["pt-BR"]))
+        self.assertNotIn("fr", lang.offered_packs(selected=["pt-BR"]))
         self.assertIn("fr", lang.advertised_languages(experimental=True))
-        self.assertIn("de-AT", lang.advertised_languages(selected=["de-AT"]))
+        self.assertIn("pt-BR", lang.advertised_languages(selected=["pt-BR"]))
 
     def test_system_option_sets_default_language_from_ha(self) -> None:
         self.assertEqual(lang.engine_default_language("system", "de"), "de")

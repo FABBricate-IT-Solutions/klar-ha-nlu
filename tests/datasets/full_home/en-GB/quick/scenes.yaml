@@ -1,7 +1,0 @@
-- name: scene_film
-  conditions:
-  - type: action
-    entity_id: scene.movie_night
-    state: 'on'
-  sentences:
-  - enable film

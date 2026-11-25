@@ -56,6 +56,7 @@ fn language_rows(settings: &Settings, all: bool) -> Vec<LanguageOut> {
             native_name: meta.native_name.to_string(),
             script: meta.script.to_string(),
             variants: meta.variants.iter().map(|item| (*item).to_string()).collect(),
+            parent: meta.parent.map(str::to_string),
             tier: meta.tier,
             offered: offered(meta.code, &in_use, settings.experimental_languages),
         })
@@ -69,6 +70,9 @@ struct LanguageOut {
     native_name: String,
     script: String,
     variants: Vec<String>,
+    /// Set for a regional pack: the pack it inherits from.
+    #[serde(skip_serializing_if = "Option::is_none")]
+    parent: Option<String>,
     tier: Tier,
     /// False only in the `all` listing: an experimental locale the switch keeps out of a new selection.
     offered: bool,

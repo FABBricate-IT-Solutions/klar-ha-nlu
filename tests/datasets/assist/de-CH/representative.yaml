@@ -1,12 +1,12 @@
 - name: light_on
   sentences:
-    - mach liecht wohnzimmer
+    - liecht wohnzimmer aa
   nlu_expect:
     intents:
       - intent: HassTurnOn
 - name: light_off
   sentences:
-    - loesch liecht chuchi
+    - liecht chuchi uus
   nlu_expect:
     intents:
       - intent: HassTurnOff

@@ -1,272 +1,264 @@
 devices/climate_ground_thermostat::climate_ground_thermostat_set_temperature:
-- stell heizig wohnzimmer 23
+- heizig Wohnzimmer uf 23 Grad
 devices/climate_upper_thermostat::climate_upper_thermostat_set_temperature:
-- stell heizig schlafzimmermaster 19
+- heizig Schlafzimmer uf 19 Grad
 devices/cover_bedroom2_blinds::cover_bedroom2_blinds_change_position:
-- stell store schlafzimmer2 67
+- store Kinderzimmer 2 uf 67 Prozent
 devices/cover_bedroom2_blinds::cover_bedroom2_blinds_close:
-- zue store schlafzimmer2
+- Mach store Kinderzimmer 2 zue
 devices/cover_bedroom2_blinds::cover_bedroom2_blinds_open:
-- ufmache store schlafzimmer2
+- Mach store Kinderzimmer 2 uf
 devices/cover_bedroom3_blinds::cover_bedroom3_blinds_change_position:
-- stell store schlafzimmer3 27
+- store Kinderzimmer 3 uf 27 Prozent
 devices/cover_bedroom3_blinds::cover_bedroom3_blinds_close:
-- zue store schlafzimmer3
+- Mach store Kinderzimmer 3 zue
 devices/cover_bedroom3_blinds::cover_bedroom3_blinds_open:
-- ufmache store schlafzimmer3
+- Mach store Kinderzimmer 3 uf
 devices/cover_garage_door::cover_garage_door_change_position:
-- stell store garage 52
+- store Garage uf 52 Prozent
 devices/cover_garage_door::cover_garage_door_close:
-- zue store garage
+- Mach store Garage zue
 devices/cover_garage_door::cover_garage_door_open:
-- ufmache store garage
+- Mach store Garage uf
 devices/cover_living_blinds::cover_living_blinds_change_position:
-- stell store wohnzimmer 35
+- store Wohnzimmer uf 35 Prozent
 devices/cover_living_blinds::cover_living_blinds_close:
-- zue store wohnzimmer
+- Mach store Wohnzimmer zue
 devices/cover_living_blinds::cover_living_blinds_open:
-- ufmache store wohnzimmer
+- Mach store Wohnzimmer uf
 devices/cover_master_blinds::cover_master_blinds_change_position:
-- stell store schlafzimmermaster 19
+- store Schlafzimmer uf 19 Prozent
 devices/cover_master_blinds::cover_master_blinds_close:
-- zue store schlafzimmermaster
+- Mach store Schlafzimmer zue
 devices/cover_master_blinds::cover_master_blinds_open:
-- ufmache store schlafzimmermaster
+- Mach store Schlafzimmer uf
 devices/fan_bedroom2_fan::fan_bedroom2_fan_set_fan_speed:
-- stell ventilator schlafzimmer2 72
+- Lüfter Kinderzimmer 2 uf 72 Prozent
 devices/fan_bedroom2_fan::fan_bedroom2_fan_turn_off:
-- loesch ventilator schlafzimmer2
+- Lüfter Kinderzimmer 2 uus
 devices/fan_bedroom2_fan::fan_bedroom2_fan_turn_on:
-- mach ventilator schlafzimmer2
+- Lüfter Kinderzimmer 2 aa
 devices/fan_family_fan::fan_family_fan_set_fan_speed:
-- stell ventilator stube 63
+- Lüfter Familienzimmer uf 63 Prozent
 devices/fan_family_fan::fan_family_fan_turn_off:
-- loesch ventilator stube
+- Lüfter Familienzimmer uus
 devices/fan_family_fan::fan_family_fan_turn_on:
-- mach ventilator stube
+- Lüfter Familienzimmer aa
 devices/fan_master_fan::fan_master_fan_set_fan_speed:
-- stell ventilator schlafzimmermaster 28
+- Lüfter Schlafzimmer uf 28 Prozent
 devices/fan_master_fan::fan_master_fan_turn_off:
-- loesch ventilator schlafzimmermaster
+- Lüfter Schlafzimmer uus
 devices/fan_master_fan::fan_master_fan_turn_on:
-- mach ventilator schlafzimmermaster
+- Lüfter Schlafzimmer aa
 devices/fan_master_fan_and_light_kitchen_island::fan_master_fan_and_light_kitchen_island_turn_off:
-- loesch ventilator schlafzimmermaster then loesch insel chuchi
+- Lüfter Schlafzimmer uus und Mach d liechter in der Küche uus
 devices/fan_master_fan_and_light_kitchen_island::fan_master_fan_and_light_kitchen_island_turn_on:
-- mach ventilator schlafzimmermaster then mach insel chuchi
+- Lüfter Schlafzimmer aa und Mach d liechter in der Küche aa
 devices/light_bedroom2_ceiling::light_bedroom2_ceiling_change_brightness:
-- stell decke schlafzimmer2 94
+- Setze Kinderzimmer 2 uf 94 Prozent
 devices/light_bedroom2_ceiling::light_bedroom2_ceiling_change_color:
-- stell decke schlafzimmer2 rosa
+- Mach Kinderzimmer 2 pink
 devices/light_bedroom2_ceiling::light_bedroom2_ceiling_turn_off:
-- loesch decke schlafzimmer2
+- Mach d liechter in Kinderzimmer 2 uus
 devices/light_bedroom2_ceiling::light_bedroom2_ceiling_turn_on:
-- mach decke schlafzimmer2
+- Mach d liechter in Kinderzimmer 2 aa
 devices/light_bedroom3_ceiling::light_bedroom3_ceiling_change_brightness:
-- stell decke schlafzimmer3 36
+- Setze Kinderzimmer 3 uf 36 Prozent
 devices/light_bedroom3_ceiling::light_bedroom3_ceiling_change_color:
-- stell decke schlafzimmer3 gelb
+- Mach Kinderzimmer 3 gelb
 devices/light_bedroom3_ceiling::light_bedroom3_ceiling_turn_off:
-- loesch decke schlafzimmer3
+- Mach d liechter in Kinderzimmer 3 uus
 devices/light_bedroom3_ceiling::light_bedroom3_ceiling_turn_on:
-- mach decke schlafzimmer3
+- Mach d liechter in Kinderzimmer 3 aa
 devices/light_bedroom4_ceiling::light_bedroom4_ceiling_change_brightness:
-- stell decke schlafzimmer4 60
+- Setze Kinderzimmer 4 uf 60 Prozent
 devices/light_bedroom4_ceiling::light_bedroom4_ceiling_change_color:
-- stell decke schlafzimmer4 rot
+- Mach Kinderzimmer 4 rot
 devices/light_bedroom4_ceiling::light_bedroom4_ceiling_turn_off:
-- loesch decke schlafzimmer4
+- Mach d liechter in Kinderzimmer 4 uus
 devices/light_bedroom4_ceiling::light_bedroom4_ceiling_turn_on:
-- mach decke schlafzimmer4
+- Mach d liechter in Kinderzimmer 4 aa
 devices/light_dining_pendant::light_dining_pendant_change_brightness:
-- stell liecht stubeess 21
+- Setze Esszimmer uf 21 Prozent
 devices/light_dining_pendant::light_dining_pendant_change_color:
-- stell liecht stubeess blau
+- Mach Esszimmer blau
 devices/light_dining_pendant::light_dining_pendant_turn_off:
-- loesch liecht stubeess
+- Mach d liechter im Esszimmer uus
 devices/light_dining_pendant::light_dining_pendant_turn_on:
-- mach liecht stubeess
+- Mach d liechter im Esszimmer aa
 devices/light_entryway_light::light_entryway_light_change_brightness:
-- stell liecht eingang 88
+- Setze Eingang uf 88 Prozent
 devices/light_entryway_light::light_entryway_light_change_color:
-- stell liecht eingang gelb
+- Mach Eingang gelb
 devices/light_entryway_light::light_entryway_light_turn_off:
-- loesch liecht eingang
+- Mach d liechter am Eingang uus
 devices/light_entryway_light::light_entryway_light_turn_on:
-- mach liecht eingang
+- Mach d liechter am Eingang aa
 devices/light_family_ceiling::light_family_ceiling_change_brightness:
-- stell decke stube 98
+- Setze Familienzimmer uf 98 Prozent
 devices/light_family_ceiling::light_family_ceiling_change_color:
-- stell decke stube violett
+- Mach Familienzimmer lila
 devices/light_family_ceiling::light_family_ceiling_turn_off:
-- loesch decke stube
+- Mach d liechter im Familienzimmer uus
 devices/light_family_ceiling::light_family_ceiling_turn_on:
-- mach decke stube
+- Mach d liechter im Familienzimmer aa
 devices/light_garage_light::light_garage_light_change_brightness:
-- stell liecht garage 76
+- Setze Garage uf 76 Prozent
 devices/light_garage_light::light_garage_light_change_color:
-- stell liecht garage gruen
+- Mach Garage grün
 devices/light_garage_light::light_garage_light_turn_off:
-- loesch liecht garage
+- Mach d liechter in der Garage uus
 devices/light_garage_light::light_garage_light_turn_on:
-- mach liecht garage
+- Mach d liechter in der Garage aa
 devices/light_hallway_light::light_hallway_light_change_brightness:
-- stell liecht einganggang 11
+- Setze Flur uf 11 Prozent
 devices/light_hallway_light::light_hallway_light_change_color:
-- stell liecht einganggang weiss
+- Mach Flur weiß
 devices/light_hallway_light::light_hallway_light_turn_off:
-- loesch liecht einganggang
+- Mach d liechter im Flur uus
 devices/light_hallway_light::light_hallway_light_turn_on:
-- mach liecht einganggang
+- Mach d liechter im Flur aa
 devices/light_kitchen_ceiling::light_kitchen_ceiling_change_brightness:
-- stell decke chuchi 25
+- Setze Küche uf 25 Prozent
 devices/light_kitchen_ceiling::light_kitchen_ceiling_change_color:
-- stell decke chuchi orange
+- Mach Küche orange
 devices/light_kitchen_ceiling::light_kitchen_ceiling_turn_off:
-- loesch decke chuchi
+- Mach d liechter in der Küche uus
 devices/light_kitchen_ceiling::light_kitchen_ceiling_turn_on:
-- mach decke chuchi
+- Mach d liechter in der Küche aa
 devices/light_kitchen_island::light_kitchen_island_change_brightness:
-- stell insel chuchi 99
+- Setze Küche uf 99 Prozent
 devices/light_kitchen_island::light_kitchen_island_change_color:
-- stell insel chuchi gruen
+- Mach Küche grün
 devices/light_kitchen_island::light_kitchen_island_turn_off:
-- loesch insel chuchi
+- Mach d liechter in der Küche uus
 devices/light_kitchen_island::light_kitchen_island_turn_on:
-- mach insel chuchi
+- Mach d liechter in der Küche aa
 devices/light_laundry_light::light_laundry_light_change_brightness:
-- stell liecht waschruum 18
+- Setze Waschküche uf 18 Prozent
 devices/light_laundry_light::light_laundry_light_change_color:
-- stell liecht waschruum weiss
+- Mach Waschküche weiß
 devices/light_laundry_light::light_laundry_light_turn_off:
-- loesch liecht waschruum
+- Mach d liechter in der Waschküche uus
 devices/light_laundry_light::light_laundry_light_turn_on:
-- mach liecht waschruum
+- Mach d liechter in der Waschküche aa
 devices/light_living_ceiling::light_living_ceiling_change_brightness:
-- stell decke wohnzimmer 72
+- Setze Wohnzimmer uf 72 Prozent
 devices/light_living_ceiling::light_living_ceiling_change_color:
-- stell decke wohnzimmer schwarz
+- Mach Wohnzimmer schwarz
 devices/light_living_ceiling::light_living_ceiling_turn_off:
-- loesch decke wohnzimmer
+- Mach d liechter im Wohnzimmer uus
 devices/light_living_ceiling::light_living_ceiling_turn_on:
-- mach decke wohnzimmer
+- Mach d liechter im Wohnzimmer aa
 devices/light_living_lamp::light_living_lamp_change_brightness:
-- stell lamp wohnzimmer 72
+- Setze Wohnzimmer uf 72 Prozent
 devices/light_living_lamp::light_living_lamp_change_color:
-- stell lamp wohnzimmer rot
+- Mach Wohnzimmer rot
 devices/light_living_lamp::light_living_lamp_turn_off:
-- loesch lamp wohnzimmer
+- Mach d liechter im Wohnzimmer uus
 devices/light_living_lamp::light_living_lamp_turn_on:
-- mach lamp wohnzimmer
+- Mach d liechter im Wohnzimmer aa
 devices/light_main_bath_light::light_main_bath_light_change_brightness:
-- stell liecht badmastermain 85
+- Setze Badezimmer uf 85 Prozent
 devices/light_main_bath_light::light_main_bath_light_change_color:
-- stell liecht badmastermain blau
+- Mach Badezimmer blau
 devices/light_main_bath_light::light_main_bath_light_turn_off:
-- loesch liecht badmastermain
+- Mach d liechter im Badezimmer uus
 devices/light_main_bath_light::light_main_bath_light_turn_on:
-- mach liecht badmastermain
+- Mach d liechter im Badezimmer aa
 devices/light_master_bath_light::light_master_bath_light_change_brightness:
-- stell liecht badmaster 18
+- Setze Elternbad uf 18 Prozent
 devices/light_master_bath_light::light_master_bath_light_change_color:
-- stell liecht badmaster schwarz
+- Mach Elternbad schwarz
 devices/light_master_bath_light::light_master_bath_light_turn_off:
-- loesch liecht badmaster
+- Mach d liechter im Elternbad uus
 devices/light_master_bath_light::light_master_bath_light_turn_on:
-- mach liecht badmaster
+- Mach d liechter im Elternbad aa
 devices/light_master_bedside_right::light_master_bedside_right_change_brightness:
-- stell nachttisch right schlafzimmermaster 25
+- Setze Schlafzimmer uf 25 Prozent
 devices/light_master_bedside_right::light_master_bedside_right_change_color:
-- stell nachttisch right schlafzimmermaster rot
+- Mach Schlafzimmer rot
 devices/light_master_bedside_right::light_master_bedside_right_turn_off:
-- loesch nachttisch right schlafzimmermaster
+- Mach d liechter im Schlafzimmer uus
 devices/light_master_bedside_right::light_master_bedside_right_turn_on:
-- mach nachttisch right schlafzimmermaster
+- Mach d liechter im Schlafzimmer aa
 devices/light_master_ceiling::light_master_ceiling_change_brightness:
-- stell decke schlafzimmermaster 77
+- Setze Schlafzimmer uf 77 Prozent
 devices/light_master_ceiling::light_master_ceiling_change_color:
-- stell decke schlafzimmermaster blau
+- Mach Schlafzimmer blau
 devices/light_master_ceiling::light_master_ceiling_turn_off:
-- loesch decke schlafzimmermaster
+- Mach d liechter im Schlafzimmer uus
 devices/light_master_ceiling::light_master_ceiling_turn_on:
-- mach decke schlafzimmermaster
+- Mach d liechter im Schlafzimmer aa
 devices/light_master_ensuite::light_master_ensuite_change_brightness:
-- stell ankleide schlafzimmermaster 55
+- Setze Schlafzimmer uf 55 Prozent
 devices/light_master_ensuite::light_master_ensuite_change_color:
-- stell ankleide schlafzimmermaster schwarz
+- Mach Schlafzimmer schwarz
 devices/light_master_ensuite::light_master_ensuite_turn_off:
-- loesch ankleide schlafzimmermaster
+- Mach d liechter im Schlafzimmer uus
 devices/light_master_ensuite::light_master_ensuite_turn_on:
-- mach ankleide schlafzimmermaster
+- Mach d liechter im Schlafzimmer aa
 devices/light_powder_room_light::light_powder_room_light_change_brightness:
-- stell liecht toilette 22
+- Setze Gäste-WC uf 22 Prozent
 devices/light_powder_room_light::light_powder_room_light_change_color:
-- stell liecht toilette schwarz
+- Mach Gäste-WC schwarz
 devices/light_powder_room_light::light_powder_room_light_turn_off:
-- loesch liecht toilette
+- Mach d liechter im Gäste-WC uus
 devices/light_powder_room_light::light_powder_room_light_turn_on:
-- mach liecht toilette
+- Mach d liechter im Gäste-WC aa
 devices/lock_front_door::lock_front_door_lock:
-- schloss schloss eingang
+- Schließ Haustür ab
 devices/lock_front_door::lock_front_door_unlock:
-- ufmache schloss eingang
+- Schließ Haustür uf
 devices/lock_garage_entry::lock_garage_entry_lock:
-- schloss schloss garage
+- Schließ Garagentür ab
 devices/lock_garage_entry::lock_garage_entry_unlock:
-- ufmache schloss garage
+- Schließ Garagentür uf
 devices/media_player_family_tv::media_player_family_tv_mute:
-- mach tv stube
+- Familienzimmer fernseh stumm
 devices/media_player_family_tv::media_player_family_tv_pause:
-- pause tv stube
+- Pause Familienzimmer fernseh
 devices/media_player_family_tv::media_player_family_tv_turn_off:
-- loesch tv stube
+- Mach Familienzimmer fernseh uus
 devices/media_player_family_tv::media_player_family_tv_turn_on:
-- mach tv stube
+- Mach Familienzimmer fernseh aa
 devices/media_player_family_tv::media_player_family_tv_unmute:
-- mach tv stube
+- Familienzimmer fernseh laut
 devices/media_player_family_tv::media_player_family_tv_unpause:
-- mach tv stube
+- Mach Familienzimmer fernseh aa
 devices/media_player_living_tv::media_player_living_tv_mute:
-- mach tv wohnzimmer
+- Wohnzimmer fernseh stumm
 devices/media_player_living_tv::media_player_living_tv_pause:
-- pause tv wohnzimmer
+- Pause Wohnzimmer fernseh
 devices/media_player_living_tv::media_player_living_tv_turn_off:
-- loesch tv wohnzimmer
+- Mach Wohnzimmer fernseh uus
 devices/media_player_living_tv::media_player_living_tv_turn_on:
-- mach tv wohnzimmer
+- Mach Wohnzimmer fernseh aa
 devices/media_player_living_tv::media_player_living_tv_unmute:
-- mach tv wohnzimmer
+- Wohnzimmer fernseh laut
 devices/media_player_living_tv::media_player_living_tv_unpause:
-- mach tv wohnzimmer
+- Mach Wohnzimmer fernseh aa
 devices/scenes::dinner_time:
-- stell liecht stubeess 90 then mach decke chuchi then stell insel chuchi 80
+- Szene Abendessen
 devices/scenes::good_morning:
-- mach decke chuchi then stell liecht stubeess 100 then ufmache store wohnzimmer then
-  ufmache store schlafzimmermaster
+- Szene Guten Morgen
 devices/scenes::kids_bedtime:
-- loesch decke schlafzimmer2 then loesch decke schlafzimmer3 then loesch decke schlafzimmer4
-  then stell liecht einganggang 15
+- Szene Kinder ins Bett
 devices/scenes::movie_night:
-- loesch decke wohnzimmer then stell lamp wohnzimmer 20 then mach tv wohnzimmer then
-  zue store wohnzimmer
+- Szene Filmabend
 devices/scripts::good_night:
-- loesch decke wohnzimmer then loesch lamp wohnzimmer then loesch liecht stubeess
-  then loesch decke chuchi then loesch insel chuchi then loesch decke stube then loesch
-  liecht eingang then loesch liecht einganggang then schloss schloss eingang then
-  schloss schloss garage then stell heizig schlafzimmermaster 20
+- Szene Gute Nacht
 devices/scripts::leaving_home:
-- loesch decke wohnzimmer then loesch lamp wohnzimmer then loesch decke chuchi then
-  loesch decke stube then loesch liecht eingang then schloss schloss eingang then
-  schloss schloss garage then zue store garage
+- Szene Haus verlassen
 devices/switch_dishwasher::switch_dishwasher_turn_off:
-- loesch spuelmaschine
+- Schalt d Schalter in der Küche uus
 devices/switch_dishwasher::switch_dishwasher_turn_on:
-- mach spuelmaschine
+- Schalt d Schalter in der Küche aa
 devices/switch_dryer::switch_dryer_turn_off:
-- loesch trockner
+- Schalt d Schalter in der Waschküche uus
 devices/switch_dryer::switch_dryer_turn_on:
-- mach trockner
+- Schalt d Schalter in der Waschküche aa
 devices/switch_washing_machine::switch_washing_machine_turn_off:
-- loesch waschmaschine
+- Schalt d Schalter in der Waschküche uus
 devices/switch_washing_machine::switch_washing_machine_turn_on:
-- mach waschmaschine
+- Schalt d Schalter in der Waschküche aa

@@ -5,11 +5,11 @@ area/bedroom_2_covers::bedroom_2_covers_open:
 area/bedroom_2_covers::bedroom_2_covers_set_position:
 - poe cortina quarto2 16
 area/bedroom_2_fans::bedroom_2_fans_set_fan_speed:
-- poe ventilador quarto2 32
+- poe ventoinha quarto2 32
 area/bedroom_2_fans::bedroom_2_fans_turn_off:
-- desliga ventilador quarto2
+- desliga ventoinha quarto2
 area/bedroom_2_fans::bedroom_2_fans_turn_on:
-- liga ventilador quarto2
+- liga ventoinha quarto2
 area/bedroom_2_lights::bedroom_2_lights_change_brightness:
 - poe tudo luz quarto2 65
 area/bedroom_2_lights::bedroom_2_lights_change_color:
@@ -41,13 +41,13 @@ area/bedroom_4_lights::bedroom_4_lights_turn_off:
 area/bedroom_4_lights::bedroom_4_lights_turn_on:
 - liga tudo luz quarto4
 area/dining_lights::dining_lights_change_brightness:
-- poe tudo luz salafamess 54
+- poe tudo luz salaestaress 54
 area/dining_lights::dining_lights_change_color:
-- poe tudo luz salafamess azul
+- poe tudo luz salaestaress azul
 area/dining_lights::dining_lights_turn_off:
-- desliga tudo luz salafamess
+- desliga tudo luz salaestaress
 area/dining_lights::dining_lights_turn_on:
-- liga tudo luz salafamess
+- liga tudo luz salaestaress
 area/entryway_lights::entryway_lights_change_brightness:
 - poe tudo luz entrada 72
 area/entryway_lights::entryway_lights_change_color:
@@ -61,27 +61,27 @@ area/entryway_locks::entryway_locks_lock:
 area/entryway_locks::entryway_locks_unlock:
 - abre fechadura entrada
 area/family_room_and_kitchen_lights::family_room_and_kitchen_lights_change_brightness:
-- poe tudo luz salafam 39 then poe tudo luz cozinha 39
+- poe tudo luz salaestar 39 then poe tudo luz cozinha 39
 area/family_room_and_kitchen_lights::family_room_and_kitchen_lights_change_color:
-- poe tudo luz salafam roxo then poe tudo luz cozinha roxo
+- poe tudo luz salaestar roxo then poe tudo luz cozinha roxo
 area/family_room_and_kitchen_lights::family_room_and_kitchen_lights_turn_off:
-- desliga tudo luz salafam then desliga tudo luz cozinha
+- desliga tudo luz salaestar then desliga tudo luz cozinha
 area/family_room_and_kitchen_lights::family_room_and_kitchen_lights_turn_on:
-- liga tudo luz salafam then liga tudo luz cozinha
+- liga tudo luz salaestar then liga tudo luz cozinha
 area/family_room_fans::family_room_fans_set_fan_speed:
-- poe ventilador salafam 32
+- poe ventoinha salaestar 32
 area/family_room_fans::family_room_fans_turn_off:
-- desliga ventilador salafam
+- desliga ventoinha salaestar
 area/family_room_fans::family_room_fans_turn_on:
-- liga ventilador salafam
+- liga ventoinha salaestar
 area/family_room_lights::family_room_lights_change_brightness:
-- poe tudo luz salafam 44
+- poe tudo luz salaestar 44
 area/family_room_lights::family_room_lights_change_color:
-- poe tudo luz salafam verde
+- poe tudo luz salaestar verde
 area/family_room_lights::family_room_lights_turn_off:
-- desliga tudo luz salafam
+- desliga tudo luz salaestar
 area/family_room_lights::family_room_lights_turn_on:
-- liga tudo luz salafam
+- liga tudo luz salaestar
 area/garage_covers::garage_covers_close:
 - fecha cortina garage
 area/garage_covers::garage_covers_open:
@@ -101,13 +101,13 @@ area/garage_locks::garage_locks_lock:
 area/garage_locks::garage_locks_unlock:
 - abre fechadura garage
 area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_change_brightness:
-- poe tudo luz entradagang 26 then poe tudo luz lavabo 26
+- poe tudo luz entradagang 26 then poe tudo luz wc 26
 area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_change_color:
-- poe tudo luz entradagang roxo then poe tudo luz lavabo roxo
+- poe tudo luz entradagang roxo then poe tudo luz wc roxo
 area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_turn_off:
-- desliga tudo luz entradagang then desliga tudo luz lavabo
+- desliga tudo luz entradagang then desliga tudo luz wc
 area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_turn_on:
-- liga tudo luz entradagang then liga tudo luz lavabo
+- liga tudo luz entradagang then liga tudo luz wc
 area/hallway_lights::hallway_lights_change_brightness:
 - poe tudo luz entradagang 61
 area/hallway_lights::hallway_lights_change_color:
@@ -129,19 +129,19 @@ area/kitchen_switchs::kitchen_switchs_turn_off:
 area/kitchen_switchs::kitchen_switchs_turn_on:
 - liga tudo aparelho cozinha
 area/laundry_lights::laundry_lights_change_brightness:
-- poe tudo luz lavanderia 62
+- poe tudo luz lavandaria 62
 area/laundry_lights::laundry_lights_change_color:
-- poe tudo luz lavanderia amarelo
+- poe tudo luz lavandaria amarelo
 area/laundry_lights::laundry_lights_turn_off:
-- desliga tudo luz lavanderia
+- desliga tudo luz lavandaria
 area/laundry_lights::laundry_lights_turn_on:
-- liga tudo luz lavanderia
+- liga tudo luz lavandaria
 area/laundry_switchs::laundry_switchs_turn_off:
-- desliga tudo aparelho lavanderia
+- desliga tudo aparelho lavandaria
 area/laundry_switchs::laundry_switchs_turn_on:
-- liga tudo aparelho lavanderia
+- liga tudo aparelho lavandaria
 area/living_climates::living_climates_set_temperature:
-- poe ar sala 20
+- poe aquecimento sala 20
 area/living_covers::living_covers_close:
 - fecha cortina sala
 area/living_covers::living_covers_open:
@@ -169,19 +169,19 @@ area/main_bath_switchs::main_bath_switchs_turn_off:
 area/main_bath_switchs::main_bath_switchs_turn_on:
 - liga tudo aparelho main bath
 area/master_bath_lights::master_bath_lights_change_brightness:
-- poe tudo luz suitemaster 60
+- poe tudo luz banhomaster 60
 area/master_bath_lights::master_bath_lights_change_color:
-- poe tudo luz suitemaster preto
+- poe tudo luz banhomaster preto
 area/master_bath_lights::master_bath_lights_turn_off:
-- desliga tudo luz suitemaster
+- desliga tudo luz banhomaster
 area/master_bath_lights::master_bath_lights_turn_on:
-- liga tudo luz suitemaster
+- liga tudo luz banhomaster
 area/master_bath_switchs::master_bath_switchs_turn_off:
-- desliga tudo aparelho suitemaster
+- desliga tudo aparelho banhomaster
 area/master_bath_switchs::master_bath_switchs_turn_on:
-- liga tudo aparelho suitemaster
+- liga tudo aparelho banhomaster
 area/master_bedroom_and_living_climates::master_bedroom_and_living_climates_set_temperature:
-- poe ar quartomaster 20 then poe ar sala 20
+- poe aquecimento quartomaster 20 then poe aquecimento sala 20
 area/master_bedroom_and_living_covers::master_bedroom_and_living_covers_close:
 - fecha cortina quartomaster then fecha cortina sala
 area/master_bedroom_and_living_covers::master_bedroom_and_living_covers_open:
@@ -205,7 +205,7 @@ area/master_bedroom_and_main_bath_lights::master_bedroom_and_main_bath_lights_tu
 area/master_bedroom_and_main_bath_lights::master_bedroom_and_main_bath_lights_turn_on:
 - liga tudo luz quartomaster then liga tudo luz main bath
 area/master_bedroom_climates::master_bedroom_climates_set_temperature:
-- poe ar quartomaster 20
+- poe aquecimento quartomaster 20
 area/master_bedroom_covers::master_bedroom_covers_close:
 - fecha cortina quartomaster
 area/master_bedroom_covers::master_bedroom_covers_open:
@@ -213,11 +213,11 @@ area/master_bedroom_covers::master_bedroom_covers_open:
 area/master_bedroom_covers::master_bedroom_covers_set_position:
 - poe cortina quartomaster 38
 area/master_bedroom_fans::master_bedroom_fans_set_fan_speed:
-- poe ventilador quartomaster 79
+- poe ventoinha quartomaster 79
 area/master_bedroom_fans::master_bedroom_fans_turn_off:
-- desliga ventilador quartomaster
+- desliga ventoinha quartomaster
 area/master_bedroom_fans::master_bedroom_fans_turn_on:
-- liga ventilador quartomaster
+- liga ventoinha quartomaster
 area/master_bedroom_lights::master_bedroom_lights_change_brightness:
 - poe tudo luz quartomaster 73
 area/master_bedroom_lights::master_bedroom_lights_change_color:
@@ -227,13 +227,13 @@ area/master_bedroom_lights::master_bedroom_lights_turn_off:
 area/master_bedroom_lights::master_bedroom_lights_turn_on:
 - liga tudo luz quartomaster
 area/powder_room_lights::powder_room_lights_change_brightness:
-- poe tudo luz lavabo 52
+- poe tudo luz wc 52
 area/powder_room_lights::powder_room_lights_change_color:
-- poe tudo luz lavabo roxo
+- poe tudo luz wc roxo
 area/powder_room_lights::powder_room_lights_turn_off:
-- desliga tudo luz lavabo
+- desliga tudo luz wc
 area/powder_room_lights::powder_room_lights_turn_on:
-- liga tudo luz lavabo
+- liga tudo luz wc
 area/spoken_lights::spoken_bedroom_inflection:
 - poe tudo luz quartomaster vermelho
 area/spoken_lights::spoken_except_island:
@@ -241,7 +241,7 @@ area/spoken_lights::spoken_except_island:
 area/spoken_lights::spoken_except_kitchen:
 - desliga tudo luz exceto cozinha
 area/spoken_lights::spoken_listing_living_dining_kitchen:
-- desliga tudo luz sala then desliga tudo luz salafamess then desliga tudo luz cozinha
+- desliga tudo luz sala then desliga tudo luz salaestaress then desliga tudo luz cozinha
 area/spoken_lights::spoken_stt_kitchen_off:
 - desliga tudo luz cozinha
 area/spoken_lights::spoken_stt_living_off:

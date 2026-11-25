@@ -72,6 +72,25 @@ pub(crate) fn run_groups_lang(
     stats
 }
 
+/// A regional pack runs its parent's cases under its own code. The reply wording is its own,
+/// so the parent's speech expectations do not apply.
+#[allow(dead_code)]
+pub(crate) fn run_groups_inherited(name: &str, groups: &[&str], home: HomeGraph, language: &str) -> RunStats {
+    let settings = Settings::pinned(language);
+    let root = super::datasets_root().join(name);
+    let mut stats = RunStats { ok: 0, fail: 0, fails: Vec::new() };
+    for group in groups {
+        for (label, mut case) in load_cases(&root.join(group)) {
+            case.speech_has.clear();
+            case.speech_forbids.clear();
+            for turns in turns_of(&case.sentences) {
+                run_case(group, &label, &case, &turns, *group == "clarifications", &home, &settings, &mut stats);
+            }
+        }
+    }
+    stats
+}
+
 #[allow(clippy::too_many_arguments)]
 fn run_case(
     group: &str,
@@ -143,6 +162,19 @@ fn write_failures(title: &str, stats: &RunStats) {
     let dump = PathBuf::from(env!("CARGO_MANIFEST_DIR")).join("target").join(format!("suite_fails_{file_name}.txt"));
     let _ = std::fs::create_dir_all(dump.parent().expect("target parent"));
     let _ = std::fs::write(dump, stats.fails.join("\n"));
+}
+
+/// Every conversation of a suite as `(label, turns)`, in file order.
+#[allow(dead_code)]
+pub(crate) fn conversations(name: &str, groups: &[&str]) -> Vec<(String, Vec<String>)> {
+    let root = super::datasets_root().join(name);
+    let mut out = Vec::new();
+    for group in groups {
+        for (label, case) in load_cases(&root.join(group)) {
+            out.extend(turns_of(&case.sentences).into_iter().map(|turns| (format!("{name}/{group}/{label}"), turns)));
+        }
+    }
+    out
 }
 
 fn turns_of(sentences: &Sentences) -> Vec<Vec<String>> {

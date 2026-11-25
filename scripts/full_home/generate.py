@@ -17,6 +17,7 @@ sys.path.insert(0, str(ROOT / "scripts"))
 
 from catalog import for_tier
 from home import build_home
+from lang_packs.lexicons import ALL_CORES
 from lex import all_lexes
 from realize import render
 
@@ -64,7 +65,8 @@ def write_locale(lex: dict) -> tuple[int, int]:
     return counts["quick"], counts["full"]
 
 
-def write_tests(codes: list[str]) -> None:
+def write_tests(codes: list[tuple[str, str]]) -> None:
+    """`codes` pairs a locale with the locale whose dataset it runs: its own, or its parent's for a regional pack."""
     lines = [
         "//! Generated full-home Assist suites. Quick must be at zero for every locale.",
         "//! Full is `#[ignore]` and run with `--run-ignored all`; each locale has a recorded",
@@ -76,8 +78,9 @@ def write_tests(codes: list[str]) -> None:
         "use voice_suite_support::bounds::assert_within_bound;",
         "use voice_suite_support::{print_stats, run_groups_lang, suite_home, RunStats};",
         "",
-        "fn run_tier(code: &str, tier: &str, min_cases: usize) -> RunStats {",
-        "    let name = format!(\"full_home/{code}\");",
+        "/// A regional pack has no dataset of its own: it runs its parent's sentences under its own code.",
+        "fn run_tier(code: &str, data: &str, tier: &str, min_cases: usize) -> RunStats {",
+        "    let name = format!(\"full_home/{data}\");",
         "    let home: HomeGraph = suite_home(&name);",
         "    let stats = run_groups_lang(&name, &[tier], home, Some(code), None);",
         "    print_stats(&format!(\"Klar NLU · full-home {code} {tier}\"), &stats);",
@@ -87,36 +90,41 @@ def write_tests(codes: list[str]) -> None:
         "",
         "macro_rules! full_home {",
         "    ($quick:ident, $full:ident, $code:literal) => {",
+        "        full_home!($quick, $full, $code, $code);",
+        "    };",
+        "    ($quick:ident, $full:ident, $code:literal, $data:literal) => {",
         "        #[test]",
         "        fn $quick() {",
-        "            let stats = run_tier($code, \"quick\", 25);",
+        "            let stats = run_tier($code, $data, \"quick\", 25);",
         "            assert_eq!(stats.fail, 0, \"{} quick failures:\\n{}\", $code, stats.fails.join(\"\\n\"));",
         "        }",
         "        #[test]",
         "        #[ignore = \"full tier is slow; run with --run-ignored all (de and en in the dataset-suites job, every locale weekly)\"]",
         "        fn $full() {",
-        "            let stats = run_tier($code, \"full\", 80);",
+        "            let stats = run_tier($code, $data, \"full\", 80);",
         "            assert_within_bound(\"full_home_full\", $code, &stats);",
         "        }",
         "    };",
         "}",
         "",
     ]
-    for code in codes:
+    for code, data in codes:
         ident = code.lower().replace("-", "_")
-        lines.append(f'full_home!(full_home_quick_{ident}, full_home_full_{ident}, "{code}");')
+        inherited = "" if data == code else f', "{data}"'
+        lines.append(f'full_home!(full_home_quick_{ident}, full_home_full_{ident}, "{code}"{inherited});')
     path = ROOT / "tests" / "full_home.rs"
     path.write_text("\n".join(lines) + "\n", encoding="utf-8")
     print("wrote", path.relative_to(ROOT))
 
 
 def main() -> None:
-    lexes = all_lexes()
-    codes = []
-    for lex in lexes:
+    for lex in all_lexes():
         quick, full = write_locale(lex)
-        codes.append(lex["code"])
         print(f"wrote {lex['code']}: quick={quick} full={full}")
+    codes = [("de", "de"), ("en", "en")] + [(core["code"], core.get("parent") or core["code"]) for core in ALL_CORES]
+    for code, data in codes:
+        if data != code and (DATA / code).exists():
+            shutil.rmtree(DATA / code)
     write_tests(codes)
 
 

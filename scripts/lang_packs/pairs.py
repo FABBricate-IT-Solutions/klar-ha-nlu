@@ -25,26 +25,23 @@ HAND = {
     },
 }
 
-# A regional variant must also get the pairs of the language it is a variant of right.
-ALSO = {"de-AT": "de", "de-CH": "de", "en-GB": "en", "pt-BR": "pt"}
-
-
 def _unique(rows: list[str]) -> list[str]:
     return list(dict.fromkeys(row for row in rows if row))
 
 
 def pairs_of(core: dict, lang: dict) -> dict:
+    said = {intent: text for text, intent in reversed(lang["smoke"])}
+    if core.get("parent"):
+        # A regional pack holds regional words only: its own pair is its smoke pair, and it
+        # must also get the pairs of its parent right.
+        return {"on": [said["HassTurnOn"]], "off": [said["HassTurnOff"]], "also": core["parent"]}
     words = core["w"]
     living = next(native for native, canon in core["rooms"] if canon == "wohnzimmer")
     lamp = words["light"][0]
-    said = {intent: text for text, intent in reversed(lang["smoke"])}
-    row = {
+    return {
         "on": _unique([said["HassTurnOn"], f"{words['on'][0]} {lamp} {living}"]),
         "off": _unique([said["HassTurnOff"], f"{words['off'][0]} {lamp} {living}"]),
     }
-    if core["code"] in ALSO:
-        row["also"] = ALSO[core["code"]]
-    return row
 
 
 def write_pairs(cores: list[dict], generated: list[dict]) -> None:

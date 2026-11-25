@@ -1,272 +1,264 @@
 devices/climate_ground_thermostat::climate_ground_thermostat_set_temperature:
-- set heating lounge 23
+- Heizung Wohnzimmer auf 23 Grad
 devices/climate_upper_thermostat::climate_upper_thermostat_set_temperature:
-- set heating bedroommaster 19
+- Heizung Schlafzimmer auf 19 Grad
 devices/cover_bedroom2_blinds::cover_bedroom2_blinds_change_position:
-- set curtain bedroom2 67
+- Rollo Kinderzimmer 2 auf 67 Prozent
 devices/cover_bedroom2_blinds::cover_bedroom2_blinds_close:
-- close curtain bedroom2
+- Mach Rollo Kinderzimmer 2 zu
 devices/cover_bedroom2_blinds::cover_bedroom2_blinds_open:
-- open curtain bedroom2
+- Mach Rollo Kinderzimmer 2 auf
 devices/cover_bedroom3_blinds::cover_bedroom3_blinds_change_position:
-- set curtain bedroom3 27
+- Rollo Kinderzimmer 3 auf 27 Prozent
 devices/cover_bedroom3_blinds::cover_bedroom3_blinds_close:
-- close curtain bedroom3
+- Mach Rollo Kinderzimmer 3 zu
 devices/cover_bedroom3_blinds::cover_bedroom3_blinds_open:
-- open curtain bedroom3
+- Mach Rollo Kinderzimmer 3 auf
 devices/cover_garage_door::cover_garage_door_change_position:
-- set curtain garage 52
+- Rollo Garage auf 52 Prozent
 devices/cover_garage_door::cover_garage_door_close:
-- close curtain garage
+- Mach Rollo Garage zu
 devices/cover_garage_door::cover_garage_door_open:
-- open curtain garage
+- Mach Rollo Garage auf
 devices/cover_living_blinds::cover_living_blinds_change_position:
-- set curtain lounge 35
+- Rollo Wohnzimmer auf 35 Prozent
 devices/cover_living_blinds::cover_living_blinds_close:
-- close curtain lounge
+- Mach Rollo Wohnzimmer zu
 devices/cover_living_blinds::cover_living_blinds_open:
-- open curtain lounge
+- Mach Rollo Wohnzimmer auf
 devices/cover_master_blinds::cover_master_blinds_change_position:
-- set curtain bedroommaster 19
+- Rollo Schlafzimmer auf 19 Prozent
 devices/cover_master_blinds::cover_master_blinds_close:
-- close curtain bedroommaster
+- Mach Rollo Schlafzimmer zu
 devices/cover_master_blinds::cover_master_blinds_open:
-- open curtain bedroommaster
+- Mach Rollo Schlafzimmer auf
 devices/fan_bedroom2_fan::fan_bedroom2_fan_set_fan_speed:
-- set fan bedroom2 72
+- Lüfter Kinderzimmer 2 auf 72 Prozent
 devices/fan_bedroom2_fan::fan_bedroom2_fan_turn_off:
-- extinguish fan bedroom2
+- Lüfter Kinderzimmer 2 aus
 devices/fan_bedroom2_fan::fan_bedroom2_fan_turn_on:
-- enable fan bedroom2
+- Lüfter Kinderzimmer 2 an
 devices/fan_family_fan::fan_family_fan_set_fan_speed:
-- set fan loungefam 63
+- Lüfter Familienzimmer auf 63 Prozent
 devices/fan_family_fan::fan_family_fan_turn_off:
-- extinguish fan loungefam
+- Lüfter Familienzimmer aus
 devices/fan_family_fan::fan_family_fan_turn_on:
-- enable fan loungefam
+- Lüfter Familienzimmer an
 devices/fan_master_fan::fan_master_fan_set_fan_speed:
-- set fan bedroommaster 28
+- Lüfter Schlafzimmer auf 28 Prozent
 devices/fan_master_fan::fan_master_fan_turn_off:
-- extinguish fan bedroommaster
+- Lüfter Schlafzimmer aus
 devices/fan_master_fan::fan_master_fan_turn_on:
-- enable fan bedroommaster
+- Lüfter Schlafzimmer an
 devices/fan_master_fan_and_light_kitchen_island::fan_master_fan_and_light_kitchen_island_turn_off:
-- extinguish fan bedroommaster then extinguish island kitchen
+- Lüfter Schlafzimmer aus und Mach die Lichter in der Küche aus
 devices/fan_master_fan_and_light_kitchen_island::fan_master_fan_and_light_kitchen_island_turn_on:
-- enable fan bedroommaster then enable island kitchen
+- Lüfter Schlafzimmer an und Mach die Lichter in der Küche an
 devices/light_bedroom2_ceiling::light_bedroom2_ceiling_change_brightness:
-- set ceiling bedroom2 94
+- Setze Kinderzimmer 2 auf 94 Prozent
 devices/light_bedroom2_ceiling::light_bedroom2_ceiling_change_color:
-- set ceiling bedroom2 pink
+- Mach Kinderzimmer 2 pink
 devices/light_bedroom2_ceiling::light_bedroom2_ceiling_turn_off:
-- extinguish ceiling bedroom2
+- Mach die Lichter in Kinderzimmer 2 aus
 devices/light_bedroom2_ceiling::light_bedroom2_ceiling_turn_on:
-- enable ceiling bedroom2
+- Mach die Lichter in Kinderzimmer 2 an
 devices/light_bedroom3_ceiling::light_bedroom3_ceiling_change_brightness:
-- set ceiling bedroom3 36
+- Setze Kinderzimmer 3 auf 36 Prozent
 devices/light_bedroom3_ceiling::light_bedroom3_ceiling_change_color:
-- set ceiling bedroom3 yellow
+- Mach Kinderzimmer 3 gelb
 devices/light_bedroom3_ceiling::light_bedroom3_ceiling_turn_off:
-- extinguish ceiling bedroom3
+- Mach die Lichter in Kinderzimmer 3 aus
 devices/light_bedroom3_ceiling::light_bedroom3_ceiling_turn_on:
-- enable ceiling bedroom3
+- Mach die Lichter in Kinderzimmer 3 an
 devices/light_bedroom4_ceiling::light_bedroom4_ceiling_change_brightness:
-- set ceiling bedroom4 60
+- Setze Kinderzimmer 4 auf 60 Prozent
 devices/light_bedroom4_ceiling::light_bedroom4_ceiling_change_color:
-- set ceiling bedroom4 red
+- Mach Kinderzimmer 4 rot
 devices/light_bedroom4_ceiling::light_bedroom4_ceiling_turn_off:
-- extinguish ceiling bedroom4
+- Mach die Lichter in Kinderzimmer 4 aus
 devices/light_bedroom4_ceiling::light_bedroom4_ceiling_turn_on:
-- enable ceiling bedroom4
+- Mach die Lichter in Kinderzimmer 4 an
 devices/light_dining_pendant::light_dining_pendant_change_brightness:
-- set light loungefamess 21
+- Setze Esszimmer auf 21 Prozent
 devices/light_dining_pendant::light_dining_pendant_change_color:
-- set light loungefamess blue
+- Mach Esszimmer blau
 devices/light_dining_pendant::light_dining_pendant_turn_off:
-- extinguish light loungefamess
+- Mach die Lichter im Esszimmer aus
 devices/light_dining_pendant::light_dining_pendant_turn_on:
-- enable light loungefamess
+- Mach die Lichter im Esszimmer an
 devices/light_entryway_light::light_entryway_light_change_brightness:
-- set light porch 88
+- Setze Eingang auf 88 Prozent
 devices/light_entryway_light::light_entryway_light_change_color:
-- set light porch yellow
+- Mach Eingang gelb
 devices/light_entryway_light::light_entryway_light_turn_off:
-- extinguish light porch
+- Mach die Lichter am Eingang aus
 devices/light_entryway_light::light_entryway_light_turn_on:
-- enable light porch
+- Mach die Lichter am Eingang an
 devices/light_family_ceiling::light_family_ceiling_change_brightness:
-- set ceiling loungefam 98
+- Setze Familienzimmer auf 98 Prozent
 devices/light_family_ceiling::light_family_ceiling_change_color:
-- set ceiling loungefam purple
+- Mach Familienzimmer lila
 devices/light_family_ceiling::light_family_ceiling_turn_off:
-- extinguish ceiling loungefam
+- Mach die Lichter im Familienzimmer aus
 devices/light_family_ceiling::light_family_ceiling_turn_on:
-- enable ceiling loungefam
+- Mach die Lichter im Familienzimmer an
 devices/light_garage_light::light_garage_light_change_brightness:
-- set light garage 76
+- Setze Garage auf 76 Prozent
 devices/light_garage_light::light_garage_light_change_color:
-- set light garage green
+- Mach Garage grün
 devices/light_garage_light::light_garage_light_turn_off:
-- extinguish light garage
+- Mach die Lichter in der Garage aus
 devices/light_garage_light::light_garage_light_turn_on:
-- enable light garage
+- Mach die Lichter in der Garage an
 devices/light_hallway_light::light_hallway_light_change_brightness:
-- set light porchgang 11
+- Setze Flur auf 11 Prozent
 devices/light_hallway_light::light_hallway_light_change_color:
-- set light porchgang white
+- Mach Flur weiß
 devices/light_hallway_light::light_hallway_light_turn_off:
-- extinguish light porchgang
+- Mach die Lichter im Flur aus
 devices/light_hallway_light::light_hallway_light_turn_on:
-- enable light porchgang
+- Mach die Lichter im Flur an
 devices/light_kitchen_ceiling::light_kitchen_ceiling_change_brightness:
-- set ceiling kitchen 25
+- Setze Küche auf 25 Prozent
 devices/light_kitchen_ceiling::light_kitchen_ceiling_change_color:
-- set ceiling kitchen orange
+- Mach Küche orange
 devices/light_kitchen_ceiling::light_kitchen_ceiling_turn_off:
-- extinguish ceiling kitchen
+- Mach die Lichter in der Küche aus
 devices/light_kitchen_ceiling::light_kitchen_ceiling_turn_on:
-- enable ceiling kitchen
+- Mach die Lichter in der Küche an
 devices/light_kitchen_island::light_kitchen_island_change_brightness:
-- set island kitchen 99
+- Setze Küche auf 99 Prozent
 devices/light_kitchen_island::light_kitchen_island_change_color:
-- set island kitchen green
+- Mach Küche grün
 devices/light_kitchen_island::light_kitchen_island_turn_off:
-- extinguish island kitchen
+- Mach die Lichter in der Küche aus
 devices/light_kitchen_island::light_kitchen_island_turn_on:
-- enable island kitchen
+- Mach die Lichter in der Küche an
 devices/light_laundry_light::light_laundry_light_change_brightness:
-- set light utility 18
+- Setze Waschküche auf 18 Prozent
 devices/light_laundry_light::light_laundry_light_change_color:
-- set light utility white
+- Mach Waschküche weiß
 devices/light_laundry_light::light_laundry_light_turn_off:
-- extinguish light utility
+- Mach die Lichter in der Waschküche aus
 devices/light_laundry_light::light_laundry_light_turn_on:
-- enable light utility
+- Mach die Lichter in der Waschküche an
 devices/light_living_ceiling::light_living_ceiling_change_brightness:
-- set ceiling lounge 72
+- Setze Wohnzimmer auf 72 Prozent
 devices/light_living_ceiling::light_living_ceiling_change_color:
-- set ceiling lounge black
+- Mach Wohnzimmer schwarz
 devices/light_living_ceiling::light_living_ceiling_turn_off:
-- extinguish ceiling lounge
+- Mach die Lichter im Wohnzimmer aus
 devices/light_living_ceiling::light_living_ceiling_turn_on:
-- enable ceiling lounge
+- Mach die Lichter im Wohnzimmer an
 devices/light_living_lamp::light_living_lamp_change_brightness:
-- set bulb lounge 72
+- Setze Wohnzimmer auf 72 Prozent
 devices/light_living_lamp::light_living_lamp_change_color:
-- set bulb lounge red
+- Mach Wohnzimmer rot
 devices/light_living_lamp::light_living_lamp_turn_off:
-- extinguish bulb lounge
+- Mach die Lichter im Wohnzimmer aus
 devices/light_living_lamp::light_living_lamp_turn_on:
-- enable bulb lounge
+- Mach die Lichter im Wohnzimmer an
 devices/light_main_bath_light::light_main_bath_light_change_brightness:
-- set light main bath 85
+- Setze Badezimmer auf 85 Prozent
 devices/light_main_bath_light::light_main_bath_light_change_color:
-- set light main bath blue
+- Mach Badezimmer blau
 devices/light_main_bath_light::light_main_bath_light_turn_off:
-- extinguish light main bath
+- Mach die Lichter im Badezimmer aus
 devices/light_main_bath_light::light_main_bath_light_turn_on:
-- enable light main bath
+- Mach die Lichter im Badezimmer an
 devices/light_master_bath_light::light_master_bath_light_change_brightness:
-- set light ensuite 18
+- Setze Elternbad auf 18 Prozent
 devices/light_master_bath_light::light_master_bath_light_change_color:
-- set light ensuite black
+- Mach Elternbad schwarz
 devices/light_master_bath_light::light_master_bath_light_turn_off:
-- extinguish light ensuite
+- Mach die Lichter im Elternbad aus
 devices/light_master_bath_light::light_master_bath_light_turn_on:
-- enable light ensuite
+- Mach die Lichter im Elternbad an
 devices/light_master_bedside_right::light_master_bedside_right_change_brightness:
-- set bedside right bedroommaster 25
+- Setze Schlafzimmer auf 25 Prozent
 devices/light_master_bedside_right::light_master_bedside_right_change_color:
-- set bedside right bedroommaster red
+- Mach Schlafzimmer rot
 devices/light_master_bedside_right::light_master_bedside_right_turn_off:
-- extinguish bedside right bedroommaster
+- Mach die Lichter im Schlafzimmer aus
 devices/light_master_bedside_right::light_master_bedside_right_turn_on:
-- enable bedside right bedroommaster
+- Mach die Lichter im Schlafzimmer an
 devices/light_master_ceiling::light_master_ceiling_change_brightness:
-- set ceiling bedroommaster 77
+- Setze Schlafzimmer auf 77 Prozent
 devices/light_master_ceiling::light_master_ceiling_change_color:
-- set ceiling bedroommaster blue
+- Mach Schlafzimmer blau
 devices/light_master_ceiling::light_master_ceiling_turn_off:
-- extinguish ceiling bedroommaster
+- Mach die Lichter im Schlafzimmer aus
 devices/light_master_ceiling::light_master_ceiling_turn_on:
-- enable ceiling bedroommaster
+- Mach die Lichter im Schlafzimmer an
 devices/light_master_ensuite::light_master_ensuite_change_brightness:
-- set ankleide bedroommaster 55
+- Setze Schlafzimmer auf 55 Prozent
 devices/light_master_ensuite::light_master_ensuite_change_color:
-- set ankleide bedroommaster black
+- Mach Schlafzimmer schwarz
 devices/light_master_ensuite::light_master_ensuite_turn_off:
-- extinguish ankleide bedroommaster
+- Mach die Lichter im Schlafzimmer aus
 devices/light_master_ensuite::light_master_ensuite_turn_on:
-- enable ankleide bedroommaster
+- Mach die Lichter im Schlafzimmer an
 devices/light_powder_room_light::light_powder_room_light_change_brightness:
-- set light loo 22
+- Setze Gäste-WC auf 22 Prozent
 devices/light_powder_room_light::light_powder_room_light_change_color:
-- set light loo black
+- Mach Gäste-WC schwarz
 devices/light_powder_room_light::light_powder_room_light_turn_off:
-- extinguish light loo
+- Mach die Lichter im Gäste-WC aus
 devices/light_powder_room_light::light_powder_room_light_turn_on:
-- enable light loo
+- Mach die Lichter im Gäste-WC an
 devices/lock_front_door::lock_front_door_lock:
-- lock lock porch
+- Schließ Haustür ab
 devices/lock_front_door::lock_front_door_unlock:
-- open lock porch
+- Schließ Haustür auf
 devices/lock_garage_entry::lock_garage_entry_lock:
-- lock lock garage
+- Schließ Garagentür ab
 devices/lock_garage_entry::lock_garage_entry_unlock:
-- open lock garage
+- Schließ Garagentür auf
 devices/media_player_family_tv::media_player_family_tv_mute:
-- enable telly loungefam
+- Familienzimmer Fernseher stumm
 devices/media_player_family_tv::media_player_family_tv_pause:
-- pause telly loungefam
+- Pause Familienzimmer Fernseher
 devices/media_player_family_tv::media_player_family_tv_turn_off:
-- extinguish telly loungefam
+- Mach Familienzimmer Fernseher aus
 devices/media_player_family_tv::media_player_family_tv_turn_on:
-- enable telly loungefam
+- Mach Familienzimmer Fernseher an
 devices/media_player_family_tv::media_player_family_tv_unmute:
-- enable telly loungefam
+- Familienzimmer Fernseher laut
 devices/media_player_family_tv::media_player_family_tv_unpause:
-- enable telly loungefam
+- Mach Familienzimmer Fernseher an
 devices/media_player_living_tv::media_player_living_tv_mute:
-- enable telly lounge
+- Wohnzimmer Fernseher stumm
 devices/media_player_living_tv::media_player_living_tv_pause:
-- pause telly lounge
+- Pause Wohnzimmer Fernseher
 devices/media_player_living_tv::media_player_living_tv_turn_off:
-- extinguish telly lounge
+- Mach Wohnzimmer Fernseher aus
 devices/media_player_living_tv::media_player_living_tv_turn_on:
-- enable telly lounge
+- Mach Wohnzimmer Fernseher an
 devices/media_player_living_tv::media_player_living_tv_unmute:
-- enable telly lounge
+- Wohnzimmer Fernseher laut
 devices/media_player_living_tv::media_player_living_tv_unpause:
-- enable telly lounge
+- Mach Wohnzimmer Fernseher an
 devices/scenes::dinner_time:
-- set light loungefamess 90 then enable ceiling kitchen then set island kitchen 80
+- Szene Abendessen
 devices/scenes::good_morning:
-- enable ceiling kitchen then set light loungefamess 100 then open curtain lounge
-  then open curtain bedroommaster
+- Szene Guten Morgen
 devices/scenes::kids_bedtime:
-- extinguish ceiling bedroom2 then extinguish ceiling bedroom3 then extinguish ceiling
-  bedroom4 then set light porchgang 15
+- Szene Kinder ins Bett
 devices/scenes::movie_night:
-- extinguish ceiling lounge then set bulb lounge 20 then enable telly lounge then
-  close curtain lounge
+- Szene Filmabend
 devices/scripts::good_night:
-- extinguish ceiling lounge then extinguish bulb lounge then extinguish light loungefamess
-  then extinguish ceiling kitchen then extinguish island kitchen then extinguish ceiling
-  loungefam then extinguish light porch then extinguish light porchgang then lock
-  lock porch then lock lock garage then set heating bedroommaster 20
+- Szene Gute Nacht
 devices/scripts::leaving_home:
-- extinguish ceiling lounge then extinguish bulb lounge then extinguish ceiling kitchen
-  then extinguish ceiling loungefam then extinguish light porch then lock lock porch
-  then lock lock garage then close curtain garage
+- Szene Haus verlassen
 devices/switch_dishwasher::switch_dishwasher_turn_off:
-- extinguish dishwasher
+- Schalt die Schalter in der Küche aus
 devices/switch_dishwasher::switch_dishwasher_turn_on:
-- enable dishwasher
+- Schalt die Schalter in der Küche an
 devices/switch_dryer::switch_dryer_turn_off:
-- extinguish dryer
+- Schalt die Schalter in der Waschküche aus
 devices/switch_dryer::switch_dryer_turn_on:
-- enable dryer
+- Schalt die Schalter in der Waschküche an
 devices/switch_washing_machine::switch_washing_machine_turn_off:
-- extinguish washer
+- Schalt die Schalter in der Waschküche aus
 devices/switch_washing_machine::switch_washing_machine_turn_on:
-- enable washer
+- Schalt die Schalter in der Waschküche an

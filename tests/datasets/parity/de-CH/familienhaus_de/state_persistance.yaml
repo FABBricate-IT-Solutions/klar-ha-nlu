@@ -1,138 +1,138 @@
 state_persistance/area_bedroom_2_covers::bedroom_2_covers_set_position:
-- - was store schlafzimmer2
-  - ' 51'
+- - Status store Kinderzimmer 2
+  - uf 51
 state_persistance/area_bedroom_2_lights::bedroom_2_lights_set_brightness:
-- - was decke schlafzimmer2
-  - ' 20'
+- - Status liechter Kinderzimmer 2
+  - uf 20
 state_persistance/area_bedroom_3_covers::bedroom_3_covers_set_position:
-- - was store schlafzimmer3
-  - ' 67'
+- - Status store Kinderzimmer 3
+  - uf 67
 state_persistance/area_bedroom_3_lights::bedroom_3_lights_set_brightness:
-- - was decke schlafzimmer3
-  - ' 63'
+- - Status liechter Kinderzimmer 3
+  - uf 63
 state_persistance/area_bedroom_4_lights::bedroom_4_lights_set_brightness:
-- - was decke schlafzimmer4
-  - ' 80'
+- - Status liechter Kinderzimmer 4
+  - uf 80
 state_persistance/area_dining_lights::dining_lights_set_brightness:
-- - was liecht stubeess
-  - ' 68'
+- - Status liechter Esszimmer
+  - uf 68
 state_persistance/area_entryway_lights::entryway_lights_set_brightness:
-- - was liecht eingang
-  - ' 54'
+- - Status liechter Eingang
+  - uf 54
 state_persistance/area_family_room_lights::family_room_lights_set_brightness:
-- - was decke stube
-  - ' 94'
+- - Status liechter Familienzimmer
+  - uf 94
 state_persistance/area_garage_covers::garage_covers_set_position:
-- - was store garage
-  - ' 18'
+- - Status store Garage
+  - uf 18
 state_persistance/area_garage_lights::garage_lights_set_brightness:
-- - was liecht garage
-  - ' 27'
+- - Status liechter Garage
+  - uf 27
 state_persistance/area_hallway_and_powder_room_lights::hallway_and_powder_room_lights_set_brightness:
-- - was liecht einganggang then was liecht toilette
-  - ' 100'
+- - Status liechter Flur und Gäste-WC
+  - uf 100
 state_persistance/area_hallway_lights::hallway_lights_set_brightness:
-- - was liecht einganggang
-  - ' 69'
+- - Status liechter Flur
+  - uf 69
 state_persistance/area_kitchen_lights::kitchen_lights_set_brightness:
-- - was liecht chuchi
-  - ' 46'
+- - Status liechter Küche
+  - uf 46
 state_persistance/area_laundry_lights::laundry_lights_set_brightness:
-- - was liecht waschruum
-  - ' 62'
+- - Status liechter Waschküche
+  - uf 62
 state_persistance/area_living_climates::living_climates_set_temperature:
-- - was heizig wohnzimmer
-  - ' 95'
+- - Status heizig Wohnzimmer
+  - uf 95
 state_persistance/area_living_covers::living_covers_set_position:
-- - was store wohnzimmer
-  - ' 86'
+- - Status store Wohnzimmer
+  - uf 86
 state_persistance/area_living_lights::living_lights_set_brightness:
-- - was liecht wohnzimmer
-  - ' 55'
+- - Status liechter Wohnzimmer
+  - uf 55
 state_persistance/area_main_bath_lights::main_bath_lights_set_brightness:
-- - was liecht badmastermain
-  - ' 96'
+- - Status liechter Badezimmer
+  - uf 96
 state_persistance/area_master_bath_lights::master_bath_lights_set_brightness:
-- - was liecht badmaster
-  - ' 50'
+- - Status liechter Elternbad
+  - uf 50
 state_persistance/area_master_bedroom_and_living_climates::master_bedroom_and_living_climates_set_temperature:
-- - was heizig schlafzimmermaster then was heizig wohnzimmer
-  - ' 69'
+- - Status heizig Schlafzimmer und Wohnzimmer
+  - uf 69
 state_persistance/area_master_bedroom_and_living_covers::master_bedroom_and_living_covers_set_position:
-- - was store schlafzimmermaster then was store wohnzimmer
-  - ' 15'
+- - Status store Schlafzimmer und Wohnzimmer
+  - uf 15
 state_persistance/area_master_bedroom_climates::master_bedroom_climates_set_temperature:
-- - was heizig schlafzimmermaster
-  - ' 44'
+- - Status heizig Schlafzimmer
+  - uf 44
 state_persistance/area_master_bedroom_covers::master_bedroom_covers_set_position:
-- - was store schlafzimmermaster
-  - ' 88'
+- - Status store Schlafzimmer
+  - uf 88
 state_persistance/area_powder_room_lights::powder_room_lights_set_brightness:
-- - was liecht toilette
-  - ' 70'
+- - Status liechter Gäste-WC
+  - uf 70
 state_persistance/device_cover_garage_door::cover_garage_door_close:
-- - was store garage
-  - zue store garage
+- - Status store Garage
+  - mach sie zue
 state_persistance/device_cover_garage_door::cover_garage_door_open:
-- - was store garage
-  - ufmache store garage
+- - Status store Garage
+  - mach sie uf
 state_persistance/device_cover_garage_door::cover_garage_door_persistance_position:
-- - was store garage
-  - '23'
+- - Status store Garage
+  - uf 23
 state_persistance/device_cover_living_blinds::cover_living_blinds_close:
-- - was store wohnzimmer
-  - zue store wohnzimmer
+- - Status store Wohnzimmer
+  - mach sie zue
 state_persistance/device_cover_living_blinds::cover_living_blinds_open:
-- - was store wohnzimmer
-  - ufmache store wohnzimmer
+- - Status store Wohnzimmer
+  - mach sie uf
 state_persistance/device_cover_living_blinds::cover_living_blinds_persistance_position:
-- - was store wohnzimmer
-  - '85'
+- - Status store Wohnzimmer
+  - uf 85
 state_persistance/device_fan_family_fan::fan_family_fan_persistance_percentage:
-- - was ventilator stube
-  - ' 43'
+- - Status Lüfter Familienzimmer
+  - uf 43
 state_persistance/device_fan_family_fan::fan_family_fan_turn_off:
-- - was ventilator stube
-  - loesch ventilator stube
+- - Status Lüfter Familienzimmer
+  - mach sie uus
 state_persistance/device_fan_family_fan::fan_family_fan_turn_on:
-- - was ventilator stube
-  - mach ventilator stube
+- - Status Lüfter Familienzimmer
+  - mach sie aa
 state_persistance/device_light_entryway_light::light_entryway_light_persistance_brightness:
-- - was liecht eingang
-  - '12'
+- - Status liechter Eingang
+  - uf 12
 state_persistance/device_light_entryway_light::light_entryway_light_turn_off:
-- - was liecht eingang
-  - loesch liecht eingang
+- - Status liecht Eingang
+  - mach sie uus
 state_persistance/device_light_entryway_light::light_entryway_light_turn_on:
-- - was liecht eingang
-  - mach liecht eingang
+- - Status liecht Eingang
+  - mach sie aa
 state_persistance/device_lock_front_door::lock_front_door_lock:
-- - was schloss eingang
-  - schloss schloss eingang
+- - Status Schloss Eingang
+  - mach sie aa
 state_persistance/device_lock_front_door::lock_front_door_unlock:
-- - was schloss eingang
-  - ufmache schloss eingang
+- - Status Schloss Eingang
+  - mach sie uus
 state_persistance/device_lock_garage_entry::lock_garage_entry_lock:
-- - was schloss garage
-  - schloss schloss garage
+- - Status Schloss Garage
+  - mach sie aa
 state_persistance/device_lock_garage_entry::lock_garage_entry_unlock:
-- - was schloss garage
-  - ufmache schloss garage
+- - Status Schloss Garage
+  - mach sie uus
 state_persistance/device_media_player_family_tv::media_player_family_tv_persistance_volume_level:
-- - was tv stube
-  - ' 21'
+- - Status fernseh Familienzimmer
+  - uf 21
 state_persistance/device_media_player_family_tv::media_player_family_tv_turn_off:
-- - was tv stube
-  - loesch tv stube
+- - Status fernseh Familienzimmer
+  - mach sie uus
 state_persistance/device_media_player_family_tv::media_player_family_tv_turn_on:
-- - was tv stube
-  - mach tv stube
+- - Status fernseh Familienzimmer
+  - mach sie aa
 state_persistance/device_media_player_living_tv::media_player_living_tv_persistance_volume_level:
-- - was tv wohnzimmer
-  - ' 21'
+- - Status fernseh Wohnzimmer
+  - uf 21
 state_persistance/device_media_player_living_tv::media_player_living_tv_turn_off:
-- - was tv wohnzimmer
-  - loesch tv wohnzimmer
+- - Status fernseh Wohnzimmer
+  - mach sie uus
 state_persistance/device_media_player_living_tv::media_player_living_tv_turn_on:
-- - was tv wohnzimmer
-  - mach tv wohnzimmer
+- - Status fernseh Wohnzimmer
+  - mach sie aa

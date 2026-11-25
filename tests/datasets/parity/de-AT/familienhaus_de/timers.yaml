@@ -1,36 +1,36 @@
 timers/timers::abstract_start:
-- mach timer abstract 45 min
+- Starte den Timer Timer für 45 Minuten
 timers/timers::abstract_start_hours_minutes:
-- mach timer abstract 20 min
+- Starte den Timer Timer für 20 Minuten
 timers/timers::abstract_start_seconds:
-- mach timer abstract 45 sec
+- Starte den Timer Timer für 45 Sekunden
 timers/timers::cancel_all_timers:
-- schalt alle timer
+- Starte den Timer Ofen-Timer für 2 Minuten
 timers/timers::timer_laundry_cancel:
-- schalt timer laundry
+- Starte den Timer Wäsche-Timer für 2 Minuten
 timers/timers::timer_laundry_decrease:
-- mach timer laundry 5 min
+- Starte den Timer Wäsche-Timer für 5 Minuten
 timers/timers::timer_laundry_increase:
-- mach timer laundry 16 min
+- Starte den Timer Wäsche-Timer für 16 Minuten
 timers/timers::timer_laundry_pause:
-- pause timer laundry
+- Starte den Timer Wäsche-Timer für 2 Minuten
 timers/timers::timer_laundry_start:
-- mach timer laundry 90 sec
+- Starte den Timer Wäsche-Timer für 90 Sekunden
 timers/timers::timer_laundry_status:
-- was timer laundry
+- Ist Wäsche-Timer an
 timers/timers::timer_laundry_unpause:
-- spiel timer laundry
+- Starte den Timer Wäsche-Timer für 2 Minuten
 timers/timers::timer_oven_cancel:
-- schalt timer oven
+- Starte den Timer Ofen-Timer für 2 Minuten
 timers/timers::timer_oven_decrease:
-- mach timer oven 44 min
+- Starte den Timer Ofen-Timer für 44 Minuten
 timers/timers::timer_oven_increase:
-- mach timer oven 30 min
+- Starte den Timer Ofen-Timer für 30 Minuten
 timers/timers::timer_oven_pause:
-- pause timer oven
+- Starte den Timer Ofen-Timer für 2 Minuten
 timers/timers::timer_oven_start:
-- mach timer oven 2 min
+- Starte den Timer Ofen-Timer für 2 Minuten
 timers/timers::timer_oven_status:
-- was timer oven
+- Ist Ofen-Timer an
 timers/timers::timer_oven_unpause:
-- spiel timer oven
+- Starte den Timer Ofen-Timer für 2 Minuten

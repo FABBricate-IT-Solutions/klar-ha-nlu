@@ -8,8 +8,9 @@ use klar_nlu::types::HomeGraph;
 use voice_suite_support::bounds::assert_within_bound;
 use voice_suite_support::{print_stats, run_groups_lang, suite_home, RunStats};
 
-fn run_tier(code: &str, tier: &str, min_cases: usize) -> RunStats {
-    let name = format!("full_home/{code}");
+/// A regional pack has no dataset of its own: it runs its parent's sentences under its own code.
+fn run_tier(code: &str, data: &str, tier: &str, min_cases: usize) -> RunStats {
+    let name = format!("full_home/{data}");
     let home: HomeGraph = suite_home(&name);
     let stats = run_groups_lang(&name, &[tier], home, Some(code), None);
     print_stats(&format!("Klar NLU · full-home {code} {tier}"), &stats);
@@ -19,15 +20,18 @@ fn run_tier(code: &str, tier: &str, min_cases: usize) -> RunStats {
 
 macro_rules! full_home {
     ($quick:ident, $full:ident, $code:literal) => {
+        full_home!($quick, $full, $code, $code);
+    };
+    ($quick:ident, $full:ident, $code:literal, $data:literal) => {
         #[test]
         fn $quick() {
-            let stats = run_tier($code, "quick", 25);
+            let stats = run_tier($code, $data, "quick", 25);
             assert_eq!(stats.fail, 0, "{} quick failures:\n{}", $code, stats.fails.join("\n"));
         }
         #[test]
         #[ignore = "full tier is slow; run with --run-ignored all (de and en in the dataset-suites job, every locale weekly)"]
         fn $full() {
-            let stats = run_tier($code, "full", 80);
+            let stats = run_tier($code, $data, "full", 80);
             assert_within_bound("full_home_full", $code, &stats);
         }
     };
@@ -46,10 +50,10 @@ full_home!(full_home_quick_da, full_home_full_da, "da");
 full_home!(full_home_quick_nb, full_home_full_nb, "nb");
 full_home!(full_home_quick_sv, full_home_full_sv, "sv");
 full_home!(full_home_quick_fi, full_home_full_fi, "fi");
-full_home!(full_home_quick_de_ch, full_home_full_de_ch, "de-CH");
-full_home!(full_home_quick_de_at, full_home_full_de_at, "de-AT");
-full_home!(full_home_quick_en_gb, full_home_full_en_gb, "en-GB");
-full_home!(full_home_quick_pt_br, full_home_full_pt_br, "pt-BR");
+full_home!(full_home_quick_de_ch, full_home_full_de_ch, "de-CH", "de");
+full_home!(full_home_quick_de_at, full_home_full_de_at, "de-AT", "de");
+full_home!(full_home_quick_en_gb, full_home_full_en_gb, "en-GB", "en");
+full_home!(full_home_quick_pt_br, full_home_full_pt_br, "pt-BR", "pt");
 full_home!(full_home_quick_af, full_home_full_af, "af");
 full_home!(full_home_quick_cs, full_home_full_cs, "cs");
 full_home!(full_home_quick_sk, full_home_full_sk, "sk");

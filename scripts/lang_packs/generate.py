@@ -42,24 +42,30 @@ def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
     return parser.parse_args(argv)
 
 
+def expand_all(write, label: str) -> list[dict]:
+    """Expand and write every core, parents first: a regional pack is built from its parent's written lists."""
+    done = {}
+    for core in sorted(ALL_CORES, key=lambda core: bool(core.get("parent"))):
+        lang = expand(core)
+        write(lang)
+        print(label, lang["code"])
+        done[lang["code"]] = lang
+    return [done[core["code"]] for core in ALL_CORES]
+
+
 def main(argv: list[str] | None = None) -> None:
     args = parse_args(argv)
     missing = slot_gaps()
     if missing:
         raise SystemExit("speech slot tables missing: " + ", ".join(missing))
-    generated = [expand(core) for core in ALL_CORES]
     if args.speech_only:
-        for lang in generated:
-            write_speech(lang)
-            print("wrote speech", lang["code"])
+        generated = expand_all(write_speech, "wrote speech")
         write_speech_locale(generated)
         write_refine_shots(generated)
         write_post_exec(generated)
         print("speech-only", len(generated))
         return
-    for lang in generated:
-        write_pack(lang)
-        print("wrote", lang["code"])
+    generated = expand_all(write_pack, "wrote")
     registry = BUILTINS + generated
     write_registry(registry)
     lights = {"de": ("licht wohnzimmer an", "licht kuche aus"), "en": ("turn on the living room light", "turn off the kitchen light")}

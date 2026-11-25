@@ -56,7 +56,7 @@ const CASES: &[(&str, &str, &str)] = &[
     ("nb", "skru lys i stue", "HassTurnOn"),
     ("sv", "tand ljus i vardagsrum", "HassTurnOn"),
     ("fi", "sytyta valo olohuone", "HassTurnOn"),
-    ("de-CH", "mach s liecht im wohnzimmer", "HassTurnOn"),
+    ("de-CH", "mach s liecht im wohnzimmer aa", "HassTurnOn"),
     ("de-AT", "mach das licht im wohnzimmer an", "HassTurnOn"),
     ("en-GB", "turn on the lounge light", "HassTurnOn"),
     ("pt-BR", "liga a luz da sala", "HassTurnOn"),

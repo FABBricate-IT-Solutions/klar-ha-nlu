@@ -1,12 +1,12 @@
 - name: light_on
   sentences:
-    - mach licht wohnzimmer
+    - licht wohnzimmer aufdrehen
   nlu_expect:
     intents:
       - intent: HassTurnOn
 - name: light_off
   sentences:
-    - schalt licht kuche
+    - licht kuche abdrehen
   nlu_expect:
     intents:
       - intent: HassTurnOff

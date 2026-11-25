@@ -114,9 +114,10 @@ def pack_rs(lang: dict) -> str:
         alias_rows.append(f'            ({rust_str(folded)}, {rust_list(vals, "            ")})')
     aliases = ",\n".join(alias_rows)
     alias_block = f"&[\n{aliases},\n        ]" if aliases else "&[]"
-    numbers = ",\n".join(
+    number_rows = ",\n".join(
         f'            ({rust_str(fold_latin(word))}, {num})' for word, num in m["numbers"] if fold_latin(word)
     )
+    numbers = f"&[\n{number_rows},\n        ]" if number_rows else "&[]"
     colors = rust_pairs(m["colors"], "            ")
     domains = rust_pairs(m["domain_map"], "            ")
     style = m.get("number_style", "ListedOnly")
@@ -264,9 +265,7 @@ pub const PACK: LanguagePack = LanguagePack {{
     maps: Maps {{
         domain_map: {domains},
         colors: {colors},
-        numbers: &[
-{numbers},
-        ],
+        numbers: {numbers},
         number_style: NumberStyle::{style},
         room_index_nouns: {rust_list(m["room_index_nouns"])},
     }},

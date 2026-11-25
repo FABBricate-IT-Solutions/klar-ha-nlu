@@ -13,7 +13,7 @@ use klar_nlu::types::HomeGraph;
 use std::path::{Path, PathBuf};
 
 #[allow(unused_imports)]
-pub(crate) use runner::{print_stats, run_groups, run_groups_lang, run_suite};
+pub(crate) use runner::{conversations, print_stats, run_groups, run_groups_inherited, run_groups_lang, run_suite};
 
 pub(crate) struct RunStats {
     pub(crate) ok: usize,
