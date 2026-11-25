@@ -13,10 +13,12 @@
       }
     },
     "error": {
-      "invalid_url": "URL må være http(s) uten brukernavn."
+      "invalid_url": "URL må være http(s) uten brukernavn.",
+      "cannot_connect": "Klar did not answer at that URL. Check the App or the URL."
     },
     "abort": {
-      "already_configured": "Klar NLU er allerede satt opp"
+      "already_configured": "Klar NLU er allerede satt opp",
+      "reauth_successful": "Klar connection updated"
     }
   },
   "options": {

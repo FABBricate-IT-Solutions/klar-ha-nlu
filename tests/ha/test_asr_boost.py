@@ -70,9 +70,12 @@ asr_boost = _load_asr_boost()
 class AsrBoostExportTests(unittest.TestCase):
     def test_boost_path_under_config_dir(self) -> None:
         hass = types.SimpleNamespace(config=types.SimpleNamespace(config_dir="/tmp/ha-config"))
-        self.assertEqual(asr_boost.boost_path(hass, None), Path("/tmp/ha-config/klar_nlu_asr_boost.txt"))
-        self.assertEqual(asr_boost.boost_path(hass, "custom.txt"), Path("/tmp/ha-config/custom.txt"))
-        self.assertEqual(asr_boost.boost_path(hass, "/abs/prompt.txt"), Path("/abs/prompt.txt"))
+        self.assertEqual(asr_boost.boost_path(hass, None), Path("/tmp/ha-config/klar_nlu_asr_boost.txt").resolve())
+        self.assertEqual(asr_boost.boost_path(hass, "custom.txt"), Path("/tmp/ha-config/custom.txt").resolve())
+        with self.assertRaises(ValueError):
+            asr_boost.boost_path(hass, "/abs/prompt.txt")
+        with self.assertRaises(ValueError):
+            asr_boost.boost_path(hass, "../outside.txt")
 
     def test_write_prompt_creates_file(self) -> None:
         with TemporaryDirectory() as tmp:

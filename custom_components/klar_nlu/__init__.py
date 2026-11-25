@@ -44,7 +44,7 @@ from .engine import (
 from .lang_select import engine_language_state
 from .panel import async_setup_panel, async_unload_panel
 from .quiet import async_setup_chime
-from .services import async_setup_services
+from .services import async_setup_services, async_unload_services
 from .sync import HomeGraphSync, engine_url
 from .ui_proxy import async_setup_ui_proxy
 
@@ -174,5 +174,8 @@ async def async_unload_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
     engine = stored.get("engine")
     if engine is not None:
         await engine.async_stop()
+    # H-21: drop per-conversation LLM history with the entry.
+    (hass.data.get(DOMAIN) or {}).pop("llm_turns", None)
+    await async_unload_services(hass)
     await async_unload_panel(hass)
     return unload_ok

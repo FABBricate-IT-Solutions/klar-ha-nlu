@@ -13,10 +13,12 @@
       }
     },
     "error": {
-      "invalid_url": "Slóðin verður að vera http(s) án notandanafns."
+      "invalid_url": "Slóðin verður að vera http(s) án notandanafns.",
+      "cannot_connect": "Klar did not answer at that URL. Check the App or the URL."
     },
     "abort": {
-      "already_configured": "Klar NLU er þegar sett upp"
+      "already_configured": "Klar NLU er þegar sett upp",
+      "reauth_successful": "Klar connection updated"
     }
   },
   "options": {

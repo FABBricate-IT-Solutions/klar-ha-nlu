@@ -13,10 +13,12 @@
       }
     },
     "error": {
-      "invalid_url": "URL musí být http(s) bez uživatelského jména."
+      "invalid_url": "URL musí být http(s) bez uživatelského jména.",
+      "cannot_connect": "Klar did not answer at that URL. Check the App or the URL."
     },
     "abort": {
-      "already_configured": "Klar NLU už je nastavené"
+      "already_configured": "Klar NLU už je nastavené",
+      "reauth_successful": "Klar connection updated"
     }
   },
   "options": {

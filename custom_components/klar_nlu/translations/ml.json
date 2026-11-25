@@ -13,10 +13,12 @@
       }
     },
     "error": {
-      "invalid_url": "URL http(s) ആയിരിക്കണം, ഉപയോക്തൃനാമമില്ലാതെ."
+      "invalid_url": "URL http(s) ആയിരിക്കണം, ഉപയോക്തൃനാമമില്ലാതെ.",
+      "cannot_connect": "Klar did not answer at that URL. Check the App or the URL."
     },
     "abort": {
-      "already_configured": "Klar NLU ഇതിനകം സജ്ജമാണ്"
+      "already_configured": "Klar NLU ഇതിനകം സജ്ജമാണ്",
+      "reauth_successful": "Klar connection updated"
     }
   },
   "options": {

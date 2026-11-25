@@ -48,7 +48,14 @@ class TranslationParity(unittest.TestCase):
         english = _flatten(json.loads(STRINGS.read_text(encoding="utf-8")))
         expected = {_ha_file(code) for code in _supported()} - {None}
         on_disk = {path.stem for path in TRANSLATIONS.glob("*.json")}
-        self.assertEqual(expected, on_disk)
+        # H-08: translations/en.json mirrors strings.json for English HA installs.
+        self.assertIn("en", on_disk)
+        self.assertEqual(
+            english,
+            _flatten(json.loads((TRANSLATIONS / "en.json").read_text(encoding="utf-8"))),
+            "en",
+        )
+        self.assertEqual(expected, on_disk - {"en"})
         for name in sorted(expected):
             keys = _flatten(json.loads((TRANSLATIONS / f"{name}.json").read_text(encoding="utf-8")))
             self.assertEqual(english, keys, name)

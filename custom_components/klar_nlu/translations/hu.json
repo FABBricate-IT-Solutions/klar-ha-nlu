@@ -13,10 +13,12 @@
       }
     },
     "error": {
-      "invalid_url": "Az URL http(s) legyen, felhasználónév nélkül."
+      "invalid_url": "Az URL http(s) legyen, felhasználónév nélkül.",
+      "cannot_connect": "Klar did not answer at that URL. Check the App or the URL."
     },
     "abort": {
-      "already_configured": "A Klar NLU már be van állítva"
+      "already_configured": "A Klar NLU már be van állítva",
+      "reauth_successful": "Klar connection updated"
     }
   },
   "options": {

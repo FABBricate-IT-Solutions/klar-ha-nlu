@@ -13,10 +13,12 @@
       }
     },
     "error": {
-      "invalid_url": "URL-ul trebuie să fie http(s), fără utilizator."
+      "invalid_url": "URL-ul trebuie să fie http(s), fără utilizator.",
+      "cannot_connect": "Klar did not answer at that URL. Check the App or the URL."
     },
     "abort": {
-      "already_configured": "Klar NLU este deja configurat"
+      "already_configured": "Klar NLU este deja configurat",
+      "reauth_successful": "Klar connection updated"
     }
   },
   "options": {

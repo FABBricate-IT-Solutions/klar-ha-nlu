@@ -12,7 +12,7 @@ const fallbackIntents = ["HassTurnOn", "HassTurnOff", "HassToggle", "HassLightSe
 
 export function CustomPage({ t, locale, embedded }: { t: Messages; locale: Locale; embedded?: boolean }) {
   const [intents, setIntents] = useState<string[]>(fallbackIntents);
-  const { overlay, offline, status, setStatus, replace } = useLangOverlay();
+  const { overlay, offline, status, setStatus, replace, hold } = useLangOverlay();
   const rules = overlay?.custom ?? [];
   const language = overlay?.language ?? {};
   const history = overlay?.history ?? [];
@@ -24,11 +24,18 @@ export function CustomPage({ t, locale, embedded }: { t: Messages; locale: Local
   const [explain, setExplain] = useState<LangExplain | null>(null);
   const [jsonMode, setJsonMode] = useState(false);
   const [jsonBody, setJsonBody] = useState("[]");
+  const [jsonDirty, setJsonDirty] = useState(false);
   const { entityOptions } = useHouseCatalog();
 
   useEffect(() => {
+    hold(jsonMode && jsonDirty);
+    return () => hold(false);
+  }, [hold, jsonMode, jsonDirty]);
+
+  useEffect(() => {
+    if (jsonDirty) return;
     setJsonBody(JSON.stringify(rules, null, 2));
-  }, [rules]);
+  }, [rules, jsonDirty]);
 
   useEffect(() => {
     api.intents().then((names) => { if (names.length) setIntents(names); }).catch(() => undefined);
@@ -47,16 +54,18 @@ export function CustomPage({ t, locale, embedded }: { t: Messages; locale: Local
     }
   }, [intents]);
 
-  const persist = async (next: CustomRule[], label: string) => {
+  const persist = async (next: CustomRule[], label: string): Promise<boolean> => {
     // `rules` and `language` are empty placeholders until the overlay is loaded.
-    if (!overlay) return;
+    if (!overlay) return false;
     try {
       replace(await api.saveLangOverlay({ custom: next, language, label }));
       toastSaved(t);
       setStatus(t.saveOk);
+      return true;
     } catch (err) {
       toastSaveFailed(t, err);
       setStatus(saveFailMessage(t, err));
+      return false;
     }
   };
 
@@ -64,11 +73,14 @@ export function CustomPage({ t, locale, embedded }: { t: Messages; locale: Local
     const slots: Record<string, string> = {};
     if (entityId.trim()) slots.entity_id = entityId.trim();
     if (summary.trim()) slots.summary = summary.trim();
-    const next = [...rules, { phrase: phrase.trim(), intent, slots }];
-    setPhrase("");
-    setEntityId("");
-    setSummary("");
-    await persist(next, phrase.trim() || "add");
+    const spoken = phrase.trim();
+    const next = [...rules, { phrase: spoken, intent, slots }];
+    // Clear the form only after the engine accepts the save.
+    if (await persist(next, spoken || "add")) {
+      setPhrase("");
+      setEntityId("");
+      setSummary("");
+    }
   };
 
   const remove = async (index: number) => {
@@ -76,7 +88,21 @@ export function CustomPage({ t, locale, embedded }: { t: Messages; locale: Local
   };
 
   const saveJson = async () => {
-    await persist(JSON.parse(jsonBody || "[]"), "json");
+    let parsed: CustomRule[];
+    try {
+      parsed = JSON.parse(jsonBody || "[]") as CustomRule[];
+    } catch {
+      setStatus(t.invalidJson);
+      toastSaveFailed(t, new Error(t.invalidJson));
+      return;
+    }
+    if (!Array.isArray(parsed)) {
+      setStatus(t.invalidJson);
+      toastSaveFailed(t, new Error(t.invalidJson));
+      return;
+    }
+    await persist(parsed, "json");
+    setJsonDirty(false);
   };
 
   const runPreview = async () => {
@@ -111,7 +137,14 @@ export function CustomPage({ t, locale, embedded }: { t: Messages; locale: Local
         </div>
       )}
       {jsonMode ? (
-        <textarea value={jsonBody} onChange={(ev) => setJsonBody(ev.target.value)} style={{ minHeight: 320 }} />
+        <textarea
+          value={jsonBody}
+          onChange={(ev) => {
+            setJsonBody(ev.target.value);
+            setJsonDirty(true);
+          }}
+          style={{ minHeight: 320 }}
+        />
       ) : (
         <section className="grid two">
           <div className="card">

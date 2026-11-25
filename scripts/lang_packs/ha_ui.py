@@ -44,6 +44,11 @@ def write_ha_translations(dest: Path = DEST) -> None:
     keys = english_keys()
     dest.mkdir(parents=True, exist_ok=True)
     written: set[str] = set()
+    # H-08: English installs need translations/en.json (mirrors strings.json).
+    en_path = dest / "en.json"
+    en_path.write_text(STRINGS.read_text(encoding="utf-8"), encoding="utf-8")
+    written.add("en")
+    print("wrote", en_path)
     for code, fields in PACKS.items():
         name = HA_FILE.get(code, code)
         if name is None:

@@ -13,10 +13,12 @@
       }
     },
     "error": {
-      "invalid_url": "URL უნდა იყოს http(s) მომხმარებლის სახელის გარეშე."
+      "invalid_url": "URL უნდა იყოს http(s) მომხმარებლის სახელის გარეშე.",
+      "cannot_connect": "Klar did not answer at that URL. Check the App or the URL."
     },
     "abort": {
-      "already_configured": "Klar NLU უკვეა კონფიგურირებული"
+      "already_configured": "Klar NLU უკვეა კონფიგურირებული",
+      "reauth_successful": "Klar connection updated"
     }
   },
   "options": {

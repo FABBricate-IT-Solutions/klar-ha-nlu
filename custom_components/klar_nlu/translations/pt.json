@@ -13,10 +13,12 @@
       }
     },
     "error": {
-      "invalid_url": "O URL deve ser http(s), sem credenciais."
+      "invalid_url": "O URL deve ser http(s), sem credenciais.",
+      "cannot_connect": "Klar did not answer at that URL. Check the App or the URL."
     },
     "abort": {
-      "already_configured": "O Klar NLU já está configurado"
+      "already_configured": "O Klar NLU já está configurado",
+      "reauth_successful": "Klar connection updated"
     }
   },
   "options": {

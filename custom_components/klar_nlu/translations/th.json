@@ -13,10 +13,12 @@
       }
     },
     "error": {
-      "invalid_url": "URL ต้องเป็น http(s) และไม่มีชื่อผู้ใช้"
+      "invalid_url": "URL ต้องเป็น http(s) และไม่มีชื่อผู้ใช้",
+      "cannot_connect": "Klar did not answer at that URL. Check the App or the URL."
     },
     "abort": {
-      "already_configured": "ตั้งค่า Klar NLU แล้ว"
+      "already_configured": "ตั้งค่า Klar NLU แล้ว",
+      "reauth_successful": "Klar connection updated"
     }
   },
   "options": {
