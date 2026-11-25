@@ -188,7 +188,8 @@ pub async fn validate_proposal(
 pub async fn validate_args(state: &AppState, args: &serde_json::Value) -> Result<serde_json::Value, String> {
     let proposal: ProposalIn = serde_json::from_value(args.clone()).map_err(|_| "invalid proposal")?;
     let settings = state.settings.lock().await.clone();
-    let language = proposal.language.clone().or_else(|| settings.languages.first().cloned()).unwrap_or_else(|| "en".into());
+    let language =
+        proposal.language.clone().or_else(|| settings.languages.first().cloned()).unwrap_or_else(|| settings.default_pack().to_string());
     let home = state.home.snapshot().await;
     let house = match proposal.policies.clone() {
         Some(rules) => rules,
@@ -298,7 +299,7 @@ fn pin_language(requested: Option<&str>, settings: &Settings) -> Result<String, 
         .filter(|item| !item.is_empty())
         .map(ToString::to_string)
         .or_else(|| settings.languages.first().cloned())
-        .unwrap_or_else(|| "en".into());
+        .unwrap_or_else(|| settings.default_pack().to_string());
     if crate::lang::LangId::from_code(&code).is_none() && crate::lang::LangId::from_tag(&code).is_none() {
         return Err("unknown language");
     }

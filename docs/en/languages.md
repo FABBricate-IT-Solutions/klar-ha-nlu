@@ -2,7 +2,7 @@
 
 [Deutsch](../languages.md) · [English](languages.md)
 
-Every compiled Assist locale is first-class. German and English are hand-written reference packs; generated packs use the same `LanguagePack` path and the same enablement UX. `GET /api/v2/languages` lists the compiled set.
+Every compiled Assist locale uses the same `LanguagePack` path. German and English are hand-written reference packs; the other packs are generated. A locale is **stable** or **experimental** (see [Tiers](#tiers)); `GET /api/v2/languages` lists the locales that can be picked, each with its tier.
 
 ## Supported locales
 
@@ -65,9 +65,24 @@ klar lang import-hassil --from path/to/hassil --into /data --language de --dry-r
 
 A generated pack may enter the binary when those fields are filled and the representative suite executes.
 
+## Tiers
+
+A tier says how far a locale is tested. It does not remove a pack.
+
+- **stable**: the locale passes its on/off minimal pairs. Every "on" sentence switches on, every "off" sentence switches off, and neither a question nor a negated command switches anything. A regional variant also has to get the pairs of its base language right.
+- **experimental**: everything else. Today that is every generated pack: none of them carries negation words yet, so "do not turn on the light" is carried out as a command.
+
+`tests/language_tiers.rs` decides. The pairs come from each locale's own generator lexicon (`tests/datasets/minimal_pairs/pairs.yaml`, written by `scripts/lang_packs/pairs.py`), and the test fails when `STABLE` in `scripts/lang_packs/tiers.py` says something else than the pairs do. To make a locale stable, give its pack what it lacks (for example the negation words in `scripts/lang_packs/mood.py`) until the test asks you to add it to `STABLE`.
+
+The engine setting `experimental_languages` (off by default) is the switch:
+
+- A locale that is configured already (`languages`, `default_language`) keeps working and stays listed, whatever its tier. An update never changes the language of a house.
+- A request that pins a language (`language` on `POST /api/v2/parse`, the Assist pipeline language) is answered in that language, whatever its tier.
+- With the switch off, an experimental locale is not listed for a new selection and a settings save that adds one is refused (`422`).
+
 ## Catalog model
 
-`Catalog` merges the **pinned** packs for that request. Assist and `POST /api/v2/parse` should send `language`. Empty `Settings.languages` means every compiled locale is enabled for Assist, not “merge de+en.” Merging every lexicon into one catalog collides tokens (for example German `an` vs other packs) and is refused.
+`Catalog` merges the **pinned** packs for that request. Assist and `POST /api/v2/parse` should send `language`. Empty `Settings.languages` means every compiled locale may be pinned, not “merge de+en.” A request that names no language then binds the default pack (`Settings.default_language`, English when unset), never an empty catalog. Merging every lexicon into one catalog collides tokens (for example German `an` vs other packs) and is refused.
 
 An explicit short list such as `["de", "en"]` still merges those packs for unpinned parse. That is a user choice, not a support tier.
 
@@ -113,6 +128,7 @@ Operator chrome (the official Klar app) is **not** the Assist pin and **not** th
 - `tests/parity_langs.rs` — same Wohn+Family+m0+m2 rubric per compiled locale
 - `tests/datasets/assist/{code}/representative.yaml` — representative gate
 - `tests/language.rs` — pin, isolation, overlays, household cues
+- `tests/language_tiers.rs` — minimal pairs per locale decide the tier; empty `languages` binds the default pack
 - DE/EN voice suites (`wohnung_mittel`, `wohnung_en`, `familienhaus_de`, `family_home_en`) are the **oracle** graphs; other locales overlay native sentences on those same graphs
 
 ## Dataset generation (every locale, local)

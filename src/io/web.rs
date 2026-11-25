@@ -171,6 +171,8 @@ async fn set_settings(
     Json(body): Json<Settings>,
 ) -> Result<Json<Settings>, StatusCode> {
     gate(peer, &headers, &state.token)?;
+    let current = state.settings.lock().await.clone();
+    let body = crate::lang::check_settings(body, &current).map_err(|_| StatusCode::UNPROCESSABLE_ENTITY)?;
     state.overlay.update(|overlay| overlay.settings = Some(body.clone())).map_err(save_failed)?;
     *state.settings.lock().await = body.clone();
     Ok(Json(body))

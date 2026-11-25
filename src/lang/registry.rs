@@ -3,6 +3,7 @@
 //! Every compiled locale is first-class. The engine never matches De|En in parse.
 
 use super::pack::LanguagePack;
+use super::tier::Tier;
 use super::{packs, LangId};
 use serde::Serialize;
 use std::collections::HashMap;
@@ -14,6 +15,8 @@ pub struct LangMeta {
     pub native_name: &'static str,
     pub script: &'static str,
     pub variants: &'static [&'static str],
+    /// Stable locales pass their minimal pairs; experimental ones need the switch for a new selection.
+    pub tier: Tier,
 }
 
 struct LangRow {
@@ -25,337 +28,375 @@ struct LangRow {
 const LANGS: &[LangRow] = &[
     LangRow {
         id: LangId::new("de"),
-        meta: LangMeta { code: "de", native_name: "Deutsch", script: "Latn", variants: &["de", "de-DE"] },
+        meta: LangMeta { code: "de", native_name: "Deutsch", script: "Latn", variants: &["de", "de-DE"], tier: Tier::Stable },
         pack: &packs::de::PACK,
     },
     LangRow {
         id: LangId::new("en"),
-        meta: LangMeta { code: "en", native_name: "English", script: "Latn", variants: &["en", "en-US"] },
+        meta: LangMeta { code: "en", native_name: "English", script: "Latn", variants: &["en", "en-US"], tier: Tier::Stable },
         pack: &packs::en::PACK,
     },
     LangRow {
         id: LangId::new("fr"),
-        meta: LangMeta { code: "fr", native_name: "Français", script: "Latn", variants: &["fr", "fr-FR"] },
+        meta: LangMeta { code: "fr", native_name: "Français", script: "Latn", variants: &["fr", "fr-FR"], tier: Tier::Experimental },
         pack: &packs::fr::PACK,
     },
     LangRow {
         id: LangId::new("nl"),
-        meta: LangMeta { code: "nl", native_name: "Nederlands", script: "Latn", variants: &["nl", "nl-NL", "nl-BE"] },
+        meta: LangMeta {
+            code: "nl",
+            native_name: "Nederlands",
+            script: "Latn",
+            variants: &["nl", "nl-NL", "nl-BE"],
+            tier: Tier::Experimental,
+        },
         pack: &packs::nl::PACK,
     },
     LangRow {
         id: LangId::new("es"),
-        meta: LangMeta { code: "es", native_name: "Español", script: "Latn", variants: &["es", "es-ES", "es-MX"] },
+        meta: LangMeta {
+            code: "es",
+            native_name: "Español",
+            script: "Latn",
+            variants: &["es", "es-ES", "es-MX"],
+            tier: Tier::Experimental,
+        },
         pack: &packs::es::PACK,
     },
     LangRow {
         id: LangId::new("it"),
-        meta: LangMeta { code: "it", native_name: "Italiano", script: "Latn", variants: &["it", "it-IT"] },
+        meta: LangMeta { code: "it", native_name: "Italiano", script: "Latn", variants: &["it", "it-IT"], tier: Tier::Experimental },
         pack: &packs::it::PACK,
     },
     LangRow {
         id: LangId::new("pt"),
-        meta: LangMeta { code: "pt", native_name: "Português", script: "Latn", variants: &["pt", "pt-PT"] },
+        meta: LangMeta { code: "pt", native_name: "Português", script: "Latn", variants: &["pt", "pt-PT"], tier: Tier::Experimental },
         pack: &packs::pt::PACK,
     },
     LangRow {
         id: LangId::new("ca"),
-        meta: LangMeta { code: "ca", native_name: "Català", script: "Latn", variants: &["ca", "ca-ES"] },
+        meta: LangMeta { code: "ca", native_name: "Català", script: "Latn", variants: &["ca", "ca-ES"], tier: Tier::Experimental },
         pack: &packs::ca::PACK,
     },
     LangRow {
         id: LangId::new("ro"),
-        meta: LangMeta { code: "ro", native_name: "Română", script: "Latn", variants: &["ro", "ro-RO"] },
+        meta: LangMeta { code: "ro", native_name: "Română", script: "Latn", variants: &["ro", "ro-RO"], tier: Tier::Experimental },
         pack: &packs::ro::PACK,
     },
     LangRow {
         id: LangId::new("da"),
-        meta: LangMeta { code: "da", native_name: "Dansk", script: "Latn", variants: &["da", "da-DK"] },
+        meta: LangMeta { code: "da", native_name: "Dansk", script: "Latn", variants: &["da", "da-DK"], tier: Tier::Experimental },
         pack: &packs::da::PACK,
     },
     LangRow {
         id: LangId::new("nb"),
-        meta: LangMeta { code: "nb", native_name: "Norsk Bokmål", script: "Latn", variants: &["nb", "nb-NO"] },
+        meta: LangMeta { code: "nb", native_name: "Norsk Bokmål", script: "Latn", variants: &["nb", "nb-NO"], tier: Tier::Experimental },
         pack: &packs::nb::PACK,
     },
     LangRow {
         id: LangId::new("sv"),
-        meta: LangMeta { code: "sv", native_name: "Svenska", script: "Latn", variants: &["sv", "sv-SE"] },
+        meta: LangMeta { code: "sv", native_name: "Svenska", script: "Latn", variants: &["sv", "sv-SE"], tier: Tier::Experimental },
         pack: &packs::sv::PACK,
     },
     LangRow {
         id: LangId::new("fi"),
-        meta: LangMeta { code: "fi", native_name: "Suomi", script: "Latn", variants: &["fi", "fi-FI"] },
+        meta: LangMeta { code: "fi", native_name: "Suomi", script: "Latn", variants: &["fi", "fi-FI"], tier: Tier::Experimental },
         pack: &packs::fi::PACK,
     },
     LangRow {
         id: LangId::new("de-CH"),
-        meta: LangMeta { code: "de-CH", native_name: "Schwyzerdütsch", script: "Latn", variants: &["de-CH"] },
+        meta: LangMeta { code: "de-CH", native_name: "Schwyzerdütsch", script: "Latn", variants: &["de-CH"], tier: Tier::Experimental },
         pack: &packs::de_ch::PACK,
     },
     LangRow {
         id: LangId::new("de-AT"),
-        meta: LangMeta { code: "de-AT", native_name: "Deutsch (Österreich)", script: "Latn", variants: &["de-AT"] },
+        meta: LangMeta {
+            code: "de-AT",
+            native_name: "Deutsch (Österreich)",
+            script: "Latn",
+            variants: &["de-AT"],
+            tier: Tier::Experimental,
+        },
         pack: &packs::de_at::PACK,
     },
     LangRow {
         id: LangId::new("en-GB"),
-        meta: LangMeta { code: "en-GB", native_name: "English (UK)", script: "Latn", variants: &["en-GB"] },
+        meta: LangMeta { code: "en-GB", native_name: "English (UK)", script: "Latn", variants: &["en-GB"], tier: Tier::Stable },
         pack: &packs::en_gb::PACK,
     },
     LangRow {
         id: LangId::new("pt-BR"),
-        meta: LangMeta { code: "pt-BR", native_name: "Português (Brasil)", script: "Latn", variants: &["pt-BR"] },
+        meta: LangMeta {
+            code: "pt-BR", native_name: "Português (Brasil)", script: "Latn", variants: &["pt-BR"], tier: Tier::Experimental
+        },
         pack: &packs::pt_br::PACK,
     },
     LangRow {
         id: LangId::new("af"),
-        meta: LangMeta { code: "af", native_name: "Afrikaans", script: "Latn", variants: &["af", "af-ZA"] },
+        meta: LangMeta { code: "af", native_name: "Afrikaans", script: "Latn", variants: &["af", "af-ZA"], tier: Tier::Experimental },
         pack: &packs::af::PACK,
     },
     LangRow {
         id: LangId::new("cs"),
-        meta: LangMeta { code: "cs", native_name: "Čeština", script: "Latn", variants: &["cs", "cs-CZ"] },
+        meta: LangMeta { code: "cs", native_name: "Čeština", script: "Latn", variants: &["cs", "cs-CZ"], tier: Tier::Experimental },
         pack: &packs::cs::PACK,
     },
     LangRow {
         id: LangId::new("sk"),
-        meta: LangMeta { code: "sk", native_name: "Slovenčina", script: "Latn", variants: &["sk", "sk-SK"] },
+        meta: LangMeta { code: "sk", native_name: "Slovenčina", script: "Latn", variants: &["sk", "sk-SK"], tier: Tier::Experimental },
         pack: &packs::sk::PACK,
     },
     LangRow {
         id: LangId::new("pl"),
-        meta: LangMeta { code: "pl", native_name: "Polski", script: "Latn", variants: &["pl", "pl-PL"] },
+        meta: LangMeta { code: "pl", native_name: "Polski", script: "Latn", variants: &["pl", "pl-PL"], tier: Tier::Experimental },
         pack: &packs::pl::PACK,
     },
     LangRow {
         id: LangId::new("hu"),
-        meta: LangMeta { code: "hu", native_name: "Magyar", script: "Latn", variants: &["hu", "hu-HU"] },
+        meta: LangMeta { code: "hu", native_name: "Magyar", script: "Latn", variants: &["hu", "hu-HU"], tier: Tier::Experimental },
         pack: &packs::hu::PACK,
     },
     LangRow {
         id: LangId::new("hr"),
-        meta: LangMeta { code: "hr", native_name: "Hrvatski", script: "Latn", variants: &["hr", "hr-HR"] },
+        meta: LangMeta { code: "hr", native_name: "Hrvatski", script: "Latn", variants: &["hr", "hr-HR"], tier: Tier::Experimental },
         pack: &packs::hr::PACK,
     },
     LangRow {
         id: LangId::new("sl"),
-        meta: LangMeta { code: "sl", native_name: "Slovenščina", script: "Latn", variants: &["sl", "sl-SI"] },
+        meta: LangMeta { code: "sl", native_name: "Slovenščina", script: "Latn", variants: &["sl", "sl-SI"], tier: Tier::Experimental },
         pack: &packs::sl::PACK,
     },
     LangRow {
         id: LangId::new("bg"),
-        meta: LangMeta { code: "bg", native_name: "Български", script: "Cyrl", variants: &["bg", "bg-BG"] },
+        meta: LangMeta {
+            code: "bg", native_name: "Български", script: "Cyrl", variants: &["bg", "bg-BG"], tier: Tier::Experimental
+        },
         pack: &packs::bg::PACK,
     },
     LangRow {
         id: LangId::new("el"),
-        meta: LangMeta { code: "el", native_name: "Ελληνικά", script: "Grek", variants: &["el", "el-GR"] },
+        meta: LangMeta {
+            code: "el", native_name: "Ελληνικά", script: "Grek", variants: &["el", "el-GR"], tier: Tier::Experimental
+        },
         pack: &packs::el::PACK,
     },
     LangRow {
         id: LangId::new("sr"),
-        meta: LangMeta { code: "sr", native_name: "Српски", script: "Cyrl", variants: &["sr", "sr-RS"] },
+        meta: LangMeta { code: "sr", native_name: "Српски", script: "Cyrl", variants: &["sr", "sr-RS"], tier: Tier::Experimental },
         pack: &packs::sr::PACK,
     },
     LangRow {
         id: LangId::new("sr-Latn"),
-        meta: LangMeta { code: "sr-Latn", native_name: "Srpski", script: "Latn", variants: &["sr-Latn"] },
+        meta: LangMeta { code: "sr-Latn", native_name: "Srpski", script: "Latn", variants: &["sr-Latn"], tier: Tier::Experimental },
         pack: &packs::sr_latn::PACK,
     },
     LangRow {
         id: LangId::new("uk"),
-        meta: LangMeta { code: "uk", native_name: "Українська", script: "Cyrl", variants: &["uk", "uk-UA"] },
+        meta: LangMeta {
+            code: "uk", native_name: "Українська", script: "Cyrl", variants: &["uk", "uk-UA"], tier: Tier::Experimental
+        },
         pack: &packs::uk::PACK,
     },
     LangRow {
         id: LangId::new("zh-CN"),
-        meta: LangMeta { code: "zh-CN", native_name: "简体中文", script: "Hans", variants: &["zh-CN", "zh"] },
+        meta: LangMeta { code: "zh-CN", native_name: "简体中文", script: "Hans", variants: &["zh-CN", "zh"], tier: Tier::Experimental },
         pack: &packs::zh_cn::PACK,
     },
     LangRow {
         id: LangId::new("zh-TW"),
-        meta: LangMeta { code: "zh-TW", native_name: "繁體中文（台灣）", script: "Hant", variants: &["zh-TW"] },
+        meta: LangMeta {
+            code: "zh-TW", native_name: "繁體中文（台灣）", script: "Hant", variants: &["zh-TW"], tier: Tier::Experimental
+        },
         pack: &packs::zh_tw::PACK,
     },
     LangRow {
         id: LangId::new("zh-HK"),
-        meta: LangMeta { code: "zh-HK", native_name: "繁體中文（香港）", script: "Hant", variants: &["zh-HK"] },
+        meta: LangMeta {
+            code: "zh-HK", native_name: "繁體中文（香港）", script: "Hant", variants: &["zh-HK"], tier: Tier::Experimental
+        },
         pack: &packs::zh_hk::PACK,
     },
     LangRow {
         id: LangId::new("ar"),
-        meta: LangMeta { code: "ar", native_name: "العربية", script: "Arab", variants: &["ar", "ar-JO"] },
+        meta: LangMeta { code: "ar", native_name: "العربية", script: "Arab", variants: &["ar", "ar-JO"], tier: Tier::Experimental },
         pack: &packs::ar::PACK,
     },
     LangRow {
         id: LangId::new("he"),
-        meta: LangMeta { code: "he", native_name: "עברית", script: "Hebr", variants: &["he", "he-IL"] },
+        meta: LangMeta { code: "he", native_name: "עברית", script: "Hebr", variants: &["he", "he-IL"], tier: Tier::Experimental },
         pack: &packs::he::PACK,
     },
     LangRow {
         id: LangId::new("fa"),
-        meta: LangMeta { code: "fa", native_name: "فارسی", script: "Arab", variants: &["fa", "fa-IR"] },
+        meta: LangMeta { code: "fa", native_name: "فارسی", script: "Arab", variants: &["fa", "fa-IR"], tier: Tier::Experimental },
         pack: &packs::fa::PACK,
     },
     LangRow {
         id: LangId::new("ur"),
-        meta: LangMeta { code: "ur", native_name: "اُردُو", script: "Arab", variants: &["ur", "ur-IN"] },
+        meta: LangMeta { code: "ur", native_name: "اُردُو", script: "Arab", variants: &["ur", "ur-IN"], tier: Tier::Experimental },
         pack: &packs::ur::PACK,
     },
     LangRow {
         id: LangId::new("tr"),
-        meta: LangMeta { code: "tr", native_name: "Türkçe", script: "Latn", variants: &["tr", "tr-TR"] },
+        meta: LangMeta { code: "tr", native_name: "Türkçe", script: "Latn", variants: &["tr", "tr-TR"], tier: Tier::Experimental },
         pack: &packs::tr::PACK,
     },
     LangRow {
         id: LangId::new("th"),
-        meta: LangMeta { code: "th", native_name: "ภาษาไทย", script: "Thai", variants: &["th", "th-TH"] },
+        meta: LangMeta {
+            code: "th", native_name: "ภาษาไทย", script: "Thai", variants: &["th", "th-TH"], tier: Tier::Experimental
+        },
         pack: &packs::th::PACK,
     },
     LangRow {
         id: LangId::new("ko"),
-        meta: LangMeta { code: "ko", native_name: "한국어", script: "Hang", variants: &["ko", "ko-KR"] },
+        meta: LangMeta { code: "ko", native_name: "한국어", script: "Hang", variants: &["ko", "ko-KR"], tier: Tier::Experimental },
         pack: &packs::ko::PACK,
     },
     LangRow {
         id: LangId::new("ja"),
-        meta: LangMeta { code: "ja", native_name: "日本語", script: "Jpan", variants: &["ja", "ja-JP"] },
+        meta: LangMeta { code: "ja", native_name: "日本語", script: "Jpan", variants: &["ja", "ja-JP"], tier: Tier::Experimental },
         pack: &packs::ja::PACK,
     },
     LangRow {
         id: LangId::new("cy"),
-        meta: LangMeta { code: "cy", native_name: "Cymraeg", script: "Latn", variants: &["cy"] },
+        meta: LangMeta { code: "cy", native_name: "Cymraeg", script: "Latn", variants: &["cy"], tier: Tier::Experimental },
         pack: &packs::cy::PACK,
     },
     LangRow {
         id: LangId::new("et"),
-        meta: LangMeta { code: "et", native_name: "Eesti", script: "Latn", variants: &["et", "et-EE"] },
+        meta: LangMeta { code: "et", native_name: "Eesti", script: "Latn", variants: &["et", "et-EE"], tier: Tier::Experimental },
         pack: &packs::et::PACK,
     },
     LangRow {
         id: LangId::new("eu"),
-        meta: LangMeta { code: "eu", native_name: "Euskara", script: "Latn", variants: &["eu", "eu-ES"] },
+        meta: LangMeta { code: "eu", native_name: "Euskara", script: "Latn", variants: &["eu", "eu-ES"], tier: Tier::Experimental },
         pack: &packs::eu::PACK,
     },
     LangRow {
         id: LangId::new("ga"),
-        meta: LangMeta { code: "ga", native_name: "Gaeilge", script: "Latn", variants: &["ga", "ga-IE"] },
+        meta: LangMeta { code: "ga", native_name: "Gaeilge", script: "Latn", variants: &["ga", "ga-IE"], tier: Tier::Experimental },
         pack: &packs::ga::PACK,
     },
     LangRow {
         id: LangId::new("gl"),
-        meta: LangMeta { code: "gl", native_name: "Galician", script: "Latn", variants: &["gl", "gl-ES"] },
+        meta: LangMeta { code: "gl", native_name: "Galician", script: "Latn", variants: &["gl", "gl-ES"], tier: Tier::Experimental },
         pack: &packs::gl::PACK,
     },
     LangRow {
         id: LangId::new("is"),
-        meta: LangMeta { code: "is", native_name: "islenska", script: "Latn", variants: &["is", "is-IS"] },
+        meta: LangMeta { code: "is", native_name: "islenska", script: "Latn", variants: &["is", "is-IS"], tier: Tier::Experimental },
         pack: &packs::is::PACK,
     },
     LangRow {
         id: LangId::new("lb"),
-        meta: LangMeta { code: "lb", native_name: "Letzebuergesch", script: "Latn", variants: &["lb", "lb-LU"] },
+        meta: LangMeta { code: "lb", native_name: "Letzebuergesch", script: "Latn", variants: &["lb", "lb-LU"], tier: Tier::Experimental },
         pack: &packs::lb::PACK,
     },
     LangRow {
         id: LangId::new("kw"),
-        meta: LangMeta { code: "kw", native_name: "kernewek", script: "Latn", variants: &["kw"] },
+        meta: LangMeta { code: "kw", native_name: "kernewek", script: "Latn", variants: &["kw"], tier: Tier::Experimental },
         pack: &packs::kw::PACK,
     },
     LangRow {
         id: LangId::new("lt"),
-        meta: LangMeta { code: "lt", native_name: "Lietuviu", script: "Latn", variants: &["lt", "lt-LT"] },
+        meta: LangMeta { code: "lt", native_name: "Lietuviu", script: "Latn", variants: &["lt", "lt-LT"], tier: Tier::Experimental },
         pack: &packs::lt::PACK,
     },
     LangRow {
         id: LangId::new("lv"),
-        meta: LangMeta { code: "lv", native_name: "Latviesu", script: "Latn", variants: &["lv", "lv-LV"] },
+        meta: LangMeta { code: "lv", native_name: "Latviesu", script: "Latn", variants: &["lv", "lv-LV"], tier: Tier::Experimental },
         pack: &packs::lv::PACK,
     },
     LangRow {
         id: LangId::new("id"),
-        meta: LangMeta { code: "id", native_name: "Bahasa Indonesia", script: "Latn", variants: &["id", "id-ID"] },
+        meta: LangMeta {
+            code: "id",
+            native_name: "Bahasa Indonesia",
+            script: "Latn",
+            variants: &["id", "id-ID"],
+            tier: Tier::Experimental,
+        },
         pack: &packs::id::PACK,
     },
     LangRow {
         id: LangId::new("ms"),
-        meta: LangMeta { code: "ms", native_name: "Bahasa Melayu", script: "Latn", variants: &["ms", "ms-MY"] },
+        meta: LangMeta { code: "ms", native_name: "Bahasa Melayu", script: "Latn", variants: &["ms", "ms-MY"], tier: Tier::Experimental },
         pack: &packs::ms::PACK,
     },
     LangRow {
         id: LangId::new("sw"),
-        meta: LangMeta { code: "sw", native_name: "Kiswahili", script: "Latn", variants: &["sw", "sw-KE"] },
+        meta: LangMeta { code: "sw", native_name: "Kiswahili", script: "Latn", variants: &["sw", "sw-KE"], tier: Tier::Experimental },
         pack: &packs::sw::PACK,
     },
     LangRow {
         id: LangId::new("vi"),
-        meta: LangMeta { code: "vi", native_name: "Tieng Viet", script: "Latn", variants: &["vi", "vi-VN"] },
+        meta: LangMeta { code: "vi", native_name: "Tieng Viet", script: "Latn", variants: &["vi", "vi-VN"], tier: Tier::Experimental },
         pack: &packs::vi::PACK,
     },
     LangRow {
         id: LangId::new("hi"),
-        meta: LangMeta { code: "hi", native_name: "Hindi", script: "Deva", variants: &["hi", "hi-IN"] },
+        meta: LangMeta { code: "hi", native_name: "Hindi", script: "Deva", variants: &["hi", "hi-IN"], tier: Tier::Experimental },
         pack: &packs::hi::PACK,
     },
     LangRow {
         id: LangId::new("bn"),
-        meta: LangMeta { code: "bn", native_name: "Bangla", script: "Beng", variants: &["bn", "bn-BD"] },
+        meta: LangMeta { code: "bn", native_name: "Bangla", script: "Beng", variants: &["bn", "bn-BD"], tier: Tier::Experimental },
         pack: &packs::bn::PACK,
     },
     LangRow {
         id: LangId::new("gu"),
-        meta: LangMeta { code: "gu", native_name: "Gujarati", script: "Gujr", variants: &["gu", "gu-IN"] },
+        meta: LangMeta { code: "gu", native_name: "Gujarati", script: "Gujr", variants: &["gu", "gu-IN"], tier: Tier::Experimental },
         pack: &packs::gu::PACK,
     },
     LangRow {
         id: LangId::new("kn"),
-        meta: LangMeta { code: "kn", native_name: "Kannada", script: "Knda", variants: &["kn", "kn-IN"] },
+        meta: LangMeta { code: "kn", native_name: "Kannada", script: "Knda", variants: &["kn", "kn-IN"], tier: Tier::Experimental },
         pack: &packs::kn::PACK,
     },
     LangRow {
         id: LangId::new("ml"),
-        meta: LangMeta { code: "ml", native_name: "Malayalam", script: "Mlym", variants: &["ml", "ml-IN"] },
+        meta: LangMeta { code: "ml", native_name: "Malayalam", script: "Mlym", variants: &["ml", "ml-IN"], tier: Tier::Experimental },
         pack: &packs::ml::PACK,
     },
     LangRow {
         id: LangId::new("mr"),
-        meta: LangMeta { code: "mr", native_name: "Marathi", script: "Deva", variants: &["mr", "mr-IN"] },
+        meta: LangMeta { code: "mr", native_name: "Marathi", script: "Deva", variants: &["mr", "mr-IN"], tier: Tier::Experimental },
         pack: &packs::mr::PACK,
     },
     LangRow {
         id: LangId::new("ta"),
-        meta: LangMeta { code: "ta", native_name: "Tamil", script: "Taml", variants: &["ta"] },
+        meta: LangMeta { code: "ta", native_name: "Tamil", script: "Taml", variants: &["ta"], tier: Tier::Experimental },
         pack: &packs::ta::PACK,
     },
     LangRow {
         id: LangId::new("te"),
-        meta: LangMeta { code: "te", native_name: "Telugu", script: "Telu", variants: &["te", "te-IN"] },
+        meta: LangMeta { code: "te", native_name: "Telugu", script: "Telu", variants: &["te", "te-IN"], tier: Tier::Experimental },
         pack: &packs::te::PACK,
     },
     LangRow {
         id: LangId::new("pa"),
-        meta: LangMeta { code: "pa", native_name: "Punjabi", script: "Guru", variants: &["pa"] },
+        meta: LangMeta { code: "pa", native_name: "Punjabi", script: "Guru", variants: &["pa"], tier: Tier::Experimental },
         pack: &packs::pa::PACK,
     },
     LangRow {
         id: LangId::new("ne"),
-        meta: LangMeta { code: "ne", native_name: "Nepali", script: "Deva", variants: &["ne", "ne-NP"] },
+        meta: LangMeta { code: "ne", native_name: "Nepali", script: "Deva", variants: &["ne", "ne-NP"], tier: Tier::Experimental },
         pack: &packs::ne::PACK,
     },
     LangRow {
         id: LangId::new("hy"),
-        meta: LangMeta { code: "hy", native_name: "Armenian", script: "Armn", variants: &["hy", "hy-AM"] },
+        meta: LangMeta { code: "hy", native_name: "Armenian", script: "Armn", variants: &["hy", "hy-AM"], tier: Tier::Experimental },
         pack: &packs::hy::PACK,
     },
     LangRow {
         id: LangId::new("ka"),
-        meta: LangMeta { code: "ka", native_name: "Georgian", script: "Geor", variants: &["ka", "ka-GE"] },
+        meta: LangMeta { code: "ka", native_name: "Georgian", script: "Geor", variants: &["ka", "ka-GE"], tier: Tier::Experimental },
         pack: &packs::ka::PACK,
     },
     LangRow {
         id: LangId::new("mn"),
-        meta: LangMeta { code: "mn", native_name: "Mongolian", script: "Cyrl", variants: &["mn", "mn-MN"] },
+        meta: LangMeta { code: "mn", native_name: "Mongolian", script: "Cyrl", variants: &["mn", "mn-MN"], tier: Tier::Experimental },
         pack: &packs::mn::PACK,
     },
 ];

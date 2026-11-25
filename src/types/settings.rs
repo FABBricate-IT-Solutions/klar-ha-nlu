@@ -103,6 +103,14 @@ pub struct Settings {
     /// the catalog still binds per request (do not merge all lexicons).
     #[serde(default = "default_languages")]
     pub languages: Vec<String>,
+    /// The pack a request binds when `languages` is empty and the request names no
+    /// language. Empty means English, the last resort the replies already use.
+    #[serde(default)]
+    pub default_language: String,
+    /// Offer experimental locales for a new selection. A locale that is configured
+    /// already keeps working either way (`lang::Tier`).
+    #[serde(default)]
+    pub experimental_languages: bool,
     /// Persist Assist/API traffic under the data dir for a downloadable dataset.
     #[serde(default)]
     pub support_bundle: bool,
@@ -181,6 +189,10 @@ struct SettingsJson {
     #[serde(default = "default_languages")]
     languages: Vec<String>,
     #[serde(default)]
+    default_language: String,
+    #[serde(default)]
+    experimental_languages: bool,
+    #[serde(default)]
     support_bundle: bool,
     #[serde(default)]
     support_bundle_raw_text: bool,
@@ -233,6 +245,8 @@ impl From<SettingsJson> for Settings {
             personality: raw.personality,
             mode: raw.mode,
             languages: raw.languages,
+            default_language: raw.default_language,
+            experimental_languages: raw.experimental_languages,
             support_bundle: raw.support_bundle,
             support_bundle_raw_text: raw.support_bundle_raw_text,
             confirm_risky_actions: raw.confirm_risky_actions,
@@ -263,6 +277,8 @@ impl Default for Settings {
             personality: Personality::Default,
             mode: Mode::Full,
             languages: default_languages(),
+            default_language: String::new(),
+            experimental_languages: false,
             support_bundle: false,
             support_bundle_raw_text: false,
             confirm_risky_actions: true,
@@ -331,9 +347,22 @@ fn host_ok(host: &str) -> bool {
     name.eq_ignore_ascii_case("localhost") || name.contains('.')
 }
 
+/// The pack an unpinned request falls back to when nothing else is configured.
+pub const FALLBACK_LANGUAGE: &str = "en";
+
 impl Settings {
     pub fn pinned(code: impl Into<String>) -> Self {
         Self { languages: vec![code.into()], ..Self::default() }
+    }
+
+    /// The configured default pack: `default_language` when a pack answers it, English otherwise.
+    pub fn default_pack(&self) -> &str {
+        let wanted = self.default_language.trim();
+        if wanted.is_empty() || crate::lang::LangId::from_tag(wanted).is_none() {
+            FALLBACK_LANGUAGE
+        } else {
+            wanted
+        }
     }
 }
 
