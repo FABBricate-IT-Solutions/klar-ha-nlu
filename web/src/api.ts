@@ -23,7 +23,14 @@ import type {
   TrainerValidateOut,
   UiState,
 } from "./types";
+import { ApiError, readErrorBody } from "./lib/apiError";
+import { takeSseEvents } from "./lib/sse";
 import { parseV2Response } from "./parseContract";
+
+export { ApiError, isApiError } from "./lib/apiError";
+
+/** Default client timeout; the HTTP server closes idle heads after 30s. */
+export const REQUEST_TIMEOUT_MS = 30_000;
 
 export type CustomRule = { phrase: string; intent: string; slots: Record<string, string> };
 export type LangOverlay = { custom: CustomRule[]; language: LanguageOverlay; history: Array<{ hash: string; label: string; saved_at: string }> };
@@ -67,21 +74,55 @@ export function appPath(path: string): string {
   return `${dir}${rel}`;
 }
 
+function withTimeout(signal: AbortSignal | null | undefined, ms: number): { signal: AbortSignal; cancel: () => void } {
+  const ctrl = new AbortController();
+  const timer = window.setTimeout(() => ctrl.abort(new DOMException("Request timed out", "TimeoutError")), ms);
+  const onAbort = () => ctrl.abort(signal?.reason);
+  signal?.addEventListener("abort", onAbort, { once: true });
+  if (signal?.aborted) ctrl.abort(signal.reason);
+  return {
+    signal: ctrl.signal,
+    cancel: () => {
+      window.clearTimeout(timer);
+      signal?.removeEventListener("abort", onAbort);
+    },
+  };
+}
+
+async function throwHttpError(res: Response): Promise<never> {
+  throw new ApiError(res.status, res.statusText, await readErrorBody(res));
+}
+
 async function request<T>(path: string, init: RequestInit = {}): Promise<T> {
-  const res = await fetch(appPath(path), { ...init, headers: { ...jsonHeaders(), ...(init.headers || {}) } });
-  if (!res.ok) throw new Error(`${res.status} ${res.statusText}`);
-  return res.json() as Promise<T>;
+  const { signal, cancel } = withTimeout(init.signal ?? null, REQUEST_TIMEOUT_MS);
+  try {
+    const res = await fetch(appPath(path), {
+      ...init,
+      signal,
+      headers: { ...jsonHeaders(), ...(init.headers || {}) },
+    });
+    if (!res.ok) await throwHttpError(res);
+    return (await res.json()) as T;
+  } catch (err) {
+    if (err instanceof ApiError) throw err;
+    if (err instanceof DOMException && (err.name === "AbortError" || err.name === "TimeoutError")) {
+      throw new ApiError(0, err.name === "TimeoutError" ? "Request timed out" : "Aborted");
+    }
+    throw err;
+  } finally {
+    cancel();
+  }
 }
 
 async function llmWrite<T>(path: string, body: unknown): Promise<T> {
-  const res = await fetch(appPath(path), {
-    method: "POST",
-    headers: jsonHeaders(),
-    body: JSON.stringify(body),
-  });
-  if (res.status === 503) throw new Error("llm-unconfigured");
-  if (!res.ok) throw new Error(`${res.status} ${res.statusText}`);
-  return res.json() as Promise<T>;
+  try {
+    return await request<T>(path, { method: "POST", body: JSON.stringify(body) });
+  } catch (err) {
+    if (err instanceof ApiError && err.status === 503) {
+      throw new Error("llm-unconfigured", { cause: err });
+    }
+    throw err;
+  }
 }
 
 function asTrainerChatEvent(raw: unknown): TrainerChatEvent | null {
@@ -115,7 +156,7 @@ async function streamTrainerChat(
     signal,
   });
   if (res.status === 503) throw new Error("llm-unconfigured");
-  if (!res.ok) throw new Error(`${res.status} ${res.statusText}`);
+  if (!res.ok) await throwHttpError(res);
   if (!res.body) return;
   const reader = res.body.getReader();
   const decoder = new TextDecoder();
@@ -124,13 +165,9 @@ async function streamTrainerChat(
     const { done, value } = await reader.read();
     if (done) break;
     buf += decoder.decode(value, { stream: true });
-    const chunks = buf.split("\n\n");
-    buf = chunks.pop() ?? "";
-    for (const chunk of chunks) {
-      const line = chunk.split("\n").find((row) => row.startsWith("data:"));
-      if (!line) continue;
-      const payload = line.slice("data:".length).trim();
-      if (!payload || payload === "[DONE]") continue;
+    const { events, rest } = takeSseEvents(buf);
+    buf = rest;
+    for (const payload of events) {
       try {
         const event = asTrainerChatEvent(JSON.parse(payload) as unknown);
         if (event) onEvent(event);
@@ -260,26 +297,37 @@ export function setToken(token: string) {
 }
 
 export async function download(path: string, fallback: string) {
-  const res = await fetch(appPath(path), { headers: jsonHeaders() });
-  if (!res.ok) throw new Error(`${res.status} ${res.statusText}`);
-  const blob = await res.blob();
-  const match = (res.headers.get("content-disposition") || "").match(/filename="([^"]+)"/);
-  const a = document.createElement("a");
-  a.href = URL.createObjectURL(blob);
-  a.download = (match && match[1]) || fallback;
-  a.click();
-  URL.revokeObjectURL(a.href);
+  const { signal, cancel } = withTimeout(null, REQUEST_TIMEOUT_MS);
+  try {
+    const res = await fetch(appPath(path), { headers: jsonHeaders(), signal });
+    if (!res.ok) await throwHttpError(res);
+    const blob = await res.blob();
+    const match = (res.headers.get("content-disposition") || "").match(/filename="([^"]+)"/);
+    const a = document.createElement("a");
+    a.href = URL.createObjectURL(blob);
+    a.download = (match && match[1]) || fallback;
+    a.click();
+    URL.revokeObjectURL(a.href);
+  } finally {
+    cancel();
+  }
 }
 
 export async function uploadSettingsBackup(body: Blob) {
   const token = localStorage.getItem("klar_token") || "";
-  const res = await fetch(appPath("/api/v2/settings/restore"), {
-    method: "POST",
-    headers: {
-      "content-type": body.type || "application/gzip",
-      ...(token ? { "x-klar-token": token } : {}),
-    },
-    body,
-  });
-  if (!res.ok) throw new Error(`${res.status} ${res.statusText}`);
+  const { signal, cancel } = withTimeout(null, REQUEST_TIMEOUT_MS);
+  try {
+    const res = await fetch(appPath("/api/v2/settings/restore"), {
+      method: "POST",
+      signal,
+      headers: {
+        "content-type": body.type || "application/gzip",
+        ...(token ? { "x-klar-token": token } : {}),
+      },
+      body,
+    });
+    if (!res.ok) await throwHttpError(res);
+  } finally {
+    cancel();
+  }
 }
