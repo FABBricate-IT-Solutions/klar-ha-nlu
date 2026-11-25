@@ -120,6 +120,8 @@ export function SettingsBackupCard({
             <AlertDialogCancel>{t.cancel}</AlertDialogCancel>
             <AlertDialogAction
               onClick={() => {
+                // Close before the download so a second click cannot re-fire (U-21).
+                setConfirmSecrets(false);
                 void pull(true).catch(() => {
                   toast.error(t.settingsBackupRestoreFail);
                   setStatus(t.settingsBackupRestoreFail);
@@ -141,6 +143,7 @@ export function SettingsBackupCard({
             <AlertDialogCancel>{t.cancel}</AlertDialogCancel>
             <AlertDialogAction
               onClick={() => {
+                setConfirmRestore(false);
                 void restore().catch(() => {
                   toast.error(t.settingsBackupRestoreFail);
                   setStatus(t.settingsBackupRestoreFail);
