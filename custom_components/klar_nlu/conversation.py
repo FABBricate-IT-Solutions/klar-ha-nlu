@@ -208,7 +208,16 @@ class KlarConversationEntity(ConversationEntity):
 
     @property
     def supported_languages(self) -> list[str]:
-        return advertised_languages()
+        settings = self._engine_settings()
+        experimental = bool(settings.get("experimental_languages"))
+        selected: list[str] = []
+        languages = settings.get("languages")
+        if isinstance(languages, list):
+            selected = [str(code) for code in languages if isinstance(code, str)]
+        default = settings.get("default_language")
+        if isinstance(default, str) and default.strip():
+            selected.append(default.strip())
+        return advertised_languages(experimental=experimental, selected=selected)
 
     @property
     def _url(self) -> str:
