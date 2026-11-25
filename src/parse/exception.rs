@@ -65,6 +65,12 @@ pub(crate) enum Unreadable {
     WhichSide,
 }
 
+/// Whether `tokens` hold an exception word at all, names not yet considered. Most
+/// sentences do not, and then the names of the home need not be read.
+pub(crate) fn hinted(tokens: &[String], cat: &Catalog) -> bool {
+    marker(tokens, &vec![false; tokens.len()], cat).is_some()
+}
+
 /// Reads the exception out of `tokens`. `None` means the sentence has none.
 pub(crate) fn read(tokens: &[String], cat: &Catalog, names: &Names) -> Option<Result<Exception, Unreadable>> {
     let named = names.cover(tokens);

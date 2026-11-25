@@ -5,7 +5,7 @@ use crate::parse::action::Action;
 use crate::parse::clause::{finish_intents, Clause};
 use crate::parse::resolve::unique_in_area;
 use crate::parse::slots::{fill_intent, ClauseOut};
-use crate::session::Session;
+use crate::session::{LastTurn, Session};
 use crate::types::{HomeGraph, Intent};
 
 pub(crate) fn session_climate_cover(ctx: &Clause) -> Option<ClauseOut> {
@@ -57,7 +57,7 @@ pub(crate) fn session_areas(ctx: &Clause) -> Option<ClauseOut> {
 /// the lights in the garage" means those lights, not everything in the garage.
 fn remembered_domain<'a>(session: &'a Session, home: &HomeGraph, area: &str) -> Option<&'a str> {
     let turn = session.last.first()?.turn;
-    let there = |item: &&crate::session::LastTurn| {
+    let there = |item: &&LastTurn| {
         item.turn == turn
             && (item.area.as_deref() == Some(area) || item.entity.as_deref().and_then(|id| entity_area(home, id)).as_deref() == Some(area))
     };
