@@ -30,14 +30,12 @@ sys.modules["klar_speech"] = speech
 
 
 class SpeechTests(unittest.TestCase):
-    def test_clock_speech_is_one_sentence_without_seconds(self) -> None:
+    def test_clock_speech_only_strips_seconds(self) -> None:
         now = datetime(2026, 8, 29, 16, 2, 55)
-        self.assertEqual(speech.finish_clock_speech("Es ist 14:44:55.", "de", now), "Es ist 16:02.")
-        self.assertEqual(
-            speech.finish_clock_speech("Es ist 14:44:55. Die genaue Uhrzeit.", "de", now),
-            "Es ist 16:02.",
-        )
-        self.assertEqual(speech.finish_clock_speech("It is 14:44:55.", "en", now), "It is 16:02.")
+        # Engine-marked clock answers keep the spoken time; seconds only are dropped (H-18).
+        self.assertEqual(speech.finish_clock_speech("Es ist 14:44:55.", "de", now), "Es ist 14:44.")
+        self.assertEqual(speech.finish_clock_speech("Es ist 14:44:55. Die genaue Uhrzeit.", "de-AT", now), "Es ist 14:44. Die genaue Uhrzeit.")
+        self.assertEqual(speech.finish_clock_speech("It is 14:44:55.", "en", now), "It is 14:44.")
         self.assertEqual(speech.strip_clock_seconds("Es ist 14:44:55."), "Es ist 14:44.")
         self.assertEqual(speech.finish_clock_speech("Licht ist an.", "de", now), "Licht ist an.")
 

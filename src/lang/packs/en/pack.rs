@@ -1,4 +1,4 @@
-use crate::lang::groups::{Chat, Cues, Fixtures, GroupClarify, Household, LanguagePack, Maps, Nouns, NumberStyle, Talk};
+use crate::lang::groups::{Chat, Cues, Fixtures, GroupClarify, LanguagePack, Maps, Nouns, NumberStyle, Talk};
 use crate::lang::morphology::PackMorphology;
 use crate::lang::LangId;
 
@@ -427,31 +427,7 @@ pub const PACK: LanguagePack = LanguagePack {
         open: &["who", "why", "when", "where", "how"],
         news: NEWS,
     },
-    household: Household {
-        teach: &["call this ", "call it ", "call that ", "name this ", "name it "],
-        explain: &["what did you hear", "what did you understand", "why did you stop", "why did you reject"],
-        undo: &["undo that", "undo", "take that back"],
-        clock: &["what time", "whats the time", "the time is it"],
-        weather: &["whats the weather", "what's the weather", "what is the weather", "weather forecast", "will it rain"],
-        clock_skip: &["timer", "alarm"],
-        heard_nothing: "I have not heard anything yet.",
-        heard: "I heard: {text}.",
-        executed: " Executed: {names}.",
-        asked_risky: " I asked first because the action is risky.",
-        unclear_device: " I did not know which device you meant.",
-        stopped: " I stopped ({reason})",
-        no_match: "no match",
-        was_chat: " That was talk, not a device command.",
-        decision: " Decision: {decision}.",
-        in_area: " In {area}.",
-        nothing_undo: "There is nothing to undo.",
-        teach_which: "Which device do you mean?",
-        teach_invalid: "That name is not valid.",
-        teach_ok: "Okay. I will call that {alias}.",
-        clock_ok: "It is {time}.",
-        clock_missing: "The time is not available right now.",
-        no_weather: "I do not see a weather entity.",
-    },
+    household: super::household::HOUSEHOLD,
     answers: ANSWERS,
     speech: SPEECH,
     morphology: PackMorphology::EMPTY,

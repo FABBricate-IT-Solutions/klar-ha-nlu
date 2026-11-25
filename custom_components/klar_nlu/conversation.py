@@ -69,7 +69,6 @@ from .fallback import (
     llm_conversation_id,
 )
 from .intents import keep_lab_plan, registered_intent_names
-from .number_words import normalize_number_words
 from .reminders import async_delegate_reminder, should_delegate
 from .rag_tools import (
     leaks_klar_tools,
@@ -107,7 +106,6 @@ from .refine import (
 )
 from .quiet import play_chime, quiet_ack_applies
 from .sensor import remember_turn
-from .clock_query import clock_query_speech
 from .speech import finish_clock_speech
 
 _LOGGER = logging.getLogger(__name__)
@@ -300,15 +298,8 @@ class KlarConversationEntity(ConversationEntity):
         await async_refresh_engine_settings(self.hass, self._entry)
         await async_sync_time_zone(self.hass, self._entry)
         pack = self._request_pack(user_input.language)
-        clock_reply = clock_query_speech(user_input.text, pack)
-        if clock_reply is not None:
-            return await self._spoken(
-                user_input, chat_log, pack, clock_reply,
-                user_input.conversation_id, False, "clock",
-            )
-        parse_text = normalize_number_words(user_input.text)
         payload = await self._parse(
-            parse_text, user_input.conversation_id, pack, user_input.device_id, getattr(user_input, "satellite_id", None)
+            user_input.text, user_input.conversation_id, pack, user_input.device_id, getattr(user_input, "satellite_id", None)
         )
         engine_speech = str(payload.get("speech") or "")
         decision = payload.get("decision") if isinstance(payload.get("decision"), dict) else {}
@@ -431,6 +422,7 @@ class KlarConversationEntity(ConversationEntity):
                 return await self._spoken(
                     user_input, chat_log, pack, "", conversation_id, False, "chime"
                 )
+        spoken_decision = "clock" if payload.get("clock_answer") else decision_type
         return await self._spoken(
             user_input,
             chat_log,
@@ -438,7 +430,7 @@ class KlarConversationEntity(ConversationEntity):
             speech,
             conversation_id,
             keeps_conversation(decision_type),
-            decision_type,
+            spoken_decision,
             False,
             refine_band_from_payload(payload),
         )
@@ -480,7 +472,7 @@ class KlarConversationEntity(ConversationEntity):
         published: bool = False,
         refine_band: str | None = None,
     ) -> ConversationResult:
-        if decision == "chat":
+        if decision == "clock":
             speech = finish_clock_speech(speech, pack)
         if not skip_rewrite(decision):
             speech, refine_posted = await async_finish_speech(

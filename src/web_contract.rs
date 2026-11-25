@@ -71,12 +71,13 @@ pub fn parse_outcome_fields() -> &'static [&'static str] {
         "retrieval",
         "policy_trace",
         "quiet_ack_eligible",
+        "clock_answer",
         "refine_band",
     ]
 }
 
 pub fn parse_outcome_optional_fields() -> &'static [&'static str] {
-    &["selected_candidate_id", "plan", "news_topic", "retrieval", "policy_trace", "quiet_ack_eligible", "refine_band"]
+    &["selected_candidate_id", "plan", "news_topic", "retrieval", "policy_trace", "quiet_ack_eligible", "clock_answer", "refine_band"]
 }
 
 pub fn settings_fields() -> &'static [&'static str] {
@@ -370,6 +371,7 @@ mod tests {
             news_topic: Some("sport".into()),
             retrieval: None,
             policy_trace: None,
+            clock_answer: false,
             quiet_ack_eligible: false,
             refine_band: Some(RefineBand::Status),
         };

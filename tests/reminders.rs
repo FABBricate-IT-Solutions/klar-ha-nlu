@@ -22,7 +22,13 @@ fn remind_me_in_twenty_minutes_sets_a_relative_reminder() {
 }
 
 #[test]
-fn remind_me_tomorrow_morning_is_not_a_device_command() {
+fn remind_me_tomorrow_morning_sets_an_absolute_reminder() {
     let result = run("remind me tomorrow morning to call the bank");
-    assert!(result.intents.is_empty(), "{result:?}");
+    assert_eq!(result.intents.len(), 1, "{result:?}");
+    let intent = &result.intents[0];
+    assert_eq!(intent.name, "SetReminderAbsolute");
+    assert_eq!(intent.slot("dayref"), Some("tomorrow"));
+    assert_eq!(intent.slot("hour"), Some("9"));
+    assert_eq!(intent.slot("task"), Some("call the bank"));
+    assert!(result.intents.iter().all(|intent| !intent.name.starts_with("HassLight") && intent.name != "HassTurnOn"));
 }

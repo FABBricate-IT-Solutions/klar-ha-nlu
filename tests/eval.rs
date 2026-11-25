@@ -112,6 +112,7 @@ fn metrics_are_not_vacuous_on_mismatched_gold() {
         retrieval: None,
         policy_trace: None,
         quiet_ack_eligible: false,
+        clock_answer: false,
         refine_band: None,
     };
     let metrics = score_items(&[item], &[outcome]);

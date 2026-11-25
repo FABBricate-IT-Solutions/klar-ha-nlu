@@ -1,4 +1,4 @@
-//! Household specials: teach a name, explain, undo, clock, weather, routines.
+//! Household specials: teach a name, explain, undo, clock, date, weather, routines.
 
 use crate::home::expose::assist_visible;
 use crate::lang::Household;
@@ -8,7 +8,7 @@ use crate::session::LastHeard;
 use crate::types::{Intent, RejectReason};
 
 use super::context::ParseContext;
-use super::draft::{chat, execute, reject, Draft};
+use super::draft::{chat, clock_chat, execute, reject, Draft};
 use super::phrase::{after_prefix, has_words, is_any_phrase, is_phrase, words, Slack};
 use super::risk::risky_step;
 
@@ -31,6 +31,15 @@ pub(super) fn route(context: &ParseContext<'_>, tokens: &[String]) -> Option<Dra
     if let Some(alias) = taught_name(context, &said) {
         return Some(teach(context, &alias));
     }
+    if looks_like_weekday(context, &said, tokens) {
+        return Some(weekday(context));
+    }
+    if looks_like_date(context, &said, tokens) {
+        return Some(date(context));
+    }
+    if looks_like_today(context, &said, tokens) {
+        return Some(today(context));
+    }
     if looks_like_clock(context, &said, tokens) {
         return Some(clock(context));
     }
@@ -44,6 +53,10 @@ pub(super) fn route(context: &ParseContext<'_>, tokens: &[String]) -> Option<Dra
         }
         // No forecast entity: a bare "what is the temperature" can still read a thermostat.
         if super::weather_lex::bare_temperature_ask(&blob) && !has_weather(context) {
+            return None;
+        }
+        // A place leftover is not the home forecast (P-31).
+        if !super::weather_lex::leftover_is_home_forecast(&blob) {
             return None;
         }
         return Some(weather(context, class));
@@ -165,7 +178,19 @@ fn teach(context: &ParseContext<'_>, alias: &str) -> Draft {
 }
 
 fn clock(context: &ParseContext<'_>) -> Draft {
-    chat(spoken_clock(context), false, false)
+    clock_chat(spoken_clock(context))
+}
+
+fn weekday(context: &ParseContext<'_>) -> Draft {
+    clock_chat(spoken_weekday(context))
+}
+
+fn date(context: &ParseContext<'_>) -> Draft {
+    clock_chat(spoken_date(context))
+}
+
+fn today(context: &ParseContext<'_>) -> Draft {
+    clock_chat(spoken_today(context))
 }
 
 fn weather(context: &ParseContext<'_>, class: super::weather_lex::WeatherClass) -> Draft {
@@ -216,10 +241,55 @@ fn looks_like_clock(context: &ParseContext<'_>, said: &[String], tokens: &[Strin
     is_any_phrase(said, context.catalog.household_phrases(|pack| pack.household.clock), context.catalog, Slack::Question)
 }
 
+fn looks_like_weekday(context: &ParseContext<'_>, said: &[String], tokens: &[String]) -> bool {
+    if context.catalog.pack_any(tokens, |pack| pack.household.clock_skip) {
+        return false;
+    }
+    is_any_phrase(said, context.catalog.household_phrases(|pack| pack.household.weekday), context.catalog, Slack::Question)
+}
+
+fn looks_like_date(context: &ParseContext<'_>, said: &[String], tokens: &[String]) -> bool {
+    if context.catalog.pack_any(tokens, |pack| pack.household.clock_skip) {
+        return false;
+    }
+    is_any_phrase(said, context.catalog.household_phrases(|pack| pack.household.date), context.catalog, Slack::Question)
+}
+
+fn looks_like_today(context: &ParseContext<'_>, said: &[String], tokens: &[String]) -> bool {
+    if context.catalog.pack_any(tokens, |pack| pack.household.clock_skip) {
+        return false;
+    }
+    is_any_phrase(said, context.catalog.household_phrases(|pack| pack.household.today), context.catalog, Slack::Question)
+}
+
 fn spoken_clock(context: &ParseContext<'_>) -> String {
     let house = templates(context);
-    match super::clock_time::hhmm_now(&context.settings.time_zone) {
-        Some(time) => house.clock_ok.replace("{time}", &time),
+    match super::clock_time::stamp_for(context) {
+        Some(stamp) => house.clock_ok.replace("{time}", &stamp.hhmm),
+        None => house.clock_missing.to_string(),
+    }
+}
+
+fn spoken_weekday(context: &ParseContext<'_>) -> String {
+    let house = templates(context);
+    match super::clock_time::stamp_for(context) {
+        Some(stamp) => house.weekday_ok.replace("{weekday}", &stamp.weekday),
+        None => house.clock_missing.to_string(),
+    }
+}
+
+fn spoken_date(context: &ParseContext<'_>) -> String {
+    let house = templates(context);
+    match super::clock_time::stamp_for(context) {
+        Some(stamp) => house.date_ok.replace("{weekday}", &stamp.weekday).replace("{date}", &stamp.date),
+        None => house.clock_missing.to_string(),
+    }
+}
+
+fn spoken_today(context: &ParseContext<'_>) -> String {
+    let house = templates(context);
+    match super::clock_time::stamp_for(context) {
+        Some(stamp) => house.today_ok.replace("{weekday}", &stamp.weekday).replace("{date}", &stamp.date),
         None => house.clock_missing.to_string(),
     }
 }
@@ -229,6 +299,9 @@ const FALLBACK: Household = Household {
     explain: &[],
     undo: &[],
     clock: &[],
+    date: &[],
+    weekday: &[],
+    today: &[],
     weather: &[],
     clock_skip: &[],
     heard_nothing: "",
@@ -247,6 +320,9 @@ const FALLBACK: Household = Household {
     teach_ok: "{alias}",
     clock_ok: "{time}",
     clock_missing: "",
+    date_ok: "{weekday}, {date}",
+    weekday_ok: "{weekday}",
+    today_ok: "{weekday}, {date}",
     no_weather: "",
 };
 

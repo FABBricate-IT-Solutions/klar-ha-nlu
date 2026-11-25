@@ -22,7 +22,7 @@ from lang_packs.rust_read import read_pack
 
 WORD_GROUPS = ("talk", "nouns", "fixtures", "cues", "chat")
 CHAT_LISTS = ("greet", "thanks", "feeling", "identity", "tell", "yarn", "world", "advice", "open")
-HOUSEHOLD_LISTS = ("teach", "explain", "undo", "clock", "weather", "clock_skip")
+HOUSEHOLD_LISTS = ("teach", "explain", "undo", "clock", "date", "weekday", "today", "weather", "clock_skip")
 ANSWER_LISTS = ("yes", "no", "cancel")
 # Every group whose word lists a regional word can be mirrored into.
 MIRRORED = (*WORD_GROUPS, "maps", "household", "answers", "mood")

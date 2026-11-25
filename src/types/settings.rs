@@ -150,6 +150,9 @@ pub struct Settings {
     /// IANA timezone from Home Assistant. Empty uses the process timezone, then UTC.
     #[serde(default)]
     pub time_zone: String,
+    /// Test-only fixed Unix seconds for clock and date speech. Never loaded from settings JSON.
+    #[serde(skip)]
+    pub clock_unix: Option<i64>,
     /// Extra line on the packed personality prompt. Empty uses the pack voice only.
     #[serde(default)]
     pub extra_prompt: String,
@@ -260,6 +263,7 @@ impl From<SettingsJson> for Settings {
             allow_llm_tools: raw.allow_llm_tools,
             fallback_llm: raw.fallback_llm,
             time_zone: raw.time_zone,
+            clock_unix: None,
             extra_prompt: raw.extra_prompt,
             unit_system: raw.unit_system,
             custom_voice: raw.custom_voice,
@@ -292,6 +296,7 @@ impl Default for Settings {
             allow_llm_tools: false,
             fallback_llm: false,
             time_zone: String::new(),
+            clock_unix: None,
             extra_prompt: String::new(),
             unit_system: UnitSystem::Metric,
             custom_voice: String::new(),

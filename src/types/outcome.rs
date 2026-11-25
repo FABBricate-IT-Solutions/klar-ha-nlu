@@ -42,6 +42,9 @@ pub struct ParseOutcome {
     pub policy_trace: Option<PolicyTrace>,
     #[serde(default, skip_serializing_if = "std::ops::Not::not")]
     pub quiet_ack_eligible: bool,
+    /// Engine clock/date/weekday speech. Assist only rewrites clock lines when this is set.
+    #[serde(default, skip_serializing_if = "std::ops::Not::not")]
+    pub clock_answer: bool,
     #[serde(default, skip_serializing_if = "Option::is_none")]
     pub refine_band: Option<RefineBand>,
 }

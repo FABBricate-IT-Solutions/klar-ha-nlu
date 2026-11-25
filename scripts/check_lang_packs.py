@@ -144,8 +144,9 @@ def struct_fields(source: str, name: str) -> list[str]:
 def check_field_checklist() -> None:
     groups = (ROOT / "src" / "lang" / "groups.rs").read_text(encoding="utf-8")
     emit = "".join(path.read_text(encoding="utf-8") for path in sorted((ROOT / "scripts" / "lang_packs").glob("emit*.py")))
-    de_pack = (PACKS / "de" / "pack.rs").read_text(encoding="utf-8")
-    en_pack = (PACKS / "en" / "pack.rs").read_text(encoding="utf-8")
+    # Hand-written packs may split groups into sibling modules (e.g. household.rs).
+    de_pack = "".join(path.read_text(encoding="utf-8") for path in sorted((PACKS / "de").glob("*.rs")))
+    en_pack = "".join(path.read_text(encoding="utf-8") for path in sorted((PACKS / "en").glob("*.rs")))
     missing = []
     for name in FIELD_GROUPS:
         for field in struct_fields(groups, name):
@@ -154,9 +155,9 @@ def check_field_checklist() -> None:
             if f"{field}:" not in emit and f"{field} =" not in emit:
                 missing.append(f"emit.py missing {name}.{field}")
             if f"{field}:" not in de_pack:
-                missing.append(f"packs/de/pack.rs missing {name}.{field}")
+                missing.append(f"packs/de missing {name}.{field}")
             if f"{field}:" not in en_pack:
-                missing.append(f"packs/en/pack.rs missing {name}.{field}")
+                missing.append(f"packs/en missing {name}.{field}")
     if missing:
         fail("LanguagePack field checklist:\n" + "\n".join(missing))
 

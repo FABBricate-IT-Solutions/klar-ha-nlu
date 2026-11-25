@@ -65,9 +65,21 @@ fn relative_marker(tokens: &[String]) -> bool {
 }
 
 fn absolute_marker(tokens: &[String]) -> bool {
-    tokens.windows(2).any(|window| {
-        matches!(window[0].as_str(), "at" | "for") && window[1].parse::<u32>().ok().is_some_and(|hour| (1..=23).contains(&hour))
-    })
+    tokens.iter().any(|token| matches!(token.as_str(), "noon" | "midnight" | "tonight"))
+        || (has_day_word(tokens) && has_part_of_day(tokens))
+        || tokens.windows(2).any(|window| {
+            matches!(window[0].as_str(), "at" | "for")
+                && (window[1].parse::<u32>().ok().is_some_and(|hour| (0..=23).contains(&hour))
+                    || matches!(window[1].as_str(), "noon" | "midnight"))
+        })
+}
+
+fn has_day_word(tokens: &[String]) -> bool {
+    tokens.iter().any(|token| matches!(token.as_str(), "today" | "tomorrow"))
+}
+
+fn has_part_of_day(tokens: &[String]) -> bool {
+    tokens.iter().any(|token| matches!(token.as_str(), "morning" | "afternoon" | "evening" | "night"))
 }
 
 fn relative_intent(tokens: &[String]) -> Option<Intent> {
@@ -99,9 +111,15 @@ fn relative_when(tokens: &[String], in_at: usize) -> Option<(String, &'static st
 }
 
 fn absolute_intent(tokens: &[String]) -> Option<Intent> {
+    if let Some(intent) = named_clock_intent(tokens) {
+        return Some(intent);
+    }
+    if let Some(intent) = day_part_intent(tokens) {
+        return Some(intent);
+    }
     let at = tokens.iter().position(|token| token == "at" || token == "for")?;
     let hour: u32 = tokens.get(at + 1)?.parse().ok()?;
-    if !(1..=23).contains(&hour) {
+    if !(0..=23).contains(&hour) {
         return None;
     }
     let mut idx = at + 2;
@@ -115,6 +133,10 @@ fn absolute_intent(tokens: &[String]) -> Option<Intent> {
         }
     }
     let meridiem = meridiem_at(tokens, &mut idx);
+    // "at 5" without am/pm is ambiguous for 1–12; leave it for the default agent (P-33).
+    if (1..=12).contains(&hour) && meridiem.is_none() {
+        return None;
+    }
     let task = task_text(tokens, at, idx)?;
     let mut intent = Intent::new("SetReminderAbsolute").with("hour", hour.to_string()).with("task", task);
     if minute != 0 {
@@ -123,7 +145,66 @@ fn absolute_intent(tokens: &[String]) -> Option<Intent> {
     if let Some(meridiem) = meridiem {
         intent = intent.with("meridiem", meridiem);
     }
+    if let Some(day) = day_slot(tokens) {
+        intent = intent.with("dayref", day);
+    }
     Some(intent)
+}
+
+fn named_clock_intent(tokens: &[String]) -> Option<Intent> {
+    let (hour, meridiem, at) = if let Some(at) = tokens.iter().position(|token| token == "noon") {
+        (12u32, Some("pm"), at)
+    } else if let Some(at) = tokens.iter().position(|token| token == "midnight") {
+        (0u32, Some("am"), at)
+    } else if let Some(at) = tokens.iter().position(|token| token == "tonight") {
+        (20u32, Some("pm"), at)
+    } else {
+        return None;
+    };
+    let time_end = at + 1;
+    let time_at = if tokens.get(at.wrapping_sub(1)).map(String::as_str) == Some("at") { at - 1 } else { at };
+    let task = task_text(tokens, time_at, time_end)?;
+    let mut intent = Intent::new("SetReminderAbsolute").with("hour", hour.to_string()).with("task", task);
+    if let Some(meridiem) = meridiem {
+        intent = intent.with("meridiem", meridiem);
+    }
+    if let Some(day) = day_slot(tokens) {
+        intent = intent.with("dayref", day);
+    }
+    Some(intent)
+}
+
+fn day_part_intent(tokens: &[String]) -> Option<Intent> {
+    let day = day_slot(tokens)?;
+    let (hour, meridiem) = if tokens.iter().any(|token| token == "morning") {
+        (9u32, "am")
+    } else if tokens.iter().any(|token| token == "afternoon") {
+        (15u32, "pm")
+    } else if tokens.iter().any(|token| token == "evening") {
+        (18u32, "pm")
+    } else if tokens.iter().any(|token| token == "night") {
+        (21u32, "pm")
+    } else {
+        return None;
+    };
+    let part_at = tokens.iter().position(|token| matches!(token.as_str(), "morning" | "afternoon" | "evening" | "night"))?;
+    let day_at = tokens.iter().position(|token| matches!(token.as_str(), "today" | "tomorrow"))?;
+    let time_at = day_at.min(part_at);
+    let time_end = day_at.max(part_at) + 1;
+    let task = task_text(tokens, time_at, time_end)?;
+    Some(
+        Intent::new("SetReminderAbsolute").with("hour", hour.to_string()).with("meridiem", meridiem).with("dayref", day).with("task", task),
+    )
+}
+
+fn day_slot(tokens: &[String]) -> Option<&'static str> {
+    if tokens.iter().any(|token| token == "tomorrow") {
+        Some("tomorrow")
+    } else if tokens.iter().any(|token| token == "today") {
+        Some("today")
+    } else {
+        None
+    }
 }
 
 fn meridiem_at(tokens: &[String], idx: &mut usize) -> Option<&'static str> {
@@ -217,6 +298,31 @@ mod tests {
     #[test]
     fn both_relative_and_absolute_stay_unparsed() {
         let tokens: Vec<String> = "remind me in 20 minutes at 10 am to feed the cats".split_whitespace().map(str::to_string).collect();
+        assert!(reminder_intent(&tokens).is_none());
+    }
+
+    #[test]
+    fn tomorrow_morning_slots_day_and_hour() {
+        let intent =
+            reminder_intent(&"remind me tomorrow morning to take out the trash".split_whitespace().map(str::to_string).collect::<Vec<_>>())
+                .expect("tomorrow morning");
+        assert_eq!(intent.slot("dayref"), Some("tomorrow"));
+        assert_eq!(intent.slot("hour"), Some("9"));
+        assert_eq!(intent.slot("meridiem"), Some("am"));
+        assert_eq!(intent.slot("task"), Some("take out the trash"));
+    }
+
+    #[test]
+    fn at_noon_is_twelve() {
+        let intent = reminder_intent(&"remind me at noon to eat".split_whitespace().map(str::to_string).collect::<Vec<_>>()).expect("noon");
+        assert_eq!(intent.slot("hour"), Some("12"));
+        assert_eq!(intent.slot("meridiem"), Some("pm"));
+        assert_eq!(intent.slot("task"), Some("eat"));
+    }
+
+    #[test]
+    fn at_five_without_meridiem_stays_unparsed() {
+        let tokens: Vec<String> = "remind me at 5 to call mom".split_whitespace().map(str::to_string).collect();
         assert!(reminder_intent(&tokens).is_none());
     }
 }

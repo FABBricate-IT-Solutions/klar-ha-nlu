@@ -44,6 +44,24 @@ def _slot(item: dict, name: str) -> str:
     return ""
 
 
+_WEEKDAYS = {
+    "mon": 0,
+    "tue": 1,
+    "wed": 2,
+    "thu": 3,
+    "fri": 4,
+    "sat": 5,
+    "sun": 6,
+    "monday": 0,
+    "tuesday": 1,
+    "wednesday": 2,
+    "thursday": 3,
+    "friday": 4,
+    "saturday": 5,
+    "sunday": 6,
+}
+
+
 def _when_bounds(item: dict, hass: HomeAssistant) -> tuple[datetime, datetime, bool] | None:
     """Start, end and all-day flag from the engine's slots.
 
@@ -54,13 +72,20 @@ def _when_bounds(item: dict, hass: HomeAssistant) -> tuple[datetime, datetime, b
     day = _slot(item, "day")
     hour_raw = _slot(item, "hour")
     in_days = _slot(item, "in_days")
-    if day not in ("", "today", "tomorrow") or (in_days and not in_days.isdigit()):
+    weekday = _WEEKDAYS.get(day.lower()) if day else None
+    if day not in ("", "today", "tomorrow") and weekday is None:
+        return None
+    if in_days and not in_days.isdigit():
         return None
     if hour_raw and not (hour_raw.isdigit() and int(hour_raw) <= 23):
         return None
     start = now.replace(hour=0, minute=0)
     if day == "tomorrow":
         start = start + timedelta(days=1)
+    elif weekday is not None:
+        # Python Monday=0; advance to the next matching weekday (today counts).
+        delta = (weekday - start.weekday()) % 7
+        start = start + timedelta(days=delta)
     elif in_days:
         start = start + timedelta(days=int(in_days))
     if hour_raw:

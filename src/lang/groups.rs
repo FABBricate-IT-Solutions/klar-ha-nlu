@@ -201,12 +201,15 @@ pub struct News {
     pub open: bool,
 }
 
-/// Teach / explain / undo / clock / weather. Same path for every compiled locale.
+/// Teach / explain / undo / clock / date / weather. Same path for every compiled locale.
 pub struct Household {
     pub teach: &'static [&'static str],
     pub explain: &'static [&'static str],
     pub undo: &'static [&'static str],
     pub clock: &'static [&'static str],
+    pub date: &'static [&'static str],
+    pub weekday: &'static [&'static str],
+    pub today: &'static [&'static str],
     pub weather: &'static [&'static str],
     pub clock_skip: &'static [&'static str],
     pub heard_nothing: &'static str,
@@ -225,6 +228,10 @@ pub struct Household {
     pub teach_ok: &'static str,
     pub clock_ok: &'static str,
     pub clock_missing: &'static str,
+    /// `{weekday}` is the spoken day name; `{date}` is the calendar date in the pack locale.
+    pub date_ok: &'static str,
+    pub weekday_ok: &'static str,
+    pub today_ok: &'static str,
     pub no_weather: &'static str,
 }
 

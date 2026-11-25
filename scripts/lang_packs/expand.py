@@ -353,12 +353,18 @@ def household_from(core: dict, w: dict, speech: dict) -> dict:
     explain = add("explain", f"{q0} {o0} {s0}".strip() if q0 and o0 and s0 else "")
     undo = add("undo", "")
     clock = add("clock", f"{q0} {timer0}".strip() if q0 and timer0 else "")
+    date = add("date", "")
+    weekday = add("weekday", "")
+    today = add("today", "")
     weather = add("weather", f"{q0} {climate0}".strip() if q0 and climate0 else "")
     return {
         "teach": teach,
         "explain": explain,
         "undo": undo,
         "clock": clock,
+        "date": date,
+        "weekday": weekday,
+        "today": today,
         "weather": weather,
         "clock_skip": unique(w.get("clock_skip", []) + extra.get("clock_skip", []) + timer[:1]),
         "heard_nothing": extra.get("heard_nothing") or speech.get("unknown", ""),
@@ -377,6 +383,9 @@ def household_from(core: dict, w: dict, speech: dict) -> dict:
         "teach_ok": extra.get("teach_ok") or speech.get("done", ""),
         "clock_ok": extra.get("clock_ok") or "{time}",
         "clock_missing": extra.get("clock_missing") or speech.get("unknown", ""),
+        "date_ok": extra.get("date_ok") or "Today is {weekday}, {date}.",
+        "weekday_ok": extra.get("weekday_ok") or "Today is {weekday}.",
+        "today_ok": extra.get("today_ok") or "Today is {weekday}, {date}.",
         "no_weather": extra.get("no_weather") or speech.get("unknown", ""),
     }
 
