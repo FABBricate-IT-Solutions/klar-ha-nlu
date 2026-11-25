@@ -68,10 +68,6 @@ async def test_fan_speed(
     assert fan.call_data == [{"percentage": 50}]
 
 
-@pytest.mark.xfail(
-    strict=True,
-    reason="H-10: the intent is resolved again by name and fails on duplicate names; fixed by package 2.8",
-)
 async def test_two_fans_with_one_name_reach_the_chosen_one(
     hass: HomeAssistant, klar: MockConfigEntry, engine: FakeEngine, service_log: ServiceLog
 ) -> None:
@@ -97,10 +93,6 @@ async def test_heating_thermostat_takes_a_target(
     assert thermostat.call_data[0]["temperature"] == 21.0
 
 
-@pytest.mark.xfail(
-    strict=True,
-    reason="H-11: set temperature forces hvac_mode heat, also on cool-only units; fixed by package 2.8",
-)
 async def test_cool_only_unit_is_not_forced_to_heat(
     hass: HomeAssistant, klar: MockConfigEntry, engine: FakeEngine, service_log: ServiceLog
 ) -> None:
@@ -124,10 +116,6 @@ async def test_unexposed_entity_is_refused_before_any_service(
     assert switch.calls == []
 
 
-@pytest.mark.xfail(
-    strict=True,
-    reason="A-17: direct service calls carry no user context; fixed by package 2.8",
-)
 async def test_service_calls_carry_the_callers_context(
     hass: HomeAssistant, klar: MockConfigEntry, engine: FakeEngine, service_log: ServiceLog
 ) -> None:
@@ -139,3 +127,21 @@ async def test_service_calls_carry_the_callers_context(
     )
     assert result.ok, result.error
     assert service_log.contexts == [turn.context]
+
+
+async def test_successful_step_with_empty_speech_is_still_ok(
+    hass: HomeAssistant, klar: MockConfigEntry, engine: FakeEngine, service_log: ServiceLog, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    # H-17: a successful service call must not become an error just because speech is empty.
+    switch = FakeSwitch("Coffee Maker", "switch-1")
+    await add_entities(hass, "switch", switch)
+
+    async def _silent(*_args: object, **_kwargs: object) -> str:
+        return ""
+
+    monkeypatch.setattr(dispatch, "spoken_after_execute", _silent)
+    result = await _run(hass, intent("HassTurnOn", entity_id=switch.entity_id))
+    assert result.ok, result.error
+    assert result.speech in (None, "")
+    assert service_log.ran(switch.entity_id) == ["switch.turn_on"]
+    assert switch.calls == ["turn_on"]

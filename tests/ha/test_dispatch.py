@@ -91,6 +91,7 @@ def _load_dispatch() -> types.ModuleType:
         _load(f"{PACKAGE}.speech_status", "speech_status.py")
         _load(f"{PACKAGE}.floor_query", "floor_query.py")
         _load(f"{PACKAGE}.dispatch_result", "dispatch_result.py")
+        _load(f"{PACKAGE}.dispatch_table", "dispatch_table.py")
         _load(f"{PACKAGE}.refine", "refine.py")
         _load(f"{PACKAGE}.stream", "stream.py")
         _load(f"{PACKAGE}.engine_llm", "engine_llm.py")
@@ -594,7 +595,8 @@ class DispatchTests(unittest.IsolatedAsyncioTestCase):
         self.assertEqual(args.args[:2], ("climate", "set_temperature"))
         self.assertEqual(args.args[2]["entity_id"], climate.entity_id)
         self.assertEqual(args.args[2]["temperature"], 21.0)
-        self.assertEqual(args.args[2]["hvac_mode"], "heat")
+        # H-11: do not force hvac_mode heat (cool-only units, already-heating units).
+        self.assertNotIn("hvac_mode", args.args[2])
         self.assertNotIn("nicht geklappt", (spoken.speech or "").lower())
 
     async def test_relative_dim_sends_brightness_step(self) -> None:

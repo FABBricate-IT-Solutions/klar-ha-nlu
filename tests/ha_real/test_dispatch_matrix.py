@@ -9,9 +9,8 @@ agreed mapping yet (toggling a lock, switching a scene off); for those the only 
 that Klar never asks Home Assistant for a service it does not have. That rule holds for
 every cell.
 
-Cells that fail today are listed in ``KNOWN_BUGS`` with their finding id and marked as
-strict expected failures: when package 2.8 fixes the dispatch table, they turn red until
-the entry is removed here.
+``KNOWN_BUGS`` held package-2.8 expected failures (H-02); it is empty now that the
+typed dispatch table is in place.
 """
 
 from __future__ import annotations
@@ -47,26 +46,9 @@ EXPECTED: dict[str, dict[str, str | None]] = {
     "scene": {ON: "scene.turn_on", OFF: UNSPECIFIED, TOGGLE: UNSPECIFIED},
 }
 
-# H-02: named locks go to lock.turn_on / lock.turn_off, which do not exist; the same
-# happens for valve, mower, vacuum, button and "scene off".
-KNOWN_BUGS: dict[tuple[str, str], str] = {
-    ("lock", ON): "H-02",
-    ("lock", OFF): "H-02",
-    ("lock", TOGGLE): "H-02",
-    ("valve", ON): "H-02",
-    ("valve", OFF): "H-02",
-    ("lawn_mower", ON): "H-02",
-    ("lawn_mower", OFF): "H-02",
-    ("lawn_mower", TOGGLE): "H-02",
-    ("vacuum", ON): "H-02",
-    ("vacuum", OFF): "H-02",
-    ("vacuum", TOGGLE): "H-02",
-    ("button", ON): "H-02",
-    ("button", OFF): "H-02",
-    ("button", TOGGLE): "H-02",
-    ("scene", OFF): "H-02",
-    ("scene", TOGGLE): "H-02",
-}
+# Package 2.8 cleared H-02: the typed dispatch table maps each domain to a real service
+# (or refuses the step when there is no agreed mapping).
+KNOWN_BUGS: dict[tuple[str, str], str] = {}
 
 
 def _cells() -> list[Any]:
