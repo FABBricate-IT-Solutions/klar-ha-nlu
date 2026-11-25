@@ -440,6 +440,38 @@ class CalendarDispatchTests(unittest.TestCase):
         self.assertIn("15 Uhr", speech or "")
         self.assertNotIn("15:00", speech or "")
 
+    def test_timed_event_is_not_all_day(self) -> None:
+        # H-07: entity path stores datetime starts; str() has a space, not T.
+        say = calendar_ha.calendar_say
+        start = datetime(2026, 9, 6, 10, 0, tzinfo=timezone.utc)
+        event = {"summary": "standup", "start": start}
+        self.assertFalse(say.is_all_day(event, start))
+        hass = SimpleNamespace(config=SimpleNamespace(time_zone="UTC"))
+        line = say.event_line(event, "en", hass)
+        self.assertIn("10", line)
+        self.assertNotIn("all day", line.lower())
+
+    def test_utc_across_midnight_uses_ha_timezone(self) -> None:
+        # H-07: UTC 23:30 is tomorrow morning in Europe/Berlin.
+        say = calendar_ha.calendar_say
+        hass = SimpleNamespace(config=SimpleNamespace(time_zone="Europe/Berlin"))
+        # Pick a fixed "now" via a start that lands on tomorrow in Berlin.
+        start = datetime(2026, 9, 6, 23, 30, tzinfo=timezone.utc)
+        label = say.when_label(start, False, "en", hass)
+        # Local Berlin date is 2026-09-07 01:30 — weekday Monday.
+        self.assertIn("Monday", label)
+        self.assertIn("1", label)
+        self.assertNotIn("2026-09-06", label)
+        self.assertNotIn("2026-09-07", label)
+
+    def test_list_speech_sorts_by_start(self) -> None:
+        say = calendar_ha.calendar_say
+        hass = SimpleNamespace(config=SimpleNamespace(time_zone="UTC"))
+        later = {"summary": "later", "start": datetime(2026, 9, 8, 15, 0, tzinfo=timezone.utc)}
+        earlier = {"summary": "earlier", "start": datetime(2026, 9, 7, 10, 0, tzinfo=timezone.utc)}
+        speech = say.list_speech([later, earlier], "en", hass)
+        self.assertLess(speech.index("earlier"), speech.index("later"))
+
 
 if __name__ == "__main__":
     unittest.main()
