@@ -131,8 +131,13 @@ pub(crate) fn free_tokens(tokens: &[String], linked: &LinkedNames) -> Vec<String
     tokens.iter().enumerate().filter(|(index, _)| !linked.consumed.contains(index)).map(|(_, token)| token.clone()).collect()
 }
 
-/// A timer noun that is only there as part of a device name does not make a timer intent.
+/// Whether the utterance still supports a timer intent.
+/// A timer noun that is only part of a light name ("Timer Lamp") does not; a linked
+/// `timer.*` device ("oven timer") or a free timer word does.
 pub(crate) fn timer_noun_free(tokens: &[String], linked: &LinkedNames) -> bool {
+    if linked.entities.iter().chain(linked.ambiguous.iter()).any(|entity| entity.domain == "timer") {
+        return true;
+    }
     tokens.iter().enumerate().any(|(index, token)| !linked.consumed.contains(&index) && catalog().timer_nouns().contains(token.as_str()))
 }
 
@@ -343,7 +348,19 @@ pub(crate) fn take_linked(
     if has_conj {
         let n = entities.len() + ambiguous.len();
         if n > 1 {
-            // "haustuer und garagentor" / multi-device lists → scored / mentioned_locks path.
+            // Fully named pair ("kitchen ceiling and kitchen island") — keep both.
+            let named: Vec<EntityRec> =
+                entities.iter().chain(ambiguous.iter()).filter(|entity| fully_named(tokens, entity, home)).cloned().collect();
+            if named.len() >= 2 {
+                return Some(super::Resolved {
+                    areas: areas.to_vec(),
+                    floors: floors.to_vec(),
+                    entities: named,
+                    ambiguous: Vec::new(),
+                    ask_areas: Vec::new(),
+                });
+            }
+            // "haustuer und garagentor" / other multi-device lists → scored / mentioned_locks path.
             return None;
         }
         // "Wohn und Esszimmer lichte" may link only "Esszimmer Licht" — drop that so both rooms win.
@@ -400,7 +417,10 @@ pub(crate) fn take_linked(
         let linked_cover = entities.iter().chain(ambiguous.iter()).any(|entity| entity.domain == "cover");
         // "Bedroom Light and blinds" is cross-domain — keep the light for clause splitting.
         let same_kind = (linked_cover && extra_cover) || (linked_light && extra_light) || (!linked_light && !linked_cover);
-        if same_kind {
+        // A fully spoken fixture ("kitchen ceiling light") still leaves the generic "light"
+        // noun free — do not wipe it back to a room-wide area command.
+        let exclusive_named = entities.iter().any(|entity| fully_named(tokens, entity, home));
+        if same_kind && !exclusive_named {
             if areas.is_empty() {
                 return None;
             }

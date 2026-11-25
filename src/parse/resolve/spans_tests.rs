@@ -170,3 +170,14 @@ fn group_status_survives_when_und_is_not_a_local_conjunction() {
         assert!(resolved.areas.is_empty(), "{lang}: multi_area must not steal status: {resolved:?}");
     }
 }
+
+#[test]
+fn oven_timer_links_named_timer() {
+    let _lang = crate::lang::bind(&["en".into()]);
+    let path = std::path::Path::new(env!("CARGO_MANIFEST_DIR")).join("tests/datasets/full_home/en/home_config.yaml");
+    let home = crate::home::load_home_config(&path).expect("en");
+    let text = "start the oven timer for 10 minutes";
+    let out = crate::parse::parse(text, &home, &mut crate::session::Session::new(), &[], &crate::types::Settings::pinned("en"));
+    assert!(!out.clarify, "{out:?}");
+    assert!(out.intents.iter().any(|i| i.name == "HassStartTimer" && i.slot("entity_id") == Some("timer.oven")), "{out:?}");
+}
