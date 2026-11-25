@@ -400,6 +400,10 @@ pub fn domain_hint(tokens: &[String]) -> Option<&'static str> {
         }
         return Some(domain);
     }
+    // A climate noun without an entry of its own in the map ("Thermostate") names the heating too.
+    if cat.any(tokens, cat.climate_nouns()) {
+        return Some("climate");
+    }
     cat.fuzzy_domain(tokens)
 }
 

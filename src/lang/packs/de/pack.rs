@@ -122,7 +122,7 @@ pub const PACK: LanguagePack = LanguagePack {
         cover_nouns: &["rollo", "rollos", "jalousie", "markise", "fenster", "position", "tor", "garagentor", "vorhang", "vorhaenge"],
         curtain_nouns: &["vorhang", "vorhaenge"],
         fan_nouns: &["luefter", "ventilator", "geblaese"],
-        climate_nouns: &["heizung", "temperatur", "thermostat", "grad", "klima", "klimaanlage"],
+        climate_nouns: &["heizung", "heizungen", "temperatur", "thermostat", "thermostate", "thermostaten", "grad", "klima", "klimaanlage"],
         media_nouns: &["tv", "fernseher", "musik", "lautsprecher", "radio", "sender", "playlist", "wiedergabeliste", "lied", "titel"],
         lock_nouns: &["schloss", "tuerschloss"],
         door_nouns: &["tuer", "haustuer", "garagentuer"],

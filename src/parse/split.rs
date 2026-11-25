@@ -17,9 +17,9 @@ pub fn split_clauses(tokens: &[String], home: &HomeGraph) -> Vec<Vec<String>> {
     if let Some(at) = split_two_targets(tokens) {
         let mut left = tokens[..at].to_vec();
         let mut right = tokens[at + 1..].to_vec();
-        if detect_actions(&right).is_empty() {
+        if lacks_verb(&right) {
             for (i, _) in detect_actions(tokens) {
-                if i < at {
+                if i < at && !is_device_noun(&tokens[i]) {
                     right.insert(0, tokens[i].clone());
                 }
             }
@@ -27,7 +27,9 @@ pub fn split_clauses(tokens: &[String], home: &HomeGraph) -> Vec<Vec<String>> {
         // "Kugel und Decke aus" / "raito ribingu to kitchin keshite":
         // trailing particle or sole off/on verb belongs to both sides.
         if let Some(last) = tokens.last() {
-            if is_shared_tail(last) && !left.iter().any(|token| is_shared_tail(token)) {
+            // A reading cannot be switched: in "Temperatur Wohnzimmer und Licht Küche aus"
+            // the particle belongs to the light alone.
+            if is_shared_tail(last) && !left.iter().any(|token| is_shared_tail(token)) && !asks_reading(&left) {
                 left.push(last.clone());
             }
         }
@@ -53,6 +55,11 @@ pub fn split_clauses(tokens: &[String], home: &HomeGraph) -> Vec<Vec<String>> {
         }
         if let Some(start) = verb_final_boundary(tokens, i0, i1) {
             cuts.push(start);
+            continue;
+        }
+        // "turn off the hall and study heating": the device at the end is what the verb
+        // switches, not a status request of its own.
+        if a1 == Action::GetState && a0 != Action::GetState && actions.last() == Some(&(i1, a1)) && is_switched_noun(&tokens[i1]) {
             continue;
         }
         let between = &tokens[i0 + 1..i1];
@@ -172,8 +179,13 @@ fn split_two_targets(tokens: &[String]) -> Option<usize> {
     let left = &tokens[..at];
     let right = &tokens[at + 1..];
     let right_head = right.split(|t| is_conj(t)).next().unwrap_or(right);
-    if device_side(left)
-        && device_side(right_head)
+    // "Heizung Wohnzimmer und alle Lichter in der Küche aus": a climate device or reading
+    // on one side and another kind of device on the other are two targets as well.
+    // Two sides with a verb each are cut at the verb further down.
+    let two_kinds = ((device_side(left) && climate_side(right_head)) || (climate_side(left) && device_side(right_head)))
+        && (only_names(left) || only_names(right))
+        && detect_actions(tokens).iter().any(|(_, action)| *action != Action::GetState);
+    if ((device_side(left) && device_side(right_head)) || two_kinds)
         && !right.iter().skip(right_head.len()).any(|t| is_conj(t))
         && !both_covers(left, right_head)
     {
@@ -200,6 +212,36 @@ fn device_side(tokens: &[String]) -> bool {
         || crate::parse::infer::mentions_lamp_fixture(tokens)
         || cat.any(tokens, cat.laundry_machines())
         || tokens.iter().any(|token| matches!(token.as_str(), "dryer" | "washer"))
+}
+
+fn climate_side(tokens: &[String]) -> bool {
+    catalog().any(tokens, catalog().climate_nouns()) && !device_side(tokens)
+}
+
+/// "Temperatur Wohnzimmer": the side asks for a value and names no number to set.
+fn asks_reading(tokens: &[String]) -> bool {
+    climate_side(tokens) && catalog().any(tokens, catalog().temp_query()) && crate::parse::numbers::first_number(tokens).is_none()
+}
+
+/// A climate or fan noun counts as an action of its own ("Heizung" asks for its state),
+/// unlike "lock", which is noun and verb at once.
+fn is_device_noun(token: &str) -> bool {
+    catalog().climate_nouns().contains(token) || catalog().fan_nouns().contains(token)
+}
+
+/// A heating device, as opposed to the temperature, which is read and not switched.
+fn is_switched_noun(token: &str) -> bool {
+    catalog().climate_nouns().contains(token) && !catalog().temp_query().contains(token)
+}
+
+/// The side names a device and no verb of its own, so the verb of the other side is meant
+/// for it too. A device noun reads as a status request on its own and is no verb.
+fn lacks_verb(tokens: &[String]) -> bool {
+    !asks_reading(tokens) && only_names(tokens)
+}
+
+fn only_names(tokens: &[String]) -> bool {
+    detect_actions(tokens).iter().all(|(index, _)| is_device_noun(&tokens[*index]))
 }
 
 fn is_shared_tail(token: &str) -> bool {

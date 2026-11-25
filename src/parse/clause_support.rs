@@ -3,6 +3,7 @@ use crate::home::policy::is_infra;
 use crate::lang::catalog;
 use crate::parse::action::{has_light_noun, Action};
 use crate::parse::compound::named_scene_or_script;
+use crate::parse::infer::{color_word, light_level};
 use crate::parse::media::media_transport_form;
 use crate::parse::resolve::resolve;
 use crate::parse::slots::ClauseOut;
@@ -40,6 +41,32 @@ pub(crate) fn resolve_targets(
         }
     }
     first
+}
+
+/// "set the hallway radiator to 21": no word says what kind of device is meant, so the
+/// number alone made it a light command. A device the home names in the sentence decides
+/// instead, so a thermostat is not passed over for the lights of its room.
+pub(crate) fn named_instead_of_light(
+    action: Action,
+    tokens: &[String],
+    number: Option<i32>,
+    home: &HomeGraph,
+    settings: &Settings,
+) -> Option<&'static str> {
+    if action != Action::SetLight
+        || number.is_none()
+        || settings.mode == Mode::ContextOnly
+        || has_light_noun(tokens)
+        || color_word(tokens).is_some()
+        || light_level(tokens).is_some()
+    {
+        return None;
+    }
+    let named = resolve(tokens, home, None).entities;
+    if named.is_empty() {
+        return None;
+    }
+    ["climate", "cover", "fan"].into_iter().find(|domain| named.iter().all(|entity| entity.domain == *domain))
 }
 
 pub(crate) fn preferred_area_domain(domain: Option<&str>, action: Action, tokens: &[String]) -> Option<&'static str> {
