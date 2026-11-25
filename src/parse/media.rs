@@ -4,7 +4,6 @@ use crate::home::roles::{is_music_assistant_player, is_music_player, looks_like_
 use crate::lang::catalog;
 use crate::lang::VerbKind;
 use crate::parse::action::Action;
-use crate::parse::normalize::{compact, umlaut_eq};
 use crate::parse::resolve::Resolved;
 use crate::parse::slots::ClauseOut;
 use crate::session::Session;
@@ -352,6 +351,14 @@ fn player_pool<'a>(home: &'a HomeGraph, tokens: &[String], mass_only: bool) -> V
     if !mass.is_empty() {
         return mass;
     }
+    if !music.is_empty() {
+        return music;
+    }
+    // P-35: sole non-TV player for untagged "Pause the music".
+    let solo: Vec<_> = home.entities.iter().filter(|e| eligible_media_player(e, home) && !looks_like_tv(e)).collect();
+    if music_request(tokens) && solo.len() == 1 {
+        return solo;
+    }
     music
 }
 
@@ -433,60 +440,4 @@ fn explicit_destination(tokens: &[String], home: &HomeGraph, resolved: &Resolved
             area || entity
         },
     )
-}
-
-fn strip_area_query(query: String, home: &HomeGraph) -> String {
-    let folded = compact(&query);
-    if folded.is_empty() {
-        return String::new();
-    }
-    let area_only = home.areas.iter().any(|area| {
-        compact(&area.area_id) == folded
-            || compact(&area.name) == folded
-            || umlaut_eq(&folded, &compact(&area.area_id))
-            || umlaut_eq(&folded, &compact(&area.name))
-            || area.aliases.iter().any(|alias| compact(alias) == folded || umlaut_eq(&folded, &compact(alias)))
-    });
-    if area_only {
-        String::new()
-    } else {
-        query
-    }
-}
-
-fn area_from_tokens(tokens: &[String], home: &HomeGraph) -> Option<String> {
-    home.areas.iter().find_map(|area| {
-        tokens
-            .iter()
-            .any(|token| {
-                let folded = compact(token);
-                folded == compact(&area.area_id)
-                    || folded == compact(&area.name)
-                    || umlaut_eq(&folded, &compact(&area.area_id))
-                    || umlaut_eq(&folded, &compact(&area.name))
-                    || area.aliases.iter().any(|alias| folded == compact(alias) || umlaut_eq(&folded, &compact(alias)))
-            })
-            .then(|| area.area_id.clone())
-    })
-}
-
-fn select_area_player<'a>(players: &[&'a EntityRec], area: &str, session: &Session) -> Option<&'a EntityRec> {
-    let candidates: Vec<&EntityRec> = players.iter().copied().filter(|player| player.area.as_deref() == Some(area)).collect();
-    select_player(&candidates, session)
-}
-
-fn select_player<'a>(players: &[&'a EntityRec], session: &Session) -> Option<&'a EntityRec> {
-    if players.len() == 1 {
-        return players.first().copied();
-    }
-    let preferred: Vec<&EntityRec> =
-        players.iter().copied().filter(|player| player.tags.iter().any(|tag| compact(tag) == "preferred")).collect();
-    if preferred.len() == 1 {
-        return preferred.first().copied();
-    }
-    if let Some(entity) = session.last_entities().find_map(|id| players.iter().copied().find(|player| player.entity_id == id)) {
-        return Some(entity);
-    }
-    let mass: Vec<&EntityRec> = players.iter().copied().filter(|player| is_music_assistant_player(player)).collect();
-    (mass.len() == 1).then(|| mass[0])
 }

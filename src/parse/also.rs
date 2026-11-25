@@ -79,7 +79,8 @@ pub(crate) fn guess_action(tokens: &[String], session: &Session, number: Option<
     if crate::parse::quantity::is_relative_temp(tokens) {
         return Action::SetTemp;
     }
-    if tokens.iter().any(|token| is_also_token(token)) {
+    // "and the hall", "no, the bedroom", "auch das Büro": carry the last action (P-14).
+    if is_followup_target(tokens) {
         return followup_action(tokens, session);
     }
     let cat = catalog();
@@ -92,12 +93,25 @@ pub(crate) fn guess_action(tokens: &[String], session: &Session, number: Option<
     }
 }
 
+fn is_followup_target(tokens: &[String]) -> bool {
+    let cat = catalog();
+    tokens.iter().any(|token| is_also_token(token))
+        || tokens.first().is_some_and(|token| {
+            cat.is_conj(token) || matches!(token.as_str(), "no" | "nein" | "nope" | "nicht" | "stattdessen" | "instead")
+        })
+}
+
 fn followup_action(tokens: &[String], session: &Session) -> Action {
     if catalog().any(tokens, catalog().off_words()) {
         return Action::Off;
     }
+    // Bare "and the kitchen too" stays a positive command — do not inherit a prior
+    // TurnOff ("Alle Lichter aus" / "turn off all the lights").
     match session.last.first().map(|turn| turn.name.as_str()) {
         Some("HassLightSet") => Action::SetLight,
+        Some("HassClimateSetTemperature") => Action::SetTemp,
+        Some("HassFanSetSpeed") => Action::FanSpeed,
+        Some("HassTurnOn") | Some("HassToggle") => Action::On,
         _ => Action::On,
     }
 }

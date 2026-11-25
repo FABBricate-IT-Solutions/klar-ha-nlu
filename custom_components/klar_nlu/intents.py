@@ -103,6 +103,7 @@ def list_slots(
         state = hass.states.get(entity_id)
         if state is not None:
             slots["name"] = {"value": state.name}
+        # Unresolved entity_id must not leave the add without a list name (P-18).
     slots.setdefault("name", {"value": "shopping_list"})
     return name, slots
 

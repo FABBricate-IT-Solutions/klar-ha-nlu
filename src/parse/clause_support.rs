@@ -76,14 +76,39 @@ pub(crate) fn preferred_area_domain(domain: Option<&str>, action: Action, tokens
     {
         return Some("light");
     }
-    if domain == Some("fan") && matches!(action, Action::On | Action::Off | Action::Toggle | Action::FanSpeed | Action::GetState) {
+    if (domain == Some("fan") || cat.any(tokens, cat.fan_nouns()))
+        && matches!(action, Action::On | Action::Off | Action::Toggle | Action::FanSpeed | Action::GetState)
+    {
         return Some("fan");
     }
-    if domain == Some("media_player") && cat.any(tokens, cat.media_nouns()) {
+    if (domain == Some("cover") || crate::parse::action::has_cover_noun(tokens))
+        && matches!(
+            action,
+            Action::CoverOpen | Action::CoverClose | Action::CoverSet | Action::On | Action::Off | Action::Toggle | Action::GetState
+        )
+    {
+        return Some("cover");
+    }
+    if (domain == Some("climate") || crate::parse::action::has_climate_noun(tokens))
+        && matches!(action, Action::SetTemp | Action::On | Action::Off | Action::Toggle | Action::GetState)
+    {
+        return Some("climate");
+    }
+    if (domain == Some("media_player") || cat.any(tokens, cat.media_nouns()))
+        && matches!(
+            action,
+            Action::MediaPause | Action::MediaPlay | Action::MediaNext | Action::MediaMute | Action::On | Action::Off | Action::GetState
+        )
+    {
         return Some("media_player");
     }
     if crate::home::roles::tv_asked(tokens) {
         return Some("media_player");
+    }
+    // Bare on/off at a satellite with no device noun still means the room lights.
+    // Do not bind GetState here: mid-sentence "ist" must not become a light status ask.
+    if domain.is_none() && matches!(action, Action::On | Action::Off | Action::Toggle) {
+        return Some("light");
     }
     None
 }

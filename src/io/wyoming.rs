@@ -157,18 +157,21 @@ where
                 let policies = state.policies.lock().await.clone();
                 let speech_bank = state.speech_bank.lock().await.clone();
                 let match_controls = state.match_controls.lock().await.clone();
-                let mut session = {
-                    let mut guard = state.sessions.lock().await;
-                    guard.take(conversation_id)
-                };
-                // HTTP always assigns ParseIn.preferred_area (JSON includes the key). Wyoming
-                // events often omit it: omitted = keep; present valid = set; present empty
+                // Seed follow-ups with the satellite area already set (P-23). Wyoming events
+                // often omit preferred_area: omitted = keep; present valid = set; present empty
                 // or unknown = ignore (keep previous — safer than clearing a good satellite area).
-                if let Some(area) = event
+                let satellite = event
                     .pointer("/data/preferred_area")
                     .and_then(|value| value.as_str())
-                    .filter(|area| !area.is_empty() && area.len() <= 128 && home.areas.iter().any(|record| record.area_id == *area))
-                {
+                    .filter(|area| !area.is_empty() && area.len() <= 128 && home.areas.iter().any(|record| record.area_id == *area));
+                let mut session = {
+                    let mut guard = state.sessions.lock().await;
+                    match satellite {
+                        Some(area) => guard.take_with_area(conversation_id, area),
+                        None => guard.take(conversation_id),
+                    }
+                };
+                if let Some(area) = satellite {
                     session.preferred_area = Some(area.to_string());
                 }
                 let outcome = parse_with_controls(text, &home, &mut session, &custom, &settings, &policies, &speech_bank, &match_controls);

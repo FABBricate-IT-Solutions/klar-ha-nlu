@@ -9,8 +9,11 @@ use crate::types::{
     Evidence, Intent, IntentCandidate, IntentPlan, ParseDecision, ParseOutcome, ParseTrace, PolicyTraceDiscarded, PolicyTraceMatch,
     RejectReason, StageTrace,
 };
-use std::collections::BTreeSet;
 use std::time::Instant;
+
+#[path = "intent_dedup.rs"]
+mod intent_dedup;
+use intent_dedup::dedup_intents;
 
 use super::answer::MAX_ANSWER_WORDS;
 use super::binding::{build_analyses, MAX_CLAUSES};
@@ -156,7 +159,7 @@ fn decide(context: &ParseContext<'_>) -> PipelineResult {
     record_stage(&mut trace, "ranking", started, format!("{} ranked candidates", ranking.candidates.len()));
     let clarify = ranking.clarification.clone();
     let mut intents = ranking.selected.as_ref().map_or_else(Vec::new, |candidate| candidate.plan.intents());
-    dedup_intents(&mut intents);
+    dedup_intents(&mut intents, context.home);
     let selected_plan = ranking.selected.as_ref().map(|candidate| candidate.plan.clone());
     let draft = if let Some((options, template)) = clarify {
         let prompt =
@@ -458,21 +461,6 @@ fn paired_lock_command(tokens: &[String]) -> bool {
     let cat = crate::lang::catalog();
     tokens.iter().any(|token| cat.is_conj(token))
         && (cat.any(tokens, cat.lock_nouns()) || cat.any(tokens, cat.door_nouns()) || cat.any(tokens, cat.lock_verbs()))
-}
-
-fn dedup_intents(intents: &mut Vec<Intent>) {
-    let mut seen = BTreeSet::new();
-    intents.retain(|intent| {
-        let entity_domain = intent.slot("entity_id").and_then(|entity_id| entity_id.split_once('.').map(|(domain, _)| domain));
-        let mut slots = intent
-            .slots
-            .iter()
-            .filter(|slot| slot.name != "domain" || entity_domain != Some(slot.value.as_str()))
-            .map(|slot| format!("{}={}", slot.name, slot.value))
-            .collect::<Vec<_>>();
-        slots.sort();
-        seen.insert(format!("{}|{}", intent.name, slots.join("|")))
-    });
 }
 
 fn record_stage(trace: &mut ParseTrace, stage: &str, started: Instant, detail: String) {
