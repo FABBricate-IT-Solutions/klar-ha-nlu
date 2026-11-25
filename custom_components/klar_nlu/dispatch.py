@@ -20,10 +20,10 @@ from .dispatch_media import (
     start_idle_music,
 )
 from .dispatch_result import IntentStepResult, fail as _fail, ok as _ok
+from .dispatch_table import ENTITY_INTENTS, build_service_call
 from .dispatch_timer import prepare_timer_slots, run_timer_helper
 from .floor_query import floor_temperature_rooms, place_status_rooms
 from .intents import (
-    ENTITY_SERVICES,
     LIST_INTENTS,
     MASS_INTENTS,
     TIMER_INTENTS,
@@ -133,13 +133,21 @@ async def handle_intent(
     if name in _SERVICE_ONLY:
         if not entity_id:
             return _fail("missing_entity")
-        return await run_entity(hass, name, entity_id, slots, pack, item, exposed)
-    if name == "HassLightSet" and not entity_id:
+        return await run_entity(hass, user_input, name, entity_id, slots, pack, item, exposed)
+    # Slot intents need a named entity; generic on/off may still be area-wide via HA.
+    _needs_entity = {
+        "HassLightSet",
+        "HassFanSetSpeed",
+        "HassSetPosition",
+        "HassVacuumStart",
+        "HassVacuumReturnToBase",
+    }
+    if name in _needs_entity and not entity_id:
         return _fail("missing_entity")
-    if entity_id and (name in ENTITY_SERVICES or name in {"HassLightSet", "HassClimateSetTemperature"}):
-        return await run_entity(hass, name, entity_id, slots, pack, item, exposed)
+    if entity_id and name in ENTITY_INTENTS:
+        return await run_entity(hass, user_input, name, entity_id, slots, pack, item, exposed)
     if name == "HassClimateSetTemperature":
-        return await climate_set(hass, slots, pack, item, exposed)
+        return await climate_set(hass, user_input, slots, pack, item, exposed)
     if entity_id:
         if not exposed(entity_id):
             return _fail("entity_not_exposed")
@@ -339,6 +347,7 @@ async def invoke_intent(
 
 async def run_entity(
     hass: HomeAssistant,
+    user_input: ConversationInput,
     name: str,
     entity_id: str,
     slots: dict[str, Any],
@@ -354,17 +363,8 @@ async def run_entity(
     domain = entity_id.split(".", 1)[0]
     if domain == "media_player" and media_missing(state):
         return _fail("media_unavailable")
-    data: dict[str, Any] = {"entity_id": entity_id}
-    if name == "HassLightSet" and domain == "light":
-        service = "turn_on"
-        data.update(light_turn_on(slots))
-    elif name == "HassClimateSetTemperature" and domain == "climate":
-        service = "set_temperature"
-        extra = climate_set_data(slots, state)
-        if extra is None:
-            return _fail("invalid_temperature")
-        data.update(extra)
-    elif domain == "media_player" and name in MEDIA_SERVICES:
+    if domain == "media_player" and name in MEDIA_SERVICES:
+        data: dict[str, Any] = {"entity_id": entity_id}
         service = MEDIA_SERVICES[name]
         if name == "HassSetVolume":
             try:
@@ -376,15 +376,21 @@ async def run_entity(
             service = "volume_down" if step == "down" else "volume_up"
         elif name in {"HassMediaPlayerMute", "HassMediaPlayerUnmute"}:
             data["is_volume_muted"] = name == "HassMediaPlayerMute"
-    elif domain == "cover" and name in ENTITY_SERVICES:
-        # Covers expose open/close, not light-style turn_on/turn_off.
-        service = {"HassTurnOn": "open_cover", "HassTurnOff": "close_cover", "HassToggle": "toggle"}[name]
     else:
-        service = ENTITY_SERVICES.get(name)
-        if not service:
+        built = build_service_call(domain, name, entity_id, slots, state)
+        if built is None:
+            if name == "HassClimateSetTemperature":
+                return _fail("invalid_temperature")
             return _fail("unsupported_service")
+        service, data = built
     try:
-        await hass.services.async_call(domain, service, data, blocking=True)
+        await hass.services.async_call(
+            domain,
+            service,
+            data,
+            blocking=True,
+            context=getattr(user_input, "context", None),
+        )
     except Exception as err:  # noqa: BLE001 — HA services are a boundary
         _LOGGER.debug("Gerät %s nicht geschaltet: %s", entity_id, err)
         return _fail(str(err) or "service_failed")
@@ -399,39 +405,9 @@ async def run_entity(
     return _ok(await spoken_after_execute(hass, pack, "default", spoken, extra_entities=extra))
 
 
-def light_turn_on(slots: dict[str, Any]) -> dict[str, Any]:
-    data: dict[str, Any] = {}
-    if (bri := slots.get("brightness", {}).get("value")) is not None:
-        try:
-            data["brightness_pct"] = max(0, min(100, int(bri)))
-        except (TypeError, ValueError):
-            pass
-    step = str(slots.get("brightness_step", {}).get("value") or "")
-    if step in {"up", "down"}:
-        data["brightness_step_pct"] = 15 if step == "up" else -15
-    color = str(slots.get("color", {}).get("value") or "")
-    key = color.casefold().replace(" ", "").replace("ß", "ss")
-    if key in {"warmwhite", "warmweiss"}:
-        data["color_temp_kelvin"] = 2700
-    elif color:
-        data["color_name"] = color
-    return data
-
-
-def climate_set_data(slots: dict[str, Any], state: Any) -> dict[str, Any] | None:
-    try:
-        data = {"temperature": float(slots.get("temperature", {}).get("value"))}
-    except (TypeError, ValueError):
-        return None
-    attrs = getattr(state, "attributes", None) or {}
-    mode = str((attrs.get("hvac_mode") if isinstance(attrs, dict) else None) or getattr(state, "state", "") or "")
-    if mode.casefold() in {"off", "idle", "frost"}:
-        data["hvac_mode"] = "heat"
-    return data
-
-
 async def climate_set(
     hass: HomeAssistant,
+    user_input: ConversationInput,
     slots: dict[str, Any],
     pack: str,
     item: dict,
@@ -443,7 +419,9 @@ async def climate_set(
         return _fail("climate_unavailable")
     last = _fail("climate_unavailable")
     for state in states:
-        last = await run_entity(hass, "HassClimateSetTemperature", state.entity_id, slots, pack, item, exposed)
+        last = await run_entity(
+            hass, user_input, "HassClimateSetTemperature", state.entity_id, slots, pack, item, exposed
+        )
         if last.ok:
             return last
     return last

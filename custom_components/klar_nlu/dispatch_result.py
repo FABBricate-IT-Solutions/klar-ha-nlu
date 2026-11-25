@@ -12,10 +12,9 @@ class IntentStepResult:
     error: str | None = None
 
 
-def ok(speech: str | None) -> IntentStepResult:
-    if speech:
-        return IntentStepResult(True, speech=speech)
-    return IntentStepResult(False, error="empty_speech")
+def ok(speech: str | None = None) -> IntentStepResult:
+    """Mark a step as successful. Empty speech is still success (H-17)."""
+    return IntentStepResult(True, speech=speech or None)
 
 
 def fail(error: str) -> IntentStepResult:
