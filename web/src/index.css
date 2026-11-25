@@ -57,13 +57,15 @@
     --card-foreground: #f4efe6;
     --popover: #242424;
     --popover-foreground: #f4efe6;
-    --primary: #c45c26;
-    --primary-foreground: #f4efe6;
+    /* Darker than --brand so white button labels clear 4.5:1 (U-15). */
+    --primary: #b34f1f;
+    --primary-foreground: #ffffff;
     --secondary: #2a2a2a;
     --secondary-foreground: #f4efe6;
     --muted: #2a2a2a;
     /* Was near-white on near-black chips — under 4.5:1 against secondary surfaces (U-15). */
     --muted-foreground: #b7b0a4;
+    /* Shadcn "accent" is a surface tint; brand orange lives in --brand (theme.css). */
     --accent: #2a2a2a;
     --accent-foreground: #f4efe6;
     --destructive: #c76b56;
@@ -93,8 +95,8 @@
     --card-foreground: #1c1c1c;
     --popover: #fffaf2;
     --popover-foreground: #1c1c1c;
-    --primary: #c45c26;
-    --primary-foreground: #f4efe6;
+    --primary: #9a4018;
+    --primary-foreground: #ffffff;
     --secondary: #ebe4d6;
     --secondary-foreground: #1c1c1c;
     --muted: #ebe4d6;

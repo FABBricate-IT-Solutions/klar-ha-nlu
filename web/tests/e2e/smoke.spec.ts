@@ -90,7 +90,8 @@ test("a new house rule is stored by the engine and the rule lanes scroll inside 
 
   const stored = await engine.api<Policies>("/api/v2/policies");
   expect(stored.policies).toHaveLength(1);
-  expect(stored.policies[0].enabled).toBe(true);
+  // New rules start disabled until a when clause is filled (U-09).
+  expect(stored.policies[0].enabled).toBe(false);
 
   // Long lists must scroll inside their lane instead of stretching the page.
   const lanes = page.locator(".policy-lane .lane-body");

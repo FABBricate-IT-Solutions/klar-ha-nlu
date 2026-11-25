@@ -390,9 +390,7 @@ export function RulesPage({
               onClick={() => setLane("house")}
             >
               {current && whenIsEmpty(current.when) ? (
-                <p className="danger" role="status">
-                  This rule has no when clause — it will not match until you set one.
-                </p>
+                <p className="danger" role="status">{t.emptyWhenRule}</p>
               ) : null}
               <HouseLane
                 t={t}

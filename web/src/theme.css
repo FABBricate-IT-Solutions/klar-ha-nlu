@@ -7,7 +7,8 @@
   --line: #3a3a3a;
   --text: #f4efe6;
   --muted: #9a948a;
-  --brand: #c45c26;
+  /* Brighter on dark so brand text clears 4.5:1 against --bg (U-15). */
+  --brand: #d9783a;
   --cyan: #3ec1c8;
   --high: #7d9a6a;
   --medium: #d4a04a;
@@ -117,7 +118,7 @@ button { cursor: pointer; }
   letter-spacing: -0.02em;
   line-height: 1;
   text-transform: none;
-  color: #c45c26;
+  color: var(--brand);
 }
 .nav { display: flex; gap: 20px; overflow-x: auto; flex: 1; }
 .util { display: flex; gap: 8px; }
@@ -552,14 +553,15 @@ button.chip { background: transparent; }
   --line: #cfc6b6;
   --text: #1c1c1c;
   --muted: #6b655c;
-  --brand: #c45c26;
-  --cyan: #1f7a80;
+  /* Darker on light so brand text clears 4.5:1 against cream (U-15). */
+  --brand: #9a4018;
+  --cyan: #186266;
   --high: #4e6b3d;
-  --medium: #9a6e1c;
+  --medium: #7a5710;
   --low: #7a4e42;
   --danger: #a44a38;
 }
-[data-theme="light"] .primary { color: #f4efe6; }
+[data-theme="light"] .primary { color: #ffffff; }
 [data-theme="light"] .chip.intent,
 [data-theme="light"] .slot-chip { border-color: #7aa3a6; }
 [data-theme="light"] .drawer-backdrop { background: rgba(28, 28, 28, .35); }

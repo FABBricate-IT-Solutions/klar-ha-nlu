@@ -19,7 +19,7 @@ function home(data: Dashboard) {
       onOpenCalibrate={() => undefined}
       canApply={false}
       onTeach={() => undefined}
-      lastTurn={null}
+      lastTurn={undefined}
       parseLanguage="en"
     />
   );

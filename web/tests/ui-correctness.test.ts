@@ -38,13 +38,28 @@ describe("wizard locale key sets (U-16 acceptance)", () => {
     expect(fr.whatTitle.length).toBeGreaterThan(0);
     expect(fr.pathTitle.length).toBeGreaterThan(0);
   });
+
+  it("translates the four chrome step titles out of English (U-16)", () => {
+    const en = wizardMessages("en");
+    for (const code of ["fr", "nl", "ja", "ar", "de-AT"]) {
+      const copy = wizardMessages(code);
+      expect(copy.chromeTitle, code).not.toBe(en.chromeTitle);
+      expect(copy.unitsTitle, code).not.toBe(en.unitsTitle);
+      expect(copy.restTitle, code).not.toBe(en.restTitle);
+      expect(copy.tutorialTitle, code).not.toBe(en.tutorialTitle);
+    }
+  });
 });
 
 describe("theme contrast (U-15)", () => {
-  it("keeps body text above 4.5:1 on both themes", () => {
+  it("keeps body and brand text above 4.5:1 on both themes", () => {
     expect(contrast("#f4efe6", "#1c1c1c")).toBeGreaterThanOrEqual(4.5);
     expect(contrast("#1c1c1c", "#f4efe6")).toBeGreaterThanOrEqual(4.5);
     expect(contrast("#b7b0a4", "#1c1c1c")).toBeGreaterThanOrEqual(4.5);
     expect(contrast("#6b655c", "#f4efe6")).toBeGreaterThanOrEqual(4.5);
+    expect(contrast("#d9783a", "#1c1c1c")).toBeGreaterThanOrEqual(4.5);
+    expect(contrast("#9a4018", "#f4efe6")).toBeGreaterThanOrEqual(4.5);
+    expect(contrast("#ffffff", "#b34f1f")).toBeGreaterThanOrEqual(4.5);
+    expect(contrast("#ffffff", "#9a4018")).toBeGreaterThanOrEqual(4.5);
   });
 });

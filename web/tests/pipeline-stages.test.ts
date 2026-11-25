@@ -1,24 +1,35 @@
-import { describe, expect, it } from "vitest";
-import { Pipeline } from "../src/components/pipeline";
 import { createElement } from "react";
 import { renderToStaticMarkup } from "react-dom/server";
+import { describe, expect, it } from "vitest";
+import { Pipeline } from "../src/components/pipeline";
 import { en } from "../src/i18n/en";
 import type { ParseResult } from "../src/types";
 
 function result(stages: { stage: string; duration_us: number; detail: string }[]): ParseResult {
   return {
-    schema_version: 1,
+    schema_version: "1",
     text: "turn on the light",
     conversation_id: "c",
     decision: { type: "execute" },
     speech: "ok",
+    briefing: false,
     confidence: 1,
     margin: 0,
     candidates: [],
-    plan: { steps: [{ intent: { name: "HassTurnOn", slots: [] } }] },
-    evidence: [{ source: "name", value: "light.kugel", score: 1, exact: true }],
+    plan: {
+      confidence: 1,
+      margin: 0,
+      evidence: [],
+      steps: [{
+        index: 0,
+        intent: { name: "HassTurnOn", slots: [] },
+        confidence: 1,
+        evidence: [],
+      }],
+    },
+    evidence: [{ kind: "entity", source: "name", value: "light.kugel", score: 1, exact: true }],
     trace: { stages, discarded: [], tokens: ["turn", "on"], normalized: "turn on the light" },
-  } as ParseResult;
+  };
 }
 
 describe("Lab pipeline stage timing (U-17)", () => {

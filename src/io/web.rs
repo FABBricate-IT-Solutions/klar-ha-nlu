@@ -512,4 +512,34 @@ mod tests {
         assert_eq!(err, StatusCode::INTERNAL_SERVER_ERROR);
         assert!(state.custom.lock().await.is_empty());
     }
+
+    #[tokio::test]
+    async fn tag_entity_clears_aliases_and_area() {
+        let (_scratch, state) = parse_state("tag-clear");
+        let peer = ConnectInfo("127.0.0.1:9".parse().unwrap());
+        let entity_id = "light.wohnzimmer".to_string();
+        let set = TagIn {
+            entity_id: entity_id.clone(),
+            tags: Vec::new(),
+            aliases: Some(vec!["decke".into()]),
+            preferred: None,
+            nlu_ignore: None,
+            area: Some("wohnzimmer".into()),
+        };
+        let Json(saved) = tag_entity(State(state.clone()), peer, HeaderMap::new(), Json(set)).await.expect("set");
+        assert!(saved.aliases.iter().any(|alias| alias == "decke"));
+        assert_eq!(saved.area.as_deref(), Some("wohnzimmer"));
+
+        let clear = TagIn {
+            entity_id: entity_id.clone(),
+            tags: Vec::new(),
+            aliases: Some(Vec::new()),
+            preferred: None,
+            nlu_ignore: None,
+            area: Some(String::new()),
+        };
+        let Json(cleared) = tag_entity(State(state.clone()), peer, HeaderMap::new(), Json(clear)).await.expect("clear");
+        assert!(cleared.aliases.is_empty(), "{cleared:?}");
+        assert_eq!(cleared.area, None, "{cleared:?}");
+    }
 }
