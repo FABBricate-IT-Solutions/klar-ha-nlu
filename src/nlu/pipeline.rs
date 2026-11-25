@@ -124,7 +124,7 @@ fn decide(context: &ParseContext<'_>) -> PipelineResult {
     };
     let special = || {
         super::dutch::route(context, &raw_tokens, &split.tokens)
-            .or_else(|| super::windows::route(context, &split.tokens))
+            .or_else(|| super::sensor_query::route(context, &split.tokens))
             .or_else(|| route_special(context, &raw_tokens, &split))
     };
     let taught = || route_custom(context, &split.tokens);

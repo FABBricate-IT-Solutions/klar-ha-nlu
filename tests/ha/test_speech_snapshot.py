@@ -127,11 +127,18 @@ class SpeechSnapshotTests(unittest.TestCase):
         self.assertEqual(len(long_title["entities"][0]["attributes"]["media_title"]), 256)
         self.assertEqual(long_title["entities"][0]["attributes"]["volume_level"], 0.4)
 
-    def test_empty_filtered_list_does_not_speak_unmatched_windows(self) -> None:
+    def test_device_class_list_keeps_unmatched_so_speech_sees_sensors(self) -> None:
         closed = types.SimpleNamespace(entity_id="binary_sensor.raam", state="off", name="Raam", attributes={"device_class": "window"})
+        # Without device_class, an empty matched list still hides unmatched (legacy).
         item = {"slots": [{"name": "response", "value": "list"}, {"name": "state", "value": "on"}]}
         handled = types.SimpleNamespace(matched_states=[], unmatched_states=[closed])
         self.assertEqual(snapshot.entities_from_handled(handled, item), [])
+        # With device_class, unmatched stay so the engine can say "none open" vs "no sensors".
+        item["slots"].append({"name": "device_class", "value": "window"})
+        rows = snapshot.entities_from_handled(handled, item)
+        self.assertEqual(len(rows), 1)
+        self.assertEqual(rows[0]["state"], "off")
+        self.assertEqual(rows[0]["device_class"], "window")
         handled.matched_states = [closed]
         self.assertEqual(len(snapshot.entities_from_handled(handled, item)), 1)
 
