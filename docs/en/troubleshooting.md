@@ -102,13 +102,15 @@ Downloads are redacted:
 
 - Conversation IDs are hashed
 - Entity and area names are pseudonymized
-- Raw utterance and speech stay out unless **support_bundle_raw_text** is on (off by default)
+- Raw utterance, speech, and tokens stay out unless **support_bundle_raw_text** is on (off by default)
 
-The conversation journal (UI **Conversations**) keeps the last 200 turns for 24 hours. Raw text follows the same flag.
+The conversation journal (UI **Conversations**) keeps the last 200 turns for 24 hours. Raw text, tokens, and speech follow the same flag. The dashboard then shows no sentence text.
 
 ## What never leaves the house
 
-The engine is local. No cloud, no model weights, no phone-home.
+The engine is local. No cloud, no model weights, no phone-home. A default install makes zero outbound fetches.
+
+Wikipedia/Wikidata (`web_lookup`) and news feeds (`news_briefing`) are off by default. Turn them on with `POST /api/settings`. Operator UI fonts are bundled (no Google Fonts). Under Home Assistant ingress the write token stays in memory, not `localStorage`. The local engine child process does not inherit the Supervisor environment.
 
 Klar’s engine LLM may rewrite a finished confirmation or handle chat. Configure it in the operator UI (Settings → LLM). **Allow Assist tools on chat** is off by default; when on, Core Assist tool names (2026.9 prefixes) are advertised after Klar parse. NLU-RAG (off by default) may send an already-matched slice and is exclusive with those HA tools in one round.
 

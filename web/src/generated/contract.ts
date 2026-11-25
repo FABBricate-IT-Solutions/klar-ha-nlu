@@ -141,6 +141,8 @@ export const SETTINGS_FIELDS = [
   "confirm_risky_actions",
   "semantic_adapters",
   "nlu_rag",
+  "web_lookup",
+  "news_briefing",
   "refine_speech",
   "refine_bands",
   "calendar_llm",

@@ -91,6 +91,8 @@ The token comes from `--token`, `KLAR_TOKEN`, or `--token-file`.
   "support_bundle_raw_text": false,
   "confirm_risky_actions": true,
   "semantic_adapters": false,
+  "web_lookup": false,
+  "news_briefing": false,
   "nlu_rag": false
 }
 ```
@@ -103,16 +105,18 @@ The token comes from `--token`, `KLAR_TOKEN`, or `--token-file`.
 | `default_language` | The pack a request binds when `languages` is empty and the request names no language. Empty means English. A code no pack answers is refused with `422`. |
 | `experimental_languages` | `true` offers experimental locales for a new selection (see [languages](languages.md#tiers)). Off by default. |
 | `support_bundle` | `true` writes parse traffic to `/data/support_bundle.jsonl` (max 2000 entries). Survives restarts. First boot also via `KLAR_SUPPORT_BUNDLE=1`. |
-| `support_bundle_raw_text` | `true` keeps raw text and speech in downloads. Off by default. Conversation IDs are always hashed; entity and area names are always pseudonymized. |
+| `support_bundle_raw_text` | `true` keeps raw text, speech, and tokens in downloads and the journal. Off by default. Conversation IDs are always hashed; entity and area names are always pseudonymized. |
 | `confirm_risky_actions` | `true` requires confirmation before risky actions such as locking/unlocking and broad safety-relevant controls. |
 | `semantic_adapters` | `true` consults local typed adapters after a ranking reject. Off by default. Proposals are revalidated; they never override Execute/Confirm/Clarify/Chat. |
 | `nlu_rag` | `true` attaches a matched-slice retrieval on `chat` and `reject` only. Off by default. Never Assist tools; the HA fallback may recover a command only through Klar tools. `POST /api/v2/parse` can set `nlu_rag` per request. |
+| `web_lookup` | `true` allows Wikipedia/Wikidata on out-of-domain chat. Off by default. |
+| `news_briefing` | `true` allows RSS fetches for news briefings. Off by default. |
 | `refine_speech` | `true` rewrites finished NLU speech with the engine LLM. Off by default. |
 | `extra_prompt` | House rule as a user message. Empty uses the pack voice only. Does not replace personality. |
 | `quiet_ack` | `true` chimes instead of TTS on simple on/off. Off by default. |
 | `satellite_followup` | `true` keeps the satellite microphone open after a finished chat reply. Off by default, so a shared mic and speaker does not hear its own speech. Clarify and confirm stay open either way. Typed Assist has no satellite id and is unchanged. |
 | `calendar_llm` | `true` lets the engine LLM speak calendar events. Off by default. |
-| `news_feeds` | List of `{ "pack", "url" }`. One `http` or `https` URL per pack code, no userinfo, at most eight entries. Empty uses the built-in feeds. |
+| `news_feeds` | List of `{ "pack", "url" }`. One `http` or `https` URL per pack code, no userinfo, at most eight entries. Empty uses the built-in feeds — fetch only when `news_briefing` is on. |
 | `allow_llm_tools` | `true` lets the engine chat model call Home Assistant Assist tools after Klar parse (2026.9 prefixed names). Off by default. |
 
 ### `GET` / `POST /api/v2/llm/endpoint`
@@ -362,7 +366,7 @@ Download as voice-suite YAML (`klar-assist-dataset.yaml`).
 
 ### `GET /api/bundle/protocol`
 
-Redacted JSONL (`klar-support-bundle.jsonl`). Conversation IDs are hashed and entity/area names are pseudonymized. Without `support_bundle_raw_text` the utterance is the token replay string and speech is empty.
+Redacted JSONL (`klar-support-bundle.jsonl`). Conversation IDs are hashed and entity/area names are pseudonymized. Without `support_bundle_raw_text` text, speech, and tokens are empty.
 
 ### `POST /api/bundle/clear` / `DELETE /api/bundle`
 

@@ -93,7 +93,7 @@ export const en = {
   recordProtocol: "Record protocol",
   recordProtocolHint: "On: Klar keeps the last 200 turns for 24 hours. Needed for the downloads below.",
   includeRawText: "Include raw text in downloads",
-  includeRawTextHint: "On: downloads include the spoken sentence. Off: redacted only.",
+  includeRawTextHint: "On: downloads and the journal keep the spoken sentence. Off: no text or tokens.",
   semanticAdapters: "Local semantic adapters",
   semanticAdaptersHint: "Off by default. On: after a miss, a local meaning match may still recover the intent. Not an LLM.",
   downloadDataset: "Download dataset",

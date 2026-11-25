@@ -24,7 +24,8 @@ pub struct MetricsStore {
 }
 
 impl MetricsStore {
-    pub fn record(&self, source: &str, language: Option<&str>, result: &ParseResult) {
+    /// Live counters. Utterance and speech land in `recent` only when `include_text` is on (D-20).
+    pub fn record(&self, source: &str, language: Option<&str>, result: &ParseResult, include_text: bool) {
         let mut inner = self.inner.lock().unwrap_or_else(|e| e.into_inner());
         let ts_ms = now_ms();
         inner.total += 1;
@@ -48,8 +49,8 @@ impl MetricsStore {
             ts_ms,
             source: source.into(),
             language: language.map(str::to_string),
-            text: result.text.clone(),
-            speech: result.speech.clone(),
+            text: if include_text { result.text.clone() } else { String::new() },
+            speech: if include_text { result.speech.clone() } else { String::new() },
             intents: result.intents.iter().map(|intent| intent.name.clone()).collect(),
             clarify: result.clarify,
             chat: result.chat,
@@ -100,11 +101,31 @@ mod tests {
             chat: false,
             briefing: false,
         };
-        store.record("http", Some("de"), &result);
+        store.record("http", Some("de"), &result, true);
         let out = store.snapshot();
         assert_eq!(out.total, 1);
         assert_eq!(out.by_source["http"], 1);
         assert_eq!(out.by_intent["HassTurnOn"], 1);
         assert_eq!(out.recent[0].text, "Licht an");
+    }
+
+    #[test]
+    fn recent_omits_utterance_without_raw_text_consent() {
+        let store = MetricsStore::default();
+        let result = ParseResult {
+            text: "Licht an".into(),
+            intents: vec![Intent::new("HassTurnOn")],
+            speech: "ok".into(),
+            clarify: false,
+            conversation_id: "c1".into(),
+            chat: false,
+            briefing: false,
+        };
+        store.record("http", Some("de"), &result, false);
+        let out = store.snapshot();
+        assert_eq!(out.total, 1);
+        assert_eq!(out.recent[0].text, "");
+        assert_eq!(out.recent[0].speech, "");
+        assert_eq!(out.recent[0].intents, vec!["HassTurnOn".to_string()]);
     }
 }

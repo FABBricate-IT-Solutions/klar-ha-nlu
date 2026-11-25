@@ -27,11 +27,11 @@ fn conversation_ids_are_hashed_and_stable() {
 }
 
 #[test]
-fn export_redacts_raw_text_entities_and_speech() {
+fn export_redacts_raw_text_entities_speech_and_tokens() {
     let redacted = redact_entries(&[entry("Mach das Küchenlicht an", "light.kitchen_island")], false);
     assert_eq!(redacted.len(), 1);
-    assert!(!redacted[0].request.text.contains("Küchenlicht"), "{:?}", redacted[0].request.text);
-    assert_eq!(redacted[0].request.text, redacted[0].tokens.join(" "));
+    assert_eq!(redacted[0].request.text, "");
+    assert!(redacted[0].tokens.is_empty());
     assert_eq!(redacted[0].request.conversation_id.as_deref(), Some(hash_conversation_id("secret-session").as_str()));
     assert_eq!(redacted[0].response.speech, "");
     assert_eq!(redacted[0].response.intents[0].slot("entity_id"), Some("light.e01"));

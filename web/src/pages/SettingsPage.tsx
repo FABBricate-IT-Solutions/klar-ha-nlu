@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { api, download, setToken, type LanguagePack } from "../api";
+import { api, download, getToken, setToken, type LanguagePack } from "../api";
 import { Guide } from "../components/Guide";
 import { LlmSettingsCard } from "../components/LlmSettingsCard";
 import { SettingsBackupCard } from "../components/SettingsBackupCard";
@@ -104,7 +104,7 @@ export function SettingsPage({
 }) {
   const [bundle, setBundle] = useState<BundleList | null>(null);
   const [confirmClear, setConfirmClear] = useState(false);
-  const [token, setTokenValue] = useState(localStorage.getItem("klar_token") || "");
+  const [token, setTokenValue] = useState(getToken());
   const [picked, setPicked] = useState<Theme>(() => readTheme(theme));
   const [packs, setPacks] = useState<LanguagePack[]>([]);
   const [llmEpoch, setLlmEpoch] = useState(0);

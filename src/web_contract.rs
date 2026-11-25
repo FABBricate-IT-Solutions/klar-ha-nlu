@@ -103,6 +103,8 @@ pub fn settings_fields() -> &'static [&'static str] {
         "confirm_risky_actions",
         "semantic_adapters",
         "nlu_rag",
+        "web_lookup",
+        "news_briefing",
         "refine_speech",
         "refine_bands",
         "calendar_llm",

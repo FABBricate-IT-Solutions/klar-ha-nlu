@@ -9,6 +9,7 @@ const MAX_OUT: usize = 80;
 const DEFAULT_LAST: usize = 12;
 
 pub async fn list_turns(state: &AppState, args: &Value) -> Result<Value, String> {
+    let include_raw = state.settings.lock().await.support_bundle_raw_text;
     let mut turns = state.journal.list();
     if let Some(id) = args.get("conversation_id").and_then(Value::as_str).filter(|item| !item.is_empty()) {
         turns.retain(|turn| turn.conversation_id == id);
@@ -18,7 +19,7 @@ pub async fn list_turns(state: &AppState, args: &Value) -> Result<Value, String>
     }
     if let Some(query) = args.get("query").and_then(Value::as_str).filter(|item| !item.is_empty()) {
         let needle = query.to_lowercase();
-        turns.retain(|turn| matches_query(turn, &needle));
+        turns.retain(|turn| matches_query(turn, &needle, include_raw));
     }
     let (since, until) = window(args)?;
     if let Some(since) = since {
@@ -36,7 +37,7 @@ pub async fn list_turns(state: &AppState, args: &Value) -> Result<Value, String>
     } else if turns.len() > MAX_OUT {
         turns = turns.split_off(turns.len() - MAX_OUT);
     }
-    let rows: Vec<Value> = turns.iter().map(turn_row).collect();
+    let rows: Vec<Value> = turns.iter().map(|turn| turn_row(turn, include_raw)).collect();
     Ok(with_view(
         "turns",
         json!({
@@ -47,22 +48,37 @@ pub async fn list_turns(state: &AppState, args: &Value) -> Result<Value, String>
     ))
 }
 
-fn matches_query(turn: &ConversationTurn, needle: &str) -> bool {
-    turn.decision.to_lowercase().contains(needle)
-        || turn.speech.to_lowercase().contains(needle)
-        || turn.text.as_deref().unwrap_or("").to_lowercase().contains(needle)
-        || turn.tokens.iter().any(|token| token.to_lowercase().contains(needle))
+fn matches_query(turn: &ConversationTurn, needle: &str, include_raw: bool) -> bool {
+    if turn.decision.to_lowercase().contains(needle)
         || turn.last_names.iter().any(|name| name.to_lowercase().contains(needle))
         || turn.evidence_kinds.iter().any(|kind| kind.to_lowercase().contains(needle))
+    {
+        return true;
+    }
+    if !include_raw {
+        return false;
+    }
+    turn.speech.to_lowercase().contains(needle)
+        || turn.text.as_deref().unwrap_or("").to_lowercase().contains(needle)
+        || turn.tokens.iter().any(|token| token.to_lowercase().contains(needle))
 }
 
-fn turn_row(turn: &ConversationTurn) -> Value {
+fn turn_row(turn: &ConversationTurn, include_raw: bool) -> Value {
+    // A-16: without raw-text consent the trainer never sees utterance or speech.
+    let (text, speech, label) = if include_raw {
+        let text = turn.text.clone();
+        let speech = turn.speech.clone();
+        let label = text.as_deref().filter(|item| !item.is_empty()).unwrap_or(speech.as_str()).to_string();
+        (text, speech, label)
+    } else {
+        (None, String::new(), turn.decision.clone())
+    };
     json!({
         "when": format_when(turn.ts_ms),
         "ts_ms": turn.ts_ms,
-        "label": turn.text.as_deref().filter(|item| !item.is_empty()).unwrap_or(turn.speech.as_str()),
-        "text": turn.text,
-        "speech": turn.speech,
+        "label": label,
+        "text": text,
+        "speech": speech,
         "decision": turn.decision,
         "confidence": turn.confidence,
         "names": turn.last_names,
@@ -225,6 +241,10 @@ mod tests {
     #[tokio::test]
     async fn filters_last_and_query() {
         let (_scratch, state) = state();
+        {
+            let mut settings = state.settings.lock().await;
+            settings.support_bundle_raw_text = true;
+        }
         state.journal.append(turn_from_outcome(
             &outcome("licht an", "Geht.", ParseDecision::Execute),
             true,
@@ -243,5 +263,24 @@ mod tests {
         let hit = list_turns(&state, &json!({"query":"licht","all":true})).await.unwrap();
         assert_eq!(hit["count"], 1);
         assert_eq!(hit["turns"][0]["decision"], "execute");
+    }
+
+    #[tokio::test]
+    async fn list_turns_hides_utterances_without_raw_text() {
+        let (_scratch, state) = state();
+        state.journal.append(turn_from_outcome(
+            &outcome("licht an", "Geht.", ParseDecision::Execute),
+            true,
+            vec!["Wohnzimmer".into()],
+            None,
+        ));
+        let listed = list_turns(&state, &json!({"last":1})).await.unwrap();
+        assert_eq!(listed["count"], 1);
+        assert!(listed["turns"][0]["text"].is_null());
+        assert_eq!(listed["turns"][0]["speech"], "");
+        assert_eq!(listed["turns"][0]["label"], "execute");
+        assert_eq!(listed["turns"][0]["decision"], "execute");
+        let by_text = list_turns(&state, &json!({"query":"licht","all":true})).await.unwrap();
+        assert_eq!(by_text["count"], 0);
     }
 }

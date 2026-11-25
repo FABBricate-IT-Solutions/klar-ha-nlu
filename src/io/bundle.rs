@@ -123,21 +123,23 @@ impl BundleStore {
     }
 }
 
-pub fn entry_from_parse(source: &str, language: Option<&str>, result: &ParseResult) -> BundleEntry {
+pub fn entry_from_parse(source: &str, language: Option<&str>, result: &ParseResult, include_raw: bool) -> BundleEntry {
     let ts_ms = now_ms();
+    let (text, speech, tokens) = if include_raw {
+        (result.text.clone(), result.speech.clone(), crate::parse::normalize::tokenize(&result.text))
+    } else {
+        (String::new(), String::new(), Vec::new())
+    };
     BundleEntry {
         id: new_id(ts_ms),
         ts_ms,
         source: source.to_string(),
         language: language.filter(|s| !s.is_empty()).map(str::to_string),
-        tokens: crate::parse::normalize::tokenize(&result.text),
-        request: BundleRequest {
-            text: result.text.clone(),
-            conversation_id: (!result.conversation_id.is_empty()).then(|| result.conversation_id.clone()),
-        },
+        tokens,
+        request: BundleRequest { text, conversation_id: (!result.conversation_id.is_empty()).then(|| result.conversation_id.clone()) },
         response: BundleResponse {
             intents: result.intents.clone(),
-            speech: result.speech.clone(),
+            speech,
             clarify: result.clarify,
             chat: result.chat,
             briefing: result.briefing,

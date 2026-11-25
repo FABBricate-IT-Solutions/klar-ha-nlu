@@ -68,11 +68,12 @@ impl AppState {
     }
 
     pub async fn record_parse(&self, source: &str, language: Option<&str>, result: &ParseResult) {
-        self.metrics.record(source, language, result);
+        let include_text = self.settings.lock().await.support_bundle_raw_text;
+        self.metrics.record(source, language, result, include_text);
         if !self.settings.lock().await.support_bundle {
             return;
         }
-        self.bundle.append(entry_from_parse(source, language, result));
+        self.bundle.append(entry_from_parse(source, language, result, include_text));
     }
 
     pub async fn record_outcome(&self, outcome: &ParseOutcome, last_names: Vec<String>) {

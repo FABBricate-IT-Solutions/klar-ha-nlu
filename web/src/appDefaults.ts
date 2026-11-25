@@ -25,6 +25,8 @@ export const defaultSettings: Settings = {
   confirm_risky_actions: true,
   semantic_adapters: false,
   nlu_rag: false,
+  web_lookup: false,
+  news_briefing: false,
   refine_speech: false,
   refine_bands: [],
   calendar_llm: false,

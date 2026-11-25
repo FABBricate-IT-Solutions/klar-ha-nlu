@@ -10,10 +10,6 @@ type UiState = { wizard_done: boolean; locale: string };
 type Policies = { policies: { id: string; label: string; enabled: boolean }[] };
 type Overlay = { custom: { phrase: string }[]; language: { sets: Record<string, { add?: string[] }> } };
 
-// The page loads its typeface from Google Fonts (theme.css). That is the one known reason for the
-// operator's browser to contact another host; any other host showing up here is a regression.
-const FONT_HOSTS = ["fonts.googleapis.com", "fonts.gstatic.com"];
-
 /** Collects what a healthy page must not produce: script errors and requests to an unexpected host. */
 function watch(page: Page, origin: string) {
   const errors: string[] = [];
@@ -22,7 +18,7 @@ function watch(page: Page, origin: string) {
   page.on("request", (request) => {
     const url = new URL(request.url());
     if (url.protocol !== "http:" && url.protocol !== "https:") return;
-    if (url.origin !== origin && !FONT_HOSTS.includes(url.hostname)) foreign.add(url.origin);
+    if (url.origin !== origin) foreign.add(url.origin);
   });
   return { errors, foreign };
 }

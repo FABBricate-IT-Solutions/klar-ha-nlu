@@ -397,6 +397,14 @@ class EngineChannelTests(unittest.TestCase):
             self.assertIn("engine_headers", src, rel)
             self.assertNotIn("X-Klar-Token", src, rel)
 
+    def test_engine_child_env_drops_supervisor_secrets(self) -> None:
+        src = (ROOT / "custom_components" / "klar_nlu" / "engine.py").read_text(encoding="utf-8")
+        self.assertIn("def _engine_child_env(", src)
+        self.assertIn("_ENGINE_ENV_KEEP", src)
+        self.assertIn('env = _engine_child_env(self.token, self.bindir / "ui")', src)
+        self.assertNotIn("env = os.environ.copy()", src)
+        self.assertIn("Supervisor/Hass", src)
+
 
 if __name__ == "__main__":
     unittest.main()

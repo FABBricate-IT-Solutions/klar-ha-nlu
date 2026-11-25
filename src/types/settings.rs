@@ -126,6 +126,12 @@ pub struct Settings {
     /// Opt-in NLU-as-RAG: matched-slice retrieval and Klar tools. Off by default.
     #[serde(default)]
     pub nlu_rag: bool,
+    /// Opt-in Wikipedia/Wikidata lookup for out-of-domain chat. Off by default (A-12).
+    #[serde(default)]
+    pub web_lookup: bool,
+    /// Opt-in news briefing fetches (RSS). Off by default (A-12).
+    #[serde(default)]
+    pub news_briefing: bool,
     /// Rewrite finished NLU speech with the engine LLM. Off by default.
     #[serde(default)]
     pub refine_speech: bool,
@@ -206,6 +212,10 @@ struct SettingsJson {
     #[serde(default)]
     nlu_rag: bool,
     #[serde(default)]
+    web_lookup: bool,
+    #[serde(default)]
+    news_briefing: bool,
+    #[serde(default)]
     refine_speech: bool,
     #[serde(default)]
     refine_bands: Option<Vec<RefineBand>>,
@@ -255,6 +265,8 @@ impl From<SettingsJson> for Settings {
             confirm_risky_actions: raw.confirm_risky_actions,
             semantic_adapters: raw.semantic_adapters,
             nlu_rag: raw.nlu_rag,
+            web_lookup: raw.web_lookup,
+            news_briefing: raw.news_briefing,
             refine_speech: raw.refine_speech,
             refine_bands,
             calendar_llm: raw.calendar_llm,
@@ -288,6 +300,8 @@ impl Default for Settings {
             confirm_risky_actions: true,
             semantic_adapters: false,
             nlu_rag: false,
+            web_lookup: false,
+            news_briefing: false,
             refine_speech: false,
             refine_bands: Vec::new(),
             calendar_llm: false,
@@ -384,6 +398,8 @@ mod tests {
         assert!(set.confirm_risky_actions);
         assert!(!set.semantic_adapters);
         assert!(!set.nlu_rag);
+        assert!(!set.web_lookup);
+        assert!(!set.news_briefing);
         assert!(!set.refine_speech);
         assert!(!set.calendar_llm);
         assert!(!set.quiet_ack);

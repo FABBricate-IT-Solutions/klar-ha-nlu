@@ -54,9 +54,23 @@ export type LanguagePack = {
   offered?: boolean;
 };
 
+/** True when the UI is served under Home Assistant ingress (shared HA origin). */
+export function isIngressOrigin(): boolean {
+  if (typeof window === "undefined") return false;
+  const path = `${window.location.pathname}${window.location.search}`;
+  return path.includes("hassio_ingress") || path.includes("/api/hassio") || path.includes("supervisor/ingress");
+}
+
+/** In-memory write token under ingress so it never lands in HA-origin localStorage (A-10). */
+let ingressToken = "";
+
+function readToken(): string {
+  if (isIngressOrigin()) return ingressToken;
+  return localStorage.getItem("klar_token") || "";
+}
+
 const jsonHeaders = () => {
-  // localStorage is readable by any script on this origin if XSS lands.
-  const token = localStorage.getItem("klar_token") || "";
+  const token = readToken();
   return {
     "content-type": "application/json",
     ...(token ? { "x-klar-token": token } : {}),
@@ -284,7 +298,24 @@ export const api = {
 };
 
 export function setToken(token: string) {
-  if (token.trim()) localStorage.setItem("klar_token", token.trim());
+  const next = token.trim();
+  if (isIngressOrigin()) {
+    ingressToken = next;
+    // Drop any leftover LAN token that an older build may have written on this origin.
+    localStorage.removeItem("klar_token");
+    return;
+  }
+  if (next) localStorage.setItem("klar_token", next);
+  else localStorage.removeItem("klar_token");
+}
+
+export function clearToken() {
+  ingressToken = "";
+  localStorage.removeItem("klar_token");
+}
+
+export function getToken(): string {
+  return readToken();
 }
 
 export async function download(path: string, fallback: string) {
@@ -305,7 +336,7 @@ export async function download(path: string, fallback: string) {
 }
 
 export async function uploadSettingsBackup(body: Blob) {
-  const token = localStorage.getItem("klar_token") || "";
+  const token = readToken();
   const { signal, cancel } = withTimeout(null, REQUEST_TIMEOUT_MS);
   try {
     const res = await fetch(appPath("/api/v2/settings/restore"), {
