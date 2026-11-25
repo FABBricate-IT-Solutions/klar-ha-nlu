@@ -12,11 +12,16 @@ from typing import Any
 
 from .engine_llm import EngineSpeechMissing, complete_engine_speech_render
 from .speech_snapshot import build_snapshot, entities_from_handled
+from .units import ha_unit_system
 
 _LOGGER = logging.getLogger(__name__)
 
 
 def _unit_system(hass: Any) -> str:
+    # Prefer Home Assistant's own units (H-05); fall back to a cached engine setting.
+    from_ha = ha_unit_system(hass)
+    if from_ha == "imperial":
+        return "imperial"
     stored = getattr(hass, "data", None) or {}
     if not isinstance(stored, dict):
         return "metric"

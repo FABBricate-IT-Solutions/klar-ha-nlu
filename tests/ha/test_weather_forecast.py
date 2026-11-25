@@ -64,6 +64,50 @@ class WeatherForecastTests(unittest.TestCase):
         self.assertEqual(hass.services.seen[0], "weather")
         self.assertEqual(hass.services.seen[1], "get_forecasts")
 
+    def test_twice_daily_fills_in_when_daily_is_empty(self) -> None:
+        # H-06: weather entities that only expose twice_daily must still answer.
+        class Services:
+            def __init__(self) -> None:
+                self.kinds: list[str] = []
+
+            async def async_call(self, domain, service, data, blocking=False, return_response=False):
+                kind = data["type"]
+                self.kinds.append(kind)
+                if kind == "daily":
+                    return {"weather.nws": {"forecast": []}}
+                if kind == "twice_daily":
+                    return {
+                        "weather.nws": {
+                            "forecast": [
+                                {
+                                    "datetime": "2026-09-12T06:00:00+00:00",
+                                    "condition": "rainy",
+                                    "temperature": 70,
+                                    "templow": 55,
+                                }
+                            ]
+                        }
+                    }
+                return {"weather.nws": {"forecast": []}}
+
+        hass = type(
+            "Hass",
+            (),
+            {
+                "services": Services(),
+                "states": type("States", (), {"get": staticmethod(lambda _eid: None)})(),
+            },
+        )()
+
+        async def run() -> tuple:
+            return await forecast.forecasts(hass, "weather.nws")
+
+        daily, hourly = asyncio.run(run())
+        self.assertEqual(hass.services.kinds, ["daily", "twice_daily", "hourly"])
+        self.assertEqual(daily[0]["temperature"], 70.0)
+        self.assertEqual(daily[0]["condition"], "rainy")
+        self.assertEqual(hourly, [])
+
 
 if __name__ == "__main__":
     unittest.main()

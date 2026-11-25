@@ -49,6 +49,7 @@ from .const import (
 )
 from .lang_select import engine_default_language
 from .time_zone import time_zone_name, time_zone_needs_sync
+from .units import ha_unit_system
 
 _LOGGER = logging.getLogger(__name__)
 
@@ -342,6 +343,9 @@ def cached_engine_settings(hass: HomeAssistant, entry: ConfigEntry) -> dict[str,
 
 
 def cached_unit_system(hass: HomeAssistant) -> str:
+    # H-05: Home Assistant's configured units win over a stale engine cache.
+    if ha_unit_system(hass) == "imperial":
+        return "imperial"
     stored = hass.data.get(DOMAIN) or {}
     for payload in stored.values():
         if not isinstance(payload, dict):
@@ -503,6 +507,15 @@ async def async_sync_default_language(hass: HomeAssistant, entry: ConfigEntry) -
     if current == wanted:
         return
     await async_patch_engine_settings(hass, entry, {"default_language": wanted})
+
+
+async def async_sync_unit_system(hass: HomeAssistant, entry: ConfigEntry) -> None:
+    """Copy Home Assistant's unit system onto the engine at setup (H-05)."""
+    wanted = ha_unit_system(hass)
+    current = str(cached_engine_settings(hass, entry).get("unit_system") or "").lower()
+    if current == wanted:
+        return
+    await async_patch_engine_settings(hass, entry, {"unit_system": wanted})
 
 
 async def async_push_fallback_flag(
