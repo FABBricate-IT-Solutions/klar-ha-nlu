@@ -33,6 +33,9 @@ const ENGINE_KEYS: &[&str] = &[
     "news_feeds",
 ];
 
+/// Fields the Home Assistant integration may PATCH onto `/api/settings`.
+const HTTP_EXTRA_KEYS: &[&str] = &["time_zone", "default_language", "experimental_languages", "fallback_llm"];
+
 const UI_KEYS: &[&str] = &["theme", "locale"];
 
 pub fn engine_view(settings: &Settings, theme: &str, locale: &str, locale_set: bool, configured: bool) -> Value {
@@ -156,8 +159,49 @@ fn public_settings(settings: &Settings) -> Value {
     })
 }
 
+/// Merge a partial settings document for HTTP PATCH (D-08). Validates languages,
+/// timezone, and string lengths (D-10).
+pub(crate) fn patch_settings_http(current: &Settings, args: &Value) -> Result<Settings, String> {
+    let mut allowed: Vec<&str> = ENGINE_KEYS.to_vec();
+    allowed.extend_from_slice(HTTP_EXTRA_KEYS);
+    reject_unknown(args, &allowed)?;
+    let mut next = patch_engine_fields(current, args)?;
+    if let Some(text) = args.get("time_zone").and_then(Value::as_str) {
+        next.time_zone = checked_time_zone(text)?;
+    }
+    if let Some(text) = args.get("default_language").and_then(Value::as_str) {
+        if text.chars().count() > 32 {
+            return Err("default_language too long".into());
+        }
+        next.default_language = text.to_string();
+    }
+    if let Some(flag) = args.get("experimental_languages").and_then(Value::as_bool) {
+        next.experimental_languages = flag;
+    }
+    if let Some(flag) = args.get("fallback_llm").and_then(Value::as_bool) {
+        next.fallback_llm = flag;
+    }
+    crate::lang::check_settings(next, current)
+}
+
+pub(crate) fn checked_time_zone(raw: &str) -> Result<String, String> {
+    let name = raw.trim();
+    if name.is_empty() {
+        return Ok(String::new());
+    }
+    if name.chars().count() > 64 {
+        return Err("time_zone too long".into());
+    }
+    jiff::tz::TimeZone::get(name).map_err(|_| format!("unknown time_zone: {name}"))?;
+    Ok(name.to_string())
+}
+
 fn patch_engine(current: &Settings, args: &Value) -> Result<Settings, String> {
     reject_unknown(args, ENGINE_KEYS)?;
+    patch_engine_fields(current, args)
+}
+
+fn patch_engine_fields(current: &Settings, args: &Value) -> Result<Settings, String> {
     let mut next = current.clone();
     if let Some(value) = args.get("personality") {
         next.personality = serde_json::from_value::<Personality>(value.clone()).map_err(|_| "unknown personality")?;
@@ -282,12 +326,14 @@ fn reject_unknown(args: &Value, allowed: &[&str]) -> Result<(), String> {
         return Err("no settings to change".into());
     }
     for key in obj.keys() {
-        if FORBIDDEN.contains(&key.as_str()) {
+        let key = key.as_str();
+        if allowed.contains(&key) {
+            continue;
+        }
+        if FORBIDDEN.contains(&key) {
             return Err(format!("{key} stays in Settings → LLM"));
         }
-        if !allowed.contains(&key.as_str()) {
-            return Err(format!("unknown setting {key}"));
-        }
+        return Err(format!("unknown setting {key}"));
     }
     Ok(())
 }
@@ -349,6 +395,21 @@ mod tests {
         assert_eq!(custom.custom_voice, "Voice: dry.");
         assert_eq!(custom.custom_voice_name, "Spock");
         assert_eq!(custom.custom_voice_seed, "You are Spock.");
+    }
+
+    #[test]
+    fn nested_http_patches_keep_each_other() {
+        // D-08 / acceptance: two nested patches both survive.
+        let set = Settings::pinned("de");
+        let first = patch_settings_http(&set, &json!({"quiet_ack": true, "extra_prompt": "Sprich kurz."})).unwrap();
+        assert!(first.quiet_ack);
+        assert_eq!(first.extra_prompt, "Sprich kurz.");
+        let second = patch_settings_http(&first, &json!({"personality": "butler"})).unwrap();
+        assert!(second.quiet_ack);
+        assert_eq!(second.extra_prompt, "Sprich kurz.");
+        assert_eq!(second.personality, Personality::Butler);
+        assert!(patch_settings_http(&set, &json!({"time_zone": "Not/A_Zone"})).is_err());
+        assert_eq!(patch_settings_http(&set, &json!({"time_zone": "Europe/Berlin"})).unwrap().time_zone, "Europe/Berlin");
     }
 
     #[tokio::test]

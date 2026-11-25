@@ -56,7 +56,7 @@ from .const import (
     resolve_personality,
 )
 from .engine import async_refresh_engine_settings, async_sync_time_zone, cached_engine_settings
-from .engine_http import post_parse
+from .engine_http import SchemaError, post_parse
 from .lang_select import advertised_languages, default_pack, enabled_packs, resolve_pack, speak_tag
 from .lookup import grounded, lookup_facts, lookup_instruction, lookup_miss, source_speech
 from .contracts import executable_intents
@@ -116,6 +116,11 @@ _LOGGER = logging.getLogger(__name__)
 _UNREACHABLE = {
     "de": "Klar antwortet gerade nicht.",
     "en": "Klar is not responding right now.",
+}
+
+_SCHEMA = {
+    "de": "Klar hat etwas Unerwartetes geantwortet.",
+    "en": "Klar sent an unexpected reply.",
 }
 
 _DONE = {"de": "Erledigt.", "en": "Done."}
@@ -827,6 +832,15 @@ class KlarConversationEntity(ConversationEntity):
         )
         if payload is not None:
             return payload
+        if isinstance(last_err, SchemaError):
+            _LOGGER.warning("Klar schema mismatch: %s", last_err)
+            return {
+                "schema_version": "2.0",
+                "speech": _cue(_SCHEMA, pack, "Klar sent an unexpected reply."),
+                "decision": {"type": "error", "code": "schema", "message": str(last_err)},
+                "plan": None,
+                "schema_error": True,
+            }
         _LOGGER.warning("Klar nicht erreichbar: %s", last_err)
         return {
             "schema_version": "2.0",

@@ -10,6 +10,10 @@ from .const import engine_url_candidates
 from .contracts import validate_v2_payload
 
 
+class SchemaError(ValueError):
+    """The engine answered, but the V2 body failed the contract (H-13)."""
+
+
 async def post_parse(
     session: aiohttp.ClientSession,
     url: str,
@@ -26,7 +30,12 @@ async def post_parse(
                 timeout=aiohttp.ClientTimeout(total=30),
             ) as resp:
                 resp.raise_for_status()
-                return validate_v2_payload(await resp.json()), None
+                raw = await resp.json()
+            try:
+                return validate_v2_payload(raw), None
+            except ValueError as err:
+                # Schema failures are not "unreachable" — the engine did answer.
+                return None, SchemaError(str(err))
         except Exception as err:  # noqa: BLE001 — boundary to the local engine
             # TimeoutError stringifies to "" in Python — keep a readable hint.
             last_err = TimeoutError("Klar parse timed out") if isinstance(err, TimeoutError) else err
