@@ -1,6 +1,7 @@
+use crate::home::entrance::is_entrance;
 use crate::home::expose::assist_visible;
 use crate::home::roles::{looks_like_tv, tv_asked};
-use crate::lang::catalog;
+use crate::lang::{catalog, VerbKind};
 use crate::parse::action::Action;
 use crate::parse::clause::{finish_intents, Clause};
 use crate::parse::compound::{light_aim, query_keeps_entity, wants_light_clarify, LightAim};
@@ -174,6 +175,12 @@ pub(crate) fn area_slots(
             .filter(|entity_id| home.entities.iter().any(|entity| entity.entity_id == *entity_id && looks_like_tv(entity)));
         return (id, Some(area.to_string()), Some("media_player".into()));
     }
+    if domain.is_none() && matches!(action, Action::On | Action::Off) {
+        if let Some(entrances) = entrances_meant(home, area, tokens) {
+            let one = (entrances.len() == 1).then(|| entrances[0].to_string());
+            return (one, Some(area.to_string()), Some("cover".into()));
+        }
+    }
     if matches!(action, Action::On | Action::Off | Action::Toggle | Action::SetLight) && domain.is_none_or(|d| d == "light") {
         return match light_aim(home, area, tokens) {
             LightAim::RoomGroup(id) | LightAim::Unique(id) => (Some(id), None, None),
@@ -183,4 +190,28 @@ pub(crate) fn area_slots(
     let id =
         domain.filter(|d| matches!(*d, "climate" | "fan" | "media_player" | "lock")).and_then(|d| unique_in_area(home, area, d, tokens));
     (id, Some(area.to_string()), domain.map(str::to_string))
+}
+
+/// "Close the garage", "open the carport": an open or close word aimed at a room with a
+/// garage door or a gate means that door, not the room's lights.
+fn entrances_meant<'a>(home: &'a HomeGraph, area: &str, tokens: &[String]) -> Option<Vec<&'a str>> {
+    let cat = catalog();
+    // German "aus" closes a blind and switches a light off; only a word that does nothing
+    // but open or close points at the door.
+    let moves = |token: &String| {
+        let word = token.as_str();
+        let switches = cat.on_words().contains(word) || cat.off_words().contains(word);
+        let verb = matches!(cat.verb(word), Some(VerbKind::Open | VerbKind::OpenDoor | VerbKind::Close));
+        !switches && (verb || cat.open_words().contains(word) || cat.close_words().contains(word))
+    };
+    if !tokens.iter().any(moves) {
+        return None;
+    }
+    let entrances: Vec<&str> = home
+        .entities
+        .iter()
+        .filter(|e| assist_visible(e, home) && e.domain == "cover" && e.area.as_deref() == Some(area) && is_entrance(e, home, cat))
+        .map(|e| e.entity_id.as_str())
+        .collect();
+    (!entrances.is_empty()).then_some(entrances)
 }

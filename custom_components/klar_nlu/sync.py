@@ -183,7 +183,7 @@ def _entity(hass: HomeAssistant, entry: Any) -> dict[str, Any]:
             if extra and extra != name and extra not in aliases and len(aliases) < _ALIAS_CAP:
                 aliases.append(extra)
     area = _opt(getattr(entry, "area_id", None), _ID_CAP) or _opt(_device_area(hass, getattr(entry, "device_id", None)), _ID_CAP)
-    return {
+    record = {
         "entity_id": _cap(getattr(entry, "entity_id", ""), _ID_CAP),
         "name": name,
         "original_name": _opt(getattr(entry, "original_name", None), _NAME_CAP),
@@ -195,6 +195,12 @@ def _entity(hass: HomeAssistant, entry: Any) -> dict[str, Any]:
         "labels": _aliases(getattr(entry, "labels", None)),
         "disabled": False,
     }
+    # The user's class wins over the integration's. A garage door, a gate and a door are
+    # ways into the home; the engine asks before it moves one.
+    device_class = getattr(entry, "device_class", None) or getattr(entry, "original_device_class", None)
+    if isinstance(device_class, str) and device_class:
+        record["device_class"] = _cap(device_class, _ID_CAP)
+    return record
 
 
 def _registry_name(hass: HomeAssistant, entry: Any) -> str | None:

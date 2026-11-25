@@ -1,5 +1,6 @@
 pub(crate) mod assignment;
 pub(crate) mod classify;
+pub mod entrance;
 pub mod expose;
 pub mod gaps;
 pub(crate) mod labels;

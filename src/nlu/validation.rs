@@ -26,6 +26,7 @@ pub(super) fn fail_closed_intent(intent: &Intent) -> bool {
         || entity.starts_with("cover.")
         || entity.starts_with("script.")
         || matches!(domain, Some("lock" | "cover" | "script"))
+        || super::reach::unbounded(intent)
 }
 
 pub(super) fn missing_timer_duration(plan: &IntentPlan, text: &str) -> bool {
@@ -69,6 +70,9 @@ fn validate_target(intent: &Intent, home: &HomeGraph) -> Result<(), PlanInvalid>
     let window_query = intent.name == "HassGetState" && domain == Some("binary_sensor") && intent.slot("device_class") == Some("window");
     if requires_target(&intent.name) && !window_query && entity_id.is_none() && area.is_none() && floor.is_none() {
         return Err(PlanInvalid::MissingTarget);
+    }
+    if super::reach::unbounded(intent) {
+        return Err(PlanInvalid::UnsafeTarget);
     }
     if let Some(entity_id) = entity_id {
         let entity = home.entities.iter().find(|entity| entity.entity_id == entity_id).ok_or(PlanInvalid::UnsafeTarget)?;
@@ -332,11 +336,14 @@ pub(super) fn risky_intent(intent: &Intent) -> bool {
 mod tests {
     use super::*;
     use crate::home::default_home;
-    use crate::nlu::risk::requires_confirmation;
     use crate::types::PlanStep;
 
     fn plan(intent: Intent) -> IntentPlan {
         IntentPlan::from_intents(vec![intent], 1.0, &[])
+    }
+
+    fn requires_confirmation(plan: &IntentPlan) -> bool {
+        crate::nlu::risk::requires_confirmation(plan, &default_home())
     }
 
     #[test]

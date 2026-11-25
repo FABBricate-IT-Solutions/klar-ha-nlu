@@ -12,6 +12,7 @@ pub(crate) mod clause_early;
 pub(crate) mod clause_session;
 pub(crate) mod clause_support;
 pub mod compound;
+pub(crate) mod exception;
 pub(crate) mod fuzzy;
 pub(crate) mod infer;
 pub(crate) mod media;

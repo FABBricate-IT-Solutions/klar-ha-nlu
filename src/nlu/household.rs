@@ -10,7 +10,7 @@ use crate::types::{Intent, RejectReason};
 use super::context::ParseContext;
 use super::draft::{chat, execute, reject, Draft};
 use super::phrase::{after_prefix, has_words, is_any_phrase, is_phrase, words, Slack};
-use super::validation::risky_intent;
+use super::risk::risky_step;
 
 pub(super) fn route(context: &ParseContext<'_>, tokens: &[String]) -> Option<Draft> {
     if tokens.is_empty() {
@@ -147,7 +147,7 @@ fn undo(context: &ParseContext<'_>) -> Draft {
     // Undo is a new action: it is validated, meets the user's rules and asks like any other.
     // Reversing something that needed a yes needs a yes again, whichever way it moves.
     let mut draft = execute(context, inverted, "household_undo", 1.0, 1.0, true, false);
-    draft.inherits_risk = context.session.last_execute.iter().any(risky_intent);
+    draft.inherits_risk = context.session.last_execute.iter().any(|intent| risky_step(intent, context.home));
     draft
 }
 
