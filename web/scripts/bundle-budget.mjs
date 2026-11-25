@@ -1,7 +1,5 @@
-// Bundle budget for the built UI (run after `npm run build`). The limits sit just above what the
-// bundle weighs today, so the check stops growth. Lower them when the bundle shrinks (plan
-// package 2.17 splits the language packs out of the main chunk); raise one only with a reason in
-// the pull request.
+// Bundle budget for the built UI (run after `npm run build`). Package 2.17 splits language
+// packs out of the main chunk: first paint must stay under 500 kB gzip (plan acceptance).
 import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
@@ -9,8 +7,11 @@ import { gzipSync } from "node:zlib";
 
 const KB = 1024;
 const BUDGET = {
-  // 2947: emptyWhenRule chrome + wizard titles (U-09/U-16). Package 2.17 splits packs out.
-  js: { raw: 2947 * KB, gzip: 790 * KB },
+  // First paint only (plan acceptance: under 500 kB gzip). Packs + wizard load later.
+  entry: { raw: 1200 * KB, gzip: 500 * KB },
+  // All JS including on-demand locale/wizard chunks. Raised vs the old single-chunk
+  // 2947/790 budget because the split adds many small files; first load is gated above.
+  js: { raw: 4000 * KB, gzip: 1400 * KB },
   css: { raw: 128 * KB, gzip: 22 * KB },
 };
 
@@ -22,7 +23,26 @@ if (!fs.existsSync(assets)) {
 
 const kb = (bytes) => `${(bytes / KB).toFixed(1)} kB`;
 let failed = false;
-for (const [kind, limit] of Object.entries(BUDGET)) {
+
+const indexHtml = path.resolve(assets, "..", "index.html");
+const html = fs.existsSync(indexHtml) ? fs.readFileSync(indexHtml, "utf8") : "";
+const entryMatch = html.match(/assets\/(index-[^"']+\.js)/);
+const entryName = entryMatch?.[1];
+if (!entryName) {
+  console.error("entry: could not find the index-*.js script in dist/index.html");
+  failed = true;
+} else {
+  const buffer = fs.readFileSync(path.join(assets, entryName));
+  const raw = buffer.length;
+  const gzip = gzipSync(buffer, { level: 9 }).length;
+  const over = raw > BUDGET.entry.raw || gzip > BUDGET.entry.gzip;
+  failed ||= over;
+  console.log(
+    `${over ? "OVER " : "ok   "}entry ${entryName}  raw ${kb(raw)} of ${kb(BUDGET.entry.raw)}  gzip ${kb(gzip)} of ${kb(BUDGET.entry.gzip)}`,
+  );
+}
+
+for (const [kind, limit] of Object.entries({ js: BUDGET.js, css: BUDGET.css })) {
   const files = fs.readdirSync(assets).filter((name) => name.endsWith(`.${kind}`));
   if (files.length === 0) {
     console.error(`${kind}: no file in dist/assets, the build output changed shape.`);

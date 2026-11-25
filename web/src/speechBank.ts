@@ -76,20 +76,29 @@ const VOICES: Record<string, Record<string, Lines>> = {
 
 const FALLBACK = VOICES.default;
 
-function bakeLanguage(code: string): "de" | "en" | undefined {
+/** Template language for bake: de packs use German lines; everyone else falls back to English (U-34). */
+function bakeLanguage(code: string): "de" | "en" {
   const tag = code.replaceAll("_", "-").toLowerCase();
   if (tag === "de" || tag.startsWith("de-")) return "de";
-  if (tag === "en" || tag.startsWith("en-")) return "en";
-  return undefined;
+  return "en";
 }
 
 export function bakeVariants(ruleId: string, effect: PolicyEffect, personality: string, languages: string[]): SpeechBankEntry {
   const voice = VOICES[personality] || FALLBACK;
-  const variants = languages.flatMap((language) => {
+  const codes = languages.length > 0 ? languages : ["en"];
+  const variants = codes.flatMap((language) => {
     const packLang = bakeLanguage(language);
-    if (!packLang) return [];
     const pack = voice[packLang] || FALLBACK[packLang] || FALLBACK.en;
     return (pack[effect] || FALLBACK.en[effect]).map((text) => ({ language, personality, text }));
   });
   return { rule_id: ruleId, variants: variants.slice(0, 5) };
+}
+
+/** Drop speech-bank rows whose rule no longer exists (U-34; bank is capped at 64). */
+export function pruneSpeechBank(
+  entries: SpeechBankEntry[],
+  ruleIds: Iterable<string>,
+): SpeechBankEntry[] {
+  const keep = new Set(ruleIds);
+  return entries.filter((entry) => keep.has(entry.rule_id));
 }

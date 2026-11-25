@@ -192,7 +192,10 @@ export function SettingsPage({
           <Button variant="ghost" type="button" onClick={() => onReplayWizard?.()}>
             {t.setupReplay}
           </Button>
-          <Button type="button" disabled={saving || !loaded} onClick={() => void save()}>{t.save}</Button>
+          {/* LLM has its own Save; a second top-bar Save confused operators (U-24). */}
+          {view === "llm" ? null : (
+            <Button type="button" disabled={saving || !loaded} onClick={() => void save()}>{t.save}</Button>
+          )}
         </div>
       </section>
       {showDirty ? (

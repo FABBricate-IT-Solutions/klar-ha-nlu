@@ -65,14 +65,15 @@ export function RoutinesPage({ t }: { t: Messages }) {
       <div className="card">
         <h2>{t.routines}</h2>
         <p className="muted">{t.routineHint}</p>
-        <label>{t.guideRoutinesSay}</label>
-        <input value={phrase} onChange={(ev) => setPhrase(ev.target.value)} placeholder={t.routinePhraseHint} />
-        <label>{t.guideRoutinesScript}</label>
+        <label htmlFor="klar-routine-phrase">{t.guideRoutinesSay}</label>
+        <input id="klar-routine-phrase" value={phrase} onChange={(ev) => setPhrase(ev.target.value)} placeholder={t.routinePhraseHint} />
+        <label htmlFor="klar-routine-script">{t.guideRoutinesScript}</label>
         <SearchSelect
+          id="klar-routine-script"
           value={script}
           options={withCurrent(scriptOptions, script.startsWith("script.") ? script : script ? `script.${script}` : "")}
           onChange={setScript}
-          placeholder="script.good_night"
+          placeholder={t.routineScriptHint}
           allowEmpty={false}
         />
         <div className="row" style={{ marginTop: 12 }}>
