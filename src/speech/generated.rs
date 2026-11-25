@@ -3,7 +3,7 @@
 
 #[allow(dead_code)]
 pub const ACTION_TEMPLATES: &[(&str, &str, &str, &str)] = &[
-    ("fr", "{target} est allume.", "{target} est eteint.", "La temperature {loc}."),
+    ("fr", "J'ai allumé {target}.", "J'ai éteint {target}.", "La température {loc}."),
     ("nl", "{target} staat aan.", "{target} staat uit.", "De temperatuur {loc}."),
     ("es", "{target} esta encendido.", "{target} esta apagado.", "La temperatura {loc}."),
     ("it", "{target} e acceso.", "{target} e spento.", "La temperatura {loc}."),

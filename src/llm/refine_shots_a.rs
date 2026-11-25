@@ -3,79 +3,79 @@ pub(super) const ROWS: &[(&str, &str, &str)] = &[
     (
         "fr",
         "default",
-        "X est allume. → X est allume.
-X est eteint. → X est eteint.
-La temperature Y. → La temperature Y.",
+        "J'ai allumé X. → J'ai allumé X.
+J'ai éteint X. → J'ai éteint X.
+La température Y. → La température Y.",
     ),
     (
         "fr",
         "butler",
-        "X est allume. → Tres bien. X est allume.
-X est eteint. → X est eteint.
-La temperature Y. → Tres bien. La temperature Y.",
+        "J'ai allumé X. → Très bien. J'ai allumé X.
+J'ai éteint X. → J'ai éteint X.
+La température Y. → Très bien. La température Y.",
     ),
     (
         "fr",
         "locker",
-        "X est allume. → C'est bon. X est allume.
-X est eteint. → X est eteint.
-La temperature Y. → C'est bon. La temperature Y.",
+        "J'ai allumé X. → C'est bon. J'ai allumé X.
+J'ai éteint X. → J'ai éteint X.
+La température Y. → C'est bon. La température Y.",
     ),
     (
         "fr",
         "fuersorglich",
-        "X est allume. → Je m'en occupe. X est allume.
-X est eteint. → X est eteint.
-La temperature Y. → Je m'en occupe. La temperature Y.",
+        "J'ai allumé X. → Je m'en occupe. J'ai allumé X.
+J'ai éteint X. → J'ai éteint X.
+La température Y. → Je m'en occupe. La température Y.",
     ),
     (
         "fr",
         "party",
-        "X est allume. → C'est parti. X est allume.
-X est eteint. → X est eteint.
-La temperature Y. → C'est parti. La temperature Y.",
+        "J'ai allumé X. → C'est parti. J'ai allumé X.
+J'ai éteint X. → J'ai éteint X.
+La température Y. → C'est parti. La température Y.",
     ),
     (
         "fr",
         "grantig",
-        "X est allume. → Bon. X est allume.
-X est eteint. → X est eteint.
-La temperature Y. → Bon. La temperature Y.",
+        "J'ai allumé X. → Bon. J'ai allumé X.
+J'ai éteint X. → J'ai éteint X.
+La température Y. → Bon. La température Y.",
     ),
     (
         "fr",
         "sarkastisch",
-        "X est allume. → Evidemment. X est allume.
-X est eteint. → X est eteint.
-La temperature Y. → Evidemment. La temperature Y.",
+        "J'ai allumé X. → Évidemment. J'ai allumé X.
+J'ai éteint X. → J'ai éteint X.
+La température Y. → Évidemment. La température Y.",
     ),
     (
         "fr",
         "pirat",
-        "X est allume. → Aye. X est allume.
-X est eteint. → X est eteint.
-La temperature Y. → Aye. La temperature Y.",
+        "J'ai allumé X. → Aye. J'ai allumé X.
+J'ai éteint X. → J'ai éteint X.
+La température Y. → Aye. La température Y.",
     ),
     (
         "fr",
         "hippie",
-        "X est allume. → Cool. X est allume.
-X est eteint. → X est eteint.
-La temperature Y. → Cool. La temperature Y.",
+        "J'ai allumé X. → Cool. J'ai allumé X.
+J'ai éteint X. → J'ai éteint X.
+La température Y. → Cool. La température Y.",
     ),
     (
         "fr",
         "gollum",
-        "X est allume. → Oui. X est allume.
-X est eteint. → X est eteint.
-La temperature Y. → Oui. La temperature Y.",
+        "J'ai allumé X. → Oui. J'ai allumé X.
+J'ai éteint X. → J'ai éteint X.
+La température Y. → Oui. La température Y.",
     ),
     (
         "fr",
         "jarvis",
-        "X est allume. → Evidemment. X est allume.
-X est eteint. → X est eteint.
-La temperature Y. → Evidemment. La temperature Y.",
+        "J'ai allumé X. → Évidemment. J'ai allumé X.
+J'ai éteint X. → J'ai éteint X.
+La température Y. → Évidemment. La température Y.",
     ),
     (
         "ro",

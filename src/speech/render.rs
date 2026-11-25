@@ -368,8 +368,9 @@ fn generic_light(name: &str) -> bool {
 }
 
 fn light_word(name: &str) -> bool {
-    let folded = fold(name);
-    ["licht", "light", "lampe", "lamp", "leuchte"].iter().any(|token| folded.contains(token))
+    // Full accent fold: the umlaut-only `fold` left "lumière" unmatched.
+    let folded = crate::parse::normalize::fold_latin(name);
+    ["licht", "light", "lampe", "lamp", "leuchte", "lumiere"].iter().any(|token| folded.contains(token))
 }
 
 fn area_light_phrase(room: &str, speech: Speech) -> String {

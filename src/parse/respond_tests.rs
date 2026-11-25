@@ -151,7 +151,7 @@ fn clarify_and_confirm_follow_pinned_locale() {
     let cases = [
         ("de", "Meinst du", " oder ", "Soll ich das wirklich ausführen?"),
         ("en", "Do you mean", " or ", "Should I really do that?"),
-        ("fr", "Tu veux dire", " ou ", "Je dois vraiment le faire?"),
+        ("fr", "Tu veux dire", " ou ", "Je dois vraiment le faire ?"),
         ("ja", "Kitchen Light", "か", "本当に実行しますか？"),
     ];
     for (code, clarify, join, confirm) in cases {
