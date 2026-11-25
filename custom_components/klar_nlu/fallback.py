@@ -43,14 +43,22 @@ def forget_old_llm_sessions(store: dict[str, list[tuple[str, str]]], keep: int =
         store.pop(next(iter(store)))
 
 
+_MAX_TURN_CHARS = 600
+_MAX_HISTORY_CHARS = 2400
+
+
 def append_llm_turn(
     turns: list[tuple[str, str]] | None, user: str, assistant: str, keep: int = 8
 ) -> list[tuple[str, str]]:
+    """Keep recent turns, but cap size so article text cannot blow later prompts (A-15)."""
     out = list(turns or [])
-    user, assistant = user.strip(), assistant.strip()
+    user, assistant = user.strip()[:_MAX_TURN_CHARS], assistant.strip()[:_MAX_TURN_CHARS]
     if user or assistant:
         out.append((user, assistant))
-    return out[-keep:]
+    out = out[-keep:]
+    while len(out) > 1 and sum(len(pair[0]) + len(pair[1]) for pair in out) > _MAX_HISTORY_CHARS:
+        out.pop(0)
+    return out
 
 
 def can_use_fallback_agent(

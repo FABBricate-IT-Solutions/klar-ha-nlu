@@ -10,6 +10,13 @@ from typing import Any
 from .const import DOMAIN
 from .engine_llm import iter_engine_assist_events
 
+try:
+    from homeassistant.components.conversation import AssistantContent
+    from homeassistant.helpers.llm import ToolInput
+except ImportError:  # stdlib tests load this module without Home Assistant
+    AssistantContent = None  # type: ignore[misc,assignment]
+    ToolInput = None  # type: ignore[misc,assignment]
+
 _LOGGER = logging.getLogger(__name__)
 _MAX_ROUNDS = 10
 
@@ -85,7 +92,7 @@ async def stream_assist_with_ha_tools(
         spoken = "".join(collected)
         if not calls:
             return (spoken, posted) if spoken else None
-        if not await apply_tool_calls(chat_log, calls):
+        if not await apply_tool_calls(chat_log, calls, agent_id=agent_id):
             return (spoken, posted) if spoken else None
         tool_messages = messages_from_chat_log(chat_log)
         if not unresponded_tool_results(chat_log):
@@ -142,14 +149,14 @@ def openai_tools_from_chat_log(chat_log: Any) -> list[dict[str, Any]]:
     return out
 
 
-async def apply_tool_calls(chat_log: Any, calls: list[dict[str, str]]) -> bool:
+async def apply_tool_calls(
+    chat_log: Any, calls: list[dict[str, str]], *, agent_id: str | None = None
+) -> bool:
     add = getattr(chat_log, "async_add_assistant_content", None)
     if add is None:
         return await _call_llm_api(chat_log, calls)
-    tool_inputs = []
-    for call in calls:
-        tool_inputs.append(_tool_input(call))
-    content = _assistant_content(tool_inputs)
+    tool_inputs = [_tool_input(call) for call in calls]
+    content = _assistant_content(tool_inputs, agent_id)
     try:
         result = add(content)
         if hasattr(result, "__aiter__"):
@@ -207,7 +214,6 @@ def unresponded_tool_results(chat_log: Any) -> bool:
 
 
 def _append_delta(chat_log: Any, agent_id: str | None, piece: str) -> bool:
-    add = getattr(chat_log, "async_add_delta_content_stream", None)
     add_text = getattr(chat_log, "async_add_assistant_content_without_tools", None)
     if add_text is None:
         return False
@@ -215,7 +221,6 @@ def _append_delta(chat_log: Any, agent_id: str | None, piece: str) -> bool:
         add_text(_delta_content(agent_id, piece))
         return True
     except Exception:  # noqa: BLE001 — streaming is best-effort
-        del add
         return False
 
 
@@ -228,7 +233,11 @@ def _tool_input(call: Mapping[str, str]) -> Any:
         args = {}
     if not isinstance(args, dict):
         args = {}
-    return _SimpleToolInput(str(call.get("id") or name), name, args)
+    call_id = str(call.get("id") or name)
+    # H-09: ChatLog.as_dict() requires real ToolInput objects.
+    if ToolInput is not None:
+        return ToolInput(tool_name=name, tool_args=args, id=call_id)
+    return _SimpleToolInput(call_id, name, args)
 
 
 def _openai_tool_call(call: Any) -> dict[str, Any]:
@@ -255,11 +264,20 @@ def _tool_result_text(item: Any) -> str:
         return str(result)
 
 
-def _assistant_content(tool_inputs: list[Any]) -> Any:
-    return _SimpleAssistant(tool_inputs)
+def _assistant_content(tool_inputs: list[Any], agent_id: str | None) -> Any:
+    # H-09: real AssistantContent so ChatLog.as_dict() stays valid after a tool turn.
+    if AssistantContent is not None:
+        return AssistantContent(
+            agent_id=agent_id or "conversation.klar_nlu",
+            content=None,
+            tool_calls=tool_inputs,
+        )
+    return _SimpleAssistant(tool_inputs, agent_id)
 
 
 def _delta_content(agent_id: str | None, text: str) -> Any:
+    if AssistantContent is not None:
+        return AssistantContent(agent_id=agent_id or "conversation.klar_nlu", content=text)
     return _SimpleDelta(agent_id, text)
 
 
@@ -271,16 +289,30 @@ class _SimpleToolInput:
         self.name = tool_name
         self.arguments = tool_args
 
+    def as_dict(self) -> dict[str, Any]:
+        return {"id": self.id, "tool_name": self.tool_name, "tool_args": self.tool_args}
+
 
 class _SimpleAssistant:
-    def __init__(self, tool_calls: list[Any]) -> None:
+    def __init__(self, tool_calls: list[Any], agent_id: str | None = None) -> None:
         self.tool_calls = tool_calls
         self.content = ""
         self.role = "assistant"
+        self.agent_id = agent_id or "conversation.klar_nlu"
+
+    def as_dict(self) -> dict[str, Any]:
+        return {
+            "role": self.role,
+            "agent_id": self.agent_id,
+            "tool_calls": self.tool_calls,
+        }
 
 
 class _SimpleDelta:
     def __init__(self, agent_id: str | None, content: str) -> None:
-        self.agent_id = agent_id
+        self.agent_id = agent_id or "conversation.klar_nlu"
         self.content = content
         self.role = "assistant"
+
+    def as_dict(self) -> dict[str, Any]:
+        return {"role": self.role, "agent_id": self.agent_id, "content": self.content}

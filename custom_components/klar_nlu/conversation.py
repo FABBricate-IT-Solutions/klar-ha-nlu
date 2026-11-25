@@ -72,7 +72,6 @@ from .intents import keep_lab_plan, registered_intent_names
 from .number_words import normalize_number_words
 from .reminders import async_delegate_reminder, should_delegate
 from .rag_tools import (
-    act_payload,
     leaks_klar_tools,
     parse_tool_reply,
 )
@@ -707,23 +706,10 @@ class KlarConversationEntity(ConversationEntity):
                     )
             speech = str(payload.get("speech") or "")
             return await self._spoken(user_input, chat_log, pack, speech, payload.get("conversation_id"), False)
-        if tool.get("tool") == "klar.act" and tool.get("intent"):
-            item = act_payload(str(tool["intent"]), tool.get("slots") or {})
-            intents = keep_lab_plan([item], registered_intent_names(self.hass))
-            if not intents:
-                return None
-            executed = await execute_plan(self.hass, user_input, intents, pack, self._assistant(), self._exposed)
-            return await self._spoken(
-                user_input,
-                chat_log,
-                pack,
-                str(executed.get("speech") or _cue(_DONE, pack, "OK")),
-                user_input.conversation_id,
-                False,
-                "execute",
-                False,
-                "command",
-            )
+        # S-26: a raw KLAR_ACT line from the LLM must not run house control. Only
+        # klar.parse (which goes through the engine) may produce an execute plan.
+        if tool.get("tool") == "klar.act":
+            return None
         return None
 
     async def _fallback(

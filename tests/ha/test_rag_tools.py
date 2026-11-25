@@ -54,6 +54,18 @@ class RagToolsTests(unittest.TestCase):
         self.assertNotIn("plan", item)
         self.assertNotIn("candidates", item)
 
+    def test_klar_act_is_parsed_but_not_auto_executed(self) -> None:
+        # S-26: conversation refuses klar.act; parsing the line still works for tests.
+        act = rag.parse_tool_reply("KLAR_ACT: HassTurnOn entity_id=light.kugel")
+        self.assertEqual(act["tool"], "klar.act")
+        src = (ROOT / "custom_components" / "klar_nlu" / "conversation.py").read_text(encoding="utf-8")
+        start = src.index("# S-26:")
+        end = src.index("async def _fallback", start)
+        body = src[start:end]
+        self.assertIn('tool.get("tool") == "klar.act"', body)
+        self.assertIn("return None", body)
+        self.assertNotIn("execute_plan", body)
+
 
 if __name__ == "__main__":
     unittest.main()

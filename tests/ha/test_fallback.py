@@ -75,6 +75,16 @@ class FallbackTests(unittest.TestCase):
         trimmed = fallback.append_llm_turn(turns, "a", "b", keep=2)
         self.assertEqual(len(trimmed), 2)
 
+    def test_llm_history_caps_article_length(self) -> None:
+        # A-15: a 12k article must not dominate later LLM turns.
+        article = "x" * 12000
+        turns = fallback.append_llm_turn(None, "read it", article)
+        self.assertEqual(len(turns), 1)
+        self.assertLessEqual(len(turns[0][1]), fallback._MAX_TURN_CHARS)
+        bloated = [(f"u{i}", "y" * fallback._MAX_TURN_CHARS) for i in range(8)]
+        capped = fallback.append_llm_turn(bloated, "more", "ok")
+        self.assertLessEqual(sum(len(u) + len(a) for u, a in capped), fallback._MAX_HISTORY_CHARS)
+
     def test_llm_history_forgets_the_oldest_conversations(self) -> None:
         store = {f"klar-llm-{index}": [("asked", "answered")] for index in range(70)}
         fallback.forget_old_llm_sessions(store)
