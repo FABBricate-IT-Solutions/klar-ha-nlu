@@ -91,7 +91,7 @@ pub fn import_hassil(from: &Path, into: Option<&Path>, language: Option<&str>, d
 
 fn report_pack(pack: &ExternalPack) -> Result<String, String> {
     let base = pack.base_lang().ok().map(|id| super::catalog_for(&[id.code().to_string()]));
-    let report = validate_pack(pack, base);
+    let report = validate_pack(pack, base.as_deref());
     if report.ok() {
         Ok(format!("{} ok bcp47={}", pack.id, pack.bcp47.join(",")))
     } else {

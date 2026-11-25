@@ -30,7 +30,7 @@ pub fn news_turn(tokens: &[String], home: &HomeGraph, session: &Session) -> Opti
     if !session.briefing {
         return Some(NewsTurn::Fresh(topic));
     }
-    let cat = catalog();
+    let cat = &catalog();
     if cat.any(tokens, cat.chat_news_story()) {
         return Some(NewsTurn::Follow);
     }
@@ -62,7 +62,7 @@ fn in_llm_turn(session: &Session) -> bool {
 }
 
 pub fn is_news_dismiss(tokens: &[String]) -> bool {
-    let cat = catalog();
+    let cat = &catalog();
     if tokens.is_empty() || cat.any(tokens, cat.chat_news()) {
         return false;
     }
@@ -81,7 +81,7 @@ pub fn is_news_dismiss(tokens: &[String]) -> bool {
 
 /// What the news should be about. `sportnachrichten` yields `sport`, "news about Tesla" yields `tesla`.
 fn topic_of(tokens: &[String]) -> Option<String> {
-    let cat = catalog();
+    let cat = &catalog();
     let marked = marks(tokens, cat.chat_news());
     let free = |index: usize| !marked[index] && !noise(&tokens[index]);
     for (index, token) in tokens.iter().enumerate() {
@@ -107,8 +107,9 @@ fn topic_of(tokens: &[String]) -> Option<String> {
 
 /// "sports", "thể thao": a section the pack knows, said without "about".
 fn section_hit(tokens: &[String], marked: &[bool]) -> Option<&'static str> {
+    let cat = catalog();
     let mut best: Option<(usize, usize, &'static str)> = None;
-    for (key, query) in &catalog().news_topics {
+    for (key, query) in &cat.news_topics {
         let parts: Vec<&str> = key.split_whitespace().collect();
         if parts.is_empty() || tokens.len() < parts.len() {
             continue;
@@ -127,7 +128,7 @@ fn section_hit(tokens: &[String], marked: &[bool]) -> Option<&'static str> {
 
 /// The words after "about", or the word in front of a postposition such as Japanese "について".
 fn marker_topic(tokens: &[String], marked: &[bool]) -> Option<String> {
-    let cat = catalog();
+    let cat = &catalog();
     let edge = |index: usize| marked[index] || cat.chat_news_about().contains(tokens[index].as_str()) || after_marker(&tokens[index]);
     let dull = |index: &usize| noise(&tokens[*index]);
     for (index, token) in tokens.iter().enumerate() {
@@ -181,7 +182,7 @@ fn regroup(tokens: &[String]) -> Vec<String> {
     if !tokens.iter().any(script) {
         return tokens.to_vec();
     }
-    let cat = catalog();
+    let cat = &catalog();
     let known = |word: &str| cue(word) || cat.chat_news_story().contains(word) || cat.news_topics.contains_key(word);
     let mut out = Vec::new();
     let mut index = 0;
@@ -227,9 +228,9 @@ fn marks(tokens: &[String], set: &HashSet<&'static str>) -> Vec<bool> {
 }
 
 fn compound_stem(token: &str) -> Option<String> {
-    let news = catalog().chat_news();
-    let mut best: Option<&str> = None;
-    for word in news {
+    let cat = catalog();
+    let mut best: Option<&'static str> = None;
+    for word in cat.chat_news().iter().copied() {
         if word.contains(' ') || word.len() < 4 || token.len() < word.len() + 3 || !token.ends_with(word) {
             continue;
         }
@@ -243,7 +244,7 @@ fn compound_stem(token: &str) -> Option<String> {
 
 /// Words of the request itself. None of them names a topic.
 fn noise(token: &str) -> bool {
-    let cat = catalog();
+    let cat = &catalog();
     cue(token)
         || cat.chat_news_story().contains(token)
         || cat.fillers().contains(token)
@@ -259,7 +260,7 @@ fn noise(token: &str) -> bool {
 }
 
 fn cue(token: &str) -> bool {
-    let cat = catalog();
+    let cat = &catalog();
     cat.chat_news_glue().contains(token)
         || cat.chat_news_follow().contains(token)
         || cat.chat_news_about().contains(token)
@@ -281,7 +282,7 @@ fn day_marks(tokens: &[String]) -> Vec<bool> {
 /// Everyday words that also steer the home: "heute", "alle", "what", the "on" of "more on that".
 /// Beside a news word, or while a briefing is open, they are no proof of a home command.
 fn calm(tokens: &[String], news_word: bool) -> Vec<String> {
-    let cat = catalog();
+    let cat = &catalog();
     let days = day_marks(tokens);
     let keep_day = !news_word && agenda_verb(tokens);
     let solid = |token: &String| !cat.fillers().contains(token.as_str());

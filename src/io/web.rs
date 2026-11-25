@@ -53,7 +53,7 @@ pub fn router(state: AppState) -> Router {
         .merge(crate::io::home_sync::routes(state.clone()))
         .merge(crate::io::backup::routes(state.clone()))
         .merge(crate::io::llm::routes())
-        .merge(crate::io::speech::routes().layer(DefaultBodyLimit::max(16 * 1024)))
+        .merge(crate::io::speech::routes().layer(DefaultBodyLimit::max(crate::io::limits::MAX_SPEECH_RENDER_BYTES)))
         .layer(from_fn_with_state(state.clone(), authorize));
     Router::new()
         .route("/", get(index))
@@ -289,7 +289,7 @@ async fn get_gaps(
 ) -> Result<Json<GapsOut>, StatusCode> {
     read_gate(peer, &headers, &state.token)?;
     let home = state.home.snapshot().await;
-    Ok(Json(GapsOut { leftover: leftover(&home, state.catalog_for_settings().await), rooms: home.areas.clone() }))
+    Ok(Json(GapsOut { leftover: leftover(&home, state.catalog_for_settings().await.as_ref()), rooms: home.areas.clone() }))
 }
 
 #[derive(Deserialize)]

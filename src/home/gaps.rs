@@ -116,18 +116,18 @@ mod tests {
     fn kugel_and_room_group_are_automatic() {
         let home = home();
         let cat = crate::lang::catalog();
-        assert!(!needs_mapping(&home.entities[0], &home, cat));
-        assert!(!needs_mapping(&home.entities[1], &home, cat));
+        assert!(!needs_mapping(&home.entities[0], &home, &cat));
+        assert!(!needs_mapping(&home.entities[1], &home, &cat));
     }
 
     #[test]
     fn hue_play_and_room_named_lamp_need_a_human() {
         let home = home();
         let cat = crate::lang::catalog();
-        assert!(needs_mapping(&home.entities[2], &home, cat));
-        assert!(needs_mapping(&home.entities[3], &home, cat));
-        assert!(needs_mapping(&home.entities[4], &home, cat));
-        let leftover = leftover(&home, cat);
+        assert!(needs_mapping(&home.entities[2], &home, &cat));
+        assert!(needs_mapping(&home.entities[3], &home, &cat));
+        assert!(needs_mapping(&home.entities[4], &home, &cat));
+        let leftover = leftover(&home, &cat);
         let ids: Vec<_> = leftover.iter().map(|e| e.entity_id.as_str()).collect();
         assert_eq!(ids, ["light.hue_play_1", "light.hue_color_lamp_1", "light.orphan"]);
     }
@@ -136,7 +136,7 @@ mod tests {
     fn assist_hides_entities_voice_cannot_see() {
         let mut home = home();
         home.assist = Some(["light.hue_play_1".into()].into());
-        let leftover = leftover(&home, crate::lang::catalog());
+        let leftover = leftover(&home, &crate::lang::catalog());
         let ids: Vec<_> = leftover.iter().map(|e| e.entity_id.as_str()).collect();
         assert_eq!(ids, ["light.hue_play_1"]);
     }

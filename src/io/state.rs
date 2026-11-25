@@ -86,7 +86,7 @@ impl AppState {
         self.journal.append(turn_from_outcome(outcome, include_text, last_names, area));
     }
 
-    pub async fn catalog_for_settings(&self) -> &'static crate::lang::Catalog {
+    pub async fn catalog_for_settings(&self) -> std::sync::Arc<crate::lang::Catalog> {
         crate::lang::bound_catalog(&*self.settings.lock().await)
     }
 

@@ -5,7 +5,7 @@ use super::{timer_ops, Action};
 /// Remove wins over tick-off, which wins over add: "remove X from the list" must never add "remove X".
 /// An explicit "add …" keeps ListAdd even when the item contains "take out" (P-18).
 pub(super) fn list_action(tokens: &[String]) -> Action {
-    let cat = catalog();
+    let cat = &catalog();
     if tokens.iter().any(|token| matches!(cat.verb(token), Some(VerbKind::Add))) {
         return Action::ListAdd;
     }
@@ -19,12 +19,12 @@ pub(super) fn list_action(tokens: &[String]) -> Action {
 }
 
 pub(super) fn has_list_noun(tokens: &[String]) -> bool {
-    let cat = catalog();
+    let cat = &catalog();
     cat.any(tokens, cat.list_nouns()) || cat.any(tokens, cat.chores())
 }
 
 pub(super) fn add_action(tokens: &[String]) -> Option<Action> {
-    let cat = catalog();
+    let cat = &catalog();
     // "add … to my calendar" is calendar create/clarify, not a shopping-list add.
     if crate::parse::calendar::mentions_calendar(tokens) && !has_list_noun(tokens) {
         return None;
@@ -48,7 +48,7 @@ pub(super) fn add_action(tokens: &[String]) -> Option<Action> {
 }
 
 fn bare_list_add(tokens: &[String]) -> bool {
-    let cat = catalog();
+    let cat = &catalog();
     !cat.any(tokens, cat.light_nouns())
         && !cat.any(tokens, cat.cover_nouns())
         && !cat.any(tokens, cat.fan_nouns())

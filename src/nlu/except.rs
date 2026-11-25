@@ -35,14 +35,14 @@ pub(super) struct Excepted {
 /// `None` if the sentence takes nothing out of its command.
 pub(super) fn read(context: &ParseContext<'_>, raw: &[String]) -> Option<Excepted> {
     let home = context.home;
-    if !exception::hinted(raw, context.catalog) {
+    if !exception::hinted(raw, &context.catalog) {
         return None;
     }
-    let found = exception::read(raw, context.catalog, &Names::of(home))?;
+    let found = exception::read(raw, &context.catalog, &Names::of(home))?;
     let read = found.ok().and_then(|exception| {
         let mut protected = HashSet::new();
         for item in &exception.items {
-            protected.extend(named_by(&normal(item, home), home, context.catalog)?);
+            protected.extend(named_by(&normal(item, home), home, &context.catalog)?);
         }
         Some((exception, protected))
     });

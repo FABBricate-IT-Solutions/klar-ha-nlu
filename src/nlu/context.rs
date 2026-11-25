@@ -1,7 +1,7 @@
 use crate::lang::Catalog;
 use crate::session::Session;
 use crate::types::{CustomSentence, HomeGraph, MatchControl, PolicyRule, Settings, SpeechBank};
-use std::sync::LazyLock;
+use std::sync::{Arc, LazyLock};
 
 pub struct ParseContext<'a> {
     pub text: &'a str,
@@ -9,7 +9,7 @@ pub struct ParseContext<'a> {
     pub session: &'a Session,
     pub custom: &'a [CustomSentence],
     pub settings: &'a Settings,
-    pub catalog: &'static Catalog,
+    pub catalog: Arc<Catalog>,
     pub policies: &'a [PolicyRule],
     pub speech_bank: &'a SpeechBank,
     pub match_controls: &'a [MatchControl],
@@ -25,7 +25,7 @@ impl<'a> ParseContext<'a> {
         session: &'a Session,
         custom: &'a [CustomSentence],
         settings: &'a Settings,
-        catalog: &'static Catalog,
+        catalog: Arc<Catalog>,
     ) -> Self {
         Self {
             text,
@@ -58,7 +58,7 @@ impl<'a> ParseContext<'a> {
             session,
             custom: self.custom,
             settings: self.settings,
-            catalog: self.catalog,
+            catalog: self.catalog.clone(),
             policies: self.policies,
             speech_bank: self.speech_bank,
             match_controls: self.match_controls,

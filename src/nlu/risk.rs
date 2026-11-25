@@ -22,7 +22,7 @@ fn only_a_light(intent: &Intent) -> bool {
 /// The risk of one step comes from what it is and from the devices it reaches: a way into
 /// the home asks whichever direction it moves.
 pub(super) fn risky_step(intent: &Intent, home: &HomeGraph) -> bool {
-    risky_intent(intent) || moves_entrance(intent, home, catalog())
+    risky_intent(intent) || moves_entrance(intent, home, &catalog())
 }
 
 pub(super) fn requires_confirmation(plan: &IntentPlan, home: &HomeGraph) -> bool {

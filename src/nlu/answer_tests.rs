@@ -3,8 +3,8 @@ use crate::lang::{bind_catalog, catalog_for};
 
 fn read(lang: &str, text: &str) -> Option<Answer> {
     let catalog = catalog_for(&[lang.to_string()]);
-    let _bound = bind_catalog(catalog);
-    classify(&words(text), catalog)
+    let _bound = bind_catalog(catalog.clone());
+    classify(&words(text), &catalog)
 }
 
 #[test]

@@ -20,9 +20,11 @@ mod user;
 mod validate;
 mod verbs;
 
-use std::cell::Cell;
-use std::collections::HashMap;
-use std::sync::{Mutex, OnceLock};
+use std::cell::RefCell;
+use std::collections::{HashMap, VecDeque};
+use std::sync::{Arc, OnceLock};
+
+use parking_lot::Mutex;
 
 pub use catalog::Catalog;
 use catalog::Layer;
@@ -98,32 +100,77 @@ impl LangId {
     }
 }
 
-fn empty_catalog() -> &'static Catalog {
-    static C: OnceLock<Catalog> = OnceLock::new();
-    C.get_or_init(|| Catalog::merge(&[]))
+fn empty_catalog() -> Arc<Catalog> {
+    static C: OnceLock<Arc<Catalog>> = OnceLock::new();
+    C.get_or_init(|| Arc::new(Catalog::merge(&[]))).clone()
 }
 
 const MAX_CACHED_CATALOGS: usize = 32;
 
-fn cache() -> &'static Mutex<HashMap<String, &'static Catalog>> {
-    static C: OnceLock<Mutex<HashMap<String, &'static Catalog>>> = OnceLock::new();
-    C.get_or_init(|| Mutex::new(HashMap::new()))
+/// Bounded LRU of shared catalogs. Evicted entries drop when no request still holds the Arc.
+struct CatalogLru {
+    map: HashMap<String, Arc<Catalog>>,
+    order: VecDeque<String>,
 }
 
-/// Leak at most one Catalog per unique language-set key. The map clears at
-/// `MAX_CACHED_CATALOGS` so the leak stays bounded.
-fn insert_cached(map: &mut HashMap<String, &'static Catalog>, key: String, catalog: Catalog) -> &'static Catalog {
-    if map.len() >= MAX_CACHED_CATALOGS {
-        map.clear();
+impl CatalogLru {
+    fn new() -> Self {
+        Self { map: HashMap::new(), order: VecDeque::new() }
     }
-    map.entry(key).or_insert_with(|| Box::leak(Box::new(catalog)))
+
+    #[cfg_attr(not(test), allow(dead_code))]
+    fn len(&self) -> usize {
+        self.map.len()
+    }
+
+    fn clear(&mut self) {
+        self.map.clear();
+        self.order.clear();
+    }
+
+    fn get(&mut self, key: &str) -> Option<Arc<Catalog>> {
+        if !self.map.contains_key(key) {
+            return None;
+        }
+        self.touch(key);
+        self.map.get(key).cloned()
+    }
+
+    fn insert(&mut self, key: String, catalog: Arc<Catalog>) -> Arc<Catalog> {
+        if self.map.contains_key(&key) {
+            self.touch(&key);
+            return self.map.get(&key).cloned().expect("key present");
+        }
+        while self.map.len() >= MAX_CACHED_CATALOGS {
+            if let Some(old) = self.order.pop_front() {
+                self.map.remove(&old);
+            } else {
+                break;
+            }
+        }
+        self.order.push_back(key.clone());
+        self.map.insert(key, catalog.clone());
+        catalog
+    }
+
+    fn touch(&mut self, key: &str) {
+        if let Some(pos) = self.order.iter().position(|entry| entry == key) {
+            self.order.remove(pos);
+        }
+        self.order.push_back(key.to_string());
+    }
+}
+
+fn cache() -> &'static Mutex<CatalogLru> {
+    static C: OnceLock<Mutex<CatalogLru>> = OnceLock::new();
+    C.get_or_init(|| Mutex::new(CatalogLru::new()))
 }
 
 pub(super) fn clear_catalog_cache() {
-    cache().lock().expect("lang catalog cache").clear();
+    cache().lock().clear();
 }
 
-pub fn catalog_for(codes: &[String]) -> &'static Catalog {
+pub fn catalog_for(codes: &[String]) -> Arc<Catalog> {
     let mut ids: Vec<LangId> = codes.iter().filter_map(|code| LangId::from_tag(code)).collect();
     let overlays: Vec<ExternalPack> = codes.iter().filter_map(|code| resolver::overlay_for(code)).collect();
     if ids.is_empty() {
@@ -148,7 +195,7 @@ pub fn catalog_for(codes: &[String]) -> &'static Catalog {
     applied.sort_unstable();
     let user_key = user.as_ref().map(resolver::user_overlay_key).unwrap_or_default();
     let key = format!("{}+{}+u{}", ids.iter().map(|lang| lang.code()).collect::<Vec<_>>().join(","), applied.join(","), user_key);
-    let mut map = cache().lock().expect("lang catalog cache");
+    let mut map = cache().lock();
     if let Some(catalog) = map.get(&key) {
         return catalog;
     }
@@ -161,13 +208,13 @@ pub fn catalog_for(codes: &[String]) -> &'static Catalog {
     if let Some(user) = &user {
         resolver::apply_user_overlay(&mut catalog, user);
     }
-    insert_cached(&mut map, key, catalog)
+    map.insert(key, Arc::new(catalog))
 }
 
 /// The catalog a request binds under these settings. `languages` may be empty (every
 /// locale may be pinned) or name nothing a pack answers; a request that carries no pin
 /// of its own then binds the configured default pack instead of an empty catalog.
-pub fn bound_catalog(settings: &crate::types::Settings) -> &'static Catalog {
+pub fn bound_catalog(settings: &crate::types::Settings) -> Arc<Catalog> {
     let catalog = catalog_for(&settings.languages);
     if catalog.langs.is_empty() {
         return catalog_for(&[settings.default_pack().to_string()]);
@@ -175,12 +222,12 @@ pub fn bound_catalog(settings: &crate::types::Settings) -> &'static Catalog {
     catalog
 }
 
-fn cached_builtins(ids: &[LangId], key: &str) -> &'static Catalog {
-    let mut map = cache().lock().expect("lang catalog cache");
+fn cached_builtins(ids: &[LangId], key: &str) -> Arc<Catalog> {
+    let mut map = cache().lock();
     if let Some(catalog) = map.get(key) {
         return catalog;
     }
-    insert_cached(&mut map, key.to_string(), Catalog::merge_layers(&layers_of(ids)))
+    map.insert(key.to_string(), Arc::new(Catalog::merge_layers(&layers_of(ids))))
 }
 
 /// A regional pack is bound on top of its parent. A parent that is bound anyway is not read twice.
@@ -189,16 +236,16 @@ fn layers_of(ids: &[LangId]) -> Vec<Layer> {
 }
 
 thread_local! {
-    static CURRENT: Cell<Option<&'static Catalog>> = const { Cell::new(None) };
+    static CURRENT: RefCell<Option<Arc<Catalog>>> = const { RefCell::new(None) };
 }
 
 /// Bound catalog for the current parse. Thread-local so leaf helpers can still
 /// call `catalog()` without threading `&Catalog` through every home/parse site.
-pub fn catalog() -> &'static Catalog {
-    CURRENT.with(|c| c.get()).unwrap_or_else(unbound_catalog)
+pub fn catalog() -> Arc<Catalog> {
+    CURRENT.with(|c| c.borrow().clone()).unwrap_or_else(unbound_catalog)
 }
 
-fn unbound_catalog() -> &'static Catalog {
+fn unbound_catalog() -> Arc<Catalog> {
     // Production: empty until Assist/Wyoming pins a locale (do not merge 67 packs).
     // Unit tests still call leaf helpers without bind(); they expect the bilingual
     // de+en catalog those helpers were written against.
@@ -218,12 +265,14 @@ pub fn speech_lang() -> LangId {
 }
 
 pub struct CatalogBind {
-    prev: Option<&'static Catalog>,
+    prev: Option<Arc<Catalog>>,
 }
 
 impl Drop for CatalogBind {
     fn drop(&mut self) {
-        CURRENT.with(|c| c.set(self.prev));
+        CURRENT.with(|c| {
+            *c.borrow_mut() = self.prev.take();
+        });
     }
 }
 
@@ -233,11 +282,49 @@ pub fn bind(lang_codes: &[String]) -> CatalogBind {
     bind_catalog(catalog_for(lang_codes))
 }
 
-pub(crate) fn bind_catalog(cat: &'static Catalog) -> CatalogBind {
-    let prev = CURRENT.with(|c| {
-        let prev = c.get();
-        c.set(Some(cat));
-        prev
-    });
+pub(crate) fn bind_catalog(cat: Arc<Catalog>) -> CatalogBind {
+    let prev = CURRENT.with(|c| c.replace(Some(cat)));
     CatalogBind { prev }
+}
+
+#[cfg(test)]
+mod cache_tests {
+    use super::*;
+
+    #[test]
+    fn catalog_cache_reuses_arc_and_stays_bounded() {
+        clear_catalog_cache();
+        let first = catalog_for(&["de".into()]);
+        let again = catalog_for(&["de".into()]);
+        assert!(Arc::ptr_eq(&first, &again));
+
+        let codes: Vec<String> = LangId::all().iter().map(|id| id.code().to_string()).collect();
+        let n = codes.len();
+        assert!(n > 8, "need enough packs to cycle unique pairs");
+        let mut early = None;
+        for i in 0..1000 {
+            let a = codes[i % n].clone();
+            let b = codes[(i.wrapping_mul(7) + 3) % n].clone();
+            let cat = catalog_for(&[a, b]);
+            if i == 0 {
+                early = Some(Arc::downgrade(&cat));
+            }
+        }
+        assert!(cache().lock().len() <= MAX_CACHED_CATALOGS);
+        // Unique pair keys exceed the LRU; the first entry is gone once nobody holds it.
+        assert!(early.expect("early").upgrade().is_none());
+        clear_catalog_cache();
+    }
+
+    #[test]
+    fn catalog_cache_survives_panic_while_locked() {
+        clear_catalog_cache();
+        let _ = std::panic::catch_unwind(|| {
+            let _guard = cache().lock();
+            panic!("poison probe");
+        });
+        let cat = catalog_for(&["en".into()]);
+        assert!(!cat.langs.is_empty());
+        clear_catalog_cache();
+    }
 }

@@ -6,7 +6,7 @@ use crate::parse::slots::ClauseOut;
 use crate::types::{EntityRec, HomeGraph, Intent};
 
 pub(crate) fn mentions_calendar(tokens: &[String]) -> bool {
-    let cat = catalog();
+    let cat = &catalog();
     any_lexeme(tokens, cat.calendar_nouns()) || any_exact(tokens, cat.calendar_query()) || agenda_query(tokens)
 }
 
@@ -17,7 +17,7 @@ pub(crate) fn calendar_clause(
     number: Option<i32>,
     _domain: Option<&str>,
 ) -> Option<ClauseOut> {
-    let cat = catalog();
+    let cat = &catalog();
     let has_noun = any_lexeme(tokens, cat.calendar_nouns());
     let has_query = any_exact(tokens, cat.calendar_query());
     let has_create = any_stem(tokens, cat.calendar_create());
@@ -97,7 +97,7 @@ fn lexeme_hit(token: &str, word: &str) -> bool {
 }
 
 fn other_domain_noun(tokens: &[String]) -> bool {
-    let cat = catalog();
+    let cat = &catalog();
     cat.any(tokens, cat.light_nouns())
         || cat.any(tokens, cat.climate_nouns())
         || cat.any(tokens, cat.cover_nouns())
@@ -125,14 +125,14 @@ fn other_domain_noun(tokens: &[String]) -> bool {
 }
 
 fn agenda_query(tokens: &[String]) -> bool {
-    let cat = catalog();
+    let cat = &catalog();
     let day = cat.any(tokens, cat.calendar_today()) || has_tomorrow(tokens) || weekday_key(tokens).is_some();
     let ask = looks_like_question(tokens) || any_exact(tokens, cat.calendar_query()) || agenda_verb(tokens);
     day && ask && agenda_cue(tokens) && !other_domain_noun(tokens)
 }
 
 fn agenda_cue(tokens: &[String]) -> bool {
-    let cat = catalog();
+    let cat = &catalog();
     any_lexeme(tokens, cat.calendar_nouns())
         || any_exact(tokens, cat.calendar_query())
         || agenda_verb(tokens)
@@ -147,7 +147,7 @@ pub(crate) fn agenda_verb(tokens: &[String]) -> bool {
 }
 
 fn has_tomorrow(tokens: &[String]) -> bool {
-    let cat = catalog();
+    let cat = &catalog();
     tokens.iter().enumerate().any(|(index, token)| {
         if greeting_morning_word(token) || !cat.calendar_tomorrow().contains(token.as_str()) {
             return false;
@@ -238,7 +238,7 @@ struct WhenSlots {
 }
 
 fn when_slots(tokens: &[String], number: Option<i32>) -> WhenSlots {
-    let cat = catalog();
+    let cat = &catalog();
     let today = cat.any(tokens, cat.calendar_today());
     let tomorrow = has_tomorrow(tokens);
     let weekday = weekday_key(tokens);
@@ -290,7 +290,7 @@ fn clock_number_at(tokens: &[String], index: usize) -> bool {
 }
 
 fn clock_particle(token: &str) -> bool {
-    let cat = catalog();
+    let cat = &catalog();
     token.len() <= 3 || cat.hours().contains(token) || cat.minutes().contains(token) || cat.seconds().contains(token)
 }
 
@@ -318,12 +318,12 @@ fn title_after_event_noun(tokens: &[String]) -> Option<String> {
 }
 
 fn event_noun(token: &str) -> bool {
-    let cat = catalog();
+    let cat = &catalog();
     cat.calendar_nouns().contains(token) || ["termin", "event", "appointment", "rendezvous"].iter().any(|word| lexeme_hit(token, word))
 }
 
 fn title_boundary(token: &str) -> bool {
-    let cat = catalog();
+    let cat = &catalog();
     cat.calendar_today().contains(token)
         || cat.calendar_tomorrow().contains(token)
         || greeting_morning_word(token)
@@ -333,7 +333,7 @@ fn title_boundary(token: &str) -> bool {
 }
 
 fn keep_title_token(value: &str) -> bool {
-    let cat = catalog();
+    let cat = &catalog();
     if title_function_word(value) {
         return false;
     }

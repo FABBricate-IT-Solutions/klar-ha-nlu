@@ -124,7 +124,7 @@ fn volume_intent(tokens: &[String], session: &Session, number: Option<i32>) -> O
 }
 
 fn clock_volume_trap(tokens: &[String]) -> bool {
-    let cat = catalog();
+    let cat = &catalog();
     tokens.iter().any(|token| token == "uhr" || token == "um" || token == "at" || token == "à" || cat.hours().contains(token.as_str()))
 }
 

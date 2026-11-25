@@ -83,7 +83,7 @@ pub(crate) fn guess_action(tokens: &[String], session: &Session, number: Option<
     if is_followup_target(tokens) {
         return followup_action(tokens, session);
     }
-    let cat = catalog();
+    let cat = &catalog();
     if cat.any(tokens, cat.tv_words()) {
         Action::On
     } else if cat.any(tokens, cat.media_nouns()) {
@@ -94,7 +94,7 @@ pub(crate) fn guess_action(tokens: &[String], session: &Session, number: Option<
 }
 
 fn is_followup_target(tokens: &[String]) -> bool {
-    let cat = catalog();
+    let cat = &catalog();
     tokens.iter().any(|token| is_also_token(token))
         || tokens.first().is_some_and(|token| {
             cat.is_conj(token) || matches!(token.as_str(), "no" | "nein" | "nope" | "nicht" | "stattdessen" | "instead")

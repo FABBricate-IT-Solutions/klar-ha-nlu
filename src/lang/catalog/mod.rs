@@ -167,7 +167,7 @@ impl Catalog {
         self.numbers.iter().find(|(_, val)| **val == n).map(|(word, _)| *word)
     }
 
-    pub fn fixture_alias(&self, t: &str) -> &[&str] {
+    pub fn fixture_alias(&self, t: &str) -> &'static [&'static str] {
         self.fixture_aliases.get(t).copied().unwrap_or(&[])
     }
 
@@ -274,7 +274,7 @@ mod tests {
     #[test]
     fn pack_query_matches_flattened_cache() {
         let _bind = crate::lang::bind(&["de".into()]);
-        let cat = catalog();
+        let cat = &catalog();
         let licht = vec!["licht".into()];
         assert!(cat.pack_any(&licht, |p| p.nouns.light_nouns));
         assert_eq!(cat.pack_any(&licht, |p| p.nouns.light_nouns), cat.any(&licht, cat.light_nouns()));
@@ -284,7 +284,7 @@ mod tests {
     #[test]
     fn color_accepts_german_endings() {
         let _bind = crate::lang::bind(&["de".into()]);
-        let cat = catalog();
+        let cat = &catalog();
         assert_eq!(cat.color("rot"), Some("red"));
         assert_eq!(cat.color("rote"), Some("red"));
         assert_eq!(cat.color("rotes"), Some("red"));

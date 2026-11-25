@@ -33,7 +33,7 @@ pub(super) struct PipelineResult {
 }
 
 pub(super) fn run(context: ParseContext<'_>) -> PipelineResult {
-    let _bound = crate::lang::bind_catalog(context.catalog);
+    let _bound = crate::lang::bind_catalog(context.catalog.clone());
     if context.session.pending().is_none() {
         return decide(&context);
     }
@@ -227,7 +227,7 @@ pub(super) struct Probe {
 }
 
 pub(super) fn probe(context: &ParseContext<'_>, text: &str) -> Probe {
-    let mut nested = ParseContext::new(text, context.home, context.session, context.custom, context.settings, context.catalog)
+    let mut nested = ParseContext::new(text, context.home, context.session, context.custom, context.settings, context.catalog.clone())
         .with_policies(context.policies, context.speech_bank)
         .with_match_controls(context.match_controls);
     nested.probe = true;

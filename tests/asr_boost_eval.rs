@@ -7,7 +7,7 @@ use klar_nlu::speech::build_asr_boost;
 use klar_nlu::types::{CustomSentence, EntityRec, HomeGraph};
 use std::collections::HashMap;
 
-fn de() -> &'static klar_nlu::lang::Catalog {
+fn de() -> std::sync::Arc<klar_nlu::lang::Catalog> {
     catalog_for(&["de".into()])
 }
 
@@ -27,7 +27,7 @@ fn boost_includes_vorhang_alias_and_short_names_before_budget_exhaustion() {
 
     let custom = vec![CustomSentence { phrase: "Papiertonne raus".into(), intent: "HassTurnOn".into(), slots: HashMap::new() }];
 
-    let out = build_asr_boost(&home, de(), &custom, "de", 200);
+    let out = build_asr_boost(&home, &de(), &custom, "de", 200);
     let texts: Vec<&str> = out.terms.iter().map(|t| t.text.as_str()).collect();
 
     assert!(texts.iter().any(|t| t.contains("Vorhang")), "missing Vorhang in {texts:?}");
@@ -48,7 +48,7 @@ fn boost_includes_vorhang_alias_and_short_names_before_budget_exhaustion() {
 fn boost_stays_under_token_budget() {
     let mut home = default_home();
     home.assist = Some(home.entities.iter().map(|e| e.entity_id.clone()).collect());
-    let out = build_asr_boost(&home, de(), &[], "de", 200);
+    let out = build_asr_boost(&home, &de(), &[], "de", 200);
     let tokens: usize = out.prompt.split_whitespace().map(|w| ((w.chars().count() + 3) / 4).max(1)).sum();
     assert!(tokens <= 200, "tokens={tokens} prompt={}", out.prompt);
     assert!(!out.updated_at.is_empty());
@@ -56,6 +56,6 @@ fn boost_stays_under_token_budget() {
 
 #[test]
 fn empty_home_emits_no_pack_device_words() {
-    let out = build_asr_boost(&HomeGraph::default(), de(), &[], "de", 40);
+    let out = build_asr_boost(&HomeGraph::default(), &de(), &[], "de", 40);
     assert!(out.terms.is_empty(), "hard-name boost must stay empty without hard names: {:?}", out.terms);
 }

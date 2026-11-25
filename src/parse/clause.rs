@@ -49,7 +49,7 @@ pub(crate) fn parse_clause_candidates_for_action(
     forced_action: Option<Action>,
     match_controls: &[crate::types::MatchControl],
 ) -> Vec<ClauseCandidate> {
-    let cat = catalog();
+    let cat = &catalog();
     let free_text_payload =
         cat.any(tokens, cat.list_nouns()) || cat.any(tokens, cat.media_nouns()) || crate::parse::calendar::mentions_calendar(tokens);
     if !free_text_payload && tokens.iter().any(|token| cat.is_protected_typo(token) && !known_target_token(token, home)) {
@@ -264,7 +264,7 @@ fn all_lights(ctx: &Clause) -> Option<ClauseOut> {
 
 /// "which lights are on" / "are any lights on": list status, never a TurnOn clarify (P-13).
 fn lights_status_list(ctx: &Clause) -> Option<ClauseOut> {
-    let cat = catalog();
+    let cat = &catalog();
     let mut intent = Intent::new("HassGetState").with("domain", "light").with("response", "list");
     if cat.any(ctx.tokens, cat.on_words()) {
         intent = intent.with("state", "on");
@@ -379,7 +379,7 @@ fn narrow_to_satellite(
 }
 
 fn domain_noun_only(tokens: &[String], domain: &str) -> bool {
-    let cat = catalog();
+    let cat = &catalog();
     match domain {
         "light" => crate::parse::action::has_light_noun(tokens),
         "fan" => cat.any(tokens, cat.fan_nouns()),
@@ -443,7 +443,7 @@ pub(crate) fn finish_intents(mut intents: Vec<Intent>, ctx: &Clause) -> ClauseOu
         let role_domain = ctx.domain.or_else(|| crate::parse::action::has_light_noun(ctx.tokens).then_some("light"));
         if let Some(role_domain) = role_domain {
             for area in &ctx.resolved.areas {
-                for entity in crate::home::roles::role_siblings(ctx.home, area, role_domain, catalog()) {
+                for entity in crate::home::roles::role_siblings(ctx.home, area, role_domain, &catalog()) {
                     if !intents.iter().any(|i| i.slot("entity_id") == Some(entity.entity_id.as_str())) {
                         intents.push(fill_intent(
                             ctx.action,
@@ -465,7 +465,7 @@ pub(crate) fn finish_intents(mut intents: Vec<Intent>, ctx: &Clause) -> ClauseOu
 /// Replace numbers and colour words that sit inside a linked device name so action
 /// detection does not treat them as brightness or a colour set.
 fn mask_name_values(tokens: &[String], linked: &crate::parse::resolve::LinkedNames) -> Vec<String> {
-    let cat = catalog();
+    let cat = &catalog();
     tokens
         .iter()
         .enumerate()

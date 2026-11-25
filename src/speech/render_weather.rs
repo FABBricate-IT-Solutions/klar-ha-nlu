@@ -114,7 +114,7 @@ fn pick_day(snap: &SpeechSnapshot) -> Option<&SpeechForecast> {
 
 fn target_date(snap: &SpeechSnapshot) -> Option<String> {
     let (y, m, d) = ymd(&snap.now)?;
-    let today = weekday_mon0(y, m, d);
+    let today = weekday_mon0(y, m, d)?;
     let (y, m, d) = match day_key(snap) {
         "now" => return None,
         "today" => (y, m, d),
@@ -146,14 +146,17 @@ fn first_weekday(mut y: i32, mut m: u32, mut d: u32, mut dow: u8, want: &[u8]) -
     (y, m, d)
 }
 
-fn weekday_mon0(y: i32, m: u32, d: u32) -> u8 {
+fn weekday_mon0(y: i32, m: u32, d: u32) -> Option<u8> {
+    if !(1..=12).contains(&m) || d == 0 || d > days_in_month(y, m) {
+        return None;
+    }
     const T: [i32; 12] = [0, 3, 2, 5, 0, 3, 5, 1, 4, 6, 2, 4];
     let mut year = y;
     if m < 3 {
         year -= 1;
     }
-    let dow_sun0 = (year + year / 4 - year / 100 + year / 400 + T[m as usize - 1] + d as i32).rem_euclid(7);
-    ((dow_sun0 + 6) % 7) as u8
+    let dow_sun0 = (year + year / 4 - year / 100 + year / 400 + T[(m as usize) - 1] + d as i32).rem_euclid(7);
+    Some(((dow_sun0 + 6) % 7) as u8)
 }
 
 fn hour_in_part(iso: &str, part: &str) -> bool {
@@ -169,7 +172,13 @@ fn hour_in_part(iso: &str, part: &str) -> bool {
 
 fn ymd(iso: &str) -> Option<(i32, u32, u32)> {
     let stamp = iso.get(..10)?;
-    Some((stamp.get(0..4)?.parse().ok()?, stamp.get(5..7)?.parse().ok()?, stamp.get(8..10)?.parse().ok()?))
+    let y = stamp.get(0..4)?.parse().ok()?;
+    let m = stamp.get(5..7)?.parse().ok()?;
+    let d = stamp.get(8..10)?.parse().ok()?;
+    if !(1..=12).contains(&m) || d == 0 || d > days_in_month(y, m) {
+        return None;
+    }
+    Some((y, m, d))
 }
 
 fn add_one_day(y: i32, m: u32, d: u32) -> (i32, u32, u32) {
@@ -189,7 +198,7 @@ fn days_in_month(y: i32, m: u32) -> u32 {
         4 | 6 | 9 | 11 => 30,
         2 if leap(y) => 29,
         2 => 28,
-        _ => 31,
+        _ => 0,
     }
 }
 
@@ -208,4 +217,64 @@ fn fill(template: &str, condition: &str, temp: &str, unit: &str) -> String {
         line = line.replace("  ", " ");
     }
     line.replace(" ,", ",").replace("، .", ".").replace("，。", "。").replace(", .", ".").replace(" .", ".").trim().to_string()
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+    use crate::types::{SpeechEntity, SpeechForecast, SpeechIntent, SpeechSlot, UnitSystem};
+    use std::collections::BTreeMap;
+
+    fn weather_snap(now: &str, day: &str) -> SpeechSnapshot {
+        SpeechSnapshot {
+            schema_version: "1".into(),
+            language: "en".into(),
+            personality: "default".into(),
+            unit_system: UnitSystem::Metric,
+            now: now.into(),
+            intent: SpeechIntent {
+                name: "HassGetState".into(),
+                slots: vec![
+                    SpeechSlot { name: "domain".into(), value: "weather".into() },
+                    SpeechSlot { name: "weather_ask".into(), value: day.into() },
+                    SpeechSlot { name: "weather_day".into(), value: day.into() },
+                ],
+            },
+            outcome: "success".into(),
+            entities: vec![SpeechEntity {
+                entity_id: "weather.home".into(),
+                name: "Home".into(),
+                domain: "weather".into(),
+                state: "sunny".into(),
+                area: None,
+                area_name: None,
+                device_class: None,
+                attributes: BTreeMap::from([("temperature".into(), serde_json::json!(20.0))]),
+            }],
+            calendar_events: vec![],
+            media_queue: vec![],
+            forecast: vec![SpeechForecast {
+                datetime: "2026-11-25T12:00:00+01:00".into(),
+                condition: "rainy".into(),
+                temperature: Some(18.0),
+                templow: Some(10.0),
+                precipitation: Some(1.0),
+                precipitation_probability: Some(80.0),
+            }],
+            hourly: vec![],
+        }
+    }
+
+    #[test]
+    fn invalid_months_do_not_panic() {
+        for now in ["2026-00-15T12:00:00+01:00", "2026-13-01T12:00:00+01:00"] {
+            let snap = weather_snap(now, "tomorrow");
+            let result = std::panic::catch_unwind(|| weather_query(&snap));
+            assert!(result.is_ok(), "month in {now} panicked");
+            // May fall back to current conditions; must not abort on month 00/13.
+            let _ = result.unwrap();
+        }
+        let ok = weather_query(&weather_snap("2026-11-24T12:00:00+01:00", "tomorrow"));
+        assert!(ok.is_some(), "{ok:?}");
+    }
 }

@@ -48,7 +48,7 @@ pub(crate) fn fuzzy_areas(tokens: &[String], areas: &[AreaRec]) -> Option<Vec<St
 }
 
 pub(crate) fn collect_named_devices(tokens: &[String], home: &HomeGraph) -> Option<Vec<EntityRec>> {
-    let cat = catalog();
+    let cat = &catalog();
     let mut found = Vec::new();
     for token in tokens {
         let generic_lamp = cat.light_nouns().contains(token.as_str()) || cat.light_singular().contains(token.as_str());

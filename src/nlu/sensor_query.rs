@@ -77,18 +77,18 @@ const QUANTITY_PAD: &[&str] = &["how", "many", "every", "each", "viel", "viele",
 const CLOSED_SYN: &[&str] = &["shut", "dicht"];
 
 pub(super) fn route(context: &ParseContext<'_>, tokens: &[String]) -> Option<Draft> {
-    let kind = detect_kind(context.catalog, tokens)?;
-    if !is_status_question(context.catalog, tokens, kind) {
+    let kind = detect_kind(&context.catalog, tokens)?;
+    if !is_status_question(&context.catalog, tokens, kind) {
         return None;
     }
     // Blinds / position asks keep the cover parser even when the user said "windows".
-    if kind.device_class == "window" && wants_cover_not_contact(context.catalog, tokens) {
+    if kind.device_class == "window" && wants_cover_not_contact(&context.catalog, tokens) {
         return None;
     }
     let resolved = resolve(tokens, context.home, Some(kind.domain));
     // Temperature of a room with a climate entity (or no room) belongs to climate/weather,
     // unless the user named a sensor ("temperature sensor", "roomsensor").
-    if kind.device_class == "temperature" && prefers_climate(context.catalog, context.home, tokens, &resolved.areas) {
+    if kind.device_class == "temperature" && prefers_climate(&context.catalog, context.home, tokens, &resolved.areas) {
         return None;
     }
     // Multi-room lists fall through to the clause parser (do not reject here).
@@ -98,12 +98,13 @@ pub(super) fn route(context: &ParseContext<'_>, tokens: &[String]) -> Option<Dra
     // Room whose "windows" are blinds/curtains: let the cover parser answer.
     if kind.device_class == "window" {
         if let Some(area) = resolved.areas.first() {
-            if !has_class_sensor(context.catalog, context.home, Some(area), kind) && has_window_cover(context.catalog, context.home, area) {
+            if !has_class_sensor(&context.catalog, context.home, Some(area), kind) && has_window_cover(&context.catalog, context.home, area)
+            {
                 return None;
             }
         }
     }
-    if has_leftover_content(context.catalog, tokens, kind, &resolved.areas, &resolved.floors, context.home) {
+    if has_leftover_content(&context.catalog, tokens, kind, &resolved.areas, &resolved.floors, context.home) {
         // Unknown place: do not silently answer the whole home, and never a cover.
         if kind.device_class == "window" {
             return Some(reject(RejectReason::NoTarget, speak_unknown()));
@@ -114,7 +115,7 @@ pub(super) fn route(context: &ParseContext<'_>, tokens: &[String]) -> Option<Dra
     let closed =
         context.catalog.any(tokens, context.catalog.close_words()) || tokens.iter().any(|word| CLOSED_SYN.contains(&word.as_str()));
     // Named lock / door-entity status ("tuer eingang", "front door") beats a door contact list.
-    if kind.device_class == "door" && prefers_named_lock(context.catalog, context.home, tokens, open || closed) {
+    if kind.device_class == "door" && prefers_named_lock(&context.catalog, context.home, tokens, open || closed) {
         return None;
     }
     let mut intent =
@@ -130,7 +131,7 @@ pub(super) fn route(context: &ParseContext<'_>, tokens: &[String]) -> Option<Dra
     if super::validation::validate_plan(&IntentPlan::from_intents(vec![intent.clone()], 1.0, &[]), context.home).is_err() {
         if kind.device_class == "window" {
             if let Some(area) = intent.slot("area") {
-                if has_window_cover(context.catalog, context.home, area) {
+                if has_window_cover(&context.catalog, context.home, area) {
                     return None;
                 }
             }

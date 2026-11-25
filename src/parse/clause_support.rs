@@ -70,7 +70,7 @@ pub(crate) fn named_instead_of_light(
 }
 
 pub(crate) fn preferred_area_domain(domain: Option<&str>, action: Action, tokens: &[String]) -> Option<&'static str> {
-    let cat = catalog();
+    let cat = &catalog();
     if (domain == Some("light") || has_light_noun(tokens))
         && matches!(action, Action::On | Action::Off | Action::Toggle | Action::SetLight | Action::GetState)
     {

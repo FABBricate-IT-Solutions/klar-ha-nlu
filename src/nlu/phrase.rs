@@ -80,7 +80,7 @@ mod tests {
     use crate::lang::catalog_for;
 
     fn hit(lang: &str, text: &str, phrase: &str, slack: Slack) -> bool {
-        is_phrase(&words(text), phrase, catalog_for(&[lang.into()]), slack)
+        is_phrase(&words(text), phrase, &catalog_for(&[lang.into()]), slack)
     }
 
     #[test]
@@ -119,8 +119,8 @@ mod tests {
     fn prefix_returns_the_rest() {
         let catalog = catalog_for(&["en".into()]);
         let said = words("please call it reading lamp");
-        assert_eq!(after_prefix(&said, "call it ", catalog), Some(&said[3..]));
-        assert_eq!(after_prefix(&words("recall it reading lamp"), "call it ", catalog), None);
+        assert_eq!(after_prefix(&said, "call it ", &catalog), Some(&said[3..]));
+        assert_eq!(after_prefix(&words("recall it reading lamp"), "call it ", &catalog), None);
     }
 
     #[test]

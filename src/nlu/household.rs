@@ -16,7 +16,7 @@ pub(super) fn route(context: &ParseContext<'_>, tokens: &[String]) -> Option<Dra
     if tokens.is_empty() {
         return None;
     }
-    let cat = context.catalog;
+    let cat = context.catalog.as_ref();
     let blob = fold_umlaut(context.text.trim()).replace(['\'', '’', '`'], "");
     let said = words(context.text);
     if let Some(draft) = match_routine(context, &said) {
@@ -79,7 +79,7 @@ fn climate_overrides_weather(context: &ParseContext<'_>, tokens: &[String]) -> b
     if super::weather_lex::outdoor_temp_ask(&blob) || super::weather_lex::bare_temperature_ask(&blob) {
         return false;
     }
-    let cat = context.catalog;
+    let cat = context.catalog.as_ref();
     if !cat.any(tokens, cat.climate_nouns()) {
         return false;
     }
@@ -98,7 +98,7 @@ fn climate_overrides_weather(context: &ParseContext<'_>, tokens: &[String]) -> b
 /// "call it reading lamp" names the last device. "call it a day" names nothing: a name
 /// does not open with an indefinite article.
 fn taught_name(context: &ParseContext<'_>, said: &[String]) -> Option<String> {
-    let cat = context.catalog;
+    let cat = context.catalog.as_ref();
     let rest = cat.household_phrases(|pack| pack.household.teach).find_map(|prefix| after_prefix(said, prefix, cat))?;
     let named = rest.first().is_some_and(|word| !cat.article_one().contains(word.as_str()));
     named.then(|| rest.join(" "))
@@ -112,7 +112,7 @@ fn match_routine(context: &ParseContext<'_>, said: &[String]) -> Option<Draft> {
         if row.intent != "HassTurnOn" || !script.starts_with("script.") {
             continue;
         }
-        if !is_phrase(said, &row.phrase, context.catalog, Slack::Filler) {
+        if !is_phrase(said, &row.phrase, &context.catalog, Slack::Filler) {
             continue;
         }
         return Some(execute(
@@ -238,28 +238,28 @@ fn looks_like_clock(context: &ParseContext<'_>, said: &[String], tokens: &[Strin
     if context.catalog.pack_any(tokens, |pack| pack.household.clock_skip) {
         return false;
     }
-    is_any_phrase(said, context.catalog.household_phrases(|pack| pack.household.clock), context.catalog, Slack::Question)
+    is_any_phrase(said, context.catalog.household_phrases(|pack| pack.household.clock), &context.catalog, Slack::Question)
 }
 
 fn looks_like_weekday(context: &ParseContext<'_>, said: &[String], tokens: &[String]) -> bool {
     if context.catalog.pack_any(tokens, |pack| pack.household.clock_skip) {
         return false;
     }
-    is_any_phrase(said, context.catalog.household_phrases(|pack| pack.household.weekday), context.catalog, Slack::Question)
+    is_any_phrase(said, context.catalog.household_phrases(|pack| pack.household.weekday), &context.catalog, Slack::Question)
 }
 
 fn looks_like_date(context: &ParseContext<'_>, said: &[String], tokens: &[String]) -> bool {
     if context.catalog.pack_any(tokens, |pack| pack.household.clock_skip) {
         return false;
     }
-    is_any_phrase(said, context.catalog.household_phrases(|pack| pack.household.date), context.catalog, Slack::Question)
+    is_any_phrase(said, context.catalog.household_phrases(|pack| pack.household.date), &context.catalog, Slack::Question)
 }
 
 fn looks_like_today(context: &ParseContext<'_>, said: &[String], tokens: &[String]) -> bool {
     if context.catalog.pack_any(tokens, |pack| pack.household.clock_skip) {
         return false;
     }
-    is_any_phrase(said, context.catalog.household_phrases(|pack| pack.household.today), context.catalog, Slack::Question)
+    is_any_phrase(said, context.catalog.household_phrases(|pack| pack.household.today), &context.catalog, Slack::Question)
 }
 
 fn spoken_clock(context: &ParseContext<'_>) -> String {

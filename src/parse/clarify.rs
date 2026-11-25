@@ -12,7 +12,7 @@ pub(crate) fn pick_clarification(tokens: &[String], session: &Session, home: &Ho
     if pending.is_empty() {
         return None;
     }
-    let cat = catalog();
+    let cat = &catalog();
     if tokens.iter().any(|t| cat.clarify_pick().contains(t.as_str()) && !cat.is_affirm(t)) {
         return pending.first().cloned();
     }

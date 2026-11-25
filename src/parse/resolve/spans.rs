@@ -167,7 +167,7 @@ fn linkable(label: &str, home: &HomeGraph) -> bool {
         return true;
     }
     let word = parts[0].as_str();
-    let cat = catalog();
+    let cat = &catalog();
     // A lone floor or room name on a device (alias "obergeschoss" on the upstairs heater)
     // is not an entity link — that word scopes the floor or room.
     if names_floor_or_area(word, home) {
@@ -266,7 +266,7 @@ pub(crate) fn fully_named(tokens: &[String], entity: &EntityRec, home: &HomeGrap
 
 /// First token of an exception marker ("except", "außer", "but not", …), if any.
 fn except_at(tokens: &[String]) -> Option<usize> {
-    let cat = catalog();
+    let cat = &catalog();
     if let Some(at) = tokens.iter().position(|token| cat.is_except(token)) {
         return Some(at);
     }
@@ -301,7 +301,7 @@ pub(crate) fn take_linked(
     if linked.entities.is_empty() && linked.ambiguous.is_empty() {
         return None;
     }
-    let cat = catalog();
+    let cat = &catalog();
     // Free tokens for "more targets" still come from the whole sentence so cover/light
     // nouns after "and" stay visible; exception-tail device names are not in `linked`.
     let free = if except.is_some() { free_tokens(tokens, &link_named_spans(tokens, home, floors)) } else { free_tokens(tokens, &linked) };
@@ -458,7 +458,7 @@ pub(crate) fn take_linked(
 
 fn filter_domain(entities: Vec<EntityRec>, domain: Option<&str>) -> Vec<EntityRec> {
     match domain {
-        Some(wanted) => entities.into_iter().filter(|entity| crate::home::roles::matches_domain(entity, wanted, catalog())).collect(),
+        Some(wanted) => entities.into_iter().filter(|entity| crate::home::roles::matches_domain(entity, wanted, &catalog())).collect(),
         None => entities,
     }
 }

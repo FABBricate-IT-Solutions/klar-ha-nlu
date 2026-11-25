@@ -3,7 +3,7 @@ use crate::lang::{catalog, VerbKind};
 use super::Action;
 
 pub(super) fn timer_kind(tokens: &[String]) -> Action {
-    let cat = catalog();
+    let cat = &catalog();
     if cat.any(tokens, cat.timer_pause()) {
         Action::TimerPause
     } else if cat.any(tokens, cat.playback_resume()) {
@@ -20,7 +20,7 @@ pub(super) fn timer_kind(tokens: &[String]) -> Action {
 }
 
 pub(super) fn timer_decrease(tokens: &[String]) -> bool {
-    let cat = catalog();
+    let cat = &catalog();
     if cat.any(tokens, cat.timer_add()) {
         return false;
     }

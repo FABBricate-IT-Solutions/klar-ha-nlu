@@ -105,7 +105,7 @@ fn scene_token(token: &str) -> String {
 /// A scene or a script starts on its whole name: every word of it, side by side. One
 /// shared word ("open" in "Open Garage") is some other sentence.
 fn scene_name_hit(tokens: &[String], name: &str, home: &HomeGraph) -> bool {
-    let cat = catalog();
+    let cat = &catalog();
     // The name goes through the same word cleaning as the sentence, so both lose the same words.
     let parts: Vec<String> = strip_fillers_for_areas(&tokenize(name), &home.areas)
         .iter()

@@ -47,7 +47,7 @@ pub(super) fn build_analyses(
     let action_rows = clauses
         .iter()
         .map(|clause| {
-            let mut hypotheses = action_hypotheses(clause, context.catalog, context.home);
+            let mut hypotheses = action_hypotheses(clause, &context.catalog, context.home);
             hypotheses.truncate(MAX_ACTION_HYPOTHESES);
             hypotheses
         })
@@ -66,7 +66,7 @@ pub(super) fn build_analyses(
     let mut analyses = Vec::new();
     for (index, (clause, hypotheses)) in clauses.into_iter().zip(action_rows).enumerate() {
         let question = looks_like_question(&clause);
-        let cat = context.catalog;
+        let cat = context.catalog.as_ref();
         let question_context = question || clause.first().is_some_and(|token| cat.is_question_start(token) || cat.is_query_hint(token));
         let list_marker = clause.iter().any(|token| token == "list" || token == "liste");
         let complete_marker = cat.any(&clause, cat.list_complete())

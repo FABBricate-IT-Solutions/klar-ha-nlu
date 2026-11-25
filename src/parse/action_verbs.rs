@@ -17,7 +17,7 @@ pub(super) fn open_action(tokens: &[String]) -> Option<Action> {
 }
 
 pub(super) fn open_door_action(tokens: &[String]) -> Option<Action> {
-    let cat = catalog();
+    let cat = &catalog();
     if cat.any(tokens, cat.door_nouns()) || cat.any(tokens, cat.lock_nouns()) {
         Some(Action::Unlock)
     } else if has_cover_noun(tokens) {
@@ -36,7 +36,7 @@ pub(super) fn off_action(tokens: &[String]) -> Option<Action> {
 }
 
 pub(super) fn up_action(tokens: &[String]) -> Option<Action> {
-    let cat = catalog();
+    let cat = &catalog();
     if cat.any(tokens, cat.close_words()) {
         None
     } else if crate::parse::numbers::first_number(tokens).is_some() {
@@ -49,7 +49,7 @@ pub(super) fn up_action(tokens: &[String]) -> Option<Action> {
 }
 
 pub(super) fn down_action(tokens: &[String]) -> Option<Action> {
-    let cat = catalog();
+    let cat = &catalog();
     if cat.any(tokens, cat.list_down()) || cat.any(tokens, cat.timer_add()) {
         None
     } else if cat.any(tokens, cat.timer_nouns()) && timer_ops::timer_decrease(tokens) {
@@ -137,7 +137,7 @@ pub(super) fn close_action(tokens: &[String]) -> Option<Action> {
 }
 
 pub(super) fn lock_noun_action(tokens: &[String]) -> Option<Action> {
-    let cat = catalog();
+    let cat = &catalog();
     let trailing_on = tokens.last().is_some_and(|x| cat.on_words().contains(x.as_str()));
     let unlock = tokens.iter().any(|x| cat.unlock_follow().contains(x.as_str()) || x == "unlock")
         || (tokens.iter().any(|x| matches!(x.as_str(), "flick" | "flip")) && cat.any(tokens, cat.door_nouns()) && !trailing_on);
@@ -155,7 +155,7 @@ pub(super) fn close_lock_action(tokens: &[String]) -> Option<Action> {
 }
 
 pub(super) fn flick_action(tokens: &[String]) -> Option<Action> {
-    let cat = catalog();
+    let cat = &catalog();
     if cat.any(tokens, cat.off_words()) {
         Some(Action::Off)
     } else if cat.any(tokens, cat.on_words()) {
@@ -172,7 +172,7 @@ pub(super) fn flick_action(tokens: &[String]) -> Option<Action> {
 }
 
 pub(super) fn on_action(tokens: &[String], i: usize) -> Option<Action> {
-    let cat = catalog();
+    let cat = &catalog();
     if cat.any(tokens, cat.chores()) || cat.any(tokens, cat.list_nouns()) {
         return None;
     }

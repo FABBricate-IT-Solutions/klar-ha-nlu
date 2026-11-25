@@ -113,7 +113,7 @@ struct Aim<'a> {
 }
 
 struct Plan<'a> {
-    cat: &'static Catalog,
+    cat: &'a Catalog,
     aims: Vec<Aim<'a>>,
     /// Steps whose words are content: a list entry, a song, the weather.
     dictated: usize,
@@ -131,8 +131,8 @@ struct Plan<'a> {
 }
 
 impl<'a> Plan<'a> {
-    fn of(steps: &[Intent], context: &ParseContext<'a>) -> Option<Self> {
-        let (home, cat, session) = (context.home, context.catalog, context.session);
+    fn of(steps: &[Intent], context: &'a ParseContext<'a>) -> Option<Self> {
+        let (home, cat, session) = (context.home, context.catalog.as_ref(), context.session);
         let mut places: Vec<&str> = Vec::new();
         let mut names: Vec<&str> = Vec::new();
         let mut aims = Vec::new();

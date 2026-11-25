@@ -207,7 +207,7 @@ fn fuzzy_label_window(tokens: &[String], fuzzy_tokens: &[&str], label: &str) -> 
 }
 
 pub(crate) fn known_target_token(token: &str, home: &HomeGraph) -> bool {
-    let cat = catalog();
+    let cat = &catalog();
     if cat.generic().contains(token)
         || cat.is_filler(token)
         || cat.is_particle(token)
@@ -288,7 +288,7 @@ fn outlet_boost(tokens: &[String], entity: &EntityRec) -> f64 {
 }
 
 fn short_name_token(entity: &EntityRec) -> Option<String> {
-    let cat = catalog();
+    let cat = &catalog();
     entity.name.split(|c: char| !c.is_ascii_alphanumeric()).map(compact).find(|part| {
         part.len() >= 2
             && part.len() <= 3
@@ -308,19 +308,19 @@ fn folded_usable_labels(entity: &EntityRec, home: &HomeGraph) -> Vec<String> {
     let Some(rows) = index.entities.get(&entity.entity_id) else {
         return usable_labels(entity, home).into_iter().map(|label| fold_label(&label)).collect();
     };
-    let generic = is_generic_room_light(entity, home, catalog());
+    let generic = is_generic_room_light(entity, home, &catalog());
     rows.iter()
-        .filter(|row| !row.tag || !crate::home::roles::is_role_tag(&row.raw, catalog()))
+        .filter(|row| !row.tag || !crate::home::roles::is_role_tag(&row.raw, &catalog()))
         .filter(|row| !generic || !stolen_label(&row.raw, entity, home))
         .map(|row| row.folded.clone())
         .collect()
 }
 
 fn usable_labels(entity: &EntityRec, home: &HomeGraph) -> Vec<String> {
-    let generic = is_generic_room_light(entity, home, catalog());
+    let generic = is_generic_room_light(entity, home, &catalog());
     std::iter::once(entity.name.clone())
         .chain(entity.aliases.iter().cloned())
-        .chain(entity.tags.iter().filter(|tag| !crate::home::roles::is_role_tag(tag, catalog())).cloned())
+        .chain(entity.tags.iter().filter(|tag| !crate::home::roles::is_role_tag(tag, &catalog())).cloned())
         .filter(|label| !generic || !stolen_label(label, entity, home))
         .collect()
 }

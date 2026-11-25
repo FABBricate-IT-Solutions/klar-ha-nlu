@@ -106,7 +106,7 @@ fn allows_session_replay(ctx: &Clause) -> bool {
 }
 
 pub(crate) fn which_lights_query(tokens: &[String]) -> bool {
-    let cat = catalog();
+    let cat = &catalog();
     // Plural only: "which lights are on" — not OOD trivia with singular "light".
     if !cat.any(tokens, cat.light_plural()) {
         return false;
@@ -150,7 +150,7 @@ fn session_light_areas(session: &Session, home: &HomeGraph) -> Vec<String> {
 }
 
 fn wants_status_query(tokens: &[String]) -> bool {
-    let cat = catalog();
+    let cat = &catalog();
     if cat.any(tokens, cat.status_words()) {
         return true;
     }
@@ -171,7 +171,7 @@ fn copula_status_context(tokens: &[String], index: usize) -> bool {
     if index == 0 {
         return true;
     }
-    let cat = catalog();
+    let cat = &catalog();
     let power = |token: &str| cat.on_words().contains(token) || cat.off_words().contains(token);
     tokens[..index].iter().any(|prev| {
         cat.is_question_word(prev)
