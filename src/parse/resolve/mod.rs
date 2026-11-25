@@ -10,10 +10,12 @@ use crate::parse::normalize::{compact, fold_label, inflected_eq, is_time_unit, u
 use crate::types::{EntityRec, FloorRec, HomeGraph};
 pub(crate) use report::{resolve_scored, ResolveEvidence, ResolveReport};
 use rooms::match_areas;
+pub use score::MAX_FUZZY_TOKENS;
 pub(crate) use score::{has_fuzzy_target_token, known_target_token};
 use score::{overlap, sort_hits};
 use specific::{keep_most_specific, narrow_to_scope, prefer_fully_named};
 
+mod index_lookup;
 pub(crate) mod prefer;
 mod report;
 mod rooms;

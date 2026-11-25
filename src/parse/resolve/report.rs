@@ -1,4 +1,5 @@
-use super::score::{fuzzy_tokens, score_entity};
+use super::index_lookup::content_candidates;
+use super::score::{fuzzy_index_entities, fuzzy_tokens, score_entity};
 use super::{entity_name_is_mentioned, resolve_from_candidates, token_hit, Resolved};
 use crate::home::expose::assist_visible;
 use crate::home::policy::is_infra;
@@ -84,10 +85,37 @@ pub(crate) fn resolve_scored(tokens: &[String], home: &HomeGraph, domain: Option
 }
 
 fn collect_scored(tokens: &[String], home: &HomeGraph, domain: Option<&str>, fuzzy: &[&str]) -> Vec<(f64, EntityRec)> {
+    let eligible = |entity: &EntityRec| {
+        assist_visible(entity, home)
+            && !is_infra(entity)
+            && !crate::home::policy::is_nlu_ignored(entity)
+            && domain.is_none_or(|wanted| matches_domain(entity, wanted, catalog()))
+    };
+    // R-09/R-08: score index hits (exact, then capped fuzzy). No full-home walk when indexed.
+    if let Some(index) = home.label_index.as_ref() {
+        let mut hits = content_candidates(tokens, index);
+        if hits.is_empty() && !fuzzy.is_empty() {
+            hits = fuzzy_index_entities(fuzzy, index);
+        }
+        if !hits.is_empty() {
+            return hits
+                .into_iter()
+                .filter_map(|entity_index| {
+                    let entity = home.entities.get(entity_index)?;
+                    if !eligible(entity) {
+                        return None;
+                    }
+                    score_entity(tokens, fuzzy, entity, home).map(|score| (score, entity.clone()))
+                })
+                .collect();
+        }
+        if !fuzzy.is_empty() {
+            return Vec::new();
+        }
+    }
     home.entities
         .iter()
-        .filter(|entity| assist_visible(entity, home) && !is_infra(entity) && !crate::home::policy::is_nlu_ignored(entity))
-        .filter(|entity| domain.is_none_or(|wanted| matches_domain(entity, wanted, catalog())))
+        .filter(|entity| eligible(entity))
         .filter_map(|entity| score_entity(tokens, fuzzy, entity, home).map(|score| (score, entity.clone())))
         .collect()
 }

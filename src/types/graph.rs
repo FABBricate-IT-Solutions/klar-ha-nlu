@@ -79,6 +79,8 @@ pub struct StoredLabel {
 pub struct LabelIndex {
     pub tokens: HashSet<String>,
     pub entities: HashMap<String, Vec<StoredLabel>>,
+    /// Entity indices that mention a folded label token. Built at load (R-09).
+    pub by_token: HashMap<String, Vec<usize>>,
 }
 
 impl HomeGraph {

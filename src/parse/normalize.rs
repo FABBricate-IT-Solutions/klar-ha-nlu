@@ -270,6 +270,8 @@ fn tokenize_script(folded: &str) -> Vec<String> {
 
 fn longest_match(parts: &[String]) -> Vec<String> {
     let cat = catalog();
+    // R-07: only look ahead as far as the longest CJK/Thai catalog form.
+    let max_look = cat.max_script_surface_chars();
     let mut out = Vec::new();
     let mut i = 0;
     while i < parts.len() {
@@ -280,7 +282,8 @@ fn longest_match(parts: &[String]) -> Vec<String> {
         }
         let mut best = 1;
         let mut acc = String::new();
-        for (offset, part) in parts[i..].iter().enumerate() {
+        let limit = parts.len().min(i + max_look);
+        for (offset, part) in parts[i..limit].iter().enumerate() {
             if part.chars().count() != 1 || !part.chars().next().is_some_and(is_script_unit) {
                 break;
             }
@@ -431,6 +434,17 @@ mod tests {
         drop(_ja);
         let _th = crate::lang::bind(&["th".into()]);
         assert_eq!(tokenize("ใช่"), vec!["ใช่"]);
+    }
+
+    #[test]
+    fn long_unknown_cjk_stays_under_a_fixed_budget() {
+        let _zh = crate::lang::bind(&["zh-CN".into()]);
+        let text: String = std::iter::repeat_n('灯', 2000).collect();
+        let started = std::time::Instant::now();
+        let tokens = tokenize(&text);
+        let elapsed = started.elapsed();
+        assert_eq!(tokens.len(), 2000);
+        assert!(elapsed.as_millis() < 200, "R-07: 2000 CJK chars took {} ms", elapsed.as_millis());
     }
 
     #[test]

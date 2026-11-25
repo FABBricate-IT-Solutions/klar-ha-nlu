@@ -5,6 +5,7 @@ use crate::io::conversations::{turn_from_outcome, ConversationJournal};
 use crate::io::llm::load_endpoint;
 use crate::io::llm_calls::LlmCallStore;
 use crate::io::metrics::MetricsStore;
+use crate::io::parse_run::ParseLimiter;
 use crate::io::trainer_consent::TrainerConsentHub;
 use crate::llm::LlmEndpoint;
 use crate::session::Sessions;
@@ -39,6 +40,8 @@ pub struct AppState {
     pub token: Option<String>,
     pub llm: Arc<Mutex<Option<LlmEndpoint>>>,
     pub trainer_consent: Arc<TrainerConsentHub>,
+    /// CPU slots + deadline for parse (package 3.4).
+    pub parse_limiter: ParseLimiter,
 }
 
 impl AppState {
@@ -64,6 +67,7 @@ impl AppState {
             token,
             llm: Arc::new(Mutex::new(llm)),
             trainer_consent: TrainerConsentHub::new(),
+            parse_limiter: ParseLimiter::new(),
         }
     }
 

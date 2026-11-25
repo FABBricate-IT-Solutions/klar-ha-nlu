@@ -4,8 +4,9 @@ use crate::home::overlay::apply_overlay;
 use crate::io::auth::{reads_allowed, writes_allowed};
 use crate::io::auth_middleware::authorize;
 use crate::io::limits::MAX_PARSE_CHARS;
+use crate::io::parse_run::{run_parse, ParseRequest};
 use crate::io::state::{save_failed, AppState};
-use crate::nlu::{legacy_result, parse_with_controls};
+use crate::nlu::legacy_result;
 use crate::types::{known_intent, AreaRec, CustomSentence, EntityRec, ParseOutcome, Settings, TeachProposal};
 use axum::extract::{ConnectInfo, DefaultBodyLimit, State};
 use axum::http::{header, HeaderMap, HeaderValue, StatusCode};
@@ -144,7 +145,13 @@ async fn api_parse(
         }
     };
     session.preferred_area = body.preferred_area.clone();
-    let mut outcome = parse_with_controls(&body.text, &home, &mut session, &custom, &settings, &policies, &speech_bank, &match_controls);
+    let parsed = run_parse(
+        &state.parse_limiter,
+        ParseRequest { text: body.text.clone(), home, session, custom, settings, policies, speech_bank, match_controls },
+    )
+    .await?;
+    let mut outcome = parsed.outcome;
+    let mut session = parsed.session;
     // D-18: teach is a proposal; Assist confirms via POST /api/entities (PersistParse).
     if let Some((entity_id, alias)) = session.pending_teach.take() {
         outcome.teach = Some(TeachProposal { entity_id, alias });

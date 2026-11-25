@@ -122,8 +122,32 @@ pub struct SnapshotLabel {
     pub name: String,
 }
 
-pub fn ingest(snapshot: HomeSnapshot) -> Result<HomeGraph, SnapshotError> {
-    validate(&snapshot)?;
+pub fn ingest(mut snapshot: HomeSnapshot) -> Result<HomeGraph, SnapshotError> {
+    if snapshot.schema_version != HOME_SCHEMA_VERSION {
+        return Err(SnapshotError::Schema);
+    }
+    // R-10: sanitize (clip aliases, reject bad ids), filter domains/Assist, then cap.
+    let assist_ids: HashSet<String> =
+        snapshot.assist.as_ref().map(|ids| ids.iter().filter(|id| id.contains('.')).cloned().collect()).unwrap_or_default();
+    snapshot.entities = snapshot
+        .entities
+        .into_iter()
+        .map(sanitize_entity)
+        .collect::<Result<Vec<_>, _>>()?
+        .into_iter()
+        .filter(|entity| !entity.disabled && (keep_domain(&entity.entity_id) || assist_ids.contains(&entity.entity_id)))
+        .take(MAX_SNAPSHOT_ENTITIES)
+        .collect();
+    snapshot.devices = snapshot.devices.into_iter().take(MAX_SNAPSHOT_DEVICES).map(sanitize_device).collect::<Result<Vec<_>, _>>()?;
+    snapshot.areas = snapshot.areas.into_iter().take(MAX_SNAPSHOT_AREAS).map(sanitize_area).collect::<Result<Vec<_>, _>>()?;
+    snapshot.floors = snapshot.floors.into_iter().take(MAX_SNAPSHOT_FLOORS).map(sanitize_floor).collect::<Result<Vec<_>, _>>()?;
+    snapshot.labels = snapshot.labels.into_iter().take(MAX_SNAPSHOT_LABELS).map(sanitize_label).collect::<Result<Vec<_>, _>>()?;
+    if let Some(assist) = snapshot.assist.as_mut() {
+        *assist = std::mem::take(assist).into_iter().filter(|id| id.contains('.')).take(MAX_SNAPSHOT_ASSIST).collect();
+        for entity_id in assist.iter() {
+            valid_entity_id(entity_id)?;
+        }
+    }
     let devices = device_names(&snapshot.devices);
     let label_names = snapshot.labels.iter().map(|label| (label.label_id.clone(), label.name.clone())).collect::<HashMap<_, _>>();
     let floors = snapshot
@@ -149,8 +173,6 @@ pub fn ingest(snapshot: HomeSnapshot) -> Result<HomeGraph, SnapshotError> {
         .collect::<Vec<_>>();
     drop_borrowed_area_names(&mut areas);
     let area_ids = areas.iter().map(|area| area.area_id.as_str()).collect::<HashSet<_>>();
-    let assist_ids: HashSet<String> =
-        snapshot.assist.as_ref().map(|ids| ids.iter().filter(|id| id.contains('.')).cloned().collect()).unwrap_or_default();
     let device_classes = snapshot
         .entities
         .iter()
@@ -159,7 +181,6 @@ pub fn ingest(snapshot: HomeSnapshot) -> Result<HomeGraph, SnapshotError> {
     let entities = snapshot
         .entities
         .into_iter()
-        .filter(|entity| !entity.disabled && (keep_domain(&entity.entity_id) || assist_ids.contains(&entity.entity_id)))
         .map(|entity| {
             let domain = entity.entity_id.split('.').next().unwrap_or("").to_string();
             let device = entity.device_id.as_deref().and_then(|id| devices.get(id));
@@ -181,64 +202,69 @@ pub fn ingest(snapshot: HomeSnapshot) -> Result<HomeGraph, SnapshotError> {
             }
         })
         .collect();
-    let assist = snapshot.assist.map(|ids| ids.into_iter().filter(|id| id.contains('.')).collect());
+    let assist = snapshot.assist.map(|ids| ids.into_iter().collect());
     let registered_intents = snapshot.registered_intents.into_iter().filter(|name| !name.is_empty() && name.len() <= 64).take(64).collect();
     let mut graph = HomeGraph { entities, areas, floors, assist, registered_intents, device_classes, ..HomeGraph::default() };
     crate::home::labels::rebuild_label_index(&mut graph);
     Ok(graph)
 }
 
-fn validate(snapshot: &HomeSnapshot) -> Result<(), SnapshotError> {
-    if snapshot.schema_version != HOME_SCHEMA_VERSION {
-        return Err(SnapshotError::Schema);
-    }
-    if snapshot.entities.len() > MAX_SNAPSHOT_ENTITIES
-        || snapshot.devices.len() > MAX_SNAPSHOT_DEVICES
-        || snapshot.areas.len() > MAX_SNAPSHOT_AREAS
-        || snapshot.floors.len() > MAX_SNAPSHOT_FLOORS
-        || snapshot.labels.len() > MAX_SNAPSHOT_LABELS
-        || snapshot.assist.as_ref().is_some_and(|ids| ids.len() > MAX_SNAPSHOT_ASSIST)
-    {
-        return Err(SnapshotError::Caps);
-    }
-    for entity in &snapshot.entities {
-        valid_entity_id(&entity.entity_id)?;
-        optional_name(entity.name.as_deref(), "entity name")?;
-        optional_name(entity.original_name.as_deref(), "entity original_name")?;
-        optional_id(entity.area_id.as_deref(), "entity area_id")?;
-        optional_id(entity.device_id.as_deref(), "entity device_id")?;
-        optional_name(entity.platform.as_deref(), "entity platform")?;
-        optional_id(entity.device_class.as_deref(), "entity device_class")?;
-        valid_aliases(&entity.aliases)?;
-        valid_aliases(&entity.labels)?;
-    }
-    for device in &snapshot.devices {
-        valid_id(&device.id, "device id")?;
-        optional_name(device.name.as_deref(), "device name")?;
-        optional_name(device.name_by_user.as_deref(), "device name_by_user")?;
-        optional_id(device.area_id.as_deref(), "device area_id")?;
-    }
-    for area in &snapshot.areas {
-        valid_id(&area.id, "area id")?;
-        valid_name(&area.name, "area name")?;
-        optional_id(area.floor_id.as_deref(), "area floor_id")?;
-        valid_aliases(&area.aliases)?;
-    }
-    for floor in &snapshot.floors {
-        valid_id(&floor.floor_id, "floor id")?;
-        valid_name(&floor.name, "floor name")?;
-        valid_aliases(&floor.aliases)?;
-    }
-    for label in &snapshot.labels {
-        valid_id(&label.label_id, "label id")?;
-        valid_name(&label.name, "label name")?;
-    }
-    if let Some(assist) = &snapshot.assist {
-        for entity_id in assist {
-            valid_entity_id(entity_id)?;
-        }
-    }
-    Ok(())
+fn sanitize_entity(mut entity: SnapshotEntity) -> Result<SnapshotEntity, SnapshotError> {
+    valid_entity_id(&entity.entity_id)?;
+    optional_name(entity.name.as_deref(), "entity name")?;
+    optional_name(entity.original_name.as_deref(), "entity original_name")?;
+    optional_id(entity.area_id.as_deref(), "entity area_id")?;
+    optional_id(entity.device_id.as_deref(), "entity device_id")?;
+    optional_name(entity.platform.as_deref(), "entity platform")?;
+    optional_id(entity.device_class.as_deref(), "entity device_class")?;
+    entity.aliases = sanitize_aliases(entity.aliases);
+    entity.labels = sanitize_aliases(entity.labels);
+    Ok(entity)
+}
+
+fn sanitize_device(device: SnapshotDevice) -> Result<SnapshotDevice, SnapshotError> {
+    valid_id(&device.id, "device id")?;
+    optional_name(device.name.as_deref(), "device name")?;
+    optional_name(device.name_by_user.as_deref(), "device name_by_user")?;
+    optional_id(device.area_id.as_deref(), "device area_id")?;
+    Ok(device)
+}
+
+fn sanitize_area(mut area: SnapshotArea) -> Result<SnapshotArea, SnapshotError> {
+    valid_id(&area.id, "area id")?;
+    valid_name(&area.name, "area name")?;
+    optional_id(area.floor_id.as_deref(), "area floor_id")?;
+    area.aliases = sanitize_aliases(area.aliases);
+    Ok(area)
+}
+
+fn sanitize_floor(mut floor: SnapshotFloor) -> Result<SnapshotFloor, SnapshotError> {
+    valid_id(&floor.floor_id, "floor id")?;
+    valid_name(&floor.name, "floor name")?;
+    floor.aliases = sanitize_aliases(floor.aliases);
+    Ok(floor)
+}
+
+fn sanitize_label(label: SnapshotLabel) -> Result<SnapshotLabel, SnapshotError> {
+    valid_id(&label.label_id, "label id")?;
+    valid_name(&label.name, "label name")?;
+    Ok(label)
+}
+
+fn sanitize_aliases(values: Vec<String>) -> Vec<String> {
+    values
+        .into_iter()
+        .filter_map(|value| {
+            let trimmed: String = value.chars().filter(|ch| !ch.is_control()).collect();
+            let trimmed = trimmed.trim();
+            if trimmed.is_empty() {
+                return None;
+            }
+            let clipped: String = trimmed.chars().take(MAX_ALIAS_CHARS).collect();
+            (!clipped.is_empty()).then_some(clipped)
+        })
+        .take(MAX_SNAPSHOT_ALIASES)
+        .collect()
 }
 
 fn device_names(devices: &[SnapshotDevice]) -> HashMap<String, (String, Option<String>)> {
@@ -313,182 +339,6 @@ fn optional_name(value: Option<&str>, field: &'static str) -> Result<(), Snapsho
     value.map(|name| valid_name(name, field)).transpose().map(|_| ())
 }
 
-fn valid_aliases(values: &[String]) -> Result<(), SnapshotError> {
-    if values.len() > MAX_SNAPSHOT_ALIASES {
-        return Err(SnapshotError::Caps);
-    }
-    if values.iter().any(|value| value.is_empty() || value.chars().count() > MAX_ALIAS_CHARS || value.chars().any(char::is_control)) {
-        return Err(SnapshotError::Malformed("invalid alias"));
-    }
-    Ok(())
-}
-
 #[cfg(test)]
-mod tests {
-    use super::*;
-
-    fn snapshot() -> HomeSnapshot {
-        HomeSnapshot {
-            schema_version: HOME_SCHEMA_VERSION.into(),
-            entities: vec![SnapshotEntity {
-                entity_id: "light.living".into(),
-                name: Some("Living".into()),
-                original_name: None,
-                has_entity_name: false,
-                area_id: Some("living".into()),
-                device_id: None,
-                platform: Some("hue".into()),
-                aliases: vec!["decke".into()],
-                labels: vec!["Licht".into()],
-                disabled: false,
-                device_class: None,
-            }],
-            devices: Vec::new(),
-            areas: vec![SnapshotArea {
-                id: "living".into(),
-                name: "Wohnzimmer".into(),
-                aliases: vec!["wohnzimmer".into()],
-                floor_id: Some("upper".into()),
-            }],
-            floors: vec![SnapshotFloor { floor_id: "upper".into(), name: "Upper Floor".into(), aliases: Vec::new(), level: Some(1) }],
-            labels: vec![SnapshotLabel { label_id: "lbl_1".into(), name: "Licht".into() }],
-            assist: Some(vec!["light.living".into()]),
-            registered_intents: Vec::new(),
-        }
-    }
-
-    #[test]
-    fn rejects_unknown_snapshot_fields() {
-        let err = serde_json::from_value::<HomeSnapshot>(serde_json::json!({
-            "schema_version": HOME_SCHEMA_VERSION,
-            "entities": [],
-            "extra": true
-        }))
-        .expect_err("unknown field");
-        assert!(err.to_string().contains("unknown field"));
-    }
-
-    #[test]
-    fn ingest_keeps_floors_and_assist() {
-        let home = ingest(snapshot()).expect("snapshot");
-        assert_eq!(home.floors.len(), 1);
-        assert_eq!(home.floors[0].floor_id, "upper");
-        assert!(home.floors[0].aliases.iter().any(|alias| alias == "upstairs"));
-        assert_eq!(home.areas[0].floor_id.as_deref(), Some("upper"));
-        assert_eq!(home.entities[0].entity_id, "light.living");
-        assert_eq!(home.assist.as_ref().map(HashSet::len), Some(1));
-    }
-
-    #[test]
-    fn ingest_keeps_the_device_class() {
-        let mut raw = snapshot();
-        raw.entities[0].device_class = Some(" Garage ".into());
-        assert_eq!(ingest(raw).expect("snapshot").device_class("light.living"), Some("garage"));
-    }
-
-    #[test]
-    fn rejects_bad_schema_and_caps() {
-        let mut bad = snapshot();
-        bad.schema_version = "9".into();
-        assert_eq!(ingest(bad).unwrap_err(), SnapshotError::Schema);
-        let mut huge = snapshot();
-        huge.entities = (0..=MAX_SNAPSHOT_ENTITIES)
-            .map(|index| SnapshotEntity {
-                entity_id: format!("light.lamp{index}"),
-                name: Some("Lamp".into()),
-                original_name: None,
-                has_entity_name: false,
-                area_id: None,
-                device_id: None,
-                platform: None,
-                aliases: Vec::new(),
-                labels: Vec::new(),
-                disabled: false,
-                device_class: None,
-            })
-            .collect();
-        assert_eq!(ingest(huge).unwrap_err(), SnapshotError::Caps);
-    }
-
-    #[test]
-    fn rejects_malformed_ids_without_panic() {
-        let mut bad = snapshot();
-        bad.entities[0].entity_id = "../etc/passwd".into();
-        assert_eq!(ingest(bad).unwrap_err(), SnapshotError::Malformed("invalid entity_id"));
-        let mut missing = snapshot();
-        missing.floors[0].floor_id.clear();
-        assert_eq!(ingest(missing).unwrap_err(), SnapshotError::Malformed("invalid id"));
-    }
-
-    #[test]
-    fn drops_unknown_floor_links_and_disabled_entities() {
-        let mut raw = snapshot();
-        raw.areas[0].floor_id = Some("ghost".into());
-        raw.entities.push(SnapshotEntity {
-            entity_id: "light.hidden".into(),
-            name: Some("Hidden".into()),
-            original_name: None,
-            has_entity_name: false,
-            area_id: Some("living".into()),
-            device_id: None,
-            platform: None,
-            aliases: Vec::new(),
-            labels: Vec::new(),
-            disabled: true,
-            device_class: None,
-        });
-        let home = ingest(raw).expect("snapshot");
-        assert!(home.areas[0].floor_id.is_none());
-        assert_eq!(home.entities.len(), 1);
-    }
-
-    #[test]
-    fn ingest_keeps_weather_and_assist_only_domains() {
-        let mut raw = snapshot();
-        raw.entities.push(SnapshotEntity {
-            entity_id: "weather.openweathermap".into(),
-            name: Some("OpenWeatherMap".into()),
-            original_name: None,
-            has_entity_name: false,
-            area_id: None,
-            device_id: None,
-            platform: Some("openweathermap".into()),
-            aliases: vec!["Wetter".into()],
-            labels: Vec::new(),
-            disabled: false,
-            device_class: None,
-        });
-        raw.entities.push(SnapshotEntity {
-            entity_id: "sensor.openweathermap_temperatur".into(),
-            name: Some("Temperatur".into()),
-            original_name: None,
-            has_entity_name: false,
-            area_id: None,
-            device_id: None,
-            platform: Some("openweathermap".into()),
-            aliases: Vec::new(),
-            labels: Vec::new(),
-            disabled: false,
-            device_class: None,
-        });
-        raw.entities.push(SnapshotEntity {
-            entity_id: "sensor.hidden_temp".into(),
-            name: Some("Hidden".into()),
-            original_name: None,
-            has_entity_name: false,
-            area_id: None,
-            device_id: None,
-            platform: None,
-            aliases: Vec::new(),
-            labels: Vec::new(),
-            disabled: false,
-            device_class: None,
-        });
-        raw.assist = Some(vec!["light.living".into(), "weather.openweathermap".into(), "sensor.openweathermap_temperatur".into()]);
-        let home = ingest(raw).expect("snapshot");
-        let ids: HashSet<_> = home.entities.iter().map(|entity| entity.entity_id.as_str()).collect();
-        assert!(ids.contains("weather.openweathermap"));
-        assert!(ids.contains("sensor.openweathermap_temperatur"));
-        assert!(!ids.contains("sensor.hidden_temp"));
-    }
-}
+#[path = "snapshot_tests.rs"]
+mod tests;

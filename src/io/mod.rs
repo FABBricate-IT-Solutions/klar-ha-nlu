@@ -15,6 +15,7 @@ pub(crate) mod listen;
 pub(crate) mod llm;
 pub(crate) mod llm_calls;
 pub(crate) mod metrics;
+pub(crate) mod parse_run;
 pub(crate) mod policies;
 pub(crate) mod privacy;
 pub(crate) mod restore;

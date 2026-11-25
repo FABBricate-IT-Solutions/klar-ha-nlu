@@ -4,7 +4,6 @@
 from __future__ import annotations
 
 import importlib.util
-import json
 import sys
 import types
 import unittest
@@ -209,7 +208,8 @@ class SyncTests(unittest.TestCase):
         self.assertNotIn("device_class", next(e for e in snapshot["entities"] if e["entity_id"] == "cover.unset"))
         self.assertNotIn("device_class", next(e for e in snapshot["entities"] if e["entity_id"] == "cover.old_registry"))
 
-    def test_large_snapshot_keeps_every_enabled_entity_regardless_of_exposure_or_domain(self) -> None:
+    def test_large_snapshot_filters_domains_then_caps(self) -> None:
+        # R-10: sync keeps Assist + engine domains, then caps — sensors/automations drop out.
         count = 2216
         domains = ["light", "sensor", "automation", "button", "binary_sensor", "update", "person"]
         entities = [SimpleNamespace(
@@ -233,8 +233,11 @@ class SyncTests(unittest.TestCase):
         with patch.object(sync, "_exposed", side_effect=lambda _, entity_id: entity_id == entities[0].entity_id):
             snapshot = sync.HomeGraphSync(SimpleNamespace(), SimpleNamespace(options={"assist_filter": True}, data={}),
                 "http://127.0.0.1:10520", None).build_snapshot()
-        self.assertGreater(len(json.dumps(snapshot["entities"]).encode("utf-8")), 538_682)
-        self.assertEqual([row["entity_id"] for row in snapshot["entities"]], [entity.entity_id for entity in entities])
+        kept_ids = {row["entity_id"] for row in snapshot["entities"]}
+        self.assertTrue(all(entity_id.startswith("light.") for entity_id in kept_ids))
+        self.assertIn(entities[0].entity_id, kept_ids)
+        self.assertNotIn("sensor.fixture_1", kept_ids)
+        self.assertLessEqual(len(snapshot["entities"]), sync._ENTITY_CAP)
         self.assertEqual(snapshot["assist"], [entities[0].entity_id])
         self.assertEqual(len(snapshot["devices"]), 300)
         self.assertEqual(len(snapshot["areas"]), 24)
@@ -290,6 +293,16 @@ class SyncTests(unittest.TestCase):
         self.assertIn("return False", src)
         self.assertIn("async_create_background_task", src)
         self.assertIn("self._loop()", src)
+
+    def test_r10_alias_chars_and_entity_filter_match_engine(self) -> None:
+        sync = _load_sync()
+        self.assertEqual(sync._ALIAS_CHARS, 128)
+        self.assertEqual(sync._ENTITY_CAP, 4096)
+        self.assertIn("light", sync._KEEP_DOMAINS)
+        long_alias = "y" * (sync._ALIAS_CHARS + 40)
+        clipped = sync._aliases([long_alias, "ok"])
+        self.assertEqual(len(clipped[0]), sync._ALIAS_CHARS)
+        self.assertIn("ok", clipped)
 
 
 if __name__ == "__main__":

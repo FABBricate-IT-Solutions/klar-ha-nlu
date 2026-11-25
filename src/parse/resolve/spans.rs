@@ -1,9 +1,6 @@
-//! Longest device labels first: find name spans in the sentence, consume those tokens, and
-//! leave verbs, numbers and colours for the rest of the parse.
-//!
-//! A full name beats a domain hint and "room plus noun". When several devices share a label,
-//! a spoken floor keeps only the ones on that floor.
+//! Longest device labels first: find name spans, consume those tokens, leave verbs/numbers/colours.
 
+use super::index_lookup::{content_candidates, entities_for_indices};
 use super::{token_eq, token_hit};
 use crate::home::classify::is_generic_room_light;
 use crate::home::expose::assist_visible;
@@ -18,7 +15,6 @@ mod spans_conj;
 pub(crate) use spans_conj::area_conjunction_entity;
 use spans_conj::rooms_from_conjunction_entities;
 
-/// Where a device name was said: first token index and how many tokens it took.
 type Span = (usize, usize);
 
 #[derive(Debug, Clone)]
@@ -30,7 +26,7 @@ struct Hit {
     from_primary: bool,
 }
 
-/// Devices whose whole label sits in the sentence, plus the token indices that label used.
+/// Devices whose whole label sits in the sentence, plus consumed token indices.
 #[derive(Debug, Clone, Default)]
 pub(crate) struct LinkedNames {
     pub entities: Vec<EntityRec>,
@@ -38,18 +34,10 @@ pub(crate) struct LinkedNames {
     pub consumed: BTreeSet<usize>,
 }
 
-/// Longest non-overlapping name spans. One clear name becomes `entities`; several devices
-/// under the same span become `ambiguous` unless a floor narrows them to one.
+/// Longest non-overlapping name spans; floor may disambiguate shared labels.
 pub(crate) fn link_named_spans(tokens: &[String], home: &HomeGraph, floors: &[String]) -> LinkedNames {
     let mut hits: Vec<Hit> = Vec::new();
-    for entity in home.entities.iter().filter(|e| {
-        assist_visible(e, home)
-            && !is_infra(e)
-            && !is_nlu_ignored(e)
-            // Scenes and scripts have their own matcher; a shared word must not link them here.
-            && e.domain != "scene"
-            && e.domain != "script"
-    }) {
+    for entity in span_candidates(tokens, home) {
         for (label_index, label) in usable_labels(entity).into_iter().enumerate() {
             if !linkable(&label, home) {
                 continue;
@@ -70,7 +58,6 @@ pub(crate) fn link_named_spans(tokens: &[String], home: &HomeGraph, floors: &[St
             .then_with(|| left.entity.entity_id.cmp(&right.entity.entity_id))
     });
 
-    // Group hits onto winning spans in one pass — do not rescan the home per span.
     let mut taken: Vec<Span> = Vec::new();
     let mut groups: Vec<(Span, Vec<EntityRec>, BTreeSet<String>)> = Vec::new();
     for hit in hits {
@@ -145,6 +132,24 @@ fn entity_on_floors(entity: &EntityRec, home: &HomeGraph, floors: &[String]) -> 
     entity.area.as_ref().is_some_and(|area_id| {
         home.areas.iter().any(|area| area.area_id == *area_id && area.floor_id.as_ref().is_some_and(|floor| floors.contains(floor)))
     })
+}
+
+fn span_candidates<'a>(tokens: &[String], home: &'a HomeGraph) -> Vec<&'a EntityRec> {
+    let keep = |entity: &&EntityRec| {
+        assist_visible(entity, home)
+            && !is_infra(entity)
+            && !is_nlu_ignored(entity)
+            && entity.domain != "scene"
+            && entity.domain != "script"
+    };
+    let Some(index) = home.label_index.as_ref() else {
+        return home.entities.iter().filter(&keep).collect();
+    };
+    let hits = content_candidates(tokens, index);
+    if hits.is_empty() {
+        return home.entities.iter().filter(&keep).collect();
+    }
+    entities_for_indices(home, &hits).into_iter().filter(keep).collect()
 }
 
 fn usable_labels(entity: &EntityRec) -> Vec<String> {
@@ -394,17 +399,15 @@ pub(crate) fn take_linked(
     if entities.is_empty() && ambiguous.is_empty() {
         return None;
     }
-    // Squeezed "Schlafzimmerlicht" or plural "Schlafzimmern Licht" onto a generic room-light
-    // group — leave fixtures (Kugel) to the room path. Exact "hall light" stays P-11.
+    // Squeezed/plural room-light forms → room path; exact "hall light" stays P-11.
     if entities.len() == 1 && is_generic_room_light(&entities[0], home, cat) && spoken_as_room_light_form(tokens, &entities[0], home) {
         return None;
     }
-    // Shared fixture word ("plafon") hits every room's ceiling; after room scope only one
-    // remains — take it, or AreaCommand clarifies every lamp in that room.
+    // Shared fixture word after room scope: one hit → take it; else AreaCommand clarifies.
     if entities.is_empty() && ambiguous.len() == 1 {
         entities = std::mem::take(&mut ambiguous);
     }
-    // Same-room siblings sharing a short label ("nachttisch", "Kugel") — act on all, do not ask.
+    // Same-room siblings sharing a short label — act on all, do not ask.
     if entities.is_empty() && ambiguous.len() > 1 {
         let same_area = ambiguous.iter().all(|entity| entity.area == ambiguous[0].area);
         let same_domain = ambiguous.iter().all(|entity| entity.domain == ambiguous[0].domain);
@@ -415,17 +418,12 @@ pub(crate) fn take_linked(
     if more_targets {
         let linked_light = entities.iter().chain(ambiguous.iter()).any(|entity| entity.domain == "light");
         let linked_cover = entities.iter().chain(ambiguous.iter()).any(|entity| entity.domain == "cover");
-        // "Bedroom Light and blinds" is cross-domain — keep the light for clause splitting.
-        // Do not treat a named fan/switch plus a free "light" word as same-kind room wipe.
+        // Cross-domain keep light for clause split; named fan+free "light" is not room wipe.
         let same_kind = (linked_cover && extra_cover) || (linked_light && extra_light);
-        // A fully spoken light fixture ("kitchen ceiling light") still leaves the generic
-        // "light" noun free — do not wipe it back to a room-wide area command.
-        // Peer cover nouns ("blinds and curtains") still mean every cover in the room.
+        // Fully named fixture still leaves generic "light" free — do not wipe to area cmd.
         let light_name_echo =
             linked_light && extra_light && !extra_cover && entities.iter().any(|entity| fully_named(tokens, entity, home));
         if same_kind && !light_name_echo {
-            // Area collapse ("living room" → "living") can break fully_named while a
-            // fixture word ("lamp" / "ceiling") still uniquely names one linked light.
             let fixture_hits: Vec<EntityRec> = entities
                 .iter()
                 .chain(ambiguous.iter())
@@ -441,8 +439,7 @@ pub(crate) fn take_linked(
                     ask_areas: Vec::new(),
                 });
             }
-            // Fixture word present but not fully_named after area collapse — let
-            // pick_fixture name it instead of wiping to a room-wide area command.
+            // Let pick_fixture name it instead of wiping to a room-wide area command.
             if areas.is_empty() || cat.any(tokens, cat.lamp_fixture()) || cat.any(tokens, cat.ceiling()) {
                 return None;
             }
@@ -456,8 +453,6 @@ pub(crate) fn take_linked(
         }
     }
     // Spoken rooms only — never invent areas from the linked device's home room.
-    // Exception handling treats a non-empty resolve().areas as "this token names a room";
-    // stuffing entity.area here made "oven" protect the whole kitchen.
     Some(super::Resolved { areas: areas.to_vec(), floors: floors.to_vec(), entities, ambiguous, ask_areas: Vec::new() })
 }
 
@@ -489,7 +484,6 @@ fn spoken_as_room_light_form(tokens: &[String], entity: &EntityRec, home: &HomeG
     if squeezed {
         return true;
     }
-    // Plural room ("Schlafzimmern") + light noun → room path, not the "Schlafzimmer Licht" group.
     let room_name = fold_label(&area.name);
     let plural_room = tokens.iter().any(|token| inflected_eq(token, &room_name));
     let light_noun = catalog().any(tokens, catalog().light_nouns())

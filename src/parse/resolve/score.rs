@@ -57,15 +57,36 @@ pub(super) fn overlap(tokens: &[String], entity: &EntityRec, home: &HomeGraph) -
         .unwrap_or(0)
 }
 
+/// R-08: cap fuzzy work so 256 unknown Latin tokens stay under a fixed budget.
+pub const MAX_FUZZY_TOKENS: usize = 8;
+
 pub(super) fn fuzzy_tokens<'a>(tokens: &'a [String], home: &HomeGraph) -> Vec<&'a str> {
     if !tokens.iter().any(|token| catalog().verb(token).is_some()) {
         return Vec::new();
     }
-    tokens.iter().map(String::as_str).filter(|token| token.chars().count() >= 5 && !known_target_token(token, home)).collect()
+    tokens
+        .iter()
+        .map(String::as_str)
+        .filter(|token| token.chars().count() >= 5 && !known_target_token(token, home))
+        .take(MAX_FUZZY_TOKENS)
+        .collect()
 }
 
 pub(crate) fn has_fuzzy_target_token(tokens: &[String], home: &HomeGraph) -> bool {
-    tokens.iter().map(String::as_str).filter(|token| token.chars().count() >= 5 && !known_target_token(token, home)).any(|token| {
+    let unknowns: Vec<&str> = tokens
+        .iter()
+        .map(String::as_str)
+        .filter(|token| token.chars().count() >= 5 && !known_target_token(token, home))
+        .take(MAX_FUZZY_TOKENS)
+        .collect();
+    if unknowns.is_empty() {
+        return false;
+    }
+    if let Some(index) = home.label_index.as_ref() {
+        // Length- and prefix-gated probes against unique index tokens (R-08).
+        return unknowns.iter().any(|token| fuzzy_index_token_hit(token, index));
+    }
+    unknowns.iter().any(|token| {
         home.areas.iter().any(|area| {
             fuzzy_label_token(token, &area.area_id)
                 || fuzzy_label_token(token, &area.name)
@@ -80,6 +101,31 @@ pub(crate) fn has_fuzzy_target_token(tokens: &[String], home: &HomeGraph) -> boo
                 || entity.tags.iter().any(|tag| fuzzy_label_token(token, tag))
         })
     })
+}
+
+/// Map capped fuzzy tokens onto entity indices via the label index (ASR typos).
+pub(super) fn fuzzy_index_entities(fuzzy: &[&str], index: &crate::types::LabelIndex) -> Vec<usize> {
+    let mut hits = std::collections::HashSet::new();
+    for token in fuzzy.iter().take(MAX_FUZZY_TOKENS) {
+        for known in index.tokens.iter().filter(|known| fuzzy_index_gate(token, known)) {
+            if fuzzy_label_token(token, known) {
+                if let Some(rows) = index.by_token.get(known.as_str()) {
+                    hits.extend(rows.iter().copied());
+                }
+            }
+        }
+    }
+    hits.into_iter().collect()
+}
+
+fn fuzzy_index_token_hit(token: &str, index: &crate::types::LabelIndex) -> bool {
+    index.tokens.iter().any(|known| fuzzy_index_gate(token, known) && fuzzy_label_token(token, known))
+}
+
+fn fuzzy_index_gate(token: &str, known: &str) -> bool {
+    let left = token.chars().count();
+    let right = known.chars().count();
+    left.abs_diff(right) <= 2 && token.chars().next() == known.chars().next()
 }
 
 pub(super) fn score_entity(tokens: &[String], fuzzy_tokens: &[&str], entity: &EntityRec, home: &HomeGraph) -> Option<f64> {
@@ -172,8 +218,9 @@ pub(crate) fn known_target_token(token: &str, home: &HomeGraph) -> bool {
     {
         return true;
     }
-    if home.label_index.as_ref().is_some_and(|index| index.tokens.contains(token)) {
-        return true;
+    // Indexed homes are authoritative — do not fall back to a full entity walk (R-09).
+    if let Some(index) = home.label_index.as_ref() {
+        return index.tokens.contains(token);
     }
     home.areas.iter().any(|area| {
         label_has_token(token, &area.area_id)

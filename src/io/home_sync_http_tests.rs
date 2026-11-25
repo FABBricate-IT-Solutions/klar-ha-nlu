@@ -156,30 +156,25 @@ async fn invalid_snapshots_keep_the_last_successful_graph_and_live_sync_flag() {
 }
 
 #[tokio::test]
-async fn every_collection_cap_still_rejects_over_limit_without_replacing_graph() {
+async fn over_limit_collections_are_capped_instead_of_rejecting_the_graph() {
     let fixture = Fixture::new();
-    let before = fixture.state.home.snapshot().await;
-    for (field, count, record) in [
-        ("entities", MAX_SNAPSHOT_ENTITIES, json!({"entity_id": "light.fixture"})),
-        ("devices", MAX_SNAPSHOT_DEVICES, json!({"id": "device"})),
-        ("areas", MAX_SNAPSHOT_AREAS, json!({"id": "room", "name": "Room"})),
-        ("floors", MAX_SNAPSHOT_FLOORS, json!({"floor_id": "floor", "name": "Floor"})),
-        ("labels", MAX_SNAPSHOT_LABELS, json!({"label_id": "label", "name": "Label"})),
-        ("assist", MAX_SNAPSHOT_ASSIST, json!("light.fixture")),
-    ] {
-        let mut body = json!({"schema_version": HOME_SCHEMA_VERSION});
-        body[field] = Value::Array(vec![record; count + 1]);
-        assert_eq!(
-            fixture.post("/api/v2/home", serde_json::to_vec(&body).unwrap(), false).await.status(),
-            StatusCode::PAYLOAD_TOO_LARGE,
-            "{field}"
-        );
-        assert!(Arc::ptr_eq(&before, &fixture.state.home.snapshot().await));
-        assert!(!fixture.state.live_sync.load(Ordering::Relaxed));
-    }
-    let body = json!({"schema_version": HOME_SCHEMA_VERSION, "entities": [{"entity_id": "light.fixture", "aliases": vec!["alias"; MAX_SNAPSHOT_ALIASES + 1]}]});
-    assert_eq!(fixture.post("/api/v2/home", serde_json::to_vec(&body).unwrap(), false).await.status(), StatusCode::PAYLOAD_TOO_LARGE);
-    assert!(Arc::ptr_eq(&before, &fixture.state.home.snapshot().await));
+    // R-10: filter then cap — oversized keep_domain lists sync, truncated to the cap.
+    let mut body = json!({"schema_version": HOME_SCHEMA_VERSION});
+    body["entities"] = Value::Array(vec![json!({"entity_id": "light.fixture"}); MAX_SNAPSHOT_ENTITIES + 1]);
+    let response = fixture.post("/api/v2/home", serde_json::to_vec(&body).unwrap(), false).await;
+    assert_eq!(response.status(), StatusCode::OK);
+    assert_eq!(fixture.state.home.snapshot().await.entities.len(), MAX_SNAPSHOT_ENTITIES);
+    assert!(fixture.state.live_sync.load(Ordering::Relaxed));
+
+    let long_alias = "x".repeat(MAX_ALIAS_CHARS + 20);
+    let body = json!({
+        "schema_version": HOME_SCHEMA_VERSION,
+        "entities": [{"entity_id": "light.fixture", "aliases": [long_alias.clone(), "ok"]}]
+    });
+    assert_eq!(fixture.post("/api/v2/home", serde_json::to_vec(&body).unwrap(), false).await.status(), StatusCode::OK);
+    let home = fixture.state.home.snapshot().await;
+    assert_eq!(home.entities[0].aliases[0].chars().count(), MAX_ALIAS_CHARS);
+    assert!(home.entities[0].aliases.iter().any(|alias| alias == "ok"));
 }
 
 #[tokio::test]
