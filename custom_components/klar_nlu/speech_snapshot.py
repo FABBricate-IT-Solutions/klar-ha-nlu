@@ -111,10 +111,7 @@ def _entity(row: dict[str, Any], unit_system: str = "metric") -> dict[str, Any]:
         elif key in {"temperature_unit", "unit_of_measurement"}:
             attrs[key] = str(value)[:MAX_ATTR]
     # H-05: HA climate states often omit temperature_unit once values are in home units.
-    if (
-        "temperature_unit" not in attrs
-        and any(key in attrs for key in ("current_temperature", "temperature"))
-    ):
+    if "temperature_unit" not in attrs and any(key in attrs for key in ("current_temperature", "temperature")):
         attrs["temperature_unit"] = "°F" if unit_system == "imperial" else "°C"
     return {
         "entity_id": str(row.get("entity_id") or "")[:128],

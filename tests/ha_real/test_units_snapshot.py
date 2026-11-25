@@ -12,6 +12,7 @@ from pytest_homeassistant_custom_component.common import MockConfigEntry
 from support import spoken_input
 
 from custom_components.klar_nlu import dispatch, weather_forecast
+from custom_components.klar_nlu.engine import async_sync_unit_system
 from custom_components.klar_nlu.units import ha_unit_system
 
 
@@ -56,8 +57,6 @@ async def test_setup_copies_ha_unit_system_to_the_engine(
 ) -> None:
     hass.config.units = US_CUSTOMARY_SYSTEM
     # Re-run the seed path the config entry uses after setup.
-    from custom_components.klar_nlu.engine import async_sync_unit_system
-
     await async_sync_unit_system(hass, klar)
     assert engine.settings.get("unit_system") == "imperial"
 
