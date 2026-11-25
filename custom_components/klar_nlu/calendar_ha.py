@@ -44,6 +44,8 @@ def _slot(item: dict, name: str) -> str:
     return ""
 
 
+# Engine weekday slots only (parse/calendar weekday_key). Full names like "friday"
+# stay unreadable here so unclear dates ask instead of writing for today.
 _WEEKDAYS = {
     "mon": 0,
     "tue": 1,
@@ -52,13 +54,6 @@ _WEEKDAYS = {
     "fri": 4,
     "sat": 5,
     "sun": 6,
-    "monday": 0,
-    "tuesday": 1,
-    "wednesday": 2,
-    "thursday": 3,
-    "friday": 4,
-    "saturday": 5,
-    "sunday": 6,
 }
 
 

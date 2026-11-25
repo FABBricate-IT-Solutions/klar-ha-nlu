@@ -472,6 +472,20 @@ class CalendarDispatchTests(unittest.TestCase):
         speech = say.list_speech([later, earlier], "en", hass)
         self.assertLess(speech.index("earlier"), speech.index("later"))
 
+    def test_unreadable_day_asks_while_engine_weekday_is_kept(self) -> None:
+        """Full weekday names stay unclear; engine keys like fri resolve to a bound."""
+        hass = _Hass()
+        friday = {"slots": [{"name": "day", "value": "friday"}, {"name": "hour", "value": "15"}]}
+        self.assertIsNone(calendar_ha._when_bounds(friday, hass))
+        next_week = {"slots": [{"name": "day", "value": "next week"}]}
+        self.assertIsNone(calendar_ha._when_bounds(next_week, hass))
+        fri = {"slots": [{"name": "day", "value": "fri"}, {"name": "hour", "value": "15"}]}
+        bounds = calendar_ha._when_bounds(fri, hass)
+        self.assertIsNotNone(bounds)
+        start, _end, all_day = bounds
+        self.assertFalse(all_day)
+        self.assertEqual(start.hour, 15)
+
 
 if __name__ == "__main__":
     unittest.main()
