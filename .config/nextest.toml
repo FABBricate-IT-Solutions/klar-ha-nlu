@@ -13,6 +13,10 @@ status-level = "fail"
 final-status-level = "flaky"
 default-filter = "not (binary(voice_suite) | binary(full_home))"
 
+[[profile.ci.overrides]]
+filter = 'binary(regional_overlays)'
+slow-timeout = { period = "180s", terminate-after = 3 }
+
 # Job `test` on staging and on pull requests into staging: as `ci`, without the
 # multi-locale parity rubric (weekly language-parity.yml and `ci` on main own it).
 [profile.ci-staging]
@@ -22,6 +26,11 @@ slow-timeout = { period = "120s", terminate-after = 2 }
 status-level = "fail"
 final-status-level = "flaky"
 default-filter = "not (binary(voice_suite) | binary(full_home) | binary(parity_langs))"
+
+# Parent/child overlay suites walk 1k+ conversations twice; 240s is tight on GHA.
+[[profile.ci-staging.overrides]]
+filter = 'binary(regional_overlays)'
+slow-timeout = { period = "180s", terminate-after = 3 }
 
 # Job `dataset-suites`, on every pull request and on staging and main. Klar's own
 # suites only: wohnung_mittel, wohnung_en, wohnung_live, the wohnung_mittel overlay

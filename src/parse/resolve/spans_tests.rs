@@ -145,3 +145,15 @@ fn garagentor_stays_whole_in_compound_expand() {
     assert!(resolved.entities.iter().any(|e| e.entity_id == "lock.front_door"), "{resolved:?}");
     assert!(resolved.entities.iter().any(|e| e.entity_id == "lock.garage_entry"), "{resolved:?}");
 }
+
+#[test]
+fn room_scopes_shared_ceiling_word_to_one_fixture() {
+    let _lang = crate::lang::bind(&["af".into()]);
+    let path = std::path::Path::new(env!("CARGO_MANIFEST_DIR")).join("tests/datasets/full_home/af/home_config.yaml");
+    let home = crate::home::load_home_config(&path).expect("af home");
+    let tokens = crate::parse::normalize::tokenize("skakel plafon sitkamer");
+    let resolved = crate::parse::resolve::resolve(&tokens, &home, Some("light"));
+    assert_eq!(resolved.areas, ["living"], "{resolved:?}");
+    assert!(resolved.ambiguous.is_empty(), "{resolved:?}");
+    assert_eq!(resolved.entities.iter().map(|e| e.entity_id.as_str()).collect::<Vec<_>>(), ["light.living_ceiling"], "{resolved:?}");
+}

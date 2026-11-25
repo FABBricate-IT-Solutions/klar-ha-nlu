@@ -387,6 +387,11 @@ pub(crate) fn take_linked(
     if entities.len() == 1 && is_generic_room_light(&entities[0], home, cat) && spoken_as_room_light_form(tokens, &entities[0], home) {
         return None;
     }
+    // Shared fixture word ("plafon") hits every room's ceiling; after room scope only one
+    // remains — take it, or AreaCommand clarifies every lamp in that room.
+    if entities.is_empty() && ambiguous.len() == 1 {
+        entities = std::mem::take(&mut ambiguous);
+    }
     // Same-room siblings sharing a short label ("nachttisch", "Kugel") — act on all, do not ask.
     if entities.is_empty() && ambiguous.len() > 1 {
         let same_area = ambiguous.iter().all(|entity| entity.area == ambiguous[0].area);
