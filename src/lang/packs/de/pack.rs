@@ -71,7 +71,7 @@ pub const PACK: LanguagePack = LanguagePack {
         particles: &["an", "aus", "ein", "auf", "zu"],
         affirm: &["ja", "ok", "okay"],
         or_words: &["oder"],
-        except_words: &["ausser", "ohne"],
+        except_words: &["ausser", "ohne", "ausgenommen", "bis auf", "abgesehen von", "mit ausnahme von"],
         all_words: &[
             "alle",
             "allen",

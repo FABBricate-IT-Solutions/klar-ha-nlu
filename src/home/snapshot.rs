@@ -76,6 +76,9 @@ pub struct SnapshotEntity {
     pub labels: Vec<String>,
     #[serde(default)]
     pub disabled: bool,
+    /// The user's device class, or the integration's when the user set none.
+    #[serde(default)]
+    pub device_class: Option<String>,
 }
 
 #[derive(Debug, Deserialize)]
@@ -148,6 +151,11 @@ pub fn ingest(snapshot: HomeSnapshot) -> Result<HomeGraph, SnapshotError> {
     let area_ids = areas.iter().map(|area| area.area_id.as_str()).collect::<HashSet<_>>();
     let assist_ids: HashSet<String> =
         snapshot.assist.as_ref().map(|ids| ids.iter().filter(|id| id.contains('.')).cloned().collect()).unwrap_or_default();
+    let device_classes = snapshot
+        .entities
+        .iter()
+        .filter_map(|entity| Some((entity.entity_id.clone(), clean(entity.device_class.as_deref())?.to_lowercase())))
+        .collect();
     let entities = snapshot
         .entities
         .into_iter()
@@ -175,7 +183,7 @@ pub fn ingest(snapshot: HomeSnapshot) -> Result<HomeGraph, SnapshotError> {
         .collect();
     let assist = snapshot.assist.map(|ids| ids.into_iter().filter(|id| id.contains('.')).collect());
     let registered_intents = snapshot.registered_intents.into_iter().filter(|name| !name.is_empty() && name.len() <= 64).take(64).collect();
-    let mut graph = HomeGraph { entities, areas, floors, assist, registered_intents, ..HomeGraph::default() };
+    let mut graph = HomeGraph { entities, areas, floors, assist, registered_intents, device_classes, ..HomeGraph::default() };
     crate::home::labels::rebuild_label_index(&mut graph);
     Ok(graph)
 }
@@ -200,6 +208,7 @@ fn validate(snapshot: &HomeSnapshot) -> Result<(), SnapshotError> {
         optional_id(entity.area_id.as_deref(), "entity area_id")?;
         optional_id(entity.device_id.as_deref(), "entity device_id")?;
         optional_name(entity.platform.as_deref(), "entity platform")?;
+        optional_id(entity.device_class.as_deref(), "entity device_class")?;
         valid_aliases(&entity.aliases)?;
         valid_aliases(&entity.labels)?;
     }
@@ -332,6 +341,7 @@ mod tests {
                 aliases: vec!["decke".into()],
                 labels: vec!["Licht".into()],
                 disabled: false,
+                device_class: None,
             }],
             devices: Vec::new(),
             areas: vec![SnapshotArea {
@@ -370,6 +380,13 @@ mod tests {
     }
 
     #[test]
+    fn ingest_keeps_the_device_class() {
+        let mut raw = snapshot();
+        raw.entities[0].device_class = Some(" Garage ".into());
+        assert_eq!(ingest(raw).expect("snapshot").device_class("light.living"), Some("garage"));
+    }
+
+    #[test]
     fn rejects_bad_schema_and_caps() {
         let mut bad = snapshot();
         bad.schema_version = "9".into();
@@ -387,6 +404,7 @@ mod tests {
                 aliases: Vec::new(),
                 labels: Vec::new(),
                 disabled: false,
+                device_class: None,
             })
             .collect();
         assert_eq!(ingest(huge).unwrap_err(), SnapshotError::Caps);
@@ -417,6 +435,7 @@ mod tests {
             aliases: Vec::new(),
             labels: Vec::new(),
             disabled: true,
+            device_class: None,
         });
         let home = ingest(raw).expect("snapshot");
         assert!(home.areas[0].floor_id.is_none());
@@ -437,6 +456,7 @@ mod tests {
             aliases: vec!["Wetter".into()],
             labels: Vec::new(),
             disabled: false,
+            device_class: None,
         });
         raw.entities.push(SnapshotEntity {
             entity_id: "sensor.openweathermap_temperatur".into(),
@@ -449,6 +469,7 @@ mod tests {
             aliases: Vec::new(),
             labels: Vec::new(),
             disabled: false,
+            device_class: None,
         });
         raw.entities.push(SnapshotEntity {
             entity_id: "sensor.hidden_temp".into(),
@@ -461,6 +482,7 @@ mod tests {
             aliases: Vec::new(),
             labels: Vec::new(),
             disabled: false,
+            device_class: None,
         });
         raw.assist = Some(vec!["light.living".into(), "weather.openweathermap".into(), "sensor.openweathermap_temperatur".into()]);
         let home = ingest(raw).expect("snapshot");

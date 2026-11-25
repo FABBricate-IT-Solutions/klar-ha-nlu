@@ -1,7 +1,9 @@
 //! What the user's rules and the built-in risk classes say about one plan, step by step.
 
-use crate::types::{allow_permitted_step, step_rules, Intent, IntentPlan, PolicyHit, PolicyRule};
+use crate::lang::catalog;
+use crate::types::{allow_permitted_step, step_rules, HomeGraph, Intent, IntentPlan, PolicyHit, PolicyRule};
 
+use super::reach::moves_entrance;
 use super::validation::risky_intent;
 
 const BROAD_PLAN_STEPS: usize = 8;
@@ -17,8 +19,14 @@ fn only_a_light(intent: &Intent) -> bool {
     light && matches!(intent.name.as_str(), "HassTurnOn" | "HassTurnOff" | "HassLightSet")
 }
 
-pub(super) fn requires_confirmation(plan: &IntentPlan) -> bool {
-    broad_plan(plan) || plan.steps.iter().any(|step| risky_intent(&step.intent))
+/// The risk of one step comes from what it is and from the devices it reaches: a way into
+/// the home asks whichever direction it moves.
+pub(super) fn risky_step(intent: &Intent, home: &HomeGraph) -> bool {
+    risky_intent(intent) || moves_entrance(intent, home, catalog())
+}
+
+pub(super) fn requires_confirmation(plan: &IntentPlan, home: &HomeGraph) -> bool {
+    broad_plan(plan) || plan.steps.iter().any(|step| risky_step(&step.intent, home))
 }
 
 pub(super) struct Verdict<'a> {
@@ -29,7 +37,7 @@ pub(super) struct Verdict<'a> {
 }
 
 /// `inherited` marks a plan that reverses an action which itself needed a confirmation.
-pub(super) fn judge<'a>(rules: &'a [PolicyRule], plan: &IntentPlan, confirm_on: bool, inherited: bool) -> Verdict<'a> {
+pub(super) fn judge<'a>(rules: &'a [PolicyRule], plan: &IntentPlan, home: &HomeGraph, confirm_on: bool, inherited: bool) -> Verdict<'a> {
     let hits = step_rules(rules, plan);
     let first = |wanted: PolicyHit| hits.iter().flatten().find(|(_, hit)| *hit == wanted).copied();
     if let Some(block) = first(PolicyHit::Block) {
@@ -43,7 +51,7 @@ pub(super) fn judge<'a>(rules: &'a [PolicyRule], plan: &IntentPlan, confirm_on: 
         .collect();
     let every_step_allowed = allowed.iter().all(|allowed| *allowed);
     let asked_by_rule = confirm_on && first(PolicyHit::Confirm).is_some();
-    let step_risk = plan.steps.iter().zip(&allowed).any(|(step, allowed)| !allowed && risky_intent(&step.intent));
+    let step_risk = plan.steps.iter().zip(&allowed).any(|(step, allowed)| !allowed && risky_step(&step.intent, home));
     let plan_risk = !every_step_allowed && (inherited || broad_plan(plan));
     let risky = asked_by_rule || (confirm_on && (step_risk || plan_risk));
     let rule = if asked_by_rule {
@@ -59,8 +67,8 @@ pub(super) fn judge<'a>(rules: &'a [PolicyRule], plan: &IntentPlan, confirm_on: 
 
 #[cfg(test)]
 mod tests {
-    use super::*;
-    use crate::types::{Intent, PolicyEffect, PolicyMatch};
+    use super::{Verdict, BROAD_PLAN_STEPS};
+    use crate::types::{HomeGraph, Intent, IntentPlan, PolicyEffect, PolicyHit, PolicyMatch, PolicyRule};
 
     fn rule(entity: &str, effect: PolicyEffect) -> PolicyRule {
         PolicyRule {
@@ -76,6 +84,14 @@ mod tests {
 
     fn plan(intents: Vec<Intent>) -> IntentPlan {
         IntentPlan::from_intents(intents, 1.0, &[])
+    }
+
+    fn judge<'a>(rules: &'a [PolicyRule], plan: &IntentPlan, confirm_on: bool, inherited: bool) -> Verdict<'a> {
+        super::judge(rules, plan, &HomeGraph::default(), confirm_on, inherited)
+    }
+
+    fn requires_confirmation(plan: &IntentPlan) -> bool {
+        super::requires_confirmation(plan, &HomeGraph::default())
     }
 
     fn close(entity: &str) -> Intent {

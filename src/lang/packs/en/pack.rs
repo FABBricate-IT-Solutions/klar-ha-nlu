@@ -68,7 +68,7 @@ pub const PACK: LanguagePack = LanguagePack {
         particles: &["on", "off", "open", "close"],
         affirm: &["yes", "ok", "okay"],
         or_words: &["or"],
-        except_words: &["except"],
+        except_words: &["except", "except for", "apart from", "aside from", "other than", "excluding", "excepting"],
         all_words: &["all", "everywhere", "every", "entire", "whole"],
         query_hint: &["what", "whats", "how", "are", "is", "check", "tell", "status", "state", "show", "get"],
         question_starts: &["what", "whats", "how", "is", "are", "status", "where", "report", "get"],

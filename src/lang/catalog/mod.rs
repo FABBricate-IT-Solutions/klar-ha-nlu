@@ -79,6 +79,11 @@ impl Catalog {
         self.pack_has(t, |pack| pack.talk.except_words)
     }
 
+    /// Exception words and phrases of every bound pack: "except", "apart from", "bis auf".
+    pub fn excepts(&self) -> impl Iterator<Item = &'static str> + '_ {
+        self.packs.iter().flat_map(|pack| pack.talk.except_words.iter().copied())
+    }
+
     pub fn is_query_hint(&self, t: &str) -> bool {
         self.query_hint().contains(t)
     }

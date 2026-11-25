@@ -182,6 +182,33 @@ class SyncTests(unittest.TestCase):
         snapshot = sync.HomeGraphSync(hass, entry, "http://127.0.0.1:10520", None).build_snapshot()
         self.assertEqual(snapshot["assist"], [])
 
+    def test_snapshot_carries_the_device_class_where_one_is_set(self) -> None:
+        def cover(entity_id: str, **classes: str | None) -> SimpleNamespace:
+            return SimpleNamespace(
+                entity_id=entity_id, name=entity_id, original_name=None, has_entity_name=False, area_id=None,
+                device_id=None, platform=None, aliases=[], labels=[], disabled_by=None, **classes,
+            )
+
+        entities = [
+            cover("cover.by_integration", device_class=None, original_device_class="garage"),
+            cover("cover.by_user", device_class="gate", original_device_class="shutter"),
+            cover("cover.unset", device_class=None, original_device_class=None),
+            cover("cover.old_registry"),
+        ]
+        sync.entity_registry.async_get = lambda _hass: SimpleNamespace(entities=_Map(*entities))
+        sync.device_registry.async_get = lambda _hass: SimpleNamespace(devices=_Map())
+        sync.area_registry.async_get = lambda _hass: SimpleNamespace(areas=_Map())
+        sync.floor_registry.async_get = lambda _hass: SimpleNamespace(floors=_Map())
+        sync.label_registry.async_get = lambda _hass: SimpleNamespace(labels=_Map())
+        entry = SimpleNamespace(options={}, data={})
+        snapshot = sync.HomeGraphSync(SimpleNamespace(), entry, "http://127.0.0.1:10520", None).build_snapshot()
+        classes = {entity["entity_id"]: entity.get("device_class") for entity in snapshot["entities"]}
+        self.assertEqual(classes["cover.by_integration"], "garage")
+        self.assertEqual(classes["cover.by_user"], "gate")
+        # No class, no key: the snapshot stays as it was for every other entity.
+        self.assertNotIn("device_class", next(e for e in snapshot["entities"] if e["entity_id"] == "cover.unset"))
+        self.assertNotIn("device_class", next(e for e in snapshot["entities"] if e["entity_id"] == "cover.old_registry"))
+
     def test_large_snapshot_keeps_every_enabled_entity_regardless_of_exposure_or_domain(self) -> None:
         count = 2216
         domains = ["light", "sensor", "automation", "button", "binary_sensor", "update", "person"]

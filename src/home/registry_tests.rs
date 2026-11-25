@@ -35,6 +35,8 @@ fn raw(id: &str) -> RawEntity {
         labels: vec![],
         disabled_by: None,
         device_id: None,
+        device_class: None,
+        original_device_class: None,
     }
 }
 
