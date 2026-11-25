@@ -85,6 +85,9 @@ def _load_config_flow() -> types.ModuleType:
         LIST="list",
     )
     helpers.selector = selector
+    aiohttp_client = types.ModuleType("homeassistant.helpers.aiohttp_client")
+    aiohttp_client.async_get_clientsession = lambda hass: None
+    helpers.aiohttp_client = aiohttp_client
     package = _module(PACKAGE)
     modules = {
         "voluptuous": vol,
@@ -94,6 +97,7 @@ def _load_config_flow() -> types.ModuleType:
         "homeassistant.data_entry_flow": data_entry_flow,
         "homeassistant.helpers": helpers,
         "homeassistant.helpers.selector": selector,
+        "homeassistant.helpers.aiohttp_client": aiohttp_client,
         PACKAGE: package,
     }
     with patch.dict(sys.modules, modules):
