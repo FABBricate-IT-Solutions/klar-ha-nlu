@@ -20,11 +20,19 @@ _TIMEOUT = ClientTimeout(total=8)
 
 
 def boost_path(hass: HomeAssistant, relative: str | None = None) -> Path:
+    """Resolve a write path under the HA config dir only (A-05)."""
     name = (relative or DEFAULT_RELATIVE).strip() or DEFAULT_RELATIVE
+    root = Path(hass.config.config_dir).resolve()
     path = Path(name)
     if path.is_absolute():
-        return path
-    return Path(hass.config.config_dir) / path
+        candidate = path.resolve()
+    else:
+        candidate = (root / path).resolve()
+    try:
+        candidate.relative_to(root)
+    except ValueError as err:
+        raise ValueError(f"ASR boost path must stay under {root}") from err
+    return candidate
 
 
 async def fetch_asr_boost(

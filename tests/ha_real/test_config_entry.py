@@ -2,7 +2,6 @@
 
 from __future__ import annotations
 
-import pytest
 from engine_fake import ENGINE_URL, FakeEngine
 from homeassistant.config_entries import ConfigEntryState
 from homeassistant.core import HomeAssistant
@@ -94,10 +93,6 @@ async def test_setup_twice_keeps_one_agent(hass: HomeAssistant, klar: MockConfig
     assert len(agents) == 1
 
 
-@pytest.mark.xfail(
-    strict=True,
-    reason="H-21: services survive unload; package 2.13 removes them with the entry",
-)
 async def test_unload_removes_services(hass: HomeAssistant, klar: MockConfigEntry, engine: FakeEngine) -> None:
     assert await hass.config_entries.async_unload(klar.entry_id)
     await hass.async_block_till_done()

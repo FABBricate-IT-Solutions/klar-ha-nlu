@@ -125,10 +125,17 @@ class UiProxyTests(unittest.TestCase):
         secret = b"s" * 32
         self.assertFalse(proxy.request_allowed(_FakeRequest(), secret, now=1000))
 
-    def test_request_allowed_accepts_ha_user(self) -> None:
+    def test_request_allowed_accepts_ha_admin(self) -> None:
         secret = b"s" * 32
-        req = _FakeRequest(authenticated=True, user=SimpleNamespace(id="u1"))
+        req = _FakeRequest(authenticated=True, user=SimpleNamespace(id="u1", is_admin=True))
         self.assertTrue(proxy.request_allowed(req, secret, now=1000))
+
+    def test_request_allowed_rejects_non_admin(self) -> None:
+        # A-04: a normal HA user must not receive the engine token via the proxy.
+        secret = b"s" * 32
+        req = _FakeRequest(authenticated=True, user=SimpleNamespace(id="u2", is_admin=False))
+        self.assertFalse(proxy.request_allowed(req, secret, now=1000))
+        self.assertFalse(proxy.ha_request_admin(req))
 
     def test_request_allowed_accepts_valid_cookie(self) -> None:
         secret = b"s" * 32

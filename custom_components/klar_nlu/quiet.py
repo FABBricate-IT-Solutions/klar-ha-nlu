@@ -168,7 +168,7 @@ async def _call(hass: Any, domain: str, service: str, data: dict[str, Any], enti
             service,
             data,
             target={"entity_id": entity_id},
-            blocking=False,
+            blocking=True,
         )
         return True
     except Exception as err:  # noqa: BLE001 — satellite audio is optional
