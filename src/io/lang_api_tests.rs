@@ -194,3 +194,23 @@ fn explain_speech_speaks_path_ids() {
     assert!(de.speech.contains("Haus `prefer-ceiling`"));
     assert!(de.speech.contains("ausgeführt"));
 }
+
+#[test]
+fn language_list_offers_stable_locales_and_what_is_configured() {
+    let codes = |settings: &Settings, all: bool| language_rows(settings, all).into_iter().map(|row| row.code).collect::<Vec<_>>();
+    let fresh = Settings::default();
+    let offered_now = language_rows(&fresh, false);
+    assert!(offered_now.iter().all(|row| row.tier == Tier::Stable && row.offered), "only stable locales without the switch");
+    assert!(codes(&fresh, false).contains(&"de".to_string()) && codes(&fresh, false).contains(&"en".to_string()));
+    let hidden = language_rows(&fresh, true).into_iter().find(|row| row.tier == Tier::Experimental).expect("an experimental locale");
+    assert!(!hidden.offered && !codes(&fresh, false).contains(&hidden.code));
+
+    let switched = Settings { experimental_languages: true, ..Settings::default() };
+    assert_eq!(codes(&switched, false).len(), crate::lang::languages().len());
+
+    // A house that runs an experimental locale still sees it, marked as experimental.
+    let running = Settings { languages: vec![hidden.code.clone()], ..Settings::default() };
+    let row = language_rows(&running, false).into_iter().find(|row| row.code == hidden.code).expect("configured locale stays listed");
+    assert!(row.offered && row.tier == Tier::Experimental);
+    assert_eq!(codes(&fresh, true).len(), crate::lang::languages().len());
+}

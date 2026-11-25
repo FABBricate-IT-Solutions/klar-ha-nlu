@@ -15,6 +15,7 @@ mod packs;
 mod registry;
 mod resolver;
 mod speech;
+mod tier;
 mod user;
 mod validate;
 mod verbs;
@@ -37,6 +38,7 @@ pub use resolver::{
     reset_runtime_packs,
 };
 pub use speech::Speech;
+pub use tier::{check_selection, check_settings, in_use, offered, tier_of, Tier};
 pub use user::{
     push_revision, revision_hash, select_revision, validate_custom, validate_language, LanguageOverlay, LanguageRevision, OverlayIssue,
     SetDelta, MAX_HISTORY, MAX_USER_INTENTS,
@@ -155,6 +157,17 @@ pub fn catalog_for(codes: &[String]) -> &'static Catalog {
         resolver::apply_user_overlay(&mut catalog, user);
     }
     insert_cached(&mut map, key, catalog)
+}
+
+/// The catalog a request binds under these settings. `languages` may be empty (every
+/// locale may be pinned) or name nothing a pack answers; a request that carries no pin
+/// of its own then binds the configured default pack instead of an empty catalog.
+pub fn bound_catalog(settings: &crate::types::Settings) -> &'static Catalog {
+    let catalog = catalog_for(&settings.languages);
+    if catalog.langs.is_empty() {
+        return catalog_for(&[settings.default_pack().to_string()]);
+    }
+    catalog
 }
 
 fn cached_builtins(ids: &[LangId], key: &str) -> &'static Catalog {
