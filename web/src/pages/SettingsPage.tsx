@@ -109,7 +109,8 @@ export function SettingsPage({
   const refresh = () => api.bundle().then(setBundle).catch(() => undefined);
   const loadExtras = () => {
     refresh();
-    api.languages().then(setPacks).catch(() => undefined);
+    // `all=true` so the languages view can show tier badges and filter by the draft switch.
+    api.languages(true).then(setPacks).catch(() => undefined);
     api.llmEndpoint().then((next) => setLlmReady(Boolean(next.configured))).catch(() => undefined);
   };
   useEffect(loadExtras, []);
@@ -124,7 +125,7 @@ export function SettingsPage({
       refresh();
       toastSaved(t);
     } catch (err) {
-      toastSaveFailed(t, err);
+      toastSaveFailed(t, err, "settings");
     } finally {
       setSaving(false);
     }

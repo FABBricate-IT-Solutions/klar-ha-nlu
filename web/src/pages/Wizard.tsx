@@ -174,7 +174,7 @@ export function Wizard({
       setSaveError("");
       return true;
     } catch (err) {
-      setSaveError(saveFailMessage(chrome, err));
+      setSaveError(saveFailMessage(chrome, err, "settings"));
       return false;
     }
   };
@@ -213,7 +213,7 @@ export function Wizard({
     setDraft(settings);
     setSaveError("");
     llmWasMissing.current = false;
-    api.languages().then(setPacks).catch(() => undefined);
+    api.languages(true).then(setPacks).catch(() => undefined);
     api.llmEndpoint().then((next) => {
       fillLlm(next);
       llmWasMissing.current = !next.configured;

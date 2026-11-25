@@ -83,4 +83,33 @@ describe("the Settings page", () => {
     expect(engine.stored.llmKey).toBe("sk-rotated");
     expect(engine.writes("/api/settings")).toEqual([]);
   });
+
+  it("saves the experimental switch and default pack with the rest of settings", async () => {
+    const engine = fakeEngine();
+    const { user } = openSettings("languages");
+    const experimental = await screen.findByRole("switch", { name: en.experimentalLanguages });
+    expect(experimental).toHaveAttribute("aria-checked", "false");
+
+    await user.click(experimental);
+    await user.click(screen.getByRole("button", { name: en.save }));
+
+    expect(await screen.findByText(en.saveOk)).toBeInTheDocument();
+    expect(engine.stored.settings).toMatchObject({
+      experimental_languages: true,
+      default_language: "",
+      languages: ["de"],
+    });
+  });
+
+  it("explains a 422 when a save picks an experimental language without the switch", async () => {
+    const engine = fakeEngine();
+    engine.on("POST /api/settings", () => ({ status: 422 }));
+    const { user } = openSettings("languages");
+    await screen.findByRole("switch", { name: en.experimentalLanguages });
+
+    await user.click(screen.getByRole("button", { name: en.save }));
+
+    expect(await screen.findByText(en.saveExperimentalRefused)).toBeInTheDocument();
+    expect(engine.stored.settings.experimental_languages).toBe(false);
+  });
 });

@@ -5,8 +5,14 @@ function errorText(err: unknown): string {
   return err instanceof Error ? err.message : String(err || "");
 }
 
-export function saveFailMessage(t: Messages, err: unknown): string {
-  return errorText(err).startsWith("401") ? t.saveUnauthorized : t.saveFail;
+export type SaveFailKind = "settings" | "generic";
+
+export function saveFailMessage(t: Messages, err: unknown, kind: SaveFailKind = "generic"): string {
+  const text = errorText(err);
+  if (text.startsWith("401")) return t.saveUnauthorized;
+  // Settings 422 is the engine refusing an experimental language pick (#415).
+  if (kind === "settings" && text.startsWith("422")) return t.saveExperimentalRefused;
+  return t.saveFail;
 }
 
 export function toastSaved(t: Messages, detail?: string): void {
@@ -17,10 +23,10 @@ export function toastSaved(t: Messages, detail?: string): void {
   toast.success(t.saveOk);
 }
 
-export function toastSaveFailed(t: Messages, err: unknown): void {
+export function toastSaveFailed(t: Messages, err: unknown, kind: SaveFailKind = "generic"): void {
   const text = errorText(err);
-  const title = saveFailMessage(t, err);
-  if (text.startsWith("401") || !text) {
+  const title = saveFailMessage(t, err, kind);
+  if (text.startsWith("401") || text.startsWith("422") || !text) {
     toast.error(title);
     return;
   }
