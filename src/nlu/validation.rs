@@ -67,10 +67,14 @@ fn validate_target(intent: &Intent, home: &HomeGraph) -> Result<(), PlanInvalid>
     if matches!(domain, Some("binary_sensor" | "weather")) && intent.name != "HassGetState" {
         return Err(PlanInvalid::Schema);
     }
-    let window_query = intent.name == "HassGetState" && domain == Some("binary_sensor") && intent.slot("device_class") == Some("window");
-    // Whole-home light list asks ("which lights are on") name a domain + response, no room (P-13).
+    // Whole-home sensor lists (windows, doors, …) and light lists name a domain + response, no room.
+    let sensor_list_query = intent.name == "HassGetState"
+        && intent.slot("response") == Some("list")
+        && intent.slot("device_class").is_some()
+        && matches!(domain, Some("binary_sensor" | "sensor"));
     let lights_list_query = intent.name == "HassGetState" && domain == Some("light") && intent.slot("response") == Some("list");
-    if requires_target(&intent.name) && !window_query && !lights_list_query && entity_id.is_none() && area.is_none() && floor.is_none() {
+    if requires_target(&intent.name) && !sensor_list_query && !lights_list_query && entity_id.is_none() && area.is_none() && floor.is_none()
+    {
         return Err(PlanInvalid::MissingTarget);
     }
     if super::reach::unbounded(intent) {
@@ -267,6 +271,7 @@ fn allowed_domain(domain: &str) -> bool {
         domain,
         "light"
             | "binary_sensor"
+            | "sensor"
             | "switch"
             | "lock"
             | "cover"

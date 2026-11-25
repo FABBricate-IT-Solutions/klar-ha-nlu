@@ -74,9 +74,10 @@ fn window_list_replies() {
         ("en", Some("on"), sensors.clone(), "These windows are open: Kitchen Window."),
         ("en", Some("off"), sensors.clone(), "These windows are closed: Office Window."),
         ("en", None, sensors.clone(), "Window sensors: Kitchen Window, Office Window."),
-        ("en", Some("on"), json!([]), "No windows are open."),
+        // Empty entity list means no sensors are visible — not "none are open" (P-17).
+        ("en", Some("on"), json!([]), "No window sensors were found."),
         ("de", Some("on"), sensors.clone(), "Diese Fenster sind offen: Kitchen Window."),
-        ("de", Some("off"), json!([]), "Es sind keine Fenster geschlossen."),
+        ("de", Some("off"), json!([]), "Es wurden keine Fenstersensoren gefunden."),
         ("nl", Some("on"), sensors.clone(), "Deze ramen staan open: Kitchen Window."),
         ("nl", None, json!([]), "Er zijn geen raamsensoren gevonden."),
     ] {

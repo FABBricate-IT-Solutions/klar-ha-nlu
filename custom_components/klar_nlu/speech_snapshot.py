@@ -137,22 +137,28 @@ def entities_from_handled(
     item: dict[str, Any] | None = None,
     hass: Any = None,
 ) -> list[dict[str, Any]]:
-    states = list(getattr(handled, "matched_states", None) or [])
-    filtered_list = any(
-        slot.get("name") == "response" and slot.get("value") == "list"
-        for slot in (item or {}).get("slots", [])
+    slots = {
+        str(slot.get("name") or ""): str(slot.get("value") or "")
+        for slot in (item or {}).get("slots") or []
         if isinstance(slot, dict)
-    )
-    if not states and not filtered_list:
+    }
+    states = list(getattr(handled, "matched_states", None) or [])
+    filtered_list = slots.get("response") == "list"
+    # Device-class lists: keep unmatched too so speech can tell "none open" from
+    # "no sensors visible" (P-17). State filtering stays in the engine renderer.
+    device_class_list = filtered_list and bool(slots.get("device_class"))
+    if device_class_list:
+        seen = {getattr(state, "entity_id", None) for state in states}
+        for state in list(getattr(handled, "unmatched_states", None) or []):
+            entity_id = getattr(state, "entity_id", None)
+            if entity_id not in seen:
+                states.append(state)
+                seen.add(entity_id)
+    elif not states and not filtered_list:
         states = list(getattr(handled, "unmatched_states", None) or [])
     rows = [_state_row(state) for state in states]
     rows = [row for row in rows if row]
     if not rows:
-        slots = {
-            str(slot.get("name") or ""): str(slot.get("value") or "")
-            for slot in (item or {}).get("slots") or []
-            if isinstance(slot, dict)
-        }
         entity_id = slots.get("entity_id") or ""
         if entity_id:
             domain = entity_id.split(".", 1)[0]
@@ -164,6 +170,7 @@ def entities_from_handled(
                     "state": "",
                     "area": slots.get("area") or None,
                     "area_name": slots.get("area_name") or None,
+                    "device_class": slots.get("device_class") or None,
                     "attributes": {},
                 }
             ]

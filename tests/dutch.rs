@@ -136,7 +136,7 @@ fn window_list_speech_filters_and_reports_empty_results_in_dutch() {
     })).unwrap();
     assert_eq!(render_snapshot(&snapshot).speech, "Deze ramen staan open: Kantoorraam.");
     snapshot.entities.clear();
-    assert_eq!(render_snapshot(&snapshot).speech, "Er staan geen ramen open.");
+    assert_eq!(render_snapshot(&snapshot).speech, "Er zijn geen raamsensoren gevonden.");
 }
 
 #[test]

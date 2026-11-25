@@ -24,12 +24,12 @@ mod reminder;
 mod retrieval;
 mod risk;
 pub mod semantic;
+mod sensor_query;
 mod speech;
 mod unmet;
 mod validation;
 mod weather_lex;
 mod weather_words;
-mod windows;
 
 use crate::session::Session;
 use crate::types::{
