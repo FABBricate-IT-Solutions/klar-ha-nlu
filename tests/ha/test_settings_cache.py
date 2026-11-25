@@ -17,6 +17,17 @@ PACKAGE = "klar_settings_cache_test"
 
 
 def _install_ha_stubs() -> None:
+    if "aiohttp" not in sys.modules:
+        aiohttp = types.ModuleType("aiohttp")
+        aiohttp.ClientError = Exception
+        aiohttp.ClientSession = object
+
+        class ClientTimeout:
+            def __init__(self, total=None):
+                self.total = total
+
+        aiohttp.ClientTimeout = ClientTimeout
+        sys.modules["aiohttp"] = aiohttp
     if "homeassistant" in sys.modules:
         return
     ha = types.ModuleType("homeassistant")
@@ -28,15 +39,6 @@ def _install_ha_stubs() -> None:
     ha.helpers.issue_registry = types.ModuleType("homeassistant.helpers.issue_registry")
     ha.helpers.aiohttp_client = types.ModuleType("homeassistant.helpers.aiohttp_client")
     ha.helpers.aiohttp_client.async_get_clientsession = MagicMock()
-    aiohttp = types.ModuleType("aiohttp")
-    aiohttp.ClientError = Exception
-    aiohttp.ClientSession = object
-
-    class ClientTimeout:
-        def __init__(self, total=None):
-            self.total = total
-
-    aiohttp.ClientTimeout = ClientTimeout
     sys.modules.update(
         {
             "homeassistant": ha,
@@ -45,7 +47,6 @@ def _install_ha_stubs() -> None:
             "homeassistant.helpers": ha.helpers,
             "homeassistant.helpers.issue_registry": ha.helpers.issue_registry,
             "homeassistant.helpers.aiohttp_client": ha.helpers.aiohttp_client,
-            "aiohttp": aiohttp,
         }
     )
 

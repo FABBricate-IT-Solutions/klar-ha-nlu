@@ -121,11 +121,12 @@ class FakeEngine:
     def install(self, mocker: AiohttpClientMocker) -> None:
         mocker.get(f"{ENGINE_URL}/api/settings", side_effect=self._get_settings)
         mocker.post(f"{ENGINE_URL}/api/settings", side_effect=self._post_settings)
+        mocker.patch(f"{ENGINE_URL}/api/settings", side_effect=self._patch_settings)
         mocker.post(f"{ENGINE_URL}/api/v2/home", side_effect=self._home)
         mocker.post(f"{ENGINE_URL}/api/v2/parse", side_effect=self._parse)
         mocker.post(f"{ENGINE_URL}/api/v2/speech/render", side_effect=self._render)
         rest = re.compile(rf"^{re.escape(ENGINE_URL)}/.*")
-        for method in ("get", "post", "put", "delete"):
+        for method in ("get", "post", "put", "patch", "delete"):
             mocker.request(method, rest, status=404, json={"error": "not_found"})
 
     def _response(self, method: str, url: Any, payload: Any, status: int = 200) -> AiohttpClientMockResponse:
@@ -139,6 +140,12 @@ class FakeEngine:
     async def _post_settings(self, method: str, url: Any, data: Any) -> AiohttpClientMockResponse:
         if self.reachable and isinstance(data, dict):
             self.settings = dict(data)
+        return self._response(method, url, dict(self.settings))
+
+    async def _patch_settings(self, method: str, url: Any, data: Any) -> AiohttpClientMockResponse:
+        # D-08: merge the partial document the way the engine PATCH route does.
+        if self.reachable and isinstance(data, dict):
+            self.settings = {**self.settings, **data}
         return self._response(method, url, dict(self.settings))
 
     async def _home(self, method: str, url: Any, data: Any) -> AiohttpClientMockResponse:
