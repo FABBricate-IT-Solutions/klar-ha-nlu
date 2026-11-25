@@ -21,7 +21,7 @@ Deterministische Sprachsteuerung für Home Assistant — **67 Sprachen**, lokal,
 
 **Breaking V2:** HTTP-Parse läuft nur noch über `POST /api/v2/parse` (`schema_version: "2.0"`). Rust-Engine und Home-Assistant-Integration zusammen aktualisieren. `POST /api/parse` entfällt. Vorhandene `klar_nlu.json`-Overlays laden weiter; `klar migrate import --from` prüft Konflikte, Waisen und unsichere Settings, bevor V2 geschrieben wird.
 
-Jede kompilierte Assist-Locale ist erstklassig. Deutsch und Englisch sind handgeschriebene Referenzpacks und nützliche Beispiele; generierte Packs nutzen denselben Weg. Siehe [Sprachen](docs/languages.md).
+Jede kompilierte Assist-Locale nutzt denselben Engine-Weg. Deutsch und Englisch sind handgeschriebene Referenzpacks und nützliche Beispiele; generierte Packs nutzen denselben Weg. Locales, die ihre An/Aus-Minimalpaare bestehen, sind stabil; die übrigen sind experimentell und werden nur mit dem Experimentell-Schalter angeboten. Siehe [Sprachen](docs/languages.md).
 
 ```
 „Licht im Wohnzimmer an“     →  HassTurnOn   area=wohnzimmer  domain=light

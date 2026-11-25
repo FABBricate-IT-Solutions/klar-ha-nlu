@@ -6,7 +6,7 @@ Public name: **Klar NLU**. Household docs: [getting started](docs/en/getting-sta
 
 - MSRV **1.85** (`rust-toolchain.toml`, `Cargo.toml` `rust-version`)
 - Files stay under **500 lines** (`scripts/check_lang_packs.py` enforces this on packs)
-- Do not invent household languages. Every compiled locale is first-class; do not restore a de+en-only default catalog
+- Do not invent household languages. Every compiled locale runs through the same engine path; do not restore a de+en-only default catalog. A locale's tier (`stable` or `experimental`) says what is tested: it is decided by the minimal pairs in `tests/language_tiers.rs`, never by hand
 - Conventional Commits (`feat:`, `fix:`, `docs:`). Releases: [docs/en/releases.md](docs/en/releases.md). Land language/feature work on `staging` via PR; do not push `staging` or `main` directly.
 
 ## Tests
@@ -37,4 +37,4 @@ How to add a pack: [docs/en/languages.md](docs/en/languages.md). Review generate
 - [ ] `cargo nextest run` (or the CI profile) is green
 - [ ] No secrets (`KLAR_TOKEN`, unredacted bundles)
 - [ ] Docs twins: if you add `docs/en/foo.md`, add `docs/foo.md` (German)
-- [ ] Do not special-case de+en as the only real Assist languages
+- [ ] Do not special-case de+en as the only real Assist languages (a locale becomes stable by passing `tests/language_tiers.rs`)
