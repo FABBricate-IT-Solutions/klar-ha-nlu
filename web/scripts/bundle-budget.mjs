@@ -9,8 +9,8 @@ import { gzipSync } from "node:zlib";
 
 const KB = 1024;
 const BUDGET = {
-  // 2903: error-boundary + typed ApiError (2.15). Package 2.17 splits language packs out of the main chunk.
-  js: { raw: 2903 * KB, gzip: 790 * KB },
+  // 2913: error-boundary + typed ApiError + staging i18n growth (2.15). Package 2.17 splits packs out.
+  js: { raw: 2913 * KB, gzip: 790 * KB },
   css: { raw: 128 * KB, gzip: 22 * KB },
 };
 

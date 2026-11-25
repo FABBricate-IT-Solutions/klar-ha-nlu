@@ -89,10 +89,9 @@ async fn set_policies(
     if !writes_allowed(Some(peer), &headers, &state.token) {
         return Err(StatusCode::UNAUTHORIZED.into());
     }
-    let policies = sanitize_rules(body.policies)
-        .map_err(|msg| HttpError::new(StatusCode::BAD_REQUEST, msg).with_path("policies"))?;
-    let speech_bank = sanitize_speech_bank(body.speech_bank)
-        .map_err(|msg| HttpError::new(StatusCode::BAD_REQUEST, msg).with_path("speech_bank"))?;
+    let policies = sanitize_rules(body.policies).map_err(|msg| HttpError::new(StatusCode::BAD_REQUEST, msg).with_path("policies"))?;
+    let speech_bank =
+        sanitize_speech_bank(body.speech_bank).map_err(|msg| HttpError::new(StatusCode::BAD_REQUEST, msg).with_path("speech_bank"))?;
     let match_controls = crate::parse::sanitize_match_controls(body.match_controls)
         .map_err(|msg| HttpError::new(StatusCode::BAD_REQUEST, msg).with_path("match_controls"))?;
     state
@@ -122,8 +121,7 @@ async fn evaluate_policies(
         return Err(StatusCode::PAYLOAD_TOO_LARGE.into());
     }
     let policies = match body.policies {
-        Some(rules) => sanitize_rules(rules)
-            .map_err(|msg| HttpError::new(StatusCode::BAD_REQUEST, msg).with_path("policies"))?,
+        Some(rules) => sanitize_rules(rules).map_err(|msg| HttpError::new(StatusCode::BAD_REQUEST, msg).with_path("policies"))?,
         None => state.policies.lock().await.clone(),
     };
     let match_controls = match body.match_controls {
