@@ -22,6 +22,7 @@ KEYS = (
     "trainerAllow",
     "trainerAllowOnce",
     "trainerYolo",
+    "trainerYoloConfirm",
     "trainerDeny",
     "trainerAskAgain",
     "trainerSend",
@@ -60,6 +61,7 @@ def lotse(
     slang: str,
     for_lane: str = "Guide",
     trainer: str = "Guide",
+    yolo_confirm: str = "Allow every write tool for this session without asking again?",
 ) -> dict[str, str]:
     return {
         "trainer": trainer,
@@ -81,6 +83,7 @@ def lotse(
         "trainerAllow": allow,
         "trainerAllowOnce": allow_once,
         "trainerYolo": "YOLO",
+        "trainerYoloConfirm": yolo_confirm,
         "trainerDeny": deny,
         "trainerAskAgain": ask,
         "trainerSend": send,
