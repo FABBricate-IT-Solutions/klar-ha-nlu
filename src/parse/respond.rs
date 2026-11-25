@@ -43,7 +43,8 @@ pub fn speak_correction() -> String {
 
 pub fn speak_clarify(names: &[String], home: Option<&HomeGraph>) -> String {
     let pack = speech();
-    let labels: Vec<String> = names.iter().map(|id| clarify_label(id, home)).collect();
+    let mut labels: Vec<String> = names.iter().map(|id| clarify_label(id, home)).collect();
+    disambiguate_clarify_labels(names, &mut labels, home);
     pack.clarify.replace("{names}", &labels.join(pack.clarify_or))
 }
 
@@ -51,23 +52,52 @@ fn describe_all(intents: &[Intent], home: Option<&HomeGraph>) -> String {
     if intents.len() > 1 && intents.iter().all(|i| i.name == intents[0].name) {
         let names: Vec<String> = intents.iter().map(|i| spoken_where(i, home)).filter(|s| !s.is_empty()).collect();
         if names.len() > 1 {
-            if let Some(group) = describe_group(&intents[0].name, &names) {
-                return group;
+            let domain = shared_domain(intents);
+            if let Some(group) = describe_group(&intents[0].name, domain, &names) {
+                return capitalize_sentence(&group);
             }
         }
     }
-    intents.iter().map(|i| describe(i, home)).collect::<Vec<_>>().join(" ")
+    intents.iter().map(|i| capitalize_sentence(&describe(i, home))).filter(|s| !s.is_empty()).collect::<Vec<_>>().join(" ")
 }
 
-fn describe_group(name: &str, wheres: &[String]) -> Option<String> {
+fn describe_group(name: &str, domain: &str, wheres: &[String]) -> Option<String> {
     let pack = speech();
     let joined = join_names(wheres);
-    let template = match name {
-        "HassTurnOn" => pack.group_on,
-        "HassTurnOff" => pack.group_off,
+    let template = match (name, domain) {
+        ("HassTurnOn", "cover") => pack.cover_open,
+        ("HassTurnOff", "cover") => pack.cover_close,
+        ("HassTurnOn", "lock") => pack.lock,
+        ("HassTurnOff", "lock") => pack.unlock,
+        ("HassTurnOn", _) => pack.group_on,
+        ("HassTurnOff", _) => pack.group_off,
         _ => return None,
     };
-    Some(template.replace("{names}", &joined))
+    Some(template.replace("{target}", &joined).replace("{names}", &joined))
+}
+
+fn shared_domain(intents: &[Intent]) -> &str {
+    let first = intent_domain(&intents[0]);
+    if first.is_empty() || intents.iter().any(|intent| intent_domain(intent) != first) {
+        ""
+    } else {
+        first
+    }
+}
+
+fn intent_domain(intent: &Intent) -> &str {
+    if let Some(domain) = intent.slot("domain").filter(|domain| !domain.is_empty()) {
+        return domain;
+    }
+    intent.slot("entity_id").and_then(|id| id.split_once('.')).map(|(domain, _)| domain).unwrap_or("")
+}
+
+fn capitalize_sentence(line: &str) -> String {
+    let mut chars = line.chars();
+    match chars.next() {
+        Some(first) => first.to_uppercase().chain(chars).collect(),
+        None => String::new(),
+    }
 }
 
 fn join_names(names: &[String]) -> String {
@@ -88,22 +118,29 @@ fn describe(intent: &Intent, home: Option<&HomeGraph>) -> String {
     let area = intent.slot("area").unwrap_or("");
     let target = or_home(&where_);
     let fill = |template: &str| template.replace("{target}", &target).replace("{loc}", &loc(area, home)).replace("{name}", &intent.name);
+    let domain = intent_domain(intent);
     match intent.name.as_str() {
         "HassTurnOn" if looks_started(intent.slot("entity_id").unwrap_or("")) => fill(pack.turn_on_scene),
+        "HassTurnOn" if domain == "cover" => fill(pack.cover_open),
+        "HassTurnOff" if domain == "cover" => fill(pack.cover_close),
+        "HassTurnOn" if domain == "lock" => fill(pack.lock),
+        "HassTurnOff" if domain == "lock" => fill(pack.unlock),
         "HassTurnOn" => fill(pack.turn_on),
         "HassTurnOff" => fill(pack.turn_off),
         "HassToggle" => fill(pack.toggle),
-        "HassLightSet" => match (intent.slot("color"), intent.slot("brightness"), intent.slot("brightness_step")) {
-            (Some(color), None, _) => fill(pack.light_color).replace("{color}", &catalog().color_spoken(color)),
-            (_, Some(brightness), _) => fill(pack.light_set).replace("{n}", brightness),
-            (_, _, Some(_)) => fill(pack.get_state),
-            _ => fill(pack.light_set).replace("{n}", "?"),
+        "HassLightSet" => light_set_speech(intent, &fill),
+        "HassSetPosition" => match filled_slot(intent, "position") {
+            Some(n) => fill(pack.set_position).replace("{n}", n),
+            None => fill(pack.get_state),
         },
-        "HassClimateSetTemperature" => {
-            let noun = climate_noun(intent);
-            let subject = if climate_named(&target, noun) { target } else { format!("{noun} {target}") };
-            pack.climate_set.replace("{noun} {target}", &subject).replace("{n}", intent.slot("temperature").unwrap_or("?"))
-        }
+        "HassClimateSetTemperature" => match filled_slot(intent, "temperature") {
+            Some(n) => {
+                let noun = climate_noun(intent);
+                let subject = if climate_named(&target, noun) { target } else { format!("{noun} {target}") };
+                pack.climate_set.replace("{noun} {target}", &subject).replace("{n}", n)
+            }
+            None => fill(pack.get_state),
+        },
         "HassClimateGetTemperature" => fill(pack.get_temp),
         "HassGetState" if intent.slot("device_class") == Some("temperature") => fill(pack.get_temp),
         "HassGetState" => fill(pack.get_state),
@@ -117,7 +154,10 @@ fn describe(intent: &Intent, home: Option<&HomeGraph>) -> String {
         "HassMediaSearchAndPlay" | "MassPlayMedia" => pack.media_search.to_string(),
         "MassTransferQueue" => pack.media_transfer.to_string(),
         "MassFavorite" => pack.media_favorite.to_string(),
-        "HassFanSetSpeed" => pack.fan_set.replace("{n}", intent.slot("percentage").unwrap_or("?")),
+        "HassFanSetSpeed" => match filled_slot(intent, "percentage") {
+            Some(n) => pack.fan_set.replace("{n}", n),
+            None => fill(pack.get_state),
+        },
         "HassVacuumStart" => pack.vacuum_start.replace("{target}", &vacuum_name(&where_)),
         "HassVacuumReturnToBase" => pack.vacuum_dock.replace("{target}", &vacuum_name(&where_)),
         "HassStartTimer" | "HassIncreaseTimer" | "HassDecreaseTimer" => pack.timer_start.to_string(),
@@ -144,6 +184,25 @@ fn describe(intent: &Intent, home: Option<&HomeGraph>) -> String {
         }
         other => pack.done.replace("{name}", other),
     }
+}
+
+fn light_set_speech(intent: &Intent, fill: &dyn Fn(&str) -> String) -> String {
+    let pack = speech();
+    match (intent.slot("color"), filled_slot(intent, "brightness"), intent.slot("brightness_step")) {
+        (Some(color), None, _) => fill(pack.light_color).replace("{color}", &catalog().color_spoken(color)),
+        (_, Some(brightness), _) => fill(pack.light_set).replace("{n}", brightness),
+        (_, _, Some(step)) if is_step_down(step) => fill(pack.light_step_down),
+        (_, _, Some(_)) => fill(pack.light_step_up),
+        _ => fill(pack.get_state),
+    }
+}
+
+fn filled_slot<'a>(intent: &'a Intent, name: &str) -> Option<&'a str> {
+    intent.slot(name).map(str::trim).filter(|value| !value.is_empty())
+}
+
+fn is_step_down(step: &str) -> bool {
+    matches!(step.trim().to_ascii_lowercase().as_str(), "down" | "decrease" | "dimmer" | "dunkler" | "-")
 }
 
 pub(crate) fn spoken_where(intent: &Intent, home: Option<&HomeGraph>) -> String {
@@ -235,6 +294,40 @@ fn clarify_label(id: &str, home: Option<&HomeGraph>) -> String {
         }
     }
     pretty_device(&object_id(id))
+}
+
+/// Same spoken names get a room or floor so "Bathroom or Bathroom?" becomes distinguishable.
+fn disambiguate_clarify_labels(ids: &[String], labels: &mut [String], home: Option<&HomeGraph>) {
+    let folded: Vec<String> = labels.iter().map(|label| compact(label)).collect();
+    for (index, label) in labels.iter_mut().enumerate() {
+        let duplicate = folded.iter().enumerate().any(|(other, value)| other != index && value == &folded[index]);
+        if !duplicate {
+            continue;
+        }
+        let Some(extra) = clarify_place(&ids[index], home) else {
+            continue;
+        };
+        if compact(label).contains(&compact(&extra)) {
+            continue;
+        }
+        *label = format!("{label} ({extra})");
+    }
+}
+
+fn clarify_place(id: &str, home: Option<&HomeGraph>) -> Option<String> {
+    let home = home?;
+    if let Some(area) = home.areas.iter().find(|area| area.area_id == id) {
+        let floor_id = area.floor_id.as_deref()?;
+        return home.floor(floor_id).map(|floor| floor.name.clone());
+    }
+    let ent = home.entities.iter().find(|entity| entity.entity_id == id)?;
+    let area_id = ent.area.as_deref()?;
+    let room = pretty_room(area_id, Some(home));
+    if room.is_empty() {
+        None
+    } else {
+        Some(room)
+    }
 }
 
 fn object_id(id: &str) -> String {

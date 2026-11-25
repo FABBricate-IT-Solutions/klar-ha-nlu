@@ -191,3 +191,75 @@ fn list_complete_and_remove_speech_repeat_the_item() {
     assert_eq!(speak(&[milch("HassListCompleteItem")], Personality::Default, false, None), "Milch abgehakt.");
     assert_eq!(speak(&[milch("HassListRemoveItem")], Personality::Default, false, None), "Milch von der Liste entfernt.");
 }
+
+#[test]
+fn p27_domain_verbs_capitalization_position_and_step() {
+    let _en = bind(&["en".into()]);
+    let cover = Intent::new("HassTurnOn").with("entity_id", "cover.office_blinds").with("domain", "cover");
+    assert_eq!(speak(std::slice::from_ref(&cover), Personality::Default, false, None), "Opened Office Blinds.");
+    let lock = Intent::new("HassTurnOn").with("entity_id", "lock.front_door").with("domain", "lock");
+    assert_eq!(speak(&[lock], Personality::Default, false, None), "Locked Front Door.");
+    let locks = [
+        Intent::new("HassTurnOn").with("entity_id", "lock.front_door").with("domain", "lock"),
+        Intent::new("HassTurnOn").with("entity_id", "lock.back_door").with("domain", "lock"),
+    ];
+    assert_eq!(speak(&locks, Personality::Default, false, None), "Locked Front Door and Back Door.");
+    let pos = Intent::new("HassSetPosition").with("entity_id", "cover.office_blinds").with("position", "50");
+    assert_eq!(speak(&[pos], Personality::Default, false, None), "Office Blinds is at 50 percent.");
+    let step = Intent::new("HassLightSet").with("entity_id", "light.desk_lamp").with("brightness_step", "up");
+    let step_speech = speak(&[step], Personality::Default, false, None);
+    assert!(step_speech.ends_with("is brighter."), "{step_speech}");
+    assert!(!step_speech.contains("is at  percent"), "{step_speech}");
+    let area = Intent::new("HassTurnOn").with("area", "kitchen").with("domain", "light");
+    assert_eq!(speak(&[area], Personality::Default, false, None), "The light in the Kitchen is on.");
+    drop(_en);
+    let _de = bind(&["de".into()]);
+    let rollo = Intent::new("HassTurnOn").with("entity_id", "cover.rollo").with("domain", "cover");
+    assert_eq!(speak(&[rollo], Personality::Default, false, None), "Rollo ist geöffnet.");
+    let pos_de = Intent::new("HassSetPosition").with("entity_id", "cover.rollo").with("position", "30");
+    assert_eq!(speak(&[pos_de], Personality::Default, false, None), "Rollo auf 30 Prozent.");
+}
+
+#[test]
+fn p27_clarify_same_name_uses_floor_or_room() {
+    use crate::types::{AreaRec, EntityRec, FloorRec, HomeGraph};
+    let home = HomeGraph {
+        floors: vec![
+            FloorRec { floor_id: "ground".into(), name: "Ground Floor".into(), aliases: vec![], level: Some(0) },
+            FloorRec { floor_id: "upper".into(), name: "Upstairs".into(), aliases: vec![], level: Some(1) },
+        ],
+        areas: vec![
+            AreaRec { area_id: "bath_ground".into(), name: "Bathroom".into(), aliases: vec![], floor_id: Some("ground".into()) },
+            AreaRec { area_id: "bath_upper".into(), name: "Bathroom".into(), aliases: vec![], floor_id: Some("upper".into()) },
+        ],
+        entities: vec![
+            EntityRec {
+                entity_id: "light.ceiling_kitchen".into(),
+                name: "Ceiling Light".into(),
+                domain: "light".into(),
+                platform: None,
+                area: Some("kitchen".into()),
+                aliases: vec![],
+                tags: vec![],
+            },
+            EntityRec {
+                entity_id: "light.ceiling_living".into(),
+                name: "Ceiling Light".into(),
+                domain: "light".into(),
+                platform: None,
+                area: Some("living_room".into()),
+                aliases: vec![],
+                tags: vec![],
+            },
+        ],
+        ..HomeGraph::default()
+    };
+    let _en = bind(&["en".into()]);
+    let bathrooms = speak_clarify(&["bath_ground".into(), "bath_upper".into()], Some(&home));
+    assert!(bathrooms.contains("Bathroom (Ground Floor)"), "{bathrooms}");
+    assert!(bathrooms.contains("Bathroom (Upstairs)"), "{bathrooms}");
+    assert!(!bathrooms.contains("Bathroom or Bathroom?"), "{bathrooms}");
+    let lights = speak_clarify(&["light.ceiling_kitchen".into(), "light.ceiling_living".into()], Some(&home));
+    assert!(lights.contains("Ceiling Light (Kitchen)"), "{lights}");
+    assert!(lights.contains("Ceiling Light (Living room)"), "{lights}");
+}

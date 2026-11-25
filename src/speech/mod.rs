@@ -13,6 +13,10 @@ mod render_weather;
 mod render_window;
 mod weather_i18n;
 
+#[cfg(test)]
+#[path = "response_speech_tests.rs"]
+mod response_speech_tests;
+
 pub use asr_boost::{build_asr_boost, AsrBoostOut, AsrBoostTerm, ASR_BOOST_SCHEMA, DEFAULT_MAX_TOKENS, MAX_MAX_TOKENS};
 pub use generated::ACTION_TEMPLATES;
 pub use render::render_snapshot;
