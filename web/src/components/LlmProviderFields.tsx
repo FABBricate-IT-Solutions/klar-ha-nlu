@@ -4,7 +4,7 @@ import type { LlmForm } from "../useLlmForm";
 import { SearchSelect } from "./SearchSelect";
 import { LlmModelField } from "./LlmModelField";
 import { SettingsToggle } from "./SettingsToggle";
-import { Field, FieldGroup, FieldLabel } from "@/components/ui/field";
+import { Field, FieldError, FieldGroup, FieldLabel } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
 
 function providerLabel(t: Messages, id: LlmProviderId): string {
@@ -92,8 +92,12 @@ export function LlmProviderFields({
           placeholder={form.moved ? t.llmApiKey : t.llmApiKeyHint}
           required={form.keyRequired}
           aria-invalid={form.keyMissing || undefined}
+          aria-describedby={form.keyMissing ? `${keyId}-required` : undefined}
           autoComplete="off"
         />
+        {form.keyMissing ? (
+          <FieldError id={`${keyId}-required`}>{t.llmApiKeyRequired}</FieldError>
+        ) : null}
       </Field>
       <SettingsToggle
         id="klar-llm-thinking"

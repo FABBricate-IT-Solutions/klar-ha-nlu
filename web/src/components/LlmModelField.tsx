@@ -3,13 +3,15 @@ import type { Messages } from "../i18n";
 import { listLlmModels } from "../llmModels";
 import type { LlmProviderId } from "../llmProviders";
 import { SearchSelect, withCurrent } from "./SearchSelect";
+import { Button } from "@/components/ui/button";
 
-type Listing = { for: string; models: string[]; status: "loading" | "ready" | "empty" | "fail" };
+type ListingStatus = "idle" | "loading" | "ready" | "empty" | "fail";
+type Listing = { for: string; models: string[]; status: Exclude<ListingStatus, "idle"> };
 
 /**
- * The model picker. The list is asked from the engine only when the operator opens it, and only
- * once per URL, key and provider. Typing in the URL or key field asks nothing: the model list
- * request is what could carry a key to the address in the URL field.
+ * The model picker. The list is asked from the engine only when the operator opens it or uses
+ * Load models / Retry, and only once per URL, key and provider. Typing in the URL or key field
+ * asks nothing: the model list request is what could carry a key to the address in the URL field.
  */
 export function LlmModelField({
   t,
@@ -32,7 +34,7 @@ export function LlmModelField({
   const wanted = `${provider}\n${baseUrl.trim()}\n${apiKey}`;
   // A list loaded for another URL, key or provider is not this endpoint's list.
   const current = listing?.for === wanted ? listing : null;
-  const status = current?.status ?? "idle";
+  const status: ListingStatus = current?.status ?? "idle";
 
   const load = () => {
     // Opening the list again repeats only a failed attempt.
@@ -48,17 +50,19 @@ export function LlmModelField({
     () => withCurrent((current?.models ?? []).map((id) => ({ value: id, label: id })), model),
     [current, model],
   );
-  const hint = (() => {
+
+  const { hint, action } = (() => {
     switch (status) {
       case "loading":
-        return t.llmModelsLoading;
+        return { hint: t.llmModelsLoading, action: null as string | null };
       case "fail":
-        return t.llmModelsFail;
+        return { hint: t.llmModelsFail, action: t.llmRetry };
       case "empty":
-        return t.llmModelsEmpty;
+        return { hint: t.llmModelsEmpty, action: null };
       case "ready":
+        return { hint: "", action: null };
       case "idle":
-        return "";
+        return { hint: "", action: t.llmLoadModels };
       default: {
         const _never: never = status;
         return _never;
@@ -79,6 +83,18 @@ export function LlmModelField({
         placeholder="gpt-4o-mini"
       />
       {hint ? <p className="caption" role="status">{hint}</p> : null}
+      {action ? (
+        <Button
+          type="button"
+          variant="link"
+          size="xs"
+          className="h-auto px-0"
+          disabled={!baseUrl.trim()}
+          onClick={load}
+        >
+          {action}
+        </Button>
+      ) : null}
     </>
   );
 }
