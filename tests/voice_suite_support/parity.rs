@@ -158,6 +158,8 @@ fn with_aliases(mut home: HomeGraph, rooms: &LocaleRooms) -> HomeGraph {
             }
         }
     }
+    // Keep the inverted index in sync so protected-number typos (PT quarto≈quatro) stay known.
+    klar_nlu::home::rebuild_label_index(&mut home);
     home
 }
 

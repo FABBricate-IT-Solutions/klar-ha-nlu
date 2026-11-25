@@ -218,10 +218,23 @@ pub(crate) fn known_target_token(token: &str, home: &HomeGraph) -> bool {
     {
         return true;
     }
-    // Indexed homes are authoritative — do not fall back to a full entity walk (R-09).
+    // Area/floor surfaces stay authoritative even when the inverted index is stale (aliases
+    // added after the last rebuild). PT "quarto" is a protected typo of number "quatro"; without
+    // this check the clause gate drops bedroom commands. Skip the full entity walk when indexed (R-09).
+    if area_or_floor_token(token, home) {
+        return true;
+    }
     if let Some(index) = home.label_index.as_ref() {
         return index.tokens.contains(token);
     }
+    home.entities.iter().any(|entity| {
+        label_has_token(token, &entity.name)
+            || entity.aliases.iter().any(|alias| label_has_token(token, alias))
+            || entity.tags.iter().any(|tag| label_has_token(token, tag))
+    })
+}
+
+fn area_or_floor_token(token: &str, home: &HomeGraph) -> bool {
     home.areas.iter().any(|area| {
         label_has_token(token, &area.area_id)
             || label_has_token(token, &area.name)
@@ -230,10 +243,6 @@ pub(crate) fn known_target_token(token: &str, home: &HomeGraph) -> bool {
         label_has_token(token, &floor.floor_id)
             || label_has_token(token, &floor.name)
             || floor.aliases.iter().any(|alias| label_has_token(token, alias))
-    }) || home.entities.iter().any(|entity| {
-        label_has_token(token, &entity.name)
-            || entity.aliases.iter().any(|alias| label_has_token(token, alias))
-            || entity.tags.iter().any(|tag| label_has_token(token, tag))
     })
 }
 
