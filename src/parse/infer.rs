@@ -1,27 +1,17 @@
 use crate::lang::catalog;
 use crate::lang::VerbKind;
-use crate::parse::action::{has_cover_noun, has_light_noun, Action};
+use crate::parse::action::{has_cover_noun, has_light_noun, is_query_token, Action};
 use crate::parse::fuzzy::{select_unique, Profile};
 use crate::parse::normalize::{fold_umlaut, join_tokens};
 use crate::session::Session;
 use crate::types::{known_intent, CustomSentence, EntityRec, Intent};
 
-/// "Dock", "stop", "pause", "turn off" or "send it home": Home Assistant's off for a vacuum is return to base.
-pub(crate) fn dock_hint(tokens: &[String]) -> bool {
-    let sent_home = tokens.first().is_some_and(|first| !matches!(catalog().verb(first), Some(VerbKind::Vacuum)));
-    catalog().any(tokens, catalog().off_words())
-        || tokens.iter().any(|token| {
-            matches!(catalog().verb(token), Some(VerbKind::Dock | VerbKind::Stop | VerbKind::Pause))
-                || matches!(token.as_str(), "dock" | "docking" | "station" | "base" | "zurueck")
-                || (token == "home" && sent_home)
-        })
-}
+pub(crate) use crate::parse::cover_words::{cover_halfway, cover_halfway_position, dock_hint, wants_all_covers};
 
 fn last_domain(session: &Session, prefix: &str) -> bool {
     session.last_domains().any(|d| d == prefix) || session.last_entities().any(|e| e.starts_with(&format!("{prefix}.")))
 }
 
-/// Token-only tweaks, then bind the verb to a target/session domain.
 #[allow(dead_code)] // thin wrapper; home-aware callers use infer_action_in
 pub(crate) fn infer_action(
     action: Action,
@@ -50,7 +40,8 @@ pub(crate) fn infer_action_in(
 }
 
 fn refine_tokens(action: Action, tokens: &[String], number: Option<i32>, question: bool, home: Option<&crate::types::HomeGraph>) -> Action {
-    let vacuum = catalog().any(tokens, catalog().vacuum_nouns());
+    let vacuum = catalog().any(tokens, catalog().vacuum_nouns())
+        || tokens.iter().any(|token| matches!(catalog().verb(token), Some(VerbKind::Vacuum | VerbKind::VacuumNoun)));
     if question && (vacuum || matches!(action, Action::VacuumDock | Action::VacuumStart)) {
         return Action::GetState;
     }
@@ -63,6 +54,11 @@ fn refine_tokens(action: Action, tokens: &[String], number: Option<i32>, questio
             || catalog().any(tokens, catalog().vacuum_start()))
     {
         return Action::VacuumStart;
+    }
+    if cover_halfway(tokens)
+        && (has_cover_noun(tokens) || matches!(action, Action::CoverOpen | Action::CoverClose | Action::CoverSet | Action::On))
+    {
+        return Action::CoverSet;
     }
     // "Timer" inside a device name is not a timer command.
     if matches!(action, Action::On | Action::Off) && timer_means_timer(tokens, home) {
@@ -128,6 +124,11 @@ pub(crate) fn bind_domain(action: Action, tokens: &[String], number: Option<i32>
 fn bind_domain_with(action: Action, tokens: &[String], number: Option<i32>, domain: Option<&str>, session_follow: bool) -> Action {
     let cat = catalog();
     let light_noun = has_light_noun(tokens);
+    // Named vacuum + "home"/"dock"/"station" → return to base (P-30 "send robby home").
+    // Still convert a bare GetState guess when the sentence is an order, not a question.
+    if domain == Some("vacuum") && dock_hint(tokens) && !is_query_token(tokens) && !looks_like_question(tokens) {
+        return Action::VacuumDock;
+    }
     if matches!(action, Action::SetLight | Action::On) && number.is_some() && !light_noun && domain == Some("climate") {
         return Action::SetTemp;
     }
@@ -180,6 +181,7 @@ pub(crate) fn prefer_action(actions: &[(usize, Action)]) -> Option<Action> {
         Action::Unlock,
         Action::Lock,
         Action::CoverSet,
+        Action::CoverStop,
         Action::CoverOpen,
         Action::CoverClose,
         Action::FanSpeed,

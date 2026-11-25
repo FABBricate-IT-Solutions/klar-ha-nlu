@@ -84,7 +84,14 @@ pub(crate) fn preferred_area_domain(domain: Option<&str>, action: Action, tokens
     if (domain == Some("cover") || crate::parse::action::has_cover_noun(tokens))
         && matches!(
             action,
-            Action::CoverOpen | Action::CoverClose | Action::CoverSet | Action::On | Action::Off | Action::Toggle | Action::GetState
+            Action::CoverOpen
+                | Action::CoverClose
+                | Action::CoverSet
+                | Action::CoverStop
+                | Action::On
+                | Action::Off
+                | Action::Toggle
+                | Action::GetState
         )
     {
         return Some("cover");

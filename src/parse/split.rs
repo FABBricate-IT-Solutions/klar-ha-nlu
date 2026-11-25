@@ -355,8 +355,10 @@ fn is_same_command(a: Action, b: Action) -> bool {
             | (Action::FanSpeed, Action::On | Action::Off)
             | (Action::On | Action::Off, Action::SetLight)
             | (Action::SetLight, Action::On | Action::Off)
-            | (Action::CoverOpen | Action::CoverClose, Action::CoverSet)
-            | (Action::CoverSet, Action::CoverOpen | Action::CoverClose)
+            | (Action::CoverOpen | Action::CoverClose | Action::CoverStop, Action::CoverSet)
+            | (Action::CoverSet, Action::CoverOpen | Action::CoverClose | Action::CoverStop)
+            | (Action::CoverOpen | Action::CoverClose, Action::CoverStop)
+            | (Action::CoverStop, Action::CoverOpen | Action::CoverClose)
             | (Action::Lock | Action::Unlock, Action::On | Action::Off)
             | (Action::On | Action::Off, Action::Lock | Action::Unlock)
             | (Action::Lock, Action::Unlock)
@@ -367,10 +369,24 @@ fn is_same_command(a: Action, b: Action) -> bool {
             | (Action::FanSpeed | Action::SetLight | Action::SetTemp, Action::GetState)
             | (
                 Action::GetState,
-                Action::On | Action::Off | Action::Lock | Action::Unlock | Action::CoverOpen | Action::CoverClose | Action::CoverSet
+                Action::On
+                    | Action::Off
+                    | Action::Lock
+                    | Action::Unlock
+                    | Action::CoverOpen
+                    | Action::CoverClose
+                    | Action::CoverSet
+                    | Action::CoverStop
             )
             | (
-                Action::On | Action::Off | Action::Lock | Action::Unlock | Action::CoverOpen | Action::CoverClose | Action::CoverSet,
+                Action::On
+                    | Action::Off
+                    | Action::Lock
+                    | Action::Unlock
+                    | Action::CoverOpen
+                    | Action::CoverClose
+                    | Action::CoverSet
+                    | Action::CoverStop,
                 Action::GetState
             )
             | (Action::CoverOpen, Action::CoverClose)

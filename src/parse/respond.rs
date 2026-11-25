@@ -133,6 +133,7 @@ fn describe(intent: &Intent, home: Option<&HomeGraph>) -> String {
             Some(n) => fill(pack.set_position).replace("{n}", n),
             None => fill(pack.get_state),
         },
+        "HassStopMoving" => fill(pack.done),
         "HassClimateSetTemperature" => match filled_slot(intent, "temperature") {
             Some(n) => {
                 let noun = climate_noun(intent);

@@ -92,6 +92,7 @@ fn interpolate_line(snap: &SpeechSnapshot, speech: Speech, de: bool, where_: &st
             Some(n) => fill(speech.set_position, where_, n, ""),
             None => speech.unknown.to_string(),
         },
+        "HassStopMoving" => fill(speech.done, where_, "", ""),
         "HassClimateSetTemperature" => climate_set(snap, speech, where_, de),
         "HassVacuumStart" => fill(speech.vacuum_start, where_, "", ""),
         "HassVacuumReturnToBase" => fill(speech.vacuum_dock, where_, "", ""),

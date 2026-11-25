@@ -186,12 +186,25 @@ fn an_exception_that_cannot_be_read_changes_nothing() {
     assert_changes_nothing("en", &en, "turn on the lights in the kitchen except the kitchen");
     // The command itself is not understood; its exception must not become the target.
     assert_changes_nothing("en", &en, "turn off everything except the oven");
-    assert_changes_nothing("en", &en, "close all the blinds except the ones in the bedroom");
+    // P-21 made "close all the blinds" readable, so the bedroom exception is spared.
+    assert_spares(
+        "en",
+        &en,
+        "close all the blinds except the ones in the bedroom",
+        &["cover.living_room_blinds"],
+        &["cover.bedroom_blinds", "cover.garage_door"],
+    );
     // The exception leads and no command follows that says "all".
     assert_changes_nothing("en", &en, "the floor lamp except the hall light off");
     let de = collision_home("de");
     assert_changes_nothing("de", &de, "mach die Lichter in der Küche an außer der Banane");
-    assert_changes_nothing("de", &de, "mach alle Rollos zu außer im Schlafzimmer");
+    assert_spares(
+        "de",
+        &de,
+        "mach alle Rollos zu außer im Schlafzimmer",
+        &["cover.wohnzimmer_rollo"],
+        &["cover.schlafzimmer_rollo", "cover.garagentor"],
+    );
 }
 
 /// An exception word inside a device name is the name.

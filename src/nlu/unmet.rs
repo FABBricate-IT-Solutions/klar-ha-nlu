@@ -3,6 +3,9 @@
 //! "Set the fan to high" asks for a change. Where no step can make that change, the
 //! sentence is refused. Answering with the state of the fan would treat an order as a
 //! question and leave the user thinking it was carried out.
+//!
+//! Package 2.7 also refuses vacuum pause/stop (not dock) and alarm arm/disarm — HA has
+//! no Assist intent Klar wires yet, so GetState must not stand in for them.
 
 use super::context::ParseContext;
 use super::draft::{reject, Draft};
@@ -15,7 +18,14 @@ use crate::parse::split::split_clauses;
 use crate::types::{ParseDecision, RejectReason};
 
 pub(super) fn guard(context: &ParseContext<'_>, draft: Draft) -> Draft {
-    if !matches!(draft.decision, ParseDecision::Execute) || draft.safety_confirmed {
+    if draft.safety_confirmed {
+        return draft;
+    }
+    let tokens = tokenize(context.text);
+    if unsupported_spoken_command(&tokens, context.catalog, context.home) {
+        return refuse(draft);
+    }
+    if !matches!(draft.decision, ParseDecision::Execute) {
         return draft;
     }
     let reads = draft.plan.as_ref().is_some_and(|plan| plan.intents().iter().any(|step| step.name == "HassGetState"));
@@ -24,15 +34,62 @@ pub(super) fn guard(context: &ParseContext<'_>, draft: Draft) -> Draft {
         return draft;
     }
     // Every clause orders something, so no clause asked for the state that would be read.
-    let clauses = split_clauses(&tokenize(context.text), context.home);
+    let clauses = split_clauses(&tokens, context.home);
     let orders = |tokens: &Vec<String>| commands(tokens, cat) && !is_query_token(tokens) && !Clause::new(tokens).read(cat).asked;
     if clauses.is_empty() || !clauses.iter().all(orders) {
         return draft;
     }
+    refuse(draft)
+}
+
+fn refuse(draft: Draft) -> Draft {
     let mut refused = reject(RejectReason::Unsupported, speak_unknown());
     refused.commit.briefing = Some(false);
     refused.commit.clear_pending = draft.commit.clear_pending;
     refused
+}
+
+/// Vacuum pause/stop (P-30) and alarm arm/disarm (P-36): clear Unsupported, never GetState.
+fn unsupported_spoken_command(tokens: &[String], cat: &Catalog, home: &crate::types::HomeGraph) -> bool {
+    if is_query_token(tokens) || question_mark(&tokens.join(" ")) {
+        return false;
+    }
+    if alarm_arm_words(tokens) {
+        return true;
+    }
+    vacuum_pause_or_stop(tokens, cat, home)
+}
+
+fn alarm_arm_words(tokens: &[String]) -> bool {
+    // "armed" alone is a state word in questions; the query check above keeps those.
+    tokens.iter().any(|token| {
+        matches!(
+            token.as_str(),
+            "arm" | "arms" | "disarm" | "disarms" | "scharf" | "unscharf" | "scharfschalten" | "entschaerfen" | "entschaerfe"
+        )
+    })
+}
+
+fn vacuum_pause_or_stop(tokens: &[String], cat: &Catalog, home: &crate::types::HomeGraph) -> bool {
+    if crate::parse::infer::dock_hint(tokens) {
+        return false;
+    }
+    if !tokens.iter().any(|token| matches!(cat.verb(token), Some(VerbKind::Pause | VerbKind::Stop))) {
+        return false;
+    }
+    let vacuum_word = cat.any(tokens, cat.vacuum_nouns())
+        || tokens.iter().any(|token| matches!(cat.verb(token), Some(VerbKind::Vacuum | VerbKind::VacuumNoun)));
+    vacuum_word || names_vacuum(tokens, home)
+}
+
+fn names_vacuum(tokens: &[String], home: &crate::types::HomeGraph) -> bool {
+    use crate::parse::normalize::compact;
+    home.entities.iter().any(|entity| {
+        entity.domain == "vacuum"
+            && std::iter::once(entity.name.as_str())
+                .chain(entity.aliases.iter().map(String::as_str))
+                .any(|label| tokens.iter().any(|token| compact(token) == compact(label)))
+    })
 }
 
 /// The clause carries a verb that orders a change. A particle ("on", "zu") also describes
@@ -62,5 +119,6 @@ fn orders_change(kind: VerbKind) -> bool {
             | VerbKind::Set
             | VerbKind::Flick
             | VerbKind::Make
+            | VerbKind::Pause
     )
 }

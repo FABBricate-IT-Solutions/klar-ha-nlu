@@ -13,7 +13,7 @@ use std::collections::BTreeSet;
 
 mod common;
 use common::home::{area, describe, effects, ent, home, run};
-use klar_nlu::types::{EntityRec, HomeGraph, ParseDecision};
+use klar_nlu::types::{EntityRec, HomeGraph, ParseDecision, RejectReason};
 
 // ---------- homes ----------
 
@@ -504,14 +504,12 @@ fn all_lights_without_a_whole_home_group() {
 }
 
 #[test]
-fn vacuum_off_stop_and_home_send_it_to_the_dock() {
+fn vacuum_off_and_home_send_it_to_the_dock() {
+    // Pause/stop are Unsupported (P-30); only off/dock/home return to base.
     let start = "HassVacuumStart vacuum.kitchen_vacuum";
     let dock = "HassVacuumReturnToBase vacuum.kitchen_vacuum";
     for (lang, text, wanted) in [
         ("en", "turn off the vacuum", dock),
-        ("en", "stop the vacuum", dock),
-        ("en", "pause the vacuum", dock),
-        ("en", "stop vacuuming", dock),
         ("en", "send the vacuum home", dock),
         ("en", "turn on the vacuum", start),
         ("en", "vacuum the kitchen", start),
@@ -529,6 +527,19 @@ fn vacuum_off_stop_and_home_send_it_to_the_dock() {
         );
         let out = run(lang, &home, text);
         assert_eq!(effects(&out, &home), BTreeSet::from([wanted.to_string()]), "[{lang}] {text}: {}", describe(&out));
+    }
+}
+
+#[test]
+fn vacuum_pause_and_stop_are_unsupported() {
+    let home = home(
+        vec![area("kitchen", "Kitchen")],
+        vec![ent("vacuum.kitchen_vacuum", "Vacuum", "kitchen"), ent("light.kitchen_light", "Kitchen Light", "kitchen")],
+        &[],
+    );
+    for text in ["pause the vacuum", "stop the vacuum", "stop vacuuming"] {
+        let out = run("en", &home, text);
+        assert!(matches!(out.decision, ParseDecision::Reject { reason: RejectReason::Unsupported }), "{text}: {}", describe(&out));
     }
 }
 

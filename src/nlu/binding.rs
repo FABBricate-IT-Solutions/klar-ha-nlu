@@ -367,6 +367,7 @@ pub(super) fn action_for_intent(name: &str) -> Option<Action> {
         "HassClimateSetTemperature" => Some(Action::SetTemp),
         "HassGetState" | "HassClimateGetTemperature" => Some(Action::GetState),
         "HassSetPosition" => Some(Action::CoverSet),
+        "HassStopMoving" => Some(Action::CoverStop),
         "HassFanSetSpeed" => Some(Action::FanSpeed),
         "HassVacuumStart" => Some(Action::VacuumStart),
         "HassVacuumReturnToBase" => Some(Action::VacuumDock),

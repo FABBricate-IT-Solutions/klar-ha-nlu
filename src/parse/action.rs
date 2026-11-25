@@ -28,6 +28,7 @@ pub enum Action {
     CoverOpen,
     CoverClose,
     CoverSet,
+    CoverStop,
     Lock,
     Unlock,
     TimerStart,
@@ -58,7 +59,7 @@ fn forced_domain(action: Action) -> Option<&'static str> {
     match action {
         Action::TimerStart | Action::TimerAdd | Action::TimerRemove | Action::TimerCancel | Action::TimerPause => Some("timer"),
         Action::SetTemp => Some("climate"),
-        Action::CoverOpen | Action::CoverClose | Action::CoverSet => Some("cover"),
+        Action::CoverOpen | Action::CoverClose | Action::CoverSet | Action::CoverStop => Some("cover"),
         Action::FanSpeed => Some("fan"),
         Action::Lock | Action::Unlock => Some("lock"),
         _ => None,
@@ -69,7 +70,7 @@ fn implied_domain(action: Action) -> Option<&'static str> {
     match action {
         Action::SetLight => Some("light"),
         Action::SetTemp => Some("climate"),
-        Action::CoverOpen | Action::CoverClose | Action::CoverSet => Some("cover"),
+        Action::CoverOpen | Action::CoverClose | Action::CoverSet | Action::CoverStop => Some("cover"),
         Action::Lock | Action::Unlock => Some("lock"),
         Action::FanSpeed => Some("fan"),
         Action::VacuumStart | Action::VacuumDock => Some("vacuum"),
@@ -168,7 +169,18 @@ pub(crate) fn detect_actions_bounded(tokens: &[String], maximum: usize) -> Vec<(
             }
             Some(VerbKind::Query) => Some(Action::GetState),
             Some(VerbKind::Switch) => Some(if cat.any(tokens, cat.off_words()) { Action::Off } else { Action::On }),
-            Some(VerbKind::Pause) => Some(if cat.any(tokens, cat.timer_nouns()) { Action::TimerPause } else { Action::MediaPause }),
+            Some(VerbKind::Pause) => {
+                if cat.any(tokens, cat.timer_nouns()) {
+                    Some(Action::TimerPause)
+                } else if cat.any(tokens, cat.vacuum_nouns())
+                    || tokens.iter().any(|token| matches!(cat.verb(token), Some(VerbKind::Vacuum | VerbKind::VacuumNoun)))
+                {
+                    // Vacuum pause is not dock (P-30); unmet refuses as Unsupported.
+                    None
+                } else {
+                    Some(Action::MediaPause)
+                }
+            }
             Some(VerbKind::Playback) => playback_action(tokens),
             Some(VerbKind::Play) => Some(if cat.any(tokens, cat.timer_nouns()) { Action::TimerStart } else { Action::MediaPlay }),
             Some(VerbKind::Next) => Some(Action::MediaNext),
@@ -238,6 +250,7 @@ pub(crate) fn is_hard_command(command: Option<Action>, tokens: &[String]) -> boo
             Action::SetLight
                 | Action::SetTemp
                 | Action::CoverSet
+                | Action::CoverStop
                 | Action::FanSpeed
                 | Action::Scene
                 | Action::MediaPause

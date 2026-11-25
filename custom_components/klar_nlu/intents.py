@@ -57,6 +57,7 @@ ALLOWED_INTENTS = TIMER_INTENTS | set(ENTITY_SERVICES) | LIST_INTENTS | {
     "HassVacuumStart",
     "HassVacuumReturnToBase",
     "HassSetPosition",
+    "HassStopMoving",
     "KlarGetCalendarEvents",
     "KlarCreateCalendarEvent",
     "KlarDeleteCalendarEvent",
