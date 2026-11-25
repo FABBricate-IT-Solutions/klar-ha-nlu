@@ -107,7 +107,8 @@ fn allows_session_replay(ctx: &Clause) -> bool {
 
 pub(crate) fn which_lights_query(tokens: &[String]) -> bool {
     let cat = catalog();
-    if !(cat.any(tokens, cat.light_plural()) || crate::parse::action::has_light_noun(tokens)) {
+    // Plural only: "which lights are on" — not OOD trivia with singular "light".
+    if !cat.any(tokens, cat.light_plural()) {
         return false;
     }
     // True list asks only: which / are any / how many — not "status of the lights"

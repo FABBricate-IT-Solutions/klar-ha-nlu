@@ -107,6 +107,21 @@ fn other_domain_noun(tokens: &[String]) -> bool {
         || cat.any(tokens, cat.media_nouns())
         || cat.any(tokens, cat.timer_nouns())
         || cat.any(tokens, cat.scene_nouns())
+        // "What's the weather … today" is weather/OOD, not a diary agenda ask.
+        || tokens.iter().any(|token| {
+            matches!(
+                token.as_str(),
+                "weather"
+                    | "forecast"
+                    | "wetter"
+                    | "wetterbericht"
+                    | "meteo"
+                    | "temperatura"
+                    | "weer"
+                    | "tiempo"
+                    | "temps"
+            )
+        })
 }
 
 fn agenda_query(tokens: &[String]) -> bool {

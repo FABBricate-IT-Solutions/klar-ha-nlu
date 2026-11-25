@@ -191,6 +191,13 @@ fn list(ctx: &Clause) -> Option<ClauseOut> {
     if !matches!(ctx.action, Action::ListAdd | Action::ListComplete | Action::ListRemove) {
         return None;
     }
+    // Calendar nouns win over list when the utterance targets a calendar (not a todo list).
+    if crate::parse::calendar::mentions_calendar(ctx.tokens)
+        && !catalog().any(ctx.tokens, catalog().list_nouns())
+        && !catalog().any(ctx.tokens, catalog().chores())
+    {
+        return None;
+    }
     if !ctx.resolved.ambiguous.is_empty() || ctx.resolved.entities.len() > 1 {
         let choices = ctx.resolved.ambiguous.iter().chain(ctx.resolved.entities.iter()).map(|entity| entity.entity_id.clone()).collect();
         return Some(ClauseOut::Clarify(choices, intent_from_action(ctx.action, ctx.tokens)));

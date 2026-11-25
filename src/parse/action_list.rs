@@ -25,6 +25,10 @@ pub(super) fn has_list_noun(tokens: &[String]) -> bool {
 
 pub(super) fn add_action(tokens: &[String]) -> Option<Action> {
     let cat = catalog();
+    // "add … to my calendar" is calendar create/clarify, not a shopping-list add.
+    if crate::parse::calendar::mentions_calendar(tokens) && !has_list_noun(tokens) {
+        return None;
+    }
     if has_list_noun(tokens) {
         Some(list_action(tokens))
     } else if cat.any(tokens, cat.timer_nouns()) {
@@ -52,4 +56,5 @@ fn bare_list_add(tokens: &[String]) -> bool {
         && !cat.any(tokens, cat.media_nouns())
         && !cat.any(tokens, cat.lock_nouns())
         && !cat.any(tokens, cat.vacuum_nouns())
+        && !crate::parse::calendar::mentions_calendar(tokens)
 }
