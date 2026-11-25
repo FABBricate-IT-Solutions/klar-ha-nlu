@@ -149,6 +149,9 @@ pub fn sanitize_rules(rules: Vec<PolicyRule>) -> Result<Vec<PolicyRule>, &'stati
         if rule.id.is_empty() || rule.id.chars().count() > 64 || !seen.insert(rule.id.as_str()) {
             return Err("invalid policy id");
         }
+        if rule.enabled && when_is_empty(&rule.when) {
+            return Err("enabled policy needs a when clause");
+        }
         if rule.label.chars().count() > 80 {
             return Err("policy label too long");
         }
@@ -236,7 +239,23 @@ pub fn step_rules<'a>(rules: &'a [PolicyRule], plan: &IntentPlan) -> Vec<Option<
         .collect()
 }
 
+/// True when a rule's `when` has no criterion — such a rule would match every intent.
+pub fn when_is_empty(when: &PolicyMatch) -> bool {
+    when.intent.is_none()
+        && when.domain.is_none()
+        && when.area.is_none()
+        && when.entity_id.is_none()
+        && when.floor.is_none()
+        && when.name.is_none()
+        && when.phrase.is_none()
+        && !when.area_wide
+}
+
 pub fn matches_when(when: &PolicyMatch, intent: &Intent) -> bool {
+    // An empty `when` used to match every command (U-09).
+    if when_is_empty(when) {
+        return false;
+    }
     if when.phrase.is_some() {
         return false;
     }
@@ -403,5 +422,31 @@ mod tests {
             payload: None,
         }];
         assert!(sanitize_rules(rules).is_err());
+    }
+
+    #[test]
+    fn empty_when_does_not_match_and_cannot_be_enabled() {
+        let intent = Intent::new("HassTurnOn").with("entity_id", "light.kugel");
+        assert!(!matches_when(&PolicyMatch::default(), &intent));
+        let enabled_empty = vec![PolicyRule {
+            id: "blank".into(),
+            enabled: true,
+            label: String::new(),
+            when: PolicyMatch::default(),
+            effect: PolicyEffect::Confirm,
+            prefer: None,
+            payload: None,
+        }];
+        assert!(sanitize_rules(enabled_empty).is_err());
+        let draft = vec![PolicyRule {
+            id: "draft".into(),
+            enabled: false,
+            label: String::new(),
+            when: PolicyMatch::default(),
+            effect: PolicyEffect::Confirm,
+            prefer: None,
+            payload: None,
+        }];
+        assert!(sanitize_rules(draft).is_ok());
     }
 }

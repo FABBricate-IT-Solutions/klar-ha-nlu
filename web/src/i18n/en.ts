@@ -68,6 +68,7 @@ export const en = {
   uiSaveFail: "Could not save the open view.",
   invalidJson: "That is not valid JSON.",
   rulesReloaded: "Rules reloaded from the engine.",
+  emptyWhenRule: "This rule has no when clause — it will not match until you set one.",
   personality: "Personality",
   mode: "Mode",
   modeFull: "Resolve devices",

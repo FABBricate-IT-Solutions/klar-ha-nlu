@@ -77,7 +77,7 @@ function DeviceNode({
         }
       }}
       style={{
-        border: `1px solid ${active ? "var(--accent)" : confidenceColor(row.confidence)}`,
+        border: `1px solid ${active ? "var(--brand)" : confidenceColor(row.confidence)}`,
         opacity: match ? 1 : 0.38,
       }}
     >

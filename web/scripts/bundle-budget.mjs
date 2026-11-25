@@ -9,8 +9,8 @@ import { gzipSync } from "node:zlib";
 
 const KB = 1024;
 const BUDGET = {
-  // 2914: LLM Load models / Retry / API-key-required chrome (keys from #430). Package 2.17 splits packs out.
-  js: { raw: 2914 * KB, gzip: 790 * KB },
+  // 2947: emptyWhenRule chrome + wizard titles (U-09/U-16). Package 2.17 splits packs out.
+  js: { raw: 2947 * KB, gzip: 790 * KB },
   css: { raw: 128 * KB, gzip: 22 * KB },
 };
 

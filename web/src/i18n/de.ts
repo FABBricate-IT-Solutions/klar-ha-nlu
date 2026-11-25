@@ -68,6 +68,7 @@ export const de = {
   uiSaveFail: "Die offene Ansicht konnte nicht gespeichert werden.",
   invalidJson: "Das ist kein gültiges JSON.",
   rulesReloaded: "Regeln neu von der Engine geladen.",
+  emptyWhenRule: "Diese Regel hat keine When-Klausel — sie greift erst, wenn Sie eine setzen.",
   personality: "Persönlichkeit",
   mode: "Modus",
   modeFull: "Geräte auflösen",

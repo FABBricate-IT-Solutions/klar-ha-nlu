@@ -231,8 +231,17 @@ export function App() {
     return () => window.removeEventListener("klar-lotse-applied", onLotse);
   }, [refresh]);
 
+  // Only real room moves (same filter the engine apply route uses) — U-12.
   const applyCandidates = useMemo(
-    () => dashboard?.assignment.filter((row) => (row.suggested_area?.score || 0) >= 3 && row.confidence !== "high" && !ui.dismissed.includes(row.entity_id)) || [],
+    () =>
+      dashboard?.assignment.filter((row) => {
+        const suggestion = row.suggested_area;
+        if (!suggestion || suggestion.score < 3) return false;
+        if (row.area === suggestion.area_id) return false;
+        if (row.confidence === "high") return false;
+        if (ui.dismissed.includes(row.entity_id)) return false;
+        return true;
+      }) || [],
     [dashboard, ui.dismissed],
   );
 
@@ -251,12 +260,10 @@ export function App() {
   const apply = async () => {
     setConfirmApply(false);
     try {
-      const already = applyCandidates.filter((row) => row.area && row.area === row.suggested_area?.area_id).map((row) => row.entity_id);
       const out = await api.applySuggestions();
       setUi((prev) => ({
         ...prev,
         last_apply: out.rows,
-        dismissed: [...new Set([...prev.dismissed, ...already])],
       }));
       refresh();
     } catch (err) {

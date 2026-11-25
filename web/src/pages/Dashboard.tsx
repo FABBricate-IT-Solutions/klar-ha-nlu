@@ -65,13 +65,18 @@ function applyKey(rows: ApplyRow[]): string {
 }
 
 function resolveLast(passed: ConversationTurn | null | undefined, turns: ConversationTurn[]): ConversationTurn | null {
-  if (passed !== undefined) return passed;
-  return turns.at(-1) ?? null;
+  const fromTurns = turns.at(-1) ?? null;
+  // Prefer the freshest of the parent prop and a local refresh (U-11).
+  if (passed === undefined) return fromTurns;
+  if (!passed) return fromTurns;
+  if (!fromTurns) return passed;
+  return (fromTurns.ts_ms || 0) >= (passed.ts_ms || 0) ? fromTurns : passed;
 }
 
 export function DashboardPage({
   data,
   t,
+  locale,
   dismissed,
   onReplay,
   onApply,
@@ -101,12 +106,36 @@ export function DashboardPage({
   const [applyBusy, setApplyBusy] = useState(false);
   const [hiddenApply, setHiddenApply] = useState("");
   const [whyOpen, setWhyOpen] = useState(false);
+  const [undoSpeech, setUndoSpeech] = useState("");
   const view = overlay ?? data;
   useEffect(() => {
     setOverlay(null);
   }, [data]);
   useEffect(() => {
-    api.conversations().then((rows) => setTurns(Array.isArray(rows) ? rows : [])).catch(() => undefined);
+    let alive = true;
+    const load = () => {
+      api.conversations()
+        .then((rows) => {
+          if (alive) setTurns(Array.isArray(rows) ? rows : []);
+        })
+        .catch(() => undefined);
+      api.lastTurn()
+        .then((row) => {
+          if (!alive || !row) return;
+          setTurns((prev) => {
+            const list = Array.isArray(prev) ? prev : [];
+            if (list.some((item) => item.ts_ms === row.ts_ms && item.conversation_id === row.conversation_id)) return list;
+            return [...list, row];
+          });
+        })
+        .catch(() => undefined);
+    };
+    load();
+    const timer = window.setInterval(load, 15_000);
+    return () => {
+      alive = false;
+      window.clearInterval(timer);
+    };
   }, [view.traffic.total]);
   useEffect(() => {
     let cancelled = false;
@@ -133,9 +162,15 @@ export function DashboardPage({
   const undoLast = async () => {
     setBusy(true);
     try {
-      await api.parse(t.tryUndo, parseLanguage || "");
+      const language = parseLanguage || locale || "en";
+      const out = await api.parse(t.tryUndo, language, last?.conversation_id || undefined);
       const next = await api.conversations();
-      setTurns(next);
+      setTurns(Array.isArray(next) ? next : []);
+      // Surface the engine reply so "nothing to undo" is visible (U-10).
+      if (out.speech) setApplyNotice(null);
+      setUndoSpeech(out.speech || "");
+    } catch (err) {
+      setUndoSpeech(err instanceof Error ? err.message : String(err));
     } finally {
       setBusy(false);
     }
@@ -188,6 +223,7 @@ export function DashboardPage({
               <Button variant="outline" type="button" onClick={() => void undoLast()} disabled={busy}>{t.undoLastCommand}</Button>
             </div>
           </CardHeader>
+          {undoSpeech ? <CardContent><p className="muted" role="status">{undoSpeech}</p></CardContent> : null}
         </Card>
       )}
 
