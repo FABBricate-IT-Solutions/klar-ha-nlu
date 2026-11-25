@@ -45,11 +45,25 @@ pub(crate) fn session_areas(ctx: &Clause) -> Option<ClauseOut> {
                     .domain
                     .filter(|d| matches!(*d, "media_player" | "fan") || (*d == "climate" && !matches!(ctx.action, Action::GetState)))
                     .and_then(|d| unique_in_area(ctx.home, &area, d, ctx.tokens));
-                fill_intent(ctx.action, ctx.tokens, ctx.number, id.as_deref(), Some(&area), ctx.domain)
+                let domain = ctx.domain.or_else(|| remembered_domain(ctx.session, ctx.home, &area));
+                fill_intent(ctx.action, ctx.tokens, ctx.number, id.as_deref(), Some(&area), domain)
             })
             .collect();
         finish_intents(intents, ctx)
     })
+}
+
+/// The one kind of device the last turn touched in `area`. "Turn them off" after "turn on
+/// the lights in the garage" means those lights, not everything in the garage.
+fn remembered_domain<'a>(session: &'a Session, home: &HomeGraph, area: &str) -> Option<&'a str> {
+    let turn = session.last.first()?.turn;
+    let there = |item: &&crate::session::LastTurn| {
+        item.turn == turn
+            && (item.area.as_deref() == Some(area) || item.entity.as_deref().and_then(|id| entity_area(home, id)).as_deref() == Some(area))
+    };
+    let mut domains = session.last.iter().filter(there).map(|item| item.domain.as_deref());
+    let first = domains.next()??;
+    domains.all(|domain| domain == Some(first)).then_some(first)
 }
 
 pub(crate) fn replay_session_intents(
@@ -81,6 +95,7 @@ pub(crate) fn replay_session_intents(
         let id = domain
             .filter(|wanted| matches!(*wanted, "climate" | "media_player" | "fan"))
             .and_then(|wanted| unique_in_area(home, &area, wanted, tokens));
+        let domain = domain.or_else(|| remembered_domain(session, home, &area));
         intents.push(fill_intent(action, tokens, number, id.as_deref(), Some(&area), domain));
     }
     intents

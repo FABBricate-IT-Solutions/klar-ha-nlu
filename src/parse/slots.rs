@@ -132,7 +132,7 @@ fn area_switchable_lights<'a>(home: &'a HomeGraph, area: &str) -> Vec<&'a Entity
         .collect()
 }
 
-fn is_home_group_light(entity: &EntityRec, home: &HomeGraph) -> bool {
+pub(crate) fn is_home_group_light(entity: &EntityRec, home: &HomeGraph) -> bool {
     if entity.domain != "light" {
         return false;
     }

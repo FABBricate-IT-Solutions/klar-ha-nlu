@@ -59,6 +59,10 @@ pub struct HomeGraph {
     /// Extra HA-registered intent names (intent_script). Compiled plans stay on KNOWN_INTENTS.
     #[serde(default)]
     pub registered_intents: Vec<String>,
+    /// Home Assistant's device class per entity id ("garage", "gate", "door", "blind"),
+    /// where the registry knows one. A cover's class says whether it is a way into the home.
+    #[serde(default)]
+    pub device_classes: HashMap<String, String>,
     /// Folded names built at load. `None` means callers fold on the fly.
     #[serde(skip)]
     pub label_index: Option<LabelIndex>,
@@ -84,6 +88,10 @@ impl HomeGraph {
 
     pub fn floor(&self, floor_id: &str) -> Option<&FloorRec> {
         self.floors.iter().find(|floor| floor.floor_id == floor_id)
+    }
+
+    pub fn device_class(&self, entity_id: &str) -> Option<&str> {
+        self.device_classes.get(entity_id).map(String::as_str)
     }
 
     pub fn allows_intent(&self, name: &str) -> bool {

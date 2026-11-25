@@ -110,11 +110,24 @@ fn decide(context: &ParseContext<'_>) -> PipelineResult {
 
     // Every route ends in the same safety decision: undo, routines and the other specials
     // get no way around validation, the user's rules or the confirmation.
-    if let Some(draft) = super::dutch::route(context, &raw_tokens, &split.tokens)
-        .or_else(|| super::windows::route(context, &split.tokens))
-        .or_else(|| route_special(context, &raw_tokens, &split))
-        .or_else(|| route_custom(context, &split.tokens))
-    {
+    // A sentence that takes something out of its command ("… except the oven") is read
+    // without it, or changes nothing. Only a sentence the user taught is taken as taught.
+    let excepted = super::except::read(context, &raw_tokens);
+    let heed = |draft: Draft| match &excepted {
+        Some(excepted) => excepted.heed(context, draft),
+        None => draft,
+    };
+    let special = || {
+        super::dutch::route(context, &raw_tokens, &split.tokens)
+            .or_else(|| super::windows::route(context, &split.tokens))
+            .or_else(|| route_special(context, &raw_tokens, &split))
+    };
+    let taught = || route_custom(context, &split.tokens);
+    let routed = match &excepted {
+        Some(excepted) => taught().or_else(|| excepted.route(context)).or_else(|| special().map(heed)),
+        None => special().or_else(taught),
+    };
+    if let Some(draft) = routed {
         let started = Instant::now();
         let draft = safety_decision(draft, context);
         record_stage(&mut trace, "safety_decision", started, decision_name(&draft.decision).into());
@@ -164,11 +177,11 @@ fn decide(context: &ParseContext<'_>) -> PipelineResult {
         replay_or_decide(context, &split.tokens, intents, selected_plan, &ranking)
     };
     let started = Instant::now();
-    let mut draft = safety_decision(draft, context);
+    let mut draft = safety_decision(heed(draft), context);
     record_stage(&mut trace, "safety_decision", started, decision_name(&draft.decision).into());
     if let Some(adapted) = semantic::consider(context, &split.tokens, &draft) {
         let started = Instant::now();
-        draft = safety_decision(adapted, context);
+        draft = safety_decision(heed(adapted), context);
         record_stage(&mut trace, "semantic_adapter", started, decision_name(&draft.decision).into());
     }
     let mut candidates = ranking.candidates;
@@ -195,6 +208,9 @@ fn decide(context: &ParseContext<'_>) -> PipelineResult {
 /// it to tell which clause a step comes from.
 pub(super) struct Probe {
     pub intents: Vec<Intent>,
+    pub decision: ParseDecision,
+    pub confidence: f64,
+    pub margin: f64,
 }
 
 pub(super) fn probe(context: &ParseContext<'_>, text: &str) -> Probe {
@@ -208,7 +224,7 @@ pub(super) fn probe(context: &ParseContext<'_>, text: &str) -> Probe {
         ParseDecision::Confirm { .. } => result.commit.confirm.as_ref().map_or_else(Vec::new, |(_, plan, _)| plan.intents()),
         _ => Vec::new(),
     };
-    Probe { intents }
+    Probe { intents, decision: result.outcome.decision, confidence: result.outcome.confidence, margin: result.outcome.margin }
 }
 
 impl PipelineResult {

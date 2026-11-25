@@ -9,6 +9,7 @@ mod decision;
 mod draft;
 mod dutch;
 mod evidence;
+mod except;
 mod household;
 mod mood;
 mod mood_plan;
@@ -17,6 +18,7 @@ mod phrase;
 mod pipeline;
 mod policy_route;
 mod ranking;
+mod reach;
 mod reminder;
 mod retrieval;
 mod risk;
@@ -34,8 +36,8 @@ use crate::types::{
 
 pub use context::ParseContext;
 
-pub fn plan_requires_confirmation(plan: &IntentPlan) -> bool {
-    risk::requires_confirmation(plan)
+pub fn plan_requires_confirmation(plan: &IntentPlan, home: &HomeGraph) -> bool {
+    risk::requires_confirmation(plan, home)
 }
 
 /// Production `safety_decision` on an execute draft. Used by calibration tests.

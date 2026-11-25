@@ -208,6 +208,8 @@ The integration is the official sync path. After setup and on registry/expose up
 }
 ```
 
+An entity may also carry `"device_class"` (the user's class, else the integration's; omitted when there is none). Klar asks before it moves a cover whose class is `garage`, `gate` or `door`, whichever way it moves; a cover without a class is judged by its name.
+
 `schema_version` must be `"1"`. The home-sync endpoint accepts at most **8 MiB (8,388,608 bytes)** of JSON, including all entity, device, area, floor, label, and Assist exposure data. This endpoint has its own body budget; ordinary JSON routes such as parse/settings/custom retain their 16 KiB limit. Authorization is checked before reading the home-sync body. The engine validates the snapshot at the API boundary: unknown fields and invalid JSON field types are rejected with `422`, invalid JSON syntax, empty IDs, control characters, and schema-version errors with `400`, and oversized bodies or collections with `413`. None of these crash the process. Caps: 4096 entities, 2048 devices, 256 areas, 64 floors, 256 labels, 4096 Assist IDs, 32 aliases per item. `assist: null` means no expose filter; an array limits visible IDs. Byte and collection caps are independent and apply to both fixed-length and chunked requests. A rejected request leaves the last accepted graph and live-sync status intact. The integration still sends every enabled entity; reducing the snapshot to Assist-exposed or command-capable entities is not a size workaround.
 
 After a valid push, HA is the live source. The `.storage` file watcher no longer overwrites that graph. Overlay calibration (aliases, manual areas, preferred, infra) is still applied on top.

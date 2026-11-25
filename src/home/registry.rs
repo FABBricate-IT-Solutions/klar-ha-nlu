@@ -43,6 +43,11 @@ struct RawEntity {
     disabled_by: Option<String>,
     #[serde(default)]
     device_id: Option<String>,
+    /// The user's choice; `original_device_class` is what the integration reported.
+    #[serde(default)]
+    device_class: Option<String>,
+    #[serde(default)]
+    original_device_class: Option<String>,
 }
 
 #[derive(Deserialize)]
@@ -132,7 +137,7 @@ pub fn load_home(config_dir: &Path, fallback: HomeGraph) -> HomeGraph {
 
     let devices = read_devices(&config_dir.join(".storage/core.device_registry"));
     let label_names = crate::home::roles::load_label_names(&config_dir.join(".storage/core.label_registry"));
-    let mut entities = match read_entities(&entity_path, &devices, &label_names) {
+    let (mut entities, device_classes) = match read_entities(&entity_path, &devices, &label_names) {
         Ok(v) => v,
         Err(err) => {
             tracing::warn!("Entity-Registry unlesbar: {err}");
@@ -150,7 +155,8 @@ pub fn load_home(config_dir: &Path, fallback: HomeGraph) -> HomeGraph {
         }
     }
     tracing::info!("{} Entitäten, {} Räume, {} Etagen aus Home Assistant geladen", entities.len(), areas.len(), floors.len());
-    let mut graph = HomeGraph { entities, areas, floors, assist: crate::home::expose::load_assist(config_dir), ..fallback };
+    let assist = crate::home::expose::load_assist(config_dir);
+    let mut graph = HomeGraph { entities, areas, floors, assist, device_classes, ..fallback };
     crate::home::labels::rebuild_label_index(&mut graph);
     graph
 }
@@ -313,16 +319,20 @@ fn read_entities(
     path: &Path,
     devices: &HashMap<String, DeviceInfo>,
     label_names: &HashMap<String, String>,
-) -> Result<Vec<EntityRec>, String> {
+) -> Result<(Vec<EntityRec>, HashMap<String, String>), String> {
     let raw = fs::read_to_string(path).map_err(|e| e.to_string())?;
     let parsed: EntityStorage = serde_json::from_str(&raw).map_err(|e| e.to_string())?;
     let compose_user = parsed.minor_version >= 24;
-    Ok(parsed
-        .data
-        .entities
+    let kept: Vec<RawEntity> = parsed.data.entities.into_iter().filter(|e| e.disabled_by.is_none() && keep_domain(&e.entity_id)).collect();
+    let device_classes = kept
+        .iter()
+        .filter_map(|e| {
+            let class = clean_label(e.device_class.clone()).or_else(|| clean_label(e.original_device_class.clone()))?;
+            Some((e.entity_id.clone(), class.to_lowercase()))
+        })
+        .collect();
+    let entities = kept
         .into_iter()
-        .filter(|e| e.disabled_by.is_none())
-        .filter(|e| keep_domain(&e.entity_id))
         .map(|e| {
             let domain = e.entity_id.split('.').next().unwrap_or("").to_string();
             let device_id = e.device_id.as_deref();
@@ -347,7 +357,8 @@ fn read_entities(
                 tags: crate::home::roles::expand_entity_tags(e.labels, label_names),
             }
         })
-        .collect())
+        .collect();
+    Ok((entities, device_classes))
 }
 
 fn read_areas(path: &Path) -> Result<Vec<AreaRec>, String> {

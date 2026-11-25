@@ -118,7 +118,7 @@ fn german_sentences_that_must_not_act() {
 }
 
 /// Categories whose sentences no longer act at all. The baseline stays empty for them.
-const CLOSED: &[&str] = &["negation", "question", "past", "condition", "time"];
+const CLOSED: &[&str] = &["negation", "question", "past", "condition", "time", "exception"];
 
 #[test]
 fn closed_categories_have_no_baseline() {

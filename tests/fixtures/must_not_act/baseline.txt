@@ -3,24 +3,3 @@
 # This file only shrinks. tests/must_not_act.rs fails when a sentence that is not listed here
 # acts, and fails when a listed sentence no longer acts. A fix deletes its lines; nobody adds
 # lines for behaviour that got worse. Lines stay sorted.
-de | exception | mach Lampe 1 an aber nicht Lampe 2
-de | exception | mach alle Rollos zu außer im Schlafzimmer
-de | exception | mach das Flur Licht an aber nicht das Büro Licht
-de | exception | mach die Lichter im Büro an ausgenommen Auf Sendung
-de | exception | mach die Lichter im Flur aus, aber nicht die Stehlampe
-de | exception | mach die Lichter in der Garage an aber nicht das Werkbank Licht
-de | exception | mach die Lichter in der Küche an, nur nicht die Arbeitsplatte
-de | exception | schalte alle Lichter aus außer dem Flur Licht
-de | exception | schalte alles im Wohnzimmer aus außer dem Fernseher
-en | exception | close all the blinds except the ones in the bedroom
-en | exception | turn off all lights in the office except the desk lamp
-en | exception | turn off all the lights except the hall light
-en | exception | turn off everything except the oven
-en | exception | turn off everything in the living room except the tv
-en | exception | turn off the lights in the hall, but not the floor lamp
-en | exception | turn on all the lights in the kitchen apart from the counter light
-en | exception | turn on everything in the kitchen except the oven
-en | exception | turn on lamp 1 but not lamp 2
-en | exception | turn on the hall light but not the office light
-en | exception | turn on the kitchen lights excluding the counter light
-en | exception | turn on the lights in the garage but not the workbench light

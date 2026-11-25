@@ -57,6 +57,8 @@ struct YamlDevice {
     platform: Option<String>,
     #[serde(default)]
     tags: Vec<String>,
+    #[serde(default)]
+    device_class: Option<String>,
 }
 
 #[derive(Deserialize)]
@@ -106,6 +108,11 @@ pub fn load_home_config(path: &Path) -> Result<HomeGraph, String> {
         })
         .collect::<Vec<_>>();
     drop_borrowed_area_names(&mut areas);
+    let device_classes = file
+        .devices
+        .iter()
+        .filter_map(|d| Some((d.id.clone(), d.device_class.as_deref().map(str::trim).filter(|class| !class.is_empty())?.to_lowercase())))
+        .collect();
     let mut entities: Vec<EntityRec> = file
         .devices
         .into_iter()
@@ -172,6 +179,7 @@ pub fn load_home_config(path: &Path) -> Result<HomeGraph, String> {
         assist: None,
         policy: file.policy,
         registered_intents: Vec::new(),
+        device_classes,
         label_index: None,
     };
     crate::home::labels::rebuild_label_index(&mut graph);

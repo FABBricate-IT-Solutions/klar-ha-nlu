@@ -213,15 +213,24 @@ pub(super) fn safety_decision(mut draft: Draft, context: &ParseContext<'_>) -> D
             _ => draft,
         };
     }
-    if let Some(plan) = draft.plan.take_if(|_| !operator) {
+    if let Some(asked) = draft.plan.take_if(|_| !operator) {
+        // A sentence the user taught may name a device that is otherwise not a target.
+        let taught = draft.output_candidate.as_ref().is_some_and(|candidate| candidate.policy == "custom_sentence");
+        let cleared = if taught { None } else { super::reach::without_ignored(&asked, context.home) };
+        if cleared.as_ref().is_some_and(|plan| plan.steps.is_empty()) {
+            draft.plan = Some(asked);
+            return invalid_plan(draft, PlanInvalid::MissingTarget);
+        }
+        let changed = cleared.is_some();
+        let plan = cleared.unwrap_or(asked);
         let filtered = filter_valid_steps(&plan, context.home);
         if filtered.steps.is_empty() {
             let reason = validate_plan(&plan, context.home).err().unwrap_or(PlanInvalid::MissingTarget);
             draft.plan = Some(plan);
             return invalid_plan(draft, reason);
         }
-        if filtered.steps.len() != plan.steps.len() {
-            if plan.steps.iter().any(|step| fail_closed_intent(&step.intent)) {
+        if changed || filtered.steps.len() != plan.steps.len() {
+            if filtered.steps.len() != plan.steps.len() && plan.steps.iter().any(|step| fail_closed_intent(&step.intent)) {
                 draft.plan = Some(plan);
                 return invalid_plan(draft, PlanInvalid::UnsafeTarget);
             }
@@ -247,11 +256,11 @@ pub(super) fn safety_decision(mut draft: Draft, context: &ParseContext<'_>) -> D
     // trace when the script runs, Home Assistant reads the hit from it.
     let phrase_action = draft.policy_trace.clone();
     let confirm_on = context.settings.confirm_risky_actions;
-    let compiled_risky = confirm_on && (requires_confirmation(plan) || draft.inherits_risk);
+    let compiled_risky = confirm_on && (requires_confirmation(plan, context.home) || draft.inherits_risk);
     if let Some(action) = super::policy_route::apply_matched_action(context, plan) {
         return action;
     }
-    let verdict = judge(context.policies, plan, confirm_on, draft.inherits_risk);
+    let verdict = judge(context.policies, plan, context.home, confirm_on, draft.inherits_risk);
     let (matched, risky) = (verdict.rule, verdict.risky);
     let seed_matched = first_seed_match(context.policies, plan);
     let policy_trace = super::policy_route::overlay_trace(&draft, matched, seed_matched, compiled_risky, "reject");
