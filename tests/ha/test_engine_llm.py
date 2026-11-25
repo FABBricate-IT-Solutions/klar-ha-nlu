@@ -105,6 +105,9 @@ class EngineLlmTests(unittest.TestCase):
         self.assertIn("/api/v2/speech/render", src)
         self.assertIn("complete_engine_speech_render", src)
         self.assertTrue(issubclass(engine_llm.EngineSpeechMissing, Exception))
+        # H-16: once tokens stream, host-alias retry is forbidden.
+        self.assertIn("once the first token arrived", src)
+        self.assertIn("started = True", src)
 
 
 if __name__ == "__main__":
