@@ -8,7 +8,7 @@ import { PolicyPath, type PolicyLane } from "../components/PolicyPath";
 import { useHouseCatalog } from "../components/SearchSelect";
 import type { Messages } from "../i18n";
 import { saveFailMessage, toastSaved, toastSaveFailed } from "../saveToast";
-import { bakeVariants } from "../speechBank";
+import { bakeVariants, pruneSpeechBank } from "../speechBank";
 import type { EvaluateOut, Locale, MatchCatalogRow, MatchControl, PolicyRule, RulesView, SpeechBank } from "../types";
 import { CustomPage } from "./CustomPage";
 import { RoutinesPage } from "./RoutinesPage";
@@ -260,14 +260,20 @@ export function RulesPage({
 
   const removeRule = async (id: string) => {
     const next = rules.filter((item) => item.id !== id);
+    const nextBank = { entries: pruneSpeechBank(bank.entries, next.map((rule) => rule.id)) };
+    setBank(nextBank);
     setSelected((index) => Math.min(index, Math.max(0, next.length - 1)));
-    await persist(next);
+    await persist(next, nextBank);
   };
 
   const bake = () => {
     if (!current) return;
     const entry = bakeVariants(current.id, current.effect, personality, languages.length ? languages : [locale]);
-    setBank({ entries: [...bank.entries.filter((item) => item.rule_id !== current.id), entry] });
+    const capped = pruneSpeechBank(
+      [...bank.entries.filter((item) => item.rule_id !== current.id), entry],
+      rules.map((rule) => rule.id),
+    );
+    setBank({ entries: capped });
   };
 
   return (

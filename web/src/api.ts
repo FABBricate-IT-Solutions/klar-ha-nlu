@@ -18,9 +18,7 @@ import type {
   Settings,
   TrainerChatEvent,
   TrainerContext,
-  TrainerProposal,
   TrainerTurn,
-  TrainerValidateOut,
   UiState,
 } from "./types";
 import { ApiError, readErrorBody } from "./lib/apiError";
@@ -188,14 +186,10 @@ export const api = {
     request<LanguagePack[]>(all ? "/api/v2/languages?all=true" : "/api/v2/languages"),
   entities: () => request<Entity[]>("/api/entities"),
   gaps: () => request<Gaps>("/api/gaps"),
-  custom: () => request<unknown[]>("/api/custom"),
-  saveCustom: (body: unknown[]) => request<unknown[]>("/api/custom", { method: "POST", body: JSON.stringify(body) }),
   langOverlay: () => request<LangOverlay>("/api/lang/overlay"),
   /** The engine changes only the parts the body names: without `custom` the phrases stay as stored. */
   saveLangOverlay: (body: { custom?: CustomRule[]; language?: unknown; label?: string }) =>
     request<LangOverlay>("/api/lang/overlay", { method: "POST", body: JSON.stringify(body) }),
-  previewLang: (body: { text: string; language?: string; custom?: CustomRule[] }) =>
-    request<unknown>("/api/lang/preview", { method: "POST", body: JSON.stringify(body) }),
   explainLang: (body: { text: string; language?: string; custom?: CustomRule[] }) =>
     request<LangExplain>("/api/lang/explain", { method: "POST", body: JSON.stringify(body) }),
   rollbackLang: (hash?: string) =>
@@ -213,8 +207,6 @@ export const api = {
     if (language) query.set("language", language);
     return request<TrainerContext>(`/api/v2/policies/trainer-context?${query.toString()}`);
   },
-  validateProposal: (body: TrainerProposal) =>
-    request<TrainerValidateOut>("/api/v2/policies/propose/validate", { method: "POST", body: JSON.stringify(body) }),
   llmEndpoint: () => request<LlmPublic>("/api/v2/llm/endpoint"),
   customVoice: (body: {
     language: string;
@@ -281,12 +273,10 @@ export const api = {
       body: JSON.stringify(body),
     }),
   conversations: () => request<ConversationTurn[]>("/api/v2/conversations"),
-  conversation: (id: string) => request<ConversationTurn[]>(`/api/v2/conversations/${encodeURIComponent(id)}`),
   intents: () => request<string[]>("/api/v2/intents"),
   tagEntity: (body: { entity_id: string; aliases?: string[]; preferred?: boolean; nlu_ignore?: boolean; area?: string }) =>
     request<Entity>("/api/entities", { method: "POST", body: JSON.stringify(body) }),
   bundle: () => request<BundleList>("/api/bundle/entries"),
-  deleteBundle: (ids: string[]) => request<BundleList>("/api/bundle/entries", { method: "POST", body: JSON.stringify({ ids }) }),
   clearBundle: () => request<{ enabled: boolean; count: number; bytes: number }>("/api/bundle/clear", { method: "POST" }),
   applySuggestions: () => request<{ applied: number; rows: ApplyRow[] }>("/api/assignment/apply", { method: "POST" }),
   undoApply: () => request<{ applied: number; rows: ApplyRow[] }>("/api/assignment/undo", { method: "POST" }),

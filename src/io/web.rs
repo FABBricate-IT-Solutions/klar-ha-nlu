@@ -7,14 +7,17 @@ use crate::io::state::{save_failed, AppState};
 use crate::nlu::{legacy_result, parse_with_controls};
 use crate::types::{known_intent, AreaRec, CustomSentence, EntityRec, ParseOutcome, Settings};
 use axum::extract::{ConnectInfo, DefaultBodyLimit, State};
-use axum::http::{HeaderMap, StatusCode};
+use axum::http::{header, HeaderMap, HeaderValue, StatusCode};
 use axum::response::Html;
 use axum::routing::{get, post};
 use axum::{Json, Router};
 use serde::Deserialize;
 use std::net::SocketAddr;
 use std::path::PathBuf;
+use tower::ServiceBuilder;
+use tower_http::compression::CompressionLayer;
 use tower_http::services::ServeDir;
+use tower_http::set_header::SetResponseHeaderLayer;
 
 #[derive(Deserialize)]
 #[serde(deny_unknown_fields)]
@@ -49,7 +52,20 @@ pub fn router(state: AppState) -> Router {
         .merge(crate::io::backup::routes())
         .merge(crate::io::llm::routes())
         .merge(crate::io::speech::routes().layer(DefaultBodyLimit::max(16 * 1024)))
-        .fallback_service(ServeDir::new(ui_dir()))
+        // U-20: gzip UI assets when the client asks; long-cache hashed files, no-cache HTML.
+        .fallback_service(
+            ServiceBuilder::new()
+                .layer(CompressionLayer::new())
+                .layer(SetResponseHeaderLayer::overriding(header::CACHE_CONTROL, |res: &axum::http::Response<_>| {
+                    let ctype = res.headers().get(header::CONTENT_TYPE).and_then(|value| value.to_str().ok()).unwrap_or("");
+                    Some(if ctype.starts_with("text/html") {
+                        HeaderValue::from_static("no-cache")
+                    } else {
+                        HeaderValue::from_static("public, max-age=31536000, immutable")
+                    })
+                }))
+                .service(ServeDir::new(ui_dir())),
+        )
         .with_state(state)
 }
 

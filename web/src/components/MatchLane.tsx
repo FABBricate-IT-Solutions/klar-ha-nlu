@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { OriginChip } from "./OriginChip";
 import type { Messages } from "../i18n";
 import type { MatchCatalogRow, MatchControl } from "../types";
@@ -35,6 +36,9 @@ export function MatchLane({
   onSelect: (index: number) => void;
   onChange: (next: MatchControl[]) => void;
 }) {
+  /** Draft text while the operator edits; empty is allowed (U-24). */
+  const [drafts, setDrafts] = useState<Record<string, string>>({});
+
   return (
     <>
       <div className="policy-lane-head">
@@ -47,6 +51,7 @@ export function MatchLane({
         const overlay = controls.find((item) => item.id === row.id);
         const enabled = overlay?.enabled ?? true;
         const precedence = overlay?.precedence ?? row.precedence;
+        const draft = drafts[row.id];
         return (
           <div
             className={`lane-row match-row${index === selected ? " active" : ""}`}
@@ -67,11 +72,26 @@ export function MatchLane({
               type="number"
               min={0}
               aria-label={t.matchPrecedence}
-              value={precedence}
+              value={draft ?? String(precedence)}
               onClick={(ev) => ev.stopPropagation()}
               onChange={(ev) => {
-                const value = ev.target.value === "" ? undefined : Number(ev.target.value);
-                onChange(upsertMatchControl(controls, catalog, row.id, { precedence: Number.isFinite(value) ? value : undefined }));
+                const text = ev.target.value;
+                setDrafts((prev) => ({ ...prev, [row.id]: text }));
+                if (text === "") {
+                  onChange(upsertMatchControl(controls, catalog, row.id, { precedence: undefined }));
+                  return;
+                }
+                const value = Number(text);
+                if (Number.isFinite(value) && value >= 0) {
+                  onChange(upsertMatchControl(controls, catalog, row.id, { precedence: value }));
+                }
+              }}
+              onBlur={() => {
+                setDrafts((prev) => {
+                  const next = { ...prev };
+                  delete next[row.id];
+                  return next;
+                });
               }}
             />
           </div>

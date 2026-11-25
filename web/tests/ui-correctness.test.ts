@@ -1,7 +1,7 @@
 import fs from "node:fs";
 import path from "node:path";
-import { describe, expect, it } from "vitest";
-import { wizardMessages } from "../src/i18n/wizard";
+import { beforeAll, describe, expect, it } from "vitest";
+import { ensureWizardMessages, loadAllWizardOverlays, wizardMessages } from "../src/i18n/wizard";
 
 /** Relative luminance for sRGB hex (#rrggbb). */
 function luminance(hex: string): number {
@@ -22,6 +22,10 @@ function contrast(a: string, b: string): number {
 }
 
 describe("wizard locale key sets (U-16 acceptance)", () => {
+  beforeAll(async () => {
+    await loadAllWizardOverlays();
+  });
+
   it("keeps the same key set for every wizard JSON pack", () => {
     const dir = path.resolve(__dirname, "../src/i18n/wizard");
     const files = fs.readdirSync(dir).filter((name) => name.endsWith(".json"));
@@ -33,16 +37,16 @@ describe("wizard locale key sets (U-16 acceptance)", () => {
     }
   });
 
-  it("merges overlays onto the oracle without dropping required titles", () => {
-    const fr = wizardMessages("fr");
+  it("merges overlays onto the oracle without dropping required titles", async () => {
+    const fr = await ensureWizardMessages("fr");
     expect(fr.whatTitle.length).toBeGreaterThan(0);
     expect(fr.pathTitle.length).toBeGreaterThan(0);
   });
 
-  it("translates the four chrome step titles out of English (U-16)", () => {
-    const en = wizardMessages("en");
+  it("translates the four chrome step titles out of English (U-16)", async () => {
+    const en = await ensureWizardMessages("en");
     for (const code of ["fr", "nl", "ja", "ar", "de-AT"]) {
-      const copy = wizardMessages(code);
+      const copy = await ensureWizardMessages(code);
       expect(copy.chromeTitle, code).not.toBe(en.chromeTitle);
       expect(copy.unitsTitle, code).not.toBe(en.unitsTitle);
       expect(copy.restTitle, code).not.toBe(en.restTitle);

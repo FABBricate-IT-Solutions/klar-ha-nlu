@@ -1,8 +1,7 @@
 import { Moon, Sun } from "lucide-react";
 import { languageOptions, SearchSelect, withCurrent } from "../SearchSelect";
 import type { LanguagePack } from "../../api";
-import type { Messages } from "../../i18n";
-import { dictionaries } from "../../i18n";
+import { localeCodes, type Messages } from "../../i18n";
 import type { WizardMessages } from "../../i18n/wizard";
 import type { Locale, Settings, Theme } from "../../types";
 import { SettingsToggle } from "../SettingsToggle";
@@ -30,7 +29,7 @@ export function ChromeStep({
   onTheme: (theme: Theme) => void;
   onSettings: (next: Settings) => void;
 }) {
-  const chromeCodes = new Set(Object.keys(dictionaries));
+  const chromeCodes = new Set(localeCodes);
   const localePacks: { code: string; native_name: string; tier?: string }[] = packs.length
     ? packs.filter((pack) => chromeCodes.has(pack.code))
     : [...chromeCodes].map((code) => ({
