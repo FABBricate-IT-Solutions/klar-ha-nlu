@@ -4,10 +4,12 @@ from typing import Any
 from urllib.parse import urlparse
 
 import voluptuous as vol
+from aiohttp import ClientError, ClientTimeout
 from homeassistant import config_entries
 from homeassistant.core import callback
 from homeassistant.data_entry_flow import FlowResult
 from homeassistant.helpers import selector
+from homeassistant.helpers.aiohttp_client import async_get_clientsession
 
 from .addon_host import async_refresh_klar_hosts
 from .const import (
@@ -162,9 +164,6 @@ def _valid_engine_url(url: str) -> bool:
 
 async def _probe_engine(hass: Any, url: str, token: str | None) -> bool:
     """H-22: refuse a config that cannot answer GET /api/settings."""
-    from aiohttp import ClientError, ClientTimeout
-    from homeassistant.helpers.aiohttp_client import async_get_clientsession
-
     session = async_get_clientsession(hass)
     headers = engine_headers(token)
     for base in engine_url_candidates(url):
