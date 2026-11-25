@@ -47,12 +47,27 @@ export function ConversationsPage({
   const [error, setError] = useState("");
   const [why, setWhy] = useState<ConversationTurn | null>(null);
   useEffect(() => {
-    api.conversations()
-      .then((rows) => setTurns(asTurns(rows)))
-      .catch((err) => {
-        setTurns([]);
-        setError(String(err));
-      });
+    let alive = true;
+    const load = () => {
+      api.conversations()
+        .then((rows) => {
+          if (!alive) return;
+          setTurns(asTurns(rows));
+          setError("");
+        })
+        .catch((err) => {
+          if (!alive) return;
+          setTurns((prev) => prev ?? []);
+          setError(String(err));
+        });
+    };
+    load();
+    // Journal used to load once; refresh so new Assist turns appear (U-29).
+    const timer = window.setInterval(load, 15_000);
+    return () => {
+      alive = false;
+      window.clearInterval(timer);
+    };
   }, []);
   const items = useMemo(
     () => [...(turns || [])].sort((a, b) => (b.ts_ms || 0) - (a.ts_ms || 0)),

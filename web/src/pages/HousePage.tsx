@@ -42,7 +42,13 @@ function viewLabel(view: HouseView, t: Messages): string {
 function deviceIdFromHash(hash = window.location.hash): string {
   const parts = hash.replace(/^#/, "").replace(/^\//, "").split("/").filter(Boolean);
   if (parts[0] !== "house" || parts[1] !== "devices" || !parts[2]) return "";
-  return parts.slice(2).map((part) => decodeURIComponent(part)).join("/");
+  return parts.slice(2).map((part) => {
+    try {
+      return decodeURIComponent(part);
+    } catch {
+      return part;
+    }
+  }).join("/");
 }
 
 export function HousePage({

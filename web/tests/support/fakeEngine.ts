@@ -53,8 +53,8 @@ export type FakeEngine = {
   /** Requests for one `METHOD /path` route. */
   to: (route: string) => Call[];
   on: (route: string, handler: Handler) => void;
-  /** The next `count` requests to the route answer with `status` and no body. */
-  failNext: (route: string, status?: number, count?: number) => void;
+  /** The next `count` requests to the route answer with `status` (optional JSON body). */
+  failNext: (route: string, status?: number, count?: number, body?: unknown) => void;
   /**
    * Resolves once the UI has stopped talking: no request for `quietMs`. Use it after a click whose
    * correct outcome is "nothing is sent", where there is no element to wait for.
@@ -184,7 +184,7 @@ export function fakeEngine(options: FakeEngineOptions = {}): FakeEngine {
     ...clone(options.stored ?? {}),
   };
   const routes: Record<string, Handler> = { ...routesFor(stored), ...(options.routes ?? {}) };
-  const failures = new Map<string, { status: number; left: number }>();
+  const failures = new Map<string, { status: number; left: number; body?: unknown }>();
   const calls: Call[] = [];
   const unhandled: Call[] = [];
   let lastRequest = Date.now();
@@ -210,7 +210,7 @@ export function fakeEngine(options: FakeEngineOptions = {}): FakeEngine {
     const failure = failures.get(route);
     if (failure && failure.left > 0) {
       failure.left -= 1;
-      return respond({ status: failure.status });
+      return respond({ status: failure.status, body: failure.body });
     }
     const handler = routes[route];
     if (!handler) {
@@ -234,8 +234,8 @@ export function fakeEngine(options: FakeEngineOptions = {}): FakeEngine {
     on: (route, handler) => {
       routes[route] = handler;
     },
-    failNext: (route, status = 502, count = 1) => {
-      failures.set(route, { status, left: count });
+    failNext: (route, status = 502, count = 1, body) => {
+      failures.set(route, { status, left: count, body });
     },
     idle: async (quietMs = 150) => {
       lastRequest = Date.now();

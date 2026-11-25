@@ -1,5 +1,6 @@
 use crate::io::auth::{reads_allowed, writes_allowed};
-use crate::io::state::{save_failed, AppState};
+use crate::io::http_error::HttpError;
+use crate::io::state::AppState;
 use crate::nlu::parse_with_controls;
 use crate::types::{sanitize_rules, sanitize_speech_bank, MatchCatalogRow, MatchControl, ParseOutcome, PolicyRule, SpeechBank};
 use axum::extract::{ConnectInfo, State};
@@ -84,13 +85,16 @@ async fn set_policies(
     ConnectInfo(peer): ConnectInfo<SocketAddr>,
     headers: HeaderMap,
     Json(body): Json<PolicyBundle>,
-) -> Result<Json<PolicyBundle>, StatusCode> {
+) -> Result<Json<PolicyBundle>, HttpError> {
     if !writes_allowed(Some(peer), &headers, &state.token) {
-        return Err(StatusCode::UNAUTHORIZED);
+        return Err(StatusCode::UNAUTHORIZED.into());
     }
-    let policies = sanitize_rules(body.policies).map_err(|_| StatusCode::BAD_REQUEST)?;
-    let speech_bank = sanitize_speech_bank(body.speech_bank).map_err(|_| StatusCode::BAD_REQUEST)?;
-    let match_controls = crate::parse::sanitize_match_controls(body.match_controls).map_err(|_| StatusCode::BAD_REQUEST)?;
+    let policies = sanitize_rules(body.policies)
+        .map_err(|msg| HttpError::new(StatusCode::BAD_REQUEST, msg).with_path("policies"))?;
+    let speech_bank = sanitize_speech_bank(body.speech_bank)
+        .map_err(|msg| HttpError::new(StatusCode::BAD_REQUEST, msg).with_path("speech_bank"))?;
+    let match_controls = crate::parse::sanitize_match_controls(body.match_controls)
+        .map_err(|msg| HttpError::new(StatusCode::BAD_REQUEST, msg).with_path("match_controls"))?;
     state
         .overlay
         .update(|overlay| {
@@ -98,7 +102,7 @@ async fn set_policies(
             overlay.speech_bank = speech_bank.clone();
             overlay.match_controls = match_controls.clone();
         })
-        .map_err(save_failed)?;
+        .map_err(HttpError::save_failed)?;
     *state.policies.lock().await = policies.clone();
     *state.speech_bank.lock().await = speech_bank.clone();
     *state.match_controls.lock().await = match_controls.clone();
@@ -110,19 +114,21 @@ async fn evaluate_policies(
     ConnectInfo(peer): ConnectInfo<SocketAddr>,
     headers: HeaderMap,
     Json(body): Json<EvaluateIn>,
-) -> Result<Json<EvaluateOut>, StatusCode> {
+) -> Result<Json<EvaluateOut>, HttpError> {
     if !reads_allowed(Some(peer), &headers, &state.token) {
-        return Err(StatusCode::UNAUTHORIZED);
+        return Err(StatusCode::UNAUTHORIZED.into());
     }
     if body.text.chars().count() > crate::io::limits::MAX_PARSE_CHARS {
-        return Err(StatusCode::PAYLOAD_TOO_LARGE);
+        return Err(StatusCode::PAYLOAD_TOO_LARGE.into());
     }
     let policies = match body.policies {
-        Some(rules) => sanitize_rules(rules).map_err(|_| StatusCode::BAD_REQUEST)?,
+        Some(rules) => sanitize_rules(rules)
+            .map_err(|msg| HttpError::new(StatusCode::BAD_REQUEST, msg).with_path("policies"))?,
         None => state.policies.lock().await.clone(),
     };
     let match_controls = match body.match_controls {
-        Some(rows) => crate::parse::sanitize_match_controls(rows).map_err(|_| StatusCode::BAD_REQUEST)?,
+        Some(rows) => crate::parse::sanitize_match_controls(rows)
+            .map_err(|msg| HttpError::new(StatusCode::BAD_REQUEST, msg).with_path("match_controls"))?,
         None => state.match_controls.lock().await.clone(),
     };
     let speech_bank = state.speech_bank.lock().await.clone();
