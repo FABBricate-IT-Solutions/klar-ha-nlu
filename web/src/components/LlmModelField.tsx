@@ -3,7 +3,6 @@ import type { Messages } from "../i18n";
 import { listLlmModels } from "../llmModels";
 import type { LlmProviderId } from "../llmProviders";
 import { SearchSelect, withCurrent } from "./SearchSelect";
-import { Button } from "@/components/ui/button";
 
 type ListingStatus = "idle" | "loading" | "ready" | "empty" | "fail";
 type Listing = { for: string; models: string[]; status: Exclude<ListingStatus, "idle"> };
@@ -84,16 +83,9 @@ export function LlmModelField({
       />
       {hint ? <p className="caption" role="status">{hint}</p> : null}
       {action ? (
-        <Button
-          type="button"
-          variant="link"
-          size="xs"
-          className="h-auto px-0"
-          disabled={!baseUrl.trim()}
-          onClick={load}
-        >
+        <button type="button" className="caption" disabled={!baseUrl.trim()} onClick={load}>
           {action}
-        </Button>
+        </button>
       ) : null}
     </>
   );
