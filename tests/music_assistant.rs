@@ -539,9 +539,9 @@ fn transfer_requires_a_distinct_explicit_destination() {
     let source_only = intents("Move music from the living room", "en", &home, &mut session);
     assert!(source_only.is_empty(), "{source_only:?}");
 
+    // The transfer has no destination, so it cannot run; the light does not run without it.
     let source_with_followup = intents("Move music from the living room and turn on the light in the kitchen", "en", &home, &mut session);
-    assert!(source_with_followup.iter().all(|intent| intent.name != "MassTransferQueue"), "{source_with_followup:?}");
-    assert!(source_with_followup.iter().any(|intent| intent.name == "HassTurnOn"), "{source_with_followup:?}");
+    assert!(source_with_followup.is_empty(), "{source_with_followup:?}");
 
     let same = intents("Verschiebe die Musik ins Wohnzimmer", "de", &home, &mut session);
     assert!(same.is_empty(), "{same:?}");

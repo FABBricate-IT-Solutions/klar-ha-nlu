@@ -7,14 +7,16 @@ use crate::parse::action::{has_light_noun, is_garage_cover, is_query_token};
 use crate::parse::fuzzy::{evidence, Profile};
 use crate::parse::infer::fixture_matches;
 use crate::parse::normalize::{compact, fold_label, inflected_eq, is_time_unit, umlaut_eq};
-use crate::types::{AreaRec, EntityRec, FloorRec, HomeGraph};
+use crate::types::{EntityRec, FloorRec, HomeGraph};
 pub(crate) use report::{resolve_scored, ResolveEvidence, ResolveReport};
+use rooms::match_areas;
 pub(crate) use score::{has_fuzzy_target_token, known_target_token};
 use score::{overlap, sort_hits};
-use specific::{area_within, keep_most_specific, narrow_to_scope, prefer_fully_named};
+use specific::{keep_most_specific, narrow_to_scope, prefer_fully_named};
 
 mod prefer;
 mod report;
+mod rooms;
 mod scope;
 mod score;
 mod shared_room;
@@ -278,48 +280,6 @@ fn pick_bedside(hits: &[EntityRec]) -> EntityRec {
         .or_else(|| hits.iter().min_by_key(|entity| entity.entity_id.as_str()))
         .cloned()
         .unwrap_or_else(|| hits[0].clone())
-}
-
-fn match_areas(tokens: &[String], areas: &[AreaRec]) -> Vec<String> {
-    let mut scored: Vec<(usize, String)> = Vec::new();
-    for area in areas {
-        let names: Vec<String> = std::iter::once(fold_label(&area.name))
-            .chain(std::iter::once(area.area_id.clone()))
-            .chain(area.aliases.iter().map(|a| fold_label(a)))
-            .collect();
-        let mut best = 0usize;
-        for n in &names {
-            if token_hit(tokens, n) {
-                let parts = n.split([' ', '_']).filter(|p| !p.is_empty()).count().max(1);
-                best = best.max(parts);
-            }
-        }
-        if best > 0 {
-            scored.push((best, area.area_id.clone()));
-        }
-    }
-    let max = scored.iter().map(|(s, _)| *s).max().unwrap_or(0);
-    let strong: Vec<String> = scored.iter().filter(|(s, _)| *s == max).map(|(_, id)| id.clone()).collect();
-    let mut ids: Vec<String> = scored
-        .into_iter()
-        .filter(|(s, id)| *s == max || !strong.iter().any(|other| other.split('_').next() == id.split('_').next()))
-        .filter(|(s, id)| *s == max || !area_within(id, &strong, areas))
-        .map(|(_, id)| id)
-        .collect();
-    if ids.is_empty() {
-        if let Some(fuzzy) = crate::parse::resolve_named::fuzzy_areas(tokens, areas) {
-            return fuzzy;
-        }
-    }
-    if ids.is_empty() && crate::home::policy::mentions_generic_bedroom(tokens) {
-        if let Some(bedroom) = crate::home::policy::primary_bedroom(&HomeGraph { areas: areas.to_vec(), ..Default::default() }) {
-            return vec![bedroom];
-        }
-    }
-    if ids.len() > 1 {
-        ids.retain(|id| !areas.iter().any(|area| area.area_id == *id && crate::home::policy::is_whole_home(area)));
-    }
-    ids
 }
 
 fn match_floors(tokens: &[String], floors: &[FloorRec]) -> Vec<String> {

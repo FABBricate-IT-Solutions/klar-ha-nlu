@@ -1,5 +1,6 @@
 mod keys;
 mod merge;
+mod roles;
 mod words;
 
 use super::groups::{GroupClarify, LanguagePack as Pack, NumberStyle};
