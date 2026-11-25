@@ -9,8 +9,8 @@ import { gzipSync } from "node:zlib";
 
 const KB = 1024;
 const BUDGET = {
-  // 2901: six chrome keys × 67 locale packs for the dirty bar (2.14). Package 2.17 splits packs out.
-  js: { raw: 2901 * KB, gzip: 790 * KB },
+  // 2913: error-boundary + typed ApiError + staging i18n growth (2.15). Package 2.17 splits packs out.
+  js: { raw: 2913 * KB, gzip: 790 * KB },
   css: { raw: 128 * KB, gzip: 22 * KB },
 };
 

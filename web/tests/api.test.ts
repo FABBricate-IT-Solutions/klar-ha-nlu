@@ -1,5 +1,6 @@
 import { describe, expect, it } from "vitest";
-import { api, appPath, setToken } from "../src/api";
+import { ApiError, api, appPath, setToken } from "../src/api";
+import { takeSseEvents } from "../src/lib/sse";
 import { fakeEngine } from "./support/fakeEngine";
 import { parseResult, storedOverlay, storedSettings, storedUi } from "./support/fixtures";
 
@@ -56,6 +57,24 @@ describe("the API client", () => {
     engine.failNext("POST /api/v2/policies", 422);
 
     await expect(api.savePolicies({ policies: [], speech_bank: { entries: [] } })).rejects.toThrow("422 Unprocessable Entity");
+  });
+
+  it("surfaces the engine error text and path from a JSON body (U-18)", async () => {
+    const engine = fakeEngine();
+    engine.failNext("POST /api/v2/policies", 500, 1, { error: "could not save: disk full", path: "klar_nlu.json" });
+
+    await expect(api.savePolicies({ policies: [], speech_bank: { entries: [] } })).rejects.toMatchObject({
+      name: "ApiError",
+      message: "could not save: disk full",
+      path: "klar_nlu.json",
+      status: 500,
+    } satisfies Partial<ApiError>);
+  });
+
+  it("reads every data line in an SSE event, not only the first (U-28)", () => {
+    const { events, rest } = takeSseEvents('data: {"type":"delta","text":"a"}\ndata: {"type":"done"}\n\npartial');
+    expect(events).toEqual(['{"type":"delta","text":"a"}\n{"type":"done"}']);
+    expect(rest).toBe("partial");
   });
 
   it("posts each save to its own endpoint with the body it was given", async () => {

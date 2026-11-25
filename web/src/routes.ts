@@ -93,13 +93,22 @@ function parseRulesHash(rest: string[]): Route {
   return { tab: "rules" };
 }
 
+/** Decode one hash segment; a malformed percent-escape keeps the raw text (U-19). */
+export function decodeHashPart(part: string): string {
+  try {
+    return decodeURIComponent(part);
+  } catch {
+    return part;
+  }
+}
+
 function parseHouseHash(rest: string[]): Route {
   const sub = rest[0] || "";
   if (sub === "mapping" || sub === "calibrate") return { tab: "house", house_view: "calibrate" };
   if (sub === "graph") return { tab: "house", house_view: "graph" };
   if (sub === "entities") return { tab: "house", house_view: "entities" };
   if (sub === "devices") {
-    const id = rest.slice(1).map((part) => decodeURIComponent(part)).join("/");
+    const id = rest.slice(1).map(decodeHashPart).join("/");
     return { tab: "house", house_view: "entities", entity_id: id || undefined };
   }
   return { tab: "house" };

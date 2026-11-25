@@ -14,6 +14,7 @@ import { ParsePage } from "./pages/ParsePage";
 import { RulesPage } from "./pages/RulesPage";
 import { SettingsPage } from "./pages/SettingsPage";
 import { Wizard } from "./pages/Wizard";
+import { defaultSettings, defaultUi } from "./appDefaults";
 import { applyRoute, asHouseView, asRulesView, asSettingsView, asTab, hrefFor, parseHash } from "./routes";
 import type { ConversationTurn, Dashboard, Settings, Tab, Theme, UiState } from "./types";
 import { Badge } from "@/components/ui/badge";
@@ -34,52 +35,6 @@ const tabIcons: Record<Tab, typeof HomeIcon> = {
 
 const railTabs: Tab[] = ["home", "conversations", "rules", "house"];
 const utilTabs: Tab[] = ["lab", "settings"];
-const defaultUi: UiState = {
-  tab: "home",
-  locale: "",
-  locale_set: false,
-  dismissed: [],
-  last_apply: [],
-  graph: {},
-  wizard_done: false,
-  house_view: "calibrate",
-  rules_view: "routines",
-  settings_view: "llm",
-  theme: "dark",
-};
-const defaultSettings: Settings = {
-  personality: "default",
-  mode: "full",
-  languages: [],
-  default_language: "",
-  experimental_languages: false,
-  support_bundle: false,
-  support_bundle_raw_text: false,
-  confirm_risky_actions: true,
-  semantic_adapters: false,
-  nlu_rag: false,
-  refine_speech: false,
-  refine_bands: [],
-  calendar_llm: false,
-  quiet_ack: false,
-  satellite_followup: false,
-  allow_llm_tools: false,
-  fallback_llm: false,
-  extra_prompt: "",
-  unit_system: "metric",
-  custom_voice: "",
-  custom_voice_name: "",
-  custom_voice_seed: "",
-  news_feeds: [],
-  custom_voice_traits: {
-    warmth: 5,
-    humor: 4,
-    sarcasm: 2,
-    formality: 5,
-    verbosity: 4,
-    energy: 5,
-  },
-};
 
 type Loaded = { settings: boolean; ui: boolean; dashboard: boolean };
 
@@ -161,7 +116,7 @@ export function App() {
       take("dashboard", api.dashboard(), setDashboard),
       uiLoaded.current ? undefined : take("ui", api.ui(), (next) => applyUi(next)),
     ]);
-    setError(failures.length ? String(failures[0]) : "");
+    setError(failures.length ? (failures[0] instanceof Error ? failures[0].message : String(failures[0])) : "");
   }, [applyUi]);
 
   /** After a backup restore: take UI and settings from the engine so the next navigation does not overwrite them. */
@@ -193,6 +148,17 @@ export function App() {
       setBooted(true);
     })();
   }, [refresh]);
+
+  // Home and journal used to freeze after the first load (U-29).
+  useEffect(() => {
+    if (!booted) return;
+    const tick = () => {
+      api.dashboard().then(setDashboard).catch(() => undefined);
+      api.conversations().then(setJournal).catch(() => undefined);
+    };
+    const timer = window.setInterval(tick, 15_000);
+    return () => window.clearInterval(timer);
+  }, [booted]);
 
   useEffect(() => {
     if (!uiLoaded.current || suppressUiSave.current) return;
@@ -283,20 +249,28 @@ export function App() {
     go("lab");
   };
   const apply = async () => {
-    const already = applyCandidates.filter((row) => row.area && row.area === row.suggested_area?.area_id).map((row) => row.entity_id);
-    const out = await api.applySuggestions();
-    setUi((prev) => ({
-      ...prev,
-      last_apply: out.rows,
-      dismissed: [...new Set([...prev.dismissed, ...already])],
-    }));
     setConfirmApply(false);
-    refresh();
+    try {
+      const already = applyCandidates.filter((row) => row.area && row.area === row.suggested_area?.area_id).map((row) => row.entity_id);
+      const out = await api.applySuggestions();
+      setUi((prev) => ({
+        ...prev,
+        last_apply: out.rows,
+        dismissed: [...new Set([...prev.dismissed, ...already])],
+      }));
+      refresh();
+    } catch (err) {
+      toast.error(err instanceof Error ? err.message : String(err));
+    }
   };
   const undo = async () => {
-    await api.undoApply();
-    setUi((prev) => ({ ...prev, last_apply: [] }));
-    refresh();
+    try {
+      await api.undoApply();
+      setUi((prev) => ({ ...prev, last_apply: [] }));
+      refresh();
+    } catch (err) {
+      toast.error(err instanceof Error ? err.message : String(err));
+    }
   };
   const finishWizard = () => {
     const next = {
