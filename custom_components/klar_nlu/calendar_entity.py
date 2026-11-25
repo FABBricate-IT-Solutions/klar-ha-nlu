@@ -107,7 +107,21 @@ async def collect(
         for event in found:
             events.append(event)
             records.append(calendar_session.as_record(entity_id, event))
+    # H-07: order across calendars by start time.
+    events.sort(key=_event_sort_key)
+    records = [calendar_session.as_record(str(event.get("entity_id") or ""), event) for event in events]
     return events, records
+
+
+def _event_sort_key(event: dict[str, Any]) -> tuple[int, str]:
+    raw = event.get("start")
+    if isinstance(raw, datetime):
+        stamp = raw if raw.tzinfo is not None else raw.replace(tzinfo=ZoneInfo("UTC"))
+        return (0, stamp.astimezone(ZoneInfo("UTC")).isoformat())
+    if isinstance(raw, date):
+        return (0, f"{raw.isoformat()}T00:00:00+00:00")
+    text = str(raw or "")
+    return (1, text)
 
 
 async def _events_for(hass: HomeAssistant, entity_id: str, start: datetime, end: datetime) -> list[dict[str, Any]]:
