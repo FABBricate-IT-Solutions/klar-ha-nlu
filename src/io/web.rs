@@ -35,7 +35,7 @@ pub fn router(state: AppState) -> Router {
     Router::new()
         .route("/", get(index))
         .route("/api/v2/parse", post(api_parse))
-        .route("/api/settings", get(get_settings).post(set_settings))
+        .route("/api/settings", get(get_settings).post(set_settings).patch(patch_settings))
         .route("/api/custom", get(get_custom).post(set_custom))
         .route("/api/entities", get(get_entities).post(tag_entity))
         .route("/api/gaps", get(get_gaps))
@@ -172,7 +172,26 @@ async fn set_settings(
 ) -> Result<Json<Settings>, StatusCode> {
     gate(peer, &headers, &state.token)?;
     let current = state.settings.lock().await.clone();
-    let body = crate::lang::check_settings(body, &current).map_err(|_| StatusCode::UNPROCESSABLE_ENTITY)?;
+    let mut body = crate::lang::check_settings(body, &current).map_err(|_| StatusCode::UNPROCESSABLE_ENTITY)?;
+    // D-10: refuse a nonsense timezone instead of silently falling back to UTC.
+    body.time_zone = crate::io::trainer_settings::checked_time_zone(&body.time_zone).map_err(|_| StatusCode::UNPROCESSABLE_ENTITY)?;
+    if body.extra_prompt.chars().count() > 2000 || body.default_language.chars().count() > 32 {
+        return Err(StatusCode::UNPROCESSABLE_ENTITY);
+    }
+    state.overlay.update(|overlay| overlay.settings = Some(body.clone())).map_err(save_failed)?;
+    *state.settings.lock().await = body.clone();
+    Ok(Json(body))
+}
+
+async fn patch_settings(
+    State(state): State<AppState>,
+    ConnectInfo(peer): ConnectInfo<SocketAddr>,
+    headers: HeaderMap,
+    Json(patch): Json<serde_json::Value>,
+) -> Result<Json<Settings>, StatusCode> {
+    gate(peer, &headers, &state.token)?;
+    let current = state.settings.lock().await.clone();
+    let body = crate::io::trainer_settings::patch_settings_http(&current, &patch).map_err(|_| StatusCode::UNPROCESSABLE_ENTITY)?;
     state.overlay.update(|overlay| overlay.settings = Some(body.clone())).map_err(save_failed)?;
     *state.settings.lock().await = body.clone();
     Ok(Json(body))

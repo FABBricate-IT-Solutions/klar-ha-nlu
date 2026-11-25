@@ -347,8 +347,10 @@ def _mapping(value: Any, path: str) -> dict[str, Any]:
 
 
 def _keys(value: dict[str, Any], allowed: set[str], path: str, *, optional: set[str] | None = None) -> None:
-    if unknown := set(value) - allowed:
-        raise ValueError(f"{path} has unknown fields: {sorted(unknown)}")
+    # H-13: a newer engine may send optional fields we have not learned yet — drop them.
+    for key in list(value):
+        if key not in allowed:
+            del value[key]
     if missing := allowed - (optional or set()) - set(value):
         raise ValueError(f"{path} is missing fields: {sorted(missing)}")
 

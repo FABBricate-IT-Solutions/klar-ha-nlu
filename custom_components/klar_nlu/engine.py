@@ -7,6 +7,7 @@ import logging
 import os
 import platform
 import secrets
+import time
 from pathlib import Path
 
 from aiohttp import ClientError, ClientSession, ClientTimeout
@@ -61,6 +62,9 @@ _ASSETS = {
 }
 
 _READY_TRIES = 30
+# H-15: do not GET settings on every Assist turn; cap alias fan-out.
+SETTINGS_CACHE_TTL_S = 15.0
+SETTINGS_FETCH_BUDGET_S = 4.0
 
 
 def _read_stamp(path: Path) -> str:
@@ -362,15 +366,20 @@ def store_engine_settings(
     stored = (hass.data.get(DOMAIN) or {}).get(entry.entry_id)
     if stored is not None:
         stored["engine_settings"] = payload
+        stored["engine_settings_at"] = time.monotonic()
 
 
 async def async_fetch_settings(
     hass: HomeAssistant, url: str, token: str | None = None
 ) -> dict[str, object] | None:
     session = async_get_clientsession(hass)
-    timeout = ClientTimeout(total=3)
     headers = engine_headers(token)
+    deadline = time.monotonic() + SETTINGS_FETCH_BUDGET_S
     for base in engine_url_candidates(url):
+        remaining = deadline - time.monotonic()
+        if remaining <= 0:
+            break
+        timeout = ClientTimeout(total=min(3.0, remaining))
         try:
             async with session.get(
                 f"{base}/api/settings",
@@ -393,9 +402,13 @@ async def async_put_settings(
     token: str | None = None,
 ) -> dict[str, object] | None:
     session = async_get_clientsession(hass)
-    timeout = ClientTimeout(total=3)
     headers = engine_headers(token)
+    deadline = time.monotonic() + SETTINGS_FETCH_BUDGET_S
     for base in engine_url_candidates(url):
+        remaining = deadline - time.monotonic()
+        if remaining <= 0:
+            break
+        timeout = ClientTimeout(total=min(3.0, remaining))
         try:
             async with session.post(
                 f"{base}/api/settings",
@@ -412,6 +425,39 @@ async def async_put_settings(
     return None
 
 
+async def async_patch_settings(
+    hass: HomeAssistant,
+    url: str,
+    patch: dict[str, object],
+    token: str | None = None,
+) -> dict[str, object] | None:
+    """Merge on the engine (D-08). Falls back to full POST only when PATCH is missing."""
+    session = async_get_clientsession(hass)
+    headers = engine_headers(token)
+    deadline = time.monotonic() + SETTINGS_FETCH_BUDGET_S
+    for base in engine_url_candidates(url):
+        remaining = deadline - time.monotonic()
+        if remaining <= 0:
+            break
+        timeout = ClientTimeout(total=min(3.0, remaining))
+        try:
+            async with session.patch(
+                f"{base}/api/settings",
+                json=patch,
+                headers=headers,
+                timeout=timeout,
+            ) as resp:
+                if resp.status in {404, 405}:
+                    return None
+                resp.raise_for_status()
+                body = await resp.json()
+        except (ClientError, TimeoutError, OSError, ValueError) as err:
+            _LOGGER.debug("Klar settings not patched at %s: %s", base, err)
+            continue
+        return body if isinstance(body, dict) else None
+    return None
+
+
 def _entry_url_token(hass: HomeAssistant, entry: ConfigEntry) -> tuple[str, str | None]:
     stored = (hass.data.get(DOMAIN) or {}).get(entry.entry_id) or {}
     url = str(
@@ -425,14 +471,24 @@ def _entry_url_token(hass: HomeAssistant, entry: ConfigEntry) -> tuple[str, str 
 
 
 async def async_refresh_engine_settings(
-    hass: HomeAssistant, entry: ConfigEntry
+    hass: HomeAssistant, entry: ConfigEntry, *, force: bool = False
 ) -> dict[str, object]:
+    stored = (hass.data.get(DOMAIN) or {}).get(entry.entry_id) or {}
+    cached = cached_engine_settings(hass, entry)
+    fetched_at = stored.get("engine_settings_at")
+    if (
+        not force
+        and cached
+        and isinstance(fetched_at, (int, float))
+        and time.monotonic() - float(fetched_at) < SETTINGS_CACHE_TTL_S
+    ):
+        return cached
     url, token = _entry_url_token(hass, entry)
     fetched = await async_fetch_settings(hass, url, token)
     if fetched is not None:
         store_engine_settings(hass, entry, fetched)
         return fetched
-    return cached_engine_settings(hass, entry)
+    return cached
 
 
 async def async_seed_product_settings(
@@ -476,11 +532,14 @@ async def async_seed_product_settings(
 async def async_patch_engine_settings(
     hass: HomeAssistant, entry: ConfigEntry, patch: dict[str, object]
 ) -> dict[str, object] | None:
+    """Apply a partial settings update without rewriting the whole document (D-08)."""
     url, token = _entry_url_token(hass, entry)
-    current = cached_engine_settings(hass, entry)
-    if not current:
-        fetched = await async_fetch_settings(hass, url, token)
-        current = fetched or {}
+    patched = await async_patch_settings(hass, url, patch, token)
+    if patched is not None:
+        store_engine_settings(hass, entry, patched)
+        return patched
+    # Older engines: refresh first so a stale cache cannot wipe operator edits.
+    current = await async_refresh_engine_settings(hass, entry, force=True)
     if not current:
         return None
     posted = await async_put_settings(hass, url, {**current, **patch}, token)

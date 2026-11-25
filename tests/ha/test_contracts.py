@@ -195,6 +195,14 @@ class ContractTests(unittest.TestCase):
         with self.assertRaises(ValueError):
             contracts.validate_v2_payload(payload)
 
+    def test_ignores_unknown_optional_fields(self) -> None:
+        # H-13: a newer engine may add fields; the turn must still parse.
+        payload = _payload({"type": "chat"})
+        payload["future_hint"] = {"kind": "experimental"}
+        validated = contracts.validate_v2_payload(payload)
+        self.assertNotIn("future_hint", validated)
+        self.assertEqual(validated["decision"]["type"], "chat")
+
     def _assert_no_executable_shape(self, value: object) -> None:
         if isinstance(value, dict):
             for forbidden in ("plan", "intent", "slots", "selected_candidate_id"):
