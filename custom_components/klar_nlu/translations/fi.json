@@ -3,7 +3,7 @@
     "step": {
       "user": {
         "title": "Klar NLU",
-        "description": "Tämä integraatio puhuu Assistille. Erillinen moottori tulkitsee puheen: Klar NLU -sovellus, tämä mukana tuleva prosessi tai Docker. Home Assistant OS:ssä asenna myös sovellus ja valitse Käytä Klar NLU -sovellusta. Ilman sovellusta käynnistä mukana tuleva moottori. Älä käytä molempia.",
+        "description": "Tämä integraatio puhuu Assistille. Erillinen moottori tulkitsee puheen: Klar NLU -sovellus, tämä mukana tuleva prosessi tai Docker. Home Assistant OS:ssä asenna myös sovellus ja valitse Käytä Klar NLU -sovellusta. Ilman sovellusta käynnistä mukana tuleva moottori. Älä käytä molempia. {apps}",
         "data": {
           "mode": "Moottori",
           "channel": "Julkaisukanava",

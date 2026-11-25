@@ -3,7 +3,7 @@
     "step": {
       "user": {
         "title": "Klar NLU",
-        "description": "Ta integracja rozmawia z Assist. Osobny silnik analizuje mowę: aplikacja Klar NLU, ten dołączony proces albo Docker. W Home Assistant OS zainstaluj też aplikację i wybierz Użyj aplikacji Klar NLU. Bez aplikacji uruchom dołączony silnik. Nie uruchamiaj obu.",
+        "description": "Ta integracja rozmawia z Assist. Osobny silnik analizuje mowę: aplikacja Klar NLU, ten dołączony proces albo Docker. W Home Assistant OS zainstaluj też aplikację i wybierz Użyj aplikacji Klar NLU. Bez aplikacji uruchom dołączony silnik. Nie uruchamiaj obu. {apps}",
         "data": {
           "mode": "Silnik",
           "channel": "Kanał wydań",

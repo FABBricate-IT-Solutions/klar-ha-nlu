@@ -330,6 +330,7 @@ async fn tag_entity(
 #[cfg(test)]
 mod tests {
     use super::*;
+    use crate::home::test_dir::TestDir;
     use crate::home::{default_home, LoadedHome};
     use crate::types::ParseDecision;
 
@@ -408,8 +409,8 @@ mod tests {
         assert!(!valid_entity_id("light.kuche.extra"));
     }
 
-    fn parse_state(name: &str) -> AppState {
-        let dir = std::env::temp_dir().join(format!("klar-http-{name}-{}", std::process::id()));
+    fn parse_state(name: &str) -> (TestDir, AppState) {
+        let scratch = TestDir::new(&format!("http-{name}"));
         let home = LoadedHome {
             graph: default_home(),
             settings: Settings::default(),
@@ -419,7 +420,8 @@ mod tests {
             speech_bank: Default::default(),
             match_controls: Vec::new(),
         };
-        AppState::new(home, dir, None)
+        let state = AppState::new(home, scratch.path().to_path_buf(), None);
+        (scratch, state)
     }
 
     async fn say(state: &AppState, text: &str, id: &str) -> Result<ParseOutcome, StatusCode> {
@@ -437,7 +439,7 @@ mod tests {
 
     #[tokio::test]
     async fn confirmation_never_exposes_plan_before_affirmation() {
-        let state = parse_state("confirm");
+        let (_scratch, state) = parse_state("confirm");
         let first = say(&state, "Wohnungstür abschließen", "confirm-http").await.expect("confirmation response");
         assert!(matches!(first.decision, ParseDecision::Confirm { .. }), "{first:#?}");
         assert!(first.plan.is_none());
@@ -451,7 +453,7 @@ mod tests {
 
     #[tokio::test]
     async fn a_conversation_id_is_checked_at_the_door() {
-        let state = parse_state("ids");
+        let (_scratch, state) = parse_state("ids");
         for bad in ["line\nbreak", "bell\u{7}", &"x".repeat(129)] {
             assert_eq!(say(&state, "Wohnungstür abschließen", bad).await.unwrap_err(), StatusCode::BAD_REQUEST, "{bad:?}");
         }
@@ -464,8 +466,9 @@ mod tests {
 
     #[tokio::test]
     async fn set_custom_fails_closed_when_overlay_cannot_write() {
-        let path = std::env::temp_dir().join(format!("klar-custom-notdir-{}", std::process::id()));
-        let _ = std::fs::remove_file(&path);
+        // A file where the data directory should be: every write into it fails.
+        let scratch = TestDir::new("custom-notdir");
+        let path = scratch.file("not-a-directory");
         std::fs::write(&path, b"x").unwrap();
         let state = AppState::new(
             LoadedHome {
@@ -485,6 +488,5 @@ mod tests {
         let err = super::set_custom(State(state.clone()), peer, HeaderMap::new(), Json(body)).await.unwrap_err();
         assert_eq!(err, StatusCode::INTERNAL_SERVER_ERROR);
         assert!(state.custom.lock().await.is_empty());
-        let _ = std::fs::remove_file(&path);
     }
 }

@@ -291,14 +291,15 @@ fn resolve_area(home: &crate::types::HomeGraph, raw: &str) -> Result<String, Str
 #[cfg(test)]
 mod tests {
     use super::*;
+    use crate::home::test_dir::TestDir;
     use crate::home::{default_home, LoadedHome};
     use crate::io::state::AppState;
     use crate::types::Settings;
 
-    fn state(tag: &str) -> AppState {
-        let dir = std::env::temp_dir().join(format!("klar-trainer-apply-{tag}-{}", std::process::id()));
-        let _ = std::fs::create_dir_all(&dir);
-        AppState::new(
+    fn state(tag: &str) -> (TestDir, AppState) {
+        let scratch = TestDir::new(&format!("trainer-apply-{tag}"));
+        let dir = scratch.path().to_path_buf();
+        let state = AppState::new(
             LoadedHome {
                 graph: default_home(),
                 settings: Settings::pinned("de"),
@@ -310,12 +311,13 @@ mod tests {
             },
             dir,
             None,
-        )
+        );
+        (scratch, state)
     }
 
     #[tokio::test]
     async fn merge_aliases_and_reject_unknown_entity() {
-        let state = state("alias");
+        let (_scratch, state) = state("alias");
         let ok = apply_aliases(&state, &json!({"entity_id":"light.wohnzimmer","aliases":["decke"]})).await.unwrap();
         assert_eq!(ok["ok"], true);
         let home = state.home.snapshot().await;
@@ -326,7 +328,7 @@ mod tests {
 
     #[tokio::test]
     async fn apply_area_sets_room_and_rejects_bad_ids() {
-        let state = state("area");
+        let (_scratch, state) = state("area");
         let ok = apply_area(&state, &json!({"entity_id":"light.wohnzimmer","area":"Büro"})).await.unwrap();
         assert_eq!(ok["ok"], true);
         assert_eq!(ok["assigned"][0]["area"], "arbeitszimmer");
@@ -351,7 +353,7 @@ mod tests {
 
     #[tokio::test]
     async fn lexicon_merge_keeps_existing_and_validates() {
-        let state = state("lex");
+        let (_scratch, state) = state("lex");
         let first = json!({"language":"de","path":"nouns.light_nouns","add":["kugelchen"]});
         apply_lexicon(&state, &first).await.unwrap();
         apply_lexicon(&state, &json!({"language":"de","path":"nouns.light_nouns","add":["lampe"]})).await.unwrap();

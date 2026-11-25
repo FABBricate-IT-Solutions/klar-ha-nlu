@@ -1,15 +1,10 @@
 use super::*;
-
-fn temp_dir(tag: &str) -> std::path::PathBuf {
-    let dir = std::env::temp_dir().join(format!("klar-llm-{tag}-{}", std::process::id()));
-    let _ = std::fs::remove_dir_all(&dir);
-    std::fs::create_dir_all(&dir).unwrap();
-    dir
-}
+use crate::home::test_dir::TestDir;
 
 #[test]
 fn persists_endpoint_and_keeps_key_off_public() {
-    let dir = temp_dir("save");
+    let scratch = TestDir::new("llm-save");
+    let dir = scratch.path().to_path_buf();
     let endpoint = LlmEndpoint::from_parts("http://127.0.0.1:11434/v1", "sk-secret", "llama3").unwrap();
     save_endpoint(&dir, &endpoint).unwrap();
     let loaded = from_file(&dir).unwrap();
@@ -25,12 +20,12 @@ fn persists_endpoint_and_keeps_key_off_public() {
     assert_eq!(public.provider.as_deref(), Some("custom"));
     clear_endpoint(&dir).unwrap();
     assert!(from_file(&dir).is_none());
-    let _ = std::fs::remove_dir_all(&dir);
 }
 
 #[test]
 fn unknown_provider_still_loads() {
-    let dir = temp_dir("unknown-provider");
+    let scratch = TestDir::new("llm-unknown-provider");
+    let dir = scratch.path().to_path_buf();
     std::fs::write(
         dir.join("llm_endpoint.json"),
         r#"{"base_url":"http://192.168.178.15:8000/v1","api_key":"k","model":"gemma","provider":"not-a-host"}"#,
@@ -39,19 +34,18 @@ fn unknown_provider_still_loads() {
     let loaded = from_file(&dir).unwrap();
     assert_eq!(loaded.model, "gemma");
     assert_eq!(loaded.base_url, "http://192.168.178.15:8000/v1");
-    let _ = std::fs::remove_dir_all(&dir);
 }
 
 #[test]
 fn old_file_defaults_thinking_off_and_roundtrips_on() {
-    let dir = temp_dir("legacy");
+    let scratch = TestDir::new("llm-legacy");
+    let dir = scratch.path().to_path_buf();
     std::fs::write(dir.join("llm_endpoint.json"), r#"{"base_url":"http://127.0.0.1:8000/v1","api_key":"k","model":"gemma"}"#).unwrap();
     let loaded = from_file(&dir).unwrap();
     assert!(!loaded.enable_thinking);
     save_endpoint(&dir, &loaded.clone().with_thinking(true)).unwrap();
     let again = from_file(&dir).unwrap();
     assert!(again.enable_thinking);
-    let _ = std::fs::remove_dir_all(&dir);
 }
 
 #[test]
@@ -114,7 +108,7 @@ fn inference_routes_record_llm_calls() {
 
 #[test]
 fn clear_missing_file_is_ok() {
-    let dir = temp_dir("missing");
+    let scratch = TestDir::new("llm-missing");
+    let dir = scratch.path().to_path_buf();
     clear_endpoint(&dir).unwrap();
-    let _ = std::fs::remove_dir_all(&dir);
 }

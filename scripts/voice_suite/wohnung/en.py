@@ -18,6 +18,7 @@ from ..lib import (
     except_rooms,
     query_area,
     query_entity,
+    rejected,
 )
 
 
@@ -179,9 +180,9 @@ def _lights() -> list[str]:
 
 def _queries() -> list[str]:
     return [
-        case(
+        # No thermostat is assigned to the whole flat.
+        rejected(
             "how_warm_home",
-            "    - {type: query, area: wohnung, domain: climate}",
             ["How warm is it in the apartment", "What's the temperature at home"],
         ),
         case(

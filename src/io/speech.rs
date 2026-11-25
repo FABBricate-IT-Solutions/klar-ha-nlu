@@ -68,6 +68,7 @@ fn status_for(err: SnapshotError) -> StatusCode {
 #[cfg(test)]
 mod tests {
     use super::*;
+    use crate::home::test_dir::TestDir;
     use crate::home::{default_home, LoadedHome};
     use crate::types::{Settings, SpeechIntent, SpeechSlot, UnitSystem};
 
@@ -94,8 +95,9 @@ mod tests {
         }
     }
 
-    fn state() -> AppState {
-        AppState::new(
+    fn state() -> (TestDir, AppState) {
+        let scratch = TestDir::new("speech");
+        let state = AppState::new(
             LoadedHome {
                 graph: default_home(),
                 settings: Settings::default(),
@@ -105,15 +107,17 @@ mod tests {
                 speech_bank: Default::default(),
                 match_controls: Vec::new(),
             },
-            std::env::temp_dir().join(format!("klar-speech-{}", std::process::id())),
+            scratch.path().to_path_buf(),
             None,
-        )
+        );
+        (scratch, state)
     }
 
     #[tokio::test]
     async fn supervisor_core_renders_without_token() {
         let peer = ConnectInfo("172.30.32.1:9".parse().unwrap());
-        let out = speech_render(State(state()), peer, HeaderMap::new(), Json(snap())).await.expect("supervisor render").0;
+        let (_scratch, state) = state();
+        let out = speech_render(State(state), peer, HeaderMap::new(), Json(snap())).await.expect("supervisor render").0;
         assert_eq!(out.source, "post_execute");
         assert!(out.speech.contains("Küche Licht"), "{:?}", out.speech);
     }
@@ -121,15 +125,17 @@ mod tests {
     #[tokio::test]
     async fn lan_render_without_token_is_unauthorized() {
         let peer = ConnectInfo("10.0.0.8:9".parse().unwrap());
-        let err = speech_render(State(state()), peer, HeaderMap::new(), Json(snap())).await.unwrap_err();
+        let (_scratch, state) = state();
+        let err = speech_render(State(state), peer, HeaderMap::new(), Json(snap())).await.unwrap_err();
         assert_eq!(err, StatusCode::UNAUTHORIZED);
     }
 
     #[tokio::test]
     async fn supervisor_reads_asr_boost() {
         let peer = ConnectInfo("172.30.32.1:9".parse().unwrap());
+        let (_scratch, state) = state();
         let out =
-            asr_boost(State(state()), peer, HeaderMap::new(), Query(AsrBoostQuery { language: Some("de".into()), max_tokens: Some(80) }))
+            asr_boost(State(state), peer, HeaderMap::new(), Query(AsrBoostQuery { language: Some("de".into()), max_tokens: Some(80) }))
                 .await
                 .expect("asr boost")
                 .0;
@@ -151,8 +157,9 @@ mod tests {
     #[tokio::test]
     async fn lan_asr_boost_without_token_is_unauthorized() {
         let peer = ConnectInfo("10.0.0.8:9".parse().unwrap());
+        let (_scratch, state) = state();
         let err =
-            asr_boost(State(state()), peer, HeaderMap::new(), Query(AsrBoostQuery { language: None, max_tokens: None })).await.unwrap_err();
+            asr_boost(State(state), peer, HeaderMap::new(), Query(AsrBoostQuery { language: None, max_tokens: None })).await.unwrap_err();
         assert_eq!(err, StatusCode::UNAUTHORIZED);
     }
 

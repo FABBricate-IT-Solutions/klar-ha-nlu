@@ -3,7 +3,7 @@
     "step": {
       "user": {
         "title": "Klar NLU",
-        "description": "Den här integrationen pratar med Assist. En separat motor tolkar tal: Klar NLU-appen, den här medföljande processen eller Docker. På Home Assistant OS, installera även appen och välj Använd Klar NLU-appen. Utan app, starta den medföljande motorn. Kör inte båda.",
+        "description": "Den här integrationen pratar med Assist. En separat motor tolkar tal: Klar NLU-appen, den här medföljande processen eller Docker. På Home Assistant OS, installera även appen och välj Använd Klar NLU-appen. Utan app, starta den medföljande motorn. Kör inte båda. {apps}",
         "data": {
           "mode": "Motor",
           "channel": "Utgivningskanal",

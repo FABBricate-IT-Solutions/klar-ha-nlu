@@ -165,16 +165,16 @@ fn now_ms() -> u64 {
 #[cfg(test)]
 mod tests {
     use super::*;
+    use crate::home::test_dir::TestDir;
     use crate::home::{default_home, LoadedHome};
     use crate::io::conversations::turn_from_outcome;
     use crate::io::state::AppState;
     use crate::types::{ParseDecision, ParseOutcome, RejectReason, Settings};
 
-    fn state() -> AppState {
-        let dir = std::env::temp_dir().join(format!("klar-lotse-turns-{}", std::process::id()));
-        let _ = std::fs::remove_dir_all(&dir);
-        let _ = std::fs::create_dir_all(&dir);
-        AppState::new(
+    fn state() -> (TestDir, AppState) {
+        let scratch = TestDir::new("lotse-turns");
+        let dir = scratch.path().to_path_buf();
+        let state = AppState::new(
             LoadedHome {
                 graph: default_home(),
                 settings: Settings::pinned("de"),
@@ -186,7 +186,8 @@ mod tests {
             },
             dir,
             None,
-        )
+        );
+        (scratch, state)
     }
 
     fn outcome(text: &str, speech: &str, decision: ParseDecision) -> ParseOutcome {
@@ -221,7 +222,7 @@ mod tests {
 
     #[tokio::test]
     async fn filters_last_and_query() {
-        let state = state();
+        let (_scratch, state) = state();
         state.journal.append(turn_from_outcome(
             &outcome("licht an", "Geht.", ParseDecision::Execute),
             true,

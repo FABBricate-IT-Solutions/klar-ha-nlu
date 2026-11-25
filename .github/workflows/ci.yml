@@ -28,9 +28,12 @@ jobs:
     name: rustfmt
     runs-on: ubuntu-26.04
     steps:
-      - uses: actions/checkout@v7
-      - uses: dtolnay/rust-toolchain@1.85
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
+          persist-credentials: false
+      - uses: dtolnay/rust-toolchain@df2a88e9fe4098bad09cb42c3dec7187f15861fc # master
+        with:
+          toolchain: "1.85"
           components: rustfmt
       - name: Check formatting
         run: cargo fmt --all -- --check
@@ -39,14 +42,17 @@ jobs:
     name: clippy
     runs-on: ubuntu-26.04
     steps:
-      - uses: actions/checkout@v7
-      - uses: dtolnay/rust-toolchain@1.85
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
+          persist-credentials: false
+      - uses: dtolnay/rust-toolchain@df2a88e9fe4098bad09cb42c3dec7187f15861fc # master
+        with:
+          toolchain: "1.85"
           components: clippy
       # One cache per job: clippy stores check artefacts of the dev profile, the test
       # jobs need optimised test-profile builds. A shared key gave the test job a
       # cache it could not use.
-      - uses: Swatinem/rust-cache@v2
+      - uses: Swatinem/rust-cache@d1527c8f67ef9af357290475d4af4b0fab8f12e0 # v2.9.3
         with:
           shared-key: ci-clippy
           cache-on-failure: true
@@ -62,7 +68,9 @@ jobs:
     name: test
     runs-on: ubuntu-26.04
     steps:
-      - uses: actions/checkout@v7
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
       - name: CalVer bump script
         run: python3 scripts/bump-version.py --self-test
       - name: Release cut script
@@ -71,55 +79,30 @@ jobs:
         run: python3 -m unittest discover -s tests -p 'test_*.py'
       - name: Language pack gates
         run: python3 scripts/check_lang_packs.py
-      - uses: dtolnay/rust-toolchain@1.85
+      - uses: dtolnay/rust-toolchain@df2a88e9fe4098bad09cb42c3dec7187f15861fc # master
         with:
+          toolchain: "1.85"
           components: rustfmt
+      # Every generator, then the whole tree must be unchanged (translations included).
       - name: Generators are a no-op
-        run: |
-          set -euo pipefail
-          python3 scripts/lang_packs/generate.py
-          python3 scripts/parity/generate.py
-          python3 scripts/full_home/generate.py
-          cargo fmt --all
-          paths=(
-            src/lang/packs
-            src/lang/registry.rs
-            src/lang/packs/mod.rs
-            tests/assist_langs.rs
-            tests/full_home.rs
-            tests/datasets
-            custom_components/klar_nlu/languages.py
-            custom_components/klar_nlu/speech_locale.py
-            src/llm/refine_shots.rs
-            src/llm/refine_shots_a.rs
-            src/llm/refine_shots_b.rs
-            src/llm/refine_shots_c.rs
-            src/llm/refine_shots_d.rs
-            src/llm/refine_shots_e.rs
-            src/llm/refine_shots_f.rs
-            src/speech/generated.rs
-          )
-          dirty="$(git status --porcelain -- "${paths[@]}")"
-          if [[ -n "$dirty" ]]; then
-            echo "$dirty"
-            git diff -- "${paths[@]}"
-            echo "generated language packs or datasets are stale; run python3 scripts/lang_packs/generate.py && python3 scripts/parity/generate.py && python3 scripts/full_home/generate.py && cargo fmt --all" >&2
-            exit 1
-          fi
-      - uses: taiki-e/install-action@v2
+        run: bash scripts/check_generated.sh
+      - uses: taiki-e/install-action@fe3acb53a98b62c772db35de75ce0e4595e7ca8c # v2.90.8
         with:
           tool: nextest
-      - uses: Swatinem/rust-cache@v2
+      - uses: Swatinem/rust-cache@d1527c8f67ef9af357290475d4af4b0fab8f12e0 # v2.9.3
         with:
           shared-key: ci-test
           cache-on-failure: true
       - name: Nextest profile
         id: nextest
+        env:
+          REQUESTED_PROFILE: ${{ inputs.nextest_profile }}
+          BASE_REF: ${{ github.base_ref }}
         run: |
           set -euo pipefail
-          profile="${{ inputs.nextest_profile }}"
+          profile="${REQUESTED_PROFILE}"
           if [[ -z "${profile}" ]]; then
-            if [[ "${{ github.base_ref }}" == "staging" ]]; then
+            if [[ "${BASE_REF}" == "staging" ]]; then
               profile=ci-staging
             else
               profile=ci
@@ -136,7 +119,23 @@ jobs:
           echo "Using nextest profile: ${profile}"
       - name: Test
         timeout-minutes: 30
-        run: cargo nextest run --locked --profile ${{ steps.nextest.outputs.profile }} --no-fail-fast
+        env:
+          NEXTEST_PROFILE: ${{ steps.nextest.outputs.profile }}
+        run: |
+          set -euo pipefail
+          # A temp directory of its own, so the next step sees what the tests left behind.
+          export TMPDIR="${RUNNER_TEMP}/klar-tests"
+          mkdir -p "${TMPDIR}"
+          cargo nextest run --locked --profile "${NEXTEST_PROFILE}" --no-fail-fast
+      - name: Tests left nothing in the temp directory
+        run: |
+          set -euo pipefail
+          left="$(ls -A "${RUNNER_TEMP}/klar-tests")"
+          if [[ -n "$left" ]]; then
+            echo "$left"
+            echo "tests left files behind; use a scratch directory that is removed on drop (TestDir or tempfile)" >&2
+            exit 1
+          fi
 
   # Klar's own dataset suites (wohnung_*, full_home, per-locale wohnung overlay).
   # The filter lives in .config/nextest.toml, profile ci-datasets. The full tier is
@@ -146,12 +145,16 @@ jobs:
     runs-on: ubuntu-26.04
     timeout-minutes: 20
     steps:
-      - uses: actions/checkout@v7
-      - uses: dtolnay/rust-toolchain@1.85
-      - uses: taiki-e/install-action@v2
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: dtolnay/rust-toolchain@df2a88e9fe4098bad09cb42c3dec7187f15861fc # master
+        with:
+          toolchain: "1.85"
+      - uses: taiki-e/install-action@fe3acb53a98b62c772db35de75ce0e4595e7ca8c # v2.90.8
         with:
           tool: nextest
-      - uses: Swatinem/rust-cache@v2
+      - uses: Swatinem/rust-cache@d1527c8f67ef9af357290475d4af4b0fab8f12e0 # v2.9.3
         with:
           shared-key: ci-datasets
           cache-on-failure: true
@@ -172,14 +175,16 @@ jobs:
       run:
         working-directory: web
     steps:
-      - uses: actions/checkout@v7
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
       - name: Lockfile is committed
         run: |
           if [[ ! -f package-lock.json ]]; then
             echo "web/package-lock.json is missing; the UI must build from a lockfile" >&2
             exit 1
           fi
-      - uses: actions/setup-node@v7
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
         with:
           node-version: 24
           cache: npm
@@ -204,13 +209,17 @@ jobs:
     runs-on: ubuntu-26.04
     timeout-minutes: 25
     steps:
-      - uses: actions/checkout@v7
-      - uses: dtolnay/rust-toolchain@1.85
-      - uses: Swatinem/rust-cache@v2
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: dtolnay/rust-toolchain@df2a88e9fe4098bad09cb42c3dec7187f15861fc # master
+        with:
+          toolchain: "1.85"
+      - uses: Swatinem/rust-cache@d1527c8f67ef9af357290475d4af4b0fab8f12e0 # v2.9.3
         with:
           shared-key: ci-web-smoke
           cache-on-failure: true
-      - uses: actions/setup-node@v7
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
         with:
           node-version: 24
           cache: npm
@@ -235,7 +244,9 @@ jobs:
     runs-on: ubuntu-26.04
     timeout-minutes: 15
     steps:
-      - uses: actions/checkout@v7
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
       - uses: astral-sh/setup-uv@1db35dd8eee11c5894872e0b383ae6c406cf738d # v10.4.0
         with:
           python-version: "3.14"
@@ -252,12 +263,29 @@ jobs:
         timeout-minutes: 10
         run: pytest -q
 
+  # Cheap checks on the CI definition itself and on the docs.
+  lint:
+    name: ci-lint
+    runs-on: ubuntu-26.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: astral-sh/setup-uv@1db35dd8eee11c5894872e0b383ae6c406cf738d # v10.4.0
+        with:
+          enable-cache: false
+      - name: actionlint, zizmor, shellcheck
+        run: bash scripts/lint_ci.sh
+      - name: Links between the Markdown files
+        run: python3 scripts/check_links.py
+
   # Required check on staging. It passes only when every job it needs succeeded, so a new
   # job gates merges by being listed here, without a change to the repository settings.
   # tests/test_ci_workflows.py fails when a job of this workflow is missing from the list.
   release-gates:
     name: release-gates
-    needs: [test, clippy, rustfmt, web, web-smoke, ha, datasets]
+    needs: [test, clippy, rustfmt, web, web-smoke, ha, datasets, lint]
     if: always()
     runs-on: ubuntu-26.04
     steps:

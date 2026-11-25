@@ -53,7 +53,7 @@ def expand(fields: dict[str, str]) -> dict[str, str]:
     grumpy, sarcastic, pirate = f["grumpy"], f["sarcastic"], f["pirate"]
     return {
         "config.step.user.title": f["title"],
-        "config.step.user.description": f["user_desc"],
+        "config.step.user.description": f"{f['user_desc'].rstrip()} {{apps}}",
         "config.step.user.data.mode": f["mode"],
         "config.step.user.data.channel": f["channel"],
         "config.step.user.data.url": f["url"],

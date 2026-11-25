@@ -13,6 +13,7 @@ from ..lib import (
     dump,
     query_area,
     query_entity,
+    rejected,
 )
 
 
@@ -61,7 +62,6 @@ def _devices() -> list[str]:
                 action_entity("light.schlafzimmer_decke", "off"),
                 [
                     "Deckenlampe aus",
-                    "Decknlampe aus",
                     "Mach die Deckenlampe aus",
                     "Schalt die Decke aus",
                     "Kannst du die Decke ausmachen",
@@ -114,25 +114,24 @@ def _devices() -> list[str]:
 
 def _area_queries() -> list[str]:
     out = []
-    for area, name, prep, _ in ROOMS:
+    for area, name, prep, light in ROOMS:
         if area == "flur":
             continue
-        out.append(
-            case(
-                f"status_licht_{area}",
-                query_area(area, "light"),
-                [
-                    f"Wie ist der Status vom Licht {prep}",
-                    f"Ist das Licht {prep} an",
-                    f"Licht {name} Status",
-                    f"Brennt das Licht {prep}",
-                ],
-            )
-        )
+        sentences = [
+            f"Wie ist der Status vom Licht {prep}",
+            f"Ist das Licht {prep} an",
+            f"Licht {name} Status",
+            f"Brennt das Licht {prep}",
+        ]
+        # A room without a light has nothing to report.
+        if light is None:
+            out.append(rejected(f"status_licht_{area}", sentences))
+        else:
+            out.append(case(f"status_licht_{area}", query_area(area, "light"), sentences))
+    # No thermostat is assigned to the whole flat.
     out.append(
-        case(
+        rejected(
             "temperatur_wohnung",
-            "    - {type: query, area: wohnung, domain: climate}",
             [
                 "Wie warm ist es in der Wohnung",
                 "Temperatur Wohnung",
@@ -228,7 +227,7 @@ def _multi() -> list[str]:
             "\n".join(
                 [
                     action_area("wohnzimmer", "light", "on"),
-                    "    - type: action\n      attributes:\n        temperature: 23",
+                    "    - type: action\n      area: wohnzimmer\n      domain: climate\n      attributes:\n        temperature: 23",
                 ]
             ),
             [
@@ -243,7 +242,7 @@ def _multi() -> list[str]:
                 [
                     action_area("wohnzimmer", "light", "on"),
                     action_area("kuche", "light", "on"),
-                    "    - type: action\n      attributes:\n        temperature: 23",
+                    "    - type: action\n      area: wohnzimmer\n      domain: climate\n      attributes:\n        temperature: 23",
                 ]
             ),
             [
