@@ -51,7 +51,7 @@ pub(super) fn answer(context: &ParseContext<'_>, said: &[String], tokens: &[Stri
 
 /// What the utterance itself asks for, read from its verbs.
 fn own_actions(context: &ParseContext<'_>, tokens: &[String]) -> Vec<Action> {
-    action_hypotheses(tokens, context.catalog).into_iter().filter(|row| row.evidence.exact).map(|row| row.action).collect()
+    action_hypotheses(tokens, context.catalog, context.home).into_iter().filter(|row| row.evidence.exact).map(|row| row.action).collect()
 }
 
 /// "Turn on the office one" was no command of its own, but it repeats the asked action

@@ -96,6 +96,11 @@ pub(crate) fn named_scene_policy(tokens: &[String], home: &HomeGraph, question: 
     {
         return None;
     }
+    // A fully named device ("Garage Door") beats a script that only shares a word ("Open Garage").
+    let linked = crate::parse::resolve::link_named_spans(tokens, home, &[]);
+    if linked.entities.iter().any(|entity| entity.domain != "scene" && entity.domain != "script") {
+        return None;
+    }
     let id = named_scene_or_script(tokens, home)?;
     Some(ClauseOut::Intents(vec![Intent::new("HassTurnOn")
         .with("entity_id", &id)

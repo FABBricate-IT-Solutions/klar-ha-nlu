@@ -1,8 +1,8 @@
 use crate::lang::Catalog;
 use crate::parse::action::{detect_actions_bounded, Action};
 use crate::parse::infer::prefer_action;
-use crate::parse::resolve::ResolveEvidence;
-use crate::types::Evidence;
+use crate::parse::resolve::{link_named_spans, ResolveEvidence};
+use crate::types::{Evidence, HomeGraph};
 
 #[derive(Debug, Clone)]
 pub(super) struct ActionHypothesis {
@@ -10,8 +10,14 @@ pub(super) struct ActionHypothesis {
     pub evidence: Evidence,
 }
 
-pub(super) fn action_hypotheses(tokens: &[String], catalog: &'static Catalog) -> Vec<ActionHypothesis> {
+pub(super) fn action_hypotheses(tokens: &[String], catalog: &'static Catalog, home: &HomeGraph) -> Vec<ActionHypothesis> {
+    let linked = link_named_spans(tokens, home, &[]);
     let mut detected = detect_actions_bounded(tokens, super::binding::MAX_ACTION_HYPOTHESES);
+    // A timer verb that only sits inside a device name ("Timer Lamp") is not a timer command.
+    detected.retain(|(index, action)| {
+        !matches!(action, Action::TimerStart | Action::TimerAdd | Action::TimerRemove | Action::TimerCancel | Action::TimerPause)
+            || !linked.consumed.contains(index)
+    });
     let selected = prefer_action(&detected);
     detected.sort_by_key(|(index, action)| (u8::from(Some(*action) != selected), *index));
     let mut rows = detected

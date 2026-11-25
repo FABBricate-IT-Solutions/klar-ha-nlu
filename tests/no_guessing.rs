@@ -149,8 +149,11 @@ fn a_room_or_a_light_word_still_switches_the_room_lights() {
         assert_devices("en", &en, &[text], &kitchen);
     }
     // A follow-up names nothing; it stays with the last target.
-    assert_devices("en", &en, &["turn on the hall light", "turn it off"], &["light.floor_lamp", "light.hall_light"]);
-    assert_devices("en", &en, &["turn on the hall light", "a bit brighter"], &["light.floor_lamp", "light.hall_light"]);
+    // "Hall Light" is a device name (P-11): the full name is that lamp, not every light in the hall.
+    assert_devices("en", &en, &["turn on the hall light", "turn it off"], &["light.hall_light"]);
+    assert_devices("en", &en, &["turn on the hall light", "a bit brighter"], &["light.hall_light"]);
+    // The plural still means the room.
+    assert_devices("en", &en, &["turn on the hall lights", "turn them off"], &["light.floor_lamp", "light.hall_light"]);
     // A word the pack does not know next to the device's own name is not a second target.
     assert_devices("en", &en, &["switch on the coffee machine quickly"], &["switch.coffee_machine"]);
     let de = collision_home("de");
@@ -163,7 +166,8 @@ fn a_room_or_a_light_word_still_switches_the_room_lights() {
 #[test]
 fn it_stands_for_the_last_target_and_for_nothing_else() {
     let en = collision_home("en");
-    let hall = ["light.floor_lamp", "light.hall_light"];
+    // P-11: "Hall Light" is the named lamp, so "it" follows that lamp alone.
+    let hall = ["light.hall_light"];
     // The verb is not in the pack, but "it" says what is meant.
     assert_devices("en", &en, &["turn on the hall light", "nudge it to 40 percent"], &hall);
     assert_devices("en", &en, &["turn on the coffee machine", "zonk it off"], &["switch.coffee_machine"]);
