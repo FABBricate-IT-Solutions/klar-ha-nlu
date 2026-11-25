@@ -14,7 +14,7 @@ pub(crate) use score::{has_fuzzy_target_token, known_target_token};
 use score::{overlap, sort_hits};
 use specific::{keep_most_specific, narrow_to_scope, prefer_fully_named};
 
-mod prefer;
+pub(crate) mod prefer;
 mod report;
 mod rooms;
 mod scope;

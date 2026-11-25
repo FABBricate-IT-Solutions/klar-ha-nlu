@@ -157,7 +157,7 @@ pub(super) fn prefer_entry_lock(tokens: &[String], home: &HomeGraph, candidates:
     }
 }
 
-pub(super) fn lock_mentioned(tokens: &[String], entity: &EntityRec) -> bool {
+pub(crate) fn lock_mentioned(tokens: &[String], entity: &EntityRec) -> bool {
     let cat = catalog();
     tokens.iter().any(|token| {
         if token.len() <= 2 || cat.lock_nouns().contains(token.as_str()) {

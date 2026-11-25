@@ -4,8 +4,11 @@
 
 use super::context::ParseContext;
 use super::draft::{execute, reject, Draft};
+use crate::home::expose::assist_visible;
+use crate::home::policy::is_infra;
 use crate::lang::Catalog;
 use crate::parse::infer::looks_like_question;
+use crate::parse::resolve::prefer::lock_mentioned;
 use crate::parse::resolve::resolve;
 use crate::parse::respond::speak_unknown;
 use crate::types::{EntityRec, HomeGraph, Intent, IntentPlan, RejectReason};
@@ -83,8 +86,9 @@ pub(super) fn route(context: &ParseContext<'_>, tokens: &[String]) -> Option<Dra
         return None;
     }
     let resolved = resolve(tokens, context.home, Some(kind.domain));
-    // Temperature without a room or "sensor" cue belongs to weather/climate routes.
-    if kind.device_class == "temperature" && !context.catalog.any(tokens, context.catalog.sensor_words()) && resolved.areas.is_empty() {
+    // Temperature of a room with a climate entity (or no room) belongs to climate/weather,
+    // unless the user named a sensor ("temperature sensor", "roomsensor").
+    if kind.device_class == "temperature" && prefers_climate(context.catalog, context.home, tokens, &resolved.areas) {
         return None;
     }
     // Multi-room lists fall through to the clause parser (do not reject here).
@@ -109,6 +113,10 @@ pub(super) fn route(context: &ParseContext<'_>, tokens: &[String]) -> Option<Dra
     let open = context.catalog.any(tokens, context.catalog.open_words());
     let closed =
         context.catalog.any(tokens, context.catalog.close_words()) || tokens.iter().any(|word| CLOSED_SYN.contains(&word.as_str()));
+    // Named lock / door-entity status ("tuer eingang", "front door") beats a door contact list.
+    if kind.device_class == "door" && prefers_named_lock(context.catalog, context.home, tokens, open || closed) {
+        return None;
+    }
     let mut intent =
         Intent::new("HassGetState").with("domain", kind.domain).with("device_class", kind.device_class).with("response", "list");
     if kind.binary && (open || closed) {
@@ -135,6 +143,29 @@ pub(super) fn route(context: &ParseContext<'_>, tokens: &[String]) -> Option<Dra
     }
     let source = format!("{}_state_query", kind.device_class);
     Some(execute(context, vec![intent], &source, 1.0, 1.0, false, false))
+}
+
+/// Room temperature asks bind climate when present; bare "temperature" is weather/climate.
+fn prefers_climate(cat: &Catalog, home: &HomeGraph, tokens: &[String], areas: &[String]) -> bool {
+    if cat.any(tokens, cat.sensor_words()) {
+        return false;
+    }
+    if areas.is_empty() {
+        return true;
+    }
+    areas.iter().any(|area| {
+        home.entities.iter().any(|entity| {
+            entity.domain == "climate" && entity.area.as_deref() == Some(area.as_str()) && assist_visible(entity, home) && !is_infra(entity)
+        })
+    })
+}
+
+/// Status of a named lock/door (not "are any doors open") stays on the lock entity.
+fn prefers_named_lock(cat: &Catalog, home: &HomeGraph, tokens: &[String], contact_state: bool) -> bool {
+    if contact_state || cat.any(tokens, cat.sensor_words()) {
+        return false;
+    }
+    resolve(tokens, home, Some("lock")).entities.iter().any(|entity| entity.domain == "lock" && lock_mentioned(tokens, entity))
 }
 
 fn wants_cover_not_contact(cat: &Catalog, tokens: &[String]) -> bool {

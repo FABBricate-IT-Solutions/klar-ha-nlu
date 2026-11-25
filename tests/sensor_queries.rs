@@ -135,6 +135,68 @@ fn sensor_asks_use_device_class_not_covers() {
     }
 }
 
+/// Climate in the room wins over a temperature device_class list (full_home EN).
+#[test]
+fn room_temperature_prefers_climate_over_sensor_table() {
+    let home = HomeGraph {
+        areas: vec![area("living", "Living Room")],
+        entities: vec![
+            entity("climate.ground_thermostat", "living room thermostat", Some("living")),
+            entity("sensor.living_temperature", "living room roomsensor", Some("living")),
+        ],
+        device_classes: [("sensor.living_temperature".into(), "temperature".into())].into_iter().collect(),
+        ..HomeGraph::default()
+    };
+    let out = parse("what's the temperature in the living room", &home, &mut Session::new(), &[], &Settings::pinned("en"));
+    assert_eq!(out.decision, ParseDecision::Execute, "{out:?}");
+    let intents = out.plan.as_ref().map(|plan| plan.intents()).unwrap_or_default();
+    assert!(
+        intents.iter().any(|intent| {
+            matches!(intent.name.as_str(), "HassClimateGetTemperature" | "HassGetState")
+                && (intent.slot("entity_id") == Some("climate.ground_thermostat")
+                    || (intent.slot("domain") == Some("climate") && intent.slot("area") == Some("living")))
+        }),
+        "expected climate bind, got {out:?}"
+    );
+    assert!(intents.iter().all(|intent| intent.slot("device_class") != Some("temperature")), "sensor table stole climate ask: {out:?}");
+}
+
+/// Named door/lock status beats a door contact list (full_home DE: tuer eingang → lock).
+#[test]
+fn named_door_status_prefers_lock_over_door_sensor_table() {
+    let home = HomeGraph {
+        areas: vec![area("entryway", "Entryway")],
+        entities: vec![
+            EntityRec {
+                entity_id: "lock.front_door".into(),
+                name: "Haustür".into(),
+                domain: "lock".into(),
+                platform: None,
+                area: Some("entryway".into()),
+                aliases: vec!["Haustür".into()],
+                tags: vec!["front".into()],
+            },
+            entity("binary_sensor.front_door_sensor", "eingang tursensor", Some("entryway")),
+        ],
+        device_classes: [("binary_sensor.front_door_sensor".into(), "door".into())].into_iter().collect(),
+        ..HomeGraph::default()
+    };
+    let settings = Settings::pinned("de");
+    for text in ["status tuer eingang", "wie ist tuer eingang"] {
+        let out = parse(text, &home, &mut Session::new(), &[], &settings);
+        assert_eq!(out.decision, ParseDecision::Execute, "{text}: {out:?}");
+        let intents = out.plan.as_ref().map(|plan| plan.intents()).unwrap_or_default();
+        assert!(
+            intents.iter().any(|intent| intent.name == "HassGetState" && intent.slot("entity_id") == Some("lock.front_door")),
+            "{text}: expected lock.front_door, got {out:?}"
+        );
+        assert!(
+            intents.iter().all(|intent| intent.slot("device_class") != Some("door")),
+            "{text}: door sensor table stole lock status: {out:?}"
+        );
+    }
+}
+
 #[test]
 fn empty_window_snapshot_means_no_sensors_visible() {
     let none: SpeechSnapshot = serde_json::from_value(serde_json::json!({
