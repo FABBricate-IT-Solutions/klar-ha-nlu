@@ -463,5 +463,13 @@
   "houseMap": "Համապատասխանեցում",
   "matchedRule": "Կանոն",
   "ragMode": "Տան համատեքստ վրիպման ժամանակ",
-  "sentences": "Արտահայտություններ"
+  "sentences": "Արտահայտություններ",
+  "experimentalLanguages": "Experimental languages",
+  "experimentalLanguagesHint": "Off by default. On: untested packs appear for a new selection. A locale that is already configured stays either way.",
+  "languageTierStable": "stable",
+  "languageTierExperimental": "experimental",
+  "defaultLanguage": "Default pack",
+  "defaultLanguageHint": "Used when Assist languages is empty and the request names no language. Empty means English.",
+  "defaultLanguageNone": "English (last resort)",
+  "saveExperimentalRefused": "Not saved. That language is experimental — turn on Experimental languages, then save again."
 }

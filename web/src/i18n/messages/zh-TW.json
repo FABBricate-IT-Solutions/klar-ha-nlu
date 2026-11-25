@@ -463,5 +463,13 @@
   "houseMap": "對應",
   "matchedRule": "規則",
   "ragMode": "未命中時使用住家脈絡",
-  "sentences": "語句"
+  "sentences": "語句",
+  "experimentalLanguages": "Experimental languages",
+  "experimentalLanguagesHint": "Off by default. On: untested packs appear for a new selection. A locale that is already configured stays either way.",
+  "languageTierStable": "stable",
+  "languageTierExperimental": "experimental",
+  "defaultLanguage": "Default pack",
+  "defaultLanguageHint": "Used when Assist languages is empty and the request names no language. Empty means English.",
+  "defaultLanguageNone": "English (last resort)",
+  "saveExperimentalRefused": "Not saved. That language is experimental — turn on Experimental languages, then save again."
 }
