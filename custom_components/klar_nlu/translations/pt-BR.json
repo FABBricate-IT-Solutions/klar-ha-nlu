@@ -3,7 +3,7 @@
     "step": {
       "user": {
         "title": "Klar NLU",
-        "description": "Esta integração fala com o Assist. Um mecanismo separado analisa a fala: o app Klar NLU, este processo incluso ou Docker. No Home Assistant OS instale também o app e escolha Usar o app Klar NLU. Sem o app, inicie o mecanismo incluso. Não execute os dois. O canal de lançamento pode ser alterado depois.",
+        "description": "Esta integração fala com o Assist. Um mecanismo separado analisa a fala: o app Klar NLU, este processo incluso ou Docker. No Home Assistant OS instale também o app e escolha Usar o app Klar NLU. Sem o app, inicie o mecanismo incluso. Não execute os dois. O canal de lançamento pode ser alterado depois. {apps}",
         "data": {
           "mode": "Mecanismo",
           "channel": "Canal de lançamento",

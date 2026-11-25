@@ -3,7 +3,7 @@
     "step": {
       "user": {
         "title": "Klar NLU",
-        "description": "Aquesta integració parla amb Assist. Un motor separat analitza la veu: l’app Klar NLU, aquest procés inclòs o Docker. A Home Assistant OS instal·leu també l’app i trieu Fer servir l’app Klar NLU. Sense app, inicieu el motor inclòs. No executeu tots dos.",
+        "description": "Aquesta integració parla amb Assist. Un motor separat analitza la veu: l’app Klar NLU, aquest procés inclòs o Docker. A Home Assistant OS instal·leu també l’app i trieu Fer servir l’app Klar NLU. Sense app, inicieu el motor inclòs. No executeu tots dos. {apps}",
         "data": {
           "mode": "Motor",
           "channel": "Canal de publicació",

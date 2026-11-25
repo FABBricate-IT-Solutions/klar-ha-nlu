@@ -1,5 +1,6 @@
 //! Exercise the assembled production router, including auth and body extractors.
 use crate::home::snapshot::*;
+use crate::home::test_dir::TestDir;
 use crate::home::LoadedHome;
 use crate::io::limits::MAX_HOME_SNAPSHOT_BYTES;
 use crate::io::{state::AppState, web};
@@ -15,12 +16,13 @@ use tower::ServiceExt;
 
 struct Fixture {
     state: AppState,
-    dir: std::path::PathBuf,
+    _scratch: TestDir,
 }
 
 impl Fixture {
     fn new() -> Self {
-        let dir = std::env::temp_dir().join(format!("klar-home-http-{}", uuid::Uuid::new_v4()));
+        let scratch = TestDir::new("home-http");
+        let dir = scratch.path().to_path_buf();
         let state = AppState::new(
             LoadedHome {
                 graph: HomeGraph::default(),
@@ -31,10 +33,10 @@ impl Fixture {
                 speech_bank: Default::default(),
                 match_controls: Vec::new(),
             },
-            dir.clone(),
+            dir,
             Some("home-test-token".into()),
         );
-        Self { state, dir }
+        Self { state, _scratch: scratch }
     }
 
     async fn post(&self, path: &str, bytes: Vec<u8>, streamed: bool) -> axum::response::Response {
@@ -49,12 +51,6 @@ impl Fixture {
             Request::post(path).header("content-type", "application/json").header("x-klar-token", "home-test-token").body(body).unwrap();
         request.extensions_mut().insert(ConnectInfo("10.0.0.8:9".parse::<SocketAddr>().unwrap()));
         web::router(self.state.clone()).oneshot(request).await.unwrap()
-    }
-}
-
-impl Drop for Fixture {
-    fn drop(&mut self) {
-        let _ = std::fs::remove_dir_all(&self.dir);
     }
 }
 

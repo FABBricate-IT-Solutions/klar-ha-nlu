@@ -164,6 +164,7 @@ pub async fn list_phrases(state: &AppState) -> Result<Value, String> {
 #[cfg(test)]
 mod tests {
     use super::*;
+    use crate::home::test_dir::TestDir;
 
     #[test]
     fn explain_klar_sets_view() {
@@ -176,8 +177,8 @@ mod tests {
 
     #[tokio::test]
     async fn try_sentence_returns_path_view() {
-        let dir = std::env::temp_dir().join(format!("klar-lotse-read-{}", std::process::id()));
-        let _ = std::fs::create_dir_all(&dir);
+        let scratch = TestDir::new("lotse-read");
+        let dir = scratch.path().to_path_buf();
         let state = crate::io::state::AppState::new(
             crate::home::LoadedHome {
                 graph: crate::home::default_home(),

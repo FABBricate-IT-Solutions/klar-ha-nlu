@@ -15,14 +15,10 @@ concurrency:
   group: staging-prerelease
   cancel-in-progress: false
 
-# Must cover every permission callee jobs declare (including skipped ones).
-# Otherwise GitHub rejects the run as startup_failure before any job starts.
-permissions:
-  actions: read
-  contents: write
-  issues: write
-  packages: write
-  security-events: write
+# Nothing by default: every job states its own permissions. For a job that calls a
+# reusable workflow those must cover every permission the called jobs declare
+# (including skipped ones), otherwise GitHub rejects the run as startup_failure.
+permissions: {}
 
 jobs:
   quality:
@@ -36,11 +32,12 @@ jobs:
   security:
     name: security
     uses: ./.github/workflows/security.yml
-    secrets: inherit
+    # The repository has no secrets of its own; the callee only reads GITHUB_TOKEN.
+    secrets: inherit # zizmor: ignore[secrets-inherit]
+    # What the jobs of security.yml declare, taken together.
     permissions:
       actions: read
       contents: read
-      issues: write
       packages: read
       security-events: write
 
@@ -48,11 +45,15 @@ jobs:
     name: tag
     needs: [quality, security]
     runs-on: ubuntu-26.04
+    # Pushes the RC tag.
+    permissions:
+      contents: write
     outputs:
       tag: ${{ steps.tag.outputs.tag }}
     steps:
-      - uses: actions/checkout@v7
-        with:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        # The next step pushes the tag with this checkout's credentials.
+        with: # zizmor: ignore[artipacked]
           fetch-depth: 0
           token: ${{ github.token }}
 
@@ -86,7 +87,8 @@ jobs:
     with:
       release_tag: ${{ needs.tag.outputs.tag }}
       prerelease: true
-    secrets: inherit
+    # As above. Dropping it is untested on a publishing run, so it stays for now.
+    secrets: inherit # zizmor: ignore[secrets-inherit]
     permissions:
       contents: write
       packages: write

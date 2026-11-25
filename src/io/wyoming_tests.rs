@@ -1,4 +1,5 @@
 use super::*;
+use crate::home::test_dir::TestDir;
 use crate::home::{default_home, LoadedHome};
 use crate::session::Session;
 use crate::types::Settings;
@@ -13,10 +14,11 @@ async fn read_line<R: AsyncBufRead + Unpin>(lines: &mut tokio::io::Lines<R>) -> 
     timeout(Duration::from_secs(2), lines.next_line()).await.expect("wyoming reply").unwrap().expect("eof")
 }
 
-fn test_state() -> AppState {
-    let dir = std::env::temp_dir().join(format!("klar-wy-{}-{}", std::process::id(), uuid::Uuid::new_v4()));
-    let _ = std::fs::create_dir_all(&dir);
-    AppState::new(
+/// The state and the scratch directory it writes to; keep the directory alive as long as the state.
+fn test_state() -> (TestDir, AppState) {
+    let scratch = TestDir::new("wy");
+    let dir = scratch.path().to_path_buf();
+    let state = AppState::new(
         LoadedHome {
             graph: default_home(),
             settings: Settings::default(),
@@ -28,7 +30,8 @@ fn test_state() -> AppState {
         },
         dir,
         None,
-    )
+    );
+    (scratch, state)
 }
 
 async fn exchange(state: AppState, requests: &[&str]) -> Vec<String> {
@@ -56,21 +59,7 @@ async fn exchange(state: AppState, requests: &[&str]) -> Vec<String> {
 async fn describe_and_recognize_reuse_conversation() {
     let listener = TcpListener::bind("127.0.0.1:0").await.unwrap();
     let addr = listener.local_addr().unwrap();
-    let dir = std::env::temp_dir().join(format!("klar-wy-{}", std::process::id()));
-    let _ = std::fs::create_dir_all(&dir);
-    let state = AppState::new(
-        LoadedHome {
-            graph: default_home(),
-            settings: Settings::default(),
-            custom: Vec::new(),
-            language: Default::default(),
-            policies: Vec::new(),
-            speech_bank: Default::default(),
-            match_controls: Vec::new(),
-        },
-        dir,
-        None,
-    );
+    let (_scratch, state) = test_state();
     let task = tokio::spawn({
         let state = state.clone();
         async move {
@@ -143,8 +132,9 @@ async fn describe_and_recognize_reuse_conversation() {
 async fn recognize_errors_write_not_recognized() {
     let oversized = format!(r#"{{"type":"recognize","data":{{"text":"{}"}}}}"#, "x".repeat(MAX_PARSE_CHARS + 1));
     let long_id = format!(r#"{{"type":"recognize","data":{{"text":"hi","conversation_id":"{}"}}}}"#, "c".repeat(129));
+    let (_scratch, state) = test_state();
     let replies = exchange(
-        test_state(),
+        state,
         &["{not-json", &oversized, &long_id, r#"{"type":"recognize","data":{"text":"Licht im Wohnzimmer an","language":"de"}}"#],
     )
     .await;
@@ -160,7 +150,7 @@ async fn area_of(state: &AppState, id: &str) -> Option<String> {
 
 #[tokio::test]
 async fn preferred_area_omitted_keeps_invalid_ignored() {
-    let state = test_state();
+    let (_scratch, state) = test_state();
     let mut seeded = Session::new();
     seeded.id = "area-1".into();
     seeded.preferred_area = Some("wohnzimmer".into());
@@ -224,7 +214,8 @@ async fn a_stop_ends_an_idle_connection_after_answering_what_was_sent() {
     let (client, server) = duplex(16 * 1024);
     let (server_read, server_write) = tokio::io::split(server);
     let (stop, stopping) = watch::channel(false);
-    let task = tokio::spawn(handle_io(BufReader::new(server_read), server_write, test_state(), stopping));
+    let (_scratch, state) = test_state();
+    let task = tokio::spawn(handle_io(BufReader::new(server_read), server_write, state, stopping));
     let (client_read, mut client_write) = tokio::io::split(client);
     let mut lines = BufReader::new(client_read).lines();
     client_write.write_all(b"{\"type\":\"describe\"}\n").await.unwrap();
