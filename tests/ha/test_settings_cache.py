@@ -15,20 +15,23 @@ from unittest.mock import AsyncMock, MagicMock, patch
 ROOT = Path(__file__).resolve().parents[2]
 PACKAGE = "klar_settings_cache_test"
 
+# Stub aiohttp before anything else — other ha tests may leave homeassistant
+# imported without aiohttp, and engine.py imports aiohttp at module load.
+if "aiohttp" not in sys.modules:
+    _aiohttp = types.ModuleType("aiohttp")
+    _aiohttp.ClientError = Exception
+    _aiohttp.ClientSession = object
 
-def _install_ha_stubs() -> None:
-    if "aiohttp" not in sys.modules:
-        aiohttp = types.ModuleType("aiohttp")
-        aiohttp.ClientError = Exception
-        aiohttp.ClientSession = object
+    class _ClientTimeout:
+        def __init__(self, total=None):
+            self.total = total
 
-        class ClientTimeout:
-            def __init__(self, total=None):
-                self.total = total
+    _aiohttp.ClientTimeout = _ClientTimeout
+    sys.modules["aiohttp"] = _aiohttp
 
-        aiohttp.ClientTimeout = ClientTimeout
-        sys.modules["aiohttp"] = aiohttp
-    if "homeassistant" in sys.modules:
+
+def _ensure_ha_stubs() -> None:
+    if "homeassistant.helpers.aiohttp_client" in sys.modules:
         return
     ha = types.ModuleType("homeassistant")
     ha.config_entries = types.ModuleType("homeassistant.config_entries")
@@ -39,20 +42,19 @@ def _install_ha_stubs() -> None:
     ha.helpers.issue_registry = types.ModuleType("homeassistant.helpers.issue_registry")
     ha.helpers.aiohttp_client = types.ModuleType("homeassistant.helpers.aiohttp_client")
     ha.helpers.aiohttp_client.async_get_clientsession = MagicMock()
-    sys.modules.update(
-        {
-            "homeassistant": ha,
-            "homeassistant.config_entries": ha.config_entries,
-            "homeassistant.core": ha.core,
-            "homeassistant.helpers": ha.helpers,
-            "homeassistant.helpers.issue_registry": ha.helpers.issue_registry,
-            "homeassistant.helpers.aiohttp_client": ha.helpers.aiohttp_client,
-        }
-    )
+    for name, mod in (
+        ("homeassistant", ha),
+        ("homeassistant.config_entries", ha.config_entries),
+        ("homeassistant.core", ha.core),
+        ("homeassistant.helpers", ha.helpers),
+        ("homeassistant.helpers.issue_registry", ha.helpers.issue_registry),
+        ("homeassistant.helpers.aiohttp_client", ha.helpers.aiohttp_client),
+    ):
+        sys.modules.setdefault(name, mod)
 
 
 def _load_engine():
-    _install_ha_stubs()
+    _ensure_ha_stubs()
     package = types.ModuleType(PACKAGE)
     package.__path__ = [str(ROOT / "custom_components" / "klar_nlu")]
     sys.modules[PACKAGE] = package
@@ -72,16 +74,16 @@ def _load_engine():
     load("lang_select", "lang_select.py")
     load("time_zone", "time_zone.py")
     load("archive", "archive.py")
-    if (ROOT / "custom_components" / "klar_nlu" / "units.py").is_file():
-        load("units", "units.py")
     return load("engine", "engine.py")
 
 
-engine = _load_engine()
-
-
 class SettingsCacheTests(unittest.TestCase):
+    @classmethod
+    def setUpClass(cls) -> None:
+        cls.engine = _load_engine()
+
     def test_refresh_respects_ttl(self) -> None:
+        engine = self.engine
         entry = SimpleNamespace(entry_id="e1", data={}, options={})
         hass = SimpleNamespace(data={engine.DOMAIN: {"e1": {"url": "http://engine:10520"}}})
 
@@ -99,6 +101,7 @@ class SettingsCacheTests(unittest.TestCase):
         self.assertEqual(second.get("personality"), "butler")
 
     def test_patch_prefers_http_patch(self) -> None:
+        engine = self.engine
         entry = SimpleNamespace(entry_id="e1", data={}, options={})
         hass = SimpleNamespace(
             data={
