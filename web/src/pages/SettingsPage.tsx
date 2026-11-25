@@ -10,6 +10,7 @@ import {
   SettingsVoiceSection,
 } from "../components/SettingsSections";
 import { type Messages } from "../i18n";
+import { sameJson, syncDraftWhenClean } from "../lib/resourceStore";
 import { toastSaved, toastSaveFailed } from "../saveToast";
 import { settingsViews } from "../routes";
 import type { BundleList, Locale, Settings, SettingsView, Theme } from "../types";
@@ -77,6 +78,7 @@ export function SettingsPage({
   onSettings,
   onTokenApplied,
   onReplayWizard,
+  onRestored,
   theme,
   onTheme,
   settingsView,
@@ -88,10 +90,13 @@ export function SettingsPage({
   settings: Settings;
   /** False until the engine's settings were read; `settings` then holds placeholders only. */
   loaded: boolean;
+  /** Persist the saved settings in the app chrome (badges). Draft edits stay local until Save. */
   onSettings: (s: Settings) => void;
   /** The write token changed; everything that failed to load should be read again. */
   onTokenApplied: () => void;
   onReplayWizard?: () => void;
+  /** Backup restore finished: reload UI state so the next navigation does not overwrite it. */
+  onRestored?: () => void;
   theme?: Theme;
   onTheme?: (theme: Theme) => void;
   settingsView: SettingsView;
@@ -105,7 +110,12 @@ export function SettingsPage({
   const [llmEpoch, setLlmEpoch] = useState(0);
   const [llmReady, setLlmReady] = useState(false);
   const [saving, setSaving] = useState(false);
+  const [draft, setDraft] = useState(settings);
+  const [dirty, setDirty] = useState(false);
   const view = settingsView;
+  // Derive the shown value so a clean page tracks the saved props without an effect.
+  const shown = syncDraftWhenClean(settings, draft, dirty);
+  const showDirty = loaded && dirty && !sameJson(shown, settings);
   const refresh = () => api.bundle().then(setBundle).catch(() => undefined);
   const loadExtras = () => {
     refresh();
@@ -117,11 +127,18 @@ export function SettingsPage({
   useEffect(() => {
     if (theme === "light" || theme === "dark") setPicked(theme);
   }, [theme]);
-  const save = async (next = settings) => {
+  const editDraft = (next: Settings) => {
+    setDraft(next);
+    setDirty(true);
+  };
+  const save = async (next = shown) => {
     if (!loaded) return;
     setSaving(true);
     try {
-      onSettings(await api.saveSettings(next));
+      const saved = await api.saveSettings(next);
+      setDraft(saved);
+      setDirty(false);
+      onSettings(saved);
       refresh();
       toastSaved(t);
     } catch (err) {
@@ -129,6 +146,9 @@ export function SettingsPage({
     } finally {
       setSaving(false);
     }
+  };
+  const discard = () => {
+    setDirty(false);
   };
   const applyToken = () => {
     setToken(token);
@@ -151,6 +171,16 @@ export function SettingsPage({
     }
     onTheme?.(next);
   };
+  const afterRestore = () => {
+    setLlmEpoch((epoch) => epoch + 1);
+    // Discard local edits: the restored engine state is the new truth.
+    void api.settings().then((next) => {
+      setDraft(next);
+      setDirty(false);
+      onSettings(next);
+    }).catch(() => undefined);
+    onRestored?.();
+  };
   return (
     <div className="page flex min-w-0 flex-col gap-6 overflow-x-hidden">
       <section className="hero">
@@ -165,6 +195,12 @@ export function SettingsPage({
           <Button type="button" disabled={saving || !loaded} onClick={() => void save()}>{t.save}</Button>
         </div>
       </section>
+      {showDirty ? (
+        <div className="row" role="status" style={{ gap: 12, alignItems: "center" }}>
+          <span className="caption">{t.unsavedChanges}</span>
+          <Button type="button" size="sm" variant="ghost" disabled={saving} onClick={discard}>{t.discardChanges}</Button>
+        </div>
+      ) : null}
       <nav className="subnav" aria-label={t.settings}>
         {settingsViews.map((item) => (
           <button
@@ -182,24 +218,24 @@ export function SettingsPage({
       <p className="caption" style={{ marginTop: -8 }}>{t.haGlueHint}</p>
       {view === "llm" ? <LlmSettingsCard key={llmEpoch} t={t} /> : null}
       {view === "voice" && loaded ? (
-        <SettingsVoiceSection t={t} settings={settings} onSettings={onSettings} locale={locale} llmReady={llmReady} />
+        <SettingsVoiceSection t={t} settings={shown} onSettings={editDraft} locale={locale} llmReady={llmReady} />
       ) : null}
       {view === "languages" && loaded ? (
         <SettingsLanguagesSection
           t={t}
           locale={locale}
           onLocale={onLocale}
-          settings={settings}
-          onSettings={onSettings}
+          settings={shown}
+          onSettings={editDraft}
           packs={packs}
         />
       ) : null}
       {view === "engine" ? (
         <SettingsEngineSection
           t={t}
-          settings={settings}
+          settings={shown}
           loaded={loaded}
-          onSettings={onSettings}
+          onSettings={editDraft}
           token={token}
           onToken={setTokenValue}
           onApplyToken={applyToken}
@@ -209,12 +245,12 @@ export function SettingsPage({
       ) : null}
       {view === "backup" ? (
         <div className="flex min-w-0 flex-col gap-4">
-          <SettingsBackupCard t={t} onSettings={onSettings} onRestored={() => setLlmEpoch((epoch) => epoch + 1)} />
+          <SettingsBackupCard t={t} onSettings={onSettings} onRestored={afterRestore} />
           {loaded ? <SettingsJournalSection
             t={t}
-            settings={settings}
+            settings={shown}
             bundle={bundle}
-            onToggle={(next) => void save(next)}
+            onToggle={editDraft}
             onDownloadDataset={() => download("/api/bundle/dataset", "klar-assist-dataset.yaml")}
             onDownloadProtocol={() => download("/api/bundle/protocol", "klar-support-bundle.jsonl")}
             onClear={() => setConfirmClear(true)}

@@ -234,13 +234,31 @@ export function ParsePage({
     if (replayText) setText(replayText);
   }, [replayText]);
   useEffect(() => {
-    if (!replayText) setText(t.parseSample);
+    if (replayText) return;
+    try {
+      const kept = sessionStorage.getItem("klar_lab_text");
+      if (kept) {
+        setText(kept);
+        return;
+      }
+    } catch {
+      /* private mode */
+    }
+    setText(t.parseSample);
   }, [t.parseSample, replayText]);
+  useEffect(() => {
+    try {
+      sessionStorage.setItem("klar_lab_text", text);
+    } catch {
+      /* private mode */
+    }
+  }, [text]);
   useEffect(() => {
     api.intents().then((names) => { if (names.length) setKnownIntents(names); }).catch(() => undefined);
   }, []);
 
   const submit = async () => {
+    if (busy) return;
     setError("");
     setBusy(true);
     setLlm(null);
@@ -371,7 +389,7 @@ export function ParsePage({
         onKeyDown={(ev) => {
           if (ev.key === "Enter" && !ev.shiftKey) {
             ev.preventDefault();
-            submit();
+            if (!busy) void submit();
           }
         }}
       />

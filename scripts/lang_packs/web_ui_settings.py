@@ -22,6 +22,12 @@ KEYS = (
     "defaultLanguageHint",
     "defaultLanguageNone",
     "saveExperimentalRefused",
+    "unsavedChanges",
+    "discardChanges",
+    "saveConflict",
+    "uiSaveFail",
+    "invalidJson",
+    "rulesReloaded",
     "pinLanguage",
     "voice",
     "voiceHint",
@@ -190,4 +196,10 @@ def apply_settings_copy(packs: dict[str, dict[str, str]]) -> None:
             fields["defaultLanguageHint"] = row.get("defaultLanguageHint") or "Gilt, wenn Assist-Sprachen leer sind und die Anfrage keine Sprache nennt. Leer bedeutet Englisch."
             fields["defaultLanguageNone"] = row.get("defaultLanguageNone") or "Englisch (Notnagel)"
             fields["saveExperimentalRefused"] = row.get("saveExperimentalRefused") or "Nicht gespeichert. Diese Sprache ist experimentell — Experimentelle Sprachen einschalten, dann erneut speichern."
+            fields["unsavedChanges"] = row.get("unsavedChanges") or "Ungespeicherte Änderungen"
+            fields["discardChanges"] = row.get("discardChanges") or "Verwerfen"
+            fields["saveConflict"] = row.get("saveConflict") or "Jemand anderes hat das geändert. Neu geladen — prüfen und erneut speichern."
+            fields["uiSaveFail"] = row.get("uiSaveFail") or "Die offene Ansicht konnte nicht gespeichert werden."
+            fields["invalidJson"] = row.get("invalidJson") or "Das ist kein gültiges JSON."
+            fields["rulesReloaded"] = row.get("rulesReloaded") or "Regeln neu von der Engine geladen."
             fields["tokenHint"] = row.get("tokenHint") or "Zum Speichern auf diesem Bildschirm. Derselbe Wert wie das App-Token."

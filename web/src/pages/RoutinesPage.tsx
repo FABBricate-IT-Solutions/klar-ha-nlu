@@ -25,16 +25,18 @@ export function RoutinesPage({ t }: { t: Messages }) {
   const [script, setScript] = useState("");
   const { scriptOptions } = useHouseCatalog();
 
-  const persist = async (next: CustomRule[], label: string) => {
+  const persist = async (next: CustomRule[], label: string): Promise<boolean> => {
     // `rules` and `language` are empty placeholders until the overlay is loaded.
-    if (!overlay) return;
+    if (!overlay) return false;
     try {
       replace(await api.saveLangOverlay({ custom: next, language, label }));
       toastSaved(t);
       setStatus(t.saveOk);
+      return true;
     } catch (err) {
       toastSaveFailed(t, err);
       setStatus(saveFailMessage(t, err));
+      return false;
     }
   };
 
@@ -45,9 +47,11 @@ export function RoutinesPage({ t }: { t: Messages }) {
       setStatus(t.routineInvalid);
       return;
     }
-    setPhrase("");
-    setScript("");
-    await persist([...rules, { phrase: spoken, intent: "HassTurnOn", slots: { entity_id: entityId } }], spoken);
+    // Clear the form only after the engine accepts the save.
+    if (await persist([...rules, { phrase: spoken, intent: "HassTurnOn", slots: { entity_id: entityId } }], spoken)) {
+      setPhrase("");
+      setScript("");
+    }
   };
 
   const remove = async (index: number) => {

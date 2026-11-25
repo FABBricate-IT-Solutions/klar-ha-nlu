@@ -93,6 +93,8 @@ export function RulesPage({
   const [overlay, setOverlay] = useState<LangOverlay | null>(null);
   // False until the engine's rules were read; `rules` is an empty placeholder until then.
   const [rulesLoaded, setRulesLoaded] = useState(false);
+  /** Snapshot of the last loaded/saved bundle; a differing GET means an external write. */
+  const [baseline, setBaseline] = useState("");
   const [lane, setLane] = useState<PolicyLane>("match");
   const [selectedMatch, setSelectedMatch] = useState(0);
   const [selectedSeed, setSelectedSeed] = useState<string | undefined>();
@@ -104,13 +106,21 @@ export function RulesPage({
     [intents],
   );
 
-  useEffect(() => {
+  const loadPolicies = () =>
     api.policies().then((bundle) => {
       setRules(bundle.policies);
       setBank(bundle.speech_bank);
       setMatchControls(bundle.match_controls || []);
       setRulesLoaded(true);
+      setBaseline(JSON.stringify({
+        policies: bundle.policies,
+        speech_bank: bundle.speech_bank,
+        match_controls: bundle.match_controls || [],
+      }));
     }).catch((err) => setStatus(String(err)));
+
+  useEffect(() => {
+    void loadPolicies();
     api.policiesCatalog().then((body) => {
       setCatalog(body.matches);
       setSeeds(body.seeds || []);
@@ -119,13 +129,46 @@ export function RulesPage({
     api.intents().then((names) => { if (names.length) setIntents(names); }).catch(() => undefined);
   }, []);
 
+  // Trainer (Lotse) writes rules on the engine; refetch so the next Save does not wipe them.
+  useEffect(() => {
+    const onLotse = (event: Event) => {
+      const tool = (event as CustomEvent<{ tool?: string }>).detail?.tool;
+      if (tool && tool !== "apply_house" && tool !== "apply_match" && tool !== "apply_language") return;
+      void loadPolicies().then(() => setStatus(t.rulesReloaded));
+      api.langOverlay().then(setOverlay).catch(() => undefined);
+    };
+    window.addEventListener("klar-lotse-applied", onLotse);
+    return () => window.removeEventListener("klar-lotse-applied", onLotse);
+  }, [t.rulesReloaded]);
+
   const persist = async (next: PolicyRule[], nextBank = bank, nextControls = matchControls) => {
     if (!rulesLoaded) return;
     try {
+      // Conflict check: if the engine moved since we loaded, take its copy and ask the operator to review.
+      const current = await api.policies();
+      const server = JSON.stringify({
+        policies: current.policies,
+        speech_bank: current.speech_bank,
+        match_controls: current.match_controls || [],
+      });
+      if (baseline && server !== baseline) {
+        setRules(current.policies);
+        setBank(current.speech_bank);
+        setMatchControls(current.match_controls || []);
+        setBaseline(server);
+        toastSaveFailed(t, new Error(t.saveConflict));
+        setStatus(t.saveConflict);
+        return;
+      }
       const saved = await api.savePolicies({ policies: next, speech_bank: nextBank, match_controls: nextControls });
       setRules(saved.policies);
       setBank(saved.speech_bank);
       setMatchControls(saved.match_controls || []);
+      setBaseline(JSON.stringify({
+        policies: saved.policies,
+        speech_bank: saved.speech_bank,
+        match_controls: saved.match_controls || [],
+      }));
       toastSaved(t);
       setStatus(t.saveOk);
     } catch (err) {

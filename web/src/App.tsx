@@ -1,5 +1,6 @@
 import { FlaskConicalIcon, HomeIcon, HouseIcon, MenuIcon, MessageSquareIcon, SettingsIcon, ShieldIcon } from "lucide-react";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { toast } from "sonner";
 import { api } from "./api";
 import { Drawer } from "./components/common";
 import { KlarBrand } from "./components/KlarBrand";
@@ -115,6 +116,8 @@ export function App() {
   const [error, setError] = useState("");
   const [wizardNotice, setWizardNotice] = useState("");
   const uiLoaded = useRef(false);
+  const uiSaveGen = useRef(0);
+  const suppressUiSave = useRef(false);
   const [loaded, setLoaded] = useState<Loaded>({ settings: false, ui: false, dashboard: false });
   const [inspectId, setInspectId] = useState("");
   const [booted, setBooted] = useState(false);
@@ -124,26 +127,27 @@ export function App() {
   const t = dictionaries[locale] || dictionaries.en;
   const theme = ui.theme || "dark";
 
+  const applyUi = useCallback((nextUi: UiState, keepRoute = true) => {
+    const route = keepRoute ? parseHash(window.location.hash) : null;
+    setUi(applyRoute({
+      ...defaultUi,
+      ...nextUi,
+      locale: chromeLocale(nextUi.locale),
+      locale_set: Boolean(nextUi.locale_set),
+      tab: asTab(nextUi.tab),
+      house_view: asHouseView(nextUi.house_view),
+      rules_view: asRulesView(nextUi.rules_view),
+      settings_view: asSettingsView(nextUi.settings_view),
+      theme: asTheme(readStoredTheme() || nextUi.theme),
+      wizard_done: Boolean(nextUi.wizard_done),
+    }, route || { tab: asTab(nextUi.tab) }));
+    if (route?.entity_id) setInspectId(route.entity_id);
+    uiLoaded.current = true;
+  }, []);
+
   // Settings, UI state and dashboard load independently. Each counts as loaded only after its own
   // GET succeeded; until then the built-in defaults are placeholders and must never be saved.
   const refresh = useCallback(async () => {
-    const applyUi = (nextUi: UiState) => {
-      const route = parseHash(window.location.hash);
-      setUi(applyRoute({
-        ...defaultUi,
-        ...nextUi,
-        locale: chromeLocale(nextUi.locale),
-        locale_set: Boolean(nextUi.locale_set),
-        tab: asTab(nextUi.tab),
-        house_view: asHouseView(nextUi.house_view),
-        rules_view: asRulesView(nextUi.rules_view),
-        settings_view: asSettingsView(nextUi.settings_view),
-        theme: asTheme(readStoredTheme() || nextUi.theme),
-        wizard_done: Boolean(nextUi.wizard_done),
-      }, route || { tab: asTab(nextUi.tab) }));
-      if (route?.entity_id) setInspectId(route.entity_id);
-      uiLoaded.current = true;
-    };
     const failures: unknown[] = [];
     const take = <T,>(key: keyof Loaded, request: Promise<T>, apply: (value: T) => void) =>
       request.then((value) => {
@@ -155,10 +159,27 @@ export function App() {
     await Promise.all([
       take("settings", api.settings(), (next) => setSettings({ ...defaultSettings, ...next })),
       take("dashboard", api.dashboard(), setDashboard),
-      uiLoaded.current ? undefined : take("ui", api.ui(), applyUi),
+      uiLoaded.current ? undefined : take("ui", api.ui(), (next) => applyUi(next)),
     ]);
     setError(failures.length ? String(failures[0]) : "");
-  }, []);
+  }, [applyUi]);
+
+  /** After a backup restore: take UI and settings from the engine so the next navigation does not overwrite them. */
+  const reloadAfterRestore = useCallback(async () => {
+    suppressUiSave.current = true;
+    try {
+      const [nextSettings, nextUi] = await Promise.all([api.settings(), api.ui()]);
+      setSettings({ ...defaultSettings, ...nextSettings });
+      setLoaded((prev) => ({ ...prev, settings: true, ui: true }));
+      applyUi(nextUi, true);
+    } catch {
+      /* restore already reported its own toast */
+    } finally {
+      window.setTimeout(() => {
+        suppressUiSave.current = false;
+      }, 500);
+    }
+  }, [applyUi]);
 
   useEffect(() => {
     (async () => {
@@ -174,14 +195,23 @@ export function App() {
   }, [refresh]);
 
   useEffect(() => {
-    if (!uiLoaded.current) return;
-    const timer = window.setTimeout(() => api.saveUi({
-      ...ui,
-      locale: ui.locale_set ? locale : "",
-      locale_set: Boolean(ui.locale_set),
-    }).catch(() => undefined), 350);
+    if (!uiLoaded.current || suppressUiSave.current) return;
+    const gen = ++uiSaveGen.current;
+    const timer = window.setTimeout(() => {
+      api.saveUi({
+        ...ui,
+        locale: ui.locale_set ? locale : "",
+        locale_set: Boolean(ui.locale_set),
+      }).then(() => {
+        // A newer tab navigation already scheduled another save; ignore this one's result.
+        if (gen !== uiSaveGen.current) return;
+      }).catch(() => {
+        if (gen !== uiSaveGen.current) return;
+        toast.error(t.uiSaveFail);
+      });
+    }, 350);
     return () => window.clearTimeout(timer);
-  }, [ui, locale]);
+  }, [ui, locale, t.uiSaveFail]);
 
   useEffect(() => {
     document.documentElement.lang = locale;
@@ -424,6 +454,7 @@ export function App() {
             onSettings={setSettings}
             onTokenApplied={() => void refresh()}
             onReplayWizard={replayWizard}
+            onRestored={() => void reloadAfterRestore()}
             settingsView={asSettingsView(ui.settings_view)}
             onSettingsView={(view) => go("settings", { settings_view: view })}
             theme={theme}
