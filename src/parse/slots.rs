@@ -15,10 +15,16 @@ use crate::types::{EntityRec, HomeGraph, Intent};
 use std::collections::HashSet;
 
 fn whole_home_lights(home: &HomeGraph) -> Option<&crate::types::EntityRec> {
+    // Alias/label only — never a substring of entity_id (P-12).
     home.entities.iter().find(|e| {
         e.domain == "light"
-            && (e.entity_id.contains("alle") || e.aliases.iter().any(|a| matches!(a.as_str(), "all" | "alle" | "everywhere" | "ueberall")))
+            && (e.aliases.iter().any(|a| matches!(a.as_str(), "all" | "alle" | "everywhere" | "ueberall"))
+                || name_is_home_wide_group(&e.name))
     })
+}
+
+fn name_is_home_wide_group(name: &str) -> bool {
+    matches!(compact(name).as_str(), "all" | "alle" | "everywhere" | "ueberall" | "alllights" | "allelichter")
 }
 
 pub(crate) fn all_lights_clause(
@@ -136,10 +142,8 @@ pub(crate) fn is_home_group_light(entity: &EntityRec, home: &HomeGraph) -> bool 
     if entity.domain != "light" {
         return false;
     }
-    let id = entity.entity_id.to_ascii_lowercase();
-    id.contains("alle")
-        || id.contains("_und_")
-        || id.contains("_and_")
+    name_is_home_wide_group(&entity.name)
+        || entity.aliases.iter().any(|a| name_is_home_wide_group(a) || matches!(a.as_str(), "all" | "alle" | "everywhere" | "ueberall"))
         || name_has_group_conj(&entity.name)
         || entity.area.as_ref().is_some_and(|area| home.areas.iter().any(|rec| rec.area_id == *area && is_whole_home(rec)))
 }

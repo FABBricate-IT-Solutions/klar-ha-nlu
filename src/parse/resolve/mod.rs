@@ -20,9 +20,15 @@ mod rooms;
 mod scope;
 mod score;
 mod shared_room;
+mod spans;
+#[cfg(test)]
+#[path = "spans_tests.rs"]
+mod spans_tests;
 mod specific;
 pub(crate) use scope::{light_rooms_for_clarify, mentions_home, query_grounded};
 pub(crate) use shared_room::narrow_shared_rooms;
+use spans::take_linked;
+pub(crate) use spans::{free_tokens, fully_named, link_named_spans, timer_noun_free, LinkedNames};
 
 #[derive(Debug, Clone)]
 pub struct Resolved {
@@ -50,6 +56,9 @@ pub(super) fn resolve_from_candidates(
 ) -> Resolved {
     let mut areas = match_areas(tokens, &home.areas);
     let floors = match_floors(tokens, &home.floors);
+    // Only when a single room was named: shared-name bathrooms on two floors are
+    // narrowed later by narrow_shared_rooms. Floor-scoping every multi-room utterance
+    // drops "keller und garten" when "keller" is also a floor name.
     if !floors.is_empty() && areas.len() == 1 {
         let on_floor: Vec<String> = areas
             .iter()
@@ -67,6 +76,26 @@ pub(super) fn resolve_from_candidates(
     let floor_areas: Vec<String> =
         floors.iter().flat_map(|floor_id| home.areas_on_floor(floor_id).map(|area| area.area_id.clone())).collect();
     let scope = if areas.is_empty() { floor_areas.as_slice() } else { areas.as_slice() };
+
+    if let Some(linked) = take_linked(tokens, home, &floors, &areas, domain) {
+        return linked;
+    }
+    // "Wohn und Esszimmer lichte" with no group device: keep both rooms, do not pin one side's light.
+    // Require a spoken light noun — "turn off the kitchen and the hall" alone must stay rejected.
+    if areas.len() >= 2
+        && catalog().any(tokens, catalog().conjunctions())
+        && (crate::parse::action::has_light_noun(tokens)
+            || catalog().any(tokens, catalog().light_plural())
+            || catalog().any(tokens, catalog().light_nouns()))
+    {
+        candidates.retain(|(_, entity)| !spans::area_conjunction_entity(entity, home));
+        return Resolved { areas, floors, entities: Vec::new(), ambiguous: Vec::new(), ask_areas: Vec::new() };
+    }
+    // "Wohn und Esszimmer" is two rooms — drop the synthetic group light that reuses that label.
+    if areas.len() >= 2 {
+        candidates.retain(|(_, entity)| !spans::area_conjunction_entity(entity, home));
+    }
+
     if domain == Some("climate") {
         if let Some(kind) = crate::home::roles::wanted_climate_kind(tokens, catalog()) {
             candidates.retain(|(_, entity)| crate::home::roles::climate_kind(entity, catalog()) == Some(kind));
@@ -94,7 +123,10 @@ pub(super) fn resolve_from_candidates(
             named.into_iter().filter(|entity| entity.area.as_ref().is_some_and(|area| scope.contains(area))).collect()
         };
         if scoped.len() > 1 {
-            return Resolved { areas, floors, entities: keep_most_specific(tokens, scoped), ambiguous: Vec::new(), ask_areas: Vec::new() };
+            // A fully spoken name ("desk lamp") wins over every other lamp the fixture word hit.
+            let fully: Vec<EntityRec> = scoped.iter().filter(|entity| spans::fully_named(tokens, entity, home)).cloned().collect();
+            let chosen = if fully.len() == 1 { fully } else { keep_most_specific(tokens, scoped) };
+            return Resolved { areas, floors, entities: chosen, ambiguous: Vec::new(), ask_areas: Vec::new() };
         }
     }
 
@@ -150,7 +182,7 @@ pub(super) fn resolve_from_candidates(
         }
     }
 
-    if domain.is_none_or(|d| d == "light") && !catalog().any(tokens, catalog().timer_nouns()) {
+    if domain.is_none_or(|d| d == "light") && !timer_noun_free(tokens, &link_named_spans(tokens, home, &floors)) {
         if let Some(picked) = pick_fixture(tokens, home, scope) {
             return Resolved { areas, floors, entities: picked, ambiguous: Vec::new(), ask_areas: Vec::new() };
         }
@@ -346,8 +378,12 @@ fn number_word(token: &str) -> Option<String> {
 }
 
 pub fn domain_hint(tokens: &[String]) -> Option<&'static str> {
+    domain_hint_with(tokens, &LinkedNames::default())
+}
+
+pub(crate) fn domain_hint_with(tokens: &[String], linked: &LinkedNames) -> Option<&'static str> {
     let cat = catalog();
-    if cat.any(tokens, cat.timer_nouns()) {
+    if timer_noun_free(tokens, linked) {
         return Some("timer");
     }
     // Generic "device/appliance" in the laundry room is washer-vs-dryer, not lights.
@@ -359,7 +395,11 @@ pub fn domain_hint(tokens: &[String]) -> Option<&'static str> {
     {
         return Some("switch");
     }
-    for t in tokens {
+    for (index, t) in tokens.iter().enumerate() {
+        // A domain word inside a linked device name ("timer" in "Timer Lamp") is not a hint.
+        if linked.consumed.contains(&index) {
+            continue;
+        }
         if *t == "hue" {
             return Some("light");
         }

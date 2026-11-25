@@ -12,6 +12,7 @@ use std::collections::HashSet;
 mod compound_scene;
 pub(crate) use compound_scene::named_scene_or_script;
 
+#[derive(Debug)]
 pub struct CompoundSplit {
     pub tokens: Vec<String>,
     pub light_areas: Vec<String>,
@@ -19,10 +20,23 @@ pub struct CompoundSplit {
 
 pub fn expand_compounds(tokens: &[String], home: &HomeGraph) -> CompoundSplit {
     let prefixes = area_prefixes(home);
+    // Built only when a token looks like area+noun — overlay suites parse thousands of
+    // turns, and almost none need the lock/cover whole-label guard.
+    let mut entity_labels: Option<HashSet<String>> = None;
     let mut out = Vec::new();
     let mut light_areas = Vec::new();
     for token in tokens {
         if let Some((area, noun)) = split_area_device(token, &prefixes) {
+            // Keep whole device labels ("garagentor", "haustuer") — splitting them into
+            // area+noun drops the lock/cover name and breaks "haustuer und garagentor".
+            // Still split light compounds ("schlafzimmerlicht") for fixture preference.
+            if !is_light_noun(&noun) {
+                let labels = entity_labels.get_or_insert_with(|| entity_label_set(home));
+                if labels.contains(&compact(token)) {
+                    out.push(token.clone());
+                    continue;
+                }
+            }
             if is_light_noun(&noun) && !light_areas.contains(&area) {
                 light_areas.push(area.clone());
             }
@@ -37,6 +51,20 @@ pub fn expand_compounds(tokens: &[String], home: &HomeGraph) -> CompoundSplit {
         }
     }
     CompoundSplit { tokens: expand_room_shorts(&out, home), light_areas }
+}
+
+fn entity_label_set(home: &HomeGraph) -> HashSet<String> {
+    let mut labels = HashSet::new();
+    for entity in &home.entities {
+        let id_tail = entity.entity_id.split_once('.').map(|(_, tail)| tail).unwrap_or(entity.entity_id.as_str());
+        labels.insert(compact(&entity.name));
+        labels.insert(compact(id_tail));
+        for alias in &entity.aliases {
+            labels.insert(compact(alias));
+        }
+    }
+    labels.remove("");
+    labels
 }
 
 fn expand_room_shorts(tokens: &[String], home: &HomeGraph) -> Vec<String> {

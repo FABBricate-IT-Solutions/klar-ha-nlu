@@ -82,8 +82,17 @@ pub(crate) fn area_command(ctx: &Clause) -> Option<ClauseOut> {
         }
     }
     let mut intents = Vec::new();
+    // Multi-room light commands stay area-scoped: pinning one room's group light
+    // (RoomGroup / unique) fights MultiArea and triggers competing-plan clarify.
+    let multi_light = ctx.resolved.areas.len() > 1
+        && matches!(ctx.action, Action::On | Action::Off | Action::Toggle | Action::SetLight)
+        && ctx.domain.is_none_or(|domain| domain == "light");
     for area in &ctx.resolved.areas {
-        let (id, area_slot, dom) = area_slots(ctx.action, area, ctx.domain, ctx.home, ctx.tokens);
+        let (id, area_slot, dom) = if multi_light {
+            (None, Some(area.clone()), Some("light".into()))
+        } else {
+            area_slots(ctx.action, area, ctx.domain, ctx.home, ctx.tokens)
+        };
         intents.push(fill_intent(ctx.action, ctx.tokens, ctx.number, id.as_deref(), area_slot.as_deref(), dom.as_deref()));
     }
     Some(finish_intents(intents, ctx))
@@ -122,13 +131,22 @@ pub(crate) fn query_ungrounded(ctx: &Clause) -> Option<ClauseOut> {
 
 pub(crate) fn multi_area(ctx: &Clause) -> Option<ClauseOut> {
     (ctx.resolved.areas.len() > 1).then(|| {
+        let light_rooms = matches!(ctx.action, Action::On | Action::Off | Action::Toggle | Action::SetLight)
+            && (ctx.domain == Some("light")
+                || crate::parse::action::has_light_noun(ctx.tokens)
+                || catalog().any(ctx.tokens, catalog().light_nouns())
+                || catalog().any(ctx.tokens, catalog().light_plural()));
         let intents = ctx
             .resolved
             .areas
             .iter()
             .map(|area| {
-                let entity_id = ctx.domain.and_then(|domain| unique_in_area(ctx.home, area, domain, ctx.tokens));
-                fill_intent(ctx.action, ctx.tokens, ctx.number, entity_id.as_deref(), Some(area), ctx.domain)
+                if light_rooms {
+                    fill_intent(ctx.action, ctx.tokens, ctx.number, None, Some(area), Some("light"))
+                } else {
+                    let entity_id = ctx.domain.and_then(|domain| unique_in_area(ctx.home, area, domain, ctx.tokens));
+                    fill_intent(ctx.action, ctx.tokens, ctx.number, entity_id.as_deref(), Some(area), ctx.domain)
+                }
             })
             .collect();
         finish_intents(intents, ctx)

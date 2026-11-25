@@ -39,8 +39,15 @@ pub enum Action {
 }
 
 pub fn domain_for(action: Action, tokens: &[String]) -> Option<&'static str> {
+    domain_for_linked(action, tokens, &crate::parse::resolve::LinkedNames::default())
+}
+
+pub(crate) fn domain_for_linked(action: Action, tokens: &[String], linked: &crate::parse::resolve::LinkedNames) -> Option<&'static str> {
     forced_domain(action)
-        .or_else(|| crate::parse::resolve::domain_hint(tokens).filter(|domain| !matches!(action, Action::SetLight) || *domain == "light"))
+        .or_else(|| {
+            crate::parse::resolve::domain_hint_with(tokens, linked)
+                .filter(|domain| !matches!(action, Action::SetLight) || *domain == "light")
+        })
         .or_else(|| implied_domain(action))
 }
 

@@ -9,6 +9,17 @@ pub(super) fn prefer_tv(tokens: &[String], home: &HomeGraph, candidates: &mut Ve
     if !tv_utterance(tokens) {
         return;
     }
+    // An exact longer name that happens to contain "tv" ("TV Plug") keeps that device
+    // instead of the media player the domain word would pick.
+    let exact: Vec<(f64, EntityRec)> = candidates
+        .iter()
+        .filter(|(_, entity)| crate::parse::resolve::fully_named(tokens, entity, home) && entity.domain != "media_player")
+        .cloned()
+        .collect();
+    if !exact.is_empty() {
+        *candidates = exact;
+        return;
+    }
     let mentioned: Vec<String> =
         home.areas.iter().filter(|area| area_mentioned(tokens, &area.area_id, home)).map(|area| area.area_id.clone()).collect();
     if mentioned.is_empty() {

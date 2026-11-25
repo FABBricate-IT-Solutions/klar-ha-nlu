@@ -1,7 +1,7 @@
 use crate::home::policy::{fallback_climate, fallback_cover_area};
 use crate::home::roles::{is_music_assistant_player, is_music_player};
 use crate::lang::catalog;
-use crate::parse::action::{detect_actions, domain_for, is_hard_command, Action};
+use crate::parse::action::{detect_actions, domain_for_linked, is_hard_command, Action};
 use crate::parse::also::guess_action;
 use crate::parse::clause_area::{
     area_command, area_slots, grounded_ambiguous, grounded_areas, grounded_entities, multi_area, query_area, query_ungrounded,
@@ -9,7 +9,7 @@ use crate::parse::clause_area::{
 use crate::parse::clause_session::{session_areas, session_climate_cover, session_entities};
 use crate::parse::clause_support::{named_instead_of_light, named_scene_policy, preferred_area_domain, resolve_targets};
 use crate::parse::compound::apply_compound_light;
-use crate::parse::infer::{except_tail, infer_action, looks_like_named_device, looks_like_question, prefer_action, wants_all_lights};
+use crate::parse::infer::{except_tail, infer_action_in, looks_like_named_device, looks_like_question, prefer_action, wants_all_lights};
 use crate::parse::media::{media_clause, now_playing_status};
 use crate::parse::numbers::first_number;
 use crate::parse::policy::{media_claimed_empty, overlaid_candidate, retain_after_media_claim, MatchOverlay};
@@ -18,6 +18,7 @@ use crate::parse::resolve::{
     climates_of_kind, entity_has_name_evidence, entity_name_is_mentioned, has_fuzzy_target_token, known_target_token,
     light_rooms_for_clarify,
 };
+use crate::parse::resolve::{free_tokens, link_named_spans};
 use crate::parse::slots::{all_lights_clause, fill_intent, fill_list_intent, intent_from_action, ClauseOut};
 use crate::parse::split::follow_fixture;
 use crate::session::Session;
@@ -54,32 +55,36 @@ pub(crate) fn parse_clause_candidates_for_action(
     if !free_text_payload && tokens.iter().any(|token| cat.is_protected_typo(token) && !known_target_token(token, home)) {
         return Vec::new();
     }
-    let actions = detect_actions(tokens);
+    // Names first: numbers and colours inside a device label are not values.
+    let linked = link_named_spans(tokens, home, &[]);
+    let free = free_tokens(tokens, &linked);
+    let value_tokens = mask_name_values(tokens, &linked);
+    let actions = detect_actions(&value_tokens);
     let fuzzy_action = !tokens.iter().any(|token| cat.verb(token).is_some()) && !actions.is_empty();
     if !free_text_payload && fuzzy_action && has_fuzzy_target_token(tokens, home) {
         return Vec::new();
     }
     let question = looks_like_question(tokens);
-    let number = first_number(tokens);
+    let number = first_number(&free);
     let command = prefer_action(&actions);
-    let hard = is_hard_command(command, tokens);
+    let hard = is_hard_command(command, &value_tokens);
     let guessed = forced_action.unwrap_or_else(|| {
         if crate::parse::compound::named_scene_or_script(tokens, home).is_some()
             && !(cat.any(tokens, cat.question_words()) || tokens.first().is_some_and(|token| cat.is_question_start(token)))
         {
             Action::Scene
-        } else if !question && (crate::parse::infer::color_word(tokens).is_some() || crate::parse::infer::light_level(tokens).is_some()) {
+        } else if !question && (crate::parse::infer::color_word(&free).is_some() || crate::parse::infer::light_level(&free).is_some()) {
             Action::SetLight
         } else if question && number.is_none() && !hard {
             Action::GetState
         } else {
-            command.or_else(|| actions.first().map(|(_, a)| *a)).unwrap_or_else(|| guess_action(tokens, session, number))
+            command.or_else(|| actions.first().map(|(_, a)| *a)).unwrap_or_else(|| guess_action(&value_tokens, session, number))
         }
     });
-    let early = infer_action(guessed, tokens, number, question, session, None);
+    let early = infer_action_in(guessed, tokens, number, question, session, None, Some(home));
     let named = named_instead_of_light(early, tokens, number, home, settings);
-    let early = named.map_or(early, |domain| infer_action(guessed, tokens, number, question, session, Some(domain)));
-    let domain = domain_for(early, tokens);
+    let early = named.map_or(early, |domain| infer_action_in(guessed, tokens, number, question, session, Some(domain), Some(home)));
+    let domain = domain_for_linked(early, tokens, &linked);
 
     let overlay = MatchOverlay::new(match_controls);
     let mut candidates = crate::parse::clause_early::early_special_clauses(tokens, raw, home, early, number, domain, overlay);
@@ -89,10 +94,10 @@ pub(crate) fn parse_clause_candidates_for_action(
     crate::parse::resolve::narrow_shared_rooms(&mut resolved, tokens, home, session.preferred_area.as_deref());
     let target = resolved.entities.first().map(|e| e.domain.as_str());
     let action = match target {
-        Some(domain) => infer_action(guessed, tokens, number, question, session, Some(domain)),
+        Some(domain) => infer_action_in(guessed, tokens, number, question, session, Some(domain), Some(home)),
         None => early,
     };
-    let domain = domain_for(action, tokens);
+    let domain = domain_for_linked(action, tokens, &linked);
     let ctx = Clause { tokens, raw, home, session, action, number, domain, question, resolved, light_areas };
     let except_all = except_tail(tokens).is_some() && wants_all_lights(tokens);
     let policies: &[(PolicyId, PolicyFn)] = &[
@@ -339,4 +344,28 @@ pub(crate) fn finish_intents(mut intents: Vec<Intent>, ctx: &Clause) -> ClauseOu
     }
     intents.retain(|i| i.name != "Unknown");
     ClauseOut::Intents(intents)
+}
+
+/// Replace numbers and colour words that sit inside a linked device name so action
+/// detection does not treat them as brightness or a colour set.
+fn mask_name_values(tokens: &[String], linked: &crate::parse::resolve::LinkedNames) -> Vec<String> {
+    let cat = catalog();
+    tokens
+        .iter()
+        .enumerate()
+        .map(|(index, token)| {
+            if !linked.consumed.contains(&index) {
+                return token.clone();
+            }
+            let is_value = token.parse::<i32>().is_ok()
+                || cat.number(token).is_some()
+                || cat.color(token).is_some()
+                || cat.timer_nouns().contains(token.as_str());
+            if is_value {
+                String::new()
+            } else {
+                token.clone()
+            }
+        })
+        .collect()
 }

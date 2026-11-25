@@ -22,6 +22,7 @@ fn last_domain(session: &Session, prefix: &str) -> bool {
 }
 
 /// Token-only tweaks, then bind the verb to a target/session domain.
+#[allow(dead_code)] // thin wrapper; home-aware callers use infer_action_in
 pub(crate) fn infer_action(
     action: Action,
     tokens: &[String],
@@ -30,13 +31,25 @@ pub(crate) fn infer_action(
     session: &Session,
     target_domain: Option<&str>,
 ) -> Action {
-    let action = refine_tokens(action, tokens, number, question);
+    infer_action_in(action, tokens, number, question, session, target_domain, None)
+}
+
+pub(crate) fn infer_action_in(
+    action: Action,
+    tokens: &[String],
+    number: Option<i32>,
+    question: bool,
+    session: &Session,
+    target_domain: Option<&str>,
+    home: Option<&crate::types::HomeGraph>,
+) -> Action {
+    let action = refine_tokens(action, tokens, number, question, home);
     let session_d = session_domain(session, tokens);
     let domain = target_domain.or(session_d);
     bind_domain_with(action, tokens, number, domain, target_domain.is_none() && session_d.is_some())
 }
 
-fn refine_tokens(action: Action, tokens: &[String], number: Option<i32>, question: bool) -> Action {
+fn refine_tokens(action: Action, tokens: &[String], number: Option<i32>, question: bool, home: Option<&crate::types::HomeGraph>) -> Action {
     let vacuum = catalog().any(tokens, catalog().vacuum_nouns());
     if question && (vacuum || matches!(action, Action::VacuumDock | Action::VacuumStart)) {
         return Action::GetState;
@@ -51,7 +64,8 @@ fn refine_tokens(action: Action, tokens: &[String], number: Option<i32>, questio
     {
         return Action::VacuumStart;
     }
-    if matches!(action, Action::On | Action::Off) && tokens.iter().any(|t| catalog().timer_nouns().contains(t.as_str())) {
+    // "Timer" inside a device name is not a timer command.
+    if matches!(action, Action::On | Action::Off) && timer_means_timer(tokens, home) {
         return if matches!(action, Action::Off) { Action::TimerCancel } else { Action::TimerStart };
     }
     if matches!(action, Action::FanSpeed | Action::TimerStart | Action::TimerAdd | Action::TimerRemove)
@@ -64,6 +78,17 @@ fn refine_tokens(action: Action, tokens: &[String], number: Option<i32>, questio
         return Action::GetState;
     }
     action
+}
+
+fn timer_means_timer(tokens: &[String], home: Option<&crate::types::HomeGraph>) -> bool {
+    if !tokens.iter().any(|token| catalog().timer_nouns().contains(token.as_str())) {
+        return false;
+    }
+    let Some(home) = home else {
+        return true;
+    };
+    let linked = crate::parse::resolve::link_named_spans(tokens, home, &[]);
+    crate::parse::resolve::timer_noun_free(tokens, &linked)
 }
 
 pub(crate) fn mentions_lamp_fixture(tokens: &[String]) -> bool {

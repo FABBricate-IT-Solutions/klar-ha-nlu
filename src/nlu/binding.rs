@@ -47,7 +47,7 @@ pub(super) fn build_analyses(
     let action_rows = clauses
         .iter()
         .map(|clause| {
-            let mut hypotheses = action_hypotheses(clause, context.catalog);
+            let mut hypotheses = action_hypotheses(clause, context.catalog, context.home);
             hypotheses.truncate(MAX_ACTION_HYPOTHESES);
             hypotheses
         })
