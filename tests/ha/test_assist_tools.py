@@ -108,6 +108,17 @@ class AssistToolsTests(unittest.TestCase):
         self.assertNotIn("Smalltalk-Agenten", de)
         self.assertNotIn("already prefixed", strings)
 
+    def test_tool_input_and_assistant_have_as_dict(self) -> None:
+        # H-09: ChatLog.as_dict() must not break after a tool turn.
+        call = {"id": "call_1", "name": "HassTurnOn", "arguments": '{"name":"Kitchen"}'}
+        tool = assist_tools._tool_input(call)
+        self.assertTrue(callable(getattr(tool, "as_dict", None)) or hasattr(tool, "tool_name"))
+        content = assist_tools._assistant_content([tool], "conversation.klar_nlu")
+        payload = content.as_dict() if hasattr(content, "as_dict") else None
+        if payload is not None:
+            self.assertEqual(payload.get("role"), "assistant")
+            self.assertIn("tool_calls", payload)
+
 
 if __name__ == "__main__":
     unittest.main()

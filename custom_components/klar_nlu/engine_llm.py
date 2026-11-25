@@ -528,6 +528,7 @@ async def _iter_engine_sse(
         raise EngineUnavailable
     headers = engine_headers(tok, extra={"Accept": "text/event-stream"})
     last_err: Exception | None = None
+    started = False
     for host in engine_url_candidates(base):
         try:
             async with session.post(
@@ -544,12 +545,16 @@ async def _iter_engine_sse(
                 async for event in _iter_sse_json(resp.content):
                     if event.get("type") == "error":
                         raise RuntimeError(str(event.get("message") or "llm error"))
+                    started = True
                     yield event
             return
         except EngineUnavailable:
             raise
         except Exception as err:
             if missing is not None and isinstance(err, missing):
+                raise
+            # H-16: once the first token arrived, never retry on another host alias.
+            if started:
                 raise
             if isinstance(err, (ClientError, TimeoutError, OSError)):
                 last_err = err
