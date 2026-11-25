@@ -55,7 +55,10 @@ def build_snapshot(
             ][:16],
         },
         "outcome": outcome,
-        "entities": [_entity(row) for row in (entities or [])[:MAX_ENTITIES]],
+        "entities": [
+            _entity(row, "imperial" if unit_system == "imperial" else "metric")
+            for row in (entities or [])[:MAX_ENTITIES]
+        ],
         "calendar_events": [
             {"summary": str(row.get("summary") or "")[:128], "start": str(row.get("start") or "")[:64]}
             for row in (calendar_events or [])[:MAX_EVENTS]
@@ -80,7 +83,7 @@ def _num(value: Any) -> float | None:
 
 
 def _forecast(row: dict[str, Any]) -> dict[str, Any]:
-    return {
+    out = {
         "datetime": str(row.get("datetime") or "")[:64],
         "condition": str(row.get("condition") or "")[:64],
         "temperature": _num(row.get("temperature")),
@@ -88,9 +91,13 @@ def _forecast(row: dict[str, Any]) -> dict[str, Any]:
         "precipitation": _num(row.get("precipitation")),
         "precipitation_probability": _num(row.get("precipitation_probability")),
     }
+    unit = str(row.get("temperature_unit") or "")
+    if unit:
+        out["temperature_unit"] = unit[:16]
+    return out
 
 
-def _entity(row: dict[str, Any]) -> dict[str, Any]:
+def _entity(row: dict[str, Any], unit_system: str = "metric") -> dict[str, Any]:
     raw_attrs = row.get("attributes") if isinstance(row.get("attributes"), dict) else {}
     attrs: dict[str, Any] = {}
     for key in ALLOWED_ATTRS:
@@ -103,6 +110,12 @@ def _entity(row: dict[str, Any]) -> dict[str, Any]:
             attrs[key] = value
         elif key in {"temperature_unit", "unit_of_measurement"}:
             attrs[key] = str(value)[:MAX_ATTR]
+    # H-05: HA climate states often omit temperature_unit once values are in home units.
+    if (
+        "temperature_unit" not in attrs
+        and any(key in attrs for key in ("current_temperature", "temperature"))
+    ):
+        attrs["temperature_unit"] = "°F" if unit_system == "imperial" else "°C"
     return {
         "entity_id": str(row.get("entity_id") or "")[:128],
         "name": str(row.get("name") or "")[:128],

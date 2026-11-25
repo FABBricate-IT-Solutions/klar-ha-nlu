@@ -95,6 +95,7 @@ def _load_dispatch() -> types.ModuleType:
         _load(f"{PACKAGE}.stream", "stream.py")
         _load(f"{PACKAGE}.engine_llm", "engine_llm.py")
         _load(f"{PACKAGE}.speech_snapshot", "speech_snapshot.py")
+        _load(f"{PACKAGE}.units", "units.py")
         _load(f"{PACKAGE}.speech_render", "speech_render.py")
         _load(f"{PACKAGE}.weather_forecast", "weather_forecast.py")
         media = _load(f"{PACKAGE}.dispatch_media", "dispatch_media.py")
