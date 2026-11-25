@@ -3,6 +3,7 @@ use crate::home::test_dir::TestDir;
 use crate::home::{default_home, LoadedHome};
 use crate::session::Session;
 use crate::types::Settings;
+use std::io::ErrorKind;
 use tokio::io::{duplex, AsyncWriteExt};
 
 /// A stop flag nobody sets.
@@ -81,6 +82,9 @@ async fn describe_and_recognize_reuse_conversation() {
     assert!(!info.contains("Deterministische"), "{info}");
     assert!(info.contains("\"type\":\"info\""), "{info}");
     assert!(info.contains("\"contract_version\":\"2.0\""), "{info}");
+    // R-04: IntentModel.languages must be present and non-empty even with default settings.
+    assert!(info.contains("\"languages\":["), "{info}");
+    assert!(!info.contains("\"languages\":[]"), "{info}");
 
     writer
         .write_all(br#"{"type":"recognize","data":{"text":"Licht im Wohnzimmer an","conversation_id":"c1","language":"de"}}"#)
@@ -224,4 +228,137 @@ async fn a_stop_ends_an_idle_connection_after_answering_what_was_sent() {
     // The peer keeps the connection open and sends nothing. Without a stop this waits out `IDLE`.
     stop.send(true).unwrap();
     timeout(Duration::from_secs(2), task).await.expect("the handler ends on a stop").unwrap().unwrap();
+}
+
+/// Reference Wyoming library framing: data lives in a `data_length` blob after the header (R-04).
+fn library_framed(typ: &str, data: &str) -> Vec<u8> {
+    let mut out = format!(r#"{{"type":"{typ}","version":"1.5.0","data_length":{},"payload_length":0}}"#, data.len()).into_bytes();
+    out.push(b'\n');
+    out.extend_from_slice(data.as_bytes());
+    out
+}
+
+#[tokio::test]
+async fn library_framing_recognize_returns_hass_turn_on() {
+    let (_scratch, state) = test_state();
+    let (client, server) = duplex(16 * 1024);
+    let (server_read, server_write) = tokio::io::split(server);
+    let task = tokio::spawn(handle_io(BufReader::new(server_read), server_write, state, never_stopped()));
+    let (client_read, mut writer) = tokio::io::split(client);
+    let mut lines = BufReader::new(client_read).lines();
+
+    let framed = library_framed("recognize", r#"{"text":"Licht im Wohnzimmer an","language":"de"}"#);
+    writer.write_all(&framed).await.unwrap();
+    writer.flush().await.unwrap();
+    let reply = read_line(&mut lines).await;
+    assert!(reply.contains("HassTurnOn"), "acceptance: framed recognize → HassTurnOn; got {reply}");
+    assert!(reply.contains("\"type\":\"intent\""), "{reply}");
+
+    writer.shutdown().await.unwrap();
+    drop(writer);
+    timeout(Duration::from_secs(2), task).await.expect("server exit").unwrap().unwrap();
+}
+
+#[tokio::test]
+async fn ping_answers_pong_with_echoed_text() {
+    let (_scratch, state) = test_state();
+    let replies = exchange(state, &[r#"{"type":"ping","data":{"text":"probe-1"}}"#]).await;
+    assert!(replies[0].contains("\"type\":\"pong\""), "{}", replies[0]);
+    assert!(replies[0].contains("probe-1"), "{}", replies[0]);
+}
+
+#[tokio::test]
+async fn library_framing_ping_and_payload_skip_stay_in_sync() {
+    let (_scratch, state) = test_state();
+    let (client, server) = duplex(16 * 1024);
+    let (server_read, server_write) = tokio::io::split(server);
+    let task = tokio::spawn(handle_io(BufReader::new(server_read), server_write, state, never_stopped()));
+    let (client_read, mut writer) = tokio::io::split(client);
+    let mut lines = BufReader::new(client_read).lines();
+
+    // Ping with data blob + a tiny payload that must be consumed before the next event.
+    let data = r#"{"text":"sync"}"#;
+    let payload = b"xxxx";
+    let header = format!(r#"{{"type":"ping","version":"1.5.0","data_length":{},"payload_length":{}}}"#, data.len(), payload.len());
+    writer.write_all(header.as_bytes()).await.unwrap();
+    writer.write_all(b"\n").await.unwrap();
+    writer.write_all(data.as_bytes()).await.unwrap();
+    writer.write_all(payload).await.unwrap();
+    writer.flush().await.unwrap();
+    let pong = read_line(&mut lines).await;
+    assert!(pong.contains("\"type\":\"pong\""), "{pong}");
+    assert!(pong.contains("sync"), "{pong}");
+
+    // Next event still frames correctly after the payload was skipped.
+    let framed = library_framed("recognize", r#"{"text":"Licht im Wohnzimmer an","language":"de"}"#);
+    writer.write_all(&framed).await.unwrap();
+    writer.flush().await.unwrap();
+    let reply = read_line(&mut lines).await;
+    assert!(reply.contains("HassTurnOn"), "{reply}");
+
+    writer.shutdown().await.unwrap();
+    drop(writer);
+    timeout(Duration::from_secs(2), task).await.expect("server exit").unwrap().unwrap();
+}
+
+#[tokio::test]
+async fn write_times_out_when_peer_does_not_read() {
+    // Tiny duplex buffer so a describe reply blocks once the peer never reads (R-05).
+    let (client, server) = duplex(64);
+    let (server_read, server_write) = tokio::io::split(server);
+    let (_scratch, state) = test_state();
+    let task = tokio::spawn(handle_io(BufReader::new(server_read), server_write, state, never_stopped()));
+    let (_client_read, mut client_write) = tokio::io::split(client);
+    client_write.write_all(br#"{"type":"describe"}"#).await.unwrap();
+    client_write.write_all(b"\n").await.unwrap();
+    client_write.flush().await.unwrap();
+    // Keep the writer half open so the server stays blocked on write until WRITE fires.
+    let result = timeout(Duration::from_secs(5), task).await.expect("handler ends on write timeout");
+    let err = result.expect("join").expect_err("write timeout closes the handler");
+    assert_eq!(err.kind(), ErrorKind::TimedOut, "{err}");
+}
+
+#[test]
+fn inflight_guard_decrements_on_drop() {
+    let counter = Arc::new(AtomicUsize::new(1));
+    {
+        let _guard = InflightGuard(counter.clone());
+        assert_eq!(counter.load(Ordering::Relaxed), 1);
+    }
+    assert_eq!(counter.load(Ordering::Relaxed), 0);
+}
+
+#[tokio::test]
+async fn write_timeout_frees_admit_capacity_for_next_peer() {
+    // R-05: 32 duplex peers that never read block on write; after WRITE the counter drops
+    // and a fresh peer is admitted.
+    let inflight = Arc::new(AtomicUsize::new(0));
+    let mut tasks = Vec::new();
+    let mut holders = Vec::new();
+    for _ in 0..MAX_CONNS {
+        let (client, server) = duplex(64);
+        let (server_read, server_write) = tokio::io::split(server);
+        let (_scratch, state) = test_state();
+        inflight.fetch_add(1, Ordering::Relaxed);
+        let guard_counter = inflight.clone();
+        tasks.push(tokio::spawn(async move {
+            let _guard = InflightGuard(guard_counter);
+            handle_io(BufReader::new(server_read), server_write, state, never_stopped()).await
+        }));
+        let (_client_read, mut client_write) = tokio::io::split(client);
+        client_write.write_all(br#"{"type":"describe"}"#).await.unwrap();
+        client_write.write_all(b"\n").await.unwrap();
+        let _ = client_write.flush().await;
+        holders.push(client_write);
+    }
+
+    assert!(!should_admit("127.0.0.1:9".parse().unwrap(), inflight.load(Ordering::Relaxed)));
+
+    for task in tasks {
+        let joined = timeout(Duration::from_secs(5), task).await.expect("write timeout");
+        joined.expect("join").expect_err("handler ends with write timeout");
+    }
+    assert_eq!(inflight.load(Ordering::Relaxed), 0);
+    assert!(should_admit("127.0.0.1:9".parse().unwrap(), inflight.load(Ordering::Relaxed)));
+    drop(holders);
 }
