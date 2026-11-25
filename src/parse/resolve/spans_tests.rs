@@ -211,3 +211,25 @@ fn fan_and_washer_light_keep_named_devices() {
     assert!(laundry_ids.contains(&"switch.washing_machine"), "{laundry:?}");
     assert!(laundry_ids.contains(&"switch.dryer"), "{laundry:?}");
 }
+
+#[test]
+fn bedroom_fan_light_keeps_the_fan() {
+    let _lang = crate::lang::bind(&["en".into()]);
+    let path = std::path::Path::new(env!("CARGO_MANIFEST_DIR")).join("tests/datasets/full_home/en/home_config.yaml");
+    let home = crate::home::load_home_config(&path).expect("en");
+    let text = "turn on the bedroom fan light";
+    let out = crate::parse::parse(text, &home, &mut crate::session::Session::new(), &[], &crate::types::Settings::pinned("en"));
+    assert!(!out.clarify, "{out:?}");
+    assert!(out.intents.iter().any(|i| i.slot("entity_id") == Some("fan.master_fan")), "{out:?}");
+}
+
+#[test]
+fn laundry_washer_light_keeps_the_switch() {
+    let _lang = crate::lang::bind(&["en".into()]);
+    let path = std::path::Path::new(env!("CARGO_MANIFEST_DIR")).join("tests/datasets/full_home/en/home_config.yaml");
+    let home = crate::home::load_home_config(&path).expect("en");
+    let text = "turn on the laundry washer light";
+    let out = crate::parse::parse(text, &home, &mut crate::session::Session::new(), &[], &crate::types::Settings::pinned("en"));
+    assert!(!out.clarify, "{out:?}");
+    assert!(out.intents.iter().any(|i| i.slot("entity_id") == Some("switch.washing_machine")), "{out:?}");
+}
