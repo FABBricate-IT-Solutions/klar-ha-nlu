@@ -11,16 +11,30 @@ use std::net::SocketAddr;
 use std::sync::atomic::{AtomicUsize, Ordering};
 use std::sync::Arc;
 use std::time::Duration;
-use tokio::io::{AsyncBufRead, AsyncBufReadExt, AsyncWriteExt, BufReader};
+use tokio::io::{AsyncBufRead, AsyncBufReadExt, AsyncRead, AsyncReadExt, AsyncWriteExt, BufReader};
 use tokio::net::{TcpListener, TcpStream};
 use tokio::sync::{mpsc, watch};
 use tokio::time::timeout;
 
 const MAX_LINE: usize = 8192;
+/// Cap on Wyoming `data_length` (JSON blob after the header). Intent text fits well under this.
+const MAX_DATA: usize = 16 * 1024;
+/// Cap on Wyoming `payload_length`. NLU ignores the payload but must consume it to stay in sync.
+const MAX_PAYLOAD: usize = 64 * 1024;
 const MAX_CONNS: usize = 32;
 const IDLE: Duration = Duration::from_secs(30);
+const WRITE: Duration = Duration::from_secs(2);
 const REJECT_WRITE: Duration = Duration::from_millis(250);
 const NLU_DESCRIPTION: &str = "On-device NLU";
+
+/// Decrements the in-flight connection counter when dropped (panic, cancel, or normal exit).
+struct InflightGuard(Arc<AtomicUsize>);
+
+impl Drop for InflightGuard {
+    fn drop(&mut self) {
+        self.0.fetch_sub(1, Ordering::Relaxed);
+    }
+}
 
 /// Serve Wyoming on `listener` until `stop` is set, then let the events that are under way
 /// finish. A failed `accept` is logged and the listener carries on: it used to end the
@@ -50,11 +64,11 @@ pub async fn serve(listener: TcpListener, state: AppState, mut stop: watch::Rece
         let inflight = inflight.clone();
         let (stop, alive) = (stop.clone(), alive.clone());
         tokio::spawn(async move {
+            let _guard = InflightGuard(inflight);
+            let _alive = alive;
             if let Err(err) = handle(stream, state, stop).await {
                 tracing::debug!("Wyoming-Verbindung: {err}");
             }
-            inflight.fetch_sub(1, Ordering::Relaxed);
-            drop(alive);
         });
     }
     drop(listener);
@@ -68,7 +82,7 @@ fn should_admit(peer: SocketAddr, inflight: usize) -> bool {
 }
 
 async fn write_reject<W: AsyncWriteExt + Unpin>(mut writer: W) {
-    let _ = timeout(REJECT_WRITE, write_event(&mut writer, "error", json!({ "text": "" }))).await;
+    let _ = timeout(REJECT_WRITE, write_event_raw(&mut writer, "error", json!({ "text": "" }))).await;
 }
 
 async fn handle(stream: TcpStream, state: AppState, stop: watch::Receiver<bool>) -> std::io::Result<()> {
@@ -85,26 +99,19 @@ where
 {
     loop {
         let read = tokio::select! {
-            read = timeout(IDLE, read_capped_line(&mut reader)) => read,
+            read = timeout(IDLE, read_event(&mut reader)) => read,
             () = stopped(&mut stop) => break,
         };
-        let line = match read {
-            Ok(Ok(Some(line))) => line,
+        let event = match read {
+            Ok(Ok(Some(event))) => event,
             Ok(Ok(None)) => break,
             Ok(Err(err)) => return Err(err),
             Err(_) => return Err(Error::new(ErrorKind::TimedOut, "wyoming idle")),
         };
-        if line.trim().is_empty() {
-            continue;
-        }
-        let Ok(event) = serde_json::from_str::<Value>(&line) else {
-            write_not_recognized(&mut writer).await?;
-            continue;
-        };
         let typ = event.get("type").and_then(|v| v.as_str()).unwrap_or("");
         match typ {
             "describe" => {
-                let languages = state.settings.lock().await.languages.clone();
+                let languages = describe_languages(&state).await;
                 write_event(
                     &mut writer,
                     "info",
@@ -124,6 +131,14 @@ where
                     }),
                 )
                 .await?;
+            }
+            "ping" => {
+                // Echo optional text so peers can match request/response (Wyoming ping/pong).
+                let text = event.pointer("/data/text").cloned().unwrap_or_else(|| json!(""));
+                write_event(&mut writer, "pong", json!({ "text": text })).await?;
+            }
+            "__bad_json__" => {
+                write_not_recognized(&mut writer).await?;
             }
             "recognize" => {
                 let text = event.pointer("/data/text").and_then(|v| v.as_str()).unwrap_or("");
@@ -241,6 +256,81 @@ where
     Ok(())
 }
 
+/// Languages advertised in `info`: configured list, or the default pack when empty (R-04).
+async fn describe_languages(state: &AppState) -> Vec<String> {
+    let settings = state.settings.lock().await;
+    if settings.languages.is_empty() {
+        vec![settings.default_pack().to_string()]
+    } else {
+        settings.languages.clone()
+    }
+}
+
+/// Read one Wyoming event: JSONL header plus optional `data_length` / `payload_length` blobs.
+/// Library clients put event fields in the data blob, not inline in the header (R-04).
+async fn read_event<R: AsyncBufRead + Unpin>(reader: &mut R) -> std::io::Result<Option<Value>> {
+    loop {
+        let Some(line) = read_capped_line(reader).await? else {
+            return Ok(None);
+        };
+        if line.trim().is_empty() {
+            continue;
+        }
+        let Ok(mut event) = serde_json::from_str::<Value>(&line) else {
+            // Malformed header: use a private type the handler maps to not-recognized.
+            return Ok(Some(json!({ "type": "__bad_json__" })));
+        };
+        let data_length = event.get("data_length").and_then(Value::as_u64).unwrap_or(0) as usize;
+        let payload_length = event.get("payload_length").and_then(Value::as_u64).unwrap_or(0) as usize;
+        if data_length > MAX_DATA || payload_length > MAX_PAYLOAD {
+            return Err(Error::new(ErrorKind::InvalidData, "wyoming frame too large"));
+        }
+        if data_length > 0 {
+            let mut buf = vec![0u8; data_length];
+            reader.read_exact(&mut buf).await?;
+            let extra: Value =
+                serde_json::from_slice(&buf).map_err(|err| Error::new(ErrorKind::InvalidData, format!("wyoming data: {err}")))?;
+            merge_event_data(&mut event, extra);
+        }
+        if payload_length > 0 {
+            discard_exact(reader, payload_length).await?;
+        }
+        // Drop framing keys; handlers only look at type/data.
+        if let Some(obj) = event.as_object_mut() {
+            obj.remove("data_length");
+            obj.remove("payload_length");
+        }
+        return Ok(Some(event));
+    }
+}
+
+fn merge_event_data(event: &mut Value, extra: Value) {
+    let Some(extra_obj) = extra.as_object() else {
+        return;
+    };
+    let data = event.as_object_mut().expect("event object").entry("data").or_insert_with(|| json!({}));
+    match data {
+        Value::Object(existing) => {
+            for (key, value) in extra_obj {
+                existing.insert(key.clone(), value.clone());
+            }
+        }
+        _ => {
+            *data = Value::Object(extra_obj.clone());
+        }
+    }
+}
+
+async fn discard_exact<R: AsyncRead + Unpin>(reader: &mut R, mut n: usize) -> std::io::Result<()> {
+    let mut buf = [0u8; 4096];
+    while n > 0 {
+        let chunk = n.min(buf.len());
+        reader.read_exact(&mut buf[..chunk]).await?;
+        n -= chunk;
+    }
+    Ok(())
+}
+
 async fn read_capped_line<R: AsyncBufRead + Unpin>(reader: &mut R) -> std::io::Result<Option<String>> {
     let mut buf = Vec::new();
     loop {
@@ -294,6 +384,13 @@ async fn write_not_recognized<W: AsyncWriteExt + Unpin>(writer: &mut W) -> std::
 }
 
 async fn write_event<W: AsyncWriteExt + Unpin>(writer: &mut W, typ: &str, data: Value) -> std::io::Result<()> {
+    match timeout(WRITE, write_event_raw(writer, typ, data)).await {
+        Ok(result) => result,
+        Err(_) => Err(Error::new(ErrorKind::TimedOut, "wyoming write")),
+    }
+}
+
+async fn write_event_raw<W: AsyncWriteExt + Unpin>(writer: &mut W, typ: &str, data: Value) -> std::io::Result<()> {
     let event = json!({"type": typ, "data": data});
     writer.write_all(event.to_string().as_bytes()).await?;
     writer.write_all(b"\n").await?;
