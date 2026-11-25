@@ -208,7 +208,16 @@ class KlarConversationEntity(ConversationEntity):
 
     @property
     def supported_languages(self) -> list[str]:
-        return advertised_languages()
+        settings = self._engine_settings()
+        experimental = bool(settings.get("experimental_languages"))
+        selected: list[str] = []
+        languages = settings.get("languages")
+        if isinstance(languages, list):
+            selected = [str(code) for code in languages if isinstance(code, str)]
+        default = settings.get("default_language")
+        if isinstance(default, str) and default.strip():
+            selected.append(default.strip())
+        return advertised_languages(experimental=experimental, selected=selected)
 
     @property
     def _url(self) -> str:
@@ -502,10 +511,19 @@ class KlarConversationEntity(ConversationEntity):
             await emit_assistant_speech(chat_log, user_input.agent_id, speech)
         response = intent.IntentResponse(language=speak_tag(pack))
         kinds = getattr(intent, "IntentResponseType", None)
-        query = getattr(kinds, "QUERY_ANSWER", None) if kinds is not None else None
-        if query is not None and decision in {"chat", "llm"}:
-            response.response_type = query
-        response.async_set_speech(speech)
+        if decision == "error":
+            # H-17: a failed plan must not look like action_done.
+            code = getattr(intent, "IntentResponseErrorCode", None)
+            failed = getattr(code, "FAILED_TO_HANDLE", None) if code is not None else None
+            if failed is not None and hasattr(response, "async_set_error"):
+                response.async_set_error(failed, speech)
+            else:
+                response.async_set_speech(speech)
+        else:
+            query = getattr(kinds, "QUERY_ANSWER", None) if kinds is not None else None
+            if query is not None and decision in {"chat", "llm"}:
+                response.response_type = query
+            response.async_set_speech(speech)
         open_mic = continue_after_reply(
             continue_conversation,
             decision,

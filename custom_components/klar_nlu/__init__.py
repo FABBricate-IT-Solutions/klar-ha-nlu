@@ -37,6 +37,7 @@ from .engine import (
     KlarEngine,
     async_push_fallback_flag,
     async_seed_product_settings,
+    async_sync_default_language,
     async_sync_time_zone,
 )
 from .lang_select import engine_language_state
@@ -140,6 +141,7 @@ async def _async_load_engine_settings(hass: HomeAssistant, entry: ConfigEntry) -
         pipeline=_pipeline_flags(entry),
     )
     await async_sync_time_zone(hass, entry)
+    await async_sync_default_language(hass, entry)
 
 
 async def _async_on_update(hass: HomeAssistant, entry: ConfigEntry) -> None:

@@ -31,9 +31,10 @@ def reminder_shaped(text: str) -> bool:
 
 
 def should_delegate(text: str, intents: list[Any]) -> bool:
-    if not reminder_shaped(text):
-        return False
-    return not any(_is_reminder_intent(item) for item in intents)
+    # H-12: SetReminder* is not a Home Assistant intent — always hand the turn over.
+    if any(_is_reminder_intent(item) for item in intents):
+        return True
+    return reminder_shaped(text)
 
 
 def delegation_accepted(result: Any) -> bool:
