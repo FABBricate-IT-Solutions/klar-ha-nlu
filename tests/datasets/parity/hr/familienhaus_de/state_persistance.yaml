@@ -72,19 +72,19 @@ state_persistance/area_powder_room_lights::powder_room_lights_set_brightness:
   - ' 70'
 state_persistance/device_cover_garage_door::cover_garage_door_close:
 - - kako zavjesa garage
-  - zatvori
+  - zatvori zavjesa garage
 state_persistance/device_cover_garage_door::cover_garage_door_open:
 - - kako zavjesa garage
-  - otvori
+  - otvori zavjesa garage
 state_persistance/device_cover_garage_door::cover_garage_door_persistance_position:
 - - kako zavjesa garage
   - '23'
 state_persistance/device_cover_living_blinds::cover_living_blinds_close:
 - - kako zavjesa dnevni
-  - zatvori
+  - zatvori zavjesa dnevni
 state_persistance/device_cover_living_blinds::cover_living_blinds_open:
 - - kako zavjesa dnevni
-  - otvori
+  - otvori zavjesa dnevni
 state_persistance/device_cover_living_blinds::cover_living_blinds_persistance_position:
 - - kako zavjesa dnevni
   - '85'
@@ -93,46 +93,46 @@ state_persistance/device_fan_family_fan::fan_family_fan_persistance_percentage:
   - ' 43'
 state_persistance/device_fan_family_fan::fan_family_fan_turn_off:
 - - kako ventilator dnevnifam
-  - ugasi
+  - ugasi ventilator dnevnifam
 state_persistance/device_fan_family_fan::fan_family_fan_turn_on:
 - - kako ventilator dnevnifam
-  - upali
+  - upali ventilator dnevnifam
 state_persistance/device_light_entryway_light::light_entryway_light_persistance_brightness:
 - - kako svjetlo hodnik
   - '12'
 state_persistance/device_light_entryway_light::light_entryway_light_turn_off:
 - - kako svjetlo hodnik
-  - ugasi
+  - ugasi svjetlo hodnik
 state_persistance/device_light_entryway_light::light_entryway_light_turn_on:
 - - kako svjetlo hodnik
-  - upali
+  - upali svjetlo hodnik
 state_persistance/device_lock_front_door::lock_front_door_lock:
 - - kako brava hodnik
-  - brava
+  - brava brava hodnik
 state_persistance/device_lock_front_door::lock_front_door_unlock:
 - - kako brava hodnik
-  - otvori
+  - otvori brava hodnik
 state_persistance/device_lock_garage_entry::lock_garage_entry_lock:
 - - kako brava garage
-  - brava
+  - brava brava garage
 state_persistance/device_lock_garage_entry::lock_garage_entry_unlock:
 - - kako brava garage
-  - otvori
+  - otvori brava garage
 state_persistance/device_media_player_family_tv::media_player_family_tv_persistance_volume_level:
 - - kako tv dnevnifam
   - ' 21'
 state_persistance/device_media_player_family_tv::media_player_family_tv_turn_off:
 - - kako tv dnevnifam
-  - ugasi
+  - ugasi tv dnevnifam
 state_persistance/device_media_player_family_tv::media_player_family_tv_turn_on:
 - - kako tv dnevnifam
-  - upali
+  - upali tv dnevnifam
 state_persistance/device_media_player_living_tv::media_player_living_tv_persistance_volume_level:
 - - kako tv dnevni
   - ' 21'
 state_persistance/device_media_player_living_tv::media_player_living_tv_turn_off:
 - - kako tv dnevni
-  - ugasi
+  - ugasi tv dnevni
 state_persistance/device_media_player_living_tv::media_player_living_tv_turn_on:
 - - kako tv dnevni
-  - upali
+  - upali tv dnevni

@@ -72,19 +72,19 @@ state_persistance/area_powder_room_lights::powder_room_lights_set_brightness:
   - ' 70'
 state_persistance/device_cover_garage_door::cover_garage_door_close:
 - - que cortina garage
-  - cierra
+  - cierra cortina garage
 state_persistance/device_cover_garage_door::cover_garage_door_open:
 - - que cortina garage
-  - abre
+  - abre cortina garage
 state_persistance/device_cover_garage_door::cover_garage_door_persistance_position:
 - - que cortina garage
   - '23'
 state_persistance/device_cover_living_blinds::cover_living_blinds_close:
 - - que cortina salon
-  - cierra
+  - cierra cortina salon
 state_persistance/device_cover_living_blinds::cover_living_blinds_open:
 - - que cortina salon
-  - abre
+  - abre cortina salon
 state_persistance/device_cover_living_blinds::cover_living_blinds_persistance_position:
 - - que cortina salon
   - '85'
@@ -93,46 +93,46 @@ state_persistance/device_fan_family_fan::fan_family_fan_persistance_percentage:
   - ' 43'
 state_persistance/device_fan_family_fan::fan_family_fan_turn_off:
 - - que ventilador estancia
-  - apaga
+  - apaga ventilador estancia
 state_persistance/device_fan_family_fan::fan_family_fan_turn_on:
 - - que ventilador estancia
-  - enciende
+  - enciende ventilador estancia
 state_persistance/device_light_entryway_light::light_entryway_light_persistance_brightness:
 - - que luz entrada
   - '12'
 state_persistance/device_light_entryway_light::light_entryway_light_turn_off:
 - - que luz entrada
-  - apaga
+  - apaga luz entrada
 state_persistance/device_light_entryway_light::light_entryway_light_turn_on:
 - - que luz entrada
-  - enciende
+  - enciende luz entrada
 state_persistance/device_lock_front_door::lock_front_door_lock:
 - - que cerradura entrada
-  - bloquea
+  - bloquea cerradura entrada
 state_persistance/device_lock_front_door::lock_front_door_unlock:
 - - que cerradura entrada
-  - abre
+  - abre cerradura entrada
 state_persistance/device_lock_garage_entry::lock_garage_entry_lock:
 - - que cerradura garage
-  - bloquea
+  - bloquea cerradura garage
 state_persistance/device_lock_garage_entry::lock_garage_entry_unlock:
 - - que cerradura garage
-  - abre
+  - abre cerradura garage
 state_persistance/device_media_player_family_tv::media_player_family_tv_persistance_volume_level:
 - - que tele estancia
   - ' 21'
 state_persistance/device_media_player_family_tv::media_player_family_tv_turn_off:
 - - que tele estancia
-  - apaga
+  - apaga tele estancia
 state_persistance/device_media_player_family_tv::media_player_family_tv_turn_on:
 - - que tele estancia
-  - enciende
+  - enciende tele estancia
 state_persistance/device_media_player_living_tv::media_player_living_tv_persistance_volume_level:
 - - que tele salon
   - ' 21'
 state_persistance/device_media_player_living_tv::media_player_living_tv_turn_off:
 - - que tele salon
-  - apaga
+  - apaga tele salon
 state_persistance/device_media_player_living_tv::media_player_living_tv_turn_on:
 - - que tele salon
-  - enciende
+  - enciende tele salon

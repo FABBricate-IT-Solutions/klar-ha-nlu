@@ -72,19 +72,19 @@ state_persistance/area_powder_room_lights::powder_room_lights_set_brightness:
   - ' 70'
 state_persistance/device_cover_garage_door::cover_garage_door_close:
 - - ايش ستارة garage
-  - اغلق
+  - اغلق ستارة garage
 state_persistance/device_cover_garage_door::cover_garage_door_open:
 - - ايش ستارة garage
-  - افتح
+  - افتح ستارة garage
 state_persistance/device_cover_garage_door::cover_garage_door_persistance_position:
 - - ايش ستارة garage
   - '23'
 state_persistance/device_cover_living_blinds::cover_living_blinds_close:
 - - ايش ستارة صالون
-  - اغلق
+  - اغلق ستارة صالون
 state_persistance/device_cover_living_blinds::cover_living_blinds_open:
 - - ايش ستارة صالون
-  - افتح
+  - افتح ستارة صالون
 state_persistance/device_cover_living_blinds::cover_living_blinds_persistance_position:
 - - ايش ستارة صالون
   - '85'
@@ -93,46 +93,46 @@ state_persistance/device_fan_family_fan::fan_family_fan_persistance_percentage:
   - ' 43'
 state_persistance/device_fan_family_fan::fan_family_fan_turn_off:
 - - ايش مروحة عائلي
-  - اطفئ
+  - اطفئ مروحة عائلي
 state_persistance/device_fan_family_fan::fan_family_fan_turn_on:
 - - ايش مروحة عائلي
-  - شغل
+  - شغل مروحة عائلي
 state_persistance/device_light_entryway_light::light_entryway_light_persistance_brightness:
 - - ايش ضوء مدخل
   - '12'
 state_persistance/device_light_entryway_light::light_entryway_light_turn_off:
 - - ايش ضوء مدخل
-  - اطفئ
+  - اطفئ ضوء مدخل
 state_persistance/device_light_entryway_light::light_entryway_light_turn_on:
 - - ايش ضوء مدخل
-  - شغل
+  - شغل ضوء مدخل
 state_persistance/device_lock_front_door::lock_front_door_lock:
 - - ايش قفل مدخل
-  - قفل
+  - قفل قفل مدخل
 state_persistance/device_lock_front_door::lock_front_door_unlock:
 - - ايش قفل مدخل
-  - افتح
+  - افتح قفل مدخل
 state_persistance/device_lock_garage_entry::lock_garage_entry_lock:
 - - ايش قفل garage
-  - قفل
+  - قفل قفل garage
 state_persistance/device_lock_garage_entry::lock_garage_entry_unlock:
 - - ايش قفل garage
-  - افتح
+  - افتح قفل garage
 state_persistance/device_media_player_family_tv::media_player_family_tv_persistance_volume_level:
 - - ايش تلفاز عائلي
   - ' 21'
 state_persistance/device_media_player_family_tv::media_player_family_tv_turn_off:
 - - ايش تلفاز عائلي
-  - اطفئ
+  - اطفئ تلفاز عائلي
 state_persistance/device_media_player_family_tv::media_player_family_tv_turn_on:
 - - ايش تلفاز عائلي
-  - شغل
+  - شغل تلفاز عائلي
 state_persistance/device_media_player_living_tv::media_player_living_tv_persistance_volume_level:
 - - ايش تلفاز صالون
   - ' 21'
 state_persistance/device_media_player_living_tv::media_player_living_tv_turn_off:
 - - ايش تلفاز صالون
-  - اطفئ
+  - اطفئ تلفاز صالون
 state_persistance/device_media_player_living_tv::media_player_living_tv_turn_on:
 - - ايش تلفاز صالون
-  - شغل
+  - شغل تلفاز صالون

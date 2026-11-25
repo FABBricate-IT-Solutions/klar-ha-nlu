@@ -72,19 +72,19 @@ state_persistance/area_powder_room_lights::powder_room_lights_set_brightness:
   - ' 70'
 state_persistance/device_cover_garage_door::cover_garage_door_close:
 - - kas aizkars garage
-  - aizver
+  - aizver aizkars garage
 state_persistance/device_cover_garage_door::cover_garage_door_open:
 - - kas aizkars garage
-  - atver
+  - atver aizkars garage
 state_persistance/device_cover_garage_door::cover_garage_door_persistance_position:
 - - kas aizkars garage
   - '23'
 state_persistance/device_cover_living_blinds::cover_living_blinds_close:
 - - kas aizkars istaba
-  - aizver
+  - aizver aizkars istaba
 state_persistance/device_cover_living_blinds::cover_living_blinds_open:
 - - kas aizkars istaba
-  - atver
+  - atver aizkars istaba
 state_persistance/device_cover_living_blinds::cover_living_blinds_persistance_position:
 - - kas aizkars istaba
   - '85'
@@ -93,46 +93,46 @@ state_persistance/device_fan_family_fan::fan_family_fan_persistance_percentage:
   - ' 43'
 state_persistance/device_fan_family_fan::fan_family_fan_turn_off:
 - - kas ventilators dzivojamafam
-  - izsledz
+  - izsledz ventilators dzivojamafam
 state_persistance/device_fan_family_fan::fan_family_fan_turn_on:
 - - kas ventilators dzivojamafam
-  - iesledz
+  - iesledz ventilators dzivojamafam
 state_persistance/device_light_entryway_light::light_entryway_light_persistance_brightness:
 - - kas gaisma prieksnams
   - '12'
 state_persistance/device_light_entryway_light::light_entryway_light_turn_off:
 - - kas gaisma prieksnams
-  - izsledz
+  - izsledz gaisma prieksnams
 state_persistance/device_light_entryway_light::light_entryway_light_turn_on:
 - - kas gaisma prieksnams
-  - iesledz
+  - iesledz gaisma prieksnams
 state_persistance/device_lock_front_door::lock_front_door_lock:
 - - kas sledzene prieksnams
-  - sledzene
+  - sledzene sledzene prieksnams
 state_persistance/device_lock_front_door::lock_front_door_unlock:
 - - kas sledzene prieksnams
-  - atver
+  - atver sledzene prieksnams
 state_persistance/device_lock_garage_entry::lock_garage_entry_lock:
 - - kas sledzene garage
-  - sledzene
+  - sledzene sledzene garage
 state_persistance/device_lock_garage_entry::lock_garage_entry_unlock:
 - - kas sledzene garage
-  - atver
+  - atver sledzene garage
 state_persistance/device_media_player_family_tv::media_player_family_tv_persistance_volume_level:
 - - kas tv dzivojamafam
   - ' 21'
 state_persistance/device_media_player_family_tv::media_player_family_tv_turn_off:
 - - kas tv dzivojamafam
-  - izsledz
+  - izsledz tv dzivojamafam
 state_persistance/device_media_player_family_tv::media_player_family_tv_turn_on:
 - - kas tv dzivojamafam
-  - iesledz
+  - iesledz tv dzivojamafam
 state_persistance/device_media_player_living_tv::media_player_living_tv_persistance_volume_level:
 - - kas tv istaba
   - ' 21'
 state_persistance/device_media_player_living_tv::media_player_living_tv_turn_off:
 - - kas tv istaba
-  - izsledz
+  - izsledz tv istaba
 state_persistance/device_media_player_living_tv::media_player_living_tv_turn_on:
 - - kas tv istaba
-  - iesledz
+  - iesledz tv istaba

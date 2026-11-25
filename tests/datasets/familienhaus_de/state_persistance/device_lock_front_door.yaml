@@ -21,8 +21,6 @@
     - mach sie an
   - - Status Schloss Eingang
     - mach sie an
-  - - Mach Schloss Eingang an
-    - ja
 - name: lock_front_door_unlock
   setup:
   - entity_id: lock.front_door

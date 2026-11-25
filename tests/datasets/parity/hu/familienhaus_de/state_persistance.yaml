@@ -72,19 +72,19 @@ state_persistance/area_powder_room_lights::powder_room_lights_set_brightness:
   - ' 70'
 state_persistance/device_cover_garage_door::cover_garage_door_close:
 - - mi fuggony garage
-  - csukd
+  - csukd fuggony garage
 state_persistance/device_cover_garage_door::cover_garage_door_open:
 - - mi fuggony garage
-  - nyisd
+  - nyisd fuggony garage
 state_persistance/device_cover_garage_door::cover_garage_door_persistance_position:
 - - mi fuggony garage
   - '23'
 state_persistance/device_cover_living_blinds::cover_living_blinds_close:
 - - mi fuggony nappali
-  - csukd
+  - csukd fuggony nappali
 state_persistance/device_cover_living_blinds::cover_living_blinds_open:
 - - mi fuggony nappali
-  - nyisd
+  - nyisd fuggony nappali
 state_persistance/device_cover_living_blinds::cover_living_blinds_persistance_position:
 - - mi fuggony nappali
   - '85'
@@ -93,46 +93,46 @@ state_persistance/device_fan_family_fan::fan_family_fan_persistance_percentage:
   - ' 43'
 state_persistance/device_fan_family_fan::fan_family_fan_turn_off:
 - - mi ventilator nappalifam
-  - oltsd
+  - oltsd ventilator nappalifam
 state_persistance/device_fan_family_fan::fan_family_fan_turn_on:
 - - mi ventilator nappalifam
-  - kapcsold
+  - kapcsold ventilator nappalifam
 state_persistance/device_light_entryway_light::light_entryway_light_persistance_brightness:
 - - mi villany eloter
   - '12'
 state_persistance/device_light_entryway_light::light_entryway_light_turn_off:
 - - mi villany eloter
-  - oltsd
+  - oltsd villany eloter
 state_persistance/device_light_entryway_light::light_entryway_light_turn_on:
 - - mi villany eloter
-  - kapcsold
+  - kapcsold villany eloter
 state_persistance/device_lock_front_door::lock_front_door_lock:
 - - mi zar eloter
-  - zar
+  - zar zar eloter
 state_persistance/device_lock_front_door::lock_front_door_unlock:
 - - mi zar eloter
-  - nyisd
+  - nyisd zar eloter
 state_persistance/device_lock_garage_entry::lock_garage_entry_lock:
 - - mi zar garage
-  - zar
+  - zar zar garage
 state_persistance/device_lock_garage_entry::lock_garage_entry_unlock:
 - - mi zar garage
-  - nyisd
+  - nyisd zar garage
 state_persistance/device_media_player_family_tv::media_player_family_tv_persistance_volume_level:
 - - mi tv nappalifam
   - ' 21'
 state_persistance/device_media_player_family_tv::media_player_family_tv_turn_off:
 - - mi tv nappalifam
-  - oltsd
+  - oltsd tv nappalifam
 state_persistance/device_media_player_family_tv::media_player_family_tv_turn_on:
 - - mi tv nappalifam
-  - kapcsold
+  - kapcsold tv nappalifam
 state_persistance/device_media_player_living_tv::media_player_living_tv_persistance_volume_level:
 - - mi tv nappali
   - ' 21'
 state_persistance/device_media_player_living_tv::media_player_living_tv_turn_off:
 - - mi tv nappali
-  - oltsd
+  - oltsd tv nappali
 state_persistance/device_media_player_living_tv::media_player_living_tv_turn_on:
 - - mi tv nappali
-  - kapcsold
+  - kapcsold tv nappali

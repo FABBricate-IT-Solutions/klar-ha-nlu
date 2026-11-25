@@ -72,19 +72,19 @@ state_persistance/area_powder_room_lights::powder_room_lights_set_brightness:
   - ' 70'
 state_persistance/device_cover_garage_door::cover_garage_door_close:
 - - vad gardin garage
-  - stang
+  - stang gardin garage
 state_persistance/device_cover_garage_door::cover_garage_door_open:
 - - vad gardin garage
-  - oppna
+  - oppna gardin garage
 state_persistance/device_cover_garage_door::cover_garage_door_persistance_position:
 - - vad gardin garage
   - '23'
 state_persistance/device_cover_living_blinds::cover_living_blinds_close:
 - - vad gardin vardagsrum
-  - stang
+  - stang gardin vardagsrum
 state_persistance/device_cover_living_blinds::cover_living_blinds_open:
 - - vad gardin vardagsrum
-  - oppna
+  - oppna gardin vardagsrum
 state_persistance/device_cover_living_blinds::cover_living_blinds_persistance_position:
 - - vad gardin vardagsrum
   - '85'
@@ -93,46 +93,46 @@ state_persistance/device_fan_family_fan::fan_family_fan_persistance_percentage:
   - ' 43'
 state_persistance/device_fan_family_fan::fan_family_fan_turn_off:
 - - vad flakt allrum
-  - slack
+  - slack flakt allrum
 state_persistance/device_fan_family_fan::fan_family_fan_turn_on:
 - - vad flakt allrum
-  - tand
+  - tand flakt allrum
 state_persistance/device_light_entryway_light::light_entryway_light_persistance_brightness:
 - - vad ljus entre
   - '12'
 state_persistance/device_light_entryway_light::light_entryway_light_turn_off:
 - - vad ljus entre
-  - slack
+  - slack ljus entre
 state_persistance/device_light_entryway_light::light_entryway_light_turn_on:
 - - vad ljus entre
-  - tand
+  - tand ljus entre
 state_persistance/device_lock_front_door::lock_front_door_lock:
 - - vad las entre
-  - las
+  - las las entre
 state_persistance/device_lock_front_door::lock_front_door_unlock:
 - - vad las entre
-  - oppna
+  - oppna las entre
 state_persistance/device_lock_garage_entry::lock_garage_entry_lock:
 - - vad las garage
-  - las
+  - las las garage
 state_persistance/device_lock_garage_entry::lock_garage_entry_unlock:
 - - vad las garage
-  - oppna
+  - oppna las garage
 state_persistance/device_media_player_family_tv::media_player_family_tv_persistance_volume_level:
 - - vad tv allrum
   - ' 21'
 state_persistance/device_media_player_family_tv::media_player_family_tv_turn_off:
 - - vad tv allrum
-  - slack
+  - slack tv allrum
 state_persistance/device_media_player_family_tv::media_player_family_tv_turn_on:
 - - vad tv allrum
-  - tand
+  - tand tv allrum
 state_persistance/device_media_player_living_tv::media_player_living_tv_persistance_volume_level:
 - - vad tv vardagsrum
   - ' 21'
 state_persistance/device_media_player_living_tv::media_player_living_tv_turn_off:
 - - vad tv vardagsrum
-  - slack
+  - slack tv vardagsrum
 state_persistance/device_media_player_living_tv::media_player_living_tv_turn_on:
 - - vad tv vardagsrum
-  - tand
+  - tand tv vardagsrum

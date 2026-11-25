@@ -72,19 +72,19 @@ state_persistance/area_powder_room_lights::powder_room_lights_set_brightness:
   - ' 70'
 state_persistance/device_cover_garage_door::cover_garage_door_close:
 - - sta zavesa garage
-  - zatvori
+  - zatvori zavesa garage
 state_persistance/device_cover_garage_door::cover_garage_door_open:
 - - sta zavesa garage
-  - otvori
+  - otvori zavesa garage
 state_persistance/device_cover_garage_door::cover_garage_door_persistance_position:
 - - sta zavesa garage
   - '23'
 state_persistance/device_cover_living_blinds::cover_living_blinds_close:
 - - sta zavesa dnevna
-  - zatvori
+  - zatvori zavesa dnevna
 state_persistance/device_cover_living_blinds::cover_living_blinds_open:
 - - sta zavesa dnevna
-  - otvori
+  - otvori zavesa dnevna
 state_persistance/device_cover_living_blinds::cover_living_blinds_persistance_position:
 - - sta zavesa dnevna
   - '85'
@@ -93,46 +93,46 @@ state_persistance/device_fan_family_fan::fan_family_fan_persistance_percentage:
   - ' 43'
 state_persistance/device_fan_family_fan::fan_family_fan_turn_off:
 - - sta ventilator dnevnafam
-  - iskljuci
+  - iskljuci ventilator dnevnafam
 state_persistance/device_fan_family_fan::fan_family_fan_turn_on:
 - - sta ventilator dnevnafam
-  - ukljuci
+  - ukljuci ventilator dnevnafam
 state_persistance/device_light_entryway_light::light_entryway_light_persistance_brightness:
 - - sta svetlo ulaz
   - '12'
 state_persistance/device_light_entryway_light::light_entryway_light_turn_off:
 - - sta svetlo ulaz
-  - iskljuci
+  - iskljuci svetlo ulaz
 state_persistance/device_light_entryway_light::light_entryway_light_turn_on:
 - - sta svetlo ulaz
-  - ukljuci
+  - ukljuci svetlo ulaz
 state_persistance/device_lock_front_door::lock_front_door_lock:
 - - sta brava ulaz
-  - brava
+  - brava brava ulaz
 state_persistance/device_lock_front_door::lock_front_door_unlock:
 - - sta brava ulaz
-  - otvori
+  - otvori brava ulaz
 state_persistance/device_lock_garage_entry::lock_garage_entry_lock:
 - - sta brava garage
-  - brava
+  - brava brava garage
 state_persistance/device_lock_garage_entry::lock_garage_entry_unlock:
 - - sta brava garage
-  - otvori
+  - otvori brava garage
 state_persistance/device_media_player_family_tv::media_player_family_tv_persistance_volume_level:
 - - sta tv dnevnafam
   - ' 21'
 state_persistance/device_media_player_family_tv::media_player_family_tv_turn_off:
 - - sta tv dnevnafam
-  - iskljuci
+  - iskljuci tv dnevnafam
 state_persistance/device_media_player_family_tv::media_player_family_tv_turn_on:
 - - sta tv dnevnafam
-  - ukljuci
+  - ukljuci tv dnevnafam
 state_persistance/device_media_player_living_tv::media_player_living_tv_persistance_volume_level:
 - - sta tv dnevna
   - ' 21'
 state_persistance/device_media_player_living_tv::media_player_living_tv_turn_off:
 - - sta tv dnevna
-  - iskljuci
+  - iskljuci tv dnevna
 state_persistance/device_media_player_living_tv::media_player_living_tv_turn_on:
 - - sta tv dnevna
-  - ukljuci
+  - ukljuci tv dnevna

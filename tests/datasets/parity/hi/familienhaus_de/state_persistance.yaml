@@ -72,19 +72,19 @@ state_persistance/area_powder_room_lights::powder_room_lights_set_brightness:
   - ' 70'
 state_persistance/device_cover_garage_door::cover_garage_door_close:
 - - क्या पर्दा garage
-  - बंद
+  - बंद पर्दा garage
 state_persistance/device_cover_garage_door::cover_garage_door_open:
 - - क्या पर्दा garage
-  - खोलो
+  - खोलो पर्दा garage
 state_persistance/device_cover_garage_door::cover_garage_door_persistance_position:
 - - क्या पर्दा garage
   - '23'
 state_persistance/device_cover_living_blinds::cover_living_blinds_close:
 - - क्या पर्दा बैठक
-  - बंद
+  - बंद पर्दा बैठक
 state_persistance/device_cover_living_blinds::cover_living_blinds_open:
 - - क्या पर्दा बैठक
-  - खोलो
+  - खोलो पर्दा बैठक
 state_persistance/device_cover_living_blinds::cover_living_blinds_persistance_position:
 - - क्या पर्दा बैठक
   - '85'
@@ -93,46 +93,46 @@ state_persistance/device_fan_family_fan::fan_family_fan_persistance_percentage:
   - ' 43'
 state_persistance/device_fan_family_fan::fan_family_fan_turn_off:
 - - क्या पंखा parivarik
-  - बुझाओ
+  - बुझाओ पंखा parivarik
 state_persistance/device_fan_family_fan::fan_family_fan_turn_on:
 - - क्या पंखा parivarik
-  - जलाओ
+  - जलाओ पंखा parivarik
 state_persistance/device_light_entryway_light::light_entryway_light_persistance_brightness:
 - - क्या बत्ती pravesh
   - '12'
 state_persistance/device_light_entryway_light::light_entryway_light_turn_off:
 - - क्या बत्ती pravesh
-  - बुझाओ
+  - बुझाओ बत्ती pravesh
 state_persistance/device_light_entryway_light::light_entryway_light_turn_on:
 - - क्या बत्ती pravesh
-  - जलाओ
+  - जलाओ बत्ती pravesh
 state_persistance/device_lock_front_door::lock_front_door_lock:
 - - क्या ताला pravesh
-  - ताला
+  - ताला ताला pravesh
 state_persistance/device_lock_front_door::lock_front_door_unlock:
 - - क्या ताला pravesh
-  - खोलो
+  - खोलो ताला pravesh
 state_persistance/device_lock_garage_entry::lock_garage_entry_lock:
 - - क्या ताला garage
-  - ताला
+  - ताला ताला garage
 state_persistance/device_lock_garage_entry::lock_garage_entry_unlock:
 - - क्या ताला garage
-  - खोलो
+  - खोलो ताला garage
 state_persistance/device_media_player_family_tv::media_player_family_tv_persistance_volume_level:
 - - क्या tv parivarik
   - ' 21'
 state_persistance/device_media_player_family_tv::media_player_family_tv_turn_off:
 - - क्या tv parivarik
-  - बुझाओ
+  - बुझाओ tv parivarik
 state_persistance/device_media_player_family_tv::media_player_family_tv_turn_on:
 - - क्या tv parivarik
-  - जलाओ
+  - जलाओ tv parivarik
 state_persistance/device_media_player_living_tv::media_player_living_tv_persistance_volume_level:
 - - क्या tv बैठक
   - ' 21'
 state_persistance/device_media_player_living_tv::media_player_living_tv_turn_off:
 - - क्या tv बैठक
-  - बुझाओ
+  - बुझाओ tv बैठक
 state_persistance/device_media_player_living_tv::media_player_living_tv_turn_on:
 - - क्या tv बैठक
-  - जलाओ
+  - जलाओ tv बैठक

@@ -72,19 +72,19 @@ state_persistance/area_powder_room_lights::powder_room_lights_set_brightness:
   - ' 70'
 state_persistance/device_cover_garage_door::cover_garage_door_close:
 - - τι κουρτινα garage
-  - κλεισε
+  - κλεισε κουρτινα garage
 state_persistance/device_cover_garage_door::cover_garage_door_open:
 - - τι κουρτινα garage
-  - ανοιξε
+  - ανοιξε κουρτινα garage
 state_persistance/device_cover_garage_door::cover_garage_door_persistance_position:
 - - τι κουρτινα garage
   - '23'
 state_persistance/device_cover_living_blinds::cover_living_blinds_close:
 - - τι κουρτινα σαλονι
-  - κλεισε
+  - κλεισε κουρτινα σαλονι
 state_persistance/device_cover_living_blinds::cover_living_blinds_open:
 - - τι κουρτινα σαλονι
-  - ανοιξε
+  - ανοιξε κουρτινα σαλονι
 state_persistance/device_cover_living_blinds::cover_living_blinds_persistance_position:
 - - τι κουρτινα σαλονι
   - '85'
@@ -93,46 +93,46 @@ state_persistance/device_fan_family_fan::fan_family_fan_persistance_percentage:
   - ' 43'
 state_persistance/device_fan_family_fan::fan_family_fan_turn_off:
 - - τι ανεμιστηρας σαλονιfam
-  - σβησε
+  - σβησε ανεμιστηρας σαλονιfam
 state_persistance/device_fan_family_fan::fan_family_fan_turn_on:
 - - τι ανεμιστηρας σαλονιfam
-  - αναψε
+  - αναψε ανεμιστηρας σαλονιfam
 state_persistance/device_light_entryway_light::light_entryway_light_persistance_brightness:
 - - τι φως εισοδος
   - '12'
 state_persistance/device_light_entryway_light::light_entryway_light_turn_off:
 - - τι φως εισοδος
-  - σβησε
+  - σβησε φως εισοδος
 state_persistance/device_light_entryway_light::light_entryway_light_turn_on:
 - - τι φως εισοδος
-  - αναψε
+  - αναψε φως εισοδος
 state_persistance/device_lock_front_door::lock_front_door_lock:
 - - τι κλειδαρια εισοδος
-  - κλειδωσε
+  - κλειδωσε κλειδαρια εισοδος
 state_persistance/device_lock_front_door::lock_front_door_unlock:
 - - τι κλειδαρια εισοδος
-  - ξεκλειδωσε
+  - ξεκλειδωσε κλειδαρια εισοδος
 state_persistance/device_lock_garage_entry::lock_garage_entry_lock:
 - - τι κλειδαρια garage
-  - κλειδωσε
+  - κλειδωσε κλειδαρια garage
 state_persistance/device_lock_garage_entry::lock_garage_entry_unlock:
 - - τι κλειδαρια garage
-  - ξεκλειδωσε
+  - ξεκλειδωσε κλειδαρια garage
 state_persistance/device_media_player_family_tv::media_player_family_tv_persistance_volume_level:
 - - τι τηλεοραση σαλονιfam
   - ' 21'
 state_persistance/device_media_player_family_tv::media_player_family_tv_turn_off:
 - - τι τηλεοραση σαλονιfam
-  - σβησε
+  - σβησε τηλεοραση σαλονιfam
 state_persistance/device_media_player_family_tv::media_player_family_tv_turn_on:
 - - τι τηλεοραση σαλονιfam
-  - αναψε
+  - αναψε τηλεοραση σαλονιfam
 state_persistance/device_media_player_living_tv::media_player_living_tv_persistance_volume_level:
 - - τι τηλεοραση σαλονι
   - ' 21'
 state_persistance/device_media_player_living_tv::media_player_living_tv_turn_off:
 - - τι τηλεοραση σαλονι
-  - σβησε
+  - σβησε τηλεοραση σαλονι
 state_persistance/device_media_player_living_tv::media_player_living_tv_turn_on:
 - - τι τηλεοραση σαλονι
-  - αναψε
+  - αναψε τηλεοραση σαλονι

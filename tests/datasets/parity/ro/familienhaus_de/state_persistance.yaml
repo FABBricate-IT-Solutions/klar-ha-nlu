@@ -72,19 +72,19 @@ state_persistance/area_powder_room_lights::powder_room_lights_set_brightness:
   - ' 70'
 state_persistance/device_cover_garage_door::cover_garage_door_close:
 - - ce perdea garage
-  - inchide
+  - inchide perdea garage
 state_persistance/device_cover_garage_door::cover_garage_door_open:
 - - ce perdea garage
-  - deschide
+  - deschide perdea garage
 state_persistance/device_cover_garage_door::cover_garage_door_persistance_position:
 - - ce perdea garage
   - '23'
 state_persistance/device_cover_living_blinds::cover_living_blinds_close:
 - - ce perdea sufragerie
-  - inchide
+  - inchide perdea sufragerie
 state_persistance/device_cover_living_blinds::cover_living_blinds_open:
 - - ce perdea sufragerie
-  - deschide
+  - deschide perdea sufragerie
 state_persistance/device_cover_living_blinds::cover_living_blinds_persistance_position:
 - - ce perdea sufragerie
   - '85'
@@ -93,46 +93,46 @@ state_persistance/device_fan_family_fan::fan_family_fan_persistance_percentage:
   - ' 43'
 state_persistance/device_fan_family_fan::fan_family_fan_turn_off:
 - - ce ventilator sufrageriefam
-  - stinge
+  - stinge ventilator sufrageriefam
 state_persistance/device_fan_family_fan::fan_family_fan_turn_on:
 - - ce ventilator sufrageriefam
-  - aprinde
+  - aprinde ventilator sufrageriefam
 state_persistance/device_light_entryway_light::light_entryway_light_persistance_brightness:
 - - ce lumina hol
   - '12'
 state_persistance/device_light_entryway_light::light_entryway_light_turn_off:
 - - ce lumina hol
-  - stinge
+  - stinge lumina hol
 state_persistance/device_light_entryway_light::light_entryway_light_turn_on:
 - - ce lumina hol
-  - aprinde
+  - aprinde lumina hol
 state_persistance/device_lock_front_door::lock_front_door_lock:
 - - ce yala hol
-  - blocheaza
+  - blocheaza yala hol
 state_persistance/device_lock_front_door::lock_front_door_unlock:
 - - ce yala hol
-  - deschide
+  - deschide yala hol
 state_persistance/device_lock_garage_entry::lock_garage_entry_lock:
 - - ce yala garage
-  - blocheaza
+  - blocheaza yala garage
 state_persistance/device_lock_garage_entry::lock_garage_entry_unlock:
 - - ce yala garage
-  - deschide
+  - deschide yala garage
 state_persistance/device_media_player_family_tv::media_player_family_tv_persistance_volume_level:
 - - ce tv sufrageriefam
   - ' 21'
 state_persistance/device_media_player_family_tv::media_player_family_tv_turn_off:
 - - ce tv sufrageriefam
-  - stinge
+  - stinge tv sufrageriefam
 state_persistance/device_media_player_family_tv::media_player_family_tv_turn_on:
 - - ce tv sufrageriefam
-  - aprinde
+  - aprinde tv sufrageriefam
 state_persistance/device_media_player_living_tv::media_player_living_tv_persistance_volume_level:
 - - ce tv sufragerie
   - ' 21'
 state_persistance/device_media_player_living_tv::media_player_living_tv_turn_off:
 - - ce tv sufragerie
-  - stinge
+  - stinge tv sufragerie
 state_persistance/device_media_player_living_tv::media_player_living_tv_turn_on:
 - - ce tv sufragerie
-  - aprinde
+  - aprinde tv sufragerie

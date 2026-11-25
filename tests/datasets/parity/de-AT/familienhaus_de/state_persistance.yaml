@@ -72,19 +72,19 @@ state_persistance/area_powder_room_lights::powder_room_lights_set_brightness:
   - ' 70'
 state_persistance/device_cover_garage_door::cover_garage_door_close:
 - - was vorhang garage
-  - schliesse
+  - schliesse vorhang garage
 state_persistance/device_cover_garage_door::cover_garage_door_open:
 - - was vorhang garage
-  - oeffne
+  - oeffne vorhang garage
 state_persistance/device_cover_garage_door::cover_garage_door_persistance_position:
 - - was vorhang garage
   - '23'
 state_persistance/device_cover_living_blinds::cover_living_blinds_close:
 - - was vorhang wohnzimmer
-  - schliesse
+  - schliesse vorhang wohnzimmer
 state_persistance/device_cover_living_blinds::cover_living_blinds_open:
 - - was vorhang wohnzimmer
-  - oeffne
+  - oeffne vorhang wohnzimmer
 state_persistance/device_cover_living_blinds::cover_living_blinds_persistance_position:
 - - was vorhang wohnzimmer
   - '85'
@@ -93,46 +93,46 @@ state_persistance/device_fan_family_fan::fan_family_fan_persistance_percentage:
   - ' 43'
 state_persistance/device_fan_family_fan::fan_family_fan_turn_off:
 - - was ventilator wohnstube
-  - schalt
+  - schalt ventilator wohnstube
 state_persistance/device_fan_family_fan::fan_family_fan_turn_on:
 - - was ventilator wohnstube
-  - mach
+  - mach ventilator wohnstube
 state_persistance/device_light_entryway_light::light_entryway_light_persistance_brightness:
 - - was licht vorzimmer
   - '12'
 state_persistance/device_light_entryway_light::light_entryway_light_turn_off:
 - - was licht vorzimmer
-  - schalt
+  - schalt licht vorzimmer
 state_persistance/device_light_entryway_light::light_entryway_light_turn_on:
 - - was licht vorzimmer
-  - mach
+  - mach licht vorzimmer
 state_persistance/device_lock_front_door::lock_front_door_lock:
 - - was schloss vorzimmer
-  - schloss
+  - schloss schloss vorzimmer
 state_persistance/device_lock_front_door::lock_front_door_unlock:
 - - was schloss vorzimmer
-  - oeffne
+  - oeffne schloss vorzimmer
 state_persistance/device_lock_garage_entry::lock_garage_entry_lock:
 - - was schloss garage
-  - schloss
+  - schloss schloss garage
 state_persistance/device_lock_garage_entry::lock_garage_entry_unlock:
 - - was schloss garage
-  - oeffne
+  - oeffne schloss garage
 state_persistance/device_media_player_family_tv::media_player_family_tv_persistance_volume_level:
 - - was tv wohnstube
   - ' 21'
 state_persistance/device_media_player_family_tv::media_player_family_tv_turn_off:
 - - was tv wohnstube
-  - schalt
+  - schalt tv wohnstube
 state_persistance/device_media_player_family_tv::media_player_family_tv_turn_on:
 - - was tv wohnstube
-  - mach
+  - mach tv wohnstube
 state_persistance/device_media_player_living_tv::media_player_living_tv_persistance_volume_level:
 - - was tv wohnzimmer
   - ' 21'
 state_persistance/device_media_player_living_tv::media_player_living_tv_turn_off:
 - - was tv wohnzimmer
-  - schalt
+  - schalt tv wohnzimmer
 state_persistance/device_media_player_living_tv::media_player_living_tv_turn_on:
 - - was tv wohnzimmer
-  - mach
+  - mach tv wohnzimmer

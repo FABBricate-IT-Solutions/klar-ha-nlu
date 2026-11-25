@@ -72,19 +72,19 @@ state_persistance/area_powder_room_lights::powder_room_lights_set_brightness:
   - ' 70'
 state_persistance/device_cover_garage_door::cover_garage_door_close:
 - - mika verho garage
-  - sulje
+  - sulje verho garage
 state_persistance/device_cover_garage_door::cover_garage_door_open:
 - - mika verho garage
-  - avaa
+  - avaa verho garage
 state_persistance/device_cover_garage_door::cover_garage_door_persistance_position:
 - - mika verho garage
   - '23'
 state_persistance/device_cover_living_blinds::cover_living_blinds_close:
 - - mika verho olohuone
-  - sulje
+  - sulje verho olohuone
 state_persistance/device_cover_living_blinds::cover_living_blinds_open:
 - - mika verho olohuone
-  - avaa
+  - avaa verho olohuone
 state_persistance/device_cover_living_blinds::cover_living_blinds_persistance_position:
 - - mika verho olohuone
   - '85'
@@ -93,46 +93,46 @@ state_persistance/device_fan_family_fan::fan_family_fan_persistance_percentage:
   - ' 43'
 state_persistance/device_fan_family_fan::fan_family_fan_turn_off:
 - - mika tuuletin olohuonefam
-  - sammuta
+  - sammuta tuuletin olohuonefam
 state_persistance/device_fan_family_fan::fan_family_fan_turn_on:
 - - mika tuuletin olohuonefam
-  - sytyta
+  - sytyta tuuletin olohuonefam
 state_persistance/device_light_entryway_light::light_entryway_light_persistance_brightness:
 - - mika valo eteinen
   - '12'
 state_persistance/device_light_entryway_light::light_entryway_light_turn_off:
 - - mika valo eteinen
-  - sammuta
+  - sammuta valo eteinen
 state_persistance/device_light_entryway_light::light_entryway_light_turn_on:
 - - mika valo eteinen
-  - sytyta
+  - sytyta valo eteinen
 state_persistance/device_lock_front_door::lock_front_door_lock:
 - - mika lukko eteinen
-  - lukko
+  - lukko lukko eteinen
 state_persistance/device_lock_front_door::lock_front_door_unlock:
 - - mika lukko eteinen
-  - avaa
+  - avaa lukko eteinen
 state_persistance/device_lock_garage_entry::lock_garage_entry_lock:
 - - mika lukko garage
-  - lukko
+  - lukko lukko garage
 state_persistance/device_lock_garage_entry::lock_garage_entry_unlock:
 - - mika lukko garage
-  - avaa
+  - avaa lukko garage
 state_persistance/device_media_player_family_tv::media_player_family_tv_persistance_volume_level:
 - - mika tv olohuonefam
   - ' 21'
 state_persistance/device_media_player_family_tv::media_player_family_tv_turn_off:
 - - mika tv olohuonefam
-  - sammuta
+  - sammuta tv olohuonefam
 state_persistance/device_media_player_family_tv::media_player_family_tv_turn_on:
 - - mika tv olohuonefam
-  - sytyta
+  - sytyta tv olohuonefam
 state_persistance/device_media_player_living_tv::media_player_living_tv_persistance_volume_level:
 - - mika tv olohuone
   - ' 21'
 state_persistance/device_media_player_living_tv::media_player_living_tv_turn_off:
 - - mika tv olohuone
-  - sammuta
+  - sammuta tv olohuone
 state_persistance/device_media_player_living_tv::media_player_living_tv_turn_on:
 - - mika tv olohuone
-  - sytyta
+  - sytyta tv olohuone

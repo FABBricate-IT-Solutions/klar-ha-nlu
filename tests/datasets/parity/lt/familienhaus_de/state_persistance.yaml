@@ -72,19 +72,19 @@ state_persistance/area_powder_room_lights::powder_room_lights_set_brightness:
   - ' 70'
 state_persistance/device_cover_garage_door::cover_garage_door_close:
 - - kas uzuolaida garage
-  - uzdaryk
+  - uzdaryk uzuolaida garage
 state_persistance/device_cover_garage_door::cover_garage_door_open:
 - - kas uzuolaida garage
-  - atidaryk
+  - atidaryk uzuolaida garage
 state_persistance/device_cover_garage_door::cover_garage_door_persistance_position:
 - - kas uzuolaida garage
   - '23'
 state_persistance/device_cover_living_blinds::cover_living_blinds_close:
 - - kas uzuolaida svetaine
-  - uzdaryk
+  - uzdaryk uzuolaida svetaine
 state_persistance/device_cover_living_blinds::cover_living_blinds_open:
 - - kas uzuolaida svetaine
-  - atidaryk
+  - atidaryk uzuolaida svetaine
 state_persistance/device_cover_living_blinds::cover_living_blinds_persistance_position:
 - - kas uzuolaida svetaine
   - '85'
@@ -93,46 +93,46 @@ state_persistance/device_fan_family_fan::fan_family_fan_persistance_percentage:
   - ' 43'
 state_persistance/device_fan_family_fan::fan_family_fan_turn_off:
 - - kas ventiliatorius svetainefam
-  - isjunk
+  - isjunk ventiliatorius svetainefam
 state_persistance/device_fan_family_fan::fan_family_fan_turn_on:
 - - kas ventiliatorius svetainefam
-  - ijunk
+  - ijunk ventiliatorius svetainefam
 state_persistance/device_light_entryway_light::light_entryway_light_persistance_brightness:
 - - kas sviesa prieskambaris
   - '12'
 state_persistance/device_light_entryway_light::light_entryway_light_turn_off:
 - - kas sviesa prieskambaris
-  - isjunk
+  - isjunk sviesa prieskambaris
 state_persistance/device_light_entryway_light::light_entryway_light_turn_on:
 - - kas sviesa prieskambaris
-  - ijunk
+  - ijunk sviesa prieskambaris
 state_persistance/device_lock_front_door::lock_front_door_lock:
 - - kas spyna prieskambaris
-  - spyna
+  - spyna spyna prieskambaris
 state_persistance/device_lock_front_door::lock_front_door_unlock:
 - - kas spyna prieskambaris
-  - atidaryk
+  - atidaryk spyna prieskambaris
 state_persistance/device_lock_garage_entry::lock_garage_entry_lock:
 - - kas spyna garage
-  - spyna
+  - spyna spyna garage
 state_persistance/device_lock_garage_entry::lock_garage_entry_unlock:
 - - kas spyna garage
-  - atidaryk
+  - atidaryk spyna garage
 state_persistance/device_media_player_family_tv::media_player_family_tv_persistance_volume_level:
 - - kas tv svetainefam
   - ' 21'
 state_persistance/device_media_player_family_tv::media_player_family_tv_turn_off:
 - - kas tv svetainefam
-  - isjunk
+  - isjunk tv svetainefam
 state_persistance/device_media_player_family_tv::media_player_family_tv_turn_on:
 - - kas tv svetainefam
-  - ijunk
+  - ijunk tv svetainefam
 state_persistance/device_media_player_living_tv::media_player_living_tv_persistance_volume_level:
 - - kas tv svetaine
   - ' 21'
 state_persistance/device_media_player_living_tv::media_player_living_tv_turn_off:
 - - kas tv svetaine
-  - isjunk
+  - isjunk tv svetaine
 state_persistance/device_media_player_living_tv::media_player_living_tv_turn_on:
 - - kas tv svetaine
-  - ijunk
+  - ijunk tv svetaine

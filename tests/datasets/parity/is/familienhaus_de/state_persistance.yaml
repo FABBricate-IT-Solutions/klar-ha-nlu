@@ -72,19 +72,19 @@ state_persistance/area_powder_room_lights::powder_room_lights_set_brightness:
   - ' 70'
 state_persistance/device_cover_garage_door::cover_garage_door_close:
 - - hvad gardina garage
-  - lokadu
+  - lokadu gardina garage
 state_persistance/device_cover_garage_door::cover_garage_door_open:
 - - hvad gardina garage
-  - opnadu
+  - opnadu gardina garage
 state_persistance/device_cover_garage_door::cover_garage_door_persistance_position:
 - - hvad gardina garage
   - '23'
 state_persistance/device_cover_living_blinds::cover_living_blinds_close:
 - - hvad gardina stofa
-  - lokadu
+  - lokadu gardina stofa
 state_persistance/device_cover_living_blinds::cover_living_blinds_open:
 - - hvad gardina stofa
-  - opnadu
+  - opnadu gardina stofa
 state_persistance/device_cover_living_blinds::cover_living_blinds_persistance_position:
 - - hvad gardina stofa
   - '85'
@@ -93,46 +93,46 @@ state_persistance/device_fan_family_fan::fan_family_fan_persistance_percentage:
   - ' 43'
 state_persistance/device_fan_family_fan::fan_family_fan_turn_off:
 - - hvad viftu stofafam
-  - slokktu
+  - slokktu viftu stofafam
 state_persistance/device_fan_family_fan::fan_family_fan_turn_on:
 - - hvad viftu stofafam
-  - kveiktu
+  - kveiktu viftu stofafam
 state_persistance/device_light_entryway_light::light_entryway_light_persistance_brightness:
 - - hvad ljos anddyri
   - '12'
 state_persistance/device_light_entryway_light::light_entryway_light_turn_off:
 - - hvad ljos anddyri
-  - slokktu
+  - slokktu ljos anddyri
 state_persistance/device_light_entryway_light::light_entryway_light_turn_on:
 - - hvad ljos anddyri
-  - kveiktu
+  - kveiktu ljos anddyri
 state_persistance/device_lock_front_door::lock_front_door_lock:
 - - hvad las anddyri
-  - las
+  - las las anddyri
 state_persistance/device_lock_front_door::lock_front_door_unlock:
 - - hvad las anddyri
-  - opnadu
+  - opnadu las anddyri
 state_persistance/device_lock_garage_entry::lock_garage_entry_lock:
 - - hvad las garage
-  - las
+  - las las garage
 state_persistance/device_lock_garage_entry::lock_garage_entry_unlock:
 - - hvad las garage
-  - opnadu
+  - opnadu las garage
 state_persistance/device_media_player_family_tv::media_player_family_tv_persistance_volume_level:
 - - hvad sjónvarp stofafam
   - ' 21'
 state_persistance/device_media_player_family_tv::media_player_family_tv_turn_off:
 - - hvad sjónvarp stofafam
-  - slokktu
+  - slokktu sjónvarp stofafam
 state_persistance/device_media_player_family_tv::media_player_family_tv_turn_on:
 - - hvad sjónvarp stofafam
-  - kveiktu
+  - kveiktu sjónvarp stofafam
 state_persistance/device_media_player_living_tv::media_player_living_tv_persistance_volume_level:
 - - hvad sjónvarp stofa
   - ' 21'
 state_persistance/device_media_player_living_tv::media_player_living_tv_turn_off:
 - - hvad sjónvarp stofa
-  - slokktu
+  - slokktu sjónvarp stofa
 state_persistance/device_media_player_living_tv::media_player_living_tv_turn_on:
 - - hvad sjónvarp stofa
-  - kveiktu
+  - kveiktu sjónvarp stofa

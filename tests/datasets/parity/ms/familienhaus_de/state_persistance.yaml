@@ -72,19 +72,19 @@ state_persistance/area_powder_room_lights::powder_room_lights_set_brightness:
   - ' 70'
 state_persistance/device_cover_garage_door::cover_garage_door_close:
 - - apa langsir garage
-  - tutup
+  - tutup langsir garage
 state_persistance/device_cover_garage_door::cover_garage_door_open:
 - - apa langsir garage
-  - buka
+  - buka langsir garage
 state_persistance/device_cover_garage_door::cover_garage_door_persistance_position:
 - - apa langsir garage
   - '23'
 state_persistance/device_cover_living_blinds::cover_living_blinds_close:
 - - apa langsir ruang
-  - tutup
+  - tutup langsir ruang
 state_persistance/device_cover_living_blinds::cover_living_blinds_open:
 - - apa langsir ruang
-  - buka
+  - buka langsir ruang
 state_persistance/device_cover_living_blinds::cover_living_blinds_persistance_position:
 - - apa langsir ruang
   - '85'
@@ -93,46 +93,46 @@ state_persistance/device_fan_family_fan::fan_family_fan_persistance_percentage:
   - ' 43'
 state_persistance/device_fan_family_fan::fan_family_fan_turn_off:
 - - apa kipas ruankeluarga
-  - matikan
+  - matikan kipas ruankeluarga
 state_persistance/device_fan_family_fan::fan_family_fan_turn_on:
 - - apa kipas ruankeluarga
-  - hidupkan
+  - hidupkan kipas ruankeluarga
 state_persistance/device_light_entryway_light::light_entryway_light_persistance_brightness:
 - - apa lampu lobi
   - '12'
 state_persistance/device_light_entryway_light::light_entryway_light_turn_off:
 - - apa lampu lobi
-  - matikan
+  - matikan lampu lobi
 state_persistance/device_light_entryway_light::light_entryway_light_turn_on:
 - - apa lampu lobi
-  - hidupkan
+  - hidupkan lampu lobi
 state_persistance/device_lock_front_door::lock_front_door_lock:
 - - apa kunci lobi
-  - kuncikan
+  - kuncikan kunci lobi
 state_persistance/device_lock_front_door::lock_front_door_unlock:
 - - apa kunci lobi
-  - buka
+  - buka kunci lobi
 state_persistance/device_lock_garage_entry::lock_garage_entry_lock:
 - - apa kunci garage
-  - kuncikan
+  - kuncikan kunci garage
 state_persistance/device_lock_garage_entry::lock_garage_entry_unlock:
 - - apa kunci garage
-  - buka
+  - buka kunci garage
 state_persistance/device_media_player_family_tv::media_player_family_tv_persistance_volume_level:
 - - apa tv ruankeluarga
   - ' 21'
 state_persistance/device_media_player_family_tv::media_player_family_tv_turn_off:
 - - apa tv ruankeluarga
-  - matikan
+  - matikan tv ruankeluarga
 state_persistance/device_media_player_family_tv::media_player_family_tv_turn_on:
 - - apa tv ruankeluarga
-  - hidupkan
+  - hidupkan tv ruankeluarga
 state_persistance/device_media_player_living_tv::media_player_living_tv_persistance_volume_level:
 - - apa tv ruang
   - ' 21'
 state_persistance/device_media_player_living_tv::media_player_living_tv_turn_off:
 - - apa tv ruang
-  - matikan
+  - matikan tv ruang
 state_persistance/device_media_player_living_tv::media_player_living_tv_turn_on:
 - - apa tv ruang
-  - hidupkan
+  - hidupkan tv ruang

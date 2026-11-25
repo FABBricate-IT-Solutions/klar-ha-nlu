@@ -72,19 +72,19 @@ state_persistance/area_powder_room_lights::powder_room_lights_set_brightness:
   - ' 70'
 state_persistance/device_cover_garage_door::cover_garage_door_close:
 - - was store garage
-  - zue
+  - zue store garage
 state_persistance/device_cover_garage_door::cover_garage_door_open:
 - - was store garage
-  - ufmache
+  - ufmache store garage
 state_persistance/device_cover_garage_door::cover_garage_door_persistance_position:
 - - was store garage
   - '23'
 state_persistance/device_cover_living_blinds::cover_living_blinds_close:
 - - was store wohnzimmer
-  - zue
+  - zue store wohnzimmer
 state_persistance/device_cover_living_blinds::cover_living_blinds_open:
 - - was store wohnzimmer
-  - ufmache
+  - ufmache store wohnzimmer
 state_persistance/device_cover_living_blinds::cover_living_blinds_persistance_position:
 - - was store wohnzimmer
   - '85'
@@ -93,46 +93,46 @@ state_persistance/device_fan_family_fan::fan_family_fan_persistance_percentage:
   - ' 43'
 state_persistance/device_fan_family_fan::fan_family_fan_turn_off:
 - - was ventilator stube
-  - loesch
+  - loesch ventilator stube
 state_persistance/device_fan_family_fan::fan_family_fan_turn_on:
 - - was ventilator stube
-  - mach
+  - mach ventilator stube
 state_persistance/device_light_entryway_light::light_entryway_light_persistance_brightness:
 - - was liecht eingang
   - '12'
 state_persistance/device_light_entryway_light::light_entryway_light_turn_off:
 - - was liecht eingang
-  - loesch
+  - loesch liecht eingang
 state_persistance/device_light_entryway_light::light_entryway_light_turn_on:
 - - was liecht eingang
-  - mach
+  - mach liecht eingang
 state_persistance/device_lock_front_door::lock_front_door_lock:
 - - was schloss eingang
-  - schloss
+  - schloss schloss eingang
 state_persistance/device_lock_front_door::lock_front_door_unlock:
 - - was schloss eingang
-  - ufmache
+  - ufmache schloss eingang
 state_persistance/device_lock_garage_entry::lock_garage_entry_lock:
 - - was schloss garage
-  - schloss
+  - schloss schloss garage
 state_persistance/device_lock_garage_entry::lock_garage_entry_unlock:
 - - was schloss garage
-  - ufmache
+  - ufmache schloss garage
 state_persistance/device_media_player_family_tv::media_player_family_tv_persistance_volume_level:
 - - was tv stube
   - ' 21'
 state_persistance/device_media_player_family_tv::media_player_family_tv_turn_off:
 - - was tv stube
-  - loesch
+  - loesch tv stube
 state_persistance/device_media_player_family_tv::media_player_family_tv_turn_on:
 - - was tv stube
-  - mach
+  - mach tv stube
 state_persistance/device_media_player_living_tv::media_player_living_tv_persistance_volume_level:
 - - was tv wohnzimmer
   - ' 21'
 state_persistance/device_media_player_living_tv::media_player_living_tv_turn_off:
 - - was tv wohnzimmer
-  - loesch
+  - loesch tv wohnzimmer
 state_persistance/device_media_player_living_tv::media_player_living_tv_turn_on:
 - - was tv wohnzimmer
-  - mach
+  - mach tv wohnzimmer

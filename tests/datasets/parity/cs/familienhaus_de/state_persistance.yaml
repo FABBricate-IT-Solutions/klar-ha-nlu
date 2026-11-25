@@ -72,19 +72,19 @@ state_persistance/area_powder_room_lights::powder_room_lights_set_brightness:
   - ' 70'
 state_persistance/device_cover_garage_door::cover_garage_door_close:
 - - co zaves garage
-  - zavri
+  - zavri zaves garage
 state_persistance/device_cover_garage_door::cover_garage_door_open:
 - - co zaves garage
-  - otevri
+  - otevri zaves garage
 state_persistance/device_cover_garage_door::cover_garage_door_persistance_position:
 - - co zaves garage
   - '23'
 state_persistance/device_cover_living_blinds::cover_living_blinds_close:
 - - co zaves obyvak
-  - zavri
+  - zavri zaves obyvak
 state_persistance/device_cover_living_blinds::cover_living_blinds_open:
 - - co zaves obyvak
-  - otevri
+  - otevri zaves obyvak
 state_persistance/device_cover_living_blinds::cover_living_blinds_persistance_position:
 - - co zaves obyvak
   - '85'
@@ -93,46 +93,46 @@ state_persistance/device_fan_family_fan::fan_family_fan_persistance_percentage:
   - ' 43'
 state_persistance/device_fan_family_fan::fan_family_fan_turn_off:
 - - co ventilator obyvakfam
-  - vypni
+  - vypni ventilator obyvakfam
 state_persistance/device_fan_family_fan::fan_family_fan_turn_on:
 - - co ventilator obyvakfam
-  - zapni
+  - zapni ventilator obyvakfam
 state_persistance/device_light_entryway_light::light_entryway_light_persistance_brightness:
 - - co svetlo predsin
   - '12'
 state_persistance/device_light_entryway_light::light_entryway_light_turn_off:
 - - co svetlo predsin
-  - vypni
+  - vypni svetlo predsin
 state_persistance/device_light_entryway_light::light_entryway_light_turn_on:
 - - co svetlo predsin
-  - zapni
+  - zapni svetlo predsin
 state_persistance/device_lock_front_door::lock_front_door_lock:
 - - co zamek predsin
-  - zamkni
+  - zamkni zamek predsin
 state_persistance/device_lock_front_door::lock_front_door_unlock:
 - - co zamek predsin
-  - odemkni
+  - odemkni zamek predsin
 state_persistance/device_lock_garage_entry::lock_garage_entry_lock:
 - - co zamek garage
-  - zamkni
+  - zamkni zamek garage
 state_persistance/device_lock_garage_entry::lock_garage_entry_unlock:
 - - co zamek garage
-  - odemkni
+  - odemkni zamek garage
 state_persistance/device_media_player_family_tv::media_player_family_tv_persistance_volume_level:
 - - co televize obyvakfam
   - ' 21'
 state_persistance/device_media_player_family_tv::media_player_family_tv_turn_off:
 - - co televize obyvakfam
-  - vypni
+  - vypni televize obyvakfam
 state_persistance/device_media_player_family_tv::media_player_family_tv_turn_on:
 - - co televize obyvakfam
-  - zapni
+  - zapni televize obyvakfam
 state_persistance/device_media_player_living_tv::media_player_living_tv_persistance_volume_level:
 - - co televize obyvak
   - ' 21'
 state_persistance/device_media_player_living_tv::media_player_living_tv_turn_off:
 - - co televize obyvak
-  - vypni
+  - vypni televize obyvak
 state_persistance/device_media_player_living_tv::media_player_living_tv_turn_on:
 - - co televize obyvak
-  - zapni
+  - zapni televize obyvak

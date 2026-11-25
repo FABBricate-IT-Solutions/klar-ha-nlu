@@ -3,10 +3,10 @@ state_persistance/followup::heizung_dann_grad:
   - ' 21'
 state_persistance/followup::wohnzimmer_dann_aus:
 - - enable light lounge
-  - extinguish
+  - extinguish light lounge
 state_persistance/spoken::kugel_dann_aus:
 - - enable globe
-  - extinguish
+  - extinguish globe
 state_persistance/spoken::wohnzimmer_dann_kueche:
 - - enable light lounge
   - enable light kitchen

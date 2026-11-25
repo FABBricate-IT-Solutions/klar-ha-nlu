@@ -72,19 +72,19 @@ state_persistance/area_powder_room_lights::powder_room_lights_set_brightness:
   - ' 70'
 state_persistance/device_cover_garage_door::cover_garage_door_close:
 - - mis kardin garage
-  - sulge
+  - sulge kardin garage
 state_persistance/device_cover_garage_door::cover_garage_door_open:
 - - mis kardin garage
-  - ava
+  - ava kardin garage
 state_persistance/device_cover_garage_door::cover_garage_door_persistance_position:
 - - mis kardin garage
   - '23'
 state_persistance/device_cover_living_blinds::cover_living_blinds_close:
 - - mis kardin elutuba
-  - sulge
+  - sulge kardin elutuba
 state_persistance/device_cover_living_blinds::cover_living_blinds_open:
 - - mis kardin elutuba
-  - ava
+  - ava kardin elutuba
 state_persistance/device_cover_living_blinds::cover_living_blinds_persistance_position:
 - - mis kardin elutuba
   - '85'
@@ -93,46 +93,46 @@ state_persistance/device_fan_family_fan::fan_family_fan_persistance_percentage:
   - ' 43'
 state_persistance/device_fan_family_fan::fan_family_fan_turn_off:
 - - mis ventilaator peredetuba
-  - kustuta
+  - kustuta ventilaator peredetuba
 state_persistance/device_fan_family_fan::fan_family_fan_turn_on:
 - - mis ventilaator peredetuba
-  - lulita
+  - lulita ventilaator peredetuba
 state_persistance/device_light_entryway_light::light_entryway_light_persistance_brightness:
 - - mis vali esik
   - '12'
 state_persistance/device_light_entryway_light::light_entryway_light_turn_off:
 - - mis vali esik
-  - kustuta
+  - kustuta vali esik
 state_persistance/device_light_entryway_light::light_entryway_light_turn_on:
 - - mis vali esik
-  - lulita
+  - lulita vali esik
 state_persistance/device_lock_front_door::lock_front_door_lock:
 - - mis lukk esik
-  - lukk
+  - lukk lukk esik
 state_persistance/device_lock_front_door::lock_front_door_unlock:
 - - mis lukk esik
-  - ava
+  - ava lukk esik
 state_persistance/device_lock_garage_entry::lock_garage_entry_lock:
 - - mis lukk garage
-  - lukk
+  - lukk lukk garage
 state_persistance/device_lock_garage_entry::lock_garage_entry_unlock:
 - - mis lukk garage
-  - ava
+  - ava lukk garage
 state_persistance/device_media_player_family_tv::media_player_family_tv_persistance_volume_level:
 - - mis tv peredetuba
   - ' 21'
 state_persistance/device_media_player_family_tv::media_player_family_tv_turn_off:
 - - mis tv peredetuba
-  - kustuta
+  - kustuta tv peredetuba
 state_persistance/device_media_player_family_tv::media_player_family_tv_turn_on:
 - - mis tv peredetuba
-  - lulita
+  - lulita tv peredetuba
 state_persistance/device_media_player_living_tv::media_player_living_tv_persistance_volume_level:
 - - mis tv elutuba
   - ' 21'
 state_persistance/device_media_player_living_tv::media_player_living_tv_turn_off:
 - - mis tv elutuba
-  - kustuta
+  - kustuta tv elutuba
 state_persistance/device_media_player_living_tv::media_player_living_tv_turn_on:
 - - mis tv elutuba
-  - lulita
+  - lulita tv elutuba

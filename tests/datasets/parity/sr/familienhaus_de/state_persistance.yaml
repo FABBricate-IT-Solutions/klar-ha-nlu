@@ -72,19 +72,19 @@ state_persistance/area_powder_room_lights::powder_room_lights_set_brightness:
   - ' 70'
 state_persistance/device_cover_garage_door::cover_garage_door_close:
 - - шта завеса garage
-  - затвори
+  - затвори завеса garage
 state_persistance/device_cover_garage_door::cover_garage_door_open:
 - - шта завеса garage
-  - отвори
+  - отвори завеса garage
 state_persistance/device_cover_garage_door::cover_garage_door_persistance_position:
 - - шта завеса garage
   - '23'
 state_persistance/device_cover_living_blinds::cover_living_blinds_close:
 - - шта завеса дневна
-  - затвори
+  - затвори завеса дневна
 state_persistance/device_cover_living_blinds::cover_living_blinds_open:
 - - шта завеса дневна
-  - отвори
+  - отвори завеса дневна
 state_persistance/device_cover_living_blinds::cover_living_blinds_persistance_position:
 - - шта завеса дневна
   - '85'
@@ -93,46 +93,46 @@ state_persistance/device_fan_family_fan::fan_family_fan_persistance_percentage:
   - ' 43'
 state_persistance/device_fan_family_fan::fan_family_fan_turn_off:
 - - шта вентилатор дневнаfam
-  - искључи
+  - искључи вентилатор дневнаfam
 state_persistance/device_fan_family_fan::fan_family_fan_turn_on:
 - - шта вентилатор дневнаfam
-  - укључи
+  - укључи вентилатор дневнаfam
 state_persistance/device_light_entryway_light::light_entryway_light_persistance_brightness:
 - - шта светло улаз
   - '12'
 state_persistance/device_light_entryway_light::light_entryway_light_turn_off:
 - - шта светло улаз
-  - искључи
+  - искључи светло улаз
 state_persistance/device_light_entryway_light::light_entryway_light_turn_on:
 - - шта светло улаз
-  - укључи
+  - укључи светло улаз
 state_persistance/device_lock_front_door::lock_front_door_lock:
 - - шта брава улаз
-  - брава
+  - брава брава улаз
 state_persistance/device_lock_front_door::lock_front_door_unlock:
 - - шта брава улаз
-  - отвори
+  - отвори брава улаз
 state_persistance/device_lock_garage_entry::lock_garage_entry_lock:
 - - шта брава garage
-  - брава
+  - брава брава garage
 state_persistance/device_lock_garage_entry::lock_garage_entry_unlock:
 - - шта брава garage
-  - отвори
+  - отвори брава garage
 state_persistance/device_media_player_family_tv::media_player_family_tv_persistance_volume_level:
 - - шта тв дневнаfam
   - ' 21'
 state_persistance/device_media_player_family_tv::media_player_family_tv_turn_off:
 - - шта тв дневнаfam
-  - искључи
+  - искључи тв дневнаfam
 state_persistance/device_media_player_family_tv::media_player_family_tv_turn_on:
 - - шта тв дневнаfam
-  - укључи
+  - укључи тв дневнаfam
 state_persistance/device_media_player_living_tv::media_player_living_tv_persistance_volume_level:
 - - шта тв дневна
   - ' 21'
 state_persistance/device_media_player_living_tv::media_player_living_tv_turn_off:
 - - шта тв дневна
-  - искључи
+  - искључи тв дневна
 state_persistance/device_media_player_living_tv::media_player_living_tv_turn_on:
 - - шта тв дневна
-  - укључи
+  - укључи тв дневна

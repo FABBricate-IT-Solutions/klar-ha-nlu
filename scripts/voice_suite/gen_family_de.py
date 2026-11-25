@@ -147,8 +147,11 @@ def de_turns(pair: list, case: dict, names: dict[str, str], areas_of: dict[str, 
         follow = "mach sie zu" if domain == "cover" else "mach sie aus"
     elif persist_query:
         follow = "mach sie auf" if domain == "cover" else "mach sie an"
+    elif any(w in follow_blob for w in ("wash", "wasch", "machine", "maschine")):
+        follow = "die Waschmaschine"
     else:
-        follow = "ja"
+        # A bare "ja" is only a confirmation. Prefer a pronoun follow-up that names the action.
+        follow = "mach sie auf" if domain == "cover" else "mach sie an"
     return [first, follow]
 
 

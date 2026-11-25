@@ -72,19 +72,19 @@ state_persistance/area_powder_room_lights::powder_room_lights_set_brightness:
   - ' 70'
 state_persistance/device_cover_garage_door::cover_garage_door_close:
 - - que cortina garage
-  - pecha
+  - pecha cortina garage
 state_persistance/device_cover_garage_door::cover_garage_door_open:
 - - que cortina garage
-  - abre
+  - abre cortina garage
 state_persistance/device_cover_garage_door::cover_garage_door_persistance_position:
 - - que cortina garage
   - '23'
 state_persistance/device_cover_living_blinds::cover_living_blinds_close:
 - - que cortina salon
-  - pecha
+  - pecha cortina salon
 state_persistance/device_cover_living_blinds::cover_living_blinds_open:
 - - que cortina salon
-  - abre
+  - abre cortina salon
 state_persistance/device_cover_living_blinds::cover_living_blinds_persistance_position:
 - - que cortina salon
   - '85'
@@ -93,46 +93,46 @@ state_persistance/device_fan_family_fan::fan_family_fan_persistance_percentage:
   - ' 43'
 state_persistance/device_fan_family_fan::fan_family_fan_turn_off:
 - - que ventilador salafam
-  - apaga
+  - apaga ventilador salafam
 state_persistance/device_fan_family_fan::fan_family_fan_turn_on:
 - - que ventilador salafam
-  - acende
+  - acende ventilador salafam
 state_persistance/device_light_entryway_light::light_entryway_light_persistance_brightness:
 - - que luz entrada
   - '12'
 state_persistance/device_light_entryway_light::light_entryway_light_turn_off:
 - - que luz entrada
-  - apaga
+  - apaga luz entrada
 state_persistance/device_light_entryway_light::light_entryway_light_turn_on:
 - - que luz entrada
-  - acende
+  - acende luz entrada
 state_persistance/device_lock_front_door::lock_front_door_lock:
 - - que pechadura entrada
-  - pechadura
+  - pechadura pechadura entrada
 state_persistance/device_lock_front_door::lock_front_door_unlock:
 - - que pechadura entrada
-  - abre
+  - abre pechadura entrada
 state_persistance/device_lock_garage_entry::lock_garage_entry_lock:
 - - que pechadura garage
-  - pechadura
+  - pechadura pechadura garage
 state_persistance/device_lock_garage_entry::lock_garage_entry_unlock:
 - - que pechadura garage
-  - abre
+  - abre pechadura garage
 state_persistance/device_media_player_family_tv::media_player_family_tv_persistance_volume_level:
 - - que tv salafam
   - ' 21'
 state_persistance/device_media_player_family_tv::media_player_family_tv_turn_off:
 - - que tv salafam
-  - apaga
+  - apaga tv salafam
 state_persistance/device_media_player_family_tv::media_player_family_tv_turn_on:
 - - que tv salafam
-  - acende
+  - acende tv salafam
 state_persistance/device_media_player_living_tv::media_player_living_tv_persistance_volume_level:
 - - que tv salon
   - ' 21'
 state_persistance/device_media_player_living_tv::media_player_living_tv_turn_off:
 - - que tv salon
-  - apaga
+  - apaga tv salon
 state_persistance/device_media_player_living_tv::media_player_living_tv_turn_on:
 - - que tv salon
-  - acende
+  - acende tv salon

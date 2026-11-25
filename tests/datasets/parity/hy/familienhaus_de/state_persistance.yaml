@@ -72,19 +72,19 @@ state_persistance/area_powder_room_lights::powder_room_lights_set_brightness:
   - ' 70'
 state_persistance/device_cover_garage_door::cover_garage_door_close:
 - - ինչ վարագույր garage
-  - փակիր
+  - փակիր վարագույր garage
 state_persistance/device_cover_garage_door::cover_garage_door_open:
 - - ինչ վարագույր garage
-  - բացիր
+  - բացիր վարագույր garage
 state_persistance/device_cover_garage_door::cover_garage_door_persistance_position:
 - - ինչ վարագույր garage
   - '23'
 state_persistance/device_cover_living_blinds::cover_living_blinds_close:
 - - ինչ վարագույր հյուրասենյակ
-  - փակիր
+  - փակիր վարագույր հյուրասենյակ
 state_persistance/device_cover_living_blinds::cover_living_blinds_open:
 - - ինչ վարագույր հյուրասենյակ
-  - բացիր
+  - բացիր վարագույր հյուրասենյակ
 state_persistance/device_cover_living_blinds::cover_living_blinds_persistance_position:
 - - ինչ վարագույր հյուրասենյակ
   - '85'
@@ -93,46 +93,46 @@ state_persistance/device_fan_family_fan::fan_family_fan_persistance_percentage:
   - ' 43'
 state_persistance/device_fan_family_fan::fan_family_fan_turn_off:
 - - ինչ օդափոխիչ yntaniq
-  - անջատիր
+  - անջատիր օդափոխիչ yntaniq
 state_persistance/device_fan_family_fan::fan_family_fan_turn_on:
 - - ինչ օդափոխիչ yntaniq
-  - միացրու
+  - միացրու օդափոխիչ yntaniq
 state_persistance/device_light_entryway_light::light_entryway_light_persistance_brightness:
 - - ինչ լույս mutq
   - '12'
 state_persistance/device_light_entryway_light::light_entryway_light_turn_off:
 - - ինչ լույս mutq
-  - անջատիր
+  - անջատիր լույս mutq
 state_persistance/device_light_entryway_light::light_entryway_light_turn_on:
 - - ինչ լույս mutq
-  - միացրու
+  - միացրու լույս mutq
 state_persistance/device_lock_front_door::lock_front_door_lock:
 - - ինչ կողպեք mutq
-  - կողպեք
+  - կողպեք կողպեք mutq
 state_persistance/device_lock_front_door::lock_front_door_unlock:
 - - ինչ կողպեք mutq
-  - բացիր
+  - բացիր կողպեք mutq
 state_persistance/device_lock_garage_entry::lock_garage_entry_lock:
 - - ինչ կողպեք garage
-  - կողպեք
+  - կողպեք կողպեք garage
 state_persistance/device_lock_garage_entry::lock_garage_entry_unlock:
 - - ինչ կողպեք garage
-  - բացիր
+  - բացիր կողպեք garage
 state_persistance/device_media_player_family_tv::media_player_family_tv_persistance_volume_level:
 - - ինչ tv yntaniq
   - ' 21'
 state_persistance/device_media_player_family_tv::media_player_family_tv_turn_off:
 - - ինչ tv yntaniq
-  - անջատիր
+  - անջատիր tv yntaniq
 state_persistance/device_media_player_family_tv::media_player_family_tv_turn_on:
 - - ինչ tv yntaniq
-  - միացրու
+  - միացրու tv yntaniq
 state_persistance/device_media_player_living_tv::media_player_living_tv_persistance_volume_level:
 - - ինչ tv հյուրասենյակ
   - ' 21'
 state_persistance/device_media_player_living_tv::media_player_living_tv_turn_off:
 - - ինչ tv հյուրասենյակ
-  - անջատիր
+  - անջատիր tv հյուրասենյակ
 state_persistance/device_media_player_living_tv::media_player_living_tv_turn_on:
 - - ինչ tv հյուրասենյակ
-  - միացրու
+  - միացրու tv հյուրասենյակ

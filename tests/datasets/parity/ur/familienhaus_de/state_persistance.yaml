@@ -72,19 +72,19 @@ state_persistance/area_powder_room_lights::powder_room_lights_set_brightness:
   - ' 70'
 state_persistance/device_cover_garage_door::cover_garage_door_close:
 - - کیا پردہ garage
-  - بندکرو
+  - بندکرو پردہ garage
 state_persistance/device_cover_garage_door::cover_garage_door_open:
 - - کیا پردہ garage
-  - کھولو
+  - کھولو پردہ garage
 state_persistance/device_cover_garage_door::cover_garage_door_persistance_position:
 - - کیا پردہ garage
   - '23'
 state_persistance/device_cover_living_blinds::cover_living_blinds_close:
 - - کیا پردہ لانج
-  - بندکرو
+  - بندکرو پردہ لانج
 state_persistance/device_cover_living_blinds::cover_living_blinds_open:
 - - کیا پردہ لانج
-  - کھولو
+  - کھولو پردہ لانج
 state_persistance/device_cover_living_blinds::cover_living_blinds_persistance_position:
 - - کیا پردہ لانج
   - '85'
@@ -93,46 +93,46 @@ state_persistance/device_fan_family_fan::fan_family_fan_persistance_percentage:
   - ' 43'
 state_persistance/device_fan_family_fan::fan_family_fan_turn_off:
 - - کیا پنکھا خاندانی
-  - بند
+  - بند پنکھا خاندانی
 state_persistance/device_fan_family_fan::fan_family_fan_turn_on:
 - - کیا پنکھا خاندانی
-  - چالو
+  - چالو پنکھا خاندانی
 state_persistance/device_light_entryway_light::light_entryway_light_persistance_brightness:
 - - کیا روشنی داخلہ
   - '12'
 state_persistance/device_light_entryway_light::light_entryway_light_turn_off:
 - - کیا روشنی داخلہ
-  - بند
+  - بند روشنی داخلہ
 state_persistance/device_light_entryway_light::light_entryway_light_turn_on:
 - - کیا روشنی داخلہ
-  - چالو
+  - چالو روشنی داخلہ
 state_persistance/device_lock_front_door::lock_front_door_lock:
 - - کیا تالا داخلہ
-  - تالا
+  - تالا تالا داخلہ
 state_persistance/device_lock_front_door::lock_front_door_unlock:
 - - کیا تالا داخلہ
-  - کھولو
+  - کھولو تالا داخلہ
 state_persistance/device_lock_garage_entry::lock_garage_entry_lock:
 - - کیا تالا garage
-  - تالا
+  - تالا تالا garage
 state_persistance/device_lock_garage_entry::lock_garage_entry_unlock:
 - - کیا تالا garage
-  - کھولو
+  - کھولو تالا garage
 state_persistance/device_media_player_family_tv::media_player_family_tv_persistance_volume_level:
 - - کیا tv خاندانی
   - ' 21'
 state_persistance/device_media_player_family_tv::media_player_family_tv_turn_off:
 - - کیا tv خاندانی
-  - بند
+  - بند tv خاندانی
 state_persistance/device_media_player_family_tv::media_player_family_tv_turn_on:
 - - کیا tv خاندانی
-  - چالو
+  - چالو tv خاندانی
 state_persistance/device_media_player_living_tv::media_player_living_tv_persistance_volume_level:
 - - کیا tv لانج
   - ' 21'
 state_persistance/device_media_player_living_tv::media_player_living_tv_turn_off:
 - - کیا tv لانج
-  - بند
+  - بند tv لانج
 state_persistance/device_media_player_living_tv::media_player_living_tv_turn_on:
 - - کیا tv لانج
-  - چالو
+  - چالو tv لانج

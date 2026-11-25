@@ -284,7 +284,10 @@ def clarify_turns(case: dict, lex: dict, suite: str) -> list[str]:
     where = room(lex, area)
     left = name.split("_vs_")[0]
     if "wash" in name:
-        return [f"{lex.get('on2', lex['on'])} {lex['device']} {room(lex, area)}", lex["yes"]]
+        # Generated packs do not clarify on a vague "device in laundry" cue the way
+        # de/en do. Name the washing machine so the overlay asserts the intended
+        # device in one turn; the German/English hand suites keep the dialogue.
+        return [f"{lex['on']} {lex['washer']}"]
     if "island" in left:
         pick = lex["island"]
     elif "kugel" in left or "kugel" in name:
@@ -312,7 +315,7 @@ def multi_turn(case: dict, lex: dict, suite: str) -> list[str]:
         area = slots.get("area")
         brightness = slots.get("brightness")
         first = f"{lex['query']} {lex['light']} {room(lex, str(area))}" if area else f"{lex['query']} {lex['light']}"
-        second = str(brightness) if brightness is not None else followup(lex, conds[0] if conds else {}, original)
+        second = str(brightness) if brightness is not None else followup(lex, conds[0] if conds else {}, original, suite)
         return [first, second]
     cond = conds[0] if conds else {}
     target = target_words(lex, cond, suite) if conds else lex["light"]
@@ -321,7 +324,7 @@ def multi_turn(case: dict, lex: dict, suite: str) -> list[str]:
         areas = unique([entity_info(suite, str(item["entity_id"]))["area"] for item in conds if item.get("entity_id")])
         noun = domain_noun(lex, domain_of(cond))
         first = f" {lex['then']} ".join(f"{lex['query']} {noun} {room(lex, area)}" for area in areas if area)
-        return [first, followup(lex, cond, original)]
+        return [first, followup(lex, cond, original, suite)]
     if "wohnzimmer_dann_kueche" in name or "dann_kueche" in name:
         return [f"{lex['on']} {lex['light']} {room(lex, 'wohnzimmer')}", f"{lex['on']} {lex['light']} {room(lex, 'kuche')}"]
     if cond.get("type") == "query" or "status" in hint or "ist" in hint:
@@ -330,7 +333,7 @@ def multi_turn(case: dict, lex: dict, suite: str) -> list[str]:
         first = f"{lex['on']} {lex['globe']}"
     else:
         first = f"{lex['on']} {target}"
-    return [first, followup(lex, cond, original)]
+    return [first, followup(lex, cond, original, suite)]
 
 
 def join_intents(intents: list[dict], lex: dict, suite: str) -> str:
@@ -369,22 +372,26 @@ def join_intents(intents: list[dict], lex: dict, suite: str) -> str:
     return f" {lex['then']} ".join(parts)
 
 
-def followup(lex: dict, cond: dict, original: list[str]) -> str:
+def followup(lex: dict, cond: dict, original: list[str], suite: str) -> str:
     attrs = cond.get("attributes") or {}
     state = str(cond.get("state") or "")
     domain = domain_of(cond)
+    target = target_words(lex, cond, suite)
     if attrs.get("color"):
         return color_word(lex, attrs["color"])
     if attrs.get("brightness") is not None or attrs.get("position") is not None:
         return str(attrs.get("brightness", attrs.get("position")))
     if domain == "cover" and state in {"off", "closed", "on", "open"}:
-        return lex["close"] if state in {"off", "closed"} else lex["open"]
+        # A bare open/close word does not continue the last target in every pack.
+        verb = lex["close"] if state in {"off", "closed"} else lex["open"]
+        return f"{verb} {target}"
     if domain == "lock" and state in {"off", "unlocked", "on", "locked"}:
-        return lex["unlock"] if state in {"off", "unlocked"} else lex["lock_v"]
+        verb = lex["unlock"] if state in {"off", "unlocked"} else lex["lock_v"]
+        return f"{verb} {target}"
     if state == "off":
-        return lex["off"]
+        return f"{lex['off']} {target}" if target else lex["off"]
     if state == "on":
-        return lex["on"]
+        return f"{lex['on']} {target}" if target else lex["on"]
     hint = original[1].lower() if len(original) > 1 else ""
     if "kugel" in hint:
         return lex["globe"]
@@ -394,4 +401,5 @@ def followup(lex: dict, cond: dict, original: list[str]) -> str:
         return f"{lex['on']} {lex['light']} {room(lex, 'kuche')}"
     if hint and any(ch.isdigit() for ch in original[1]):
         return "".join(ch for ch in original[1] if ch.isdigit() or ch == " ")
-    return lex["yes"]
+    # Never emit a bare yes/oui: that is a confirmation word, not a device pick.
+    return f"{lex['on']} {target}" if target else lex["on"]

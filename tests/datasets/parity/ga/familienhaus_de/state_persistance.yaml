@@ -72,19 +72,19 @@ state_persistance/area_powder_room_lights::powder_room_lights_set_brightness:
   - ' 70'
 state_persistance/device_cover_garage_door::cover_garage_door_close:
 - - cad cuirtin garage
-  - dun
+  - dun cuirtin garage
 state_persistance/device_cover_garage_door::cover_garage_door_open:
 - - cad cuirtin garage
-  - oscail
+  - oscail cuirtin garage
 state_persistance/device_cover_garage_door::cover_garage_door_persistance_position:
 - - cad cuirtin garage
   - '23'
 state_persistance/device_cover_living_blinds::cover_living_blinds_close:
 - - cad cuirtin seomra
-  - dun
+  - dun cuirtin seomra
 state_persistance/device_cover_living_blinds::cover_living_blinds_open:
 - - cad cuirtin seomra
-  - oscail
+  - oscail cuirtin seomra
 state_persistance/device_cover_living_blinds::cover_living_blinds_persistance_position:
 - - cad cuirtin seomra
   - '85'
@@ -93,46 +93,46 @@ state_persistance/device_fan_family_fan::fan_family_fan_persistance_percentage:
   - ' 43'
 state_persistance/device_fan_family_fan::fan_family_fan_turn_off:
 - - cad fean seomrateaghlaigh
-  - much
+  - much fean seomrateaghlaigh
 state_persistance/device_fan_family_fan::fan_family_fan_turn_on:
 - - cad fean seomrateaghlaigh
-  - cas
+  - cas fean seomrateaghlaigh
 state_persistance/device_light_entryway_light::light_entryway_light_persistance_brightness:
 - - cad solas halla
   - '12'
 state_persistance/device_light_entryway_light::light_entryway_light_turn_off:
 - - cad solas halla
-  - much
+  - much solas halla
 state_persistance/device_light_entryway_light::light_entryway_light_turn_on:
 - - cad solas halla
-  - cas
+  - cas solas halla
 state_persistance/device_lock_front_door::lock_front_door_lock:
 - - cad glas halla
-  - glas
+  - glas glas halla
 state_persistance/device_lock_front_door::lock_front_door_unlock:
 - - cad glas halla
-  - oscail
+  - oscail glas halla
 state_persistance/device_lock_garage_entry::lock_garage_entry_lock:
 - - cad glas garage
-  - glas
+  - glas glas garage
 state_persistance/device_lock_garage_entry::lock_garage_entry_unlock:
 - - cad glas garage
-  - oscail
+  - oscail glas garage
 state_persistance/device_media_player_family_tv::media_player_family_tv_persistance_volume_level:
 - - cad teilifis seomrateaghlaigh
   - ' 21'
 state_persistance/device_media_player_family_tv::media_player_family_tv_turn_off:
 - - cad teilifis seomrateaghlaigh
-  - much
+  - much teilifis seomrateaghlaigh
 state_persistance/device_media_player_family_tv::media_player_family_tv_turn_on:
 - - cad teilifis seomrateaghlaigh
-  - cas
+  - cas teilifis seomrateaghlaigh
 state_persistance/device_media_player_living_tv::media_player_living_tv_persistance_volume_level:
 - - cad teilifis seomra
   - ' 21'
 state_persistance/device_media_player_living_tv::media_player_living_tv_turn_off:
 - - cad teilifis seomra
-  - much
+  - much teilifis seomra
 state_persistance/device_media_player_living_tv::media_player_living_tv_turn_on:
 - - cad teilifis seomra
-  - cas
+  - cas teilifis seomra

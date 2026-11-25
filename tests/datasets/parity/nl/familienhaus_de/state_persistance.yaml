@@ -72,19 +72,19 @@ state_persistance/area_powder_room_lights::powder_room_lights_set_brightness:
   - ' 70'
 state_persistance/device_cover_garage_door::cover_garage_door_close:
 - - wat gordijn garage
-  - dicht
+  - dicht gordijn garage
 state_persistance/device_cover_garage_door::cover_garage_door_open:
 - - wat gordijn garage
-  - open
+  - open gordijn garage
 state_persistance/device_cover_garage_door::cover_garage_door_persistance_position:
 - - wat gordijn garage
   - '23'
 state_persistance/device_cover_living_blinds::cover_living_blinds_close:
 - - wat gordijn woonkamer
-  - dicht
+  - dicht gordijn woonkamer
 state_persistance/device_cover_living_blinds::cover_living_blinds_open:
 - - wat gordijn woonkamer
-  - open
+  - open gordijn woonkamer
 state_persistance/device_cover_living_blinds::cover_living_blinds_persistance_position:
 - - wat gordijn woonkamer
   - '85'
@@ -93,46 +93,46 @@ state_persistance/device_fan_family_fan::fan_family_fan_persistance_percentage:
   - ' 43'
 state_persistance/device_fan_family_fan::fan_family_fan_turn_off:
 - - wat ventilator huiskamer
-  - uitzetten
+  - uitzetten ventilator huiskamer
 state_persistance/device_fan_family_fan::fan_family_fan_turn_on:
 - - wat ventilator huiskamer
-  - aanzetten
+  - aanzetten ventilator huiskamer
 state_persistance/device_light_entryway_light::light_entryway_light_persistance_brightness:
 - - wat licht hal
   - '12'
 state_persistance/device_light_entryway_light::light_entryway_light_turn_off:
 - - wat licht hal
-  - uitzetten
+  - uitzetten licht hal
 state_persistance/device_light_entryway_light::light_entryway_light_turn_on:
 - - wat licht hal
-  - aanzetten
+  - aanzetten licht hal
 state_persistance/device_lock_front_door::lock_front_door_lock:
 - - wat slot hal
-  - vergrendel
+  - vergrendel slot hal
 state_persistance/device_lock_front_door::lock_front_door_unlock:
 - - wat slot hal
-  - ontgrendel
+  - ontgrendel slot hal
 state_persistance/device_lock_garage_entry::lock_garage_entry_lock:
 - - wat slot garage
-  - vergrendel
+  - vergrendel slot garage
 state_persistance/device_lock_garage_entry::lock_garage_entry_unlock:
 - - wat slot garage
-  - ontgrendel
+  - ontgrendel slot garage
 state_persistance/device_media_player_family_tv::media_player_family_tv_persistance_volume_level:
 - - wat tv huiskamer
   - ' 21'
 state_persistance/device_media_player_family_tv::media_player_family_tv_turn_off:
 - - wat tv huiskamer
-  - uitzetten
+  - uitzetten tv huiskamer
 state_persistance/device_media_player_family_tv::media_player_family_tv_turn_on:
 - - wat tv huiskamer
-  - aanzetten
+  - aanzetten tv huiskamer
 state_persistance/device_media_player_living_tv::media_player_living_tv_persistance_volume_level:
 - - wat tv woonkamer
   - ' 21'
 state_persistance/device_media_player_living_tv::media_player_living_tv_turn_off:
 - - wat tv woonkamer
-  - uitzetten
+  - uitzetten tv woonkamer
 state_persistance/device_media_player_living_tv::media_player_living_tv_turn_on:
 - - wat tv woonkamer
-  - aanzetten
+  - aanzetten tv woonkamer

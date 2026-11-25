@@ -72,19 +72,19 @@ state_persistance/area_powder_room_lights::powder_room_lights_set_brightness:
   - ' 70'
 state_persistance/device_cover_garage_door::cover_garage_door_close:
 - - কি পর্দা garage
-  - বন্ধ
+  - বন্ধ পর্দা garage
 state_persistance/device_cover_garage_door::cover_garage_door_open:
 - - কি পর্দা garage
-  - খোল
+  - খোল পর্দা garage
 state_persistance/device_cover_garage_door::cover_garage_door_persistance_position:
 - - কি পর্দা garage
   - '23'
 state_persistance/device_cover_living_blinds::cover_living_blinds_close:
 - - কি পর্দা বসার
-  - বন্ধ
+  - বন্ধ পর্দা বসার
 state_persistance/device_cover_living_blinds::cover_living_blinds_open:
 - - কি পর্দা বসার
-  - খোল
+  - খোল পর্দা বসার
 state_persistance/device_cover_living_blinds::cover_living_blinds_persistance_position:
 - - কি পর্দা বসার
   - '85'
@@ -93,46 +93,46 @@ state_persistance/device_fan_family_fan::fan_family_fan_persistance_percentage:
   - ' 43'
 state_persistance/device_fan_family_fan::fan_family_fan_turn_off:
 - - কি পাখা paribarik
-  - নিভাও
+  - নিভাও পাখা paribarik
 state_persistance/device_fan_family_fan::fan_family_fan_turn_on:
 - - কি পাখা paribarik
-  - জ্বালাও
+  - জ্বালাও পাখা paribarik
 state_persistance/device_light_entryway_light::light_entryway_light_persistance_brightness:
 - - কি আলো prabesh
   - '12'
 state_persistance/device_light_entryway_light::light_entryway_light_turn_off:
 - - কি আলো prabesh
-  - নিভাও
+  - নিভাও আলো prabesh
 state_persistance/device_light_entryway_light::light_entryway_light_turn_on:
 - - কি আলো prabesh
-  - জ্বালাও
+  - জ্বালাও আলো prabesh
 state_persistance/device_lock_front_door::lock_front_door_lock:
 - - কি তালা prabesh
-  - তালা
+  - তালা তালা prabesh
 state_persistance/device_lock_front_door::lock_front_door_unlock:
 - - কি তালা prabesh
-  - খোল
+  - খোল তালা prabesh
 state_persistance/device_lock_garage_entry::lock_garage_entry_lock:
 - - কি তালা garage
-  - তালা
+  - তালা তালা garage
 state_persistance/device_lock_garage_entry::lock_garage_entry_unlock:
 - - কি তালা garage
-  - খোল
+  - খোল তালা garage
 state_persistance/device_media_player_family_tv::media_player_family_tv_persistance_volume_level:
 - - কি tv paribarik
   - ' 21'
 state_persistance/device_media_player_family_tv::media_player_family_tv_turn_off:
 - - কি tv paribarik
-  - নিভাও
+  - নিভাও tv paribarik
 state_persistance/device_media_player_family_tv::media_player_family_tv_turn_on:
 - - কি tv paribarik
-  - জ্বালাও
+  - জ্বালাও tv paribarik
 state_persistance/device_media_player_living_tv::media_player_living_tv_persistance_volume_level:
 - - কি tv বসার
   - ' 21'
 state_persistance/device_media_player_living_tv::media_player_living_tv_turn_off:
 - - কি tv বসার
-  - নিভাও
+  - নিভাও tv বসার
 state_persistance/device_media_player_living_tv::media_player_living_tv_turn_on:
 - - কি tv বসার
-  - জ্বালাও
+  - জ্বালাও tv বসার
