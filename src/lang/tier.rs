@@ -60,9 +60,12 @@ pub fn in_use(settings: &Settings) -> Vec<String> {
 
 /// The language choices of a settings save, checked against the settings in use. The
 /// switch travels in the same save, so turning it on and picking a locale is one step.
+/// A code no pack answers stays in `languages` and is ignored, as it always was; the
+/// default pack has to be one a pack answers.
 pub fn check_settings(mut next: Settings, current: &Settings) -> Result<Settings, String> {
     let kept = in_use(current);
-    next.languages = check_selection(&next.languages, &kept, next.experimental_languages)?;
+    let known: Vec<String> = next.languages.iter().filter(|raw| pin_language(raw).is_ok()).cloned().collect();
+    check_selection(&known, &kept, next.experimental_languages)?;
     let default = next.default_language.trim().to_string();
     next.default_language = match default.is_empty() {
         true => default,
@@ -129,6 +132,8 @@ mod tests {
         assert_eq!(check_settings(default_pick, &running).expect("in use").default_language, code);
         let unknown = Settings { default_language: "xx".into(), ..Settings::default() };
         assert!(check_settings(unknown, &fresh).is_err());
+        let ignored = Settings { languages: list(&["de", "xx"]), ..Settings::default() };
+        assert_eq!(check_settings(ignored, &fresh).expect("unknown codes are ignored").languages, list(&["de", "xx"]));
     }
 
     #[test]

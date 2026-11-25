@@ -36,7 +36,7 @@ async fn asr_boost(
         .filter(|code| !code.is_empty())
         .map(str::to_string)
         .or_else(|| settings.languages.first().cloned())
-        .unwrap_or_else(|| "de".into());
+        .unwrap_or_else(|| settings.default_pack().to_string());
     let max_tokens = query.max_tokens.unwrap_or(DEFAULT_MAX_TOKENS).clamp(1, MAX_MAX_TOKENS);
     let catalog = crate::lang::catalog_for(std::slice::from_ref(&language));
     let home = state.home.snapshot().await;
