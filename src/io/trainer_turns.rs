@@ -211,6 +211,7 @@ mod tests {
             clock_answer: false,
             quiet_ack_eligible: false,
             refine_band: None,
+            teach: None,
         }
     }
 

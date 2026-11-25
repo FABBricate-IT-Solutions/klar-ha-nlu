@@ -4,6 +4,7 @@ import logging
 from dataclasses import replace
 from typing import Any
 
+import aiohttp
 from homeassistant.components import conversation
 from homeassistant.components.conversation import (
     ChatLog,
@@ -50,6 +51,8 @@ from .const import (
     LAST_SESSION,
     SERVICE_TURNS,
     continue_after_reply,
+    engine_headers,
+    engine_url_candidates,
     is_voice_satellite,
     keeps_conversation,
     parse_session_id,
@@ -301,6 +304,8 @@ class KlarConversationEntity(ConversationEntity):
         payload = await self._parse(
             user_input.text, user_input.conversation_id, pack, user_input.device_id, getattr(user_input, "satellite_id", None)
         )
+        # D-18: parse only proposes teach; confirm on the write-gated entities route.
+        await self._confirm_teach(payload.get("teach"))
         engine_speech = str(payload.get("speech") or "")
         decision = payload.get("decision") if isinstance(payload.get("decision"), dict) else {}
         decision_type = str(decision.get("type") or "")
@@ -789,6 +794,34 @@ class KlarConversationEntity(ConversationEntity):
             if area:
                 return area
         return None
+
+    async def _confirm_teach(self, teach: Any) -> None:
+        """Persist a teach proposal via POST /api/entities (needs the write token)."""
+        if not isinstance(teach, dict):
+            return
+        entity_id = str(teach.get("entity_id") or "").strip()
+        alias = str(teach.get("alias") or "").strip()
+        if entity_id.count(".") != 1 or len(alias) < 2 or len(alias) > 40:
+            return
+        if any(ch.isascii() and ord(ch) < 32 for ch in alias):
+            return
+        headers = engine_headers(self._token())
+        session = async_get_clientsession(self.hass)
+        last_err: Exception | None = None
+        for base in engine_url_candidates(self._url):
+            try:
+                async with session.post(
+                    f"{base}/api/entities",
+                    json={"entity_id": entity_id, "aliases": [alias]},
+                    headers=headers,
+                    timeout=aiohttp.ClientTimeout(total=5),
+                ) as resp:
+                    resp.raise_for_status()
+                return
+            except (aiohttp.ClientError, TimeoutError, OSError) as err:
+                last_err = err
+        if last_err is not None:
+            _LOGGER.warning("Klar teach confirm failed: %s", last_err)
 
     async def _parse(
         self, text: str, conversation_id: str | None, language: str | None, device_id: str | None, satellite_id: str | None = None

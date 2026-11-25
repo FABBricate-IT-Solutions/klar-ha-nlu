@@ -115,6 +115,7 @@ export const PARSE_OUTCOME_FIELDS = [
   "quiet_ack_eligible",
   "clock_answer",
   "refine_band",
+  "teach",
 ] as const;
 
 export const PARSE_OUTCOME_OPTIONAL_FIELDS = [
@@ -126,6 +127,7 @@ export const PARSE_OUTCOME_OPTIONAL_FIELDS = [
   "quiet_ack_eligible",
   "clock_answer",
   "refine_band",
+  "teach",
 ] as const;
 
 export const SETTINGS_FIELDS = [

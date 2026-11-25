@@ -353,6 +353,7 @@ fn finish(
         quiet_ack_eligible: false,
         clock_answer: draft.clock_answer,
         refine_band: None,
+        teach: None,
     };
     let values: Vec<String> = outcome.evidence.iter().map(|item| item.value.clone()).collect();
     outcome.retrieval = retrieval::build(context, &outcome.decision, &values);

@@ -73,11 +73,22 @@ pub fn parse_outcome_fields() -> &'static [&'static str] {
         "quiet_ack_eligible",
         "clock_answer",
         "refine_band",
+        "teach",
     ]
 }
 
 pub fn parse_outcome_optional_fields() -> &'static [&'static str] {
-    &["selected_candidate_id", "plan", "news_topic", "retrieval", "policy_trace", "quiet_ack_eligible", "clock_answer", "refine_band"]
+    &[
+        "selected_candidate_id",
+        "plan",
+        "news_topic",
+        "retrieval",
+        "policy_trace",
+        "quiet_ack_eligible",
+        "clock_answer",
+        "refine_band",
+        "teach",
+    ]
 }
 
 pub fn settings_fields() -> &'static [&'static str] {
@@ -374,6 +385,7 @@ mod tests {
             clock_answer: false,
             quiet_ack_eligible: false,
             refine_band: Some(RefineBand::Status),
+            teach: None,
         };
         outcome.enforce_output_caps();
         let value = serde_json::to_value(&outcome).unwrap();

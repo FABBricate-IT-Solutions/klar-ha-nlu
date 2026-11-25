@@ -3,6 +3,7 @@
 use crate::home::gaps::leftover;
 use crate::home::overlay::load_overlay;
 use crate::io::auth::reads_allowed;
+use crate::io::limits::{MAX_PARSE_CHARS, MAX_PROPOSAL_CUSTOM, MAX_PROPOSAL_MATCH_CONTROLS, MAX_PROPOSAL_UTTERANCES};
 use crate::io::state::AppState;
 use crate::lang::{catalog_for, validate_custom, validate_language, LanguageOverlay};
 use crate::nlu::{parse_with_controls, safety_decide_policies};
@@ -151,6 +152,9 @@ pub async fn validate_proposal(
     if !reads_allowed(Some(peer), &headers, &state.token) {
         return Err(StatusCode::UNAUTHORIZED);
     }
+    if !proposal_within_limits(&body) {
+        return Err(StatusCode::PAYLOAD_TOO_LARGE);
+    }
     let settings = state.settings.lock().await.clone();
     let language = pin_language(body.language.as_deref(), &settings).map_err(|_| StatusCode::BAD_REQUEST)?;
     let home = state.home.snapshot().await;
@@ -185,8 +189,20 @@ pub async fn validate_proposal(
     )))
 }
 
+fn proposal_within_limits(body: &ProposalIn) -> bool {
+    body.utterances
+        .as_ref()
+        .is_none_or(|rows| rows.len() <= MAX_PROPOSAL_UTTERANCES && rows.iter().all(|text| text.chars().count() <= MAX_PARSE_CHARS))
+        && body.policies.as_ref().is_none_or(|rows| rows.len() <= MAX_POLICY_RULES)
+        && body.match_controls.as_ref().is_none_or(|rows| rows.len() <= MAX_PROPOSAL_MATCH_CONTROLS)
+        && body.custom.as_ref().is_none_or(|rows| rows.len() <= MAX_PROPOSAL_CUSTOM)
+}
+
 pub async fn validate_args(state: &AppState, args: &serde_json::Value) -> Result<serde_json::Value, String> {
     let proposal: ProposalIn = serde_json::from_value(args.clone()).map_err(|_| "invalid proposal")?;
+    if !proposal_within_limits(&proposal) {
+        return Err("proposal exceeds size limits".into());
+    }
     let settings = state.settings.lock().await.clone();
     let language =
         proposal.language.clone().or_else(|| settings.languages.first().cloned()).unwrap_or_else(|| settings.default_pack().to_string());

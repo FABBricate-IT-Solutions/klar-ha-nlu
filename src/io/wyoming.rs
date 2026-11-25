@@ -174,9 +174,11 @@ where
                 if let Some(area) = satellite {
                     session.preferred_area = Some(area.to_string());
                 }
-                let outcome = parse_with_controls(text, &home, &mut session, &custom, &settings, &policies, &speech_bank, &match_controls);
+                let mut outcome =
+                    parse_with_controls(text, &home, &mut session, &custom, &settings, &policies, &speech_bank, &match_controls);
+                // D-18: Wyoming has no write token; never persist teach here.
                 if let Some((entity_id, alias)) = session.pending_teach.take() {
-                    state.apply_teach(&entity_id, &alias).await;
+                    outcome.teach = Some(crate::types::TeachProposal { entity_id, alias });
                 }
                 let last_names = session.last.iter().map(|turn| turn.name.clone()).collect();
                 state.sessions.lock().await.put(session);

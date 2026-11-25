@@ -2,14 +2,15 @@
 
 use crate::home::overlay::Overlay;
 use crate::home::overlay_store::{check_storable, OverlayStore, OVERLAY_FILE};
-use crate::io::auth::writes_allowed;
+use crate::io::auth::{require, writes_allowed, Capability};
 use crate::io::llm::{load_stored_endpoint, LLM_FILE};
 use crate::io::restore::{check, install, Packed};
 use crate::io::state::AppState;
 use axum::body::Bytes;
-use axum::extract::{ConnectInfo, DefaultBodyLimit, Query, State};
+use axum::extract::{ConnectInfo, DefaultBodyLimit, Query, Request, State};
 use axum::http::{header, HeaderMap, HeaderValue, StatusCode};
-use axum::response::IntoResponse;
+use axum::middleware::{from_fn_with_state, Next};
+use axum::response::{IntoResponse, Response};
 use axum::routing::{get, post};
 use axum::Router;
 use flate2::read::GzDecoder;
@@ -44,11 +45,24 @@ struct BackupQuery {
     secrets: Option<String>,
 }
 
-pub fn routes() -> Router<AppState> {
+pub fn routes(state: AppState) -> Router<AppState> {
     Router::new()
         .route("/api/v2/settings/backup", get(download_backup))
         .route("/api/v2/settings/restore", post(restore_backup))
         .layer(DefaultBodyLimit::max(MAX_ARCHIVE))
+        // A-03: reject before the 8 MiB body is buffered.
+        .layer(from_fn_with_state(state, authorize_backup))
+}
+
+async fn authorize_backup(
+    State(state): State<AppState>,
+    ConnectInfo(peer): ConnectInfo<SocketAddr>,
+    headers: HeaderMap,
+    request: Request,
+    next: Next,
+) -> Result<Response, StatusCode> {
+    require(Capability::Write, Some(peer), &headers, &state.token)?;
+    Ok(next.run(request).await)
 }
 
 async fn download_backup(

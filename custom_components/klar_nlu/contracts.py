@@ -42,9 +42,21 @@ def validate_v2_payload(value: Any) -> dict[str, Any]:
             "policy_trace",
             "quiet_ack_eligible",
             "refine_band",
+            "teach",
+            "clock_answer",
         },
         "response",
-        optional={"selected_candidate_id", "plan", "news_topic", "retrieval", "policy_trace", "quiet_ack_eligible", "refine_band"},
+        optional={
+            "selected_candidate_id",
+            "plan",
+            "news_topic",
+            "retrieval",
+            "policy_trace",
+            "quiet_ack_eligible",
+            "refine_band",
+            "teach",
+            "clock_answer",
+        },
     )
     if payload.get("schema_version") != "2.0":
         raise ValueError("unsupported Klar schema_version")
@@ -92,6 +104,15 @@ def validate_v2_payload(value: Any) -> dict[str, Any]:
     band = payload.get("refine_band")
     if band is not None and band not in {"status", "command", "prompt", "reject"}:
         raise ValueError("refine_band must be a spoken reply kind")
+    teach = payload.get("teach")
+    if teach is not None:
+        proposal = _mapping(teach, "teach")
+        _keys(proposal, {"entity_id", "alias"}, "teach")
+        _string(proposal.get("entity_id"), "teach.entity_id", 128)
+        _string(proposal.get("alias"), "teach.alias", 40)
+    clock = payload.get("clock_answer")
+    if clock is not None and not isinstance(clock, bool):
+        raise ValueError("clock_answer must be boolean")
     return payload
 
 
