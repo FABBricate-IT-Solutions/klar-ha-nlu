@@ -21,7 +21,7 @@ Deterministic voice control for Home Assistant — **67 languages**, on-device, 
 
 **Breaking V2:** HTTP parse is only `POST /api/v2/parse` (`schema_version: "2.0"`). Upgrade the Rust engine and the Home Assistant integration together. `POST /api/parse` is gone. Existing `klar_nlu.json` overlays still load; `klar migrate import --from` dry-runs conflicts, orphans, and unsafe settings before a V2 save.
 
-Every compiled Assist locale is first-class. German and English are hand-written reference packs and useful examples; generated packs use the same path. See [languages](docs/en/languages.md).
+Every compiled Assist locale uses the same engine path. German and English are hand-written reference packs and useful examples; generated packs use the same path. Locales that pass their on/off minimal pairs are stable; the others are experimental and are offered only with the experimental switch. See [languages](docs/en/languages.md).
 
 ```
 “Licht im Wohnzimmer an”     →  HassTurnOn   area=wohnzimmer  domain=light

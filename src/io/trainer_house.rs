@@ -162,13 +162,14 @@ pub async fn persist_policy_bundle(
 #[cfg(test)]
 mod tests {
     use super::*;
+    use crate::home::test_dir::TestDir;
     use crate::home::{default_home, LoadedHome};
     use crate::types::{Settings, SEED_CONFIRM_LOCK};
 
-    fn state(tag: &str) -> AppState {
-        let dir = std::env::temp_dir().join(format!("klar-trainer-house-{tag}-{}", std::process::id()));
-        let _ = std::fs::create_dir_all(&dir);
-        AppState::new(
+    fn state(tag: &str) -> (TestDir, AppState) {
+        let scratch = TestDir::new(&format!("trainer-house-{tag}"));
+        let dir = scratch.path().to_path_buf();
+        let state = AppState::new(
             LoadedHome {
                 graph: default_home(),
                 settings: Settings::pinned("de"),
@@ -180,12 +181,13 @@ mod tests {
             },
             dir,
             None,
-        )
+        );
+        (scratch, state)
     }
 
     #[tokio::test]
     async fn apply_house_removes_overlay_and_lists_seeds() {
-        let state = state("house");
+        let (_scratch, state) = state("house");
         apply_house(
             &state,
             &json!({"policies":[{"id":"guest-block","enabled":true,"label":"Guest","when":{"entity_id":"light.wohnzimmer"},"effect":"block"}]}),
@@ -214,7 +216,7 @@ mod tests {
 
     #[tokio::test]
     async fn apply_speech_writes_bank() {
-        let state = state("speech");
+        let (_scratch, state) = state("speech");
         apply_speech(&state, &json!({"rule_id":"guest-block","variants":[{"language":"de","personality":"default","text":"Gastmodus."}]}))
             .await
             .unwrap();

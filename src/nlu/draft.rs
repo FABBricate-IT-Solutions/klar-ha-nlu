@@ -3,7 +3,8 @@ use crate::parse::clause_support::last_visible;
 use crate::parse::compound::CompoundSplit;
 use crate::parse::infer::{looks_like_correction, match_custom};
 use crate::parse::news::{briefing_followup, is_news_dismiss, news_turn, NewsTurn};
-use crate::parse::numbers::first_number;
+use crate::parse::normalize::tokenize;
+use crate::parse::numbers::{first_number, sets_misread_number};
 use crate::parse::respond::{speak, speak_correction, speak_need_target, speak_unknown};
 use crate::types::{first_seed_match, Intent, IntentCandidate, IntentPlan, ParseDecision, RejectReason};
 
@@ -202,6 +203,10 @@ pub(super) fn safety_decision(mut draft: Draft, context: &ParseContext<'_>) -> D
         draft.speech = prompt;
         draft.plan = None;
         return draft;
+    }
+    // "dix-sept degrés" where only ten was understood: asking again beats setting ten.
+    if !draft.safety_confirmed && draft.plan.as_ref().is_some_and(|plan| sets_misread_number(plan, &tokenize(context.text))) {
+        return reject(RejectReason::Unsupported, speak_unknown());
     }
     let operator = super::policy_route::operator_script(&draft);
     if draft.safety_confirmed {
@@ -431,7 +436,7 @@ pub(super) fn decide_execute_plan(
     overlay: (&[crate::types::PolicyRule], &crate::types::SpeechBank),
 ) -> Draft {
     let session = crate::session::Session::new();
-    let catalog = crate::lang::catalog_for(&settings.languages);
+    let catalog = crate::lang::bound_catalog(settings);
     let context = ParseContext::new("test", home, &session, &[], settings, catalog).with_policies(overlay.0, overlay.1);
     let mut draft = execute_plan(&context, plan, "test", None, None, false, false);
     draft.confidence = confidence;

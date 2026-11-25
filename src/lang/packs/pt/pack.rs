@@ -265,9 +265,9 @@ pub const PACK: LanguagePack = LanguagePack {
         news: NEWS,
     },
     household: Household {
-        teach: &["poe porta"],
+        teach: &[],
         explain: &["que desliga poe"],
-        undo: &["desliga porta"],
+        undo: &[],
         clock: &["que temporizador"],
         weather: &["que ar"],
         clock_skip: &["temporizador"],

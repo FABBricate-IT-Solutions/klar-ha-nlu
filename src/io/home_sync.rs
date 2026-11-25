@@ -86,14 +86,15 @@ pub(crate) fn apply_live_overlays(state: &AppState, mut graph: HomeGraph) -> Hom
 mod tests {
     use super::*;
     use crate::home::snapshot::HOME_SCHEMA_VERSION;
+    use crate::home::test_dir::TestDir;
     use crate::home::LoadedHome;
     use crate::types::Settings;
     use serde_json::json;
 
     #[tokio::test]
     async fn snapshot_replaces_graph_and_enables_live_sync() {
-        let dir = std::env::temp_dir().join(format!("klar-home-sync-{}", std::process::id()));
-        let _ = std::fs::create_dir_all(&dir);
+        let scratch = TestDir::new("home-sync");
+        let dir = scratch.path().to_path_buf();
         let state = AppState::new(
             LoadedHome {
                 graph: HomeGraph::default(),
@@ -128,7 +129,8 @@ mod tests {
 
     #[tokio::test]
     async fn malformed_snapshot_is_rejected() {
-        let dir = std::env::temp_dir().join(format!("klar-home-sync-bad-{}", std::process::id()));
+        let scratch = TestDir::new("home-sync-bad");
+        let dir = scratch.path().to_path_buf();
         let state = AppState::new(
             LoadedHome {
                 graph: HomeGraph::default(),
@@ -153,7 +155,8 @@ mod tests {
 
     #[tokio::test]
     async fn supervisor_snapshot_without_token_is_rejected() {
-        let dir = std::env::temp_dir().join(format!("klar-home-sync-sup-{}", std::process::id()));
+        let scratch = TestDir::new("home-sync-sup");
+        let dir = scratch.path().to_path_buf();
         let state = AppState::new(
             LoadedHome {
                 graph: HomeGraph::default(),
@@ -180,7 +183,8 @@ mod tests {
 
     #[tokio::test]
     async fn supervisor_snapshot_with_token_is_accepted() {
-        let dir = std::env::temp_dir().join(format!("klar-home-sync-sup-tok-{}", std::process::id()));
+        let scratch = TestDir::new("home-sync-sup-tok");
+        let dir = scratch.path().to_path_buf();
         let state = AppState::new(
             LoadedHome {
                 graph: HomeGraph::default(),
@@ -211,7 +215,8 @@ mod tests {
 
     #[tokio::test]
     async fn lan_snapshot_without_token_is_rejected() {
-        let dir = std::env::temp_dir().join(format!("klar-home-sync-lan-{}", std::process::id()));
+        let scratch = TestDir::new("home-sync-lan");
+        let dir = scratch.path().to_path_buf();
         let state = AppState::new(
             LoadedHome {
                 graph: HomeGraph::default(),

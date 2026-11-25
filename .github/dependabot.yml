@@ -59,9 +59,10 @@ updates:
     schedule:
       interval: weekly
       day: monday
-    # @1.85 is the MSRV toolchain pin. Dependabot reads it as an action tag.
-    ignore:
-      - dependency-name: dtolnay/rust-toolchain
+    # Actions are pinned by commit SHA with the version in a trailing comment;
+    # Dependabot raises both. dtolnay/rust-toolchain is pinned to a commit on its
+    # master branch and the MSRV sits in its `toolchain: "1.85"` input, so a new
+    # SHA cannot move the toolchain (tests/test_ci_workflows.py holds that).
     commit-message:
       prefix: ci
 
@@ -71,8 +72,6 @@ updates:
     schedule:
       interval: weekly
       day: monday
-    ignore:
-      - dependency-name: dtolnay/rust-toolchain
     commit-message:
       prefix: ci
 

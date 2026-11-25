@@ -141,3 +141,7 @@ LANGUAGE_NAMES = {
     "ka": 'Georgian',
     "mn": 'Mongolian'
 }
+
+# Offered for a new selection only with the engine setting `experimental_languages`.
+# A locale that is configured already keeps working.
+EXPERIMENTAL_LANGUAGES = ('fr', 'nl', 'es', 'it', 'pt', 'ca', 'ro', 'da', 'nb', 'sv', 'fi', 'de-CH', 'de-AT', 'pt-BR', 'af', 'cs', 'sk', 'pl', 'hu', 'hr', 'sl', 'bg', 'el', 'sr', 'sr-Latn', 'uk', 'zh-CN', 'zh-TW', 'zh-HK', 'ar', 'he', 'fa', 'ur', 'tr', 'th', 'ko', 'ja', 'cy', 'et', 'eu', 'ga', 'gl', 'is', 'lb', 'kw', 'lt', 'lv', 'id', 'ms', 'sw', 'vi', 'hi', 'bn', 'gu', 'kn', 'ml', 'mr', 'ta', 'te', 'pa', 'ne', 'hy', 'ka', 'mn')

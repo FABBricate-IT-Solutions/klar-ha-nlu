@@ -3,7 +3,7 @@
     "step": {
       "user": {
         "title": "Klar NLU",
-        "description": "此整合同 Assist 對話。語音由 Klar NLU 應用、內建程序或 Docker 解析。喺 Home Assistant OS 請安裝應用並選擇使用 Klar NLU 應用；否則啟動內建引擎。唔好兩個一齊開。",
+        "description": "此整合同 Assist 對話。語音由 Klar NLU 應用、內建程序或 Docker 解析。喺 Home Assistant OS 請安裝應用並選擇使用 Klar NLU 應用；否則啟動內建引擎。唔好兩個一齊開。 {apps}",
         "data": {
           "mode": "引擎",
           "channel": "發行通道",

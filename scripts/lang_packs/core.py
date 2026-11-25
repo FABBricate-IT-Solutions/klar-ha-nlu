@@ -323,6 +323,7 @@ def pack(
     correction=None,
     need_which=None,
     spoken=None,
+    strip_pairs=None,
 ):
     words = w(
         on=on,
@@ -392,4 +393,5 @@ def pack(
         script=script,
         extra_verbs=extra_verbs or [],
         personality=personality if personality is not None else empty_personality(),
+        strip_pairs=strip_pairs or [],
     )

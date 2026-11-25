@@ -3,13 +3,6 @@ use klar_nlu::home::overlay::load_overlay;
 use klar_nlu::migrate::{apply, inspect};
 use std::path::PathBuf;
 
-fn temp_dir(tag: &str) -> PathBuf {
-    let dir = std::env::temp_dir().join(format!("klar-migrate-{tag}-{}", std::process::id()));
-    let _ = std::fs::remove_dir_all(&dir);
-    std::fs::create_dir_all(&dir).unwrap();
-    dir
-}
-
 fn write_v1(dir: &std::path::Path, body: &str) -> PathBuf {
     let path = dir.join("klar_nlu.json");
     std::fs::write(&path, body).unwrap();
@@ -18,7 +11,8 @@ fn write_v1(dir: &std::path::Path, body: &str) -> PathBuf {
 
 #[test]
 fn dry_run_reports_conflicts_orphans_and_security_without_writing_v2() {
-    let dir = temp_dir("dry");
+    let scratch = tempfile::tempdir().unwrap();
+    let dir = scratch.path().to_path_buf();
     let path = write_v1(
         &dir,
         r#"{
@@ -46,12 +40,12 @@ fn dry_run_reports_conflicts_orphans_and_security_without_writing_v2() {
     assert_eq!(report.dropped_custom, 1);
     let raw = std::fs::read_to_string(&path).unwrap();
     assert!(raw.contains("legacy_flag"), "dry-run must not rewrite the source");
-    let _ = std::fs::remove_dir_all(&dir);
 }
 
 #[test]
 fn apply_writes_v2_only_and_forces_confirm() {
-    let dir = temp_dir("apply");
+    let scratch = tempfile::tempdir().unwrap();
+    let dir = scratch.path().to_path_buf();
     let path = write_v1(
         &dir,
         r#"{
@@ -75,5 +69,4 @@ fn apply_writes_v2_only_and_forces_confirm() {
     assert!(overlay.settings.as_ref().is_some_and(|settings| settings.confirm_risky_actions));
     let raw = std::fs::read_to_string(dir.join("klar_nlu.json")).unwrap();
     assert!(!raw.contains("legacy_flag"));
-    let _ = std::fs::remove_dir_all(&dir);
 }

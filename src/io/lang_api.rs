@@ -6,13 +6,13 @@ use crate::io::lang_explain::{explain_outcome, ExplainOut};
 use crate::io::limits::MAX_PARSE_CHARS;
 use crate::io::state::{save_failed, AppState};
 use crate::lang::{
-    bind_preview_user, install_user_overlay, pin_language, push_revision, select_revision, validate_custom, validate_language,
-    LanguageOverlay, LanguageRevision,
+    bind_preview_user, in_use, install_user_overlay, offered, pin_language, push_revision, select_revision, validate_custom,
+    validate_language, LanguageOverlay, LanguageRevision, Tier,
 };
 use crate::nlu::parse;
 use crate::session::Session;
 use crate::types::{CustomSentence, ParseOutcome, Settings};
-use axum::extract::{ConnectInfo, State};
+use axum::extract::{ConnectInfo, Query, State};
 use axum::http::{HeaderMap, StatusCode};
 use axum::routing::{get, post};
 use axum::{Json, Router};
@@ -33,18 +33,34 @@ async fn list_intents() -> Json<Vec<&'static str>> {
     Json(crate::types::KNOWN_INTENTS.to_vec())
 }
 
-async fn list_languages() -> Json<Vec<LanguageOut>> {
-    Json(
-        crate::lang::languages()
-            .iter()
-            .map(|meta| LanguageOut {
-                code: meta.code.to_string(),
-                native_name: meta.native_name.to_string(),
-                script: meta.script.to_string(),
-                variants: meta.variants.iter().map(|item| (*item).to_string()).collect(),
-            })
-            .collect(),
-    )
+#[derive(Deserialize, Default)]
+struct LanguagesQuery {
+    /// List every compiled locale, also the experimental ones that are not offered.
+    #[serde(default)]
+    all: bool,
+}
+
+async fn list_languages(State(state): State<AppState>, Query(query): Query<LanguagesQuery>) -> Json<Vec<LanguageOut>> {
+    let settings = state.settings.lock().await.clone();
+    Json(language_rows(&settings, query.all))
+}
+
+/// The locales that may be picked now, each with its tier: stable ones, experimental ones
+/// when the switch is on, and whatever is configured already. `all` lists the rest too.
+fn language_rows(settings: &Settings, all: bool) -> Vec<LanguageOut> {
+    let in_use = in_use(settings);
+    crate::lang::languages()
+        .iter()
+        .map(|meta| LanguageOut {
+            code: meta.code.to_string(),
+            native_name: meta.native_name.to_string(),
+            script: meta.script.to_string(),
+            variants: meta.variants.iter().map(|item| (*item).to_string()).collect(),
+            tier: meta.tier,
+            offered: offered(meta.code, &in_use, settings.experimental_languages),
+        })
+        .filter(|row| all || row.offered)
+        .collect()
 }
 
 #[derive(Serialize)]
@@ -53,6 +69,9 @@ struct LanguageOut {
     native_name: String,
     script: String,
     variants: Vec<String>,
+    tier: Tier,
+    /// False only in the `all` listing: an experimental locale the switch keeps out of a new selection.
+    offered: bool,
 }
 
 #[derive(Serialize)]

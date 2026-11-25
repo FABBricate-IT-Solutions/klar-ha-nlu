@@ -3,7 +3,7 @@
     "step": {
       "user": {
         "title": "Klar NLU",
-        "description": "Tato integrace mluví s Assist. Samostatný engine zpracovává řeč: aplikace Klar NLU, tento přibalený proces nebo Docker. V Home Assistant OS nainstalujte i aplikaci a zvolte Použít aplikaci Klar NLU. Bez aplikace spusťte přibalený engine. Nespouštějte obojí.",
+        "description": "Tato integrace mluví s Assist. Samostatný engine zpracovává řeč: aplikace Klar NLU, tento přibalený proces nebo Docker. V Home Assistant OS nainstalujte i aplikaci a zvolte Použít aplikaci Klar NLU. Bez aplikace spusťte přibalený engine. Nespouštějte obojí. {apps}",
         "data": {
           "mode": "Engine",
           "channel": "Kanál vydání",

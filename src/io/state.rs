@@ -82,7 +82,7 @@ impl AppState {
     }
 
     pub async fn catalog_for_settings(&self) -> &'static crate::lang::Catalog {
-        crate::lang::catalog_for(&self.settings.lock().await.languages)
+        crate::lang::bound_catalog(&*self.settings.lock().await)
     }
 
     pub async fn apply_teach(&self, entity_id: &str, alias: &str) {

@@ -1,4 +1,5 @@
 use super::*;
+use crate::home::test_dir::TestDir;
 use crate::home::{default_home, LoadedHome};
 use crate::lang::{installed_user_overlay, reset_runtime_packs, SetDelta};
 use crate::types::CustomSentence;
@@ -16,12 +17,11 @@ async fn lock_overlay() -> MutexGuard<'static, ()> {
     overlay_lock().lock().await
 }
 
-fn state(tag: &str) -> AppState {
+fn state(tag: &str) -> (TestDir, AppState) {
     reset_runtime_packs();
-    let dir = std::env::temp_dir().join(format!("klar-m5-{tag}-{}", std::process::id()));
-    let _ = std::fs::create_dir_all(&dir);
-    let _ = std::fs::remove_file(dir.join("klar_nlu.json"));
-    AppState::new(
+    let scratch = TestDir::new(&format!("m5-{tag}"));
+    let dir = scratch.path().to_path_buf();
+    let state = AppState::new(
         LoadedHome {
             graph: default_home(),
             settings: Settings::default(),
@@ -33,7 +33,8 @@ fn state(tag: &str) -> AppState {
         },
         dir,
         None,
-    )
+    );
+    (scratch, state)
 }
 
 fn peer() -> ConnectInfo<SocketAddr> {
@@ -47,7 +48,7 @@ fn rule(phrase: &str, intent: &str) -> CustomSentence {
 #[tokio::test]
 async fn omitted_language_keeps_set_deltas() {
     let _guard = lock_overlay().await;
-    let state = state("keep");
+    let (_scratch, state) = state("keep");
     let language =
         LanguageOverlay { sets: [("nouns.light_nouns".into(), SetDelta { add: vec!["kugelchen".into()], remove: vec![] })].into() };
     let _ = set_overlay(
@@ -86,7 +87,7 @@ async fn omitted_language_keeps_set_deltas() {
 #[tokio::test]
 async fn default_rollback_restores_latest_history() {
     let _guard = lock_overlay().await;
-    let state = state("roll");
+    let (_scratch, state) = state("roll");
     let _ = set_overlay(
         State(state.clone()),
         peer(),
@@ -126,7 +127,7 @@ async fn default_rollback_restores_latest_history() {
 #[tokio::test]
 async fn preview_does_not_install_live_overlay() {
     let _guard = lock_overlay().await;
-    let state = state("prev");
+    let (_scratch, state) = state("prev");
     let proposed =
         LanguageOverlay { sets: [("nouns.light_nouns".into(), SetDelta { add: vec!["vorschauwort".into()], remove: vec![] })].into() };
     let outcome = preview(
@@ -193,4 +194,24 @@ fn explain_speech_speaks_path_ids() {
     let de = explain_outcome("de", &outcome);
     assert!(de.speech.contains("Haus `prefer-ceiling`"));
     assert!(de.speech.contains("ausgeführt"));
+}
+
+#[test]
+fn language_list_offers_stable_locales_and_what_is_configured() {
+    let codes = |settings: &Settings, all: bool| language_rows(settings, all).into_iter().map(|row| row.code).collect::<Vec<_>>();
+    let fresh = Settings::default();
+    let offered_now = language_rows(&fresh, false);
+    assert!(offered_now.iter().all(|row| row.tier == Tier::Stable && row.offered), "only stable locales without the switch");
+    assert!(codes(&fresh, false).contains(&"de".to_string()) && codes(&fresh, false).contains(&"en".to_string()));
+    let hidden = language_rows(&fresh, true).into_iter().find(|row| row.tier == Tier::Experimental).expect("an experimental locale");
+    assert!(!hidden.offered && !codes(&fresh, false).contains(&hidden.code));
+
+    let switched = Settings { experimental_languages: true, ..Settings::default() };
+    assert_eq!(codes(&switched, false).len(), crate::lang::languages().len());
+
+    // A house that runs an experimental locale still sees it, marked as experimental.
+    let running = Settings { languages: vec![hidden.code.clone()], ..Settings::default() };
+    let row = language_rows(&running, false).into_iter().find(|row| row.code == hidden.code).expect("configured locale stays listed");
+    assert!(row.offered && row.tier == Tier::Experimental);
+    assert_eq!(codes(&fresh, true).len(), crate::lang::languages().len());
 }

@@ -17,6 +17,9 @@ on:
         type: boolean
         default: false
 
+# Nothing by default: every job states what it needs.
+permissions: {}
+
 env:
   CARGO_TERM_COLOR: always
   GHCR: ghcr.io/fabbricate-it-solutions/klar-nlu
@@ -28,8 +31,9 @@ jobs:
     # Staging.yml calls this workflow with release_tag after it creates the tag.
     if: ${{ !(github.event_name == 'push' && startsWith(github.ref, 'refs/tags/') && inputs.release_tag == '' && (contains(github.ref_name, '-staging.') || contains(github.ref_name, '-rc.'))) }}
     runs-on: ubuntu-26.04
+    # Pushes the per-arch image to GHCR. The GitHub Release is created by the job `release`.
     permissions:
-      contents: write
+      contents: read
       packages: write
     strategy:
       fail-fast: false
@@ -45,25 +49,25 @@ jobs:
             ha_arch: aarch64
             platform: linux/arm64
     steps:
-      - uses: actions/checkout@v7
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           ref: ${{ inputs.release_tag || github.ref }}
-      - uses: dtolnay/rust-toolchain@1.85
+          persist-credentials: false
+      - uses: dtolnay/rust-toolchain@df2a88e9fe4098bad09cb42c3dec7187f15861fc # master
         with:
+          toolchain: "1.85"
           targets: ${{ matrix.target }}
-      - uses: taiki-e/setup-cross-toolchain-action@v1
+      - uses: taiki-e/setup-cross-toolchain-action@0375eb1d01bea430aa3202965839a7092960a23b # v1.43.1
         with:
           target: ${{ matrix.target }}
-      - uses: Swatinem/rust-cache@v2
-        with:
-          key: ${{ matrix.target }}
+      # No build cache here: these binaries are published, so nothing restored from an
+      # earlier run goes into them.
       - name: Build
         run: cargo build --release --locked --target ${{ matrix.target }}
-      - uses: actions/setup-node@v7
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
         with:
           node-version: 24
-          cache: npm
-          cache-dependency-path: web/package-lock.json
+          package-manager-cache: false
       - name: Build UI
         working-directory: web
         run: npm ci && npm run build
@@ -76,7 +80,7 @@ jobs:
           rm -rf ui
           cp -R web/dist ui
           tar -czf "${dest}.tar.gz" klar LICENSE THIRD_PARTY ui
-      - uses: actions/upload-artifact@v7
+      - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
         with:
           name: klar-${{ matrix.name }}
           path: klar-${{ matrix.name }}.tar.gz
@@ -105,9 +109,9 @@ jobs:
           if [[ "${{ inputs.prerelease }}" == "true" || "$RELEASE_TAG" == *-staging.* || "$RELEASE_TAG" == *-rc.* || "$GITHUB_REF_NAME" == *-staging.* || "$GITHUB_REF_NAME" == *-rc.* ]]; then
             echo "channel=staging" >> "$GITHUB_OUTPUT"
           fi
-      - uses: docker/setup-buildx-action@v4
+      - uses: docker/setup-buildx-action@f87e5991a6d7451dcb8d9637bfbc97413f497069 # v4.4.1
         if: github.event_name != 'pull_request'
-      - uses: docker/login-action@v4
+      - uses: docker/login-action@8aa5831fb8d48d8f76594c7ddde61ae58019f550 # v4.8.0
         if: github.event_name != 'pull_request'
         with:
           registry: ghcr.io
@@ -150,11 +154,12 @@ jobs:
     permissions:
       packages: write
     steps:
-      - uses: actions/checkout@v7
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           ref: ${{ inputs.release_tag || github.ref }}
-      - uses: docker/setup-buildx-action@v4
-      - uses: docker/login-action@v4
+          persist-credentials: false
+      - uses: docker/setup-buildx-action@f87e5991a6d7451dcb8d9637bfbc97413f497069 # v4.4.1
+      - uses: docker/login-action@8aa5831fb8d48d8f76594c7ddde61ae58019f550 # v4.8.0
         with:
           registry: ghcr.io
           username: ${{ github.actor }}
@@ -205,12 +210,12 @@ jobs:
       packages: read
       security-events: write
     steps:
-      - uses: docker/login-action@v4
+      - uses: docker/login-action@8aa5831fb8d48d8f76594c7ddde61ae58019f550 # v4.8.0
         with:
           registry: ghcr.io
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
-      - uses: aquasecurity/trivy-action@v0.36.0
+      - uses: aquasecurity/trivy-action@ed142fd0673e97e23eac54620cfb913e5ce36c25 # v0.36.0
         with:
           version: v0.74.0
           image-ref: ${{ needs.docker-manifest.outputs.image }}
@@ -223,7 +228,7 @@ jobs:
         env:
           TRIVY_USERNAME: ${{ github.actor }}
           TRIVY_PASSWORD: ${{ secrets.GITHUB_TOKEN }}
-      - uses: github/codeql-action/upload-sarif@v4
+      - uses: github/codeql-action/upload-sarif@915412ff23e8b7659517e607487dbeae018f2934 # v4.39.5
         if: always()
         with:
           sarif_file: trivy-results.sarif
@@ -236,15 +241,16 @@ jobs:
     permissions:
       contents: write
     steps:
-      - uses: actions/checkout@v7
-        with:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        # "Release notes" fetches origin/main with this checkout's credentials.
+        with: # zizmor: ignore[artipacked]
           fetch-depth: 0
           ref: ${{ inputs.release_tag || github.ref }}
-      - uses: actions/download-artifact@v8
+      - uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333 # v8.0.2
         with:
           path: dist
           merge-multiple: true
-      - uses: anchore/sbom-action@v0
+      - uses: anchore/sbom-action@e22c389904149dbc22b58101806040fa8d37a610 # v0.24.0
         with:
           path: .
           format: cyclonedx-json
@@ -291,7 +297,7 @@ jobs:
           else
             echo "title=${title}" >> "$GITHUB_OUTPUT"
           fi
-      - uses: softprops/action-gh-release@v3
+      - uses: softprops/action-gh-release@8a0cd651e5b2365bd640854a3fa5dfc70e4875f3 # v3.0.4
         with:
           tag_name: ${{ steps.rel.outputs.tag }}
           name: ${{ steps.rel.outputs.title }}

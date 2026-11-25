@@ -70,13 +70,14 @@ fn parse_add(args: &Value) -> Result<Vec<CustomSentence>, String> {
 #[cfg(test)]
 mod tests {
     use super::*;
+    use crate::home::test_dir::TestDir;
     use crate::home::{default_home, LoadedHome};
     use crate::types::Settings;
 
-    fn state(tag: &str) -> AppState {
-        let dir = std::env::temp_dir().join(format!("klar-trainer-phrases-{tag}-{}", std::process::id()));
-        let _ = std::fs::create_dir_all(&dir);
-        AppState::new(
+    fn state(tag: &str) -> (TestDir, AppState) {
+        let scratch = TestDir::new(&format!("trainer-phrases-{tag}"));
+        let dir = scratch.path().to_path_buf();
+        let state = AppState::new(
             LoadedHome {
                 graph: default_home(),
                 settings: Settings::pinned("de"),
@@ -88,12 +89,13 @@ mod tests {
             },
             dir,
             None,
-        )
+        );
+        (scratch, state)
     }
 
     #[tokio::test]
     async fn apply_phrases_adds_and_removes() {
-        let state = state("add");
+        let (_scratch, state) = state("add");
         apply_phrases(
             &state,
             &json!({"add":[{"phrase":"filmabend starten","intent":"HassTurnOn","slots":{"entity_id":"scene.filmabend"}}]}),

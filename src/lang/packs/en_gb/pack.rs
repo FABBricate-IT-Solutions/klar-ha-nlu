@@ -313,9 +313,9 @@ pub const PACK: LanguagePack = LanguagePack {
         news: NEWS,
     },
     household: Household {
-        teach: &["call it", "call this", "name this", "set door"],
+        teach: &["call it", "call this", "name this"],
         explain: &["what did you hear", "what did you understand", "what extinguish set", "why did you stop"],
-        undo: &["extinguish door", "take that back", "undo", "undo that"],
+        undo: &["take that back", "undo", "undo that"],
         clock: &["what time", "what timer", "whats the time"],
         weather: &["weather forecast", "what is the weather", "what temperature", "whats the weather"],
         clock_skip: &["alarm", "timer"],

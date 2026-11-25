@@ -99,7 +99,9 @@ Der Token kommt aus `--token`, `KLAR_TOKEN` oder `--token-file`.
 |------|--------|
 | `personality` | `default`, `butler`, `locker`, `fuersorglich`, `party`, `grantig`, `sarkastisch`, `pirat`, `hippie`, `gollum` |
 | `mode` | `full` (Geräte auflösen) oder `context_only` (nur Räume) |
-| `languages` | Paket-Codes. Unbekannte Codes werden ignoriert. Leer heißt: jede kompilierte Locale ist aktiv; der Catalog bindet trotzdem pro Request. Nicht alle Lexika mergen — Token-Kollisionen zerlegen Assist. |
+| `languages` | Paket-Codes. Unbekannte Codes werden ignoriert. Leer heißt: jede kompilierte Locale darf gepinnt werden; ein Request ohne Sprache bindet dann `default_language`. Nicht alle Lexika mergen — Token-Kollisionen zerlegen Assist. Eine experimentelle Locale hinzuzufügen, während `experimental_languages` aus ist, wird mit `422` abgelehnt; eine schon konfigurierte darf bleiben. |
+| `default_language` | Das Pack, das ein Request bindet, wenn `languages` leer ist und der Request keine Sprache nennt. Leer heißt Englisch. Ein Code, den kein Pack beantwortet, wird mit `422` abgelehnt. |
+| `experimental_languages` | `true` bietet experimentelle Locales zur Neuauswahl an (siehe [Sprachen](languages.md#stufen)). Standardmäßig aus. |
 | `support_bundle` | `true` speichert Parse-Verkehr unter `/data/support_bundle.jsonl` (max. 2000 Einträge). Überlebt Neustarts. Erststart auch über `KLAR_SUPPORT_BUNDLE=1`. |
 | `support_bundle_raw_text` | `true` erlaubt Rohtext und Sprachausgabe im Download. Standard aus. Conversation-IDs werden immer gehasht, Entity- und Area-Namen immer pseudonymisiert. |
 | `confirm_risky_actions` | `true` verlangt vor riskanten Aktionen wie Sperren/Entsperren und breiten sicherheitsrelevanten Steuerungen eine Bestätigung. |
@@ -232,7 +234,7 @@ Live-Home-Graph von der Home-Assistant-Integration. Der vollständige Request ha
 
 ### `GET /api/v2/languages`
 
-Metadaten der kompilierten Packs (`code`, `native_name`, `script`, `variants`). Das ist die erstklassige Assist-Locale-Liste in der Binary.
+Die Locales, die jetzt gewählt werden können, mit `code`, `native_name`, `script`, `variants`, `tier` (`stable` oder `experimental`) und `offered`. Stabile Locales sind immer gelistet; experimentelle, wenn `experimental_languages` an ist oder wenn sie schon konfiguriert sind. `?all=true` listet jede kompilierte Locale; `offered` ist `false` bei denen, die der Schalter von einer Neuauswahl ausnimmt.
 
 ### `GET` / `POST /api/lang/overlay`
 

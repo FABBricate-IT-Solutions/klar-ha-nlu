@@ -2,7 +2,7 @@
 
 [Deutsch](languages.md) · [English](en/languages.md)
 
-Jede kompilierte Assist-Locale ist erstklassig. Deutsch und Englisch sind handgeschriebene Referenzpacks; generierte Packs nutzen denselben `LanguagePack`-Weg und dieselbe Freigabe-UX. `GET /api/v2/languages` listet den kompilierten Satz.
+Jede kompilierte Assist-Locale nutzt denselben `LanguagePack`-Weg. Deutsch und Englisch sind handgeschriebene Referenzpacks; die übrigen Packs sind generiert. Eine Locale ist **stabil** oder **experimentell** (siehe [Stufen](#stufen)); `GET /api/v2/languages` listet die Locales, die gewählt werden können, jeweils mit ihrer Stufe.
 
 ## Unterstützte Locales
 
@@ -65,9 +65,24 @@ klar lang import-hassil --from pfad/zu/hassil --into /data --language de --dry-r
 
 Ein generiertes Pack darf in die Binary, wenn diese Felder stehen und die Representative-Suite durchläuft.
 
+## Stufen
+
+Eine Stufe sagt, wie weit eine Locale getestet ist. Sie entfernt kein Pack.
+
+- **stabil**: Die Locale besteht ihre An/Aus-Minimalpaare. Jeder „An“-Satz schaltet ein, jeder „Aus“-Satz schaltet aus, und weder eine Frage noch ein verneinter Befehl schaltet etwas. Eine regionale Variante muss auch die Paare ihrer Basissprache richtig beantworten.
+- **experimentell**: alles andere. Heute ist das jedes generierte Pack: Keines kennt bisher Verneinungswörter, also wird „schalte das Licht nicht ein“ dort als Befehl ausgeführt.
+
+`tests/language_tiers.rs` entscheidet. Die Paare stammen aus dem Generator-Lexikon der jeweiligen Locale (`tests/datasets/minimal_pairs/pairs.yaml`, geschrieben von `scripts/lang_packs/pairs.py`), und der Test schlägt fehl, wenn `STABLE` in `scripts/lang_packs/tiers.py` etwas anderes sagt als die Paare. Um eine Locale stabil zu machen, bekommt ihr Pack, was ihm fehlt (zum Beispiel die Verneinungswörter in `scripts/lang_packs/mood.py`), bis der Test verlangt, sie in `STABLE` einzutragen.
+
+Die Engine-Einstellung `experimental_languages` (standardmäßig aus) ist der Schalter:
+
+- Eine schon konfigurierte Locale (`languages`, `default_language`) funktioniert weiter und bleibt gelistet, egal in welcher Stufe. Ein Update ändert nie die Sprache eines Haushalts.
+- Ein Request, der eine Sprache pinnt (`language` bei `POST /api/v2/parse`, die Sprache der Assist-Pipeline), wird in dieser Sprache beantwortet, egal in welcher Stufe.
+- Ist der Schalter aus, wird eine experimentelle Locale nicht zur Neuauswahl gelistet, und ein Speichern der Einstellungen, das eine hinzufügt, wird abgelehnt (`422`).
+
 ## Catalog-Modell
 
-`Catalog` merge't die **gepinnten** Packs pro Request. Assist und `POST /api/v2/parse` sollen `language` senden. Leeres `Settings.languages` heißt: jede kompilierte Locale ist für Assist aktiv — nicht „de+en mergen“. Alle Lexika in einen Catalog zu mergen kollidiert Tokens (z. B. deutsches `an`) und wird abgelehnt.
+`Catalog` merge't die **gepinnten** Packs pro Request. Assist und `POST /api/v2/parse` sollen `language` senden. Leeres `Settings.languages` heißt: jede kompilierte Locale darf gepinnt werden — nicht „de+en mergen“. Ein Request ohne Sprache bindet dann das Standardpack (`Settings.default_language`, Englisch, wenn nichts gesetzt ist), nie einen leeren Catalog. Alle Lexika in einen Catalog zu mergen kollidiert Tokens (z. B. deutsches `an`) und wird abgelehnt.
 
 Eine kurze explizite Liste wie `["de", "en"]` merge't diese Packs weiter für ungepinnten Parse. Das ist eine Nutzerwahl, keine Support-Kaste.
 
@@ -113,6 +128,7 @@ Operator-Chrome (die offizielle Klar-App) ist **nicht** der Assist-Pin und **nic
 - `tests/parity_langs.rs` — dieselbe Wohn+Familie+m0+m2-Rubrik je kompilierter Locale
 - `tests/datasets/assist/{code}/representative.yaml` — Representative-Gate
 - `tests/language.rs` — Pin, Isolation, Overlays, Household-Cues
+- `tests/language_tiers.rs` — Minimalpaare je Locale entscheiden die Stufe; leeres `languages` bindet das Standardpack
 - DE/EN-Voice-Suiten (`wohnung_mittel`, `wohnung_en`, `familienhaus_de`, `family_home_en`) sind die **Oracle**-Graphen; andere Locales legen native Sätze auf dieselben Graphen
 
 ## Datensatz-Generator (jede Locale, lokal)

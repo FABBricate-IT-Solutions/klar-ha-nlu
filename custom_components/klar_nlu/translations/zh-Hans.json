@@ -3,7 +3,7 @@
     "step": {
       "user": {
         "title": "Klar NLU",
-        "description": "此集成与 Assist 对话。语音由 Klar NLU 应用、捆绑进程或 Docker 解析。在 Home Assistant OS 上请安装应用并选择使用 Klar NLU 应用；否则启动捆绑引擎。不要同时运行。发布通道可稍后更改。",
+        "description": "此集成与 Assist 对话。语音由 Klar NLU 应用、捆绑进程或 Docker 解析。在 Home Assistant OS 上请安装应用并选择使用 Klar NLU 应用；否则启动捆绑引擎。不要同时运行。发布通道可稍后更改。 {apps}",
         "data": {
           "mode": "引擎",
           "channel": "发布通道",

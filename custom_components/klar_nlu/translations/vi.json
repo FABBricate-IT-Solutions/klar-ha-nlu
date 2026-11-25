@@ -3,7 +3,7 @@
     "step": {
       "user": {
         "title": "Klar NLU",
-        "description": "Tích hợp này nói chuyện với Assist. Một động cơ riêng phân tích giọng nói: ứng dụng Klar NLU, tiến trình kèm theo hoặc Docker. Trên Home Assistant OS hãy cài ứng dụng và chọn Dùng ứng dụng Klar NLU. Không có ứng dụng thì khởi động động cơ kèm theo. Đừng chạy cả hai.",
+        "description": "Tích hợp này nói chuyện với Assist. Một động cơ riêng phân tích giọng nói: ứng dụng Klar NLU, tiến trình kèm theo hoặc Docker. Trên Home Assistant OS hãy cài ứng dụng và chọn Dùng ứng dụng Klar NLU. Không có ứng dụng thì khởi động động cơ kèm theo. Đừng chạy cả hai. {apps}",
         "data": {
           "mode": "Động cơ",
           "channel": "Kênh phát hành",

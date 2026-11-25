@@ -4,7 +4,7 @@ use crate::home::gaps::leftover;
 use crate::io::limits::MAX_PARSE_CHARS;
 use crate::io::state::AppState;
 use crate::io::trainer_args::arg_str;
-use crate::lang::catalog_for;
+use crate::lang::bound_catalog;
 use crate::nlu::parse_with_controls;
 use serde_json::{json, Value};
 
@@ -143,7 +143,7 @@ pub async fn list_floors(state: &AppState) -> Result<Value, String> {
 pub async fn count_house(state: &AppState) -> Result<Value, String> {
     let settings = state.settings.lock().await.clone();
     let home = state.home.snapshot().await;
-    let leftover = leftover(&home, catalog_for(&settings.languages)).len();
+    let leftover = leftover(&home, bound_catalog(&settings)).len();
     Ok(with_view(
         "counts",
         json!({
@@ -164,6 +164,7 @@ pub async fn list_phrases(state: &AppState) -> Result<Value, String> {
 #[cfg(test)]
 mod tests {
     use super::*;
+    use crate::home::test_dir::TestDir;
 
     #[test]
     fn explain_klar_sets_view() {
@@ -176,8 +177,8 @@ mod tests {
 
     #[tokio::test]
     async fn try_sentence_returns_path_view() {
-        let dir = std::env::temp_dir().join(format!("klar-lotse-read-{}", std::process::id()));
-        let _ = std::fs::create_dir_all(&dir);
+        let scratch = TestDir::new("lotse-read");
+        let dir = scratch.path().to_path_buf();
         let state = crate::io::state::AppState::new(
             crate::home::LoadedHome {
                 graph: crate::home::default_home(),

@@ -260,9 +260,9 @@ pub const PACK: LanguagePack = LanguagePack {
         news: NEWS,
     },
     household: Household {
-        teach: &["das heisst", "nenn das", "nenne das", "stell tuer"],
+        teach: &["das heisst", "nenn das", "nenne das"],
         explain: &["warum hast du gestoppt", "was hast du gehoert", "was hesch ghoert", "was loesch stell"],
-        undo: &["loesch tuer", "nimm das zurueck", "rueckgaengig"],
+        undo: &["nimm das zurueck", "rueckgaengig"],
         clock: &["d uhrzit", "was timer", "wie spaet", "wie viel uhr"],
         weather: &["was temperatur", "wetter", "wetterbericht", "wie isch s wetter"],
         clock_skip: &["timer", "wecker"],

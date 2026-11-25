@@ -1,5 +1,6 @@
 use super::*;
 use crate::home::default_home;
+use crate::home::test_dir::TestDir;
 
 #[test]
 fn german_rooms_get_english_aliases() {
@@ -96,7 +97,8 @@ fn keep_domain_includes_weather() {
 
 #[test]
 fn loads_floors_from_ha_storage() {
-    let dir = std::env::temp_dir().join(format!("klar-floor-reg-{}", std::process::id()));
+    let scratch = TestDir::new("floor-reg");
+    let dir = scratch.path().to_path_buf();
     let storage = dir.join(".storage");
     let _ = std::fs::create_dir_all(&storage);
     std::fs::write(
@@ -116,7 +118,8 @@ fn loads_floors_from_ha_storage() {
 
 #[test]
 fn ha_2026_11_storage_composes_the_device_name_and_keeps_the_old_one() {
-    let dir = std::env::temp_dir().join(format!("klar-ha-202611-{}", std::process::id()));
+    let scratch = TestDir::new("ha-202611");
+    let dir = scratch.path().to_path_buf();
     let storage = dir.join(".storage");
     let _ = std::fs::create_dir_all(&storage);
     std::fs::write(
@@ -136,5 +139,4 @@ fn ha_2026_11_storage_composes_the_device_name_and_keeps_the_old_one() {
     assert!(entity.aliases.iter().any(|alias| alias == "coffee machine"), "{:?}", entity.aliases);
     assert!(entity.aliases.iter().any(|alias| alias == "Coffee machine"), "{:?}", entity.aliases);
     assert!(!entity.aliases.iter().any(|alias| alias == "stale"), "{:?}", entity.aliases);
-    let _ = std::fs::remove_dir_all(&dir);
 }

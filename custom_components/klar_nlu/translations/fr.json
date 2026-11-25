@@ -3,7 +3,7 @@
     "step": {
       "user": {
         "title": "Klar NLU",
-        "description": "Cette intégration parle à Assist. Un moteur séparé analyse la parole : l’app Klar NLU, ce processus intégré ou Docker. Sous Home Assistant OS, installez aussi l’app puis choisissez Utiliser l’app Klar NLU. Sans app, démarrez le moteur intégré. Ne lancez pas les deux. Le canal de publication se change plus tard.",
+        "description": "Cette intégration parle à Assist. Un moteur séparé analyse la parole : l’app Klar NLU, ce processus intégré ou Docker. Sous Home Assistant OS, installez aussi l’app puis choisissez Utiliser l’app Klar NLU. Sans app, démarrez le moteur intégré. Ne lancez pas les deux. Le canal de publication se change plus tard. {apps}",
         "data": {
           "mode": "Moteur",
           "channel": "Canal de publication",

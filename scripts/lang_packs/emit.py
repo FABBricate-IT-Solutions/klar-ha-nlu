@@ -7,6 +7,7 @@ from pathlib import Path
 from lang_packs.emit_news import news_rs
 from lang_packs.emit_pack import pack_rs, speech_rs
 from lang_packs.emit_rust import PY_BANNER, RUST_BANNER, rust_str, unique_verbs
+from lang_packs.tiers import STABLE, tier_of
 from lang_packs.mood import mood_rs
 
 ROOT = Path(__file__).resolve().parents[2]
@@ -53,8 +54,9 @@ pub(super) const VERBS: &[(&str, VerbKind)] = &[
 
 def write_registry(langs: list[dict]) -> None:
     rows = ",\n    ".join(
-        "LangRow {{ id: LangId::new({code}), meta: LangMeta {{ code: {code}, native_name: {native}, script: {script}, variants: &[{vars}] }}, pack: &{path} }}".format(
+        "LangRow {{ id: LangId::new({code}), meta: LangMeta {{ code: {code}, native_name: {native}, script: {script}, variants: &[{vars}], tier: Tier::{tier} }}, pack: &{path} }}".format(
             code=rust_str(item["code"]),
+            tier=tier_of(item["code"]),
             native=rust_str(item["native"]),
             script=rust_str(item["script"]),
             vars=", ".join(rust_str(v) for v in item["variants"]),
@@ -66,6 +68,7 @@ def write_registry(langs: list[dict]) -> None:
 //! Every compiled locale is first-class. The engine never matches De|En in parse.
 
 use super::pack::LanguagePack;
+use super::tier::Tier;
 use super::{{packs, LangId}};
 use serde::Serialize;
 use std::collections::HashMap;
@@ -77,6 +80,8 @@ pub struct LangMeta {{
     pub native_name: &'static str,
     pub script: &'static str,
     pub variants: &'static [&'static str],
+    /// Stable locales pass their minimal pairs; experimental ones need the switch for a new selection.
+    pub tier: Tier,
 }}
 
 struct LangRow {{
@@ -136,6 +141,10 @@ LANGUAGE_VARIANTS = {{
 LANGUAGE_NAMES = {{
 {names}
 }}
+
+# Offered for a new selection only with the engine setting `experimental_languages`.
+# A locale that is configured already keeps working.
+EXPERIMENTAL_LANGUAGES = {tuple(code for code in codes if code not in STABLE)!r}
 ''',
         encoding="utf-8",
     )

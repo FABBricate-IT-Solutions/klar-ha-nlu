@@ -251,6 +251,7 @@ async fn last_turn(
 #[cfg(test)]
 mod tests {
     use super::*;
+    use crate::home::test_dir::TestDir;
     use crate::types::{ParseDecision, ParseOutcome, RejectReason};
 
     #[test]
@@ -353,9 +354,8 @@ mod tests {
 
     #[test]
     fn journal_roundtrip_keeps_tokens_without_raw_text() {
-        let dir = std::env::temp_dir().join(format!("klar-journal-tokens-{}", std::process::id()));
-        let _ = std::fs::remove_dir_all(&dir);
-        std::fs::create_dir_all(&dir).expect("temp journal dir");
+        let scratch = TestDir::new("journal-tokens");
+        let dir = scratch.path().to_path_buf();
         let spoken = "Küche AN!";
         let outcome = ParseOutcome {
             schema_version: "2.0".into(),
@@ -387,7 +387,6 @@ mod tests {
         let raw = crate::home::paths::read_to_string_confined(&dir, JOURNAL_FILE).expect("journal file");
         assert!(!raw.contains(spoken), "{raw}");
         assert!(!raw.contains("Küche"), "{raw}");
-        let _ = std::fs::remove_dir_all(&dir);
     }
 
     #[test]
@@ -401,9 +400,8 @@ mod tests {
 
     #[test]
     fn note_spoken_patches_chat_reply_on_latest_turn() {
-        let dir = std::env::temp_dir().join(format!("klar-journal-chat-{}", std::process::id()));
-        let _ = std::fs::remove_dir_all(&dir);
-        std::fs::create_dir_all(&dir).expect("temp journal dir");
+        let scratch = TestDir::new("journal-chat");
+        let dir = scratch.path().to_path_buf();
         let outcome = ParseOutcome {
             schema_version: "2.0".into(),
             text: "erzähl einen witz".into(),
@@ -433,6 +431,5 @@ mod tests {
         assert_eq!(turns[0].speech, "Zwei Roboter gehen in eine Bar.");
         assert_eq!(turns[0].speech_source.as_deref(), Some("chat"));
         assert_eq!(turns[0].decision, "chat");
-        let _ = std::fs::remove_dir_all(&dir);
     }
 }

@@ -20,6 +20,7 @@ from lang_packs.expand import expand
 from lang_packs.lexicons import ALL_CORES, BUILTINS
 from lang_packs.news_flow import hand_nudge
 from lang_packs.news_test import write_news_test
+from lang_packs.pairs import write_pairs
 from lang_packs.speech_slots import slot_gaps
 from lang_packs.voices import HAND_BUNDLES, locale_bundle, PERSONALITY_KEYS
 
@@ -66,6 +67,7 @@ def main(argv: list[str] | None = None) -> None:
         said = {intent: text for text, intent in reversed(lang.get("smoke", []))}
         lights[lang["code"]] = (said["HassTurnOn"], said["HassTurnOff"])
     write_news_test(lights)
+    write_pairs(ALL_CORES, generated)
     smoke = Path(__file__).resolve().parents[2] / "tests" / "assist_langs.rs"
     cases = []
     for code, text, intent in (

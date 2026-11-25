@@ -99,7 +99,9 @@ The token comes from `--token`, `KLAR_TOKEN`, or `--token-file`.
 |-------|--------|
 | `personality` | `default`, `butler`, `locker`, `fuersorglich`, `party`, `grantig`, `sarkastisch`, `pirat`, `hippie`, `gollum` |
 | `mode` | `full` (resolve devices) or `context_only` (areas only) |
-| `languages` | Pack codes. Unknown codes are ignored. Empty means every compiled locale is enabled; the catalog still binds per request. Do not merge all lexicons — token collisions break Assist. |
+| `languages` | Pack codes. Unknown codes are ignored. Empty means every compiled locale may be pinned; a request without a language then binds `default_language`. Do not merge all lexicons — token collisions break Assist. Adding an experimental locale while `experimental_languages` is off is refused with `422`; one that is configured already may stay. |
+| `default_language` | The pack a request binds when `languages` is empty and the request names no language. Empty means English. A code no pack answers is refused with `422`. |
+| `experimental_languages` | `true` offers experimental locales for a new selection (see [languages](languages.md#tiers)). Off by default. |
 | `support_bundle` | `true` writes parse traffic to `/data/support_bundle.jsonl` (max 2000 entries). Survives restarts. First boot also via `KLAR_SUPPORT_BUNDLE=1`. |
 | `support_bundle_raw_text` | `true` keeps raw text and speech in downloads. Off by default. Conversation IDs are always hashed; entity and area names are always pseudonymized. |
 | `confirm_risky_actions` | `true` requires confirmation before risky actions such as locking/unlocking and broad safety-relevant controls. |
@@ -232,7 +234,7 @@ Live home-graph snapshot from the Home Assistant integration. The complete reque
 
 ### `GET /api/v2/languages`
 
-Compiled pack metadata (`code`, `native_name`, `script`, `variants`). This is the first-class Assist locale list in the binary.
+The locales that can be picked now, with `code`, `native_name`, `script`, `variants`, `tier` (`stable` or `experimental`) and `offered`. Stable locales are always listed; experimental ones when `experimental_languages` is on or when they are configured already. `?all=true` lists every compiled locale; `offered` is `false` for the ones the switch keeps out of a new selection.
 
 ### `GET` / `POST /api/lang/overlay`
 

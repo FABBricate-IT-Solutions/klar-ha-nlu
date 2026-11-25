@@ -70,9 +70,9 @@ fn every_compiled_locale_has_assist_and_parity_suites() {
 #[test]
 fn every_compiled_pack_has_household_cues() {
     for id in klar_nlu::lang::LangId::all() {
+        // Teach and undo are hand-written or absent (tests/household_phrases.rs); a pack without
+        // them simply does not offer the feature.
         let house = &id.pack().household;
-        assert!(!house.teach.is_empty(), "{:?} teach", id.code());
-        assert!(!house.undo.is_empty(), "{:?} undo", id.code());
         assert!(!house.clock.is_empty(), "{:?} clock", id.code());
         assert!(!house.weather.is_empty(), "{:?} weather", id.code());
     }
@@ -221,7 +221,8 @@ fn cli_preview_pins_english() {
 
 #[test]
 fn cli_import_hassil_dry_run() {
-    let path = std::env::temp_dir().join("klar-m4-hassil.yaml");
+    let scratch = tempfile::tempdir().unwrap();
+    let path = scratch.path().join("hassil.yaml");
     std::fs::write(
         &path,
         r#"

@@ -422,6 +422,7 @@ fn attachment(name: &str, content_type: &'static str, body: Vec<u8>) -> impl Int
 #[cfg(test)]
 mod tests {
     use super::*;
+    use crate::home::test_dir::TestDir;
     use crate::types::Intent;
 
     fn sample(text: &str, intent: Intent) -> BundleEntry {
@@ -451,9 +452,8 @@ mod tests {
 
     #[test]
     fn append_and_load_roundtrip() {
-        let dir = std::env::temp_dir().join(format!("klar-bundle-{}", std::process::id()));
-        let _ = std::fs::remove_dir_all(&dir);
-        std::fs::create_dir_all(&dir).unwrap();
+        let scratch = TestDir::new("bundle");
+        let dir = scratch.path().to_path_buf();
         let store = BundleStore::open(&dir);
         store.append(sample("Kugel an", Intent::new("HassTurnOn").with("entity_id", "light.schlafzimmer")));
         let loaded = store.load();
@@ -462,14 +462,12 @@ mod tests {
         assert!(store.dataset_yaml().contains("Kugel an"));
         store.clear();
         assert!(store.load().is_empty());
-        let _ = std::fs::remove_dir_all(&dir);
     }
 
     #[test]
     fn remove_keeps_other_rows() {
-        let dir = std::env::temp_dir().join(format!("klar-bundle-rm-{}", std::process::id()));
-        let _ = std::fs::remove_dir_all(&dir);
-        std::fs::create_dir_all(&dir).unwrap();
+        let scratch = TestDir::new("bundle-rm");
+        let dir = scratch.path().to_path_buf();
         let store = BundleStore::open(&dir);
         store.append(sample("Kugel an", Intent::new("HassTurnOn")));
         store.append(sample("Licht aus", Intent::new("HassTurnOff")));
@@ -480,6 +478,5 @@ mod tests {
         let left = store.load();
         assert_eq!(left.len(), 1);
         assert_eq!(left[0].request.text, "Licht aus");
-        let _ = std::fs::remove_dir_all(&dir);
     }
 }

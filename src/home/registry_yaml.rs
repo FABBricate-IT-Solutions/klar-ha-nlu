@@ -372,11 +372,12 @@ fn extra_device_aliases(id: &str, name: &str, domain: &str) -> Vec<String> {
 #[cfg(test)]
 mod tests {
     use super::*;
-    use std::path::PathBuf;
+    use crate::home::test_dir::TestDir;
 
     #[test]
     fn yaml_keeps_music_assistant_platform() {
-        let dir = tempfile();
+        let scratch = TestDir::new("home-yaml");
+        let dir = scratch.path().to_path_buf();
         let path = dir.join("home.yaml");
         std::fs::write(
             &path,
@@ -387,11 +388,5 @@ mod tests {
         let player = home.entities.iter().find(|entity| entity.entity_id == "media_player.box").expect("player");
         assert_eq!(player.platform.as_deref(), Some("music_assistant"));
         assert_eq!(player.tags, vec!["Musik"]);
-    }
-
-    fn tempfile() -> PathBuf {
-        let dir = std::env::temp_dir().join(format!("klar-home-{}", std::process::id()));
-        let _ = std::fs::create_dir_all(&dir);
-        dir
     }
 }

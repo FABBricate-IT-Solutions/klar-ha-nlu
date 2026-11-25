@@ -286,9 +286,9 @@ pub const PACK: LanguagePack = LanguagePack {
         news: NEWS,
     },
     household: Household {
-        teach: &["设置 门"],
+        teach: &[],
         explain: &["什么 关闭 设置"],
-        undo: &["关闭 门"],
+        undo: &[],
         clock: &["什么 定时"],
         weather: &["什么 kongtiao"],
         clock_skip: &["定时"],
