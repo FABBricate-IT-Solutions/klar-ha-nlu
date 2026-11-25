@@ -183,7 +183,7 @@ export function Wizard({
     if (!llm.baseUrl.trim() && !llm.model.trim() && !llm.apiKey.trim()) return "untouched";
     // The key field shows what is missing: a cloud endpoint at a new address needs its own key.
     if (llm.keyMissing) {
-      setSaveError(chrome.saveFail);
+      setSaveError(chrome.llmApiKeyRequired);
       return "refused";
     }
     try {

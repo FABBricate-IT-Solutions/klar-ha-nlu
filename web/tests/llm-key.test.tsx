@@ -107,6 +107,7 @@ describe("A-01: the model list", () => {
     await user.click(screen.getByLabelText(en.llmModel));
 
     expect(await screen.findByText(en.llmModelsFail)).toBeInTheDocument();
+    expect(screen.getByRole("button", { name: en.llmRetry })).toBeInTheDocument();
     await engine.idle();
     expect(engine.external(), "requests from the browser to the LLM host").toEqual([]);
     expect(caused(engine)).toEqual([MODELS]);
@@ -124,6 +125,24 @@ describe("A-01: the model list", () => {
 
     expect(await screen.findByRole("option", { name: "other-model" })).toBeInTheDocument();
     expect(screen.queryByText(en.llmModelsFail)).not.toBeInTheDocument();
+  });
+
+  it("offers Load models when idle and Retry after a failure", async () => {
+    const engine = fakeEngine();
+    engine.failNext(MODELS, 502);
+    const { user } = await card(engine);
+
+    expect(screen.getByRole("button", { name: en.llmLoadModels })).toBeInTheDocument();
+    await user.click(screen.getByRole("button", { name: en.llmLoadModels }));
+    expect(await screen.findByText(en.llmModelsFail)).toBeInTheDocument();
+
+    await user.click(screen.getByRole("button", { name: en.llmRetry }));
+    await waitFor(() => expect(screen.queryByText(en.llmModelsFail)).not.toBeInTheDocument());
+    expect(screen.queryByRole("button", { name: en.llmRetry })).not.toBeInTheDocument();
+    expect(caused(engine)).toEqual([MODELS, MODELS]);
+
+    await user.click(screen.getByLabelText(en.llmModel));
+    expect(await screen.findByRole("option", { name: "other-model" })).toBeInTheDocument();
   });
 
   it("drops a loaded list when the URL changes and asks nothing until the list is opened again", async () => {
@@ -199,6 +218,7 @@ describe("A-01: the key belongs to the stored address", () => {
     expect(key).toBeRequired();
     expect(key).toBeInvalid();
     expect(key).not.toHaveAttribute("placeholder", en.llmApiKeyHint);
+    expect(screen.getByRole("alert")).toHaveTextContent(en.llmApiKeyRequired);
     expect(save).toBeDisabled();
     await user.click(save);
     await engine.idle();
@@ -207,6 +227,7 @@ describe("A-01: the key belongs to the stored address", () => {
     await user.type(key, "sk-ant-new");
 
     expect(key).toBeValid();
+    expect(screen.queryByText(en.llmApiKeyRequired)).not.toBeInTheDocument();
     await user.click(save);
     await waitFor(() => expect(engine.writes("/api/v2/llm/endpoint")).toHaveLength(1));
     expect(engine.to("POST /api/v2/llm/endpoint")[0].body).toMatchObject({ base_url: "https://api.anthropic.com/v1", api_key: "sk-ant-new", provider: "anthropic" });
@@ -262,7 +283,8 @@ describe("A-01: the key belongs to the stored address", () => {
     await settle(600);
     await user.click(within(dialog).getByRole("button", { name: copy.next }));
 
-    expect(await within(dialog).findByRole("alert")).toHaveTextContent(en.saveFail);
+    const alerts = await within(dialog).findAllByRole("alert");
+    expect(alerts.some((node) => node.textContent?.includes(en.llmApiKeyRequired))).toBe(true);
     expect(within(dialog).getByLabelText(en.llmApiKey)).toBeInvalid();
     expect(within(dialog).getByRole("heading", { level: 1 })).toHaveTextContent(copy.missTitle);
     expect(engine.writes("/api/v2/llm/endpoint")).toEqual([]);
