@@ -79,16 +79,38 @@ fn vacuum_pause_or_stop(tokens: &[String], cat: &Catalog, home: &crate::types::H
     }
     let vacuum_word = cat.any(tokens, cat.vacuum_nouns())
         || tokens.iter().any(|token| matches!(cat.verb(token), Some(VerbKind::Vacuum | VerbKind::VacuumNoun)));
-    vacuum_word || names_vacuum(tokens, home)
+    if vacuum_word {
+        return true;
+    }
+    // "pause tv wohnzimmer" must stay media: compound vacuum names expand to bare area
+    // aliases ("wohnzimmer"), which must not steal a media-cued pause/stop.
+    if media_pause_cued(tokens, cat) {
+        return false;
+    }
+    names_vacuum(tokens, home)
+}
+
+fn media_pause_cued(tokens: &[String], cat: &Catalog) -> bool {
+    cat.any(tokens, cat.media_nouns()) || crate::home::roles::tv_asked(tokens)
 }
 
 fn names_vacuum(tokens: &[String], home: &crate::types::HomeGraph) -> bool {
     use crate::parse::normalize::compact;
+    // Home-config loading splits "wohnzimmer staubsauger" into alias "wohnzimmer".
+    // Matching that alone would refuse every pause scoped to the living room.
+    let area_labels: std::collections::HashSet<String> = home
+        .areas
+        .iter()
+        .flat_map(|area| std::iter::once(area.name.as_str()).chain(area.aliases.iter().map(String::as_str)))
+        .map(compact)
+        .filter(|label| !label.is_empty())
+        .collect();
     home.entities.iter().any(|entity| {
         entity.domain == "vacuum"
-            && std::iter::once(entity.name.as_str())
-                .chain(entity.aliases.iter().map(String::as_str))
-                .any(|label| tokens.iter().any(|token| compact(token) == compact(label)))
+            && std::iter::once(entity.name.as_str()).chain(entity.aliases.iter().map(String::as_str)).any(|label| {
+                let folded = compact(label);
+                !folded.is_empty() && !area_labels.contains(&folded) && tokens.iter().any(|token| compact(token) == folded)
+            })
     })
 }
 

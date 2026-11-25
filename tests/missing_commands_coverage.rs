@@ -128,6 +128,20 @@ fn p30_vacuum_pause_stop_reject_home_docks() {
 }
 
 #[test]
+fn p30_media_pause_not_stolen_by_vacuum_area_alias() {
+    // full_home DE: vacuum "wohnzimmer staubsauger" expands alias "wohnzimmer"; that must
+    // not refuse "pause tv wohnzimmer" as Unsupported (dataset-suites regression).
+    let home = home(
+        vec![area("wohnzimmer", "Wohnzimmer")],
+        vec![ent("media_player.living_tv", "wohnzimmer tv", "wohnzimmer"), ent("vacuum.robot", "wohnzimmer staubsauger", "wohnzimmer")],
+        &[],
+    );
+    assert_eq!(executed(&home, "de", "pause tv wohnzimmer"), BTreeSet::from(["HassMediaPause media_player.living_tv".into()]));
+    unsupported(&home, "de", "pause den staubsauger");
+    unsupported(&home, "de", "stopp den staubsauger");
+}
+
+#[test]
 fn p36_button_press_and_alarm_arm() {
     let home = matrix_home();
     assert_eq!(executed(&home, "en", "press the doorbell"), BTreeSet::from(["HassTurnOn button.doorbell".into()]));
