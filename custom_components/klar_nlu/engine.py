@@ -47,6 +47,7 @@ from .const import (
     resolve_channel,
     resolve_personality,
 )
+from .lang_select import engine_default_language
 from .time_zone import time_zone_name, time_zone_needs_sync
 from .units import ha_unit_system
 
@@ -494,6 +495,18 @@ async def async_sync_time_zone(hass: HomeAssistant, entry: ConfigEntry) -> None:
     if not time_zone_needs_sync(cached_engine_settings(hass, entry), zone):
         return
     await async_patch_engine_settings(hass, entry, {"time_zone": zone})
+
+
+async def async_sync_default_language(hass: HomeAssistant, entry: ConfigEntry) -> None:
+    """When the HA option is "system", set engine default_language from HA's language."""
+    wanted = engine_default_language(
+        entry.options.get(CONF_LANGUAGES),
+        getattr(getattr(hass, "config", None), "language", None),
+    )
+    current = str(cached_engine_settings(hass, entry).get("default_language") or "")
+    if current == wanted:
+        return
+    await async_patch_engine_settings(hass, entry, {"default_language": wanted})
 
 
 async def async_sync_unit_system(hass: HomeAssistant, entry: ConfigEntry) -> None:

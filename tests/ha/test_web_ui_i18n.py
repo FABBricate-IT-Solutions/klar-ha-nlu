@@ -96,7 +96,8 @@ class OperatorUiParity(unittest.TestCase):
         conversation = (ROOT / "custom_components" / "klar_nlu" / "conversation.py").read_text(
             encoding="utf-8"
         )
-        self.assertIn("advertised_languages()", conversation)
+        # Call site may pass experimental/selected kwargs (language tiers).
+        self.assertIn("advertised_languages(", conversation)
 
     def test_llm_chrome_is_translated(self) -> None:
         from lang_packs.web_ui_keys import FALLBACKS

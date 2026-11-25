@@ -31,15 +31,30 @@ export function ChromeStep({
   onSettings: (next: Settings) => void;
 }) {
   const chromeCodes = new Set(Object.keys(dictionaries));
-  const localePacks = packs.length
+  const localePacks: { code: string; native_name: string; tier?: string }[] = packs.length
     ? packs.filter((pack) => chromeCodes.has(pack.code))
     : [...chromeCodes].map((code) => ({
       code,
       native_name: code === "de" ? "Deutsch" : code === "en" ? "English" : code,
     }));
-  const assistPacks = packs.length ? packs : localePacks;
-  const localeOptions = languageOptions(localePacks, locale);
-  const assistOptions = languageOptions(assistPacks, locale);
+  const inUse = new Set(
+    [...settings.languages, settings.default_language]
+      .map((code) => code.trim().toLowerCase())
+      .filter(Boolean),
+  );
+  const source = packs.length ? packs : localePacks;
+  const assistPacks = source.filter((pack) => {
+    if (pack.tier !== "experimental") return true;
+    if (settings.experimental_languages) return true;
+    return inUse.has(pack.code.toLowerCase());
+  });
+  const tierHint = (tier: string) => {
+    if (tier === "experimental") return chrome.languageTierExperimental;
+    if (tier === "stable") return chrome.languageTierStable;
+    return tier;
+  };
+  const localeOptions = languageOptions(localePacks, locale, tierHint);
+  const assistOptions = languageOptions(assistPacks, locale, tierHint);
   const allAssist = settings.languages.length === 0;
   const pinned = settings.languages[0] || locale;
   return (
@@ -77,6 +92,16 @@ export function ChromeStep({
         />
       </Field>
       <SettingsToggle
+        id="wizard-experimental-languages"
+        label={chrome.experimentalLanguages}
+        description={chrome.experimentalLanguagesHint}
+        checked={settings.experimental_languages}
+        onCheckedChange={(checked) => onSettings({
+          ...settings,
+          experimental_languages: checked,
+        })}
+      />
+      <SettingsToggle
         id="wizard-all-assist-languages"
         label={chrome.allAssistLanguages}
         description={chrome.languageHint}
@@ -98,6 +123,17 @@ export function ChromeStep({
           />
         </Field>
       )}
+      <Field>
+        <FieldLabel>{chrome.defaultLanguage}</FieldLabel>
+        <SearchSelect
+          value={settings.default_language || ""}
+          options={withCurrent(assistOptions, settings.default_language || "")}
+          onChange={(value) => onSettings({ ...settings, default_language: value })}
+          allowEmpty
+          emptyLabel={chrome.defaultLanguageNone}
+          placeholder={chrome.languageSearch}
+        />
+      </Field>
     </FieldGroup>
   );
 }

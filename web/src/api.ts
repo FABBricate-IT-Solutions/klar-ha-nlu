@@ -38,7 +38,15 @@ export type LangExplain = {
   matched_custom?: string;
   policy_trace?: PolicyTrace;
 };
-export type LanguagePack = { code: string; native_name: string; script: string; variants: string[] };
+export type LanguagePack = {
+  code: string;
+  native_name: string;
+  script: string;
+  variants: string[];
+  tier?: "stable" | "experimental";
+  /** False only in an `?all=true` listing: experimental and not selectable yet. */
+  offered?: boolean;
+};
 
 const jsonHeaders = () => {
   // localStorage is readable by any script on this origin if XSS lands.
@@ -139,7 +147,8 @@ export const api = {
   saveUi: (body: UiState) => request<UiState>("/api/ui", { method: "POST", body: JSON.stringify(body) }),
   settings: () => request<Settings>("/api/settings"),
   saveSettings: (body: Settings) => request<Settings>("/api/settings", { method: "POST", body: JSON.stringify(body) }),
-  languages: () => request<LanguagePack[]>("/api/v2/languages"),
+  languages: (all = false) =>
+    request<LanguagePack[]>(all ? "/api/v2/languages?all=true" : "/api/v2/languages"),
   entities: () => request<Entity[]>("/api/entities"),
   gaps: () => request<Gaps>("/api/gaps"),
   custom: () => request<unknown[]>("/api/custom"),

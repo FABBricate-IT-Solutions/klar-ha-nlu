@@ -205,13 +205,39 @@ def _as_start(event: dict[str, Any]) -> datetime | date | None:
 
 
 def is_all_day(event: dict[str, Any], start: datetime | date | None) -> bool:
+    """True only for date-only starts — never for a timed datetime (H-07)."""
     raw = event.get("start")
+    if isinstance(raw, datetime):
+        return False
     if isinstance(raw, dict) and raw.get("date") and not raw.get("dateTime"):
         return True
-    if isinstance(start, date) and not isinstance(start, datetime):
+    if isinstance(start, datetime):
+        return False
+    if isinstance(start, date):
         return True
-    stamp = str(event.get("start") or "")
-    return "T" not in stamp and len(stamp) >= 8 and isinstance(start, date)
+    stamp = str(raw or "")
+    if "T" in stamp or " " in stamp:
+        return False
+    return len(stamp) >= 8
+
+
+_WEEKDAYS: dict[str, tuple[str, ...]] = {
+    "de": ("Montag", "Dienstag", "Mittwoch", "Donnerstag", "Freitag", "Samstag", "Sonntag"),
+    "en": ("Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"),
+}
+
+
+def _weekday_name(day: date, pack: str) -> str:
+    names = _WEEKDAYS.get(pack) or _WEEKDAYS.get(pack.split("-")[0]) or _WEEKDAYS["en"]
+    return names[day.weekday()]
+
+
+def _local_day(start: datetime | date, hass: Any) -> date:
+    zone = _zone(hass)
+    if isinstance(start, datetime):
+        stamp = start if start.tzinfo is not None else start.replace(tzinfo=zone)
+        return stamp.astimezone(zone).date()
+    return start
 
 
 def clock(when: datetime, pack: str) -> str:
@@ -244,24 +270,26 @@ def clock(when: datetime, pack: str) -> str:
 
 
 def when_label(start: datetime | date, all_day: bool, pack: str, hass: Any) -> str:
-    today = datetime.now(_zone(hass)).date()
-    day = start.date() if isinstance(start, datetime) else start
+    zone = _zone(hass)
+    today = datetime.now(zone).date()
+    day = _local_day(start, hass)
     if day == today:
         day_word = fill(pack, "calendar_today")
     elif day == today + timedelta(days=1):
         day_word = fill(pack, "calendar_tomorrow")
     else:
-        day_word = day.isoformat()
+        # Spoken weekday, not an ISO date (H-07).
+        day_word = _weekday_name(day, pack)
     if all_day:
         whole = fill(pack, "calendar_all_day")
         if pack.startswith("zh") or pack in {"ja", "th"}:
             return f"{day_word}{whole}"
         return f"{day_word} {whole}".strip()
-    stamp = start if isinstance(start, datetime) else datetime.combine(start, datetime.min.time(), tzinfo=_zone(hass))
+    stamp = start if isinstance(start, datetime) else datetime.combine(start, datetime.min.time(), tzinfo=zone)
     if stamp.tzinfo is None:
-        stamp = stamp.replace(tzinfo=_zone(hass))
+        stamp = stamp.replace(tzinfo=zone)
     else:
-        stamp = stamp.astimezone(_zone(hass))
+        stamp = stamp.astimezone(zone)
     at = fill(pack, "calendar_at", time=clock(stamp, pack))
     return f"{day_word} {at}".strip()
 
@@ -278,10 +306,21 @@ def event_line(event: dict[str, Any], pack: str, hass: Any) -> str:
     return fill(pack, "calendar_item", summary=summary, when=when)
 
 
+def _sort_key(event: dict[str, Any]) -> tuple[int, str]:
+    start = _as_start(event)
+    if start is None:
+        return (1, "")
+    if isinstance(start, datetime):
+        stamp = start if start.tzinfo is not None else start.replace(tzinfo=ZoneInfo("UTC"))
+        return (0, stamp.astimezone(ZoneInfo("UTC")).isoformat())
+    return (0, f"{start.isoformat()}T00:00:00+00:00")
+
+
 def list_speech(events: list[dict[str, Any]], pack: str, hass: Any) -> str:
     if not events:
         return fill(pack, "calendar_empty")
-    lines = [event_line(event, pack, hass) for event in events[:8]]
+    ordered = sorted(events, key=_sort_key)
+    lines = [event_line(event, pack, hass) for event in ordered[:8]]
     return ". ".join(line.rstrip(".") for line in lines if line) + "."
 
 

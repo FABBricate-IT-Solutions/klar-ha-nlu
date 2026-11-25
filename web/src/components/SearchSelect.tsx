@@ -42,18 +42,20 @@ export function withCurrent(options: SearchOption[], value: string): SearchOptio
 }
 
 export function languageOptions(
-  packs: { code: string; native_name: string }[],
+  packs: { code: string; native_name: string; tier?: string }[],
   displayLocale = "en",
+  tierLabel?: (tier: string) => string,
 ): SearchOption[] {
   const names = new Intl.DisplayNames([displayLocale, "en"], { type: "language" });
   return packs.map((pack) => {
     const pretty = pack.native_name && pack.native_name !== pack.code
       ? pack.native_name
       : names.of(pack.code) || pack.code;
+    const tier = pack.tier && tierLabel ? tierLabel(pack.tier) : "";
     return {
       value: pack.code,
       label: pretty,
-      hint: pack.code,
+      hint: tier ? `${pack.code} · ${tier}` : pack.code,
       flag: languageFlag(pack.code),
     };
   });

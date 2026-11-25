@@ -176,6 +176,33 @@ export function SettingsVoiceSection({
   );
 }
 
+function tierLabel(t: Messages, tier: string): string {
+  switch (tier) {
+    case "stable":
+      return t.languageTierStable;
+    case "experimental":
+      return t.languageTierExperimental;
+    default:
+      return tier;
+  }
+}
+
+type PackRow = { code: string; native_name: string; tier?: string };
+
+/** Locales the draft settings may pick: stable always, experimental with the switch, and whatever is already in use. */
+function selectablePacks(packs: PackRow[], settings: Settings): PackRow[] {
+  const inUse = new Set(
+    [...settings.languages, settings.default_language]
+      .map((code) => code.trim().toLowerCase())
+      .filter(Boolean),
+  );
+  return packs.filter((pack) => {
+    if (pack.tier !== "experimental") return true;
+    if (settings.experimental_languages) return true;
+    return inUse.has(pack.code.toLowerCase());
+  });
+}
+
 export function SettingsLanguagesSection({
   t,
   locale,
@@ -195,10 +222,14 @@ export function SettingsLanguagesSection({
   const localePacks = packs.length
     ? packs.filter((pack) => chromeCodes.has(pack.code))
     : [...chromeCodes].map((code) => ({ code, native_name: code }));
-  const localeOptions = languageOptions(localePacks, locale);
-  const assistOptions = languageOptions(packs.length ? packs : localePacks, locale);
+  const labelTier = (tier: string) => tierLabel(t, tier);
+  const localeOptions = languageOptions(localePacks, locale, labelTier);
+  const offered = selectablePacks(packs.length ? packs : localePacks, settings);
+  const assistOptions = languageOptions(offered, locale, labelTier);
+  const defaultOptions = languageOptions(offered, locale, labelTier);
   const allAssist = settings.languages.length === 0;
   const pinned = settings.languages[0] || locale;
+  const defaultPack = settings.default_language || "";
   return (
     <div className="grid min-w-0 gap-4">
       <Card>
@@ -208,6 +239,16 @@ export function SettingsLanguagesSection({
         </CardHeader>
         <CardContent>
           <FieldGroup>
+            <SettingsToggle
+              id="klar-experimental-languages"
+              label={t.experimentalLanguages}
+              description={t.experimentalLanguagesHint}
+              checked={settings.experimental_languages}
+              onCheckedChange={(checked) => onSettings({
+                ...settings,
+                experimental_languages: checked,
+              })}
+            />
             <SettingsToggle
               id="klar-all-assist-languages"
               label={t.allAssistLanguages}
@@ -230,6 +271,18 @@ export function SettingsLanguagesSection({
                 />
               </Field>
             )}
+            <Field>
+              <FieldLabel>{t.defaultLanguage}</FieldLabel>
+              <FieldDescription>{t.defaultLanguageHint}</FieldDescription>
+              <SearchSelect
+                value={defaultPack}
+                options={withCurrent(defaultOptions, defaultPack)}
+                onChange={(value) => onSettings({ ...settings, default_language: value })}
+                allowEmpty
+                emptyLabel={t.defaultLanguageNone}
+                placeholder={t.languageSearch}
+              />
+            </Field>
           </FieldGroup>
         </CardContent>
       </Card>
