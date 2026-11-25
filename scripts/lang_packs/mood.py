@@ -13,9 +13,6 @@ from __future__ import annotations
 
 from lang_packs.emit_rust import RUST_BANNER, rust_slice
 
-# Hand-written packs whose regional variants take over the parent's classes.
-HAND_PARENTS = {"de", "en"}
-
 MOOD: dict[str, dict[str, list[str]]] = {
     "fr": {
         "openers": ["est ce"],
@@ -146,16 +143,30 @@ def parent(code: str) -> str:
     return code.split("-")[0]
 
 
+def regional_mood_rs(lang: dict) -> str:
+    """A regional pack is bound together with its parent pack, which brings the word classes.
+    Its own file holds the regional words only ("ned" for "nicht")."""
+    rows = sorted((name, values) for name, values in (lang.get("mood") or {}).items() if values)
+    if not rows:
+        return f"""{RUST_BANNER}use crate::lang::mood::MoodWords;
+
+/// The parent pack is bound together with this one and brings its word classes.
+pub(super) const MOOD: MoodWords = MoodWords::EMPTY;
+"""
+    body = "".join(f"    {name}: {rust_slice(values, '    ')},\n" for name, values in rows)
+    return f"""{RUST_BANNER}use crate::lang::mood::MoodWords;
+
+/// Regional words only. The parent pack is bound together with this one.
+pub(super) const MOOD: MoodWords = MoodWords {{
+{body}    ..MoodWords::EMPTY
+}};
+"""
+
+
 def mood_rs(lang: dict) -> str:
     code = lang["code"]
-    if code not in MOOD and parent(code) in HAND_PARENTS:
-        base = parent(code)
-        return f"""{RUST_BANNER}use crate::lang::mood::MoodWords;
-use crate::lang::packs::{base};
-
-/// A regional pack reads a sentence with the word classes of its parent language.
-pub(super) const MOOD: MoodWords = {base}::MOOD;
-"""
+    if lang.get("parent"):
+        return regional_mood_rs(lang)
     row = MOOD.get(code) or MOOD.get(parent(code)) or {}
     fields = [
         ("request_frames", row.get("requests", [])),

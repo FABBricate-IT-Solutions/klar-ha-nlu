@@ -12,6 +12,7 @@ use crate::types::CustomSentence;
 use std::collections::{HashMap, HashSet};
 
 pub use keys::WordKey;
+pub(super) use merge::Layer;
 
 pub struct Catalog {
     packs: Vec<&'static Pack>,
@@ -36,6 +37,7 @@ pub struct Catalog {
     pub news_open: bool,
     pub morphology: Morphology,
     pub pack_intents: Vec<CustomSentence>,
+    ask: Option<&'static crate::lang::Answers>,
 }
 
 impl Catalog {
@@ -126,9 +128,10 @@ impl Catalog {
         self.packs.iter().map(|pack| &pack.answers)
     }
 
-    /// Wording of the confirmation question in the language that speaks the reply.
+    /// Wording of the confirmation question in the language that speaks the reply. A regional
+    /// pack without a wording of its own asks with its parent's, which names the action.
     pub fn ask_wording(&self) -> Option<&'static crate::lang::Answers> {
-        self.packs.first().map(|pack| &pack.answers).filter(|answers| !answers.ask.is_empty())
+        self.ask
     }
 
     pub fn color(&self, t: &str) -> Option<&'static str> {

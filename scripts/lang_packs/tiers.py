@@ -9,7 +9,7 @@ experimental; it keeps working where it is configured and is hidden from a new s
 
 from __future__ import annotations
 
-STABLE = ("de", "en", "en-GB")
+STABLE = ("de", "en", "de-CH", "de-AT", "en-GB")
 
 
 def tier_of(code: str) -> str:

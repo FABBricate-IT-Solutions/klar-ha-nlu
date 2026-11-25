@@ -204,6 +204,38 @@ def north() -> list[dict]:
             colors=[("rot", "red"), ("blau", "blue"), ("gruen", "green"), ("gelb", "yellow"), ("orange", "orange"), ("rosa", "pink"), ("schwarz", "black"), ("weiss", "white"), ("violett", "purple")],
             and_join=" und ",
             or_join=" oder ",
+            # Regional pack: the engine binds it on top of "de". Only `like` and `add` reach the
+            # parser; the word lists above seed the replies, the room aliases and the news lists.
+            parent="de",
+            like={
+                "aa": "an",
+                "ii": "ein",
+                "uus": "aus",
+                "uf": "auf",
+                "zue": "zu",
+                "aamache": "anmachen",
+                "iischalte": "einschalten",
+                "uusmache": "ausmachen",
+                "uusschalte": "ausschalten",
+                "ufmache": "aufmachen",
+                "zuemache": "zumachen",
+                "liecht": "licht",
+                "liechter": "lichter",
+                "store": "rollo",
+                "storen": "rollos",
+                "heizig": "heizung",
+                "fernseh": "fernseher",
+                "musig": "musik",
+                "alli": "alle",
+                "nei": "nein",
+                "nöd": "nicht",
+                "nid": "nicht",
+                "kei": "kein",
+                "s": "das",
+                "d": "die",
+            },
+            add={"cues.synonym_pairs": [("chuchi", "kueche"), ("stube", "wohnzimmer")]},
+            smoke=[("liecht wohnzimmer aa", "HassTurnOn"), ("liecht chuchi uus", "HassTurnOff")],
         ),
         pack(
             "de-AT",
@@ -244,6 +276,12 @@ def north() -> list[dict]:
             colors=[("rot", "red"), ("blau", "blue"), ("gruen", "green"), ("gelb", "yellow"), ("orange", "orange"), ("rosa", "pink"), ("schwarz", "black"), ("weiss", "white"), ("violett", "purple")],
             and_join=" und ",
             or_join=" oder ",
+            # Regional pack: the engine binds it on top of "de". Only `like` and `add` reach the
+            # parser; the word lists above seed the replies, the room aliases and the news lists.
+            parent="de",
+            like={"aufdrehen": "einschalten", "abdrehen": "ausschalten", "luster": "lampe", "ned": "nicht", "net": "nicht", "nit": "nicht"},
+            add={"cues.synonym_pairs": [("vorzimmer", "flur")]},
+            smoke=[("licht wohnzimmer aufdrehen", "HassTurnOn"), ("licht kuche abdrehen", "HassTurnOff")],
         ),
         pack(
             "en-GB",
@@ -305,9 +343,16 @@ def north() -> list[dict]:
                 # "telly" stays first: generated test sentences use the first word. "tv" is still what most people say.
                 "tv": ["telly", "tv", "television"],
             },
-            smoke=[("turn on the lounge light", "HassTurnOn"), ("switch off the kitchen light", "HassTurnOff")],
+            smoke=[("switch on the living room light", "HassTurnOn"), ("switch off the kitchen light", "HassTurnOff")],
             and_join=" and ",
             or_join=" or ",
+            # Regional pack: the engine binds it on top of "en". Only `like` and `add` reach the
+            # parser; the word lists above seed the replies, the room aliases and the news lists.
+            parent="en",
+            like={"telly": "tv", "hoover": "vacuum", "cooker": "oven", "socket": "outlet"},
+            # "halt" is only a timer cue on en; a pinned en-GB catalog has no German pack to
+            # carry the family-home pause sentence, so add it as a Pause verb.
+            add={"verbs": [("halt", "Pause")]},
         ),
         pack(
             "pt-BR",
@@ -348,6 +393,10 @@ def north() -> list[dict]:
             extra_w={"unlock": ["abre"], "lock_v": ["tranca"]},
             and_join=" e ",
             or_join=" ou ",
+            # Regional pack: the engine binds it on top of "pt". Only `like` and `add` reach the
+            # parser; the word lists above seed the replies, the room aliases and the news lists.
+            parent="pt",
+            like={"abajur": "lampada", "luminaria": "lampada", "ventilador": "ventoinha", "bota": "poe"},
         ),
         pack(
             "af",

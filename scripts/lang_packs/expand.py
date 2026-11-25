@@ -8,6 +8,7 @@ from lang_packs.convo import with_warm_white
 from lang_packs.extras import pack_extras
 from lang_packs.native_apply import apply_native, is_script_pack
 from lang_packs.news_lex import apply_news
+from lang_packs.regional import thin_pack
 from lang_packs.speech_slots import apply_speech_slots, pick_room_names
 from lang_packs.timer_lex import apply_to_words, how_long
 from lang_packs.voices import normalize_personality
@@ -152,7 +153,7 @@ def expand(core: dict) -> dict:
         light + cover + climate + media + lock + door + timer + lst + fan + vacuum + scene + [r[0] for r in rooms] + kitchen
     )
     talk_q = query + w.get("status", [])
-    return {
+    full = {
         "code": core["code"],
         "mod": core["mod"],
         "const": core.get("const", core["mod"].title().replace("_", "")),
@@ -333,6 +334,7 @@ def expand(core: dict) -> dict:
         "household": household_from(core, w, speech),
         "smoke": list(core.get("smoke", [])) + calendar_smokes(cal) + music_smokes(w),
     }
+    return thin_pack(full, core) if core.get("parent") else full
 
 
 def household_from(core: dict, w: dict, speech: dict) -> dict:

@@ -25,6 +25,7 @@ use std::collections::HashMap;
 use std::sync::{Mutex, OnceLock};
 
 pub use catalog::Catalog;
+use catalog::Layer;
 pub use cli::{import_hassil, preview, validate_path};
 pub use external::{ExternalPack, PackRegistry};
 pub use hassil::{import_hassil as parse_hassil, HassilImport};
@@ -87,6 +88,11 @@ impl LangId {
         registry::meta(self)
     }
 
+    /// The pack a regional pack inherits from ("de" for "de-AT").
+    pub fn parent(self) -> Option<Self> {
+        registry::parent(self)
+    }
+
     pub fn compiled_codes() -> Vec<String> {
         Self::all().iter().map(|id| id.code().to_string()).collect()
     }
@@ -146,8 +152,7 @@ pub fn catalog_for(codes: &[String]) -> &'static Catalog {
     if let Some(catalog) = map.get(&key) {
         return catalog;
     }
-    let packs: Vec<&'static Pack> = ids.iter().map(|id| id.pack()).collect();
-    let mut catalog = Catalog::merge(&packs);
+    let mut catalog = Catalog::merge_layers(&layers_of(&ids));
     for overlay in &overlays {
         if let Err(err) = resolver::apply_overlay(&mut catalog, overlay) {
             tracing::warn!("language overlay {}: {err}", overlay.id);
@@ -175,8 +180,12 @@ fn cached_builtins(ids: &[LangId], key: &str) -> &'static Catalog {
     if let Some(catalog) = map.get(key) {
         return catalog;
     }
-    let packs: Vec<&'static Pack> = ids.iter().map(|id| id.pack()).collect();
-    insert_cached(&mut map, key.to_string(), Catalog::merge(&packs))
+    insert_cached(&mut map, key.to_string(), Catalog::merge_layers(&layers_of(ids)))
+}
+
+/// A regional pack is bound on top of its parent. A parent that is bound anyway is not read twice.
+fn layers_of(ids: &[LangId]) -> Vec<Layer> {
+    ids.iter().map(|id| Layer { pack: id.pack(), base: id.parent().filter(|parent| !ids.contains(parent)).map(LangId::pack) }).collect()
 }
 
 thread_local! {

@@ -70,7 +70,7 @@ Lab is parse-only (`speech` stays empty until Assist executes). If Lab shows `Kl
 |-----------|----------------|
 | No engine LLM | Read the headlines, then the follow-up question |
 | Empty feed | Short reply, no invented stories |
-| `de-AT` / `de-CH` | Their own packs, not the `de` pack |
+| `de-AT` / `de-CH` | Regional words on top of the `de` pack |
 
 How to use it: [Home Assistant — News](home-assistant.md#news).
 

@@ -1,138 +1,138 @@
 state_persistance/area_bedroom_2_covers::bedroom_2_covers_set_position:
-- - was vorhang schlafzimmer2
-  - ' 51'
+- - Status Rollo Kinderzimmer 2
+  - auf 51
 state_persistance/area_bedroom_2_lights::bedroom_2_lights_set_brightness:
-- - was decke schlafzimmer2
-  - ' 20'
+- - Status Lichter Kinderzimmer 2
+  - auf 20
 state_persistance/area_bedroom_3_covers::bedroom_3_covers_set_position:
-- - was vorhang schlafzimmer3
-  - ' 67'
+- - Status Rollo Kinderzimmer 3
+  - auf 67
 state_persistance/area_bedroom_3_lights::bedroom_3_lights_set_brightness:
-- - was decke schlafzimmer3
-  - ' 63'
+- - Status Lichter Kinderzimmer 3
+  - auf 63
 state_persistance/area_bedroom_4_lights::bedroom_4_lights_set_brightness:
-- - was decke schlafzimmer4
-  - ' 80'
+- - Status Lichter Kinderzimmer 4
+  - auf 80
 state_persistance/area_dining_lights::dining_lights_set_brightness:
-- - was licht wohnstubeess
-  - ' 68'
+- - Status Lichter Esszimmer
+  - auf 68
 state_persistance/area_entryway_lights::entryway_lights_set_brightness:
-- - was licht vorzimmer
-  - ' 54'
+- - Status Lichter Eingang
+  - auf 54
 state_persistance/area_family_room_lights::family_room_lights_set_brightness:
-- - was decke wohnstube
-  - ' 94'
+- - Status Lichter Familienzimmer
+  - auf 94
 state_persistance/area_garage_covers::garage_covers_set_position:
-- - was vorhang garage
-  - ' 18'
+- - Status Rollo Garage
+  - auf 18
 state_persistance/area_garage_lights::garage_lights_set_brightness:
-- - was licht garage
-  - ' 27'
+- - Status Lichter Garage
+  - auf 27
 state_persistance/area_hallway_and_powder_room_lights::hallway_and_powder_room_lights_set_brightness:
-- - was licht vorzimmergang then was licht klosett
-  - ' 100'
+- - Status Lichter Flur und Gäste-WC
+  - auf 100
 state_persistance/area_hallway_lights::hallway_lights_set_brightness:
-- - was licht vorzimmergang
-  - ' 69'
+- - Status Lichter Flur
+  - auf 69
 state_persistance/area_kitchen_lights::kitchen_lights_set_brightness:
-- - was licht kuche
-  - ' 46'
+- - Status Lichter Küche
+  - auf 46
 state_persistance/area_laundry_lights::laundry_lights_set_brightness:
-- - was licht waschraum
-  - ' 62'
+- - Status Lichter Waschküche
+  - auf 62
 state_persistance/area_living_climates::living_climates_set_temperature:
-- - was heizung wohnzimmer
-  - ' 95'
+- - Status Heizung Wohnzimmer
+  - auf 95
 state_persistance/area_living_covers::living_covers_set_position:
-- - was vorhang wohnzimmer
-  - ' 86'
+- - Status Rollo Wohnzimmer
+  - auf 86
 state_persistance/area_living_lights::living_lights_set_brightness:
-- - was licht wohnzimmer
-  - ' 55'
+- - Status Lichter Wohnzimmer
+  - auf 55
 state_persistance/area_main_bath_lights::main_bath_lights_set_brightness:
-- - was licht badmastermain
-  - ' 96'
+- - Status Lichter Badezimmer
+  - auf 96
 state_persistance/area_master_bath_lights::master_bath_lights_set_brightness:
-- - was licht badmaster
-  - ' 50'
+- - Status Lichter Elternbad
+  - auf 50
 state_persistance/area_master_bedroom_and_living_climates::master_bedroom_and_living_climates_set_temperature:
-- - was heizung schlafzimmermaster then was heizung wohnzimmer
-  - ' 69'
+- - Status Heizung Schlafzimmer und Wohnzimmer
+  - auf 69
 state_persistance/area_master_bedroom_and_living_covers::master_bedroom_and_living_covers_set_position:
-- - was vorhang schlafzimmermaster then was vorhang wohnzimmer
-  - ' 15'
+- - Status Rollo Schlafzimmer und Wohnzimmer
+  - auf 15
 state_persistance/area_master_bedroom_climates::master_bedroom_climates_set_temperature:
-- - was heizung schlafzimmermaster
-  - ' 44'
+- - Status Heizung Schlafzimmer
+  - auf 44
 state_persistance/area_master_bedroom_covers::master_bedroom_covers_set_position:
-- - was vorhang schlafzimmermaster
-  - ' 88'
+- - Status Rollo Schlafzimmer
+  - auf 88
 state_persistance/area_powder_room_lights::powder_room_lights_set_brightness:
-- - was licht klosett
-  - ' 70'
+- - Status Lichter Gäste-WC
+  - auf 70
 state_persistance/device_cover_garage_door::cover_garage_door_close:
-- - was vorhang garage
-  - schliesse vorhang garage
+- - Status Rollo Garage
+  - mach sie zu
 state_persistance/device_cover_garage_door::cover_garage_door_open:
-- - was vorhang garage
-  - oeffne vorhang garage
+- - Status Rollo Garage
+  - mach sie auf
 state_persistance/device_cover_garage_door::cover_garage_door_persistance_position:
-- - was vorhang garage
-  - '23'
+- - Status Rollo Garage
+  - auf 23
 state_persistance/device_cover_living_blinds::cover_living_blinds_close:
-- - was vorhang wohnzimmer
-  - schliesse vorhang wohnzimmer
+- - Status Rollo Wohnzimmer
+  - mach sie zu
 state_persistance/device_cover_living_blinds::cover_living_blinds_open:
-- - was vorhang wohnzimmer
-  - oeffne vorhang wohnzimmer
+- - Status Rollo Wohnzimmer
+  - mach sie auf
 state_persistance/device_cover_living_blinds::cover_living_blinds_persistance_position:
-- - was vorhang wohnzimmer
-  - '85'
+- - Status Rollo Wohnzimmer
+  - auf 85
 state_persistance/device_fan_family_fan::fan_family_fan_persistance_percentage:
-- - was ventilator wohnstube
-  - ' 43'
+- - Status Lüfter Familienzimmer
+  - auf 43
 state_persistance/device_fan_family_fan::fan_family_fan_turn_off:
-- - was ventilator wohnstube
-  - schalt ventilator wohnstube
+- - Status Lüfter Familienzimmer
+  - mach sie aus
 state_persistance/device_fan_family_fan::fan_family_fan_turn_on:
-- - was ventilator wohnstube
-  - mach ventilator wohnstube
+- - Status Lüfter Familienzimmer
+  - mach sie an
 state_persistance/device_light_entryway_light::light_entryway_light_persistance_brightness:
-- - was licht vorzimmer
-  - '12'
+- - Status Lichter Eingang
+  - auf 12
 state_persistance/device_light_entryway_light::light_entryway_light_turn_off:
-- - was licht vorzimmer
-  - schalt licht vorzimmer
+- - Status Licht Eingang
+  - mach sie aus
 state_persistance/device_light_entryway_light::light_entryway_light_turn_on:
-- - was licht vorzimmer
-  - mach licht vorzimmer
+- - Status Licht Eingang
+  - mach sie an
 state_persistance/device_lock_front_door::lock_front_door_lock:
-- - was schloss vorzimmer
-  - schloss schloss vorzimmer
+- - Status Schloss Eingang
+  - mach sie an
 state_persistance/device_lock_front_door::lock_front_door_unlock:
-- - was schloss vorzimmer
-  - oeffne schloss vorzimmer
+- - Status Schloss Eingang
+  - mach sie aus
 state_persistance/device_lock_garage_entry::lock_garage_entry_lock:
-- - was schloss garage
-  - schloss schloss garage
+- - Status Schloss Garage
+  - mach sie an
 state_persistance/device_lock_garage_entry::lock_garage_entry_unlock:
-- - was schloss garage
-  - oeffne schloss garage
+- - Status Schloss Garage
+  - mach sie aus
 state_persistance/device_media_player_family_tv::media_player_family_tv_persistance_volume_level:
-- - was tv wohnstube
-  - ' 21'
+- - Status Fernseher Familienzimmer
+  - auf 21
 state_persistance/device_media_player_family_tv::media_player_family_tv_turn_off:
-- - was tv wohnstube
-  - schalt tv wohnstube
+- - Status Fernseher Familienzimmer
+  - mach sie aus
 state_persistance/device_media_player_family_tv::media_player_family_tv_turn_on:
-- - was tv wohnstube
-  - mach tv wohnstube
+- - Status Fernseher Familienzimmer
+  - mach sie an
 state_persistance/device_media_player_living_tv::media_player_living_tv_persistance_volume_level:
-- - was tv wohnzimmer
-  - ' 21'
+- - Status Fernseher Wohnzimmer
+  - auf 21
 state_persistance/device_media_player_living_tv::media_player_living_tv_turn_off:
-- - was tv wohnzimmer
-  - schalt tv wohnzimmer
+- - Status Fernseher Wohnzimmer
+  - mach sie aus
 state_persistance/device_media_player_living_tv::media_player_living_tv_turn_on:
-- - was tv wohnzimmer
-  - mach tv wohnzimmer
+- - Status Fernseher Wohnzimmer
+  - mach sie an

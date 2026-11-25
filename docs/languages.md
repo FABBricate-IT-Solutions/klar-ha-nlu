@@ -69,8 +69,8 @@ Ein generiertes Pack darf in die Binary, wenn diese Felder stehen und die Repres
 
 Eine Stufe sagt, wie weit eine Locale getestet ist. Sie entfernt kein Pack.
 
-- **stabil**: Die Locale besteht ihre An/Aus-Minimalpaare. Jeder „An“-Satz schaltet ein, jeder „Aus“-Satz schaltet aus, und weder eine Frage noch ein verneinter Befehl schaltet etwas. Eine regionale Variante muss auch die Paare ihrer Basissprache richtig beantworten.
-- **experimentell**: alles andere. Heute ist das jedes generierte Pack: Keines kennt bisher Verneinungswörter, also wird „schalte das Licht nicht ein“ dort als Befehl ausgeführt.
+- **stabil**: Die Locale besteht ihre An/Aus-Minimalpaare. Jeder „An“-Satz schaltet ein, jeder „Aus“-Satz schaltet aus, und weder eine Frage noch ein verneinter Befehl schaltet etwas. Ein regionales Pack muss auch die Paare seines Elternpacks richtig beantworten.
+- **experimentell**: alles andere. Heute ist das jedes generierte Pack, das für sich allein steht: Keines kennt bisher Verneinungswörter, also wird „schalte das Licht nicht ein“ dort als Befehl ausgeführt. Die regionalen Packs von Deutsch und Englisch (`de-AT`, `de-CH`, `en-GB`) erben von einem stabilen Elternpack und sind stabil; `pt-BR` erbt von `pt` und ist mit ihm experimentell.
 
 `tests/language_tiers.rs` entscheidet. Die Paare stammen aus dem Generator-Lexikon der jeweiligen Locale (`tests/datasets/minimal_pairs/pairs.yaml`, geschrieben von `scripts/lang_packs/pairs.py`), und der Test schlägt fehl, wenn `STABLE` in `scripts/lang_packs/tiers.py` etwas anderes sagt als die Paare. Um eine Locale stabil zu machen, bekommt ihr Pack, was ihm fehlt (zum Beispiel die Verneinungswörter in `scripts/lang_packs/mood.py`), bis der Test verlangt, sie in `STABLE` einzutragen.
 
@@ -85,6 +85,14 @@ Die Engine-Einstellung `experimental_languages` (standardmäßig aus) ist der Sc
 `Catalog` merge't die **gepinnten** Packs pro Request. Assist und `POST /api/v2/parse` sollen `language` senden. Leeres `Settings.languages` heißt: jede kompilierte Locale darf gepinnt werden — nicht „de+en mergen“. Ein Request ohne Sprache bindet dann das Standardpack (`Settings.default_language`, Englisch, wenn nichts gesetzt ist), nie einen leeren Catalog. Alle Lexika in einen Catalog zu mergen kollidiert Tokens (z. B. deutsches `an`) und wird abgelehnt.
 
 Eine kurze explizite Liste wie `["de", "en"]` merge't diese Packs weiter für ungepinnten Parse. Das ist eine Nutzerwahl, keine Support-Kaste.
+
+### Regionale Packs
+
+`de-AT`, `de-CH`, `en-GB` und `pt-BR` sind regionale Packs. Ihre Registry-Zeile nennt ein `parent` (`de`, `en`, `pt`), und der Catalog bindet das regionale Pack über dieses Elternpack: Erst werden die Wörter des Elternpacks gelesen, das regionale Pack ergänzt eigene und gewinnt bei gleichem Schlüssel. Antworten und Haushaltstexte bleiben regional. `GET /api/v2/languages` nennt das `parent` jeder Locale.
+
+Ein regionales Pack enthält nur, was die Region anders sagt. In `scripts/lang_packs` ist das `like` (ein regionales Wort und das Standardwort, für das es steht: `"aa": "an"`; der Generator schreibt es in jede Liste des Elternpacks, in der das Standardwort steht, mit derselben Verbklasse) und `add` (Wörter ohne einzelnes Standardwort, nach Pack-Pfad). Ein regionales Wort, das das Elternpack schon kennt, lehnt der Generator ab.
+
+Ein regionales Pack hat keine eigenen Sätze. `tests/regional_overlays.rs`, die Paritätsmatrix und die Full-Home-Stufen fahren die Sätze des Elternpacks unter dem regionalen Code und erwarten dieselben Entscheidungen.
 
 `parse()` bindet `Settings.languages`; Hilfsfunktionen lesen `catalog()`. Neue Engine-Felder gehören auf `LanguagePack` und in das bestehende `extend_sets!`.
 
@@ -128,6 +136,7 @@ Operator-Chrome (die offizielle Klar-App) ist **nicht** der Assist-Pin und **nic
 - `tests/parity_langs.rs` — dieselbe Wohn+Familie+m0+m2-Rubrik je kompilierter Locale
 - `tests/datasets/assist/{code}/representative.yaml` — Representative-Gate
 - `tests/language.rs` — Pin, Isolation, Overlays, Household-Cues
+- `tests/regional_overlays.rs` — ein regionales Pack entscheidet auf den Suiten des Elternpacks wie dieses
 - `tests/language_tiers.rs` — Minimalpaare je Locale entscheiden die Stufe; leeres `languages` bindet das Standardpack
 - DE/EN-Voice-Suiten (`wohnung_mittel`, `wohnung_en`, `familienhaus_de`, `family_home_en`) sind die **Oracle**-Graphen; andere Locales legen native Sätze auf dieselben Graphen
 

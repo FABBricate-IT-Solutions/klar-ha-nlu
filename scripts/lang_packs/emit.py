@@ -54,8 +54,9 @@ pub(super) const VERBS: &[(&str, VerbKind)] = &[
 
 def write_registry(langs: list[dict]) -> None:
     rows = ",\n    ".join(
-        "LangRow {{ id: LangId::new({code}), meta: LangMeta {{ code: {code}, native_name: {native}, script: {script}, variants: &[{vars}], tier: Tier::{tier} }}, pack: &{path} }}".format(
+        "LangRow {{ id: LangId::new({code}), meta: LangMeta {{ code: {code}, native_name: {native}, script: {script}, variants: &[{vars}], parent: {parent}, tier: Tier::{tier} }}, pack: &{path} }}".format(
             code=rust_str(item["code"]),
+            parent=f"Some({rust_str(item['parent'])})" if item.get("parent") else "None",
             tier=tier_of(item["code"]),
             native=rust_str(item["native"]),
             script=rust_str(item["script"]),
@@ -80,6 +81,8 @@ pub struct LangMeta {{
     pub native_name: &'static str,
     pub script: &'static str,
     pub variants: &'static [&'static str],
+    /// A regional pack inherits from this pack and only adds or replaces regional words.
+    pub parent: Option<&'static str>,
     /// Stable locales pass their minimal pairs; experimental ones need the switch for a new selection.
     pub tier: Tier,
 }}
@@ -115,6 +118,10 @@ pub fn pack(id: LangId) -> &'static LanguagePack {{
 
 pub fn meta(id: LangId) -> Option<&'static LangMeta> {{
     row(id.code()).map(|item| &item.meta)
+}}
+
+pub fn parent(id: LangId) -> Option<LangId> {{
+    meta(id).and_then(|meta| meta.parent).and_then(lookup)
 }}
 
 pub fn languages() -> &'static [LangMeta] {{

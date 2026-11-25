@@ -8,7 +8,7 @@ from lang_packs.news_lex import news_glue
 
 def news_rs(lang: dict) -> str:
     news = lang["chat"]["news"]
-    glue = news_glue(news, lang["cues"]["status_words"])
+    glue = news_glue(news, lang.get("news_status", lang["cues"]["status_words"]))
     return f"""{RUST_BANNER}use crate::lang::groups::News;
 
 pub(super) const NEWS: News = News {{

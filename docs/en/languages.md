@@ -69,8 +69,8 @@ A generated pack may enter the binary when those fields are filled and the repre
 
 A tier says how far a locale is tested. It does not remove a pack.
 
-- **stable**: the locale passes its on/off minimal pairs. Every "on" sentence switches on, every "off" sentence switches off, and neither a question nor a negated command switches anything. A regional variant also has to get the pairs of its base language right.
-- **experimental**: everything else. Today that is every generated pack: none of them carries negation words yet, so "do not turn on the light" is carried out as a command.
+- **stable**: the locale passes its on/off minimal pairs. Every "on" sentence switches on, every "off" sentence switches off, and neither a question nor a negated command switches anything. A regional pack also has to get the pairs of its parent right.
+- **experimental**: everything else. Today that is every generated pack that stands on its own: none of them carries negation words yet, so "do not turn on the light" is carried out as a command. The regional packs of German and English (`de-AT`, `de-CH`, `en-GB`) inherit from a stable parent and are stable; `pt-BR` inherits from `pt` and is experimental with it.
 
 `tests/language_tiers.rs` decides. The pairs come from each locale's own generator lexicon (`tests/datasets/minimal_pairs/pairs.yaml`, written by `scripts/lang_packs/pairs.py`), and the test fails when `STABLE` in `scripts/lang_packs/tiers.py` says something else than the pairs do. To make a locale stable, give its pack what it lacks (for example the negation words in `scripts/lang_packs/mood.py`) until the test asks you to add it to `STABLE`.
 
@@ -85,6 +85,14 @@ The engine setting `experimental_languages` (off by default) is the switch:
 `Catalog` merges the **pinned** packs for that request. Assist and `POST /api/v2/parse` should send `language`. Empty `Settings.languages` means every compiled locale may be pinned, not “merge de+en.” A request that names no language then binds the default pack (`Settings.default_language`, English when unset), never an empty catalog. Merging every lexicon into one catalog collides tokens (for example German `an` vs other packs) and is refused.
 
 An explicit short list such as `["de", "en"]` still merges those packs for unpinned parse. That is a user choice, not a support tier.
+
+### Regional packs
+
+`de-AT`, `de-CH`, `en-GB` and `pt-BR` are regional packs. Their registry row names a `parent` (`de`, `en`, `pt`), and the catalog binds the regional pack on top of that parent: the parent's words are read first, the regional pack adds its own and wins a shared key. Replies and household texts stay regional. `GET /api/v2/languages` lists the `parent` of each locale.
+
+A regional pack holds only what the region says differently. In `scripts/lang_packs` that is `like` (a regional word and the standard word it stands for: `"aa": "an"`; the generator writes it into every parent list that holds the standard word, with the same verb class) and `add` (words with no single standard counterpart, by pack path). The generator refuses a regional word the parent already knows.
+
+A regional pack has no sentences of its own. `tests/regional_overlays.rs`, the parity matrix and the full-home tiers run the parent's sentences under the regional code and expect the same decisions.
 
 `parse()` binds `Settings.languages`; helpers read `catalog()`. New engine fields belong on `LanguagePack` and in the existing `extend_sets!` merge.
 
@@ -128,6 +136,7 @@ Operator chrome (the official Klar app) is **not** the Assist pin and **not** th
 - `tests/parity_langs.rs` — same Wohn+Family+m0+m2 rubric per compiled locale
 - `tests/datasets/assist/{code}/representative.yaml` — representative gate
 - `tests/language.rs` — pin, isolation, overlays, household cues
+- `tests/regional_overlays.rs` — a regional pack decides like its parent on the parent's suites
 - `tests/language_tiers.rs` — minimal pairs per locale decide the tier; empty `languages` binds the default pack
 - DE/EN voice suites (`wohnung_mittel`, `wohnung_en`, `familienhaus_de`, `family_home_en`) are the **oracle** graphs; other locales overlay native sentences on those same graphs
 

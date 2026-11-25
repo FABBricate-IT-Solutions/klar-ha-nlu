@@ -137,56 +137,91 @@ const WORD_SOURCES: &[(WordKey, WordPick)] = &[
     (WordKey::ChatNewsGlue, |p: &Pack| p.chat.news.glue),
 ];
 
+/// One bound language. A regional pack names the parent pack it inherits from.
+#[derive(Clone, Copy)]
+pub(in crate::lang) struct Layer {
+    pub pack: &'static Pack,
+    pub base: Option<&'static Pack>,
+}
+
 impl Catalog {
     pub(in crate::lang) fn merge(packs: &[&'static Pack]) -> Self {
+        let layers: Vec<Layer> = packs.iter().map(|&pack| Layer { pack, base: None }).collect();
+        Self::merge_layers(&layers)
+    }
+
+    /// A regional pack only adds or replaces words. Its parent's words are read first, so the
+    /// regional entry wins a shared key; replies and household texts stay the regional pack's own.
+    pub(in crate::lang) fn merge_layers(layers: &[Layer]) -> Self {
         let mut c = Self::empty();
-        c.packs = packs.to_vec();
-        for p in packs {
+        for layer in layers {
+            let p = layer.pack;
+            if c.packs.is_empty() {
+                c.ask = [Some(p), layer.base].into_iter().flatten().map(|pack| &pack.answers).find(|answers| !answers.ask.is_empty());
+            }
             c.langs.push(p.id);
+            c.packs.push(p);
             c.speech.push(&p.speech);
-            for &(w, k) in p.verbs {
-                c.verbs.insert(w, k);
+            c.absorb_lists(p);
+            if let Some(base) = layer.base {
+                c.packs.push(base);
+                c.speech.push(&base.speech);
+                c.absorb_lists(base);
+                c.absorb_maps(base);
             }
-            for &(w, d) in p.maps.domain_map {
-                c.domain_map.insert(w, d);
-            }
-            for &(w, color) in p.maps.colors {
-                c.colors.insert(w, color);
-            }
-            for &(w, n) in p.maps.numbers {
-                c.numbers.insert(w, n);
-            }
-            c.number_styles.push(p.maps.number_style);
-            for &(w, aliases) in p.fixtures.fixture_aliases {
-                c.fixture_aliases.insert(w, aliases);
-            }
-            if let Some(g) = &p.fixtures.group_clarify {
-                c.group_clarify.push(GroupClarify { trigger: g.trigger, pairs: g.pairs, triples: g.triples });
-            }
-            c.strip_pairs.extend(p.cues.strip_pairs.iter().copied());
-            c.keep_after.extend(p.cues.keep_after.iter().copied());
-            c.synonym_pairs.extend(p.cues.synonym_pairs.iter().copied());
-            c.scene_synonyms.extend(p.cues.scene_synonyms.iter().copied());
-            for (key, pick) in WORD_SOURCES {
-                c.sets.entry(*key).or_default().extend(pick(p).iter().copied());
-            }
-            if c.news_intro.is_empty() {
-                c.news_intro = p.chat.news.intro;
-                c.news_nudge = p.chat.news.nudge;
-                c.news_done = p.chat.news.done;
-            }
-            c.news_open &= p.chat.news.open;
-            for &(word, query) in p.chat.news.topics {
-                c.news_topics.insert(word, query);
-            }
-            c.morphology.room_suffixes.extend(p.morphology.room_suffixes.iter().copied());
-            c.morphology.color_suffixes.extend(p.morphology.color_suffixes.iter().copied());
-            c.morphology.linking.extend(p.morphology.linking.iter().copied());
+            c.absorb_maps(p);
+            // The parent's glue list is part of a regional catalog, so its verdict counts.
+            c.news_open &= layer.base.unwrap_or(p).chat.news.open;
         }
         for extra in ["aufgabenliste", "liste"] {
             c.sets.entry(WordKey::ListNouns).or_default().insert(extra);
         }
         c
+    }
+
+    /// Ordered lists and first-wins texts: the earlier pack is found first.
+    fn absorb_lists(&mut self, p: &'static Pack) {
+        if let Some(g) = &p.fixtures.group_clarify {
+            self.group_clarify.push(GroupClarify { trigger: g.trigger, pairs: g.pairs, triples: g.triples });
+        }
+        self.strip_pairs.extend(p.cues.strip_pairs.iter().copied());
+        self.keep_after.extend(p.cues.keep_after.iter().copied());
+        self.synonym_pairs.extend(p.cues.synonym_pairs.iter().copied());
+        self.scene_synonyms.extend(p.cues.scene_synonyms.iter().copied());
+        if self.news_intro.is_empty() {
+            self.news_intro = p.chat.news.intro;
+            self.news_nudge = p.chat.news.nudge;
+            self.news_done = p.chat.news.done;
+        }
+        self.number_styles.push(p.maps.number_style);
+        self.morphology.room_suffixes.extend(p.morphology.room_suffixes.iter().copied());
+        self.morphology.color_suffixes.extend(p.morphology.color_suffixes.iter().copied());
+        self.morphology.linking.extend(p.morphology.linking.iter().copied());
+    }
+
+    /// Keyed words and word sets: the later pack wins a shared key.
+    fn absorb_maps(&mut self, p: &'static Pack) {
+        for &(w, k) in p.verbs {
+            self.verbs.insert(w, k);
+        }
+        for &(w, d) in p.maps.domain_map {
+            self.domain_map.insert(w, d);
+        }
+        for &(w, color) in p.maps.colors {
+            self.colors.insert(w, color);
+        }
+        for &(w, n) in p.maps.numbers {
+            self.numbers.insert(w, n);
+        }
+        for &(w, aliases) in p.fixtures.fixture_aliases {
+            self.fixture_aliases.insert(w, aliases);
+        }
+        for (key, pick) in WORD_SOURCES {
+            self.sets.entry(*key).or_default().extend(pick(p).iter().copied());
+        }
+        for &(word, query) in p.chat.news.topics {
+            self.news_topics.insert(word, query);
+        }
     }
 
     fn empty() -> Self {
@@ -213,6 +248,7 @@ impl Catalog {
             news_open: true,
             morphology: Morphology::default(),
             pack_intents: Vec::new(),
+            ask: None,
         }
     }
 }

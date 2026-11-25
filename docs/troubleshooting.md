@@ -70,7 +70,7 @@ Lab ist Parse-only (`speech` bleibt leer bis Assist ausführt). Zeigt Lab `KlarG
 |------|----------------|
 | Kein Engine-LLM | Titel vorlesen, plus die Nachfrage |
 | Leerer Feed | Knappe Auskunft, keine erfundenen Meldungen |
-| `de-AT` / `de-CH` | Eigene Packs, nicht das `de`-Pack |
+| `de-AT` / `de-CH` | Regionale Wörter zusätzlich zum `de`-Pack |
 
 Bedienung: [Home Assistant — Nachrichten](home-assistant.md#nachrichten).
 

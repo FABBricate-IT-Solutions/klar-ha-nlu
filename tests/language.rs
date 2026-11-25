@@ -54,12 +54,18 @@ fn every_compiled_locale_has_assist_and_parity_suites() {
         if code == "de" || code == "en" {
             continue;
         }
+        // A regional pack runs its parent's apartment sentences and has no overlay of its own there.
+        let regional = id.parent().is_some();
         for suite in ["wohnung_mittel", "familienhaus_de", "m0_exact", "m2_floors"] {
             let dir = root.join("tests/datasets/parity").join(code).join(suite);
+            if regional && suite == "wohnung_mittel" {
+                assert!(!dir.exists(), "{code} inherits its apartment suite, remove {}", dir.display());
+                continue;
+            }
             assert!(dir.is_dir(), "missing parity suite {} for {code}", dir.display());
         }
         let conversation = root.join("tests/datasets/parity").join(code).join("wohnung_mittel/conversation.yaml");
-        assert!(conversation.is_file(), "missing conversation overlay for {code}");
+        assert!(regional || conversation.is_file(), "missing conversation overlay for {code}");
     }
     assert!(root.join("tests/datasets/wohnung_mittel").is_dir());
     assert!(root.join("tests/datasets/wohnung_en").is_dir());
@@ -69,12 +75,13 @@ fn every_compiled_locale_has_assist_and_parity_suites() {
 
 #[test]
 fn every_compiled_pack_has_household_cues() {
+    // The bound catalog counts: a regional pack takes these cues from its parent.
     for id in klar_nlu::lang::LangId::all() {
         // Teach and undo are hand-written or absent (tests/household_phrases.rs); a pack without
         // them simply does not offer the feature.
-        let house = &id.pack().household;
-        assert!(!house.clock.is_empty(), "{:?} clock", id.code());
-        assert!(!house.weather.is_empty(), "{:?} weather", id.code());
+        let bound = catalog_for(&[id.code().to_string()]);
+        assert!(bound.household_phrases(|pack| pack.household.clock).next().is_some(), "{:?} clock", id.code());
+        assert!(bound.household_phrases(|pack| pack.household.weather).next().is_some(), "{:?} weather", id.code());
     }
 }
 
@@ -151,8 +158,10 @@ fn locale_overlay_adds_tokens_without_editing_rust() {
     let gb = catalog_for(&["en-GB".into()]);
     assert_eq!(gb.verb("colour"), Some(VerbKind::Color));
     assert!(gb.light_nouns().contains("bulb"));
-    // en-GB replaces the English status words; without "what" short device questions leave scope.
-    assert!(gb.status_words().contains("what"));
+    // en-GB inherits from en: it adds regional words and keeps the English word classes as they are.
+    assert_eq!(gb.status_words(), en.status_words());
+    assert_eq!(gb.verb("telly"), None, "a regional noun is not a verb");
+    assert!(gb.media_nouns().contains("telly") && gb.media_nouns().contains("tv"));
     reset_runtime_packs();
 }
 

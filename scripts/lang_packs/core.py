@@ -323,6 +323,9 @@ def pack(
     correction=None,
     need_which=None,
     spoken=None,
+    parent=None,
+    like=None,
+    add=None,
     strip_pairs=None,
 ):
     words = w(
@@ -393,5 +396,6 @@ def pack(
         script=script,
         extra_verbs=extra_verbs or [],
         personality=personality if personality is not None else empty_personality(),
+        **({"parent": parent, "like": like or {}, "add": add or {}} if parent else {}),
         strip_pairs=strip_pairs or [],
     )

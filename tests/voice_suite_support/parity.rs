@@ -1,7 +1,8 @@
 #![allow(dead_code)]
 
 use super::schema::Sentences;
-use super::{datasets_root, print_stats, run_groups, run_groups_lang, suite_home, RunStats};
+use super::{datasets_root, print_stats, run_groups, run_groups_inherited, run_groups_lang, suite_home, RunStats};
+use klar_nlu::lang::LangId;
 use klar_nlu::types::HomeGraph;
 use serde::Deserialize;
 use std::collections::BTreeMap;
@@ -68,15 +69,24 @@ fn conversation(lang: &str) -> RunStats {
     }
 }
 
+/// A regional pack is an overlay on its parent, so its apartment suite is the parent's: the
+/// parent's sentences under the regional code. It has no sentence overlay of its own there.
 fn run_wohnung_overlay(lang: &str, groups: &[&str]) -> RunStats {
-    let rooms = load_rooms(lang);
-    let overlay = overlay_for(lang, "wohnung_mittel");
+    let parent = LangId::from_code(lang).and_then(LangId::parent).map(LangId::code);
+    match parent {
+        Some("de") => return run_groups_inherited("wohnung_mittel", groups, suite_home("wohnung_mittel"), lang),
+        Some("en") => return run_groups_inherited("wohnung_en", groups, suite_home("wohnung_en"), lang),
+        _ => {}
+    }
+    let sentences = parent.unwrap_or(lang);
+    let rooms = load_rooms(sentences);
+    let overlay = overlay_for(sentences, "wohnung_mittel");
     run_groups_lang("wohnung_mittel", groups, with_aliases(suite_home("wohnung_mittel"), &rooms), Some(lang), Some(&overlay))
 }
 
 pub(crate) fn run_parity(lang: &str) -> RunStats {
-    let rooms = load_rooms(lang);
     let mut stats = RunStats { ok: 0, fail: 0, fails: Vec::new() };
+    let parent = LangId::from_code(lang).and_then(LangId::parent).map(LangId::code);
     if lang == "en" {
         stats.absorb(run_groups("wohnung_en", WOHNUNG, suite_home("wohnung_en")));
         stats.absorb(conversation(lang));
@@ -89,14 +99,30 @@ pub(crate) fn run_parity(lang: &str) -> RunStats {
         stats.absorb(run_groups("familienhaus_de", FAMILY, suite_home("familienhaus_de")));
         stats.absorb(run_groups("familienhaus_de", &["m0_exact"], suite_home("familienhaus_de")));
         stats.absorb(run_groups("familienhaus_de", &["m2_floors"], suite_home("familienhaus_de")));
+    } else if parent == Some("en") {
+        // en-GB runs the English suites under its own code; familienhaus overlays on disk still
+        // mirror the parent oracle so the derived files stay as gates.
+        stats.absorb(run_groups_inherited("wohnung_en", WOHNUNG, suite_home("wohnung_en"), lang));
+        stats.absorb(run_groups_inherited("family_home_en", FAMILY, suite_home("family_home_en"), lang));
+        stats.absorb(run_groups_inherited("family_home_en", &["m0_exact"], suite_home("family_home_en"), lang));
+        stats.absorb(run_groups_inherited("family_home_en", &["m2_floors"], suite_home("family_home_en"), lang));
     } else {
         stats.absorb(run_wohnung_overlay(lang, WOHNUNG));
+        // de-AT/de-CH overlays are the German oracle (plus like-words); skip made-up regional
+        // room stems that collide (vorzimmer → entryway and hallway). Other regionals reuse the
+        // parent locale's room aliases and can reuse the parent's overlay sentences.
+        let overlay_lang = match parent {
+            Some("de") => lang,
+            Some(code) => code,
+            None => lang,
+        };
+        let rooms = if parent == Some("de") { LocaleRooms::default() } else { load_rooms(overlay_lang) };
         let family_home = with_aliases(suite_home("familienhaus_de"), &rooms);
-        let family = overlay_for(lang, "familienhaus_de");
+        let family = overlay_for(overlay_lang, "familienhaus_de");
         stats.absorb(run_groups_lang("familienhaus_de", FAMILY, family_home.clone(), Some(lang), Some(&family)));
-        let exact = overlay_for(lang, "m0_exact");
+        let exact = overlay_for(overlay_lang, "m0_exact");
         stats.absorb(run_groups_lang("familienhaus_de", &["m0_exact"], family_home.clone(), Some(lang), Some(&exact)));
-        let floors = overlay_for(lang, "m2_floors");
+        let floors = overlay_for(overlay_lang, "m2_floors");
         stats.absorb(run_groups_lang("familienhaus_de", &["m2_floors"], family_home, Some(lang), Some(&floors)));
     }
     print_stats(&format!("Klar NLU · parity {lang}"), &stats);

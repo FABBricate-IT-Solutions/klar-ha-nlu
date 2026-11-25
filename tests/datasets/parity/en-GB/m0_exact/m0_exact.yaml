@@ -1,19 +1,19 @@
 m0_exact/representative::exact_clarify:
-- enable all light lounge
+- Mach Licht Wohnzimmer an
 m0_exact/representative::exact_list_complete_from_setup:
-- done bread aufgabenliste
+- Setze bread auf die Aufgabenliste als erledigt
 m0_exact/representative::exact_multi_intent:
-- enable ceiling bedroom3 then extinguish light porch
+- Mach die Lichter in Kinderzimmer 3 an und Mach die Lichter am Eingang aus
 m0_exact/representative::exact_reject:
-- weather france
+- Was ist die Hauptstadt von Frankreich
 m0_exact/representative::exact_shopping_list:
-- add milk list
+- Setze milk auf die Einkaufsliste
 m0_exact/representative::exact_state_persistence:
-- - what light porch
-  - '12'
+- - Status Lichter Eingang
+  - auf 12
 m0_exact/representative::exact_timer:
-- enable timer oven 2 min
+- Starte den Timer Ofen-Timer für 2 Minuten
 m0_exact/representative::exact_timer_resume_preserves_duration:
-- enable timer oven
+- Setze den Ofen-Timer fort
 m0_exact/representative::exact_todo_list:
-- add apples aufgabenliste
+- Füge apples zur Aufgabenliste hinzu

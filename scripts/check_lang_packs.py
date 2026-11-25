@@ -48,6 +48,46 @@ MOD_TO_TAG = {
 }
 
 
+PARENT_ROW = re.compile(r'code: "([^"]+)",[^}]*?parent: Some\("([^"]+)"\)')
+
+
+def regional_parents() -> dict[str, str]:
+    """Regional packs and the pack each inherits from, as the registry lists them."""
+    registry = (ROOT / "src" / "lang" / "registry.rs").read_text(encoding="utf-8")
+    return dict(PARENT_ROW.findall(registry))
+
+
+def check_regional(pack: Path, tag: str, parent: str) -> None:
+    """A regional pack holds regional words only; everything else comes from its parent."""
+    parent_dir = PACKS / parent.replace("-", "_").lower()
+    if not parent_dir.is_dir():
+        fail(f"{pack.name} inherits from {parent}, which is not a compiled pack")
+    verb = re.compile(r'\("([^"]+)", VerbKind::(\w+)\)')
+    standard = dict(verb.findall((parent_dir / "verbs.rs").read_text(encoding="utf-8")))
+    for word, kind in verb.findall((pack / "verbs.rs").read_text(encoding="utf-8")):
+        if standard.get(word, kind) != kind:
+            fail(f"{pack.name} makes {word} a {kind} verb, {parent} says {standard[word]}")
+    for own in (PARITY / tag / "wohnung_mittel", ROOT / "tests" / "datasets" / "full_home" / tag):
+        if own.exists():
+            fail(f"{pack.name} is regional and runs its parent's sentences; remove {own.relative_to(ROOT)}")
+
+
+def check_complete(name: str, verbs: str, body: str) -> None:
+    """A pack that stands on its own needs the basic word classes."""
+    if "VerbKind::On" not in verbs or "VerbKind::Off" not in verbs:
+        fail(f"{name} missing On/Off verbs")
+    if "light_nouns: &[]" in body:
+        fail(f"{name} has empty light_nouns")
+    # teach and undo may be empty: they are hand-written or absent, never built from verbs.
+    for field in ("clock:", "weather:"):
+        if f"{field} &[]" in body:
+            fail(f"{name} household {field} is empty")
+    num_chunk = body[body.find("numbers:") : body.find("numbers:") + 2500] if "numbers:" in body else ""
+    native_nums = [word for word in re.findall(r'\("([^"]+)", \d+\)', num_chunk) if not word.isdigit()]
+    if len(native_nums) < 10:
+        fail(f"{name} needs native number words, got {native_nums[:5]}")
+
+
 def check_default_catalog() -> None:
     """No privileged de+en default. Catalog is per-request; empty means no merge."""
     lang_mod = (ROOT / "src" / "lang" / "mod.rs").read_text(encoding="utf-8")
@@ -145,6 +185,7 @@ def main() -> None:
     if not PACKS.is_dir():
         fail("missing src/lang/packs")
     missing_repr = []
+    parents = regional_parents()
     for pack in sorted(path for path in PACKS.iterdir() if path.is_dir()):
         mapped = MOD_TO_TAG.get(pack.name, pack.name)
         if mapped == "ru" or pack.name == "ru":
@@ -152,31 +193,26 @@ def main() -> None:
         handwritten = pack.name in HANDWRITTEN
         if not handwritten and not (DATASETS / mapped / "representative.yaml").is_file():
             missing_repr.append(mapped)
+        regional = mapped in parents
+        if regional:
+            check_regional(pack, mapped, parents[mapped])
         if not handwritten:
             for suite in PARITY_SUITES:
+                if regional and suite == "wohnung_mittel":
+                    continue
                 if not (PARITY / mapped / suite).is_dir():
                     fail(f"{pack.name} missing parity suite tests/datasets/parity/{mapped}/{suite}")
         verbs = (pack / "verbs.rs").read_text(encoding="utf-8")
         speech = (pack / "speech.rs").read_text(encoding="utf-8")
         body = (pack / "pack.rs").read_text(encoding="utf-8")
-        if "VerbKind::On" not in verbs or "VerbKind::Off" not in verbs:
-            fail(f"{pack.name} missing On/Off verbs")
         if 'unknown: ""' in speech or 'confirm: ""' in speech:
             fail(f"{pack.name} has empty speech")
-        if "light_nouns: &[]" in body:
-            fail(f"{pack.name} has empty light_nouns")
-        # teach and undo may be empty: they are hand-written or absent, never built from verbs.
-        for field in ("clock:", "weather:"):
-            if f"{field} &[]" in body:
-                fail(f"{pack.name} household {field} is empty")
+        if not regional:
+            check_complete(pack.name, verbs, body)
         if not handwritten and (FAKE_SUFFIX.search(body) or FAKE_SUFFIX.search(verbs)):
             fail(f"{pack.name} has synthetic suffix tokens")
         if pack.name not in DE_SCAFFOLD_OK and GERMAN_SCAFFOLD.search(body):
             fail(f"{pack.name} has German home-graph tokens")
-        num_chunk = body[body.find("numbers:") : body.find("numbers:") + 2500] if "numbers:" in body else ""
-        native_nums = [word for word in re.findall(r'\("([^"]+)", \d+\)', num_chunk) if not word.isdigit()]
-        if len(native_nums) < 10:
-            fail(f"{pack.name} needs native number words, got {native_nums[:5]}")
     if missing_repr:
         fail("missing representative.yaml for: " + ", ".join(missing_repr))
     registry = (ROOT / "src" / "lang" / "registry.rs").read_text(encoding="utf-8")
