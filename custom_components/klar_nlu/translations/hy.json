@@ -13,10 +13,12 @@
       }
     },
     "error": {
-      "invalid_url": "Հասցեն պետք է լինի http(s)՝ առանց օգտանվան։"
+      "invalid_url": "Հասցեն պետք է լինի http(s)՝ առանց օգտանվան։",
+      "cannot_connect": "Klar did not answer at that URL. Check the App or the URL."
     },
     "abort": {
-      "already_configured": "Klar NLU արդեն կարգավորված է"
+      "already_configured": "Klar NLU արդեն կարգավորված է",
+      "reauth_successful": "Klar connection updated"
     }
   },
   "options": {

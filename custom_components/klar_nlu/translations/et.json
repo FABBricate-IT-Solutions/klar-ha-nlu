@@ -13,10 +13,12 @@
       }
     },
     "error": {
-      "invalid_url": "URL peab olema http(s) ilma kasutajanimega."
+      "invalid_url": "URL peab olema http(s) ilma kasutajanimega.",
+      "cannot_connect": "Klar did not answer at that URL. Check the App or the URL."
     },
     "abort": {
-      "already_configured": "Klar NLU on juba seadistatud"
+      "already_configured": "Klar NLU on juba seadistatud",
+      "reauth_successful": "Klar connection updated"
     }
   },
   "options": {

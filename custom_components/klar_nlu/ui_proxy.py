@@ -146,9 +146,15 @@ def ha_request_authenticated(request: web.Request) -> bool:
     return bool(request.get("ha_authenticated"))
 
 
+def ha_request_admin(request: web.Request) -> bool:
+    """A-04: only administrators may mint a proxy cookie or hold the engine token."""
+    user = request.get("hass_user")
+    return bool(getattr(user, "is_admin", False))
+
+
 def request_allowed(request: web.Request, secret: bytes, now: float | None = None) -> bool:
     if ha_request_authenticated(request):
-        return True
+        return ha_request_admin(request)
     cookie = request.cookies.get(COOKIE_NAME) if request.cookies else None
     return valid_ui_cookie(secret, str(cookie or ""), now if now is not None else time.time())
 
@@ -255,6 +261,8 @@ class KlarUiSessionView(HomeAssistantView):
     requires_auth = True
 
     async def post(self, request: web.Request) -> web.Response:
+        if not ha_request_admin(request):
+            return web.Response(status=403, text="Administrator required")
         response = web.Response(status=204)
         _set_ui_cookie(response, request, request.app["hass"])
         return response
@@ -290,6 +298,8 @@ class KlarUiProxyView(HomeAssistantView):
     async def _handle(self, request: web.Request, path: str) -> web.StreamResponse:
         hass: HomeAssistant = request.app["hass"]
         secret = cookie_secret(hass)
+        if ha_request_authenticated(request) and not ha_request_admin(request):
+            return web.Response(status=403, text="Administrator required")
         if not request_allowed(request, secret):
             return web.Response(status=401, text="Authentication required")
         base, token = configured_engine(hass)
@@ -311,13 +321,15 @@ class KlarUiProxyView(HomeAssistantView):
                 allow_redirects=False,
             ) as resp:
                 headers = _response_headers(resp.headers, base)
+                # A-04: renew the session cookie on every successful proxied turn.
+                renew = request_allowed(request, secret)
                 if request.method == "HEAD":
                     out: web.StreamResponse = web.Response(status=resp.status, headers=headers)
-                    if ha_request_authenticated(request):
+                    if renew:
                         _set_ui_cookie(out, request, hass)
                     return out
                 streamed = web.StreamResponse(status=resp.status, headers=headers)
-                if ha_request_authenticated(request):
+                if renew:
                     _set_ui_cookie(streamed, request, hass)
                 await streamed.prepare(request)
                 async for chunk in resp.content.iter_any():

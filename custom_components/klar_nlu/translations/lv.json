@@ -13,10 +13,12 @@
       }
     },
     "error": {
-      "invalid_url": "URL jābūt http(s) bez lietotājvārda."
+      "invalid_url": "URL jābūt http(s) bez lietotājvārda.",
+      "cannot_connect": "Klar did not answer at that URL. Check the App or the URL."
     },
     "abort": {
-      "already_configured": "Klar NLU jau ir iestatīts"
+      "already_configured": "Klar NLU jau ir iestatīts",
+      "reauth_successful": "Klar connection updated"
     }
   },
   "options": {

@@ -59,7 +59,10 @@ def expand(fields: dict[str, str]) -> dict[str, str]:
         "config.step.user.data.url": f["url"],
         "config.step.user.data.token": f["token"],
         "config.error.invalid_url": f["invalid"],
+        "config.error.cannot_connect": f.get("cannot_connect")
+        or "Klar did not answer at that URL. Check the App or the URL.",
         "config.abort.already_configured": f["already"],
+        "config.abort.reauth_successful": f.get("reauth_successful") or "Klar connection updated",
         "options.step.init.title": f["title"],
         "options.step.init.description": f"{f['opt_desc'].rstrip()} {{apps}}",
         "options.step.init.data.mode": f["mode"],

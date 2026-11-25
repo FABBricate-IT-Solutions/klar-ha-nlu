@@ -13,10 +13,12 @@
       }
     },
     "error": {
-      "invalid_url": "網址必須係 http(s)，唔好帶用戶名。"
+      "invalid_url": "網址必須係 http(s)，唔好帶用戶名。",
+      "cannot_connect": "Klar did not answer at that URL. Check the App or the URL."
     },
     "abort": {
-      "already_configured": "Klar NLU 已經設定"
+      "already_configured": "Klar NLU 已經設定",
+      "reauth_successful": "Klar connection updated"
     }
   },
   "options": {

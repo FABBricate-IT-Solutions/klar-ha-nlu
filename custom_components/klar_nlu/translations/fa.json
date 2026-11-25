@@ -13,10 +13,12 @@
       }
     },
     "error": {
-      "invalid_url": "نشانی باید http(s) باشد و نام کاربری نداشته باشد."
+      "invalid_url": "نشانی باید http(s) باشد و نام کاربری نداشته باشد.",
+      "cannot_connect": "Klar did not answer at that URL. Check the App or the URL."
     },
     "abort": {
-      "already_configured": "Klar NLU از قبل پیکربندی شده"
+      "already_configured": "Klar NLU از قبل پیکربندی شده",
+      "reauth_successful": "Klar connection updated"
     }
   },
   "options": {

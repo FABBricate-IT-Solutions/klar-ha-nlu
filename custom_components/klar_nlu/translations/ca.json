@@ -13,10 +13,12 @@
       }
     },
     "error": {
-      "invalid_url": "L’URL ha de ser http(s), sense usuari."
+      "invalid_url": "L’URL ha de ser http(s), sense usuari.",
+      "cannot_connect": "Klar did not answer at that URL. Check the App or the URL."
     },
     "abort": {
-      "already_configured": "Klar NLU ja està configurat"
+      "already_configured": "Klar NLU ja està configurat",
+      "reauth_successful": "Klar connection updated"
     }
   },
   "options": {

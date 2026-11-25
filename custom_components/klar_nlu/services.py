@@ -3,11 +3,14 @@ from __future__ import annotations
 import logging
 
 import aiohttp
+import voluptuous as vol
 from homeassistant.components import conversation
 from homeassistant.config_entries import ConfigEntry
 from homeassistant.core import HomeAssistant, ServiceCall
+from homeassistant.helpers import config_validation as cv
 from homeassistant.helpers import entity_registry as er
 from homeassistant.helpers.aiohttp_client import async_get_clientsession
+from homeassistant.helpers.service import async_register_admin_service
 
 from .asr_boost import export_asr_boost
 from .const import (
@@ -27,6 +30,21 @@ _LOGGER = logging.getLogger(__name__)
 SERVICE_UNDO = "undo"
 SERVICE_TEACH = "teach_alias"
 SERVICE_EXPORT_ASR_BOOST = "export_asr_boost"
+
+_UNDO_SCHEMA = vol.Schema({})
+_TEACH_SCHEMA = vol.Schema(
+    {
+        vol.Required("alias"): vol.All(cv.string, vol.Length(min=2, max=40)),
+        vol.Optional("entity_id"): cv.entity_id,
+    }
+)
+_EXPORT_SCHEMA = vol.Schema(
+    {
+        vol.Optional("language"): cv.string,
+        vol.Optional("max_tokens"): vol.All(vol.Coerce(int), vol.Range(min=1, max=223)),
+        vol.Optional("path"): cv.string,
+    }
+)
 
 
 def _entry(hass: HomeAssistant) -> ConfigEntry | None:
@@ -134,6 +152,18 @@ async def async_setup_services(hass: HomeAssistant) -> None:
         if result is None:
             _LOGGER.warning("Klar export_asr_boost failed (engine unreachable or route missing)")
 
-    hass.services.async_register(DOMAIN, SERVICE_UNDO, undo)
-    hass.services.async_register(DOMAIN, SERVICE_TEACH, teach)
-    hass.services.async_register(DOMAIN, SERVICE_EXPORT_ASR_BOOST, export_boost)
+    # A-05 / H-21: admin-only services with schemas; removed again on unload.
+    async_register_admin_service(hass, DOMAIN, SERVICE_UNDO, undo, schema=_UNDO_SCHEMA)  # type: ignore[arg-type]
+    async_register_admin_service(hass, DOMAIN, SERVICE_TEACH, teach, schema=_TEACH_SCHEMA)  # type: ignore[arg-type]
+    async_register_admin_service(
+        hass, DOMAIN, SERVICE_EXPORT_ASR_BOOST, export_boost, schema=_EXPORT_SCHEMA  # type: ignore[arg-type]
+    )
+
+
+async def async_unload_services(hass: HomeAssistant) -> None:
+    if not hass.data.get(DOMAIN, {}).get("services"):
+        return
+    for service in (SERVICE_UNDO, SERVICE_TEACH, SERVICE_EXPORT_ASR_BOOST):
+        if hass.services.has_service(DOMAIN, service):
+            hass.services.async_remove(DOMAIN, service)
+    hass.data.get(DOMAIN, {}).pop("services", None)

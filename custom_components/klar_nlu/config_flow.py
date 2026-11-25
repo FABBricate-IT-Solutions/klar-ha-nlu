@@ -4,10 +4,12 @@ from typing import Any
 from urllib.parse import urlparse
 
 import voluptuous as vol
+from aiohttp import ClientError, ClientTimeout
 from homeassistant import config_entries
 from homeassistant.core import callback
 from homeassistant.data_entry_flow import FlowResult
 from homeassistant.helpers import selector
+from homeassistant.helpers.aiohttp_client import async_get_clientsession
 
 from .addon_host import async_refresh_klar_hosts
 from .const import (
@@ -37,6 +39,8 @@ from .const import (
     MODE_REMOTE,
     apply_discovered_host,
     channel_for_addon_slug,
+    engine_headers,
+    engine_url_candidates,
     is_managed_engine_url,
     resolve_channel,
     resolve_engine_target,
@@ -158,6 +162,24 @@ def _valid_engine_url(url: str) -> bool:
     return parsed.scheme in {"http", "https"} and bool(parsed.netloc) and not parsed.username
 
 
+async def _probe_engine(hass: Any, url: str, token: str | None) -> bool:
+    """H-22: refuse a config that cannot answer GET /api/settings."""
+    session = async_get_clientsession(hass)
+    headers = engine_headers(token)
+    for base in engine_url_candidates(url):
+        try:
+            async with session.get(
+                f"{base}/api/settings",
+                headers=headers,
+                timeout=ClientTimeout(total=5),
+            ) as resp:
+                if resp.status < 500:
+                    return True
+        except (ClientError, TimeoutError, OSError):
+            continue
+    return False
+
+
 def _keep_product_options(existing: dict[str, Any]) -> dict[str, Any]:
     return {key: existing[key] for key in _PRODUCT_OPTION_KEYS if key in existing}
 
@@ -188,9 +210,10 @@ def suggested_setup(
 
 class KlarConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
     VERSION = 1
+    _reauth_entry: config_entries.ConfigEntry | None = None
 
     async def async_step_user(self, user_input: dict | None = None) -> FlowResult:
-        if self._async_current_entries():
+        if self._async_current_entries() and self._reauth_entry is None:
             return self.async_abort(reason="already_configured")
         hosts = await async_refresh_klar_hosts(self.hass)
         if user_input is not None:
@@ -205,19 +228,30 @@ class KlarConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
             channel = resolve_channel(user_input.get(CONF_CHANNEL))
             if not _valid_engine_url(url):
                 return self._user_form(errors={"base": "invalid_url"}, suggested=user_input)
+            token = (user_input.get(CONF_TOKEN) or "").strip()
+            if mode == MODE_REMOTE and not await _probe_engine(self.hass, url, token or None):
+                return self._user_form(errors={"base": "cannot_connect"}, suggested=user_input)
             data = {
                 CONF_MODE: mode,
                 CONF_URL: url,
                 CONF_CHANNEL: channel,
             }
-            token = (user_input.get(CONF_TOKEN) or "").strip()
             if token:
                 data[CONF_TOKEN] = token
+            if self._reauth_entry is not None:
+                self.hass.config_entries.async_update_entry(self._reauth_entry, data=data)
+                await self.hass.config_entries.async_reload(self._reauth_entry.entry_id)
+                return self.async_abort(reason="reauth_successful")
             return self.async_create_entry(
                 title="Klar NLU",
                 data=data,
             )
         return self._user_form(hosts=hosts)
+
+    async def async_step_reauth(self, entry_data: dict[str, Any]) -> FlowResult:
+        del entry_data
+        self._reauth_entry = self.hass.config_entries.async_get_entry(self.context["entry_id"])
+        return await self.async_step_user()
 
     def _user_form(
         self,

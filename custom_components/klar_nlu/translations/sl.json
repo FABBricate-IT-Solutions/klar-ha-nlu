@@ -13,10 +13,12 @@
       }
     },
     "error": {
-      "invalid_url": "URL mora biti http(s) brez uporabniškega imena."
+      "invalid_url": "URL mora biti http(s) brez uporabniškega imena.",
+      "cannot_connect": "Klar did not answer at that URL. Check the App or the URL."
     },
     "abort": {
-      "already_configured": "Klar NLU je že nastavljen"
+      "already_configured": "Klar NLU je že nastavljen",
+      "reauth_successful": "Klar connection updated"
     }
   },
   "options": {

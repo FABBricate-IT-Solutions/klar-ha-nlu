@@ -13,10 +13,12 @@
       }
     },
     "error": {
-      "invalid_url": "URL http(s) olmalı, kullanıcı adı olmamalı."
+      "invalid_url": "URL http(s) olmalı, kullanıcı adı olmamalı.",
+      "cannot_connect": "Klar did not answer at that URL. Check the App or the URL."
     },
     "abort": {
-      "already_configured": "Klar NLU zaten kurulu"
+      "already_configured": "Klar NLU zaten kurulu",
+      "reauth_successful": "Klar connection updated"
     }
   },
   "options": {

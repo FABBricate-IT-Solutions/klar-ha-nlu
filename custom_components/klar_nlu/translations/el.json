@@ -13,10 +13,12 @@
       }
     },
     "error": {
-      "invalid_url": "Το URL πρέπει να είναι http(s) χωρίς όνομα χρήστη."
+      "invalid_url": "Το URL πρέπει να είναι http(s) χωρίς όνομα χρήστη.",
+      "cannot_connect": "Klar did not answer at that URL. Check the App or the URL."
     },
     "abort": {
-      "already_configured": "Το Klar NLU είναι ήδη ρυθμισμένο"
+      "already_configured": "Το Klar NLU είναι ήδη ρυθμισμένο",
+      "reauth_successful": "Klar connection updated"
     }
   },
   "options": {

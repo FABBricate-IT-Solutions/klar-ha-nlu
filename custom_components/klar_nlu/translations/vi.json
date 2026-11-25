@@ -13,10 +13,12 @@
       }
     },
     "error": {
-      "invalid_url": "URL phải là http(s), không có tên người dùng."
+      "invalid_url": "URL phải là http(s), không có tên người dùng.",
+      "cannot_connect": "Klar did not answer at that URL. Check the App or the URL."
     },
     "abort": {
-      "already_configured": "Klar NLU đã được thiết lập"
+      "already_configured": "Klar NLU đã được thiết lập",
+      "reauth_successful": "Klar connection updated"
     }
   },
   "options": {

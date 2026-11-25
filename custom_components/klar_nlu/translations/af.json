@@ -13,10 +13,12 @@
       }
     },
     "error": {
-      "invalid_url": "URL moet http(s) wees sonder gebruikersnaam."
+      "invalid_url": "URL moet http(s) wees sonder gebruikersnaam.",
+      "cannot_connect": "Klar did not answer at that URL. Check the App or the URL."
     },
     "abort": {
-      "already_configured": "Klar NLU is al opgestel"
+      "already_configured": "Klar NLU is al opgestel",
+      "reauth_successful": "Klar connection updated"
     }
   },
   "options": {

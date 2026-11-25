@@ -11,6 +11,8 @@ EUROPE: dict[str, dict[str, str]] = {
         "token": 'Write-Token',
         "invalid": 'URL muss http(s) sein, ohne Benutzername.',
         "already": 'Klar NLU ist bereits eingerichtet',
+        "cannot_connect": 'Klar hat unter dieser URL nicht geantwortet. App oder URL prüfen.',
+        "reauth_successful": 'Klar-Verbindung aktualisiert',
         "opt_desc": 'Stimme, Assist-Sprachen und das LLM liegen in der Klar-Operator-UI (Einstellungen). Dieses Formular verbindet nur die Engine: URL, Token und Kanal.',
         "personality": 'Persönlichkeit',
         "languages": 'Sprachen',

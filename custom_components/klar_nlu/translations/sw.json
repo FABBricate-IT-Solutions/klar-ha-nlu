@@ -13,10 +13,12 @@
       }
     },
     "error": {
-      "invalid_url": "URL lazima iwe http(s) bila jina la mtumiaji."
+      "invalid_url": "URL lazima iwe http(s) bila jina la mtumiaji.",
+      "cannot_connect": "Klar did not answer at that URL. Check the App or the URL."
     },
     "abort": {
-      "already_configured": "Klar NLU tayari imewekwa"
+      "already_configured": "Klar NLU tayari imewekwa",
+      "reauth_successful": "Klar connection updated"
     }
   },
   "options": {

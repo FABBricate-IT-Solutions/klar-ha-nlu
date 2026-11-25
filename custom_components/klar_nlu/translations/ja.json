@@ -13,10 +13,12 @@
       }
     },
     "error": {
-      "invalid_url": "URL はユーザー情報なしの http(s) である必要があります。"
+      "invalid_url": "URL はユーザー情報なしの http(s) である必要があります。",
+      "cannot_connect": "Klar did not answer at that URL. Check the App or the URL."
     },
     "abort": {
-      "already_configured": "Klar NLU はすでに設定されています"
+      "already_configured": "Klar NLU はすでに設定されています",
+      "reauth_successful": "Klar connection updated"
     }
   },
   "options": {
