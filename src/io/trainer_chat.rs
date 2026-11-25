@@ -8,7 +8,7 @@ use crate::io::trainer_apply::{dispatch, preview_write, write_summary};
 use crate::io::trainer_consent::{ConsentDecision, PendingWrite, TrainerConsentHub};
 use crate::llm::{
     chat_stream_turn, ensure_reply_choices, history_messages, is_write_tool, openai_tools_for, parse_text_tools, system_prompt,
-    tool_allowed_for_layer, ChatEvent, ChatMessage, ChatRequest, CompletionTurn, LlmEndpoint, TrainerTurn,
+    tool_allowed_for_layer, ChatEvent, ChatMessage, ChatRequest, CompletionTurn, LlmEndpoint, TrainerTurn, MAX_MESSAGE_CHARS,
 };
 use axum::extract::{ConnectInfo, State};
 use axum::http::{HeaderMap, StatusCode};
@@ -22,6 +22,8 @@ use tokio::sync::mpsc::{self, UnboundedSender};
 use tokio_stream::wrappers::UnboundedReceiverStream;
 
 const MAX_ROUNDS: usize = 8;
+/// Keep tool payloads under half the message cap so a round with several tools still sanitizes.
+const MAX_TOOL_RESULT_CHARS: usize = MAX_MESSAGE_CHARS / 2;
 
 #[derive(Debug, Deserialize)]
 pub struct TrainerChatIn {
@@ -95,6 +97,10 @@ async fn run_loop(
     let (yolo, allowed) = state.trainer_consent.snapshot(&session).await;
     let _ = tx.send(Ok(json_event(&ChatEvent::Session { yolo, allowed })));
     for _ in 0..MAX_ROUNDS {
+        if tx.is_closed() {
+            state.trainer_consent.deny_pending(&session).await;
+            return;
+        }
         let request = ChatRequest {
             messages: messages.clone(),
             stream: Some(true),
@@ -104,16 +110,24 @@ async fn run_loop(
             tool_choice: None,
         };
         let turn = match chat_stream_turn(&endpoint, request, |delta| {
-            let _ = tx.send(Ok(json_event(&ChatEvent::Delta { text: delta.to_string() })));
+            tx.send(Ok(json_event(&ChatEvent::Delta { text: delta.to_string() }))).is_ok()
         })
         .await
         {
             Ok(turn) => turn,
             Err(err) => {
+                if tx.is_closed() {
+                    state.trainer_consent.deny_pending(&session).await;
+                    return;
+                }
                 let _ = tx.send(Ok(json_event(&ChatEvent::Error { message: err.to_string() })));
                 return;
             }
         };
+        if tx.is_closed() {
+            state.trainer_consent.deny_pending(&session).await;
+            return;
+        }
         let (prose, calls) = merge_calls(turn);
         if calls.is_empty() {
             let extra = ensure_reply_choices(&endpoint, &prose, &reply_language).await;
@@ -125,6 +139,10 @@ async fn run_loop(
         }
         messages.push(ChatMessage::assistant_tools(prose, calls.clone()));
         for call in calls {
+            if tx.is_closed() {
+                state.trainer_consent.deny_pending(&session).await;
+                return;
+            }
             let result = handle_call(&state, &session, &layer, &tx, &call).await;
             messages.push(ChatMessage::tool(&call.id, result));
         }
@@ -141,6 +159,16 @@ fn merge_calls(turn: CompletionTurn) -> (String, Vec<crate::llm::ToolCall>) {
     (prose, calls)
 }
 
+pub(crate) fn clip_tool_result(raw: String) -> String {
+    let count = raw.chars().count();
+    if count <= MAX_TOOL_RESULT_CHARS {
+        return raw;
+    }
+    let keep = MAX_TOOL_RESULT_CHARS.saturating_sub(96);
+    let truncated: String = raw.chars().take(keep).collect();
+    format!("{truncated}\n…truncated chars={count}; page with offset/limit")
+}
+
 async fn handle_call(
     state: &AppState,
     session: &str,
@@ -153,7 +181,7 @@ async fn handle_call(
         name: call.function.name.clone(),
         arguments: call.function.arguments.clone(),
     })));
-    let out = run_call(state, session, layer, tx, call).await;
+    let out = clip_tool_result(run_call(state, session, layer, tx, call).await);
     let preview: String = out.chars().take(8000).collect();
     let _ = tx.send(Ok(json_event(&ChatEvent::Tool { tool: call.function.name.clone(), text: Some(preview), intent: None, slots: None })));
     out
@@ -190,13 +218,14 @@ async fn run_call(
             summary: write_summary(&call.function.name, &args),
             preview: preview.clone(),
         };
+        let (call_id, rx) = state.trainer_consent.register(session, pending).await;
         let _ = tx.send(Ok(json_event(&ChatEvent::Consent {
-            call_id: call.id.clone(),
+            call_id: call_id.clone(),
             tool: call.function.name.clone(),
-            summary: pending.summary.clone(),
-            validate: preview,
+            summary: write_summary(&call.function.name, &args),
+            validate: preview.clone(),
         })));
-        let decision = state.trainer_consent.wait(session, call.id.clone(), pending).await;
+        let decision = state.trainer_consent.await_decision(session, &call_id, rx).await;
         match decision {
             ConsentDecision::Deny | ConsentDecision::AskAgain => return serde_json::json!({"error": "denied"}).to_string(),
             ConsentDecision::AllowOnce | ConsentDecision::Allow | ConsentDecision::Yolo => {}
@@ -234,5 +263,36 @@ mod tests {
         });
         assert_eq!(native.0, "ok");
         assert_eq!(native.1[0].id, "c1");
+    }
+
+    #[test]
+    fn clip_tool_result_keeps_message_under_budget() {
+        let huge = "x".repeat(MAX_MESSAGE_CHARS + 4_000);
+        let clipped = clip_tool_result(huge);
+        assert!(clipped.chars().count() <= MAX_TOOL_RESULT_CHARS);
+        assert!(clipped.contains("truncated"));
+        let ok = clip_tool_result("short".into());
+        assert_eq!(ok, "short");
+        let oversized = "y".repeat(MAX_MESSAGE_CHARS + 1);
+        assert!(ChatRequest {
+            messages: vec![ChatMessage::new("system", "s"), ChatMessage::new("user", "u"), ChatMessage::tool("c1", oversized),],
+            stream: Some(true),
+            temperature: Some(0.2),
+            max_tokens: Some(128),
+            tools: None,
+            tool_choice: None,
+        }
+        .sanitize()
+        .is_err());
+        assert!(ChatRequest {
+            messages: vec![ChatMessage::new("system", "s"), ChatMessage::new("user", "u"), ChatMessage::tool("c1", clipped),],
+            stream: Some(true),
+            temperature: Some(0.2),
+            max_tokens: Some(128),
+            tools: None,
+            tool_choice: None,
+        }
+        .sanitize()
+        .is_ok());
     }
 }

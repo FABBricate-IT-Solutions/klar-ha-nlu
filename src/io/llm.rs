@@ -283,11 +283,16 @@ pub async fn llm_chat(
     if stream {
         let (tx, rx) = tokio::sync::mpsc::unbounded_channel::<Result<Event, Infallible>>();
         tokio::spawn(async move {
+            if tx.is_closed() {
+                return;
+            }
             let started = Instant::now();
-            let result = chat_stream_turn(&endpoint, body, |delta| {
-                let _ = tx.send(Ok(json_event(&ChatEvent::Delta { text: delta.to_string() })));
-            })
-            .await;
+            let result =
+                chat_stream_turn(&endpoint, body, |delta| tx.send(Ok(json_event(&ChatEvent::Delta { text: delta.to_string() }))).is_ok())
+                    .await;
+            if tx.is_closed() {
+                return;
+            }
             match result {
                 Ok(turn) => {
                     record_llm(&calls, "chat", started, &model, true, None, turn.usage.as_ref());

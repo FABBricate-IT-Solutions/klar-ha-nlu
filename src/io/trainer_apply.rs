@@ -23,7 +23,7 @@ pub async fn dispatch(state: &AppState, name: &str, args: &Value) -> Result<Valu
         "list_policies" => Ok(with_view("policies", json!({ "policies": state.policies.lock().await.clone() }))),
         "list_seeds" => trainer_house::list_seeds(state).await,
         "list_speech" => trainer_house::list_speech(state).await,
-        "list_gaps" => trainer_entity::list_gaps(state).await,
+        "list_gaps" => trainer_entity::list_gaps(state, args).await,
         "validate_proposal" => validate_args(state, args).await,
         "explain_klar" => trainer_reads::explain_klar(args),
         "try_sentence" => trainer_reads::try_sentence(state, args).await,

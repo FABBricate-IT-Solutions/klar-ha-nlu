@@ -10,7 +10,12 @@ async fn streams_openai_chunks() {
     let (base, handle) = serve(vec!["Hel".into(), "lo".into()], true).await;
     let endpoint = LlmEndpoint::from_parts(&base, "sk-test", "test-model").unwrap();
     let mut seen = String::new();
-    let text = chat_stream(&endpoint, request("hi"), |delta| seen.push_str(delta)).await.unwrap();
+    let text = chat_stream(&endpoint, request("hi"), |delta| {
+        seen.push_str(delta);
+        true
+    })
+    .await
+    .unwrap();
     assert_eq!(text, "Hello");
     assert_eq!(seen, "Hello");
     handle.abort();

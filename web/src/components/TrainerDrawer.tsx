@@ -359,7 +359,17 @@ export function TrainerDrawer({
               <button className="primary" type="button" onClick={() => void decide("allow")}>{t.trainerAllow}</button>
               <button className="secondary" type="button" onClick={() => void decide("allow_once")}>{t.trainerAllowOnce}</button>
               <button className="ghost" type="button" onClick={() => void decide("deny")}>{t.trainerDeny}</button>
-              <button className="ghost danger" type="button" onClick={() => void decide("yolo")}>{t.trainerYolo}</button>
+              <button
+                className="ghost danger"
+                type="button"
+                onClick={() => {
+                  if (window.confirm(t.trainerYoloConfirm)) {
+                    void decide("yolo");
+                  }
+                }}
+              >
+                {t.trainerYolo}
+              </button>
             </div>
           </div>
         ) : null}

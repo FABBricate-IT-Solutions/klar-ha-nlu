@@ -155,6 +155,7 @@ PACKS: dict[str, dict[str, str]] = {
         slang="Schlag Slang für en Lexikon-Pfad vor. No nöd schriibe.",
         for_lane="Lotse für die Spur",
         trainer="Lotse",
+        yolo_confirm="Alli Schriibwärchzüüg i dere Sitzig ohni noimal z'frooge erlaube?",
     ),
     "de-AT": lotse(
         hint="Fragen zu Klar sofort. Schreiben erst nach Freigabe.",
@@ -171,6 +172,7 @@ PACKS: dict[str, dict[str, str]] = {
         slang="Schlage Slang für einen Lexikon-Pfad vor. Noch nicht schreiben.",
         for_lane="Lotse für diese Spur",
         trainer="Lotse",
+        yolo_confirm="Alle Schreibwerkzeuge in dieser Sitzung ohne erneute Nachfrage erlauben?",
     ),
     "en-GB": lotse(
         hint="Ask about Klar anytime. Writes wait for Allow in this chat.",

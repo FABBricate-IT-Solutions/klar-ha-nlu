@@ -398,6 +398,7 @@ export const de = {
   trainerAllow: "Freigeben",
   trainerAllowOnce: "Einmal",
   trainerYolo: "YOLO",
+  trainerYoloConfirm: "Alle Schreibwerkzeuge in dieser Sitzung ohne erneute Nachfrage erlauben?",
   trainerDeny: "Ablehnen",
   trainerAskAgain: "Wieder fragen",
   llm: "LLM",

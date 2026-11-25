@@ -56,11 +56,16 @@ pub async fn get_entity(state: &AppState, args: &Value) -> Result<Value, String>
         .ok_or_else(|| "entity is not on the graph".into())
 }
 
-pub async fn list_gaps(state: &AppState) -> Result<Value, String> {
+const DEFAULT_GAP_LIMIT: usize = 40;
+const MAX_GAP_LIMIT: usize = 80;
+
+pub async fn list_gaps(state: &AppState, args: &Value) -> Result<Value, String> {
     let settings = state.settings.lock().await.clone();
     let home = state.home.snapshot().await;
     let catalog = bound_catalog(&settings);
-    let gaps: Vec<Value> = leftover(&home, catalog)
+    let offset = args.get("offset").and_then(Value::as_u64).unwrap_or(0) as usize;
+    let limit = args.get("limit").and_then(Value::as_u64).map(|value| value as usize).unwrap_or(DEFAULT_GAP_LIMIT).clamp(1, MAX_GAP_LIMIT);
+    let all: Vec<Value> = leftover(&home, catalog)
         .into_iter()
         .map(|entity| {
             let reason = if entity.area.is_none() { "missing_area" } else { "weak_name" };
@@ -77,7 +82,19 @@ pub async fn list_gaps(state: &AppState) -> Result<Value, String> {
             })
         })
         .collect();
-    Ok(with_view("gaps", json!({ "gaps": gaps })))
+    let total = all.len();
+    let gaps: Vec<Value> = all.into_iter().skip(offset).take(limit).collect();
+    let next_offset = offset.saturating_add(gaps.len());
+    Ok(with_view(
+        "gaps",
+        json!({
+            "gaps": gaps,
+            "offset": offset,
+            "limit": limit,
+            "total": total,
+            "next_offset": if next_offset < total { Some(next_offset) } else { None::<usize> },
+        }),
+    ))
 }
 
 pub async fn preview_entity(state: &AppState, args: &Value) -> Result<Value, String> {
@@ -258,10 +275,49 @@ mod tests {
     async fn list_gaps_includes_suggested_area() {
         let (_scratch, state) = state("gaps");
         state.apply_areas(&[("light.wohnzimmer".into(), String::new())]).await;
-        let out = list_gaps(&state).await.unwrap();
+        let out = list_gaps(&state, &json!({})).await.unwrap();
         let gaps = out["gaps"].as_array().unwrap();
         let row = gaps.iter().find(|item| item["entity_id"] == "light.wohnzimmer").unwrap();
         assert_eq!(row["reason"], "missing_area");
         assert_eq!(row["suggested_area"], "wohnzimmer");
+        assert!(out["total"].as_u64().unwrap() >= 1);
+    }
+
+    #[tokio::test]
+    async fn list_gaps_pages_a_six_hundred_gap_home_under_message_budget() {
+        let (_scratch, state) = state("gaps-600");
+        state
+            .home
+            .edit(|home| {
+                for index in 0..600 {
+                    home.entities.push(EntityRec {
+                        entity_id: format!("light.gap_{index:04}"),
+                        name: format!("Gap Fixture {index}"),
+                        domain: "light".into(),
+                        platform: None,
+                        area: None,
+                        aliases: Vec::new(),
+                        tags: vec!["assist".into()],
+                    });
+                }
+                Some(())
+            })
+            .await;
+        let page = list_gaps(&state, &json!({"offset": 0, "limit": 40})).await.unwrap();
+        let total = page["total"].as_u64().unwrap() as usize;
+        assert!(total >= 600, "expected a 600-gap home, got {total}");
+        assert_eq!(page["gaps"].as_array().unwrap().len(), 40);
+        assert_eq!(page["next_offset"], 40);
+        let body = page.to_string();
+        assert!(body.chars().count() < crate::llm::MAX_MESSAGE_CHARS, "page must fit a tool message");
+        let last_offset = total.saturating_sub(40);
+        let last = list_gaps(&state, &json!({"offset": last_offset, "limit": 40})).await.unwrap();
+        assert_eq!(last["gaps"].as_array().unwrap().len(), total - last_offset);
+        assert!(last["next_offset"].is_null());
+        let clipped = crate::io::trainer_chat::clip_tool_result("g".repeat(crate::llm::MAX_MESSAGE_CHARS + 1));
+        assert!(clipped.chars().count() <= crate::llm::MAX_MESSAGE_CHARS / 2);
+        // Unpaged dump of 600+ gaps would blow the message budget (R-14).
+        let dump = list_gaps(&state, &json!({"offset": 0, "limit": 80})).await.unwrap();
+        assert!(dump.to_string().chars().count() < crate::llm::MAX_MESSAGE_CHARS);
     }
 }
