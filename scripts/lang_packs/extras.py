@@ -256,6 +256,16 @@ def floors(code: str) -> dict[str, list[str]]:
 
 
 HOUSEHOLD = {
+    # Whole-utterance phrases, folded like speech: apostrophes dropped ("l'heure" -> "lheure"),
+    # hyphens split ("est-il" -> "est il"). The derived "quel minuteur" / "quel clim" meant nothing.
+    "fr": {
+        "teach": ["appelle ca ", "appelle ceci ", "nomme ca "],
+        "explain": ["quas tu entendu", "quest ce que tu as entendu", "quas tu compris", "pourquoi tu tes arrete"],
+        "undo": ["annule ca", "annule", "reviens en arriere"],
+        "clock": ["quelle heure", "quelle heure est il", "il est quelle heure", "quelle heure il est", "tu as lheure"],
+        "weather": ["quel temps", "la meteo", "meteo"],
+        "clock_skip": ["minuteur", "minuterie", "reveil", "alarme"],
+    },
     "de-CH": {
         "teach": ["nenn das ", "nenne das ", "das heisst "],
         "explain": ["was hesch ghoert", "was hast du gehoert", "warum hast du gestoppt"],

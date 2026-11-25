@@ -276,3 +276,19 @@ fn outdoor_temperature_binds_weather_not_climate() {
     assert_eq!(intent.slot("entity_id"), Some("weather.home"));
     assert_eq!(intent.slot("domain"), Some("weather"));
 }
+
+#[test]
+fn french_clock_and_weather_phrases() {
+    let home = default_home();
+    let session = Session::new();
+    let custom = Vec::new();
+    let settings = Box::leak(Box::new(Settings::pinned("fr")));
+    let catalog = catalog_for(&["fr".into()]);
+    for text in ["Quelle heure est-il ?", "il est quelle heure", "tu as l'heure", "quel temps fait-il"] {
+        let context = ParseContext::new(text, &home, &session, &custom, settings, catalog);
+        assert!(route(&context, &crate::parse::normalize::tokenize(text)).is_some(), "{text}");
+    }
+    let text = "quel minuteur";
+    let context = ParseContext::new(text, &home, &session, &custom, settings, catalog);
+    assert!(route(&context, &crate::parse::normalize::tokenize(text)).is_none(), "{text}");
+}

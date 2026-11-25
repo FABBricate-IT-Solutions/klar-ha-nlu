@@ -160,3 +160,9 @@ fn french_area_lights_use_room_gender() {
     assert_eq!(say_area("salon"), "J'ai allumé la lumière dans le salon.");
     assert_eq!(say_area("cuisine"), "J'ai allumé la lumière dans la cuisine.");
 }
+
+#[test]
+fn french_light_name_is_not_suffixed_twice() {
+    let out = say("fr", "HassTurnOn", "light.bureau", "Lumière bureau", "light");
+    assert_eq!(out, "J'ai allumé Lumière bureau.");
+}
