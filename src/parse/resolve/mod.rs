@@ -56,8 +56,10 @@ pub(super) fn resolve_from_candidates(
 ) -> Resolved {
     let mut areas = match_areas(tokens, &home.areas);
     let floors = match_floors(tokens, &home.floors);
-    // A spoken floor always scopes rooms: shared names on other floors drop out.
-    if !floors.is_empty() && !areas.is_empty() {
+    // Only when a single room was named: shared-name bathrooms on two floors are
+    // narrowed later by narrow_shared_rooms. Floor-scoping every multi-room utterance
+    // drops "keller und garten" when "keller" is also a floor name.
+    if !floors.is_empty() && areas.len() == 1 {
         let on_floor: Vec<String> = areas
             .iter()
             .filter(|area_id| {
@@ -77,6 +79,21 @@ pub(super) fn resolve_from_candidates(
 
     if let Some(linked) = take_linked(tokens, home, &floors, &areas, domain) {
         return linked;
+    }
+    // "Wohn und Esszimmer lichte" with no group device: keep both rooms, do not pin one side's light.
+    // Require a spoken light noun — "turn off the kitchen and the hall" alone must stay rejected.
+    if areas.len() >= 2
+        && catalog().any(tokens, catalog().conjunctions())
+        && (crate::parse::action::has_light_noun(tokens)
+            || catalog().any(tokens, catalog().light_plural())
+            || catalog().any(tokens, catalog().light_nouns()))
+    {
+        candidates.retain(|(_, entity)| !spans::area_conjunction_entity(entity, home));
+        return Resolved { areas, floors, entities: Vec::new(), ambiguous: Vec::new(), ask_areas: Vec::new() };
+    }
+    // "Wohn und Esszimmer" is two rooms — drop the synthetic group light that reuses that label.
+    if areas.len() >= 2 {
+        candidates.retain(|(_, entity)| !spans::area_conjunction_entity(entity, home));
     }
 
     if domain == Some("climate") {

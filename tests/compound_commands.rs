@@ -314,8 +314,8 @@ fn light_off_and_covers_opened_reply_names_every_device() {
         (
             en(),
             "Turn off the bedroom light and open the bedroom blinds and curtains",
-            // "the bedroom light" means every light in the room, so the lamp is named too.
-            "Bedroom Light and Bedroom Lamp are off. Opened Bedroom Blinds and Bedroom Curtains.",
+            // P-11: "Bedroom Light" is the named lamp, not every light in the bedroom.
+            "Bedroom Light is off. Opened Bedroom Blinds and Bedroom Curtains.",
         ),
         (
             de(),
@@ -348,19 +348,20 @@ const OFF: &str = "HassTurnOff";
 #[test]
 fn every_step_hits_exactly_the_right_devices_en() {
     let room = en();
-    let lights = |action| [(action, "light.bedroom_light"), (action, "light.bedroom_lamp")];
+    // P-11: "the bedroom light" is the device named Bedroom Light, not the whole room.
+    let named_light = |action| [(action, "light.bedroom_light")];
     for (text, wanted) in [
         (
             "Turn on the bedroom light, close the bedroom blinds and close the bedroom curtains",
-            [&lights(ON)[..], &[(OFF, "cover.bedroom_blinds"), (OFF, "cover.bedroom_curtains")]].concat(),
+            [&named_light(ON)[..], &[(OFF, "cover.bedroom_blinds"), (OFF, "cover.bedroom_curtains")]].concat(),
         ),
         (
             "close the bedroom blinds and curtains and turn on the bedroom light",
-            [&lights(ON)[..], &[(OFF, "cover.bedroom_blinds"), (OFF, "cover.bedroom_curtains")]].concat(),
+            [&named_light(ON)[..], &[(OFF, "cover.bedroom_blinds"), (OFF, "cover.bedroom_curtains")]].concat(),
         ),
         (
             "Turn off the bedroom light and open the bedroom blinds and curtains",
-            [&lights(OFF)[..], &[(ON, "cover.bedroom_blinds"), (ON, "cover.bedroom_curtains")]].concat(),
+            [&named_light(OFF)[..], &[(ON, "cover.bedroom_blinds"), (ON, "cover.bedroom_curtains")]].concat(),
         ),
         ("turn on the bedroom lamp and close the bedroom blinds", vec![(ON, "light.bedroom_lamp"), (OFF, "cover.bedroom_blinds")]),
         ("close the bedroom curtains and turn off the bedroom lamp", vec![(OFF, "cover.bedroom_curtains"), (OFF, "light.bedroom_lamp")]),

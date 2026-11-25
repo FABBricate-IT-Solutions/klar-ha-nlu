@@ -5,12 +5,18 @@
 //! a spoken floor keeps only the ones on that floor.
 
 use super::{token_eq, token_hit};
+use crate::home::classify::is_generic_room_light;
 use crate::home::expose::assist_visible;
 use crate::home::policy::{is_infra, is_nlu_ignored};
 use crate::lang::catalog;
-use crate::parse::normalize::{compact, fold_label, umlaut_eq};
+use crate::parse::normalize::{compact, fold_label, inflected_eq, umlaut_eq};
 use crate::types::{EntityRec, HomeGraph};
 use std::collections::BTreeSet;
+
+#[path = "spans_conj.rs"]
+mod spans_conj;
+pub(crate) use spans_conj::area_conjunction_entity;
+use spans_conj::rooms_from_conjunction_entities;
 
 /// Where a device name was said: first token index and how many tokens it took.
 type Span = (usize, usize);
@@ -87,6 +93,11 @@ pub(crate) fn link_named_spans(tokens: &[String], home: &HomeGraph, floors: &[St
         for index in span.0..span.0 + span.1 {
             linked.consumed.insert(index);
         }
+        // Prefer devices whose primary name hit this span over alias-only hits
+        // ("Kugel" on the globe lamps, not as an alias on "Schlafzimmer Licht").
+        let primary: Vec<EntityRec> =
+            group.iter().filter(|entity| label_spans(tokens, &entity.name).into_iter().any(|found| found == span)).cloned().collect();
+        let mut group = if primary.is_empty() { group } else { primary };
         match group.len() {
             0 => {}
             1 => linked.entities.push(group.remove(0)),
@@ -146,6 +157,8 @@ fn linkable(label: &str, home: &HomeGraph) -> bool {
     if parts.is_empty() {
         return false;
     }
+    // Keep conjunction labels linkable so "Status von Wohn und Esszimmer" still hits the
+    // group light; take_linked decides when that label means two rooms instead.
     if parts.len() >= 2 {
         return true;
     }
@@ -154,6 +167,11 @@ fn linkable(label: &str, home: &HomeGraph) -> bool {
     // A lone floor or room name on a device (alias "obergeschoss" on the upstairs heater)
     // is not an entity link — that word scopes the floor or room.
     if names_floor_or_area(word, home) {
+        return false;
+    }
+    // A bare TV word is a domain hint, not a device label ("Fernseher" on a bedroom
+    // switch must not steal "Fernseher im Wohnzimmer" from the living-room player).
+    if is_tv_word(word) {
         return false;
     }
     !cat.generic().contains(word)
@@ -165,6 +183,11 @@ fn linkable(label: &str, home: &HomeGraph) -> bool {
         && !cat.is_filler(word)
         && !cat.is_particle(word)
         && cat.verb(word).is_none()
+}
+
+fn is_tv_word(word: &str) -> bool {
+    let folded = compact(word);
+    folded == "tv" || folded == "fernseher" || folded == "television" || catalog().tv_words().iter().any(|known| folded == compact(known))
 }
 
 fn names_floor_or_area(word: &str, home: &HomeGraph) -> bool {
@@ -273,6 +296,7 @@ pub(crate) fn take_linked(
     if linked.entities.is_empty() && linked.ambiguous.is_empty() {
         return None;
     }
+    let cat = catalog();
     // Free tokens for "more targets" still come from the whole sentence so cover/light
     // nouns after "and" stay visible; exception-tail device names are not in `linked`.
     let full = link_named_spans(tokens, home, floors);
@@ -284,6 +308,55 @@ pub(crate) fn take_linked(
     } else {
         (filtered_entities, filtered_ambiguous)
     };
+    let extra_cover = cat.any(&free, cat.cover_nouns());
+    let extra_light = cat.any(&free, cat.light_nouns()) || cat.any(&free, cat.light_plural()) || cat.any(&free, cat.lamp_fixture());
+    let more_targets = extra_cover
+        || extra_light
+        || cat.any(&free, cat.fan_nouns())
+        || cat.any(&free, cat.climate_nouns())
+        || cat.any(&free, cat.lock_nouns())
+        || cat.any(&free, cat.switch_plural());
+    let has_conj = cat.any(tokens, cat.conjunctions());
+    if has_conj {
+        let groupish = entities.iter().chain(ambiguous.iter()).any(|entity| area_conjunction_entity(entity, home));
+        let n = entities.len() + ambiguous.len();
+        if n > 1 {
+            // "haustuer und garagentor" / multi-device lists → scored / mentioned_locks path.
+            return None;
+        }
+        if groupish {
+            // Group label "Wohn und Esszimmer": lights/covers mean both rooms; status means the group.
+            if more_targets {
+                let mut rooms = areas.to_vec();
+                if rooms.len() < 2 {
+                    rooms = rooms_from_conjunction_entities(&entities, home);
+                }
+                if rooms.len() >= 2 {
+                    return Some(super::Resolved {
+                        areas: rooms,
+                        floors: floors.to_vec(),
+                        entities: Vec::new(),
+                        ambiguous: Vec::new(),
+                        ask_areas: Vec::new(),
+                    });
+                }
+                return None;
+            }
+            // Status / bare group mention — keep the device, drop room areas so multi_area
+            // does not steal the query.
+            return Some(super::Resolved { areas: Vec::new(), floors: floors.to_vec(), entities, ambiguous, ask_areas: Vec::new() });
+        }
+        // "Wohn und Esszimmer lichte" may link only "Esszimmer Licht" — drop that so both rooms win.
+        if areas.len() >= 2
+            && (extra_light
+                || cat.any(tokens, cat.light_nouns())
+                || cat.any(tokens, cat.light_plural())
+                || crate::parse::action::has_light_noun(tokens))
+        {
+            return None;
+        }
+        // "Bedroom Light and blinds": fall through; cross-domain more_targets keeps the light.
+    }
     if !areas.is_empty() {
         let in_room = |entity: &EntityRec| entity.area.as_ref().is_some_and(|area| areas.contains(area));
         let scoped: Vec<EntityRec> = entities.iter().filter(|entity| in_room(entity)).cloned().collect();
@@ -304,28 +377,36 @@ pub(crate) fn take_linked(
     if entities.is_empty() && ambiguous.is_empty() {
         return None;
     }
-    let cat = catalog();
-    let more_targets = cat.any(&free, cat.cover_nouns())
-        || cat.any(&free, cat.light_nouns())
-        || cat.any(&free, cat.light_plural())
-        || cat.any(&free, cat.lamp_fixture())
-        || cat.any(&free, cat.fan_nouns())
-        || cat.any(&free, cat.climate_nouns())
-        || cat.any(&free, cat.lock_nouns())
-        || cat.any(&free, cat.switch_plural());
+    // Squeezed "Schlafzimmerlicht" or plural "Schlafzimmern Licht" onto a generic room-light
+    // group — leave fixtures (Kugel) to the room path. Exact "hall light" stays P-11.
+    if entities.len() == 1 && is_generic_room_light(&entities[0], home, cat) && spoken_as_room_light_form(tokens, &entities[0], home) {
+        return None;
+    }
+    // Same-room siblings sharing a short label ("nachttisch", "Kugel") — act on all, do not ask.
+    if entities.is_empty() && ambiguous.len() > 1 {
+        let same_area = ambiguous.iter().all(|entity| entity.area == ambiguous[0].area);
+        let same_domain = ambiguous.iter().all(|entity| entity.domain == ambiguous[0].domain);
+        if same_area && same_domain {
+            entities = std::mem::take(&mut ambiguous);
+        }
+    }
     if more_targets {
-        // Keep the room, drop the exclusive entity so "blinds and curtains" stays room-wide.
-        let mut area_ids: Vec<String> = entities.iter().chain(ambiguous.iter()).filter_map(|entity| entity.area.clone()).collect();
-        area_ids.extend(areas.iter().cloned());
-        area_ids.sort();
-        area_ids.dedup();
-        return Some(super::Resolved {
-            areas: area_ids,
-            floors: floors.to_vec(),
-            entities: Vec::new(),
-            ambiguous: Vec::new(),
-            ask_areas: Vec::new(),
-        });
+        let linked_light = entities.iter().chain(ambiguous.iter()).any(|entity| entity.domain == "light");
+        let linked_cover = entities.iter().chain(ambiguous.iter()).any(|entity| entity.domain == "cover");
+        // "Bedroom Light and blinds" is cross-domain — keep the light for clause splitting.
+        let same_kind = (linked_cover && extra_cover) || (linked_light && extra_light) || (!linked_light && !linked_cover);
+        if same_kind {
+            if areas.is_empty() {
+                return None;
+            }
+            return Some(super::Resolved {
+                areas: areas.to_vec(),
+                floors: floors.to_vec(),
+                entities: Vec::new(),
+                ambiguous: Vec::new(),
+                ask_areas: Vec::new(),
+            });
+        }
     }
     // Spoken rooms only — never invent areas from the linked device's home room.
     // Exception handling treats a non-empty resolve().areas as "this token names a room";
@@ -338,4 +419,34 @@ fn filter_domain(entities: Vec<EntityRec>, domain: Option<&str>) -> Vec<EntityRe
         Some(wanted) => entities.into_iter().filter(|entity| crate::home::roles::matches_domain(entity, wanted, catalog())).collect(),
         None => entities,
     }
+}
+
+fn spoken_as_room_light_form(tokens: &[String], entity: &EntityRec, home: &HomeGraph) -> bool {
+    let Some(area_id) = entity.area.as_deref() else {
+        return false;
+    };
+    let Some(area) = home.areas.iter().find(|area| area.area_id == area_id) else {
+        return false;
+    };
+    let rooms = [compact(&area.name), compact(area_id)];
+    let squeezed = tokens.iter().any(|token| {
+        let spoken = compact(token);
+        rooms.iter().any(|room| {
+            !room.is_empty()
+                && (spoken == format!("{room}licht")
+                    || spoken == format!("{room}light")
+                    || spoken == format!("{room}lampe")
+                    || spoken == format!("{room}lamp"))
+        })
+    });
+    if squeezed {
+        return true;
+    }
+    // Plural room ("Schlafzimmern") + light noun → room path, not the "Schlafzimmer Licht" group.
+    let room_name = fold_label(&area.name);
+    let plural_room = tokens.iter().any(|token| inflected_eq(token, &room_name));
+    let light_noun = catalog().any(tokens, catalog().light_nouns())
+        || catalog().any(tokens, catalog().light_singular())
+        || catalog().any(tokens, catalog().light_plural());
+    plural_room && light_noun
 }

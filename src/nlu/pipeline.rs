@@ -419,7 +419,8 @@ fn apply_resolved_lock_pair(ranking: &mut super::ranking::RankingResult, context
     });
     let clarifying_locks =
         ranking.clarification.as_ref().is_some_and(|(options, _)| options.iter().filter(|id| id.starts_with("lock.")).count() >= 2);
-    if !lock_only && !clarifying_locks {
+    // Named locks ("haustuer und garagentor") may leave ranking empty; still install the pair.
+    if !lock_only && !clarifying_locks && !(ranking.selected.is_none() && paired_lock_command(tokens)) {
         return;
     }
     let name = ranking
@@ -454,7 +455,8 @@ fn apply_resolved_lock_pair(ranking: &mut super::ranking::RankingResult, context
 
 fn paired_lock_command(tokens: &[String]) -> bool {
     let cat = crate::lang::catalog();
-    tokens.iter().any(|token| cat.is_conj(token)) && (cat.any(tokens, cat.lock_nouns()) || cat.any(tokens, cat.door_nouns()))
+    tokens.iter().any(|token| cat.is_conj(token))
+        && (cat.any(tokens, cat.lock_nouns()) || cat.any(tokens, cat.door_nouns()) || cat.any(tokens, cat.lock_verbs()))
 }
 
 fn dedup_intents(intents: &mut Vec<Intent>) {

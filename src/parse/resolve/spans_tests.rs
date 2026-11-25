@@ -111,3 +111,37 @@ fn everything_except_oven_is_not_an_exclusive_oven_link() {
     // "Oven" sits after except — must not become the exclusive target.
     assert!(take_linked(&tokens, &home, &[], &["kitchen".into()], None).is_none());
 }
+
+#[test]
+fn wohn_und_esszimmer_label_is_not_exclusive_when_lights_asked() {
+    let _lang = crate::lang::bind(&["de".into()]);
+    let home = crate::home::default_home();
+    let tokens = crate::parse::normalize::tokenize("Wohn und Esszimmer lichte aus");
+    let resolved = crate::parse::resolve::resolve(&tokens, &home, Some("light"));
+    assert!(resolved.areas.iter().any(|a| a == "wohnzimmer"), "{resolved:?}");
+    assert!(resolved.areas.iter().any(|a| a == "esszimmer"), "{resolved:?}");
+    assert!(resolved.entities.is_empty(), "must not pin one room light: {resolved:?}");
+}
+
+#[test]
+fn group_status_links_wohn_und_esszimmer_device() {
+    let _lang = crate::lang::bind(&["de".into()]);
+    let live: crate::types::HomeGraph = serde_json::from_str(include_str!("../../../tests/fixtures/wohnung_live.json")).expect("live");
+    let tokens = crate::parse::normalize::tokenize("Wie ist der Status von Wohn und Esszimmer");
+    let resolved = crate::parse::resolve::resolve(&tokens, &live, None);
+    assert!(resolved.entities.iter().any(|e| e.entity_id == "light.wohn_und_esszimmer"), "{resolved:?}");
+}
+
+#[test]
+fn garagentor_stays_whole_in_compound_expand() {
+    let _lang = crate::lang::bind(&["de".into()]);
+    let path = std::path::Path::new(env!("CARGO_MANIFEST_DIR")).join("tests/datasets/full_home/de/home_config.yaml");
+    let home = crate::home::load_home_config(&path).expect("de home");
+    let tokens = crate::parse::normalize::tokenize("schliess haustuer und garagentor");
+    let split = crate::parse::compound::expand_compounds(&tokens, &home);
+    assert!(split.tokens.iter().any(|t| t == "garagentor"), "{:?}", split.tokens);
+    assert!(!split.tokens.iter().any(|t| t == "tor"), "must not split garagentor: {:?}", split.tokens);
+    let resolved = crate::parse::resolve::resolve(&split.tokens, &home, Some("lock"));
+    assert!(resolved.entities.iter().any(|e| e.entity_id == "lock.front_door"), "{resolved:?}");
+    assert!(resolved.entities.iter().any(|e| e.entity_id == "lock.garage_entry"), "{resolved:?}");
+}

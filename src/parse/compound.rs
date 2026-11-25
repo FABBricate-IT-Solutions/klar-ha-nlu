@@ -12,6 +12,7 @@ use std::collections::HashSet;
 mod compound_scene;
 pub(crate) use compound_scene::named_scene_or_script;
 
+#[derive(Debug)]
 pub struct CompoundSplit {
     pub tokens: Vec<String>,
     pub light_areas: Vec<String>,
@@ -19,9 +20,18 @@ pub struct CompoundSplit {
 
 pub fn expand_compounds(tokens: &[String], home: &HomeGraph) -> CompoundSplit {
     let prefixes = area_prefixes(home);
+    // One pass over the home: keep "garagentor"/"haustuer" whole without rescanning
+    // every entity for every token (overlay suites parse thousands of turns).
+    let entity_labels = entity_label_set(home);
     let mut out = Vec::new();
     let mut light_areas = Vec::new();
     for token in tokens {
+        // Keep whole device labels ("garagentor", "haustuer") — splitting them into
+        // area+noun drops the lock/cover name and breaks "haustuer und garagentor".
+        if keep_entity_label_token(token, &prefixes, &entity_labels) {
+            out.push(token.clone());
+            continue;
+        }
         if let Some((area, noun)) = split_area_device(token, &prefixes) {
             if is_light_noun(&noun) && !light_areas.contains(&area) {
                 light_areas.push(area.clone());
@@ -37,6 +47,34 @@ pub fn expand_compounds(tokens: &[String], home: &HomeGraph) -> CompoundSplit {
         }
     }
     CompoundSplit { tokens: expand_room_shorts(&out, home), light_areas }
+}
+
+fn entity_label_set(home: &HomeGraph) -> HashSet<String> {
+    let mut labels = HashSet::new();
+    for entity in &home.entities {
+        let id_tail = entity.entity_id.split_once('.').map(|(_, tail)| tail).unwrap_or(entity.entity_id.as_str());
+        labels.insert(compact(&entity.name));
+        labels.insert(compact(id_tail));
+        for alias in &entity.aliases {
+            labels.insert(compact(alias));
+        }
+    }
+    labels.remove("");
+    labels
+}
+
+fn keep_entity_label_token(token: &str, prefixes: &[(String, String)], entity_labels: &HashSet<String>) -> bool {
+    let folded = compact(token);
+    if folded.is_empty() || !entity_labels.contains(&folded) {
+        return false;
+    }
+    // Still split "schlafzimmerlicht" / "bedroomlight" so fixture preference (Kugel) can run.
+    if let Some((_, noun)) = split_area_device(token, prefixes) {
+        if is_light_noun(&noun) {
+            return false;
+        }
+    }
+    true
 }
 
 fn expand_room_shorts(tokens: &[String], home: &HomeGraph) -> Vec<String> {
