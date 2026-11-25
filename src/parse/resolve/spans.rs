@@ -416,7 +416,8 @@ pub(crate) fn take_linked(
         let linked_light = entities.iter().chain(ambiguous.iter()).any(|entity| entity.domain == "light");
         let linked_cover = entities.iter().chain(ambiguous.iter()).any(|entity| entity.domain == "cover");
         // "Bedroom Light and blinds" is cross-domain — keep the light for clause splitting.
-        let same_kind = (linked_cover && extra_cover) || (linked_light && extra_light) || (!linked_light && !linked_cover);
+        // Do not treat a named fan/switch plus a free "light" word as same-kind room wipe.
+        let same_kind = (linked_cover && extra_cover) || (linked_light && extra_light);
         // A fully spoken light fixture ("kitchen ceiling light") still leaves the generic
         // "light" noun free — do not wipe it back to a room-wide area command.
         // Peer cover nouns ("blinds and curtains") still mean every cover in the room.

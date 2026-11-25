@@ -181,3 +181,33 @@ fn oven_timer_links_named_timer() {
     assert!(!out.clarify, "{out:?}");
     assert!(out.intents.iter().any(|i| i.name == "HassStartTimer" && i.slot("entity_id") == Some("timer.oven")), "{out:?}");
 }
+
+#[test]
+fn fan_and_washer_light_keep_named_devices() {
+    let _lang = crate::lang::bind(&["en".into()]);
+    let path = std::path::Path::new(env!("CARGO_MANIFEST_DIR")).join("tests/datasets/full_home/en/home_config.yaml");
+    let home = crate::home::load_home_config(&path).expect("en");
+    let settings = crate::types::Settings::pinned("en");
+    let fan = crate::parse::parse(
+        "turn on the bedroom fan light and turn on the kitchen island light",
+        &home,
+        &mut crate::session::Session::new(),
+        &[],
+        &settings,
+    );
+    assert!(!fan.clarify, "{fan:?}");
+    let fan_ids: Vec<_> = fan.intents.iter().filter_map(|i| i.slot("entity_id")).collect();
+    assert!(fan_ids.contains(&"fan.master_fan"), "{fan:?}");
+    assert!(fan_ids.contains(&"light.kitchen_island"), "{fan:?}");
+    let laundry = crate::parse::parse(
+        "turn on the laundry washer light and turn on the laundry dryer light",
+        &home,
+        &mut crate::session::Session::new(),
+        &[],
+        &settings,
+    );
+    assert!(!laundry.clarify, "{laundry:?}");
+    let laundry_ids: Vec<_> = laundry.intents.iter().filter_map(|i| i.slot("entity_id")).collect();
+    assert!(laundry_ids.contains(&"switch.washing_machine"), "{laundry:?}");
+    assert!(laundry_ids.contains(&"switch.dryer"), "{laundry:?}");
+}
