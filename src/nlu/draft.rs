@@ -41,6 +41,8 @@ pub(super) struct Draft {
     pub inherits_risk: bool,
     pub response_briefing: bool,
     pub competing: bool,
+    /// Local clock, weekday or date speech from the household route.
+    pub clock_answer: bool,
     pub commit: SessionCommit,
     pub policy_trace: Option<crate::types::PolicyTrace>,
 }
@@ -172,6 +174,7 @@ pub(super) fn replay_or_decide(
                 inherits_risk: false,
                 response_briefing: false,
                 competing: false,
+                clock_answer: false,
                 commit: SessionCommit { briefing: Some(false), ..SessionCommit::default() },
                 policy_trace: None,
             };
@@ -352,6 +355,7 @@ pub(super) fn reject(reason: RejectReason, speech: String) -> Draft {
         inherits_risk: false,
         response_briefing: false,
         competing: false,
+        clock_answer: false,
         commit: SessionCommit::default(),
         policy_trace: None,
     }
@@ -423,6 +427,7 @@ pub(super) fn execute_plan(
         inherits_risk: false,
         response_briefing: false,
         competing: false,
+        clock_answer: false,
         commit: SessionCommit { remember: intents, clear_pending, briefing: Some(false), ..SessionCommit::default() },
         policy_trace: None,
     }
@@ -441,9 +446,16 @@ pub(super) fn chat(speech: String, response_briefing: bool, next_briefing: bool)
         inherits_risk: false,
         response_briefing,
         competing: false,
+        clock_answer: false,
         commit: SessionCommit { briefing: Some(next_briefing), ..SessionCommit::default() },
         policy_trace: None,
     }
+}
+
+pub(super) fn clock_chat(speech: String) -> Draft {
+    let mut draft = chat(speech, false, false);
+    draft.clock_answer = true;
+    draft
 }
 
 pub(super) fn decide_execute_plan(

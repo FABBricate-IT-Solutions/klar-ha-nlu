@@ -273,6 +273,7 @@ mod tests {
             news_topic: None,
             retrieval: None,
             policy_trace: None,
+            clock_answer: false,
             quiet_ack_eligible: false,
             refine_band: Some(RefineBand::Status),
         };
@@ -309,6 +310,7 @@ mod tests {
             news_topic: None,
             retrieval: None,
             policy_trace: None,
+            clock_answer: false,
             quiet_ack_eligible: false,
             refine_band: None,
         };
@@ -339,6 +341,7 @@ mod tests {
             news_topic: None,
             retrieval: None,
             policy_trace: None,
+            clock_answer: false,
             quiet_ack_eligible: false,
             refine_band: None,
         };
@@ -374,6 +377,7 @@ mod tests {
             news_topic: None,
             retrieval: None,
             policy_trace: None,
+            clock_answer: false,
             quiet_ack_eligible: false,
             refine_band: None,
         };
@@ -419,6 +423,7 @@ mod tests {
             news_topic: None,
             retrieval: None,
             policy_trace: None,
+            clock_answer: false,
             quiet_ack_eligible: false,
             refine_band: None,
         };

@@ -176,6 +176,7 @@ fn decide(context: &ParseContext<'_>) -> PipelineResult {
             inherits_risk: false,
             response_briefing: false,
             competing: ranking.competing,
+            clock_answer: false,
             commit: SessionCommit { clarify: Some((options, template)), briefing: Some(false), ..SessionCommit::default() },
             policy_trace: None,
         }
@@ -350,6 +351,7 @@ fn finish(
         retrieval: None,
         policy_trace: draft.policy_trace.clone(),
         quiet_ack_eligible: false,
+        clock_answer: draft.clock_answer,
         refine_band: None,
     };
     let values: Vec<String> = outcome.evidence.iter().map(|item| item.value.clone()).collect();

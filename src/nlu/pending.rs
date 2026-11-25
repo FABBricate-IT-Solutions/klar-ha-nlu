@@ -119,6 +119,7 @@ pub(super) fn ask_again(context: &ParseContext<'_>) -> Draft {
         inherits_risk: false,
         response_briefing: false,
         competing: false,
+        clock_answer: false,
         commit: SessionCommit::default(),
         policy_trace: None,
     }

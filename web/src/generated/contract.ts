@@ -113,6 +113,7 @@ export const PARSE_OUTCOME_FIELDS = [
   "retrieval",
   "policy_trace",
   "quiet_ack_eligible",
+  "clock_answer",
   "refine_band",
 ] as const;
 
@@ -123,6 +124,7 @@ export const PARSE_OUTCOME_OPTIONAL_FIELDS = [
   "retrieval",
   "policy_trace",
   "quiet_ack_eligible",
+  "clock_answer",
   "refine_band",
 ] as const;
 

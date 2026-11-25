@@ -3,8 +3,8 @@
 use crate::parse::normalize::fold_umlaut;
 
 use super::weather_words::{
-    AFTERNOON, AMBIG_UMBRELLA, DAYS, EVENING, FORECAST, FUTURE, GREET_STRIP, MORNING, NEED, NIGHT, OUTDOOR, OUTDOOR_TEMP, RAIN, TODAY,
-    TOMORROW, UMBRELLA, WEATHER, WEEKEND,
+    AFTERNOON, AMBIG_UMBRELLA, DAYS, EVENING, FORECAST, FUTURE, GREET_STRIP, MORNING, NEED, NIGHT, OUTDOOR, OUTDOOR_TEMP, RAIN, SNOW,
+    TODAY, TOMORROW, UMBRELLA, WEATHER, WEEKEND,
 };
 
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
@@ -13,6 +13,7 @@ pub(super) enum WeatherAsk {
     Today,
     Tomorrow,
     Rain,
+    Snow,
     Umbrella,
 }
 
@@ -47,12 +48,13 @@ impl WeatherAsk {
             Self::Today => "today",
             Self::Tomorrow => "tomorrow",
             Self::Rain => "rain",
+            Self::Snow => "snow",
             Self::Umbrella => "umbrella",
         }
     }
 
     pub(super) fn skips_climate(self) -> bool {
-        matches!(self, Self::Rain | Self::Umbrella)
+        matches!(self, Self::Rain | Self::Snow | Self::Umbrella)
     }
 }
 
@@ -90,19 +92,23 @@ const QUERY_STOP: &[&str] = &[
     "what", "whats", "which", "how", "about", "the", "a", "an", "is", "it", "please", "wie", "was", "ist", "das", "der", "die", "den",
     "dem", "ein", "eine", "hoe", "wat", "het", "een", "quel", "quelle", "comment", "le", "la", "les", "un", "une", "est", "el", "lo",
     "que", "cual", "como", "che", "quale", "come", "il", "o", "os", "as", "qual", "und", "et", "y", "en", "in", "im", "am", "of", "my",
-    "me", "i", "ich", "je", "ik", "fuer", "for", "to", "too", "auf", "um", "mit",
+    "me", "i", "ich", "je", "ik", "fuer", "for", "to", "too", "auf", "um", "mit", "like", "going", "gonna", "will", "be", "look", "looks",
 ];
 
 pub(super) fn classify(blob: &str, pack_weather: bool) -> Option<WeatherClass> {
     let fold = fold_umlaut(blob).replace(['\'', '’', '`'], "");
     let rain = hit(&fold, RAIN);
-    let umbrella = umbrella_hit(&fold, rain, pack_weather);
+    let snow = hit(&fold, SNOW);
+    let umbrella = umbrella_hit(&fold, rain || snow, pack_weather);
     let outdoor_temp = outdoor_temp_ask(&fold);
     let weather = weather_topic(&fold, pack_weather) || outdoor_temp;
     let part = part_hint(&fold);
     let day = day_hint(&fold);
     if umbrella {
         return Some(WeatherClass { ask: WeatherAsk::Umbrella, day, part });
+    }
+    if snow {
+        return Some(WeatherClass { ask: WeatherAsk::Snow, day, part });
     }
     if rain {
         return Some(WeatherClass { ask: WeatherAsk::Rain, day, part });
@@ -130,6 +136,41 @@ fn weather_topic(fold: &str, pack_weather: bool) -> bool {
         return true;
     }
     (hit(fold, WEATHER) || hit(fold, FORECAST)) && leftover_is_weather_ask(fold)
+}
+
+/// False when the ask names a remote place ("in paris", "weather france") — not home forecast (P-31).
+pub(super) fn leftover_is_home_forecast(fold: &str) -> bool {
+    let stripped = strip_morning_words(fold);
+    let toks: Vec<&str> = tokens(&stripped).collect();
+    for (index, token) in toks.iter().enumerate() {
+        if matches!(*token, "in" | "im" | "at" | "near" | "bei" | "pour" | "fuer" | "for") {
+            if let Some(next) = toks.get(index + 1) {
+                // Skip articles: "in the morning" / "in paris".
+                let place = if ascii_in(next, &["the", "a", "an", "dem", "der", "die", "het", "le", "la", "el"]) {
+                    toks.get(index + 2)
+                } else {
+                    Some(next)
+                };
+                if let Some(place) = place {
+                    if !weather_function_token(place) {
+                        return false;
+                    }
+                }
+            }
+        }
+    }
+    // "weather france" / "wetter berlin": weather stem then a non-grammar leftover.
+    let mut saw_weather = false;
+    for token in &toks {
+        if ascii_in(token, WEATHER) || ascii_in(token, FORECAST) || WEATHER.iter().any(|w| fold_umlaut(w) == *token) {
+            saw_weather = true;
+            continue;
+        }
+        if saw_weather && !weather_function_token(token) {
+            return false;
+        }
+    }
+    true
 }
 
 /// "What's the temperature outside?" — outdoor weather, not a thermostat.
@@ -197,6 +238,7 @@ fn weather_function_token(token: &str) -> bool {
         || ascii_in(token, AFTERNOON)
         || ascii_in(token, EVENING)
         || ascii_in(token, NIGHT)
+        || ascii_in(token, SNOW)
         || DAYS.iter().any(|(word, _)| fold_umlaut(word) == token)
 }
 

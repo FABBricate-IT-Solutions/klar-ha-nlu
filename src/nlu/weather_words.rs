@@ -1,6 +1,12 @@
 //! Multilingual weather stems. Token match for ASCII; contains for other scripts.
 
 #[rustfmt::skip]
+pub(super) const SNOW: &[&str] = &[
+    "schnee", "schneien", "schneit", "snow", "snowing", "snowy", "snowfall", "neige", "neiger", "neigeux", "sneeuw", "sneeuwen", "nieve",
+    "nevar", "neve", "nevicare", "sneg", "śnieg", "śnieżyć", "снег", "снежит", "χιονι", "χιονίζει", "雪", "下雪", "눈", "下雪吗",
+];
+
+#[rustfmt::skip]
 pub(super) const RAIN: &[&str] = &[
     "regen", "regnen", "regnerisch", "niederschlag", "rain", "raining", "rainy", "rainfall", "pluie", "pleut", "pleuvoir", "regenen",
     "regent", "lluvia", "llueve", "llover", "pioggia", "piove", "piovere", "chuva", "chove", "chover", "pluja", "plou", "ploaie", "ploua",

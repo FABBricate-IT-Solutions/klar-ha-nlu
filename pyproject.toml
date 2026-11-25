@@ -33,8 +33,6 @@ select = [
 # do not add new ones. New files get the full rule set.
 [tool.ruff.lint.per-file-ignores]
 "custom_components/klar_nlu/calendar_entity.py" = ["PLC0415", "S110", "S112"]
-"custom_components/klar_nlu/clock_query.py" = ["B007", "PLC0415"]
-"custom_components/klar_nlu/clock_speech.py" = ["PLC0415"]
 "custom_components/klar_nlu/const.py" = ["F401"]
 "custom_components/klar_nlu/engine.py" = ["ASYNC109", "PLC0415", "RUF006"]
 "custom_components/klar_nlu/intents.py" = ["PLC0415"]

@@ -181,6 +181,7 @@ fn explain_speech_speaks_path_ids() {
             band: Some("execute".into()),
             ..crate::types::PolicyTrace::default()
         }),
+        clock_answer: false,
         quiet_ack_eligible: false,
         refine_band: None,
     };

@@ -23,7 +23,14 @@ pub(super) enum Slack {
 }
 
 fn ignorable(word: &str, catalog: &Catalog, slack: Slack) -> bool {
-    catalog.is_filler(word) || (slack == Slack::Question && catalog.is_query_hint(word))
+    if catalog.is_filler(word) {
+        return true;
+    }
+    if slack != Slack::Question {
+        return false;
+    }
+    // Date and weekday asks may end with "today" / "heute" without becoming a diary query.
+    catalog.is_query_hint(word) || catalog.calendar_today().contains(word) || catalog.calendar_tomorrow().contains(word)
 }
 
 /// Walks the phrase through the utterance. Returns where the phrase ended, if every

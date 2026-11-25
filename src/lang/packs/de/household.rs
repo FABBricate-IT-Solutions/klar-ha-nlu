@@ -1,0 +1,43 @@
+//! Household specials for the German reference pack.
+
+use crate::lang::groups::Household;
+
+pub(super) const HOUSEHOLD: Household = Household {
+    teach: &["nenn das ", "nenne das ", "nenns ", "das heisst ", "heisst jetzt ", "nimm "],
+    explain: &["was hast du gehoert", "was hast du verstanden", "warum hast du aufgehoert", "warum hast du gestoppt"],
+    undo: &["rueckgaengig", "nimm das zurueck", "mach das rueckgaengig"],
+    clock: &["wie spaet", "wie viel uhr", "wieviel uhr", "die uhrzeit"],
+    date: &[
+        "welches datum",
+        "was fuer ein datum",
+        "der wievielte",
+        "welches datum haben",
+        "welches datum haben wir",
+        "welches datum ist",
+        "welches datum ist heute",
+    ],
+    weekday: &["welcher tag", "welcher wochentag", "was ist heute fuer ein tag", "was fuer ein tag", "welchen wochentag"],
+    today: &[],
+    weather: &["wie ist das wetter", "wie wird das wetter", "wie wird das wetter heute", "wetterbericht", "wetter"],
+    clock_skip: &["timer", "wecker"],
+    heard_nothing: "Ich habe noch nichts gehört.",
+    heard: "Ich habe gehört: {text}.",
+    executed: " Ausgeführt: {names}.",
+    asked_risky: " Ich habe nachgefragt, weil die Aktion riskant ist.",
+    unclear_device: " Ich wusste nicht, welches Gerät du meinst.",
+    stopped: " Ich habe gestoppt ({reason})",
+    no_match: "kein Treffer",
+    was_chat: " Das war Gespräch, kein Gerät.",
+    decision: " Entscheidung: {decision}.",
+    in_area: " Im Raum {area}.",
+    nothing_undo: "Es gibt nichts rückgängig zu machen.",
+    teach_which: "Welches Gerät meinst du?",
+    teach_invalid: "Der Name ist ungültig.",
+    teach_ok: "Gut. Ich nenne das {alias}.",
+    clock_ok: "Es ist {time}.",
+    clock_missing: "Die Uhrzeit ist gerade nicht verfügbar.",
+    date_ok: "Heute ist {weekday}, der {date}.",
+    weekday_ok: "Heute ist {weekday}.",
+    today_ok: "Heute ist {weekday}, der {date}.",
+    no_weather: "Ich sehe kein Wetter.",
+};

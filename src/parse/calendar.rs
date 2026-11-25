@@ -126,12 +126,22 @@ fn other_domain_noun(tokens: &[String]) -> bool {
 
 fn agenda_query(tokens: &[String]) -> bool {
     let cat = catalog();
-    let day = cat.any(tokens, cat.calendar_today()) || has_tomorrow(tokens);
+    let day = cat.any(tokens, cat.calendar_today()) || has_tomorrow(tokens) || weekday_key(tokens).is_some();
     let ask = looks_like_question(tokens) || any_exact(tokens, cat.calendar_query()) || agenda_verb(tokens);
-    day && ask && !other_domain_noun(tokens)
+    day && ask && agenda_cue(tokens) && !other_domain_noun(tokens)
 }
 
-/// "Was habe ich heute": the day word belongs to the diary, not to the news.
+fn agenda_cue(tokens: &[String]) -> bool {
+    let cat = catalog();
+    any_lexeme(tokens, cat.calendar_nouns())
+        || any_exact(tokens, cat.calendar_query())
+        || agenda_verb(tokens)
+        || tokens
+            .iter()
+            .any(|t| matches!(t.as_str(), "anything" | "on" | "an" | "termine" | "termin" | "appointments" | "events" | "plan" | "plans"))
+}
+
+/// Day word belongs to the diary, not news ("Was habe ich heute").
 pub(crate) fn agenda_verb(tokens: &[String]) -> bool {
     tokens.iter().any(|token| matches!(token.as_str(), "habe" | "haben" | "have" | "got" | "steht"))
 }
@@ -231,18 +241,39 @@ fn when_slots(tokens: &[String], number: Option<i32>) -> WhenSlots {
     let cat = catalog();
     let today = cat.any(tokens, cat.calendar_today());
     let tomorrow = has_tomorrow(tokens);
-    let weekday = tokens.iter().any(|token| cat.calendar_when().contains(token.as_str()) && !clock_particle(token));
+    let weekday = weekday_key(tokens);
     let in_days = in_days_slot(tokens, number);
-    let hour = clock_hour(tokens).or_else(|| number.filter(|value| (0..=23).contains(value)));
-    let has_date = today || tomorrow || weekday || hour.is_some() || in_days.is_some();
+    let hour = clock_hour(tokens).or_else(|| noon_midnight_hour(tokens)).or_else(|| number.filter(|value| (0..=23).contains(value)));
+    let has_date = today || tomorrow || weekday.is_some() || hour.is_some() || in_days.is_some();
     let day = if today {
         Some("today")
     } else if tomorrow {
         Some("tomorrow")
     } else {
-        None
+        weekday
     };
     WhenSlots { day, hour, in_days, has_date }
+}
+
+fn weekday_key(tokens: &[String]) -> Option<&'static str> {
+    tokens.iter().find_map(|token| match token.as_str() {
+        "monday" | "montag" | "lundi" | "maandag" | "lunes" => Some("mon"),
+        "tuesday" | "dienstag" | "mardi" | "dinsdag" | "martes" => Some("tue"),
+        "wednesday" | "mittwoch" | "mercredi" | "woensdag" | "miercoles" => Some("wed"),
+        "thursday" | "donnerstag" | "jeudi" | "donderdag" | "jueves" => Some("thu"),
+        "friday" | "freitag" | "vendredi" | "vrijdag" | "viernes" => Some("fri"),
+        "saturday" | "samstag" | "sonnabend" | "samedi" | "zaterdag" | "sabado" => Some("sat"),
+        "sunday" | "sonntag" | "dimanche" | "zondag" | "domingo" => Some("sun"),
+        _ => None,
+    })
+}
+
+fn noon_midnight_hour(tokens: &[String]) -> Option<i32> {
+    tokens.iter().find_map(|token| match token.as_str() {
+        "noon" | "mittag" => Some(12),
+        "midnight" | "mitternacht" => Some(0),
+        _ => None,
+    })
 }
 
 fn clock_hour(tokens: &[String]) -> Option<i32> {
@@ -456,14 +487,12 @@ mod tests {
         let settings = crate::types::Settings { languages: vec!["fr".into()], ..crate::types::Settings::default() };
         let mut session = crate::session::Session::default();
         let parsed = crate::nlu::parse("quels sont mes rendez-vous", &home, &mut session, &[], &settings);
-        let names: Vec<_> = parsed.plan.as_ref().map(|plan| plan.intents().into_iter().map(|item| item.name).collect()).unwrap_or_default();
+        let names: Vec<_> = parsed.plan.as_ref().map(|p| p.intents().into_iter().map(|i| i.name).collect()).unwrap_or_default();
         assert!(
-            matches!(parsed.decision, crate::types::ParseDecision::Execute) && names.iter().any(|name| name == "KlarGetCalendarEvents"),
-            "decision={:?} names={names:?} speech={} trace={:#?} candidates={:#?}",
+            matches!(parsed.decision, crate::types::ParseDecision::Execute) && names.iter().any(|n| n == "KlarGetCalendarEvents"),
+            "decision={:?} names={names:?} speech={}",
             parsed.decision,
-            parsed.speech,
-            parsed.trace,
-            parsed.candidates
+            parsed.speech
         );
     }
 }
