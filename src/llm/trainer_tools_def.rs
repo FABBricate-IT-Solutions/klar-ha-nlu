@@ -35,8 +35,14 @@ pub fn openai_tools() -> Vec<Value> {
         ),
         tool(
             "list_gaps",
-            "Entities that still need mapping. reason is missing_area or weak_name. suggested_area is a hint. Assign rooms with apply_area, not apply_aliases.",
-            json!({"type": "object", "properties": {}}),
+            "Entities that still need mapping. reason is missing_area or weak_name. suggested_area is a hint. Paginated: offset + limit (default 40, max 80). Assign rooms with apply_area, not apply_aliases.",
+            object(
+                &[
+                    ("offset", json!({"type": "integer", "description": "Skip this many gaps. Default 0."})),
+                    ("limit", json!({"type": "integer", "description": "Page size. Default 40, max 80."})),
+                ],
+                &[],
+            ),
         ),
         tool(
             "explain_klar",
@@ -45,13 +51,13 @@ pub fn openai_tools() -> Vec<Value> {
         ),
         tool(
             "try_sentence",
-            "Parse one utterance on this house like Lab. preferred_area and conversation_id follow the satellite path. nlu_rag overrides settings for this call only.",
+            "Parse one utterance on a throwaway Lab session. Does not touch live Assist sessions or open confirmations. preferred_area applies for this call only. nlu_rag overrides settings for this call only.",
             object(
                 &[
                     ("text", str_prop("Utterance as spoken at home")),
                     ("language", str_prop("Assist pack")),
                     ("preferred_area", str_prop("area_id from list_areas; empty clears for this turn")),
-                    ("conversation_id", str_prop("Assist conversation id, max 128")),
+                    ("conversation_id", str_prop("Informational Assist id for the card; not loaded")),
                     ("nlu_rag", json!({"type": "boolean", "description": "Override settings.nlu_rag for this parse only"})),
                 ],
                 &["text"],

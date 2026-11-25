@@ -116,7 +116,7 @@ where
         let mut released = 0usize;
         chat_stream_turn(endpoint, chat_req, |delta| {
             if delta.is_empty() {
-                return;
+                return true;
             }
             acc.push_str(delta);
             if streams_refine_prefix(&body.speech, &acc) && released < acc.len() {
@@ -124,6 +124,7 @@ where
                 released = acc.len();
                 on_event(&ChatEvent::Delta { text: piece });
             }
+            true
         })
         .await?
     } else {

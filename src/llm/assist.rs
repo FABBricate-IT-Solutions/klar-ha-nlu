@@ -310,7 +310,7 @@ where
     let mut released = 0usize;
     let mut turn = super::client::chat_stream_turn(endpoint, chat_body(body, system, user, true), |delta| {
         if delta.is_empty() {
-            return;
+            return true;
         }
         acc.push_str(delta);
         if let Some(piece) = flush_assist_delta(rag, yarn, &acc, &mut released) {
@@ -318,6 +318,7 @@ where
             on_event(&event);
             events.push(event);
         }
+        true
     })
     .await?;
     if yarn && yarn_asks_permission(&turn.text) {

@@ -60,7 +60,8 @@ Context stub:\n{context_stub}",
 
 pub fn history_messages(turns: &[TrainerTurn]) -> Result<Vec<ChatMessage>, super::types::LlmError> {
     let mut out = Vec::new();
-    for turn in turns.iter().take(8) {
+    let start = turns.len().saturating_sub(8);
+    for turn in turns.iter().skip(start) {
         let role = turn.role.trim();
         if !matches!(role, "user" | "assistant") {
             return Err(super::types::LlmError::InvalidRequest("role"));
@@ -119,5 +120,14 @@ mod tests {
         assert!(house.contains("list_floors"));
         assert!(house.contains("policy payload required"));
         assert!(!house.contains("apply_match"));
+    }
+
+    #[test]
+    fn history_messages_keeps_the_last_eight_turns() {
+        let turns: Vec<TrainerTurn> = (0..12).map(|i| TrainerTurn { role: "user".into(), content: format!("turn-{i}") }).collect();
+        let messages = history_messages(&turns).unwrap();
+        assert_eq!(messages.len(), 8);
+        assert_eq!(messages[0].content, "turn-4");
+        assert_eq!(messages[7].content, "turn-11");
     }
 }

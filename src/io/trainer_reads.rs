@@ -96,16 +96,13 @@ pub async fn try_sentence(state: &AppState, args: &Value) -> Result<Value, Strin
             return Err("preferred_area is not on the graph".into());
         }
     }
-    let mut session = {
-        let mut sessions = state.sessions.lock().await;
-        sessions.take(conversation_id)
-    };
+    // Lab-only dry run: never take/put a real Assist session (S-25).
+    let mut session = crate::session::Session::new();
     if let Some(area) = args.get("preferred_area").and_then(Value::as_str) {
         let area = area.trim();
         session.preferred_area = if area.is_empty() { None } else { Some(area.to_string()) };
     }
     let outcome = parse_with_controls(text, &home, &mut session, &custom, &settings, &policies, &speech_bank, &match_controls);
-    state.sessions.lock().await.put(session);
     Ok(with_view(
         "path",
         json!({
@@ -200,8 +197,38 @@ mod tests {
             .unwrap();
         assert_eq!(sat["preferred_area"], "wohnzimmer");
         assert_eq!(sat["nlu_rag"], true);
+        // Throwaway session: preferred_area must not land on the live store (S-25).
         let session = state.sessions.lock().await.take(Some("lotse-sat"));
-        assert_eq!(session.preferred_area.as_deref(), Some("wohnzimmer"));
+        assert!(session.preferred_area.is_none());
         assert!(try_sentence(&state, &json!({"text":"aus","preferred_area":"keller"})).await.is_err());
+    }
+
+    #[tokio::test]
+    async fn try_sentence_leaves_open_confirm_untouched() {
+        use crate::types::{Intent, IntentPlan};
+        let scratch = TestDir::new("lotse-confirm");
+        let state = crate::io::state::AppState::new(
+            crate::home::LoadedHome {
+                graph: crate::home::default_home(),
+                settings: crate::types::Settings::pinned("de"),
+                custom: Vec::new(),
+                language: Default::default(),
+                policies: Vec::new(),
+                speech_bank: Default::default(),
+                match_controls: Vec::new(),
+            },
+            scratch.path().to_path_buf(),
+            None,
+        );
+        {
+            let mut sessions = state.sessions.lock().await;
+            let mut asked = sessions.take(Some("door"));
+            let plan = IntentPlan::from_intents(vec![Intent::new("HassTurnOff").with("entity_id", "lock.front")], 1.0, &[]);
+            assert!(asked.set_confirm("candidate".into(), plan, "Really?".into()));
+            sessions.put(asked);
+        }
+        let _ = try_sentence(&state, &json!({"text":"ja","conversation_id":"door"})).await.unwrap();
+        let after = state.sessions.lock().await.take(Some("door"));
+        assert!(after.pending_confirm().is_some(), "open Assist confirm must survive try_sentence");
     }
 }

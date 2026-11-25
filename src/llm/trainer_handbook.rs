@@ -50,7 +50,8 @@ Repair from the Assist journal:\n\
 - Govern seeds (lock/cover confirm): list_seeds. enabled:false via apply_house upserts the seed id; remove drops the overlay so the compiled seed returns. Seeds are house policies, not compiled matchers.\n\
 - Speech-bank variants: list_speech / apply_speech (rule_id + language + personality + text).\n\
 - apply_house remove: drop overlay policy ids. House rule order is first match; upsert replaces the same id.\n\
-- try_sentence is Lab: preferred_area (area_id), conversation_id, optional nlu_rag override. Exposed on entity cards is Assist visibility, read-only.\n\
+- try_sentence is Lab on a throwaway session: preferred_area and nlu_rag apply for that call only. It never loads or writes a live Assist conversation. Exposed on entity cards is Assist visibility, read-only.\n\
+- list_gaps is paginated (offset/limit, default 40). Use next_offset until null; do not dump every gap in one call.\n\
 - Household-only phrasing that already tokenizes but needs a custom reply: house rule with when.phrase and effect template. template/reply/script/llm require payload. template is Home Assistant Jinja with `text` and `rooms` (area_id, name, floor, temp). Empty payload → policy payload required.\n\
 - apply_engine.languages is Assist packs. apply_ui.locale is operator chrome. Do not mix them.\n\
 - Floor temperature listing is native once try_sentence matches floor_command. Do not write a house rule for that; Lab speech is pre-execute.\n\n\

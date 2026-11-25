@@ -398,6 +398,7 @@ export const en = {
   trainerAllow: "Allow",
   trainerAllowOnce: "Allow once",
   trainerYolo: "YOLO",
+  trainerYoloConfirm: "Allow every write tool for this session without asking again?",
   trainerDeny: "Deny",
   trainerAskAgain: "Ask again",
   llm: "LLM",

@@ -6,7 +6,12 @@ use std::collections::{HashMap, HashSet};
 use std::hash::{Hash, Hasher};
 use std::net::SocketAddr;
 use std::sync::Arc;
+use std::time::{Duration, Instant};
 use tokio::sync::{oneshot, Mutex};
+use uuid::Uuid;
+
+const PENDING_WAIT: Duration = Duration::from_secs(120);
+const YOLO_TTL: Duration = Duration::from_secs(30 * 60);
 
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Serialize, Deserialize)]
 #[serde(rename_all = "snake_case")]
@@ -29,13 +34,30 @@ pub struct PendingWrite {
 struct PendingSlot {
     write: PendingWrite,
     tx: Option<oneshot::Sender<ConsentDecision>>,
+    since: Instant,
 }
 
 #[derive(Default)]
 struct Session {
     yolo: bool,
+    yolo_until: Option<Instant>,
     allowed: HashSet<String>,
     pending: HashMap<String, PendingSlot>,
+}
+
+impl Session {
+    fn yolo_active(&self) -> bool {
+        self.yolo && self.yolo_until.is_some_and(|until| Instant::now() < until)
+    }
+
+    fn sweep_expired(&mut self) {
+        if self.yolo && !self.yolo_active() {
+            self.yolo = false;
+            self.yolo_until = None;
+        }
+        let now = Instant::now();
+        self.pending.retain(|_, slot| now.duration_since(slot.since) < PENDING_WAIT);
+    }
 }
 
 #[derive(Default)]
@@ -72,34 +94,68 @@ impl TrainerConsentHub {
     }
 
     pub async fn snapshot(&self, key: &str) -> (bool, Vec<String>) {
-        let guard = self.inner.lock().await;
-        match guard.get(key) {
+        let mut guard = self.inner.lock().await;
+        match guard.get_mut(key) {
             Some(session) => {
+                session.sweep_expired();
                 let mut allowed: Vec<String> = session.allowed.iter().cloned().collect();
                 allowed.sort();
-                (session.yolo, allowed)
+                (session.yolo_active(), allowed)
             }
             None => (false, Vec::new()),
         }
     }
 
     pub async fn allows(&self, key: &str, tool: &str) -> bool {
-        let guard = self.inner.lock().await;
-        guard.get(key).is_some_and(|session| session.yolo || session.allowed.contains(tool))
+        let mut guard = self.inner.lock().await;
+        let Some(session) = guard.get_mut(key) else {
+            return false;
+        };
+        session.sweep_expired();
+        session.yolo_active() || session.allowed.contains(tool)
     }
 
-    pub async fn wait(&self, key: &str, call_id: String, write: PendingWrite) -> ConsentDecision {
+    /// Registers a pending write under a server-minted id. Caller emits the id, then [`await_decision`].
+    pub async fn register(&self, key: &str, write: PendingWrite) -> (String, oneshot::Receiver<ConsentDecision>) {
+        let call_id = Uuid::new_v4().to_string();
         let (tx, rx) = oneshot::channel();
         {
             let mut guard = self.inner.lock().await;
             let session = guard.entry(key.to_string()).or_default();
-            session.pending.insert(call_id.clone(), PendingSlot { write, tx: Some(tx) });
+            session.sweep_expired();
+            session.pending.insert(call_id.clone(), PendingSlot { write, tx: Some(tx), since: Instant::now() });
         }
-        match tokio::time::timeout(std::time::Duration::from_secs(300), rx).await {
+        (call_id, rx)
+    }
+
+    pub async fn await_decision(&self, key: &str, call_id: &str, rx: oneshot::Receiver<ConsentDecision>) -> ConsentDecision {
+        match tokio::time::timeout(PENDING_WAIT, rx).await {
             Ok(Ok(decision)) => decision,
             _ => {
-                let _ = self.decide(key, &call_id, ConsentDecision::Deny).await;
+                let _ = self.decide(key, call_id, ConsentDecision::Deny).await;
                 ConsentDecision::Deny
+            }
+        }
+    }
+
+    /// Registers, then waits (tests and simple callers).
+    pub async fn wait(&self, key: &str, write: PendingWrite) -> (String, ConsentDecision) {
+        let (call_id, rx) = self.register(key, write).await;
+        let decision = self.await_decision(key, &call_id, rx).await;
+        (call_id, decision)
+    }
+
+    pub async fn deny_pending(&self, key: &str) {
+        let mut guard = self.inner.lock().await;
+        let Some(session) = guard.get_mut(key) else {
+            return;
+        };
+        let ids: Vec<String> = session.pending.keys().cloned().collect();
+        for id in ids {
+            if let Some(mut slot) = session.pending.remove(&id) {
+                if let Some(tx) = slot.tx.take() {
+                    let _ = tx.send(ConsentDecision::Deny);
+                }
             }
         }
     }
@@ -107,32 +163,35 @@ impl TrainerConsentHub {
     pub async fn decide(&self, key: &str, call_id: &str, decision: ConsentDecision) -> Result<Option<PendingWrite>, &'static str> {
         let mut guard = self.inner.lock().await;
         let session = guard.entry(key.to_string()).or_default();
+        session.sweep_expired();
         match decision {
             ConsentDecision::AskAgain => {
                 session.yolo = false;
+                session.yolo_until = None;
                 session.allowed.clear();
                 Ok(None)
             }
             ConsentDecision::Yolo => {
+                // A-09: never flip YOLO on an unknown/expired call_id.
+                if !session.pending.contains_key(call_id) {
+                    return Err("unknown call");
+                }
+                let write = Self::finish_pending(session, call_id, decision)?;
                 session.yolo = true;
-                self.finish_pending(session, call_id, decision)
+                session.yolo_until = Some(Instant::now() + YOLO_TTL);
+                Ok(write)
             }
             ConsentDecision::Allow => {
                 if let Some(slot) = session.pending.get(call_id) {
                     session.allowed.insert(slot.write.name.clone());
                 }
-                self.finish_pending(session, call_id, decision)
+                Self::finish_pending(session, call_id, decision)
             }
-            ConsentDecision::AllowOnce | ConsentDecision::Deny => self.finish_pending(session, call_id, decision),
+            ConsentDecision::AllowOnce | ConsentDecision::Deny => Self::finish_pending(session, call_id, decision),
         }
     }
 
-    fn finish_pending(
-        &self,
-        session: &mut Session,
-        call_id: &str,
-        decision: ConsentDecision,
-    ) -> Result<Option<PendingWrite>, &'static str> {
+    fn finish_pending(session: &mut Session, call_id: &str, decision: ConsentDecision) -> Result<Option<PendingWrite>, &'static str> {
         let Some(mut slot) = session.pending.remove(call_id) else {
             return Err("unknown call");
         };
@@ -165,12 +224,18 @@ mod tests {
             summary: "alias".into(),
             preview: serde_json::json!({"ok": true}),
         };
-        let wait = hub.wait(key, "c1".into(), pending);
+        let wait = hub.wait(key, pending);
         let decide = async {
             tokio::time::sleep(std::time::Duration::from_millis(5)).await;
-            hub.decide(key, "c1", ConsentDecision::AllowOnce).await.unwrap();
+            let (yolo, _) = hub.snapshot(key).await;
+            assert!(!yolo);
+            let call_id = {
+                let guard = hub.inner.lock().await;
+                guard.get(key).unwrap().pending.keys().next().unwrap().clone()
+            };
+            hub.decide(key, &call_id, ConsentDecision::AllowOnce).await.unwrap();
         };
-        let (decision, _) = tokio::join!(wait, decide);
+        let ((_, decision), _) = tokio::join!(wait, decide);
         assert_eq!(decision, ConsentDecision::AllowOnce);
         assert!(!hub.allows(key, "apply_aliases").await);
     }
@@ -185,18 +250,26 @@ mod tests {
             summary: "alias".into(),
             preview: serde_json::json!({"ok": true}),
         };
-        let wait = hub.wait(key, "c1".into(), pending());
+        let wait = hub.wait(key, pending());
         let decide = async {
             tokio::time::sleep(std::time::Duration::from_millis(5)).await;
-            hub.decide(key, "c1", ConsentDecision::Allow).await.unwrap();
+            let call_id = {
+                let guard = hub.inner.lock().await;
+                guard.get(key).unwrap().pending.keys().next().unwrap().clone()
+            };
+            hub.decide(key, &call_id, ConsentDecision::Allow).await.unwrap();
         };
         let _ = tokio::join!(wait, decide);
         assert!(hub.allows(key, "apply_aliases").await);
         assert!(!hub.allows(key, "apply_house").await);
-        let wait = hub.wait(key, "c2".into(), pending());
+        let wait = hub.wait(key, pending());
         let decide = async {
             tokio::time::sleep(std::time::Duration::from_millis(5)).await;
-            hub.decide(key, "c2", ConsentDecision::Yolo).await.unwrap();
+            let call_id = {
+                let guard = hub.inner.lock().await;
+                guard.get(key).unwrap().pending.keys().next().unwrap().clone()
+            };
+            hub.decide(key, &call_id, ConsentDecision::Yolo).await.unwrap();
         };
         let _ = tokio::join!(wait, decide);
         assert!(hub.allows(key, "apply_house").await);
@@ -212,16 +285,48 @@ mod tests {
         let hub = TrainerConsentHub::new();
         let wait = hub.wait(
             "s",
-            "c1".into(),
             PendingWrite { name: "apply_house".into(), args: serde_json::json!({}), summary: "x".into(), preview: serde_json::json!({}) },
         );
         let decide = async {
             tokio::time::sleep(std::time::Duration::from_millis(5)).await;
-            hub.decide("s", "c1", ConsentDecision::Deny).await.unwrap();
+            let call_id = {
+                let guard = hub.inner.lock().await;
+                guard.get("s").unwrap().pending.keys().next().unwrap().clone()
+            };
+            hub.decide("s", &call_id, ConsentDecision::Deny).await.unwrap();
         };
-        let (decision, _) = tokio::join!(wait, decide);
+        let ((_, decision), _) = tokio::join!(wait, decide);
         assert_eq!(decision, ConsentDecision::Deny);
         assert!(!hub.allows("s", "apply_house").await);
+    }
+
+    #[tokio::test]
+    async fn late_yolo_on_unknown_call_does_not_enable_yolo() {
+        let hub = TrainerConsentHub::new();
+        assert!(hub.decide("s", "missing", ConsentDecision::Yolo).await.is_err());
+        assert!(!hub.allows("s", "apply_house").await);
+        let (yolo, _) = hub.snapshot("s").await;
+        assert!(!yolo);
+    }
+
+    #[tokio::test]
+    async fn wait_mints_server_side_call_id() {
+        let hub = TrainerConsentHub::new();
+        let wait = hub.wait(
+            "s",
+            PendingWrite { name: "apply_house".into(), args: serde_json::json!({}), summary: "x".into(), preview: serde_json::json!({}) },
+        );
+        let decide = async {
+            tokio::time::sleep(std::time::Duration::from_millis(5)).await;
+            let call_id = {
+                let guard = hub.inner.lock().await;
+                guard.get("s").unwrap().pending.keys().next().unwrap().clone()
+            };
+            assert!(!call_id.is_empty());
+            hub.decide("s", &call_id, ConsentDecision::AllowOnce).await.unwrap();
+        };
+        let ((minted, _), _) = tokio::join!(wait, decide);
+        assert!(!minted.is_empty());
     }
 
     #[test]

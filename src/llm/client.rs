@@ -56,7 +56,7 @@ pub async fn chat_turn(endpoint: &LlmEndpoint, request: ChatRequest) -> Result<C
 
 pub async fn chat_stream<F>(endpoint: &LlmEndpoint, request: ChatRequest, mut on_delta: F) -> Result<String, LlmError>
 where
-    F: FnMut(&str),
+    F: FnMut(&str) -> bool,
 {
     let turn = chat_stream_turn(endpoint, request, &mut on_delta).await?;
     if turn.text.is_empty() && turn.tool_calls.is_empty() {
@@ -66,9 +66,10 @@ where
     }
 }
 
+/// `on_delta` returns `false` to abort the upstream stream (client disconnect).
 pub async fn chat_stream_turn<F>(endpoint: &LlmEndpoint, request: ChatRequest, mut on_delta: F) -> Result<CompletionTurn, LlmError>
 where
-    F: FnMut(&str),
+    F: FnMut(&str) -> bool,
 {
     LlmClient::new(endpoint.clone())?.stream_turn(request, &mut on_delta).await
 }
@@ -198,7 +199,7 @@ impl LlmClient {
 
     pub async fn stream<F>(&self, request: ChatRequest, on_delta: &mut F) -> Result<String, LlmError>
     where
-        F: FnMut(&str),
+        F: FnMut(&str) -> bool,
     {
         let turn = self.stream_turn(request, on_delta).await?;
         if turn.text.is_empty() && turn.tool_calls.is_empty() {
@@ -210,7 +211,7 @@ impl LlmClient {
 
     pub async fn stream_turn<F>(&self, request: ChatRequest, on_delta: &mut F) -> Result<CompletionTurn, LlmError>
     where
-        F: FnMut(&str),
+        F: FnMut(&str) -> bool,
     {
         let body = request.sanitize()?;
         let response = self.send(&body, true).await?;
@@ -235,7 +236,9 @@ impl LlmClient {
                 }
                 if let Some(delta) = delta_text(&data) {
                     out.push_str(&delta);
-                    on_delta(&delta);
+                    if !on_delta(&delta) {
+                        return Err(LlmError::Transport);
+                    }
                 }
                 if let Some(calls) = delta_tool_calls(&data) {
                     assembler.push(&calls);
