@@ -4,7 +4,8 @@ use crate::types::AreaRec;
 /// Fold German umlauts and common European accents so packs can list ASCII tokens.
 pub fn fold_latin(s: &str) -> String {
     let mut out = String::with_capacity(s.len());
-    for c in s.chars() {
+    // Lower case first: "Éteins" at the start of a sentence folds like "éteins".
+    for c in s.chars().flat_map(char::to_lowercase) {
         match c {
             // Phones type curly apostrophes.
             '\u{2019}' | '\u{2018}' => out.push('\''),

@@ -3,7 +3,7 @@ use crate::lang::catalog;
 use crate::parse::fuzzy::{evidence, Profile};
 use crate::parse::infer::mentions_fixture_noun;
 use crate::parse::media::is_media_move_or_play;
-use crate::parse::normalize::{compact, fold_umlaut};
+use crate::parse::normalize::{compact, fold_umlaut, strip_fillers_for_areas, tokenize};
 use crate::types::HomeGraph;
 
 pub(crate) fn named_scene_or_script(tokens: &[String], home: &HomeGraph) -> Option<String> {
@@ -102,35 +102,39 @@ fn scene_token(token: &str) -> String {
     }
 }
 
+/// A scene or a script starts on its whole name: every word of it, side by side. One
+/// shared word ("open" in "Open Garage") is some other sentence.
 fn scene_name_hit(tokens: &[String], name: &str, home: &HomeGraph) -> bool {
-    let parts: Vec<String> = fold_umlaut(name)
-        .split_whitespace()
-        .map(scene_token)
-        .filter(|p| p.len() > 3 && !catalog().weak_scene().contains(p.as_str()) && scene_distinctive(p, home))
+    let cat = catalog();
+    // The name goes through the same word cleaning as the sentence, so both lose the same words.
+    let parts: Vec<String> = strip_fillers_for_areas(&tokenize(name), &home.areas)
+        .iter()
+        .map(|part| scene_token(part))
+        .filter(|part| !cat.scene_nouns().contains(part.as_str()) && !cat.script_words().contains(part.as_str()))
         .collect();
-    if parts.is_empty() {
+    if !parts.iter().any(|p| p.len() > 3 && !cat.weak_scene().contains(p.as_str()) && scene_distinctive(p, home)) {
         return false;
     }
     let mapped: Vec<String> = tokens.iter().map(|t| scene_token(t)).collect();
-    let allow_fuzzy = tokens.iter().any(|token| catalog().verb(token).is_some());
-    let mut repairs = 0;
-    parts.iter().all(|part| {
-        if mapped.iter().any(|token| token == part) {
-            return true;
+    let allow_fuzzy = tokens.iter().any(|token| cat.verb(token).is_some());
+    mapped.windows(parts.len()).any(|window| spoken_in(&parts, window, allow_fuzzy))
+}
+
+/// Every word of the name is one word of this stretch of the sentence, at most one of them misheard.
+fn spoken_in(parts: &[String], window: &[String], allow_fuzzy: bool) -> bool {
+    let mut free: Vec<&String> = window.iter().collect();
+    let mut missed: Vec<&String> = Vec::new();
+    for part in parts {
+        match free.iter().position(|token| *token == part) {
+            Some(at) => drop(free.swap_remove(at)),
+            None => missed.push(part),
         }
-        if !allow_fuzzy {
-            return false;
-        }
-        let fuzzy = mapped
-            .iter()
-            .filter(|token| token.len() >= 4)
-            .filter_map(|token| evidence(token, part, Profile::Target))
-            .max_by(|left, right| left.score.partial_cmp(&right.score).unwrap_or(std::cmp::Ordering::Equal));
-        if fuzzy.is_some() {
-            repairs += 1;
-        }
-        fuzzy.is_some() && repairs <= 1
-    })
+    }
+    match (missed.as_slice(), free.as_slice()) {
+        ([], _) => true,
+        ([part], [token]) => allow_fuzzy && token.len() >= 4 && evidence(token, part, Profile::Target).is_some(),
+        _ => false,
+    }
 }
 
 fn scene_distinctive(part: &str, home: &HomeGraph) -> bool {

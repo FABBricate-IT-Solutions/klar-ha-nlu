@@ -141,6 +141,7 @@ fn decide(context: &ParseContext<'_>) -> PipelineResult {
         let draft = reject(RejectReason::InvalidInput, speak_unknown());
         return finish(context, draft, Vec::new(), Vec::new(), trace);
     }
+    let commands = clauses.clone();
     let analyses = match build_analyses(context, clauses, &raw_tokens, &split, &mut trace) {
         Ok(analyses) => analyses,
         Err(_) => {
@@ -181,6 +182,12 @@ fn decide(context: &ParseContext<'_>) -> PipelineResult {
     let started = Instant::now();
     let mut draft = safety_decision(heed(draft), context);
     record_stage(&mut trace, "safety_decision", started, decision_name(&draft.decision).into());
+    // Nothing is switched that the sentence did not ask for. An exception was read word by
+    // word already, and its command went through here on its own.
+    if excepted.is_none() {
+        draft = super::heard::guard(context, &split.tokens, &commands, draft);
+    }
+    draft = super::unmet::guard(context, draft);
     if let Some(adapted) = semantic::consider(context, &split.tokens, &draft) {
         let started = Instant::now();
         draft = safety_decision(heed(adapted), context);
