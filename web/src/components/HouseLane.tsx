@@ -3,7 +3,7 @@ import { OriginChip } from "./OriginChip";
 import { SearchSelect, withCurrent } from "./SearchSelect";
 import { policiesEmpty, SetupHint } from "./SetupHint";
 import type { Messages } from "../i18n";
-import type { PolicyEffect, PolicyRule, SpeechBank } from "../types";
+import { POLICY_EFFECTS, type PolicyEffect, type PolicyRule, type SpeechBank } from "../types";
 import {
   AlertDialog,
   AlertDialogAction,
@@ -15,7 +15,7 @@ import {
   AlertDialogTitle,
 } from "@/components/ui/alert-dialog";
 
-const EFFECTS: PolicyEffect[] = ["confirm", "block", "allow", "prefer_entity", "prefer_area", "reply", "script", "template", "llm"];
+const EFFECTS: PolicyEffect[] = [...POLICY_EFFECTS];
 const ACTION_EFFECTS: PolicyEffect[] = ["reply", "script", "template", "llm"];
 
 function effectLabel(t: Messages, effect: PolicyEffect): string {

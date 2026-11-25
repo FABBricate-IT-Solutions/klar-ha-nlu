@@ -32,6 +32,7 @@ export const defaultSettings: Settings = {
   satellite_followup: false,
   allow_llm_tools: false,
   fallback_llm: false,
+  time_zone: "",
   extra_prompt: "",
   unit_system: "metric",
   custom_voice: "",

@@ -6,7 +6,16 @@ import { SettingsToggle } from "./SettingsToggle";
 import type { LanguagePack } from "../api";
 import { fill, localeCodes, plural, type Messages } from "../i18n";
 import { isPersonality, PERSONALITIES, personalityLabel } from "../personality";
-import { REFINE_BANDS, effectiveRefineBands, type BundleList, type Locale, type RefineBand, type Settings, type Theme } from "../types";
+import {
+  REFINE_BANDS,
+  effectiveRefineBands,
+  type BundleList,
+  type LanguageTier,
+  type Locale,
+  type RefineBand,
+  type Settings,
+  type Theme,
+} from "../types";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Field, FieldDescription, FieldGroup, FieldLabel } from "@/components/ui/field";
@@ -187,7 +196,7 @@ function tierLabel(t: Messages, tier: string): string {
   }
 }
 
-type PackRow = { code: string; native_name: string; tier?: string };
+type PackRow = { code: string; native_name: string; tier?: LanguageTier };
 
 /** Locales the draft settings may pick: stable always, experimental with the switch, and whatever is already in use. */
 function selectablePacks(packs: PackRow[], settings: Settings): PackRow[] {

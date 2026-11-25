@@ -14,6 +14,9 @@ generators=(
   scripts/full_home/generate.py
 )
 
+echo "== cargo run --bin export_web_contract"
+cargo run --locked --bin export_web_contract >/dev/null
+
 state() {
   git status --porcelain
   git diff

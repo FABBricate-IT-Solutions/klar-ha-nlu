@@ -23,7 +23,7 @@ const plain: Settings = {
 describe("the parse fixture", () => {
   it("has the wire shape the UI accepts from the engine", () => {
     expect(() => parseV2Response(structuredClone(parseResult()))).not.toThrow();
-    expect(() => parseV2Response(structuredClone(parseResult({ decision: { type: "reject", reason: "no_match" } })))).not.toThrow();
+    expect(() => parseV2Response(structuredClone(parseResult({ decision: { type: "reject", reason: "no_target" } })))).not.toThrow();
     expect(() => parseV2Response(structuredClone(parseResult({ decision: { type: "chat" }, speech: "" })))).not.toThrow();
   });
 });
@@ -75,7 +75,7 @@ describe("labPath", () => {
   });
 
   it("shows retrieval and semantic adapters only where the engine uses them", () => {
-    const reject = parseResult({ decision: { type: "reject", reason: "no_match" }, speech: "I did not get that." });
+    const reject = parseResult({ decision: { type: "reject", reason: "no_target" }, speech: "I did not get that." });
     const settings: Settings = { ...plain, nlu_rag: true, semantic_adapters: true };
 
     expect(labPath(reject, settings, en)).toEqual([en.labParse, en.labChipNluRag, en.labChipSemantic, "reject"]);
@@ -141,7 +141,7 @@ describe("the refine band of an answer", () => {
 
   it("is prompt for a question back, reject for a refusal, and none for chat", () => {
     expect(refineBandOf(parseResult({ decision: { type: "clarify", prompt: "Which lamp?", options: ["Desk", "Ceiling"] } }))).toBe("prompt");
-    expect(refineBandOf(parseResult({ decision: { type: "reject", reason: "no_match" } }))).toBe("reject");
+    expect(refineBandOf(parseResult({ decision: { type: "reject", reason: "no_target" } }))).toBe("reject");
     expect(refineBandOf(parseResult({ decision: { type: "chat" } }))).toBeNull();
     expect(refineBandOf(null)).toBeNull();
   });

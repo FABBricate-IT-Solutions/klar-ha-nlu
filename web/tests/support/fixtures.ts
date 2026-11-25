@@ -34,6 +34,7 @@ export const storedSettings: Settings = {
   satellite_followup: false,
   allow_llm_tools: false,
   fallback_llm: true,
+  time_zone: "Europe/Berlin",
   extra_prompt: "Sprich kurz.",
   unit_system: "metric",
   custom_voice: "",

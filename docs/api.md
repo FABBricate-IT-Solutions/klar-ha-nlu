@@ -306,7 +306,7 @@ Tags helfen der Auflösung, wenn der Anzeigename zu generisch ist.
 
 ### `GET /api/gaps`
 
-Kalibrieransicht für Entities, die noch schwache Namen, fehlende Areas oder keine hilfreichen Aliase/Tags haben. Die Antwort enthält `leftover`, `rooms` und das aktuelle Overlay.
+Kalibrieransicht für Entities, die noch schwache Namen, fehlende Areas oder keine hilfreichen Aliase/Tags haben. Die Antwort enthält `leftover` und `rooms` (inkl. `floor_id` je Raum). Das Overlay ist nicht enthalten.
 
 ### `GET /api/dashboard`
 
