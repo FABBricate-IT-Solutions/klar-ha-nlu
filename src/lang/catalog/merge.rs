@@ -176,7 +176,46 @@ impl Catalog {
         for extra in ["aufgabenliste", "liste"] {
             c.sets.entry(WordKey::ListNouns).or_default().insert(extra);
         }
+        c.max_script_surface = c.measure_script_surfaces();
         c
+    }
+
+    fn measure_script_surfaces(&self) -> usize {
+        let mut best = 1usize;
+        let mut note = |word: &str| {
+            if !word.is_empty() && word.chars().all(is_script_surface_char) {
+                best = best.max(word.chars().count());
+            }
+        };
+        for word in self.verbs.keys() {
+            note(word);
+        }
+        for word in self.domain_map.keys() {
+            note(word);
+        }
+        for word in self.colors.keys() {
+            note(word);
+        }
+        for word in self.numbers.keys() {
+            note(word);
+        }
+        for set in self.sets.values() {
+            for word in set {
+                note(word);
+            }
+        }
+        for (left, right) in &self.synonym_pairs {
+            note(left);
+            note(right);
+        }
+        for (left, right) in &self.scene_synonyms {
+            note(left);
+            note(right);
+        }
+        for (left, _) in &self.strip_pairs {
+            note(left);
+        }
+        best
     }
 
     /// Ordered lists and first-wins texts: the earlier pack is found first.
@@ -248,7 +287,24 @@ impl Catalog {
             news_open: true,
             morphology: Morphology::default(),
             pack_intents: Vec::new(),
+            max_script_surface: 1,
             ask: None,
         }
     }
+}
+
+fn is_script_surface_char(c: char) -> bool {
+    matches!(
+        c,
+        '\u{1100}'..='\u{11FF}'
+            | '\u{2E80}'..='\u{2EFF}'
+            | '\u{3040}'..='\u{30FF}'
+            | '\u{3400}'..='\u{4DBF}'
+            | '\u{4E00}'..='\u{9FFF}'
+            | '\u{A960}'..='\u{A97F}'
+            | '\u{AC00}'..='\u{D7AF}'
+            | '\u{F900}'..='\u{FAFF}'
+            | '\u{FF65}'..='\u{FF9F}'
+            | '\u{0E00}'..='\u{0E7F}'
+    )
 }

@@ -1,8 +1,9 @@
 use crate::io::auth::wyoming_allowed;
 use crate::io::limits::MAX_PARSE_CHARS;
 use crate::io::listen::{accept_failed, stopped};
+use crate::io::parse_run::{run_parse, ParseRequest};
 use crate::io::state::AppState;
-use crate::nlu::{legacy_result, parse_with_controls};
+use crate::nlu::legacy_result;
 use crate::types::{ParseDecision, ParseOutcome};
 use serde_json::{json, Value};
 use std::io::{Error, ErrorKind};
@@ -174,8 +175,20 @@ where
                 if let Some(area) = satellite {
                     session.preferred_area = Some(area.to_string());
                 }
-                let mut outcome =
-                    parse_with_controls(text, &home, &mut session, &custom, &settings, &policies, &speech_bank, &match_controls);
+                let parsed = match run_parse(
+                    &state.parse_limiter,
+                    ParseRequest { text: text.to_string(), home, session, custom, settings, policies, speech_bank, match_controls },
+                )
+                .await
+                {
+                    Ok(parsed) => parsed,
+                    Err(_) => {
+                        write_not_recognized(&mut writer).await?;
+                        continue;
+                    }
+                };
+                let mut outcome = parsed.outcome;
+                let mut session = parsed.session;
                 // D-18: Wyoming has no write token; never persist teach here.
                 if let Some((entity_id, alias)) = session.pending_teach.take() {
                     outcome.teach = Some(crate::types::TeachProposal { entity_id, alias });

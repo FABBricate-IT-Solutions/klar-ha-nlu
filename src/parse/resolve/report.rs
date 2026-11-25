@@ -1,4 +1,5 @@
-use super::score::{fuzzy_tokens, score_entity};
+use super::index_lookup::{content_candidates, fixture_alias_candidates};
+use super::score::{fuzzy_index_entities, fuzzy_tokens, score_entity};
 use super::{entity_name_is_mentioned, resolve_from_candidates, token_hit, Resolved};
 use crate::home::expose::assist_visible;
 use crate::home::policy::is_infra;
@@ -6,7 +7,7 @@ use crate::home::roles::matches_domain;
 use crate::lang::catalog;
 use crate::types::{EntityRec, HomeGraph};
 use std::cell::RefCell;
-use std::collections::HashMap;
+use std::collections::{HashMap, HashSet};
 
 thread_local! {
     static ACTIVE: RefCell<Option<HashMap<(String, String), ResolveReport>>> = const { RefCell::new(None) };
@@ -84,10 +85,39 @@ pub(crate) fn resolve_scored(tokens: &[String], home: &HomeGraph, domain: Option
 }
 
 fn collect_scored(tokens: &[String], home: &HomeGraph, domain: Option<&str>, fuzzy: &[&str]) -> Vec<(f64, EntityRec)> {
+    let eligible = |entity: &EntityRec| {
+        assist_visible(entity, home)
+            && !is_infra(entity)
+            && !crate::home::policy::is_nlu_ignored(entity)
+            && domain.is_none_or(|wanted| matches_domain(entity, wanted, catalog()))
+    };
+    // R-09/R-08: score index hits (exact, capped fuzzy, catalog fixture aliases). Fall through to a
+    // full walk only when nothing was seeded — never drop fixture aliases just because fuzzy missed.
+    if let Some(index) = home.label_index.as_ref() {
+        let mut hits: HashSet<usize> = content_candidates(tokens, index).into_iter().collect();
+        if hits.is_empty() && !fuzzy.is_empty() {
+            hits.extend(fuzzy_index_entities(fuzzy, index));
+        }
+        hits.extend(fixture_alias_candidates(tokens, home));
+        if !hits.is_empty() {
+            let scored: Vec<(f64, EntityRec)> = hits
+                .into_iter()
+                .filter_map(|entity_index| {
+                    let entity = home.entities.get(entity_index)?;
+                    if !eligible(entity) {
+                        return None;
+                    }
+                    score_entity(tokens, fuzzy, entity, home).map(|score| (score, entity.clone()))
+                })
+                .collect();
+            if !scored.is_empty() {
+                return scored;
+            }
+        }
+    }
     home.entities
         .iter()
-        .filter(|entity| assist_visible(entity, home) && !is_infra(entity) && !crate::home::policy::is_nlu_ignored(entity))
-        .filter(|entity| domain.is_none_or(|wanted| matches_domain(entity, wanted, catalog())))
+        .filter(|entity| eligible(entity))
         .filter_map(|entity| score_entity(tokens, fuzzy, entity, home).map(|score| (score, entity.clone())))
         .collect()
 }

@@ -100,3 +100,34 @@ fn generic_room_light_does_not_clarify_ceiling_versus_lamp() {
     assert!(hit.entities.is_empty(), "{hit:?}");
     assert_eq!(hit.areas, ["living"]);
 }
+
+#[test]
+fn fixture_alias_resolves_when_word_is_not_on_entity_label() {
+    // R-09 index path must still seed catalog fixture aliases (parity packs).
+    let _bind = bind(&["af".into()]);
+    let home =
+        crate::home::registry_yaml::load_home_config(std::path::Path::new("tests/datasets/wohnung_mittel/home_config.yaml")).expect("home");
+    assert!(home.label_index.is_some());
+    let hit = resolve(&["doof".into(), "skottelgoed".into()], &home, None);
+    assert_eq!(hit.entities.iter().map(|e| e.entity_id.as_str()).collect::<Vec<_>>(), ["switch.kuche_spulmaschine"], "{hit:?}");
+}
+
+#[test]
+fn area_alias_survives_protected_number_typo() {
+    // PT "quarto" (bedroom) is levenshtein-close to number "quatro"; area aliases must still count
+    // as known targets so the clause gate does not wipe the utterance.
+    let _bind = bind(&["pt".into()]);
+    assert!(crate::lang::catalog().is_protected_typo("quarto"));
+    let mut home =
+        crate::home::registry_yaml::load_home_config(std::path::Path::new("tests/datasets/wohnung_mittel/home_config.yaml")).expect("home");
+    for area in &mut home.areas {
+        if area.area_id == "schlafzimmer" {
+            area.aliases.push("quarto".into());
+        }
+    }
+    // Stale index on purpose — mirrors parity with_aliases before rebuild.
+    assert!(!home.label_index.as_ref().unwrap().tokens.contains("quarto"));
+    assert!(super::known_target_token("quarto", &home));
+    let hit = resolve(&["desliga".into(), "tudo".into(), "luz".into(), "quarto".into()], &home, None);
+    assert_eq!(hit.areas, ["schlafzimmer"], "{hit:?}");
+}

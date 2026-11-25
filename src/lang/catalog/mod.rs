@@ -37,6 +37,8 @@ pub struct Catalog {
     pub news_open: bool,
     pub morphology: Morphology,
     pub pack_intents: Vec<CustomSentence>,
+    /// Longest CJK/Thai surface in this catalog; caps script tokenization lookahead (R-07).
+    pub max_script_surface: usize,
     ask: Option<&'static crate::lang::Answers>,
 }
 
@@ -225,6 +227,11 @@ impl Catalog {
             || self.chat_news().contains(token)
             || self.chat_news_dismiss().contains(token)
             || self.synonym_pairs.iter().any(|(alias, _)| *alias == token)
+    }
+
+    /// Cap for joining consecutive CJK/Thai units into one token (R-07).
+    pub fn max_script_surface_chars(&self) -> usize {
+        self.max_script_surface.max(1)
     }
 
     pub fn codes(&self) -> Vec<&'static str> {

@@ -19,6 +19,7 @@ pub mod store;
 #[cfg(test)]
 pub(crate) mod test_dir;
 
+pub use labels::rebuild_label_index;
 pub use load::{load_merged, registry_stamp, LoadedHome};
 pub use overlay_store::{OverlayRead, OverlayStore};
 pub use registry::{load_home, load_home_config};
