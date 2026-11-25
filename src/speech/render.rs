@@ -16,11 +16,6 @@ pub fn render_snapshot(snap: &SpeechSnapshot) -> SpeechRenderOut {
     SpeechRenderOut { speech: spoken, quiet_ack: false, source: "post_execute" }
 }
 
-fn capitalize(line: &str) -> String {
-    let mut chars = line.chars();
-    chars.next().map(|first| first.to_uppercase().chain(chars).collect()).unwrap_or_default()
-}
-
 fn interpolate(snap: &SpeechSnapshot, speech: Speech, de: bool) -> String {
     let target = pretty_where(snap, speech);
     let line = interpolate_line(snap, speech, de, &target.phrase);
@@ -29,18 +24,17 @@ fn interpolate(snap: &SpeechSnapshot, speech: Speech, de: bool) -> String {
         _ => line,
     };
     if line.starts_with(&target.phrase) {
-        capitalize(&line)
+        cap_first(&line)
     } else {
         line
     }
 }
 
-/// What the reply calls the devices acted on, and whether that phrase lists several.
+/// Spoken device phrase, and whether it lists several devices.
 struct Target {
     phrase: String,
     plural: bool,
 }
-
 impl Target {
     fn one(phrase: String) -> Self {
         Self { phrase, plural: false }
@@ -94,10 +88,17 @@ fn interpolate_line(snap: &SpeechSnapshot, speech: Speech, de: bool, where_: &st
         "HassTurnOff" => fill(speech.turn_off, where_, "", ""),
         "HassToggle" => fill(speech.toggle, where_, "", ""),
         "HassLightSet" => light_set(snap, speech, where_, de),
+        "HassSetPosition" => match slot(snap, "position") {
+            Some(n) => fill(speech.set_position, where_, n, ""),
+            None => speech.unknown.to_string(),
+        },
         "HassClimateSetTemperature" => climate_set(snap, speech, where_, de),
         "HassVacuumStart" => fill(speech.vacuum_start, where_, "", ""),
         "HassVacuumReturnToBase" => fill(speech.vacuum_dock, where_, "", ""),
-        "HassFanSetSpeed" | "HassFanSetPercentage" => fill(speech.fan_set, where_, slot(snap, "percentage").unwrap_or(""), ""),
+        "HassFanSetSpeed" | "HassFanSetPercentage" => match slot(snap, "percentage") {
+            Some(n) => fill(speech.fan_set, where_, n, ""),
+            None => speech.unknown.to_string(),
+        },
         "KlarGetCalendarEvents" | "KlarCreateCalendarEvent" | "KlarDeleteCalendarEvent" | "KlarMoveCalendarEvent" | "KlarNoMusicPlayer" => {
             calendar_speech(snap, speech)
         }
@@ -115,8 +116,16 @@ fn light_set(snap: &SpeechSnapshot, speech: Speech, where_: &str, de: bool) -> S
     if let Some(color) = color_word(slot(snap, "color"), de) {
         return fill(speech.light_color, where_, "", &color);
     }
-    let level = slot(snap, "brightness").or_else(|| slot(snap, "percentage")).unwrap_or("");
-    fill(speech.light_set, where_, level, "")
+    if let Some(level) = slot(snap, "brightness").or_else(|| slot(snap, "percentage")) {
+        return fill(speech.light_set, where_, level, "");
+    }
+    match slot(snap, "brightness_step") {
+        Some(step) if matches!(step.to_ascii_lowercase().as_str(), "down" | "decrease" | "dimmer" | "dunkler" | "-") => {
+            fill(speech.light_step_down, where_, "", "")
+        }
+        Some(_) => fill(speech.light_step_up, where_, "", ""),
+        None => speech.unknown.to_string(),
+    }
 }
 
 fn climate_set(snap: &SpeechSnapshot, speech: Speech, where_: &str, de: bool) -> String {
@@ -477,12 +486,11 @@ fn is_infra(entity: &SpeechEntity) -> bool {
 }
 
 #[cfg(test)]
-#[path = "tests.rs"]
-mod tests;
-
-#[cfg(test)]
 #[path = "cover_lock_tests.rs"]
 mod cover_lock_tests;
 #[cfg(test)]
 #[path = "multi_target_tests.rs"]
 mod multi_target_tests;
+#[cfg(test)]
+#[path = "tests.rs"]
+mod tests;
