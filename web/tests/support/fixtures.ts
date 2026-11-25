@@ -20,6 +20,8 @@ export const storedSettings: Settings = {
   personality: "butler",
   mode: "full",
   languages: ["de"],
+  default_language: "",
+  experimental_languages: false,
   support_bundle: true,
   support_bundle_raw_text: false,
   confirm_risky_actions: true,
@@ -92,8 +94,10 @@ export const storedDashboard: Dashboard = {
 };
 
 export const languagePacks: LanguagePack[] = [
-  { code: "de", native_name: "Deutsch", script: "Latn", variants: [] },
-  { code: "en", native_name: "English", script: "Latn", variants: [] },
+  { code: "de", native_name: "Deutsch", script: "Latn", variants: [], tier: "stable", offered: true },
+  { code: "en", native_name: "English", script: "Latn", variants: [], tier: "stable", offered: true },
+  { code: "en-GB", native_name: "English (UK)", script: "Latn", variants: [], tier: "stable", offered: true },
+  { code: "fr", native_name: "Français", script: "Latn", variants: [], tier: "experimental", offered: false },
 ];
 
 export const matchCatalog: MatchCatalog = {

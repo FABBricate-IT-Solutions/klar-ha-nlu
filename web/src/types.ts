@@ -10,10 +10,16 @@ export type RefineBand = "status" | "command" | "prompt" | "reject";
 
 export const REFINE_BANDS: RefineBand[] = ["status", "command", "prompt", "reject"];
 
+export type LanguageTier = "stable" | "experimental";
+
 export type Settings = {
   personality: string;
   mode: "full" | "context_only";
   languages: string[];
+  /** Pack used when `languages` is empty and the request names no language. Empty means English. */
+  default_language: string;
+  /** Offer untested locales for a new selection. Configured ones stay either way. */
+  experimental_languages: boolean;
   support_bundle: boolean;
   support_bundle_raw_text: boolean;
   confirm_risky_actions: boolean;

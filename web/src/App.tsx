@@ -50,6 +50,8 @@ const defaultSettings: Settings = {
   personality: "default",
   mode: "full",
   languages: [],
+  default_language: "",
+  experimental_languages: false,
   support_bundle: false,
   support_bundle_raw_text: false,
   confirm_risky_actions: true,
