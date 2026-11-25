@@ -224,6 +224,7 @@ def is_all_day(event: dict[str, Any], start: datetime | date | None) -> bool:
 _WEEKDAYS: dict[str, tuple[str, ...]] = {
     "de": ("Montag", "Dienstag", "Mittwoch", "Donnerstag", "Freitag", "Samstag", "Sonntag"),
     "en": ("Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"),
+    "fr": ("lundi", "mardi", "mercredi", "jeudi", "vendredi", "samedi", "dimanche"),
 }
 
 

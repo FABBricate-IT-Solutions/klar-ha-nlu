@@ -164,7 +164,7 @@ def expand(core: dict) -> dict:
         "verbs": verbs,
         "speech": speech,
         "room_names": pick_room_names(rooms),
-        "loc_der_rooms": [r[0] for r in rooms[:2]],
+        "loc_der_rooms": core.get("loc_der_rooms") or [r[0] for r in rooms[:2]],
         "personality": personality,
         "answers": answers_for(core["code"], w),
         "talk": {

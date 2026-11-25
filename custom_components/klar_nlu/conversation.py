@@ -115,14 +115,16 @@ _LOGGER = logging.getLogger(__name__)
 _UNREACHABLE = {
     "de": "Klar antwortet gerade nicht.",
     "en": "Klar is not responding right now.",
+    "fr": "Klar ne répond pas pour le moment.",
 }
 
 _SCHEMA = {
     "de": "Klar hat etwas Unerwartetes geantwortet.",
     "en": "Klar sent an unexpected reply.",
+    "fr": "Klar a renvoyé une réponse inattendue.",
 }
 
-_DONE = {"de": "Erledigt.", "en": "Done."}
+_DONE = {"de": "Erledigt.", "en": "Done.", "fr": "C'est fait."}
 
 
 def _cue(table: dict[str, str], pack: str, fallback: str) -> str:

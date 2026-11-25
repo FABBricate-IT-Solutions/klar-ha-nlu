@@ -14,28 +14,34 @@ from .dispatch import IntentStepResult, handle_intent
 _FAILED = {
     "de": "Das hat nicht geklappt.",
     "en": "That did not work.",
+    "fr": "Ça n'a pas marché.",
 }
 _TV_UNAVAILABLE = {
     "de": "Der Fernseher ist gerade nicht erreichbar.",
     "en": "That TV is not available.",
+    "fr": "La télévision n'est pas disponible pour le moment.",
 }
 _FAILED_HINT = {
     "media_unavailable": {
         "de": "Der Player ist gerade nicht erreichbar.",
         "en": "That player is not available.",
+        "fr": "Ce lecteur n'est pas disponible pour le moment.",
     },
     "mass_target_unavailable": {
         "de": "Der Musik-Player ist gerade nicht erreichbar.",
         "en": "The music player is not available.",
+        "fr": "Le lecteur de musique n'est pas disponible pour le moment.",
     },
     "entity_not_exposed": {
         "de": "Dieses Gerät ist für Assist nicht freigegeben.",
         "en": "That device is not exposed to Assist.",
+        "fr": "Cet appareil n'est pas exposé à Assist.",
     },
 }
 _PARTIAL = {
     "de": "Ein Schritt ist fehlgeschlagen.",
     "en": "One step failed.",
+    "fr": "Une étape a échoué.",
 }
 
 

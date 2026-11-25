@@ -40,6 +40,7 @@ _GLUE = frozenset(
 _MISS = {
     "de": "Dazu habe ich keine aktuelle Quelle.",
     "en": "I don't have a current source for that.",
+    "fr": "Je n'ai pas de source à jour pour ça.",
 }
 _INSTRUCTION = {
     "de": (

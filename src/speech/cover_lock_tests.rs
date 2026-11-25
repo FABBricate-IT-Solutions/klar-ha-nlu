@@ -144,6 +144,19 @@ fn german_two_lights_use_plural() {
 
 #[test]
 fn generated_locales_speak_the_name_until_worded() {
+    let out = say("nl", "HassTurnOn", "cover.rolluik", "Rolluik", "cover");
+    assert_eq!(out, "Rolluik.");
+}
+
+#[test]
+fn french_covers_are_worded() {
     let out = say("fr", "HassTurnOn", "cover.volet", "Volet", "cover");
-    assert_eq!(out, "Volet.");
+    assert_eq!(out, "J'ouvre Volet.");
+}
+
+#[test]
+fn french_area_lights_use_room_gender() {
+    let say_area = |room: &str| render_snapshot(&snap("fr", "HassTurnOn", &[("area", room), ("domain", "light")], vec![])).speech;
+    assert_eq!(say_area("salon"), "J'ai allumé la lumière dans le salon.");
+    assert_eq!(say_area("cuisine"), "J'ai allumé la lumière dans la cuisine.");
 }
