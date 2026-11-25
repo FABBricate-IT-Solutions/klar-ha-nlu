@@ -1,4 +1,4 @@
-"""Home Assistant unit system as Klar snapshot / engine settings data."""
+"""Home Assistant unit system as Klar snapshot / engine settings data (H-05)."""
 
 from __future__ import annotations
 
