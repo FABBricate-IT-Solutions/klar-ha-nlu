@@ -14,6 +14,12 @@ KEYS = (
     "assistLanguages",
     "assistLanguagesHint",
     "allAssistLanguages",
+    "unsavedChanges",
+    "discardChanges",
+    "saveConflict",
+    "uiSaveFail",
+    "invalidJson",
+    "rulesReloaded",
     "pinLanguage",
     "voice",
     "voiceHint",
@@ -174,4 +180,10 @@ def apply_settings_copy(packs: dict[str, dict[str, str]]) -> None:
             fields["recordProtocolHint"] = row.get("recordProtocolHint") or "An: Klar behält die letzten 200 Turns 24 Stunden. Braucht es für die Downloads darunter."
             fields["includeRawTextHint"] = row.get("includeRawTextHint") or "An: Downloads enthalten den gesprochenen Satz. Aus: nur geschwärzt."
             fields["semanticAdaptersHint"] = row.get("semanticAdaptersHint") or "Standard aus. An: nach einem Miss kann ein lokaler Bedeutungsabgleich den Intent noch finden. Kein LLM."
+            fields["unsavedChanges"] = row.get("unsavedChanges") or "Ungespeicherte Änderungen"
+            fields["discardChanges"] = row.get("discardChanges") or "Verwerfen"
+            fields["saveConflict"] = row.get("saveConflict") or "Jemand anderes hat das geändert. Neu geladen — prüfen und erneut speichern."
+            fields["uiSaveFail"] = row.get("uiSaveFail") or "Die offene Ansicht konnte nicht gespeichert werden."
+            fields["invalidJson"] = row.get("invalidJson") or "Das ist kein gültiges JSON."
+            fields["rulesReloaded"] = row.get("rulesReloaded") or "Regeln neu von der Engine geladen."
             fields["tokenHint"] = row.get("tokenHint") or "Zum Speichern auf diesem Bildschirm. Derselbe Wert wie das App-Token."
