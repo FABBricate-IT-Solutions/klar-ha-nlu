@@ -65,7 +65,7 @@ pub(crate) fn parse_clause_candidates_for_action(
         return Vec::new();
     }
     let question = looks_like_question(tokens);
-    let number = first_number(&free);
+    let number = first_number(&free).or_else(|| crate::parse::infer::cover_halfway_position(&free));
     let command = prefer_action(&actions);
     let hard = is_hard_command(command, &value_tokens);
     let guessed = forced_action.unwrap_or_else(|| {
@@ -76,6 +76,8 @@ pub(crate) fn parse_clause_candidates_for_action(
             && !(cat.any(tokens, cat.question_words()) || tokens.first().is_some_and(|token| cat.is_question_start(token)))
         {
             Action::Scene
+        } else if !question && crate::parse::infer::cover_halfway(&free) && crate::parse::action::has_cover_noun(tokens) {
+            Action::CoverSet
         } else if !question && (crate::parse::infer::color_word(&free).is_some() || crate::parse::infer::light_level(&free).is_some()) {
             Action::SetLight
         } else if question && number.is_none() && !hard {
@@ -96,11 +98,33 @@ pub(crate) fn parse_clause_candidates_for_action(
     apply_compound_light(home, tokens, light_areas, &mut resolved);
     crate::parse::resolve::narrow_shared_rooms(&mut resolved, tokens, home, session.preferred_area.as_deref());
     narrow_to_satellite(&mut resolved, tokens, session.preferred_area.as_deref(), domain, early);
+    // "send robby home": "home" also matches weather.home — keep the vacuum (P-30).
+    if crate::parse::infer::dock_hint(tokens) {
+        let vacua: Vec<_> = resolved.entities.iter().filter(|entity| entity.domain == "vacuum").cloned().collect();
+        if !vacua.is_empty() {
+            resolved.entities = vacua;
+            resolved.ambiguous.retain(|entity| entity.domain == "vacuum");
+        }
+    }
     let target = resolved.entities.first().map(|e| e.domain.as_str());
     let action = match target {
         Some(domain) => infer_action_in(guessed, tokens, number, question, session, Some(domain), Some(home)),
         None => early,
     };
+    // "send the vacuum home" with a vacuum named Robby: kind word alone, one vacuum in the home.
+    if matches!(action, Action::VacuumDock | Action::VacuumStart) && !resolved.entities.iter().any(|entity| entity.domain == "vacuum") {
+        let vacs: Vec<_> = home
+            .entities
+            .iter()
+            .filter(|entity| {
+                entity.domain == "vacuum" && crate::home::expose::assist_visible(entity, home) && !crate::home::policy::is_infra(entity)
+            })
+            .cloned()
+            .collect();
+        if vacs.len() == 1 {
+            resolved.entities = vacs;
+        }
+    }
     let domain = domain_for_linked(action, tokens, &linked);
     let ctx = Clause { tokens, raw, home, session, action, number, domain, question, resolved, light_areas };
     let except_all = except_tail(tokens).is_some() && wants_all_lights(tokens);
@@ -222,6 +246,9 @@ fn named_scene(ctx: &Clause) -> Option<ClauseOut> {
 }
 
 fn all_lights(ctx: &Clause) -> Option<ClauseOut> {
+    if matches!(ctx.action, Action::CoverOpen | Action::CoverClose | Action::CoverStop | Action::CoverSet) {
+        return crate::parse::all_lights::all_covers_clause(ctx.tokens, ctx.home, ctx.action, ctx.number, &ctx.resolved.areas);
+    }
     if which_lights_query(ctx.tokens) {
         // After multi-turn light commands, SessionAreas answers per prior room.
         if crate::parse::clause_session::session_has_light_areas(ctx.session, ctx.home) {
@@ -264,6 +291,7 @@ fn floor_command(ctx: &Clause) -> Option<ClauseOut> {
             | Action::CoverOpen
             | Action::CoverClose
             | Action::CoverSet
+            | Action::CoverStop
             | Action::FanSpeed
             | Action::Lock
             | Action::Unlock
@@ -397,7 +425,9 @@ fn fallback_temp(ctx: &Clause) -> Option<ClauseOut> {
 }
 
 fn fallback_cover(ctx: &Clause) -> Option<ClauseOut> {
-    (matches!(ctx.action, Action::CoverClose | Action::CoverOpen) && catalog().any(ctx.tokens, catalog().curtain_nouns())).then(|| {
+    (matches!(ctx.action, Action::CoverClose | Action::CoverOpen | Action::CoverStop)
+        && catalog().any(ctx.tokens, catalog().curtain_nouns()))
+    .then(|| {
         let area = fallback_cover_area(ctx.home);
         finish_intents(vec![fill_intent(ctx.action, ctx.tokens, ctx.number, None, area.as_deref(), Some("cover"))], ctx)
     })

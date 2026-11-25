@@ -7,7 +7,8 @@ use crate::parse::action::Action;
 use crate::parse::all_lights::{every_light, room_light_steps};
 use crate::parse::clause_area::area_slots;
 use crate::parse::infer::{
-    bind_domain, color_word, except_focus, except_tail, light_level, mentions_lamp_fixture, wants_all_lights, LightLevel,
+    bind_domain, color_word, cover_halfway_position, except_focus, except_tail, light_level, mentions_lamp_fixture, wants_all_lights,
+    LightLevel,
 };
 use crate::parse::normalize::compact;
 use crate::parse::resolve::resolve;
@@ -217,7 +218,7 @@ pub(crate) fn fill_intent(
             }
         }
         Action::CoverSet => {
-            if let Some(n) = number {
+            if let Some(n) = number.or_else(|| cover_halfway_position(tokens)) {
                 intent = intent.with("position", n.to_string());
             }
         }
@@ -367,6 +368,7 @@ pub(crate) fn intent_from_action(action: Action, tokens: &[String]) -> Intent {
         Action::CoverOpen => Intent::new("HassTurnOn").with("domain", "cover"),
         Action::CoverClose => Intent::new("HassTurnOff").with("domain", "cover"),
         Action::CoverSet => Intent::new("HassSetPosition").with("domain", "cover"),
+        Action::CoverStop => Intent::new("HassStopMoving").with("domain", "cover"),
         Action::Lock => Intent::new("HassTurnOn").with("domain", "lock"),
         Action::Unlock => Intent::new("HassTurnOff").with("domain", "lock"),
         Action::TimerStart => Intent::new("HassStartTimer"),

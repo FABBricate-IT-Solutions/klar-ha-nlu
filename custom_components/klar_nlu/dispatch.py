@@ -139,6 +139,7 @@ async def handle_intent(
         "HassLightSet",
         "HassFanSetSpeed",
         "HassSetPosition",
+        "HassStopMoving",
         "HassVacuumStart",
         "HassVacuumReturnToBase",
     }

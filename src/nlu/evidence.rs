@@ -79,6 +79,7 @@ pub(super) fn action_name(action: Action) -> &'static str {
         Action::CoverOpen => "cover_open",
         Action::CoverClose => "cover_close",
         Action::CoverSet => "cover_set",
+        Action::CoverStop => "cover_stop",
         Action::Lock => "lock",
         Action::Unlock => "unlock",
         Action::TimerStart => "timer_start",

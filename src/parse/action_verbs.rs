@@ -8,7 +8,7 @@ use super::{
 
 pub(super) fn open_action(tokens: &[String]) -> Option<Action> {
     if has_cover_noun(tokens) {
-        Some(Action::CoverOpen)
+        Some(if crate::parse::infer::cover_halfway(tokens) { Action::CoverSet } else { Action::CoverOpen })
     } else if catalog().any(tokens, catalog().lock_nouns()) {
         Some(Action::Unlock)
     } else {
@@ -64,7 +64,7 @@ pub(super) fn down_action(tokens: &[String]) -> Option<Action> {
 }
 
 pub(super) fn auf_action(tokens: &[String]) -> Option<Action> {
-    if crate::parse::numbers::first_number(tokens).is_none() {
+    if crate::parse::numbers::first_number(tokens).is_none() && !crate::parse::infer::cover_halfway(tokens) {
         if has_cover_noun(tokens) {
             Some(Action::CoverOpen)
         } else if has_lock_or_door(tokens) {
@@ -90,6 +90,15 @@ pub(super) fn stop_action(tokens: &[String]) -> Option<Action> {
         Some(Action::TimerCancel)
     } else if has_list_noun(tokens) {
         Some(Action::ListRemove)
+    } else if has_cover_noun(tokens) || is_garage_cover(tokens) {
+        Some(Action::CoverStop)
+    } else if catalog().any(tokens, catalog().vacuum_nouns())
+        || tokens
+            .iter()
+            .any(|token| matches!(catalog().verb(token), Some(crate::lang::VerbKind::Vacuum | crate::lang::VerbKind::VacuumNoun)))
+    {
+        // Pause/stop a vacuum is not return-to-base (P-30); refuse later as Unsupported.
+        None
     } else if has_media_noun(tokens) {
         Some(Action::MediaPause)
     } else {

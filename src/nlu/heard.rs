@@ -63,6 +63,7 @@ const SWITCHING: &[&str] = &[
     "HassFanSetPercentage",
     "HassVacuumStart",
     "HassVacuumReturnToBase",
+    "HassStopMoving",
 ];
 
 pub(super) fn guard(context: &ParseContext<'_>, tokens: &[String], clauses: &[Vec<String>], draft: Draft) -> Draft {

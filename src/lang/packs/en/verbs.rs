@@ -4,6 +4,8 @@ pub(super) const VERBS: &[(&str, VerbKind)] = &[
     ("enable", VerbKind::On),
     ("activate", VerbKind::On),
     ("engage", VerbKind::On),
+    ("press", VerbKind::On),
+    ("push", VerbKind::On),
     ("start", VerbKind::On),
     ("illuminate", VerbKind::On),
     ("illuminating", VerbKind::On),

@@ -43,6 +43,7 @@ pub(super) fn controls_device(name: &str) -> bool {
             | "HassFanSetPercentage"
             | "HassVacuumStart"
             | "HassVacuumReturnToBase"
+            | "HassStopMoving"
             | "HassMediaPause"
             | "HassMediaUnpause"
             | "HassMediaNext"

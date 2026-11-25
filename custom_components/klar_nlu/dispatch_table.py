@@ -33,6 +33,7 @@ ENTITY_INTENTS = {
     "HassClimateSetTemperature",
     "HassFanSetSpeed",
     "HassSetPosition",
+    "HassStopMoving",
     "HassVacuumStart",
     "HassVacuumReturnToBase",
 }
@@ -78,6 +79,8 @@ def build_service_call(
             return None
         data["position"] = max(0, min(100, position))
         return "set_cover_position", data
+    if name == "HassStopMoving" and domain == "cover":
+        return "stop_cover", data
     if name == "HassVacuumStart" and domain == "vacuum":
         return "start", data
     if name == "HassVacuumReturnToBase" and domain == "vacuum":

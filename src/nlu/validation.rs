@@ -261,7 +261,7 @@ fn required_domain(name: &str) -> Option<&'static str> {
         | "MassGetQueue" => Some("media_player"),
         "HassFanSetSpeed" => Some("fan"),
         "HassVacuumStart" | "HassVacuumReturnToBase" => Some("vacuum"),
-        "HassSetPosition" => Some("cover"),
+        "HassSetPosition" | "HassStopMoving" => Some("cover"),
         _ => None,
     }
 }
@@ -296,6 +296,7 @@ fn allowed_slots(name: &str) -> &'static [&'static str] {
         "HassClimateGetTemperature" => &["entity_id", "area", "floor", "domain"],
         "HassFanSetSpeed" => &["entity_id", "area", "floor", "domain", "percentage"],
         "HassSetPosition" => &["entity_id", "area", "floor", "domain", "position"],
+        "HassStopMoving" => &["entity_id", "area", "floor", "domain", "device_class"],
         "HassSetVolume" => &["entity_id", "domain", "volume_level"],
         "HassSetVolumeRelative" => &["entity_id", "domain", "volume_step"],
         "HassMediaSearchAndPlay" => &["entity_id", "domain", "search_query", "media_id", "media_type", "media_class"],

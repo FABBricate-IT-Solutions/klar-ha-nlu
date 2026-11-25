@@ -37,6 +37,7 @@ pub const KNOWN_INTENTS: &[&str] = &[
     "HassVacuumStart",
     "HassVacuumReturnToBase",
     "HassSetPosition",
+    "HassStopMoving",
     "HassStartTimer",
     "HassIncreaseTimer",
     "HassDecreaseTimer",
