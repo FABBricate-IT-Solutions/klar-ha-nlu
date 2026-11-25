@@ -1,3 +1,19 @@
+import {
+  LANGUAGE_TIERS,
+  POLICY_EFFECTS,
+  REFINE_BANDS as GENERATED_REFINE_BANDS,
+  type LanguageTier,
+  type Mode,
+  type PolicyEffect,
+  type RefineBand,
+  type RejectReason,
+  type UnitSystem,
+} from "./generated/contract";
+
+export type { LanguageTier, Mode, PolicyEffect, RefineBand, RejectReason, UnitSystem };
+export { LANGUAGE_TIERS, POLICY_EFFECTS };
+export const REFINE_BANDS: RefineBand[] = [...GENERATED_REFINE_BANDS];
+
 export type Locale = string;
 export type Tab = "home" | "conversations" | "rules" | "house" | "lab" | "settings";
 export type HouseView = "graph" | "entities" | "calibrate";
@@ -6,15 +22,9 @@ export type Theme = "dark" | "light";
 export type SettingsView = "llm" | "voice" | "languages" | "engine" | "backup";
 export type Confidence = "high" | "medium" | "low";
 
-export type RefineBand = "status" | "command" | "prompt" | "reject";
-
-export const REFINE_BANDS: RefineBand[] = ["status", "command", "prompt", "reject"];
-
-export type LanguageTier = "stable" | "experimental";
-
 export type Settings = {
   personality: string;
-  mode: "full" | "context_only";
+  mode: Mode;
   languages: string[];
   /** Pack used when `languages` is empty and the request names no language. Empty means English. */
   default_language: string;
@@ -32,8 +42,10 @@ export type Settings = {
   satellite_followup?: boolean;
   allow_llm_tools?: boolean;
   fallback_llm?: boolean;
+  /** IANA timezone from Home Assistant. Empty uses the process timezone, then UTC. */
+  time_zone?: string;
   extra_prompt?: string;
-  unit_system?: "metric" | "imperial";
+  unit_system?: UnitSystem;
   custom_voice?: string;
   custom_voice_name?: string;
   custom_voice_seed?: string;
@@ -103,7 +115,7 @@ export type ParseDecision =
   | { type: "execute" }
   | { type: "clarify"; prompt: string; options: string[] }
   | { type: "confirm"; prompt: string; candidate_id: string }
-  | { type: "reject"; reason: string }
+  | { type: "reject"; reason: RejectReason | string }
   | { type: "chat" }
   | { type: "error"; code: string; message: string };
 
@@ -116,6 +128,8 @@ export type ParseResult = {
   plan?: IntentPlan;
   selected_candidate_id?: string;
   briefing: boolean;
+  /** Present on a news briefing that named a topic; omitted otherwise. */
+  news_topic?: string | null;
   confidence: number;
   margin: number;
   candidates: IntentCandidate[];
@@ -150,7 +164,6 @@ export type PolicyTrace = {
   discarded?: PolicyTraceDiscarded[];
 };
 
-export type PolicyEffect = "confirm" | "block" | "allow" | "prefer_entity" | "prefer_area" | "reply" | "script" | "template" | "llm";
 export type PolicyMatch = {
   intent?: string;
   domain?: string;
@@ -236,7 +249,13 @@ export type TrainerChatEvent =
   | { type: "consent"; call_id: string; tool: string; summary: string; validate: TrainerValidateOut }
   | { type: "session"; yolo: boolean; allowed: string[] }
   | { type: "tool_call"; id: string; name: string; arguments: string }
-  | { type: "tool"; tool: string; text?: string };
+  | {
+      type: "tool";
+      tool: string;
+      text?: string | null;
+      intent?: string | null;
+      slots?: Record<string, string> | null;
+    };
 
 export type ConversationTurn = {
   conversation_id: string;

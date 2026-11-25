@@ -11,6 +11,10 @@ default-run = "klar"
 name = "klar"
 path = "src/main.rs"
 
+[[bin]]
+name = "export_web_contract"
+path = "src/bin/export_web_contract.rs"
+
 [dependencies]
 axum = { version = "0.8", features = ["json"] }
 # The HTTP listener drives hyper itself, for the request-head deadline and the connection

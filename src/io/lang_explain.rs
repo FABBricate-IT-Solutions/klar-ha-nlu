@@ -13,6 +13,7 @@ pub(crate) struct ExplainOut {
     pub reply: String,
     pub stages: Vec<String>,
     pub evidence: Vec<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
     pub matched_custom: Option<String>,
     #[serde(skip_serializing_if = "Option::is_none")]
     pub policy_trace: Option<PolicyTrace>,

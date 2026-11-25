@@ -16,6 +16,7 @@ import type {
   PolicyTrace,
   RefineOutcome,
   Settings,
+  LanguageTier,
   TrainerChatEvent,
   TrainerContext,
   TrainerTurn,
@@ -40,15 +41,15 @@ export type LangExplain = {
   reply?: string;
   stages: string[];
   evidence: string[];
-  matched_custom?: string;
-  policy_trace?: PolicyTrace;
+  matched_custom?: string | null;
+  policy_trace?: PolicyTrace | null;
 };
 export type LanguagePack = {
   code: string;
   native_name: string;
   script: string;
   variants: string[];
-  tier?: "stable" | "experimental";
+  tier?: LanguageTier;
   /** False only in an `?all=true` listing: experimental and not selectable yet. */
   offered?: boolean;
 };

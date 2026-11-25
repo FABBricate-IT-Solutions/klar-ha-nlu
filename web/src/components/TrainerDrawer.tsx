@@ -119,14 +119,15 @@ function applyEvent(
       }
       setLines((prev) => {
         const next = [...prev];
+        const result = event.text ?? undefined;
         for (let index = next.length - 1; index >= 0; index -= 1) {
           const row = next[index];
           if (row?.role === "tool" && row.name === event.tool && row.result === undefined) {
-            next[index] = { ...row, result: event.text };
+            next[index] = { ...row, result };
             return next;
           }
         }
-        return [...next, { role: "tool", name: event.tool, args: "", result: event.text }];
+        return [...next, { role: "tool", name: event.tool, args: "", result }];
       });
       return;
     case "done":

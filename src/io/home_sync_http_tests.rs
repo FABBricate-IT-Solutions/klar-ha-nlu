@@ -217,3 +217,16 @@ async fn unauthorized_large_snapshot_is_rejected_before_reading_the_body() {
         assert!(!fixture.state.live_sync.load(Ordering::Relaxed));
     }
 }
+
+#[tokio::test]
+async fn gaps_omits_the_overlay() {
+    let fixture = Fixture::new();
+    let mut request = Request::get("/api/gaps").header("x-klar-token", "home-test-token").body(Body::empty()).unwrap();
+    request.extensions_mut().insert(ConnectInfo("10.0.0.8:9".parse::<SocketAddr>().unwrap()));
+    let response = web::router(fixture.state.clone()).oneshot(request).await.unwrap();
+    assert_eq!(response.status(), StatusCode::OK);
+    let body: Value = serde_json::from_slice(&to_bytes(response.into_body(), 1024 * 1024).await.unwrap()).unwrap();
+    assert!(body.get("leftover").is_some(), "{body}");
+    assert!(body.get("rooms").is_some(), "{body}");
+    assert!(body.get("overlay").is_none(), "U-33: /api/gaps must not ship the overlay: {body}");
+}

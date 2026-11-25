@@ -306,7 +306,7 @@ Tags help resolution when the display name is too generic.
 
 ### `GET /api/gaps`
 
-Calibration view for entities with weak names, missing areas, or no helpful aliases/tags. The response contains `leftover`, `rooms`, and the current overlay.
+Calibration view for entities with weak names, missing areas, or no helpful aliases/tags. The response contains `leftover` and `rooms` (including each room’s `floor_id`). It does not include the overlay.
 
 ### `GET /api/dashboard`
 

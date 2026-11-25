@@ -1,6 +1,6 @@
 use crate::home::expose::assist_visible;
 use crate::home::gaps::leftover;
-use crate::home::overlay::{apply_overlay, load_overlay, Overlay};
+use crate::home::overlay::apply_overlay;
 use crate::io::auth::{reads_allowed, writes_allowed};
 use crate::io::limits::MAX_PARSE_CHARS;
 use crate::io::state::{save_failed, AppState};
@@ -263,7 +263,6 @@ async fn get_entities(
 struct GapsOut {
     leftover: Vec<EntityRec>,
     rooms: Vec<AreaRec>,
-    overlay: Overlay,
 }
 
 async fn get_gaps(
@@ -273,11 +272,7 @@ async fn get_gaps(
 ) -> Result<Json<GapsOut>, StatusCode> {
     read_gate(peer, &headers, &state.token)?;
     let home = state.home.snapshot().await;
-    Ok(Json(GapsOut {
-        leftover: leftover(&home, state.catalog_for_settings().await),
-        rooms: home.areas.clone(),
-        overlay: load_overlay(&state.data_dir),
-    }))
+    Ok(Json(GapsOut { leftover: leftover(&home, state.catalog_for_settings().await), rooms: home.areas.clone() }))
 }
 
 #[derive(Deserialize)]
