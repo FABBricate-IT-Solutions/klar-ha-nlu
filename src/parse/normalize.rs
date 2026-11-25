@@ -141,13 +141,68 @@ pub fn tokenize(text: &str) -> Vec<String> {
     if folded.chars().any(is_script_unit) {
         tokenize_script(&folded)
     } else {
-        folded
-            .split(|c: char| !is_word_char(c))
-            .filter(|token| !token.is_empty())
-            .map(drop_apostrophes)
-            .filter(|token| !token.is_empty())
-            .collect()
+        tokenize_latin(&folded)
     }
+}
+
+/// Keep signed numbers, decimals, and `h:mm` clock times as one token so the quantity
+/// lexer can read −5, 19.5 / 19,5, and 1:30 instead of dropping the separator.
+fn tokenize_latin(folded: &str) -> Vec<String> {
+    let chars: Vec<char> = folded.chars().collect();
+    let mut out = Vec::new();
+    let mut buf = String::new();
+    let flush = |buf: &mut String, out: &mut Vec<String>| {
+        if buf.is_empty() {
+            return;
+        }
+        let token = drop_apostrophes(buf);
+        buf.clear();
+        if !token.is_empty() {
+            out.push(token);
+        }
+    };
+    let mut i = 0;
+    while i < chars.len() {
+        let c = chars[i];
+        // Only open a number token at a boundary. Digits inside names ("R2D2", "lamp1") stay
+        // in the word; a leading '-'/'+' before a digit still starts a signed number.
+        let starts_signed = buf.is_empty() && (c == '-' || c == '+') && chars.get(i + 1).is_some_and(|next| next.is_ascii_digit());
+        let starts_number = buf.is_empty() && c.is_ascii_digit();
+        if starts_number || starts_signed {
+            flush(&mut buf, &mut out);
+            let mut num = String::new();
+            if starts_signed {
+                num.push(c);
+                i += 1;
+            }
+            while i < chars.len() && chars[i].is_ascii_digit() {
+                num.push(chars[i]);
+                i += 1;
+            }
+            if i < chars.len() && matches!(chars[i], '.' | ',' | ':') && chars.get(i + 1).is_some_and(|next| next.is_ascii_digit()) {
+                let sep = chars[i];
+                num.push(if sep == ',' { '.' } else { sep });
+                i += 1;
+                while i < chars.len() && chars[i].is_ascii_digit() {
+                    num.push(chars[i]);
+                    i += 1;
+                }
+            }
+            if !num.is_empty() {
+                out.push(num);
+            }
+            continue;
+        }
+        if is_word_char(c) {
+            buf.push(c);
+            i += 1;
+            continue;
+        }
+        flush(&mut buf, &mut out);
+        i += 1;
+    }
+    flush(&mut buf, &mut out);
+    out
 }
 
 fn is_cjk(c: char) -> bool {
@@ -324,6 +379,16 @@ mod tests {
     fn latin_tokenize_stays_space_split() {
         assert_eq!(tokenize("Licht im Wohnzimmer an"), vec!["licht", "im", "wohnzimmer", "an"]);
         assert_eq!(tokenize("Turn on the kitchen light"), vec!["turn", "on", "the", "kitchen", "light"]);
+    }
+
+    #[test]
+    fn latin_tokenize_keeps_signed_decimal_and_clock() {
+        assert_eq!(tokenize("-5 degrees"), vec!["-5", "degrees"]);
+        assert_eq!(tokenize("19.5"), vec!["19.5"]);
+        assert_eq!(tokenize("19,5 Grad"), vec!["19.5", "grad"]);
+        assert_eq!(tokenize("Timer auf 1:30"), vec!["timer", "auf", "1:30"]);
+        assert_eq!(tokenize("R2D2 soll saugen"), vec!["r2d2", "soll", "saugen"]);
+        assert_eq!(tokenize("lamp1"), vec!["lamp1"]);
     }
 
     #[test]

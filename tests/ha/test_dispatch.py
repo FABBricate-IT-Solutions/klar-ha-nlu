@@ -599,6 +599,27 @@ class DispatchTests(unittest.IsolatedAsyncioTestCase):
         self.assertNotIn("hvac_mode", args.args[2])
         self.assertNotIn("nicht geklappt", (spoken.speech or "").lower())
 
+    async def test_relative_temperature_step_adds_to_current_target(self) -> None:
+        climate = _State(
+            "climate.better_thermostat_wohnzimmer",
+            "heat",
+            friendly_name="Heizung Wohnzimmer",
+            temperature=21.0,
+        )
+        hass = _hass(climate)
+        spoken = await dispatch.handle_intent(
+            hass,
+            _input(),
+            _item("HassClimateSetTemperature", entity_id=climate.entity_id, temperature_step=1),
+            "de",
+            None,
+            lambda _entity_id: True,
+        )
+        self.assertTrue(spoken.ok)
+        args = hass.services.async_call.await_args
+        self.assertEqual(args.args[:2], ("climate", "set_temperature"))
+        self.assertEqual(args.args[2]["temperature"], 22.0)
+
     async def test_relative_dim_sends_brightness_step(self) -> None:
         light = _State("light.wohnzimmer", "on", friendly_name="Wohnzimmer Licht", brightness=80)
         hass = _hass(light)

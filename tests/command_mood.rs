@@ -268,7 +268,8 @@ fn a_number_after_a_clock_word_is_a_value_only_if_the_command_sets_it() {
     assert_rejected("en", &en, "set the bedroom fan to 30 at 7");
     let de = collision_home("de");
     let (out, changes) = said("de", &de, "Heizung im Schlafzimmer um 2 wärmer");
-    assert_eq!(changes, ["HassClimateSetTemperature{entity_id=climate.schlafzimmer,temperature=2}"], "{}", describe(&out));
+    // Relative "wärmer" is a step (P-04), not an absolute set-point of 2 °C.
+    assert_eq!(changes, ["HassClimateSetTemperature{entity_id=climate.schlafzimmer,temperature_step=2}"], "{}", describe(&out));
     assert_rejected("de", &de, "mach die Schreibtischlampe um 8 an");
 }
 

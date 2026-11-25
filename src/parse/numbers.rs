@@ -77,12 +77,25 @@ fn scan(tokens: &[String]) -> Vec<Spoken> {
             i += 1;
             continue;
         }
-        if let Ok(n) = t.parse::<i32>() {
+        if let Some(raw) = crate::parse::quantity::parse_numeric_token(t) {
+            let n = raw.trunc() as i32;
             if !is_room_index(tokens, i, n) {
                 out.push(single(n));
             }
             i += 1;
             continue;
+        }
+        // "minus 5" keeps the sign that tokenize no longer drops.
+        if matches!(t.as_str(), "minus" | "plus") {
+            if let Some(value) = tokens
+                .get(i + 1)
+                .and_then(|next| crate::parse::quantity::parse_numeric_token(next).map(|n| n.trunc() as i32).or_else(|| word_value(next)))
+            {
+                let signed = if t.as_str() == "minus" { -value.abs() } else { value.abs() };
+                out.push(Spoken { value: signed, readable: true, start: i, end: i + 2, glued: false });
+                i += 2;
+                continue;
+            }
         }
         // "ein und zwanzig": the article stands for one.
         if cat.has_german_und() && article_one(t) && tokens.get(i + 1).is_some_and(|next| next == "und") {
@@ -148,10 +161,15 @@ fn word_at(tokens: &[String], at: usize) -> Option<(i32, usize)> {
 /// A number word of the active packs, or a German compound written as one word.
 fn word_value(token: &str) -> Option<i32> {
     let cat = catalog();
-    if token.parse::<i32>().is_ok() {
+    if crate::parse::quantity::parse_numeric_token(token).is_some() {
         return None;
     }
     cat.number(token).or_else(|| cat.has_german_und().then(|| german_compound(token)).flatten())
+}
+
+/// Listed number word (not a digit token). Used by the quantity lexer for "minus fünf".
+pub(crate) fn word_number(token: &str) -> Option<i32> {
+    word_value(token)
 }
 
 /// Adds up number words that stand together, by the rules the active packs bring.

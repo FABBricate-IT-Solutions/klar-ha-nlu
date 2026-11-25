@@ -61,7 +61,7 @@ def build_service_call(
         data.update(light_turn_on(slots))
         return "turn_on", data
     if name == "HassClimateSetTemperature" and domain == "climate":
-        extra = climate_set_data(slots)
+        extra = climate_set_data(slots, state)
         if extra is None:
             return None
         data.update(extra)
@@ -109,8 +109,33 @@ def light_turn_on(slots: dict[str, Any]) -> dict[str, Any]:
     return data
 
 
-def climate_set_data(slots: dict[str, Any]) -> dict[str, Any] | None:
-    """Temperature only — never force ``hvac_mode: heat`` (H-11)."""
+def climate_set_data(slots: dict[str, Any], state: Any = None) -> dict[str, Any] | None:
+    """Temperature only — never force ``hvac_mode: heat`` (H-11).
+
+    Relative ``temperature_step`` adds to the entity's current target (or current
+    temperature) so "one degree warmer" is not stored as absolute 1 °C.
+    """
+    step_raw = slots.get("temperature_step", {}).get("value")
+    if step_raw is not None and str(step_raw) != "":
+        try:
+            step = float(step_raw)
+        except (TypeError, ValueError):
+            return None
+        attrs = getattr(state, "attributes", None) or {}
+        base = None
+        if isinstance(attrs, dict):
+            for key in ("temperature", "current_temperature"):
+                raw = attrs.get(key)
+                if raw is None:
+                    continue
+                try:
+                    base = float(raw)
+                    break
+                except (TypeError, ValueError):
+                    continue
+        if base is None:
+            return None
+        return {"temperature": base + step}
     try:
         return {"temperature": float(slots.get("temperature", {}).get("value"))}
     except (TypeError, ValueError):

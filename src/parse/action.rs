@@ -157,7 +157,11 @@ pub(crate) fn detect_actions_bounded(tokens: &[String], maximum: usize) -> Vec<(
                 Some(if crate::parse::numbers::first_number(tokens).is_some() { Action::FanSpeed } else { Action::GetState })
             }
             Some(VerbKind::Climate) | Some(VerbKind::Temperature) => {
-                Some(if crate::parse::numbers::first_number(tokens).is_some() { Action::SetTemp } else { Action::GetState })
+                Some(if crate::parse::numbers::first_number(tokens).is_some() || crate::parse::quantity::is_relative_temp(tokens) {
+                    Action::SetTemp
+                } else {
+                    Action::GetState
+                })
             }
             Some(VerbKind::Query) => Some(Action::GetState),
             Some(VerbKind::Switch) => Some(if cat.any(tokens, cat.off_words()) { Action::Off } else { Action::On }),
@@ -194,9 +198,13 @@ pub(crate) fn detect_actions_bounded(tokens: &[String], maximum: usize) -> Vec<(
             Some(VerbKind::Add) => add_action(tokens),
             Some(VerbKind::ListComplete) => Some(Action::ListComplete),
             Some(VerbKind::ListRemove) => has_list_noun(tokens).then_some(Action::ListRemove),
-            Some(VerbKind::Make) => {
-                Some(if crate::parse::numbers::first_number(tokens).is_some() { set_by_number(tokens) } else { Action::On })
-            }
+            Some(VerbKind::Make) => Some(if crate::parse::quantity::is_relative_temp(tokens) {
+                Action::SetTemp
+            } else if crate::parse::numbers::first_number(tokens).is_some() {
+                set_by_number(tokens)
+            } else {
+                Action::On
+            }),
             Some(VerbKind::Color) => Some(Action::SetLight),
             Some(VerbKind::Percent) => {
                 Some(if crate::parse::numbers::first_number(tokens).is_some() { set_by_number(tokens) } else { Action::GetState })

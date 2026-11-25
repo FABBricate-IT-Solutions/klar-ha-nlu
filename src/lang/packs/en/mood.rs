@@ -306,7 +306,7 @@ pub(crate) const MOOD: MoodWords = MoodWords {
     ],
     clock_leads: &["at", "around"],
     clock_marks: &["am", "pm"],
-    measure_units: &["degrees", "degree", "percent", "percentage", "celsius", "fahrenheit", "kelvin"],
+    measure_units: &["degrees", "degree", "percent", "percentage", "celsius", "fahrenheit", "kelvin", "warmer", "cooler", "colder"],
     question_openers: &[],
     question_particles: &[],
     question_endings: &[],

@@ -36,9 +36,14 @@ pub(crate) fn media_clause(
         return Some(ClauseOut::Intents(Vec::new()));
     }
     let allow_session_media = !matches!(intent.name.as_str(), "HassMediaSearchAndPlay" | "MassPlayMedia" | "MassTransferQueue");
-    let volume_default =
-        matches!(intent.name.as_str(), "HassSetVolume" | "HassSetVolumeRelative" | "HassMediaPlayerMute" | "HassMediaPlayerUnmute");
-    let Some(target) = target_player(tokens, home, session, resolved, allow_session_media, mass_only, volume_default) else {
+    // Absolute set must not invent a player among many (P-15). Relative / mute still
+    // bind the living-room (wohnzimmer) or sole player the way operators expect.
+    let volume_pick = match intent.name.as_str() {
+        "HassSetVolumeRelative" | "HassMediaPlayerMute" | "HassMediaPlayerUnmute" => VolumePick::DefaultRoom,
+        "HassSetVolume" => VolumePick::SingleOnly,
+        _ => VolumePick::None,
+    };
+    let Some(target) = target_player(tokens, home, session, resolved, allow_session_media, mass_only, volume_pick) else {
         let any_player =
             home.entities.iter().any(|entity| entity.domain == "media_player" && assist_visible(entity, home) && !is_infra(entity));
         if any_player {
@@ -100,7 +105,11 @@ fn volume_intent(tokens: &[String], session: &Session, number: Option<i32>) -> O
         session.last_domains().any(|d| d == "media_player") || session.last_entities().any(|id| id.starts_with("media_player."));
     let volume_number = has_volume_word(tokens) || (session_media && !clock_volume_trap(tokens));
     let intent = if let Some(n) = number.filter(|_| volume_number) {
-        Intent::new("HassSetVolume").with("volume_level", n.clamp(0, 100).to_string())
+        // Out of range must reject, never clamp silently (P-15).
+        if !(0..=100).contains(&n) {
+            return None;
+        }
+        Intent::new("HassSetVolume").with("volume_level", n.to_string())
     } else if any(tokens, &["lauter", "louder", "hoch"]) {
         Intent::new("HassSetVolumeRelative").with("volume_step", "up")
     } else if any(tokens, &["leiser", "quieter", "runter"]) || (any(tokens, &["down"]) && has_volume_word(tokens)) {
@@ -253,6 +262,15 @@ fn media_request(raw: &[String], home: &HomeGraph, resolved: &Resolved) -> Optio
     })
 }
 
+#[derive(Clone, Copy, PartialEq, Eq)]
+enum VolumePick {
+    None,
+    /// Relative volume / mute: prefer Wohnzimmer, else the first music player.
+    DefaultRoom,
+    /// Absolute volume: only when a single player is in the pool.
+    SingleOnly,
+}
+
 fn target_player<'a>(
     tokens: &[String],
     home: &'a HomeGraph,
@@ -260,7 +278,7 @@ fn target_player<'a>(
     resolved: &Resolved,
     allow_session_media: bool,
     mass_only: bool,
-    volume_default: bool,
+    volume_pick: VolumePick,
 ) -> Option<&'a EntityRec> {
     let players = player_pool(home, tokens, mass_only);
     let resolved_ids: Vec<&str> = resolved
@@ -299,12 +317,14 @@ fn target_player<'a>(
             return Some(entity);
         }
     }
-    select_player(&players, session).or_else(|| {
-        volume_default
-            .then(|| {
-                players.iter().copied().find(|player| player.area.as_deref() == Some("wohnzimmer")).or_else(|| players.first().copied())
-            })
-            .flatten()
+    // Prefer a single / session / preferred player. Absolute volume must not invent a
+    // target among many (P-15); relative volume still uses the living-room default.
+    select_player(&players, session).or_else(|| match volume_pick {
+        VolumePick::None => None,
+        VolumePick::SingleOnly => (players.len() == 1).then(|| players[0]),
+        VolumePick::DefaultRoom => {
+            players.iter().copied().find(|player| player.area.as_deref() == Some("wohnzimmer")).or_else(|| players.first().copied())
+        }
     })
 }
 

@@ -57,7 +57,7 @@ pub(super) fn controls_device(name: &str) -> bool {
 
 /// The step sets exactly this number, so a bare "at 21" or "um 2" is its value.
 pub(super) fn sets_value(intent: &Intent, number: i32) -> bool {
-    ["brightness", "brightness_step", "temperature", "position", "percentage", "volume_level", "volume_step"]
+    ["brightness", "brightness_step", "temperature", "temperature_step", "position", "percentage", "volume_level", "volume_step"]
         .iter()
         .filter_map(|slot| intent.slot(slot))
         .any(|value| value.parse::<f64>().is_ok_and(|value| (value.abs() - f64::from(number)).abs() < 0.01))
