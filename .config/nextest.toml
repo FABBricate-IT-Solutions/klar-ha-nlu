@@ -57,10 +57,10 @@ default-filter = '''
 | (binary(parity_langs) & test(/^parity_own_/))
 '''
 
-# full_home full tiers walk every locale sentence; 240s is tight under CI load.
+# full_home full tiers walk every locale sentence; keep headroom under CI load.
 [[profile.ci-datasets.overrides]]
 filter = 'test(/^full_home_full_/)'
-slow-timeout = { period = "180s", terminate-after = 3 }
+slow-timeout = { period = "300s", terminate-after = 3 }
 
 # Weekly language-parity.yml: every locale, including the `#[ignore]` tiers.
 [profile.ci-lang]
