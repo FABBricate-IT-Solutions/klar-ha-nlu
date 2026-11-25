@@ -28,13 +28,18 @@ impl TempScale {
     }
 }
 
-/// Stable integer map used for spoken whole degrees.
+/// Stable integer map used for spoken whole degrees. Uses `i64` so large inputs do not
+/// overflow the intermediate multiply (R-12).
 pub fn fahrenheit_to_celsius(f: i32) -> i32 {
-    ((f - 32) * 5 + 4) / 9
+    let f = i64::from(f);
+    let c = ((f - 32) * 5 + 4) / 9;
+    c.clamp(i64::from(i32::MIN), i64::from(i32::MAX)) as i32
 }
 
 pub fn celsius_to_fahrenheit(c: i32) -> i32 {
-    (c * 9 + 2) / 5 + 32
+    let c = i64::from(c);
+    let f = (c * 9 + 2) / 5 + 32;
+    f.clamp(i64::from(i32::MIN), i64::from(i32::MAX)) as i32
 }
 
 pub fn fahrenheit_to_celsius_f(f: f64) -> f64 {
@@ -55,13 +60,8 @@ fn token_scale(token: &str) -> Option<TempScale> {
     if raw.contains("fahrenheit") || raw.contains("°f") {
         return Some(TempScale::Fahrenheit);
     }
-    if raw.contains("celsius")
-        || raw.contains("zelsius")
-        || raw.contains("centigrade")
-        || raw.contains("°c")
-        || raw == "grad"
-        || raw == "grads"
-    {
+    // "Grad" / "degrees" name the unit of the operator scale — they do not force Celsius (P-20).
+    if raw.contains("celsius") || raw.contains("zelsius") || raw.contains("centigrade") || raw.contains("°c") {
         return Some(TempScale::Celsius);
     }
     None
@@ -81,17 +81,26 @@ pub fn bind_set_temp(intent: &mut Intent, tokens: &[String], operator: UnitSyste
     if intent.name != "HassClimateSetTemperature" {
         return;
     }
+    if intent.slot("temperature_step").is_some() {
+        return;
+    }
     let Some(raw) = intent.slot("temperature") else {
         return;
     };
-    let Ok(spoken) = raw.parse::<i32>() else {
+    let Ok(spoken) = raw.parse::<f64>() else {
         return;
     };
-    let ha = to_ha_celsius(spoken, tokens, operator);
-    if ha.to_string() == raw {
+    let scale = uttered_scale(tokens).unwrap_or_else(|| TempScale::from_unit_system(operator));
+    let ha = match scale {
+        TempScale::Celsius => spoken,
+        TempScale::Fahrenheit if nearly_int(spoken) => f64::from(fahrenheit_to_celsius(spoken.round() as i32)),
+        TempScale::Fahrenheit => fahrenheit_to_celsius_f(spoken),
+    };
+    let text = if nearly_int(ha) { format!("{}", ha.round() as i32) } else { format_temp(ha) };
+    if text == raw {
         return;
     }
-    *intent = intent.clone().with_set("temperature", ha.to_string());
+    *intent = intent.clone().with_set("temperature", text);
 }
 
 pub fn convert_value(value: f64, from: TempScale, to: UnitSystem) -> f64 {
@@ -206,12 +215,21 @@ mod tests {
     fn parse_uses_setting_unless_word_overrides() {
         let bare = ["set".into(), "to".into(), "70".into()];
         assert_eq!(to_ha_celsius(70, &bare, UnitSystem::Imperial), 21);
+        // "Grad" follows the operator scale (P-20); only explicit celsius/fahrenheit override.
         assert_eq!(to_ha_celsius(21, &["21".into(), "grad".into()], UnitSystem::Metric), 21);
-        assert_eq!(to_ha_celsius(21, &["21".into(), "grad".into()], UnitSystem::Imperial), 21);
+        assert_eq!(to_ha_celsius(70, &["70".into(), "grad".into()], UnitSystem::Imperial), 21);
         let explicit = ["70".into(), "fahrenheit".into()];
         assert_eq!(to_ha_celsius(70, &explicit, UnitSystem::Metric), 21);
         let celsius = ["21".into(), "celsius".into()];
         assert_eq!(to_ha_celsius(21, &celsius, UnitSystem::Imperial), 21);
+    }
+
+    #[test]
+    fn integer_conversion_does_not_overflow() {
+        let _ = fahrenheit_to_celsius(i32::MAX);
+        let _ = fahrenheit_to_celsius(i32::MIN);
+        let _ = celsius_to_fahrenheit(i32::MAX);
+        let _ = celsius_to_fahrenheit(i32::MIN);
     }
 
     #[test]

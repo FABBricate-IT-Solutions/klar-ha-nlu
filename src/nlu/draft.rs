@@ -112,7 +112,15 @@ pub(super) fn replay_or_decide(
 ) -> Draft {
     if intents.is_empty() {
         if let Some(previous) = last_visible(context.session, context.home) {
-            if let Some(number) = first_number(tokens) {
+            if previous.starts_with("climate.") && crate::parse::quantity::is_relative_temp(tokens) {
+                if let Some(step) = crate::parse::quantity::temperature_step(tokens) {
+                    intents.push(
+                        Intent::new("HassClimateSetTemperature")
+                            .with("entity_id", previous)
+                            .with("temperature_step", crate::parse::quantity::format_quantity(step)),
+                    );
+                }
+            } else if let Some(number) = first_number(tokens) {
                 let (name, slot) = if previous.starts_with("climate.") {
                     ("HassClimateSetTemperature", "temperature")
                 } else if previous.starts_with("fan.") {

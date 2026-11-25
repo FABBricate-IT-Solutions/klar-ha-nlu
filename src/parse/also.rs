@@ -76,6 +76,9 @@ pub(crate) fn guess_action(tokens: &[String], session: &Session, number: Option<
             session.last_entities().any(|entity| entity.starts_with("fan.")) || session.last_domains().any(|domain| domain == "fan"),
         );
     }
+    if crate::parse::quantity::is_relative_temp(tokens) {
+        return Action::SetTemp;
+    }
     if tokens.iter().any(|token| is_also_token(token)) {
         return followup_action(tokens, session);
     }

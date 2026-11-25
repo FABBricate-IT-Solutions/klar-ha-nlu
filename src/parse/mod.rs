@@ -21,6 +21,7 @@ pub(crate) mod news;
 pub mod normalize;
 pub mod numbers;
 pub(crate) mod policy;
+pub(crate) mod quantity;
 pub mod resolve;
 pub(crate) mod resolve_named;
 pub mod respond;

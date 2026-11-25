@@ -100,7 +100,11 @@ fn volume_intent(tokens: &[String], session: &Session, number: Option<i32>) -> O
         session.last_domains().any(|d| d == "media_player") || session.last_entities().any(|id| id.starts_with("media_player."));
     let volume_number = has_volume_word(tokens) || (session_media && !clock_volume_trap(tokens));
     let intent = if let Some(n) = number.filter(|_| volume_number) {
-        Intent::new("HassSetVolume").with("volume_level", n.clamp(0, 100).to_string())
+        // Out of range must reject, never clamp silently (P-15).
+        if !(0..=100).contains(&n) {
+            return None;
+        }
+        Intent::new("HassSetVolume").with("volume_level", n.to_string())
     } else if any(tokens, &["lauter", "louder", "hoch"]) {
         Intent::new("HassSetVolumeRelative").with("volume_step", "up")
     } else if any(tokens, &["leiser", "quieter", "runter"]) || (any(tokens, &["down"]) && has_volume_word(tokens)) {
@@ -299,12 +303,16 @@ fn target_player<'a>(
             return Some(entity);
         }
     }
+    // Prefer a single / session / preferred player. Do not silently pick the first of many
+    // when the utterance never named a room or device (P-15).
     select_player(&players, session).or_else(|| {
-        volume_default
-            .then(|| {
-                players.iter().copied().find(|player| player.area.as_deref() == Some("wohnzimmer")).or_else(|| players.first().copied())
-            })
-            .flatten()
+        if !volume_default {
+            return None;
+        }
+        if players.len() == 1 {
+            return players.first().copied();
+        }
+        None
     })
 }
 

@@ -179,6 +179,13 @@ fn split_two_targets(tokens: &[String]) -> Option<usize> {
     let left = &tokens[..at];
     let right = &tokens[at + 1..];
     let right_head = right.split(|t| is_conj(t)).next().unwrap_or(right);
+    // "A auf x und B auf y": each side holds its own value — one value per clause (P-09).
+    if crate::parse::quantity::both_sides_valued(tokens, at)
+        && !right.iter().skip(right_head.len()).any(|t| is_conj(t))
+        && !both_covers(left, right_head)
+    {
+        return Some(at);
+    }
     // "Heizung Wohnzimmer und alle Lichter in der Küche aus": a climate device or reading
     // on one side and another kind of device on the other are two targets as well.
     // Two sides with a verb each are cut at the verb further down.
