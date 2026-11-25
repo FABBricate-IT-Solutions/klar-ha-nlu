@@ -153,10 +153,10 @@ async def async_setup_services(hass: HomeAssistant) -> None:
             _LOGGER.warning("Klar export_asr_boost failed (engine unreachable or route missing)")
 
     # A-05 / H-21: admin-only services with schemas; removed again on unload.
-    async_register_admin_service(hass, DOMAIN, SERVICE_UNDO, undo, schema=_UNDO_SCHEMA)
-    async_register_admin_service(hass, DOMAIN, SERVICE_TEACH, teach, schema=_TEACH_SCHEMA)
+    async_register_admin_service(hass, DOMAIN, SERVICE_UNDO, undo, schema=_UNDO_SCHEMA)  # type: ignore[arg-type]
+    async_register_admin_service(hass, DOMAIN, SERVICE_TEACH, teach, schema=_TEACH_SCHEMA)  # type: ignore[arg-type]
     async_register_admin_service(
-        hass, DOMAIN, SERVICE_EXPORT_ASR_BOOST, export_boost, schema=_EXPORT_SCHEMA
+        hass, DOMAIN, SERVICE_EXPORT_ASR_BOOST, export_boost, schema=_EXPORT_SCHEMA  # type: ignore[arg-type]
     )
 
 

@@ -13,10 +13,12 @@
       }
     },
     "error": {
-      "invalid_url": "URL harus http(s) tanpa nama pengguna."
+      "invalid_url": "URL harus http(s) tanpa nama pengguna.",
+      "cannot_connect": "Klar did not answer at that URL. Check the App or the URL."
     },
     "abort": {
-      "already_configured": "Klar NLU sudah diatur"
+      "already_configured": "Klar NLU sudah diatur",
+      "reauth_successful": "Klar connection updated"
     }
   },
   "options": {

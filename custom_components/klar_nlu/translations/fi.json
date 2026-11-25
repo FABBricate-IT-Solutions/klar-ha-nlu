@@ -13,10 +13,12 @@
       }
     },
     "error": {
-      "invalid_url": "URL:n on oltava http(s) ilman käyttäjätunnusta."
+      "invalid_url": "URL:n on oltava http(s) ilman käyttäjätunnusta.",
+      "cannot_connect": "Klar did not answer at that URL. Check the App or the URL."
     },
     "abort": {
-      "already_configured": "Klar NLU on jo määritetty"
+      "already_configured": "Klar NLU on jo määritetty",
+      "reauth_successful": "Klar connection updated"
     }
   },
   "options": {

@@ -13,10 +13,12 @@
       }
     },
     "error": {
-      "invalid_url": "Rhaid i’r URL fod yn http(s) heb enw defnyddiwr."
+      "invalid_url": "Rhaid i’r URL fod yn http(s) heb enw defnyddiwr.",
+      "cannot_connect": "Klar did not answer at that URL. Check the App or the URL."
     },
     "abort": {
-      "already_configured": "Mae Klar NLU eisoes wedi’i osod"
+      "already_configured": "Mae Klar NLU eisoes wedi’i osod",
+      "reauth_successful": "Klar connection updated"
     }
   },
   "options": {

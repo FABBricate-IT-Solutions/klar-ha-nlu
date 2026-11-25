@@ -13,10 +13,12 @@
       }
     },
     "error": {
-      "invalid_url": "URL은 사용자 정보 없는 http(s)여야 합니다."
+      "invalid_url": "URL은 사용자 정보 없는 http(s)여야 합니다.",
+      "cannot_connect": "Klar did not answer at that URL. Check the App or the URL."
     },
     "abort": {
-      "already_configured": "Klar NLU가 이미 설정되어 있습니다"
+      "already_configured": "Klar NLU가 이미 설정되어 있습니다",
+      "reauth_successful": "Klar connection updated"
     }
   },
   "options": {

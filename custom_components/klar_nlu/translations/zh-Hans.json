@@ -13,10 +13,12 @@
       }
     },
     "error": {
-      "invalid_url": "网址必须是 http(s)，且不含用户名。"
+      "invalid_url": "网址必须是 http(s)，且不含用户名。",
+      "cannot_connect": "Klar did not answer at that URL. Check the App or the URL."
     },
     "abort": {
-      "already_configured": "Klar NLU 已经配置"
+      "already_configured": "Klar NLU 已经配置",
+      "reauth_successful": "Klar connection updated"
     }
   },
   "options": {

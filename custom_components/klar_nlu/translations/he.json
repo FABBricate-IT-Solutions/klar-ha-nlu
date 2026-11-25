@@ -13,10 +13,12 @@
       }
     },
     "error": {
-      "invalid_url": "הכתובת חייבת להיות http(s) בלי שם משתמש."
+      "invalid_url": "הכתובת חייבת להיות http(s) בלי שם משתמש.",
+      "cannot_connect": "Klar did not answer at that URL. Check the App or the URL."
     },
     "abort": {
-      "already_configured": "Klar NLU כבר מוגדר"
+      "already_configured": "Klar NLU כבר מוגדר",
+      "reauth_successful": "Klar connection updated"
     }
   },
   "options": {

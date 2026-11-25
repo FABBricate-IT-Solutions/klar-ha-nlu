@@ -13,10 +13,12 @@
       }
     },
     "error": {
-      "invalid_url": "URL muss http(s) sein, ohne Benutzername."
+      "invalid_url": "URL muss http(s) sein, ohne Benutzername.",
+      "cannot_connect": "Klar did not answer at that URL. Check the App or the URL."
     },
     "abort": {
-      "already_configured": "Klar NLU ist bereits eingerichtet"
+      "already_configured": "Klar NLU ist bereits eingerichtet",
+      "reauth_successful": "Klar connection updated"
     }
   },
   "options": {

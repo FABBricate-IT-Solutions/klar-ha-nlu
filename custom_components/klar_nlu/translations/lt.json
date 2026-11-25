@@ -13,10 +13,12 @@
       }
     },
     "error": {
-      "invalid_url": "URL turi būti http(s) be naudotojo vardo."
+      "invalid_url": "URL turi būti http(s) be naudotojo vardo.",
+      "cannot_connect": "Klar did not answer at that URL. Check the App or the URL."
     },
     "abort": {
-      "already_configured": "Klar NLU jau sukonfigūruotas"
+      "already_configured": "Klar NLU jau sukonfigūruotas",
+      "reauth_successful": "Klar connection updated"
     }
   },
   "options": {

@@ -131,12 +131,15 @@ class HomeGraphSync:
         entities = [_entity(self.hass, entry) for entry in er.entities.values() if not getattr(entry, "disabled_by", None)]
         # H-23: entities that only have a state (no registry row yet) still belong in the graph.
         known = {row["entity_id"] for row in entities}
-        for state in self.hass.states.async_all():
-            entity_id = str(getattr(state, "entity_id", "") or "")
-            if not entity_id or entity_id in known:
-                continue
-            entities.append(_state_entity(state))
-            known.add(entity_id)
+        states = getattr(self.hass, "states", None)
+        async_all = getattr(states, "async_all", None) if states is not None else None
+        if callable(async_all):
+            for state in async_all():
+                entity_id = str(getattr(state, "entity_id", "") or "")
+                if not entity_id or entity_id in known:
+                    continue
+                entities.append(_state_entity(state))
+                known.add(entity_id)
         devices = [_device(device) for device in dr.devices.values()]
         areas = [_area(area) for area in ar.areas.values()]
         floors = [_floor(floor) for floor in fr.floors.values()]

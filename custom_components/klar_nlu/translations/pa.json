@@ -13,10 +13,12 @@
       }
     },
     "error": {
-      "invalid_url": "URL http(s) ਹੋਣਾ ਚਾਹੀਦਾ ਹੈ, ਵਰਤੋਂਕਾਰ ਨਾਂ ਤੋਂ ਬਿਨਾਂ।"
+      "invalid_url": "URL http(s) ਹੋਣਾ ਚਾਹੀਦਾ ਹੈ, ਵਰਤੋਂਕਾਰ ਨਾਂ ਤੋਂ ਬਿਨਾਂ।",
+      "cannot_connect": "Klar did not answer at that URL. Check the App or the URL."
     },
     "abort": {
-      "already_configured": "Klar NLU ਪਹਿਲਾਂ ਹੀ ਸੈੱਟ ਹੈ"
+      "already_configured": "Klar NLU ਪਹਿਲਾਂ ਹੀ ਸੈੱਟ ਹੈ",
+      "reauth_successful": "Klar connection updated"
     }
   },
   "options": {

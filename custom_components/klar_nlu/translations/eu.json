@@ -13,10 +13,12 @@
       }
     },
     "error": {
-      "invalid_url": "URLak http(s) izan behar du, erabiltzaile-izenik gabe."
+      "invalid_url": "URLak http(s) izan behar du, erabiltzaile-izenik gabe.",
+      "cannot_connect": "Klar did not answer at that URL. Check the App or the URL."
     },
     "abort": {
-      "already_configured": "Klar NLU dagoeneko konfiguratuta dago"
+      "already_configured": "Klar NLU dagoeneko konfiguratuta dago",
+      "reauth_successful": "Klar connection updated"
     }
   },
   "options": {

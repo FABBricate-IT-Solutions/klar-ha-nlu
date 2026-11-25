@@ -13,10 +13,12 @@
       }
     },
     "error": {
-      "invalid_url": "Хаяг http(s) байх ёстой, хэрэглэгчийн нэргүй."
+      "invalid_url": "Хаяг http(s) байх ёстой, хэрэглэгчийн нэргүй.",
+      "cannot_connect": "Klar did not answer at that URL. Check the App or the URL."
     },
     "abort": {
-      "already_configured": "Klar NLU аль хэдийн тохируулагдсан"
+      "already_configured": "Klar NLU аль хэдийн тохируулагдсан",
+      "reauth_successful": "Klar connection updated"
     }
   },
   "options": {
