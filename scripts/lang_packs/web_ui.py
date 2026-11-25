@@ -22,6 +22,7 @@ from lang_packs.lanes_i18n import PACKS as LANES
 from lang_packs.web_ui_guides import apply_guides_copy
 from lang_packs.web_ui_lab import apply_lab_copy
 from lang_packs.web_ui_llm import apply_llm_copy
+from lang_packs.web_ui_llm_actions import apply_llm_actions_copy
 from lang_packs.web_ui_pages import apply_pages_copy
 from lang_packs.web_ui_settings import apply_settings_copy
 from lang_packs.web_ui_voice import apply_voice_copy
@@ -49,6 +50,7 @@ apply_lotse_chrome(PACKS)
 apply_lab_copy(PACKS)
 apply_llm_copy(PACKS)
 apply_guides_copy(PACKS)
+apply_llm_actions_copy(PACKS)
 apply_voice_copy(PACKS)
 apply_pages_copy(PACKS)
 
