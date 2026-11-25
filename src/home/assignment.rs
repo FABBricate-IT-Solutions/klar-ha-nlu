@@ -400,15 +400,15 @@ mod tests {
     #[test]
     fn confidence_tracks_mapping_need() {
         let home = home();
-        assert_eq!(confidence(&home.entities[0], &home, crate::lang::catalog()), Confidence::Low);
-        assert_eq!(confidence(&home.entities[1], &home, crate::lang::catalog()), Confidence::Medium);
-        assert_eq!(confidence(&home.entities[2], &home, crate::lang::catalog()), Confidence::High);
+        assert_eq!(confidence(&home.entities[0], &home, &crate::lang::catalog()), Confidence::Low);
+        assert_eq!(confidence(&home.entities[1], &home, &crate::lang::catalog()), Confidence::Medium);
+        assert_eq!(confidence(&home.entities[2], &home, &crate::lang::catalog()), Confidence::High);
     }
 
     #[test]
     fn dashboard_counts_visible_entities() {
         let home = home();
-        let dash = build_dashboard(&home, &[], &[], Traffic::default(), crate::lang::catalog());
+        let dash = build_dashboard(&home, &[], &[], Traffic::default(), &crate::lang::catalog());
         assert_eq!(dash.counts.assist, 3);
         assert_eq!(dash.counts.high + dash.counts.medium + dash.counts.low, dash.counts.assist);
         assert_eq!(dash.coverage.leftover, dash.counts.medium + dash.counts.low);
@@ -423,7 +423,7 @@ mod tests {
             FloorRec { floor_id: String::new(), name: "Ghost".into(), aliases: Vec::new(), level: None },
             FloorRec { floor_id: "ground".into(), name: "Erdgeschoss".into(), aliases: Vec::new(), level: Some(0) },
         ];
-        let dash = build_dashboard(&home, &[], &[], Traffic::default(), crate::lang::catalog());
+        let dash = build_dashboard(&home, &[], &[], Traffic::default(), &crate::lang::catalog());
         assert_eq!(dash.floors.iter().map(|floor| floor.floor_id.as_str()).collect::<Vec<_>>(), ["ground", "upper"]);
         assert_eq!(dash.floors[0].name, "Erdgeschoss");
     }

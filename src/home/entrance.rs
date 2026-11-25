@@ -62,28 +62,28 @@ mod tests {
         home.device_classes.insert("cover.north".into(), "garage".into());
         home.device_classes.insert("cover.drive".into(), "gate".into());
         home.device_classes.insert("cover.garage_window_blind".into(), "blind".into());
-        assert!(is_entrance(&cover("cover.north", "North"), &home, cat));
-        assert!(is_entrance(&cover("cover.drive", "Driveway"), &home, cat));
-        assert!(!is_entrance(&cover("cover.garage_window_blind", "Garage Window Blind"), &home, cat), "a blind in the garage is no door");
+        assert!(is_entrance(&cover("cover.north", "North"), &home, &cat));
+        assert!(is_entrance(&cover("cover.drive", "Driveway"), &home, &cat));
+        assert!(!is_entrance(&cover("cover.garage_window_blind", "Garage Window Blind"), &home, &cat), "a blind in the garage is no door");
     }
 
     #[test]
     fn a_cover_without_a_class_is_judged_by_its_name() {
         let home = HomeGraph::default();
         let en = catalog_for(&["en".into()]);
-        assert!(is_entrance(&cover("cover.garage_door", "Garage Door"), &home, en));
-        assert!(!is_entrance(&cover("cover.bedroom_blinds", "Blinds"), &home, en));
+        assert!(is_entrance(&cover("cover.garage_door", "Garage Door"), &home, &en));
+        assert!(!is_entrance(&cover("cover.bedroom_blinds", "Blinds"), &home, &en));
         let de = catalog_for(&["de".into()]);
-        assert!(is_entrance(&cover("cover.garagentor", "Garagentor"), &home, de));
-        assert!(is_entrance(&cover("cover.tor", "Tor"), &home, de));
-        assert!(!is_entrance(&cover("cover.rollo", "Rollo Motor"), &home, de), "a motor is no gate");
+        assert!(is_entrance(&cover("cover.garagentor", "Garagentor"), &home, &de));
+        assert!(is_entrance(&cover("cover.tor", "Tor"), &home, &de));
+        assert!(!is_entrance(&cover("cover.rollo", "Rollo Motor"), &home, &de), "a motor is no gate");
     }
 
     #[test]
     fn locks_are_entrances_and_lights_are_not() {
         let home = HomeGraph::default();
         let cat = catalog_for(&["en".into()]);
-        assert!(is_entrance(&cover("lock.front_door", "Front Door"), &home, cat));
-        assert!(!is_entrance(&cover("light.door_light", "Door Light"), &home, cat));
+        assert!(is_entrance(&cover("lock.front_door", "Front Door"), &home, &cat));
+        assert!(!is_entrance(&cover("light.door_light", "Door Light"), &home, &cat));
     }
 }

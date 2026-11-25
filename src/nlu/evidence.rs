@@ -10,7 +10,7 @@ pub(super) struct ActionHypothesis {
     pub evidence: Evidence,
 }
 
-pub(super) fn action_hypotheses(tokens: &[String], catalog: &'static Catalog, home: &HomeGraph) -> Vec<ActionHypothesis> {
+pub(super) fn action_hypotheses(tokens: &[String], catalog: &Catalog, home: &HomeGraph) -> Vec<ActionHypothesis> {
     let linked = link_named_spans(tokens, home, &[]);
     let mut detected = detect_actions_bounded(tokens, super::binding::MAX_ACTION_HYPOTHESES);
     // A timer verb that only sits inside a device name ("Timer Lamp") is not a timer command.

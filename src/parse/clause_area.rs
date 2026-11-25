@@ -213,7 +213,7 @@ pub(crate) fn area_slots(
 /// "Close the garage", "open the carport": an open or close word aimed at a room with a
 /// garage door or a gate means that door, not the room's lights.
 fn entrances_meant<'a>(home: &'a HomeGraph, area: &str, tokens: &[String]) -> Option<Vec<&'a str>> {
-    let cat = catalog();
+    let cat = &catalog();
     // German "aus" closes a blind and switches a light off; only a word that does nothing
     // but open or close points at the door.
     let moves = |token: &String| {

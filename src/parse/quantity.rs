@@ -418,7 +418,7 @@ pub(crate) fn fill_pending_timer_duration(template: &Intent, tokens: &[String]) 
 }
 
 fn duration_reply(tokens: &[String]) -> bool {
-    let cat = catalog();
+    let cat = &catalog();
     if cat.any(tokens, cat.hours())
         || cat.any(tokens, cat.minutes())
         || cat.any(tokens, cat.seconds())
@@ -440,7 +440,7 @@ fn duration_reply(tokens: &[String]) -> bool {
 }
 
 fn timer_keeps_existing_duration(tokens: &[String]) -> bool {
-    let cat = catalog();
+    let cat = &catalog();
     cat.any(tokens, cat.playback_resume())
         || cat.any(tokens, cat.timer_pause())
         || cat.any(tokens, cat.timer_cancel())

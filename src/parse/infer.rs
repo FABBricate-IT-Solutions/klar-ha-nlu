@@ -92,7 +92,7 @@ pub(crate) fn mentions_lamp_fixture(tokens: &[String]) -> bool {
 }
 
 pub(crate) fn mentions_fixture_noun(tokens: &[String]) -> bool {
-    let cat = catalog();
+    let cat = &catalog();
     cat.any(tokens, cat.named_device())
         || cat.any(tokens, cat.bedside())
         || cat.any(tokens, cat.ceiling())
@@ -102,7 +102,7 @@ pub(crate) fn mentions_fixture_noun(tokens: &[String]) -> bool {
 }
 
 fn session_domain(session: &Session, tokens: &[String]) -> Option<&'static str> {
-    let cat = catalog();
+    let cat = &catalog();
     if has_light_noun(tokens)
         || has_cover_noun(tokens)
         || cat.any(tokens, cat.ceiling())
@@ -122,7 +122,7 @@ pub(crate) fn bind_domain(action: Action, tokens: &[String], number: Option<i32>
 }
 
 fn bind_domain_with(action: Action, tokens: &[String], number: Option<i32>, domain: Option<&str>, session_follow: bool) -> Action {
-    let cat = catalog();
+    let cat = &catalog();
     let light_noun = has_light_noun(tokens);
     // Named vacuum + "home"/"dock"/"station" → return to base (P-30 "send robby home").
     // Still convert a bare GetState guess when the sentence is an order, not a question.
@@ -204,7 +204,7 @@ pub(crate) fn prefer_action(actions: &[(usize, Action)]) -> Option<Action> {
     actions.iter().find(|(_, a)| !matches!(a, Action::GetState)).map(|(_, a)| *a)
 }
 pub(crate) fn wants_all_lights(tokens: &[String]) -> bool {
-    let cat = catalog();
+    let cat = &catalog();
     if !cat.any(tokens, cat.light_nouns()) && !cat.any(tokens, cat.light_plural()) {
         return false;
     }
@@ -242,7 +242,7 @@ pub(crate) fn except_tail(tokens: &[String]) -> Option<&[String]> {
 }
 
 fn except_head_focus(tokens: &[String]) -> &[String] {
-    let cat = catalog();
+    let cat = &catalog();
     let start = tokens
         .iter()
         .rposition(|token| cat.verb(token).is_some() || cat.is_all(token) || cat.is_particle(token))
@@ -254,7 +254,7 @@ fn except_head_focus(tokens: &[String]) -> &[String] {
 /// Exception focus without the command verb leaked after the room ("… außer Schlafzimmer ausschalten").
 pub(crate) fn except_focus(tokens: &[String]) -> Option<Vec<String>> {
     let tail = except_tail(tokens)?;
-    let cat = catalog();
+    let cat = &catalog();
     let focus: Vec<String> =
         tail.iter().filter(|token| cat.verb(token).is_none() && !cat.is_particle(token) && !cat.is_all(token)).cloned().collect();
     (!focus.is_empty()).then_some(focus)
@@ -295,7 +295,7 @@ pub(crate) fn light_level(tokens: &[String]) -> Option<LightLevel> {
 }
 
 pub(crate) fn looks_like_question(tokens: &[String]) -> bool {
-    let cat = catalog();
+    let cat = &catalog();
     tokens.first().is_some_and(|t| cat.is_question_start(t))
         || tokens.iter().any(|t| cat.is_question_word(t))
         || (cat.any(tokens, cat.on_words()) && cat.any(tokens, cat.off_words()))
@@ -305,7 +305,7 @@ pub(crate) fn looks_like_question(tokens: &[String]) -> bool {
 /// "wrong", "nein": the last sentence was misheard. The words count as whole words only,
 /// so "eineinhalb" is a number and not a "nein".
 pub(crate) fn looks_like_correction(tokens: &[String]) -> bool {
-    let cat = catalog();
+    let cat = &catalog();
     tokens.iter().any(|token| cat.correction().contains(token.as_str()))
         || cat.correction_phrases().iter().any(|phrase| {
             let words: Vec<&str> = phrase.split_whitespace().collect();
@@ -314,7 +314,7 @@ pub(crate) fn looks_like_correction(tokens: &[String]) -> bool {
 }
 
 pub(crate) fn fixture_word_hit(tokens: &[String], entity: &EntityRec) -> bool {
-    let cat = catalog();
+    let cat = &catalog();
     tokens.iter().any(|token| {
         let needle = token.as_str();
         let fixture = needle == "lamp"
@@ -331,7 +331,7 @@ pub(crate) fn fixture_matches(entity: &EntityRec, needle: &str) -> bool {
     let blob = format!("{} {} {}", entity.entity_id, fold_umlaut(&entity.name), entity.aliases.join(" "));
     let hits = fixture_aliases(needle);
     let matched = hits.iter().any(|alias| blob.contains(alias));
-    let cat = catalog();
+    let cat = &catalog();
     if needle == "lamp" || cat.lamp_fixture().contains(needle) {
         matched && !blob.contains("decke") && cat.ceiling().iter().all(|word| !blob.contains(word))
     } else {

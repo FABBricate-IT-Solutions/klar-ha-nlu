@@ -43,7 +43,7 @@ pub(crate) fn keep_most_specific(tokens: &[String], mut found: Vec<EntityRec>) -
     if found.len() < 2 {
         return found;
     }
-    let cat = catalog();
+    let cat = &catalog();
     for side in [cat.left(), cat.right()] {
         if cat.any(tokens, side) {
             let sided: Vec<EntityRec> =

@@ -134,7 +134,7 @@ verbs:
 "#,
     )
     .unwrap();
-    let report = validate_pack(&colliding, Some(de));
+    let report = validate_pack(&colliding, Some(de.as_ref()));
     assert!(!report.ok());
     assert!(report.errors.iter().any(|issue| issue.path == "verbs.an"), "{report:?}");
     install_runtime_packs(vec![colliding]);

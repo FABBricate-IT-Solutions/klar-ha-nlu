@@ -34,7 +34,7 @@ async fn get_dashboard(
             &state.bundle.load(),
             &overlay.ui.dismissed,
             state.metrics.snapshot(),
-            state.catalog_for_settings().await,
+            state.catalog_for_settings().await.as_ref(),
         ),
         llm: state.llm_calls.snapshot(),
     }))
@@ -158,7 +158,8 @@ async fn apply_suggestions(
     }
     let home = state.home.snapshot().await;
     let dismissed = load_overlay(&state.data_dir).ui.dismissed;
-    let dashboard = build_dashboard(&home, &state.bundle.load(), &dismissed, state.metrics.snapshot(), state.catalog_for_settings().await);
+    let dashboard =
+        build_dashboard(&home, &state.bundle.load(), &dismissed, state.metrics.snapshot(), state.catalog_for_settings().await.as_ref());
     let mut rows = Vec::new();
     for row in dashboard.assignment {
         let Some(suggestion) = row.suggested_area else {

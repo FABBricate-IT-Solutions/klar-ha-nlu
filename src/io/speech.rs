@@ -42,7 +42,7 @@ async fn asr_boost(
     let home = state.home.snapshot().await;
     let custom = state.custom.lock().await.clone();
     drop(settings);
-    Ok(Json(build_asr_boost(&home, catalog, &custom, &language, max_tokens)))
+    Ok(Json(build_asr_boost(&home, &catalog, &custom, &language, max_tokens)))
 }
 
 async fn speech_render(

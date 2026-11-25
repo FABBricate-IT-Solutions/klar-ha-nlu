@@ -99,8 +99,8 @@ pub(super) fn resolve_from_candidates(
     }
 
     if domain == Some("climate") {
-        if let Some(kind) = crate::home::roles::wanted_climate_kind(tokens, catalog()) {
-            candidates.retain(|(_, entity)| crate::home::roles::climate_kind(entity, catalog()) == Some(kind));
+        if let Some(kind) = crate::home::roles::wanted_climate_kind(tokens, &catalog()) {
+            candidates.retain(|(_, entity)| crate::home::roles::climate_kind(entity, &catalog()) == Some(kind));
         }
     }
     narrow_to_scope(tokens, scope, &mut candidates);
@@ -156,7 +156,7 @@ pub(super) fn resolve_from_candidates(
             let skip_standin = crate::parse::infer::mentions_fixture_noun(tokens)
                 && crowded
                 && rec.domain == "light"
-                && is_generic_room_light(rec, home, catalog());
+                && is_generic_room_light(rec, home, &catalog());
             if (distinctive_light_name(tokens, rec, home) || !(generic_light && crowded)) && !skip_standin {
                 entities.push(rec.clone());
             }
@@ -214,7 +214,7 @@ pub(super) fn resolve_from_candidates(
                 .entities
                 .iter()
                 .filter(|e| assist_visible(e, home))
-                .filter(|e| matches_domain(e, d, catalog()) && !is_infra(e))
+                .filter(|e| matches_domain(e, d, &catalog()) && !is_infra(e))
                 .filter(|e| scope.is_empty() || e.area.as_ref().is_some_and(|a| scope.contains(a)))
                 .filter(|e| d != "media_player" || !tv_asked(tokens) || looks_like_tv(e))
                 .cloned()
@@ -239,7 +239,7 @@ pub(crate) fn entity_name_is_mentioned(tokens: &[String], entity: &EntityRec, ho
 }
 
 fn distinctive_light_name(tokens: &[String], entity: &EntityRec, home: &HomeGraph) -> bool {
-    let cat = catalog();
+    let cat = &catalog();
     let area = entity.area.as_deref().and_then(|id| home.areas.iter().find(|area| area.area_id == id));
     let room = area.map(|area| {
         std::iter::once(area.area_id.as_str())
@@ -268,7 +268,7 @@ fn distinctive_light_name(tokens: &[String], entity: &EntityRec, home: &HomeGrap
 }
 
 fn pick_fixture(tokens: &[String], home: &HomeGraph, areas: &[String]) -> Option<Vec<EntityRec>> {
-    let cat = catalog();
+    let cat = &catalog();
     let room_level = cat.any(tokens, cat.light_plural()) || cat.any(tokens, cat.room_level());
     let needle = if cat.any(tokens, cat.island()) {
         Some("island")

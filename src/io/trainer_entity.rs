@@ -62,7 +62,7 @@ const MAX_GAP_LIMIT: usize = 80;
 pub async fn list_gaps(state: &AppState, args: &Value) -> Result<Value, String> {
     let settings = state.settings.lock().await.clone();
     let home = state.home.snapshot().await;
-    let catalog = bound_catalog(&settings);
+    let catalog = &bound_catalog(&settings);
     let offset = args.get("offset").and_then(Value::as_u64).unwrap_or(0) as usize;
     let limit = args.get("limit").and_then(Value::as_u64).map(|value| value as usize).unwrap_or(DEFAULT_GAP_LIMIT).clamp(1, MAX_GAP_LIMIT);
     let all: Vec<Value> = leftover(&home, catalog)

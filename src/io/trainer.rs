@@ -131,7 +131,7 @@ pub async fn load_context(state: &AppState, query: &TrainerQuery) -> Result<Trai
         layer: query.layer.clone().unwrap_or_else(|| "all".into()),
         prompt_version: PROMPT_VERSION.into(),
         graph: GraphOut { areas: home.areas.clone(), floors: home.floors.clone(), entities: home.entities.clone() },
-        gaps: leftover(&home, catalog).into_iter().map(|entity| entity.entity_id).collect(),
+        gaps: leftover(&home, &catalog).into_iter().map(|entity| entity.entity_id).collect(),
         matches: match_catalog(),
         seeds: govern_safety_seeds().to_vec(),
         overlays: OverlaysOut {
@@ -274,7 +274,7 @@ pub fn validate(
         for row in validate_custom(custom) {
             errors.push(Issue { path: row.path, message: row.message });
         }
-        errors.extend(blocked_lexicon_tokens(catalog, &overlay));
+        errors.extend(blocked_lexicon_tokens(&catalog, &overlay));
     }
     let mut pinned = settings.clone();
     pinned.languages = vec![language.to_string()];

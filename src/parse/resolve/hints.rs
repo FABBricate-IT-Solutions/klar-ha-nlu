@@ -13,7 +13,7 @@ pub fn domain_hint(tokens: &[String]) -> Option<&'static str> {
 }
 
 pub(crate) fn domain_hint_with(tokens: &[String], linked: &LinkedNames) -> Option<&'static str> {
-    let cat = catalog();
+    let cat = &catalog();
     if timer_noun_free(tokens, linked) {
         return Some("timer");
     }
@@ -97,14 +97,14 @@ pub(crate) fn pick_timers(tokens: &[String], home: &HomeGraph) -> Vec<String> {
 }
 
 pub(crate) fn unique_in_area(home: &HomeGraph, area: &str, domain: &str, tokens: &[String]) -> Option<String> {
-    let kind = (domain == "climate").then(|| crate::home::roles::wanted_climate_kind(tokens, catalog())).flatten();
+    let kind = (domain == "climate").then(|| crate::home::roles::wanted_climate_kind(tokens, &catalog())).flatten();
     let water = hot_water_asked(tokens);
     let hits: Vec<&str> = home
         .entities
         .iter()
         .filter(|e| assist_visible(e, home))
-        .filter(|e| matches_domain(e, domain, catalog()) && !is_infra(e) && e.area.as_deref() == Some(area))
-        .filter(|e| kind.is_none_or(|want| crate::home::roles::climate_kind(e, catalog()) == Some(want)))
+        .filter(|e| matches_domain(e, domain, &catalog()) && !is_infra(e) && e.area.as_deref() == Some(area))
+        .filter(|e| kind.is_none_or(|want| crate::home::roles::climate_kind(e, &catalog()) == Some(want)))
         .filter(|e| domain != "climate" || is_hot_water(e) == water)
         .map(|e| e.entity_id.as_str())
         .collect();
@@ -112,13 +112,13 @@ pub(crate) fn unique_in_area(home: &HomeGraph, area: &str, domain: &str, tokens:
 }
 
 pub(crate) fn climates_of_kind(home: &HomeGraph, tokens: &[String]) -> Vec<String> {
-    let kind = crate::home::roles::wanted_climate_kind(tokens, catalog());
+    let kind = crate::home::roles::wanted_climate_kind(tokens, &catalog());
     let water = hot_water_asked(tokens);
     home.entities
         .iter()
         .filter(|e| assist_visible(e, home))
-        .filter(|e| matches_domain(e, "climate", catalog()) && !is_infra(e))
-        .filter(|e| kind.is_none_or(|want| crate::home::roles::climate_kind(e, catalog()) == Some(want)))
+        .filter(|e| matches_domain(e, "climate", &catalog()) && !is_infra(e))
+        .filter(|e| kind.is_none_or(|want| crate::home::roles::climate_kind(e, &catalog()) == Some(want)))
         .filter(|e| is_hot_water(e) == water)
         .map(|e| e.entity_id.clone())
         .collect()

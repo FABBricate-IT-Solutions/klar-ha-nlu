@@ -87,7 +87,7 @@ fn excepted_areas(tokens: &[String], home: &HomeGraph) -> HashSet<String> {
     let Some(focus) = except_focus(tokens) else {
         return HashSet::new();
     };
-    let cat = catalog();
+    let cat = &catalog();
     if cat.any(&focus, cat.named_device())
         || cat.any(&focus, cat.light_nouns())
         || cat.any(&focus, cat.island())
@@ -132,7 +132,7 @@ fn area_switchable_lights<'a>(home: &'a HomeGraph, area: &str) -> Vec<&'a Entity
         .iter()
         .filter(|entity| {
             assist_visible(entity, home)
-                && is_light_like(entity, catalog())
+                && is_light_like(entity, &catalog())
                 && !is_infra(entity)
                 && !is_infra_light(entity)
                 && entity.area.as_deref() == Some(area)
@@ -307,7 +307,7 @@ fn split_list_entries(joined: &str) -> Vec<String> {
 }
 
 fn list_item(tokens: &[String], target: Option<&EntityRec>, action: Action) -> Option<String> {
-    let cat = catalog();
+    let cat = &catalog();
     // Keep "take out" inside an add item; strip remove verbs only for remove/complete (P-18).
     let strip_remove = matches!(action, Action::ListComplete | Action::ListRemove);
     let words: Vec<&str> = tokens
@@ -459,7 +459,7 @@ pub(crate) fn laundry_switch_clause(
     if catalog().any(tokens, catalog().laundry_machines()) {
         return None;
     }
-    let areas = crate::home::policy::laundry_areas(home, catalog());
+    let areas = crate::home::policy::laundry_areas(home, &catalog());
     let area = areas.first()?.as_str();
     let switches: Vec<String> = home
         .entities

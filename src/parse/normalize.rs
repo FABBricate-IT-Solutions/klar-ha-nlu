@@ -269,7 +269,7 @@ fn tokenize_script(folded: &str) -> Vec<String> {
 }
 
 fn longest_match(parts: &[String]) -> Vec<String> {
-    let cat = catalog();
+    let cat = &catalog();
     // R-07: only look ahead as far as the longest CJK/Thai catalog form.
     let max_look = cat.max_script_surface_chars();
     let mut out = Vec::new();
@@ -307,7 +307,7 @@ pub fn strip_fillers_for_areas(tokens: &[String], areas: &[AreaRec]) -> Vec<Stri
 }
 
 fn collapse_area_names(tokens: &[String], areas: &[AreaRec]) -> Vec<String> {
-    let cat = catalog();
+    let cat = &catalog();
     let mut names: Vec<(Vec<String>, String)> = areas
         .iter()
         .flat_map(|area| {
@@ -337,7 +337,7 @@ fn collapse_area_names(tokens: &[String], areas: &[AreaRec]) -> Vec<String> {
 }
 
 pub fn strip_fillers(tokens: &[String]) -> Vec<String> {
-    let cat = catalog();
+    let cat = &catalog();
     tokens
         .iter()
         .enumerate()
@@ -379,7 +379,7 @@ pub fn inflected_eq(token: &str, label: &str) -> bool {
 }
 
 pub(crate) fn is_time_unit(token: &str) -> bool {
-    let cat = catalog();
+    let cat = &catalog();
     cat.hours().contains(token)
         || cat.minutes().contains(token)
         || cat.seconds().contains(token)

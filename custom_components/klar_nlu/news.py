@@ -2,11 +2,14 @@
 
 from __future__ import annotations
 
+import asyncio
 import html
 import json
 import logging
 import re
+import time
 import xml.etree.ElementTree as ET
+from collections import OrderedDict
 from typing import Any
 from urllib.parse import parse_qs, quote, urlencode, urlparse
 
@@ -37,7 +40,15 @@ _GOOGLE_SG = re.compile(r'data-n-a-sg="([^"]+)"')
 _GOOGLE_TS = re.compile(r'data-n-a-ts="([^"]+)"')
 _GOOGLE_URL = re.compile(r'garturlres\\",\\"(https://[^\\"]+)')
 _LIMIT = 5
-_READ_ALOUD = frozenset(
+_MAX_URL = 2048
+_MAX_FETCH_BYTES = 256 * 1024
+_MAX_HTML_CHARS = 256 * 1024
+_ARTICLE_CACHE_MAX = 32
+_FEED_CACHE_TTL = 120.0
+_ARTICLE_CACHE: OrderedDict[str, str] = OrderedDict()
+_FEED_CACHE: OrderedDict[str, tuple[float, str]] = OrderedDict()
+# Separable "vor" alone is not a read request ("neues vor ort").
+_READ_STEM = frozenset(
     {
         "read",
         "aloud",
@@ -49,9 +60,9 @@ _READ_ALOUD = frozenset(
         "vorlesen",
         "vorlese",
         "vorliest",
-        "vor",
     }
 )
+_READ_ALOUD = _READ_STEM | frozenset({"vor"})
 _ASKED = (
     "möchtest du",
     "möchten sie",
@@ -197,6 +208,21 @@ _STORY_STOP = _READ_ALOUD | frozenset(
     }
 )
 _LAST_STORY = frozenset({"letzte", "letzten", "letzter", "letztes", "last"})
+_STORY_CUES = frozenset(
+    {
+        "nachricht",
+        "nachrichten",
+        "meldung",
+        "meldungen",
+        "artikel",
+        "article",
+        "story",
+        "stories",
+        "news",
+        "headline",
+        "headlines",
+    }
+)
 _STORY_INDEX = {
     "erste": 0,
     "ersten": 0,
@@ -214,6 +240,7 @@ _STORY_INDEX = {
     "drittes": 2,
     "third": 2,
 }
+_EN_ORDINAL = frozenset({"first", "second", "third"})
 _TAG = re.compile(r"<[^>]+>")
 _LDJSON = re.compile(r"<script\b[^>]*type=[\"']application/ld\+json[\"'][^>]*>(.*?)</script>", re.I | re.S)
 _ARTICLE = re.compile(r"<article\b[^>]*>(.*?)</article>", re.I | re.S)
@@ -230,7 +257,11 @@ def _words(text: str) -> list[str]:
 
 
 def wants_read(text: str) -> bool:
-    return any(word in _READ_ALOUD for word in _words(text))
+    return any(word in _READ_STEM for word in _words(text))
+
+
+def _story_pick_cued(words: list[str]) -> bool:
+    return any(word in _STORY_CUES or word in _READ_STEM for word in words) or any(word.startswith("letzt") for word in words)
 
 
 def stories_from_xml(raw: str, limit: int = 5) -> list[dict[str, str]]:
@@ -254,12 +285,18 @@ def stories_from_xml(raw: str, limit: int = 5) -> list[dict[str, str]]:
             name = child.tag.split("}")[-1]
             text = " ".join(part.strip() for part in child.itertext() if part and part.strip())
             if name == "title" and text and not title:
-                title = text
+                title = _plain(text)
             elif name == "source" and text:
                 source = text
-            elif name == "link" and not link:
+            elif name == "link":
                 href = text if text.startswith("http") else str(child.get("href") or "")
-                if href.startswith("http"):
+                if not href.startswith("http"):
+                    continue
+                rel = (child.get("rel") or "alternate").casefold()
+                typ = (child.get("type") or "").casefold()
+                if rel == "alternate" and (not typ or "html" in typ):
+                    link = href
+                elif not link and rel not in {"replies", "edit", "self", "enclosure"}:
                     link = href
             elif name in {"description", "summary", "content", "encoded"} and text:
                 plain = _plain(text)
@@ -286,10 +323,12 @@ def pick_story(text: str, stories: list[dict[str, str]], earlier: str = "") -> d
         return None
     announced = stories[:_LIMIT]
     words = _words(text)
-    if any(word in _LAST_STORY for word in words):
+    if any(word in _LAST_STORY for word in words) and _story_pick_cued(words):
         return announced[-1]
     for word, index in _STORY_INDEX.items():
         if word in words and index < len(announced):
+            if word in _EN_ORDINAL and not _story_pick_cued(words):
+                continue
             return announced[index]
     matched = _best_story(words, stories)
     if matched is not None:
@@ -321,6 +360,8 @@ def spoken_story(story: dict[str, str], article: str = "") -> str:
 def article_body_from_html(raw: str) -> str:
     if not raw:
         return ""
+    if len(raw) > _MAX_HTML_CHARS:
+        raw = raw[:_MAX_HTML_CHARS]
     structured = _structured_body(raw)
     written = _paragraph_body(raw)
     if len(structured) >= 400 and len(structured) + 200 >= len(written):
@@ -422,13 +463,57 @@ def headlines_from_xml(raw: str, limit: int = 5) -> list[str]:
 
 def _http_url(url: str) -> str:
     text = url.strip()
-    if len(text) > 200 or not text.startswith(("http://", "https://")):
+    if len(text) > _MAX_URL or not text.startswith(("http://", "https://")):
         return ""
     rest = text.split("://", 1)[1]
     host = rest.split("/", 1)[0].split("?", 1)[0].split("#", 1)[0]
     if not host or host.startswith("@") or "@" in host or not _host_ok(host):
         return ""
     return text
+
+
+def _decode_bytes(raw: bytes, charset: str | None) -> str:
+    for enc in (charset, "utf-8", "latin-1"):
+        if not enc:
+            continue
+        try:
+            return raw.decode(enc)
+        except (LookupError, UnicodeDecodeError):
+            continue
+    return raw.decode("utf-8", errors="replace")
+
+
+def _feed_cache_get(url: str) -> str | None:
+    hit = _FEED_CACHE.get(url)
+    if hit is None:
+        return None
+    stamp, body = hit
+    if time.monotonic() - stamp > _FEED_CACHE_TTL:
+        _FEED_CACHE.pop(url, None)
+        return None
+    _FEED_CACHE.move_to_end(url)
+    return body
+
+
+def _feed_cache_put(url: str, body: str) -> None:
+    _FEED_CACHE[url] = (time.monotonic(), body)
+    _FEED_CACHE.move_to_end(url)
+    while len(_FEED_CACHE) > _ARTICLE_CACHE_MAX:
+        _FEED_CACHE.popitem(last=False)
+
+
+def _article_cache_get(url: str) -> str | None:
+    if url not in _ARTICLE_CACHE:
+        return None
+    _ARTICLE_CACHE.move_to_end(url)
+    return _ARTICLE_CACHE[url]
+
+
+def _article_cache_put(url: str, body: str) -> None:
+    _ARTICLE_CACHE[url] = body
+    _ARTICLE_CACHE.move_to_end(url)
+    while len(_ARTICLE_CACHE) > _ARTICLE_CACHE_MAX:
+        _ARTICLE_CACHE.popitem(last=False)
 
 
 def _host_ok(host: str) -> bool:
@@ -531,6 +616,9 @@ def _take(titles: list[str], seen: set[str], items: list[str]) -> None:
 async def _fetch_raw(hass: HomeAssistant, url: str, timeout: float = 4, user_agent: str = "") -> str:
     if aiohttp is None or not _http_url(url):
         return ""
+    cached = _feed_cache_get(url)
+    if cached is not None:
+        return cached
     try:
         session = async_get_clientsession(hass)
         async with session.get(
@@ -539,7 +627,12 @@ async def _fetch_raw(hass: HomeAssistant, url: str, timeout: float = 4, user_age
             headers={"User-Agent": user_agent or _UA},
         ) as resp:
             resp.raise_for_status()
-            return await resp.text()
+            raw = await resp.content.read(_MAX_FETCH_BYTES + 1)
+            if len(raw) > _MAX_FETCH_BYTES:
+                raw = raw[:_MAX_FETCH_BYTES]
+            text = _decode_bytes(raw, resp.charset)
+            _feed_cache_put(url, text)
+            return text
     except Exception as err:  # noqa: BLE001 — outbound news feed is a boundary
         _LOGGER.warning("Nachrichten-Feed nicht erreichbar: %s", err)
         return ""
@@ -557,7 +650,10 @@ async def _post_form(hass: HomeAssistant, url: str, body: str, timeout: float = 
             headers={"User-Agent": _BROWSER, "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8"},
         ) as resp:
             resp.raise_for_status()
-            return await resp.text()
+            raw = await resp.content.read(_MAX_FETCH_BYTES + 1)
+            if len(raw) > _MAX_FETCH_BYTES:
+                raw = raw[:_MAX_FETCH_BYTES]
+            return _decode_bytes(raw, resp.charset)
     except Exception as err:  # noqa: BLE001 — outbound news feed is a boundary
         _LOGGER.warning("Nachrichten-Feed nicht erreichbar: %s", err)
         return ""
@@ -643,7 +739,18 @@ async def load_article(hass: HomeAssistant, url: str) -> str:
     target = await resolve_article_url(hass, url)
     if not _http_url(target):
         return ""
-    return article_body_from_html(await _fetch_raw(hass, target, 8))
+    cached = _article_cache_get(target)
+    if cached is not None:
+        return cached
+    raw = await _fetch_raw(hass, target, 8)
+    if not raw:
+        return ""
+    if hasattr(hass, "async_add_executor_job"):
+        body = await hass.async_add_executor_job(article_body_from_html, raw)
+    else:
+        body = await asyncio.get_running_loop().run_in_executor(None, article_body_from_html, raw)
+    _article_cache_put(target, body)
+    return body
 
 
 def story_feed_urls(pack: str, topic: str, feeds: object, reader_urls: list[str]) -> list[str]:

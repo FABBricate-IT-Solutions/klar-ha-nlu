@@ -19,7 +19,7 @@ pub fn is_ood(tokens: &[String], home: &HomeGraph) -> bool {
 }
 
 fn has_home_domain_cue(tokens: &[String]) -> bool {
-    let cat = catalog();
+    let cat = &catalog();
     cat.any(tokens, cat.media_nouns())
         || cat.any(tokens, cat.timer_nouns())
         || cat.any(tokens, cat.list_nouns())
@@ -39,7 +39,7 @@ pub(crate) fn looks_like_home(tokens: &[String], home: &HomeGraph) -> bool {
 }
 
 fn is_casual(tokens: &[String]) -> bool {
-    let cat = catalog();
+    let cat = &catalog();
     cat.any(tokens, cat.chat_greet())
         || cat.any(tokens, cat.chat_thanks())
         || cat.any(tokens, cat.chat_feeling())
@@ -64,19 +64,19 @@ fn is_wellbeing_question(tokens: &[String]) -> bool {
 }
 
 fn is_special(tokens: &[String]) -> bool {
-    let cat = catalog();
+    let cat = &catalog();
     (cat.any(tokens, cat.chat_tell())
         && (cat.any(tokens, cat.chat_yarn()) || tokens.iter().any(|t| t.contains("witz") || t.contains("joke"))))
         || cat.any(tokens, cat.chat_yarn())
 }
 
 fn is_world_or_advice(tokens: &[String]) -> bool {
-    let cat = catalog();
+    let cat = &catalog();
     cat.any(tokens, cat.chat_world()) || cat.any(tokens, cat.chat_advice())
 }
 
 fn is_open_question(tokens: &[String]) -> bool {
-    let cat = catalog();
+    let cat = &catalog();
     tokens.first().is_some_and(|t| cat.is_question_start(t))
         || tokens.iter().any(|t| cat.is_question_word(t) || cat.chat_open().contains(t.as_str()))
 }

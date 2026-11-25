@@ -10,7 +10,7 @@ pub(crate) fn query_grounded(tokens: &[String], home: &HomeGraph, has_target: bo
 }
 
 pub(crate) fn mentions_home(tokens: &[String], home: &HomeGraph) -> bool {
-    let cat = catalog();
+    let cat = &catalog();
     if cat.any(tokens, cat.temp_query())
         || cat.any(tokens, cat.light_nouns())
         || cat.any(tokens, cat.climate_nouns())
@@ -68,7 +68,7 @@ pub(crate) fn light_rooms_for_clarify(home: &HomeGraph) -> Vec<String> {
         .filter(|area| !crate::home::policy::is_whole_home(area))
         .filter(|area| {
             home.entities.iter().any(|entity| {
-                assist_visible(entity, home) && is_light_like(entity, catalog()) && entity.area.as_deref() == Some(area.area_id.as_str())
+                assist_visible(entity, home) && is_light_like(entity, &catalog()) && entity.area.as_deref() == Some(area.area_id.as_str())
             })
         })
         .map(|area| area.area_id.clone())

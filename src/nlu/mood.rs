@@ -177,14 +177,14 @@ impl Sentence {
                 let mut clause = Clause::new(&tokens);
                 names.iter().for_each(|name| clause.mask_name(name));
                 payloads.iter().for_each(|words| clause.mask_span(words));
-                let reading = clause.read(context.catalog);
+                let reading = clause.read(&context.catalog);
                 (tokens, reading)
             })
             .collect();
         // "Can you turn on the light?" is a request. A mark behind a clause that already
         // reads as a question belongs to that clause.
         let explained = clauses.iter().any(|(_, reading)| reading.asked || reading.requested);
-        let asked = (question_mark(context.text) && !explained) || question_ending(context.text, context.catalog);
+        let asked = (question_mark(context.text) && !explained) || question_ending(context.text, &context.catalog);
         Self { clauses, asked }
     }
 
@@ -234,7 +234,7 @@ impl Sentence {
         if !pending.changes().any(|intent| controls_device(&intent.name)) {
             return false;
         }
-        let cat = context.catalog;
+        let cat = context.catalog.as_ref();
         // "set the heating at 21": the number is the value. "turn on the light at 6": the
         // command is complete without it, so the number is an hour.
         let value = |number: i32, tokens: &[String]| pending.changes().any(|intent| sets_value(intent, number)) && !switches(tokens, cat);

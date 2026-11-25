@@ -32,7 +32,7 @@ pub(crate) fn every_light(tokens: &[String], home: &HomeGraph, action: Action, n
     let lights: Vec<_> = home
         .entities
         .iter()
-        .filter(|e| is_light_like(e, catalog()) && assist_visible(e, home) && !is_infra(e) && !is_nlu_ignored(e))
+        .filter(|e| is_light_like(e, &catalog()) && assist_visible(e, home) && !is_infra(e) && !is_nlu_ignored(e))
         .collect();
     let mut rooms: Vec<&str> = lights.iter().filter_map(|e| e.area.as_deref()).collect();
     rooms.sort_unstable();

@@ -140,7 +140,7 @@ pub async fn list_floors(state: &AppState) -> Result<Value, String> {
 pub async fn count_house(state: &AppState) -> Result<Value, String> {
     let settings = state.settings.lock().await.clone();
     let home = state.home.snapshot().await;
-    let leftover = leftover(&home, bound_catalog(&settings)).len();
+    let leftover = leftover(&home, &bound_catalog(&settings)).len();
     Ok(with_view(
         "counts",
         json!({

@@ -209,11 +209,11 @@ mod tests {
     #[test]
     fn allowlist_maps_known_tags() {
         let cat = crate::lang::catalog();
-        assert_eq!(role_of_tag("Licht", cat), Some("light"));
-        assert_eq!(role_of_tag("lüfter", cat), Some("fan"));
-        assert_eq!(role_of_tag("Heizung", cat), Some("climate"));
-        assert_eq!(role_of_tag("Klima", cat), Some("climate"));
-        assert_eq!(role_of_tag("TV", cat), Some("media_player"));
+        assert_eq!(role_of_tag("Licht", &cat), Some("light"));
+        assert_eq!(role_of_tag("lüfter", &cat), Some("fan"));
+        assert_eq!(role_of_tag("Heizung", &cat), Some("climate"));
+        assert_eq!(role_of_tag("Klima", &cat), Some("climate"));
+        assert_eq!(role_of_tag("TV", &cat), Some("media_player"));
         let ac = EntityRec {
             entity_id: "climate.schlafzimmer_ac".into(),
             name: "Schlafzimmer AC".into(),
@@ -232,13 +232,13 @@ mod tests {
             aliases: vec!["Heizung Schlafzimmer".into()],
             tags: vec!["Klima".into()],
         };
-        assert_eq!(climate_kind(&ac, cat), Some(ClimateKind::Cool));
-        assert_eq!(climate_kind(&heat, cat), Some(ClimateKind::Heat));
-        assert_eq!(wanted_climate_kind(&["klimaanlage".into(), "20".into()], cat), Some(ClimateKind::Cool));
-        assert_eq!(wanted_climate_kind(&["ac".into(), "20".into()], cat), Some(ClimateKind::Cool));
-        assert_eq!(wanted_climate_kind(&["heizung".into(), "20".into()], cat), Some(ClimateKind::Heat));
-        assert_eq!(role_of_tag("wichtig", cat), None);
-        assert_eq!(role_of_tag("og", cat), None);
+        assert_eq!(climate_kind(&ac, &cat), Some(ClimateKind::Cool));
+        assert_eq!(climate_kind(&heat, &cat), Some(ClimateKind::Heat));
+        assert_eq!(wanted_climate_kind(&["klimaanlage".into(), "20".into()], &cat), Some(ClimateKind::Cool));
+        assert_eq!(wanted_climate_kind(&["ac".into(), "20".into()], &cat), Some(ClimateKind::Cool));
+        assert_eq!(wanted_climate_kind(&["heizung".into(), "20".into()], &cat), Some(ClimateKind::Heat));
+        assert_eq!(role_of_tag("wichtig", &cat), None);
+        assert_eq!(role_of_tag("og", &cat), None);
     }
 
     #[test]
@@ -257,7 +257,7 @@ mod tests {
                 tags,
             },
             "light",
-            crate::lang::catalog()
+            &crate::lang::catalog()
         ));
     }
 }

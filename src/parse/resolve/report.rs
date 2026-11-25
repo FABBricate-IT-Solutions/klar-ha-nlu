@@ -89,7 +89,7 @@ fn collect_scored(tokens: &[String], home: &HomeGraph, domain: Option<&str>, fuz
         assist_visible(entity, home)
             && !is_infra(entity)
             && !crate::home::policy::is_nlu_ignored(entity)
-            && domain.is_none_or(|wanted| matches_domain(entity, wanted, catalog()))
+            && domain.is_none_or(|wanted| matches_domain(entity, wanted, &catalog()))
     };
     // R-09/R-08: score index hits (exact, capped fuzzy, catalog fixture aliases). Fall through to a
     // full walk only when nothing was seeded — never drop fixture aliases just because fuzzy missed.

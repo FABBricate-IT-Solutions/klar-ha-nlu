@@ -203,13 +203,13 @@ fn split_two_targets(tokens: &[String]) -> Option<usize> {
 }
 
 fn both_covers(left: &[String], right: &[String]) -> bool {
-    let cat = catalog();
+    let cat = &catalog();
     let cover = |tokens: &[String]| cat.any(tokens, cat.cover_nouns()) || cat.any(tokens, cat.curtain_nouns());
     cover(left) && cover(right)
 }
 
 fn device_side(tokens: &[String]) -> bool {
-    let cat = catalog();
+    let cat = &catalog();
     cat.any(tokens, cat.device_side())
         || cat.any(tokens, cat.named_device())
         || cat.any(tokens, cat.ceiling())
@@ -425,7 +425,7 @@ pub(crate) fn follow_fixture(tokens: &[String], home: &crate::types::HomeGraph, 
         .map(|e| e.entity_id.as_str())
         .collect();
     let find = |n: &str| lights.iter().find(|id| id.contains(n)).map(|s| (*s).to_string());
-    let cat = catalog();
+    let cat = &catalog();
     if cat.any(tokens, cat.island()) {
         return find("island").or_else(|| find("insel"));
     }

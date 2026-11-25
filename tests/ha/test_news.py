@@ -254,6 +254,41 @@ class NewsTests(unittest.TestCase):
         self.assertIn("Eine Meldung", spoken)
         self.assertIn("Mehr?", spoken)
 
+    def test_h19_entities_atom_google_url_and_followups(self) -> None:
+        rss = """<?xml version="1.0"?><rss><channel>
+          <item><title><![CDATA[Trump &amp; Xi: &#8220;Deal&#8221; reached]]></title>
+            <link>https://example.com/a</link>
+            <description>&lt;p&gt;Body &amp;amp; more&lt;/p&gt;</description></item>
+        </channel></rss>"""
+        self.assertEqual(news.headlines_from_xml(rss), ['Trump & Xi: “Deal” reached'])
+        atom = """<?xml version="1.0"?><feed xmlns="http://www.w3.org/2005/Atom">
+          <entry><title>Story</title>
+            <link rel="replies" type="application/atom+xml" href="https://blog.example/feeds/1/comments/default"/>
+            <link rel="alternate" type="text/html" href="https://blog.example/2026/11/story.html"/>
+            <summary>short</summary></entry></feed>"""
+        self.assertEqual(news.stories_from_xml(atom)[0]["link"], "https://blog.example/2026/11/story.html")
+        google = (
+            "https://news.google.com/rss/articles/"
+            "CBMiogFBVV95cUxQdWpXY2ZfU3hZT1pCQ0xQb2FfS1pXZ2xqR0pSbm9lS1dYZ3R4N2x0bV9qQnFtV1Bf"
+            "N3hLMk1yZDR0c1lZb0tQc2ZxX3VmVU5sTjZfWGNvaHZBb0lCQ3NhT2s2bEVTcG5xbUF4cWZnT2NZT1pC"
+            "SWxKZ0ZJRl9pUGxxVUpaNU1sV2xFc1ZCWXJDVlBYZ1k0T2c?oc=5"
+        )
+        self.assertGreater(len(google), 200)
+        self.assertTrue(news._http_url(google))
+        self.assertFalse(news.wants_read("was gibt es neues vor ort"))
+        stories = [{"title": f"Story {i}", "text": "", "link": ""} for i in range(1, 6)]
+        self.assertIsNone(news.pick_story("wait a second", stories))
+        self.assertIsNone(news.pick_story("tell me more about the last election", stories))
+        self.assertEqual(news.pick_story("lese die zweite nachricht vor", stories)["title"], "Story 2")
+
+    def test_r22_article_html_is_capped(self) -> None:
+        body = "<article>" + "".join(f"<p>{'Satz mit einigen Woertern. ' * 6}{i}</p>" for i in range(400)) + "</article>"
+        self.assertGreater(len(body), 60_000)
+        out = news.article_body_from_html(body)
+        self.assertLessEqual(len(out), 12_000)
+        self.assertLessEqual(news._MAX_FETCH_BYTES, 256 * 1024)
+        self.assertTrue(callable(news.load_article))
+
 
 if __name__ == "__main__":
     unittest.main()

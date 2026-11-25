@@ -10,7 +10,7 @@ use std::collections::HashSet;
 /// Digits count so "fixture 1" does not score every `fixture*` row (R-09).
 /// Multi-device lines fall back to union when AND would be empty.
 pub(super) fn content_candidates(tokens: &[String], index: &LabelIndex) -> Vec<usize> {
-    let cat = catalog();
+    let cat = &catalog();
     let content: Vec<&str> = tokens.iter().map(String::as_str).filter(|token| is_content_token(token, cat)).collect();
     if content.is_empty() {
         return Vec::new();
@@ -45,7 +45,7 @@ pub(super) fn content_candidates(tokens: &[String], index: &LabelIndex) -> Vec<u
 /// Catalog fixture words ("skottelgoed" → dishwasher) are not stored on entity labels.
 /// Seed those rows so the indexed resolve path still scores them (parity packs).
 pub(super) fn fixture_alias_candidates(tokens: &[String], home: &HomeGraph) -> Vec<usize> {
-    let cat = catalog();
+    let cat = &catalog();
     let needles: Vec<String> = tokens
         .iter()
         .flat_map(|token| cat.fixture_alias(token).iter().copied())

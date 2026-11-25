@@ -188,6 +188,62 @@ async fn other_json_routes_keep_their_small_body_limit() {
 }
 
 #[tokio::test]
+async fn speech_render_accepts_bodies_above_the_old_16kib_cap() {
+    use crate::io::limits::MAX_SPEECH_RENDER_BYTES;
+    let fixture = Fixture::new();
+    let hourly: Vec<_> = (0..48)
+        .map(|index| {
+            json!({
+                "datetime": format!("2026-11-24T{index:02}:00:00+01:00"),
+                "condition": "c".repeat(200),
+                "temperature": 1.0,
+                "templow": 1.0,
+                "precipitation": 1.0,
+                "precipitation_probability": 1.0,
+            })
+        })
+        .collect();
+    let entities: Vec<_> = (0..32)
+        .map(|index| {
+            json!({
+                "entity_id": format!("sensor.pad_{index}"),
+                "name": "n".repeat(128),
+                "domain": "sensor",
+                "state": "s".repeat(64),
+                "area": "a".repeat(64),
+                "area_name": "an".repeat(32),
+                "attributes": {
+                    "media_title": "t".repeat(256),
+                    "media_artist": "a".repeat(256),
+                    "media_album_name": "b".repeat(256),
+                }
+            })
+        })
+        .collect();
+    let snap = json!({
+        "schema_version": "1",
+        "language": "de",
+        "personality": "default",
+        "unit_system": "metric",
+        "now": "2026-11-24T21:00:00+01:00",
+        "intent": {"name": "HassTurnOn", "slots": [{"name": "name", "value": "Lampe"}]},
+        "outcome": "success",
+        "entities": entities,
+        "calendar_events": [],
+        "media_queue": [],
+        "forecast": [],
+        "hourly": hourly,
+    });
+    let bytes = serde_json::to_vec(&snap).unwrap();
+    assert!(bytes.len() > 18 * 1024, "fixture must exceed the reported 18 KiB failure, got {}", bytes.len());
+    assert!(bytes.len() < MAX_SPEECH_RENDER_BYTES);
+    assert_ne!(fixture.post("/api/v2/speech/render", bytes, false).await.status(), StatusCode::PAYLOAD_TOO_LARGE);
+    let mut oversized = b"{}".to_vec();
+    oversized.resize(MAX_SPEECH_RENDER_BYTES + 1, b' ');
+    assert_eq!(fixture.post("/api/v2/speech/render", oversized, false).await.status(), StatusCode::PAYLOAD_TOO_LARGE);
+}
+
+#[tokio::test]
 async fn unauthorized_large_snapshot_is_rejected_before_reading_the_body() {
     let fixture = Fixture::new();
     let before = fixture.state.home.snapshot().await;

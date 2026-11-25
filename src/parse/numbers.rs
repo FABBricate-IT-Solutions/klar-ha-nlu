@@ -66,7 +66,7 @@ pub fn fold_spoken_numbers(tokens: &[String]) -> Vec<String> {
 }
 
 fn scan(tokens: &[String]) -> Vec<Spoken> {
-    let cat = catalog();
+    let cat = &catalog();
     let mut out = Vec::new();
     let mut i = 0;
     while i < tokens.len() {
@@ -148,7 +148,7 @@ const MAX_WORDS_PER_NUMBER: usize = 4;
 /// as "dixsept" and "quatre vingts" as "quatrevingts": the hyphen is gone by now, so the
 /// longest run of tokens that spells a listed number is that number.
 fn word_at(tokens: &[String], at: usize) -> Option<(i32, usize)> {
-    let cat = catalog();
+    let cat = &catalog();
     let rest = tokens.get(at..)?;
     let spelled = (2..=MAX_WORDS_PER_NUMBER.min(rest.len())).rev().find_map(|width| {
         let words = &rest[..width];
@@ -160,7 +160,7 @@ fn word_at(tokens: &[String], at: usize) -> Option<(i32, usize)> {
 
 /// A number word of the active packs, or a German compound written as one word.
 fn word_value(token: &str) -> Option<i32> {
-    let cat = catalog();
+    let cat = &catalog();
     if crate::parse::quantity::parse_numeric_token(token).is_some() {
         return None;
     }
@@ -174,7 +174,7 @@ pub(crate) fn word_number(token: &str) -> Option<i32> {
 
 /// Adds up number words that stand together, by the rules the active packs bring.
 fn compose(run: &[Piece<'_>]) -> Option<i32> {
-    let cat = catalog();
+    let cat = &catalog();
     if let [Piece::Word(value)] = run {
         return Some(*value);
     }
@@ -202,7 +202,7 @@ fn is_tens(value: i32) -> bool {
 
 /// "einundzwanzig", "einhundert", "hundertzwanzig", "zweihundertfuenfundvierzig".
 fn german_compound(token: &str) -> Option<i32> {
-    let cat = catalog();
+    let cat = &catalog();
     let below_hundred = |word: &str| -> Option<i32> {
         if let Some(listed) = cat.number(word).filter(|value| *value < 100) {
             return Some(listed);
@@ -232,7 +232,7 @@ pub fn first_number(tokens: &[String]) -> Option<i32> {
 }
 
 pub fn guess_numbered_action(tokens: &[String], last_climate: bool, last_cover: bool, last_fan: bool) -> Action {
-    let cat = catalog();
+    let cat = &catalog();
     // The device the sentence names comes before the one the turn before was about.
     if cat.any(tokens, cat.climate_nouns()) {
         return Action::SetTemp;

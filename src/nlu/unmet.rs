@@ -22,14 +22,14 @@ pub(super) fn guard(context: &ParseContext<'_>, draft: Draft) -> Draft {
         return draft;
     }
     let tokens = tokenize(context.text);
-    if unsupported_spoken_command(&tokens, context.catalog, context.home) {
+    if unsupported_spoken_command(&tokens, &context.catalog, context.home) {
         return refuse(draft);
     }
     if !matches!(draft.decision, ParseDecision::Execute) {
         return draft;
     }
     let reads = draft.plan.as_ref().is_some_and(|plan| plan.intents().iter().any(|step| step.name == "HassGetState"));
-    let cat = context.catalog;
+    let cat = context.catalog.as_ref();
     if !reads || question_mark(context.text) || question_ending(context.text, cat) {
         return draft;
     }

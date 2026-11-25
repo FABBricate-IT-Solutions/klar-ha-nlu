@@ -133,7 +133,7 @@ pub(super) fn has_phrase(tokens: &[String], phrase: &[&str]) -> bool {
 }
 
 fn is_question(tokens: &[String]) -> bool {
-    let cat = catalog();
+    let cat = &catalog();
     any(tokens, &["was", "wie", "ist", "sind", "what", "whats", "is", "are", "how"])
         || tokens.iter().any(|token| matches!(cat.verb(token), Some(VerbKind::Query)))
         || cat.any(tokens, cat.question_words())

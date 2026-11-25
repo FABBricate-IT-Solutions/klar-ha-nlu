@@ -324,7 +324,7 @@ mod tests {
     use crate::types::{AreaRec, EntityRec, FloorRec, HomeGraph};
     use std::collections::{BTreeSet, HashMap};
 
-    fn cat() -> &'static Catalog {
+    fn cat() -> std::sync::Arc<Catalog> {
         catalog_for(&["de".into()])
     }
 
@@ -367,7 +367,7 @@ mod tests {
             });
             home.assist.as_mut().unwrap().insert(id);
         }
-        let out = build_asr_boost(&home, cat(), &[], "de", 12);
+        let out = build_asr_boost(&home, &cat(), &[], "de", 12);
         assert!(estimate_tokens(&out.prompt) <= 12, "prompt tokens {}", estimate_tokens(&out.prompt));
         assert!(out.dropped > 0);
         assert!(out.prompt.contains("Kugel") || out.prompt.contains("Rollo") || out.prompt.contains("Vx"), "{:?}", out.prompt);
@@ -405,7 +405,7 @@ mod tests {
             assist: Some(["cover.studio_vorhang".into(), "light.wohnzimmer".into()].into()),
             ..Default::default()
         };
-        let out = build_asr_boost(&home, cat(), &[], "de", 40);
+        let out = build_asr_boost(&home, &cat(), &[], "de", 40);
         let texts: Vec<&str> = out.terms.iter().map(|t| t.text.as_str()).collect();
         assert!(texts.contains(&"Vorhang"), "{texts:?}");
         assert!(texts.iter().any(|t| t.contains("Studio-Vorhang") || *t == "Studio-Vorhang"), "{texts:?}");
@@ -441,7 +441,7 @@ mod tests {
         });
         let custom =
             vec![CustomSentence { phrase: "bitte die Papiertonne rausstellen".into(), intent: "HassTurnOn".into(), slots: HashMap::new() }];
-        let out = build_asr_boost(&home, cat(), &custom, "de", 200);
+        let out = build_asr_boost(&home, &cat(), &custom, "de", 200);
         let texts: BTreeSet<&str> = out.terms.iter().map(|t| t.text.as_str()).collect();
         assert!(!texts.contains("Geheimlampe"), "{texts:?}");
         assert!(!texts.contains("Voice LED"), "{texts:?}");
@@ -453,7 +453,7 @@ mod tests {
     fn custom_anchors_are_tier_four() {
         let home = HomeGraph::default();
         let custom = vec![CustomSentence { phrase: "Mülltonne raus".into(), intent: "HassTurnOn".into(), slots: HashMap::new() }];
-        let out = build_asr_boost(&home, cat(), &custom, "de", 50);
+        let out = build_asr_boost(&home, &cat(), &custom, "de", 50);
         let muell = out.terms.iter().find(|t| fold_umlaut(&t.text).contains("mulltonne") || t.text.contains("Mülltonne"));
         assert!(muell.is_some(), "{:?}", out.terms);
         assert_eq!(muell.unwrap().tier, 4);
@@ -481,14 +481,14 @@ mod tests {
             assist: Some(["cover.vorhang".into()].into()),
             ..Default::default()
         };
-        let out = build_asr_boost(&home, cat(), &[], "de", 20);
+        let out = build_asr_boost(&home, &cat(), &[], "de", 20);
         assert!(out.terms.iter().any(|t| t.text == "Vorhang"), "{:?}", out.terms);
         assert!(!out.prompt.split_whitespace().any(|w| w == "Vorrang"));
     }
 
     #[test]
     fn empty_home_emits_no_pack_lexicon() {
-        let out = build_asr_boost(&HomeGraph::default(), cat(), &[], "de", 40);
+        let out = build_asr_boost(&HomeGraph::default(), &cat(), &[], "de", 40);
         assert!(out.terms.is_empty(), "expected empty hard-name prompt, got {:?}", out.terms);
         assert!(out.prompt.is_empty());
     }

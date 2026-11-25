@@ -87,7 +87,7 @@ pub fn detect_actions(tokens: &[String]) -> Vec<(usize, Action)> {
 }
 
 pub(crate) fn detect_actions_bounded(tokens: &[String], maximum: usize) -> Vec<(usize, Action)> {
-    let cat = catalog();
+    let cat = &catalog();
     let fuzzy = if tokens.iter().any(|token| cat.verb(token).is_some()) || !has_structural_anchor(tokens) {
         None
     } else {
@@ -107,7 +107,7 @@ pub(crate) fn detect_actions_bounded(tokens: &[String], maximum: usize) -> Vec<(
                 // German "ein" is article + power particle. English "an" must keep DE "an".
                 if matches!(t.as_str(), "ein" | "eine" | "einen" | "einer" | "einem")
                     && tokens.get(i + 1).is_some_and(|next| {
-                        let cat = catalog();
+                        let cat = &catalog();
                         !cat.is_conj(next) && !cat.on_words().contains(next.as_str()) && !cat.off_words().contains(next.as_str())
                     })
                 {
@@ -273,7 +273,7 @@ pub(crate) fn is_hard_command(command: Option<Action>, tokens: &[String]) -> boo
 }
 
 fn has_structural_anchor(tokens: &[String]) -> bool {
-    let cat = catalog();
+    let cat = &catalog();
     crate::parse::numbers::first_number(tokens).is_some()
         || cat.any(tokens, cat.light_nouns())
         || cat.any(tokens, cat.cover_nouns())
@@ -307,7 +307,7 @@ pub(super) fn set_by_number(tokens: &[String]) -> Action {
 }
 
 pub(crate) fn is_garage_cover(tokens: &[String]) -> bool {
-    let cat = catalog();
+    let cat = &catalog();
     let garage = cat.any(tokens, cat.garage_words());
     let cover_door = cat.any(tokens, cat.garage_cover());
     let lock_door = cat.any(tokens, cat.garage_lock_block());
@@ -331,7 +331,7 @@ pub(crate) fn has_light_noun(tokens: &[String]) -> bool {
 }
 
 pub(crate) fn has_climate_noun(tokens: &[String]) -> bool {
-    let cat = catalog();
+    let cat = &catalog();
     if cat.any(tokens, cat.climate_nouns()) {
         return true;
     }
@@ -343,6 +343,6 @@ pub(super) fn has_power_word(tokens: &[String]) -> bool {
 }
 
 pub(super) fn has_lock_or_door(tokens: &[String]) -> bool {
-    let cat = catalog();
+    let cat = &catalog();
     cat.any(tokens, cat.lock_nouns()) || cat.any(tokens, cat.door_nouns())
 }

@@ -21,8 +21,8 @@ fn home() -> HomeGraph {
 
 fn parts(lang: &str, text: &str) -> Option<Result<(String, Vec<String>), Unreadable>> {
     let cat = catalog_for(&[lang.into()]);
-    let _bound = bind_catalog(cat);
-    let read = read(&tokenize(text), cat, &Names::of(&home()))?;
+    let _bound = bind_catalog(cat.clone());
+    let read = read(&tokenize(text), &cat, &Names::of(&home()))?;
     Some(read.map(|found| (found.command.join(" "), found.items.iter().map(|item| item.join(" ")).collect())))
 }
 

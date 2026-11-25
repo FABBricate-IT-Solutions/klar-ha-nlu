@@ -34,7 +34,7 @@ pub(super) fn route(context: &ParseContext<'_>, raw: &[String], tokens: &[String
         intent = intent.with("state", if open { "on" } else { "off" });
     }
     // Never turn an unknown place into a whole-home request.
-    let cat = context.catalog;
+    let cat = context.catalog.as_ref();
     if tokens.iter().any(|word| {
         !cat.window_words().contains(word.as_str())
             && !cat.is_question_word(word)
