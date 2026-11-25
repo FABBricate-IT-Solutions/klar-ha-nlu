@@ -3,7 +3,7 @@
 use crate::home::overlay::load_overlay;
 use crate::io::state::{save_failed, AppState};
 use crate::io::trainer_reads::with_view;
-use crate::lang::{pin_language, LangId};
+use crate::lang::{check_selection, pin_language, LangId};
 use crate::types::{checked_news_feeds, Mode, NewsFeed, Personality, RefineBand, Settings, UnitSystem, VoiceTraits};
 use serde_json::{json, Value};
 
@@ -166,7 +166,7 @@ fn patch_engine(current: &Settings, args: &Value) -> Result<Settings, String> {
         next.mode = serde_json::from_value::<Mode>(value.clone()).map_err(|_| "unknown mode")?;
     }
     if let Some(value) = args.get("languages") {
-        next.languages = parse_languages(value)?;
+        next.languages = parse_languages(value, current)?;
     }
     if let Some(flag) = args.get("support_bundle").and_then(Value::as_bool) {
         next.support_bundle = flag;
@@ -257,17 +257,16 @@ fn patch_ui(current: &crate::home::overlay::UiState, args: &Value) -> Result<cra
     Ok(next)
 }
 
-fn parse_languages(value: &Value) -> Result<Vec<String>, String> {
+/// A language the house already uses may stay; an experimental one cannot be added
+/// while `experimental_languages` is off.
+fn parse_languages(value: &Value, current: &Settings) -> Result<Vec<String>, String> {
     let rows = value.as_array().ok_or("languages must be an array")?;
     if rows.len() > 80 {
         return Err("too many languages".into());
     }
-    let mut out = Vec::new();
-    for row in rows {
-        let raw = row.as_str().ok_or("language must be a string")?;
-        out.push(pin_language(raw).map_err(|_| format!("unknown language {raw}"))?);
-    }
-    Ok(out)
+    let wanted =
+        rows.iter().map(|row| row.as_str().map(str::to_string).ok_or("language must be a string")).collect::<Result<Vec<_>, _>>()?;
+    check_selection(&wanted, &current.languages, current.experimental_languages)
 }
 
 fn resolve_locale(raw: &str) -> Result<String, String> {

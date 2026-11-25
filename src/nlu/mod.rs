@@ -89,7 +89,7 @@ pub fn parse_with_controls(
     speech_bank: &SpeechBank,
     match_controls: &[MatchControl],
 ) -> ParseOutcome {
-    let catalog = crate::lang::catalog_for(&settings.languages);
+    let catalog = crate::lang::bound_catalog(settings);
     if catalog.pack_intents.is_empty() {
         let context = ParseContext::new(text, home, session, custom, settings, catalog)
             .with_policies(policies, speech_bank)

@@ -7,7 +7,7 @@ use crate::home::overlay::apply_overlay;
 use crate::io::state::{save_failed, AppState};
 use crate::io::trainer_args::{arg_bool, arg_str, string_list};
 use crate::io::trainer_reads::with_view;
-use crate::lang::catalog_for;
+use crate::lang::bound_catalog;
 use crate::types::EntityRec;
 use serde_json::{json, Value};
 
@@ -59,7 +59,7 @@ pub async fn get_entity(state: &AppState, args: &Value) -> Result<Value, String>
 pub async fn list_gaps(state: &AppState) -> Result<Value, String> {
     let settings = state.settings.lock().await.clone();
     let home = state.home.snapshot().await;
-    let catalog = catalog_for(&settings.languages);
+    let catalog = bound_catalog(&settings);
     let gaps: Vec<Value> = leftover(&home, catalog)
         .into_iter()
         .map(|entity| {
