@@ -8,7 +8,7 @@ import { PolicyPath, type PolicyLane } from "../components/PolicyPath";
 import { useHouseCatalog } from "../components/SearchSelect";
 import type { Messages } from "../i18n";
 import { saveFailMessage, toastSaved, toastSaveFailed } from "../saveToast";
-import { bakeVariants } from "../speechBank";
+import { bakeVariants, pruneSpeechBank } from "../speechBank";
 import type { EvaluateOut, Locale, MatchCatalogRow, MatchControl, PolicyRule, RulesView, SpeechBank } from "../types";
 import { CustomPage } from "./CustomPage";
 import { RoutinesPage } from "./RoutinesPage";
@@ -22,11 +22,16 @@ const LANES: PolicyLane[] = ["match", "language", "house"];
 function newRule(): PolicyRule {
   return {
     id: `rule-${Date.now().toString(36)}`,
-    enabled: true,
+    // Disabled until the operator fills a when clause (U-09).
+    enabled: false,
     label: "",
     when: {},
     effect: "confirm",
   };
+}
+
+function whenIsEmpty(when: PolicyRule["when"]): boolean {
+  return !when.intent && !when.domain && !when.area && !when.entity_id && !when.floor && !when.name && !when.phrase && !when.area_wide;
 }
 
 function rulesHint(t: Messages, view: RulesView): string {
@@ -255,14 +260,20 @@ export function RulesPage({
 
   const removeRule = async (id: string) => {
     const next = rules.filter((item) => item.id !== id);
+    const nextBank = { entries: pruneSpeechBank(bank.entries, next.map((rule) => rule.id)) };
+    setBank(nextBank);
     setSelected((index) => Math.min(index, Math.max(0, next.length - 1)));
-    await persist(next);
+    await persist(next, nextBank);
   };
 
   const bake = () => {
     if (!current) return;
     const entry = bakeVariants(current.id, current.effect, personality, languages.length ? languages : [locale]);
-    setBank({ entries: [...bank.entries.filter((item) => item.rule_id !== current.id), entry] });
+    const capped = pruneSpeechBank(
+      [...bank.entries.filter((item) => item.rule_id !== current.id), entry],
+      rules.map((rule) => rule.id),
+    );
+    setBank({ entries: capped });
   };
 
   return (
@@ -306,7 +317,7 @@ export function RulesPage({
               { id: "test", label: t.guideSentencesTest, hint: t.guideSentencesTestHint },
             ]}
           />
-          <CustomPage t={t} locale={locale} embedded />
+          <CustomPage t={t} locale={locale} languages={languages} embedded />
         </>
       )}
       {view === "policies" && (
@@ -384,6 +395,9 @@ export function RulesPage({
               data-lane="house"
               onClick={() => setLane("house")}
             >
+              {current && whenIsEmpty(current.when) ? (
+                <p className="danger" role="status">{t.emptyWhenRule}</p>
+              ) : null}
               <HouseLane
                 t={t}
                 rules={rules}

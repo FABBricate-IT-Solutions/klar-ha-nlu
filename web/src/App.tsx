@@ -1,19 +1,18 @@
 import { FlaskConicalIcon, HomeIcon, HouseIcon, MenuIcon, MessageSquareIcon, SettingsIcon, ShieldIcon } from "lucide-react";
-import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { lazy, Suspense, useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { toast } from "sonner";
 import { api } from "./api";
 import { Drawer } from "./components/common";
 import { KlarBrand } from "./components/KlarBrand";
 import { TrainerDock, TrainerToggle } from "./components/TrainerDock";
 import { TEACH_HEARD_KEY } from "./components/TeachFromMiss";
-import { assistParseLanguage, chromeLocale, dictionaries, isRtl } from "./i18n";
+import { assistParseLanguage, chromeLocale, dictionaries, ensureLocale, isRtl, type Messages } from "./i18n";
 import { ConversationsPage } from "./pages/ConversationsPage";
 import { DashboardPage } from "./pages/Dashboard";
 import { HousePage } from "./pages/HousePage";
 import { ParsePage } from "./pages/ParsePage";
 import { RulesPage } from "./pages/RulesPage";
 import { SettingsPage } from "./pages/SettingsPage";
-import { Wizard } from "./pages/Wizard";
 import { defaultSettings, defaultUi } from "./appDefaults";
 import { applyRoute, asHouseView, asRulesView, asSettingsView, asTab, hrefFor, parseHash } from "./routes";
 import type { ConversationTurn, Dashboard, Settings, Tab, Theme, UiState } from "./types";
@@ -23,6 +22,12 @@ import { Sheet, SheetContent, SheetHeader, SheetTitle } from "@/components/ui/sh
 import { Toaster } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { cn } from "cn";
+
+/** Wizard + its locale packs stay out of the first paint (U-20). */
+const Wizard = lazy(async () => {
+  const mod = await import("./pages/Wizard");
+  return { default: mod.Wizard };
+});
 
 const tabIcons: Record<Tab, typeof HomeIcon> = {
   home: HomeIcon,
@@ -79,8 +84,18 @@ export function App() {
   const [navOpen, setNavOpen] = useState(false);
   const [trainerOpen, setTrainerOpen] = useState(false);
   const locale = chromeLocale(ui.locale);
-  const t = dictionaries[locale] || dictionaries.en;
+  const [t, setT] = useState<Messages>(() => dictionaries[locale] || dictionaries.en);
   const theme = ui.theme || "dark";
+
+  useEffect(() => {
+    let live = true;
+    void ensureLocale(locale).then((messages) => {
+      if (live) setT(messages);
+    });
+    return () => {
+      live = false;
+    };
+  }, [locale]);
 
   const applyUi = useCallback((nextUi: UiState, keepRoute = true) => {
     const route = keepRoute ? parseHash(window.location.hash) : null;
@@ -231,8 +246,17 @@ export function App() {
     return () => window.removeEventListener("klar-lotse-applied", onLotse);
   }, [refresh]);
 
+  // Only real room moves (same filter the engine apply route uses) — U-12.
   const applyCandidates = useMemo(
-    () => dashboard?.assignment.filter((row) => (row.suggested_area?.score || 0) >= 3 && row.confidence !== "high" && !ui.dismissed.includes(row.entity_id)) || [],
+    () =>
+      dashboard?.assignment.filter((row) => {
+        const suggestion = row.suggested_area;
+        if (!suggestion || suggestion.score < 3) return false;
+        if (row.area === suggestion.area_id) return false;
+        if (row.confidence === "high") return false;
+        if (ui.dismissed.includes(row.entity_id)) return false;
+        return true;
+      }) || [],
     [dashboard, ui.dismissed],
   );
 
@@ -251,12 +275,10 @@ export function App() {
   const apply = async () => {
     setConfirmApply(false);
     try {
-      const already = applyCandidates.filter((row) => row.area && row.area === row.suggested_area?.area_id).map((row) => row.entity_id);
       const out = await api.applySuggestions();
       setUi((prev) => ({
         ...prev,
         last_apply: out.rows,
-        dismissed: [...new Set([...prev.dismissed, ...already])],
       }));
       refresh();
     } catch (err) {
@@ -442,24 +464,26 @@ export function App() {
       </div>
 
       {booted && loaded.settings && loaded.ui && loaded.dashboard && !ui.wizard_done && (
-        <Wizard
-          open
-          locale={locale}
-          onLocale={(next) => setUi((prev) => ({ ...prev, locale: next, locale_set: true }))}
-          theme={theme}
-          onTheme={(next) => {
-            writeStoredTheme(next);
-            setUi((prev) => ({ ...prev, theme: next }));
-          }}
-          leftover={dashboard?.counts.leftover ?? 0}
-          entityIds={dashboard?.assignment.map((row) => row.entity_id)}
-          chrome={t}
-          settings={settings}
-          onSettings={setSettings}
-          onDone={finishWizard}
-          onClose={() => setUi((prev) => ({ ...prev, wizard_done: true }))}
-          notice={wizardNotice}
-        />
+        <Suspense fallback={null}>
+          <Wizard
+            open
+            locale={locale}
+            onLocale={(next) => setUi((prev) => ({ ...prev, locale: next, locale_set: true }))}
+            theme={theme}
+            onTheme={(next) => {
+              writeStoredTheme(next);
+              setUi((prev) => ({ ...prev, theme: next }));
+            }}
+            leftover={dashboard?.counts.leftover ?? 0}
+            entityIds={dashboard?.assignment.map((row) => row.entity_id)}
+            chrome={t}
+            settings={settings}
+            onSettings={setSettings}
+            onDone={finishWizard}
+            onClose={() => setUi((prev) => ({ ...prev, wizard_done: true }))}
+            notice={wizardNotice}
+          />
+        </Suspense>
       )}
 
       {confirmApply && (

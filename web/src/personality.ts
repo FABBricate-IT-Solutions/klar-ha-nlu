@@ -1,21 +1,7 @@
 import type { Messages } from "./i18n";
+import { PERSONALITIES, type PersonalityId } from "./generated/contract";
 
-export const PERSONALITIES = [
-  "default",
-  "butler",
-  "locker",
-  "fuersorglich",
-  "party",
-  "grantig",
-  "sarkastisch",
-  "pirat",
-  "hippie",
-  "gollum",
-  "jarvis",
-  "custom",
-] as const;
-
-export type PersonalityId = (typeof PERSONALITIES)[number];
+export { PERSONALITIES, type PersonalityId };
 
 export function isPersonality(value: string): value is PersonalityId {
   return (PERSONALITIES as readonly string[]).includes(value);

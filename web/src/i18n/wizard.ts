@@ -254,9 +254,10 @@ export const wizardEn: WizardMessages = {
   llmSkip: "Leave empty to finish without an LLM.",
 };
 
-const extras = import.meta.glob("./wizard/*.json", { eager: true, import: "default" }) as Record<
+/** Lazy loaders for generated wizard packs (U-20). de/en oracles stay in the main chunk. */
+const wizardLoaders = import.meta.glob("./wizard/*.json") as Record<
   string,
-  Partial<WizardMessages>
+  () => Promise<{ default: Partial<WizardMessages> }>
 >;
 
 function packFromPath(path: string): string {
@@ -264,9 +265,6 @@ function packFromPath(path: string): string {
 }
 
 const overlays: Record<string, Partial<WizardMessages>> = {};
-for (const [path, extra] of Object.entries(extras)) {
-  overlays[packFromPath(path)] = extra;
-}
 
 function oracle(locale?: string): WizardMessages {
   const tag = (locale || "").replaceAll("_", "-");
@@ -277,9 +275,8 @@ function oracle(locale?: string): WizardMessages {
   return wizardEn;
 }
 
-export function wizardMessages(locale?: string, extra?: Partial<WizardMessages>): WizardMessages {
+function mergeWizard(locale: string | undefined, overlay: Partial<WizardMessages> | undefined, extra?: Partial<WizardMessages>): WizardMessages {
   const tag = (locale || "").replaceAll("_", "-");
-  const overlay = overlays[tag] || overlays[locale || ""];
   const base = overlay
     ? { ...oracle(locale), ...overlay, phrases: overlay.phrases ?? oracle(locale).phrases }
     : oracle(locale);
@@ -288,6 +285,41 @@ export function wizardMessages(locale?: string, extra?: Partial<WizardMessages>)
   }
   if (!extra) return base;
   return { ...base, ...extra, phrases: extra.phrases ?? base.phrases };
+}
+
+async function ensureWizardOverlay(tag: string): Promise<Partial<WizardMessages> | undefined> {
+  if (overlays[tag]) {
+    return overlays[tag];
+  }
+  const path = Object.keys(wizardLoaders).find((entry) => packFromPath(entry) === tag);
+  if (!path) {
+    return undefined;
+  }
+  const mod = await wizardLoaders[path]!();
+  overlays[tag] = mod.default;
+  return mod.default;
+}
+
+/** Sync view of wizard copy. Returns the oracle until the overlay has been fetched. */
+export function wizardMessages(locale?: string, extra?: Partial<WizardMessages>): WizardMessages {
+  const tag = (locale || "").replaceAll("_", "-");
+  const overlay = overlays[tag] || overlays[locale || ""];
+  return mergeWizard(locale, overlay, extra);
+}
+
+/** Fetch the overlay for a locale (if any) and return the merged messages. */
+export async function ensureWizardMessages(locale?: string, extra?: Partial<WizardMessages>): Promise<WizardMessages> {
+  const tag = (locale || "").replaceAll("_", "-");
+  await ensureWizardOverlay(tag);
+  if (locale && locale !== tag) {
+    await ensureWizardOverlay(locale);
+  }
+  return wizardMessages(locale, extra);
+}
+
+/** Load every generated wizard overlay. Used by locale key-parity tests. */
+export async function loadAllWizardOverlays(): Promise<void> {
+  await Promise.all(Object.keys(wizardLoaders).map((path) => ensureWizardOverlay(packFromPath(path))));
 }
 
 export function fillWizard(template: string, slots: Record<string, string>): string {

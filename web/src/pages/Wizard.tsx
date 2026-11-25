@@ -8,7 +8,7 @@ import { TutorialStep } from "../components/wizard/TutorialStep";
 import { UnitsStep } from "../components/wizard/UnitsStep";
 import { VoiceStep } from "../components/wizard/VoiceStep";
 import type { Messages } from "../i18n";
-import { fillWizard, wizardMessages, type WizardMessages } from "../i18n/wizard";
+import { ensureWizardMessages, fillWizard, wizardMessages, type WizardMessages } from "../i18n/wizard";
 import { saveFailMessage } from "../saveToast";
 import type { Locale, RefineBand, Settings, Theme } from "../types";
 import { useLlmForm } from "../useLlmForm";
@@ -158,7 +158,16 @@ export function Wizard({
   const [saveError, setSaveError] = useState("");
   const [packs, setPacks] = useState<LanguagePack[]>([]);
   const draftRef = useRef(draft);
-  const copy = useMemo(() => wizardMessages(locale), [locale]);
+  const [copy, setCopy] = useState(() => wizardMessages(locale));
+  useEffect(() => {
+    let live = true;
+    void ensureWizardMessages(locale).then((messages) => {
+      if (live) setCopy(messages);
+    });
+    return () => {
+      live = false;
+    };
+  }, [locale]);
   const path = useMemo(
     () => detectInstallPath({ installPath, entityIds, ingress }),
     [installPath, entityIds, ingress],
@@ -183,7 +192,7 @@ export function Wizard({
     if (!llm.baseUrl.trim() && !llm.model.trim() && !llm.apiKey.trim()) return "untouched";
     // The key field shows what is missing: a cloud endpoint at a new address needs its own key.
     if (llm.keyMissing) {
-      setSaveError(chrome.saveFail);
+      setSaveError(chrome.llmApiKeyRequired);
       return "refused";
     }
     try {

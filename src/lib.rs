@@ -12,3 +12,4 @@ pub mod session;
 pub mod speech;
 pub mod types;
 pub mod units;
+pub mod web_contract;

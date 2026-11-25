@@ -1,10 +1,27 @@
-import { describe, expect, it, vi } from "vitest";
-import { assistParseLanguage, chromeLocale, dictionaries, fill, inboxReason, isLocale, isRtl, matchLocale } from "../src/i18n";
+import { beforeAll, describe, expect, it, vi } from "vitest";
+import {
+  assistParseLanguage,
+  chromeLocale,
+  dictionaries,
+  ensureLocale,
+  fill,
+  inboxReason,
+  isLocale,
+  isRtl,
+  loadAllLocales,
+  localeCodes,
+  matchLocale,
+  plural,
+} from "../src/i18n";
 import { de } from "../src/i18n/de";
 import { en } from "../src/i18n/en";
-import { fillWizard, wizardMessages } from "../src/i18n/wizard";
+import { ensureWizardMessages, fillWizard, loadAllWizardOverlays, wizardMessages } from "../src/i18n/wizard";
 
 describe("the UI language", () => {
+  beforeAll(async () => {
+    await loadAllLocales();
+  });
+
   it("is the saved one when the UI has it", () => {
     expect(chromeLocale("de")).toBe("de");
     expect(chromeLocale("pt-BR")).toBe("pt-BR");
@@ -35,16 +52,28 @@ describe("the UI language", () => {
     expect(isRtl("de")).toBe(false);
   });
 
-  it("has a full dictionary for every language it offers", () => {
+  it("lists every chrome locale without loading the packs (U-20)", () => {
+    expect(localeCodes.length).toBeGreaterThan(60);
+    expect(localeCodes).toContain("fr");
+    expect(Object.keys(dictionaries)).toEqual(expect.arrayContaining(["de", "en"]));
+  });
+
+  it("has a full dictionary for every language it offers", async () => {
     const keys = Object.keys(en).sort();
     expect(Object.keys(de).sort()).toEqual(keys);
-    expect(Object.keys(dictionaries).length).toBeGreaterThan(60);
-    for (const [code, messages] of Object.entries(dictionaries)) {
+    expect(localeCodes.length).toBeGreaterThan(60);
+    for (const code of localeCodes) {
+      const messages = await ensureLocale(code);
       expect(Object.keys(messages).sort(), code).toEqual(keys);
       expect(Object.values(messages).every((text) => typeof text === "string" && text.length > 0), code).toBe(true);
       expect(isLocale(code)).toBe(true);
     }
     expect(isLocale("tlh")).toBe(false);
+  });
+
+  it("picks plural forms for recording counts (U-25)", () => {
+    expect(fill(plural(1, { one: en.recordingsOne, other: en.recordingsOther }), { count: "1" })).toBe("1 recording");
+    expect(fill(plural(3, { one: en.recordingsOne, other: en.recordingsOther }), { count: "3" })).toBe("3 recordings");
   });
 });
 
@@ -67,8 +96,8 @@ describe("message templates", () => {
     expect(fill(en.applyDone, { count: "2" })).not.toContain("{count}");
   });
 
-  it("fills the wizard step counter", () => {
-    const copy = wizardMessages("en");
+  it("fills the wizard step counter", async () => {
+    const copy = await ensureWizardMessages("en");
 
     expect(fillWizard(copy.stepOf, { n: "2", total: "6" })).toMatch(/2.*6/);
     expect(wizardMessages("tlh").next).toBe(copy.next);

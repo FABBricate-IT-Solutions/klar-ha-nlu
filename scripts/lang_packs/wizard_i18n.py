@@ -5,9 +5,10 @@ from __future__ import annotations
 import json
 from pathlib import Path
 
-from lang_packs.wizard import DEST, EN_CONSOLE, EN_LLM, KEYS
+from lang_packs.wizard import DEST, EN, EN_CONSOLE, EN_LLM, KEYS
 from lang_packs.wizard_east import PACKS as EAST
 from lang_packs.wizard_script import PACKS as SCRIPT
+from lang_packs.wizard_titles import TITLES
 from lang_packs.wizard_west import PACKS as WEST
 
 PACKS: dict[str, dict[str, str]] = {}
@@ -31,7 +32,12 @@ def write_wizard_translations() -> None:
         raise SystemExit(f"wizard locale drift missing={sorted(EXPECTED - set(PACKS))} extra={sorted(set(PACKS) - EXPECTED)}")
     DEST.mkdir(parents=True, exist_ok=True)
     written: set[str] = set()
-    for code, fields in PACKS.items():
+    title_keys = ("chromeTitle", "unitsTitle", "restTitle", "tutorialTitle")
+    for code, base in PACKS.items():
+        extra = TITLES.get(code)
+        if not extra:
+            raise SystemExit(f"{code}: wizard_titles missing")
+        fields = {**base, **extra}
         absent = [key for key in KEYS if key not in fields]
         if absent:
             raise SystemExit(f"{code}: wizard missing {absent}")
@@ -40,10 +46,13 @@ def write_wizard_translations() -> None:
                 raise SystemExit(f"{code}: whatConsole still English")
             if fields["missLlmBody"] == EN_LLM:
                 raise SystemExit(f"{code}: missLlmBody still English")
+            for key in title_keys:
+                if fields[key] == EN[key]:
+                    raise SystemExit(f"{code}: {key} still English (U-16)")
         if "{count}" not in fields["phrasesMapping"]:
             raise SystemExit(f"{code}: phrasesMapping needs {{count}}")
         path = DEST / f"{code}.json"
-        path.write_text(json.dumps(fields, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+        path.write_text(json.dumps({key: fields[key] for key in KEYS}, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
         written.add(code)
         print("wrote", path.relative_to(DEST.parents[2]))
     stale = {item.stem for item in DEST.glob("*.json")} - written

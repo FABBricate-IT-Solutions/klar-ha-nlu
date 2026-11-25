@@ -1,10 +1,21 @@
+import { useState } from "react";
 import { OriginChip } from "./OriginChip";
 import { SearchSelect, withCurrent } from "./SearchSelect";
 import { policiesEmpty, SetupHint } from "./SetupHint";
 import type { Messages } from "../i18n";
-import type { PolicyEffect, PolicyRule, SpeechBank } from "../types";
+import { POLICY_EFFECTS, type PolicyEffect, type PolicyRule, type SpeechBank } from "../types";
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+} from "@/components/ui/alert-dialog";
 
-const EFFECTS: PolicyEffect[] = ["confirm", "block", "allow", "prefer_entity", "prefer_area", "reply", "script", "template", "llm"];
+const EFFECTS: PolicyEffect[] = [...POLICY_EFFECTS];
 const ACTION_EFFECTS: PolicyEffect[] = ["reply", "script", "template", "llm"];
 
 function effectLabel(t: Messages, effect: PolicyEffect): string {
@@ -101,6 +112,7 @@ export function HouseLane({
     .filter(({ rule }) => !seedIds.has(rule.id));
   const current = rules[selected];
   const editingHouse = Boolean(current && !seedIds.has(current.id));
+  const [pendingDelete, setPendingDelete] = useState<string | null>(null);
 
   return (
     <>
@@ -135,83 +147,132 @@ export function HouseLane({
           <strong>{rule.label || rule.id}</strong>
           <span className="chip intent">{rule.effect}</span>
           <OriginChip t={t} origin="operator" />
-          <button
-            className="ghost danger"
-            type="button"
-            onClick={(ev) => {
-              ev.stopPropagation();
-              onRemove(rule.id);
-            }}
-          >
-            {t.dismiss}
-          </button>
+          <div className="row">
+            <button
+              className="ghost"
+              type="button"
+              aria-label={t.moveRuleUp}
+              disabled={order === 0}
+              onClick={(ev) => {
+                ev.stopPropagation();
+                onMove(index, houseRules[order - 1]!.index);
+              }}
+            >
+              ↑
+            </button>
+            <button
+              className="ghost"
+              type="button"
+              aria-label={t.moveRuleDown}
+              disabled={order === houseRules.length - 1}
+              onClick={(ev) => {
+                ev.stopPropagation();
+                onMove(index, houseRules[order + 1]!.index);
+              }}
+            >
+              ↓
+            </button>
+            <button
+              className="ghost danger"
+              type="button"
+              onClick={(ev) => {
+                ev.stopPropagation();
+                setPendingDelete(rule.id);
+              }}
+            >
+              {t.dismiss}
+            </button>
+          </div>
         </div>
       ))}
       {editingHouse && current ? (
         <div className="house-editor" onClick={(ev) => ev.stopPropagation()}>
-          <label>{t.custom}</label>
-          <input value={current.label} onChange={(ev) => onUpdate({ label: ev.target.value })} />
+          <label htmlFor="klar-house-label">{t.custom}</label>
+          <input id="klar-house-label" value={current.label} onChange={(ev) => onUpdate({ label: ev.target.value })} />
           <label className="row">
             <input type="checkbox" checked={current.enabled} onChange={(ev) => onUpdate({ enabled: ev.target.checked })} />
             {current.enabled ? t.matchEnabled : t.matchDisabled}
           </label>
           <label>{t.when}</label>
-          <input placeholder={t.whenPhrase} value={current.when.phrase || ""} onChange={(ev) => onUpdateWhen("phrase", ev.target.value)} />
+          <label htmlFor="klar-house-phrase">{t.whenPhrase}</label>
+          <input id="klar-house-phrase" placeholder={t.whenPhrase} value={current.when.phrase || ""} onChange={(ev) => onUpdateWhen("phrase", ev.target.value)} />
+          <label htmlFor="klar-house-intent">{t.whenIntent}</label>
           <SearchSelect
+            id="klar-house-intent"
             value={current.when.intent || ""}
             options={withCurrent(intentOptions, current.when.intent || "")}
             onChange={(value) => onUpdateWhen("intent", value)}
-            placeholder="intent"
+            placeholder={t.whenIntent}
           />
+          <label htmlFor="klar-house-domain">{t.whenDomain}</label>
           <SearchSelect
+            id="klar-house-domain"
             value={current.when.domain || ""}
             options={withCurrent(domains, current.when.domain || "")}
             onChange={(value) => onUpdateWhen("domain", value)}
-            placeholder="domain"
+            placeholder={t.whenDomain}
           />
+          <label htmlFor="klar-house-area">{t.whenArea}</label>
           <SearchSelect
+            id="klar-house-area"
             value={current.when.area || ""}
             options={withCurrent(rooms, current.when.area || "")}
             onChange={(value) => onUpdateWhen("area", value)}
-            placeholder="area"
+            placeholder={t.whenArea}
           />
+          <label htmlFor="klar-house-entity">{t.whenEntity}</label>
           <SearchSelect
+            id="klar-house-entity"
             value={current.when.entity_id || ""}
             options={withCurrent(entityOptions, current.when.entity_id || "")}
             onChange={onUpdateWhenEntity}
-            placeholder="entity_id"
+            placeholder={t.whenEntity}
           />
+          <label htmlFor="klar-house-floor">{t.whenFloor}</label>
           <SearchSelect
+            id="klar-house-floor"
             value={current.when.floor || ""}
             options={withCurrent(floors, current.when.floor || "")}
             onChange={(value) => onUpdateWhen("floor", value)}
-            placeholder="floor"
+            placeholder={t.whenFloor}
           />
-          <input placeholder="name" value={current.when.name || ""} onChange={(ev) => onUpdateWhen("name", ev.target.value)} />
-          <label>{t.then}</label>
-          <select value={current.effect} onChange={(ev) => onUpdate({ effect: ev.target.value as PolicyEffect })}>
+          <label htmlFor="klar-house-name">{t.whenName}</label>
+          <input id="klar-house-name" placeholder={t.whenName} value={current.when.name || ""} onChange={(ev) => onUpdateWhen("name", ev.target.value)} />
+          <label htmlFor="klar-house-effect">{t.then}</label>
+          <select id="klar-house-effect" value={current.effect} onChange={(ev) => onUpdate({ effect: ev.target.value as PolicyEffect })}>
             {EFFECTS.map((effect) => <option key={effect} value={effect}>{effectLabel(t, effect)}</option>)}
           </select>
           {current.effect === "prefer_entity" && (
-            <SearchSelect
-              value={current.prefer || ""}
-              options={withCurrent(entityOptions, current.prefer || "")}
-              onChange={(value) => onUpdate({ prefer: value || undefined })}
-              placeholder="prefer"
-              allowEmpty={false}
-            />
+            <>
+              <label htmlFor="klar-house-prefer">{t.whenPrefer}</label>
+              <SearchSelect
+                id="klar-house-prefer"
+                value={current.prefer || ""}
+                options={withCurrent(entityOptions, current.prefer || "")}
+                onChange={(value) => onUpdate({ prefer: value || undefined })}
+                placeholder={t.whenPrefer}
+                allowEmpty={false}
+              />
+            </>
           )}
           {current.effect === "prefer_area" && (
-            <SearchSelect
-              value={current.prefer || ""}
-              options={withCurrent(rooms, current.prefer || "")}
-              onChange={(value) => onUpdate({ prefer: value || undefined })}
-              placeholder="prefer"
-              allowEmpty={false}
-            />
+            <>
+              <label htmlFor="klar-house-prefer-area">{t.whenPrefer}</label>
+              <SearchSelect
+                id="klar-house-prefer-area"
+                value={current.prefer || ""}
+                options={withCurrent(rooms, current.prefer || "")}
+                onChange={(value) => onUpdate({ prefer: value || undefined })}
+                placeholder={t.whenPrefer}
+                allowEmpty={false}
+              />
+            </>
           )}
           {ACTION_EFFECTS.includes(current.effect) && (
-            <textarea placeholder={payloadHint(t, current.effect)} value={current.payload || ""} onChange={(ev) => onUpdate({ payload: ev.target.value })} />
+            <>
+              <label htmlFor="klar-house-payload">{payloadHint(t, current.effect)}</label>
+              <textarea id="klar-house-payload" placeholder={payloadHint(t, current.effect)} value={current.payload || ""} onChange={(ev) => onUpdate({ payload: ev.target.value })} />
+            </>
           )}
           <div className="row" style={{ marginTop: 12 }}>
             <button className="secondary" type="button" onClick={onBake}>{t.bakeSpeech}</button>
@@ -222,6 +283,25 @@ export function HouseLane({
         </div>
       ) : houseRules.length === 0 ? null : <p className="muted">{t.noPolicies}</p>}
       </div>
+      <AlertDialog open={pendingDelete !== null} onOpenChange={(open) => { if (!open) setPendingDelete(null); }}>
+        <AlertDialogContent>
+          <AlertDialogHeader>
+            <AlertDialogTitle>{t.confirmDeleteRule}</AlertDialogTitle>
+            <AlertDialogDescription>{t.confirmDeleteRuleHint}</AlertDialogDescription>
+          </AlertDialogHeader>
+          <AlertDialogFooter>
+            <AlertDialogCancel>{t.cancel}</AlertDialogCancel>
+            <AlertDialogAction
+              onClick={() => {
+                if (pendingDelete) onRemove(pendingDelete);
+                setPendingDelete(null);
+              }}
+            >
+              {t.dismiss}
+            </AlertDialogAction>
+          </AlertDialogFooter>
+        </AlertDialogContent>
+      </AlertDialog>
     </>
   );
 }

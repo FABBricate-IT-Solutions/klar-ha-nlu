@@ -3,14 +3,25 @@ import { api, type CustomRule, type LangExplain } from "../api";
 import { SearchSelect, useHouseCatalog, withCurrent } from "../components/SearchSelect";
 import { sentencesEmpty, SetupHint } from "../components/SetupHint";
 import { TEACH_HEARD_KEY, TEACH_INTENT_KEY } from "../components/TeachFromMiss";
-import type { Messages } from "../i18n";
+import { assistParseLanguage, type Messages } from "../i18n";
 import { saveFailMessage, toastSaved, toastSaveFailed } from "../saveToast";
 import type { Locale } from "../types";
 import { useLangOverlay } from "../useLangOverlay";
 
 const fallbackIntents = ["HassTurnOn", "HassTurnOff", "HassToggle", "HassLightSet", "HassGetState", "HassClimateSetTemperature"];
 
-export function CustomPage({ t, locale, embedded }: { t: Messages; locale: Locale; embedded?: boolean }) {
+export function CustomPage({
+  t,
+  locale,
+  languages,
+  embedded,
+}: {
+  t: Messages;
+  locale: Locale;
+  /** Assist languages from settings; Explain must use these, not the chrome locale (U-14). */
+  languages?: string[];
+  embedded?: boolean;
+}) {
   const [intents, setIntents] = useState<string[]>(fallbackIntents);
   const { overlay, offline, status, setStatus, replace, hold } = useLangOverlay();
   const rules = overlay?.custom ?? [];
@@ -107,7 +118,9 @@ export function CustomPage({ t, locale, embedded }: { t: Messages; locale: Local
 
   const runPreview = async () => {
     const text = previewText.trim() || phrase.trim();
-    const out = await api.explainLang({ text, language: locale, custom: rules });
+    // Explain follows the Assist language, not the chrome locale (U-14).
+    const assistLanguage = assistParseLanguage(languages ?? [], locale) || locale;
+    const out = await api.explainLang({ text, language: assistLanguage, custom: rules });
     setExplain(out);
   };
 

@@ -4,9 +4,18 @@ import { PersonalityPrompt } from "./PersonalityPrompt";
 import { languageOptions, SearchSelect, withCurrent } from "./SearchSelect";
 import { SettingsToggle } from "./SettingsToggle";
 import type { LanguagePack } from "../api";
-import { dictionaries, type Messages } from "../i18n";
+import { fill, localeCodes, plural, type Messages } from "../i18n";
 import { isPersonality, PERSONALITIES, personalityLabel } from "../personality";
-import { REFINE_BANDS, effectiveRefineBands, type BundleList, type Locale, type RefineBand, type Settings, type Theme } from "../types";
+import {
+  REFINE_BANDS,
+  effectiveRefineBands,
+  type BundleList,
+  type LanguageTier,
+  type Locale,
+  type RefineBand,
+  type Settings,
+  type Theme,
+} from "../types";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Field, FieldDescription, FieldGroup, FieldLabel } from "@/components/ui/field";
@@ -187,7 +196,7 @@ function tierLabel(t: Messages, tier: string): string {
   }
 }
 
-type PackRow = { code: string; native_name: string; tier?: string };
+type PackRow = { code: string; native_name: string; tier?: LanguageTier };
 
 /** Locales the draft settings may pick: stable always, experimental with the switch, and whatever is already in use. */
 function selectablePacks(packs: PackRow[], settings: Settings): PackRow[] {
@@ -218,7 +227,7 @@ export function SettingsLanguagesSection({
   onSettings: (s: Settings) => void;
   packs: LanguagePack[];
 }) {
-  const chromeCodes = new Set(Object.keys(dictionaries));
+  const chromeCodes = new Set(localeCodes);
   const localePacks = packs.length
     ? packs.filter((pack) => chromeCodes.has(pack.code))
     : [...chromeCodes].map((code) => ({ code, native_name: code }));
@@ -265,7 +274,11 @@ export function SettingsLanguagesSection({
                 <SearchSelect
                   value={pinned}
                   options={withCurrent(assistOptions, pinned)}
-                  onChange={(value) => onSettings({ ...settings, languages: value ? [value] : [] })}
+                  onChange={(value) => {
+                    // Clearing the box must not flip Assist to "every locale" (U-24).
+                    if (!value) return;
+                    onSettings({ ...settings, languages: [value] });
+                  }}
                   allowEmpty={false}
                   placeholder={t.languageSearch}
                 />
@@ -344,21 +357,28 @@ function NewsFeedsField({
 }) {
   const saved = (settings.news_feeds || []).map((feed) => `${feed.pack}=${feed.url}`).join("\n");
   const [draft, setDraft] = useState<string | null>(null);
+  const text = draft ?? saved;
+  const parsed = parseFeeds(text);
+  const invalid = draft !== null && text.trim() !== "" && parsed === null;
   return (
     <Field>
       <FieldLabel htmlFor="klar-news-feeds">{t.newsFeeds}</FieldLabel>
       <Textarea
         id="klar-news-feeds"
-        value={draft ?? saved}
-        placeholder="de=https://"
+        value={text}
+        placeholder="de=https://example.com/feed.xml"
+        aria-invalid={invalid || undefined}
         onChange={(ev) => {
-          const text = ev.target.value;
-          setDraft(text);
-          const parsed = parseFeeds(text);
-          if (parsed) onSettings({ ...settings, news_feeds: parsed });
+          const next = ev.target.value;
+          setDraft(next);
+          const feeds = parseFeeds(next);
+          if (feeds) onSettings({ ...settings, news_feeds: feeds });
+        }}
+        onBlur={() => {
+          if (parsed) setDraft(null);
         }}
       />
-      <FieldDescription>{t.newsFeedsHint}</FieldDescription>
+      <FieldDescription>{invalid ? t.newsFeedsInvalid : t.newsFeedsHint}</FieldDescription>
     </Field>
   );
 }
@@ -530,7 +550,13 @@ export function SettingsJournalSection({
           />
           <Field>
             <FieldLabel>{t.journal}</FieldLabel>
-            <FieldDescription>{bundle ? `${bundle.count} ${t.recordings}` : "..."}</FieldDescription>
+            <FieldDescription>
+              {bundle
+                ? fill(plural(bundle.count, { one: t.recordingsOne, other: t.recordingsOther }), {
+                  count: String(bundle.count),
+                })
+                : "..."}
+            </FieldDescription>
           </Field>
         </FieldGroup>
       </CardContent>

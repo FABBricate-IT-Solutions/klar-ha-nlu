@@ -11,6 +11,10 @@ pub const MAX_CLARIFY_OPTIONS: usize = 32;
 pub const MAX_TRACE_STAGES: usize = 16;
 pub const MAX_TRACE_DISCARDED: usize = 64;
 pub const MAX_DETAIL_CHARS: usize = 256;
+/// One parse-trace token, counted in Unicode scalar values (matches the Lab validator).
+pub const MAX_TRACE_TOKEN_CHARS: usize = 64;
+/// Cap for the parse-trace token list (`MAX_TRACE_STAGES * 16`).
+pub const MAX_TRACE_TOKENS: usize = MAX_TRACE_STAGES.saturating_mul(16);
 
 #[derive(Debug, Clone, Serialize, Deserialize, PartialEq)]
 pub struct ParseOutcome {
@@ -347,7 +351,10 @@ impl ParseOutcome {
         self.candidates.truncate(MAX_CANDIDATES);
         self.trace.stages.truncate(MAX_TRACE_STAGES);
         self.trace.discarded.truncate(MAX_TRACE_DISCARDED);
-        self.trace.tokens.truncate(MAX_TRACE_STAGES.saturating_mul(16));
+        self.trace.tokens.truncate(MAX_TRACE_TOKENS);
+        for token in &mut self.trace.tokens {
+            truncate_chars(token, MAX_TRACE_TOKEN_CHARS);
+        }
         truncate_chars(&mut self.trace.normalized, MAX_DETAIL_CHARS);
         match &mut self.decision {
             ParseDecision::Clarify { prompt, options } => {

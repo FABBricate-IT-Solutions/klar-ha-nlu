@@ -1,51 +1,46 @@
-import type { ParseDecision, ParseResult } from "./types";
-
-const MAX_STEPS = 32;
-const MAX_CANDIDATES = 64;
-const MAX_EVIDENCE = 128;
-const MAX_ITEM_EVIDENCE = 16;
-const MAX_OPTIONS = 32;
-const MAX_STAGES = 16;
-const MAX_DISCARDED = 64;
-const MAX_DETAIL = 256;
-const MAX_TOKENS = 256;
-const MAX_TOKEN = 64;
+import {
+  MAX_CANDIDATES,
+  MAX_CLARIFY_OPTIONS,
+  MAX_DETAIL_CHARS,
+  MAX_EVIDENCE,
+  MAX_EVIDENCE_PER_ITEM,
+  MAX_PARSE_CHARS,
+  MAX_PLAN_STEPS,
+  MAX_TRACE_DISCARDED,
+  MAX_TRACE_STAGES,
+  MAX_TRACE_TOKEN_CHARS,
+  MAX_TRACE_TOKENS,
+  PARSE_DECISIONS,
+  PARSE_OUTCOME_FIELDS,
+  PARSE_OUTCOME_OPTIONAL_FIELDS,
+  PARSE_SCHEMA_VERSION,
+  REFINE_BANDS,
+  REJECT_REASONS,
+  type ParseDecisionType,
+} from "./generated/contract";
+import type { ParseResult } from "./types";
 
 type JsonObject = Record<string, unknown>;
 
+/** Unicode scalar count — same unit Rust `chars().count()` uses (not UTF-16 code units). */
+export function charCount(value: string): number {
+  return [...value].length;
+}
+
 export function parseV2Response(value: unknown): ParseResult {
   const payload = object(value, "response");
-  keys(
-    payload,
-    [
-      "schema_version",
-      "text",
-      "conversation_id",
-      "decision",
-      "speech",
-      "confidence",
-      "margin",
-      "selected_candidate_id",
-      "candidates",
-      "plan",
-      "evidence",
-      "trace",
-      "briefing",
-      "retrieval",
-      "policy_trace",
-      "quiet_ack_eligible",
-      "refine_band",
-    ],
-    ["selected_candidate_id", "plan", "retrieval", "policy_trace", "quiet_ack_eligible", "refine_band"],
-  );
-  if (payload.schema_version !== "2.0") throw new Error("Unsupported parse schema");
-  string(payload.text, "text", 4096, true);
+  keys(payload, [...PARSE_OUTCOME_FIELDS], [...PARSE_OUTCOME_OPTIONAL_FIELDS]);
+  if (payload.schema_version !== PARSE_SCHEMA_VERSION) throw new Error("Unsupported parse schema");
+  string(payload.text, "text", MAX_PARSE_CHARS, true);
   string(payload.conversation_id, "conversation_id", 128);
-  string(payload.speech, "speech", 4096, true);
+  string(payload.speech, "speech", MAX_PARSE_CHARS, true);
   score(payload.confidence, "confidence");
   score(payload.margin, "margin");
   if (payload.selected_candidate_id !== undefined) string(payload.selected_candidate_id, "selected_candidate_id", 128);
   if (typeof payload.briefing !== "boolean") throw new Error("briefing must be boolean");
+  if (payload.news_topic !== undefined && payload.news_topic !== null) {
+    string(payload.news_topic, "news_topic", 128);
+  }
   const decision = validateDecision(payload.decision);
   if (decision === "execute") {
     validatePlan(payload.plan, "plan", true);
@@ -70,12 +65,10 @@ export function parseV2Response(value: unknown): ParseResult {
   if (payload.quiet_ack_eligible !== undefined && typeof payload.quiet_ack_eligible !== "boolean") {
     throw new Error("quiet_ack_eligible must be boolean");
   }
-  if (
-    payload.refine_band !== undefined
-    && payload.refine_band !== null
-    && !["status", "command", "prompt", "reject"].includes(String(payload.refine_band))
-  ) {
-    throw new Error("refine_band must be a spoken reply kind");
+  if (payload.refine_band !== undefined && payload.refine_band !== null) {
+    if (typeof payload.refine_band !== "string" || !(REFINE_BANDS as readonly string[]).includes(payload.refine_band)) {
+      throw new Error("refine_band must be a spoken reply kind");
+    }
   }
   if (payload.retrieval !== undefined && payload.retrieval !== null) {
     if (decision !== "chat" && decision !== "reject") {
@@ -88,10 +81,10 @@ export function parseV2Response(value: unknown): ParseResult {
 function validateDecision(value: unknown): string {
   const decision = object(value, "decision");
   const kind = decision.type;
-  if (typeof kind !== "string" || !["execute", "clarify", "confirm", "reject", "chat", "error"].includes(kind)) {
+  if (typeof kind !== "string" || !(PARSE_DECISIONS as readonly string[]).includes(kind)) {
     throw new Error("Unknown decision");
   }
-  const decisionType = kind as ParseDecision["type"];
+  const decisionType = kind as ParseDecisionType;
   switch (decisionType) {
     case "execute":
     case "chat":
@@ -99,22 +92,25 @@ function validateDecision(value: unknown): string {
       break;
     case "clarify":
       keys(decision, ["type", "prompt", "options"]);
-      string(decision.prompt, "decision.prompt", MAX_DETAIL);
-      list(decision.options, "decision.options", MAX_OPTIONS, (item, path) => string(item, path, 128));
+      string(decision.prompt, "decision.prompt", MAX_DETAIL_CHARS);
+      list(decision.options, "decision.options", MAX_CLARIFY_OPTIONS, (item, path) => string(item, path, 128));
       break;
     case "confirm":
       keys(decision, ["type", "prompt", "candidate_id"]);
-      string(decision.prompt, "decision.prompt", MAX_DETAIL);
+      string(decision.prompt, "decision.prompt", MAX_DETAIL_CHARS);
       string(decision.candidate_id, "decision.candidate_id", 128);
       break;
     case "reject":
       keys(decision, ["type", "reason"]);
       string(decision.reason, "decision.reason", 64);
+      if (typeof decision.reason !== "string" || !(REJECT_REASONS as readonly string[]).includes(decision.reason)) {
+        throw new Error("Unknown reject reason");
+      }
       break;
     case "error":
       keys(decision, ["type", "code", "message"]);
       string(decision.code, "decision.code", 64);
-      string(decision.message, "decision.message", MAX_DETAIL);
+      string(decision.message, "decision.message", MAX_DETAIL_CHARS);
       break;
     default: {
       const exhaustive: never = decisionType;
@@ -133,7 +129,7 @@ function validateCandidate(value: unknown, path: string): void {
   score(candidate.margin, `${path}.margin`);
   string(candidate.policy, `${path}.policy`, 128);
   integer(candidate.precedence, `${path}.precedence`, 65535);
-  list(candidate.evidence, `${path}.evidence`, MAX_ITEM_EVIDENCE, validateEvidence);
+  list(candidate.evidence, `${path}.evidence`, MAX_EVIDENCE_PER_ITEM, validateEvidence);
 }
 
 function validatePlan(value: unknown, path: string, requireSteps: boolean): void {
@@ -141,17 +137,17 @@ function validatePlan(value: unknown, path: string, requireSteps: boolean): void
   keys(plan, ["confidence", "margin", "evidence", "steps"]);
   score(plan.confidence, `${path}.confidence`);
   score(plan.margin, `${path}.margin`);
-  list(plan.evidence, `${path}.evidence`, MAX_ITEM_EVIDENCE, validateEvidence);
-  const steps = list(plan.steps, `${path}.steps`, MAX_STEPS, validateStep);
+  list(plan.evidence, `${path}.evidence`, MAX_EVIDENCE_PER_ITEM, validateEvidence);
+  const steps = list(plan.steps, `${path}.steps`, MAX_PLAN_STEPS, validateStep);
   if (requireSteps && steps.length === 0) throw new Error("Execute plan is empty");
 }
 
 function validateStep(value: unknown, path: string): void {
   const step = object(value, path);
   keys(step, ["index", "intent", "confidence", "evidence"]);
-  integer(step.index, `${path}.index`, MAX_STEPS - 1);
+  integer(step.index, `${path}.index`, MAX_PLAN_STEPS - 1);
   score(step.confidence, `${path}.confidence`);
-  list(step.evidence, `${path}.evidence`, MAX_ITEM_EVIDENCE, validateEvidence);
+  list(step.evidence, `${path}.evidence`, MAX_EVIDENCE_PER_ITEM, validateEvidence);
   const intent = object(step.intent, `${path}.intent`);
   keys(intent, ["name", "slots"]);
   string(intent.name, `${path}.intent.name`, 128);
@@ -205,12 +201,12 @@ function validatePolicyTrace(value: unknown): void {
     string(trace.band, "policy_trace.band", 32);
   }
   if (trace.discarded !== undefined) {
-    list(trace.discarded, "policy_trace.discarded", MAX_DISCARDED, (item, path) => {
+    list(trace.discarded, "policy_trace.discarded", MAX_TRACE_DISCARDED, (item, path) => {
       const discarded = object(item, path);
       keys(discarded, ["id", "score", "reason"]);
       string(discarded.id, `${path}.id`, 128);
       score(discarded.score, `${path}.score`);
-      string(discarded.reason, `${path}.reason`, MAX_DETAIL);
+      string(discarded.reason, `${path}.reason`, MAX_DETAIL_CHARS);
     });
   }
 }
@@ -236,26 +232,26 @@ function validatePolicyLayer(value: unknown, path: string): void {
 function validateTrace(value: unknown): void {
   const trace = object(value, "trace");
   keys(trace, ["stages", "discarded", "tokens", "normalized"], ["tokens", "normalized"]);
-  list(trace.stages, "trace.stages", MAX_STAGES, (item, path) => {
+  list(trace.stages, "trace.stages", MAX_TRACE_STAGES, (item, path) => {
     const stage = object(item, path);
     keys(stage, ["stage", "duration_us", "detail"]);
     string(stage.stage, `${path}.stage`, 64);
     integer(stage.duration_us, `${path}.duration_us`, Number.MAX_SAFE_INTEGER);
-    string(stage.detail, `${path}.detail`, MAX_DETAIL, true);
+    string(stage.detail, `${path}.detail`, MAX_DETAIL_CHARS, true);
   });
-  list(trace.discarded, "trace.discarded", MAX_DISCARDED, (item, path) => {
+  list(trace.discarded, "trace.discarded", MAX_TRACE_DISCARDED, (item, path) => {
     const discarded = object(item, path);
     keys(discarded, ["candidate_id", "policy", "score", "reason"]);
     string(discarded.candidate_id, `${path}.candidate_id`, 128);
     string(discarded.policy, `${path}.policy`, 128);
     score(discarded.score, `${path}.score`);
-    string(discarded.reason, `${path}.reason`, MAX_DETAIL);
+    string(discarded.reason, `${path}.reason`, MAX_DETAIL_CHARS);
   });
   if (trace.tokens !== undefined) {
-    list(trace.tokens, "trace.tokens", MAX_TOKENS, (item, path) => string(item, path, MAX_TOKEN));
+    list(trace.tokens, "trace.tokens", MAX_TRACE_TOKENS, (item, path) => string(item, path, MAX_TRACE_TOKEN_CHARS));
   }
   if (trace.normalized !== undefined) {
-    string(trace.normalized, "trace.normalized", 4096, true);
+    string(trace.normalized, "trace.normalized", MAX_PARSE_CHARS, true);
   }
 }
 
@@ -280,7 +276,7 @@ function list<T = unknown>(
 }
 
 function string(value: unknown, path: string, maximum: number, allowEmpty = false): void {
-  if (typeof value !== "string" || value.length > maximum || (!allowEmpty && value.length === 0)) {
+  if (typeof value !== "string" || charCount(value) > maximum || (!allowEmpty && charCount(value) === 0)) {
     throw new Error(`${path} must be a capped string`);
   }
 }

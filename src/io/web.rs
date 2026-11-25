@@ -1,20 +1,23 @@
 use crate::home::expose::assist_visible;
 use crate::home::gaps::leftover;
-use crate::home::overlay::{apply_overlay, load_overlay, Overlay};
+use crate::home::overlay::apply_overlay;
 use crate::io::auth::{reads_allowed, writes_allowed};
 use crate::io::limits::MAX_PARSE_CHARS;
 use crate::io::state::{save_failed, AppState};
 use crate::nlu::{legacy_result, parse_with_controls};
 use crate::types::{known_intent, AreaRec, CustomSentence, EntityRec, ParseOutcome, Settings};
 use axum::extract::{ConnectInfo, DefaultBodyLimit, State};
-use axum::http::{HeaderMap, StatusCode};
+use axum::http::{header, HeaderMap, HeaderValue, StatusCode};
 use axum::response::Html;
 use axum::routing::{get, post};
 use axum::{Json, Router};
 use serde::Deserialize;
 use std::net::SocketAddr;
 use std::path::PathBuf;
+use tower::ServiceBuilder;
+use tower_http::compression::CompressionLayer;
 use tower_http::services::ServeDir;
+use tower_http::set_header::SetResponseHeaderLayer;
 
 #[derive(Deserialize)]
 #[serde(deny_unknown_fields)]
@@ -49,7 +52,20 @@ pub fn router(state: AppState) -> Router {
         .merge(crate::io::backup::routes())
         .merge(crate::io::llm::routes())
         .merge(crate::io::speech::routes().layer(DefaultBodyLimit::max(16 * 1024)))
-        .fallback_service(ServeDir::new(ui_dir()))
+        // U-20: gzip UI assets when the client asks; long-cache hashed files, no-cache HTML.
+        .fallback_service(
+            ServiceBuilder::new()
+                .layer(CompressionLayer::new())
+                .layer(SetResponseHeaderLayer::overriding(header::CACHE_CONTROL, |res: &axum::http::Response<_>| {
+                    let ctype = res.headers().get(header::CONTENT_TYPE).and_then(|value| value.to_str().ok()).unwrap_or("");
+                    Some(if ctype.starts_with("text/html") {
+                        HeaderValue::from_static("no-cache")
+                    } else {
+                        HeaderValue::from_static("public, max-age=31536000, immutable")
+                    })
+                }))
+                .service(ServeDir::new(ui_dir())),
+        )
         .with_state(state)
 }
 
@@ -247,7 +263,6 @@ async fn get_entities(
 struct GapsOut {
     leftover: Vec<EntityRec>,
     rooms: Vec<AreaRec>,
-    overlay: Overlay,
 }
 
 async fn get_gaps(
@@ -257,11 +272,7 @@ async fn get_gaps(
 ) -> Result<Json<GapsOut>, StatusCode> {
     read_gate(peer, &headers, &state.token)?;
     let home = state.home.snapshot().await;
-    Ok(Json(GapsOut {
-        leftover: leftover(&home, state.catalog_for_settings().await),
-        rooms: home.areas.clone(),
-        overlay: load_overlay(&state.data_dir),
-    }))
+    Ok(Json(GapsOut { leftover: leftover(&home, state.catalog_for_settings().await), rooms: home.areas.clone() }))
 }
 
 #[derive(Deserialize)]
@@ -301,9 +312,15 @@ async fn tag_entity(
         .overlay
         .update(|overlay| {
             if let Some(aliases) = &body.aliases {
-                overlay.aliases.insert(body.entity_id.clone(), aliases.clone());
+                // Empty list clears operator aliases (U-36); a missing field leaves them alone.
+                if aliases.is_empty() {
+                    overlay.aliases.remove(&body.entity_id);
+                } else {
+                    overlay.aliases.insert(body.entity_id.clone(), aliases.clone());
+                }
             }
             if let Some(area) = &body.area {
+                // Empty string clears the room via apply_overlay; removing the key would not.
                 overlay.areas.insert(body.entity_id.clone(), area.clone());
             }
             if let Some(preferred) = body.preferred {
@@ -327,9 +344,7 @@ async fn tag_entity(
             apply_overlay(next, &overlay);
             let ent = next.entities.iter_mut().find(|e| e.entity_id == body.entity_id)?;
             if let Some(aliases) = body.aliases {
-                if !aliases.is_empty() {
-                    ent.aliases = aliases;
-                }
+                ent.aliases = aliases;
             }
             let mut tags = ent.tags.clone();
             tags.retain(|t| t != "preferred" && t != "nlu_ignore");
@@ -507,5 +522,35 @@ mod tests {
         let err = super::set_custom(State(state.clone()), peer, HeaderMap::new(), Json(body)).await.unwrap_err();
         assert_eq!(err, StatusCode::INTERNAL_SERVER_ERROR);
         assert!(state.custom.lock().await.is_empty());
+    }
+
+    #[tokio::test]
+    async fn tag_entity_clears_aliases_and_area() {
+        let (_scratch, state) = parse_state("tag-clear");
+        let peer = ConnectInfo("127.0.0.1:9".parse().unwrap());
+        let entity_id = "light.wohnzimmer".to_string();
+        let set = TagIn {
+            entity_id: entity_id.clone(),
+            tags: Vec::new(),
+            aliases: Some(vec!["decke".into()]),
+            preferred: None,
+            nlu_ignore: None,
+            area: Some("wohnzimmer".into()),
+        };
+        let Json(saved) = tag_entity(State(state.clone()), peer, HeaderMap::new(), Json(set)).await.expect("set");
+        assert!(saved.aliases.iter().any(|alias| alias == "decke"));
+        assert_eq!(saved.area.as_deref(), Some("wohnzimmer"));
+
+        let clear = TagIn {
+            entity_id: entity_id.clone(),
+            tags: Vec::new(),
+            aliases: Some(Vec::new()),
+            preferred: None,
+            nlu_ignore: None,
+            area: Some(String::new()),
+        };
+        let Json(cleared) = tag_entity(State(state.clone()), peer, HeaderMap::new(), Json(clear)).await.expect("clear");
+        assert!(cleared.aliases.is_empty(), "{cleared:?}");
+        assert_eq!(cleared.area, None, "{cleared:?}");
     }
 }

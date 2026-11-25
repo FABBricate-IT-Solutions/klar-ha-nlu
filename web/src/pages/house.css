@@ -172,6 +172,16 @@
     grid-template-columns: minmax(0, 1fr);
   }
 
+  /* List first so the operator lands on the searchable list, not under the canvas (U-30). */
+  .house-split .house-canvas {
+    order: 2;
+  }
+
+  .house-split .house-list,
+  .house-split .card:not(.house-canvas) {
+    order: 1;
+  }
+
   .house-list {
     max-height: none;
   }
