@@ -40,6 +40,8 @@ pub(super) const VERBS: &[(&str, VerbKind)] = &[
     ("degrees", VerbKind::Climate),
     ("heater", VerbKind::Climate),
     ("heating", VerbKind::Climate),
+    ("thermostat", VerbKind::Climate),
+    ("thermostats", VerbKind::Climate),
     ("climate", VerbKind::Climate),
     ("climates", VerbKind::Climate),
     ("temp", VerbKind::Climate),

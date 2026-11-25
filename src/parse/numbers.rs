@@ -215,16 +215,28 @@ pub fn first_number(tokens: &[String]) -> Option<i32> {
 
 pub fn guess_numbered_action(tokens: &[String], last_climate: bool, last_cover: bool, last_fan: bool) -> Action {
     let cat = catalog();
-    if last_climate || cat.any(tokens, cat.climate_nouns()) {
+    // The device the sentence names comes before the one the turn before was about.
+    if cat.any(tokens, cat.climate_nouns()) {
         return Action::SetTemp;
     }
-    if last_cover || cat.any(tokens, cat.cover_nouns()) || crate::parse::action::is_garage_cover(tokens) {
+    if cat.any(tokens, cat.cover_nouns()) || crate::parse::action::is_garage_cover(tokens) {
         return Action::CoverSet;
     }
-    if last_fan || cat.any(tokens, cat.fan_nouns()) {
+    if cat.any(tokens, cat.fan_nouns()) {
         return Action::FanSpeed;
     }
-    Action::SetLight
+    if crate::parse::action::has_light_noun(tokens) {
+        return Action::SetLight;
+    }
+    if last_climate {
+        Action::SetTemp
+    } else if last_cover {
+        Action::CoverSet
+    } else if last_fan {
+        Action::FanSpeed
+    } else {
+        Action::SetLight
+    }
 }
 
 #[cfg(test)]

@@ -7,7 +7,7 @@ use crate::parse::clause_area::{
     area_command, area_slots, grounded_ambiguous, grounded_areas, grounded_entities, multi_area, query_area, query_ungrounded,
 };
 use crate::parse::clause_session::{session_areas, session_climate_cover, session_entities};
-use crate::parse::clause_support::{named_scene_policy, preferred_area_domain, resolve_targets};
+use crate::parse::clause_support::{named_instead_of_light, named_scene_policy, preferred_area_domain, resolve_targets};
 use crate::parse::compound::apply_compound_light;
 use crate::parse::infer::{except_tail, infer_action, looks_like_named_device, looks_like_question, prefer_action, wants_all_lights};
 use crate::parse::media::{media_clause, now_playing_status};
@@ -77,6 +77,8 @@ pub(crate) fn parse_clause_candidates_for_action(
         }
     });
     let early = infer_action(guessed, tokens, number, question, session, None);
+    let named = named_instead_of_light(early, tokens, number, home, settings);
+    let early = named.map_or(early, |domain| infer_action(guessed, tokens, number, question, session, Some(domain)));
     let domain = domain_for(early, tokens);
 
     let overlay = MatchOverlay::new(match_controls);
