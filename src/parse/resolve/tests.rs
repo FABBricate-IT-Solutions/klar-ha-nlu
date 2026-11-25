@@ -100,3 +100,14 @@ fn generic_room_light_does_not_clarify_ceiling_versus_lamp() {
     assert!(hit.entities.is_empty(), "{hit:?}");
     assert_eq!(hit.areas, ["living"]);
 }
+
+#[test]
+fn fixture_alias_resolves_when_word_is_not_on_entity_label() {
+    // R-09 index path must still seed catalog fixture aliases (parity packs).
+    let _bind = bind(&["af".into()]);
+    let home =
+        crate::home::registry_yaml::load_home_config(std::path::Path::new("tests/datasets/wohnung_mittel/home_config.yaml")).expect("home");
+    assert!(home.label_index.is_some());
+    let hit = resolve(&["doof".into(), "skottelgoed".into()], &home, None);
+    assert_eq!(hit.entities.iter().map(|e| e.entity_id.as_str()).collect::<Vec<_>>(), ["switch.kuche_spulmaschine"], "{hit:?}");
+}

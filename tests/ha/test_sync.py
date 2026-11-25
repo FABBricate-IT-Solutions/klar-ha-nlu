@@ -304,6 +304,51 @@ class SyncTests(unittest.TestCase):
         self.assertEqual(len(clipped[0]), sync._ALIAS_CHARS)
         self.assertIn("ok", clipped)
 
+    def test_r10_keeps_conversation_agent_when_capping(self) -> None:
+        # Assist agents are not "exposed" and sit outside _KEEP_DOMAINS — still push them.
+        lights = [
+            SimpleNamespace(
+                entity_id=f"light.lamp_{index}",
+                name=f"Lamp {index}",
+                original_name=None,
+                has_entity_name=False,
+                area_id=None,
+                device_id=None,
+                platform="test",
+                aliases=[],
+                labels=[],
+                disabled_by=None,
+            )
+            for index in range(sync._ENTITY_CAP + 50)
+        ]
+        agent = SimpleNamespace(
+            entity_id="conversation.klar_nlu",
+            name="Klar",
+            original_name=None,
+            has_entity_name=False,
+            area_id=None,
+            device_id=None,
+            platform="klar_nlu",
+            aliases=[],
+            labels=[],
+            disabled_by=None,
+        )
+        sync.entity_registry.async_get = lambda _: SimpleNamespace(entities=_Map(agent, *lights))
+        sync.device_registry.async_get = lambda _: SimpleNamespace(devices=_Map())
+        sync.area_registry.async_get = lambda _: SimpleNamespace(areas=_Map())
+        sync.floor_registry.async_get = lambda _: SimpleNamespace(floors=_Map())
+        sync.label_registry.async_get = lambda _: SimpleNamespace(labels=_Map())
+        with patch.object(sync, "_exposed", return_value=False):
+            snapshot = sync.HomeGraphSync(
+                SimpleNamespace(),
+                SimpleNamespace(options={"assist_filter": True}, data={}),
+                "http://127.0.0.1:10520",
+                None,
+            ).build_snapshot()
+        kept = {row["entity_id"] for row in snapshot["entities"]}
+        self.assertIn("conversation.klar_nlu", kept)
+        self.assertLessEqual(len(snapshot["entities"]), sync._ENTITY_CAP)
+
 
 if __name__ == "__main__":
     unittest.main()

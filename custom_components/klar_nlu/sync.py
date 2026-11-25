@@ -174,13 +174,18 @@ class HomeGraphSync:
                 if not getattr(entry, "disabled_by", None) and _exposed(self.hass, entry.entity_id)
             ][:_ASSIST_CAP]
             assist_ids = set(assist)
-        # R-10: filter to domains the engine keeps (plus Assist), then cap — never push a
-        # snapshot the engine would reject for size alone.
-        entities = [
+        # R-10: filter domains/Assist (and conversation agents), then cap — never push a
+        # snapshot the engine would reject for size alone. Cap after Assist inclusion so
+        # conversation.* / exposed Assist rows are not dropped by the entity budget.
+        filtered = [
             row
             for row in entities
-            if row["entity_id"].split(".", 1)[0] in _KEEP_DOMAINS or row["entity_id"] in assist_ids
-        ][:_ENTITY_CAP]
+            if _keep_synced_entity(row["entity_id"], assist_ids)
+        ]
+        priority = [row for row in filtered if _assist_priority(row["entity_id"], assist_ids)]
+        others = [row for row in filtered if not _assist_priority(row["entity_id"], assist_ids)]
+        keep_priority = priority[:_ENTITY_CAP]
+        entities = keep_priority + others[: max(0, _ENTITY_CAP - len(keep_priority))]
         devices = [_device(device) for device in dr.devices.values()][:_DEVICE_CAP]
         areas = [_area(area) for area in ar.areas.values()][:_AREA_CAP]
         floors = [_floor(floor) for floor in fr.floors.values()][:_FLOOR_CAP]
@@ -211,6 +216,16 @@ def _exposed(hass: HomeAssistant, entity_id: str) -> bool:
         return bool(async_should_expose(hass, "conversation", entity_id))
     except Exception:  # noqa: BLE001 — expose store is a system boundary
         return False
+
+
+def _assist_priority(entity_id: str, assist_ids: set[str]) -> bool:
+    domain = entity_id.split(".", 1)[0]
+    return domain == "conversation" or entity_id in assist_ids
+
+
+def _keep_synced_entity(entity_id: str, assist_ids: set[str]) -> bool:
+    domain = entity_id.split(".", 1)[0]
+    return domain in _KEEP_DOMAINS or _assist_priority(entity_id, assist_ids)
 
 
 def _state_entity(state: Any) -> dict[str, Any]:

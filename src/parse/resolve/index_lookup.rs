@@ -2,6 +2,7 @@
 
 use crate::lang::catalog;
 use crate::lang::Catalog;
+use crate::parse::normalize::compact;
 use crate::types::{EntityRec, HomeGraph, LabelIndex};
 use std::collections::HashSet;
 
@@ -39,6 +40,31 @@ pub(super) fn content_candidates(tokens: &[String], index: &LabelIndex) -> Vec<u
         }
     }
     union.into_iter().collect()
+}
+
+/// Catalog fixture words ("skottelgoed" → dishwasher) are not stored on entity labels.
+/// Seed those rows so the indexed resolve path still scores them (parity packs).
+pub(super) fn fixture_alias_candidates(tokens: &[String], home: &HomeGraph) -> Vec<usize> {
+    let cat = catalog();
+    let needles: Vec<String> = tokens
+        .iter()
+        .flat_map(|token| cat.fixture_alias(token).iter().copied())
+        .map(compact)
+        .filter(|alias| alias.len() >= 5 && !cat.generic().contains(&alias.as_str()))
+        .collect::<HashSet<_>>()
+        .into_iter()
+        .collect();
+    if needles.is_empty() {
+        return Vec::new();
+    }
+    home.entities
+        .iter()
+        .enumerate()
+        .filter_map(|(index, entity)| {
+            let name = compact(&entity.name);
+            needles.iter().any(|alias| name.contains(alias)).then_some(index)
+        })
+        .collect()
 }
 
 pub(super) fn entities_for_indices<'a>(home: &'a HomeGraph, indices: &[usize]) -> Vec<&'a EntityRec> {
