@@ -105,9 +105,10 @@ fn followup_action(tokens: &[String], session: &Session) -> Action {
     if catalog().any(tokens, catalog().off_words()) {
         return Action::Off;
     }
+    // Bare "and the kitchen too" stays a positive command — do not inherit a prior
+    // TurnOff ("Alle Lichter aus" / "turn off all the lights").
     match session.last.first().map(|turn| turn.name.as_str()) {
         Some("HassLightSet") => Action::SetLight,
-        Some("HassTurnOff") => Action::Off,
         Some("HassClimateSetTemperature") => Action::SetTemp,
         Some("HassFanSetSpeed") => Action::FanSpeed,
         Some("HassTurnOn") | Some("HassToggle") => Action::On,

@@ -192,11 +192,13 @@ pub(super) fn resolve_from_candidates(
         && !catalog().any(tokens, catalog().light_plural())
         && !catalog().any(tokens, catalog().room_level())
     {
+        if let Some(picked) = pick_fixture(tokens, home, scope) {
+            return Resolved { areas, floors, entities: picked, ambiguous: Vec::new(), ask_areas: Vec::new() };
+        }
         let lights: Vec<EntityRec> = home
             .entities
             .iter()
-            .filter(|e| assist_visible(e, home))
-            .filter(|e| e.domain == "light" && e.area.as_ref().is_some_and(|a| scope.contains(a)))
+            .filter(|e| assist_visible(e, home) && e.domain == "light" && e.area.as_ref().is_some_and(|a| scope.contains(a)))
             .cloned()
             .collect();
         if lights.len() > 1 {

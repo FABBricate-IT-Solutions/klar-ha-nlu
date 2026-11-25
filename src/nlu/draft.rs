@@ -137,8 +137,11 @@ pub(super) fn replay_or_decide(
                 let name = if context.catalog.any(tokens, context.catalog.replay_off()) { "HassTurnOff" } else { "HassTurnOn" };
                 intents.push(Intent::new(name).with("entity_id", previous));
             }
-        } else if crate::parse::clause_session::which_lights_query(tokens) {
+        } else if crate::parse::clause_session::which_lights_query(tokens)
+            && !crate::parse::clause_session::session_has_light_areas(context.session, context.home)
+        {
             // Ranking sometimes drops the list-status candidate; keep the ask (P-13).
+            // Skip when prior light rooms exist — SessionAreas answers those.
             let mut intent = Intent::new("HassGetState").with("domain", "light").with("response", "list");
             if context.catalog.any(tokens, context.catalog.on_words()) {
                 intent = intent.with("state", "on");

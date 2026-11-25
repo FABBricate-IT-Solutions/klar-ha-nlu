@@ -216,6 +216,10 @@ fn named_scene(ctx: &Clause) -> Option<ClauseOut> {
 
 fn all_lights(ctx: &Clause) -> Option<ClauseOut> {
     if which_lights_query(ctx.tokens) {
+        // After multi-turn light commands, SessionAreas answers per prior room.
+        if crate::parse::clause_session::session_has_light_areas(ctx.session, ctx.home) {
+            return None;
+        }
         return lights_status_list(ctx);
     }
     if !ctx.resolved.floors.is_empty() && ctx.resolved.areas.is_empty() {

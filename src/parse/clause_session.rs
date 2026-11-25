@@ -107,7 +107,21 @@ fn allows_session_replay(ctx: &Clause) -> bool {
 
 pub(crate) fn which_lights_query(tokens: &[String]) -> bool {
     let cat = catalog();
-    wants_status_query(tokens) && (cat.any(tokens, cat.light_plural()) || crate::parse::action::has_light_noun(tokens))
+    if !(cat.any(tokens, cat.light_plural()) || crate::parse::action::has_light_noun(tokens)) {
+        return false;
+    }
+    // True list asks only: which / are any / how many — not "status of the lights"
+    // or named group "Alle Lichter" (those stay entity GetState).
+    let which = tokens.iter().any(|token| matches!(token.as_str(), "which" | "welche" | "welcher" | "welches" | "welchen" | "welch"));
+    let how_many = tokens
+        .windows(2)
+        .any(|pair| (pair[0] == "how" && pair[1] == "many") || (pair[0] == "wie" && matches!(pair[1].as_str(), "viele" | "viel")));
+    let any_on = tokens.iter().any(|token| matches!(token.as_str(), "any" | "irgendwelche" | "irgendeine" | "irgendein"));
+    (which || how_many || any_on) && wants_status_query(tokens)
+}
+
+pub(crate) fn session_has_light_areas(session: &Session, home: &HomeGraph) -> bool {
+    !session_light_areas(session, home).is_empty()
 }
 
 fn session_light_areas(session: &Session, home: &HomeGraph) -> Vec<String> {

@@ -311,6 +311,20 @@ pub(crate) fn looks_like_correction(tokens: &[String]) -> bool {
         })
 }
 
+pub(crate) fn fixture_word_hit(tokens: &[String], entity: &EntityRec) -> bool {
+    let cat = catalog();
+    tokens.iter().any(|token| {
+        let needle = token.as_str();
+        let fixture = needle == "lamp"
+            || cat.lamp_fixture().contains(needle)
+            || cat.ceiling().contains(needle)
+            || cat.island().contains(needle)
+            || cat.bedside().contains(needle)
+            || cat.pendant().contains(needle);
+        fixture && fixture_matches(entity, needle)
+    })
+}
+
 pub(crate) fn fixture_matches(entity: &EntityRec, needle: &str) -> bool {
     let blob = format!("{} {} {}", entity.entity_id, fold_umlaut(&entity.name), entity.aliases.join(" "));
     let hits = fixture_aliases(needle);

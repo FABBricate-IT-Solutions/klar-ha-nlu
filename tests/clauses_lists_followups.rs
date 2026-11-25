@@ -194,3 +194,24 @@ fn p35_pause_music_with_sole_unlabelled_player() {
     let out = Talk::new("en", &home).without_confirm().say("Pause the music");
     acts(&out, &home, &["HassMediaPause media_player.kitchen_speaker"]);
 }
+
+#[test]
+fn dual_named_living_lights_both_kept() {
+    let home = home(
+        vec![area("living", "Living Room")],
+        vec![ent("light.living_ceiling", "living room ceiling", "living"), ent("light.living_lamp", "living room lamp", "living")],
+        &[],
+    );
+    for text in [
+        "turn on the living room ceiling light and turn on the living room lamp light",
+        "turn off the living room ceiling light and turn off the living room lamp light",
+    ] {
+        let out = Talk::new("en", &home).without_confirm().say(text);
+        let intents = out.plan.as_ref().map(|plan| plan.intents()).unwrap_or_default();
+        let ids: BTreeSet<_> = intents.iter().filter_map(|i| i.slot("entity_id")).collect();
+        let area_light = intents.iter().any(|i| i.slot("area") == Some("living") && i.slot("domain") == Some("light"));
+        // P-32 must not drop the second fixture: either both entity ids, or ceiling
+        // plus a living/light area step that still covers the lamp (suite target_ok).
+        assert!(ids.contains("light.living_ceiling") && (ids.contains("light.living_lamp") || area_light), "{text}: {}", describe(&out));
+    }
+}

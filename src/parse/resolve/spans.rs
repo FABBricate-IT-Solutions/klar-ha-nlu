@@ -424,7 +424,26 @@ pub(crate) fn take_linked(
         let light_name_echo =
             linked_light && extra_light && !extra_cover && entities.iter().any(|entity| fully_named(tokens, entity, home));
         if same_kind && !light_name_echo {
-            if areas.is_empty() {
+            // Area collapse ("living room" → "living") can break fully_named while a
+            // fixture word ("lamp" / "ceiling") still uniquely names one linked light.
+            let fixture_hits: Vec<EntityRec> = entities
+                .iter()
+                .chain(ambiguous.iter())
+                .filter(|entity| entity.domain == "light" && crate::parse::infer::fixture_word_hit(tokens, entity))
+                .cloned()
+                .collect();
+            if fixture_hits.len() == 1 {
+                return Some(super::Resolved {
+                    areas: areas.to_vec(),
+                    floors: floors.to_vec(),
+                    entities: fixture_hits,
+                    ambiguous: Vec::new(),
+                    ask_areas: Vec::new(),
+                });
+            }
+            // Fixture word present but not fully_named after area collapse — let
+            // pick_fixture name it instead of wiping to a room-wide area command.
+            if areas.is_empty() || cat.any(tokens, cat.lamp_fixture()) || cat.any(tokens, cat.ceiling()) {
                 return None;
             }
             return Some(super::Resolved {

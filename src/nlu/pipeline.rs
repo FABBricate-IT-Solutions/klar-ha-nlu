@@ -9,8 +9,11 @@ use crate::types::{
     Evidence, Intent, IntentCandidate, IntentPlan, ParseDecision, ParseOutcome, ParseTrace, PolicyTraceDiscarded, PolicyTraceMatch,
     RejectReason, StageTrace,
 };
-use std::collections::BTreeSet;
 use std::time::Instant;
+
+#[path = "intent_dedup.rs"]
+mod intent_dedup;
+use intent_dedup::dedup_intents;
 
 use super::answer::MAX_ANSWER_WORDS;
 use super::binding::{build_analyses, MAX_CLAUSES};
@@ -458,36 +461,6 @@ fn paired_lock_command(tokens: &[String]) -> bool {
     let cat = crate::lang::catalog();
     tokens.iter().any(|token| cat.is_conj(token))
         && (cat.any(tokens, cat.lock_nouns()) || cat.any(tokens, cat.door_nouns()) || cat.any(tokens, cat.lock_verbs()))
-}
-
-fn dedup_intents(intents: &mut Vec<Intent>, home: &crate::types::HomeGraph) {
-    let mut seen = BTreeSet::new();
-    intents.retain(|intent| {
-        let entity_domain = intent.slot("entity_id").and_then(|id| id.split_once('.').map(|(domain, _)| domain));
-        let mut slots: Vec<_> = intent
-            .slots
-            .iter()
-            .filter(|slot| slot.name != "domain" || entity_domain != Some(slot.value.as_str()))
-            .map(|slot| format!("{}={}", slot.name, slot.value))
-            .collect();
-        slots.sort();
-        seen.insert(format!("{}|{}", intent.name, slots.join("|")))
-    });
-    // Drop area-scoped steps already covered by an entity in that room (P-32).
-    let covered: BTreeSet<_> = intents
-        .iter()
-        .filter_map(|intent| {
-            let entity = home.entities.iter().find(|entity| Some(entity.entity_id.as_str()) == intent.slot("entity_id"))?;
-            Some((intent.name.as_str(), entity.area.as_deref()?, entity.domain.as_str()))
-        })
-        .map(|(name, area, domain)| (name.to_string(), area.to_string(), domain.to_string()))
-        .collect();
-    intents.retain(|intent| {
-        intent.slot("entity_id").is_some()
-            || intent
-                .slot("area")
-                .is_none_or(|area| !covered.contains(&(intent.name.clone(), area.into(), intent.slot("domain").unwrap_or("").into())))
-    });
 }
 
 fn record_stage(trace: &mut ParseTrace, stage: &str, started: Instant, detail: String) {
