@@ -197,7 +197,14 @@ pub(crate) fn detect_actions_bounded(tokens: &[String], maximum: usize) -> Vec<(
             Some(VerbKind::List) => Some(list_action(tokens)),
             Some(VerbKind::Add) => add_action(tokens),
             Some(VerbKind::ListComplete) => Some(Action::ListComplete),
-            Some(VerbKind::ListRemove) => has_list_noun(tokens).then_some(Action::ListRemove),
+            Some(VerbKind::ListRemove) => {
+                // "add take out the trash to chores": keep ListAdd; "take" is the item (P-18).
+                if tokens.iter().any(|token| matches!(cat.verb(token), Some(VerbKind::Add))) {
+                    None
+                } else {
+                    has_list_noun(tokens).then_some(Action::ListRemove)
+                }
+            }
             Some(VerbKind::Make) => Some(if crate::parse::quantity::is_relative_temp(tokens) {
                 Action::SetTemp
             } else if crate::parse::numbers::first_number(tokens).is_some() {

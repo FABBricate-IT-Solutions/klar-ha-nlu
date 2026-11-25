@@ -229,7 +229,7 @@ pub(crate) fn fill_intent(
             }
         }
         Action::ListAdd | Action::ListComplete | Action::ListRemove => {
-            if let Some(item) = list_item(tokens, None) {
+            if let Some(item) = list_item(tokens, None, action) {
                 intent = intent.with("item", item);
             }
             if entity_id.is_none() {
@@ -241,33 +241,88 @@ pub(crate) fn fill_intent(
     intent
 }
 
-pub(crate) fn fill_list_intent(action: Action, tokens: &[String], target: Option<&EntityRec>) -> Intent {
-    let mut intent = intent_from_action(action, tokens);
-    if let Some(entity) = target {
-        intent = intent.with("entity_id", &entity.entity_id);
-    } else {
-        intent = intent.with("name", "shopping_list");
+/// One intent per list entry so "milk and eggs" becomes two adds (P-18).
+pub(crate) fn fill_list_intents(action: Action, tokens: &[String], target: Option<&EntityRec>) -> Vec<Intent> {
+    let items = list_items(tokens, target, action);
+    if items.is_empty() {
+        let mut intent = intent_from_action(action, tokens);
+        if let Some(entity) = target {
+            intent = intent.with("entity_id", &entity.entity_id);
+        } else {
+            intent = intent.with("name", "shopping_list");
+        }
+        return vec![intent];
     }
-    if let Some(item) = list_item(tokens, target) {
-        intent = intent.with("item", item);
-    }
-    intent
+    items
+        .into_iter()
+        .map(|item| {
+            let mut intent = intent_from_action(action, tokens);
+            if let Some(entity) = target {
+                intent = intent.with("entity_id", &entity.entity_id);
+            } else {
+                intent = intent.with("name", "shopping_list");
+            }
+            intent.with("item", item)
+        })
+        .collect()
 }
 
-fn list_item(tokens: &[String], target: Option<&EntityRec>) -> Option<String> {
+fn list_items(tokens: &[String], target: Option<&EntityRec>, action: Action) -> Vec<String> {
+    let Some(joined) = list_item(tokens, target, action) else {
+        return Vec::new();
+    };
+    if !matches!(action, Action::ListAdd) {
+        return vec![joined];
+    }
+    split_list_entries(&joined)
+}
+
+fn split_list_entries(joined: &str) -> Vec<String> {
+    let mut entries = Vec::new();
+    let mut buf = String::new();
+    for word in joined.split_whitespace() {
+        if catalog().is_conj(word) {
+            let item = buf.trim().to_string();
+            if !item.is_empty() {
+                entries.push(item);
+            }
+            buf.clear();
+            continue;
+        }
+        if !buf.is_empty() {
+            buf.push(' ');
+        }
+        buf.push_str(word);
+    }
+    let item = buf.trim().to_string();
+    if !item.is_empty() {
+        entries.push(item);
+    }
+    if entries.is_empty() {
+        vec![joined.to_string()]
+    } else {
+        entries
+    }
+}
+
+fn list_item(tokens: &[String], target: Option<&EntityRec>, action: Action) -> Option<String> {
     let cat = catalog();
+    // Keep "take out" inside an add item; strip remove verbs only for remove/complete (P-18).
+    let strip_remove = matches!(action, Action::ListComplete | Action::ListRemove);
     let words: Vec<&str> = tokens
         .iter()
         .map(String::as_str)
         .filter(|token| {
-            !cat.list_skip().contains(token)
-                && !cat.list_nouns().contains(token)
-                && !cat.shopping_names().contains(token)
-                && !matches!(
-                    cat.verb(token),
-                    Some(VerbKind::Add | VerbKind::ListComplete | VerbKind::ListRemove | VerbKind::Stop | VerbKind::List)
-                )
-                && !target.is_some_and(|entity| target_label_token(token, entity))
+            if strip_remove && (*token == "out" || *token == "raus") {
+                return false;
+            }
+            let skip_verb = matches!(cat.verb(token), Some(VerbKind::Add | VerbKind::ListComplete | VerbKind::Stop | VerbKind::List))
+                || (strip_remove && matches!(cat.verb(token), Some(VerbKind::ListRemove)));
+            !(cat.list_skip().contains(token)
+                || cat.list_nouns().contains(token)
+                || cat.shopping_names().contains(token)
+                || skip_verb
+                || target.is_some_and(|entity| target_label_token(token, entity)))
         })
         .collect();
     if words.is_empty() {

@@ -68,7 +68,9 @@ fn validate_target(intent: &Intent, home: &HomeGraph) -> Result<(), PlanInvalid>
         return Err(PlanInvalid::Schema);
     }
     let window_query = intent.name == "HassGetState" && domain == Some("binary_sensor") && intent.slot("device_class") == Some("window");
-    if requires_target(&intent.name) && !window_query && entity_id.is_none() && area.is_none() && floor.is_none() {
+    // Whole-home light list asks ("which lights are on") name a domain + response, no room (P-13).
+    let lights_list_query = intent.name == "HassGetState" && domain == Some("light") && intent.slot("response") == Some("list");
+    if requires_target(&intent.name) && !window_query && !lights_list_query && entity_id.is_none() && area.is_none() && floor.is_none() {
         return Err(PlanInvalid::MissingTarget);
     }
     if super::reach::unbounded(intent) {

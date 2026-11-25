@@ -156,7 +156,7 @@ fn decide(context: &ParseContext<'_>) -> PipelineResult {
     record_stage(&mut trace, "ranking", started, format!("{} ranked candidates", ranking.candidates.len()));
     let clarify = ranking.clarification.clone();
     let mut intents = ranking.selected.as_ref().map_or_else(Vec::new, |candidate| candidate.plan.intents());
-    dedup_intents(&mut intents);
+    dedup_intents(&mut intents, context.home);
     let selected_plan = ranking.selected.as_ref().map(|candidate| candidate.plan.clone());
     let draft = if let Some((options, template)) = clarify {
         let prompt =
@@ -460,18 +460,33 @@ fn paired_lock_command(tokens: &[String]) -> bool {
         && (cat.any(tokens, cat.lock_nouns()) || cat.any(tokens, cat.door_nouns()) || cat.any(tokens, cat.lock_verbs()))
 }
 
-fn dedup_intents(intents: &mut Vec<Intent>) {
+fn dedup_intents(intents: &mut Vec<Intent>, home: &crate::types::HomeGraph) {
     let mut seen = BTreeSet::new();
     intents.retain(|intent| {
-        let entity_domain = intent.slot("entity_id").and_then(|entity_id| entity_id.split_once('.').map(|(domain, _)| domain));
-        let mut slots = intent
+        let entity_domain = intent.slot("entity_id").and_then(|id| id.split_once('.').map(|(domain, _)| domain));
+        let mut slots: Vec<_> = intent
             .slots
             .iter()
             .filter(|slot| slot.name != "domain" || entity_domain != Some(slot.value.as_str()))
             .map(|slot| format!("{}={}", slot.name, slot.value))
-            .collect::<Vec<_>>();
+            .collect();
         slots.sort();
         seen.insert(format!("{}|{}", intent.name, slots.join("|")))
+    });
+    // Drop area-scoped steps already covered by an entity in that room (P-32).
+    let covered: BTreeSet<_> = intents
+        .iter()
+        .filter_map(|intent| {
+            let entity = home.entities.iter().find(|entity| Some(entity.entity_id.as_str()) == intent.slot("entity_id"))?;
+            Some((intent.name.as_str(), entity.area.as_deref()?, entity.domain.as_str()))
+        })
+        .map(|(name, area, domain)| (name.to_string(), area.to_string(), domain.to_string()))
+        .collect();
+    intents.retain(|intent| {
+        intent.slot("entity_id").is_some()
+            || intent
+                .slot("area")
+                .is_none_or(|area| !covered.contains(&(intent.name.clone(), area.into(), intent.slot("domain").unwrap_or("").into())))
     });
 }
 

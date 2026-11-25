@@ -352,6 +352,14 @@ fn player_pool<'a>(home: &'a HomeGraph, tokens: &[String], mass_only: bool) -> V
     if !mass.is_empty() {
         return mass;
     }
+    if !music.is_empty() {
+        return music;
+    }
+    // P-35: sole non-TV player for untagged "Pause the music".
+    let solo: Vec<_> = home.entities.iter().filter(|e| eligible_media_player(e, home) && !looks_like_tv(e)).collect();
+    if music_request(tokens) && solo.len() == 1 {
+        return solo;
+    }
     music
 }
 

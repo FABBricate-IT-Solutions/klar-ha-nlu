@@ -137,6 +137,15 @@ pub(super) fn replay_or_decide(
                 let name = if context.catalog.any(tokens, context.catalog.replay_off()) { "HassTurnOff" } else { "HassTurnOn" };
                 intents.push(Intent::new(name).with("entity_id", previous));
             }
+        } else if crate::parse::clause_session::which_lights_query(tokens) {
+            // Ranking sometimes drops the list-status candidate; keep the ask (P-13).
+            let mut intent = Intent::new("HassGetState").with("domain", "light").with("response", "list");
+            if context.catalog.any(tokens, context.catalog.on_words()) {
+                intent = intent.with("state", "on");
+            } else if context.catalog.any(tokens, context.catalog.off_words()) {
+                intent = intent.with("state", "off");
+            }
+            intents.push(intent);
         } else if context.catalog.any(tokens, context.catalog.on_words()) || context.catalog.any(tokens, context.catalog.off_words()) {
             let named_target = {
                 let resolved = crate::parse::resolve::resolve(tokens, context.home, None);

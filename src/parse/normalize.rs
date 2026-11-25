@@ -2,10 +2,15 @@ use crate::lang::catalog;
 use crate::types::AreaRec;
 
 /// Fold German umlauts and common European accents so packs can list ASCII tokens.
+/// Full-width Latin (ASR / mobile keyboards) is folded to ASCII first (P-29).
 pub fn fold_latin(s: &str) -> String {
     let mut out = String::with_capacity(s.len());
     // Lower case first: "Éteins" at the start of a sentence folds like "éteins".
     for c in s.chars().flat_map(char::to_lowercase) {
+        let c = match c {
+            '\u{FF01}'..='\u{FF5E}' => char::from_u32(u32::from(c) - 0xFEE0).unwrap_or(c),
+            other => other,
+        };
         match c {
             // Phones type curly apostrophes.
             '\u{2019}' | '\u{2018}' => out.push('\''),
@@ -138,10 +143,21 @@ fn is_word_mark(c: char) -> bool {
 
 pub fn tokenize(text: &str) -> Vec<String> {
     let folded = fold_latin(text);
-    if folded.chars().any(is_script_unit) {
-        tokenize_script(&folded)
-    } else {
-        tokenize_latin(&folded)
+    let mut tokens = if folded.chars().any(is_script_unit) { tokenize_script(&folded) } else { tokenize_latin(&folded) };
+    repair_asr_off(&mut tokens);
+    tokens
+}
+
+/// ASR often hears "off" as "of" ("turn of the hall light"). Rewrite when a power verb
+/// is present and "off" is not (P-29).
+fn repair_asr_off(tokens: &mut [String]) {
+    let has_power = tokens.iter().any(|token| matches!(token.as_str(), "turn" | "switch" | "schalte" | "mach"));
+    let has_off = tokens.iter().any(|token| token == "off" || token == "aus");
+    if !has_power || has_off {
+        return;
+    }
+    if let Some(token) = tokens.iter_mut().find(|token| token.as_str() == "of") {
+        *token = "off".into();
     }
 }
 
@@ -379,6 +395,12 @@ mod tests {
     fn latin_tokenize_stays_space_split() {
         assert_eq!(tokenize("Licht im Wohnzimmer an"), vec!["licht", "im", "wohnzimmer", "an"]);
         assert_eq!(tokenize("Turn on the kitchen light"), vec!["turn", "on", "the", "kitchen", "light"]);
+    }
+
+    #[test]
+    fn fullwidth_latin_and_asr_of_become_off() {
+        assert_eq!(tokenize("ｔｕｒｎ ｏｆｆ ｔｈｅ ｈａｌｌ ｌｉｇｈｔ"), vec!["turn", "off", "the", "hall", "light"]);
+        assert_eq!(tokenize("turn of the hall light"), vec!["turn", "off", "the", "hall", "light"]);
     }
 
     #[test]

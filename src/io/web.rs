@@ -130,9 +130,13 @@ async fn api_parse(
     let policies = state.policies.lock().await.clone();
     let speech_bank = state.speech_bank.lock().await.clone();
     let match_controls = state.match_controls.lock().await.clone();
+    // Seed follow-ups before preferred_area is set would miss the satellite hint (P-23).
     let mut session = {
         let mut sessions = state.sessions.lock().await;
-        sessions.take(body.conversation_id.as_deref())
+        match body.preferred_area.as_deref().filter(|area| !area.is_empty()) {
+            Some(area) => sessions.take_with_area(body.conversation_id.as_deref(), area),
+            None => sessions.take(body.conversation_id.as_deref()),
+        }
     };
     session.preferred_area = body.preferred_area.clone();
     let outcome = parse_with_controls(&body.text, &home, &mut session, &custom, &settings, &policies, &speech_bank, &match_controls);

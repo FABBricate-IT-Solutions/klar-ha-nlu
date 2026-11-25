@@ -6,7 +6,7 @@ use crate::parse::also::guess_action;
 use crate::parse::clause_area::{
     area_command, area_slots, grounded_ambiguous, grounded_areas, grounded_entities, multi_area, query_area, query_ungrounded,
 };
-use crate::parse::clause_session::{session_areas, session_climate_cover, session_entities};
+use crate::parse::clause_session::{session_areas, session_climate_cover, session_entities, which_lights_query};
 use crate::parse::clause_support::{named_instead_of_light, named_scene_policy, preferred_area_domain, resolve_targets};
 use crate::parse::compound::apply_compound_light;
 use crate::parse::infer::{except_tail, infer_action_in, looks_like_named_device, looks_like_question, prefer_action, wants_all_lights};
@@ -19,7 +19,7 @@ use crate::parse::resolve::{
     light_rooms_for_clarify,
 };
 use crate::parse::resolve::{free_tokens, link_named_spans};
-use crate::parse::slots::{all_lights_clause, fill_intent, fill_list_intent, intent_from_action, ClauseOut};
+use crate::parse::slots::{all_lights_clause, fill_intent, fill_list_intents, intent_from_action, ClauseOut};
 use crate::parse::split::follow_fixture;
 use crate::session::Session;
 use crate::types::{HomeGraph, Intent, Settings, UnitSystem};
@@ -69,7 +69,10 @@ pub(crate) fn parse_clause_candidates_for_action(
     let command = prefer_action(&actions);
     let hard = is_hard_command(command, &value_tokens);
     let guessed = forced_action.unwrap_or_else(|| {
-        if crate::parse::compound::named_scene_or_script(tokens, home).is_some()
+        if which_lights_query(tokens) {
+            // "which lights are on" is a list status ask, not TurnOn (P-13).
+            Action::GetState
+        } else if crate::parse::compound::named_scene_or_script(tokens, home).is_some()
             && !(cat.any(tokens, cat.question_words()) || tokens.first().is_some_and(|token| cat.is_question_start(token)))
         {
             Action::Scene
@@ -92,6 +95,7 @@ pub(crate) fn parse_clause_candidates_for_action(
     let mut resolved = resolve_targets(tokens, home, settings, domain, early);
     apply_compound_light(home, tokens, light_areas, &mut resolved);
     crate::parse::resolve::narrow_shared_rooms(&mut resolved, tokens, home, session.preferred_area.as_deref());
+    narrow_to_satellite(&mut resolved, tokens, session.preferred_area.as_deref(), domain, early);
     let target = resolved.entities.first().map(|e| e.domain.as_str());
     let action = match target {
         Some(domain) => infer_action_in(guessed, tokens, number, question, session, Some(domain), Some(home)),
@@ -202,7 +206,8 @@ fn list(ctx: &Clause) -> Option<ClauseOut> {
     {
         return Some(ClauseOut::Intents(Vec::new()));
     }
-    Some(ClauseOut::Intents(vec![fill_list_intent(ctx.action, ctx.tokens, target)]))
+    let intents = fill_list_intents(ctx.action, ctx.tokens, target);
+    (!intents.is_empty()).then_some(ClauseOut::Intents(intents))
 }
 
 fn named_scene(ctx: &Clause) -> Option<ClauseOut> {
@@ -210,10 +215,28 @@ fn named_scene(ctx: &Clause) -> Option<ClauseOut> {
 }
 
 fn all_lights(ctx: &Clause) -> Option<ClauseOut> {
+    if which_lights_query(ctx.tokens) {
+        return lights_status_list(ctx);
+    }
     if !ctx.resolved.floors.is_empty() && ctx.resolved.areas.is_empty() {
         return None;
     }
     all_lights_clause(ctx.tokens, ctx.home, ctx.action, ctx.number, &ctx.resolved.areas)
+}
+
+/// "which lights are on" / "are any lights on": list status, never a TurnOn clarify (P-13).
+fn lights_status_list(ctx: &Clause) -> Option<ClauseOut> {
+    let cat = catalog();
+    let mut intent = Intent::new("HassGetState").with("domain", "light").with("response", "list");
+    if cat.any(ctx.tokens, cat.on_words()) {
+        intent = intent.with("state", "on");
+    } else if cat.any(ctx.tokens, cat.off_words()) {
+        intent = intent.with("state", "off");
+    }
+    if let Some(area) = ctx.resolved.areas.first() {
+        intent = intent.with("area", area);
+    }
+    Some(ClauseOut::Intents(vec![intent]))
 }
 
 fn floor_command(ctx: &Clause) -> Option<ClauseOut> {
@@ -274,6 +297,58 @@ fn preferred_area_command(ctx: &Clause) -> Option<ClauseOut> {
     let (id, area_slot, dom) = area_slots(ctx.action, area, Some(domain), ctx.home, ctx.tokens);
     let intent = fill_intent(ctx.action, ctx.tokens, ctx.number, id.as_deref(), area_slot.as_deref(), dom.as_deref());
     (intent.name != "Unknown").then(|| ClauseOut::Intents(vec![intent]))
+}
+
+/// Keep domain-noun commands ("the fan", "the blinds") in the satellite room (P-22).
+fn narrow_to_satellite(
+    resolved: &mut crate::parse::resolve::Resolved,
+    tokens: &[String],
+    preferred: Option<&str>,
+    domain: Option<&str>,
+    action: Action,
+) {
+    let Some(area) = preferred else {
+        return;
+    };
+    if !resolved.areas.is_empty() || tokens.iter().any(|token| catalog().is_all(token)) {
+        return;
+    }
+    let domain = preferred_area_domain(domain, action, tokens).or(domain);
+    let Some(domain) = domain else {
+        return;
+    };
+    if !domain_noun_only(tokens, domain) {
+        return;
+    }
+    let local: Vec<_> = resolved
+        .entities
+        .iter()
+        .chain(resolved.ambiguous.iter())
+        .filter(|entity| entity.area.as_deref() == Some(area) && entity.domain == domain)
+        .cloned()
+        .collect();
+    if !local.is_empty() {
+        resolved.entities = local;
+        resolved.ambiguous.clear();
+        return;
+    }
+    // No device in the satellite room: clear foreign hits so preferred_area_command can bind.
+    if resolved.entities.iter().chain(resolved.ambiguous.iter()).any(|entity| entity.domain == domain) {
+        resolved.entities.clear();
+        resolved.ambiguous.clear();
+    }
+}
+
+fn domain_noun_only(tokens: &[String], domain: &str) -> bool {
+    let cat = catalog();
+    match domain {
+        "light" => crate::parse::action::has_light_noun(tokens),
+        "fan" => cat.any(tokens, cat.fan_nouns()),
+        "cover" => crate::parse::action::has_cover_noun(tokens),
+        "climate" => crate::parse::action::has_climate_noun(tokens),
+        "media_player" => cat.any(tokens, cat.media_nouns()) || crate::home::roles::tv_asked(tokens),
+        _ => false,
+    }
 }
 
 fn light_rooms_clarify(ctx: &Clause) -> Option<ClauseOut> {

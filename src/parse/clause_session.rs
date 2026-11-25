@@ -105,7 +105,7 @@ fn allows_session_replay(ctx: &Clause) -> bool {
     !matches!(ctx.action, Action::GetState) || wants_status_query(ctx.tokens)
 }
 
-fn which_lights_query(tokens: &[String]) -> bool {
+pub(crate) fn which_lights_query(tokens: &[String]) -> bool {
     let cat = catalog();
     wants_status_query(tokens) && (cat.any(tokens, cat.light_plural()) || crate::parse::action::has_light_noun(tokens))
 }
@@ -203,10 +203,15 @@ fn entity_area(home: &HomeGraph, id: &str) -> Option<String> {
 }
 
 fn visible_domain(home: &HomeGraph, id: &str, domain: Option<&str>) -> bool {
+    // Weather (and similar read-only domains) must not become "turn it off" targets (P-14).
+    if id.starts_with("weather.") {
+        return false;
+    }
     home.entities.iter().any(|entity| {
         entity.entity_id == id
             && assist_visible(entity, home)
             && !is_infra(entity)
+            && entity.domain != "weather"
             && domain.is_none_or(|wanted| entity.domain == wanted || id.starts_with(&format!("{wanted}.")))
     })
 }
