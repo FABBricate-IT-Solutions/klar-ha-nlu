@@ -9,8 +9,8 @@ import { gzipSync } from "node:zlib";
 
 const KB = 1024;
 const BUDGET = {
-  // 2942: wizard step titles for all locales (U-16) on top of 2.16 chrome. Package 2.17 splits packs out.
-  js: { raw: 2942 * KB, gzip: 790 * KB },
+  // 2947: emptyWhenRule chrome + wizard titles (U-09/U-16). Package 2.17 splits packs out.
+  js: { raw: 2947 * KB, gzip: 790 * KB },
   css: { raw: 128 * KB, gzip: 22 * KB },
 };
 
