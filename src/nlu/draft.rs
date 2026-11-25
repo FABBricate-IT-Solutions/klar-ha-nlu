@@ -422,7 +422,7 @@ pub(super) fn decide_execute_plan(
     overlay: (&[crate::types::PolicyRule], &crate::types::SpeechBank),
 ) -> Draft {
     let session = crate::session::Session::new();
-    let catalog = crate::lang::catalog_for(&settings.languages);
+    let catalog = crate::lang::bound_catalog(settings);
     let context = ParseContext::new("test", home, &session, &[], settings, catalog).with_policies(overlay.0, overlay.1);
     let mut draft = execute_plan(&context, plan, "test", None, None, false, false);
     draft.confidence = confidence;
