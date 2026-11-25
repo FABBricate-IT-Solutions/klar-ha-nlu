@@ -88,9 +88,13 @@ def _load_config_flow() -> types.ModuleType:
     aiohttp_client = types.ModuleType("homeassistant.helpers.aiohttp_client")
     aiohttp_client.async_get_clientsession = lambda hass: None
     helpers.aiohttp_client = aiohttp_client
+    aiohttp = types.ModuleType("aiohttp")
+    aiohttp.ClientError = Exception
+    aiohttp.ClientTimeout = lambda **_kwargs: None
     package = _module(PACKAGE)
     modules = {
         "voluptuous": vol,
+        "aiohttp": aiohttp,
         "homeassistant": homeassistant,
         "homeassistant.config_entries": config_entries,
         "homeassistant.core": core,
