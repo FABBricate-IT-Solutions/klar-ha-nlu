@@ -72,19 +72,19 @@ state_persistance/area_powder_room_lights::powder_room_lights_set_brightness:
   - ' 70'
 state_persistance/device_cover_garage_door::cover_garage_door_close:
 - - gi rem garage
-  - dong
+  - dong rem garage
 state_persistance/device_cover_garage_door::cover_garage_door_open:
 - - gi rem garage
-  - mo
+  - mo rem garage
 state_persistance/device_cover_garage_door::cover_garage_door_persistance_position:
 - - gi rem garage
   - '23'
 state_persistance/device_cover_living_blinds::cover_living_blinds_close:
 - - gi rem phongkhach
-  - dong
+  - dong rem phongkhach
 state_persistance/device_cover_living_blinds::cover_living_blinds_open:
 - - gi rem phongkhach
-  - mo
+  - mo rem phongkhach
 state_persistance/device_cover_living_blinds::cover_living_blinds_persistance_position:
 - - gi rem phongkhach
   - '85'
@@ -93,46 +93,46 @@ state_persistance/device_fan_family_fan::fan_family_fan_persistance_percentage:
   - ' 43'
 state_persistance/device_fan_family_fan::fan_family_fan_turn_off:
 - - gi quat phonggiadinh
-  - tat
+  - tat quat phonggiadinh
 state_persistance/device_fan_family_fan::fan_family_fan_turn_on:
 - - gi quat phonggiadinh
-  - bat
+  - bat quat phonggiadinh
 state_persistance/device_light_entryway_light::light_entryway_light_persistance_brightness:
 - - gi bongden loivao
   - '12'
 state_persistance/device_light_entryway_light::light_entryway_light_turn_off:
 - - gi bongden loivao
-  - tat
+  - tat bongden loivao
 state_persistance/device_light_entryway_light::light_entryway_light_turn_on:
 - - gi bongden loivao
-  - bat
+  - bat bongden loivao
 state_persistance/device_lock_front_door::lock_front_door_lock:
 - - gi khoa loivao
-  - khoa
+  - khoa khoa loivao
 state_persistance/device_lock_front_door::lock_front_door_unlock:
 - - gi khoa loivao
-  - mo
+  - mo khoa loivao
 state_persistance/device_lock_garage_entry::lock_garage_entry_lock:
 - - gi khoa garage
-  - khoa
+  - khoa khoa garage
 state_persistance/device_lock_garage_entry::lock_garage_entry_unlock:
 - - gi khoa garage
-  - mo
+  - mo khoa garage
 state_persistance/device_media_player_family_tv::media_player_family_tv_persistance_volume_level:
 - - gi tivi phonggiadinh
   - ' 21'
 state_persistance/device_media_player_family_tv::media_player_family_tv_turn_off:
 - - gi tivi phonggiadinh
-  - tat
+  - tat tivi phonggiadinh
 state_persistance/device_media_player_family_tv::media_player_family_tv_turn_on:
 - - gi tivi phonggiadinh
-  - bat
+  - bat tivi phonggiadinh
 state_persistance/device_media_player_living_tv::media_player_living_tv_persistance_volume_level:
 - - gi tivi phongkhach
   - ' 21'
 state_persistance/device_media_player_living_tv::media_player_living_tv_turn_off:
 - - gi tivi phongkhach
-  - tat
+  - tat tivi phongkhach
 state_persistance/device_media_player_living_tv::media_player_living_tv_turn_on:
 - - gi tivi phongkhach
-  - bat
+  - bat tivi phongkhach

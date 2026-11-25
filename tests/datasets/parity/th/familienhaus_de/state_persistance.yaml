@@ -72,19 +72,19 @@ state_persistance/area_powder_room_lights::powder_room_lights_set_brightness:
   - ' 70'
 state_persistance/device_cover_garage_door::cover_garage_door_close:
 - - อะไร ม่าน garage
-  - ปิด
+  - ปิด ม่าน garage
 state_persistance/device_cover_garage_door::cover_garage_door_open:
 - - อะไร ม่าน garage
-  - เปิด
+  - เปิด ม่าน garage
 state_persistance/device_cover_garage_door::cover_garage_door_persistance_position:
 - - อะไร ม่าน garage
   - '23'
 state_persistance/device_cover_living_blinds::cover_living_blinds_close:
 - - อะไร ม่าน ห้องนั่งเล่น
-  - ปิด
+  - ปิด ม่าน ห้องนั่งเล่น
 state_persistance/device_cover_living_blinds::cover_living_blinds_open:
 - - อะไร ม่าน ห้องนั่งเล่น
-  - เปิด
+  - เปิด ม่าน ห้องนั่งเล่น
 state_persistance/device_cover_living_blinds::cover_living_blinds_persistance_position:
 - - อะไร ม่าน ห้องนั่งเล่น
   - '85'
@@ -93,46 +93,46 @@ state_persistance/device_fan_family_fan::fan_family_fan_persistance_percentage:
   - ' 43'
 state_persistance/device_fan_family_fan::fan_family_fan_turn_off:
 - - อะไร พัดลม hongkhropkhrua
-  - ปิด
+  - ปิด พัดลม hongkhropkhrua
 state_persistance/device_fan_family_fan::fan_family_fan_turn_on:
 - - อะไร พัดลม hongkhropkhrua
-  - เปิด
+  - เปิด พัดลม hongkhropkhrua
 state_persistance/device_light_entryway_light::light_entryway_light_persistance_brightness:
 - - อะไร ไฟ thangkhau
   - '12'
 state_persistance/device_light_entryway_light::light_entryway_light_turn_off:
 - - อะไร ไฟ thangkhau
-  - ปิด
+  - ปิด ไฟ thangkhau
 state_persistance/device_light_entryway_light::light_entryway_light_turn_on:
 - - อะไร ไฟ thangkhau
-  - เปิด
+  - เปิด ไฟ thangkhau
 state_persistance/device_lock_front_door::lock_front_door_lock:
 - - อะไร กุญแจ thangkhau
-  - กุญแจ
+  - กุญแจ กุญแจ thangkhau
 state_persistance/device_lock_front_door::lock_front_door_unlock:
 - - อะไร กุญแจ thangkhau
-  - เปิด
+  - เปิด กุญแจ thangkhau
 state_persistance/device_lock_garage_entry::lock_garage_entry_lock:
 - - อะไร กุญแจ garage
-  - กุญแจ
+  - กุญแจ กุญแจ garage
 state_persistance/device_lock_garage_entry::lock_garage_entry_unlock:
 - - อะไร กุญแจ garage
-  - เปิด
+  - เปิด กุญแจ garage
 state_persistance/device_media_player_family_tv::media_player_family_tv_persistance_volume_level:
 - - อะไร thorathat hongkhropkhrua
   - ' 21'
 state_persistance/device_media_player_family_tv::media_player_family_tv_turn_off:
 - - อะไร thorathat hongkhropkhrua
-  - ปิด
+  - ปิด thorathat hongkhropkhrua
 state_persistance/device_media_player_family_tv::media_player_family_tv_turn_on:
 - - อะไร thorathat hongkhropkhrua
-  - เปิด
+  - เปิด thorathat hongkhropkhrua
 state_persistance/device_media_player_living_tv::media_player_living_tv_persistance_volume_level:
 - - อะไร thorathat ห้องนั่งเล่น
   - ' 21'
 state_persistance/device_media_player_living_tv::media_player_living_tv_turn_off:
 - - อะไร thorathat ห้องนั่งเล่น
-  - ปิด
+  - ปิด thorathat ห้องนั่งเล่น
 state_persistance/device_media_player_living_tv::media_player_living_tv_turn_on:
 - - อะไร thorathat ห้องนั่งเล่น
-  - เปิด
+  - เปิด thorathat ห้องนั่งเล่น

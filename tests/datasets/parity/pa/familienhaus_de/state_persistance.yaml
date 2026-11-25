@@ -72,19 +72,19 @@ state_persistance/area_powder_room_lights::powder_room_lights_set_brightness:
   - ' 70'
 state_persistance/device_cover_garage_door::cover_garage_door_close:
 - - ਕੀ ਪਰਦਾ garage
-  - ਬੰਦਕਰ
+  - ਬੰਦਕਰ ਪਰਦਾ garage
 state_persistance/device_cover_garage_door::cover_garage_door_open:
 - - ਕੀ ਪਰਦਾ garage
-  - ਖੋਲ੍ਹ
+  - ਖੋਲ੍ਹ ਪਰਦਾ garage
 state_persistance/device_cover_garage_door::cover_garage_door_persistance_position:
 - - ਕੀ ਪਰਦਾ garage
   - '23'
 state_persistance/device_cover_living_blinds::cover_living_blinds_close:
 - - ਕੀ ਪਰਦਾ ਬੈਠਕ
-  - ਬੰਦਕਰ
+  - ਬੰਦਕਰ ਪਰਦਾ ਬੈਠਕ
 state_persistance/device_cover_living_blinds::cover_living_blinds_open:
 - - ਕੀ ਪਰਦਾ ਬੈਠਕ
-  - ਖੋਲ੍ਹ
+  - ਖੋਲ੍ਹ ਪਰਦਾ ਬੈਠਕ
 state_persistance/device_cover_living_blinds::cover_living_blinds_persistance_position:
 - - ਕੀ ਪਰਦਾ ਬੈਠਕ
   - '85'
@@ -93,46 +93,46 @@ state_persistance/device_fan_family_fan::fan_family_fan_persistance_percentage:
   - ' 43'
 state_persistance/device_fan_family_fan::fan_family_fan_turn_off:
 - - ਕੀ ਪੱਖਾ parivarak
-  - ਬੰਦ
+  - ਬੰਦ ਪੱਖਾ parivarak
 state_persistance/device_fan_family_fan::fan_family_fan_turn_on:
 - - ਕੀ ਪੱਖਾ parivarak
-  - ਚਾਲੂ
+  - ਚਾਲੂ ਪੱਖਾ parivarak
 state_persistance/device_light_entryway_light::light_entryway_light_persistance_brightness:
 - - ਕੀ ਰੋਸ਼ਨੀ dakhla
   - '12'
 state_persistance/device_light_entryway_light::light_entryway_light_turn_off:
 - - ਕੀ ਰੋਸ਼ਨੀ dakhla
-  - ਬੰਦ
+  - ਬੰਦ ਰੋਸ਼ਨੀ dakhla
 state_persistance/device_light_entryway_light::light_entryway_light_turn_on:
 - - ਕੀ ਰੋਸ਼ਨੀ dakhla
-  - ਚਾਲੂ
+  - ਚਾਲੂ ਰੋਸ਼ਨੀ dakhla
 state_persistance/device_lock_front_door::lock_front_door_lock:
 - - ਕੀ ਤਾਲਾ dakhla
-  - ਤਾਲਾ
+  - ਤਾਲਾ ਤਾਲਾ dakhla
 state_persistance/device_lock_front_door::lock_front_door_unlock:
 - - ਕੀ ਤਾਲਾ dakhla
-  - ਖੋਲ੍ਹ
+  - ਖੋਲ੍ਹ ਤਾਲਾ dakhla
 state_persistance/device_lock_garage_entry::lock_garage_entry_lock:
 - - ਕੀ ਤਾਲਾ garage
-  - ਤਾਲਾ
+  - ਤਾਲਾ ਤਾਲਾ garage
 state_persistance/device_lock_garage_entry::lock_garage_entry_unlock:
 - - ਕੀ ਤਾਲਾ garage
-  - ਖੋਲ੍ਹ
+  - ਖੋਲ੍ਹ ਤਾਲਾ garage
 state_persistance/device_media_player_family_tv::media_player_family_tv_persistance_volume_level:
 - - ਕੀ tv parivarak
   - ' 21'
 state_persistance/device_media_player_family_tv::media_player_family_tv_turn_off:
 - - ਕੀ tv parivarak
-  - ਬੰਦ
+  - ਬੰਦ tv parivarak
 state_persistance/device_media_player_family_tv::media_player_family_tv_turn_on:
 - - ਕੀ tv parivarak
-  - ਚਾਲੂ
+  - ਚਾਲੂ tv parivarak
 state_persistance/device_media_player_living_tv::media_player_living_tv_persistance_volume_level:
 - - ਕੀ tv ਬੈਠਕ
   - ' 21'
 state_persistance/device_media_player_living_tv::media_player_living_tv_turn_off:
 - - ਕੀ tv ਬੈਠਕ
-  - ਬੰਦ
+  - ਬੰਦ tv ਬੈਠਕ
 state_persistance/device_media_player_living_tv::media_player_living_tv_turn_on:
 - - ਕੀ tv ਬੈਠਕ
-  - ਚਾਲੂ
+  - ਚਾਲੂ tv ਬੈਠਕ

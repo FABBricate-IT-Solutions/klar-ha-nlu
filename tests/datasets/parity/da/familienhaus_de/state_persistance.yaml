@@ -72,19 +72,19 @@ state_persistance/area_powder_room_lights::powder_room_lights_set_brightness:
   - ' 70'
 state_persistance/device_cover_garage_door::cover_garage_door_close:
 - - hvad gardin garage
-  - luk
+  - luk gardin garage
 state_persistance/device_cover_garage_door::cover_garage_door_open:
 - - hvad gardin garage
-  - aabn
+  - aabn gardin garage
 state_persistance/device_cover_garage_door::cover_garage_door_persistance_position:
 - - hvad gardin garage
   - '23'
 state_persistance/device_cover_living_blinds::cover_living_blinds_close:
 - - hvad gardin stue
-  - luk
+  - luk gardin stue
 state_persistance/device_cover_living_blinds::cover_living_blinds_open:
 - - hvad gardin stue
-  - aabn
+  - aabn gardin stue
 state_persistance/device_cover_living_blinds::cover_living_blinds_persistance_position:
 - - hvad gardin stue
   - '85'
@@ -93,46 +93,46 @@ state_persistance/device_fan_family_fan::fan_family_fan_persistance_percentage:
   - ' 43'
 state_persistance/device_fan_family_fan::fan_family_fan_turn_off:
 - - hvad ventilator alrum
-  - sluk
+  - sluk ventilator alrum
 state_persistance/device_fan_family_fan::fan_family_fan_turn_on:
 - - hvad ventilator alrum
-  - taend
+  - taend ventilator alrum
 state_persistance/device_light_entryway_light::light_entryway_light_persistance_brightness:
 - - hvad lys entree
   - '12'
 state_persistance/device_light_entryway_light::light_entryway_light_turn_off:
 - - hvad lys entree
-  - sluk
+  - sluk lys entree
 state_persistance/device_light_entryway_light::light_entryway_light_turn_on:
 - - hvad lys entree
-  - taend
+  - taend lys entree
 state_persistance/device_lock_front_door::lock_front_door_lock:
 - - hvad laas entree
-  - laas
+  - laas laas entree
 state_persistance/device_lock_front_door::lock_front_door_unlock:
 - - hvad laas entree
-  - aabn
+  - aabn laas entree
 state_persistance/device_lock_garage_entry::lock_garage_entry_lock:
 - - hvad laas garage
-  - laas
+  - laas laas garage
 state_persistance/device_lock_garage_entry::lock_garage_entry_unlock:
 - - hvad laas garage
-  - aabn
+  - aabn laas garage
 state_persistance/device_media_player_family_tv::media_player_family_tv_persistance_volume_level:
 - - hvad tv alrum
   - ' 21'
 state_persistance/device_media_player_family_tv::media_player_family_tv_turn_off:
 - - hvad tv alrum
-  - sluk
+  - sluk tv alrum
 state_persistance/device_media_player_family_tv::media_player_family_tv_turn_on:
 - - hvad tv alrum
-  - taend
+  - taend tv alrum
 state_persistance/device_media_player_living_tv::media_player_living_tv_persistance_volume_level:
 - - hvad tv stue
   - ' 21'
 state_persistance/device_media_player_living_tv::media_player_living_tv_turn_off:
 - - hvad tv stue
-  - sluk
+  - sluk tv stue
 state_persistance/device_media_player_living_tv::media_player_living_tv_turn_on:
 - - hvad tv stue
-  - taend
+  - taend tv stue

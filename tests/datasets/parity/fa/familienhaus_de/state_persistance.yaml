@@ -72,19 +72,19 @@ state_persistance/area_powder_room_lights::powder_room_lights_set_brightness:
   - ' 70'
 state_persistance/device_cover_garage_door::cover_garage_door_close:
 - - چی پرده garage
-  - بسته
+  - بسته پرده garage
 state_persistance/device_cover_garage_door::cover_garage_door_open:
 - - چی پرده garage
-  - باز
+  - باز پرده garage
 state_persistance/device_cover_garage_door::cover_garage_door_persistance_position:
 - - چی پرده garage
   - '23'
 state_persistance/device_cover_living_blinds::cover_living_blinds_close:
 - - چی پرده پذیرایی
-  - بسته
+  - بسته پرده پذیرایی
 state_persistance/device_cover_living_blinds::cover_living_blinds_open:
 - - چی پرده پذیرایی
-  - باز
+  - باز پرده پذیرایی
 state_persistance/device_cover_living_blinds::cover_living_blinds_persistance_position:
 - - چی پرده پذیرایی
   - '85'
@@ -93,46 +93,46 @@ state_persistance/device_fan_family_fan::fan_family_fan_persistance_percentage:
   - ' 43'
 state_persistance/device_fan_family_fan::fan_family_fan_turn_off:
 - - چی پنکه خانواده
-  - خاموش
+  - خاموش پنکه خانواده
 state_persistance/device_fan_family_fan::fan_family_fan_turn_on:
 - - چی پنکه خانواده
-  - روشن
+  - روشن پنکه خانواده
 state_persistance/device_light_entryway_light::light_entryway_light_persistance_brightness:
 - - چی چراغ ورودی
   - '12'
 state_persistance/device_light_entryway_light::light_entryway_light_turn_off:
 - - چی چراغ ورودی
-  - خاموش
+  - خاموش چراغ ورودی
 state_persistance/device_light_entryway_light::light_entryway_light_turn_on:
 - - چی چراغ ورودی
-  - روشن
+  - روشن چراغ ورودی
 state_persistance/device_lock_front_door::lock_front_door_lock:
 - - چی قفل ورودی
-  - قفل
+  - قفل قفل ورودی
 state_persistance/device_lock_front_door::lock_front_door_unlock:
 - - چی قفل ورودی
-  - باز
+  - باز قفل ورودی
 state_persistance/device_lock_garage_entry::lock_garage_entry_lock:
 - - چی قفل garage
-  - قفل
+  - قفل قفل garage
 state_persistance/device_lock_garage_entry::lock_garage_entry_unlock:
 - - چی قفل garage
-  - باز
+  - باز قفل garage
 state_persistance/device_media_player_family_tv::media_player_family_tv_persistance_volume_level:
 - - چی تلویزیون خانواده
   - ' 21'
 state_persistance/device_media_player_family_tv::media_player_family_tv_turn_off:
 - - چی تلویزیون خانواده
-  - خاموش
+  - خاموش تلویزیون خانواده
 state_persistance/device_media_player_family_tv::media_player_family_tv_turn_on:
 - - چی تلویزیون خانواده
-  - روشن
+  - روشن تلویزیون خانواده
 state_persistance/device_media_player_living_tv::media_player_living_tv_persistance_volume_level:
 - - چی تلویزیون پذیرایی
   - ' 21'
 state_persistance/device_media_player_living_tv::media_player_living_tv_turn_off:
 - - چی تلویزیون پذیرایی
-  - خاموش
+  - خاموش تلویزیون پذیرایی
 state_persistance/device_media_player_living_tv::media_player_living_tv_turn_on:
 - - چی تلویزیون پذیرایی
-  - روشن
+  - روشن تلویزیون پذیرایی

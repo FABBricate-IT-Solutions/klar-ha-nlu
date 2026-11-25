@@ -72,19 +72,19 @@ state_persistance/area_powder_room_lights::powder_room_lights_set_brightness:
   - ' 70'
 state_persistance/device_cover_garage_door::cover_garage_door_close:
 - - cosa tenda garage
-  - chiudi
+  - chiudi tenda garage
 state_persistance/device_cover_garage_door::cover_garage_door_open:
 - - cosa tenda garage
-  - apri
+  - apri tenda garage
 state_persistance/device_cover_garage_door::cover_garage_door_persistance_position:
 - - cosa tenda garage
   - '23'
 state_persistance/device_cover_living_blinds::cover_living_blinds_close:
 - - cosa tenda soggiorno
-  - chiudi
+  - chiudi tenda soggiorno
 state_persistance/device_cover_living_blinds::cover_living_blinds_open:
 - - cosa tenda soggiorno
-  - apri
+  - apri tenda soggiorno
 state_persistance/device_cover_living_blinds::cover_living_blinds_persistance_position:
 - - cosa tenda soggiorno
   - '85'
@@ -93,46 +93,46 @@ state_persistance/device_fan_family_fan::fan_family_fan_persistance_percentage:
   - ' 43'
 state_persistance/device_fan_family_fan::fan_family_fan_turn_off:
 - - cosa ventola soggiornofam
-  - spegni
+  - spegni ventola soggiornofam
 state_persistance/device_fan_family_fan::fan_family_fan_turn_on:
 - - cosa ventola soggiornofam
-  - accendi
+  - accendi ventola soggiornofam
 state_persistance/device_light_entryway_light::light_entryway_light_persistance_brightness:
 - - cosa luce ingresso
   - '12'
 state_persistance/device_light_entryway_light::light_entryway_light_turn_off:
 - - cosa luce ingresso
-  - spegni
+  - spegni luce ingresso
 state_persistance/device_light_entryway_light::light_entryway_light_turn_on:
 - - cosa luce ingresso
-  - accendi
+  - accendi luce ingresso
 state_persistance/device_lock_front_door::lock_front_door_lock:
 - - cosa serratura ingresso
-  - blocca
+  - blocca serratura ingresso
 state_persistance/device_lock_front_door::lock_front_door_unlock:
 - - cosa serratura ingresso
-  - apri
+  - apri serratura ingresso
 state_persistance/device_lock_garage_entry::lock_garage_entry_lock:
 - - cosa serratura garage
-  - blocca
+  - blocca serratura garage
 state_persistance/device_lock_garage_entry::lock_garage_entry_unlock:
 - - cosa serratura garage
-  - apri
+  - apri serratura garage
 state_persistance/device_media_player_family_tv::media_player_family_tv_persistance_volume_level:
 - - cosa tv soggiornofam
   - ' 21'
 state_persistance/device_media_player_family_tv::media_player_family_tv_turn_off:
 - - cosa tv soggiornofam
-  - spegni
+  - spegni tv soggiornofam
 state_persistance/device_media_player_family_tv::media_player_family_tv_turn_on:
 - - cosa tv soggiornofam
-  - accendi
+  - accendi tv soggiornofam
 state_persistance/device_media_player_living_tv::media_player_living_tv_persistance_volume_level:
 - - cosa tv soggiorno
   - ' 21'
 state_persistance/device_media_player_living_tv::media_player_living_tv_turn_off:
 - - cosa tv soggiorno
-  - spegni
+  - spegni tv soggiorno
 state_persistance/device_media_player_living_tv::media_player_living_tv_turn_on:
 - - cosa tv soggiorno
-  - accendi
+  - accendi tv soggiorno

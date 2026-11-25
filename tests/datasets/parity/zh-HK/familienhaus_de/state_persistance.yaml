@@ -72,19 +72,19 @@ state_persistance/area_powder_room_lights::powder_room_lights_set_brightness:
   - ' 70'
 state_persistance/device_cover_garage_door::cover_garage_door_close:
 - - 咩 簾子 garage
-  - 合上
+  - 合上 簾子 garage
 state_persistance/device_cover_garage_door::cover_garage_door_open:
 - - 咩 簾子 garage
-  - 開啟
+  - 開啟 簾子 garage
 state_persistance/device_cover_garage_door::cover_garage_door_persistance_position:
 - - 咩 簾子 garage
   - '23'
 state_persistance/device_cover_living_blinds::cover_living_blinds_close:
 - - 咩 簾子 客廳
-  - 合上
+  - 合上 簾子 客廳
 state_persistance/device_cover_living_blinds::cover_living_blinds_open:
 - - 咩 簾子 客廳
-  - 開啟
+  - 開啟 簾子 客廳
 state_persistance/device_cover_living_blinds::cover_living_blinds_persistance_position:
 - - 咩 簾子 客廳
   - '85'
@@ -93,46 +93,46 @@ state_persistance/device_fan_family_fan::fan_family_fan_persistance_percentage:
   - ' 43'
 state_persistance/device_fan_family_fan::fan_family_fan_turn_off:
 - - 咩 風扇 jiatingfang
-  - 關閉
+  - 關閉 風扇 jiatingfang
 state_persistance/device_fan_family_fan::fan_family_fan_turn_on:
 - - 咩 風扇 jiatingfang
-  - 打開
+  - 打開 風扇 jiatingfang
 state_persistance/device_light_entryway_light::light_entryway_light_persistance_brightness:
 - - 咩 燈 xuanguan
   - '12'
 state_persistance/device_light_entryway_light::light_entryway_light_turn_off:
 - - 咩 燈 xuanguan
-  - 關閉
+  - 關閉 燈 xuanguan
 state_persistance/device_light_entryway_light::light_entryway_light_turn_on:
 - - 咩 燈 xuanguan
-  - 打開
+  - 打開 燈 xuanguan
 state_persistance/device_lock_front_door::lock_front_door_lock:
 - - 咩 鎖 xuanguan
-  - 鎖
+  - 鎖 鎖 xuanguan
 state_persistance/device_lock_front_door::lock_front_door_unlock:
 - - 咩 鎖 xuanguan
-  - 開啟
+  - 開啟 鎖 xuanguan
 state_persistance/device_lock_garage_entry::lock_garage_entry_lock:
 - - 咩 鎖 garage
-  - 鎖
+  - 鎖 鎖 garage
 state_persistance/device_lock_garage_entry::lock_garage_entry_unlock:
 - - 咩 鎖 garage
-  - 開啟
+  - 開啟 鎖 garage
 state_persistance/device_media_player_family_tv::media_player_family_tv_persistance_volume_level:
 - - 咩 dianshi jiatingfang
   - ' 21'
 state_persistance/device_media_player_family_tv::media_player_family_tv_turn_off:
 - - 咩 dianshi jiatingfang
-  - 關閉
+  - 關閉 dianshi jiatingfang
 state_persistance/device_media_player_family_tv::media_player_family_tv_turn_on:
 - - 咩 dianshi jiatingfang
-  - 打開
+  - 打開 dianshi jiatingfang
 state_persistance/device_media_player_living_tv::media_player_living_tv_persistance_volume_level:
 - - 咩 dianshi 客廳
   - ' 21'
 state_persistance/device_media_player_living_tv::media_player_living_tv_turn_off:
 - - 咩 dianshi 客廳
-  - 關閉
+  - 關閉 dianshi 客廳
 state_persistance/device_media_player_living_tv::media_player_living_tv_turn_on:
 - - 咩 dianshi 客廳
-  - 打開
+  - 打開 dianshi 客廳

@@ -72,19 +72,19 @@ state_persistance/area_powder_room_lights::powder_room_lights_set_brightness:
   - ' 70'
 state_persistance/device_cover_garage_door::cover_garage_door_close:
 - - co zaslona garage
-  - zamknij
+  - zamknij zaslona garage
 state_persistance/device_cover_garage_door::cover_garage_door_open:
 - - co zaslona garage
-  - otworz
+  - otworz zaslona garage
 state_persistance/device_cover_garage_door::cover_garage_door_persistance_position:
 - - co zaslona garage
   - '23'
 state_persistance/device_cover_living_blinds::cover_living_blinds_close:
 - - co zaslona salon
-  - zamknij
+  - zamknij zaslona salon
 state_persistance/device_cover_living_blinds::cover_living_blinds_open:
 - - co zaslona salon
-  - otworz
+  - otworz zaslona salon
 state_persistance/device_cover_living_blinds::cover_living_blinds_persistance_position:
 - - co zaslona salon
   - '85'
@@ -93,46 +93,46 @@ state_persistance/device_fan_family_fan::fan_family_fan_persistance_percentage:
   - ' 43'
 state_persistance/device_fan_family_fan::fan_family_fan_turn_off:
 - - co wentylator salonfam
-  - wylacz
+  - wylacz wentylator salonfam
 state_persistance/device_fan_family_fan::fan_family_fan_turn_on:
 - - co wentylator salonfam
-  - wlacz
+  - wlacz wentylator salonfam
 state_persistance/device_light_entryway_light::light_entryway_light_persistance_brightness:
 - - co swiatlo przedpokoj
   - '12'
 state_persistance/device_light_entryway_light::light_entryway_light_turn_off:
 - - co swiatlo przedpokoj
-  - wylacz
+  - wylacz swiatlo przedpokoj
 state_persistance/device_light_entryway_light::light_entryway_light_turn_on:
 - - co swiatlo przedpokoj
-  - wlacz
+  - wlacz swiatlo przedpokoj
 state_persistance/device_lock_front_door::lock_front_door_lock:
 - - co zamek przedpokoj
-  - zamek
+  - zamek zamek przedpokoj
 state_persistance/device_lock_front_door::lock_front_door_unlock:
 - - co zamek przedpokoj
-  - otworz
+  - otworz zamek przedpokoj
 state_persistance/device_lock_garage_entry::lock_garage_entry_lock:
 - - co zamek garage
-  - zamek
+  - zamek zamek garage
 state_persistance/device_lock_garage_entry::lock_garage_entry_unlock:
 - - co zamek garage
-  - otworz
+  - otworz zamek garage
 state_persistance/device_media_player_family_tv::media_player_family_tv_persistance_volume_level:
 - - co telewizor salonfam
   - ' 21'
 state_persistance/device_media_player_family_tv::media_player_family_tv_turn_off:
 - - co telewizor salonfam
-  - wylacz
+  - wylacz telewizor salonfam
 state_persistance/device_media_player_family_tv::media_player_family_tv_turn_on:
 - - co telewizor salonfam
-  - wlacz
+  - wlacz telewizor salonfam
 state_persistance/device_media_player_living_tv::media_player_living_tv_persistance_volume_level:
 - - co telewizor salon
   - ' 21'
 state_persistance/device_media_player_living_tv::media_player_living_tv_turn_off:
 - - co telewizor salon
-  - wylacz
+  - wylacz telewizor salon
 state_persistance/device_media_player_living_tv::media_player_living_tv_turn_on:
 - - co telewizor salon
-  - wlacz
+  - wlacz telewizor salon

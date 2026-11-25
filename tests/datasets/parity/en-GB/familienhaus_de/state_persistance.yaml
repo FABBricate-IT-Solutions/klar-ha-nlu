@@ -72,19 +72,19 @@ state_persistance/area_powder_room_lights::powder_room_lights_set_brightness:
   - ' 70'
 state_persistance/device_cover_garage_door::cover_garage_door_close:
 - - what curtain garage
-  - close
+  - close curtain garage
 state_persistance/device_cover_garage_door::cover_garage_door_open:
 - - what curtain garage
-  - open
+  - open curtain garage
 state_persistance/device_cover_garage_door::cover_garage_door_persistance_position:
 - - what curtain garage
   - '23'
 state_persistance/device_cover_living_blinds::cover_living_blinds_close:
 - - what curtain lounge
-  - close
+  - close curtain lounge
 state_persistance/device_cover_living_blinds::cover_living_blinds_open:
 - - what curtain lounge
-  - open
+  - open curtain lounge
 state_persistance/device_cover_living_blinds::cover_living_blinds_persistance_position:
 - - what curtain lounge
   - '85'
@@ -93,46 +93,46 @@ state_persistance/device_fan_family_fan::fan_family_fan_persistance_percentage:
   - ' 43'
 state_persistance/device_fan_family_fan::fan_family_fan_turn_off:
 - - what fan loungefam
-  - extinguish
+  - extinguish fan loungefam
 state_persistance/device_fan_family_fan::fan_family_fan_turn_on:
 - - what fan loungefam
-  - enable
+  - enable fan loungefam
 state_persistance/device_light_entryway_light::light_entryway_light_persistance_brightness:
 - - what light porch
   - '12'
 state_persistance/device_light_entryway_light::light_entryway_light_turn_off:
 - - what light porch
-  - extinguish
+  - extinguish light porch
 state_persistance/device_light_entryway_light::light_entryway_light_turn_on:
 - - what light porch
-  - enable
+  - enable light porch
 state_persistance/device_lock_front_door::lock_front_door_lock:
 - - what lock porch
-  - lock
+  - lock lock porch
 state_persistance/device_lock_front_door::lock_front_door_unlock:
 - - what lock porch
-  - open
+  - open lock porch
 state_persistance/device_lock_garage_entry::lock_garage_entry_lock:
 - - what lock garage
-  - lock
+  - lock lock garage
 state_persistance/device_lock_garage_entry::lock_garage_entry_unlock:
 - - what lock garage
-  - open
+  - open lock garage
 state_persistance/device_media_player_family_tv::media_player_family_tv_persistance_volume_level:
 - - what telly loungefam
   - ' 21'
 state_persistance/device_media_player_family_tv::media_player_family_tv_turn_off:
 - - what telly loungefam
-  - extinguish
+  - extinguish telly loungefam
 state_persistance/device_media_player_family_tv::media_player_family_tv_turn_on:
 - - what telly loungefam
-  - enable
+  - enable telly loungefam
 state_persistance/device_media_player_living_tv::media_player_living_tv_persistance_volume_level:
 - - what telly lounge
   - ' 21'
 state_persistance/device_media_player_living_tv::media_player_living_tv_turn_off:
 - - what telly lounge
-  - extinguish
+  - extinguish telly lounge
 state_persistance/device_media_player_living_tv::media_player_living_tv_turn_on:
 - - what telly lounge
-  - enable
+  - enable telly lounge

@@ -72,19 +72,19 @@ state_persistance/area_powder_room_lights::powder_room_lights_set_brightness:
   - ' 70'
 state_persistance/device_cover_garage_door::cover_garage_door_close:
 - - zer gortina garage
-  - itxi
+  - itxi gortina garage
 state_persistance/device_cover_garage_door::cover_garage_door_open:
 - - zer gortina garage
-  - ireki
+  - ireki gortina garage
 state_persistance/device_cover_garage_door::cover_garage_door_persistance_position:
 - - zer gortina garage
   - '23'
 state_persistance/device_cover_living_blinds::cover_living_blinds_close:
 - - zer gortina egongela
-  - itxi
+  - itxi gortina egongela
 state_persistance/device_cover_living_blinds::cover_living_blinds_open:
 - - zer gortina egongela
-  - ireki
+  - ireki gortina egongela
 state_persistance/device_cover_living_blinds::cover_living_blinds_persistance_position:
 - - zer gortina egongela
   - '85'
@@ -93,46 +93,46 @@ state_persistance/device_fan_family_fan::fan_family_fan_persistance_percentage:
   - ' 43'
 state_persistance/device_fan_family_fan::fan_family_fan_turn_off:
 - - zer haizagailua familiagela
-  - itzali
+  - itzali haizagailua familiagela
 state_persistance/device_fan_family_fan::fan_family_fan_turn_on:
 - - zer haizagailua familiagela
-  - piztu
+  - piztu haizagailua familiagela
 state_persistance/device_light_entryway_light::light_entryway_light_persistance_brightness:
 - - zer argia sarrera
   - '12'
 state_persistance/device_light_entryway_light::light_entryway_light_turn_off:
 - - zer argia sarrera
-  - itzali
+  - itzali argia sarrera
 state_persistance/device_light_entryway_light::light_entryway_light_turn_on:
 - - zer argia sarrera
-  - piztu
+  - piztu argia sarrera
 state_persistance/device_lock_front_door::lock_front_door_lock:
 - - zer sarraila sarrera
-  - sarraila
+  - sarraila sarraila sarrera
 state_persistance/device_lock_front_door::lock_front_door_unlock:
 - - zer sarraila sarrera
-  - ireki
+  - ireki sarraila sarrera
 state_persistance/device_lock_garage_entry::lock_garage_entry_lock:
 - - zer sarraila garage
-  - sarraila
+  - sarraila sarraila garage
 state_persistance/device_lock_garage_entry::lock_garage_entry_unlock:
 - - zer sarraila garage
-  - ireki
+  - ireki sarraila garage
 state_persistance/device_media_player_family_tv::media_player_family_tv_persistance_volume_level:
 - - zer tb familiagela
   - ' 21'
 state_persistance/device_media_player_family_tv::media_player_family_tv_turn_off:
 - - zer tb familiagela
-  - itzali
+  - itzali tb familiagela
 state_persistance/device_media_player_family_tv::media_player_family_tv_turn_on:
 - - zer tb familiagela
-  - piztu
+  - piztu tb familiagela
 state_persistance/device_media_player_living_tv::media_player_living_tv_persistance_volume_level:
 - - zer tb egongela
   - ' 21'
 state_persistance/device_media_player_living_tv::media_player_living_tv_turn_off:
 - - zer tb egongela
-  - itzali
+  - itzali tb egongela
 state_persistance/device_media_player_living_tv::media_player_living_tv_turn_on:
 - - zer tb egongela
-  - piztu
+  - piztu tb egongela

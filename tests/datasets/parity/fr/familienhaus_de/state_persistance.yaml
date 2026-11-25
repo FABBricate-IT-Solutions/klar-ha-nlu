@@ -72,19 +72,19 @@ state_persistance/area_powder_room_lights::powder_room_lights_set_brightness:
   - ' 70'
 state_persistance/device_cover_garage_door::cover_garage_door_close:
 - - quel store garage
-  - ferme
+  - ferme store garage
 state_persistance/device_cover_garage_door::cover_garage_door_open:
 - - quel store garage
-  - ouvre
+  - ouvre store garage
 state_persistance/device_cover_garage_door::cover_garage_door_persistance_position:
 - - quel store garage
   - '23'
 state_persistance/device_cover_living_blinds::cover_living_blinds_close:
 - - quel store salon
-  - ferme
+  - ferme store salon
 state_persistance/device_cover_living_blinds::cover_living_blinds_open:
 - - quel store salon
-  - ouvre
+  - ouvre store salon
 state_persistance/device_cover_living_blinds::cover_living_blinds_persistance_position:
 - - quel store salon
   - '85'
@@ -93,46 +93,46 @@ state_persistance/device_fan_family_fan::fan_family_fan_persistance_percentage:
   - ' 43'
 state_persistance/device_fan_family_fan::fan_family_fan_turn_off:
 - - quel ventilateur famille
-  - eteins
+  - eteins ventilateur famille
 state_persistance/device_fan_family_fan::fan_family_fan_turn_on:
 - - quel ventilateur famille
-  - allume
+  - allume ventilateur famille
 state_persistance/device_light_entryway_light::light_entryway_light_persistance_brightness:
 - - quel lumiere entree
   - '12'
 state_persistance/device_light_entryway_light::light_entryway_light_turn_off:
 - - quel lumiere entree
-  - eteins
+  - eteins lumiere entree
 state_persistance/device_light_entryway_light::light_entryway_light_turn_on:
 - - quel lumiere entree
-  - allume
+  - allume lumiere entree
 state_persistance/device_lock_front_door::lock_front_door_lock:
 - - quel serrure entree
-  - verrouille
+  - verrouille serrure entree
 state_persistance/device_lock_front_door::lock_front_door_unlock:
 - - quel serrure entree
-  - deverrouille
+  - deverrouille serrure entree
 state_persistance/device_lock_garage_entry::lock_garage_entry_lock:
 - - quel serrure garage
-  - verrouille
+  - verrouille serrure garage
 state_persistance/device_lock_garage_entry::lock_garage_entry_unlock:
 - - quel serrure garage
-  - deverrouille
+  - deverrouille serrure garage
 state_persistance/device_media_player_family_tv::media_player_family_tv_persistance_volume_level:
 - - quel tele famille
   - ' 21'
 state_persistance/device_media_player_family_tv::media_player_family_tv_turn_off:
 - - quel tele famille
-  - eteins
+  - eteins tele famille
 state_persistance/device_media_player_family_tv::media_player_family_tv_turn_on:
 - - quel tele famille
-  - allume
+  - allume tele famille
 state_persistance/device_media_player_living_tv::media_player_living_tv_persistance_volume_level:
 - - quel tele salon
   - ' 21'
 state_persistance/device_media_player_living_tv::media_player_living_tv_turn_off:
 - - quel tele salon
-  - eteins
+  - eteins tele salon
 state_persistance/device_media_player_living_tv::media_player_living_tv_turn_on:
 - - quel tele salon
-  - allume
+  - allume tele salon

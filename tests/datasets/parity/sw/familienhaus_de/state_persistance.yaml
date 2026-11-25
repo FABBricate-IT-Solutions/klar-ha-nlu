@@ -72,19 +72,19 @@ state_persistance/area_powder_room_lights::powder_room_lights_set_brightness:
   - ' 70'
 state_persistance/device_cover_garage_door::cover_garage_door_close:
 - - nini pazia garage
-  - funga
+  - funga pazia garage
 state_persistance/device_cover_garage_door::cover_garage_door_open:
 - - nini pazia garage
-  - fungua
+  - fungua pazia garage
 state_persistance/device_cover_garage_door::cover_garage_door_persistance_position:
 - - nini pazia garage
   - '23'
 state_persistance/device_cover_living_blinds::cover_living_blinds_close:
 - - nini pazia sebuleni
-  - funga
+  - funga pazia sebuleni
 state_persistance/device_cover_living_blinds::cover_living_blinds_open:
 - - nini pazia sebuleni
-  - fungua
+  - fungua pazia sebuleni
 state_persistance/device_cover_living_blinds::cover_living_blinds_persistance_position:
 - - nini pazia sebuleni
   - '85'
@@ -93,46 +93,46 @@ state_persistance/device_fan_family_fan::fan_family_fan_persistance_percentage:
   - ' 43'
 state_persistance/device_fan_family_fan::fan_family_fan_turn_off:
 - - nini feni sefula
-  - zima
+  - zima feni sefula
 state_persistance/device_fan_family_fan::fan_family_fan_turn_on:
 - - nini feni sefula
-  - washa
+  - washa feni sefula
 state_persistance/device_light_entryway_light::light_entryway_light_persistance_brightness:
 - - nini taa kiingilio
   - '12'
 state_persistance/device_light_entryway_light::light_entryway_light_turn_off:
 - - nini taa kiingilio
-  - zima
+  - zima taa kiingilio
 state_persistance/device_light_entryway_light::light_entryway_light_turn_on:
 - - nini taa kiingilio
-  - washa
+  - washa taa kiingilio
 state_persistance/device_lock_front_door::lock_front_door_lock:
 - - nini kufuli kiingilio
-  - kufuli
+  - kufuli kufuli kiingilio
 state_persistance/device_lock_front_door::lock_front_door_unlock:
 - - nini kufuli kiingilio
-  - fungua
+  - fungua kufuli kiingilio
 state_persistance/device_lock_garage_entry::lock_garage_entry_lock:
 - - nini kufuli garage
-  - kufuli
+  - kufuli kufuli garage
 state_persistance/device_lock_garage_entry::lock_garage_entry_unlock:
 - - nini kufuli garage
-  - fungua
+  - fungua kufuli garage
 state_persistance/device_media_player_family_tv::media_player_family_tv_persistance_volume_level:
 - - nini tv sefula
   - ' 21'
 state_persistance/device_media_player_family_tv::media_player_family_tv_turn_off:
 - - nini tv sefula
-  - zima
+  - zima tv sefula
 state_persistance/device_media_player_family_tv::media_player_family_tv_turn_on:
 - - nini tv sefula
-  - washa
+  - washa tv sefula
 state_persistance/device_media_player_living_tv::media_player_living_tv_persistance_volume_level:
 - - nini tv sebuleni
   - ' 21'
 state_persistance/device_media_player_living_tv::media_player_living_tv_turn_off:
 - - nini tv sebuleni
-  - zima
+  - zima tv sebuleni
 state_persistance/device_media_player_living_tv::media_player_living_tv_turn_on:
 - - nini tv sebuleni
-  - washa
+  - washa tv sebuleni

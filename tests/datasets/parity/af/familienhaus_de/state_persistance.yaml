@@ -72,19 +72,19 @@ state_persistance/area_powder_room_lights::powder_room_lights_set_brightness:
   - ' 70'
 state_persistance/device_cover_garage_door::cover_garage_door_close:
 - - wat gordyn garage
-  - toe
+  - toe gordyn garage
 state_persistance/device_cover_garage_door::cover_garage_door_open:
 - - wat gordyn garage
-  - oop
+  - oop gordyn garage
 state_persistance/device_cover_garage_door::cover_garage_door_persistance_position:
 - - wat gordyn garage
   - '23'
 state_persistance/device_cover_living_blinds::cover_living_blinds_close:
 - - wat gordyn sitkamer
-  - toe
+  - toe gordyn sitkamer
 state_persistance/device_cover_living_blinds::cover_living_blinds_open:
 - - wat gordyn sitkamer
-  - oop
+  - oop gordyn sitkamer
 state_persistance/device_cover_living_blinds::cover_living_blinds_persistance_position:
 - - wat gordyn sitkamer
   - '85'
@@ -93,46 +93,46 @@ state_persistance/device_fan_family_fan::fan_family_fan_persistance_percentage:
   - ' 43'
 state_persistance/device_fan_family_fan::fan_family_fan_turn_off:
 - - wat waaier sitkamerfam
-  - doof
+  - doof waaier sitkamerfam
 state_persistance/device_fan_family_fan::fan_family_fan_turn_on:
 - - wat waaier sitkamerfam
-  - skakel
+  - skakel waaier sitkamerfam
 state_persistance/device_light_entryway_light::light_entryway_light_persistance_brightness:
 - - wat lig ingang
   - '12'
 state_persistance/device_light_entryway_light::light_entryway_light_turn_off:
 - - wat lig ingang
-  - doof
+  - doof lig ingang
 state_persistance/device_light_entryway_light::light_entryway_light_turn_on:
 - - wat lig ingang
-  - skakel
+  - skakel lig ingang
 state_persistance/device_lock_front_door::lock_front_door_lock:
 - - wat slot ingang
-  - slot
+  - slot slot ingang
 state_persistance/device_lock_front_door::lock_front_door_unlock:
 - - wat slot ingang
-  - oop
+  - oop slot ingang
 state_persistance/device_lock_garage_entry::lock_garage_entry_lock:
 - - wat slot garage
-  - slot
+  - slot slot garage
 state_persistance/device_lock_garage_entry::lock_garage_entry_unlock:
 - - wat slot garage
-  - oop
+  - oop slot garage
 state_persistance/device_media_player_family_tv::media_player_family_tv_persistance_volume_level:
 - - wat tv sitkamerfam
   - ' 21'
 state_persistance/device_media_player_family_tv::media_player_family_tv_turn_off:
 - - wat tv sitkamerfam
-  - doof
+  - doof tv sitkamerfam
 state_persistance/device_media_player_family_tv::media_player_family_tv_turn_on:
 - - wat tv sitkamerfam
-  - skakel
+  - skakel tv sitkamerfam
 state_persistance/device_media_player_living_tv::media_player_living_tv_persistance_volume_level:
 - - wat tv sitkamer
   - ' 21'
 state_persistance/device_media_player_living_tv::media_player_living_tv_turn_off:
 - - wat tv sitkamer
-  - doof
+  - doof tv sitkamer
 state_persistance/device_media_player_living_tv::media_player_living_tv_turn_on:
 - - wat tv sitkamer
-  - skakel
+  - skakel tv sitkamer

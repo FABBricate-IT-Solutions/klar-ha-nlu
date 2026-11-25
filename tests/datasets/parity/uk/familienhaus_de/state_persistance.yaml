@@ -72,19 +72,19 @@ state_persistance/area_powder_room_lights::powder_room_lights_set_brightness:
   - ' 70'
 state_persistance/device_cover_garage_door::cover_garage_door_close:
 - - що штора garage
-  - закрий
+  - закрий штора garage
 state_persistance/device_cover_garage_door::cover_garage_door_open:
 - - що штора garage
-  - відкрий
+  - відкрий штора garage
 state_persistance/device_cover_garage_door::cover_garage_door_persistance_position:
 - - що штора garage
   - '23'
 state_persistance/device_cover_living_blinds::cover_living_blinds_close:
 - - що штора вітальня
-  - закрий
+  - закрий штора вітальня
 state_persistance/device_cover_living_blinds::cover_living_blinds_open:
 - - що штора вітальня
-  - відкрий
+  - відкрий штора вітальня
 state_persistance/device_cover_living_blinds::cover_living_blinds_persistance_position:
 - - що штора вітальня
   - '85'
@@ -93,46 +93,46 @@ state_persistance/device_fan_family_fan::fan_family_fan_persistance_percentage:
   - ' 43'
 state_persistance/device_fan_family_fan::fan_family_fan_turn_off:
 - - що вентилятор вітальняfam
-  - вимкни
+  - вимкни вентилятор вітальняfam
 state_persistance/device_fan_family_fan::fan_family_fan_turn_on:
 - - що вентилятор вітальняfam
-  - увімкни
+  - увімкни вентилятор вітальняfam
 state_persistance/device_light_entryway_light::light_entryway_light_persistance_brightness:
 - - що світло передпокій
   - '12'
 state_persistance/device_light_entryway_light::light_entryway_light_turn_off:
 - - що світло передпокій
-  - вимкни
+  - вимкни світло передпокій
 state_persistance/device_light_entryway_light::light_entryway_light_turn_on:
 - - що світло передпокій
-  - увімкни
+  - увімкни світло передпокій
 state_persistance/device_lock_front_door::lock_front_door_lock:
 - - що замок передпокій
-  - замок
+  - замок замок передпокій
 state_persistance/device_lock_front_door::lock_front_door_unlock:
 - - що замок передпокій
-  - відкрий
+  - відкрий замок передпокій
 state_persistance/device_lock_garage_entry::lock_garage_entry_lock:
 - - що замок garage
-  - замок
+  - замок замок garage
 state_persistance/device_lock_garage_entry::lock_garage_entry_unlock:
 - - що замок garage
-  - відкрий
+  - відкрий замок garage
 state_persistance/device_media_player_family_tv::media_player_family_tv_persistance_volume_level:
 - - що тв вітальняfam
   - ' 21'
 state_persistance/device_media_player_family_tv::media_player_family_tv_turn_off:
 - - що тв вітальняfam
-  - вимкни
+  - вимкни тв вітальняfam
 state_persistance/device_media_player_family_tv::media_player_family_tv_turn_on:
 - - що тв вітальняfam
-  - увімкни
+  - увімкни тв вітальняfam
 state_persistance/device_media_player_living_tv::media_player_living_tv_persistance_volume_level:
 - - що тв вітальня
   - ' 21'
 state_persistance/device_media_player_living_tv::media_player_living_tv_turn_off:
 - - що тв вітальня
-  - вимкни
+  - вимкни тв вітальня
 state_persistance/device_media_player_living_tv::media_player_living_tv_turn_on:
 - - що тв вітальня
-  - увімкни
+  - увімкни тв вітальня

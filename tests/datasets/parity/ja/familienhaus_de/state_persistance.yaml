@@ -72,19 +72,19 @@ state_persistance/area_powder_room_lights::powder_room_lights_set_brightness:
   - ' 70'
 state_persistance/device_cover_garage_door::cover_garage_door_close:
 - - 何 カーテン garage
-  - 閉めて
+  - 閉めて カーテン garage
 state_persistance/device_cover_garage_door::cover_garage_door_open:
 - - 何 カーテン garage
-  - 開けて
+  - 開けて カーテン garage
 state_persistance/device_cover_garage_door::cover_garage_door_persistance_position:
 - - 何 カーテン garage
   - '23'
 state_persistance/device_cover_living_blinds::cover_living_blinds_close:
 - - 何 カーテン リビング
-  - 閉めて
+  - 閉めて カーテン リビング
 state_persistance/device_cover_living_blinds::cover_living_blinds_open:
 - - 何 カーテン リビング
-  - 開けて
+  - 開けて カーテン リビング
 state_persistance/device_cover_living_blinds::cover_living_blinds_persistance_position:
 - - 何 カーテン リビング
   - '85'
@@ -93,46 +93,46 @@ state_persistance/device_fan_family_fan::fan_family_fan_persistance_percentage:
   - ' 43'
 state_persistance/device_fan_family_fan::fan_family_fan_turn_off:
 - - 何 ファン famirii
-  - 消して
+  - 消して ファン famirii
 state_persistance/device_fan_family_fan::fan_family_fan_turn_on:
 - - 何 ファン famirii
-  - つけて
+  - つけて ファン famirii
 state_persistance/device_light_entryway_light::light_entryway_light_persistance_brightness:
 - - 何 電気 genkan
   - '12'
 state_persistance/device_light_entryway_light::light_entryway_light_turn_off:
 - - 何 電気 genkan
-  - 消して
+  - 消して 電気 genkan
 state_persistance/device_light_entryway_light::light_entryway_light_turn_on:
 - - 何 電気 genkan
-  - つけて
+  - つけて 電気 genkan
 state_persistance/device_lock_front_door::lock_front_door_lock:
 - - 何 鍵 genkan
-  - 鍵
+  - 鍵 鍵 genkan
 state_persistance/device_lock_front_door::lock_front_door_unlock:
 - - 何 鍵 genkan
-  - 開けて
+  - 開けて 鍵 genkan
 state_persistance/device_lock_garage_entry::lock_garage_entry_lock:
 - - 何 鍵 garage
-  - 鍵
+  - 鍵 鍵 garage
 state_persistance/device_lock_garage_entry::lock_garage_entry_unlock:
 - - 何 鍵 garage
-  - 開けて
+  - 開けて 鍵 garage
 state_persistance/device_media_player_family_tv::media_player_family_tv_persistance_volume_level:
 - - 何 terebi famirii
   - ' 21'
 state_persistance/device_media_player_family_tv::media_player_family_tv_turn_off:
 - - 何 terebi famirii
-  - 消して
+  - 消して terebi famirii
 state_persistance/device_media_player_family_tv::media_player_family_tv_turn_on:
 - - 何 terebi famirii
-  - つけて
+  - つけて terebi famirii
 state_persistance/device_media_player_living_tv::media_player_living_tv_persistance_volume_level:
 - - 何 terebi リビング
   - ' 21'
 state_persistance/device_media_player_living_tv::media_player_living_tv_turn_off:
 - - 何 terebi リビング
-  - 消して
+  - 消して terebi リビング
 state_persistance/device_media_player_living_tv::media_player_living_tv_turn_on:
 - - 何 terebi リビング
-  - つけて
+  - つけて terebi リビング

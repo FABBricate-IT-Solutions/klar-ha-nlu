@@ -72,19 +72,19 @@ state_persistance/area_powder_room_lights::powder_room_lights_set_brightness:
   - ' 70'
 state_persistance/device_cover_garage_door::cover_garage_door_close:
 - - מה וילון garage
-  - סגור
+  - סגור וילון garage
 state_persistance/device_cover_garage_door::cover_garage_door_open:
 - - מה וילון garage
-  - פתח
+  - פתח וילון garage
 state_persistance/device_cover_garage_door::cover_garage_door_persistance_position:
 - - מה וילון garage
   - '23'
 state_persistance/device_cover_living_blinds::cover_living_blinds_close:
 - - מה וילון סלון
-  - סגור
+  - סגור וילון סלון
 state_persistance/device_cover_living_blinds::cover_living_blinds_open:
 - - מה וילון סלון
-  - פתח
+  - פתח וילון סלון
 state_persistance/device_cover_living_blinds::cover_living_blinds_persistance_position:
 - - מה וילון סלון
   - '85'
@@ -93,46 +93,46 @@ state_persistance/device_fan_family_fan::fan_family_fan_persistance_percentage:
   - ' 43'
 state_persistance/device_fan_family_fan::fan_family_fan_turn_off:
 - - מה מאוורר משפחה
-  - כבה
+  - כבה מאוורר משפחה
 state_persistance/device_fan_family_fan::fan_family_fan_turn_on:
 - - מה מאוורר משפחה
-  - הדלק
+  - הדלק מאוורר משפחה
 state_persistance/device_light_entryway_light::light_entryway_light_persistance_brightness:
 - - מה אור כניסה
   - '12'
 state_persistance/device_light_entryway_light::light_entryway_light_turn_off:
 - - מה אור כניסה
-  - כבה
+  - כבה אור כניסה
 state_persistance/device_light_entryway_light::light_entryway_light_turn_on:
 - - מה אור כניסה
-  - הדלק
+  - הדלק אור כניסה
 state_persistance/device_lock_front_door::lock_front_door_lock:
 - - מה מנעול כניסה
-  - מנעול
+  - מנעול מנעול כניסה
 state_persistance/device_lock_front_door::lock_front_door_unlock:
 - - מה מנעול כניסה
-  - פתח
+  - פתח מנעול כניסה
 state_persistance/device_lock_garage_entry::lock_garage_entry_lock:
 - - מה מנעול garage
-  - מנעול
+  - מנעול מנעול garage
 state_persistance/device_lock_garage_entry::lock_garage_entry_unlock:
 - - מה מנעול garage
-  - פתח
+  - פתח מנעול garage
 state_persistance/device_media_player_family_tv::media_player_family_tv_persistance_volume_level:
 - - מה טלוויזיה משפחה
   - ' 21'
 state_persistance/device_media_player_family_tv::media_player_family_tv_turn_off:
 - - מה טלוויזיה משפחה
-  - כבה
+  - כבה טלוויזיה משפחה
 state_persistance/device_media_player_family_tv::media_player_family_tv_turn_on:
 - - מה טלוויזיה משפחה
-  - הדלק
+  - הדלק טלוויזיה משפחה
 state_persistance/device_media_player_living_tv::media_player_living_tv_persistance_volume_level:
 - - מה טלוויזיה סלון
   - ' 21'
 state_persistance/device_media_player_living_tv::media_player_living_tv_turn_off:
 - - מה טלוויזיה סלון
-  - כבה
+  - כבה טלוויזיה סלון
 state_persistance/device_media_player_living_tv::media_player_living_tv_turn_on:
 - - מה טלוויזיה סלון
-  - הדלק
+  - הדלק טלוויזיה סלון
