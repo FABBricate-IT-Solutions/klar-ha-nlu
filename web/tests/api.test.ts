@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { ApiError, api, appPath, setToken } from "../src/api";
+import { ApiError, api, appPath, clearToken, getToken, isIngressOrigin, setToken } from "../src/api";
 import { takeSseEvents } from "../src/lib/sse";
 import { fakeEngine } from "./support/fakeEngine";
 import { parseResult, storedOverlay, storedSettings, storedUi } from "./support/fixtures";
@@ -44,12 +44,27 @@ describe("the API client", () => {
     expect(engine.stored.settings.quiet_ack).toBe(false);
   });
 
-  it("keeps the stored token when a blank one is applied", () => {
+  it("clears the stored token when a blank one is applied", () => {
     setToken("secret123");
+    expect(localStorage.getItem("klar_token")).toBe("secret123");
 
     setToken("   ");
 
-    expect(localStorage.getItem("klar_token")).toBe("secret123");
+    expect(localStorage.getItem("klar_token")).toBeNull();
+    expect(getToken()).toBe("");
+  });
+
+  it("keeps the write token out of localStorage under Home Assistant ingress (A-10)", () => {
+    window.history.replaceState(null, "", "/api/hassio_ingress/abc123/");
+    expect(isIngressOrigin()).toBe(true);
+    localStorage.setItem("klar_token", "stale");
+
+    setToken("secret123");
+
+    expect(localStorage.getItem("klar_token")).toBeNull();
+    expect(getToken()).toBe("secret123");
+    clearToken();
+    expect(getToken()).toBe("");
   });
 
   it("rejects with status and reason when the engine refuses", async () => {

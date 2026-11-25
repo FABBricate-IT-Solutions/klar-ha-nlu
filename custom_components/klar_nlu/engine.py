@@ -66,6 +66,31 @@ _READY_TRIES = 30
 SETTINGS_CACHE_TTL_S = 15.0
 SETTINGS_FETCH_BUDGET_S = 4.0
 
+# A-11: the child must not inherit Supervisor/Hass tokens from the parent.
+_ENGINE_ENV_KEEP = (
+    "PATH",
+    "HOME",
+    "LANG",
+    "LC_ALL",
+    "LC_CTYPE",
+    "TZ",
+    "TMPDIR",
+    "TMP",
+    "TEMP",
+    "USER",
+    "LOGNAME",
+    "XDG_RUNTIME_DIR",
+    "RUST_LOG",
+    "KLAR_SUPPORT_BUNDLE",
+)
+
+
+def _engine_child_env(token: str, ui_dir: Path) -> dict[str, str]:
+    env = {key: value for key, value in os.environ.items() if key in _ENGINE_ENV_KEEP and value}
+    env["KLAR_TOKEN"] = token
+    env["KLAR_UI_DIR"] = str(ui_dir)
+    return env
+
 
 def _read_stamp(path: Path) -> str:
     return path.read_text(encoding="utf-8").strip() if path.is_file() else ""
@@ -216,9 +241,7 @@ class KlarEngine:
 
     async def _spawn(self) -> None:
         self.token = await self.hass.async_add_executor_job(self._ensure_token)
-        env = os.environ.copy()
-        env["KLAR_TOKEN"] = self.token
-        env["KLAR_UI_DIR"] = str(self.bindir / "ui")
+        env = _engine_child_env(self.token, self.bindir / "ui")
         try:
             self._proc = await asyncio.create_subprocess_exec(
                 str(self.binary),

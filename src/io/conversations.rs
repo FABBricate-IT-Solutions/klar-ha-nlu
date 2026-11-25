@@ -115,9 +115,10 @@ pub fn turn_from_outcome(
         conversation_id: outcome.conversation_id.clone(),
         ts_ms: now_ms(),
         text: include_text.then(|| outcome.text.clone()),
-        tokens: replay_tokens(&outcome.text),
+        // Tokens rebuild the utterance; keep them only with raw-text consent (D-20).
+        tokens: if include_text { replay_tokens(&outcome.text) } else { Vec::new() },
         decision: decision_name(&outcome.decision).into(),
-        speech: outcome.speech.clone(),
+        speech: if include_text { outcome.speech.clone() } else { String::new() },
         speech_source: None,
         refine_band: outcome.refine_band.map(band_name),
         confidence: outcome.confidence,
@@ -281,7 +282,8 @@ mod tests {
         let turn = turn_from_outcome(&outcome, false, Vec::new(), None);
         assert_eq!(turn.decision, "confirm");
         assert!(turn.text.is_none());
-        assert_eq!(turn.tokens, replay_tokens("lock the door"));
+        assert!(turn.tokens.is_empty());
+        assert!(turn.speech.is_empty());
         assert_eq!(turn.confirm_prompt.as_deref(), Some("Really?"));
         assert_eq!(turn.candidate_id.as_deref(), Some("sel"));
         assert_eq!(turn.refine_band.as_deref(), Some("status"));
@@ -289,7 +291,6 @@ mod tests {
         assert!(json.contains("\"last_names\":[]"), "{json}");
         assert!(json.contains("\"evidence_kinds\":[]"), "{json}");
         assert!(!json.contains("lock the door"), "{json}");
-        assert!(json.contains("\"tokens\""), "{json}");
     }
 
     #[test]
@@ -324,7 +325,7 @@ mod tests {
     }
 
     #[test]
-    fn default_journal_persists_tokens_not_raw_text() {
+    fn default_journal_omits_tokens_and_speech_without_raw_text() {
         let spoken = "Mach das Küchenlicht an!";
         let outcome = ParseOutcome {
             schema_version: "2.0".into(),
@@ -350,16 +351,16 @@ mod tests {
         };
         let turn = turn_from_outcome(&outcome, false, vec!["HassTurnOn".into()], None);
         assert!(turn.text.is_none());
-        assert_eq!(turn.tokens, replay_tokens(spoken));
-        assert!(!turn.tokens.is_empty());
+        assert!(turn.tokens.is_empty());
+        assert!(turn.speech.is_empty());
         let json = serde_json::to_string(&turn).expect("turn json");
         assert!(!json.contains(spoken), "{json}");
         assert!(!json.contains("Küchenlicht"), "{json}");
-        assert!(json.contains("\"tokens\""), "{json}");
+        assert!(!json.contains("Verstanden"), "{json}");
     }
 
     #[test]
-    fn journal_roundtrip_keeps_tokens_without_raw_text() {
+    fn journal_roundtrip_omits_utterance_without_raw_text() {
         let scratch = TestDir::new("journal-tokens");
         let dir = scratch.path().to_path_buf();
         let spoken = "Küche AN!";
@@ -391,7 +392,8 @@ mod tests {
         let turns = reloaded.list();
         assert_eq!(turns.len(), 1);
         assert!(turns[0].text.is_none());
-        assert_eq!(turns[0].tokens, replay_tokens(spoken));
+        assert!(turns[0].tokens.is_empty());
+        assert!(turns[0].speech.is_empty());
         let raw = crate::home::paths::read_to_string_confined(&dir, JOURNAL_FILE).expect("journal file");
         assert!(!raw.contains(spoken), "{raw}");
         assert!(!raw.contains("Küche"), "{raw}");

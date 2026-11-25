@@ -86,9 +86,11 @@ Chat-Fallback nutzt das Klar-Engine-LLM. **Assist-Werkzeuge beim Chat** ist stan
 
 „Was gibt es für Neuigkeiten?“, „aktuelle Nachrichten“, „was gibt’s Neues“, „what’s new“, „morning briefing“. Ein Thema geht mit: „Sportnachrichten“, „Nachrichten über Sport“. Danach „mehr zur ersten Meldung“ oder „erzähl mehr“; Abschluss mit „das reicht“, „nein“ oder „danke“. Ohne LLM liest Klar die Titel auch bei der Nachfrage noch einmal vor.
 
+**Standard aus:** `news_briefing` muss in den Engine-Settings an sein, sonst findet kein RSS-Abruf statt. Wikipedia/Wikidata (`web_lookup`) ist ebenfalls standardmäßig aus.
+
 Voraussetzung: Engine-LLM unter Einstellungen → LLM. Sonst liest Klar die Titel selbst vor. Leere Quellen bleiben eine knappe Auskunft, ohne erfundene Meldungen.
 
-Eigene Feeds: Einstellungen, Feld **Nachrichten-Feeds** (`news_feeds`). Eine `http`- oder `https`-URL pro Sprache, zum Beispiel `de=https://…`. Leer heißt Tagesschau, BBC oder NHK. Ein Eintrag ersetzt nur den Feed dieser Sprache.
+Eigene Feeds: Einstellungen, Feld **Nachrichten-Feeds** (`news_feeds`). Eine `http`- oder `https`-URL pro Sprache, zum Beispiel `de=https://…`. Leer heißt Tagesschau, BBC oder NHK — aber nur wenn `news_briefing` an ist. Ein Eintrag ersetzt nur den Feed dieser Sprache.
 
 Feedreader: vorhandene Home-Assistant-Feeds kommen dazu, nichts extra einrichten.
 

@@ -35,6 +35,10 @@ export type Settings = {
   confirm_risky_actions: boolean;
   semantic_adapters: boolean;
   nlu_rag: boolean;
+  /** Wikipedia/Wikidata for out-of-domain chat. Off by default. */
+  web_lookup?: boolean;
+  /** News briefing RSS fetches. Off by default. */
+  news_briefing?: boolean;
   refine_speech?: boolean;
   refine_bands?: RefineBand[];
   calendar_llm?: boolean;

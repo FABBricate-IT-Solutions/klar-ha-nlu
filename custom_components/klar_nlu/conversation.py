@@ -325,17 +325,16 @@ class KlarConversationEntity(ConversationEntity):
         self._remember_session(LAST_SESSION, conversation_id)
 
         if payload.get("briefing"):
-            if chat:
+            if chat and self._news_briefing():
                 topic = bare_topic(str(payload.get("news_topic") or "").strip())
                 briefing = await self._briefing(
                     user_input, chat_log, pack, engine_speech, conversation_id, topic
                 )
                 if briefing is not None:
                     return briefing
-            else:
-                return await self._spoken(
-                    user_input, chat_log, pack, _ack_speech(engine_speech, pack, False), conversation_id, False
-                )
+            return await self._spoken(
+                user_input, chat_log, pack, _ack_speech(engine_speech, pack, False), conversation_id, False
+            )
 
         retrieval = payload.get("retrieval") if isinstance(payload.get("retrieval"), dict) else None
         hit, action = hit_and_payload(payload)
@@ -356,6 +355,7 @@ class KlarConversationEntity(ConversationEntity):
         reason = str(decision.get("reason") or "")
         if (
             reason == "out_of_domain"
+            and self._web_lookup()
             and routes_general_chat(decision_type, reason)
             and not skips_llm_fallback(hit)
             and not keeps_engine_chat(hit, chat, engine_speech)
@@ -503,8 +503,8 @@ class KlarConversationEntity(ConversationEntity):
         remember_turn(
             self.hass,
             self._entry.entry_id,
-            user_input.text,
-            speech,
+            user_input.text if self._store_raw_text() else "",
+            speech if self._store_raw_text() else "",
             decision,
             self._preferred_area(user_input.device_id, getattr(user_input, "satellite_id", None)),
         )
@@ -624,6 +624,15 @@ class KlarConversationEntity(ConversationEntity):
 
     def _nlu_rag(self) -> bool:
         return self._flag("nlu_rag", CONF_NLU_RAG, DEFAULT_NLU_RAG)
+
+    def _web_lookup(self) -> bool:
+        return bool(self._engine_settings().get("web_lookup"))
+
+    def _news_briefing(self) -> bool:
+        return bool(self._engine_settings().get("news_briefing"))
+
+    def _store_raw_text(self) -> bool:
+        return bool(self._engine_settings().get("support_bundle_raw_text"))
 
     def _quiet_ack(self) -> bool:
         return self._flag("quiet_ack", CONF_QUIET_ACK, DEFAULT_QUIET_ACK)

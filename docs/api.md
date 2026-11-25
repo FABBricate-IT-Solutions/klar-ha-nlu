@@ -91,6 +91,8 @@ Der Token kommt aus `--token`, `KLAR_TOKEN` oder `--token-file`.
   "support_bundle_raw_text": false,
   "confirm_risky_actions": true,
   "semantic_adapters": false,
+  "web_lookup": false,
+  "news_briefing": false,
   "nlu_rag": false
 }
 ```
@@ -103,16 +105,18 @@ Der Token kommt aus `--token`, `KLAR_TOKEN` oder `--token-file`.
 | `default_language` | Das Pack, das ein Request bindet, wenn `languages` leer ist und der Request keine Sprache nennt. Leer heißt Englisch. Ein Code, den kein Pack beantwortet, wird mit `422` abgelehnt. |
 | `experimental_languages` | `true` bietet experimentelle Locales zur Neuauswahl an (siehe [Sprachen](languages.md#stufen)). Standardmäßig aus. |
 | `support_bundle` | `true` speichert Parse-Verkehr unter `/data/support_bundle.jsonl` (max. 2000 Einträge). Überlebt Neustarts. Erststart auch über `KLAR_SUPPORT_BUNDLE=1`. |
-| `support_bundle_raw_text` | `true` erlaubt Rohtext und Sprachausgabe im Download. Standard aus. Conversation-IDs werden immer gehasht, Entity- und Area-Namen immer pseudonymisiert. |
+| `support_bundle_raw_text` | `true` erlaubt Rohtext, Sprachausgabe und Tokens im Download und im Journal. Standard aus. Conversation-IDs werden immer gehasht, Entity- und Area-Namen immer pseudonymisiert. |
 | `confirm_risky_actions` | `true` verlangt vor riskanten Aktionen wie Sperren/Entsperren und breiten sicherheitsrelevanten Steuerungen eine Bestätigung. |
 | `semantic_adapters` | `true` befragt lokale typisierte Adapter nach einem Ranking-Reject. Standard aus. Vorschläge werden revalidiert und überschreiben Execute/Confirm/Clarify/Chat nicht. |
 | `nlu_rag` | `true` hängt nur bei `chat` und `reject` einen gematchten Ausschnitt an. Standard aus. Nie Assist-Werkzeuge; der HA-Fallback darf einen Befehl nur über Klar-Werkzeuge nachziehen. `POST /api/v2/parse` kann `nlu_rag` pro Request setzen. |
+| `web_lookup` | `true` erlaubt Wikipedia/Wikidata bei Out-of-Domain-Chat. Standard aus. |
+| `news_briefing` | `true` erlaubt RSS-Abrufe für Nachrichten. Standard aus. |
 | `refine_speech` | `true` formuliert fertige NLU-Sprache mit dem Engine-LLM um. Standard aus. |
 | `extra_prompt` | Hausregel als User-Nachricht. Leer = nur Pack-Stimme. Ersetzt die Persönlichkeit nicht. |
 | `quiet_ack` | `true` spielt bei einfachem An/Aus einen Chime statt TTS. Standard aus. |
 | `satellite_followup` | `true` lässt das Satellitenmikrofon nach einer fertigen Chat-Antwort offen. Standard aus, damit Mikrofon und Lautsprecher am selben Gerät die eigene Sprache nicht wieder hören. Rückfragen und Bestätigungen bleiben offen. Getippter Assist hat keine Satelliten-ID und bleibt unverändert. |
 | `calendar_llm` | `true` lässt das Engine-LLM Kalendertermine sprechen. Standard aus. |
-| `news_feeds` | Liste aus `{ "pack", "url" }`. Eine `http`- oder `https`-URL pro Pack-Code, ohne Benutzerinfo, höchstens acht Einträge. Leer heißt die eingebauten Feeds. |
+| `news_feeds` | Liste aus `{ "pack", "url" }`. Eine `http`- oder `https`-URL pro Pack-Code, ohne Benutzerinfo, höchstens acht Einträge. Leer heißt die eingebauten Feeds — Abruf nur bei `news_briefing`. |
 | `allow_llm_tools` | `true` lässt das Engine-Chat-Modell nach dem Klar-Parse Home-Assistant-Assist-Werkzeuge nutzen (2026.9, prefixierte Namen). Standard aus. |
 
 ### `GET` / `POST /api/v2/llm/endpoint`
@@ -362,7 +366,7 @@ Download als Voice-Suite-YAML (`klar-assist-dataset.yaml`).
 
 ### `GET /api/bundle/protocol`
 
-Redigiertes JSONL (`klar-support-bundle.jsonl`). Conversation-IDs sind gehasht, Entity-/Area-Namen pseudonymisiert. Ohne `support_bundle_raw_text` steht statt Rohtext die Token-Replay-Kette; Speech ist leer.
+Redigiertes JSONL (`klar-support-bundle.jsonl`). Conversation-IDs sind gehasht, Entity-/Area-Namen pseudonymisiert. Ohne `support_bundle_raw_text` sind Text, Speech und Tokens leer.
 
 ### `POST /api/bundle/clear` / `DELETE /api/bundle`
 

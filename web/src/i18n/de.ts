@@ -93,7 +93,7 @@ export const de = {
   recordProtocol: "Protokoll speichern",
   recordProtocolHint: "An: Klar behält die letzten 200 Turns 24 Stunden. Braucht es für die Downloads darunter.",
   includeRawText: "Rohtext in Downloads aufnehmen",
-  includeRawTextHint: "An: Downloads enthalten den gesprochenen Satz. Aus: nur geschwärzt.",
+  includeRawTextHint: "An: Downloads und Journal behalten den Satz. Aus: kein Text, keine Tokens.",
   semanticAdapters: "Lokale Semantik-Adapter",
   semanticAdaptersHint: "Standard aus. An: nach einem Miss kann ein lokaler Bedeutungsabgleich den Intent noch finden. Kein LLM.",
   downloadDataset: "Dataset herunterladen",

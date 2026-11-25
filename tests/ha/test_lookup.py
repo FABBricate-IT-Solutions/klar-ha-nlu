@@ -123,6 +123,7 @@ class LookupTests(unittest.TestCase):
         src = (ROOT / "custom_components" / "klar_nlu" / "conversation.py").read_text(encoding="utf-8")
         start = src.index('reason == "out_of_domain"')
         block = src[start : src.index("fallback = await self._fallback", start)]
+        self.assertIn("self._web_lookup()", block)
         self.assertIn("return await self._sourced_answer", block)
         body = src[src.index("async def _sourced_answer") : src.index("async def _briefing")]
         self.assertIn("lookup_facts", body)
@@ -130,6 +131,17 @@ class LookupTests(unittest.TestCase):
         self.assertIn("lookup_instruction", body)
         self.assertIn("grounded", body)
         self.assertIn("source_speech", body)
+
+    def test_web_lookup_and_news_briefing_default_off(self) -> None:
+        settings = (ROOT / "src" / "types" / "settings.rs").read_text(encoding="utf-8")
+        self.assertIn("pub web_lookup: bool", settings)
+        self.assertIn("pub news_briefing: bool", settings)
+        self.assertIn("web_lookup: false", settings)
+        self.assertIn("news_briefing: false", settings)
+        conv = (ROOT / "custom_components" / "klar_nlu" / "conversation.py").read_text(encoding="utf-8")
+        self.assertIn("self._news_briefing()", conv)
+        self.assertIn('self._engine_settings().get("web_lookup")', conv)
+        self.assertIn('self._engine_settings().get("news_briefing")', conv)
 
 
 if __name__ == "__main__":

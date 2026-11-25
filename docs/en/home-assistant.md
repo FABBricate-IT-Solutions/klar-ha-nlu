@@ -86,9 +86,11 @@ Chat fallback uses Klar’s engine LLM. **Allow Assist tools on chat** is off by
 
 “What’s new?”, “latest news”, “morning briefing”, and the same kind of sentence in the Assist language. A topic goes with it: “sports news”, “news about sports”. Then “more on the first one”; close with “that’s enough”, “no”, or “thanks”. Without an LLM, Klar reads the headlines again on a follow-up.
 
+**Off by default:** set `news_briefing` in engine settings, or no RSS fetch runs. Wikipedia/Wikidata (`web_lookup`) is also off by default.
+
 Needs the engine LLM under Settings → LLM. Otherwise Klar reads the headlines itself. Empty sources stay a short reply, with no invented stories.
 
-Custom feeds: Settings, field **News feeds** (`news_feeds`). One `http` or `https` URL per language, for example `de=https://…`. Empty uses Tagesschau, BBC, or NHK. One entry replaces only that language’s feed.
+Custom feeds: Settings, field **News feeds** (`news_feeds`). One `http` or `https` URL per language, for example `de=https://…`. Empty uses Tagesschau, BBC, or NHK — only when `news_briefing` is on. One entry replaces only that language’s feed.
 
 Feedreader: feeds already configured in Home Assistant are included. Nothing extra to set up.
 

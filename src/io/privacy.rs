@@ -19,16 +19,20 @@ pub fn redact_entries(entries: &[BundleEntry], include_raw_text: bool) -> Vec<Bu
 }
 
 pub fn redact_entry(entry: &BundleEntry, include_raw_text: bool, names: &mut NameMap) -> BundleEntry {
-    let tokens = if entry.tokens.is_empty() { replay_tokens(&entry.request.text) } else { entry.tokens.clone() };
     let conversation_id = entry.request.conversation_id.as_deref().filter(|id| !id.is_empty()).map(hash_conversation_id);
-    let text = if include_raw_text { entry.request.text.clone() } else { tokens.join(" ") };
-    let speech = if include_raw_text { entry.response.speech.clone() } else { String::new() };
+    // Without consent: no utterance, no speech, no tokens that rebuild the sentence (D-20).
+    let (text, speech, tokens) = if include_raw_text {
+        let tokens = if entry.tokens.is_empty() { replay_tokens(&entry.request.text) } else { entry.tokens.clone() };
+        (entry.request.text.clone(), entry.response.speech.clone(), tokens)
+    } else {
+        (String::new(), String::new(), Vec::new())
+    };
     BundleEntry {
         id: entry.id.clone(),
         ts_ms: entry.ts_ms,
         source: entry.source.clone(),
         language: entry.language.clone(),
-        tokens: tokens.clone(),
+        tokens,
         request: BundleRequest { text, conversation_id },
         response: BundleResponse {
             intents: entry.response.intents.iter().map(|intent| names.intent(intent)).collect(),
