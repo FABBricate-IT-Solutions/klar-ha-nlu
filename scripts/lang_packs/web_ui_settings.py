@@ -14,6 +14,14 @@ KEYS = (
     "assistLanguages",
     "assistLanguagesHint",
     "allAssistLanguages",
+    "experimentalLanguages",
+    "experimentalLanguagesHint",
+    "languageTierStable",
+    "languageTierExperimental",
+    "defaultLanguage",
+    "defaultLanguageHint",
+    "defaultLanguageNone",
+    "saveExperimentalRefused",
     "pinLanguage",
     "voice",
     "voiceHint",
@@ -174,4 +182,12 @@ def apply_settings_copy(packs: dict[str, dict[str, str]]) -> None:
             fields["recordProtocolHint"] = row.get("recordProtocolHint") or "An: Klar behält die letzten 200 Turns 24 Stunden. Braucht es für die Downloads darunter."
             fields["includeRawTextHint"] = row.get("includeRawTextHint") or "An: Downloads enthalten den gesprochenen Satz. Aus: nur geschwärzt."
             fields["semanticAdaptersHint"] = row.get("semanticAdaptersHint") or "Standard aus. An: nach einem Miss kann ein lokaler Bedeutungsabgleich den Intent noch finden. Kein LLM."
+            fields["experimentalLanguages"] = row.get("experimentalLanguages") or "Experimentelle Sprachen"
+            fields["experimentalLanguagesHint"] = row.get("experimentalLanguagesHint") or "Standard aus. An: ungetestete Packs erscheinen für eine neue Auswahl. Eine schon konfigurierte Locale bleibt in beiden Fällen."
+            fields["languageTierStable"] = row.get("languageTierStable") or "stabil"
+            fields["languageTierExperimental"] = row.get("languageTierExperimental") or "experimentell"
+            fields["defaultLanguage"] = row.get("defaultLanguage") or "Standard-Pack"
+            fields["defaultLanguageHint"] = row.get("defaultLanguageHint") or "Gilt, wenn Assist-Sprachen leer sind und die Anfrage keine Sprache nennt. Leer bedeutet Englisch."
+            fields["defaultLanguageNone"] = row.get("defaultLanguageNone") or "Englisch (Notnagel)"
+            fields["saveExperimentalRefused"] = row.get("saveExperimentalRefused") or "Nicht gespeichert. Diese Sprache ist experimentell — Experimentelle Sprachen einschalten, dann erneut speichern."
             fields["tokenHint"] = row.get("tokenHint") or "Zum Speichern auf diesem Bildschirm. Derselbe Wert wie das App-Token."
