@@ -163,19 +163,23 @@ fn yes_revalidates_stored_plan_against_current_graph() {
     );
 }
 
+/// The lock is not exposed, so its command cannot run. The light does not run alone either:
+/// half a sentence is not what was asked for.
 #[test]
-fn multi_intent_drops_invalid_and_keeps_valid() {
+fn multi_intent_with_an_invalid_step_changes_nothing() {
     let home = default_home();
     let mut restricted = home.clone();
     restricted.assist =
         Some(home.entities.iter().filter(|entity| entity.entity_id.starts_with("light.")).map(|entity| entity.entity_id.clone()).collect());
     let outcome = parse_de("Licht im Wohnzimmer an und Wohnungstür abschließen", &restricted, &mut Session::new());
+    assert!(matches!(outcome.decision, ParseDecision::Reject { .. }), "{outcome:#?}");
+    assert!(outcome.plan.is_none(), "{outcome:#?}");
+    // The light on its own still runs.
+    let outcome = parse_de("Licht im Wohnzimmer an", &restricted, &mut Session::new());
     assert!(matches!(outcome.decision, ParseDecision::Execute), "{outcome:#?}");
     let steps = &outcome.plan.as_ref().expect("execute plan").steps;
     assert_eq!(steps.len(), 1, "{outcome:#?}");
-    assert_eq!(steps[0].intent.name, "HassTurnOn");
     assert_eq!(steps[0].intent.slot("entity_id"), Some("light.wohnzimmer"));
-    assert!(steps.iter().all(|step| step.intent.slot("entity_id") != Some("lock.wohnungstuer")));
 }
 
 #[test]

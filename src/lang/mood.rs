@@ -23,6 +23,11 @@ pub struct MoodWords {
     pub request_frames: &'static [&'static str],
     /// Politeness that carries no meaning: "please", "if you dont mind", "wenn moeglich".
     pub courtesy: &'static [&'static str],
+    /// Words a command may carry that name no device and no place: "everything", "there",
+    /// "too", "alles", "mal". A command with only such words left over is complete.
+    pub padding: &'static [&'static str],
+    /// Words that stand for what the last turn was about: "it", "them", "es", "sie".
+    pub refers: &'static [&'static str],
     /// A subject that opens a report: "i", "someone", "ich", "jemand".
     pub subjects: &'static [&'static str],
     /// Verbs that describe a state anywhere in the sentence: "is", "was", "ist", "wurde".
@@ -59,6 +64,8 @@ impl MoodWords {
         ask_frames: &[],
         request_frames: &[],
         courtesy: &[],
+        padding: &[],
+        refers: &[],
         subjects: &[],
         state_verbs: &[],
         participles: &[],

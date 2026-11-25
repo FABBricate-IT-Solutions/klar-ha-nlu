@@ -390,10 +390,9 @@ fn de_asks_or_does_nothing_when_unclear() {
     assert_all("de", &[("Mach das Licht an", Clarify), ("Schalte den Whirlpool an", Nothing)]);
 }
 
-// ---------- bugs found by this file: one still open (ignored), the rest fixed ----------
+// ---------- bugs found by this file, all fixed ----------
 
 #[test]
-#[ignore = "bug: an unknown device in a room falls back to the room's lights; a word-list guard also blocks synonyms like \"lighting\", so this needs a design decision"]
 fn unknown_device_in_a_room_does_nothing() {
     assert_all("en", &[("turn off the oven in the kitchen", Nothing), ("turn off the spaceship in the kitchen", Nothing)]);
 }

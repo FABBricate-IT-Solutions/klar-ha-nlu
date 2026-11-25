@@ -292,7 +292,7 @@ pub(crate) fn has_light_noun(tokens: &[String]) -> bool {
     catalog().any(tokens, catalog().light_nouns()) || tokens.iter().any(|token| matches!(token.as_str(), "light" | "lights"))
 }
 
-fn has_climate_noun(tokens: &[String]) -> bool {
+pub(crate) fn has_climate_noun(tokens: &[String]) -> bool {
     let cat = catalog();
     if cat.any(tokens, cat.climate_nouns()) {
         return true;

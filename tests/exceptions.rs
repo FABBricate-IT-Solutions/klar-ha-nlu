@@ -173,8 +173,8 @@ fn nothing_is_taken_out_of_a_scene() {
     let en = collision_home("en");
     assert_changes_nothing("en", &en, "start movie night except the tv");
     let de = collision_home("de");
-    assert_changes_nothing("de", &de, "schalte alles im Wohnzimmer aus außer dem Fernseher");
-    assert_changes_nothing("de", &de, "mach alles in der Küche an außer den Backofen");
+    assert_changes_nothing("de", &de, "schalte alles aus außer dem Fernseher");
+    assert_changes_nothing("de", &de, "starte den Filmabend außer dem Fernseher");
 }
 
 #[test]
