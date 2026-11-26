@@ -1,4 +1,4 @@
-use crate::home::paths::{read_confined, read_to_string_confined, remove_confined, write_atomic_confined};
+use crate::home::paths::{append_confined, read_confined, read_to_string_confined, remove_confined, write_atomic_confined};
 use crate::io::auth::{reads_allowed, writes_allowed};
 use crate::io::state::AppState;
 use crate::types::{Intent, ParseResult};
@@ -249,13 +249,16 @@ fn write_entries(dir: &Path, entries: &[BundleEntry]) {
 }
 
 fn append_line(dir: &Path, line: &str) {
-    let mut body = read_to_string_confined(dir, BUNDLE_FILE).unwrap_or_default();
-    if !body.is_empty() && !body.ends_with('\n') {
-        body.push('\n');
+    // D-11: true append + sync so a kill mid-write cannot truncate prior rows.
+    let mut payload = String::new();
+    if let Ok(existing) = read_to_string_confined(dir, BUNDLE_FILE) {
+        if !existing.is_empty() && !existing.ends_with('\n') {
+            payload.push('\n');
+        }
     }
-    body.push_str(line);
-    body.push('\n');
-    let _ = write_atomic_confined(dir, BUNDLE_FILE, body.as_bytes());
+    payload.push_str(line);
+    payload.push('\n');
+    let _ = append_confined(dir, BUNDLE_FILE, payload.as_bytes());
 }
 
 pub fn routes() -> Router<AppState> {
@@ -480,5 +483,19 @@ mod tests {
         let left = store.load();
         assert_eq!(left.len(), 1);
         assert_eq!(left[0].request.text, "Licht aus");
+    }
+
+    #[test]
+    fn append_leaves_prior_lines_readable() {
+        let scratch = TestDir::new("bundle-append");
+        let dir = scratch.path().to_path_buf();
+        let store = BundleStore::open(&dir);
+        store.append(sample("eins", Intent::new("HassTurnOn")));
+        store.append(sample("zwei", Intent::new("HassTurnOff")));
+        let raw = crate::home::paths::read_to_string_confined(&dir, BUNDLE_FILE).expect("bundle");
+        let lines: Vec<_> = raw.lines().filter(|line| !line.is_empty()).collect();
+        assert_eq!(lines.len(), 2, "{raw}");
+        assert!(lines[0].contains("eins"), "{raw}");
+        assert!(lines[1].contains("zwei"), "{raw}");
     }
 }

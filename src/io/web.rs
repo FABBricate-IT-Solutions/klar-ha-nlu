@@ -313,6 +313,28 @@ fn valid_entity_id(id: &str) -> bool {
     matches!((parts.next(), parts.next(), parts.next()), (Some(d), Some(n), None) if !d.is_empty() && !n.is_empty() && id.len() <= 128)
 }
 
+/// D-09: reject empty, overlong, and duplicate aliases. Empty `aliases: []` still means clear.
+fn validate_aliases(raw: &[String]) -> Result<Vec<String>, StatusCode> {
+    use crate::home::snapshot::{MAX_ALIAS_CHARS, MAX_SNAPSHOT_ALIASES};
+    if raw.len() > MAX_SNAPSHOT_ALIASES {
+        return Err(StatusCode::BAD_REQUEST);
+    }
+    let mut cleaned = Vec::with_capacity(raw.len());
+    let mut seen = std::collections::HashSet::new();
+    for alias in raw {
+        let trimmed: String = alias.chars().filter(|ch| !ch.is_control()).collect();
+        let trimmed = trimmed.trim();
+        if trimmed.is_empty() || trimmed.chars().count() > MAX_ALIAS_CHARS {
+            return Err(StatusCode::BAD_REQUEST);
+        }
+        if !seen.insert(trimmed.to_ascii_lowercase()) {
+            return Err(StatusCode::BAD_REQUEST);
+        }
+        cleaned.push(trimmed.to_string());
+    }
+    Ok(cleaned)
+}
+
 async fn tag_entity(
     State(state): State<AppState>,
     ConnectInfo(peer): ConnectInfo<SocketAddr>,
@@ -323,14 +345,20 @@ async fn tag_entity(
     if !valid_entity_id(&body.entity_id) {
         return Err(StatusCode::BAD_REQUEST);
     }
+    let cleaned_aliases = match &body.aliases {
+        Some(aliases) if aliases.is_empty() => Some(Vec::new()),
+        Some(aliases) => Some(validate_aliases(aliases)?),
+        None => None,
+    };
     let home = state.home.snapshot().await;
     if !home.entities.iter().any(|e| e.entity_id == body.entity_id) {
         return Err(StatusCode::NOT_FOUND);
     }
-    let overlay = state
+    let previous_aliases = state
         .overlay
         .update(|overlay| {
-            if let Some(aliases) = &body.aliases {
+            let previous = overlay.aliases.get(&body.entity_id).cloned();
+            if let Some(aliases) = &cleaned_aliases {
                 // Empty list clears operator aliases (U-36); a missing field leaves them alone.
                 if aliases.is_empty() {
                     overlay.aliases.remove(&body.entity_id);
@@ -354,17 +382,24 @@ async fn tag_entity(
                     overlay.nlu_ignore.push(body.entity_id.clone());
                 }
             }
-            overlay.clone()
+            (previous, overlay.clone())
         })
         .map_err(save_failed)?;
+    let (previous_operator, overlay) = previous_aliases;
     let updated = state
         .home
         .edit(|next| {
+            // D-09: never replace the whole alias list with `[]` — strip only the previous
+            // operator aliases, then let apply_overlay merge the new ones. Memory and file stay aligned.
+            if cleaned_aliases.is_some() {
+                if let (Some(previous), Some(ent)) =
+                    (previous_operator.as_ref(), next.entities.iter_mut().find(|e| e.entity_id == body.entity_id))
+                {
+                    ent.aliases.retain(|alias| !previous.iter().any(|item| item == alias));
+                }
+            }
             apply_overlay(next, &overlay);
             let ent = next.entities.iter_mut().find(|e| e.entity_id == body.entity_id)?;
-            if let Some(aliases) = body.aliases {
-                ent.aliases = aliases;
-            }
             let mut tags = ent.tags.clone();
             tags.retain(|t| t != "preferred" && t != "nlu_ignore");
             if overlay.preferred.iter().any(|id| id == &body.entity_id) || body.tags.iter().any(|t| t == "preferred") {
@@ -569,7 +604,29 @@ mod tests {
             area: Some(String::new()),
         };
         let Json(cleared) = tag_entity(State(state.clone()), peer, HeaderMap::new(), Json(clear)).await.expect("clear");
-        assert!(cleared.aliases.is_empty(), "{cleared:?}");
+        // D-09: clearing operator aliases keeps the registry/demo aliases in memory and on disk.
+        assert!(cleared.aliases.iter().any(|alias| alias == "wohnzimmer"), "{cleared:?}");
+        assert!(!cleared.aliases.iter().any(|alias| alias == "decke"), "{cleared:?}");
         assert_eq!(cleared.area, None, "{cleared:?}");
+        assert!(!crate::home::overlay::load_overlay(&state.data_dir).aliases.contains_key(&entity_id));
+    }
+
+    #[tokio::test]
+    async fn tag_entity_rejects_bad_aliases() {
+        let (_scratch, state) = parse_state("tag-alias");
+        let peer = ConnectInfo("127.0.0.1:9".parse().unwrap());
+        let entity_id = "light.wohnzimmer".to_string();
+        for aliases in [vec![String::new()], vec!["x".repeat(9000)], vec!["decke".into(), "Decke".into()], vec!["ok".into(), "ok".into()]] {
+            let body = TagIn {
+                entity_id: entity_id.clone(),
+                tags: Vec::new(),
+                aliases: Some(aliases),
+                preferred: None,
+                nlu_ignore: None,
+                area: None,
+            };
+            let err = tag_entity(State(state.clone()), peer, HeaderMap::new(), Json(body)).await.unwrap_err();
+            assert_eq!(err, StatusCode::BAD_REQUEST);
+        }
     }
 }

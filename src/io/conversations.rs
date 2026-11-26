@@ -1,4 +1,4 @@
-use crate::home::paths::{read_to_string_confined, write_confined};
+use crate::home::paths::{append_confined, read_to_string_confined, write_atomic_confined};
 use crate::io::auth::reads_allowed;
 use crate::io::privacy::replay_tokens;
 use crate::io::state::AppState;
@@ -60,13 +60,22 @@ impl ConversationJournal {
     pub fn append(&self, turn: ConversationTurn) {
         let mut turns = self.lock.lock().unwrap_or_else(|err| err.into_inner());
         let now = turn.ts_ms;
+        let before = turns.len();
         turns.retain(|item| now.saturating_sub(item.ts_ms) <= TTL_MS);
-        turns.push(turn);
-        if turns.len() > MAX_TURNS {
+        let compacted = turns.len() != before;
+        turns.push(turn.clone());
+        let overflow = turns.len() > MAX_TURNS;
+        if overflow {
             let drop = turns.len() - MAX_TURNS;
             turns.drain(0..drop);
         }
-        let _ = write_turns(&self.dir, &turns);
+        // D-11: append one line when the file still matches memory; rewrite atomically when
+        // TTL or the turn cap drops older rows (kill mid-rename leaves the previous file).
+        if compacted || overflow {
+            let _ = rewrite_turns(&self.dir, &turns);
+        } else {
+            let _ = append_turn(&self.dir, &turn);
+        }
     }
 
     pub fn list(&self) -> Vec<ConversationTurn> {
@@ -89,14 +98,18 @@ impl ConversationJournal {
             turn.speech = speech;
             turn.speech_source = Some(source.to_string());
             turn.ts_ms = now_ms();
-        } else {
-            turns.push(llm_turn(id, speech, source));
-            if turns.len() > MAX_TURNS {
-                let drop = turns.len() - MAX_TURNS;
-                turns.drain(0..drop);
-            }
+            let _ = rewrite_turns(&self.dir, &turns);
+            return;
         }
-        let _ = write_turns(&self.dir, &turns);
+        let turn = llm_turn(id, speech, source);
+        turns.push(turn.clone());
+        if turns.len() > MAX_TURNS {
+            let drop = turns.len() - MAX_TURNS;
+            turns.drain(0..drop);
+            let _ = rewrite_turns(&self.dir, &turns);
+        } else {
+            let _ = append_turn(&self.dir, &turn);
+        }
     }
 }
 
@@ -193,16 +206,31 @@ fn llm_turn(conversation_id: String, speech: String, source: &str) -> Conversati
 
 fn read_turns(dir: &FsPath) -> Vec<ConversationTurn> {
     let raw = read_to_string_confined(dir, JOURNAL_FILE).unwrap_or_default();
-    raw.lines().filter_map(|line| serde_json::from_str(line).ok()).collect()
+    let now = now_ms();
+    let mut turns: Vec<ConversationTurn> = raw
+        .lines()
+        .filter_map(|line| serde_json::from_str(line).ok())
+        .filter(|turn: &ConversationTurn| now.saturating_sub(turn.ts_ms) <= TTL_MS)
+        .collect();
+    if turns.len() > MAX_TURNS {
+        turns = turns.split_off(turns.len() - MAX_TURNS);
+    }
+    turns
 }
 
-fn write_turns(dir: &FsPath, turns: &[ConversationTurn]) -> std::io::Result<()> {
+fn append_turn(dir: &FsPath, turn: &ConversationTurn) -> std::io::Result<()> {
+    let mut line = serde_json::to_string(turn).unwrap_or_default();
+    line.push('\n');
+    append_confined(dir, JOURNAL_FILE, line.as_bytes())
+}
+
+fn rewrite_turns(dir: &FsPath, turns: &[ConversationTurn]) -> std::io::Result<()> {
     let mut body = String::new();
     for turn in turns {
         body.push_str(&serde_json::to_string(turn).unwrap_or_default());
         body.push('\n');
     }
-    write_confined(dir, JOURNAL_FILE, body.as_bytes())
+    write_atomic_confined(dir, JOURNAL_FILE, body.as_bytes())
 }
 
 pub fn routes() -> Router<AppState> {
@@ -443,5 +471,50 @@ mod tests {
         assert_eq!(turns[0].speech, "Zwei Roboter gehen in eine Bar.");
         assert_eq!(turns[0].speech_source.as_deref(), Some("chat"));
         assert_eq!(turns[0].decision, "chat");
+    }
+
+    #[test]
+    fn journal_append_keeps_prior_lines_readable() {
+        let scratch = TestDir::new("journal-append");
+        let dir = scratch.path().to_path_buf();
+        let journal = ConversationJournal::open(&dir);
+        let mut first = turn_from_outcome(
+            &ParseOutcome {
+                schema_version: "2.0".into(),
+                text: "a".into(),
+                conversation_id: "c1".into(),
+                decision: ParseDecision::Chat,
+                speech: String::new(),
+                confidence: 0.0,
+                margin: 0.0,
+                selected_candidate_id: None,
+                candidates: Vec::new(),
+                plan: None,
+                evidence: Vec::new(),
+                trace: Default::default(),
+                briefing: false,
+                news_topic: None,
+                retrieval: None,
+                policy_trace: None,
+                clock_answer: false,
+                quiet_ack_eligible: false,
+                refine_band: None,
+                teach: None,
+            },
+            false,
+            Vec::new(),
+            None,
+        );
+        first.ts_ms = 1;
+        let mut second = first.clone();
+        journal.append(first);
+        second.conversation_id = "c2".into();
+        second.ts_ms = 2;
+        journal.append(second);
+        let raw = crate::home::paths::read_to_string_confined(&dir, JOURNAL_FILE).expect("journal");
+        let lines: Vec<_> = raw.lines().filter(|line| !line.is_empty()).collect();
+        assert_eq!(lines.len(), 2, "{raw}");
+        assert!(lines[0].contains("\"c1\""), "{raw}");
+        assert!(lines[1].contains("\"c2\""), "{raw}");
     }
 }

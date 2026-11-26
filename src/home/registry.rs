@@ -131,7 +131,11 @@ pub fn load_home(config_dir: &Path, fallback: HomeGraph) -> HomeGraph {
     let entity_path = config_dir.join(".storage/core.entity_registry");
     let area_path = config_dir.join(".storage/core.area_registry");
     if !entity_path.exists() {
-        tracing::info!("kein Entity-Registry unter {}, nutze Default-Wohnung", entity_path.display());
+        if fallback.entities.is_empty() {
+            tracing::info!("kein Entity-Registry unter {}, starte ohne Home-Graph", entity_path.display());
+        } else {
+            tracing::info!("kein Entity-Registry unter {}, nutze Demo-Wohnung (KLAR_DEMO_HOME)", entity_path.display());
+        }
         return fallback;
     }
 

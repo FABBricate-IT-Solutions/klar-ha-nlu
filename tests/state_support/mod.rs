@@ -19,6 +19,7 @@ use serde_json::{json, Value};
 use std::io::Write;
 use std::net::SocketAddr;
 use std::path::{Path, PathBuf};
+use std::sync::Arc;
 use tower::ServiceExt;
 
 pub const OVERLAY_FILE: &str = "klar_nlu.json";
@@ -152,7 +153,7 @@ impl Engine {
         let mut graph = house();
         apply_overlay(&mut graph, &overlay);
         let loaded = LoadedHome {
-            graph,
+            graph: graph.clone(),
             settings: overlay.settings.unwrap_or_default(),
             custom: overlay.custom,
             language: overlay.language,
@@ -160,7 +161,10 @@ impl Engine {
             speech_bank: overlay.speech_bank,
             match_controls: overlay.match_controls,
         };
-        Self { state: AppState::new(loaded, dir.to_path_buf(), token.map(str::to_string)) }
+        let state = AppState::new(loaded, dir.to_path_buf(), token.map(str::to_string));
+        // D-16: keep the fixture home across settings restore when there is no HA registry.
+        *state.live_base.try_lock().expect("live_base") = Some(Arc::new(graph));
+        Self { state }
     }
 
     /// The state as startup builds it from a config directory with registry files and a

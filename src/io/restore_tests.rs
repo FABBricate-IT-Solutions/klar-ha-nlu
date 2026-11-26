@@ -12,8 +12,9 @@ const LOCAL_URL: &str = "http://127.0.0.1:8000/v1";
 const MADE_UP_KEY: &str = "sk-made-up-for-tests";
 
 fn state_in(dir: &Path) -> AppState {
+    let graph = default_home();
     let loaded = LoadedHome {
-        graph: default_home(),
+        graph: graph.clone(),
         settings: Settings::default(),
         custom: Vec::new(),
         language: Default::default(),
@@ -21,7 +22,10 @@ fn state_in(dir: &Path) -> AppState {
         speech_bank: Default::default(),
         match_controls: Vec::new(),
     };
-    AppState::new(loaded, dir.to_path_buf(), None)
+    let state = AppState::new(loaded, dir.to_path_buf(), None);
+    // D-16: without a registry, reload_from_disk would otherwise start from an empty home.
+    *state.live_base.try_lock().expect("live_base") = Some(std::sync::Arc::new(graph));
+    state
 }
 
 fn endpoint(base_url: &str, api_key: &str, model: &str) -> StoredEndpoint {
