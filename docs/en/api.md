@@ -238,7 +238,7 @@ Live home-graph snapshot from the Home Assistant integration. The complete reque
 
 ### `GET /api/v2/languages`
 
-The locales that can be picked now, with `code`, `native_name`, `script`, `variants`, `tier` (`stable` or `experimental`) and `offered`. Stable locales are always listed; experimental ones when `experimental_languages` is on or when they are configured already. `?all=true` lists every compiled locale; `offered` is `false` for the ones the switch keeps out of a new selection.
+The locales that can be picked now, with `code`, `native_name`, `script`, `variants`, `tier` (`reference`, `beta`, or `experimental`) and `offered`. Reference and Beta locales are always listed; experimental ones when `experimental_languages` is on or when they are configured already. `?all=true` lists every compiled locale; `offered` is `false` for the ones the switch keeps out of a new selection.
 
 ### `GET` / `POST /api/lang/overlay`
 

@@ -50,7 +50,7 @@ def north() -> list[dict]:
         pack(
             "nb",
             "Norsk Bokmål",
-            ["nb", "nb-NO"],
+            ["nb", "nb-NO", "no", "nn", "no-NO"],
             on=["skru"],
             off=["slaa"],
             open_=["apne"],

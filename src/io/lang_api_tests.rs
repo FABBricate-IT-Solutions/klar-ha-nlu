@@ -203,8 +203,9 @@ fn language_list_offers_stable_locales_and_what_is_configured() {
     let codes = |settings: &Settings, all: bool| language_rows(settings, all).into_iter().map(|row| row.code).collect::<Vec<_>>();
     let fresh = Settings::default();
     let offered_now = language_rows(&fresh, false);
-    assert!(offered_now.iter().all(|row| row.tier == Tier::Stable && row.offered), "only stable locales without the switch");
+    assert!(offered_now.iter().all(|row| row.tier.always_offered() && row.offered), "only reference/beta locales without the switch");
     assert!(codes(&fresh, false).contains(&"de".to_string()) && codes(&fresh, false).contains(&"en".to_string()));
+    assert!(codes(&fresh, false).contains(&"nl".to_string()), "beta locales are offered");
     let hidden = language_rows(&fresh, true).into_iter().find(|row| row.tier == Tier::Experimental).expect("an experimental locale");
     assert!(!hidden.offered && !codes(&fresh, false).contains(&hidden.code));
 

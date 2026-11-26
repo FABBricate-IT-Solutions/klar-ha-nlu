@@ -120,6 +120,14 @@ impl Catalog {
     }
 
     pub fn household(&self) -> Option<&'static crate::lang::groups::Household> {
+        if let Some(wanted) = super::speech_override() {
+            if let Some(index) = self.langs.iter().position(|lang| *lang == wanted) {
+                if let Some(pack) = self.packs.get(index) {
+                    return Some(&pack.household);
+                }
+            }
+            return Some(&wanted.pack().household);
+        }
         self.packs.first().map(|pack| &pack.household)
     }
 
@@ -231,6 +239,14 @@ impl Catalog {
     }
 
     pub fn speech(&self) -> &'static Speech {
+        if let Some(wanted) = super::speech_override() {
+            if let Some(index) = self.langs.iter().position(|lang| *lang == wanted) {
+                if let Some(speech) = self.speech.get(index).copied() {
+                    return speech;
+                }
+            }
+            return &wanted.pack().speech;
+        }
         self.speech.first().copied().unwrap_or(&super::packs::en::PACK.speech)
     }
 

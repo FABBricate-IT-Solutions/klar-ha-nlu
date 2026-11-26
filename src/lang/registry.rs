@@ -17,7 +17,7 @@ pub struct LangMeta {
     pub variants: &'static [&'static str],
     /// A regional pack inherits from this pack and only adds or replaces regional words.
     pub parent: Option<&'static str>,
-    /// Stable locales pass their minimal pairs; experimental ones need the switch for a new selection.
+    /// Reference and Beta are always offered; experimental ones need the switch for a new selection.
     pub tier: Tier,
 }
 
@@ -30,24 +30,31 @@ struct LangRow {
 const LANGS: &[LangRow] = &[
     LangRow {
         id: LangId::new("de"),
-        meta: LangMeta { code: "de", native_name: "Deutsch", script: "Latn", variants: &["de", "de-DE"], parent: None, tier: Tier::Stable },
+        meta: LangMeta {
+            code: "de",
+            native_name: "Deutsch",
+            script: "Latn",
+            variants: &["de", "de-DE"],
+            parent: None,
+            tier: Tier::Reference,
+        },
         pack: &packs::de::PACK,
     },
     LangRow {
         id: LangId::new("en"),
-        meta: LangMeta { code: "en", native_name: "English", script: "Latn", variants: &["en", "en-US"], parent: None, tier: Tier::Stable },
+        meta: LangMeta {
+            code: "en",
+            native_name: "English",
+            script: "Latn",
+            variants: &["en", "en-US"],
+            parent: None,
+            tier: Tier::Reference,
+        },
         pack: &packs::en::PACK,
     },
     LangRow {
         id: LangId::new("fr"),
-        meta: LangMeta {
-            code: "fr",
-            native_name: "Français",
-            script: "Latn",
-            variants: &["fr", "fr-FR"],
-            parent: None,
-            tier: Tier::Experimental,
-        },
+        meta: LangMeta { code: "fr", native_name: "Français", script: "Latn", variants: &["fr", "fr-FR"], parent: None, tier: Tier::Beta },
         pack: &packs::fr::PACK,
     },
     LangRow {
@@ -58,7 +65,7 @@ const LANGS: &[LangRow] = &[
             script: "Latn",
             variants: &["nl", "nl-NL", "nl-BE"],
             parent: None,
-            tier: Tier::Experimental,
+            tier: Tier::Beta,
         },
         pack: &packs::nl::PACK,
     },
@@ -70,31 +77,19 @@ const LANGS: &[LangRow] = &[
             script: "Latn",
             variants: &["es", "es-ES", "es-MX"],
             parent: None,
-            tier: Tier::Experimental,
+            tier: Tier::Beta,
         },
         pack: &packs::es::PACK,
     },
     LangRow {
         id: LangId::new("it"),
-        meta: LangMeta {
-            code: "it",
-            native_name: "Italiano",
-            script: "Latn",
-            variants: &["it", "it-IT"],
-            parent: None,
-            tier: Tier::Experimental,
-        },
+        meta: LangMeta { code: "it", native_name: "Italiano", script: "Latn", variants: &["it", "it-IT"], parent: None, tier: Tier::Beta },
         pack: &packs::it::PACK,
     },
     LangRow {
         id: LangId::new("pt"),
         meta: LangMeta {
-            code: "pt",
-            native_name: "Português",
-            script: "Latn",
-            variants: &["pt", "pt-PT"],
-            parent: None,
-            tier: Tier::Experimental,
+            code: "pt", native_name: "Português", script: "Latn", variants: &["pt", "pt-PT"], parent: None, tier: Tier::Beta
         },
         pack: &packs::pt::PACK,
     },
@@ -140,7 +135,7 @@ const LANGS: &[LangRow] = &[
             code: "nb",
             native_name: "Norsk Bokmål",
             script: "Latn",
-            variants: &["nb", "nb-NO"],
+            variants: &["nb", "nb-NO", "no", "nn", "no-NO"],
             parent: None,
             tier: Tier::Experimental,
         },
@@ -178,7 +173,7 @@ const LANGS: &[LangRow] = &[
             script: "Latn",
             variants: &["de-CH"],
             parent: Some("de"),
-            tier: Tier::Stable,
+            tier: Tier::Reference,
         },
         pack: &packs::de_ch::PACK,
     },
@@ -190,7 +185,7 @@ const LANGS: &[LangRow] = &[
             script: "Latn",
             variants: &["de-AT"],
             parent: Some("de"),
-            tier: Tier::Stable,
+            tier: Tier::Reference,
         },
         pack: &packs::de_at::PACK,
     },
@@ -202,7 +197,7 @@ const LANGS: &[LangRow] = &[
             script: "Latn",
             variants: &["en-GB"],
             parent: Some("en"),
-            tier: Tier::Stable,
+            tier: Tier::Reference,
         },
         pack: &packs::en_gb::PACK,
     },
@@ -214,7 +209,7 @@ const LANGS: &[LangRow] = &[
             script: "Latn",
             variants: &["pt-BR"],
             parent: Some("pt"),
-            tier: Tier::Experimental,
+            tier: Tier::Beta,
         },
         pack: &packs::pt_br::PACK,
     },
@@ -358,7 +353,7 @@ const LANGS: &[LangRow] = &[
             script: "Cyrl",
             variants: &["uk", "uk-UA"],
             parent: None,
-            tier: Tier::Experimental,
+            tier: Tier::Beta,
         },
         pack: &packs::uk::PACK,
     },
@@ -368,7 +363,7 @@ const LANGS: &[LangRow] = &[
             code: "zh-CN",
             native_name: "简体中文",
             script: "Hans",
-            variants: &["zh-CN", "zh"],
+            variants: &["zh-CN", "zh", "zh-Hans", "zh-Hans-CN"],
             parent: None,
             tier: Tier::Experimental,
         },
@@ -380,7 +375,7 @@ const LANGS: &[LangRow] = &[
             code: "zh-TW",
             native_name: "繁體中文（台灣）",
             script: "Hant",
-            variants: &["zh-TW"],
+            variants: &["zh-TW", "zh-Hant", "zh-Hant-TW"],
             parent: None,
             tier: Tier::Experimental,
         },
@@ -392,7 +387,7 @@ const LANGS: &[LangRow] = &[
             code: "zh-HK",
             native_name: "繁體中文（香港）",
             script: "Hant",
-            variants: &["zh-HK"],
+            variants: &["zh-HK", "zh-Hant-HK"],
             parent: None,
             tier: Tier::Experimental,
         },
@@ -608,7 +603,7 @@ const LANGS: &[LangRow] = &[
             script: "Latn",
             variants: &["id", "id-ID"],
             parent: None,
-            tier: Tier::Experimental,
+            tier: Tier::Beta,
         },
         pack: &packs::id::PACK,
     },
@@ -650,14 +645,7 @@ const LANGS: &[LangRow] = &[
     },
     LangRow {
         id: LangId::new("hi"),
-        meta: LangMeta {
-            code: "hi",
-            native_name: "Hindi",
-            script: "Deva",
-            variants: &["hi", "hi-IN"],
-            parent: None,
-            tier: Tier::Experimental,
-        },
+        meta: LangMeta { code: "hi", native_name: "Hindi", script: "Deva", variants: &["hi", "hi-IN"], parent: None, tier: Tier::Beta },
         pack: &packs::hi::PACK,
     },
     LangRow {
@@ -803,8 +791,26 @@ fn row(code: &str) -> Option<&'static LangRow> {
     map.get(code).map(|&i| &LANGS[i])
 }
 
+/// Resolve a pack code or an advertised variant tag (zh, zh-Hans, no, nn, …).
+fn row_for_tag(tag: &str) -> Option<&'static LangRow> {
+    if let Some(row) = row(tag) {
+        return Some(row);
+    }
+    static VARIANTS: OnceLock<HashMap<&'static str, usize>> = OnceLock::new();
+    let map = VARIANTS.get_or_init(|| {
+        let mut map = HashMap::new();
+        for (index, row) in LANGS.iter().enumerate() {
+            for variant in row.meta.variants {
+                map.entry(*variant).or_insert(index);
+            }
+        }
+        map
+    });
+    map.get(tag).map(|&index| &LANGS[index])
+}
+
 pub fn lookup(code: &str) -> Option<LangId> {
-    row(code).map(|item| item.id)
+    row_for_tag(code).map(|item| item.id)
 }
 
 pub fn pack(id: LangId) -> &'static LanguagePack {
@@ -816,7 +822,7 @@ pub fn meta(id: LangId) -> Option<&'static LangMeta> {
 }
 
 pub fn parent(id: LangId) -> Option<LangId> {
-    meta(id).and_then(|meta| meta.parent).and_then(lookup)
+    meta(id).and_then(|meta| meta.parent).and_then(|code| row(code).map(|item| item.id))
 }
 
 pub fn languages() -> &'static [LangMeta] {

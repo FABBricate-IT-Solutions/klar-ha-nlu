@@ -1,10 +1,10 @@
 //! Tiers say how far a locale is tested, not whether it ships.
 //!
-//! A stable locale passes its on/off minimal pairs: basic commands act, never the opposite
-//! way, and neither a question nor a negated command switches anything
-//! (`tests/language_tiers.rs` decides, the list lives in `scripts/lang_packs/tiers.py`).
-//! Every other compiled locale is experimental: it keeps working where it is configured,
-//! but it is only offered for a new selection when `Settings::experimental_languages` is on.
+//! - **Reference** (`de`, `en`, and their regional packs): full on/off/negation
+//!   minimal pairs (`tests/language_tiers.rs`; list in `scripts/lang_packs/tiers.py`).
+//! - **Beta**: gold natural-sentence gate and no opposite action on basic pairs.
+//! - **Experimental**: everything else — keeps working where configured, but is
+//!   only offered for a new selection when `Settings::experimental_languages` is on.
 
 use super::{pin_language, LangId};
 use crate::types::Settings;
@@ -13,8 +13,19 @@ use serde::Serialize;
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Serialize)]
 #[serde(rename_all = "snake_case")]
 pub enum Tier {
-    Stable,
+    Reference,
+    Beta,
     Experimental,
+}
+
+impl Tier {
+    /// May this tier be picked for a new selection without the experimental switch?
+    pub const fn always_offered(self) -> bool {
+        match self {
+            Self::Reference | Self::Beta => true,
+            Self::Experimental => false,
+        }
+    }
 }
 
 /// The tier of a language tag ("de-DE" answers for "de"). `None` for a tag no pack answers.
@@ -26,11 +37,12 @@ fn same_pack(left: &str, right: &str) -> bool {
     left.eq_ignore_ascii_case(right) || LangId::from_tag(left).is_some_and(|id| Some(id) == LangId::from_tag(right))
 }
 
-/// May this locale be picked now? Stable ones always, experimental ones with the switch,
-/// and any locale that is configured already: an update never takes a language away.
+/// May this locale be picked now? Reference and Beta always, experimental ones with
+/// the switch, and any locale that is configured already: an update never takes a
+/// language away.
 pub fn offered(tag: &str, configured: &[String], experimental: bool) -> bool {
     match tier_of(tag) {
-        Some(Tier::Stable) => true,
+        Some(Tier::Reference | Tier::Beta) => true,
         Some(Tier::Experimental) => experimental || configured.iter().any(|have| same_pack(have, tag)),
         None => false,
     }
@@ -91,11 +103,13 @@ mod tests {
     }
 
     #[test]
-    fn stable_locales_are_always_offered() {
-        assert_eq!(tier_of("de"), Some(Tier::Stable));
-        assert_eq!(tier_of("en-US"), Some(Tier::Stable));
-        assert!(offered("de", &[], false) && offered("en", &[], false));
-        assert_eq!(check_selection(&list(&["de", "en-US"]), &[], false), Ok(list(&["de", "en-US"])));
+    fn reference_and_beta_are_always_offered() {
+        assert_eq!(tier_of("de"), Some(Tier::Reference));
+        assert_eq!(tier_of("en-US"), Some(Tier::Reference));
+        assert_eq!(tier_of("nl"), Some(Tier::Beta));
+        assert_eq!(tier_of("es-ES"), Some(Tier::Beta));
+        assert!(offered("de", &[], false) && offered("en", &[], false) && offered("nl", &[], false));
+        assert_eq!(check_selection(&list(&["de", "nl", "en-US"]), &[], false), Ok(list(&["de", "nl", "en-US"])));
     }
 
     #[test]
@@ -124,7 +138,6 @@ mod tests {
         assert!(check_settings(pick.clone(), &fresh).is_err(), "new pick without the switch");
         let with_switch = Settings { experimental_languages: true, ..pick.clone() };
         assert_eq!(check_settings(with_switch, &fresh).expect("switch on").languages, list(&[code]));
-        // The house already runs it: the same save goes through, also with the switch off again.
         let running = Settings { languages: list(&[code]), ..Settings::default() };
         assert_eq!(check_settings(pick, &running).expect("configured").languages, list(&[code]));
         let default_pick = Settings { default_language: code.to_string(), ..Settings::default() };

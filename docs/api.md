@@ -238,7 +238,7 @@ Live-Home-Graph von der Home-Assistant-Integration. Der vollständige Request ha
 
 ### `GET /api/v2/languages`
 
-Die Locales, die jetzt gewählt werden können, mit `code`, `native_name`, `script`, `variants`, `tier` (`stable` oder `experimental`) und `offered`. Stabile Locales sind immer gelistet; experimentelle, wenn `experimental_languages` an ist oder wenn sie schon konfiguriert sind. `?all=true` listet jede kompilierte Locale; `offered` ist `false` bei denen, die der Schalter von einer Neuauswahl ausnimmt.
+Die Locales, die jetzt gewählt werden können, mit `code`, `native_name`, `script`, `variants`, `tier` (`reference`, `beta` oder `experimental`) und `offered`. Referenz und Beta sind immer gelistet; experimentelle, wenn `experimental_languages` an ist oder wenn sie schon konfiguriert sind. `?all=true` listet jede kompilierte Locale; `offered` ist `false` bei denen, die der Schalter von einer Neuauswahl ausnimmt.
 
 ### `GET` / `POST /api/lang/overlay`
 

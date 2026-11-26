@@ -45,8 +45,9 @@ async fn list_languages(State(state): State<AppState>, Query(query): Query<Langu
     Json(language_rows(&settings, query.all))
 }
 
-/// The locales that may be picked now, each with its tier: stable ones, experimental ones
-/// when the switch is on, and whatever is configured already. `all` lists the rest too.
+/// The locales that may be picked now, each with its tier: reference and beta ones,
+/// experimental ones when the switch is on, and whatever is configured already.
+/// `all` lists the rest too.
 fn language_rows(settings: &Settings, all: bool) -> Vec<LanguageOut> {
     let in_use = in_use(settings);
     crate::lang::languages()

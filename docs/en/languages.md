@@ -2,7 +2,7 @@
 
 [Deutsch](../languages.md) · [English](languages.md)
 
-Every compiled Assist locale uses the same `LanguagePack` path. German and English are hand-written reference packs; the other packs are generated. A locale is **stable** or **experimental** (see [Tiers](#tiers)); `GET /api/v2/languages` lists the locales that can be picked, each with its tier.
+Every compiled Assist locale uses the same `LanguagePack` path. German and English are hand-written reference packs; the other packs are generated. A locale is **reference**, **beta**, or **experimental** (see [Tiers](#tiers)); `GET /api/v2/languages` lists the locales that can be picked, each with its tier.
 
 ## Supported locales
 
@@ -67,18 +67,21 @@ A generated pack may enter the binary when those fields are filled and the repre
 
 ## Tiers
 
-A tier says how far a locale is tested. It does not remove a pack.
+A tier says how far a locale is tested. It does not remove a pack. Published table (`scripts/lang_packs/tiers.py`, `GET /api/v2/languages`):
 
-- **stable**: the locale passes its on/off minimal pairs. Every "on" sentence switches on, every "off" sentence switches off, and neither a question nor a negated command switches anything. A regional pack also has to get the pairs of its parent right.
-- **experimental**: everything else. Today that is every generated pack that stands on its own: none of them carries negation words yet, so "do not turn on the light" is carried out as a command. The regional packs of German and English (`de-AT`, `de-CH`, `en-GB`) inherit from a stable parent and are stable; `pt-BR` inherits from `pt` and is experimental with it.
+| Tier | Codes | Gate |
+|------|-------|------|
+| **reference** | `de`, `en`, `de-AT`, `de-CH`, `en-GB` | Full on/off/negation minimal pairs |
+| **beta** | `es`, `nl`, `pt`, `pt-BR`, `it`, `fr`, `id`, `uk`, `hi` | No opposite action + gold natural sentences (`tests/datasets/gold/`) |
+| **experimental** | every other compiled locale | Behind `experimental_languages` |
 
-`tests/language_tiers.rs` decides. The pairs come from each locale's own generator lexicon (`tests/datasets/minimal_pairs/pairs.yaml`, written by `scripts/lang_packs/pairs.py`), and the test fails when `STABLE` in `scripts/lang_packs/tiers.py` says something else than the pairs do. To make a locale stable, give its pack what it lacks (for example the negation words in `scripts/lang_packs/mood.py`) until the test asks you to add it to `STABLE`.
+`tests/language_tiers.rs` and `tests/language_gold.rs` decide. Advertised tags (`zh`, `zh-Hans`, `no`, `nn`, …) resolve through the variants table and can be pinned. In a bilingual house the reply language follows the detected utterance language, not the alphabetically first pack.
 
 The engine setting `experimental_languages` (off by default) is the switch:
 
 - A locale that is configured already (`languages`, `default_language`) keeps working and stays listed, whatever its tier. An update never changes the language of a house.
 - A request that pins a language (`language` on `POST /api/v2/parse`, the Assist pipeline language) is answered in that language, whatever its tier.
-- With the switch off, an experimental locale is not listed for a new selection and a settings save that adds one is refused (`422`).
+- With the switch off, an experimental locale is not listed for a new selection and a settings save that adds one is refused (`422`). Reference and Beta are always offered.
 
 ## Catalog model
 

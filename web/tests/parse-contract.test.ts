@@ -64,7 +64,7 @@ describe("parse contract fields (U-35)", () => {
     expect(REFINE_BANDS).toEqual(["status", "command", "prompt", "reject"]);
     expect(POLICY_EFFECTS.length).toBe(9);
     expect(REJECT_REASONS).toContain("no_target");
-    expect(LANGUAGE_TIERS).toEqual(["stable", "experimental"]);
+    expect(LANGUAGE_TIERS).toEqual(["reference", "beta", "experimental"]);
     expect(PARSE_SCHEMA_VERSION).toBe("2.0");
   });
 });

@@ -1,0 +1,45 @@
+# Gold natural sentences for Beta locale (package 4.3).
+# source: plan evidence natural.py; not parity-generated.
+cases:
+  - text: 'Увімкни світло у вітальні'
+    expect: 'TurnOn@living'
+    kind: execute
+  - text: 'Вимкни світло на кухні'
+    expect: 'TurnOff@kitchen'
+    kind: execute
+  - text: 'увімкни світло вітальня'
+    expect: 'TurnOn@living'
+    kind: execute
+  - text: 'Встанови світло у вітальні на 50 відсотків'
+    expect: 'LightSet@living:brightness=50'
+    kind: execute
+  - text: 'Встанови опалення на 21 градус'
+    expect: 'ClimateSetTemperature:temperature=21'
+    kind: execute
+  - text: 'Відкрий штори у спальні'
+    expect: 'TurnOn@bedroom'
+    kind: execute
+  - text: 'Закрий штори у спальні'
+    expect: 'CONFIRM'
+    kind: confirm
+  - text: 'Чи увімкнене світло на кухні?'
+    expect: 'GetState@kitchen'
+    kind: execute
+  - text: 'Яка температура у вітальні?'
+    expect: 'GetTemp@living'
+    kind: execute
+  - text: "Постав таймер на п'ять хвилин"
+    expect: 'StartTimer:minutes=5'
+    kind: execute
+  - text: 'Додай молоко до списку покупок'
+    expect: 'ListAdd:item=молоко'
+    kind: execute
+  - text: 'Постав музику на паузу'
+    expect: 'MediaPause'
+    kind: execute
+  - text: 'Замкни вхідні двері'
+    expect: 'CONFIRM'
+    kind: confirm
+  - text: 'Котра година?'
+    expect: 'CHAT'
+    kind: chat

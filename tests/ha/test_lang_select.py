@@ -99,22 +99,33 @@ class LangSelectTests(unittest.TestCase):
         self.assertIsNone(chrome)
 
     def test_voice_dropdown_hides_experimental_by_default(self) -> None:
-        # Package 1.12: regional overlays make de-AT and de-CH stable with their parents.
+        # Package 4.3: reference + beta are offered; experimental stays behind the switch.
         offered = lang.offered_packs()
-        self.assertEqual(offered, ["de", "en", "de-CH", "de-AT", "en-GB"])
+        self.assertIn("de", offered)
+        self.assertIn("en", offered)
+        self.assertIn("de-CH", offered)
+        self.assertIn("fr", offered)  # beta
+        self.assertIn("nl", offered)  # beta
+        self.assertNotIn("ca", offered)  # experimental
+        self.assertNotIn("zh-CN", offered)
         advertised = lang.advertised_languages()
         self.assertIn("de", advertised)
         self.assertIn("de-DE", advertised)
         self.assertIn("de-AT", advertised)
         self.assertIn("de-CH", advertised)
         self.assertIn("en", advertised)
-        self.assertNotIn("fr", advertised)
+        self.assertIn("fr", advertised)
+        self.assertNotIn("zh", advertised)  # zh-CN is experimental
+        self.assertNotIn("zh-Hans", advertised)
+        self.assertNotIn("ca", advertised)
 
     def test_experimental_switch_or_kept_locale_opens_the_list(self) -> None:
-        self.assertIn("fr", lang.offered_packs(experimental=True))
-        self.assertIn("pt-BR", lang.offered_packs(selected=["pt-BR"]))
-        self.assertNotIn("fr", lang.offered_packs(selected=["pt-BR"]))
-        self.assertIn("fr", lang.advertised_languages(experimental=True))
+        self.assertIn("ca", lang.offered_packs(experimental=True))
+        self.assertIn("zh-CN", lang.offered_packs(experimental=True))
+        self.assertIn("ca", lang.offered_packs(selected=["ca"]))
+        self.assertNotIn("ca", lang.offered_packs(selected=["pt-BR"]))
+        self.assertIn("fr", lang.offered_packs(selected=["pt-BR"]))  # beta always offered
+        self.assertIn("ca", lang.advertised_languages(experimental=True))
         self.assertIn("pt-BR", lang.advertised_languages(selected=["pt-BR"]))
 
     def test_system_option_sets_default_language_from_ha(self) -> None:

@@ -48,9 +48,16 @@ export function ChromeStep({
     return inUse.has(pack.code.toLowerCase());
   });
   const tierHint = (tier: string) => {
-    if (tier === "experimental") return chrome.languageTierExperimental;
-    if (tier === "stable") return chrome.languageTierStable;
-    return tier;
+    switch (tier) {
+      case "reference":
+        return chrome.languageTierReference;
+      case "beta":
+        return chrome.languageTierBeta;
+      case "experimental":
+        return chrome.languageTierExperimental;
+      default:
+        return tier;
+    }
   };
   const localeOptions = languageOptions(localePacks, locale, tierHint);
   const assistOptions = languageOptions(assistPacks, locale, tierHint);

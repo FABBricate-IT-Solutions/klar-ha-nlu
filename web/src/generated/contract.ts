@@ -70,7 +70,8 @@ export const UNIT_SYSTEMS = [
 ] as const;
 
 export const LANGUAGE_TIERS = [
-  "stable",
+  "reference",
+  "beta",
   "experimental",
 ] as const;
 

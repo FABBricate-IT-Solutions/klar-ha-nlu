@@ -124,7 +124,7 @@ def advertised_languages(
     experimental: bool = False,
     selected: list[str] | None = None,
 ) -> list[str]:
-    """Voice-assistants dropdown: stable packs, plus kept or unlocked experimental."""
+    """Voice-assistants dropdown: reference and beta packs, plus kept or unlocked experimental."""
     return advertise(offered_packs(experimental=experimental, selected=selected))
 
 

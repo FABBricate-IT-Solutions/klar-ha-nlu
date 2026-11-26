@@ -1,0 +1,51 @@
+# Gold natural sentences for Beta locale (package 4.3).
+# source: plan evidence natural.py; not parity-generated.
+cases:
+  - text: 'Liga a luz da sala'
+    expect: 'TurnOn@living'
+    kind: execute
+  - text: 'Desliga a luz da cozinha'
+    expect: 'TurnOff@kitchen'
+    kind: execute
+  - text: 'Acende a luz da sala'
+    expect: 'TurnOn@living'
+    kind: execute
+  - text: 'Põe a luz da sala a 50 por cento'
+    expect: 'LightSet@living:brightness=50'
+    kind: execute
+  - text: 'Põe a luz da sala a vinte e cinco por cento'
+    expect: 'LightSet@living:brightness=25'
+    kind: execute
+  - text: 'Põe o aquecimento a 21 graus'
+    expect: 'ClimateSetTemperature:temperature=21'
+    kind: execute
+  - text: 'Abre os estores do quarto'
+    expect: 'TurnOn@bedroom'
+    kind: execute
+  - text: 'Fecha os estores do quarto'
+    expect: 'CONFIRM'
+    kind: confirm
+  - text: 'A luz da cozinha está ligada?'
+    expect: 'GetState@kitchen'
+    kind: execute
+  - text: 'Qual é a temperatura na sala?'
+    expect: 'GetTemp@living'
+    kind: execute
+  - text: 'Define um temporizador de cinco minutos'
+    expect: 'StartTimer:minutes=5'
+    kind: execute
+  - text: 'Adiciona leite à lista de compras'
+    expect: 'ListAdd:item=leite'
+    kind: execute
+  - text: 'Pausa a música'
+    expect: 'MediaPause'
+    kind: execute
+  - text: 'Liga a luz da sala e desliga a luz da cozinha'
+    expect: 'TurnOn@living+TurnOff@kitchen'
+    kind: execute
+  - text: 'Tranca a porta da frente'
+    expect: 'CONFIRM'
+    kind: confirm
+  - text: 'Que horas são?'
+    expect: 'CHAT'
+    kind: chat

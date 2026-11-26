@@ -11,7 +11,7 @@ def script() -> list[dict]:
         pack(
             "zh-CN",
             "简体中文",
-            ["zh-CN", "zh"],
+            ["zh-CN", "zh", "zh-Hans", "zh-Hans-CN"],
             script="Hans",
             on=["dakai"],
             off=["guanbi"],
@@ -51,7 +51,7 @@ def script() -> list[dict]:
         pack(
             "zh-TW",
             "繁體中文（台灣）",
-            ["zh-TW"],
+            ["zh-TW", "zh-Hant", "zh-Hant-TW"],
             script="Hant",
             on=["dakai"],
             off=["guanbi"],
@@ -91,7 +91,7 @@ def script() -> list[dict]:
         pack(
             "zh-HK",
             "繁體中文（香港）",
-            ["zh-HK"],
+            ["zh-HK", "zh-Hant-HK"],
             script="Hant",
             on=["dakai"],
             off=["guanbi"],

@@ -1,0 +1,54 @@
+# Gold natural sentences for Beta locale (package 4.3).
+# source: plan evidence natural.py; not parity-generated.
+cases:
+  - text: 'Accendi la luce del soggiorno'
+    expect: 'TurnOn@living'
+    kind: execute
+  - text: 'Spegni la luce della cucina'
+    expect: 'TurnOff@kitchen'
+    kind: execute
+  - text: 'Imposta la luce del soggiorno al 50 percento'
+    expect: 'LightSet@living:brightness=50'
+    kind: execute
+  - text: "Imposta la luce del soggiorno all'80 percento"
+    expect: 'LightSet@living:brightness=80'
+    kind: execute
+  - text: 'Imposta la luce del soggiorno al venticinque percento'
+    expect: 'LightSet@living:brightness=25'
+    kind: execute
+  - text: 'Imposta il riscaldamento a 21 gradi'
+    expect: 'ClimateSetTemperature:temperature=21'
+    kind: execute
+  - text: 'Apri le tapparelle della camera da letto'
+    expect: 'TurnOn@bedroom'
+    kind: execute
+  - text: 'Chiudi le tapparelle della camera da letto'
+    expect: 'CONFIRM'
+    kind: confirm
+  - text: 'La luce della cucina è accesa?'
+    expect: 'GetState@kitchen'
+    kind: execute
+  - text: 'Qual è la temperatura in soggiorno?'
+    expect: 'GetTemp@living'
+    kind: execute
+  - text: 'Imposta un timer di cinque minuti'
+    expect: 'StartTimer:minutes=5'
+    kind: execute
+  - text: 'Aggiungi il latte alla lista della spesa'
+    expect: 'ListAdd:item=latte'
+    kind: execute
+  - text: 'Metti in pausa la musica'
+    expect: 'MediaPause'
+    kind: execute
+  - text: 'Accendi la luce del soggiorno e spegni la luce della cucina'
+    expect: 'TurnOn@living+TurnOff@kitchen'
+    kind: execute
+  - text: "Chiudi a chiave la porta d'ingresso"
+    expect: 'CONFIRM'
+    kind: confirm
+  - text: "Accendi la luce dell'ingresso"
+    expect: 'TurnOn@hall'
+    kind: execute
+  - text: 'Che ore sono?'
+    expect: 'CHAT'
+    kind: chat

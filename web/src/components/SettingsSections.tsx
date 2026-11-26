@@ -187,8 +187,10 @@ export function SettingsVoiceSection({
 
 function tierLabel(t: Messages, tier: string): string {
   switch (tier) {
-    case "stable":
-      return t.languageTierStable;
+    case "reference":
+      return t.languageTierReference;
+    case "beta":
+      return t.languageTierBeta;
     case "experimental":
       return t.languageTierExperimental;
     default:
