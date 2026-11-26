@@ -22,8 +22,24 @@ def _ensure_pkg() -> None:
     sys.modules["klar_nlu"] = pkg
 
 
+def _stub_homeassistant() -> None:
+    """passthrough imports HA at module top; stdlib tests have no install."""
+    if "homeassistant.components.conversation" in sys.modules:
+        return
+    homeassistant = types.ModuleType("homeassistant")
+    components = types.ModuleType("homeassistant.components")
+    conversation = types.ModuleType("homeassistant.components.conversation")
+    conversation.async_get_agent = lambda *_a, **_k: None  # type: ignore[attr-defined]
+    homeassistant.components = components  # type: ignore[attr-defined]
+    components.conversation = conversation  # type: ignore[attr-defined]
+    sys.modules["homeassistant"] = homeassistant
+    sys.modules["homeassistant.components"] = components
+    sys.modules["homeassistant.components.conversation"] = conversation
+
+
 def _load(name: str):
     _ensure_pkg()
+    _stub_homeassistant()
     full = f"klar_nlu.{name}"
     if full in sys.modules:
         return sys.modules[full]

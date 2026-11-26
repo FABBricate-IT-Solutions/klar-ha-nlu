@@ -9,8 +9,7 @@ from __future__ import annotations
 from dataclasses import replace
 from typing import Any
 
-# Home Assistant is imported inside the delegate so stdlib tests can load this
-# module without a Home Assistant install.
+from homeassistant.components import conversation as ha_conversation
 
 
 def delegation_accepted(result: Any) -> bool:
@@ -28,10 +27,6 @@ def delegation_accepted(result: Any) -> bool:
 
 async def async_delegate_default_agent(hass: Any, user_input: Any) -> Any | None:
     """Hand the turn to ``conversation.home_assistant`` when it accepts."""
-    try:
-        from homeassistant.components import conversation as ha_conversation
-    except ImportError:
-        return None
     agent = ha_conversation.async_get_agent(hass, "conversation.home_assistant")
     if agent is None or type(agent).__name__.startswith("Klar"):
         return None
