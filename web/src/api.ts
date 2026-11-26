@@ -25,8 +25,10 @@ import type {
   WrongCaseUpdateDialog,
 } from "./types";
 import { ApiError, readErrorBody } from "./lib/apiError";
+import { parseJournalLivePayload, type JournalLiveEvent } from "./lib/journalLive";
 import { takeSseEvents } from "./lib/sse";
 import { parseV2Response } from "./parseContract";
+export type { JournalLiveEvent };
 
 export { ApiError, isApiError } from "./lib/apiError";
 
@@ -302,6 +304,25 @@ export const api = {
       body: JSON.stringify(body),
     }),
   conversations: () => request<ConversationTurn[]>("/api/v2/conversations"),
+  /** Live journal SSE. New utterances arrive without a page reload (6.7). */
+  journalLive: (onEvent: (event: JournalLiveEvent) => void, signal?: AbortSignal) => streamJournalLive(onEvent, signal),
+  previewPolicyTurns: (body: {
+    rule_id: string;
+    language?: string;
+    policies?: PolicyRule[];
+    match_controls?: MatchControl[];
+    last?: number;
+  }) =>
+    request<{ matched: number; scanned: number; with_text: number; samples: Array<{ ts_ms: number; decision: string; text: string }> }>(
+      "/api/v2/policies/preview-turns",
+      { method: "POST", body: JSON.stringify(body) },
+    ),
+  policiesHistory: () => request<Array<{ hash: string; label: string; saved_at: string }>>("/api/v2/policies/history"),
+  rollbackPolicies: (hash?: string) =>
+    request<PolicyBundle>("/api/v2/policies/rollback", { method: "POST", body: JSON.stringify({ hash }) }),
+  settingsHistory: () => request<Array<{ hash: string; label: string; saved_at: string }>>("/api/v2/settings/history"),
+  rollbackSettings: (hash?: string) =>
+    request<Settings>("/api/v2/settings/rollback", { method: "POST", body: JSON.stringify({ hash }) }),
   markWrong: (body: {
     conversation_id: string;
     ts_ms: number;
@@ -327,6 +348,30 @@ export const api = {
   applySuggestions: () => request<{ applied: number; rows: ApplyRow[] }>("/api/assignment/apply", { method: "POST" }),
   undoApply: () => request<{ applied: number; rows: ApplyRow[] }>("/api/assignment/undo", { method: "POST" }),
 };
+
+async function streamJournalLive(onEvent: (event: JournalLiveEvent) => void, signal?: AbortSignal): Promise<void> {
+  const res = await fetch(appPath("/api/v2/conversations/live"), {
+    method: "GET",
+    headers: jsonHeaders(),
+    signal,
+  });
+  if (!res.ok) await throwHttpError(res);
+  if (!res.body) return;
+  const reader = res.body.getReader();
+  const decoder = new TextDecoder();
+  let buf = "";
+  for (;;) {
+    const { done, value } = await reader.read();
+    if (done) break;
+    buf += decoder.decode(value, { stream: true });
+    const { events, rest } = takeSseEvents(buf);
+    buf = rest;
+    for (const payload of events) {
+      const parsed = parseJournalLivePayload(payload);
+      if (parsed) onEvent(parsed);
+    }
+  }
+}
 
 export function setToken(token: string) {
   const next = token.trim();

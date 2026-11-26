@@ -25,8 +25,9 @@ export type Call = {
 };
 
 export type Reply = { status?: number; body?: unknown };
-/** A function may return a promise, for example one that never settles, to keep a request pending. */
-export type Handler = Reply | ((call: Call) => Reply | Promise<Reply>);
+/** A function may return a promise, for example one that never settles, to keep a request pending.
+ *  A raw `Response` is returned as-is (SSE / streaming routes). */
+export type Handler = Reply | Response | ((call: Call) => Reply | Response | Promise<Reply | Response>);
 
 /** What the engine holds. A POST that the engine accepts changes it; tests read it to see what was clobbered. */
 export type Stored = {
@@ -96,7 +97,13 @@ function routesFor(stored: Stored): Record<string, Handler> {
     },
     "GET /api/dashboard": () => ({ body: stored.dashboard }),
     "GET /api/v2/conversations": { body: [] },
+    "GET /api/v2/conversations/live": () =>
+      new Response(new ReadableStream({ start(controller) { controller.close(); } }), {
+        headers: { "content-type": "text/event-stream" },
+      }),
     "GET /api/v2/last-turn": { body: null },
+    "GET /api/v2/policies/history": { body: [] },
+    "GET /api/v2/settings/history": { body: [] },
     "GET /api/v2/languages": { body: languagePacks },
     "GET /api/v2/intents": { body: ["HassTurnOn", "HassTurnOff", "HassGetState"] },
     "GET /api/v2/llm/endpoint": () => ({ body: stored.llm }),
@@ -224,7 +231,9 @@ export function fakeEngine(options: FakeEngineOptions = {}): FakeEngine {
       unhandled.push(call);
       return respond({ status: 404 });
     }
-    return respond(typeof handler === "function" ? await handler(call) : handler);
+    const result = typeof handler === "function" ? await handler(call) : handler;
+    if (result instanceof Response) return result;
+    return respond(result);
   };
 
   vi.stubGlobal("fetch", vi.fn(handle));

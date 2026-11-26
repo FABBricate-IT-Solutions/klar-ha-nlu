@@ -32,6 +32,11 @@ const DoctorCard = lazy(async () => {
   return { default: mod.DoctorCard };
 });
 
+const ChangeHistoryCard = lazy(async () => {
+  const mod = await import("../components/ChangeHistoryCard");
+  return { default: mod.ChangeHistoryCard };
+});
+
 function readTheme(theme?: Theme): Theme {
   if (theme === "light" || theme === "dark") return theme;
   return document.documentElement.dataset.theme === "light" ? "light" : "dark";
@@ -244,17 +249,30 @@ export function SettingsPage({
         />
       ) : null}
       {view === "engine" ? (
-        <SettingsEngineSection
-          t={t}
-          settings={shown}
-          loaded={loaded}
-          onSettings={editDraft}
-          token={token}
-          onToken={setTokenValue}
-          onApplyToken={applyToken}
-          theme={picked}
-          onTheme={setTheme}
-        />
+        <>
+          <SettingsEngineSection
+            t={t}
+            settings={shown}
+            loaded={loaded}
+            onSettings={editDraft}
+            token={token}
+            onToken={setTokenValue}
+            onApplyToken={applyToken}
+            theme={picked}
+            onTheme={setTheme}
+          />
+          {loaded ? (
+            <Suspense fallback={null}>
+              <ChangeHistoryCard
+                t={t}
+                kind="settings"
+                onRestored={() => {
+                  api.settings().then(onSettings).catch(() => undefined);
+                }}
+              />
+            </Suspense>
+          ) : null}
+        </>
       ) : null}
       {view === "doctor" ? (
         <Suspense fallback={null}>

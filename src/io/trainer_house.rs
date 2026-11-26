@@ -1,6 +1,6 @@
 //! Lotse house-policy writes: upsert/remove, govern seeds, speech bank.
 
-use crate::io::state::{save_failed, AppState};
+use crate::io::state::AppState;
 use crate::io::trainer::validate_args;
 use crate::io::trainer_args::{arg_str, string_list};
 use crate::io::trainer_reads::with_view;
@@ -137,25 +137,19 @@ pub async fn persist_policy_bundle(
     match_controls: Option<Vec<MatchControl>>,
 ) -> Result<(), String> {
     let speech_bank = state.speech_bank.lock().await.clone();
-    state
-        .overlay
-        .update(|overlay| {
-            if let Some(policies) = &policies {
-                overlay.policies = policies.clone();
-            }
-            if let Some(match_controls) = &match_controls {
-                overlay.match_controls = match_controls.clone();
-            }
-            overlay.speech_bank = speech_bank;
-        })
-        .map_err(save_failed)
+    let policies_out = match policies {
+        Some(rows) => rows,
+        None => state.policies.lock().await.clone(),
+    };
+    let controls_out = match match_controls {
+        Some(rows) => rows,
+        None => state.match_controls.lock().await.clone(),
+    };
+    crate::io::change_history::save_policies(state, policies_out.clone(), speech_bank.clone(), controls_out.clone(), "trainer".into())
         .map_err(|_| "save overlay")?;
-    if let Some(policies) = policies {
-        *state.policies.lock().await = policies;
-    }
-    if let Some(match_controls) = match_controls {
-        *state.match_controls.lock().await = match_controls;
-    }
+    *state.policies.lock().await = policies_out;
+    *state.speech_bank.lock().await = speech_bank;
+    *state.match_controls.lock().await = controls_out;
     Ok(())
 }
 

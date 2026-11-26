@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from "react";
+import { lazy, Suspense, useEffect, useMemo, useState } from "react";
 import { api, type LangOverlay } from "../api";
 import { Guide } from "../components/Guide";
 import { HouseLane } from "../components/HouseLane";
@@ -6,12 +6,17 @@ import { LexiconLane } from "../components/LexiconLane";
 import { MatchLane } from "../components/MatchLane";
 import { PolicyPath, type PolicyLane } from "../components/PolicyPath";
 import { useHouseCatalog } from "../components/SearchSelect";
-import type { Messages } from "../i18n";
+import { fill, type Messages } from "../i18n";
 import { saveFailMessage, toastSaved, toastSaveFailed } from "../saveToast";
 import { bakeVariants, pruneSpeechBank } from "../speechBank";
 import type { EvaluateOut, Locale, MatchCatalogRow, MatchControl, PolicyRule, RulesView, SpeechBank } from "../types";
 import { CustomPage } from "./CustomPage";
 import { RoutinesPage } from "./RoutinesPage";
+
+const ChangeHistoryCard = lazy(async () => {
+  const mod = await import("../components/ChangeHistoryCard");
+  return { default: mod.ChangeHistoryCard };
+});
 
 // App must scope any chrome hero (Speichern / Regel) to rules_view === "policies".
 
@@ -90,6 +95,8 @@ export function RulesPage({
   const [selected, setSelected] = useState(0);
   const [utterance, setUtterance] = useState("");
   const [evalOut, setEvalOut] = useState<EvaluateOut | null>(null);
+  const [previewHits, setPreviewHits] = useState<{ matched: number; scanned: number; with_text: number } | null>(null);
+  const [previewBusy, setPreviewBusy] = useState(false);
   const [status, setStatus] = useState("");
   const [intents, setIntents] = useState<string[]>(fallbackIntents);
   const [catalog, setCatalog] = useState<MatchCatalogRow[]>([]);
@@ -219,6 +226,26 @@ export function RulesPage({
       policies: rules,
       match_controls: matchControls,
     }));
+  };
+
+  const previewAgainstJournal = async () => {
+    if (!current) return;
+    setPreviewBusy(true);
+    try {
+      const out = await api.previewPolicyTurns({
+        rule_id: current.id,
+        language: languages.length === 1 ? languages[0] : undefined,
+        policies: rules,
+        match_controls: matchControls,
+        last: 50,
+      });
+      setPreviewHits({ matched: out.matched, scanned: out.scanned, with_text: out.with_text });
+    } catch (err) {
+      setStatus(String(err));
+      setPreviewHits(null);
+    } finally {
+      setPreviewBusy(false);
+    }
   };
 
   const selectLane = (next: PolicyLane, id?: string) => {
@@ -429,12 +456,31 @@ export function RulesPage({
               <input value={utterance} onChange={(ev) => setUtterance(ev.target.value)} placeholder={t.command} />
               <button className="primary" type="button" onClick={evaluate}>{t.analyze}</button>
             </div>
+            <div className="row" style={{ marginTop: 12 }}>
+              <button className="secondary" type="button" disabled={!current || previewBusy} onClick={() => void previewAgainstJournal()}>
+                {t.previewRuleTurns}
+              </button>
+            </div>
+            {previewHits ? (
+              <p className="muted" style={{ marginTop: 8 }} role="status">
+                {fill(t.previewRuleTurnsResult, {
+                  n: String(previewHits.matched),
+                  total: String(previewHits.scanned),
+                  text: String(previewHits.with_text),
+                })}
+              </p>
+            ) : null}
             <div className="policy-evaluate-path">
               <PolicyPath t={t} trace={evalOut?.outcome.policy_trace} onSelect={selectLane} />
             </div>
             {evalOut?.warnings?.length ? <p className="muted">{t.matchDisableWarning}</p> : null}
             {evalOut ? <p className="muted" style={{ marginTop: 12 }}>{evalOut.speech_variant || evalOut.outcome.speech}</p> : null}
           </div>
+          {rulesLoaded ? (
+            <Suspense fallback={null}>
+              <ChangeHistoryCard t={t} kind="policies" onRestored={() => { void loadPolicies(); }} />
+            </Suspense>
+          ) : null}
         </>
       )}
       {status && <p className="muted">{status}</p>}

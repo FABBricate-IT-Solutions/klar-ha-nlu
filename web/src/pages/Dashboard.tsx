@@ -83,6 +83,7 @@ export function DashboardPage({
   onOpenCalibrate,
   canApply,
   lastTurn,
+  journalTurns,
   onTeach,
   parseLanguage,
 }: {
@@ -96,9 +97,12 @@ export function DashboardPage({
   onOpenCalibrate: () => void;
   canApply: boolean;
   lastTurn?: ConversationTurn | null;
+  /** Live journal from App when available (6.7). */
+  journalTurns?: ConversationTurn[];
   onTeach?: (text: string) => void;
 }) {
-  const [turns, setTurns] = useState<ConversationTurn[]>([]);
+  const [localTurns, setLocalTurns] = useState<ConversationTurn[]>([]);
+  const turns = journalTurns ?? localTurns;
   const [busy, setBusy] = useState(false);
   const [overlay, setOverlay] = useState<DashboardData | null>(null);
   const [applyRows, setApplyRows] = useState<ApplyRow[]>([]);
@@ -112,17 +116,19 @@ export function DashboardPage({
     setOverlay(null);
   }, [data]);
   useEffect(() => {
+    // Parent App owns the live journal; only poll when embedded without it.
+    if (journalTurns) return;
     let alive = true;
     const load = () => {
       api.conversations()
         .then((rows) => {
-          if (alive) setTurns(Array.isArray(rows) ? rows : []);
+          if (alive) setLocalTurns(Array.isArray(rows) ? rows : []);
         })
         .catch(() => undefined);
       api.lastTurn()
         .then((row) => {
           if (!alive || !row) return;
-          setTurns((prev) => {
+          setLocalTurns((prev) => {
             const list = Array.isArray(prev) ? prev : [];
             if (list.some((item) => item.ts_ms === row.ts_ms && item.conversation_id === row.conversation_id)) return list;
             return [...list, row];
@@ -136,7 +142,7 @@ export function DashboardPage({
       alive = false;
       window.clearInterval(timer);
     };
-  }, [view.traffic.total]);
+  }, [view.traffic.total, journalTurns]);
   useEffect(() => {
     let cancelled = false;
     api.ui().then((next) => {
@@ -164,8 +170,10 @@ export function DashboardPage({
     try {
       const language = parseLanguage || locale || "en";
       const out = await api.parse(t.tryUndo, language, last?.conversation_id || undefined);
-      const next = await api.conversations();
-      setTurns(Array.isArray(next) ? next : []);
+      if (!journalTurns) {
+        const next = await api.conversations();
+        setLocalTurns(Array.isArray(next) ? next : []);
+      }
       // Surface the engine reply so "nothing to undo" is visible (U-10).
       if (out.speech) setApplyNotice(null);
       setUndoSpeech(out.speech || "");

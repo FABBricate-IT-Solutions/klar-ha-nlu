@@ -24,6 +24,18 @@ CONSTANTS = {
     "coverageReady": "ready",
     "coverageOpen": "open",
     "floors": "Floors",
+    # 6.7 live ops — shared English FALLBACKS in every pack (parity CI). de/en keep richer copy.
+    "journalLive": "Live",
+    "journalSearch": "Search",
+    "journalFilterDecision": "Decision",
+    "journalFilterAll": "All",
+    "journalFilterCount": "{shown} / {total}",
+    "journalFilterEmpty": "No matches.",
+    "previewRuleTurns": "Preview journal",
+    "previewRuleTurnsResult": "{n} / {total} turns ({text} with text)",
+    "changeHistory": "History",
+    "changeHistoryHint": "Earlier saves.",
+    "changeHistoryRestore": "Restore {hash}",
 }
 
 CATALOG_KEYS = (

@@ -62,6 +62,12 @@ pub(crate) fn check(packed: Packed) -> Result<Checked, &'static str> {
     {
         return Err("language_history");
     }
+    if !crate::io::change_history::history_ok_policies(&overlay) {
+        return Err("policies_history");
+    }
+    if !crate::io::change_history::history_ok_settings(&overlay) {
+        return Err("settings_history");
+    }
     overlay.policies = sanitize_rules(overlay.policies).map_err(|_| "policies")?;
     overlay.speech_bank = sanitize_speech_bank(overlay.speech_bank).map_err(|_| "speech_bank")?;
     overlay.match_controls = crate::parse::sanitize_match_controls(overlay.match_controls).map_err(|_| "match_controls")?;

@@ -8,6 +8,7 @@ import { TrainerDock, TrainerToggle } from "./components/TrainerDock";
 import { TEACH_HEARD_KEY } from "./components/TeachFromMiss";
 import { RegressionUpdateDialog } from "./components/RegressionUpdateDialog";
 import { assistParseLanguage, chromeLocale, dictionaries, ensureLocale, isRtl, type Messages } from "./i18n";
+import { mergeJournalTurn } from "./lib/journalLive";
 import { ConversationsPage } from "./pages/ConversationsPage";
 import { DashboardPage } from "./pages/Dashboard";
 import { HousePage } from "./pages/HousePage";
@@ -72,6 +73,7 @@ export function App() {
   const [settings, setSettings] = useState<Settings>(defaultSettings);
   const [dashboard, setDashboard] = useState<Dashboard | null>(null);
   const [journal, setJournal] = useState<ConversationTurn[] | null>(null);
+  const [journalLive, setJournalLive] = useState(false);
   const [confirmApply, setConfirmApply] = useState(false);
   const [replayText, setReplayText] = useState("");
   const [error, setError] = useState("");
@@ -170,15 +172,24 @@ export function App() {
     })();
   }, [refresh]);
 
-  // Home and journal used to freeze after the first load (U-29).
+  // Home refreshes on a timer; journal turns arrive live over SSE (6.7 / U-29).
   useEffect(() => {
     if (!booted) return;
     const tick = () => {
       api.dashboard().then(setDashboard).catch(() => undefined);
-      api.conversations().then(setJournal).catch(() => undefined);
     };
     const timer = window.setInterval(tick, 15_000);
-    return () => window.clearInterval(timer);
+    const ctrl = new AbortController();
+    api.journalLive((event) => {
+      setJournalLive(true);
+      setJournal((prev) => mergeJournalTurn(Array.isArray(prev) ? prev : [], event.turn));
+    }, ctrl.signal).catch(() => {
+      setJournalLive(false);
+    });
+    return () => {
+      window.clearInterval(timer);
+      ctrl.abort();
+    };
   }, [booted]);
 
   useEffect(() => {
@@ -410,10 +421,20 @@ export function App() {
             canApply={applyCandidates.length > 0}
             onTeach={teach}
             lastTurn={Array.isArray(journal) ? journal.at(-1) ?? null : undefined}
+            journalTurns={Array.isArray(journal) ? journal : undefined}
             parseLanguage={assistParseLanguage(settings.languages, locale)}
           />
         )}
-        {ui.tab === "conversations" && <ConversationsPage t={t} locale={locale} onReplay={replay} onTeach={teach} />}
+        {ui.tab === "conversations" && (
+          <ConversationsPage
+            t={t}
+            locale={locale}
+            turns={journal}
+            live={journalLive}
+            onReplay={replay}
+            onTeach={teach}
+          />
+        )}
         {ui.tab === "rules" && (
           <RulesPage
             t={t}
