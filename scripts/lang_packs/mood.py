@@ -1,7 +1,7 @@
 """Mood word classes for generated packs: what closes a sentence as a question.
 
 de and en carry the full classes by hand (negation, tense, time, condition). Every other
-pack closes on a question mark, which the engine reads in any script, and on the question
+pack lists its negation words in `NEGATION` and closes on a question mark, which the engine reads in any script, and on the question
 particle of its language listed here. `requests` are the openings of a polite request,
 which stays a command although it ends in a question mark.
 
@@ -138,6 +138,81 @@ MOOD: dict[str, dict[str, list[str]]] = {
     "zh-HK": {"endings": ["嗎", "吗", "呢", "咩", "未"]},
 }
 
+def chars(*words: str) -> list[str]:
+    """A word of a script written without spaces, as the word and as its characters in a row.
+    The tokenizer keeps a word whole only when a lexicon knows it; otherwise every character
+    (and every Thai tone mark) is a token of its own."""
+    return [form for word in words for form in (word, " ".join(word))]
+
+
+# Words that forbid an action, written the way people say them. A command that carries one
+# changes nothing. Short, frequent forms only: the tokenizer keeps them as whole tokens
+# (in Chinese, Japanese, Korean and Thai every character is a token, so a phrase is written
+# as the characters in a row, split by a space).
+NEGATION: dict[str, list[str]] = {
+    "fr": ["ne", "pas", "non", "jamais", "aucun", "aucune"],
+    "nl": ["niet", "nee", "geen", "nooit", "niks", "niets", "nergens", "noch"],
+    "es": ["no", "nunca", "jamás", "ni", "nada", "ningún", "ninguna", "ninguno", "tampoco"],
+    "it": ["non", "no", "mai", "nessuno", "nessuna", "niente", "nulla", "neanche", "nemmeno"],
+    "pt": ["não", "nunca", "jamais", "nem", "nenhum", "nenhuma", "nada", "tampouco"],
+    "ca": ["no", "mai", "ningú", "res", "tampoc", "ni"],
+    "gl": ["non", "nunca", "xamais", "nin", "ningún", "ningunha", "nada"],
+    "ro": ["nu", "nici", "niciodată", "niciun", "nicio", "nimic", "nimeni"],
+    "da": ["ikke", "nej", "aldrig", "ingen", "intet", "ingenting"],
+    "nb": ["ikke", "nei", "aldri", "ingen", "intet", "ingenting"],
+    "sv": ["inte", "icke", "nej", "aldrig", "ingen", "inget", "ingenting"],
+    "is": ["ekki", "nei", "aldrei", "enginn", "engin", "ekkert"],
+    "af": ["nie", "nee", "nooit", "geen", "niks", "nêrens"],
+    "lb": ["net", "nee", "nie", "keen", "keng", "näischt"],
+    "fi": ["ei", "en", "et", "emme", "ette", "eivät", "älä", "koskaan"],
+    "et": ["ei", "ära", "ärge", "mitte", "pole", "ega"],
+    "hu": ["nem", "ne", "soha", "sosem", "nincs", "nincsen"],
+    "cs": ["ne", "nikdy", "nic", "nikdo", "žádný", "žádná", "žádné", "není"],
+    "sk": ["nie", "ne", "nikdy", "nič", "nikto", "žiadny", "žiadna", "žiadne"],
+    "pl": ["nie", "nigdy", "nic", "nikt", "żaden", "żadna", "żadne", "ani"],
+    "hr": ["ne", "ni", "nikad", "nikada", "ništa", "nitko", "nijedan", "nijedna", "nemoj"],
+    "sl": ["ne", "ni", "nikoli", "nikdar", "nič", "nihče", "noben", "nobena", "nikar"],
+    "sr": ["не", "ни", "никад", "никада", "ништа", "нико", "нема", "немој"],
+    "sr-Latn": ["ne", "ni", "nikad", "nikada", "ništa", "niko", "nema", "nemoj"],
+    "bg": ["не", "никога", "никой", "нищо", "няма", "недей", "нито"],
+    "uk": ["не", "ні", "ніколи", "ніхто", "нічого", "нема", "немає"],
+    "lt": ["ne", "nė", "niekada", "niekas", "nieko", "nėra", "nebūk"],
+    "lv": ["nē", "ne", "nekad", "neviens", "nekas", "nav", "nedrīkst"],
+    "el": ["δεν", "δε", "μην", "μη", "όχι", "ποτέ", "κανένας", "τίποτα", "ούτε"],
+    "tr": ["değil", "hayır", "asla", "hiçbir", "hiç", "yok", "yapma", "deme"],
+    "cy": ["ddim", "na", "nid", "nac", "byth", "dim", "paid", "peidiwch"],
+    "ga": ["ní", "níl", "ná", "nach", "riamh", "ar"],
+    "eu": ["ez", "ezta", "inoiz", "inor", "ezer", "ezin"],
+    "kw": ["na", "ny", "nyns", "nyn", "nag", "byth"],
+    "id": ["tidak", "tak", "bukan", "jangan", "belum", "nggak", "enggak", "gak"],
+    "ms": ["tidak", "tak", "bukan", "jangan", "belum", "tiada"],
+    "sw": ["si", "sio", "hapana", "kamwe", "hakuna", "usi"],
+    "vi": ["không", "đừng", "chưa", "chẳng"],
+    "ar": ["لا", "لم", "لن", "ليس", "ليست", "كلا"],
+    "he": ["לא", "אל", "אין", "אינו", "אינה", "שלא"],
+    "fa": ["نه", "نکن", "نکنید", "نیست", "هرگز", "هیچ"],
+    "ur": ["نہیں", "نہ", "مت", "ہرگز"],
+    "hi": ["नहीं", "नही", "न", "मत", "नहि"],
+    "bn": ["না", "নয়", "নেই", "নাই"],
+    "mr": ["नको", "नका", "नाही", "नये", "न"],
+    "gu": ["ના", "નહીં", "નહિ", "નથી"],
+    "pa": ["ਨਹੀਂ", "ਨਹੀ", "ਨਾ", "ਮਤ"],
+    "ne": ["होइन", "नगर", "नगर्नु", "नगर्नुहोस्", "छैन"],
+    "ta": ["இல்லை", "வேண்டாம்", "அல்ல", "வேண்டா", "இல்ல"],
+    "te": ["వద్దు", "కాదు", "లేదు", "లేవు", "వద్దండి"],
+    "kn": ["ಬೇಡ", "ಇಲ್ಲ", "ಅಲ್ಲ", "ಬೇಡಿ"],
+    "ml": ["വേണ്ട", "ഇല്ല", "അല്ല", "വേണ്ടാ"],
+    "hy": ["ոչ", "չէ", "չի", "երբեք", "ոչինչ"],
+    "ka": ["არ", "არა", "ნუ", "არასდროს", "არავინ", "არაფერი"],
+    "mn": ["үгүй", "биш", "битгий", "бүү"],
+    "ja": chars("ない", "ません"),
+    "ko": ["안", "못", "않", *chars("아니"), "지 마", "지 말", "지 않", "지 못"],
+    "th": [*chars("ไม่", "ห้าม", "อย่า"), "ห้า ม"],
+    "zh-CN": ["不", "别", "没", "勿", "莫", "甭"],
+    "zh-TW": ["不", "別", "沒", "勿", "莫", "甭"],
+    "zh-HK": ["唔", "冇", "咪", "不", "別", "沒", "勿"],
+}
+
 
 def parent(code: str) -> str:
     return code.split("-")[0]
@@ -169,6 +244,7 @@ def mood_rs(lang: dict) -> str:
         return regional_mood_rs(lang)
     row = MOOD.get(code) or MOOD.get(parent(code)) or {}
     fields = [
+        ("negation", NEGATION.get(code) or NEGATION.get(parent(code), [])),
         ("request_frames", row.get("requests", [])),
         ("question_openers", row.get("openers", [])),
         ("question_particles", row.get("particles", [])),

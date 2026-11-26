@@ -5,7 +5,7 @@ from __future__ import annotations
 from .const import LANGUAGE_ALL, LANGUAGE_SYSTEM, LANGUAGE_VARIANTS, SUPPORTED_LANGUAGES
 from .languages import EXPERIMENTAL_LANGUAGES, LANGUAGE_NAMES
 
-_EXPERIMENTAL = frozenset(EXPERIMENTAL_LANGUAGES)
+_EXPERIMENTAL: frozenset[str] = frozenset(EXPERIMENTAL_LANGUAGES)
 
 
 def _allowed(enabled: list[str] | None) -> list[str]:

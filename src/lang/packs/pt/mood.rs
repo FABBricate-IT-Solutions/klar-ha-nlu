@@ -2,6 +2,7 @@
 use crate::lang::mood::MoodWords;
 
 pub(super) const MOOD: MoodWords = MoodWords {
+    negation: &["jamais", "nada", "nao", "nem", "nenhum", "nenhuma", "nunca", "tampouco"],
     request_frames: &["consegues", "pode", "poderia", "poderias", "podes", "podia", "podias", "voce pode", "voce poderia"],
     ..MoodWords::EMPTY
 };

@@ -144,6 +144,6 @@ LANGUAGE_NAMES = {
 
 # Offered for a new selection only with the engine setting `experimental_languages`.
 # A locale that is configured already keeps working.
-REFERENCE_LANGUAGES = ('de', 'en', 'de-CH', 'de-AT', 'en-GB')
-BETA_LANGUAGES = ('fr', 'nl', 'es', 'it', 'pt', 'pt-BR', 'uk', 'id', 'hi')
-EXPERIMENTAL_LANGUAGES = ('ca', 'ro', 'da', 'nb', 'sv', 'fi', 'af', 'cs', 'sk', 'pl', 'hu', 'hr', 'sl', 'bg', 'el', 'sr', 'sr-Latn', 'zh-CN', 'zh-TW', 'zh-HK', 'ar', 'he', 'fa', 'ur', 'tr', 'th', 'ko', 'ja', 'cy', 'et', 'eu', 'ga', 'gl', 'is', 'lb', 'kw', 'lt', 'lv', 'ms', 'sw', 'vi', 'bn', 'gu', 'kn', 'ml', 'mr', 'ta', 'te', 'pa', 'ne', 'hy', 'ka', 'mn')
+REFERENCE_LANGUAGES = ('de', 'en', 'fr', 'nl', 'es', 'it', 'pt', 'ca', 'ro', 'da', 'nb', 'sv', 'fi', 'de-CH', 'de-AT', 'en-GB', 'pt-BR', 'af', 'cs', 'sk', 'pl', 'hu', 'hr', 'sl', 'bg', 'el', 'sr', 'sr-Latn', 'uk', 'zh-CN', 'zh-TW', 'zh-HK', 'ar', 'he', 'fa', 'ur', 'tr', 'th', 'ko', 'ja', 'cy', 'et', 'eu', 'ga', 'gl', 'is', 'lb', 'kw', 'lt', 'lv', 'id', 'ms', 'sw', 'vi', 'hi', 'bn', 'gu', 'kn', 'ml', 'mr', 'ta', 'te', 'pa', 'ne', 'hy', 'ka', 'mn')
+BETA_LANGUAGES = ()
+EXPERIMENTAL_LANGUAGES = ()

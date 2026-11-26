@@ -2,6 +2,7 @@
 use crate::lang::mood::MoodWords;
 
 pub(super) const MOOD: MoodWords = MoodWords {
+    negation: &["aelae", "ei", "eivaet", "emme", "en", "et", "ette", "koskaan"],
     request_frames: &["viitsitkoe", "voisitko", "voitko", "voitteko"],
     question_openers: &["eikoe", "oliko", "onko", "ovatko"],
     ..MoodWords::EMPTY

@@ -2,6 +2,7 @@
 use crate::lang::mood::MoodWords;
 
 pub(super) const MOOD: MoodWords = MoodWords {
+    negation: &["ar", "na", "nach", "ni", "nil", "riamh"],
     request_frames: &["an bhfeadfa", "an feidir leat", "ar mhiste leat"],
     question_openers: &["an bhfuil", "an raibh", "nach bhfuil", "nach raibh"],
     ..MoodWords::EMPTY

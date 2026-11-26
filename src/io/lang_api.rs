@@ -6,8 +6,8 @@ use crate::io::lang_explain::{explain_outcome, ExplainOut};
 use crate::io::limits::MAX_PARSE_CHARS;
 use crate::io::state::{save_failed, AppState};
 use crate::lang::{
-    bind_preview_user, in_use, install_user_overlay, offered, pin_language, push_revision, select_revision, validate_custom,
-    validate_language, LanguageOverlay, LanguageRevision, Tier,
+    bind_preview_user, in_use, install_user_overlay, offered_as, pin_language, push_revision, select_revision, validate_custom,
+    validate_language, LangMeta, LanguageOverlay, LanguageRevision, Tier,
 };
 use crate::nlu::parse;
 use crate::session::Session;
@@ -49,6 +49,12 @@ async fn list_languages(State(state): State<AppState>, Query(query): Query<Langu
 /// experimental ones when the switch is on, and whatever is configured already.
 /// `all` lists the rest too.
 fn language_rows(settings: &Settings, all: bool) -> Vec<LanguageOut> {
+    language_rows_in(|meta| meta.tier, settings, all)
+}
+
+/// `language_rows` with the tier of each locale passed in: every shipped locale is
+/// reference, so the switch is tested with a lookup that demotes one.
+fn language_rows_in(tier: impl Fn(&LangMeta) -> Tier, settings: &Settings, all: bool) -> Vec<LanguageOut> {
     let in_use = in_use(settings);
     crate::lang::languages()
         .iter()
@@ -58,8 +64,8 @@ fn language_rows(settings: &Settings, all: bool) -> Vec<LanguageOut> {
             script: meta.script.to_string(),
             variants: meta.variants.iter().map(|item| (*item).to_string()).collect(),
             parent: meta.parent.map(str::to_string),
-            tier: meta.tier,
-            offered: offered(meta.code, &in_use, settings.experimental_languages),
+            tier: tier(meta),
+            offered: offered_as(tier(meta), meta.code, &in_use, settings.experimental_languages),
         })
         .filter(|row| all || row.offered)
         .collect()

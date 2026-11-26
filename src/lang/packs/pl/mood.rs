@@ -2,6 +2,7 @@
 use crate::lang::mood::MoodWords;
 
 pub(super) const MOOD: MoodWords = MoodWords {
+    negation: &["ani", "nic", "nie", "nigdy", "nikt", "zaden", "zadna", "zadne"],
     request_frames: &["czy moglabys", "czy moglbys", "czy mozecie", "czy mozesz", "moglabys", "moglbys", "mozesz"],
     question_openers: &["czy"],
     ..MoodWords::EMPTY

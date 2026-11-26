@@ -45,7 +45,7 @@ Every compiled Assist locale uses the same `LanguagePack` path. German and Engli
 | `hy` | Armenian | `ka` | Georgian |
 | `mn` | Mongolian | | |
 
-`de` / `en` are hand-written reference packs. Other locales are generated and smoke-tested; quality varies.
+`de` / `en` are hand-written reference packs. The other locales are generated; each one passes the same minimal-pair gate (`tests/language_tiers.rs`) and is listed as reference. Coverage of everyday sentences still differs per language.
 
 **Not shipped:** Russian (`ru`, `ru-RU`) — no pack, no registry row, `pin_language("ru")` stays unknown.
 
@@ -73,21 +73,21 @@ A tier says how far a locale is tested. It does not remove a pack. Published tab
 
 | Tier | Codes | Gate |
 |------|-------|------|
-| **reference** | `de`, `en`, `de-AT`, `de-CH`, `en-GB` | Full on/off/negation minimal pairs |
-| **beta** | `es`, `nl`, `pt`, `pt-BR`, `it`, `fr`, `id`, `uk`, `hi` | No opposite action + gold natural sentences (`tests/datasets/gold/`) |
-| **experimental** | every other compiled locale | Behind `experimental_languages` |
+| **reference** | every compiled locale (all 67) | Full on/off/negation minimal pairs: every basic command acts the right way round; a question or a negated command switches nothing |
+| **beta** | none today | No opposite action + gold natural sentences (`tests/datasets/gold/`) |
+| **experimental** | none today; a new locale starts here | Behind `experimental_languages` |
 
-`tests/language_tiers.rs` and `tests/language_gold.rs` decide. Advertised tags (`zh`, `zh-Hans`, `no`, `nn`, …) resolve through the variants table and can be pinned. In a bilingual house the reply language follows the detected utterance language, not the alphabetically first pack.
+`tests/language_tiers.rs` and `tests/language_gold.rs` decide. Every shipped locale lists its own negation words (the generated packs in `scripts/lang_packs/mood.py`), so a negated command is refused in every language. Every shipped locale is always offered; the switch below only matters for a locale that is added later and has not earned reference yet. Advertised tags (`zh`, `zh-Hans`, `no`, `nn`, …) resolve through the variants table and can be pinned. In a bilingual house the reply language follows the detected utterance language, not the alphabetically first pack.
 
 The engine setting `experimental_languages` (off by default) is the switch:
 
 - A locale that is configured already (`languages`, `default_language`) keeps working and stays listed, whatever its tier. An update never changes the language of a house.
 - A request that pins a language (`language` on `POST /api/v2/parse`, the Assist pipeline language) is answered in that language, whatever its tier.
-- With the switch off, an experimental locale is not listed for a new selection and a settings save that adds one is refused (`422`). Reference and Beta are always offered.
+- With the switch off, an experimental locale (none ships today) is not listed for a new selection and a settings save that adds one is refused (`422`). Reference and Beta are always offered.
 
 ## Catalog model
 
-`Catalog` merges the **pinned** packs for that request. Assist and `POST /api/v2/parse` should send `language`. Empty `Settings.languages` means every compiled locale may be pinned, not “merge de+en.” A request that names no language then binds the default pack (`Settings.default_language`, English when unset), never an empty catalog. Binding every compiled locale at once would collide tokens (for example German `an` vs other packs); the engine returns an empty catalog for that case instead of a giant merge. Adding an experimental locale while the switch is off is refused with `422`.
+`Catalog` merges the **pinned** packs for that request. Assist and `POST /api/v2/parse` should send `language`. Empty `Settings.languages` means every compiled locale may be pinned, not “merge de+en.” A request that names no language then binds the default pack (`Settings.default_language`, English when unset), never an empty catalog. Binding every compiled locale at once would collide tokens (for example German `an` vs other packs); the engine returns an empty catalog for that case instead of a giant merge. Adding an experimental locale (none ships today) while the switch is off is refused with `422`.
 
 An explicit short list such as `["de", "en"]` still merges those packs for unpinned parse. That is a user choice, not a support tier.
 

@@ -2,6 +2,7 @@
 use crate::lang::mood::MoodWords;
 
 pub(super) const MOOD: MoodWords = MoodWords {
+    negation: &["ne", "nemoj", "ni", "nijedan", "nijedna", "nikad", "nikada", "nista", "nitko"],
     request_frames: &["bi li mogao", "bi li mogla", "mozes", "mozes li", "mozete li"],
     question_openers: &["da li", "je li", "jel"],
     ..MoodWords::EMPTY

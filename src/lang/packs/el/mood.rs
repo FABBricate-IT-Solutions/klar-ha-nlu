@@ -2,6 +2,7 @@
 use crate::lang::mood::MoodWords;
 
 pub(super) const MOOD: MoodWords = MoodWords {
+    negation: &["δε", "δεν", "κανενας", "μη", "μην", "ουτε", "οχι", "ποτε", "τιποτα"],
     request_frames: &["θα μπορουσες να", "μπορεις να", "μπορειτε να"],
     question_openers: &["μηπως"],
     question_endings: &[";"],

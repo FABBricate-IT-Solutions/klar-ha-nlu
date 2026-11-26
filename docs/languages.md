@@ -73,17 +73,17 @@ Eine Stufe sagt, wie weit eine Locale geprüft ist. Sie nimmt kein Pack weg. Ver
 
 | Stufe | Codes | Gate |
 |-------|-------|------|
-| **Referenz** | `de`, `en`, `de-AT`, `de-CH`, `en-GB` | Volle An/Aus/Negation-Minimalpaare |
-| **Beta** | `es`, `nl`, `pt`, `pt-BR`, `it`, `fr`, `id`, `uk`, `hi` | Keine falsche Aktion + Gold-Sätze (`tests/datasets/gold/`) |
-| **Experimentell** | jede andere kompilierte Locale | Hinter `experimental_languages` |
+| **Referenz** | jede kompilierte Locale (alle 67) | Volle An/Aus/Negation-Minimalpaare: jedes Grundkommando wirkt richtig herum; eine Frage oder ein verneinter Befehl schaltet nichts |
+| **Beta** | heute keine | Keine falsche Aktion + Gold-Sätze (`tests/datasets/gold/`) |
+| **Experimentell** | heute keine; eine neue Locale beginnt hier | Hinter `experimental_languages` |
 
-`tests/language_tiers.rs` und `tests/language_gold.rs` entscheiden. Beworbene Tags (`zh`, `zh-Hans`, `no`, `nn`, …) laufen über die Varianten-Tabelle und lassen sich pinnen. In einem zweisprachigen Haus folgt die Antwortsprache der erkannten Äußerung, nicht dem alphabetisch ersten Pack.
+`tests/language_tiers.rs` und `tests/language_gold.rs` entscheiden. Jede ausgelieferte Locale führt ihre eigenen Verneinungswörter (die generierten Packs in `scripts/lang_packs/mood.py`), ein verneinter Befehl wird also in jeder Sprache abgelehnt. Jede ausgelieferte Locale wird immer angeboten; der Schalter unten gilt nur für eine später hinzugefügte Locale, die Referenz noch nicht erreicht hat. Beworbene Tags (`zh`, `zh-Hans`, `no`, `nn`, …) laufen über die Varianten-Tabelle und lassen sich pinnen. In einem zweisprachigen Haus folgt die Antwortsprache der erkannten Äußerung, nicht dem alphabetisch ersten Pack.
 
 Die Engine-Einstellung `experimental_languages` (standardmäßig aus) ist der Schalter:
 
 - Eine Locale, die schon konfiguriert ist (`languages`, `default_language`), bleibt nutzbar und gelistet, egal welche Stufe. Ein Update nimmt einem Haus keine Sprache weg.
 - Ein Request, der eine Sprache pinnt (`language` bei `POST /api/v2/parse`, die Sprache der Assist-Pipeline), wird in dieser Sprache beantwortet, egal in welcher Stufe.
-- Mit ausgeschaltetem Schalter wird eine experimentelle Locale nicht zur Neuauswahl gelistet und ein Settings-Save, der eine hinzufügt, mit `422` abgelehnt. Referenz und Beta sind immer angeboten.
+- Mit ausgeschaltetem Schalter wird eine experimentelle Locale (heute liefert keine aus) nicht zur Neuauswahl gelistet und ein Settings-Save, der eine hinzufügt, mit `422` abgelehnt. Referenz und Beta sind immer angeboten.
 
 
 ## Catalog-Modell
