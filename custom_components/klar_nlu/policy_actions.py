@@ -9,6 +9,9 @@ _LOGGER = logging.getLogger(__name__)
 
 _MAX_RENDER = 500
 
+# H-24: these rejects stay with Klar; everything else continues to HA then LLM.
+_SKIP_HANDOFF = frozenset({"empty_input", "invalid_input", "unsafe"})
+
 
 def hit_and_payload(payload: dict[str, Any]) -> tuple[str, str]:
     trace = payload.get("policy_trace") if isinstance(payload.get("policy_trace"), dict) else {}
@@ -21,15 +24,22 @@ def skips_llm_fallback(hit: str) -> bool:
     return hit in {"reply", "template", "script"}
 
 
-def routes_general_chat(decision_type: str, reason: str) -> bool:
-    """Send real chat, and general questions, to the configured LLM.
+def continues_after_reject(decision_type: str, reason: str) -> bool:
+    """True when a Klar rejection should leave Klar (default agent, then LLM)."""
+    if decision_type != "reject":
+        return False
+    return reason not in _SKIP_HANDOFF
 
-    Failed device commands stay a normal reject. Only ``out_of_domain``
-    (trivia, advice, open questions with no home target) is forwarded.
+
+def routes_general_chat(decision_type: str, reason: str) -> bool:
+    """Send real chat, and Klar rejections, toward the LLM after HA handoff.
+
+    H-24: ``no_action`` and other rejections continue (default agent first in
+    conversation.py, then the LLM). Empty, invalid, and unsafe input stays put.
     """
     if decision_type == "chat":
         return True
-    return decision_type == "reject" and reason == "out_of_domain"
+    return continues_after_reject(decision_type, reason)
 
 
 def keeps_engine_chat(hit: str, chat: bool, speech: str) -> bool:

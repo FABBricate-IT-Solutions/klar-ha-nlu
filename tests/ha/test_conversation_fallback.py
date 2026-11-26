@@ -65,15 +65,19 @@ class ConversationFallbackTests(unittest.TestCase):
         self.assertIn("_was_published(fallback)", block)
         self.assertIn('"llm"', block)
 
-    def test_home_execute_skips_sentence_triggers(self) -> None:
+    def test_sentence_triggers_before_klar_then_default_agent(self) -> None:
+        # H-24 / 6.1: triggers → Klar → on reject default agent → LLM.
+        # Former expectation (parse before triggers; triggers only when unreachable)
+        # encoded the dead-end bug.
         src = (ROOT / "custom_components" / "klar_nlu" / "conversation.py").read_text(
             encoding="utf-8"
         )
         start = src.index("async def _async_handle_message")
         end = src.index("if payload.get(\"briefing\"):", start)
         block = src[start:end]
-        self.assertLess(block.index("await self._parse("), block.index("_sentence_triggers"))
-        self.assertIn('if payload.get("unreachable"):', block)
+        self.assertLess(block.index("_sentence_triggers"), block.index("await self._parse("))
+        self.assertIn("async_delegate_default_agent", block)
+        self.assertIn("continues_after_reject", src)
         self.assertNotIn('if decision_type != "execute":', block)
         self.assertIn("keep_lab_plan(", src)
         self.assertIn('decision_type != "execute"', src[src.index("if hit == \"llm\"") : src.index("if (\n            routes_general_chat(decision_type, reason)")])
