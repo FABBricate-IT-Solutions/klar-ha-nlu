@@ -21,6 +21,8 @@ concurrency:
 permissions: {}
 
 # Tag/publish only after fmt, clippy, nextest, pack freshness, web, audit, deny, and gitleaks.
+# V-04: cut/land use a GitHub App token so the release PR's checks run without a
+# manual "approve and run" step (GITHUB_TOKEN-created PRs sit in action_required).
 jobs:
   quality:
     name: quality
@@ -51,12 +53,20 @@ jobs:
     outputs:
       tag: ${{ steps.cut.outputs.tag }}
     steps:
+      - uses: actions/create-github-app-token@f418cff399f7aef4c2f0ad47e25ca7a6abbdd6fc # v3.4.0
+        id: app-token
+        with:
+          client-id: ${{ vars.APP_CLIENT_ID }}
+          private-key: ${{ secrets.APP_PRIVATE_KEY }}
+          permission-contents: write
+          permission-pull-requests: write
+
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         # scripts/cut-release.sh pushes with this checkout's credentials.
         with: # zizmor: ignore[artipacked]
           ref: main
           fetch-depth: 0
-          token: ${{ github.token }}
+          token: ${{ steps.app-token.outputs.token }}
 
       - uses: taiki-e/install-action@fe3acb53a98b62c772db35de75ce0e4595e7ca8c # v2.90.8
         with:
@@ -67,7 +77,8 @@ jobs:
         env:
           VERSION: ${{ inputs.version }}
           MESSAGE: ${{ github.event.head_commit.message }}
-          GITHUB_TOKEN: ${{ github.token }}
+          GITHUB_TOKEN: ${{ steps.app-token.outputs.token }}
+          GH_TOKEN: ${{ steps.app-token.outputs.token }}
         run: bash scripts/cut-release.sh
 
   publish:
@@ -94,14 +105,23 @@ jobs:
       contents: write
       pull-requests: write
     steps:
+      - uses: actions/create-github-app-token@f418cff399f7aef4c2f0ad47e25ca7a6abbdd6fc # v3.4.0
+        id: app-token
+        with:
+          client-id: ${{ vars.APP_CLIENT_ID }}
+          private-key: ${{ secrets.APP_PRIVATE_KEY }}
+          permission-contents: write
+          permission-pull-requests: write
+
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         # scripts/cut-release.sh --land-addon merges with this checkout's credentials.
         with: # zizmor: ignore[artipacked]
           ref: main
           fetch-depth: 0
-          token: ${{ github.token }}
+          token: ${{ steps.app-token.outputs.token }}
       - name: Land add-on version on main
         env:
           TAG: ${{ needs.cut.outputs.tag }}
-          GITHUB_TOKEN: ${{ github.token }}
+          GITHUB_TOKEN: ${{ steps.app-token.outputs.token }}
+          GH_TOKEN: ${{ steps.app-token.outputs.token }}
         run: bash scripts/cut-release.sh --land-addon

@@ -48,13 +48,15 @@ You must create `staging` on GitHub once and protect it (Actions cannot always s
 - Require the same PR checks as `main` (`test`, `clippy`, `rustfmt`, `web`, `release-gates`, `cargo-audit`, `cargo-deny`, `gitleaks`, `hassfest`, `hacs`)
 - Optional: require one approval
 
-Promote an RC by opening a PR **`staging` → `main`**. That merge cuts the next CalVer as today.
+Promote an RC with a PR **`staging` → `main`**. The **Promote** workflow opens that PR weekly (Monday 06:00 UTC) and on manual dispatch; it does not merge. Merging then cuts the next CalVer as today.
+
+`workflow_dispatch` on **Staging** only publishes when the run starts on the `staging` branch — other refs are skipped.
 
 Home Assistant switch: [home-assistant.md](home-assistant.md) — Configure → **Release channel** (bundled GitHub download and default app URL).
 
 ## Cut a release
 
-Every merge to `main` cuts the next `YYYY.M.PATCH` automatically. The Release workflow:
+Every merge to `main` that carries product changes cuts the next `YYYY.M.PATCH` automatically. Pure dependency merges (Dependabot / `npm:` / `cargo:` / `docker:` / `ci:`) do not cut a release. The Release workflow:
 
 1. Computes the next CalVer
 2. Writes it into `Cargo.toml`, `addon/config.yaml`, and the HA manifest on branch `chore/release-YYYY.M.PATCH`
@@ -71,7 +73,11 @@ Build compiles linux-x86_64 and linux-aarch64 and attaches the tarballs to the G
 
 A tag pushed from your machine still triggers Build on its own: `git tag 2026.8.0 && git push origin 2026.8.0`.
 
-The cut uses only the job-scoped `GITHUB_TOKEN`. `main` and `staging` require the status checks (`test`, `clippy`, `rustfmt`, `web`, `release-gates`, `cargo-audit`, `cargo-deny`, `gitleaks`, `hassfest`, `hacs`) before any PR merge, including admins. The version bump lands through that same PR path so the required checks can go green first.
+The cut opens the release PR with a **GitHub App token** (`APP_CLIENT_ID` variable, `APP_PRIVATE_KEY` secret) so required checks run without a manual Actions approval. If `main` moves while the cut waits, the changelog is regenerated before tagging. A cut with nothing left to publish (HEAD already tagged, version already taken) exits 0.
+
+`main` and `staging` require the status checks (`test`, `clippy`, `rustfmt`, `web`, `release-gates`, `cargo-audit`, `cargo-deny`, `gitleaks`, `hassfest`, `hacs`) before any PR merge, including admins. The version bump lands through that same PR path so the required checks can go green first.
+
+git-cliff ignores staging/RC tags (`ignore_tags`) so every `feat`/`fix` commit between two stable tags appears in that stable release's changelog.
 
 ## Local changelog
 

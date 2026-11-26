@@ -20,9 +20,11 @@ concurrency:
 # (including skipped ones), otherwise GitHub rejects the run as startup_failure.
 permissions: {}
 
+# V-10: workflow_dispatch can target any branch; only publish from staging.
 jobs:
   quality:
     name: quality
+    if: github.ref == 'refs/heads/staging'
     uses: ./.github/workflows/ci.yml
     with:
       nextest_profile: ci-staging
@@ -31,6 +33,7 @@ jobs:
 
   security:
     name: security
+    if: github.ref == 'refs/heads/staging'
     uses: ./.github/workflows/security.yml
     # The repository has no secrets of its own; the callee only reads GITHUB_TOKEN.
     secrets: inherit # zizmor: ignore[secrets-inherit]
@@ -43,6 +46,7 @@ jobs:
 
   tag:
     name: tag
+    if: github.ref == 'refs/heads/staging'
     needs: [quality, security]
     runs-on: ubuntu-26.04
     # Pushes the RC tag.
@@ -82,7 +86,7 @@ jobs:
   publish:
     name: publish
     needs: tag
-    if: needs.tag.outputs.tag != ''
+    if: github.ref == 'refs/heads/staging' && needs.tag.outputs.tag != ''
     uses: ./.github/workflows/build.yml
     with:
       release_tag: ${{ needs.tag.outputs.tag }}
