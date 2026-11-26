@@ -8,7 +8,7 @@ Klar NLU attaches to Assist as a conversation entity. That is the **integration*
 
 Install both on Home Assistant OS if you want Assist **and** Mapping/Lab. The integration alone is enough for Assist without the App UI. The App alone does not hook Assist.
 
-V2 talks `POST /api/v2/parse` only. Update the integration and the engine in the same release; a mixed pair will fail. Every compiled Assist locale is first-class; Assist pins one pack per request.
+V2 talks `POST /api/v2/parse` only. Update the integration and the engine in the same release; a mixed pair will fail. Every compiled Assist locale uses the same engine path and is tiered (reference / beta / experimental); Assist pins one pack per request.
 
 ## Integration
 
@@ -166,10 +166,11 @@ The Supervisor reads the add-on repo from `main`. **Klar NLU (Staging)** shows i
 ```bash
 docker run --rm --network host \
   -v /path/to/homeassistant/config:/config:ro \
-  ghcr.io/fabbricate-it-solutions/klar-nlu:2026.9.5
+  -v /path/to/klar-data:/data \
+  ghcr.io/fabbricate-it-solutions/klar-nlu:2026.11.3
 ```
 
-Use the CalVer that matches the engine (`Cargo.toml` / GitHub Release), not an old `0.1.x` tag. For a release candidate: `ghcr.io/fabbricate-it-solutions/klar-nlu:staging`.
+Use the CalVer that matches the engine (`Cargo.toml` / GitHub Release), not an old `0.1.x` tag. Mount writable `/data` so the overlay keeps calibration across restarts. For a release candidate: `ghcr.io/fabbricate-it-solutions/klar-nlu:staging`.
 
 Integration URL: `http://127.0.0.1:10520`. From source: `docker build -t klar-nlu .` (root Dockerfile).
 

@@ -2,7 +2,7 @@
 
 [Deutsch](adr-0003-python-rust-boundary.md) · [English](adr-0003-python-rust-boundary.en.md)
 
-Status: **accepted direction; implemented on staging, not a main release**. Implementation: [plan](adr-0003-plan.en.md).
+Status: **accepted direction; on staging**. Post-execute speech, refine, and assist prompts moved behind engine routes; the Python tree still grew (~12k LOC under `custom_components/klar_nlu/`) as HA glue and snapshot builders. Implementation: [plan](adr-0003-plan.en.md).
 
 Klar stays a deterministic, local NLU. `nlu::parse` has no network and no model. An LLM may **talk and rewrite**; it must not **drive parse**. Product rules that are not Home Assistant platform glue belong in the Rust engine, not in `custom_components/klar_nlu/`.
 
@@ -10,9 +10,9 @@ This ADR does not replace [ADR 0002](adr-0002-openai-llm-client.md) (outbound Op
 
 ## Context
 
-The Home Assistant integration is ~8500 lines. About one third is product logic that conceptually belongs in Rust (refine accept/prompt, Yarn/chat/RAG prompts, post-execute spoken sentences, quiet-ack eligibility). The rest **must** stay Python: binary lifecycle, config flow, registry sync, HA service execution, ConversationEntity/ChatLog orchestration, leftover-agent field reads, ESPHome/assist_satellite chime, entities/panel/services.
+The Home Assistant integration is about **12k** Python lines (was ~8.5k when this ADR was written). Engine-owned routes (`/api/v2/speech/render`, `/api/v2/llm/refine`, `/api/v2/llm/assist`) landed; thin Python callers remain (`speech_render.py`, `engine_llm.py`). Platform glue **must** stay Python: binary lifecycle, config flow, registry sync, HA service execution, ConversationEntity/ChatLog orchestration, leftover-agent field reads, ESPHome/assist_satellite chime, entities/panel/services.
 
-Today that split is violated:
+Drift to watch (product logic that still grows in Python violates this ADR):
 
 - Assist LLM paths still grow a **parallel OpenAI SDK** (`refine.py` `_async_refine_raw`, `stream.py` `iter_completion_tokens`, `conversation.py` `_fallback` / `_stream_fallback`) after the engine `/api/v2/llm/chat` path. ADR 0002 forbids growing that.
 - Refine **accept** rules, weather-invention guards, and personality prompt blocks live in Python while HTTP already goes through Klar.

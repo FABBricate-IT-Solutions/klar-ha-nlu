@@ -2,7 +2,7 @@
 
 [Deutsch](adr-0001-rules-and-trainer.md) · [English](adr-0001-rules-and-trainer.en.md)
 
-Status: **akzeptierte Richtung; auf staging umgesetzt, kein Hauptrelease** — [Plan](adr-0001-plan.md).
+Status: **akzeptierte Richtung; auf staging** — [Plan](adr-0001-plan.md).
 
 Klar bleibt eine deterministische, lokale NLU. Ein LLM darf das Haus **einrichten**, nicht den Parse-Pfad **fahren**. Alle drei Ebenen sind in der Operator-UI **sichtbar, steuerbar und trainierbar**. Jeder Parse zeichnet denselben Pfad.
 
@@ -21,7 +21,7 @@ Gewünscht:
 - Alle drei Ebenen in der Operator-UI **verwalten**: an/aus, Reihenfolge, Inhalt — plus **LLM-Vorschläge** pro Ebene.
 - Dieselben drei Ebenen **scharf visualisieren**: statisch (wie sie geschichtet sind) und live (welchen Pfad *dieser* Satz genommen hat). Ein Klick auf einen Knoten öffnet die Regel.
 
-Match bleibt kompiliert (keine frei erfundene Matching-DSL). Steuerbar heißt: Overlay auf dem Katalog (enable, Precedence), nicht neue `PolicyId`-Funktionen aus dem Modell. Jede kompilierte Assist-Locale (`GET /api/v2/languages`) ist erstklassig — de/en sind Oracles, keine Extra-Kaste.
+Match bleibt kompiliert (keine frei erfundene Matching-DSL). Steuerbar heißt: Overlay auf dem Katalog (enable, Precedence), nicht neue `PolicyId`-Funktionen aus dem Modell. Jede kompilierte Assist-Locale (`GET /api/v2/languages`) nutzt denselben Engine-Weg und eine veröffentlichte Stufe — de/en sind Oracles, keine Extra-Kaste.
 
 ## Ist-Zustand (knapp)
 

@@ -2,7 +2,7 @@
 
 [Deutsch](adr-0003-python-rust-boundary.md) · [English](adr-0003-python-rust-boundary.en.md)
 
-Status: **akzeptierte Richtung; auf staging umgesetzt, kein Hauptrelease**. Umsetzung: [Plan](adr-0003-plan.md).
+Status: **akzeptierte Richtung; auf staging**. Sprache nach Execute, Refine und Assist-Prompts liegen hinter Engine-Routen; der Python-Baum ist trotzdem gewachsen (~12k Zeilen unter `custom_components/klar_nlu/`) als HA-Kleber und Snapshot-Builder. Umsetzung: [Plan](adr-0003-plan.md).
 
 Klar bleibt eine deterministische, lokale NLU. `nlu::parse` hat kein Netz und kein Modell. Ein LLM darf **reden und umformulieren**; es darf den Parse **nicht fahren**. Produktregeln, die nicht Home-Assistant-Plattformkleber sind, gehören in die Rust-Engine, nicht nach `custom_components/klar_nlu/`.
 
@@ -10,9 +10,9 @@ Dieses ADR ersetzt weder [ADR 0002](adr-0002-openai-llm-client.md) (ausgehender 
 
 ## Kontext
 
-Die Home-Assistant-Integration hat rund 8500 Zeilen. Etwa ein Drittel ist Produktlogik, die konzeptionell nach Rust gehört (Refine-Accept/Prompt, Yarn/Chat/RAG-Prompts, gesprochene Sätze nach dem Execute, Quiet-Ack-Eignung). Der Rest **muss** Python bleiben: Binary-Lebenszyklus, Config-Flow, Registry-Sync, HA-Service-Ausführung, ConversationEntity/ChatLog-Orchestrierung, Restfelder eines alten Agenten, ESPHome/assist_satellite-Chime, Entities/Panel/Services.
+Die Home-Assistant-Integration hat rund **12k** Python-Zeilen (damals ~8,5k). Engine-Routen (`/api/v2/speech/render`, `/api/v2/llm/refine`, `/api/v2/llm/assist`) sind da; dünne Python-Aufrufer bleiben (`speech_render.py`, `engine_llm.py`). Plattformkleber **muss** Python bleiben: Binary-Lebenszyklus, Config-Flow, Registry-Sync, HA-Service-Ausführung, ConversationEntity/ChatLog-Orchestrierung, Restfelder eines alten Agenten, ESPHome/assist_satellite-Chime, Entities/Panel/Services.
 
-Heute ist diese Trennung verletzt:
+Drift beobachten (wachsende Produktlogik in Python verletzt dieses ADR):
 
 - Assist-LLM-Pfade wachsen noch einen **parallelen OpenAI-SDK** (`refine.py` `_async_refine_raw`, `stream.py` `iter_completion_tokens`, `conversation.py` `_fallback` / `_stream_fallback`) neben `/api/v2/llm/chat`. ADR 0002 verbietet, das zu vergrößern.
 - Refine-**Accept**-Regeln, Wetter-Erfindungs-Wächter und Stimmen-Prompts leben in Python, obwohl HTTP schon über Klar läuft.

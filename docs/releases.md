@@ -30,23 +30,25 @@ chore(release): prepare for 2026.8.0
 
 ## Staging (Release Candidates)
 
-Sprach- und Feature-Arbeit landet zuerst auf **`staging`**, nicht auf `main`. `staging` und `main` sind **geschützt**: per PR/MR mergen, nicht direkt pushen.
+Sprach- und Feature-Arbeit landet zuerst auf **`staging`**, nicht auf `main`. Beide Branches sind durch GitHub-Rulesets geschützt, abgelegt in [`.github/protection/desired.yaml`](../.github/protection/desired.yaml). Der wöchentliche Workflow **protection-audit** (`scripts/audit_protection.py`) schlägt fehl, wenn die Live-Regeln von dieser Datei abweichen. Nicht direkt pushen; PR öffnen.
 
-Jeder Merge auf `staging` startet **Staging** (Quality + Security mit nextest-Profil `ci-staging`: ohne `parity_langs` / `voice_suite` / `full_home`; die volle Locale-Matrix bleibt bei [language-parity.yml](../.github/workflows/language-parity.yml)). Danach:
+Soll-Regeln (sowohl `main` als auch `staging`):
 
-1. Tag `{CalVer}-staging.{sha7}` aus `Cargo.toml` plus Merge-SHA (Beispiel: `2026.8.30-staging.a1b2c3d`)
+- Pull Request vor dem Merge (kein Direkt-Push)
+- Kein Force-Push, kein Löschen
+- Pflicht-Checks (strict / Branch aktuell): `test`, `clippy`, `rustfmt`, `web`, `release-gates`, `cargo-audit`, `cargo-deny`, `gitleaks`, `hassfest`, `hacs`
+- Approvals: **0** (menschliches Review ist optional; das Ruleset verlangt keines)
+
+CalVer- und `v*`-Tags sind ebenfalls geschützt (kein Löschen / Force-Update). Immutable GitHub Releases bleiben an.
+
+Jeder Merge auf `staging` startet **Staging** (Quality + Security mit nextest-Profil `ci-staging`: eigene Dataset-Suiten auf dem PR-Pfad; die volle Multi-Locale-Paritätsmatrix bleibt bei [language-parity.yml](../.github/workflows/language-parity.yml) und dem Profil `ci` auf `main`). Danach:
+
+1. Tag `{CalVer}-staging.{sha7}` aus `Cargo.toml` plus Merge-SHA (Beispiel: `2026.11.3-staging.a1b2c3d`)
 2. **Build** mit `prerelease: true`
 3. GitHub-**Prerelease** (`prerelease: true`, `make_latest: false`)
 4. Docker-Tags `{rc}` und **`staging`** — nie `latest`
 
 Stabile Cuts bleiben **`main` + CalVer-Tags** wie unten.
-
-`staging` einmal auf GitHub anlegen und schützen (Actions kann das oft nicht ohne Admin):
-
-- Pull Request vor dem Merge (kein Direkt-Push)
-- Kein Force-Push, kein Löschen
-- Dieselben Required Checks wie `main` (`test`, `clippy`, `rustfmt`, `web`, `release-gates`, `cargo-audit`, `cargo-deny`, `gitleaks`, `hassfest`, `hacs`)
-- Optional: eine Approval
 
 RC nach Produktion: PR **`staging` → `main`**. Der Workflow **Promote** öffnet diesen PR wöchentlich (Montag 06:00 UTC) und per manueller Auslösung; er merget nicht. Der Merge schneidet danach die nächste CalVer wie bisher.
 
@@ -56,10 +58,10 @@ Home-Assistant-Wechsel: [home-assistant.md](home-assistant.md) — Konfigurieren
 
 ## Release schneiden
 
-Jeder Merge auf `main` mit fachlichem Inhalt schneidet automatisch die nächste `YYYY.M.PATCH`. Reine Abhängigkeits-Merges (Dependabot / `npm:` / `cargo:` / `docker:` / `ci:`) erzeugen keinen Release. Der Release-Workflow:
+Jeder Merge auf `main` mit fachlichem Inhalt schneidet automatisch die nächste `YYYY.M.PATCH`. Reine Abhängigkeits-Merges (Dependabot / `npm:` / `cargo:` / `docker:` / `ci:`) erzeugen keinen Release. Der Release-Workflow (`scripts/cut-release.sh`):
 
 1. berechnet die nächste CalVer-Version
-2. schreibt sie nach `Cargo.toml`, `addon/config.yaml` und das HA-Manifest auf dem Branch `chore/release-YYYY.M.PATCH`
+2. schreibt sie nach `Cargo.toml`, beide Add-on-Configs, HA-Manifest / `ENGINE_VERSION` und die Doc-Image-Pins auf dem Branch `chore/release-YYYY.M.PATCH`
 3. erzeugt `CHANGELOG.md` neu
 4. öffnet oder aktualisiert den Release-PR, wartet auf die 10 Required Checks und taggt die Branch-Spitze (noch kein Merge)
 5. ruft **Build** auf: beide Architekturen, Container-Start, Stop per SIGTERM, Scan, danach Images, Manifest und GitHub Release
@@ -75,11 +77,9 @@ Ein Tag von deinem Rechner startet Build weiter selbst: `git tag 2026.8.0 && git
 
 Der Cut öffnet den Release-PR mit einem **GitHub-App-Token** (`APP_CLIENT_ID` Variable, `APP_PRIVATE_KEY` Secret), damit die Required Checks ohne manuelle Actions-Freigabe laufen. Wenn `main` während des Wartens weiterläuft, wird das Changelog neu erzeugt, bevor getaggt wird. Ein Cut, dem nichts mehr zu veröffentlichen bleibt (HEAD schon getaggt, Version schon vergeben), endet mit Exit 0.
 
-`main` und `staging` verlangen die Required Checks (`test`, `clippy`, `rustfmt`, `web`, `release-gates`, `cargo-audit`, `cargo-deny`, `gitleaks`, `hassfest`, `hacs`) vor jedem PR-Merge, auch für Admins. Der Versionsbump läuft über denselben PR-Weg, damit die Checks zuerst grün werden können.
-
 git-cliff ignoriert Staging-/RC-Tags (`ignore_tags`), damit jeder `feat`/`fix`-Commit zwischen zwei Stable-Tags im Changelog der Stable-Version steht.
 
-## Changelog lokal
+## Lokales Changelog
 
 ```bash
 python3 scripts/bump-version.py next
@@ -88,12 +88,12 @@ git cliff -o CHANGELOG.md
 git cliff --unreleased
 ```
 
-## Vor dem Release prüfen
+## Pre-Release-Checks
 
 ```bash
 cargo fmt --check
 cargo check
-cargo nextest run
+cargo nextest run --locked
 python3 -m unittest discover -s tests -p 'test_*.py'
 cargo run --quiet -- lang validate packs
 cargo run --quiet -- eval bench --repeat 8
@@ -103,4 +103,4 @@ rg 'src/(parse\.rs|web\.rs|wyoming\.rs|lexicon\.rs|numbers\.rs)|parse_help|home_
 
 V2-Cuts müssen Rust-Engine und `custom_components/klar_nlu` zusammen ausliefern. `POST /api/parse` entfällt.
 
-Der `rg`-Check hält Dokumentation und Modulbaum synchron. Treffer sind nicht automatisch Fehler, müssen aber bewusst aktuell sein.
+Der `rg`-Check hält Dokumentation und Modulbaum in Dec. Treffer sind nicht automatisch Fehler, aber jeder sollte absichtlich und aktuell sein.

@@ -2,7 +2,7 @@
 
 [Deutsch](adr-0001-rules-and-trainer.md) · [English](adr-0001-rules-and-trainer.en.md)
 
-Status: **accepted direction; implemented on staging, not a main release** — [plan](adr-0001-plan.en.md).
+Status: **accepted direction; on staging** — [plan](adr-0001-plan.en.md).
 
 Klar stays a deterministic, local NLU. An LLM may **set up** the house; it must not **drive** the parse path. All three layers are **visible, controllable, and trainable** in the operator UI. Every parse draws the same path.
 
@@ -21,7 +21,7 @@ Desired:
 - **Manage** all three layers in the operator UI: on/off, order, content — plus **LLM proposals** per layer.
 - **Visualize** those three layers sharply: static (how they stack) and live (which path *this* sentence took). A click on a node opens the rule.
 
-Match stays compiled (no freely invented matching DSL). Controllable means an overlay on the catalog (enable, precedence), not new `PolicyId` functions from the model. Every compiled Assist locale (`GET /api/v2/languages`) is first-class — de/en are oracles, not a support caste.
+Match stays compiled (no freely invented matching DSL). Controllable means an overlay on the catalog (enable, precedence), not new `PolicyId` functions from the model. Every compiled Assist locale (`GET /api/v2/languages`) uses the same engine path and a published tier — de/en are oracles, not a support caste.
 
 ## Current state (short)
 

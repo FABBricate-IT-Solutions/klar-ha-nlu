@@ -52,9 +52,62 @@ def replace_once(path: Path, pattern: str, repl: str) -> None:
     path.write_text(updated)
 
 
+# Doc pins that must track Cargo.toml (package 5.5 / V-11). Historical examples
+# such as `git tag 2026.8.0` or "Before 2026.11" are left alone.
+DOC_PIN_FILES = (
+    "README.md",
+    "README.de.md",
+    "SECURITY.md",
+    "docs/en/home-assistant.md",
+    "docs/home-assistant.md",
+    "addon/DOCS.md",
+)
+
+
+def rewrite_doc_pins(text: str, old: str, new: str) -> str:
+    """Rewrite current-tree / image-tag pins from old CalVer to new."""
+    updated = text
+    updated = re.sub(
+        rf"(ghcr\.io/fabbricate-it-solutions/klar-nlu(?:-[a-z0-9]+)?):{re.escape(old)}\b",
+        rf"\1:{new}",
+        updated,
+    )
+    for label in ("Current tree", "this tree", "Aktueller Stand"):
+        updated = re.sub(
+            rf"({re.escape(label)}: \*\*){re.escape(old)}(\*\*)",
+            rf"\g<1>{new}\g<2>",
+            updated,
+        )
+    return updated
+
+
+def write_doc_pins(version: str, previous: str) -> None:
+    for name in DOC_PIN_FILES:
+        path = ROOT / name
+        if not path.is_file():
+            continue
+        text = path.read_text(encoding="utf-8")
+        updated = rewrite_doc_pins(text, previous, version)
+        if updated == text and previous != version:
+            pinned = bool(
+                re.search(rf"klar-nlu(?:-[a-z0-9]+)?:{re.escape(version)}\b", updated)
+                or re.search(
+                    rf"(?:Current tree|this tree|Aktueller Stand): \*\*{re.escape(version)}\*\*",
+                    updated,
+                )
+            )
+            mentions_pin = any(
+                marker in text for marker in ("klar-nlu:", "Current tree", "Aktueller Stand", "this tree")
+            )
+            if mentions_pin and not pinned:
+                raise SystemExit(f"{path}: no doc pin updated to {version}")
+        path.write_text(updated, encoding="utf-8")
+
+
 def write_version(version: str) -> None:
     year, month, patch = parse_version(version)
     version = format_version(year, month, patch)
+    previous = current_version()
     replace_once(ROOT / "Cargo.toml", r'^version = "[^"]+"', f'version = "{version}"')
     replace_once(
         ROOT / "Cargo.lock",
@@ -74,6 +127,7 @@ def write_version(version: str) -> None:
         r'^ENGINE_VERSION = "[^"]+"',
         f'ENGINE_VERSION = "{version}"',
     )
+    write_doc_pins(version, previous)
     print(version)
 
 

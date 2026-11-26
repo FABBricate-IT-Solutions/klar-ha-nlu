@@ -15,7 +15,7 @@
 [![HACS Custom](https://img.shields.io/badge/HACS-Custom-orange.svg)](https://github.com/hacs/integration)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
-Deterministic voice control for Home Assistant — **67 languages**, on-device, no cloud. Assist alternative: **100% vs 31.3%** on 9,922 DE/EN household sentences ([benchmark](docs/en/benchmark-assist.md)). Klar executes house commands; an LLM only talks.
+Deterministic voice control for Home Assistant — **67 compiled locales** (reference / beta / experimental; see [languages](docs/en/languages.md)). Parse stays on-device; optional LLM, Wikipedia, and news are off by default. On the measured DE/EN household suites Klar gates at **fail = 0** vs Assist **31.3%** ([benchmark](docs/en/benchmark-assist.md)). Klar executes house commands; an LLM only talks.
 
 **Household path:** [Getting started](docs/en/getting-started.md) — install the pieces below → expose entities → Assist pipeline → five phrases → Mapping. If something misses: [troubleshooting](docs/en/troubleshooting.md).
 
@@ -73,12 +73,13 @@ Release candidates: Configure → **Release channel** → Staging. That points a
 
 ### Docker
 
-Pin the image tag to the engine CalVer (same as `Cargo.toml` / the GitHub Release). Current tree: **2026.9.5**.
+Pin the image tag to the engine CalVer (same as `Cargo.toml` / the GitHub Release). Current tree: **2026.11.3**. Mount a writable `/data` so calibration (aliases, areas, settings) survives restarts.
 
 ```bash
 docker run --rm --network host \
   -v /path/to/homeassistant/config:/config:ro \
-  ghcr.io/fabbricate-it-solutions/klar-nlu:2026.9.5
+  -v /path/to/klar-data:/data \
+  ghcr.io/fabbricate-it-solutions/klar-nlu:2026.11.3
 ```
 
 Integration URL: `http://127.0.0.1:10520`. Images also exist per arch (`klar-nlu-amd64`, `klar-nlu-aarch64`). RC images: tag `staging`.
@@ -159,8 +160,8 @@ cargo nextest run
 ```
 
 The enforced voice-suite gates are documented in
-[docs/en/testing.md](docs/en/testing.md); 100% remains the target, but the
-current blocking thresholds are lower for the generated comparison suites.
+[docs/en/testing.md](docs/en/testing.md). DE/EN oracle suites aim for fail = 0;
+generated comparison locales use the ceilings in `tests/fixtures/suite_bounds.yaml`.
 
 ## Credits
 

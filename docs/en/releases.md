@@ -30,23 +30,25 @@ chore(release): prepare for 2026.8.0
 
 ## Staging (release candidates)
 
-Language and feature work lands on **`staging` first**, not `main`. `staging` and `main` are **protected**: open a PR/MR, do not push the branch directly.
+Language and feature work lands on **`staging` first**, not `main`. Both branches are protected by GitHub rulesets checked in as [`.github/protection/desired.yaml`](../../.github/protection/desired.yaml). The weekly **protection-audit** workflow (`scripts/audit_protection.py`) fails when live rules drift from that file. Do not push either branch directly; open a PR.
 
-Every merge to `staging` runs **Staging** (quality + security with nextest profile `ci-staging`: no `parity_langs` / `voice_suite` / `full_home`; the full locale matrix stays in [language-parity.yml](../../.github/workflows/language-parity.yml)). It then:
+Desired rules (both `main` and `staging`):
 
-1. Tags `{CalVer}-staging.{sha7}` from `Cargo.toml` + the merge SHA (example: `2026.8.30-staging.a1b2c3d`)
+- Pull request before merge (no direct push)
+- No force-push, no deletion
+- Required status checks (strict / branch up to date): `test`, `clippy`, `rustfmt`, `web`, `release-gates`, `cargo-audit`, `cargo-deny`, `gitleaks`, `hassfest`, `hacs`
+- Approvals: **0** (optional human review is fine; the ruleset does not require one)
+
+CalVer and `v*` tags are also protected (no delete / force-update). Immutable GitHub Releases stay enabled.
+
+Every merge to `staging` runs **Staging** (quality + security with nextest profile `ci-staging`: Klar’s own dataset suites on the PR path; the full multi-locale parity matrix stays in [language-parity.yml](../../.github/workflows/language-parity.yml) and the `ci` profile on `main`). It then:
+
+1. Tags `{CalVer}-staging.{sha7}` from `Cargo.toml` + the merge SHA (example: `2026.11.3-staging.a1b2c3d`)
 2. Calls **Build** with `prerelease: true`
 3. Publishes a GitHub **prerelease** (`prerelease: true`, `make_latest: false`)
 4. Pushes Docker tags `{rc}` and **`staging`** — never `latest`
 
 Stable cuts stay on **`main` + CalVer tags** as below.
-
-You must create `staging` on GitHub once and protect it (Actions cannot always set this without admin):
-
-- Require a pull request before merging (no direct push)
-- Do not allow force-push or deletion
-- Require the same PR checks as `main` (`test`, `clippy`, `rustfmt`, `web`, `release-gates`, `cargo-audit`, `cargo-deny`, `gitleaks`, `hassfest`, `hacs`)
-- Optional: require one approval
 
 Promote an RC with a PR **`staging` → `main`**. The **Promote** workflow opens that PR weekly (Monday 06:00 UTC) and on manual dispatch; it does not merge. Merging then cuts the next CalVer as today.
 
@@ -56,10 +58,10 @@ Home Assistant switch: [home-assistant.md](home-assistant.md) — Configure → 
 
 ## Cut a release
 
-Every merge to `main` that carries product changes cuts the next `YYYY.M.PATCH` automatically. Pure dependency merges (Dependabot / `npm:` / `cargo:` / `docker:` / `ci:`) do not cut a release. The Release workflow:
+Every merge to `main` that carries product changes cuts the next `YYYY.M.PATCH` automatically. Pure dependency merges (Dependabot / `npm:` / `cargo:` / `docker:` / `ci:`) do not cut a release. The Release workflow (`scripts/cut-release.sh`):
 
 1. Computes the next CalVer
-2. Writes it into `Cargo.toml`, `addon/config.yaml`, and the HA manifest on branch `chore/release-YYYY.M.PATCH`
+2. Writes it into `Cargo.toml`, both add-on configs, the HA manifest / `ENGINE_VERSION`, and the doc image pins on branch `chore/release-YYYY.M.PATCH`
 3. Regenerates `CHANGELOG.md`
 4. Opens or updates the release PR, waits for the 10 required checks, and tags that branch tip (no merge yet)
 5. Calls **Build**: both architectures, start each container, stop with SIGTERM, scan, then push images, manifest, and the GitHub Release
@@ -74,8 +76,6 @@ Build compiles linux-x86_64 and linux-aarch64 and attaches the tarballs to the G
 A tag pushed from your machine still triggers Build on its own: `git tag 2026.8.0 && git push origin 2026.8.0`.
 
 The cut opens the release PR with a **GitHub App token** (`APP_CLIENT_ID` variable, `APP_PRIVATE_KEY` secret) so required checks run without a manual Actions approval. If `main` moves while the cut waits, the changelog is regenerated before tagging. A cut with nothing left to publish (HEAD already tagged, version already taken) exits 0.
-
-`main` and `staging` require the status checks (`test`, `clippy`, `rustfmt`, `web`, `release-gates`, `cargo-audit`, `cargo-deny`, `gitleaks`, `hassfest`, `hacs`) before any PR merge, including admins. The version bump lands through that same PR path so the required checks can go green first.
 
 git-cliff ignores staging/RC tags (`ignore_tags`) so every `feat`/`fix` commit between two stable tags appears in that stable release's changelog.
 
@@ -93,7 +93,7 @@ git cliff --unreleased
 ```bash
 cargo fmt --check
 cargo check
-cargo nextest run
+cargo nextest run --locked
 python3 -m unittest discover -s tests -p 'test_*.py'
 cargo run --quiet -- lang validate packs
 cargo run --quiet -- eval bench --repeat 8

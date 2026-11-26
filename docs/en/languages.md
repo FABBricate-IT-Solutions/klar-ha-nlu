@@ -85,7 +85,7 @@ The engine setting `experimental_languages` (off by default) is the switch:
 
 ## Catalog model
 
-`Catalog` merges the **pinned** packs for that request. Assist and `POST /api/v2/parse` should send `language`. Empty `Settings.languages` means every compiled locale may be pinned, not “merge de+en.” A request that names no language then binds the default pack (`Settings.default_language`, English when unset), never an empty catalog. Merging every lexicon into one catalog collides tokens (for example German `an` vs other packs) and is refused.
+`Catalog` merges the **pinned** packs for that request. Assist and `POST /api/v2/parse` should send `language`. Empty `Settings.languages` means every compiled locale may be pinned, not “merge de+en.” A request that names no language then binds the default pack (`Settings.default_language`, English when unset), never an empty catalog. Binding every compiled locale at once would collide tokens (for example German `an` vs other packs); the engine returns an empty catalog for that case instead of a giant merge. Adding an experimental locale while the switch is off is refused with `422`.
 
 An explicit short list such as `["de", "en"]` still merges those packs for unpinned parse. That is a user choice, not a support tier.
 
@@ -101,9 +101,9 @@ A regional pack has no sentences of its own. `tests/regional_overlays.rs`, the p
 
 ## Adding a pack
 
-1. Add a compact lexicon in `scripts/lang_packs/` (not a stub, not English filler tokens).
+1. Add a compact lexicon in `scripts/lang_packs/`. Prefer target-language words; `scripts/lang_packs/pack_lint.py` fails when chat/speech fields still carry English filler stubs.
 2. Run `python3 scripts/lang_packs/generate.py`.
-3. Review the Rust like hand-written code: `rustfmt`, unique folded tokens, no comment narration.
+3. Review the Rust like hand-written code: `rustfmt`, unique tokens after `fold_latin`, no comment narration.
 4. Keep files under 500 lines. Do not add `match LangId` arms in `src/parse/`.
 5. Existing suites must stay green; add the same assist/parity smoke for the new locale.
 
@@ -125,7 +125,7 @@ A new combinator is a new variant plus tests. Do not extend `De | En` matches.
 
 ## Tokens
 
-`fold_latin` maps `ä` → `ae`, `é` → `e`, `ç` → `c`, `ı/ş/ğ`, `ș/ț`. Packs store the folded form. CJK/Thai splitting is script-gated; Latin `tokenize` stays space-split.
+`fold_latin` (NFKC, lowercase, then per-script fold) maps `ä` → `ae`, `é` → `e`, `ç` → `c`, `ı/ş/ğ`, `ș/ț`. Pack tables keep Latin digraphs that already match that fold (for example `oeffnen`); speech and labels still run through `fold_latin` at parse time. CJK/Thai splitting is script-gated; Latin `tokenize` stays space-split.
 
 ## Home Assistant
 
@@ -161,7 +161,7 @@ CI checks that this generator is a no-op (freshness) and runs the full `parity_l
 python3 scripts/lang_packs/generate.py   # packs + assist smokes
 python3 scripts/parity/generate.py       # per-locale datasets
 python3 scripts/check_lang_packs.py
-cargo nextest run --test assist_langs --test language --test parity_langs --test voice_suite
+cargo nextest run --locked -E 'test(/assist_langs|language|parity_langs|voice_suite/)'
 ```
 
 ## Natural Dutch commands
@@ -189,6 +189,6 @@ queries and free-text payloads containing these words are conservatively
 rejected until their scope can be represented safely; negation is never removed
 as filler or turned into an opposite action.
 
-Regression coverage: `cargo test --test dutch`, plus the Dutch parity suite and
+Regression coverage: `cargo nextest run --locked -E 'test(/dutch/)'`, plus the Dutch parity suite and
 HA dispatch, floor-query, and speech-snapshot tests. All tests run against local
 fixtures; they do not contact a running Home Assistant installation.

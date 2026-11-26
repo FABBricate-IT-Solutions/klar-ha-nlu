@@ -15,7 +15,7 @@
 [![HACS Custom](https://img.shields.io/badge/HACS-Custom-orange.svg)](https://github.com/hacs/integration)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
-Deterministische Sprachsteuerung für Home Assistant — **67 Sprachen**, lokal, ohne Cloud. Assist-Alternative: **100 % vs 31,3 %** auf 9.922 DE/EN-Haussätzen ([Benchmark](docs/benchmark-assist.md)). Klar steuert das Haus; ein LLM redet nur.
+Deterministische Sprachsteuerung für Home Assistant — **67 kompilierte Locales** (Referenz / Beta / experimentell; siehe [Sprachen](docs/languages.md)). Parse bleibt lokal; optionales LLM, Wikipedia und News sind standardmäßig aus. Auf den gemessenen DE/EN-Haushalten gated Klar mit **fail = 0** gegen Assist **31,3 %** ([Benchmark](docs/benchmark-assist.md)). Klar steuert das Haus; ein LLM redet nur.
 
 **Haushaltsweg:** [Einstieg](docs/getting-started.md) — Teile unten installieren → Entitäten freigeben → Assist-Pipeline → fünf Sätze → Zuordnung. Wenn etwas fehlt: [Fehlerbehebung](docs/troubleshooting.md).
 
@@ -73,12 +73,13 @@ Release Candidates: Konfigurieren → **Release-Kanal** → Staging. Das zeigt a
 
 ### Docker
 
-Image-Tag auf die Engine-CalVer pinnen (wie `Cargo.toml` / das GitHub-Release). Aktueller Stand: **2026.9.5**.
+Image-Tag auf die Engine-CalVer pinnen (wie `Cargo.toml` / das GitHub-Release). Aktueller Stand: **2026.11.3**. Ein schreibbares `/data` mounten, damit Kalibrierung (Aliase, Räume, Settings) Neustarts überlebt.
 
 ```bash
 docker run --rm --network host \
   -v /pfad/zur/homeassistant/config:/config:ro \
-  ghcr.io/fabbricate-it-solutions/klar-nlu:2026.9.5
+  -v /pfad/zu/klar-data:/data \
+  ghcr.io/fabbricate-it-solutions/klar-nlu:2026.11.3
 ```
 
 Integrations-URL: `http://127.0.0.1:10520`. Es gibt auch Images pro Arch (`klar-nlu-amd64`, `klar-nlu-aarch64`). RC-Images: Tag `staging`.
@@ -159,9 +160,8 @@ cargo nextest run
 ```
 
 Die verbindlichen Voice-Suite-Schwellen stehen in
-[docs/testing.md](docs/testing.md). 100 % bleibt das Ziel, die aktuell
-blockierenden Schwellen der generierten Vergleichssuiten liegen jedoch
-darunter.
+[docs/testing.md](docs/testing.md). DE/EN-Oracle-Suiten zielen auf fail = 0;
+generierte Vergleichs-Locales nutzen die Decken in `tests/fixtures/suite_bounds.yaml`.
 
 ## Credits
 

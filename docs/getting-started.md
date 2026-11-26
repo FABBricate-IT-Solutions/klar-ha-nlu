@@ -4,7 +4,7 @@
 
 Haushaltsweg: Teile unten installieren → Geräte freigeben → Assist-Pipeline → fünf Sätze → Zuordnung, wenn etwas fehlt.
 
-Jede kompilierte Assist-Locale ist erstklassig. Deutsch und Englisch sind die üblichen Beispiele. Siehe [Sprachen](languages.md).
+Jede kompilierte Assist-Locale nutzt denselben Engine-Weg; Qualität ist gestuft (Referenz / Beta / experimentell). Deutsch und Englisch sind die üblichen Beispiele. Siehe [Sprachen](languages.md).
 
 Nur V2: Engine und Home-Assistant-Integration dieselbe CalVer. HTTP-Parse ist `POST /api/v2/parse`.
 

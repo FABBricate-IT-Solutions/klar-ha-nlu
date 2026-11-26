@@ -12,14 +12,14 @@ Same oracles as in [tests](testing.md), same home graph per suite. Assist only r
 
 | | Assist | Klar NLU |
 |---|---|---|
-| 9,922 utterances, DE/EN suites | **31.3%** | **100%** (gates, 0 fail) |
+| 9,922 utterances, DE/EN suites | **31.3%** | **fail = 0** on Klar gates (published as 100% of oracle cases) |
 | Home commands, excluding OOD rejects | **24.5%** | 100% |
 | Textbook light phrases (`full_home` quick) | **~94%** | 100% |
 | Multi-intent, timers, clarify, follow-up | **0%** | 100% |
 
 **On these test sentences Klar hits about 3.2× as often as Assist.** On real home commands (without free OOD credit when nothing matches) **4.1×**. On sentences Assist templates already cover, the gap is small (about 1.06×).
 
-Klar numbers: `cargo nextest run` on `voice_suite` and `full_home` de/en, `--run-ignored all`, default profile (`test-threads = num-cpus`). Assist: HassIL 3.11.0 and `home-assistant-intents` 2026.7.30, slot lists `name` / `area` / `floor` from each `home_config.yaml` (same shape as HA Core’s default agent).
+Klar numbers: `cargo nextest run --locked` on `voice_suite` and `full_home` de/en, `--run-ignored all`, default nextest profile (all cores, no thread cap). Assist: HassIL 3.11.0 and `home-assistant-intents` 2026.7.30, slot lists `name` / `area` / `floor` from each `home_config.yaml` (same shape as HA Core’s default agent). Figures below are that measurement on DE/EN oracles — not a claim that every compiled locale is at fail = 0.
 
 ## Suites
 
@@ -114,7 +114,7 @@ Planned:
 
 - `full_home` quick + full for more HassIL languages (fr, nl, es, it, …) once Klar locale gates are `fail == 0`
 - Apartment parity against Assist templates in that language
-- No silent lexicon merge; every locale stays first-class, see [languages](languages.md)
+- No silent lexicon merge; every locale uses the same path and a published tier, see [languages](languages.md)
 
 HassIL intents are not equally deep for every Klar pack. A later run will say per language whether Assist templates exist at all — not only whether Klar can parse the sentence.
 
