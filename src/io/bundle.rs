@@ -390,9 +390,9 @@ async fn download_dataset(
     if !reads_allowed(Some(peer), &headers, &state.token) {
         return Err(StatusCode::UNAUTHORIZED);
     }
-    let include_raw = state.settings.lock().await.support_bundle_raw_text;
-    let yaml = crate::io::privacy::redact_entries(&state.bundle.load(), include_raw);
-    Ok(attachment("klar-assist-dataset.yaml", "application/yaml; charset=utf-8", dataset_yaml(&yaml).into_bytes()))
+    // 6.2: dataset export is the intended outcome from marked-wrong cases, not what Klar did.
+    let yaml = state.wrong_cases.dataset_yaml();
+    Ok(attachment("klar-assist-dataset.yaml", "application/yaml; charset=utf-8", yaml.into_bytes()))
 }
 
 async fn download_protocol(
@@ -455,16 +455,13 @@ mod tests {
     }
 
     #[test]
-    fn dataset_maps_query_and_action() {
+    fn legacy_traffic_yaml_kept_for_protocol_tools() {
+        // Protocol still records what Klar did; the downloadable dataset uses wrong_cases instead.
         let query = sample("Wie ist der Status der Küche", Intent::new("HassGetState").with("area", "kuche"));
         let off = sample("Licht aus", Intent::new("HassTurnOff").with("entity_id", "light.alle_lichter"));
         let yaml = dataset_yaml(&[query, off]);
         assert!(yaml.contains("Wie ist der Status der Küche"), "{yaml}");
-        assert!(yaml.contains("type: query"), "{yaml}");
-        assert!(yaml.contains("area: kuche"), "{yaml}");
         assert!(yaml.contains("Licht aus"), "{yaml}");
-        assert!(yaml.contains("state: off"), "{yaml}");
-        assert!(yaml.contains("light.alle_lichter"), "{yaml}");
     }
 
     #[test]

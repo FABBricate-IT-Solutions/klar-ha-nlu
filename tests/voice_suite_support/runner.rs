@@ -3,6 +3,7 @@ use super::legacy;
 use super::schema::{Case, Sentences};
 use super::world::TestWorld;
 use super::{load_cases, RunStats};
+use klar_nlu::home::rebuild_label_index;
 use klar_nlu::parse::parse;
 use klar_nlu::session::Session;
 use klar_nlu::types::{HomeGraph, Settings};
@@ -105,6 +106,11 @@ fn run_case(
     let mut world = TestWorld::from_setup(&case.setup).expect("setup validated at load");
     let mut session = Session::new();
     let mut last = None;
+    let mut case_home = case.home.clone();
+    if let Some(snippet) = case_home.as_mut() {
+        rebuild_label_index(snippet);
+    }
+    let home = case_home.as_ref().unwrap_or(home);
     for (index, sentence) in turns.iter().enumerate() {
         let result = parse(sentence, home, &mut session, &[], settings);
         if let Err(error) = world.apply_intents(&result.intents, home, !case.world_expect.is_empty()) {

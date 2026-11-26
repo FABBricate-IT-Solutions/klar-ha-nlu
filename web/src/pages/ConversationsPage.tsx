@@ -2,6 +2,7 @@ import { useEffect, useMemo, useState } from "react";
 import { api } from "../api";
 import { Empty } from "../components/common";
 import { SetupHint } from "../components/SetupHint";
+import { MarkWrong } from "../components/MarkWrong";
 import { canTeachFromMiss, TeachFromMiss, teachIntentFromNames } from "../components/TeachFromMiss";
 import { WhyDrawer, canJournalReplay, journalHeard, whyThisBand } from "../components/WhyDrawer";
 import type { Messages } from "../i18n";
@@ -124,8 +125,9 @@ export function ConversationsPage({
               </p>
             ) : null}
             {turn.preferred_area ? <p className="caption">{t.heardIn}: {turn.preferred_area}</p> : null}
-            {canTeachFromMiss(turn) && (
-              <div style={{ marginTop: 12 }}>
+            <div style={{ marginTop: 12 }} className="flow">
+              <MarkWrong turn={turn} t={t} />
+              {canTeachFromMiss(turn) && (
                 <TeachFromMiss
                   heard={heard}
                   t={t}
@@ -133,8 +135,8 @@ export function ConversationsPage({
                   onTeach={onTeach}
                   intent={teachIntentFromNames(turn.last_names ?? [])}
                 />
-              </div>
-            )}
+              )}
+            </div>
           </article>
         );
       })}

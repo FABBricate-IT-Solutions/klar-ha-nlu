@@ -7,6 +7,7 @@ use crate::io::llm_calls::LlmCallStore;
 use crate::io::metrics::MetricsStore;
 use crate::io::parse_run::ParseLimiter;
 use crate::io::trainer_consent::TrainerConsentHub;
+use crate::io::wrong_case::WrongCaseStore;
 use crate::llm::LlmEndpoint;
 use crate::session::Sessions;
 use crate::types::{CustomSentence, HomeGraph, MatchControl, ParseOutcome, ParseResult, PolicyRule, Settings, SpeechBank};
@@ -27,6 +28,7 @@ pub struct AppState {
     pub match_controls: Arc<Mutex<Vec<MatchControl>>>,
     pub journal: ConversationJournal,
     pub bundle: BundleStore,
+    pub wrong_cases: WrongCaseStore,
     pub metrics: Arc<MetricsStore>,
     pub llm_calls: Arc<LlmCallStore>,
     pub config_dir: PathBuf,
@@ -61,6 +63,7 @@ impl AppState {
             match_controls: Arc::new(Mutex::new(loaded.match_controls)),
             journal: ConversationJournal::open(&data_dir),
             bundle: BundleStore::open(&data_dir),
+            wrong_cases: WrongCaseStore::open(&data_dir),
             metrics: Arc::new(MetricsStore::default()),
             llm_calls: Arc::new(LlmCallStore::default()),
             config_dir: data_dir.clone(),

@@ -20,7 +20,7 @@ Routenindex aus dem Axum-Router (`python3 scripts/gen_api_routes.py`). Auth ist 
 | `DELETE` | `/api/bundle` | Write | Support-Bundle-Status; DELETE leert ihn. |
 | `GET` | `/api/bundle` | Read | Support-Bundle-Status; DELETE leert ihn. |
 | `POST` | `/api/bundle/clear` | Write | Support-Bundle-Protokoll leeren (POST-Alias). |
-| `GET` | `/api/bundle/dataset` | Read | Turns als Voice-Suite-YAML laden. |
+| `GET` | `/api/bundle/dataset` | Read | Als falsch markierte Fälle als nlu_expect-YAML mit redigiertem Home-Ausschnitt laden. |
 | `GET` | `/api/bundle/entries` | Read | Aufgezeichnete Turns listen oder löschen. |
 | `POST` | `/api/bundle/entries` | Write | Aufgezeichnete Turns listen oder löschen. |
 | `GET` | `/api/bundle/protocol` | Read | Redigiertes JSONL-Protokoll laden. |
@@ -41,6 +41,7 @@ Routenindex aus dem Axum-Router (`python3 scripts/gen_api_routes.py`). Auth ist 
 | `GET` | `/api/ui` | Read | Persistenter UI-Zustand im Overlay. |
 | `POST` | `/api/ui` | Write | Persistenter UI-Zustand im Overlay. |
 | `GET` | `/api/v2/conversations` | Read | Gesprächsjournal (letzte 200 Turns / 24 h). |
+| `POST` | `/api/v2/conversations/mark-wrong` | Write | Journal-Turn mit gemeintem Intent/Ziel markieren; nlu_expect-Fall exportieren. |
 | `GET` | `/api/v2/conversations/{id}` | Read | Turns einer Conversation-ID. |
 | `GET` | `/api/v2/health` | öffentlich | Öffentliche Build-Identität, Home-Alter, Overlay, LLM, Wyoming, Ops-Zähler (ohne Token). |
 | `POST` | `/api/v2/home` | Write | Live-Home-Graph von der Home-Assistant-Integration. |
@@ -68,6 +69,8 @@ Routenindex aus dem Axum-Router (`python3 scripts/gen_api_routes.py`). Auth ist 
 | `POST` | `/api/v2/settings/restore` | Write | Settings aus Backup-Archiv wiederherstellen. |
 | `GET` | `/api/v2/speech/asr_boost` | Read | Whisper-Bias-Liste für externes STT. |
 | `POST` | `/api/v2/speech/render` | Read | Sprache nach Execute aus HA-Zustandsschnappschuss. |
+| `GET` | `/api/v2/wrong-cases` | Read | Vom Operator markierte Regressionsfälle listen. |
+| `GET` | `/api/v2/wrong-cases/dataset` | Read | Als falsch markierte Fälle als nlu_expect-YAML laden. |
 
 <!-- END GENERATED ROUTES -->
 

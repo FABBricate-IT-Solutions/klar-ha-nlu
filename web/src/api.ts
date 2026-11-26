@@ -288,6 +288,20 @@ export const api = {
       body: JSON.stringify(body),
     }),
   conversations: () => request<ConversationTurn[]>("/api/v2/conversations"),
+  markWrong: (body: {
+    conversation_id: string;
+    ts_ms: number;
+    text?: string;
+    intent: string;
+    slots?: Record<string, string>;
+    reject?: boolean;
+    clarify?: boolean;
+    language?: string;
+  }) =>
+    request<{ id: string; case_yaml: string }>("/api/v2/conversations/mark-wrong", {
+      method: "POST",
+      body: JSON.stringify(body),
+    }),
   intents: () => request<string[]>("/api/v2/intents"),
   tagEntity: (body: { entity_id: string; aliases?: string[]; preferred?: boolean; nlu_ignore?: boolean; area?: string }) =>
     request<Entity>("/api/entities", { method: "POST", body: JSON.stringify(body) }),

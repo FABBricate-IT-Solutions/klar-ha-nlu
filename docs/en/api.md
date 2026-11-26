@@ -20,7 +20,7 @@ Route index generated from the Axum router (`python3 scripts/gen_api_routes.py`)
 | `DELETE` | `/api/bundle` | Write | Support-bundle status; DELETE clears it. |
 | `GET` | `/api/bundle` | Read | Support-bundle status; DELETE clears it. |
 | `POST` | `/api/bundle/clear` | Write | Clear the support-bundle protocol (POST alias). |
-| `GET` | `/api/bundle/dataset` | Read | Download turns as voice-suite YAML. |
+| `GET` | `/api/bundle/dataset` | Read | Download marked-wrong cases as nlu_expect YAML with redacted home snippets. |
 | `GET` | `/api/bundle/entries` | Read | List or delete recorded turns. |
 | `POST` | `/api/bundle/entries` | Write | List or delete recorded turns. |
 | `GET` | `/api/bundle/protocol` | Read | Download the redacted JSONL protocol. |
@@ -41,6 +41,7 @@ Route index generated from the Axum router (`python3 scripts/gen_api_routes.py`)
 | `GET` | `/api/ui` | Read | Persistent UI chrome state under the overlay. |
 | `POST` | `/api/ui` | Write | Persistent UI chrome state under the overlay. |
 | `GET` | `/api/v2/conversations` | Read | Conversation journal (last 200 turns / 24 h). |
+| `POST` | `/api/v2/conversations/mark-wrong` | Write | Mark a journal turn with the intended intent/target; export an nlu_expect case. |
 | `GET` | `/api/v2/conversations/{id}` | Read | Turns for one conversation id. |
 | `GET` | `/api/v2/health` | public | Public build identity, home age, overlay, LLM, Wyoming, ops counters (no token). |
 | `POST` | `/api/v2/home` | Write | Live home-graph push from the Home Assistant integration. |
@@ -68,6 +69,8 @@ Route index generated from the Axum router (`python3 scripts/gen_api_routes.py`)
 | `POST` | `/api/v2/settings/restore` | Write | Restore from a settings backup archive. |
 | `GET` | `/api/v2/speech/asr_boost` | Read | Ranked Whisper bias terms for external STT. |
 | `POST` | `/api/v2/speech/render` | Read | Post-execute speech from an HA state snapshot. |
+| `GET` | `/api/v2/wrong-cases` | Read | List operator-marked regression cases. |
+| `GET` | `/api/v2/wrong-cases/dataset` | Read | Download marked-wrong cases as nlu_expect YAML. |
 
 <!-- END GENERATED ROUTES -->
 
