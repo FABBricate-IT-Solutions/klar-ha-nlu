@@ -9,6 +9,7 @@ pub(super) const VERBS: &[(&str, VerbKind)] = &[
     ("activeer", VerbKind::On),
     ("blauw", VerbKind::Color),
     ("boodschappen", VerbKind::List),
+    ("boodschappenlijst", VerbKind::List),
     ("deactiveer", VerbKind::Off),
     ("dicht", VerbKind::Close),
     ("dimmen", VerbKind::Dim),

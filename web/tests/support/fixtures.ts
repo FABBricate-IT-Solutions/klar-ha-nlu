@@ -97,10 +97,10 @@ export const storedDashboard: Dashboard = {
 };
 
 export const languagePacks: LanguagePack[] = [
-  { code: "de", native_name: "Deutsch", script: "Latn", variants: [], tier: "stable", offered: true },
-  { code: "en", native_name: "English", script: "Latn", variants: [], tier: "stable", offered: true },
-  { code: "en-GB", native_name: "English (UK)", script: "Latn", variants: [], tier: "stable", offered: true },
-  { code: "fr", native_name: "Français", script: "Latn", variants: [], tier: "experimental", offered: false },
+  { code: "de", native_name: "Deutsch", script: "Latn", variants: [], tier: "reference", offered: true },
+  { code: "en", native_name: "English", script: "Latn", variants: [], tier: "reference", offered: true },
+  { code: "en-GB", native_name: "English (UK)", script: "Latn", variants: [], tier: "reference", offered: true },
+  { code: "fr", native_name: "Français", script: "Latn", variants: [], tier: "beta", offered: true },
 ];
 
 export const matchCatalog: MatchCatalog = {

@@ -40,7 +40,7 @@ pub fn unit_systems() -> &'static [&'static str] {
 }
 
 pub fn language_tiers() -> &'static [&'static str] {
-    &["stable", "experimental"]
+    &["reference", "beta", "experimental"]
 }
 
 pub fn parse_decisions() -> &'static [&'static str] {
@@ -286,11 +286,11 @@ pub fn assert_enums_match_lists() {
         }
     }
 
-    for tier in [Tier::Stable, Tier::Experimental] {
+    for tier in [Tier::Reference, Tier::Beta, Tier::Experimental] {
         let wire = serde_json::to_value(tier).unwrap();
         assert_listed("Tier", wire.as_str().unwrap(), language_tiers());
         match tier {
-            Tier::Stable | Tier::Experimental => {}
+            Tier::Reference | Tier::Beta | Tier::Experimental => {}
         }
     }
 

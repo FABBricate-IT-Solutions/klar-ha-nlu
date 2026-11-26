@@ -171,7 +171,14 @@ pub(super) fn clear_catalog_cache() {
 }
 
 pub fn catalog_for(codes: &[String]) -> Arc<Catalog> {
-    let mut ids: Vec<LangId> = codes.iter().filter_map(|code| LangId::from_tag(code)).collect();
+    let mut ids: Vec<LangId> = Vec::new();
+    for code in codes {
+        if let Some(id) = LangId::from_tag(code) {
+            if !ids.contains(&id) {
+                ids.push(id);
+            }
+        }
+    }
     let overlays: Vec<ExternalPack> = codes.iter().filter_map(|code| resolver::overlay_for(code)).collect();
     if ids.is_empty() {
         if let Some(base) = overlays.first().and_then(|pack| pack.base_lang().ok()) {
@@ -181,8 +188,8 @@ pub fn catalog_for(codes: &[String]) -> Arc<Catalog> {
     if ids.is_empty() {
         return empty_catalog();
     }
-    ids.sort_by_key(|lang| lang.code());
-    ids.dedup();
+    // Keep settings / request order (R-21). Do not sort alphabetically: that made
+    // bilingual homes always answer in the alphabetically first pack.
     if ids.len() == LangId::all().len() {
         return empty_catalog();
     }
@@ -265,9 +272,73 @@ fn unbound_catalog() -> Arc<Catalog> {
     }
 }
 
-/// Language of spoken replies: the first bound pack. Last resort is English, never German.
+thread_local! {
+    static SPEECH_OVERRIDE: RefCell<Option<LangId>> = const { RefCell::new(None) };
+}
+
+/// Prefer this pack for spoken replies while the guard lives (R-21).
+pub struct SpeechBind {
+    prev: Option<LangId>,
+}
+
+impl Drop for SpeechBind {
+    fn drop(&mut self) {
+        SPEECH_OVERRIDE.with(|slot| *slot.borrow_mut() = self.prev.take());
+    }
+}
+
+pub fn bind_speech(id: LangId) -> SpeechBind {
+    let prev = SPEECH_OVERRIDE.with(|slot| slot.replace(Some(id)));
+    SpeechBind { prev }
+}
+
+fn speech_override() -> Option<LangId> {
+    SPEECH_OVERRIDE.with(|slot| *slot.borrow())
+}
+
+/// Language of spoken replies: the detected utterance pack when set, else the first
+/// bound pack in settings order. Last resort is English, never German.
 pub fn speech_lang() -> LangId {
-    catalog().langs.first().copied().unwrap_or(LangId::En)
+    speech_override().or_else(|| catalog().langs.first().copied()).unwrap_or(LangId::En)
+}
+
+/// Among the bound packs, pick the one whose lexicon best matches the tokens (R-21).
+/// Ties keep settings order. No signal keeps the first bound pack.
+pub fn detect_speech_lang(tokens: &[String], langs: &[LangId]) -> LangId {
+    if langs.is_empty() {
+        return LangId::En;
+    }
+    if langs.len() == 1 {
+        return langs[0];
+    }
+    let mut scores = vec![0i32; langs.len()];
+    for token in tokens {
+        let owners: Vec<usize> =
+            langs.iter().enumerate().filter(|(_, id)| pack_knows_token(id.pack(), token)).map(|(index, _)| index).collect();
+        match owners.as_slice() {
+            [only] => scores[*only] += 3,
+            many if !many.is_empty() => {
+                for index in many {
+                    scores[*index] += 1;
+                }
+            }
+            _ => {}
+        }
+    }
+    let mut best = 0usize;
+    for (index, score) in scores.iter().enumerate().skip(1) {
+        if *score > scores[best] {
+            best = index;
+        }
+    }
+    langs[best]
+}
+
+fn pack_knows_token(pack: &Pack, token: &str) -> bool {
+    pack.verbs.iter().any(|(word, _)| *word == token)
+        || pack.household.clock.iter().any(|phrase| phrase.split_whitespace().any(|word| word == token))
+        || pack.talk.query_hint.iter().any(|word| *word == token)
+        || pack.talk.question_starts.iter().any(|word| *word == token)
 }
 
 pub struct CatalogBind {

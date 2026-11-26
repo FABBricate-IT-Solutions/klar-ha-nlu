@@ -15,7 +15,7 @@ pub(super) struct LocalStamp {
 }
 
 pub(super) fn stamp_for(context: &ParseContext<'_>) -> Option<LocalStamp> {
-    let pack = context.catalog.langs.first().map(|id| id.code()).unwrap_or("en");
+    let pack = crate::lang::speech_lang().code();
     if let Some(secs) = context.settings.clock_unix {
         return stamp_at(secs, &context.settings.time_zone, pack);
     }

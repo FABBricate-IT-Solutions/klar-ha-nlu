@@ -2,7 +2,7 @@
 
 [Deutsch](languages.md) · [English](en/languages.md)
 
-Jede kompilierte Assist-Locale nutzt denselben `LanguagePack`-Weg. Deutsch und Englisch sind handgeschriebene Referenzpacks; die übrigen Packs sind generiert. Eine Locale ist **stabil** oder **experimentell** (siehe [Stufen](#stufen)); `GET /api/v2/languages` listet die Locales, die gewählt werden können, jeweils mit ihrer Stufe.
+Jede kompilierte Assist-Locale nutzt denselben `LanguagePack`-Weg. Deutsch und Englisch sind handgeschriebene Referenzpacks; die übrigen Packs sind generiert. Eine Locale ist **Referenz**, **Beta** oder **experimentell** (siehe [Stufen](#stufen)); `GET /api/v2/languages` listet die Locales, die gewählt werden können, jeweils mit ihrer Stufe.
 
 ## Unterstützte Locales
 
@@ -67,18 +67,22 @@ Ein generiertes Pack darf in die Binary, wenn diese Felder stehen und die Repres
 
 ## Stufen
 
-Eine Stufe sagt, wie weit eine Locale getestet ist. Sie entfernt kein Pack.
+Eine Stufe sagt, wie weit eine Locale geprüft ist. Sie nimmt kein Pack weg. Veröffentlichte Tabelle (`scripts/lang_packs/tiers.py`, `GET /api/v2/languages`):
 
-- **stabil**: Die Locale besteht ihre An/Aus-Minimalpaare. Jeder „An“-Satz schaltet ein, jeder „Aus“-Satz schaltet aus, und weder eine Frage noch ein verneinter Befehl schaltet etwas. Ein regionales Pack muss auch die Paare seines Elternpacks richtig beantworten.
-- **experimentell**: alles andere. Heute ist das jedes generierte Pack, das für sich allein steht: Keines kennt bisher Verneinungswörter, also wird „schalte das Licht nicht ein“ dort als Befehl ausgeführt. Die regionalen Packs von Deutsch und Englisch (`de-AT`, `de-CH`, `en-GB`) erben von einem stabilen Elternpack und sind stabil; `pt-BR` erbt von `pt` und ist mit ihm experimentell.
+| Stufe | Codes | Gate |
+|-------|-------|------|
+| **Referenz** | `de`, `en`, `de-AT`, `de-CH`, `en-GB` | Volle An/Aus/Negation-Minimalpaare |
+| **Beta** | `es`, `nl`, `pt`, `pt-BR`, `it`, `fr`, `id`, `uk`, `hi` | Keine falsche Aktion + Gold-Sätze (`tests/datasets/gold/`) |
+| **Experimentell** | jede andere kompilierte Locale | Hinter `experimental_languages` |
 
-`tests/language_tiers.rs` entscheidet. Die Paare stammen aus dem Generator-Lexikon der jeweiligen Locale (`tests/datasets/minimal_pairs/pairs.yaml`, geschrieben von `scripts/lang_packs/pairs.py`), und der Test schlägt fehl, wenn `STABLE` in `scripts/lang_packs/tiers.py` etwas anderes sagt als die Paare. Um eine Locale stabil zu machen, bekommt ihr Pack, was ihm fehlt (zum Beispiel die Verneinungswörter in `scripts/lang_packs/mood.py`), bis der Test verlangt, sie in `STABLE` einzutragen.
+`tests/language_tiers.rs` und `tests/language_gold.rs` entscheiden. Beworbene Tags (`zh`, `zh-Hans`, `no`, `nn`, …) laufen über die Varianten-Tabelle und lassen sich pinnen. In einem zweisprachigen Haus folgt die Antwortsprache der erkannten Äußerung, nicht dem alphabetisch ersten Pack.
 
 Die Engine-Einstellung `experimental_languages` (standardmäßig aus) ist der Schalter:
 
-- Eine schon konfigurierte Locale (`languages`, `default_language`) funktioniert weiter und bleibt gelistet, egal in welcher Stufe. Ein Update ändert nie die Sprache eines Haushalts.
+- Eine Locale, die schon konfiguriert ist (`languages`, `default_language`), bleibt nutzbar und gelistet, egal welche Stufe. Ein Update nimmt einem Haus keine Sprache weg.
 - Ein Request, der eine Sprache pinnt (`language` bei `POST /api/v2/parse`, die Sprache der Assist-Pipeline), wird in dieser Sprache beantwortet, egal in welcher Stufe.
-- Ist der Schalter aus, wird eine experimentelle Locale nicht zur Neuauswahl gelistet, und ein Speichern der Einstellungen, das eine hinzufügt, wird abgelehnt (`422`).
+- Mit ausgeschaltetem Schalter wird eine experimentelle Locale nicht zur Neuauswahl gelistet und ein Settings-Save, der eine hinzufügt, mit `422` abgelehnt. Referenz und Beta sind immer angeboten.
+
 
 ## Catalog-Modell
 

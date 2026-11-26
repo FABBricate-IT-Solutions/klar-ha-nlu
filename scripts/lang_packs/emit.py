@@ -8,7 +8,7 @@ from lang_packs.emit_news import news_rs
 from lang_packs.emit_pack import pack_rs, speech_rs
 from lang_packs.emit_rust import PY_BANNER, RUST_BANNER, rust_str, unique_verbs
 from lang_packs.fold import fold_latin
-from lang_packs.tiers import STABLE, tier_of
+from lang_packs.tiers import BETA, REFERENCE, tier_of
 from lang_packs.mood import mood_rs
 
 ROOT = Path(__file__).resolve().parents[2]
@@ -99,7 +99,7 @@ pub struct LangMeta {{
     pub variants: &'static [&'static str],
     /// A regional pack inherits from this pack and only adds or replaces regional words.
     pub parent: Option<&'static str>,
-    /// Stable locales pass their minimal pairs; experimental ones need the switch for a new selection.
+    /// Reference and Beta are always offered; experimental ones need the switch for a new selection.
     pub tier: Tier,
 }}
 
@@ -124,8 +124,26 @@ fn row(code: &str) -> Option<&'static LangRow> {{
     map.get(code).map(|&i| &LANGS[i])
 }}
 
+/// Resolve a pack code or an advertised variant tag (zh, zh-Hans, no, nn, …).
+fn row_for_tag(tag: &str) -> Option<&'static LangRow> {{
+    if let Some(row) = row(tag) {{
+        return Some(row);
+    }}
+    static VARIANTS: OnceLock<HashMap<&'static str, usize>> = OnceLock::new();
+    let map = VARIANTS.get_or_init(|| {{
+        let mut map = HashMap::new();
+        for (index, row) in LANGS.iter().enumerate() {{
+            for variant in row.meta.variants {{
+                map.entry(*variant).or_insert(index);
+            }}
+        }}
+        map
+    }});
+    map.get(tag).map(|&index| &LANGS[index])
+}}
+
 pub fn lookup(code: &str) -> Option<LangId> {{
-    row(code).map(|item| item.id)
+    row_for_tag(code).map(|item| item.id)
 }}
 
 pub fn pack(id: LangId) -> &'static LanguagePack {{
@@ -137,7 +155,7 @@ pub fn meta(id: LangId) -> Option<&'static LangMeta> {{
 }}
 
 pub fn parent(id: LangId) -> Option<LangId> {{
-    meta(id).and_then(|meta| meta.parent).and_then(lookup)
+    meta(id).and_then(|meta| meta.parent).and_then(|code| row(code).map(|item| item.id))
 }}
 
 pub fn languages() -> &'static [LangMeta] {{
@@ -167,7 +185,9 @@ LANGUAGE_NAMES = {{
 
 # Offered for a new selection only with the engine setting `experimental_languages`.
 # A locale that is configured already keeps working.
-EXPERIMENTAL_LANGUAGES = {tuple(code for code in codes if code not in STABLE)!r}
+REFERENCE_LANGUAGES = {tuple(code for code in codes if code in REFERENCE)!r}
+BETA_LANGUAGES = {tuple(code for code in codes if code in BETA)!r}
+EXPERIMENTAL_LANGUAGES = {tuple(code for code in codes if code not in REFERENCE and code not in BETA)!r}
 ''',
         encoding="utf-8",
     )

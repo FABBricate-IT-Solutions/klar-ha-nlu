@@ -1,0 +1,57 @@
+# Gold natural sentences for Beta locale (package 4.3).
+# source: plan evidence natural.py; not parity-generated.
+cases:
+  - text: 'Allume la lumière du salon'
+    expect: 'TurnOn@living'
+    kind: execute
+  - text: 'Éteins la lumière de la cuisine'
+    expect: 'TurnOff@kitchen'
+    kind: execute
+  - text: 'éteins la lumière dans la cuisine'
+    expect: 'TurnOff@kitchen'
+    kind: execute
+  - text: 'Mets la lumière du salon à 50 %'
+    expect: 'LightSet@living:brightness=50'
+    kind: execute
+  - text: 'Mets la lumière du salon à vingt-cinq pour cent'
+    expect: 'LightSet@living:brightness=25'
+    kind: execute
+  - text: 'Mets la lumière du salon à quatre-vingts pour cent'
+    expect: 'LightSet@living:brightness=80'
+    kind: execute
+  - text: 'Règle le chauffage sur 21 degrés'
+    expect: 'ClimateSetTemperature:temperature=21'
+    kind: execute
+  - text: 'Ouvre les volets de la chambre'
+    expect: 'TurnOn@bedroom'
+    kind: execute
+  - text: 'Ferme les volets de la chambre'
+    expect: 'CONFIRM'
+    kind: confirm
+  - text: 'Est-ce que la lumière de la cuisine est allumée ?'
+    expect: 'GetState@kitchen'
+    kind: execute
+  - text: 'Quelle est la température dans le salon ?'
+    expect: 'GetTemp@living'
+    kind: execute
+  - text: 'Mets un minuteur de cinq minutes'
+    expect: 'StartTimer:minutes=5'
+    kind: execute
+  - text: 'Ajoute du lait à la liste de courses'
+    expect: 'ListAdd:item=lait'
+    kind: execute
+  - text: 'Mets la musique en pause'
+    expect: 'MediaPause'
+    kind: execute
+  - text: 'Allume la lumière du salon et éteins la lumière de la cuisine'
+    expect: 'TurnOn@living+TurnOff@kitchen'
+    kind: execute
+  - text: "Verrouille la porte d'entrée"
+    expect: 'CONFIRM'
+    kind: confirm
+  - text: "Allume la lumière de l'entrée"
+    expect: 'TurnOn@hall'
+    kind: execute
+  - text: 'Quelle heure est-il ?'
+    expect: 'CHAT'
+    kind: chat

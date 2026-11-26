@@ -13,7 +13,7 @@ LANGUAGE_VARIANTS = {
     "ca": ('ca', 'ca-ES',),
     "ro": ('ro', 'ro-RO',),
     "da": ('da', 'da-DK',),
-    "nb": ('nb', 'nb-NO',),
+    "nb": ('nb', 'nb-NO', 'no', 'nn', 'no-NO',),
     "sv": ('sv', 'sv-SE',),
     "fi": ('fi', 'fi-FI',),
     "de-CH": ('de-CH',),
@@ -32,9 +32,9 @@ LANGUAGE_VARIANTS = {
     "sr": ('sr', 'sr-RS',),
     "sr-Latn": ('sr-Latn',),
     "uk": ('uk', 'uk-UA',),
-    "zh-CN": ('zh-CN', 'zh',),
-    "zh-TW": ('zh-TW',),
-    "zh-HK": ('zh-HK',),
+    "zh-CN": ('zh-CN', 'zh', 'zh-Hans', 'zh-Hans-CN',),
+    "zh-TW": ('zh-TW', 'zh-Hant', 'zh-Hant-TW',),
+    "zh-HK": ('zh-HK', 'zh-Hant-HK',),
     "ar": ('ar', 'ar-JO',),
     "he": ('he', 'he-IL',),
     "fa": ('fa', 'fa-IR',),
@@ -144,4 +144,6 @@ LANGUAGE_NAMES = {
 
 # Offered for a new selection only with the engine setting `experimental_languages`.
 # A locale that is configured already keeps working.
-EXPERIMENTAL_LANGUAGES = ('fr', 'nl', 'es', 'it', 'pt', 'ca', 'ro', 'da', 'nb', 'sv', 'fi', 'pt-BR', 'af', 'cs', 'sk', 'pl', 'hu', 'hr', 'sl', 'bg', 'el', 'sr', 'sr-Latn', 'uk', 'zh-CN', 'zh-TW', 'zh-HK', 'ar', 'he', 'fa', 'ur', 'tr', 'th', 'ko', 'ja', 'cy', 'et', 'eu', 'ga', 'gl', 'is', 'lb', 'kw', 'lt', 'lv', 'id', 'ms', 'sw', 'vi', 'hi', 'bn', 'gu', 'kn', 'ml', 'mr', 'ta', 'te', 'pa', 'ne', 'hy', 'ka', 'mn')
+REFERENCE_LANGUAGES = ('de', 'en', 'de-CH', 'de-AT', 'en-GB')
+BETA_LANGUAGES = ('fr', 'nl', 'es', 'it', 'pt', 'pt-BR', 'uk', 'id', 'hi')
+EXPERIMENTAL_LANGUAGES = ('ca', 'ro', 'da', 'nb', 'sv', 'fi', 'af', 'cs', 'sk', 'pl', 'hu', 'hr', 'sl', 'bg', 'el', 'sr', 'sr-Latn', 'zh-CN', 'zh-TW', 'zh-HK', 'ar', 'he', 'fa', 'ur', 'tr', 'th', 'ko', 'ja', 'cy', 'et', 'eu', 'ga', 'gl', 'is', 'lb', 'kw', 'lt', 'lv', 'ms', 'sw', 'vi', 'bn', 'gu', 'kn', 'ml', 'mr', 'ta', 'te', 'pa', 'ne', 'hy', 'ka', 'mn')

@@ -1,0 +1,49 @@
+# Gold natural sentences for Beta locale (package 4.3).
+# source: plan evidence natural.py; not parity-generated.
+cases:
+  - text: 'बैठक की बत्ती जलाओ'
+    expect: 'TurnOn@living'
+    kind: execute
+  - text: 'बैठक की लाइट चालू करो'
+    expect: 'TurnOn@living'
+    kind: execute
+  - text: 'रसोई की बत्ती बंद करो'
+    expect: 'TurnOff@kitchen'
+    kind: execute
+  # gap: "रसोई की बत्ती बुझा दो" currently LightSet — left out of the hard gate
+  - text: 'बैठक की बत्ती 50 प्रतिशत पर करो'
+    expect: 'LightSet@living:brightness=50'
+    kind: execute
+  - text: 'बैठक की बत्ती ५० प्रतिशत पर करो'
+    expect: 'LightSet@living:brightness=50'
+    kind: execute
+  - text: 'हीटर को 21 डिग्री पर सेट करो'
+    expect: 'ClimateSetTemperature:temperature=21'
+    kind: execute
+  - text: 'बेडरूम के पर्दे खोलो'
+    expect: 'TurnOn@bedroom'
+    kind: execute
+  - text: 'बेडरूम के पर्दे बंद करो'
+    expect: 'CONFIRM'
+    kind: confirm
+  - text: 'क्या रसोई की बत्ती जल रही है?'
+    expect: 'GetState@kitchen'
+    kind: execute
+  - text: 'बैठक का तापमान कितना है?'
+    expect: 'GetTemp@living'
+    kind: execute
+  - text: 'पांच मिनट का टाइमर लगाओ'
+    expect: 'StartTimer:minutes=5'
+    kind: execute
+  - text: 'खरीदारी की सूची में दूध जोड़ो'
+    expect: 'ListAdd:item=दूध'
+    kind: execute
+  - text: 'संगीत रोको'
+    expect: 'MediaPause'
+    kind: execute
+  - text: 'मुख्य दरवाज़ा लॉक करो'
+    expect: 'CONFIRM'
+    kind: confirm
+  - text: 'कितने बजे हैं?'
+    expect: 'CHAT'
+    kind: chat

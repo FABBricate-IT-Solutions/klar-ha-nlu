@@ -1,0 +1,48 @@
+# Gold natural sentences for Beta locale (package 4.3).
+# source: plan evidence natural.py; not parity-generated.
+cases:
+  - text: 'Nyalakan lampu ruang tamu'
+    expect: 'TurnOn@living'
+    kind: execute
+  - text: 'Matikan lampu dapur'
+    expect: 'TurnOff@kitchen'
+    kind: execute
+  - text: 'Hidupkan lampu ruang tamu'
+    expect: 'TurnOn@living'
+    kind: execute
+  - text: 'Atur lampu ruang tamu ke 50 persen'
+    expect: 'LightSet@living:brightness=50'
+    kind: execute
+  - text: 'Atur lampu ruang tamu ke dua puluh lima persen'
+    expect: 'LightSet@living:brightness=25'
+    kind: execute
+  - text: 'Atur pemanas ke 21 derajat'
+    expect: 'ClimateSetTemperature:temperature=21'
+    kind: execute
+  - text: 'Buka tirai kamar tidur'
+    expect: 'TurnOn@bedroom'
+    kind: execute
+  - text: 'Tutup tirai kamar tidur'
+    expect: 'CONFIRM'
+    kind: confirm
+  - text: 'Apakah lampu dapur menyala?'
+    expect: 'GetState@kitchen'
+    kind: execute
+  - text: 'Berapa suhu di ruang tamu?'
+    expect: 'GetTemp@living'
+    kind: execute
+  - text: 'Setel timer lima menit'
+    expect: 'StartTimer:minutes=5'
+    kind: execute
+  - text: 'Tambahkan susu ke daftar belanja'
+    expect: 'ListAdd:item=susu'
+    kind: execute
+  - text: 'Jeda musik'
+    expect: 'MediaPause'
+    kind: execute
+  - text: 'Kunci pintu depan'
+    expect: 'CONFIRM'
+    kind: confirm
+  - text: 'Jam berapa sekarang?'
+    expect: 'CHAT'
+    kind: chat

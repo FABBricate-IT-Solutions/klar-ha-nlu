@@ -16,7 +16,8 @@ KEYS = (
     "allAssistLanguages",
     "experimentalLanguages",
     "experimentalLanguagesHint",
-    "languageTierStable",
+    "languageTierReference",
+    "languageTierBeta",
     "languageTierExperimental",
     "defaultLanguage",
     "defaultLanguageHint",
@@ -190,7 +191,8 @@ def apply_settings_copy(packs: dict[str, dict[str, str]]) -> None:
             fields["semanticAdaptersHint"] = row.get("semanticAdaptersHint") or "Standard aus. An: nach einem Miss kann ein lokaler Bedeutungsabgleich den Intent noch finden. Kein LLM."
             fields["experimentalLanguages"] = row.get("experimentalLanguages") or "Experimentelle Sprachen"
             fields["experimentalLanguagesHint"] = row.get("experimentalLanguagesHint") or "Standard aus. An: ungetestete Packs erscheinen für eine neue Auswahl. Eine schon konfigurierte Locale bleibt in beiden Fällen."
-            fields["languageTierStable"] = row.get("languageTierStable") or "stabil"
+            fields["languageTierReference"] = row.get("languageTierReference") or "Referenz"
+            fields["languageTierBeta"] = row.get("languageTierBeta") or "Beta"
             fields["languageTierExperimental"] = row.get("languageTierExperimental") or "experimentell"
             fields["defaultLanguage"] = row.get("defaultLanguage") or "Standard-Pack"
             fields["defaultLanguageHint"] = row.get("defaultLanguageHint") or "Gilt, wenn Assist-Sprachen leer sind und die Anfrage keine Sprache nennt. Leer bedeutet Englisch."

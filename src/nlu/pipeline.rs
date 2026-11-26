@@ -41,6 +41,7 @@ pub(super) fn run(context: ParseContext<'_>) -> PipelineResult {
     let said = super::phrase::words(context.text);
     let heard = fold_spoken_numbers(&tokenize_home(context.text, context.home));
     let tokens = expand_compounds(&strip_fillers_for_areas(&heard, &context.home.areas), context.home).tokens;
+    let _speech = prefer_speech(&context, &tokens);
     let readable =
         said.len() <= MAX_ANSWER_WORDS.max(MAX_REPLY_WORDS) && !context.text.chars().any(|c| c.is_control() && !c.is_whitespace());
     if let Some(draft) = readable.then(|| super::pending::answer(&context, &said, &tokens)).flatten() {
@@ -95,12 +96,19 @@ fn replaces_question(result: &PipelineResult, asking: bool) -> bool {
     }
 }
 
+/// Prefer the pack that matches the utterance when several are bound (R-21).
+fn prefer_speech(context: &ParseContext<'_>, tokens: &[String]) -> crate::lang::SpeechBind {
+    let detected = crate::lang::detect_speech_lang(tokens, &context.catalog.langs);
+    crate::lang::bind_speech(detected)
+}
+
 /// One utterance with no question open: routes, ranking and the safety decision.
 fn decide(context: &ParseContext<'_>) -> PipelineResult {
     let mut trace = ParseTrace::default();
     let started = Instant::now();
     let raw_tokens = fold_spoken_numbers(&tokenize_home(context.text, context.home));
     let split = expand_compounds(&strip_fillers_for_areas(&raw_tokens, &context.home.areas), context.home);
+    let _speech = prefer_speech(context, &split.tokens);
     trace.tokens = split.tokens.iter().take(MAX_NORMALIZED_TOKENS).cloned().collect();
     trace.normalized = trace.tokens.join(" ");
     record_stage(&mut trace, "normalize", started, format!("{} normalized tokens", split.tokens.len()));

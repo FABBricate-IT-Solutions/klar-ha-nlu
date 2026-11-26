@@ -30,7 +30,8 @@ def nl() -> dict:
             lock=["slot"],
             door=["deur"],
             timer=["timer"],
-            list_=["lijst", "boodschappen"],
+            # boodschappenlijst is the spoken compound (L-06); keep lijst/boodschappen too.
+            list_=["lijst", "boodschappenlijst", "boodschappen"],
             fan=["ventilator"],
             vacuum=["stofzuiger"],
             scene=["scene"],
