@@ -12,6 +12,7 @@ generators=(
   scripts/gen_voice_suite.py
   scripts/parity/generate.py
   scripts/full_home/generate.py
+  scripts/eval_heldout/generate.py
   scripts/gen_api_routes.py
 )
 

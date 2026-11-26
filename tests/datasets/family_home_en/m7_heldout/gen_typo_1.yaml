@@ -1,0 +1,549 @@
+- name: gen_typo_on_entryway_light
+  split: typo
+  language: en
+  sentences:
+    - 'Turn on the Enryway Light'
+    - 'Switch on the Entryay Light'
+  nlu_expect:
+    intents:
+      - intent: HassTurnOn
+        slots: {entity_id: light.entryway_light}
+
+- name: gen_typo_off_entryway_light
+  split: typo
+  language: en
+  sentences:
+    - 'Turn off the Entyway Light'
+    - 'Switch off the Enryway Light'
+  nlu_expect:
+    intents:
+      - intent: HassTurnOff
+        slots: {entity_id: light.entryway_light}
+
+- name: gen_typo_on_living_ceiling
+  split: typo
+  language: en
+  sentences:
+    - 'Switch on the Living Room Ceilng'
+    - 'Please turn on the Liing Room Ceiling'
+  nlu_expect:
+    intents:
+      - intent: HassTurnOn
+        slots: {entity_id: light.living_ceiling}
+
+- name: gen_typo_off_living_ceiling
+  split: typo
+  language: en
+  sentences:
+    - 'Switch off the Liing Room Ceiling'
+    - 'Shut off the Living Room Celing'
+  nlu_expect:
+    intents:
+      - intent: HassTurnOff
+        slots: {entity_id: light.living_ceiling}
+
+- name: gen_typo_on_living_lamp
+  split: typo
+  language: en
+  sentences:
+    - 'Please turn on the Liing Room Lamp'
+    - 'Turn on the Livng Room Lamp'
+  nlu_expect:
+    intents:
+      - intent: HassTurnOn
+        slots: {entity_id: light.living_lamp}
+
+- name: gen_typo_off_living_lamp
+  split: typo
+  language: en
+  sentences:
+    - 'Shut off the Livng Room Lamp'
+    - 'Turn off the Liing Room Lamp'
+  nlu_expect:
+    intents:
+      - intent: HassTurnOff
+        slots: {entity_id: light.living_lamp}
+
+- name: gen_typo_on_dining_pendant
+  split: typo
+  language: en
+  sentences:
+    - 'Turn on the Dining Pedant'
+    - 'Switch on the Diing Pendant'
+  nlu_expect:
+    intents:
+      - intent: HassTurnOn
+        slots: {entity_id: light.dining_pendant}
+
+- name: gen_typo_off_dining_pendant
+  split: typo
+  language: en
+  sentences:
+    - 'Turn off the Diing Pendant'
+    - 'Switch off the Dining Penant'
+  nlu_expect:
+    intents:
+      - intent: HassTurnOff
+        slots: {entity_id: light.dining_pendant}
+
+- name: gen_typo_on_kitchen_ceiling
+  split: typo
+  language: en
+  sentences:
+    - 'Switch on the Kitcen Ceiling'
+    - 'Please turn on the Kitchen Ceilng'
+  nlu_expect:
+    intents:
+      - intent: HassTurnOn
+        slots: {entity_id: light.kitchen_ceiling}
+
+- name: gen_typo_off_kitchen_ceiling
+  split: typo
+  language: en
+  sentences:
+    - 'Switch off the Kitchen Celing'
+    - 'Shut off the Kichen Ceiling'
+  nlu_expect:
+    intents:
+      - intent: HassTurnOff
+        slots: {entity_id: light.kitchen_ceiling}
+
+- name: gen_typo_on_kitchen_island
+  split: typo
+  language: en
+  sentences:
+    - 'Please turn on the Island Ligts'
+    - 'Turn on the Isand Lights'
+  nlu_expect:
+    intents:
+      - intent: HassTurnOn
+        slots: {entity_id: light.kitchen_island}
+
+- name: gen_typo_off_kitchen_island
+  split: typo
+  language: en
+  sentences:
+    - 'Shut off the Isand Lights'
+    - 'Turn off the Island Ligts'
+  nlu_expect:
+    intents:
+      - intent: HassTurnOff
+        slots: {entity_id: light.kitchen_island}
+
+- name: gen_typo_on_rangehood
+  split: typo
+  language: en
+  sentences:
+    - 'Turn on the Ragehood'
+    - 'Switch on the Rangeood'
+  nlu_expect:
+    intents:
+      - intent: HassTurnOn
+        slots: {entity_id: switch.rangehood}
+
+- name: gen_typo_off_rangehood
+  split: typo
+  language: en
+  sentences:
+    - 'Turn off the Ranehood'
+    - 'Switch off the Rangehod'
+  nlu_expect:
+    intents:
+      - intent: HassTurnOff
+        slots: {entity_id: switch.rangehood}
+
+- name: gen_typo_on_dishwasher
+  split: typo
+  language: en
+  sentences:
+    - 'Switch on the Dishwaser'
+    - 'Please turn on the Dishasher'
+  nlu_expect:
+    intents:
+      - intent: HassTurnOn
+        slots: {entity_id: switch.dishwasher}
+
+- name: gen_typo_off_dishwasher
+  split: typo
+  language: en
+  sentences:
+    - 'Switch off the Dihwasher'
+    - 'Shut off the Dishwsher'
+  nlu_expect:
+    intents:
+      - intent: HassTurnOff
+        slots: {entity_id: switch.dishwasher}
+
+- name: gen_typo_on_family_ceiling
+  split: typo
+  language: en
+  sentences:
+    - 'Please turn on the Faily Room Ceiling'
+    - 'Turn on the Family Room Ceiing'
+  nlu_expect:
+    intents:
+      - intent: HassTurnOn
+        slots: {entity_id: light.family_ceiling}
+
+- name: gen_typo_off_family_ceiling
+  split: typo
+  language: en
+  sentences:
+    - 'Shut off the Family Room Ceilng'
+    - 'Turn off the Faily Room Ceiling'
+  nlu_expect:
+    intents:
+      - intent: HassTurnOff
+        slots: {entity_id: light.family_ceiling}
+
+- name: gen_typo_on_family_fan
+  split: typo
+  language: en
+  sentences:
+    - 'Turn on the Famly Room Fan'
+    - 'Switch on the Faily Room Fan'
+  nlu_expect:
+    intents:
+      - intent: HassTurnOn
+        slots: {entity_id: fan.family_fan}
+
+- name: gen_typo_off_family_fan
+  split: typo
+  language: en
+  sentences:
+    - 'Turn off the Faily Room Fan'
+    - 'Switch off the Famly Room Fan'
+  nlu_expect:
+    intents:
+      - intent: HassTurnOff
+        slots: {entity_id: fan.family_fan}
+
+- name: gen_typo_on_laundry_light
+  split: typo
+  language: en
+  sentences:
+    - 'Switch on the Launry Light'
+    - 'Please turn on the Launry Light'
+  nlu_expect:
+    intents:
+      - intent: HassTurnOn
+        slots: {entity_id: light.laundry_light}
+
+- name: gen_typo_off_laundry_light
+  split: typo
+  language: en
+  sentences:
+    - 'Switch off the Landry Light'
+    - 'Shut off the Landry Light'
+  nlu_expect:
+    intents:
+      - intent: HassTurnOff
+        slots: {entity_id: light.laundry_light}
+
+- name: gen_typo_on_washing_machine
+  split: typo
+  language: en
+  sentences:
+    - 'Please turn on the Washing Macine'
+    - 'Turn on the Wasing Machine'
+  nlu_expect:
+    intents:
+      - intent: HassTurnOn
+        slots: {entity_id: switch.washing_machine}
+
+- name: gen_typo_off_washing_machine
+  split: typo
+  language: en
+  sentences:
+    - 'Shut off the Washng Machine'
+    - 'Turn off the Washing Machne'
+  nlu_expect:
+    intents:
+      - intent: HassTurnOff
+        slots: {entity_id: switch.washing_machine}
+
+- name: gen_typo_on_powder_room_light
+  split: typo
+  language: en
+  sentences:
+    - 'Switch on the Power Room Light'
+    - 'Please turn on the Poder Room Light'
+  nlu_expect:
+    intents:
+      - intent: HassTurnOn
+        slots: {entity_id: light.powder_room_light}
+
+- name: gen_typo_off_powder_room_light
+  split: typo
+  language: en
+  sentences:
+    - 'Switch off the Poder Room Light'
+    - 'Shut off the Power Room Light'
+  nlu_expect:
+    intents:
+      - intent: HassTurnOff
+        slots: {entity_id: light.powder_room_light}
+
+- name: gen_typo_on_garage_light
+  split: typo
+  language: en
+  sentences:
+    - 'Please turn on the Gaage Light'
+    - 'Turn on the Garge Light'
+  nlu_expect:
+    intents:
+      - intent: HassTurnOn
+        slots: {entity_id: light.garage_light}
+
+- name: gen_typo_off_garage_light
+  split: typo
+  language: en
+  sentences:
+    - 'Shut off the Garge Light'
+    - 'Turn off the Gaage Light'
+  nlu_expect:
+    intents:
+      - intent: HassTurnOff
+        slots: {entity_id: light.garage_light}
+
+- name: gen_typo_on_master_ceiling
+  split: typo
+  language: en
+  sentences:
+    - 'Turn on the Master Celing'
+    - 'Switch on the Mater Ceiling'
+  nlu_expect:
+    intents:
+      - intent: HassTurnOn
+        slots: {entity_id: light.master_ceiling}
+
+- name: gen_typo_off_master_ceiling
+  split: typo
+  language: en
+  sentences:
+    - 'Turn off the Mater Ceiling'
+    - 'Switch off the Master Ceiing'
+  nlu_expect:
+    intents:
+      - intent: HassTurnOff
+        slots: {entity_id: light.master_ceiling}
+
+- name: gen_typo_on_master_ensuite
+  split: typo
+  language: en
+  sentences:
+    - 'Switch on the Mater Ensuite Light'
+    - 'Please turn on the Master Ensute Light'
+  nlu_expect:
+    intents:
+      - intent: HassTurnOn
+        slots: {entity_id: light.master_ensuite}
+
+- name: gen_typo_off_master_ensuite
+  split: typo
+  language: en
+  sentences:
+    - 'Switch off the Master Enuite Light'
+    - 'Shut off the Mater Ensuite Light'
+  nlu_expect:
+    intents:
+      - intent: HassTurnOff
+        slots: {entity_id: light.master_ensuite}
+
+- name: gen_typo_on_master_bedside_left
+  split: typo
+  language: en
+  sentences:
+    - 'Please turn on the Left Bedide Lamp'
+    - 'Turn on the Left Bedide Lamp'
+  nlu_expect:
+    intents:
+      - intent: HassTurnOn
+        slots: {entity_id: light.master_bedside_left}
+
+- name: gen_typo_off_master_bedside_left
+  split: typo
+  language: en
+  sentences:
+    - 'Shut off the Left Bedsde Lamp'
+    - 'Turn off the Left Bedsde Lamp'
+  nlu_expect:
+    intents:
+      - intent: HassTurnOff
+        slots: {entity_id: light.master_bedside_left}
+
+- name: gen_typo_on_master_bedside_right
+  split: typo
+  language: en
+  sentences:
+    - 'Turn on the Right Beside Lamp'
+    - 'Switch on the Right Beside Lamp'
+  nlu_expect:
+    intents:
+      - intent: HassTurnOn
+        slots: {entity_id: light.master_bedside_right}
+
+- name: gen_typo_off_master_bedside_right
+  split: typo
+  language: en
+  sentences:
+    - 'Turn off the Right Bedide Lamp'
+    - 'Switch off the Right Bedide Lamp'
+  nlu_expect:
+    intents:
+      - intent: HassTurnOff
+        slots: {entity_id: light.master_bedside_right}
+
+- name: gen_typo_on_master_fan
+  split: typo
+  language: en
+  sentences:
+    - 'Switch on the Maser Fan'
+    - 'Please turn on the Mater Fan'
+  nlu_expect:
+    intents:
+      - intent: HassTurnOn
+        slots: {entity_id: fan.master_fan}
+
+- name: gen_typo_off_master_fan
+  split: typo
+  language: en
+  sentences:
+    - 'Switch off the Mater Fan'
+    - 'Shut off the Maser Fan'
+  nlu_expect:
+    intents:
+      - intent: HassTurnOff
+        slots: {entity_id: fan.master_fan}
+
+- name: gen_typo_on_bedroom2_ceiling
+  split: typo
+  language: en
+  sentences:
+    - 'Please turn on the Bedoom 2 Ceiling'
+    - 'Turn on the Bedroom 2 Ceiing'
+  nlu_expect:
+    intents:
+      - intent: HassTurnOn
+        slots: {entity_id: light.bedroom2_ceiling}
+
+- name: gen_typo_off_bedroom2_ceiling
+  split: typo
+  language: en
+  sentences:
+    - 'Shut off the Bedroom 2 Ceilng'
+    - 'Turn off the Bedrom 2 Ceiling'
+  nlu_expect:
+    intents:
+      - intent: HassTurnOff
+        slots: {entity_id: light.bedroom2_ceiling}
+
+- name: gen_typo_on_bedroom2_fan
+  split: typo
+  language: en
+  sentences:
+    - 'Turn on the Beroom 2 Fan'
+    - 'Switch on the Beroom 2 Fan'
+  nlu_expect:
+    intents:
+      - intent: HassTurnOn
+        slots: {entity_id: fan.bedroom2_fan}
+
+- name: gen_typo_off_bedroom2_fan
+  split: typo
+  language: en
+  sentences:
+    - 'Turn off the Bedoom 2 Fan'
+    - 'Switch off the Bedoom 2 Fan'
+  nlu_expect:
+    intents:
+      - intent: HassTurnOff
+        slots: {entity_id: fan.bedroom2_fan}
+
+- name: gen_typo_on_bedroom3_ceiling
+  split: typo
+  language: en
+  sentences:
+    - 'Switch on the Bedrom 3 Ceiling'
+    - 'Please turn on the Bedroom 3 Ceilng'
+  nlu_expect:
+    intents:
+      - intent: HassTurnOn
+        slots: {entity_id: light.bedroom3_ceiling}
+
+- name: gen_typo_off_bedroom3_ceiling
+  split: typo
+  language: en
+  sentences:
+    - 'Switch off the Bedroom 3 Celing'
+    - 'Shut off the Beroom 3 Ceiling'
+  nlu_expect:
+    intents:
+      - intent: HassTurnOff
+        slots: {entity_id: light.bedroom3_ceiling}
+
+- name: gen_typo_on_bedroom4_ceiling
+  split: typo
+  language: en
+  sentences:
+    - 'Please turn on the Bedroom 4 Ceiing'
+    - 'Turn on the Bedoom 4 Ceiling'
+  nlu_expect:
+    intents:
+      - intent: HassTurnOn
+        slots: {entity_id: light.bedroom4_ceiling}
+
+- name: gen_typo_off_bedroom4_ceiling
+  split: typo
+  language: en
+  sentences:
+    - 'Shut off the Bedrom 4 Ceiling'
+    - 'Turn off the Bedroom 4 Ceilng'
+  nlu_expect:
+    intents:
+      - intent: HassTurnOff
+        slots: {entity_id: light.bedroom4_ceiling}
+
+- name: gen_typo_on_master_bath_light
+  split: typo
+  language: en
+  sentences:
+    - 'Turn on the Mater Bath Light'
+    - 'Switch on the Maser Bath Light'
+  nlu_expect:
+    intents:
+      - intent: HassTurnOn
+        slots: {entity_id: light.master_bath_light}
+
+- name: gen_typo_off_master_bath_light
+  split: typo
+  language: en
+  sentences:
+    - 'Turn off the Maser Bath Light'
+    - 'Switch off the Mater Bath Light'
+  nlu_expect:
+    intents:
+      - intent: HassTurnOff
+        slots: {entity_id: light.master_bath_light}
+
+- name: gen_typo_on_master_bath_fan
+  split: typo
+  language: en
+  sentences:
+    - 'Switch on the Maser Bath Fan'
+    - 'Please turn on the Mater Bath Fan'
+  nlu_expect:
+    intents:
+      - intent: HassTurnOn
+        slots: {entity_id: switch.master_bath_fan}
+
+- name: gen_typo_off_master_bath_fan
+  split: typo
+  language: en
+  sentences:
+    - 'Switch off the Mater Bath Fan'
+    - 'Shut off the Maser Bath Fan'
+  nlu_expect:
+    intents:
+      - intent: HassTurnOff
+        slots: {entity_id: switch.master_bath_fan}

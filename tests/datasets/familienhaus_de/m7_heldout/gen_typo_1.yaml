@@ -1,0 +1,549 @@
+- name: gen_typo_on_entryway_light
+  split: typo
+  language: de
+  sentences:
+    - 'Mach Eigangslicht an'
+    - 'Schalte Eingagslicht ein'
+  nlu_expect:
+    intents:
+      - intent: HassTurnOn
+        slots: {entity_id: light.entryway_light}
+
+- name: gen_typo_off_entryway_light
+  split: typo
+  language: de
+  sentences:
+    - 'Mach Einangslicht aus'
+    - 'Schalte Einganslicht aus'
+  nlu_expect:
+    intents:
+      - intent: HassTurnOff
+        slots: {entity_id: light.entryway_light}
+
+- name: gen_typo_on_living_ceiling
+  split: typo
+  language: de
+  sentences:
+    - 'Schalte Wohnzimer Decke ein'
+    - 'Bitte Wohnimmer Decke anmachen'
+  nlu_expect:
+    intents:
+      - intent: HassTurnOn
+        slots: {entity_id: light.living_ceiling}
+
+- name: gen_typo_off_living_ceiling
+  split: typo
+  language: de
+  sentences:
+    - 'Schalte Wonzimmer Decke aus'
+    - 'Bitte Wohnzmmer Decke ausmachen'
+  nlu_expect:
+    intents:
+      - intent: HassTurnOff
+        slots: {entity_id: light.living_ceiling}
+
+- name: gen_typo_on_living_lamp
+  split: typo
+  language: de
+  sentences:
+    - 'Bitte Wohnzimer Lampe anmachen'
+    - 'Mach Wohzimmer Lampe an'
+  nlu_expect:
+    intents:
+      - intent: HassTurnOn
+        slots: {entity_id: light.living_lamp}
+
+- name: gen_typo_off_living_lamp
+  split: typo
+  language: de
+  sentences:
+    - 'Bitte Wohnzimer Lampe ausmachen'
+    - 'Mach Wohnimmer Lampe aus'
+  nlu_expect:
+    intents:
+      - intent: HassTurnOff
+        slots: {entity_id: light.living_lamp}
+
+- name: gen_typo_on_dining_pendant
+  split: typo
+  language: de
+  sentences:
+    - 'Mach Esszimmer Pendellechte an'
+    - 'Schalte Esszimer Pendelleuchte ein'
+  nlu_expect:
+    intents:
+      - intent: HassTurnOn
+        slots: {entity_id: light.dining_pendant}
+
+- name: gen_typo_off_dining_pendant
+  split: typo
+  language: de
+  sentences:
+    - 'Mach Essimmer Pendelleuchte aus'
+    - 'Schalte Esszimmer Penelleuchte aus'
+  nlu_expect:
+    intents:
+      - intent: HassTurnOff
+        slots: {entity_id: light.dining_pendant}
+
+- name: gen_typo_on_rangehood
+  split: typo
+  language: de
+  sentences:
+    - 'Mach Dustabzug an'
+    - 'Schalte Dunstbzug ein'
+  nlu_expect:
+    intents:
+      - intent: HassTurnOn
+        slots: {entity_id: switch.rangehood}
+
+- name: gen_typo_off_rangehood
+  split: typo
+  language: de
+  sentences:
+    - 'Mach Duntabzug aus'
+    - 'Schalte Dunstazug aus'
+  nlu_expect:
+    intents:
+      - intent: HassTurnOff
+        slots: {entity_id: switch.rangehood}
+
+- name: gen_typo_on_dishwasher
+  split: typo
+  language: de
+  sentences:
+    - 'Schalte Spülmschine ein'
+    - 'Bitte Spülmascine anmachen'
+  nlu_expect:
+    intents:
+      - intent: HassTurnOn
+        slots: {entity_id: switch.dishwasher}
+
+- name: gen_typo_off_dishwasher
+  split: typo
+  language: de
+  sentences:
+    - 'Schalte Spülmachine aus'
+    - 'Bitte Spülmaschne ausmachen'
+  nlu_expect:
+    intents:
+      - intent: HassTurnOff
+        slots: {entity_id: switch.dishwasher}
+
+- name: gen_typo_on_family_ceiling
+  split: typo
+  language: de
+  sentences:
+    - 'Bitte Failienzimmer Decke anmachen'
+    - 'Mach Familenzimmer Decke an'
+  nlu_expect:
+    intents:
+      - intent: HassTurnOn
+        slots: {entity_id: light.family_ceiling}
+
+- name: gen_typo_off_family_ceiling
+  split: typo
+  language: de
+  sentences:
+    - 'Bitte Famlienzimmer Decke ausmachen'
+    - 'Mach Familinzimmer Decke aus'
+  nlu_expect:
+    intents:
+      - intent: HassTurnOff
+        slots: {entity_id: light.family_ceiling}
+
+- name: gen_typo_on_family_fan
+  split: typo
+  language: de
+  sentences:
+    - 'Mach Familienzimmer Lüfer an'
+    - 'Schalte Familienzimer Lüfter ein'
+  nlu_expect:
+    intents:
+      - intent: HassTurnOn
+        slots: {entity_id: fan.family_fan}
+
+- name: gen_typo_off_family_fan
+  split: typo
+  language: de
+  sentences:
+    - 'Mach Familienimmer Lüfter aus'
+    - 'Schalte Familienzimmer Lüfer aus'
+  nlu_expect:
+    intents:
+      - intent: HassTurnOff
+        slots: {entity_id: fan.family_fan}
+
+- name: gen_typo_on_laundry_light
+  split: typo
+  language: de
+  sentences:
+    - 'Schalte Wascküche Licht ein'
+    - 'Bitte Waschkühe Licht anmachen'
+  nlu_expect:
+    intents:
+      - intent: HassTurnOn
+        slots: {entity_id: light.laundry_light}
+
+- name: gen_typo_off_laundry_light
+  split: typo
+  language: de
+  sentences:
+    - 'Schalte Waschüche Licht aus'
+    - 'Bitte Wachküche Licht ausmachen'
+  nlu_expect:
+    intents:
+      - intent: HassTurnOff
+        slots: {entity_id: light.laundry_light}
+
+- name: gen_typo_on_washing_machine
+  split: typo
+  language: de
+  sentences:
+    - 'Bitte Washmaschine anmachen'
+    - 'Mach Waschmschine an'
+  nlu_expect:
+    intents:
+      - intent: HassTurnOn
+        slots: {entity_id: switch.washing_machine}
+
+- name: gen_typo_off_washing_machine
+  split: typo
+  language: de
+  sentences:
+    - 'Bitte Wascmaschine ausmachen'
+    - 'Mach Waschmachine aus'
+  nlu_expect:
+    intents:
+      - intent: HassTurnOff
+        slots: {entity_id: switch.washing_machine}
+
+- name: gen_typo_on_dryer
+  split: typo
+  language: de
+  sentences:
+    - 'Mach Trckner an'
+    - 'Schalte Trocker ein'
+  nlu_expect:
+    intents:
+      - intent: HassTurnOn
+        slots: {entity_id: switch.dryer}
+
+- name: gen_typo_off_dryer
+  split: typo
+  language: de
+  sentences:
+    - 'Mach Trokner aus'
+    - 'Schalte Trckner aus'
+  nlu_expect:
+    intents:
+      - intent: HassTurnOff
+        slots: {entity_id: switch.dryer}
+
+- name: gen_typo_on_powder_room_light
+  split: typo
+  language: de
+  sentences:
+    - 'Schalte Gäse-WC Licht ein'
+    - 'Bitte Gäte-WC Licht anmachen'
+  nlu_expect:
+    intents:
+      - intent: HassTurnOn
+        slots: {entity_id: light.powder_room_light}
+
+- name: gen_typo_off_powder_room_light
+  split: typo
+  language: de
+  sentences:
+    - 'Schalte Gäst-WC Licht aus'
+    - 'Bitte Gäse-WC Licht ausmachen'
+  nlu_expect:
+    intents:
+      - intent: HassTurnOff
+        slots: {entity_id: light.powder_room_light}
+
+- name: gen_typo_on_garage_light
+  split: typo
+  language: de
+  sentences:
+    - 'Bitte Garagenlcht anmachen'
+    - 'Mach Gargenlicht an'
+  nlu_expect:
+    intents:
+      - intent: HassTurnOn
+        slots: {entity_id: light.garage_light}
+
+- name: gen_typo_off_garage_light
+  split: typo
+  language: de
+  sentences:
+    - 'Bitte Garagenliht ausmachen'
+    - 'Mach Garaenlicht aus'
+  nlu_expect:
+    intents:
+      - intent: HassTurnOff
+        slots: {entity_id: light.garage_light}
+
+- name: gen_typo_on_master_ceiling
+  split: typo
+  language: de
+  sentences:
+    - 'Mach Schlazimmer Decke an'
+    - 'Schalte Schlafzimer Decke ein'
+  nlu_expect:
+    intents:
+      - intent: HassTurnOn
+        slots: {entity_id: light.master_ceiling}
+
+- name: gen_typo_off_master_ceiling
+  split: typo
+  language: de
+  sentences:
+    - 'Mach Schlafimmer Decke aus'
+    - 'Schalte Schlafzimer Decke aus'
+  nlu_expect:
+    intents:
+      - intent: HassTurnOff
+        slots: {entity_id: light.master_ceiling}
+
+- name: gen_typo_on_master_ensuite
+  split: typo
+  language: de
+  sentences:
+    - 'Schalte Anleide Licht ein'
+    - 'Bitte Anklede Licht anmachen'
+  nlu_expect:
+    intents:
+      - intent: HassTurnOn
+        slots: {entity_id: light.master_ensuite}
+
+- name: gen_typo_off_master_ensuite
+  split: typo
+  language: de
+  sentences:
+    - 'Schalte Ankeide Licht aus'
+    - 'Bitte Anleide Licht ausmachen'
+  nlu_expect:
+    intents:
+      - intent: HassTurnOff
+        slots: {entity_id: light.master_ensuite}
+
+- name: gen_typo_on_master_bedside_left
+  split: typo
+  language: de
+  sentences:
+    - 'Bitte Nacttisch links anmachen'
+    - 'Mach Nachttsch links an'
+  nlu_expect:
+    intents:
+      - intent: HassTurnOn
+        slots: {entity_id: light.master_bedside_left}
+
+- name: gen_typo_off_master_bedside_left
+  split: typo
+  language: de
+  sentences:
+    - 'Bitte Nachtisch links ausmachen'
+    - 'Mach Nachttich links aus'
+  nlu_expect:
+    intents:
+      - intent: HassTurnOff
+        slots: {entity_id: light.master_bedside_left}
+
+- name: gen_typo_on_master_bedside_right
+  split: typo
+  language: de
+  sentences:
+    - 'Mach Nahttisch rechts an'
+    - 'Schalte Nachttisch rects ein'
+  nlu_expect:
+    intents:
+      - intent: HassTurnOn
+        slots: {entity_id: light.master_bedside_right}
+
+- name: gen_typo_off_master_bedside_right
+  split: typo
+  language: de
+  sentences:
+    - 'Mach Nachttisch rects aus'
+    - 'Schalte Nachttsch rechts aus'
+  nlu_expect:
+    intents:
+      - intent: HassTurnOff
+        slots: {entity_id: light.master_bedside_right}
+
+- name: gen_typo_on_master_fan
+  split: typo
+  language: de
+  sentences:
+    - 'Schalte Schlafzimmer Lüfer ein'
+    - 'Bitte Schlfzimmer Lüfter anmachen'
+  nlu_expect:
+    intents:
+      - intent: HassTurnOn
+        slots: {entity_id: fan.master_fan}
+
+- name: gen_typo_off_master_fan
+  split: typo
+  language: de
+  sentences:
+    - 'Schalte Sclafzimmer Lüfter aus'
+    - 'Bitte Schlafzimmer Lüfer ausmachen'
+  nlu_expect:
+    intents:
+      - intent: HassTurnOff
+        slots: {entity_id: fan.master_fan}
+
+- name: gen_typo_on_bedroom2_ceiling
+  split: typo
+  language: de
+  sentences:
+    - 'Bitte Kinderimmer 2 Decke anmachen'
+    - 'Mach Kinderzimer 2 Decke an'
+  nlu_expect:
+    intents:
+      - intent: HassTurnOn
+        slots: {entity_id: light.bedroom2_ceiling}
+
+- name: gen_typo_off_bedroom2_ceiling
+  split: typo
+  language: de
+  sentences:
+    - 'Bitte Kinderzmmer 2 Decke ausmachen'
+    - 'Mach Kiderzimmer 2 Decke aus'
+  nlu_expect:
+    intents:
+      - intent: HassTurnOff
+        slots: {entity_id: light.bedroom2_ceiling}
+
+- name: gen_typo_on_bedroom2_fan
+  split: typo
+  language: de
+  sentences:
+    - 'Mach Kinderzimmer 2 Lüfer an'
+    - 'Schalte Kinderimmer 2 Lüfter ein'
+  nlu_expect:
+    intents:
+      - intent: HassTurnOn
+        slots: {entity_id: fan.bedroom2_fan}
+
+- name: gen_typo_off_bedroom2_fan
+  split: typo
+  language: de
+  sentences:
+    - 'Mach Kindrzimmer 2 Lüfter aus'
+    - 'Schalte Kinderzimmer 2 Lüfer aus'
+  nlu_expect:
+    intents:
+      - intent: HassTurnOff
+        slots: {entity_id: fan.bedroom2_fan}
+
+- name: gen_typo_on_bedroom3_ceiling
+  split: typo
+  language: de
+  sentences:
+    - 'Schalte Kinderzimer 3 Decke ein'
+    - 'Bitte Kinerzimmer 3 Decke anmachen'
+  nlu_expect:
+    intents:
+      - intent: HassTurnOn
+        slots: {entity_id: light.bedroom3_ceiling}
+
+- name: gen_typo_off_bedroom3_ceiling
+  split: typo
+  language: de
+  sentences:
+    - 'Schalte Kinderzimer 3 Decke aus'
+    - 'Bitte Kindrzimmer 3 Decke ausmachen'
+  nlu_expect:
+    intents:
+      - intent: HassTurnOff
+        slots: {entity_id: light.bedroom3_ceiling}
+
+- name: gen_typo_on_bedroom4_ceiling
+  split: typo
+  language: de
+  sentences:
+    - 'Bitte Kindezimmer 4 Decke anmachen'
+    - 'Mach Kinderzimer 4 Decke an'
+  nlu_expect:
+    intents:
+      - intent: HassTurnOn
+        slots: {entity_id: light.bedroom4_ceiling}
+
+- name: gen_typo_off_bedroom4_ceiling
+  split: typo
+  language: de
+  sentences:
+    - 'Bitte Kinderimmer 4 Decke ausmachen'
+    - 'Mach Kinderzimer 4 Decke aus'
+  nlu_expect:
+    intents:
+      - intent: HassTurnOff
+        slots: {entity_id: light.bedroom4_ceiling}
+
+- name: gen_typo_on_master_bath_light
+  split: typo
+  language: de
+  sentences:
+    - 'Mach Elernbad Licht an'
+    - 'Schalte Elterbad Licht ein'
+  nlu_expect:
+    intents:
+      - intent: HassTurnOn
+        slots: {entity_id: light.master_bath_light}
+
+- name: gen_typo_off_master_bath_light
+  split: typo
+  language: de
+  sentences:
+    - 'Mach Eltrnbad Licht aus'
+    - 'Schalte Elternad Licht aus'
+  nlu_expect:
+    intents:
+      - intent: HassTurnOff
+        slots: {entity_id: light.master_bath_light}
+
+- name: gen_typo_on_master_bath_fan
+  split: typo
+  language: de
+  sentences:
+    - 'Schalte Elternbad Lüfer ein'
+    - 'Bitte Elterbad Lüfter anmachen'
+  nlu_expect:
+    intents:
+      - intent: HassTurnOn
+        slots: {entity_id: switch.master_bath_fan}
+
+- name: gen_typo_off_master_bath_fan
+  split: typo
+  language: de
+  sentences:
+    - 'Schalte Eltrnbad Lüfter aus'
+    - 'Bitte Elternbad Lüfer ausmachen'
+  nlu_expect:
+    intents:
+      - intent: HassTurnOff
+        slots: {entity_id: switch.master_bath_fan}
+
+- name: gen_typo_on_main_bath_light
+  split: typo
+  language: de
+  sentences:
+    - 'Bitte Badezimer Licht anmachen'
+    - 'Mach Badzimmer Licht an'
+  nlu_expect:
+    intents:
+      - intent: HassTurnOn
+        slots: {entity_id: light.main_bath_light}
+
+- name: gen_typo_off_main_bath_light
+  split: typo
+  language: de
+  sentences:
+    - 'Bitte Badezimer Licht ausmachen'
+    - 'Mach Badeimmer Licht aus'
+  nlu_expect:
+    intents:
+      - intent: HassTurnOff
+        slots: {entity_id: light.main_bath_light}

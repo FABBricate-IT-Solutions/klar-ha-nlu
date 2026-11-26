@@ -21,6 +21,30 @@ Same oracles as in [tests](testing.md), same home graph per suite. Assist only r
 
 Klar numbers: `cargo nextest run --locked` on `voice_suite` and `full_home` de/en, `--run-ignored all`, default nextest profile (all cores, no thread cap). Assist: HassIL 3.11.0 and `home-assistant-intents` 2026.7.30, slot lists `name` / `area` / `floor` from each `home_config.yaml` (same shape as HA Core’s default agent). Figures below are that measurement on DE/EN oracles — not a claim that every compiled locale is at fail = 0.
 
+## Current numbers: the CI artifact
+
+The tables on this page are the August 2026 round: HassIL alone, 3.11.0 with intents 2026.7.30. Home Assistant has since added a gazetteer fallback to its default agent, and `hassil` alone no longer describes it. The numbers that count are the ones CI produces on every pull request, job `benchmark` in `ci.yml`:
+
+- `klar eval gate` scores the held-out corpus (`tests/datasets/{family_home_en,familienhaus_de}/m7_heldout`, at least 500 in-domain sentences per language) and fails on the gates below.
+- `scripts/bench_assist.py --suite heldout_en --suite heldout_de` runs Home Assistant's default agent on the same sentences, **hassil first, then the gazetteer matcher for English**, as Core does. Both figures are written: the whole agent and hassil alone.
+- `scripts/benchmark_report.py` joins the two runs per language into `benchmark.json` and a table in the job summary, stamped with the commit SHA and the package versions. It refuses to join runs of different commits or runs without a full SHA. The artifact is `benchmark-<sha>`.
+
+The Assist packages are pinned in `scripts/requirements-assist-bench.txt` to the same versions as `tests/ha_real/requirements.txt`; a test fails when the two files differ.
+
+Assist is scored twice on a corpus like this: over all sentences, where rejecting an out-of-domain sentence counts as correct for it too, and over the in-domain sentences only. Quote the in-domain figure. The gazetteer only exists for English (`gazetteer_languages` in the run), so German is hassil alone until Core ships more.
+
+Klar's gates on that corpus (`src/eval/mod.rs`):
+
+| Gate | Limit |
+|---|---|
+| Held-out sentences / in-domain sentences per language | ≥ 500 / ≥ 500 |
+| Out-of-domain sentences not rejected (`reject_fnr`, chat counts as a miss) | ≤ 1 % |
+| In-domain sentences rejected (`reject_fpr`) | ≤ 2 % |
+| Out-of-domain sentences acted on or asked about (`reject_unsafe`) | 0 |
+| Typo recovery (one dropped letter in an entity name) | ≥ 70 % |
+
+There is no confidence figure. The `confidence` of a parse is a ranking score behind the decision bands, not a probability, and a reject carries 0.0; scored as a probability it gave an ECE of 0.89, and fitting it to the corpus would only have hidden that. ECE and Brier are removed from the scorecard instead.
+
 ## Suites
 
 | Suite | Utterances | Assist | Klar | Factor |

@@ -1,0 +1,565 @@
+- name: gen_on_master_bath_fan
+  split: control
+  language: en
+  sentences:
+    - 'Master Bath Fan on please'
+    - 'Can you turn the Master Bath Fan on'
+    - 'Would you switch on the Master Bath Fan'
+    - 'Power up the Master Bath Fan'
+  nlu_expect:
+    intents:
+      - intent: HassTurnOn
+        slots: {entity_id: switch.master_bath_fan}
+
+- name: gen_off_master_bath_fan
+  split: control
+  language: en
+  sentences:
+    - 'Shut off the Master Bath Fan'
+    - 'Master Bath Fan off please'
+    - 'Can you turn the Master Bath Fan off'
+    - 'Would you switch off the Master Bath Fan'
+  nlu_expect:
+    intents:
+      - intent: HassTurnOff
+        slots: {entity_id: switch.master_bath_fan}
+
+- name: gen_on_main_bath_light
+  split: control
+  language: en
+  sentences:
+    - 'Would you turn on the Main Bath Light'
+    - 'Could you switch on the Main Bath Light for me'
+    - 'Please turn on the Main Bath Light'
+    - 'Turn the Main Bath Light on'
+  nlu_expect:
+    intents:
+      - intent: HassTurnOn
+        slots: {entity_id: light.main_bath_light}
+
+- name: gen_off_main_bath_light
+  split: control
+  language: en
+  sentences:
+    - 'Would you turn off the Main Bath Light'
+    - 'Could you switch off the Main Bath Light for me'
+    - 'Kill the Main Bath Light'
+    - 'Shut off the Main Bath Light'
+  nlu_expect:
+    intents:
+      - intent: HassTurnOff
+        slots: {entity_id: light.main_bath_light}
+
+- name: gen_on_main_bath_fan
+  split: control
+  language: en
+  sentences:
+    - 'Would you switch on the Main Bath Fan'
+    - 'Power up the Main Bath Fan'
+    - 'I''d like the Main Bath Fan on'
+    - 'Could you start the Main Bath Fan for me'
+  nlu_expect:
+    intents:
+      - intent: HassTurnOn
+        slots: {entity_id: switch.main_bath_fan}
+
+- name: gen_off_main_bath_fan
+  split: control
+  language: en
+  sentences:
+    - 'Can you turn the Main Bath Fan off'
+    - 'Would you switch off the Main Bath Fan'
+    - 'Power down the Main Bath Fan'
+    - 'I''d like the Main Bath Fan off'
+  nlu_expect:
+    intents:
+      - intent: HassTurnOff
+        slots: {entity_id: switch.main_bath_fan}
+
+- name: gen_on_hallway_light
+  split: control
+  language: en
+  sentences:
+    - 'Please turn on the Hallway Light'
+    - 'Turn the Hallway Light on'
+    - 'Can you turn on the Hallway Light'
+    - 'Switch the Hallway Light on'
+  nlu_expect:
+    intents:
+      - intent: HassTurnOn
+        slots: {entity_id: light.hallway_light}
+
+- name: gen_off_hallway_light
+  split: control
+  language: en
+  sentences:
+    - 'Kill the Hallway Light'
+    - 'Shut off the Hallway Light'
+    - 'Turn the Hallway Light off'
+    - 'Can you turn off the Hallway Light'
+  nlu_expect:
+    intents:
+      - intent: HassTurnOff
+        slots: {entity_id: light.hallway_light}
+
+- name: gen_dim_entryway_light
+  split: control
+  language: en
+  sentences:
+    - 'Dim the Entryway Light to 15 percent'
+    - 'Set the Entryway Light to 15%'
+  nlu_expect:
+    intents:
+      - intent: HassLightSet
+        slots: {entity_id: light.entryway_light, brightness: 15}
+
+- name: gen_dim_living_ceiling
+  split: control
+  language: en
+  sentences:
+    - 'Set the Living Room Ceiling to 30%'
+    - 'Set the Living Room Ceiling brightness to 30 percent'
+  nlu_expect:
+    intents:
+      - intent: HassLightSet
+        slots: {entity_id: light.living_ceiling, brightness: 30}
+
+- name: gen_dim_living_lamp
+  split: control
+  language: en
+  sentences:
+    - 'Set the Living Room Lamp brightness to 45 percent'
+    - 'Dim the Living Room Lamp to 45 percent'
+  nlu_expect:
+    intents:
+      - intent: HassLightSet
+        slots: {entity_id: light.living_lamp, brightness: 45}
+
+- name: gen_dim_dining_pendant
+  split: control
+  language: en
+  sentences:
+    - 'Dim the Dining Pendant to 60 percent'
+    - 'Set the Dining Pendant to 60%'
+  nlu_expect:
+    intents:
+      - intent: HassLightSet
+        slots: {entity_id: light.dining_pendant, brightness: 60}
+
+- name: gen_dim_kitchen_ceiling
+  split: control
+  language: en
+  sentences:
+    - 'Set the Kitchen Ceiling to 75%'
+    - 'Set the Kitchen Ceiling brightness to 75 percent'
+  nlu_expect:
+    intents:
+      - intent: HassLightSet
+        slots: {entity_id: light.kitchen_ceiling, brightness: 75}
+
+- name: gen_dim_kitchen_island
+  split: control
+  language: en
+  sentences:
+    - 'Set the Island Lights brightness to 90 percent'
+    - 'Dim the Island Lights to 90 percent'
+  nlu_expect:
+    intents:
+      - intent: HassLightSet
+        slots: {entity_id: light.kitchen_island, brightness: 90}
+
+- name: gen_dim_family_ceiling
+  split: control
+  language: en
+  sentences:
+    - 'Dim the Family Room Ceiling to 15 percent'
+    - 'Set the Family Room Ceiling to 15%'
+  nlu_expect:
+    intents:
+      - intent: HassLightSet
+        slots: {entity_id: light.family_ceiling, brightness: 15}
+
+- name: gen_dim_laundry_light
+  split: control
+  language: en
+  sentences:
+    - 'Set the Laundry Light to 30%'
+    - 'Set the Laundry Light brightness to 30 percent'
+  nlu_expect:
+    intents:
+      - intent: HassLightSet
+        slots: {entity_id: light.laundry_light, brightness: 30}
+
+- name: gen_dim_powder_room_light
+  split: control
+  language: en
+  sentences:
+    - 'Set the Powder Room Light brightness to 45 percent'
+    - 'Dim the Powder Room Light to 45 percent'
+  nlu_expect:
+    intents:
+      - intent: HassLightSet
+        slots: {entity_id: light.powder_room_light, brightness: 45}
+
+- name: gen_dim_garage_light
+  split: control
+  language: en
+  sentences:
+    - 'Dim the Garage Light to 60 percent'
+    - 'Set the Garage Light to 60%'
+  nlu_expect:
+    intents:
+      - intent: HassLightSet
+        slots: {entity_id: light.garage_light, brightness: 60}
+
+- name: gen_dim_master_ceiling
+  split: control
+  language: en
+  sentences:
+    - 'Set the Master Ceiling to 75%'
+    - 'Set the Master Ceiling brightness to 75 percent'
+  nlu_expect:
+    intents:
+      - intent: HassLightSet
+        slots: {entity_id: light.master_ceiling, brightness: 75}
+
+- name: gen_dim_master_ensuite
+  split: control
+  language: en
+  sentences:
+    - 'Set the Master Ensuite Light brightness to 90 percent'
+    - 'Dim the Master Ensuite Light to 90 percent'
+  nlu_expect:
+    intents:
+      - intent: HassLightSet
+        slots: {entity_id: light.master_ensuite, brightness: 90}
+
+- name: gen_dim_master_bedside_left
+  split: control
+  language: en
+  sentences:
+    - 'Dim the Left Bedside Lamp to 15 percent'
+    - 'Set the Left Bedside Lamp to 15%'
+  nlu_expect:
+    intents:
+      - intent: HassLightSet
+        slots: {entity_id: light.master_bedside_left, brightness: 15}
+
+- name: gen_dim_master_bedside_right
+  split: control
+  language: en
+  sentences:
+    - 'Set the Right Bedside Lamp to 30%'
+    - 'Set the Right Bedside Lamp brightness to 30 percent'
+  nlu_expect:
+    intents:
+      - intent: HassLightSet
+        slots: {entity_id: light.master_bedside_right, brightness: 30}
+
+- name: gen_dim_bedroom2_ceiling
+  split: control
+  language: en
+  sentences:
+    - 'Set the Bedroom 2 Ceiling brightness to 45 percent'
+    - 'Dim the Bedroom 2 Ceiling to 45 percent'
+  nlu_expect:
+    intents:
+      - intent: HassLightSet
+        slots: {entity_id: light.bedroom2_ceiling, brightness: 45}
+
+- name: gen_dim_bedroom3_ceiling
+  split: control
+  language: en
+  sentences:
+    - 'Dim the Bedroom 3 Ceiling to 60 percent'
+    - 'Set the Bedroom 3 Ceiling to 60%'
+  nlu_expect:
+    intents:
+      - intent: HassLightSet
+        slots: {entity_id: light.bedroom3_ceiling, brightness: 60}
+
+- name: gen_dim_bedroom4_ceiling
+  split: control
+  language: en
+  sentences:
+    - 'Set the Bedroom 4 Ceiling to 75%'
+    - 'Set the Bedroom 4 Ceiling brightness to 75 percent'
+  nlu_expect:
+    intents:
+      - intent: HassLightSet
+        slots: {entity_id: light.bedroom4_ceiling, brightness: 75}
+
+- name: gen_dim_master_bath_light
+  split: control
+  language: en
+  sentences:
+    - 'Set the Master Bath Light brightness to 90 percent'
+    - 'Dim the Master Bath Light to 90 percent'
+  nlu_expect:
+    intents:
+      - intent: HassLightSet
+        slots: {entity_id: light.master_bath_light, brightness: 90}
+
+- name: gen_dim_main_bath_light
+  split: control
+  language: en
+  sentences:
+    - 'Dim the Main Bath Light to 15 percent'
+    - 'Set the Main Bath Light to 15%'
+  nlu_expect:
+    intents:
+      - intent: HassLightSet
+        slots: {entity_id: light.main_bath_light, brightness: 15}
+
+- name: gen_dim_hallway_light
+  split: control
+  language: en
+  sentences:
+    - 'Set the Hallway Light to 30%'
+    - 'Set the Hallway Light brightness to 30 percent'
+  nlu_expect:
+    intents:
+      - intent: HassLightSet
+        slots: {entity_id: light.hallway_light, brightness: 30}
+
+- name: gen_state_front_door
+  split: control
+  language: en
+  sentences:
+    - 'Is the Front Door locked'
+    - 'Is the Front Door unlocked'
+  nlu_expect:
+    intents:
+      - intent: HassGetState
+        slots: {entity_id: lock.front_door}
+
+- name: gen_state_living_ceiling
+  split: control
+  language: en
+  sentences:
+    - 'Is the Living Room Ceiling off'
+    - 'Is the Living Room Ceiling currently on'
+  nlu_expect:
+    intents:
+      - intent: HassGetState
+        slots: {entity_id: light.living_ceiling}
+
+- name: gen_state_living_lamp
+  split: control
+  language: en
+  sentences:
+    - 'Is the Living Room Lamp currently on'
+    - 'Is the Living Room Lamp on'
+  nlu_expect:
+    intents:
+      - intent: HassGetState
+        slots: {entity_id: light.living_lamp}
+
+- name: gen_state_dining_pendant
+  split: control
+  language: en
+  sentences:
+    - 'Is the Dining Pendant on'
+    - 'Is the Dining Pendant off'
+  nlu_expect:
+    intents:
+      - intent: HassGetState
+        slots: {entity_id: light.dining_pendant}
+
+- name: gen_state_kitchen_ceiling
+  split: control
+  language: en
+  sentences:
+    - 'Is the Kitchen Ceiling off'
+    - 'Is the Kitchen Ceiling currently on'
+  nlu_expect:
+    intents:
+      - intent: HassGetState
+        slots: {entity_id: light.kitchen_ceiling}
+
+- name: gen_state_kitchen_island
+  split: control
+  language: en
+  sentences:
+    - 'Is the Island Lights currently on'
+    - 'Is the Island Lights on'
+  nlu_expect:
+    intents:
+      - intent: HassGetState
+        slots: {entity_id: light.kitchen_island}
+
+- name: gen_state_rangehood
+  split: control
+  language: en
+  sentences:
+    - 'Is the Rangehood on'
+    - 'Is the Rangehood off'
+  nlu_expect:
+    intents:
+      - intent: HassGetState
+        slots: {entity_id: switch.rangehood}
+
+- name: gen_state_dishwasher
+  split: control
+  language: en
+  sentences:
+    - 'Is the Dishwasher off'
+    - 'Is the Dishwasher currently on'
+  nlu_expect:
+    intents:
+      - intent: HassGetState
+        slots: {entity_id: switch.dishwasher}
+
+- name: gen_state_family_ceiling
+  split: control
+  language: en
+  sentences:
+    - 'Is the Family Room Ceiling currently on'
+    - 'Is the Family Room Ceiling on'
+  nlu_expect:
+    intents:
+      - intent: HassGetState
+        slots: {entity_id: light.family_ceiling}
+
+- name: gen_state_washing_machine
+  split: control
+  language: en
+  sentences:
+    - 'Is the Washing Machine on'
+    - 'Is the Washing Machine off'
+  nlu_expect:
+    intents:
+      - intent: HassGetState
+        slots: {entity_id: switch.washing_machine}
+
+- name: gen_state_dryer
+  split: control
+  language: en
+  sentences:
+    - 'Is the Dryer off'
+    - 'Is the Dryer currently on'
+  nlu_expect:
+    intents:
+      - intent: HassGetState
+        slots: {entity_id: switch.dryer}
+
+- name: gen_state_garage_entry
+  split: control
+  language: en
+  sentences:
+    - 'Is the Garage Entry Door unlocked'
+    - 'Is the Garage Entry Door locked'
+  nlu_expect:
+    intents:
+      - intent: HassGetState
+        slots: {entity_id: lock.garage_entry}
+
+- name: gen_state_master_ceiling
+  split: control
+  language: en
+  sentences:
+    - 'Is the Master Ceiling on'
+    - 'Is the Master Ceiling off'
+  nlu_expect:
+    intents:
+      - intent: HassGetState
+        slots: {entity_id: light.master_ceiling}
+
+- name: gen_state_master_bedside_left
+  split: control
+  language: en
+  sentences:
+    - 'Is the Left Bedside Lamp off'
+    - 'Is the Left Bedside Lamp currently on'
+  nlu_expect:
+    intents:
+      - intent: HassGetState
+        slots: {entity_id: light.master_bedside_left}
+
+- name: gen_state_master_bedside_right
+  split: control
+  language: en
+  sentences:
+    - 'Is the Right Bedside Lamp currently on'
+    - 'Is the Right Bedside Lamp on'
+  nlu_expect:
+    intents:
+      - intent: HassGetState
+        slots: {entity_id: light.master_bedside_right}
+
+- name: gen_state_bedroom2_ceiling
+  split: control
+  language: en
+  sentences:
+    - 'Is the Bedroom 2 Ceiling on'
+    - 'Is the Bedroom 2 Ceiling off'
+  nlu_expect:
+    intents:
+      - intent: HassGetState
+        slots: {entity_id: light.bedroom2_ceiling}
+
+- name: gen_state_bedroom3_ceiling
+  split: control
+  language: en
+  sentences:
+    - 'Is the Bedroom 3 Ceiling off'
+    - 'Is the Bedroom 3 Ceiling currently on'
+  nlu_expect:
+    intents:
+      - intent: HassGetState
+        slots: {entity_id: light.bedroom3_ceiling}
+
+- name: gen_state_bedroom4_ceiling
+  split: control
+  language: en
+  sentences:
+    - 'Is the Bedroom 4 Ceiling currently on'
+    - 'Is the Bedroom 4 Ceiling on'
+  nlu_expect:
+    intents:
+      - intent: HassGetState
+        slots: {entity_id: light.bedroom4_ceiling}
+
+- name: gen_state_master_bath_fan
+  split: control
+  language: en
+  sentences:
+    - 'Is the Master Bath Fan on'
+    - 'Is the Master Bath Fan off'
+  nlu_expect:
+    intents:
+      - intent: HassGetState
+        slots: {entity_id: switch.master_bath_fan}
+
+- name: gen_state_main_bath_fan
+  split: control
+  language: en
+  sentences:
+    - 'Is the Main Bath Fan off'
+    - 'Is the Main Bath Fan currently on'
+  nlu_expect:
+    intents:
+      - intent: HassGetState
+        slots: {entity_id: switch.main_bath_fan}
+
+- name: gen_climate_ground_thermostat_18
+  split: control
+  language: en
+  sentences:
+    - 'Set the Ground Floor Thermostat to 18 degrees'
+    - 'Make the Ground Floor Thermostat 18 degrees'
+  nlu_expect:
+    intents:
+      - intent: HassClimateSetTemperature
+        slots: {entity_id: climate.ground_thermostat, temperature: 18}
+
+- name: gen_climate_ground_thermostat_19
+  split: control
+  language: en
+  sentences:
+    - 'Make the Ground Floor Thermostat 19 degrees'
+    - 'Put the Ground Floor Thermostat at 19'
+  nlu_expect:
+    intents:
+      - intent: HassClimateSetTemperature
+        slots: {entity_id: climate.ground_thermostat, temperature: 19}

@@ -1,0 +1,284 @@
+- name: gen_state_main_bath_fan
+  split: control
+  language: de
+  sentences:
+    - 'Ist Badezimmer Lüfter ausgeschaltet'
+    - 'Ist Badezimmer Lüfter gerade an'
+  nlu_expect:
+    intents:
+      - intent: HassGetState
+        slots: {entity_id: switch.main_bath_fan}
+
+- name: gen_climate_ground_thermostat_18
+  split: control
+  language: de
+  sentences:
+    - 'Stelle Heizung Erdgeschoss auf 18 Grad'
+    - 'Setze Heizung Erdgeschoss auf 18 Grad'
+  nlu_expect:
+    intents:
+      - intent: HassClimateSetTemperature
+        slots: {entity_id: climate.ground_thermostat, temperature: 18}
+
+- name: gen_climate_ground_thermostat_19
+  split: control
+  language: de
+  sentences:
+    - 'Setze Heizung Erdgeschoss auf 19 Grad'
+    - 'Heizung Erdgeschoss auf 19 Grad'
+  nlu_expect:
+    intents:
+      - intent: HassClimateSetTemperature
+        slots: {entity_id: climate.ground_thermostat, temperature: 19}
+
+- name: gen_climate_ground_thermostat_20
+  split: control
+  language: de
+  sentences:
+    - 'Heizung Erdgeschoss auf 20 Grad'
+    - 'Ändere Heizung Erdgeschoss auf 20 Grad'
+  nlu_expect:
+    intents:
+      - intent: HassClimateSetTemperature
+        slots: {entity_id: climate.ground_thermostat, temperature: 20}
+
+- name: gen_climate_ground_thermostat_21
+  split: control
+  language: de
+  sentences:
+    - 'Ändere Heizung Erdgeschoss auf 21 Grad'
+    - 'Stelle Heizung Erdgeschoss auf 21 Grad'
+  nlu_expect:
+    intents:
+      - intent: HassClimateSetTemperature
+        slots: {entity_id: climate.ground_thermostat, temperature: 21}
+
+- name: gen_climate_ground_thermostat_22
+  split: control
+  language: de
+  sentences:
+    - 'Stelle Heizung Erdgeschoss auf 22 Grad'
+    - 'Setze Heizung Erdgeschoss auf 22 Grad'
+  nlu_expect:
+    intents:
+      - intent: HassClimateSetTemperature
+        slots: {entity_id: climate.ground_thermostat, temperature: 22}
+
+- name: gen_climate_ground_thermostat_23
+  split: control
+  language: de
+  sentences:
+    - 'Setze Heizung Erdgeschoss auf 23 Grad'
+    - 'Heizung Erdgeschoss auf 23 Grad'
+  nlu_expect:
+    intents:
+      - intent: HassClimateSetTemperature
+        slots: {entity_id: climate.ground_thermostat, temperature: 23}
+
+- name: gen_climate_ground_thermostat_24
+  split: control
+  language: de
+  sentences:
+    - 'Heizung Erdgeschoss auf 24 Grad'
+    - 'Ändere Heizung Erdgeschoss auf 24 Grad'
+  nlu_expect:
+    intents:
+      - intent: HassClimateSetTemperature
+        slots: {entity_id: climate.ground_thermostat, temperature: 24}
+
+- name: gen_climate_upper_thermostat_18
+  split: control
+  language: de
+  sentences:
+    - 'Setze Heizung Obergeschoss auf 18 Grad'
+    - 'Heizung Obergeschoss auf 18 Grad'
+  nlu_expect:
+    intents:
+      - intent: HassClimateSetTemperature
+        slots: {entity_id: climate.upper_thermostat, temperature: 18}
+
+- name: gen_climate_upper_thermostat_19
+  split: control
+  language: de
+  sentences:
+    - 'Heizung Obergeschoss auf 19 Grad'
+    - 'Ändere Heizung Obergeschoss auf 19 Grad'
+  nlu_expect:
+    intents:
+      - intent: HassClimateSetTemperature
+        slots: {entity_id: climate.upper_thermostat, temperature: 19}
+
+- name: gen_climate_upper_thermostat_20
+  split: control
+  language: de
+  sentences:
+    - 'Ändere Heizung Obergeschoss auf 20 Grad'
+    - 'Stelle Heizung Obergeschoss auf 20 Grad'
+  nlu_expect:
+    intents:
+      - intent: HassClimateSetTemperature
+        slots: {entity_id: climate.upper_thermostat, temperature: 20}
+
+- name: gen_climate_upper_thermostat_21
+  split: control
+  language: de
+  sentences:
+    - 'Stelle Heizung Obergeschoss auf 21 Grad'
+    - 'Setze Heizung Obergeschoss auf 21 Grad'
+  nlu_expect:
+    intents:
+      - intent: HassClimateSetTemperature
+        slots: {entity_id: climate.upper_thermostat, temperature: 21}
+
+- name: gen_climate_upper_thermostat_22
+  split: control
+  language: de
+  sentences:
+    - 'Setze Heizung Obergeschoss auf 22 Grad'
+    - 'Heizung Obergeschoss auf 22 Grad'
+  nlu_expect:
+    intents:
+      - intent: HassClimateSetTemperature
+        slots: {entity_id: climate.upper_thermostat, temperature: 22}
+
+- name: gen_climate_upper_thermostat_23
+  split: control
+  language: de
+  sentences:
+    - 'Heizung Obergeschoss auf 23 Grad'
+    - 'Ändere Heizung Obergeschoss auf 23 Grad'
+  nlu_expect:
+    intents:
+      - intent: HassClimateSetTemperature
+        slots: {entity_id: climate.upper_thermostat, temperature: 23}
+
+- name: gen_climate_upper_thermostat_24
+  split: control
+  language: de
+  sentences:
+    - 'Ändere Heizung Obergeschoss auf 24 Grad'
+    - 'Stelle Heizung Obergeschoss auf 24 Grad'
+  nlu_expect:
+    intents:
+      - intent: HassClimateSetTemperature
+        slots: {entity_id: climate.upper_thermostat, temperature: 24}
+
+- name: gen_open_living_blinds
+  split: control
+  language: de
+  sentences:
+    - 'Öffne Wohnzimmer Rollo'
+    - 'Fahre Wohnzimmer Rollo hoch'
+    - 'Wohnzimmer Rollo öffnen'
+  nlu_expect:
+    intents:
+      - intent: HassTurnOn
+        slots: {entity_id: cover.living_blinds}
+
+- name: gen_open_master_blinds
+  split: control
+  language: de
+  sentences:
+    - 'Fahre Schlafzimmer Rollo hoch'
+    - 'Schlafzimmer Rollo öffnen'
+    - 'Mach Schlafzimmer Rollo auf'
+  nlu_expect:
+    intents:
+      - intent: HassTurnOn
+        slots: {entity_id: cover.master_blinds}
+
+- name: gen_open_bedroom2_blinds
+  split: control
+  language: de
+  sentences:
+    - 'Kinderzimmer 2 Rollo öffnen'
+    - 'Mach Kinderzimmer 2 Rollo auf'
+    - 'Öffne Kinderzimmer 2 Rollo'
+  nlu_expect:
+    intents:
+      - intent: HassTurnOn
+        slots: {entity_id: cover.bedroom2_blinds}
+
+- name: gen_open_bedroom3_blinds
+  split: control
+  language: de
+  sentences:
+    - 'Mach Kinderzimmer 3 Rollo auf'
+    - 'Öffne Kinderzimmer 3 Rollo'
+    - 'Fahre Kinderzimmer 3 Rollo hoch'
+  nlu_expect:
+    intents:
+      - intent: HassTurnOn
+        slots: {entity_id: cover.bedroom3_blinds}
+
+- name: gen_room_on_kitchen
+  split: control
+  language: de
+  sentences:
+    - 'Schalte die Lichter im Raum Küche ein'
+    - 'Mach alle Lichter in Küche an'
+    - 'Lichter Küche an'
+  nlu_expect:
+    intents:
+      - intent: HassTurnOn
+        slots: {area: kitchen, domain: light}
+
+- name: gen_room_off_kitchen
+  split: control
+  language: de
+  sentences:
+    - 'Schalte die Lichter im Raum Küche aus'
+    - 'Mach alle Lichter in Küche aus'
+    - 'Lichter Küche aus'
+  nlu_expect:
+    intents:
+      - intent: HassTurnOff
+        slots: {area: kitchen, domain: light}
+
+- name: gen_room_on_living
+  split: control
+  language: de
+  sentences:
+    - 'Mach alle Lichter in Wohnzimmer an'
+    - 'Lichter Wohnzimmer an'
+    - 'Schalte die Lichter im Raum Wohnzimmer ein'
+  nlu_expect:
+    intents:
+      - intent: HassTurnOn
+        slots: {area: living, domain: light}
+
+- name: gen_room_off_living
+  split: control
+  language: de
+  sentences:
+    - 'Mach alle Lichter in Wohnzimmer aus'
+    - 'Lichter Wohnzimmer aus'
+    - 'Schalte die Lichter im Raum Wohnzimmer aus'
+  nlu_expect:
+    intents:
+      - intent: HassTurnOff
+        slots: {area: living, domain: light}
+
+- name: gen_room_on_master_bedroom
+  split: control
+  language: de
+  sentences:
+    - 'Lichter Schlafzimmer an'
+    - 'Schalte die Lichter im Raum Schlafzimmer ein'
+    - 'Mach alle Lichter in Schlafzimmer an'
+  nlu_expect:
+    intents:
+      - intent: HassTurnOn
+        slots: {area: master_bedroom, domain: light}
+
+- name: gen_room_off_master_bedroom
+  split: control
+  language: de
+  sentences:
+    - 'Lichter Schlafzimmer aus'
+    - 'Schalte die Lichter im Raum Schlafzimmer aus'
+    - 'Mach alle Lichter in Schlafzimmer aus'
+  nlu_expect:
+    intents:
+      - intent: HassTurnOff
+        slots: {area: master_bedroom, domain: light}

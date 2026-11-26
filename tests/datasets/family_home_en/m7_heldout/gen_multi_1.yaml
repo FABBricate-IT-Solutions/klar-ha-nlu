@@ -1,0 +1,347 @@
+- name: gen_multi_0
+  split: multi
+  language: en
+  sentences:
+    - 'I''d like the Entryway Light on and turn off the Dining Pendant'
+  nlu_expect:
+    intents:
+      - intent: HassTurnOn
+        slots: {entity_id: light.entryway_light}
+      - intent: HassTurnOff
+        slots: {entity_id: light.dining_pendant}
+
+- name: gen_multi_1
+  split: multi
+  language: en
+  sentences:
+    - 'I''d like the Living Room Ceiling off and then turn on the Laundry Light'
+  nlu_expect:
+    intents:
+      - intent: HassTurnOff
+        slots: {entity_id: light.living_ceiling}
+      - intent: HassTurnOn
+        slots: {entity_id: light.laundry_light}
+
+- name: gen_multi_2
+  split: multi
+  language: en
+  sentences:
+    - 'I''d like the Living Room Lamp on, turn off the Left Bedside Lamp'
+  nlu_expect:
+    intents:
+      - intent: HassTurnOn
+        slots: {entity_id: light.living_lamp}
+      - intent: HassTurnOff
+        slots: {entity_id: light.master_bedside_left}
+
+- name: gen_multi_3
+  split: multi
+  language: en
+  sentences:
+    - 'I''d like the Dining Pendant off and turn on the Master Bath Light'
+  nlu_expect:
+    intents:
+      - intent: HassTurnOff
+        slots: {entity_id: light.dining_pendant}
+      - intent: HassTurnOn
+        slots: {entity_id: light.master_bath_light}
+
+- name: gen_multi_4
+  split: multi
+  language: en
+  sentences:
+    - 'I''d like the Kitchen Ceiling on and then turn off the Living Room Lamp'
+  nlu_expect:
+    intents:
+      - intent: HassTurnOn
+        slots: {entity_id: light.kitchen_ceiling}
+      - intent: HassTurnOff
+        slots: {entity_id: light.living_lamp}
+
+- name: gen_multi_5
+  split: multi
+  language: en
+  sentences:
+    - 'I''d like the Island Lights off, turn on the Family Room Fan'
+  nlu_expect:
+    intents:
+      - intent: HassTurnOff
+        slots: {entity_id: light.kitchen_island}
+      - intent: HassTurnOn
+        slots: {entity_id: fan.family_fan}
+
+- name: gen_multi_6
+  split: multi
+  language: en
+  sentences:
+    - 'Start the Rangehood and turn off the Master Ensuite Light'
+  nlu_expect:
+    intents:
+      - intent: HassTurnOn
+        slots: {entity_id: switch.rangehood}
+      - intent: HassTurnOff
+        slots: {entity_id: light.master_ensuite}
+
+- name: gen_multi_7
+  split: multi
+  language: en
+  sentences:
+    - 'Stop the Dishwasher and then turn on the Bedroom 4 Ceiling'
+  nlu_expect:
+    intents:
+      - intent: HassTurnOff
+        slots: {entity_id: switch.dishwasher}
+      - intent: HassTurnOn
+        slots: {entity_id: light.bedroom4_ceiling}
+
+- name: gen_multi_8
+  split: multi
+  language: en
+  sentences:
+    - 'I''d like the Family Room Ceiling on, turn off the Living Room Ceiling'
+  nlu_expect:
+    intents:
+      - intent: HassTurnOn
+        slots: {entity_id: light.family_ceiling}
+      - intent: HassTurnOff
+        slots: {entity_id: light.living_ceiling}
+
+- name: gen_multi_9
+  split: multi
+  language: en
+  sentences:
+    - 'Stop the Family Room Fan and turn on the Family Room Ceiling'
+  nlu_expect:
+    intents:
+      - intent: HassTurnOff
+        slots: {entity_id: fan.family_fan}
+      - intent: HassTurnOn
+        slots: {entity_id: light.family_ceiling}
+
+- name: gen_multi_10
+  split: multi
+  language: en
+  sentences:
+    - 'I''d like the Laundry Light on and then turn off the Master Ceiling'
+  nlu_expect:
+    intents:
+      - intent: HassTurnOn
+        slots: {entity_id: light.laundry_light}
+      - intent: HassTurnOff
+        slots: {entity_id: light.master_ceiling}
+
+- name: gen_multi_11
+  split: multi
+  language: en
+  sentences:
+    - 'Stop the Washing Machine, turn on the Bedroom 3 Ceiling'
+  nlu_expect:
+    intents:
+      - intent: HassTurnOff
+        slots: {entity_id: switch.washing_machine}
+      - intent: HassTurnOn
+        slots: {entity_id: light.bedroom3_ceiling}
+
+- name: gen_multi_12
+  split: multi
+  language: en
+  sentences:
+    - 'Start the Dryer and turn off the Entryway Light'
+  nlu_expect:
+    intents:
+      - intent: HassTurnOn
+        slots: {entity_id: switch.dryer}
+      - intent: HassTurnOff
+        slots: {entity_id: light.entryway_light}
+
+- name: gen_multi_13
+  split: multi
+  language: en
+  sentences:
+    - 'I''d like the Powder Room Light off and then turn on the Dishwasher'
+  nlu_expect:
+    intents:
+      - intent: HassTurnOff
+        slots: {entity_id: light.powder_room_light}
+      - intent: HassTurnOn
+        slots: {entity_id: switch.dishwasher}
+
+- name: gen_multi_14
+  split: multi
+  language: en
+  sentences:
+    - 'I''d like the Garage Light on, turn off the Master Ceiling'
+  nlu_expect:
+    intents:
+      - intent: HassTurnOn
+        slots: {entity_id: light.garage_light}
+      - intent: HassTurnOff
+        slots: {entity_id: light.master_ceiling}
+
+- name: gen_multi_15
+  split: multi
+  language: en
+  sentences:
+    - 'I''d like the Master Ceiling off and turn on the Bedroom 2 Fan'
+  nlu_expect:
+    intents:
+      - intent: HassTurnOff
+        slots: {entity_id: light.master_ceiling}
+      - intent: HassTurnOn
+        slots: {entity_id: fan.bedroom2_fan}
+
+- name: gen_multi_16
+  split: multi
+  language: en
+  sentences:
+    - 'I''d like the Master Ensuite Light on and then turn off the Hallway Light'
+  nlu_expect:
+    intents:
+      - intent: HassTurnOn
+        slots: {entity_id: light.master_ensuite}
+      - intent: HassTurnOff
+        slots: {entity_id: light.hallway_light}
+
+- name: gen_multi_17
+  split: multi
+  language: en
+  sentences:
+    - 'I''d like the Left Bedside Lamp off, turn on the Rangehood'
+  nlu_expect:
+    intents:
+      - intent: HassTurnOff
+        slots: {entity_id: light.master_bedside_left}
+      - intent: HassTurnOn
+        slots: {entity_id: switch.rangehood}
+
+- name: gen_multi_18
+  split: multi
+  language: en
+  sentences:
+    - 'I''d like the Right Bedside Lamp on and turn off the Powder Room Light'
+  nlu_expect:
+    intents:
+      - intent: HassTurnOn
+        slots: {entity_id: light.master_bedside_right}
+      - intent: HassTurnOff
+        slots: {entity_id: light.powder_room_light}
+
+- name: gen_multi_19
+  split: multi
+  language: en
+  sentences:
+    - 'Stop the Master Fan and then turn on the Bedroom 2 Ceiling'
+  nlu_expect:
+    intents:
+      - intent: HassTurnOff
+        slots: {entity_id: fan.master_fan}
+      - intent: HassTurnOn
+        slots: {entity_id: light.bedroom2_ceiling}
+
+- name: gen_multi_20
+  split: multi
+  language: en
+  sentences:
+    - 'I''d like the Bedroom 2 Ceiling on, turn off the Main Bath Fan'
+  nlu_expect:
+    intents:
+      - intent: HassTurnOn
+        slots: {entity_id: light.bedroom2_ceiling}
+      - intent: HassTurnOff
+        slots: {entity_id: switch.main_bath_fan}
+
+- name: gen_multi_21
+  split: multi
+  language: en
+  sentences:
+    - 'Stop the Bedroom 2 Fan and turn on the Island Lights'
+  nlu_expect:
+    intents:
+      - intent: HassTurnOff
+        slots: {entity_id: fan.bedroom2_fan}
+      - intent: HassTurnOn
+        slots: {entity_id: light.kitchen_island}
+
+- name: gen_multi_22
+  split: multi
+  language: en
+  sentences:
+    - 'I''d like the Bedroom 3 Ceiling on and then turn off the Dryer'
+  nlu_expect:
+    intents:
+      - intent: HassTurnOn
+        slots: {entity_id: light.bedroom3_ceiling}
+      - intent: HassTurnOff
+        slots: {entity_id: switch.dryer}
+
+- name: gen_multi_23
+  split: multi
+  language: en
+  sentences:
+    - 'I''d like the Bedroom 4 Ceiling off, turn on the Master Fan'
+  nlu_expect:
+    intents:
+      - intent: HassTurnOff
+        slots: {entity_id: light.bedroom4_ceiling}
+      - intent: HassTurnOn
+        slots: {entity_id: fan.master_fan}
+
+- name: gen_multi_24
+  split: multi
+  language: en
+  sentences:
+    - 'I''d like the Master Bath Light on and turn off the Main Bath Light'
+  nlu_expect:
+    intents:
+      - intent: HassTurnOn
+        slots: {entity_id: light.master_bath_light}
+      - intent: HassTurnOff
+        slots: {entity_id: light.main_bath_light}
+
+- name: gen_multi_25
+  split: multi
+  language: en
+  sentences:
+    - 'Stop the Master Bath Fan and then turn on the Kitchen Ceiling'
+  nlu_expect:
+    intents:
+      - intent: HassTurnOff
+        slots: {entity_id: switch.master_bath_fan}
+      - intent: HassTurnOn
+        slots: {entity_id: light.kitchen_ceiling}
+
+- name: gen_multi_26
+  split: multi
+  language: en
+  sentences:
+    - 'I''d like the Main Bath Light on, turn off the Washing Machine'
+  nlu_expect:
+    intents:
+      - intent: HassTurnOn
+        slots: {entity_id: light.main_bath_light}
+      - intent: HassTurnOff
+        slots: {entity_id: switch.washing_machine}
+
+- name: gen_multi_27
+  split: multi
+  language: en
+  sentences:
+    - 'Stop the Main Bath Fan and turn on the Right Bedside Lamp'
+  nlu_expect:
+    intents:
+      - intent: HassTurnOff
+        slots: {entity_id: switch.main_bath_fan}
+      - intent: HassTurnOn
+        slots: {entity_id: light.master_bedside_right}
+
+- name: gen_multi_28
+  split: multi
+  language: en
+  sentences:
+    - 'I''d like the Hallway Light on and then turn off the Master Bath Fan'
+  nlu_expect:
+    intents:
+      - intent: HassTurnOn
+        slots: {entity_id: light.hallway_light}
+      - intent: HassTurnOff
+        slots: {entity_id: switch.master_bath_fan}

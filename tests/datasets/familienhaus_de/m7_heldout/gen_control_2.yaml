@@ -1,0 +1,565 @@
+- name: gen_on_master_bath_fan
+  split: control
+  language: de
+  sentences:
+    - 'Mach Elternbad Lüfter an'
+    - 'Elternbad Lüfter an bitte'
+    - 'Kannst du Elternbad Lüfter anmachen'
+    - 'Bitte Elternbad Lüfter einschalten'
+  nlu_expect:
+    intents:
+      - intent: HassTurnOn
+        slots: {entity_id: switch.master_bath_fan}
+
+- name: gen_off_master_bath_fan
+  split: control
+  language: de
+  sentences:
+    - 'Mach Elternbad Lüfter aus'
+    - 'Elternbad Lüfter aus bitte'
+    - 'Kannst du Elternbad Lüfter ausmachen'
+    - 'Bitte Elternbad Lüfter ausschalten'
+  nlu_expect:
+    intents:
+      - intent: HassTurnOff
+        slots: {entity_id: switch.master_bath_fan}
+
+- name: gen_on_main_bath_light
+  split: control
+  language: de
+  sentences:
+    - 'Badezimmer Licht an bitte'
+    - 'Kannst du Badezimmer Licht anmachen'
+    - 'Bitte Badezimmer Licht einschalten'
+    - 'Badezimmer Licht einschalten'
+  nlu_expect:
+    intents:
+      - intent: HassTurnOn
+        slots: {entity_id: light.main_bath_light}
+
+- name: gen_off_main_bath_light
+  split: control
+  language: de
+  sentences:
+    - 'Badezimmer Licht aus bitte'
+    - 'Kannst du Badezimmer Licht ausmachen'
+    - 'Bitte Badezimmer Licht ausschalten'
+    - 'Badezimmer Licht ausschalten'
+  nlu_expect:
+    intents:
+      - intent: HassTurnOff
+        slots: {entity_id: light.main_bath_light}
+
+- name: gen_on_main_bath_fan
+  split: control
+  language: de
+  sentences:
+    - 'Kannst du Badezimmer Lüfter anmachen'
+    - 'Bitte Badezimmer Lüfter einschalten'
+    - 'Badezimmer Lüfter einschalten'
+    - 'Würdest du Badezimmer Lüfter anschalten'
+  nlu_expect:
+    intents:
+      - intent: HassTurnOn
+        slots: {entity_id: switch.main_bath_fan}
+
+- name: gen_off_main_bath_fan
+  split: control
+  language: de
+  sentences:
+    - 'Kannst du Badezimmer Lüfter ausmachen'
+    - 'Bitte Badezimmer Lüfter ausschalten'
+    - 'Badezimmer Lüfter ausschalten'
+    - 'Würdest du Badezimmer Lüfter ausschalten'
+  nlu_expect:
+    intents:
+      - intent: HassTurnOff
+        slots: {entity_id: switch.main_bath_fan}
+
+- name: gen_on_hallway_light
+  split: control
+  language: de
+  sentences:
+    - 'Bitte Flur Licht einschalten'
+    - 'Flur Licht einschalten'
+    - 'Würdest du Flur Licht anschalten'
+    - 'Ich möchte Flur Licht einschalten'
+  nlu_expect:
+    intents:
+      - intent: HassTurnOn
+        slots: {entity_id: light.hallway_light}
+
+- name: gen_off_hallway_light
+  split: control
+  language: de
+  sentences:
+    - 'Bitte Flur Licht ausschalten'
+    - 'Flur Licht ausschalten'
+    - 'Würdest du Flur Licht ausschalten'
+    - 'Ich möchte Flur Licht ausschalten'
+  nlu_expect:
+    intents:
+      - intent: HassTurnOff
+        slots: {entity_id: light.hallway_light}
+
+- name: gen_dim_entryway_light
+  split: control
+  language: de
+  sentences:
+    - 'Dimme Eingangslicht auf 15 Prozent'
+    - 'Stelle Eingangslicht auf 15 Prozent'
+  nlu_expect:
+    intents:
+      - intent: HassLightSet
+        slots: {entity_id: light.entryway_light, brightness: 15}
+
+- name: gen_dim_living_ceiling
+  split: control
+  language: de
+  sentences:
+    - 'Stelle Wohnzimmer Decke auf 30 Prozent'
+    - 'Wohnzimmer Decke auf 30 Prozent'
+  nlu_expect:
+    intents:
+      - intent: HassLightSet
+        slots: {entity_id: light.living_ceiling, brightness: 30}
+
+- name: gen_dim_living_lamp
+  split: control
+  language: de
+  sentences:
+    - 'Wohnzimmer Lampe auf 45 Prozent'
+    - 'Dimme Wohnzimmer Lampe auf 45 Prozent'
+  nlu_expect:
+    intents:
+      - intent: HassLightSet
+        slots: {entity_id: light.living_lamp, brightness: 45}
+
+- name: gen_dim_dining_pendant
+  split: control
+  language: de
+  sentences:
+    - 'Dimme Esszimmer Pendelleuchte auf 60 Prozent'
+    - 'Stelle Esszimmer Pendelleuchte auf 60 Prozent'
+  nlu_expect:
+    intents:
+      - intent: HassLightSet
+        slots: {entity_id: light.dining_pendant, brightness: 60}
+
+- name: gen_dim_kitchen_ceiling
+  split: control
+  language: de
+  sentences:
+    - 'Stelle Küche Decke auf 75 Prozent'
+    - 'Küche Decke auf 75 Prozent'
+  nlu_expect:
+    intents:
+      - intent: HassLightSet
+        slots: {entity_id: light.kitchen_ceiling, brightness: 75}
+
+- name: gen_dim_kitchen_island
+  split: control
+  language: de
+  sentences:
+    - 'Insel Licht auf 90 Prozent'
+    - 'Dimme Insel Licht auf 90 Prozent'
+  nlu_expect:
+    intents:
+      - intent: HassLightSet
+        slots: {entity_id: light.kitchen_island, brightness: 90}
+
+- name: gen_dim_family_ceiling
+  split: control
+  language: de
+  sentences:
+    - 'Dimme Familienzimmer Decke auf 15 Prozent'
+    - 'Stelle Familienzimmer Decke auf 15 Prozent'
+  nlu_expect:
+    intents:
+      - intent: HassLightSet
+        slots: {entity_id: light.family_ceiling, brightness: 15}
+
+- name: gen_dim_laundry_light
+  split: control
+  language: de
+  sentences:
+    - 'Stelle Waschküche Licht auf 30 Prozent'
+    - 'Waschküche Licht auf 30 Prozent'
+  nlu_expect:
+    intents:
+      - intent: HassLightSet
+        slots: {entity_id: light.laundry_light, brightness: 30}
+
+- name: gen_dim_powder_room_light
+  split: control
+  language: de
+  sentences:
+    - 'Gäste-WC Licht auf 45 Prozent'
+    - 'Dimme Gäste-WC Licht auf 45 Prozent'
+  nlu_expect:
+    intents:
+      - intent: HassLightSet
+        slots: {entity_id: light.powder_room_light, brightness: 45}
+
+- name: gen_dim_garage_light
+  split: control
+  language: de
+  sentences:
+    - 'Dimme Garagenlicht auf 60 Prozent'
+    - 'Stelle Garagenlicht auf 60 Prozent'
+  nlu_expect:
+    intents:
+      - intent: HassLightSet
+        slots: {entity_id: light.garage_light, brightness: 60}
+
+- name: gen_dim_master_ceiling
+  split: control
+  language: de
+  sentences:
+    - 'Stelle Schlafzimmer Decke auf 75 Prozent'
+    - 'Schlafzimmer Decke auf 75 Prozent'
+  nlu_expect:
+    intents:
+      - intent: HassLightSet
+        slots: {entity_id: light.master_ceiling, brightness: 75}
+
+- name: gen_dim_master_ensuite
+  split: control
+  language: de
+  sentences:
+    - 'Ankleide Licht auf 90 Prozent'
+    - 'Dimme Ankleide Licht auf 90 Prozent'
+  nlu_expect:
+    intents:
+      - intent: HassLightSet
+        slots: {entity_id: light.master_ensuite, brightness: 90}
+
+- name: gen_dim_master_bedside_left
+  split: control
+  language: de
+  sentences:
+    - 'Dimme Nachttisch links auf 15 Prozent'
+    - 'Stelle Nachttisch links auf 15 Prozent'
+  nlu_expect:
+    intents:
+      - intent: HassLightSet
+        slots: {entity_id: light.master_bedside_left, brightness: 15}
+
+- name: gen_dim_master_bedside_right
+  split: control
+  language: de
+  sentences:
+    - 'Stelle Nachttisch rechts auf 30 Prozent'
+    - 'Nachttisch rechts auf 30 Prozent'
+  nlu_expect:
+    intents:
+      - intent: HassLightSet
+        slots: {entity_id: light.master_bedside_right, brightness: 30}
+
+- name: gen_dim_bedroom2_ceiling
+  split: control
+  language: de
+  sentences:
+    - 'Kinderzimmer 2 Decke auf 45 Prozent'
+    - 'Dimme Kinderzimmer 2 Decke auf 45 Prozent'
+  nlu_expect:
+    intents:
+      - intent: HassLightSet
+        slots: {entity_id: light.bedroom2_ceiling, brightness: 45}
+
+- name: gen_dim_bedroom3_ceiling
+  split: control
+  language: de
+  sentences:
+    - 'Dimme Kinderzimmer 3 Decke auf 60 Prozent'
+    - 'Stelle Kinderzimmer 3 Decke auf 60 Prozent'
+  nlu_expect:
+    intents:
+      - intent: HassLightSet
+        slots: {entity_id: light.bedroom3_ceiling, brightness: 60}
+
+- name: gen_dim_bedroom4_ceiling
+  split: control
+  language: de
+  sentences:
+    - 'Stelle Kinderzimmer 4 Decke auf 75 Prozent'
+    - 'Kinderzimmer 4 Decke auf 75 Prozent'
+  nlu_expect:
+    intents:
+      - intent: HassLightSet
+        slots: {entity_id: light.bedroom4_ceiling, brightness: 75}
+
+- name: gen_dim_master_bath_light
+  split: control
+  language: de
+  sentences:
+    - 'Elternbad Licht auf 90 Prozent'
+    - 'Dimme Elternbad Licht auf 90 Prozent'
+  nlu_expect:
+    intents:
+      - intent: HassLightSet
+        slots: {entity_id: light.master_bath_light, brightness: 90}
+
+- name: gen_dim_main_bath_light
+  split: control
+  language: de
+  sentences:
+    - 'Dimme Badezimmer Licht auf 15 Prozent'
+    - 'Stelle Badezimmer Licht auf 15 Prozent'
+  nlu_expect:
+    intents:
+      - intent: HassLightSet
+        slots: {entity_id: light.main_bath_light, brightness: 15}
+
+- name: gen_dim_hallway_light
+  split: control
+  language: de
+  sentences:
+    - 'Stelle Flur Licht auf 30 Prozent'
+    - 'Flur Licht auf 30 Prozent'
+  nlu_expect:
+    intents:
+      - intent: HassLightSet
+        slots: {entity_id: light.hallway_light, brightness: 30}
+
+- name: gen_state_entryway_light
+  split: control
+  language: de
+  sentences:
+    - 'Ist Eingangslicht eingeschaltet'
+    - 'Ist Eingangslicht ausgeschaltet'
+  nlu_expect:
+    intents:
+      - intent: HassGetState
+        slots: {entity_id: light.entryway_light}
+
+- name: gen_state_front_door
+  split: control
+  language: de
+  sentences:
+    - 'Ist Haustür zugesperrt'
+    - 'Ist Haustür abgeschlossen'
+  nlu_expect:
+    intents:
+      - intent: HassGetState
+        slots: {entity_id: lock.front_door}
+
+- name: gen_state_living_ceiling
+  split: control
+  language: de
+  sentences:
+    - 'Ist Wohnzimmer Decke gerade an'
+    - 'Ist Wohnzimmer Decke eingeschaltet'
+  nlu_expect:
+    intents:
+      - intent: HassGetState
+        slots: {entity_id: light.living_ceiling}
+
+- name: gen_state_living_lamp
+  split: control
+  language: de
+  sentences:
+    - 'Ist Wohnzimmer Lampe eingeschaltet'
+    - 'Ist Wohnzimmer Lampe ausgeschaltet'
+  nlu_expect:
+    intents:
+      - intent: HassGetState
+        slots: {entity_id: light.living_lamp}
+
+- name: gen_state_dining_pendant
+  split: control
+  language: de
+  sentences:
+    - 'Ist Esszimmer Pendelleuchte ausgeschaltet'
+    - 'Ist Esszimmer Pendelleuchte gerade an'
+  nlu_expect:
+    intents:
+      - intent: HassGetState
+        slots: {entity_id: light.dining_pendant}
+
+- name: gen_state_kitchen_ceiling
+  split: control
+  language: de
+  sentences:
+    - 'Ist Küche Decke gerade an'
+    - 'Ist Küche Decke eingeschaltet'
+  nlu_expect:
+    intents:
+      - intent: HassGetState
+        slots: {entity_id: light.kitchen_ceiling}
+
+- name: gen_state_kitchen_island
+  split: control
+  language: de
+  sentences:
+    - 'Ist Insel Licht eingeschaltet'
+    - 'Ist Insel Licht ausgeschaltet'
+  nlu_expect:
+    intents:
+      - intent: HassGetState
+        slots: {entity_id: light.kitchen_island}
+
+- name: gen_state_rangehood
+  split: control
+  language: de
+  sentences:
+    - 'Ist Dunstabzug ausgeschaltet'
+    - 'Ist Dunstabzug gerade an'
+  nlu_expect:
+    intents:
+      - intent: HassGetState
+        slots: {entity_id: switch.rangehood}
+
+- name: gen_state_dishwasher
+  split: control
+  language: de
+  sentences:
+    - 'Ist Spülmaschine gerade an'
+    - 'Ist Spülmaschine eingeschaltet'
+  nlu_expect:
+    intents:
+      - intent: HassGetState
+        slots: {entity_id: switch.dishwasher}
+
+- name: gen_state_family_ceiling
+  split: control
+  language: de
+  sentences:
+    - 'Ist Familienzimmer Decke eingeschaltet'
+    - 'Ist Familienzimmer Decke ausgeschaltet'
+  nlu_expect:
+    intents:
+      - intent: HassGetState
+        slots: {entity_id: light.family_ceiling}
+
+- name: gen_state_washing_machine
+  split: control
+  language: de
+  sentences:
+    - 'Ist Waschmaschine ausgeschaltet'
+    - 'Ist Waschmaschine gerade an'
+  nlu_expect:
+    intents:
+      - intent: HassGetState
+        slots: {entity_id: switch.washing_machine}
+
+- name: gen_state_dryer
+  split: control
+  language: de
+  sentences:
+    - 'Ist Trockner gerade an'
+    - 'Ist Trockner eingeschaltet'
+  nlu_expect:
+    intents:
+      - intent: HassGetState
+        slots: {entity_id: switch.dryer}
+
+- name: gen_state_garage_light
+  split: control
+  language: de
+  sentences:
+    - 'Ist Garagenlicht eingeschaltet'
+    - 'Ist Garagenlicht ausgeschaltet'
+  nlu_expect:
+    intents:
+      - intent: HassGetState
+        slots: {entity_id: light.garage_light}
+
+- name: gen_state_garage_entry
+  split: control
+  language: de
+  sentences:
+    - 'Ist Garagentür zugesperrt'
+    - 'Ist Garagentür abgeschlossen'
+  nlu_expect:
+    intents:
+      - intent: HassGetState
+        slots: {entity_id: lock.garage_entry}
+
+- name: gen_state_master_ceiling
+  split: control
+  language: de
+  sentences:
+    - 'Ist Schlafzimmer Decke gerade an'
+    - 'Ist Schlafzimmer Decke eingeschaltet'
+  nlu_expect:
+    intents:
+      - intent: HassGetState
+        slots: {entity_id: light.master_ceiling}
+
+- name: gen_state_master_ensuite
+  split: control
+  language: de
+  sentences:
+    - 'Ist Ankleide Licht eingeschaltet'
+    - 'Ist Ankleide Licht ausgeschaltet'
+  nlu_expect:
+    intents:
+      - intent: HassGetState
+        slots: {entity_id: light.master_ensuite}
+
+- name: gen_state_master_bedside_left
+  split: control
+  language: de
+  sentences:
+    - 'Ist Nachttisch links ausgeschaltet'
+    - 'Ist Nachttisch links gerade an'
+  nlu_expect:
+    intents:
+      - intent: HassGetState
+        slots: {entity_id: light.master_bedside_left}
+
+- name: gen_state_master_bedside_right
+  split: control
+  language: de
+  sentences:
+    - 'Ist Nachttisch rechts gerade an'
+    - 'Ist Nachttisch rechts eingeschaltet'
+  nlu_expect:
+    intents:
+      - intent: HassGetState
+        slots: {entity_id: light.master_bedside_right}
+
+- name: gen_state_bedroom2_ceiling
+  split: control
+  language: de
+  sentences:
+    - 'Ist Kinderzimmer 2 Decke eingeschaltet'
+    - 'Ist Kinderzimmer 2 Decke ausgeschaltet'
+  nlu_expect:
+    intents:
+      - intent: HassGetState
+        slots: {entity_id: light.bedroom2_ceiling}
+
+- name: gen_state_bedroom3_ceiling
+  split: control
+  language: de
+  sentences:
+    - 'Ist Kinderzimmer 3 Decke ausgeschaltet'
+    - 'Ist Kinderzimmer 3 Decke gerade an'
+  nlu_expect:
+    intents:
+      - intent: HassGetState
+        slots: {entity_id: light.bedroom3_ceiling}
+
+- name: gen_state_bedroom4_ceiling
+  split: control
+  language: de
+  sentences:
+    - 'Ist Kinderzimmer 4 Decke gerade an'
+    - 'Ist Kinderzimmer 4 Decke eingeschaltet'
+  nlu_expect:
+    intents:
+      - intent: HassGetState
+        slots: {entity_id: light.bedroom4_ceiling}
+
+- name: gen_state_master_bath_fan
+  split: control
+  language: de
+  sentences:
+    - 'Ist Elternbad Lüfter eingeschaltet'
+    - 'Ist Elternbad Lüfter ausgeschaltet'
+  nlu_expect:
+    intents:
+      - intent: HassGetState
+        slots: {entity_id: switch.master_bath_fan}

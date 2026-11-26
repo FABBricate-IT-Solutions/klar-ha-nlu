@@ -1,0 +1,8 @@
+# The Home Assistant default agent as the benchmark runs it (scripts/bench_assist.py).
+# Pinned to the versions tests/ha_real/requirements.txt pins for the same Home Assistant
+# release; tests/test_benchmark_report.py fails when the two files drift apart. Raise them
+# together, on purpose, in one pull request.
+gazetteer-matcher==1.1.0
+hassil==3.12.1
+home-assistant-intents==2026.10.6
+pyyaml==6.0.3

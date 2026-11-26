@@ -21,6 +21,30 @@ Gleiche Oracles wie in [tests](testing.md), gleicher Home-Graph je Suite. Assist
 
 Klar-Zahlen: `cargo nextest run --locked` auf `voice_suite` und `full_home` de/en, `--run-ignored all`, Default-Nextest-Profil (alle Kerne, kein Thread-Deckel). Assist: HassIL 3.11.0 und `home-assistant-intents` 2026.7.30, Slot-Listen `name` / `area` / `floor` aus jeder `home_config.yaml` (wie der Default-Agent in HA Core). Die Zahlen unten sind diese Messung auf DE/EN-Oracles — kein Anspruch, dass jede kompilierte Locale bei fail = 0 liegt.
 
+## Aktuelle Zahlen: das CI-Artefakt
+
+Die Tabellen auf dieser Seite sind die Runde vom August 2026: HassIL allein, 3.11.0 mit Intents 2026.7.30. Home Assistant hat dem Default-Agenten inzwischen einen Gazetteer-Fallback gegeben, `hassil` allein beschreibt ihn nicht mehr. Maßgeblich sind die Zahlen, die CI bei jedem Pull Request erzeugt, Job `benchmark` in `ci.yml`:
+
+- `klar eval gate` bewertet das Held-out-Korpus (`tests/datasets/{family_home_en,familienhaus_de}/m7_heldout`, mindestens 500 In-Domain-Sätze je Sprache) und bricht bei den Gates unten ab.
+- `scripts/bench_assist.py --suite heldout_en --suite heldout_de` lässt den Default-Agenten von Home Assistant auf denselben Sätzen laufen, **erst hassil, dann der Gazetteer-Matcher für Englisch**, wie Core. Beide Werte werden geschrieben: der ganze Agent und hassil allein.
+- `scripts/benchmark_report.py` verbindet beide Läufe je Sprache zu `benchmark.json` und einer Tabelle in der Job-Zusammenfassung, mit Commit-SHA und Paketversionen. Läufe verschiedener Commits oder ohne volle SHA verweigert es. Das Artefakt heißt `benchmark-<sha>`.
+
+Die Assist-Pakete sind in `scripts/requirements-assist-bench.txt` auf dieselben Versionen wie `tests/ha_real/requirements.txt` festgelegt; ein Test schlägt fehl, wenn die Dateien auseinanderlaufen.
+
+Assist wird bei einem solchen Korpus doppelt gezählt: über alle Sätze, wo auch für Assist das Nicht-Erkennen eines Out-of-Domain-Satzes als richtig gilt, und nur über die In-Domain-Sätze. Zitiert wird der In-Domain-Wert. Den Gazetteer gibt es nur für Englisch (`gazetteer_languages` im Lauf), Deutsch bleibt also hassil allein, bis Core mehr ausliefert.
+
+Klars Gates auf diesem Korpus (`src/eval/mod.rs`):
+
+| Gate | Grenze |
+|---|---|
+| Held-out-Sätze / In-Domain-Sätze je Sprache | ≥ 500 / ≥ 500 |
+| Out-of-Domain-Sätze ohne Reject (`reject_fnr`, Chat zählt als Fehler) | ≤ 1 % |
+| Abgelehnte In-Domain-Sätze (`reject_fpr`) | ≤ 2 % |
+| Out-of-Domain-Sätze, auf die gehandelt oder nachgefragt wird (`reject_unsafe`) | 0 |
+| Tippfehler-Erholung (ein fehlender Buchstabe im Gerätenamen) | ≥ 70 % |
+
+Eine Konfidenz-Zahl gibt es nicht mehr. Die `confidence` eines Parse ist ein Ranking-Wert hinter den Entscheidungsbändern, keine Wahrscheinlichkeit, und ein Reject trägt 0,0; als Wahrscheinlichkeit gewertet ergab sie ein ECE von 0,89, und sie ans Korpus anzupassen hätte das nur verdeckt. ECE und Brier sind deshalb aus der Scorecard entfernt.
+
 ## Suiten
 
 | Suite | Sätze | Assist | Klar | Faktor |
