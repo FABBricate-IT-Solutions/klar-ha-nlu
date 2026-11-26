@@ -70,9 +70,14 @@ pub fn overlay_for(tag: &str) -> Option<ExternalPack> {
         return None;
     };
     let chain: Vec<String> = locale.fallback_chain().into_iter().map(|item| item.tag).collect();
-    installed_packs()
+    let runtime = installed_packs()
         .into_iter()
-        .find(|pack| pack.locales().ok().into_iter().flatten().any(|item| chain.iter().any(|step| step == &item.tag || step == &pack.id)))
+        .find(|pack| pack.locales().ok().into_iter().flatten().any(|item| chain.iter().any(|step| step == &item.tag || step == &pack.id)));
+    if runtime.is_some() {
+        return runtime;
+    }
+    // Package 6.9: phrase corrections in packs/assist/{code}.yaml (one file).
+    super::assist_data::overlay_for(tag)
 }
 
 pub fn apply_overlay(catalog: &mut Catalog, pack: &ExternalPack) -> Result<(), String> {

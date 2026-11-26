@@ -49,7 +49,7 @@ Jede kompilierte Assist-Locale nutzt denselben `LanguagePack`-Weg. Deutsch und E
 
 **Nicht mitgeliefert:** Russisch (`ru`, `ru-RU`) — kein Pack, kein Registry-Eintrag, `pin_language("ru")` bleibt unbekannt.
 
-YAML unter `packs/` bleibt für User-Overlays und `klar lang import-hassil`, nicht für Assist-Abdeckung. Packs werden nicht still zu einem Riesen-Default-Catalog gemerged.
+YAML unter `packs/` hält User-Overlays (`klar lang import-hassil`), **Assist-Phrase-Korrekturen** (`packs/assist/{code}.yaml`, eine Datei je Locale — [Phrase in drei Schritten](fix-phrase.md)) und den generierten Pack-Daten-Spiegel (`packs/generated/{code}.yaml`). Packs werden nicht still zu einem Riesen-Default-Catalog gemerged.
 
 HassIL ins Overlay importieren (nicht in einen gemergten Default-Catalog):
 
@@ -59,7 +59,9 @@ klar lang import-hassil --from pfad/zu/hassil --into /data --language de --dry-r
 
 ## Aufbau
 
-- `src/lang/packs/{code}/` — `verbs.rs`, `speech.rs`, `pack.rs` (de/en hand-written reference; others generated)
+- `packs/generated/{code}.yaml` — generiertes Pack als Daten (lesen/diffen; nicht von Hand ändern)
+- `packs/assist/{code}.yaml` — Phrase-Korrekturen (eine Datei; [fix-phrase](fix-phrase.md); `klar lang new-case`)
+- `src/lang/packs/{code}/` — kompilierte Tabellen (de/en handgeschrieben; andere generiert — nicht von Hand ändern)
 - `src/lang/registry.rs` — kompilierte Ids, `from_code`, `pack()`, `GET /api/v2/languages`
 - `scripts/lang_packs/` — Generator (HassIL-Harvest nur Bootstrap). `generate.py` nicht im Pre-Commit ausführen.
 
@@ -103,10 +105,10 @@ Ein regionales Pack hat keine eigenen Sätze. `tests/regional_overlays.rs`, die 
 ## Pack anlegen
 
 1. Kompaktes Lexikon in `scripts/lang_packs/`. Zielsprachige Wörter bevorzugen; `scripts/lang_packs/pack_lint.py` schlägt fehl, wenn Chat/Speech-Felder noch englische Stub-Füller tragen.
-2. `python3 scripts/lang_packs/generate.py`
-3. Rust wie Handcode reviewen: `rustfmt`, eindeutige Tokens nach `fold_latin`, keine Kommentar-Narration.
-4. Dateien unter 500 Zeilen. Keine `match LangId`-Arme in `src/parse/`.
-5. Bestehende Suiten müssen grün bleiben; derselbe Assist/Parity-Smoke für die neue Locale.
+2. `python3 scripts/lang_packs/generate.py` (schreibt Daten unter `packs/generated/` und kompiliertes Rust).
+3. Generierte Daten-YAML prüfen; Dateien unter 500 Zeilen. Keine `match LangId`-Arme in `src/parse/`.
+4. Bestehende Suiten müssen grün bleiben; derselbe Assist/Parity-Smoke für die neue Locale.
+5. Spätere Phrase-Korrekturen nur in `packs/assist/{code}.yaml`.
 
 `LanguagePack` in `src/lang/groups.rs` ist die Checkliste. Leere Slices nur, wenn die Sprache das Konzept nicht hat.
 

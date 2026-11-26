@@ -4,6 +4,8 @@ from __future__ import annotations
 
 from pathlib import Path
 
+from lang_packs.emit_assist import write_assist_embed
+from lang_packs.emit_generated_data import write_generated_data
 from lang_packs.emit_news import news_rs
 from lang_packs.emit_pack import pack_rs, speech_rs
 from lang_packs.emit_rust import PY_BANNER, RUST_BANNER, rust_str, unique_verbs
@@ -30,7 +32,8 @@ def pack_dir(lang: dict) -> Path:
 def write_pack(lang: dict) -> None:
     dest = pack_dir(lang)
     (dest / "mod.rs").write_text(
-        f"{RUST_BANNER}mod mood;\nmod news;\nmod numbers;\nmod pack;\nmod speech;\nmod verbs;\n\npub use pack::PACK;\n",
+        f"{RUST_BANNER}// Phrase fixes: packs/assist/{lang['code']}.yaml (package 6.9).\n"
+        f"mod mood;\nmod news;\nmod numbers;\nmod pack;\nmod speech;\nmod verbs;\n\npub use pack::PACK;\n",
         encoding="utf-8",
     )
     (dest / "verbs.rs").write_text(verbs_rs(lang), encoding="utf-8")
@@ -39,6 +42,8 @@ def write_pack(lang: dict) -> None:
     (dest / "numbers.rs").write_text(numbers_rs(lang), encoding="utf-8")
     write_speech(lang)
     (dest / "pack.rs").write_text(pack_rs(lang), encoding="utf-8")
+    # Data form of the generated pack (inspect/diff here; correct in packs/assist/).
+    write_generated_data(lang)
 
 
 def numbers_rs(lang: dict) -> str:
@@ -191,4 +196,5 @@ EXPERIMENTAL_LANGUAGES = {tuple(code for code in codes if code not in REFERENCE 
 ''',
         encoding="utf-8",
     )
+    write_assist_embed(langs)
 

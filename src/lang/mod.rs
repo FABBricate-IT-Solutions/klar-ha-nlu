@@ -1,5 +1,8 @@
-//! Language packs. Built-in locales are compiled; YAML stays for user overlays.
+//! Language packs. Built-in locales are compiled; assist phrase fixes are YAML data.
 
+mod assist_data;
+#[allow(dead_code)]
+mod assist_embed;
 mod catalog;
 mod cli;
 mod external;
@@ -28,7 +31,7 @@ use parking_lot::Mutex;
 
 pub use catalog::Catalog;
 use catalog::Layer;
-pub use cli::{import_hassil, preview, validate_path};
+pub use cli::{import_hassil, new_case, preview, validate_path};
 pub use external::{ExternalPack, PackRegistry};
 pub use hassil::{import_hassil as parse_hassil, HassilImport};
 pub use locale::{LocaleError, LocaleId};

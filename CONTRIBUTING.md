@@ -33,11 +33,12 @@ Workflows pin every action by commit SHA with the release in a trailing comment.
 ## Language packs
 
 - Hand-written reference: `src/lang/packs/de/`, `src/lang/packs/en/`
-- Generated locales: `src/lang/packs/{code}/` via `scripts/lang_packs/generate.py`
-- Generated locales use the same `LanguagePack` path as the hand-written de/en reference packs
+- Generated locales: compiled under `src/lang/packs/{code}/` via `scripts/lang_packs/generate.py`, data form under `packs/generated/{code}.yaml`
+- Phrase corrections: **one file** `packs/assist/{code}.yaml` — see [Fix a phrase in three steps](docs/en/fix-phrase.md) / [Phrase in drei Schritten](docs/fix-phrase.md). Use `klar lang new-case`.
+- Do not hand-edit generated Rust under `src/lang/packs/` (except de/en)
 - Russian (`ru`) is not shipped
 
-How to add a pack: [docs/en/languages.md](docs/en/languages.md). Review generated Rust like hand-written code. `de`/`en` suites stay green first.
+How to add a pack: [docs/en/languages.md](docs/en/languages.md). `de`/`en` suites stay green first.
 
 ## PR checklist
 
