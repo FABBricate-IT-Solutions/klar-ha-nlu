@@ -130,6 +130,11 @@ compiledRisk	已编译风险	已編譯風險	已編譯風險	コンパイル済�
 finalBand	档位	級距	級距	帯	대역	แถบ	Dải	Pita	Pita	Бүс
 triggerFirst	HA 句子触发器优先，然后 Klar，然后已注册意图。	HA 句子觸發器優先，然後 Klar，然後已註冊意圖。	HA 句子觸發器先，然後 Klar，然後已註冊意圖。	HA の文トリガーが先、次に Klar、その後登録済み意図。	HA 문장 트리거가 먼저, 그다음 Klar, 그다음 등록된 의도.	ทริกเกอร์ประโยค HA ก่อน แล้ว Klar แล้วเจตนาที่ลงทะเบียน	Bộ kích câu HA trước, rồi Klar, rồi ý định đã đăng.	Pemicu kalimat HA dulu, lalu Klar, lalu niat terdaftar.	Pencetus ayat HA dulu, lalu Klar, lalu niat berdaftar.	HA өгүүлбэрийн триггер эхлээд, дараа Klar, дараа бүртгэлтэй зорилго.
 discarded	已丢弃	已捨棄	丟咗	破棄	폐기됨	ทิ้งแล้ว	Đã bỏ	Dibuang	Dibuang	Хаясан
+decisionTrace	决策追踪	決策追蹤	決策追蹤	決定トレース	결정 추적	ร่องรอยการตัดสินใจ	Dấu vết quyết định	Jejak keputusan	Jejak keputusan	Шийдлийн мөр
+triggerWord	触发词	觸發詞	觸發詞	トリガー語	트리거 단어	คำกระตุ้น	Từ kích hoạt	Kata pencetus	Kata pencetus	Өдөөгч үг
+consumedSpans	已消耗跨度	已消耗跨度	已消耗跨度	消費されたスパン	소비된 스팬	ช่วงที่ใช้แล้ว	Khoảng đã dùng	Span terpakai	Span terpakai	Зарцуулсан зай
+remainingTokens	剩余标记	剩餘標記	剩餘標記	残りのトークン	남은 토큰	โทเค็นที่เหลือ	Token còn lại	Token tersisa	Token tersisa	Үлдсэн токен
+discardedClause	已丢弃子句	已捨棄子句	丟棄嘅子句	破棄された節	폐기된 절	ประโยคที่ทิ้ง	Mệnh đề đã bỏ	Klausa dibuang	Klausa dibuang	Хаясан заалт
 stageTokens	词元	詞元	詞元	トークン	토큰	โทเคน	Mã từ	Leksem	Leksem	Токен
 stageBind	绑定	綁定	綁定	結び付け	연결	ผูก	Gắn	Ikat	Ikat	Холбох
 stageRank	排序	排序	排序	順位	순위	จัดอันดับ	Xếp	Peringkat	Kedudukan	Эрэмбэ

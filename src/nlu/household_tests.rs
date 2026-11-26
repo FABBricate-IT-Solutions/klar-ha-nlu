@@ -56,12 +56,14 @@ fn explain_uses_last_heard() {
         reason: None,
         area: Some("kueche".into()),
         names: vec!["HassTurnOn".into()],
+        trigger_word: Some("an".into()),
     });
     let custom = Vec::new();
     let context = ctx("was hast du gehört", &home, &session, &custom);
     let draft = route(&context, &["was".into(), "hast".into(), "du".into(), "gehoert".into()]).expect("explain");
     assert!(draft.speech.contains("Licht an"));
     assert!(draft.speech.contains("kueche"));
+    assert!(draft.speech.contains("an"));
 }
 
 #[test]

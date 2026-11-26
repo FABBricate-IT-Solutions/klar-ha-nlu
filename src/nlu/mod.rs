@@ -10,6 +10,7 @@ mod draft;
 mod dutch;
 mod evidence;
 mod except;
+mod explain_trace;
 mod heard;
 mod household;
 mod mood;

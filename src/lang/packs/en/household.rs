@@ -4,7 +4,7 @@ use crate::lang::groups::Household;
 
 pub(super) const HOUSEHOLD: Household = Household {
     teach: &["call this ", "call it ", "call that ", "name this ", "name it "],
-    explain: &["what did you hear", "what did you understand", "why did you stop", "why did you reject"],
+    explain: &["why", "what did you hear", "what did you understand", "why did you stop", "why did you reject"],
     undo: &["undo that", "undo", "take that back"],
     clock: &["what time", "whats the time", "the time is it"],
     date: &["what date", "whats the date", "what is the date", "todays date", "the date today", "current date"],

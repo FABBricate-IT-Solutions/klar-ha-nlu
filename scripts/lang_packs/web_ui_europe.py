@@ -131,6 +131,11 @@ compiledRisk	Kompilierts Risiko	Kompiliertes Risiko	Compiled risk	Gekompileerde 
 finalBand	Band	Band	Band	Band	Band	Band	Band	Band	Band
 triggerFirst	HA-Satztrigger zersch, denn Klar, denn registrierte Intent.	HA-Satztrigger zuerst, dann Klar, dann registrierter Intent.	HA sentence triggers first, then Klar, then a registered intent.	HA-sinsnellers eers, dan Klar, dan 'n geregistreerde intent.	HA-Saztrigger als éischt, dann Klar, dann e registréierten Intent.	Sbardunau brawddeg HA yn gyntaf, yna Klar, yna intent cofrestredig.	HA esaldi-abiarazleak lehenik, gero Klar, gero erregistratutako intent.	Spreagthóirí abairte HA ar dtús, ansin Klar, ansin intent cláraithe.	Triggerow lavar HA kynsa, ena Klar, ena intent registrys.
 discarded	Weggleit	Verworfen	Discarded	Verwerp	Verworf	Wedi'i wrthod	Baztertuta	Caite i leataobh	Skonyes
+decisionTrace	Entscheidungs-Trace	Entscheidungs-Trace	Decision trace	Besluitspoor	Entscheidungs-Trace	Olrhain penderfyniad	Erabaki-arrastoa	Rian cinneadh	Trace dybrans
+triggerWord	Auslöserwort	Auslöserwort	Trigger word	Snellerwoord	Ausléiserwuert	Gair sbardun	Abiarazle-hitza	Focal spreagtha	Ger trigger
+consumedSpans	Verbrauchte Spannen	Verbrauchte Spannen	Consumed spans	Verbruikte spanne	Verbrauchte Spannen	Sbaenau wedi'u defnyddio	Kontsumitutako tarteak	Raonta ídithe	Spans kombys
+remainingTokens	Übrige Tokens	Übrige Tokens	Remaining tokens	Oorblywende tokens	Iwwereg Tokens	Tocynnau sy'n weddill	Geratzen diren tokenak	Comharthaí fágtha	Tokennow gesys
+discardedClause	Verworfene Klausel	Verworfene Klausel	Discarded clause	Verworpe klousule	Verworf Klausel	Cymal wedi'i wrthod	Baztertutako klausula	Clásal caite i leataobh	Klaws skonyes
 stageTokens	Tokens	Tokens	Tokens	Tokens	Tokens	Tokens	Tokens	Tokens	Tokens
 stageBind	Bind	Bind	Bind	Bind	Bind	Bind	Bind	Bind	Bind
 stageRank	Rank	Rank	Rank	Rank	Rank	Rank	Rank	Rank	Rank

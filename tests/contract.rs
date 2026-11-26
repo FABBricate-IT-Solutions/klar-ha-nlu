@@ -52,10 +52,23 @@ fn v2_json_contract_has_versioned_shape_and_deterministic_ordering() {
     assert!(json["evidence"].is_array());
     assert_eq!(
         first.trace.stages.iter().map(|stage| stage.stage.as_str()).collect::<Vec<_>>(),
-        ["normalize", "features", "action_candidates", "target_resolution", "binding", "ranking", "safety_decision", "planning"]
+        [
+            "normalize",
+            "features",
+            "action_candidates",
+            "target_resolution",
+            "binding",
+            "ranking",
+            "safety_decision",
+            "mood_guard",
+            "planning"
+        ]
     );
     assert!(!first.trace.tokens.is_empty());
     assert!(!first.trace.normalized.is_empty());
+    assert_eq!(first.trace.trigger_word.as_deref(), Some("an"));
+    assert!(!first.trace.remaining_tokens.is_empty());
+    assert!(first.trace.stages.iter().any(|stage| stage.stage == "mood_guard"));
     let trace = first.policy_trace.as_ref().expect("policy_trace");
     let match_node = trace.match_node.as_ref().expect("match");
     assert_eq!(match_node.origin, "engine");

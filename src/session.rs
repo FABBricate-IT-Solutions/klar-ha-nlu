@@ -32,6 +32,8 @@ pub struct LastHeard {
     pub reason: Option<String>,
     pub area: Option<String>,
     pub names: Vec<String>,
+    /// Word from the last parse that selected the action, when the trace recorded one.
+    pub trigger_word: Option<String>,
 }
 
 #[derive(Debug, Clone)]
@@ -140,6 +142,7 @@ impl Session {
             reason,
             area: self.preferred_area.clone(),
             names: outcome.plan.as_ref().map(|plan| plan.intents().into_iter().map(|intent| intent.name).collect()).unwrap_or_default(),
+            trigger_word: outcome.trace.trigger_word.clone(),
         });
     }
 

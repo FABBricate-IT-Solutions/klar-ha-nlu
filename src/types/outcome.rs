@@ -15,6 +15,9 @@ pub const MAX_DETAIL_CHARS: usize = 256;
 pub const MAX_TRACE_TOKEN_CHARS: usize = 64;
 /// Cap for the parse-trace token list (`MAX_TRACE_STAGES * 16`).
 pub const MAX_TRACE_TOKENS: usize = MAX_TRACE_STAGES.saturating_mul(16);
+/// Cap for consumed name spans and discarded-clause rows in the decision trace.
+pub const MAX_TRACE_SPANS: usize = 32;
+pub const MAX_TRACE_DISCARDED_CLAUSES: usize = 32;
 
 #[derive(Debug, Clone, Serialize, Deserialize, PartialEq)]
 pub struct ParseOutcome {
@@ -193,6 +196,18 @@ pub struct ParseTrace {
     pub tokens: Vec<String>,
     #[serde(default, skip_serializing_if = "String::is_empty")]
     pub normalized: String,
+    /// Device/area name spans the linker consumed before verbs and quantities.
+    #[serde(default, skip_serializing_if = "Vec::is_empty")]
+    pub consumed_spans: Vec<ConsumedSpan>,
+    /// Tokens left after name spans were consumed.
+    #[serde(default, skip_serializing_if = "Vec::is_empty")]
+    pub remaining_tokens: Vec<String>,
+    /// Clauses the mood guard dropped, with the reason for each.
+    #[serde(default, skip_serializing_if = "Vec::is_empty")]
+    pub discarded_clauses: Vec<DiscardedClause>,
+    /// Spoken word that selected the action (verb particle, colour, …).
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub trigger_word: Option<String>,
 }
 
 #[derive(Debug, Clone, Serialize, Deserialize, PartialEq)]
@@ -207,6 +222,20 @@ pub struct DiscardedAlternative {
     pub candidate_id: String,
     pub policy: String,
     pub score: f64,
+    pub reason: String,
+}
+
+#[derive(Debug, Clone, Serialize, Deserialize, PartialEq, Eq)]
+pub struct ConsumedSpan {
+    pub start: usize,
+    pub end: usize,
+    pub text: String,
+    pub kind: String,
+}
+
+#[derive(Debug, Clone, Serialize, Deserialize, PartialEq, Eq)]
+pub struct DiscardedClause {
+    pub text: String,
     pub reason: String,
 }
 
@@ -368,6 +397,26 @@ impl ParseOutcome {
             truncate_chars(token, MAX_TRACE_TOKEN_CHARS);
         }
         truncate_chars(&mut self.trace.normalized, MAX_DETAIL_CHARS);
+        self.trace.consumed_spans.truncate(MAX_TRACE_SPANS);
+        for span in &mut self.trace.consumed_spans {
+            truncate_chars(&mut span.text, MAX_DETAIL_CHARS);
+            truncate_chars(&mut span.kind, 32);
+        }
+        self.trace.remaining_tokens.truncate(MAX_TRACE_TOKENS);
+        for token in &mut self.trace.remaining_tokens {
+            truncate_chars(token, MAX_TRACE_TOKEN_CHARS);
+        }
+        self.trace.discarded_clauses.truncate(MAX_TRACE_DISCARDED_CLAUSES);
+        for clause in &mut self.trace.discarded_clauses {
+            truncate_chars(&mut clause.text, MAX_DETAIL_CHARS);
+            truncate_chars(&mut clause.reason, 64);
+        }
+        if let Some(word) = &mut self.trace.trigger_word {
+            truncate_chars(word, MAX_TRACE_TOKEN_CHARS);
+            if word.is_empty() {
+                self.trace.trigger_word = None;
+            }
+        }
         match &mut self.decision {
             ParseDecision::Clarify { prompt, options } => {
                 options.truncate(MAX_CLARIFY_OPTIONS);

@@ -7,6 +7,8 @@ import {
   MAX_PARSE_CHARS,
   MAX_PLAN_STEPS,
   MAX_TRACE_DISCARDED,
+  MAX_TRACE_DISCARDED_CLAUSES,
+  MAX_TRACE_SPANS,
   MAX_TRACE_STAGES,
   MAX_TRACE_TOKEN_CHARS,
   MAX_TRACE_TOKENS,
@@ -231,7 +233,11 @@ function validatePolicyLayer(value: unknown, path: string): void {
 
 function validateTrace(value: unknown): void {
   const trace = object(value, "trace");
-  keys(trace, ["stages", "discarded", "tokens", "normalized"], ["tokens", "normalized"]);
+  keys(
+    trace,
+    ["stages", "discarded", "tokens", "normalized", "consumed_spans", "remaining_tokens", "discarded_clauses", "trigger_word"],
+    ["tokens", "normalized", "consumed_spans", "remaining_tokens", "discarded_clauses", "trigger_word"],
+  );
   list(trace.stages, "trace.stages", MAX_TRACE_STAGES, (item, path) => {
     const stage = object(item, path);
     keys(stage, ["stage", "duration_us", "detail"]);
@@ -252,6 +258,32 @@ function validateTrace(value: unknown): void {
   }
   if (trace.normalized !== undefined) {
     string(trace.normalized, "trace.normalized", MAX_PARSE_CHARS, true);
+  }
+  if (trace.consumed_spans !== undefined) {
+    list(trace.consumed_spans, "trace.consumed_spans", MAX_TRACE_SPANS, (item, path) => {
+      const span = object(item, path);
+      keys(span, ["start", "end", "text", "kind"]);
+      integer(span.start, `${path}.start`, Number.MAX_SAFE_INTEGER);
+      integer(span.end, `${path}.end`, Number.MAX_SAFE_INTEGER);
+      string(span.text, `${path}.text`, MAX_DETAIL_CHARS, true);
+      string(span.kind, `${path}.kind`, 32);
+    });
+  }
+  if (trace.remaining_tokens !== undefined) {
+    list(trace.remaining_tokens, "trace.remaining_tokens", MAX_TRACE_TOKENS, (item, path) =>
+      string(item, path, MAX_TRACE_TOKEN_CHARS),
+    );
+  }
+  if (trace.discarded_clauses !== undefined) {
+    list(trace.discarded_clauses, "trace.discarded_clauses", MAX_TRACE_DISCARDED_CLAUSES, (item, path) => {
+      const clause = object(item, path);
+      keys(clause, ["text", "reason"]);
+      string(clause.text, `${path}.text`, MAX_DETAIL_CHARS, true);
+      string(clause.reason, `${path}.reason`, 64);
+    });
+  }
+  if (trace.trigger_word !== undefined && trace.trigger_word !== null) {
+    string(trace.trigger_word, "trace.trigger_word", MAX_TRACE_TOKEN_CHARS);
   }
 }
 

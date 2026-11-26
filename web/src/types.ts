@@ -108,11 +108,17 @@ export type IntentCandidate = {
   precedence: number;
   evidence: Evidence[];
 };
+export type ConsumedSpan = { start: number; end: number; text: string; kind: string };
+export type DiscardedClause = { text: string; reason: string };
 export type ParseTrace = {
   stages: { stage: string; duration_us: number; detail: string }[];
   discarded: { candidate_id: string; policy: string; score: number; reason: string }[];
   tokens?: string[];
   normalized?: string;
+  consumed_spans?: ConsumedSpan[];
+  remaining_tokens?: string[];
+  discarded_clauses?: DiscardedClause[];
+  trigger_word?: string | null;
 };
 
 export type ParseDecision =

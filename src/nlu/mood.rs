@@ -14,23 +14,23 @@ use crate::parse::mood::{question_ending, question_mark, Clause, Reading};
 use crate::parse::normalize::tokenize;
 use crate::parse::respond::speak_unknown;
 use crate::parse::split::split_clauses;
-use crate::types::{Intent, ParseDecision, RejectReason};
+use crate::types::{DiscardedClause, Intent, ParseDecision, RejectReason};
 
-/// Returns the draft to finish with and whether the guard replaced it.
-pub(super) fn guard(context: &ParseContext<'_>, draft: Draft) -> (Draft, bool) {
+/// Returns the draft to finish with, whether the guard replaced it, and dropped clauses.
+pub(super) fn guard(context: &ParseContext<'_>, draft: Draft) -> (Draft, bool, Vec<DiscardedClause>) {
     // "Do it" answers the confirmation. Its sentence was judged when the question was asked.
     if context.probe || draft.safety_confirmed {
-        return (draft, false);
+        return (draft, false, Vec::new());
     }
     let Some(pending) = Pending::of(&draft) else {
-        return (draft, false);
+        return (draft, false, Vec::new());
     };
     let sentence = Sentence::read(context, &pending);
     match sentence.verdict(context, &pending) {
-        Verdict::Act => (draft, false),
-        Verdict::Refuse(reason) => (reject(reason, speak_unknown()), true),
-        Verdict::Ask => (pending.as_query(context, draft), true),
-        Verdict::Keep(steps) => (rebuild(context, &draft, steps), true),
+        Verdict::Act => (draft, false, Vec::new()),
+        Verdict::Refuse(reason) => (reject(reason, speak_unknown()), true, sentence.discarded_for_refuse()),
+        Verdict::Ask => (pending.as_query(context, draft), true, sentence.discarded_closed()),
+        Verdict::Keep(steps) => (rebuild(context, &draft, steps), true, sentence.discarded_closed()),
     }
 }
 
@@ -226,6 +226,48 @@ impl Sentence {
         } else {
             Verdict::Keep(kept)
         }
+    }
+
+    fn discarded_for_refuse(&self) -> Vec<DiscardedClause> {
+        let readings = || self.clauses.iter().map(|(_, reading)| reading);
+        if readings().any(|reading| reading.conditional) {
+            return self.clauses_with_reason(|reading| reading.conditional, "conditional");
+        }
+        if readings().any(|reading| reading.bare_negation) {
+            return self.clauses_with_reason(|reading| reading.bare_negation, "bare_negation");
+        }
+        if readings().any(|reading| reading.timed || reading.clock.is_some()) {
+            return self.clauses_with_reason(|reading| reading.timed || reading.clock.is_some(), "scheduled");
+        }
+        self.discarded_closed()
+    }
+
+    fn discarded_closed(&self) -> Vec<DiscardedClause> {
+        let negated_from = self.clauses.iter().position(|(_, reading)| reading.negated).unwrap_or(self.clauses.len());
+        self.clauses
+            .iter()
+            .enumerate()
+            .filter_map(|(at, (tokens, reading))| {
+                let reason = if at >= negated_from && reading.negated {
+                    "negated"
+                } else if at >= negated_from {
+                    "after_negation"
+                } else if reading.asked {
+                    "question"
+                } else {
+                    return None;
+                };
+                Some(DiscardedClause { text: tokens.join(" "), reason: reason.into() })
+            })
+            .collect()
+    }
+
+    fn clauses_with_reason(&self, pred: impl Fn(&Reading) -> bool, reason: &str) -> Vec<DiscardedClause> {
+        self.clauses
+            .iter()
+            .filter(|(_, reading)| pred(reading))
+            .map(|(tokens, _)| DiscardedClause { text: tokens.join(" "), reason: reason.into() })
+            .collect()
     }
 
     /// A time word puts a device command off to another time, and nothing here can keep

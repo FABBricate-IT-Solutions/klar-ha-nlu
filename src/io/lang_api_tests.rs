@@ -167,7 +167,7 @@ fn explain_speech_speaks_path_ids() {
         candidates: Vec::new(),
         plan: None,
         evidence: Vec::new(),
-        trace: crate::types::ParseTrace { stages: Vec::new(), discarded: Vec::new(), tokens: Vec::new(), normalized: String::new() },
+        trace: crate::types::ParseTrace::default(),
         briefing: false,
         news_topic: None,
         retrieval: None,
