@@ -337,8 +337,8 @@ pub fn detect_speech_lang(tokens: &[String], langs: &[LangId]) -> LangId {
 fn pack_knows_token(pack: &Pack, token: &str) -> bool {
     pack.verbs.iter().any(|(word, _)| *word == token)
         || pack.household.clock.iter().any(|phrase| phrase.split_whitespace().any(|word| word == token))
-        || pack.talk.query_hint.iter().any(|word| *word == token)
-        || pack.talk.question_starts.iter().any(|word| *word == token)
+        || pack.talk.query_hint.contains(&token)
+        || pack.talk.question_starts.contains(&token)
 }
 
 pub struct CatalogBind {

@@ -89,7 +89,7 @@ fn raw_tar_gz(files: &[(&str, &[u8])]) -> Vec<u8> {
         tar_bytes.extend_from_slice(&gnu_header(name, data.len() as u64));
         tar_bytes.extend_from_slice(data);
         let pad = (512 - (data.len() % 512)) % 512;
-        tar_bytes.extend(std::iter::repeat(0u8).take(pad));
+        tar_bytes.extend(std::iter::repeat_n(0u8, pad));
     }
     tar_bytes.extend_from_slice(&[0u8; 1024]);
     let mut gz = Vec::new();

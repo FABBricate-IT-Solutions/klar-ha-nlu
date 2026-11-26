@@ -22,7 +22,8 @@ CARGO_LOCK = "Cargo.lock"
 MANIFEST = "custom_components/klar_nlu/manifest.json"
 CONST = "custom_components/klar_nlu/const.py"
 ADDON = "addon/config.yaml"
-FILES = (CARGO_TOML, CARGO_LOCK, MANIFEST, CONST, ADDON)
+ADDON_STAGING = "addon-staging/config.yaml"
+FILES = (CARGO_TOML, CARGO_LOCK, MANIFEST, CONST, ADDON, ADDON_STAGING)
 
 
 def _match(root: Path, name: str, pattern: str) -> str:
@@ -48,6 +49,7 @@ def read_versions(root: Path) -> dict[str, str]:
         MANIFEST: json.loads((root / MANIFEST).read_text(encoding="utf-8"))["version"],
         CONST: _match(root, CONST, r'^ENGINE_VERSION = "([^"]+)"$'),
         ADDON: _match(root, ADDON, r'^version: "([^"]+)"$'),
+        ADDON_STAGING: _match(root, ADDON_STAGING, r'^version: "([^"]+)"$'),
     }
 
 

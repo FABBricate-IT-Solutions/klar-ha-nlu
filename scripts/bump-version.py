@@ -62,6 +62,8 @@ def write_version(version: str) -> None:
         version,
     )
     replace_once(ROOT / "addon/config.yaml", r'^version: "[^"]+"', f'version: "{version}"')
+    # V-15: staging add-on tracks CalVer so Supervisor has an update path.
+    replace_once(ROOT / "addon-staging/config.yaml", r'^version: "[^"]+"', f'version: "{version}"')
     replace_once(
         ROOT / "custom_components/klar_nlu/manifest.json",
         r'"version": "[^"]+"',

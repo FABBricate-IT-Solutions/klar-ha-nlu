@@ -302,7 +302,7 @@ fn has_number_word(text: &str) -> bool {
 }
 
 fn is_number_token(token: &str) -> bool {
-    if SIMPLE_NUM_WORDS.iter().any(|word| *word == token) {
+    if SIMPLE_NUM_WORDS.contains(&token) {
         return true;
     }
     for unit in UNITS {

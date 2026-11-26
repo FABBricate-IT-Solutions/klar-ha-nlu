@@ -1,4 +1,5 @@
 pub(crate) mod access_log;
+pub(crate) mod addon_options;
 pub(crate) mod auth;
 pub(crate) mod auth_middleware;
 pub(crate) mod backup;
@@ -40,6 +41,7 @@ pub(crate) mod trainer_turns;
 pub mod web;
 pub mod wyoming;
 
+pub use addon_options::AddonOptions;
 pub use bootstrap::{run, RuntimeArgs};
 pub use bundle::{BundleEntry, BundleRequest, BundleResponse};
 pub use privacy::{hash_conversation_id, redact_entries, replay_tokens, NameMap};

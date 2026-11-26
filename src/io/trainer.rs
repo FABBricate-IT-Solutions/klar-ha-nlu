@@ -124,7 +124,7 @@ pub async fn load_context(state: &AppState, query: &TrainerQuery) -> Result<Trai
     let settings = state.settings.lock().await.clone();
     let language = pin_language(query.language.as_deref(), &settings).map_err(|_| StatusCode::BAD_REQUEST)?;
     let home = state.home.snapshot().await;
-    let catalog = catalog_for(&[language.clone()]);
+    let catalog = catalog_for(std::slice::from_ref(&language));
     let overlay = load_overlay(&state.data_dir);
     Ok(TrainerContext {
         language,

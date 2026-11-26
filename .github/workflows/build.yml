@@ -60,7 +60,7 @@ jobs:
           persist-credentials: false
       - uses: dtolnay/rust-toolchain@df2a88e9fe4098bad09cb42c3dec7187f15861fc # master
         with:
-          toolchain: "1.85"
+          toolchain: "1.91"
           targets: ${{ matrix.target }}
       - uses: taiki-e/setup-cross-toolchain-action@0375eb1d01bea430aa3202965839a7092960a23b # v1.43.1
         with:
@@ -304,9 +304,10 @@ jobs:
           path: dist
           pattern: klar-linux-*
           merge-multiple: true
+      # V-14: SBOM describes the published image, not the source tree.
       - uses: anchore/sbom-action@e22c389904149dbc22b58101806040fa8d37a610 # v0.24.0
         with:
-          path: .
+          image: ${{ needs.docker-publish.outputs.image }}
           format: cyclonedx-json
           artifact-name: klar.cdx.json
           output-file: dist/klar.cdx.json

@@ -132,7 +132,7 @@ impl OverlayStore {
     fn inspect(&self) -> (Vec<u8>, OverlayRead) {
         let (raw, read) = self.read_raw();
         match &read {
-            OverlayRead::Unreadable(reason) => self.keep_bad(&raw, &[reason.clone()], true),
+            OverlayRead::Unreadable(reason) => self.keep_bad(&raw, std::slice::from_ref(reason), true),
             OverlayRead::Loaded { dropped, .. } if !dropped.is_empty() => self.keep_bad(&raw, dropped, false),
             OverlayRead::Missing | OverlayRead::Loaded { .. } => {}
         }

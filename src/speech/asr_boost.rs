@@ -301,7 +301,7 @@ pub fn estimate_tokens(text: &str) -> usize {
     if words.is_empty() {
         return 0;
     }
-    words.iter().map(|w| ((w.chars().count() + 3) / 4).max(1)).sum()
+    words.iter().map(|w| w.chars().count().div_ceil(4).max(1)).sum()
 }
 
 fn content_stamp(language: &str, max_tokens: usize, terms: &[AsrBoostTerm]) -> String {
@@ -411,7 +411,7 @@ mod tests {
         assert!(texts.iter().any(|t| t.contains("Studio-Vorhang") || *t == "Studio-Vorhang"), "{texts:?}");
         assert!(!texts.iter().any(|t| *t == "Studio" || *t == "Obergeschoss"), "places leaked: {texts:?}");
         assert!(!texts.iter().any(|t| t.eq_ignore_ascii_case("licht")), "generic light leaked: {texts:?}");
-        assert!(!texts.iter().any(|t| *t == "Wohnzimmer Licht"), "easy light name leaked: {texts:?}");
+        assert!(!texts.contains(&"Wohnzimmer Licht"), "easy light name leaked: {texts:?}");
         let vorhang_term = out.terms.iter().find(|t| t.text == "Vorhang").unwrap();
         assert_eq!(vorhang_term.tier, 3);
         assert_eq!(vorhang_term.entity_id.as_deref(), Some("cover.studio_vorhang"));

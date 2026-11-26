@@ -41,7 +41,7 @@ fn boost_includes_vorhang_alias_and_short_names_before_budget_exhaustion() {
     assert!(!out.prompt.split_whitespace().any(|w| w == "Vorrang"), "prompt leaked Vorrang: {}", out.prompt);
     // Everyday command lexicon / common rooms must not dominate the bias list.
     assert!(!out.prompt.split_whitespace().any(|w| w.eq_ignore_ascii_case("licht")), "prompt leaked Licht: {}", out.prompt);
-    assert!(!texts.iter().any(|t| *t == "Wohnzimmer"), "common place leaked: {texts:?}");
+    assert!(!texts.contains(&"Wohnzimmer"), "common place leaked: {texts:?}");
 }
 
 #[test]
@@ -49,7 +49,7 @@ fn boost_stays_under_token_budget() {
     let mut home = default_home();
     home.assist = Some(home.entities.iter().map(|e| e.entity_id.clone()).collect());
     let out = build_asr_boost(&home, &de(), &[], "de", 200);
-    let tokens: usize = out.prompt.split_whitespace().map(|w| ((w.chars().count() + 3) / 4).max(1)).sum();
+    let tokens: usize = out.prompt.split_whitespace().map(|w| w.chars().count().div_ceil(4).max(1)).sum();
     assert!(tokens <= 200, "tokens={tokens} prompt={}", out.prompt);
     assert!(!out.updated_at.is_empty());
 }

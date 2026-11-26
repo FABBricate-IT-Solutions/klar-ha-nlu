@@ -76,7 +76,7 @@ Assist is stateless here (no Klar session follow-up). That matches the default a
 
 ## Reproduce it
 
-Rust 1.85+, Python 3.12+, [cargo-nextest](https://nexte.st/). No live Home Assistant required.
+Rust 1.91+, Python 3.12+, [cargo-nextest](https://nexte.st/). No live Home Assistant required.
 
 ### Klar (reference)
 

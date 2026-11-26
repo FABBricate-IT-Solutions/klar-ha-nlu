@@ -104,7 +104,7 @@ fn wet_row(row: &SpeechForecast) -> bool {
 }
 
 fn rainy(condition: &str) -> bool {
-    RAINY.iter().any(|name| *name == condition)
+    RAINY.contains(&condition)
 }
 
 fn pick_day(snap: &SpeechSnapshot) -> Option<&SpeechForecast> {

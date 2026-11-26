@@ -218,7 +218,9 @@ class EngineHealthTests(unittest.TestCase):
         self.assertIn("watchdog: http://[HOST]:[PORT:10520]/api/v2/health", addon)
         docker = (ROOT / "Dockerfile").read_text(encoding="utf-8")
         self.assertIn("HEALTHCHECK", docker)
-        self.assertIn("/api/v2/health", docker)
+        # Scratch image has no shell; healthcheck goes through the binary (5.4 / V-13).
+        self.assertIn("healthcheck", docker)
+        self.assertIn("10520", docker)
 
 
 if __name__ == "__main__":

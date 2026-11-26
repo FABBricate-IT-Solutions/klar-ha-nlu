@@ -1,0 +1,72 @@
+name: Retention
+# V-15: prune old staging prereleases and untagged GHCR package versions.
+# Pin Ubuntu 26.04. ubuntu-latest moves to this image through November 2026.
+
+on:
+  schedule:
+    - cron: "23 5 * * 1"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: retention
+  cancel-in-progress: false
+
+jobs:
+  prune:
+    name: prune
+    runs-on: ubuntu-26.04
+    permissions:
+      contents: write
+      packages: write
+    steps:
+      - name: Delete old staging prereleases
+        env:
+          GH_TOKEN: ${{ github.token }}
+          KEEP: "20"
+        run: |
+          set -euo pipefail
+          mapfile -t releases < <(
+            gh api --paginate \
+              "/repos/${{ github.repository }}/releases" \
+              --jq '.[] | select(.prerelease==true) | select(.tag_name | test("-staging\\.")) | [.created_at, .id, .tag_name] | @tsv' \
+              | sort -r
+          )
+          total="${#releases[@]}"
+          echo "staging prereleases: ${total} (keep ${KEEP})"
+          if (( total <= KEEP )); then
+            exit 0
+          fi
+          for row in "${releases[@]:KEEP}"; do
+            id="$(cut -f2 <<<"$row")"
+            tag="$(cut -f3 <<<"$row")"
+            echo "delete prerelease ${tag} (${id})"
+            gh api -X DELETE "/repos/${{ github.repository }}/releases/${id}"
+            gh api -X DELETE "/repos/${{ github.repository }}/git/refs/tags/${tag}" || true
+          done
+
+      - name: Delete untagged container package versions
+        env:
+          GH_TOKEN: ${{ github.token }}
+          KEEP_UNTAGGED: "0"
+        run: |
+          set -euo pipefail
+          # Container packages are named klar-nlu, klar-nlu-amd64, klar-nlu-aarch64.
+          for pkg in klar-nlu klar-nlu-amd64 klar-nlu-aarch64; do
+            echo "== package ${pkg}"
+            mapfile -t versions < <(
+              gh api --paginate \
+                "/orgs/FABBricate-IT-Solutions/packages/container/${pkg}/versions" \
+                --jq '.[] | select((.metadata.container.tags | length) == 0) | .id' \
+                || true
+            )
+            echo "untagged versions: ${#versions[@]}"
+            for id in "${versions[@]}"; do
+              echo "delete ${pkg} version ${id}"
+              gh api -X DELETE \
+                "/orgs/FABBricate-IT-Solutions/packages/container/${pkg}/versions/${id}" \
+                || true
+            done
+          done

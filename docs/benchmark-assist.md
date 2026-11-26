@@ -76,7 +76,7 @@ Assist ist zustandslos (kein Klar-Session-Follow-up). Das ist Absicht: so arbeit
 
 ## Selbst nachfahren
 
-Rust 1.85+, Python 3.12+, [cargo-nextest](https://nexte.st/). Kein Live-Home-Assistant nötig.
+Rust 1.91+, Python 3.12+, [cargo-nextest](https://nexte.st/). Kein Live-Home-Assistant nötig.
 
 ### Klar (Referenz)
 

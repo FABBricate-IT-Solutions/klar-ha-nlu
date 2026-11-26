@@ -274,7 +274,7 @@ mod tests {
         let _ja = crate::lang::bind(&["ja".into()]);
         let room = fold_latin("洗面所");
         assert_ne!(tokenize("洗面所"), vec![room.clone()]);
-        assert_eq!(tokenize_with("洗面所", &[room.clone()]), vec![room]);
+        assert_eq!(tokenize_with("洗面所", std::slice::from_ref(&room)), vec![room]);
     }
 
     #[test]

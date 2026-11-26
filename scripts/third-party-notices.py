@@ -285,7 +285,40 @@ def crates_from_metadata(meta: dict) -> list[tuple[str, str, str]]:
     return rows
 
 
-def render(crates: list[tuple[str, str, str]]) -> str:
+def npm_from_lock(lock: dict) -> list[tuple[str, str, str]]:
+    """Production npm packages from package-lock.json (V-14)."""
+    packages = lock.get("packages") or {}
+    rows: list[tuple[str, str, str]] = []
+    for key, meta in packages.items():
+        if not key.startswith("node_modules/"):
+            continue
+        # Skip nested deps under another package's node_modules.
+        rest = key[len("node_modules/") :]
+        if "/node_modules/" in rest:
+            continue
+        if meta.get("dev"):
+            continue
+        name = rest
+        version = meta.get("version") or "?"
+        license_id = meta.get("license") or "see package"
+        if isinstance(license_id, list):
+            license_id = " OR ".join(str(item) for item in license_id)
+        rows.append((name, version, str(license_id)))
+    rows.sort()
+    return rows
+
+
+def load_npm() -> list[tuple[str, str, str]]:
+    path = ROOT / "web" / "package-lock.json"
+    if not path.is_file():
+        return []
+    return npm_from_lock(json.loads(path.read_text(encoding="utf-8")))
+
+
+def render(
+    crates: list[tuple[str, str, str]],
+    npm: list[tuple[str, str, str]] | None = None,
+) -> str:
     lines = [
         "Third-party software used by Klar NLU",
         "",
@@ -295,12 +328,23 @@ def render(crates: list[tuple[str, str, str]]) -> str:
     ]
     for name, version, license_id in crates:
         lines.append(f"{name} {version}  {license_id}")
+    npm = npm if npm is not None else []
+    if npm:
+        lines.extend(
+            [
+                "",
+                "npm packages shipped in the operator UI (web/):",
+                "",
+            ]
+        )
+        for name, version, license_id in npm:
+            lines.append(f"{name} {version}  {license_id}")
     lines.extend(
         [
             "",
             "MIT (and Unlicense OR MIT) crates are used under MIT; that text is in LICENSE.",
             "Apache-2.0, BSD-3-Clause, and Unicode-3.0 texts required by linked crates",
-            "follow.",
+            "follow. npm packages keep their upstream license texts in node_modules.",
             "",
             "===== Apache-2.0 =====",
             "",
@@ -344,7 +388,7 @@ def main(argv: list[str]) -> int:
     if argv[1:] in (["-h"], ["--help"]):
         print("usage: third-party-notices.py > THIRD_PARTY", file=sys.stderr)
         return 2
-    sys.stdout.write(render(crates_from_metadata(load_metadata())))
+    sys.stdout.write(render(crates_from_metadata(load_metadata()), load_npm()))
     return 0
 
 
