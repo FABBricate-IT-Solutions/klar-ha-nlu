@@ -106,7 +106,7 @@ pub const PACK: LanguagePack = LanguagePack {
         chores: &["λιστα"],
         weak_scene: &["στο", "την", "το"],
         timer_cancel: &["σβησε"],
-        timer_pause: &["halt", "hold"],
+        timer_pause: &["halt", "hold", "παυσε", "παυση"],
         timer_add: &[],
         timer_remove: &["minus", "μειωσε"],
         list_complete: &[],

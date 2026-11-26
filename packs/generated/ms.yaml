@@ -25,8 +25,12 @@ verbs:
   - Color
 - - hidupkan
   - 'On'
+- - jeda
+  - Pause
 - - kipas
   - FanNoun
+- - kunci
+  - Lock
 - - kuncikan
   - Lock
 - - kurang
@@ -43,6 +47,8 @@ verbs:
   - Color
 - - pangkalan
   - Dock
+- - pasang
+  - 'On'
 - - pemasa
   - Timer
 - - peratus
@@ -81,6 +87,7 @@ talk:
   - di
   action_keep:
   - hidupkan
+  - pasang
   - matikan
   - buka
   - tutup

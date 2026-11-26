@@ -97,7 +97,7 @@ pub const PACK: LanguagePack = LanguagePack {
         replay_on_off: &["꺼", "켜"],
         replay_off: &["꺼"],
         sensor_words: &["sensor"],
-        lock_verbs: &["jamulsoe", "자물쇠"],
+        lock_verbs: &["jamulsoe", "자물쇠", "잠가"],
         entry_words: &["hyeongwan"],
         oven: &["oven"],
         laundry_timer: &["setaksil"],

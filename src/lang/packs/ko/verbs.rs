@@ -35,6 +35,7 @@ pub(super) const VERBS: &[(&str, VerbKind)] = &[
     ("완료", VerbKind::ListComplete),
     ("일시정지", VerbKind::Pause),
     ("자물쇠", VerbKind::Lock),
+    ("잠가", VerbKind::Lock),
     ("장면", VerbKind::Scene),
     ("재생", VerbKind::Play),
     ("주황", VerbKind::Color),

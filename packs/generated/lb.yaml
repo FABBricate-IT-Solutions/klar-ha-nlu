@@ -35,6 +35,10 @@ verbs:
   - Open
 - - orange
   - Color
+- - paus
+  - Pause
+- - pauseier
+  - Pause
 - - pink
   - Color
 - - play
@@ -45,7 +49,13 @@ verbs:
   - Color
 - - red
   - Color
+- - schalt
+  - 'On'
 - - schlass
+  - Lock
+- - setz
+  - Add
+- - spaer
   - Lock
 - - spill
   - Play
@@ -73,6 +83,8 @@ verbs:
   - Color
 - - zereck
   - Dock
+- - zou
+  - Close
 - - zoumaachen
   - Close
 talk:
@@ -81,6 +93,7 @@ talk:
   - am
   action_keep:
   - maach
+  - schalt
   - maachaus
   - opmaachen
   - zoumaachen
@@ -116,8 +129,10 @@ nouns:
   light_plural: []
   cover_nouns:
   - riddo
+  - rolllueden
   curtain_nouns:
   - riddo
+  - rolllueden
   fan_nouns:
   - ventilator
   climate_nouns:

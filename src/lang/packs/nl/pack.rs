@@ -151,7 +151,7 @@ pub const PACK: LanguagePack = LanguagePack {
         chores: &["boodschappen"],
         weak_scene: &["de", "een", "het"],
         timer_cancel: &["uitzetten"],
-        timer_pause: &["halt", "hold", "pauze"],
+        timer_pause: &["halt", "hold", "pauze", "pauzeer"],
         timer_add: &["voeg"],
         timer_remove: &["minus", "verlaag"],
         list_complete: &["klaar"],

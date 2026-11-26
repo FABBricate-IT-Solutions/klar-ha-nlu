@@ -29,7 +29,13 @@ verbs:
   - Dock
 - - kustuta
   - 'Off'
+- - lisa
+  - Add
+- - luelita
+  - Switch
 - - lukk
+  - Lock
+- - lukusta
   - Lock
 - - lulita
   - 'On'
@@ -43,6 +49,10 @@ verbs:
   - List
 - - orange
   - Color
+- - pausile
+  - Pause
+- - peata
+  - Pause
 - - pink
   - Color
 - - play
@@ -59,6 +69,8 @@ verbs:
   - Color
 - - stseen
   - Scene
+- - sueueta
+  - 'On'
 - - sulge
   - Close
 - - taimer
@@ -81,13 +93,16 @@ talk:
   - ja
   action_keep:
   - lulita
+  - süüta
   - kustuta
   - ava
   - sulge
   conjunctions:
   - ja
   - then
-  particles: []
+  particles:
+  - sisse
+  - välja
   affirm:
   - jah
   or_words:
@@ -109,8 +124,12 @@ talk:
 nouns:
   light_nouns:
   - vali
+  - lamp
+  - valgus
   light_singular:
   - vali
+  - lamp
+  - valgus
   light_plural: []
   cover_nouns:
   - kardin
@@ -146,6 +165,8 @@ nouns:
   switch_plural: []
   device_side:
   - vali
+  - lamp
+  - valgus
   - ventilaator
   - muusika
   - kardin

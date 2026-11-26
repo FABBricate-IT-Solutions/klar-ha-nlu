@@ -3,6 +3,7 @@ use crate::lang::verbs::VerbKind;
 
 pub(super) const VERBS: &[(&str, VerbKind)] = &[
     ("active", VerbKind::On),
+    ("aizsledz", VerbKind::Lock),
     ("aizver", VerbKind::Close),
     ("aptumso", VerbKind::Dim),
     ("atskanot", VerbKind::Play),
@@ -10,6 +11,7 @@ pub(super) const VERBS: &[(&str, VerbKind)] = &[
     ("black", VerbKind::Color),
     ("blue", VerbKind::Color),
     ("green", VerbKind::Color),
+    ("iededz", VerbKind::On),
     ("iesledz", VerbKind::On),
     ("iestati", VerbKind::Set),
     ("izsledz", VerbKind::Off),
@@ -17,6 +19,8 @@ pub(super) const VERBS: &[(&str, VerbKind)] = &[
     ("maja", VerbKind::Dock),
     ("next", VerbKind::Next),
     ("orange", VerbKind::Color),
+    ("pauze", VerbKind::Pause),
+    ("pievieno", VerbKind::Add),
     ("pink", VerbKind::Color),
     ("play", VerbKind::Play),
     ("procenti", VerbKind::Percent),

@@ -3,6 +3,7 @@ use crate::lang::verbs::VerbKind;
 
 pub(super) const VERBS: &[(&str, VerbKind)] = &[
     ("active", VerbKind::On),
+    ("baettu", VerbKind::Add),
     ("black", VerbKind::Color),
     ("blue", VerbKind::Color),
     ("dekkra", VerbKind::Dim),
@@ -12,6 +13,7 @@ pub(super) const VERBS: &[(&str, VerbKind)] = &[
     ("heitthvitt", VerbKind::Color),
     ("hvad", VerbKind::Query),
     ("kveiktu", VerbKind::On),
+    ("laestu", VerbKind::Lock),
     ("las", VerbKind::Lock),
     ("listi", VerbKind::List),
     ("lokadu", VerbKind::Close),
@@ -20,6 +22,7 @@ pub(super) const VERBS: &[(&str, VerbKind)] = &[
     ("next", VerbKind::Next),
     ("opnadu", VerbKind::Open),
     ("orange", VerbKind::Color),
+    ("pasu", VerbKind::Pause),
     ("pink", VerbKind::Color),
     ("play", VerbKind::Play),
     ("prosent", VerbKind::Percent),

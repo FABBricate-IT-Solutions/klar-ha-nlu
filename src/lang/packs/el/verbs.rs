@@ -21,6 +21,8 @@ pub(super) const VERBS: &[(&str, VerbKind)] = &[
     ("μπλε", VerbKind::Color),
     ("ξεκλειδωσε", VerbKind::Unlock),
     ("παιξε", VerbKind::Play),
+    ("παυσε", VerbKind::Pause),
+    ("παυση", VerbKind::Pause),
     ("πιο", VerbKind::Dim),
     ("πορτοκαλι", VerbKind::Color),
     ("πρασινο", VerbKind::Color),

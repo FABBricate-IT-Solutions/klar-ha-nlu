@@ -11,6 +11,8 @@ script: Latn
 verbs:
 - - active
   - 'On'
+- - aizsledz
+  - Lock
 - - aizver
   - Close
 - - aptumso
@@ -25,6 +27,8 @@ verbs:
   - Color
 - - green
   - Color
+- - iededz
+  - 'On'
 - - iesledz
   - 'On'
 - - iestati
@@ -39,6 +43,10 @@ verbs:
   - Next
 - - orange
   - Color
+- - pauze
+  - Pause
+- - pievieno
+  - Add
 - - pink
   - Color
 - - play
@@ -81,6 +89,7 @@ talk:
   - un
   action_keep:
   - iesledz
+  - iededz
   - izsledz
   - atver
   - aizver

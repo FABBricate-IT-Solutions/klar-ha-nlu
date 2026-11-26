@@ -25,6 +25,8 @@ verbs:
   - Color
 - - czerwony
   - Color
+- - dodaj
+  - Add
 - - fioletowy
   - Color
 - - jak
@@ -65,12 +67,18 @@ verbs:
   - FanNoun
 - - wlacz
   - 'On'
+- - wstrzymaj
+  - Pause
 - - wylacz
   - 'Off'
 - - zamek
   - Lock
 - - zamknij
   - Close
+- - zapal
+  - 'On'
+- - zgas
+  - 'Off'
 - - zielony
   - Color
 - - zmniejsz
@@ -84,13 +92,16 @@ talk:
   - na
   action_keep:
   - wlacz
+  - zapal
   - wylacz
+  - zgaś
   - otworz
   - zamknij
   conjunctions:
   - i
   - then
-  particles: []
+  particles:
+  - zgaś
   affirm:
   - tak
   - ok
