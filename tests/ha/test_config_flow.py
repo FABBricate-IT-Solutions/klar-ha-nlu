@@ -65,6 +65,7 @@ def _load_config_flow() -> types.ModuleType:
     config_entries.ConfigEntry = object
     config_entries.OptionsFlow = object
     core = types.ModuleType("homeassistant.core")
+    core.HomeAssistant = object
     core.callback = lambda function: function
     data_entry_flow = types.ModuleType("homeassistant.data_entry_flow")
     data_entry_flow.FlowResult = dict
@@ -109,6 +110,7 @@ def _load_config_flow() -> types.ModuleType:
         _load(f"{PACKAGE}.const", "const.py")
         _load(f"{PACKAGE}.addon_host", "addon_host.py")
         _load(f"{PACKAGE}.lang_select", "lang_select.py")
+        _load(f"{PACKAGE}.setup_token", "setup_token.py")
         return _load(f"{PACKAGE}.config_flow", "config_flow.py")
 
 

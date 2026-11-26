@@ -45,6 +45,7 @@ from .const import (
     resolve_channel,
     resolve_engine_target,
 )
+from .setup_token import async_claim_setup_token
 
 # Leftover product knobs from older options forms. Assist falls back to these
 # only when the engine settings cache is empty. The operator UI owns them now.
@@ -229,6 +230,11 @@ class KlarConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
             if not _valid_engine_url(url):
                 return self._user_form(errors={"base": "invalid_url"}, suggested=user_input)
             token = (user_input.get(CONF_TOKEN) or "").strip()
+            # 6.6: App installs mint a token; claim it so the first command needs no paste.
+            if mode == MODE_REMOTE and not token:
+                claimed = await async_claim_setup_token(self.hass, url)
+                if claimed:
+                    token = claimed
             if mode == MODE_REMOTE and not await _probe_engine(self.hass, url, token or None):
                 return self._user_form(errors={"base": "cannot_connect"}, suggested=user_input)
             data = {

@@ -112,7 +112,7 @@ export const de = {
   deleteSelected: "Auswahl löschen",
   clearAll: "Alle löschen",
   token: "Write-Token (LAN)",
-  tokenHint: "Zum Speichern auf diesem Bildschirm. Derselbe Wert wie das App-Token.",
+  tokenHint: "Die App füllt das meist automatisch. Nur für LAN-Clients außerhalb von Home Assistant eintragen.",
   customJson: "Eigene Sätze als JSON",
   customHint: "Phrase auf bekannten Intent. Policies liegen daneben, nicht in HA-Automationen.",
   addPhrase: "Satz hinzufügen",

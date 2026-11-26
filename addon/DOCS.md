@@ -9,20 +9,18 @@ Household path: [getting started](../docs/en/getting-started.md) · [Einstieg](.
 1. Install **Klar NLU** from Settings → Marketplace → Add from link (category Integration) if it is not already there. The badge on the repository README opens the same dialog. Before 2026.11 that was HACS → Integrations → Custom repositories.
 2. Add the integration and choose **Use the Klar NLU App or Docker**.
 3. URL: `http://klar-nlu:10520`
-4. If you set the App **token**, paste the same value into the integration **Write token**. Overlay writes from Home Assistant need it (Supervisor is not loopback).
+4. Leave **token** empty on a fresh install: Klar mints one under `/data/klar.token` and the integration claims it over the Supervisor network. Set the option only when you want a fixed shared secret.
 5. Personality, LLM, and refine live in the Klar NLU App / operator Settings — not in the Home Assistant options form. Assist’s conversation engine must stay **Klar NLU**. News briefing (what to say, topic, feeds, Feedreader): [Nachrichten](../docs/home-assistant.md#nachrichten) · [News](../docs/en/home-assistant.md#news).
 
 Do not also pick **Start the bundled engine (no App)** while this App is running.
 
-UI: on the App page turn **Show in sidebar** on, then open **Klar NLU**. That entry stays under Settings → Apps. **Klar engine** is the bundled engine and is not an App. Lovelace **Klar** is only the last Assist turn.
-
-The setup screen returns on every open until the App **token** and the integration **Write token** are the same string, and that string is pasted into operator **Settings**. The App sidebar cannot save without it. Direct access still works at `http://<home-assistant-host>:10520` if you expose the port.
+UI: on the App page turn **Show in sidebar** on, then open **Klar NLU**. That entry stays under Settings → Apps. **Klar engine** is the bundled engine and is not an App. Lovelace **Klar** is only the last Assist turn. Build identity and live health are under **Settings → Doctor**.
 
 ## Add-on options
 
 | Option | Meaning |
 |--------|---------|
-| `token` | Shared write secret → `KLAR_TOKEN`. Empty = no token. Same string as the integration write token. |
+| `token` | Shared write secret → `KLAR_TOKEN`. Empty on first start: Klar mints `/data/klar.token` and the integration claims it. |
 | `support_bundle` | Record Assist requests, replies, and actions under `/data`. |
 | `ui_locale` | Seeds operator chrome → `KLAR_UI_LOCALE` until App → Settings → Operator language is saved. |
 

@@ -61,8 +61,13 @@ pub async fn run(args: RuntimeArgs) -> std::io::Result<()> {
         Ok(opts) => opts.apply_env(),
         Err(err) => tracing::warn!("Add-on-Optionen nicht gelesen: {err}"),
     }
-    let token =
-        resolve_token(args.token.or_else(|| std::env::var("KLAR_TOKEN").ok().filter(|s| !s.is_empty())), args.token_file.as_deref());
+    // 6.6: when Supervisor left the option empty, mint `/data/klar.token` so the
+    // integration can claim it. Only auto-pick the file when `options.json` exists
+    // (App / Supervisor); bare cargo runs stay tokenless unless `--token-file` is set.
+    let addon_options = data_dir.join("options.json");
+    let default_token_file = addon_options.is_file().then(|| data_dir.join("klar.token"));
+    let token_file = args.token_file.as_deref().or(default_token_file.as_deref());
+    let token = resolve_token(args.token.or_else(|| std::env::var("KLAR_TOKEN").ok().filter(|s| !s.is_empty())), token_file);
     if token.is_none() {
         tracing::warn!("Kein Token: Schreiben nur von localhost; Supervisor-Netz darf lesen");
     }
@@ -270,6 +275,18 @@ mod tests {
         assert!(!token.is_empty());
         let mode = std::fs::metadata(&path).unwrap().permissions().mode() & 0o777;
         assert_eq!(mode, 0o600);
+    }
+
+    #[test]
+    fn addon_options_json_triggers_default_token_file_path() {
+        let scratch = TestDir::new("addon-token");
+        let dir = scratch.path().to_path_buf();
+        std::fs::write(dir.join("options.json"), r#"{"token":""}"#).unwrap();
+        assert!(dir.join("options.json").is_file());
+        let path = dir.join("klar.token");
+        let token = resolve_token(None, Some(&path)).expect("minted");
+        assert!(!token.is_empty());
+        assert_eq!(std::fs::read_to_string(&path).unwrap().trim(), token);
     }
 
     #[test]

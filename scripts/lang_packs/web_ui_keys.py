@@ -714,7 +714,7 @@ FALLBACKS = {
     "recordProtocolHint": "On: Klar keeps the last 200 turns for 24 hours. Needed for the downloads below.",
     "includeRawTextHint": "On: downloads include the spoken sentence. Off: redacted only.",
     "semanticAdaptersHint": "Off by default. On: after a miss, a local meaning match may still recover the intent. Not an LLM.",
-    "tokenHint": "Required to save from this screen. Same value as the App token.",
+    "tokenHint": "Usually filled by the App automatically. Paste only for LAN clients outside Home Assistant.",
     "operatorChrome": "This screen",
     "operatorChromeHint": "Theme and chrome language for operators. Not Assist.",
     "haGlueHint": "Home Assistant Configure only needs engine URL, token, channel, and an optional leftover conversation agent. Voice and LLM stay here.",

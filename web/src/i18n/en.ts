@@ -112,7 +112,7 @@ export const en = {
   deleteSelected: "Delete selection",
   clearAll: "Delete all",
   token: "Write token (LAN)",
-  tokenHint: "Required to save from this screen. Same value as the App token.",
+  tokenHint: "Usually filled by the App automatically. Paste only for LAN clients outside Home Assistant.",
   customJson: "Custom phrases as JSON",
   customHint: "Phrase onto a known intent. Policies sit beside this, not as HA automations.",
   addPhrase: "Add phrase",

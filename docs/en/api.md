@@ -68,6 +68,7 @@ Route index generated from the Axum router (`python3 scripts/gen_api_routes.py`)
 | `POST` | `/api/v2/session/undo-priors` | Write | Stamp prior brightness/position/temperature/volume onto the last execute so undo can restore them. |
 | `GET` | `/api/v2/settings/backup` | Write | Download allowlisted settings tar.gz. |
 | `POST` | `/api/v2/settings/restore` | Write | Restore from a settings backup archive. |
+| `GET` | `/api/v2/setup/token` | Read | Supervisor/loopback claim of the auto-minted write token (fresh App install). |
 | `GET` | `/api/v2/speech/asr_boost` | Read | Ranked Whisper bias terms for external STT. |
 | `POST` | `/api/v2/speech/render` | Read | Post-execute speech from an HA state snapshot. |
 | `GET` | `/api/v2/wrong-cases` | Read | List operator-marked regression cases. |

@@ -204,4 +204,4 @@ def apply_settings_copy(packs: dict[str, dict[str, str]]) -> None:
             fields["uiSaveFail"] = row.get("uiSaveFail") or "Die offene Ansicht konnte nicht gespeichert werden."
             fields["invalidJson"] = row.get("invalidJson") or "Das ist kein gültiges JSON."
             fields["rulesReloaded"] = row.get("rulesReloaded") or "Regeln neu von der Engine geladen."
-            fields["tokenHint"] = row.get("tokenHint") or "Zum Speichern auf diesem Bildschirm. Derselbe Wert wie das App-Token."
+            fields["tokenHint"] = row.get("tokenHint") or "Die App füllt das meist automatisch. Nur für LAN-Clients außerhalb von Home Assistant eintragen."

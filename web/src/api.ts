@@ -56,6 +56,17 @@ export type LanguagePack = {
   offered?: boolean;
 };
 
+export type EngineHealth = {
+  ok: boolean;
+  version: string;
+  sha: string;
+  home: { source: string; age_secs?: number | null; entities: number };
+  overlay: { status: string };
+  llm: LlmPublic;
+  wyoming: { listening: boolean };
+  ops: { requests?: number; overlay_writes?: number; wyoming_connects?: number };
+};
+
 /** True when the UI is served under Home Assistant ingress (shared HA origin). */
 export function isIngressOrigin(): boolean {
   if (typeof window === "undefined") return false;
@@ -194,6 +205,7 @@ async function streamTrainerChat(
 }
 
 export const api = {
+  health: () => request<EngineHealth>("/api/v2/health"),
   dashboard: () => request<Dashboard>("/api/dashboard"),
   ui: () => request<UiState>("/api/ui"),
   saveUi: (body: UiState) => request<UiState>("/api/ui", { method: "POST", body: JSON.stringify(body) }),

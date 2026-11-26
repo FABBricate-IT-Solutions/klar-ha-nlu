@@ -57,6 +57,7 @@ pub fn router(state: AppState) -> Router {
         .merge(crate::io::home_sync::routes(state.clone()))
         .merge(crate::io::backup::routes(state.clone()))
         .merge(crate::io::llm::routes())
+        .merge(crate::io::setup::routes())
         .merge(crate::io::speech::routes().layer(DefaultBodyLimit::max(crate::io::limits::MAX_SPEECH_RENDER_BYTES)))
         .layer(from_fn_with_state(state.clone(), authorize));
     Router::new()
