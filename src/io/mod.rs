@@ -39,6 +39,7 @@ pub(crate) mod trainer_phrases;
 pub(crate) mod trainer_reads;
 pub(crate) mod trainer_settings;
 pub(crate) mod trainer_turns;
+pub(crate) mod undo_priors;
 pub mod web;
 pub(crate) mod wrong_case;
 pub mod wyoming;

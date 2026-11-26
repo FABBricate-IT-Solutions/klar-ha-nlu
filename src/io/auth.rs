@@ -225,6 +225,7 @@ static ROUTES: &[RouteRow] = &[
     (&Method::POST, "/api/assignment/apply", Capability::Write),
     (&Method::POST, "/api/assignment/undo", Capability::Write),
     (&Method::POST, "/api/v2/home", Capability::Write),
+    (&Method::POST, "/api/v2/session/undo-priors", Capability::Write),
     (&Method::GET, "/api/v2/languages", Capability::Read),
     (&Method::GET, "/api/v2/intents", Capability::Read),
     (&Method::GET, "/api/lang/overlay", Capability::Read),

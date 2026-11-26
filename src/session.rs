@@ -1,9 +1,12 @@
+use crate::nlu::undo::stamp_priors;
 use crate::types::{
     Intent, IntentPlan, ParseDecision, ParseOutcome, MAX_CLARIFY_OPTIONS, MAX_DETAIL_CHARS, MAX_EVIDENCE_PER_ITEM, MAX_PLAN_STEPS,
 };
 use std::collections::HashMap;
 use std::time::{Duration, Instant};
 use uuid::Uuid;
+
+pub use crate::nlu::UndoPrior;
 
 const MAX_SESSIONS: usize = 256;
 const SESSION_TTL: Duration = Duration::from_secs(2 * 60 * 60);
@@ -248,6 +251,11 @@ impl Session {
             self.wrong_log.drain(..self.wrong_log.len() - WRONG_LOG_KEEP);
         }
     }
+
+    /// Stamp live HA priors onto the last execute so undo can restore values.
+    pub fn stamp_undo_priors(&mut self, priors: &[crate::nlu::UndoPrior]) {
+        stamp_priors(&mut self.last_execute, priors);
+    }
 }
 
 #[derive(Default)]
@@ -356,6 +364,19 @@ impl Sessions {
 
     pub fn created(&self) -> u64 {
         self.created
+    }
+
+    /// Attach undo priors to an existing session. Returns false when the id is unknown.
+    pub fn stamp_undo_priors(&mut self, id: &str, priors: &[crate::nlu::UndoPrior]) -> bool {
+        if !valid_id(id) {
+            return false;
+        }
+        let Some(session) = self.inner.get_mut(id) else {
+            return false;
+        };
+        session.last_used = Instant::now();
+        session.stamp_undo_priors(priors);
+        true
     }
 
     fn sweep_ttl(&mut self) {
