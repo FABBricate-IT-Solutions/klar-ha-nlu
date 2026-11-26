@@ -12,7 +12,7 @@ Settings → Devices & services → Klar NLU → Configure → **Release channel
 
 Install and start this app before switching to Staging. The app version tracks CalVer (same as Stable) so Supervisor has an update path when the tree is bumped; the image tag stays `staging`. Do not edit `.storage`.
 
-If you set the app **token** (password field), paste the same value into the integration write token.
+Leave **token** empty on a fresh install: Klar mints one and the integration claims it. Set the option only for a fixed shared secret.
 
 ## Options
 

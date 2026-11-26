@@ -184,6 +184,7 @@ fn path_matches(pattern: &str, path: &str) -> bool {
 type RouteRow = (&'static Method, &'static str, Capability);
 
 static ROUTES: &[RouteRow] = &[
+    (&Method::GET, "/api/v2/setup/token", Capability::Read),
     (&Method::POST, "/api/v2/parse", Capability::Read),
     (&Method::GET, "/api/settings", Capability::Read),
     (&Method::POST, "/api/settings", Capability::Write),

@@ -10,7 +10,7 @@ export type Route = {
 
 const houseViews: HouseView[] = ["graph", "entities", "calibrate"];
 const rulesViews: RulesView[] = ["routines", "sentences", "policies"];
-export const settingsViews: SettingsView[] = ["llm", "voice", "languages", "engine", "backup"];
+export const settingsViews: SettingsView[] = ["llm", "voice", "languages", "engine", "doctor", "backup"];
 
 const legacyTab: Record<string, Tab> = {
   dashboard: "home",

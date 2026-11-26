@@ -3,6 +3,7 @@ import { api, download, getToken, setToken, type LanguagePack } from "../api";
 import { Guide } from "../components/Guide";
 import { LlmSettingsCard } from "../components/LlmSettingsCard";
 import { SettingsBackupCard } from "../components/SettingsBackupCard";
+import { DoctorCard } from "../components/DoctorCard";
 import {
   SettingsEngineSection,
   SettingsJournalSection,
@@ -41,6 +42,8 @@ function settingsLabel(t: Messages, view: SettingsView): string {
       return t.settingsNavLanguages;
     case "engine":
       return t.settingsNavEngine;
+    case "doctor":
+      return t.settingsNavDoctor;
     case "backup":
       return t.settingsNavBackup;
     default: {
@@ -60,6 +63,8 @@ function settingsHint(t: Messages, view: SettingsView): string {
       return t.assistLanguagesHint;
     case "engine":
       return t.missHint;
+    case "doctor":
+      return t.doctorHint;
     case "backup":
       return t.journalHint;
     default: {
@@ -192,8 +197,8 @@ export function SettingsPage({
           <Button variant="ghost" type="button" onClick={() => onReplayWizard?.()}>
             {t.setupReplay}
           </Button>
-          {/* LLM has its own Save; a second top-bar Save confused operators (U-24). */}
-          {view === "llm" ? null : (
+          {/* LLM has its own Save; Doctor is read-only (U-24 / 6.6). */}
+          {view === "llm" || view === "doctor" ? null : (
             <Button type="button" disabled={saving || !loaded} onClick={() => void save()}>{t.save}</Button>
           )}
         </div>
@@ -246,6 +251,7 @@ export function SettingsPage({
           onTheme={setTheme}
         />
       ) : null}
+      {view === "doctor" ? <DoctorCard t={t} /> : null}
       {view === "backup" ? (
         <div className="flex min-w-0 flex-col gap-4">
           <SettingsBackupCard t={t} onSettings={onSettings} onRestored={afterRestore} />

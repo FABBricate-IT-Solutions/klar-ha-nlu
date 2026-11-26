@@ -26,6 +26,7 @@ pub(crate) mod parse_run;
 pub(crate) mod policies;
 pub(crate) mod privacy;
 pub(crate) mod restore;
+pub(crate) mod setup;
 pub(crate) mod speech;
 pub mod state;
 pub(crate) mod trainer;

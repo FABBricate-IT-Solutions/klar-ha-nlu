@@ -84,6 +84,7 @@ export function App() {
   const [booted, setBooted] = useState(false);
   const [navOpen, setNavOpen] = useState(false);
   const [trainerOpen, setTrainerOpen] = useState(false);
+  const [buildId, setBuildId] = useState("");
   const locale = chromeLocale(ui.locale);
   const [t, setT] = useState<Messages>(() => dictionaries[locale] || dictionaries.en);
   const theme = ui.theme || "dark";
@@ -155,6 +156,10 @@ export function App() {
   useEffect(() => {
     (async () => {
       await refresh();
+      api.health().then((health) => {
+        const sha = (health.sha || "dev").slice(0, 7);
+        setBuildId(`${health.version} · ${sha}`);
+      }).catch(() => undefined);
       if (uiLoaded.current) {
         api.conversations().then(setJournal).catch(() => undefined);
       } else {
@@ -382,6 +387,7 @@ export function App() {
           </div>
           <div className="topbar-end">
             <div className="status">
+              {buildId ? <Badge variant="outline" title={t.doctorBuild}>{buildId}</Badge> : null}
               <Badge variant={dashboard?.counts.leftover ? "default" : "outline"}>{dashboard?.counts.leftover ?? 0} {t.open}</Badge>
               <Badge variant={settings.nlu_rag ? "default" : "outline"}>{settings.nlu_rag ? t.ragModeShort : t.chatMode}</Badge>
             </div>

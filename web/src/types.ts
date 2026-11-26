@@ -19,7 +19,7 @@ export type Tab = "home" | "conversations" | "rules" | "house" | "lab" | "settin
 export type HouseView = "graph" | "entities" | "calibrate";
 export type RulesView = "routines" | "sentences" | "policies";
 export type Theme = "dark" | "light";
-export type SettingsView = "llm" | "voice" | "languages" | "engine" | "backup";
+export type SettingsView = "llm" | "voice" | "languages" | "engine" | "doctor" | "backup";
 export type Confidence = "high" | "medium" | "low";
 
 export type Settings = {

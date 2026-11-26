@@ -42,6 +42,7 @@ from .engine import (
     async_sync_time_zone,
     async_sync_unit_system,
 )
+from .setup_token import async_claim_setup_token
 from .lang_select import engine_language_state
 from .panel import async_setup_panel, async_unload_panel
 from .quiet import async_setup_chime
@@ -83,6 +84,15 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
         CONF_TOKEN
     ) or entry.data.get(CONF_TOKEN)
     url = engine_url(entry)
+    # 6.6: claim the App auto-token when the entry still has none (upgrade / empty form).
+    if not token and engine is None:
+        claimed = await async_claim_setup_token(hass, url)
+        if claimed:
+            token = claimed
+            hass.config_entries.async_update_entry(
+                entry,
+                data={**dict(entry.data), CONF_TOKEN: claimed},
+            )
     sync = HomeGraphSync(hass, entry, url, token)
     hass.data[DOMAIN][entry.entry_id] = {
         "engine": engine,

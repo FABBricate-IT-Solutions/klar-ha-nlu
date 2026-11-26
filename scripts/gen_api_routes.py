@@ -22,6 +22,7 @@ END = "<!-- END GENERATED ROUTES -->"
 BLURB: dict[str, str] = {
     "/": "React operator UI (or redirect into `web/dist`).",
     "/api/v2/health": "Public build identity, home age, overlay, LLM, Wyoming, ops counters (no token).",
+    "/api/v2/setup/token": "Supervisor/loopback claim of the auto-minted write token (fresh App install).",
     "/api/v2/parse": "V2 parse (`schema_version: \"2.0\"`).",
     "/api/settings": "Engine settings store (GET/POST full, PATCH partial).",
     "/api/custom": "Custom phrase list.",
@@ -75,6 +76,7 @@ BLURB: dict[str, str] = {
 DE_BLURB: dict[str, str] = {
     "/": "React-Operator-UI (oder Redirect nach `web/dist`).",
     "/api/v2/health": "Öffentliche Build-Identität, Home-Alter, Overlay, LLM, Wyoming, Ops-Zähler (ohne Token).",
+    "/api/v2/setup/token": "Supervisor/Loopback holt das automatisch erzeugte Schreib-Token (frische App-Installation).",
     "/api/v2/parse": "V2-Parse (`schema_version: \"2.0\"`).",
     "/api/settings": "Engine-Settings-Store (GET/POST vollständig, PATCH partiell).",
     "/api/custom": "Liste der Custom-Phrasen.",

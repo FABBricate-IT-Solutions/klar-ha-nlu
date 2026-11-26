@@ -32,7 +32,7 @@ Lovelace **Klar** is the last Assist turn (`klar-home-card`). The operator conso
 2. [Add the App repository](https://my.home-assistant.io/redirect/supervisor_add_addon_repository/?repository_url=https%3A%2F%2Fgithub.com%2FFABBricate-IT-Solutions%2Fklar-ha-nlu), install **Klar NLU** (not **Klar NLU (Staging)**), and start it. Staging is a second App for release candidates. A reboot starts the App; it does not install another copy. Details: [App docs](../../addon/DOCS.md).
 3. On the App page, turn **Show in sidebar** on. That sidebar entry is the App and it stays listed under Settings → Apps.
 4. [Add the integration](https://my.home-assistant.io/redirect/config_flow_start/?domain=klar_nlu) and pick **Use the Klar NLU App or Docker**. URL: `http://klar-nlu:10520`. If the App is already in the sidebar, the form suggests this. Do not also start the bundled engine.
-5. Set the same write token on the App and on the integration (**Write token**). Paste it into the operator UI under **Settings** as well. Without that match, the setup screen comes back every time you open the App. The App sidebar is not allowed to save on its own.
+5. Add the integration and pick **Use the Klar NLU App or Docker**. On a fresh App install Klar mints a write token and the integration claims it — no manual paste for the first Assist command. Paste a token only for LAN clients outside Home Assistant.
 
 **Klar engine** in the sidebar is the bundled engine inside Home Assistant. It is not an App, so it does not appear under Settings → Apps. If you can open Klar from the sidebar after removing the App, that is this panel. Reinstall **Klar NLU** under Apps and point the integration at the App.
 
