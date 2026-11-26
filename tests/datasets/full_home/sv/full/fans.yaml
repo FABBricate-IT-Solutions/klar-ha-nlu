@@ -4,16 +4,16 @@
     entity_id: fan.family_fan
     state: 'on'
   sentences:
-  - flakt allrum tand
-  - tand flakt allrum
+  - fläkt allrum tänd
+  - tänd fläkt allrum
 - name: fan.family_fan_off
   conditions:
   - type: action
     entity_id: fan.family_fan
     state: 'off'
   sentences:
-  - slack flakt allrum
-  - flakt allrum slack
+  - släck fläkt allrum
+  - fläkt allrum släck
 - name: fan.family_fan_speed
   conditions:
   - type: action
@@ -21,24 +21,24 @@
     attributes:
       percentage: 40
   sentences:
-  - satt flakt allrum 40
-  - flakt allrum 40
+  - sätt fläkt allrum 40
+  - fläkt allrum 40
 - name: fan.master_fan_on
   conditions:
   - type: action
     entity_id: fan.master_fan
     state: 'on'
   sentences:
-  - flakt sovrummaster tand
-  - tand flakt sovrummaster
+  - fläkt sovrummaster tänd
+  - tänd fläkt sovrummaster
 - name: fan.master_fan_off
   conditions:
   - type: action
     entity_id: fan.master_fan
     state: 'off'
   sentences:
-  - slack flakt sovrummaster
-  - flakt sovrummaster slack
+  - släck fläkt sovrummaster
+  - fläkt sovrummaster släck
 - name: fan.master_fan_speed
   conditions:
   - type: action
@@ -46,24 +46,24 @@
     attributes:
       percentage: 40
   sentences:
-  - satt flakt sovrummaster 40
-  - flakt sovrummaster 40
+  - sätt fläkt sovrummaster 40
+  - fläkt sovrummaster 40
 - name: fan.bedroom2_fan_on
   conditions:
   - type: action
     entity_id: fan.bedroom2_fan
     state: 'on'
   sentences:
-  - flakt sovrum2 tand
-  - tand flakt sovrum2
+  - fläkt sovrum2 tänd
+  - tänd fläkt sovrum2
 - name: fan.bedroom2_fan_off
   conditions:
   - type: action
     entity_id: fan.bedroom2_fan
     state: 'off'
   sentences:
-  - slack flakt sovrum2
-  - flakt sovrum2 slack
+  - släck fläkt sovrum2
+  - fläkt sovrum2 släck
 - name: fan.bedroom2_fan_speed
   conditions:
   - type: action
@@ -71,8 +71,8 @@
     attributes:
       percentage: 40
   sentences:
-  - satt flakt sovrum2 40
-  - flakt sovrum2 40
+  - sätt fläkt sovrum2 40
+  - fläkt sovrum2 40
 - name: fan.family_fan_speed_20
   conditions:
   - type: action
@@ -80,8 +80,8 @@
     attributes:
       percentage: 20
   sentences:
-  - satt flakt allrum 20
-  - flakt allrum 20
+  - sätt fläkt allrum 20
+  - fläkt allrum 20
 - name: fan.family_fan_speed_60
   conditions:
   - type: action
@@ -89,8 +89,8 @@
     attributes:
       percentage: 60
   sentences:
-  - satt flakt allrum 60
-  - flakt allrum 60
+  - sätt fläkt allrum 60
+  - fläkt allrum 60
 - name: fan.family_fan_speed_80
   conditions:
   - type: action
@@ -98,8 +98,8 @@
     attributes:
       percentage: 80
   sentences:
-  - satt flakt allrum 80
-  - flakt allrum 80
+  - sätt fläkt allrum 80
+  - fläkt allrum 80
 - name: fan.master_fan_speed_20
   conditions:
   - type: action
@@ -107,8 +107,8 @@
     attributes:
       percentage: 20
   sentences:
-  - satt flakt sovrummaster 20
-  - flakt sovrummaster 20
+  - sätt fläkt sovrummaster 20
+  - fläkt sovrummaster 20
 - name: fan.master_fan_speed_60
   conditions:
   - type: action
@@ -116,8 +116,8 @@
     attributes:
       percentage: 60
   sentences:
-  - satt flakt sovrummaster 60
-  - flakt sovrummaster 60
+  - sätt fläkt sovrummaster 60
+  - fläkt sovrummaster 60
 - name: fan.master_fan_speed_80
   conditions:
   - type: action
@@ -125,8 +125,8 @@
     attributes:
       percentage: 80
   sentences:
-  - satt flakt sovrummaster 80
-  - flakt sovrummaster 80
+  - sätt fläkt sovrummaster 80
+  - fläkt sovrummaster 80
 - name: fan.bedroom2_fan_speed_20
   conditions:
   - type: action
@@ -134,8 +134,8 @@
     attributes:
       percentage: 20
   sentences:
-  - satt flakt sovrum2 20
-  - flakt sovrum2 20
+  - sätt fläkt sovrum2 20
+  - fläkt sovrum2 20
 - name: fan.bedroom2_fan_speed_60
   conditions:
   - type: action
@@ -143,8 +143,8 @@
     attributes:
       percentage: 60
   sentences:
-  - satt flakt sovrum2 60
-  - flakt sovrum2 60
+  - sätt fläkt sovrum2 60
+  - fläkt sovrum2 60
 - name: fan.bedroom2_fan_speed_80
   conditions:
   - type: action
@@ -152,5 +152,5 @@
     attributes:
       percentage: 80
   sentences:
-  - satt flakt sovrum2 80
-  - flakt sovrum2 80
+  - sätt fläkt sovrum2 80
+  - fläkt sovrum2 80

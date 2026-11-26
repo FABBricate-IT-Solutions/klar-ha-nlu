@@ -80,79 +80,79 @@ A temperatura Y. → Claro, senhor. A temperatura Y.",
     (
         "fi",
         "default",
-        "X on paalla. → X on paalla.
+        "X on päällä. → X on päällä.
 X on pois. → X on pois.
-Lampotila Y. → Lampotila Y.",
+Lämpötila Y. → Lämpötila Y.",
     ),
     (
         "fi",
         "butler",
-        "X on paalla. → Hyva on. X on paalla.
+        "X on päällä. → Hyvä on. X on päällä.
 X on pois. → X on pois.
-Lampotila Y. → Hyva on. Lampotila Y.",
+Lämpötila Y. → Hyvä on. Lämpötila Y.",
     ),
     (
         "fi",
         "locker",
-        "X on paalla. → Okei. X on paalla.
+        "X on päällä. → Okei. X on päällä.
 X on pois. → X on pois.
-Lampotila Y. → Okei. Lampotila Y.",
+Lämpötila Y. → Okei. Lämpötila Y.",
     ),
     (
         "fi",
         "fuersorglich",
-        "X on paalla. → Teen sen heti. X on paalla.
+        "X on päällä. → Teen sen heti. X on päällä.
 X on pois. → X on pois.
-Lampotila Y. → Teen sen heti. Lampotila Y.",
+Lämpötila Y. → Teen sen heti. Lämpötila Y.",
     ),
     (
         "fi",
         "party",
-        "X on paalla. → Mennään. X on paalla.
+        "X on päällä. → Mennään. X on päällä.
 X on pois. → X on pois.
-Lampotila Y. → Mennään. Lampotila Y.",
+Lämpötila Y. → Mennään. Lämpötila Y.",
     ),
     (
         "fi",
         "grantig",
-        "X on paalla. → No selva. X on paalla.
+        "X on päällä. → No selvä. X on päällä.
 X on pois. → X on pois.
-Lampotila Y. → No selva. Lampotila Y.",
+Lämpötila Y. → No selvä. Lämpötila Y.",
     ),
     (
         "fi",
         "sarkastisch",
-        "X on paalla. → Totta kai. X on paalla.
+        "X on päällä. → Totta kai. X on päällä.
 X on pois. → X on pois.
-Lampotila Y. → Totta kai. Lampotila Y.",
+Lämpötila Y. → Totta kai. Lämpötila Y.",
     ),
     (
         "fi",
         "pirat",
-        "X on paalla. → Aye. X on paalla.
+        "X on päällä. → Aye. X on päällä.
 X on pois. → X on pois.
-Lampotila Y. → Aye. Lampotila Y.",
+Lämpötila Y. → Aye. Lämpötila Y.",
     ),
     (
         "fi",
         "hippie",
-        "X on paalla. → Rennosti. X on paalla.
+        "X on päällä. → Rennosti. X on päällä.
 X on pois. → X on pois.
-Lampotila Y. → Rennosti. Lampotila Y.",
+Lämpötila Y. → Rennosti. Lämpötila Y.",
     ),
     (
         "fi",
         "gollum",
-        "X on paalla. → Kylla. X on paalla.
+        "X on päällä. → Kyllä. X on päällä.
 X on pois. → X on pois.
-Lampotila Y. → Kylla. Lampotila Y.",
+Lämpötila Y. → Kyllä. Lämpötila Y.",
     ),
     (
         "fi",
         "jarvis",
-        "X on paalla. → Totta kai, sir. X on paalla.
+        "X on päällä. → Totta kai, sir. X on päällä.
 X on pois. → X on pois.
-Lampotila Y. → Totta kai, sir. Lampotila Y.",
+Lämpötila Y. → Totta kai, sir. Lämpötila Y.",
     ),
     (
         "cs",
@@ -388,79 +388,79 @@ X關了。 → X關了。
     (
         "tr",
         "default",
-        "X acik. → X acik.
-X kapali. → X kapali.
-Sicaklik Y. → Sicaklik Y.",
+        "X açık. → X açık.
+X kapalı. → X kapalı.
+Sıcaklık Y. → Sıcaklık Y.",
     ),
     (
         "tr",
         "butler",
-        "X acik. → Peki. X acik.
-X kapali. → X kapali.
-Sicaklik Y. → Peki. Sicaklik Y.",
+        "X açık. → Peki. X açık.
+X kapalı. → X kapalı.
+Sıcaklık Y. → Peki. Sıcaklık Y.",
     ),
     (
         "tr",
         "locker",
-        "X acik. → Tamam. X acik.
-X kapali. → X kapali.
-Sicaklik Y. → Tamam. Sicaklik Y.",
+        "X açık. → Tamam. X açık.
+X kapalı. → X kapalı.
+Sıcaklık Y. → Tamam. Sıcaklık Y.",
     ),
     (
         "tr",
         "fuersorglich",
-        "X acik. → Hemen yapiyorum. X acik.
-X kapali. → X kapali.
-Sicaklik Y. → Hemen yapiyorum. Sicaklik Y.",
+        "X açık. → Hemen yapıyorum. X açık.
+X kapalı. → X kapalı.
+Sıcaklık Y. → Hemen yapıyorum. Sıcaklık Y.",
     ),
     (
         "tr",
         "party",
-        "X acik. → Hadi. X acik.
-X kapali. → X kapali.
-Sicaklik Y. → Hadi. Sicaklik Y.",
+        "X açık. → Hadi. X açık.
+X kapalı. → X kapalı.
+Sıcaklık Y. → Hadi. Sıcaklık Y.",
     ),
     (
         "tr",
         "grantig",
-        "X acik. → Peki o zaman. X acik.
-X kapali. → X kapali.
-Sicaklik Y. → Peki o zaman. Sicaklik Y.",
+        "X açık. → Peki o zaman. X açık.
+X kapalı. → X kapalı.
+Sıcaklık Y. → Peki o zaman. Sıcaklık Y.",
     ),
     (
         "tr",
         "sarkastisch",
-        "X acik. → Tabii. X acik.
-X kapali. → X kapali.
-Sicaklik Y. → Tabii. Sicaklik Y.",
+        "X açık. → Tabii. X açık.
+X kapalı. → X kapalı.
+Sıcaklık Y. → Tabii. Sıcaklık Y.",
     ),
     (
         "tr",
         "pirat",
-        "X acik. → Aye. X acik.
-X kapali. → X kapali.
-Sicaklik Y. → Aye. Sicaklik Y.",
+        "X açık. → Aye. X açık.
+X kapalı. → X kapalı.
+Sıcaklık Y. → Aye. Sıcaklık Y.",
     ),
     (
         "tr",
         "hippie",
-        "X acik. → Rahat. X acik.
-X kapali. → X kapali.
-Sicaklik Y. → Rahat. Sicaklik Y.",
+        "X açık. → Rahat. X açık.
+X kapalı. → X kapalı.
+Sıcaklık Y. → Rahat. Sıcaklık Y.",
     ),
     (
         "tr",
         "gollum",
-        "X acik. → Evet. X acik.
-X kapali. → X kapali.
-Sicaklik Y. → Evet. Sicaklik Y.",
+        "X açık. → Evet. X açık.
+X kapalı. → X kapalı.
+Sıcaklık Y. → Evet. Sıcaklık Y.",
     ),
     (
         "tr",
         "jarvis",
-        "X acik. → Tabii, efendim. X acik.
-X kapali. → X kapali.
-Sicaklik Y. → Tabii, efendim. Sicaklik Y.",
+        "X açık. → Tabii, efendim. X açık.
+X kapalı. → X kapalı.
+Sıcaklık Y. → Tabii, efendim. Sıcaklık Y.",
     ),
     (
         "eu",

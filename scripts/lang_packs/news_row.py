@@ -50,10 +50,51 @@ def _word_char(char: str) -> bool:
     return char.isalnum() or _in(char, _MARKS)
 
 
+_CLITICS = {"l", "d", "dell", "all", "un", "nell", "sull", "coll", "c", "j", "m", "t", "s", "n"}
+
+
 def _bare(word: str) -> str:
     if len(word) > 2 and word.endswith("'s"):
         word = word[:-2]
     return word.replace("'", "")
+
+
+def _split_clitics(folded: str) -> list[str]:
+    """Mirror src/parse/normalize/token.rs: l'entrée → entree; don't → dont."""
+    out: list[str] = []
+    buf: list[str] = []
+    chars = list(folded)
+    i = 0
+    while i < len(chars):
+        char = chars[i]
+        if char == "'":
+            left = "".join(buf).lower()
+            if left in _CLITICS:
+                buf.clear()
+                i += 1
+                continue
+            if i + 1 < len(chars) and chars[i + 1] == "s" and (i + 2 >= len(chars) or not _word_char(chars[i + 2])):
+                token = _bare("".join(buf))
+                buf.clear()
+                if token:
+                    out.append(token)
+                i += 2
+                continue
+            i += 1
+            continue
+        if _word_char(char):
+            buf.append(char)
+            i += 1
+            continue
+        token = _bare("".join(buf))
+        buf.clear()
+        if token:
+            out.append(token)
+        i += 1
+    token = _bare("".join(buf))
+    if token:
+        out.append(token)
+    return out
 
 
 def cut(text: str) -> str:
@@ -61,8 +102,7 @@ def cut(text: str) -> str:
     folded = fold_latin(text.strip())
     if any(_in(char, _SCRIPT) for char in folded):
         return "".join(folded.split())
-    spaced = "".join(char if _word_char(char) else " " for char in folded)
-    return " ".join(word for word in (_bare(part) for part in spaced.split()) if word)
+    return " ".join(_split_clitics(folded))
 
 
 def words(text: str) -> list[str]:

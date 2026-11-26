@@ -1,21 +1,21 @@
 conversation/climate::heat_on_then_set:
-- - kapcsold futes nappali
+- - kapcsold fűtés nappali
   - '21'
 conversation/climate::heat_setpoint:
-- allitsd futes nappali 21
+- állítsd fűtés nappali 21
 conversation/climate::temperature_query:
-- mi futes nappali
+- mi fűtés nappali
 conversation/followup::followup_not_poisoned_by_prior_off:
 - - oltsd villany haloszoba
   - kapcsold villany nappali
-  - es konyha is
+  - és konyha is
 conversation/followup::followup_same_action_other_room:
 - - kapcsold villany nappali
-  - es konyha is
+  - és konyha is
 conversation/house::clock_calendar_weather:
 - mi hour
 - mi naptar
-- mi futes
+- mi fűtés
 conversation/house::false_done_forbidden:
 - capital france
 conversation/house::scene_all_off:
@@ -23,7 +23,7 @@ conversation/house::scene_all_off:
 conversation/lights::ambiguous_light:
 - kapcsold villany
 conversation/lights::brightness_percent:
-- allitsd villany nappali 30 szazalek
+- állítsd villany nappali 30 szazalek
 conversation/lights::color_red:
 - - kapcsold villany nappali
   - red

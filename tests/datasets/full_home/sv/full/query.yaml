@@ -17,15 +17,15 @@
   - type: query
     entity_id: lock.front_door
   sentences:
-  - vad las entre
-  - vad entre las
+  - vad lås entre
+  - vad entre lås
 - name: query_climate.ground_thermostat
   conditions:
   - type: query
     entity_id: climate.ground_thermostat
   sentences:
-  - vad varme vardagsrum
-  - vad vardagsrum varme
+  - vad värme vardagsrum
+  - vad vardagsrum värme
 - name: query_media_player.living_tv
   conditions:
   - type: query
@@ -59,8 +59,8 @@
   - type: query
     entity_id: light.kitchen_ceiling
   sentences:
-  - vad ljus kok
-  - vad kok ljus
+  - vad ljus kök
+  - vad kök ljus
 - name: query_light.office_ceiling
   conditions:
   - type: query
@@ -101,15 +101,15 @@
   - type: query
     entity_id: lock.garage_entry
   sentences:
-  - vad las garage
-  - vad garage las
+  - vad lås garage
+  - vad garage lås
 - name: query_climate.upper_thermostat
   conditions:
   - type: query
     entity_id: climate.upper_thermostat
   sentences:
-  - vad varme sovrummaster
-  - vad sovrummaster varme
+  - vad värme sovrummaster
+  - vad sovrummaster värme
 - name: query_climate.master_ac
   conditions:
   - type: query
@@ -136,8 +136,8 @@
   - type: query
     entity_id: binary_sensor.kitchen_motion
   sentences:
-  - vad motion kok
-  - vad kok motion
+  - vad motion kök
+  - vad kök motion
 - name: query_sensor.living_humidity
   conditions:
   - type: query
@@ -150,8 +150,8 @@
   - type: query
     entity_id: fan.master_fan
   sentences:
-  - vad flakt sovrummaster
-  - vad sovrummaster flakt
+  - vad fläkt sovrummaster
+  - vad sovrummaster fläkt
 - name: query_vacuum.robot
   conditions:
   - type: query
@@ -171,8 +171,8 @@
   - type: query
     entity_id: light.kitchen_island
   sentences:
-  - vad ljus kok
-  - vad kok ljus
+  - vad ljus kök
+  - vad kök ljus
 - name: query_light.master_ceiling
   conditions:
   - type: query

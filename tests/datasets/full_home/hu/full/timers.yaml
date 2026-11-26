@@ -5,8 +5,8 @@
     attributes:
       minutes: 10
   sentences:
-  - kapcsold idomer 10 min
-  - idomer 10 min
+  - kapcsold időmér 10 min
+  - időmér 10 min
 - name: timer_laundry
   conditions:
   - type: action
@@ -14,15 +14,15 @@
     attributes:
       minutes: 45
   sentences:
-  - kapcsold idomer 45 min
-  - idomer 45 min
+  - kapcsold időmér 45 min
+  - időmér 45 min
 - name: timer_cancel
   conditions:
   - type: action
     entity_id: timer.abstract
   sentences:
-  - oltsd idomer
-  - idomer oltsd
+  - oltsd időmér
+  - időmér oltsd
 - name: timer_oven_5
   conditions:
   - type: action
@@ -30,8 +30,8 @@
     attributes:
       minutes: 5
   sentences:
-  - kapcsold idomer 5 min
-  - idomer 5 min
+  - kapcsold időmér 5 min
+  - időmér 5 min
 - name: timer_oven_15
   conditions:
   - type: action
@@ -39,8 +39,8 @@
     attributes:
       minutes: 15
   sentences:
-  - kapcsold idomer 15 min
-  - idomer 15 min
+  - kapcsold időmér 15 min
+  - időmér 15 min
 - name: timer_oven_20
   conditions:
   - type: action
@@ -48,8 +48,8 @@
     attributes:
       minutes: 20
   sentences:
-  - kapcsold idomer 20 min
-  - idomer 20 min
+  - kapcsold időmér 20 min
+  - időmér 20 min
 - name: timer_oven_30
   conditions:
   - type: action
@@ -57,8 +57,8 @@
     attributes:
       minutes: 30
   sentences:
-  - kapcsold idomer 30 min
-  - idomer 30 min
+  - kapcsold időmér 30 min
+  - időmér 30 min
 - name: timer_oven_60
   conditions:
   - type: action
@@ -66,5 +66,5 @@
     attributes:
       minutes: 60
   sentences:
-  - kapcsold idomer 60 min
-  - idomer 60 min
+  - kapcsold időmér 60 min
+  - időmér 60 min

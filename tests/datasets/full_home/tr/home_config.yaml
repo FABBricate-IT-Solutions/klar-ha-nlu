@@ -119,10 +119,10 @@ areas:
 devices:
 - id: light.entryway_light
   area_id: entryway
-  name: giris isik
+  name: giris ışık
   aliases:
-  - giris isik
-  - isik
+  - giris ışık
+  - ışık
 - id: light.living_ceiling
   area_id: living
   name: salon tavan
@@ -137,10 +137,10 @@ devices:
   - lamp
 - id: light.dining_pendant
   area_id: dining
-  name: aileess isik
+  name: aileess ışık
   aliases:
-  - aileess isik
-  - isik
+  - aileess ışık
+  - ışık
 - id: light.kitchen_ceiling
   area_id: kitchen
   name: mutfak tavan
@@ -161,22 +161,22 @@ devices:
   - tavan
 - id: light.laundry_light
   area_id: laundry
-  name: camasirhane isik
+  name: camasirhane ışık
   aliases:
-  - camasirhane isik
-  - isik
+  - camasirhane ışık
+  - ışık
 - id: light.powder_room_light
   area_id: powder_room
-  name: wc isik
+  name: wc ışık
   aliases:
-  - wc isik
-  - isik
+  - wc ışık
+  - ışık
 - id: light.garage_light
   area_id: garage
-  name: garage isik
+  name: garage ışık
   aliases:
-  - garage isik
-  - isik
+  - garage ışık
+  - ışık
 - id: light.office_ceiling
   area_id: office
   name: office tavan
@@ -185,10 +185,10 @@ devices:
   - tavan
 - id: light.garden
   area_id: garden
-  name: garden isik
+  name: garden ışık
   aliases:
-  - garden isik
-  - isik
+  - garden ışık
+  - ışık
 - id: light.master_ceiling
   area_id: master_bedroom
   name: yatakodasimaster tavan
@@ -235,28 +235,28 @@ devices:
   - tavan
 - id: light.master_bath_light
   area_id: master_bath
-  name: ebatmaster isik
+  name: ebatmaster ışık
   aliases:
-  - ebatmaster isik
-  - isik
+  - ebatmaster ışık
+  - ışık
 - id: light.main_bath_light
   area_id: main_bath
-  name: main bath isik
+  name: main bath ışık
   aliases:
-  - main bath isik
-  - isik
+  - main bath ışık
+  - ışık
 - id: light.hallway_light
   area_id: hallway
-  name: koridor isik
+  name: koridor ışık
   aliases:
-  - koridor isik
-  - isik
+  - koridor ışık
+  - ışık
 - id: light.basement
   area_id: basement
-  name: basement isik
+  name: basement ışık
   aliases:
-  - basement isik
-  - isik
+  - basement ışık
+  - ışık
 - id: cover.living_blinds
   area_id: living
   name: salon perde
@@ -289,16 +289,16 @@ devices:
   - perde
 - id: climate.ground_thermostat
   area_id: living
-  name: salon sicaklik
+  name: salon sıcaklık
   aliases:
-  - salon sicaklik
-  - sicaklik
+  - salon sıcaklık
+  - sıcaklık
 - id: climate.upper_thermostat
   area_id: master_bedroom
-  name: yatakodasimaster sicaklik
+  name: yatakodasimaster sıcaklık
   aliases:
-  - yatakodasimaster sicaklik
-  - sicaklik
+  - yatakodasimaster sıcaklık
+  - sıcaklık
 - id: climate.master_ac
   area_id: master_bedroom
   name: klima yatakodasimaster
@@ -310,34 +310,34 @@ devices:
   - klima
 - id: fan.family_fan
   area_id: family_room
-  name: aile vantilator
+  name: aile vantilatör
   aliases:
-  - aile vantilator
-  - vantilator
+  - aile vantilatör
+  - vantilatör
 - id: fan.master_fan
   area_id: master_bedroom
-  name: yatakodasimaster vantilator
+  name: yatakodasimaster vantilatör
   aliases:
-  - yatakodasimaster vantilator
-  - vantilator
+  - yatakodasimaster vantilatör
+  - vantilatör
 - id: fan.bedroom2_fan
   area_id: bedroom_2
-  name: yatakodasi2 vantilator
+  name: yatakodasi2 vantilatör
   aliases:
-  - yatakodasi2 vantilator
-  - vantilator
+  - yatakodasi2 vantilatör
+  - vantilatör
 - id: lock.front_door
   area_id: entryway
-  name: front kapi
+  name: front kapı
   aliases:
-  - front kapi
+  - front kapı
   tags:
   - front
 - id: lock.garage_entry
   area_id: garage
-  name: garage kapi
+  name: garage kapı
   aliases:
-  - garage kapi
+  - garage kapı
   tags:
   - garage
 - id: switch.dishwasher
@@ -374,20 +374,20 @@ devices:
   - dryer
 - id: switch.master_bath_fan
   area_id: master_bath
-  name: ebatmaster vantilatorbad
+  name: ebatmaster vantilatörbad
   aliases:
-  - ebatmaster vantilatorbad
-  - vantilatorbad
+  - ebatmaster vantilatörbad
+  - vantilatörbad
   tags:
-  - vantilatorbad
+  - vantilatörbad
 - id: switch.main_bath_fan
   area_id: main_bath
-  name: main bath vantilatorbad
+  name: main bath vantilatörbad
   aliases:
-  - main bath vantilatorbad
-  - vantilatorbad
+  - main bath vantilatörbad
+  - vantilatörbad
   tags:
-  - vantilatorbad
+  - vantilatörbad
 - id: media_player.living_tv
   area_id: living
   name: salon tv
@@ -429,10 +429,10 @@ devices:
   - televizyon
 - id: vacuum.robot
   area_id: living
-  name: salon supurge
+  name: salon süpürge
   aliases:
-  - salon supurge
-  - supurge
+  - salon süpürge
+  - süpürge
 - id: binary_sensor.front_door_sensor
   area_id: entryway
   name: giris doorsensor
@@ -495,11 +495,11 @@ scripts:
   name: cikis
 timers:
 - id: oven
-  name: oven zamanlayici
+  name: oven zamanlayıcı
 - id: laundry
-  name: laundry zamanlayici
+  name: laundry zamanlayıcı
 - id: abstract
-  name: abstract zamanlayici
+  name: abstract zamanlayıcı
 lists:
 - id: shopping
   name: liste

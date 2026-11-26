@@ -1,65 +1,65 @@
 devices/climate_ground_thermostat::climate_ground_thermostat_set_temperature:
-- ayarla sicaklik salon 23
+- ayarla sıcaklık salon 23
 devices/climate_upper_thermostat::climate_upper_thermostat_set_temperature:
-- ayarla sicaklik yatakodasimaster 19
+- ayarla sıcaklık yatakodasimaster 19
 devices/cover_bedroom2_blinds::cover_bedroom2_blinds_change_position:
 - ayarla perde yatakodasi2 67
 devices/cover_bedroom2_blinds::cover_bedroom2_blinds_close:
 - kapat perde yatakodasi2
 devices/cover_bedroom2_blinds::cover_bedroom2_blinds_open:
-- ac perde yatakodasi2
+- aç perde yatakodasi2
 devices/cover_bedroom3_blinds::cover_bedroom3_blinds_change_position:
 - ayarla perde yatakodasi3 27
 devices/cover_bedroom3_blinds::cover_bedroom3_blinds_close:
 - kapat perde yatakodasi3
 devices/cover_bedroom3_blinds::cover_bedroom3_blinds_open:
-- ac perde yatakodasi3
+- aç perde yatakodasi3
 devices/cover_garage_door::cover_garage_door_change_position:
 - ayarla perde garage 52
 devices/cover_garage_door::cover_garage_door_close:
 - kapat perde garage
 devices/cover_garage_door::cover_garage_door_open:
-- ac perde garage
+- aç perde garage
 devices/cover_living_blinds::cover_living_blinds_change_position:
 - ayarla perde salon 35
 devices/cover_living_blinds::cover_living_blinds_close:
 - kapat perde salon
 devices/cover_living_blinds::cover_living_blinds_open:
-- ac perde salon
+- aç perde salon
 devices/cover_master_blinds::cover_master_blinds_change_position:
 - ayarla perde yatakodasimaster 19
 devices/cover_master_blinds::cover_master_blinds_close:
 - kapat perde yatakodasimaster
 devices/cover_master_blinds::cover_master_blinds_open:
-- ac perde yatakodasimaster
+- aç perde yatakodasimaster
 devices/fan_bedroom2_fan::fan_bedroom2_fan_set_fan_speed:
-- ayarla vantilator yatakodasi2 72
+- ayarla vantilatör yatakodasi2 72
 devices/fan_bedroom2_fan::fan_bedroom2_fan_turn_off:
-- sondur vantilator yatakodasi2
+- söndür vantilatör yatakodasi2
 devices/fan_bedroom2_fan::fan_bedroom2_fan_turn_on:
-- yak vantilator yatakodasi2
+- yak vantilatör yatakodasi2
 devices/fan_family_fan::fan_family_fan_set_fan_speed:
-- ayarla vantilator aile 63
+- ayarla vantilatör aile 63
 devices/fan_family_fan::fan_family_fan_turn_off:
-- sondur vantilator aile
+- söndür vantilatör aile
 devices/fan_family_fan::fan_family_fan_turn_on:
-- yak vantilator aile
+- yak vantilatör aile
 devices/fan_master_fan::fan_master_fan_set_fan_speed:
-- ayarla vantilator yatakodasimaster 28
+- ayarla vantilatör yatakodasimaster 28
 devices/fan_master_fan::fan_master_fan_turn_off:
-- sondur vantilator yatakodasimaster
+- söndür vantilatör yatakodasimaster
 devices/fan_master_fan::fan_master_fan_turn_on:
-- yak vantilator yatakodasimaster
+- yak vantilatör yatakodasimaster
 devices/fan_master_fan_and_light_kitchen_island::fan_master_fan_and_light_kitchen_island_turn_off:
-- sondur vantilator yatakodasimaster then sondur ada mutfak
+- söndür vantilatör yatakodasimaster then söndür ada mutfak
 devices/fan_master_fan_and_light_kitchen_island::fan_master_fan_and_light_kitchen_island_turn_on:
-- yak vantilator yatakodasimaster then yak ada mutfak
+- yak vantilatör yatakodasimaster then yak ada mutfak
 devices/light_bedroom2_ceiling::light_bedroom2_ceiling_change_brightness:
 - ayarla tavan yatakodasi2 94
 devices/light_bedroom2_ceiling::light_bedroom2_ceiling_change_color:
 - ayarla tavan yatakodasi2 pink
 devices/light_bedroom2_ceiling::light_bedroom2_ceiling_turn_off:
-- sondur tavan yatakodasi2
+- söndür tavan yatakodasi2
 devices/light_bedroom2_ceiling::light_bedroom2_ceiling_turn_on:
 - yak tavan yatakodasi2
 devices/light_bedroom3_ceiling::light_bedroom3_ceiling_change_brightness:
@@ -67,7 +67,7 @@ devices/light_bedroom3_ceiling::light_bedroom3_ceiling_change_brightness:
 devices/light_bedroom3_ceiling::light_bedroom3_ceiling_change_color:
 - ayarla tavan yatakodasi3 yellow
 devices/light_bedroom3_ceiling::light_bedroom3_ceiling_turn_off:
-- sondur tavan yatakodasi3
+- söndür tavan yatakodasi3
 devices/light_bedroom3_ceiling::light_bedroom3_ceiling_turn_on:
 - yak tavan yatakodasi3
 devices/light_bedroom4_ceiling::light_bedroom4_ceiling_change_brightness:
@@ -75,55 +75,55 @@ devices/light_bedroom4_ceiling::light_bedroom4_ceiling_change_brightness:
 devices/light_bedroom4_ceiling::light_bedroom4_ceiling_change_color:
 - ayarla tavan yatakodasi4 red
 devices/light_bedroom4_ceiling::light_bedroom4_ceiling_turn_off:
-- sondur tavan yatakodasi4
+- söndür tavan yatakodasi4
 devices/light_bedroom4_ceiling::light_bedroom4_ceiling_turn_on:
 - yak tavan yatakodasi4
 devices/light_dining_pendant::light_dining_pendant_change_brightness:
-- ayarla isik aileess 21
+- ayarla ışık aileess 21
 devices/light_dining_pendant::light_dining_pendant_change_color:
-- ayarla isik aileess blue
+- ayarla ışık aileess blue
 devices/light_dining_pendant::light_dining_pendant_turn_off:
-- sondur isik aileess
+- söndür ışık aileess
 devices/light_dining_pendant::light_dining_pendant_turn_on:
-- yak isik aileess
+- yak ışık aileess
 devices/light_entryway_light::light_entryway_light_change_brightness:
-- ayarla isik giris 88
+- ayarla ışık giris 88
 devices/light_entryway_light::light_entryway_light_change_color:
-- ayarla isik giris yellow
+- ayarla ışık giris yellow
 devices/light_entryway_light::light_entryway_light_turn_off:
-- sondur isik giris
+- söndür ışık giris
 devices/light_entryway_light::light_entryway_light_turn_on:
-- yak isik giris
+- yak ışık giris
 devices/light_family_ceiling::light_family_ceiling_change_brightness:
 - ayarla tavan aile 98
 devices/light_family_ceiling::light_family_ceiling_change_color:
 - ayarla tavan aile purple
 devices/light_family_ceiling::light_family_ceiling_turn_off:
-- sondur tavan aile
+- söndür tavan aile
 devices/light_family_ceiling::light_family_ceiling_turn_on:
 - yak tavan aile
 devices/light_garage_light::light_garage_light_change_brightness:
-- ayarla isik garage 76
+- ayarla ışık garage 76
 devices/light_garage_light::light_garage_light_change_color:
-- ayarla isik garage green
+- ayarla ışık garage green
 devices/light_garage_light::light_garage_light_turn_off:
-- sondur isik garage
+- söndür ışık garage
 devices/light_garage_light::light_garage_light_turn_on:
-- yak isik garage
+- yak ışık garage
 devices/light_hallway_light::light_hallway_light_change_brightness:
-- ayarla isik girisgang 11
+- ayarla ışık girisgang 11
 devices/light_hallway_light::light_hallway_light_change_color:
-- ayarla isik girisgang white
+- ayarla ışık girisgang white
 devices/light_hallway_light::light_hallway_light_turn_off:
-- sondur isik girisgang
+- söndür ışık girisgang
 devices/light_hallway_light::light_hallway_light_turn_on:
-- yak isik girisgang
+- yak ışık girisgang
 devices/light_kitchen_ceiling::light_kitchen_ceiling_change_brightness:
 - ayarla tavan mutfak 25
 devices/light_kitchen_ceiling::light_kitchen_ceiling_change_color:
 - ayarla tavan mutfak orange
 devices/light_kitchen_ceiling::light_kitchen_ceiling_turn_off:
-- sondur tavan mutfak
+- söndür tavan mutfak
 devices/light_kitchen_ceiling::light_kitchen_ceiling_turn_on:
 - yak tavan mutfak
 devices/light_kitchen_island::light_kitchen_island_change_brightness:
@@ -131,23 +131,23 @@ devices/light_kitchen_island::light_kitchen_island_change_brightness:
 devices/light_kitchen_island::light_kitchen_island_change_color:
 - ayarla ada mutfak green
 devices/light_kitchen_island::light_kitchen_island_turn_off:
-- sondur ada mutfak
+- söndür ada mutfak
 devices/light_kitchen_island::light_kitchen_island_turn_on:
 - yak ada mutfak
 devices/light_laundry_light::light_laundry_light_change_brightness:
-- ayarla isik camasirhane 18
+- ayarla ışık camasirhane 18
 devices/light_laundry_light::light_laundry_light_change_color:
-- ayarla isik camasirhane white
+- ayarla ışık camasirhane white
 devices/light_laundry_light::light_laundry_light_turn_off:
-- sondur isik camasirhane
+- söndür ışık camasirhane
 devices/light_laundry_light::light_laundry_light_turn_on:
-- yak isik camasirhane
+- yak ışık camasirhane
 devices/light_living_ceiling::light_living_ceiling_change_brightness:
 - ayarla tavan salon 72
 devices/light_living_ceiling::light_living_ceiling_change_color:
 - ayarla tavan salon black
 devices/light_living_ceiling::light_living_ceiling_turn_off:
-- sondur tavan salon
+- söndür tavan salon
 devices/light_living_ceiling::light_living_ceiling_turn_on:
 - yak tavan salon
 devices/light_living_lamp::light_living_lamp_change_brightness:
@@ -155,31 +155,31 @@ devices/light_living_lamp::light_living_lamp_change_brightness:
 devices/light_living_lamp::light_living_lamp_change_color:
 - ayarla lamp salon red
 devices/light_living_lamp::light_living_lamp_turn_off:
-- sondur lamp salon
+- söndür lamp salon
 devices/light_living_lamp::light_living_lamp_turn_on:
 - yak lamp salon
 devices/light_main_bath_light::light_main_bath_light_change_brightness:
-- ayarla isik main bath 85
+- ayarla ışık main bath 85
 devices/light_main_bath_light::light_main_bath_light_change_color:
-- ayarla isik main bath blue
+- ayarla ışık main bath blue
 devices/light_main_bath_light::light_main_bath_light_turn_off:
-- sondur isik main bath
+- söndür ışık main bath
 devices/light_main_bath_light::light_main_bath_light_turn_on:
-- yak isik main bath
+- yak ışık main bath
 devices/light_master_bath_light::light_master_bath_light_change_brightness:
-- ayarla isik ebatmaster 18
+- ayarla ışık ebatmaster 18
 devices/light_master_bath_light::light_master_bath_light_change_color:
-- ayarla isik ebatmaster black
+- ayarla ışık ebatmaster black
 devices/light_master_bath_light::light_master_bath_light_turn_off:
-- sondur isik ebatmaster
+- söndür ışık ebatmaster
 devices/light_master_bath_light::light_master_bath_light_turn_on:
-- yak isik ebatmaster
+- yak ışık ebatmaster
 devices/light_master_bedside_right::light_master_bedside_right_change_brightness:
 - ayarla komodin right yatakodasimaster 25
 devices/light_master_bedside_right::light_master_bedside_right_change_color:
 - ayarla komodin right yatakodasimaster red
 devices/light_master_bedside_right::light_master_bedside_right_turn_off:
-- sondur komodin right yatakodasimaster
+- söndür komodin right yatakodasimaster
 devices/light_master_bedside_right::light_master_bedside_right_turn_on:
 - yak komodin right yatakodasimaster
 devices/light_master_ceiling::light_master_ceiling_change_brightness:
@@ -187,7 +187,7 @@ devices/light_master_ceiling::light_master_ceiling_change_brightness:
 devices/light_master_ceiling::light_master_ceiling_change_color:
 - ayarla tavan yatakodasimaster blue
 devices/light_master_ceiling::light_master_ceiling_turn_off:
-- sondur tavan yatakodasimaster
+- söndür tavan yatakodasimaster
 devices/light_master_ceiling::light_master_ceiling_turn_on:
 - yak tavan yatakodasimaster
 devices/light_master_ensuite::light_master_ensuite_change_brightness:
@@ -195,17 +195,17 @@ devices/light_master_ensuite::light_master_ensuite_change_brightness:
 devices/light_master_ensuite::light_master_ensuite_change_color:
 - ayarla ankleide yatakodasimaster black
 devices/light_master_ensuite::light_master_ensuite_turn_off:
-- sondur ankleide yatakodasimaster
+- söndür ankleide yatakodasimaster
 devices/light_master_ensuite::light_master_ensuite_turn_on:
 - yak ankleide yatakodasimaster
 devices/light_powder_room_light::light_powder_room_light_change_brightness:
-- ayarla isik wc 22
+- ayarla ışık wc 22
 devices/light_powder_room_light::light_powder_room_light_change_color:
-- ayarla isik wc black
+- ayarla ışık wc black
 devices/light_powder_room_light::light_powder_room_light_turn_off:
-- sondur isik wc
+- söndür ışık wc
 devices/light_powder_room_light::light_powder_room_light_turn_on:
-- yak isik wc
+- yak ışık wc
 devices/lock_front_door::lock_front_door_lock:
 - kilitle kilit giris
 devices/lock_front_door::lock_front_door_unlock:
@@ -219,7 +219,7 @@ devices/media_player_family_tv::media_player_family_tv_mute:
 devices/media_player_family_tv::media_player_family_tv_pause:
 - pause tv aile
 devices/media_player_family_tv::media_player_family_tv_turn_off:
-- sondur tv aile
+- söndür tv aile
 devices/media_player_family_tv::media_player_family_tv_turn_on:
 - yak tv aile
 devices/media_player_family_tv::media_player_family_tv_unmute:
@@ -231,7 +231,7 @@ devices/media_player_living_tv::media_player_living_tv_mute:
 devices/media_player_living_tv::media_player_living_tv_pause:
 - pause tv salon
 devices/media_player_living_tv::media_player_living_tv_turn_off:
-- sondur tv salon
+- söndür tv salon
 devices/media_player_living_tv::media_player_living_tv_turn_on:
 - yak tv salon
 devices/media_player_living_tv::media_player_living_tv_unmute:
@@ -239,34 +239,34 @@ devices/media_player_living_tv::media_player_living_tv_unmute:
 devices/media_player_living_tv::media_player_living_tv_unpause:
 - yak tv salon
 devices/scenes::dinner_time:
-- ayarla isik aileess 90 then yak tavan mutfak then ayarla ada mutfak 80
+- ayarla ışık aileess 90 then yak tavan mutfak then ayarla ada mutfak 80
 devices/scenes::good_morning:
-- yak tavan mutfak then ayarla isik aileess 100 then ac perde salon then ac perde
+- yak tavan mutfak then ayarla ışık aileess 100 then aç perde salon then aç perde
   yatakodasimaster
 devices/scenes::kids_bedtime:
-- sondur tavan yatakodasi2 then sondur tavan yatakodasi3 then sondur tavan yatakodasi4
-  then ayarla isik girisgang 15
+- söndür tavan yatakodasi2 then söndür tavan yatakodasi3 then söndür tavan yatakodasi4
+  then ayarla ışık girisgang 15
 devices/scenes::movie_night:
-- sondur tavan salon then ayarla lamp salon 20 then yak tv salon then kapat perde
+- söndür tavan salon then ayarla lamp salon 20 then yak tv salon then kapat perde
   salon
 devices/scripts::good_night:
-- sondur tavan salon then sondur lamp salon then sondur isik aileess then sondur tavan
-  mutfak then sondur ada mutfak then sondur tavan aile then sondur isik giris then
-  sondur isik girisgang then kilitle kilit giris then kilitle kilit garage then ayarla
-  sicaklik yatakodasimaster 20
+- söndür tavan salon then söndür lamp salon then söndür ışık aileess then söndür tavan
+  mutfak then söndür ada mutfak then söndür tavan aile then söndür ışık giris then
+  söndür ışık girisgang then kilitle kilit giris then kilitle kilit garage then ayarla
+  sıcaklık yatakodasimaster 20
 devices/scripts::leaving_home:
-- sondur tavan salon then sondur lamp salon then sondur tavan mutfak then sondur tavan
-  aile then sondur isik giris then kilitle kilit giris then kilitle kilit garage then
+- söndür tavan salon then söndür lamp salon then söndür tavan mutfak then söndür tavan
+  aile then söndür ışık giris then kilitle kilit giris then kilitle kilit garage then
   kapat perde garage
 devices/switch_dishwasher::switch_dishwasher_turn_off:
-- sondur bulasik
+- söndür bulasik
 devices/switch_dishwasher::switch_dishwasher_turn_on:
 - yak bulasik
 devices/switch_dryer::switch_dryer_turn_off:
-- sondur dryer
+- söndür dryer
 devices/switch_dryer::switch_dryer_turn_on:
 - yak dryer
 devices/switch_washing_machine::switch_washing_machine_turn_off:
-- sondur camasir
+- söndür camasir
 devices/switch_washing_machine::switch_washing_machine_turn_on:
 - yak camasir

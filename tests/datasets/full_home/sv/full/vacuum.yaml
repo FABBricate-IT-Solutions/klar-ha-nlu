@@ -4,13 +4,13 @@
     entity_id: vacuum.robot
     state: 'on'
   sentences:
-  - tand dammsugare
-  - dammsugare tand
+  - tänd dammsugare
+  - dammsugare tänd
 - name: vacuum_dock
   conditions:
   - type: action
     entity_id: vacuum.robot
     state: 'off'
   sentences:
-  - slack dammsugare
-  - dammsugare slack
+  - släck dammsugare
+  - dammsugare släck

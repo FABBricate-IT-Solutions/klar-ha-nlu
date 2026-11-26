@@ -41,10 +41,10 @@ areas:
   aliases:
   - allrumess
 - id: kitchen
-  name: Kok
+  name: kök
   floor: ground
   aliases:
-  - kok
+  - kök
 - id: family_room
   name: Allrum
   floor: ground
@@ -143,15 +143,15 @@ devices:
   - ljus
 - id: light.kitchen_ceiling
   area_id: kitchen
-  name: kok tak
+  name: kök tak
   aliases:
-  - kok tak
+  - kök tak
   - tak
 - id: light.kitchen_island
   area_id: kitchen
-  name: kok o
+  name: kök o
   aliases:
-  - kok o
+  - kök o
   - o
 - id: light.family_ceiling
   area_id: family_room
@@ -289,16 +289,16 @@ devices:
   - gardin
 - id: climate.ground_thermostat
   area_id: living
-  name: vardagsrum varme
+  name: vardagsrum värme
   aliases:
-  - vardagsrum varme
-  - varme
+  - vardagsrum värme
+  - värme
 - id: climate.upper_thermostat
   area_id: master_bedroom
-  name: sovrummaster varme
+  name: sovrummaster värme
   aliases:
-  - sovrummaster varme
-  - varme
+  - sovrummaster värme
+  - värme
 - id: climate.master_ac
   area_id: master_bedroom
   name: temperatur sovrummaster
@@ -310,47 +310,47 @@ devices:
   - temperatur
 - id: fan.family_fan
   area_id: family_room
-  name: allrum flakt
+  name: allrum fläkt
   aliases:
-  - allrum flakt
-  - flakt
+  - allrum fläkt
+  - fläkt
 - id: fan.master_fan
   area_id: master_bedroom
-  name: sovrummaster flakt
+  name: sovrummaster fläkt
   aliases:
-  - sovrummaster flakt
-  - flakt
+  - sovrummaster fläkt
+  - fläkt
 - id: fan.bedroom2_fan
   area_id: bedroom_2
-  name: sovrum2 flakt
+  name: sovrum2 fläkt
   aliases:
-  - sovrum2 flakt
-  - flakt
+  - sovrum2 fläkt
+  - fläkt
 - id: lock.front_door
   area_id: entryway
-  name: front dorr
+  name: front dörr
   aliases:
-  - front dorr
+  - front dörr
   tags:
   - front
 - id: lock.garage_entry
   area_id: garage
-  name: garage dorr
+  name: garage dörr
   aliases:
-  - garage dorr
+  - garage dörr
   tags:
   - garage
 - id: switch.dishwasher
   area_id: kitchen
-  name: kok disk
+  name: kök disk
   aliases:
-  - kok disk
+  - kök disk
   - disk
 - id: switch.rangehood
   area_id: kitchen
-  name: kok rangehood
+  name: kök rangehood
   aliases:
-  - kok rangehood
+  - kök rangehood
   - rangehood
   tags:
   - rangehood
@@ -374,20 +374,20 @@ devices:
   - dryer
 - id: switch.master_bath_fan
   area_id: master_bath
-  name: badmaster flaktbad
+  name: badmaster fläktbad
   aliases:
-  - badmaster flaktbad
-  - flaktbad
+  - badmaster fläktbad
+  - fläktbad
   tags:
-  - flaktbad
+  - fläktbad
 - id: switch.main_bath_fan
   area_id: main_bath
-  name: main bath flaktbad
+  name: main bath fläktbad
   aliases:
-  - main bath flaktbad
-  - flaktbad
+  - main bath fläktbad
+  - fläktbad
   tags:
-  - flaktbad
+  - fläktbad
 - id: media_player.living_tv
   area_id: living
   name: vardagsrum tv
@@ -411,9 +411,9 @@ devices:
   - musik
 - id: media_player.kitchen_music
   area_id: kitchen
-  name: kok musik
+  name: kök musik
   aliases:
-  - kok musik
+  - kök musik
   - musik
   platform: music_assistant
   tags:
@@ -451,9 +451,9 @@ devices:
   - windowsensor
 - id: binary_sensor.kitchen_motion
   area_id: kitchen
-  name: kok motion
+  name: kök motion
   aliases:
-  - kok motion
+  - kök motion
   - motion
   tags:
   - motion

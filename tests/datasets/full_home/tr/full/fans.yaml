@@ -4,16 +4,16 @@
     entity_id: fan.family_fan
     state: 'on'
   sentences:
-  - vantilator aile yak
-  - yak vantilator aile
+  - vantilatör aile yak
+  - yak vantilatör aile
 - name: fan.family_fan_off
   conditions:
   - type: action
     entity_id: fan.family_fan
     state: 'off'
   sentences:
-  - sondur vantilator aile
-  - vantilator aile sondur
+  - söndür vantilatör aile
+  - vantilatör aile söndür
 - name: fan.family_fan_speed
   conditions:
   - type: action
@@ -21,24 +21,24 @@
     attributes:
       percentage: 40
   sentences:
-  - ayarla vantilator aile 40
-  - vantilator aile 40
+  - ayarla vantilatör aile 40
+  - vantilatör aile 40
 - name: fan.master_fan_on
   conditions:
   - type: action
     entity_id: fan.master_fan
     state: 'on'
   sentences:
-  - vantilator yatakodasimaster yak
-  - yak vantilator yatakodasimaster
+  - vantilatör yatakodasimaster yak
+  - yak vantilatör yatakodasimaster
 - name: fan.master_fan_off
   conditions:
   - type: action
     entity_id: fan.master_fan
     state: 'off'
   sentences:
-  - sondur vantilator yatakodasimaster
-  - vantilator yatakodasimaster sondur
+  - söndür vantilatör yatakodasimaster
+  - vantilatör yatakodasimaster söndür
 - name: fan.master_fan_speed
   conditions:
   - type: action
@@ -46,24 +46,24 @@
     attributes:
       percentage: 40
   sentences:
-  - ayarla vantilator yatakodasimaster 40
-  - vantilator yatakodasimaster 40
+  - ayarla vantilatör yatakodasimaster 40
+  - vantilatör yatakodasimaster 40
 - name: fan.bedroom2_fan_on
   conditions:
   - type: action
     entity_id: fan.bedroom2_fan
     state: 'on'
   sentences:
-  - vantilator yatakodasi2 yak
-  - yak vantilator yatakodasi2
+  - vantilatör yatakodasi2 yak
+  - yak vantilatör yatakodasi2
 - name: fan.bedroom2_fan_off
   conditions:
   - type: action
     entity_id: fan.bedroom2_fan
     state: 'off'
   sentences:
-  - sondur vantilator yatakodasi2
-  - vantilator yatakodasi2 sondur
+  - söndür vantilatör yatakodasi2
+  - vantilatör yatakodasi2 söndür
 - name: fan.bedroom2_fan_speed
   conditions:
   - type: action
@@ -71,8 +71,8 @@
     attributes:
       percentage: 40
   sentences:
-  - ayarla vantilator yatakodasi2 40
-  - vantilator yatakodasi2 40
+  - ayarla vantilatör yatakodasi2 40
+  - vantilatör yatakodasi2 40
 - name: fan.family_fan_speed_20
   conditions:
   - type: action
@@ -80,8 +80,8 @@
     attributes:
       percentage: 20
   sentences:
-  - ayarla vantilator aile 20
-  - vantilator aile 20
+  - ayarla vantilatör aile 20
+  - vantilatör aile 20
 - name: fan.family_fan_speed_60
   conditions:
   - type: action
@@ -89,8 +89,8 @@
     attributes:
       percentage: 60
   sentences:
-  - ayarla vantilator aile 60
-  - vantilator aile 60
+  - ayarla vantilatör aile 60
+  - vantilatör aile 60
 - name: fan.family_fan_speed_80
   conditions:
   - type: action
@@ -98,8 +98,8 @@
     attributes:
       percentage: 80
   sentences:
-  - ayarla vantilator aile 80
-  - vantilator aile 80
+  - ayarla vantilatör aile 80
+  - vantilatör aile 80
 - name: fan.master_fan_speed_20
   conditions:
   - type: action
@@ -107,8 +107,8 @@
     attributes:
       percentage: 20
   sentences:
-  - ayarla vantilator yatakodasimaster 20
-  - vantilator yatakodasimaster 20
+  - ayarla vantilatör yatakodasimaster 20
+  - vantilatör yatakodasimaster 20
 - name: fan.master_fan_speed_60
   conditions:
   - type: action
@@ -116,8 +116,8 @@
     attributes:
       percentage: 60
   sentences:
-  - ayarla vantilator yatakodasimaster 60
-  - vantilator yatakodasimaster 60
+  - ayarla vantilatör yatakodasimaster 60
+  - vantilatör yatakodasimaster 60
 - name: fan.master_fan_speed_80
   conditions:
   - type: action
@@ -125,8 +125,8 @@
     attributes:
       percentage: 80
   sentences:
-  - ayarla vantilator yatakodasimaster 80
-  - vantilator yatakodasimaster 80
+  - ayarla vantilatör yatakodasimaster 80
+  - vantilatör yatakodasimaster 80
 - name: fan.bedroom2_fan_speed_20
   conditions:
   - type: action
@@ -134,8 +134,8 @@
     attributes:
       percentage: 20
   sentences:
-  - ayarla vantilator yatakodasi2 20
-  - vantilator yatakodasi2 20
+  - ayarla vantilatör yatakodasi2 20
+  - vantilatör yatakodasi2 20
 - name: fan.bedroom2_fan_speed_60
   conditions:
   - type: action
@@ -143,8 +143,8 @@
     attributes:
       percentage: 60
   sentences:
-  - ayarla vantilator yatakodasi2 60
-  - vantilator yatakodasi2 60
+  - ayarla vantilatör yatakodasi2 60
+  - vantilatör yatakodasi2 60
 - name: fan.bedroom2_fan_speed_80
   conditions:
   - type: action
@@ -152,5 +152,5 @@
     attributes:
       percentage: 80
   sentences:
-  - ayarla vantilator yatakodasi2 80
-  - vantilator yatakodasi2 80
+  - ayarla vantilatör yatakodasi2 80
+  - vantilatör yatakodasi2 80

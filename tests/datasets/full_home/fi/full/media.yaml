@@ -4,8 +4,8 @@
     entity_id: media_player.living_tv
     state: 'on'
   sentences:
-  - tv olohuone sytyta
-  - sytyta tv olohuone
+  - tv olohuone sytytä
+  - sytytä tv olohuone
 - name: media_player.living_tv_off
   conditions:
   - type: action
@@ -28,8 +28,8 @@
     entity_id: media_player.family_tv
     state: 'on'
   sentences:
-  - tv olohuonefam sytyta
-  - sytyta tv olohuonefam
+  - tv olohuonefam sytytä
+  - sytytä tv olohuonefam
 - name: media_player.family_tv_off
   conditions:
   - type: action

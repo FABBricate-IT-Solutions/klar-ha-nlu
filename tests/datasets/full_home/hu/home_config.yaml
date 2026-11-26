@@ -259,85 +259,85 @@ devices:
   - villany
 - id: cover.living_blinds
   area_id: living
-  name: nappali fuggony
+  name: nappali függöny
   aliases:
-  - nappali fuggony
-  - fuggony
+  - nappali függöny
+  - függöny
 - id: cover.master_blinds
   area_id: master_bedroom
-  name: haloszobamaster fuggony
+  name: haloszobamaster függöny
   aliases:
-  - haloszobamaster fuggony
-  - fuggony
+  - haloszobamaster függöny
+  - függöny
 - id: cover.bedroom2_blinds
   area_id: bedroom_2
-  name: haloszoba2 fuggony
+  name: haloszoba2 függöny
   aliases:
-  - haloszoba2 fuggony
-  - fuggony
+  - haloszoba2 függöny
+  - függöny
 - id: cover.bedroom3_blinds
   area_id: bedroom_3
-  name: haloszoba3 fuggony
+  name: haloszoba3 függöny
   aliases:
-  - haloszoba3 fuggony
-  - fuggony
+  - haloszoba3 függöny
+  - függöny
 - id: cover.garage_door
   area_id: garage
-  name: garage fuggony
+  name: garage függöny
   aliases:
-  - garage fuggony
-  - fuggony
+  - garage függöny
+  - függöny
 - id: climate.ground_thermostat
   area_id: living
-  name: nappali futes
+  name: nappali fűtés
   aliases:
-  - nappali futes
-  - futes
+  - nappali fűtés
+  - fűtés
 - id: climate.upper_thermostat
   area_id: master_bedroom
-  name: haloszobamaster futes
+  name: haloszobamaster fűtés
   aliases:
-  - haloszobamaster futes
-  - futes
+  - haloszobamaster fűtés
+  - fűtés
 - id: climate.master_ac
   area_id: master_bedroom
-  name: homerseklet haloszobamaster
+  name: hőmérséklet haloszobamaster
   aliases:
-  - homerseklet haloszobamaster
-  - homerseklet
+  - hőmérséklet haloszobamaster
+  - hőmérséklet
   - ac
   tags:
-  - homerseklet
+  - hőmérséklet
 - id: fan.family_fan
   area_id: family_room
-  name: nappalifam ventilator
+  name: nappalifam ventilátor
   aliases:
-  - nappalifam ventilator
-  - ventilator
+  - nappalifam ventilátor
+  - ventilátor
 - id: fan.master_fan
   area_id: master_bedroom
-  name: haloszobamaster ventilator
+  name: haloszobamaster ventilátor
   aliases:
-  - haloszobamaster ventilator
-  - ventilator
+  - haloszobamaster ventilátor
+  - ventilátor
 - id: fan.bedroom2_fan
   area_id: bedroom_2
-  name: haloszoba2 ventilator
+  name: haloszoba2 ventilátor
   aliases:
-  - haloszoba2 ventilator
-  - ventilator
+  - haloszoba2 ventilátor
+  - ventilátor
 - id: lock.front_door
   area_id: entryway
-  name: front ajto
+  name: front ajtó
   aliases:
-  - front ajto
+  - front ajtó
   tags:
   - front
 - id: lock.garage_entry
   area_id: garage
-  name: garage ajto
+  name: garage ajtó
   aliases:
-  - garage ajto
+  - garage ajtó
   tags:
   - garage
 - id: switch.dishwasher
@@ -374,20 +374,20 @@ devices:
   - dryer
 - id: switch.master_bath_fan
   area_id: master_bath
-  name: furdomaster ventilatorbad
+  name: furdomaster ventilátorbad
   aliases:
-  - furdomaster ventilatorbad
-  - ventilatorbad
+  - furdomaster ventilátorbad
+  - ventilátorbad
   tags:
-  - ventilatorbad
+  - ventilátorbad
 - id: switch.main_bath_fan
   area_id: main_bath
-  name: main bath ventilatorbad
+  name: main bath ventilátorbad
   aliases:
-  - main bath ventilatorbad
-  - ventilatorbad
+  - main bath ventilátorbad
+  - ventilátorbad
   tags:
-  - ventilatorbad
+  - ventilátorbad
 - id: media_player.living_tv
   area_id: living
   name: nappali tv
@@ -429,10 +429,10 @@ devices:
   - zene
 - id: vacuum.robot
   area_id: living
-  name: nappali porszivo
+  name: nappali porszívó
   aliases:
-  - nappali porszivo
-  - porszivo
+  - nappali porszívó
+  - porszívó
 - id: binary_sensor.front_door_sensor
   area_id: entryway
   name: eloter doorsensor
@@ -495,11 +495,11 @@ scripts:
   name: tavozas
 timers:
 - id: oven
-  name: oven idomer
+  name: oven időmér
 - id: laundry
-  name: laundry idomer
+  name: laundry időmér
 - id: abstract
-  name: abstract idomer
+  name: abstract időmér
 lists:
 - id: shopping
   name: lista

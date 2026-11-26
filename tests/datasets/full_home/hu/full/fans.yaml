@@ -4,16 +4,16 @@
     entity_id: fan.family_fan
     state: 'on'
   sentences:
-  - ventilator nappalifam kapcsold
-  - kapcsold ventilator nappalifam
+  - ventilátor nappalifam kapcsold
+  - kapcsold ventilátor nappalifam
 - name: fan.family_fan_off
   conditions:
   - type: action
     entity_id: fan.family_fan
     state: 'off'
   sentences:
-  - oltsd ventilator nappalifam
-  - ventilator nappalifam oltsd
+  - oltsd ventilátor nappalifam
+  - ventilátor nappalifam oltsd
 - name: fan.family_fan_speed
   conditions:
   - type: action
@@ -21,24 +21,24 @@
     attributes:
       percentage: 40
   sentences:
-  - allitsd ventilator nappalifam 40
-  - ventilator nappalifam 40
+  - állítsd ventilátor nappalifam 40
+  - ventilátor nappalifam 40
 - name: fan.master_fan_on
   conditions:
   - type: action
     entity_id: fan.master_fan
     state: 'on'
   sentences:
-  - ventilator haloszobamaster kapcsold
-  - kapcsold ventilator haloszobamaster
+  - ventilátor haloszobamaster kapcsold
+  - kapcsold ventilátor haloszobamaster
 - name: fan.master_fan_off
   conditions:
   - type: action
     entity_id: fan.master_fan
     state: 'off'
   sentences:
-  - oltsd ventilator haloszobamaster
-  - ventilator haloszobamaster oltsd
+  - oltsd ventilátor haloszobamaster
+  - ventilátor haloszobamaster oltsd
 - name: fan.master_fan_speed
   conditions:
   - type: action
@@ -46,24 +46,24 @@
     attributes:
       percentage: 40
   sentences:
-  - allitsd ventilator haloszobamaster 40
-  - ventilator haloszobamaster 40
+  - állítsd ventilátor haloszobamaster 40
+  - ventilátor haloszobamaster 40
 - name: fan.bedroom2_fan_on
   conditions:
   - type: action
     entity_id: fan.bedroom2_fan
     state: 'on'
   sentences:
-  - ventilator haloszoba2 kapcsold
-  - kapcsold ventilator haloszoba2
+  - ventilátor haloszoba2 kapcsold
+  - kapcsold ventilátor haloszoba2
 - name: fan.bedroom2_fan_off
   conditions:
   - type: action
     entity_id: fan.bedroom2_fan
     state: 'off'
   sentences:
-  - oltsd ventilator haloszoba2
-  - ventilator haloszoba2 oltsd
+  - oltsd ventilátor haloszoba2
+  - ventilátor haloszoba2 oltsd
 - name: fan.bedroom2_fan_speed
   conditions:
   - type: action
@@ -71,8 +71,8 @@
     attributes:
       percentage: 40
   sentences:
-  - allitsd ventilator haloszoba2 40
-  - ventilator haloszoba2 40
+  - állítsd ventilátor haloszoba2 40
+  - ventilátor haloszoba2 40
 - name: fan.family_fan_speed_20
   conditions:
   - type: action
@@ -80,8 +80,8 @@
     attributes:
       percentage: 20
   sentences:
-  - allitsd ventilator nappalifam 20
-  - ventilator nappalifam 20
+  - állítsd ventilátor nappalifam 20
+  - ventilátor nappalifam 20
 - name: fan.family_fan_speed_60
   conditions:
   - type: action
@@ -89,8 +89,8 @@
     attributes:
       percentage: 60
   sentences:
-  - allitsd ventilator nappalifam 60
-  - ventilator nappalifam 60
+  - állítsd ventilátor nappalifam 60
+  - ventilátor nappalifam 60
 - name: fan.family_fan_speed_80
   conditions:
   - type: action
@@ -98,8 +98,8 @@
     attributes:
       percentage: 80
   sentences:
-  - allitsd ventilator nappalifam 80
-  - ventilator nappalifam 80
+  - állítsd ventilátor nappalifam 80
+  - ventilátor nappalifam 80
 - name: fan.master_fan_speed_20
   conditions:
   - type: action
@@ -107,8 +107,8 @@
     attributes:
       percentage: 20
   sentences:
-  - allitsd ventilator haloszobamaster 20
-  - ventilator haloszobamaster 20
+  - állítsd ventilátor haloszobamaster 20
+  - ventilátor haloszobamaster 20
 - name: fan.master_fan_speed_60
   conditions:
   - type: action
@@ -116,8 +116,8 @@
     attributes:
       percentage: 60
   sentences:
-  - allitsd ventilator haloszobamaster 60
-  - ventilator haloszobamaster 60
+  - állítsd ventilátor haloszobamaster 60
+  - ventilátor haloszobamaster 60
 - name: fan.master_fan_speed_80
   conditions:
   - type: action
@@ -125,8 +125,8 @@
     attributes:
       percentage: 80
   sentences:
-  - allitsd ventilator haloszobamaster 80
-  - ventilator haloszobamaster 80
+  - állítsd ventilátor haloszobamaster 80
+  - ventilátor haloszobamaster 80
 - name: fan.bedroom2_fan_speed_20
   conditions:
   - type: action
@@ -134,8 +134,8 @@
     attributes:
       percentage: 20
   sentences:
-  - allitsd ventilator haloszoba2 20
-  - ventilator haloszoba2 20
+  - állítsd ventilátor haloszoba2 20
+  - ventilátor haloszoba2 20
 - name: fan.bedroom2_fan_speed_60
   conditions:
   - type: action
@@ -143,8 +143,8 @@
     attributes:
       percentage: 60
   sentences:
-  - allitsd ventilator haloszoba2 60
-  - ventilator haloszoba2 60
+  - állítsd ventilátor haloszoba2 60
+  - ventilátor haloszoba2 60
 - name: fan.bedroom2_fan_speed_80
   conditions:
   - type: action
@@ -152,5 +152,5 @@
     attributes:
       percentage: 80
   sentences:
-  - allitsd ventilator haloszoba2 80
-  - ventilator haloszoba2 80
+  - állítsd ventilátor haloszoba2 80
+  - ventilátor haloszoba2 80

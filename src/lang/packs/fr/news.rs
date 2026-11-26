@@ -2,7 +2,7 @@
 use crate::lang::groups::News;
 
 pub(super) const NEWS: News = News {
-    words: &["actu", "actualite", "actualites", "briefing", "info", "infos", "lactu", "lactualite", "linfo", "nouvelles", "titres"],
+    words: &["actu", "actualite", "actualites", "briefing", "info", "infos", "nouvelles", "titres"],
     dismiss: &["assez", "non", "stop"],
     intro: "Je regarde les dernières actualités.",
     nudge: "Tu veux en savoir plus sur l'une d'elles ?",
@@ -55,12 +55,11 @@ pub(super) const NEWS: News = News {
         "actuelles",
         "aimerais",
         "au",
+        "aujourdhui",
         "aux",
         "avoir",
         "ce",
-        "cest",
         "dans",
-        "daujourdhui",
         "de",
         "dernieres",
         "derniers",
@@ -75,7 +74,6 @@ pub(super) const NEWS: News = News {
         "et",
         "il",
         "importantes",
-        "jaimerais",
         "je",
         "jour",
         "la",

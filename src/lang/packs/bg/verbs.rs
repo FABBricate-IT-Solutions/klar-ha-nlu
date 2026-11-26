@@ -31,6 +31,6 @@ pub(super) const VERBS: &[(&str, VerbKind)] = &[
     ("средно", VerbKind::Dim),
     ("станция", VerbKind::Dock),
     ("сцена", VerbKind::Scene),
-    ("таймер", VerbKind::Timer),
+    ("таимер", VerbKind::Timer),
     ("топлобяло", VerbKind::Color),
 ];

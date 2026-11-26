@@ -153,7 +153,11 @@ fn word_at(tokens: &[String], at: usize) -> Option<(i32, usize)> {
     let spelled = (2..=MAX_WORDS_PER_NUMBER.min(rest.len())).rev().find_map(|width| {
         let words = &rest[..width];
         let no_digits = words.iter().all(|word| word.parse::<i32>().is_err());
-        no_digits.then(|| cat.number(&words.concat())).flatten().map(|value| (value, width))
+        if !no_digits {
+            return None;
+        }
+        // Arabic/Hebrew list 11–19 with spaces; French stores "dixsept" without (L-12).
+        cat.number(&words.concat()).or_else(|| cat.number(&words.join(" "))).map(|value| (value, width))
     });
     spelled.or_else(|| word_value(rest.first()?).map(|value| (value, 1)))
 }

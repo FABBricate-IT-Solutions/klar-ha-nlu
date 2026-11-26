@@ -37,7 +37,7 @@ pub(super) const VERBS: &[(&str, VerbKind)] = &[
     ("зогсоо", VerbKind::Pause),
     ("нээ", VerbKind::Open),
     ("сэнс", VerbKind::FanNoun),
-    ("таймер", VerbKind::Timer),
+    ("таимер", VerbKind::Timer),
     ("тоглуул", VerbKind::Play),
     ("тоос", VerbKind::VacuumNoun),
     ("тохируул", VerbKind::Set),

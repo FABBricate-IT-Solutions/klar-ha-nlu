@@ -5,8 +5,8 @@
     attributes:
       temperature: 18
   sentences:
-  - aseta lampo olohuone 18
-  - lampo olohuone 18
+  - aseta lämpö olohuone 18
+  - lämpö olohuone 18
 - name: climate.ground_thermostat_19
   conditions:
   - type: action
@@ -14,8 +14,8 @@
     attributes:
       temperature: 19
   sentences:
-  - aseta lampo olohuone 19
-  - lampo olohuone 19
+  - aseta lämpö olohuone 19
+  - lämpö olohuone 19
 - name: climate.ground_thermostat_20
   conditions:
   - type: action
@@ -23,8 +23,8 @@
     attributes:
       temperature: 20
   sentences:
-  - aseta lampo olohuone 20
-  - lampo olohuone 20
+  - aseta lämpö olohuone 20
+  - lämpö olohuone 20
 - name: climate.ground_thermostat_21
   conditions:
   - type: action
@@ -32,8 +32,8 @@
     attributes:
       temperature: 21
   sentences:
-  - aseta lampo olohuone 21
-  - lampo olohuone 21
+  - aseta lämpö olohuone 21
+  - lämpö olohuone 21
 - name: climate.ground_thermostat_22
   conditions:
   - type: action
@@ -41,8 +41,8 @@
     attributes:
       temperature: 22
   sentences:
-  - aseta lampo olohuone 22
-  - lampo olohuone 22
+  - aseta lämpö olohuone 22
+  - lämpö olohuone 22
 - name: climate.ground_thermostat_23
   conditions:
   - type: action
@@ -50,8 +50,8 @@
     attributes:
       temperature: 23
   sentences:
-  - aseta lampo olohuone 23
-  - lampo olohuone 23
+  - aseta lämpö olohuone 23
+  - lämpö olohuone 23
 - name: climate.ground_thermostat_24
   conditions:
   - type: action
@@ -59,15 +59,15 @@
     attributes:
       temperature: 24
   sentences:
-  - aseta lampo olohuone 24
-  - lampo olohuone 24
+  - aseta lämpö olohuone 24
+  - lämpö olohuone 24
 - name: climate.ground_thermostat_get
   conditions:
   - type: query
     entity_id: climate.ground_thermostat
   sentences:
-  - mika lampo olohuone
-  - lampo olohuone
+  - mikä lämpö olohuone
+  - lämpö olohuone
 - name: climate.upper_thermostat_18
   conditions:
   - type: action
@@ -75,8 +75,8 @@
     attributes:
       temperature: 18
   sentences:
-  - aseta lampo makuuhuonemaster 18
-  - lampo makuuhuonemaster 18
+  - aseta lämpö makuuhuonemaster 18
+  - lämpö makuuhuonemaster 18
 - name: climate.upper_thermostat_19
   conditions:
   - type: action
@@ -84,8 +84,8 @@
     attributes:
       temperature: 19
   sentences:
-  - aseta lampo makuuhuonemaster 19
-  - lampo makuuhuonemaster 19
+  - aseta lämpö makuuhuonemaster 19
+  - lämpö makuuhuonemaster 19
 - name: climate.upper_thermostat_20
   conditions:
   - type: action
@@ -93,8 +93,8 @@
     attributes:
       temperature: 20
   sentences:
-  - aseta lampo makuuhuonemaster 20
-  - lampo makuuhuonemaster 20
+  - aseta lämpö makuuhuonemaster 20
+  - lämpö makuuhuonemaster 20
 - name: climate.upper_thermostat_21
   conditions:
   - type: action
@@ -102,8 +102,8 @@
     attributes:
       temperature: 21
   sentences:
-  - aseta lampo makuuhuonemaster 21
-  - lampo makuuhuonemaster 21
+  - aseta lämpö makuuhuonemaster 21
+  - lämpö makuuhuonemaster 21
 - name: climate.upper_thermostat_22
   conditions:
   - type: action
@@ -111,8 +111,8 @@
     attributes:
       temperature: 22
   sentences:
-  - aseta lampo makuuhuonemaster 22
-  - lampo makuuhuonemaster 22
+  - aseta lämpö makuuhuonemaster 22
+  - lämpö makuuhuonemaster 22
 - name: climate.upper_thermostat_23
   conditions:
   - type: action
@@ -120,8 +120,8 @@
     attributes:
       temperature: 23
   sentences:
-  - aseta lampo makuuhuonemaster 23
-  - lampo makuuhuonemaster 23
+  - aseta lämpö makuuhuonemaster 23
+  - lämpö makuuhuonemaster 23
 - name: climate.upper_thermostat_24
   conditions:
   - type: action
@@ -129,15 +129,15 @@
     attributes:
       temperature: 24
   sentences:
-  - aseta lampo makuuhuonemaster 24
-  - lampo makuuhuonemaster 24
+  - aseta lämpö makuuhuonemaster 24
+  - lämpö makuuhuonemaster 24
 - name: climate.upper_thermostat_get
   conditions:
   - type: query
     entity_id: climate.upper_thermostat
   sentences:
-  - mika lampo makuuhuonemaster
-  - lampo makuuhuonemaster
+  - mikä lämpö makuuhuonemaster
+  - lämpö makuuhuonemaster
 - name: climate.master_ac_18
   conditions:
   - type: action
@@ -206,26 +206,26 @@
   - type: query
     entity_id: climate.master_ac
   sentences:
-  - mika lammitys makuuhuonemaster
+  - mikä lammitys makuuhuonemaster
   - lammitys makuuhuonemaster
 - name: climate.ground_thermostat_get_full
   conditions:
   - type: query
     entity_id: climate.ground_thermostat
   sentences:
-  - mika lampo olohuone
-  - lampo olohuone
+  - mikä lämpö olohuone
+  - lämpö olohuone
 - name: climate.upper_thermostat_get_full
   conditions:
   - type: query
     entity_id: climate.upper_thermostat
   sentences:
-  - mika lampo makuuhuonemaster
-  - lampo makuuhuonemaster
+  - mikä lämpö makuuhuonemaster
+  - lämpö makuuhuonemaster
 - name: climate.master_ac_get_full
   conditions:
   - type: query
     entity_id: climate.master_ac
   sentences:
-  - mika lammitys makuuhuonemaster
+  - mikä lammitys makuuhuonemaster
   - lammitys makuuhuonemaster

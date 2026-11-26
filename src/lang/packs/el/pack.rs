@@ -287,7 +287,7 @@ pub const PACK: LanguagePack = LanguagePack {
         today_ok: "Today is {weekday}, {date}.",
         no_weather: "Δεν το καταλαβα. Πες για παραδειγμα ποιο φως να ανοίξω.",
     },
-    answers: Answers { yes: &["ναι", "οκ"], no: &["όχι"], cancel: &[], ask: "", actions: &[], many: "" },
+    answers: Answers { yes: &["ναι", "οκ"], no: &["οχι"], cancel: &[], ask: "", actions: &[], many: "" },
     speech: SPEECH,
     morphology: PackMorphology::EMPTY,
     mood: MOOD,

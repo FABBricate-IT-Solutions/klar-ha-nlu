@@ -236,77 +236,77 @@ The temperature Y. → Certainly, sir. The temperature Y.",
         "default",
         "X be van kapcsolva. → X be van kapcsolva.
 X ki van kapcsolva. → X ki van kapcsolva.
-A homerseklet Y. → A homerseklet Y.",
+A hőmérséklet Y. → A hőmérséklet Y.",
     ),
     (
         "hu",
         "butler",
-        "X be van kapcsolva. → Nagyon jol. X be van kapcsolva.
+        "X be van kapcsolva. → Nagyon jól. X be van kapcsolva.
 X ki van kapcsolva. → X ki van kapcsolva.
-A homerseklet Y. → Nagyon jol. A homerseklet Y.",
+A hőmérséklet Y. → Nagyon jól. A hőmérséklet Y.",
     ),
     (
         "hu",
         "locker",
         "X be van kapcsolva. → Oké. X be van kapcsolva.
 X ki van kapcsolva. → X ki van kapcsolva.
-A homerseklet Y. → Oké. A homerseklet Y.",
+A hőmérséklet Y. → Oké. A hőmérséklet Y.",
     ),
     (
         "hu",
         "fuersorglich",
-        "X be van kapcsolva. → Azonnal megcsinalom. X be van kapcsolva.
+        "X be van kapcsolva. → Azonnal megcsinálom. X be van kapcsolva.
 X ki van kapcsolva. → X ki van kapcsolva.
-A homerseklet Y. → Azonnal megcsinalom. A homerseklet Y.",
+A hőmérséklet Y. → Azonnal megcsinálom. A hőmérséklet Y.",
     ),
     (
         "hu",
         "party",
-        "X be van kapcsolva. → Gyerunk. X be van kapcsolva.
+        "X be van kapcsolva. → Gyerünk. X be van kapcsolva.
 X ki van kapcsolva. → X ki van kapcsolva.
-A homerseklet Y. → Gyerunk. A homerseklet Y.",
+A hőmérséklet Y. → Gyerünk. A hőmérséklet Y.",
     ),
     (
         "hu",
         "grantig",
-        "X be van kapcsolva. → Hát jo. X be van kapcsolva.
+        "X be van kapcsolva. → Hát jó. X be van kapcsolva.
 X ki van kapcsolva. → X ki van kapcsolva.
-A homerseklet Y. → Hát jo. A homerseklet Y.",
+A hőmérséklet Y. → Hát jó. A hőmérséklet Y.",
     ),
     (
         "hu",
         "sarkastisch",
         "X be van kapcsolva. → Persze. X be van kapcsolva.
 X ki van kapcsolva. → X ki van kapcsolva.
-A homerseklet Y. → Persze. A homerseklet Y.",
+A hőmérséklet Y. → Persze. A hőmérséklet Y.",
     ),
     (
         "hu",
         "pirat",
         "X be van kapcsolva. → Aye. X be van kapcsolva.
 X ki van kapcsolva. → X ki van kapcsolva.
-A homerseklet Y. → Aye. A homerseklet Y.",
+A hőmérséklet Y. → Aye. A hőmérséklet Y.",
     ),
     (
         "hu",
         "hippie",
         "X be van kapcsolva. → Laza. X be van kapcsolva.
 X ki van kapcsolva. → X ki van kapcsolva.
-A homerseklet Y. → Laza. A homerseklet Y.",
+A hőmérséklet Y. → Laza. A hőmérséklet Y.",
     ),
     (
         "hu",
         "gollum",
         "X be van kapcsolva. → Igen. X be van kapcsolva.
 X ki van kapcsolva. → X ki van kapcsolva.
-A homerseklet Y. → Igen. A homerseklet Y.",
+A hőmérséklet Y. → Igen. A hőmérséklet Y.",
     ),
     (
         "hu",
         "jarvis",
         "X be van kapcsolva. → Persze, uram. X be van kapcsolva.
 X ki van kapcsolva. → X ki van kapcsolva.
-A homerseklet Y. → Persze, uram. A homerseklet Y.",
+A hőmérséklet Y. → Persze, uram. A hőmérséklet Y.",
     ),
     (
         "sr-Latn",

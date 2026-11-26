@@ -16,7 +16,7 @@ pub(super) const VERBS: &[(&str, VerbKind)] = &[
     ("بسته", VerbKind::Close),
     ("بگذار", VerbKind::Set),
     ("تایمر", VerbKind::Timer),
-    ("تیره‌تر", VerbKind::Dim),
+    ("تیرهتر", VerbKind::Dim),
     ("جارو", VerbKind::VacuumNoun),
     ("خاموش", VerbKind::Off),
     ("درصد", VerbKind::Percent),
@@ -32,5 +32,5 @@ pub(super) const VERBS: &[(&str, VerbKind)] = &[
     ("چطور", VerbKind::Query),
     ("چی", VerbKind::Query),
     ("کاهش", VerbKind::Lower),
-    ("کم‌نور", VerbKind::Dim),
+    ("کمنور", VerbKind::Dim),
 ];

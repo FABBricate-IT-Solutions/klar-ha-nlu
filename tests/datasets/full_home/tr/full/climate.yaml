@@ -5,8 +5,8 @@
     attributes:
       temperature: 18
   sentences:
-  - ayarla sicaklik salon 18
-  - sicaklik salon 18
+  - ayarla sıcaklık salon 18
+  - sıcaklık salon 18
 - name: climate.ground_thermostat_19
   conditions:
   - type: action
@@ -14,8 +14,8 @@
     attributes:
       temperature: 19
   sentences:
-  - ayarla sicaklik salon 19
-  - sicaklik salon 19
+  - ayarla sıcaklık salon 19
+  - sıcaklık salon 19
 - name: climate.ground_thermostat_20
   conditions:
   - type: action
@@ -23,8 +23,8 @@
     attributes:
       temperature: 20
   sentences:
-  - ayarla sicaklik salon 20
-  - sicaklik salon 20
+  - ayarla sıcaklık salon 20
+  - sıcaklık salon 20
 - name: climate.ground_thermostat_21
   conditions:
   - type: action
@@ -32,8 +32,8 @@
     attributes:
       temperature: 21
   sentences:
-  - ayarla sicaklik salon 21
-  - sicaklik salon 21
+  - ayarla sıcaklık salon 21
+  - sıcaklık salon 21
 - name: climate.ground_thermostat_22
   conditions:
   - type: action
@@ -41,8 +41,8 @@
     attributes:
       temperature: 22
   sentences:
-  - ayarla sicaklik salon 22
-  - sicaklik salon 22
+  - ayarla sıcaklık salon 22
+  - sıcaklık salon 22
 - name: climate.ground_thermostat_23
   conditions:
   - type: action
@@ -50,8 +50,8 @@
     attributes:
       temperature: 23
   sentences:
-  - ayarla sicaklik salon 23
-  - sicaklik salon 23
+  - ayarla sıcaklık salon 23
+  - sıcaklık salon 23
 - name: climate.ground_thermostat_24
   conditions:
   - type: action
@@ -59,15 +59,15 @@
     attributes:
       temperature: 24
   sentences:
-  - ayarla sicaklik salon 24
-  - sicaklik salon 24
+  - ayarla sıcaklık salon 24
+  - sıcaklık salon 24
 - name: climate.ground_thermostat_get
   conditions:
   - type: query
     entity_id: climate.ground_thermostat
   sentences:
-  - ne sicaklik salon
-  - sicaklik salon
+  - ne sıcaklık salon
+  - sıcaklık salon
 - name: climate.upper_thermostat_18
   conditions:
   - type: action
@@ -75,8 +75,8 @@
     attributes:
       temperature: 18
   sentences:
-  - ayarla sicaklik yatakodasimaster 18
-  - sicaklik yatakodasimaster 18
+  - ayarla sıcaklık yatakodasimaster 18
+  - sıcaklık yatakodasimaster 18
 - name: climate.upper_thermostat_19
   conditions:
   - type: action
@@ -84,8 +84,8 @@
     attributes:
       temperature: 19
   sentences:
-  - ayarla sicaklik yatakodasimaster 19
-  - sicaklik yatakodasimaster 19
+  - ayarla sıcaklık yatakodasimaster 19
+  - sıcaklık yatakodasimaster 19
 - name: climate.upper_thermostat_20
   conditions:
   - type: action
@@ -93,8 +93,8 @@
     attributes:
       temperature: 20
   sentences:
-  - ayarla sicaklik yatakodasimaster 20
-  - sicaklik yatakodasimaster 20
+  - ayarla sıcaklık yatakodasimaster 20
+  - sıcaklık yatakodasimaster 20
 - name: climate.upper_thermostat_21
   conditions:
   - type: action
@@ -102,8 +102,8 @@
     attributes:
       temperature: 21
   sentences:
-  - ayarla sicaklik yatakodasimaster 21
-  - sicaklik yatakodasimaster 21
+  - ayarla sıcaklık yatakodasimaster 21
+  - sıcaklık yatakodasimaster 21
 - name: climate.upper_thermostat_22
   conditions:
   - type: action
@@ -111,8 +111,8 @@
     attributes:
       temperature: 22
   sentences:
-  - ayarla sicaklik yatakodasimaster 22
-  - sicaklik yatakodasimaster 22
+  - ayarla sıcaklık yatakodasimaster 22
+  - sıcaklık yatakodasimaster 22
 - name: climate.upper_thermostat_23
   conditions:
   - type: action
@@ -120,8 +120,8 @@
     attributes:
       temperature: 23
   sentences:
-  - ayarla sicaklik yatakodasimaster 23
-  - sicaklik yatakodasimaster 23
+  - ayarla sıcaklık yatakodasimaster 23
+  - sıcaklık yatakodasimaster 23
 - name: climate.upper_thermostat_24
   conditions:
   - type: action
@@ -129,15 +129,15 @@
     attributes:
       temperature: 24
   sentences:
-  - ayarla sicaklik yatakodasimaster 24
-  - sicaklik yatakodasimaster 24
+  - ayarla sıcaklık yatakodasimaster 24
+  - sıcaklık yatakodasimaster 24
 - name: climate.upper_thermostat_get
   conditions:
   - type: query
     entity_id: climate.upper_thermostat
   sentences:
-  - ne sicaklik yatakodasimaster
-  - sicaklik yatakodasimaster
+  - ne sıcaklık yatakodasimaster
+  - sıcaklık yatakodasimaster
 - name: climate.master_ac_18
   conditions:
   - type: action
@@ -213,15 +213,15 @@
   - type: query
     entity_id: climate.ground_thermostat
   sentences:
-  - ne sicaklik salon
-  - sicaklik salon
+  - ne sıcaklık salon
+  - sıcaklık salon
 - name: climate.upper_thermostat_get_full
   conditions:
   - type: query
     entity_id: climate.upper_thermostat
   sentences:
-  - ne sicaklik yatakodasimaster
-  - sicaklik yatakodasimaster
+  - ne sıcaklık yatakodasimaster
+  - sıcaklık yatakodasimaster
 - name: climate.master_ac_get_full
   conditions:
   - type: query

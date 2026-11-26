@@ -4,93 +4,93 @@
     entity_id: switch.dishwasher
     state: 'on'
   sentences:
-  - tand disk kok
-  - disk kok tand
+  - tänd disk kök
+  - disk kök tänd
 - name: switch.dishwasher_off
   conditions:
   - type: action
     entity_id: switch.dishwasher
     state: 'off'
   sentences:
-  - slack disk kok
-  - disk kok slack
+  - släck disk kök
+  - disk kök släck
 - name: switch.washing_machine_on
   conditions:
   - type: action
     entity_id: switch.washing_machine
     state: 'on'
   sentences:
-  - tand tvattmaskin tvattstuga
-  - tvattmaskin tvattstuga tand
+  - tänd tvattmaskin tvattstuga
+  - tvattmaskin tvattstuga tänd
 - name: switch.washing_machine_off
   conditions:
   - type: action
     entity_id: switch.washing_machine
     state: 'off'
   sentences:
-  - slack tvattmaskin tvattstuga
-  - tvattmaskin tvattstuga slack
+  - släck tvattmaskin tvattstuga
+  - tvattmaskin tvattstuga släck
 - name: switch.dryer_on
   conditions:
   - type: action
     entity_id: switch.dryer
     state: 'on'
   sentences:
-  - tand dryer tvattstuga
-  - dryer tvattstuga tand
+  - tänd dryer tvattstuga
+  - dryer tvattstuga tänd
 - name: switch.dryer_off
   conditions:
   - type: action
     entity_id: switch.dryer
     state: 'off'
   sentences:
-  - slack dryer tvattstuga
-  - dryer tvattstuga slack
+  - släck dryer tvattstuga
+  - dryer tvattstuga släck
 - name: switch.rangehood_on
   conditions:
   - type: action
     entity_id: switch.rangehood
     state: 'on'
   sentences:
-  - tand rangehood kok
-  - rangehood kok tand
+  - tänd rangehood kök
+  - rangehood kök tänd
 - name: switch.rangehood_off
   conditions:
   - type: action
     entity_id: switch.rangehood
     state: 'off'
   sentences:
-  - slack rangehood kok
-  - rangehood kok slack
+  - släck rangehood kök
+  - rangehood kök släck
 - name: switch.master_bath_fan_on
   conditions:
   - type: action
     entity_id: switch.master_bath_fan
     state: 'on'
   sentences:
-  - tand flaktbad badmaster
-  - flaktbad badmaster tand
+  - tänd fläktbad badmaster
+  - fläktbad badmaster tänd
 - name: switch.master_bath_fan_off
   conditions:
   - type: action
     entity_id: switch.master_bath_fan
     state: 'off'
   sentences:
-  - slack flaktbad badmaster
-  - flaktbad badmaster slack
+  - släck fläktbad badmaster
+  - fläktbad badmaster släck
 - name: switch.main_bath_fan_on
   conditions:
   - type: action
     entity_id: switch.main_bath_fan
     state: 'on'
   sentences:
-  - tand flaktbad main bath
-  - flaktbad main bath tand
+  - tänd fläktbad main bath
+  - fläktbad main bath tänd
 - name: switch.main_bath_fan_off
   conditions:
   - type: action
     entity_id: switch.main_bath_fan
     state: 'off'
   sentences:
-  - slack flaktbad main bath
-  - flaktbad main bath slack
+  - släck fläktbad main bath
+  - fläktbad main bath släck

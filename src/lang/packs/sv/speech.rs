@@ -3,9 +3,9 @@ use crate::lang::speech::Speech;
 
 pub(super) const SPEECH: Speech = Speech {
     unknown: "Jag hängde inte med. Säg till exempel vilket ljus som ska tändas.",
-    need_on: "Vad ska tandas?",
-    need_off: "Vad ska slackas?",
-    need_which: "Vad ska tandas?",
+    need_on: "Vad ska tändas?",
+    need_off: "Vad ska släckas?",
+    need_which: "Vad ska tändas?",
     correction: "Okej, jag släpper den sista meningen.",
     clarify: "{names}?",
     clarify_or: " eller ",
@@ -70,9 +70,9 @@ pub(super) const SPEECH: Speech = Speech {
     loc_in: "{room}",
     loc_in_der: "{room}",
     loc_home: "hemma",
-    or_home: "dorr",
-    room_names: &[("wohnzimmer", "vardagsrum"), ("kuche", "kok")],
-    loc_der_rooms: &["kok", "vardagsrum"],
+    or_home: "dörr",
+    room_names: &[("wohnzimmer", "vardagsrum"), ("kuche", "kök")],
+    loc_der_rooms: &["koek", "vardagsrum"],
     personality: &[
         ("butler", &["Mycket väl. ", "Gärna. ", ""]),
         ("locker", &["Okej. ", "Klart. ", ""]),

@@ -54,7 +54,6 @@ pub(super) const NEWS: News = News {
         "lue",
         "lyhyt",
         "maailmalla",
-        "mika",
         "mikae",
         "minulle",
         "mitae",

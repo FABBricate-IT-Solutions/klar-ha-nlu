@@ -4,8 +4,8 @@
     entity_id: fan.family_fan
     state: 'on'
   sentences:
-  - tuuletin olohuonefam sytyta
-  - sytyta tuuletin olohuonefam
+  - tuuletin olohuonefam sytytä
+  - sytytä tuuletin olohuonefam
 - name: fan.family_fan_off
   conditions:
   - type: action
@@ -29,8 +29,8 @@
     entity_id: fan.master_fan
     state: 'on'
   sentences:
-  - tuuletin makuuhuonemaster sytyta
-  - sytyta tuuletin makuuhuonemaster
+  - tuuletin makuuhuonemaster sytytä
+  - sytytä tuuletin makuuhuonemaster
 - name: fan.master_fan_off
   conditions:
   - type: action
@@ -54,8 +54,8 @@
     entity_id: fan.bedroom2_fan
     state: 'on'
   sentences:
-  - tuuletin makuuhuone2 sytyta
-  - sytyta tuuletin makuuhuone2
+  - tuuletin makuuhuone2 sytytä
+  - sytytä tuuletin makuuhuone2
 - name: fan.bedroom2_fan_off
   conditions:
   - type: action

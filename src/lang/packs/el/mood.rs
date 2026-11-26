@@ -2,8 +2,8 @@
 use crate::lang::mood::MoodWords;
 
 pub(super) const MOOD: MoodWords = MoodWords {
-    request_frames: &["θα μπορούσες να", "μπορείς να", "μπορείτε να"],
-    question_openers: &["μήπως"],
+    request_frames: &["θα μπορουσες να", "μπορεις να", "μπορειτε να"],
+    question_openers: &["μηπως"],
     question_endings: &[";"],
     ..MoodWords::EMPTY
 };

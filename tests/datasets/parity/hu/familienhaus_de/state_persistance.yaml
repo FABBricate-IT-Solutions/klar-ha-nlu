@@ -1,11 +1,11 @@
 state_persistance/area_bedroom_2_covers::bedroom_2_covers_set_position:
-- - mi fuggony haloszoba2
+- - mi függöny haloszoba2
   - ' 51'
 state_persistance/area_bedroom_2_lights::bedroom_2_lights_set_brightness:
 - - mi mennyezet haloszoba2
   - ' 20'
 state_persistance/area_bedroom_3_covers::bedroom_3_covers_set_position:
-- - mi fuggony haloszoba3
+- - mi függöny haloszoba3
   - ' 67'
 state_persistance/area_bedroom_3_lights::bedroom_3_lights_set_brightness:
 - - mi mennyezet haloszoba3
@@ -23,7 +23,7 @@ state_persistance/area_family_room_lights::family_room_lights_set_brightness:
 - - mi mennyezet nappalifam
   - ' 94'
 state_persistance/area_garage_covers::garage_covers_set_position:
-- - mi fuggony garage
+- - mi függöny garage
   - ' 18'
 state_persistance/area_garage_lights::garage_lights_set_brightness:
 - - mi villany garage
@@ -41,10 +41,10 @@ state_persistance/area_laundry_lights::laundry_lights_set_brightness:
 - - mi villany mosokonyha
   - ' 62'
 state_persistance/area_living_climates::living_climates_set_temperature:
-- - mi futes nappali
+- - mi fűtés nappali
   - ' 95'
 state_persistance/area_living_covers::living_covers_set_position:
-- - mi fuggony nappali
+- - mi függöny nappali
   - ' 86'
 state_persistance/area_living_lights::living_lights_set_brightness:
 - - mi villany nappali
@@ -56,47 +56,47 @@ state_persistance/area_master_bath_lights::master_bath_lights_set_brightness:
 - - mi villany furdomaster
   - ' 50'
 state_persistance/area_master_bedroom_and_living_climates::master_bedroom_and_living_climates_set_temperature:
-- - mi futes haloszobamaster then mi futes nappali
+- - mi fűtés haloszobamaster then mi fűtés nappali
   - ' 69'
 state_persistance/area_master_bedroom_and_living_covers::master_bedroom_and_living_covers_set_position:
-- - mi fuggony haloszobamaster then mi fuggony nappali
+- - mi függöny haloszobamaster then mi függöny nappali
   - ' 15'
 state_persistance/area_master_bedroom_climates::master_bedroom_climates_set_temperature:
-- - mi futes haloszobamaster
+- - mi fűtés haloszobamaster
   - ' 44'
 state_persistance/area_master_bedroom_covers::master_bedroom_covers_set_position:
-- - mi fuggony haloszobamaster
+- - mi függöny haloszobamaster
   - ' 88'
 state_persistance/area_powder_room_lights::powder_room_lights_set_brightness:
 - - mi villany wc
   - ' 70'
 state_persistance/device_cover_garage_door::cover_garage_door_close:
-- - mi fuggony garage
-  - csukd fuggony garage
+- - mi függöny garage
+  - csukd függöny garage
 state_persistance/device_cover_garage_door::cover_garage_door_open:
-- - mi fuggony garage
-  - nyisd fuggony garage
+- - mi függöny garage
+  - nyisd függöny garage
 state_persistance/device_cover_garage_door::cover_garage_door_persistance_position:
-- - mi fuggony garage
+- - mi függöny garage
   - '23'
 state_persistance/device_cover_living_blinds::cover_living_blinds_close:
-- - mi fuggony nappali
-  - csukd fuggony nappali
+- - mi függöny nappali
+  - csukd függöny nappali
 state_persistance/device_cover_living_blinds::cover_living_blinds_open:
-- - mi fuggony nappali
-  - nyisd fuggony nappali
+- - mi függöny nappali
+  - nyisd függöny nappali
 state_persistance/device_cover_living_blinds::cover_living_blinds_persistance_position:
-- - mi fuggony nappali
+- - mi függöny nappali
   - '85'
 state_persistance/device_fan_family_fan::fan_family_fan_persistance_percentage:
-- - mi ventilator nappalifam
+- - mi ventilátor nappalifam
   - ' 43'
 state_persistance/device_fan_family_fan::fan_family_fan_turn_off:
-- - mi ventilator nappalifam
-  - oltsd ventilator nappalifam
+- - mi ventilátor nappalifam
+  - oltsd ventilátor nappalifam
 state_persistance/device_fan_family_fan::fan_family_fan_turn_on:
-- - mi ventilator nappalifam
-  - kapcsold ventilator nappalifam
+- - mi ventilátor nappalifam
+  - kapcsold ventilátor nappalifam
 state_persistance/device_light_entryway_light::light_entryway_light_persistance_brightness:
 - - mi villany eloter
   - '12'
@@ -107,17 +107,17 @@ state_persistance/device_light_entryway_light::light_entryway_light_turn_on:
 - - mi villany eloter
   - kapcsold villany eloter
 state_persistance/device_lock_front_door::lock_front_door_lock:
-- - mi zar eloter
-  - zar zar eloter
+- - mi zár eloter
+  - zár zár eloter
 state_persistance/device_lock_front_door::lock_front_door_unlock:
-- - mi zar eloter
-  - nyisd zar eloter
+- - mi zár eloter
+  - nyisd zár eloter
 state_persistance/device_lock_garage_entry::lock_garage_entry_lock:
-- - mi zar garage
-  - zar zar garage
+- - mi zár garage
+  - zár zár garage
 state_persistance/device_lock_garage_entry::lock_garage_entry_unlock:
-- - mi zar garage
-  - nyisd zar garage
+- - mi zár garage
+  - nyisd zár garage
 state_persistance/device_media_player_family_tv::media_player_family_tv_persistance_volume_level:
 - - mi tv nappalifam
   - ' 21'

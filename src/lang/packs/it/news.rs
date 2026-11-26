@@ -51,7 +51,6 @@ pub(super) const NEWS: News = News {
         "ascoltare",
         "attuali",
         "breve",
-        "ce",
         "che",
         "ci",
         "cosa",

@@ -7,8 +7,8 @@
     entity_id: light.living_lamp
     state: 'on'
   sentences:
-  - kapcsold nappali mennyezet es nappali lamp
-  - nappali mennyezet es nappali lamp kapcsold
+  - kapcsold nappali mennyezet és nappali lamp
+  - nappali mennyezet és nappali lamp kapcsold
 - name: and_light.living_ceiling_light.living_lamp_off
   conditions:
   - type: action
@@ -18,8 +18,8 @@
     entity_id: light.living_lamp
     state: 'off'
   sentences:
-  - oltsd nappali mennyezet es nappali lamp
-  - nappali mennyezet es nappali lamp oltsd
+  - oltsd nappali mennyezet és nappali lamp
+  - nappali mennyezet és nappali lamp oltsd
 - name: and_light.kitchen_ceiling_light.kitchen_island_on
   conditions:
   - type: action
@@ -29,8 +29,8 @@
     entity_id: light.kitchen_island
     state: 'on'
   sentences:
-  - kapcsold konyha mennyezet es konyha sziget
-  - konyha mennyezet es konyha sziget kapcsold
+  - kapcsold konyha mennyezet és konyha sziget
+  - konyha mennyezet és konyha sziget kapcsold
 - name: and_light.kitchen_ceiling_light.kitchen_island_off
   conditions:
   - type: action
@@ -40,8 +40,8 @@
     entity_id: light.kitchen_island
     state: 'off'
   sentences:
-  - oltsd konyha mennyezet es konyha sziget
-  - konyha mennyezet es konyha sziget oltsd
+  - oltsd konyha mennyezet és konyha sziget
+  - konyha mennyezet és konyha sziget oltsd
 - name: and_light.living_ceiling_light.kitchen_island_on
   conditions:
   - type: action
@@ -51,8 +51,8 @@
     entity_id: light.kitchen_island
     state: 'on'
   sentences:
-  - kapcsold nappali mennyezet es konyha sziget
-  - nappali mennyezet es konyha sziget kapcsold
+  - kapcsold nappali mennyezet és konyha sziget
+  - nappali mennyezet és konyha sziget kapcsold
 - name: and_light.living_ceiling_light.kitchen_island_off
   conditions:
   - type: action
@@ -62,8 +62,8 @@
     entity_id: light.kitchen_island
     state: 'off'
   sentences:
-  - oltsd nappali mennyezet es konyha sziget
-  - nappali mennyezet es konyha sziget oltsd
+  - oltsd nappali mennyezet és konyha sziget
+  - nappali mennyezet és konyha sziget oltsd
 - name: and_light.office_ceiling_light.hallway_light_on
   conditions:
   - type: action
@@ -73,8 +73,8 @@
     entity_id: light.hallway_light
     state: 'on'
   sentences:
-  - kapcsold office mennyezet es hallway villany
-  - office mennyezet es hallway villany kapcsold
+  - kapcsold office mennyezet és hallway villany
+  - office mennyezet és hallway villany kapcsold
 - name: and_light.office_ceiling_light.hallway_light_off
   conditions:
   - type: action
@@ -84,8 +84,8 @@
     entity_id: light.hallway_light
     state: 'off'
   sentences:
-  - oltsd office mennyezet es hallway villany
-  - office mennyezet es hallway villany oltsd
+  - oltsd office mennyezet és hallway villany
+  - office mennyezet és hallway villany oltsd
 - name: and_light.garden_light.garage_light_on
   conditions:
   - type: action
@@ -95,8 +95,8 @@
     entity_id: light.garage_light
     state: 'on'
   sentences:
-  - kapcsold garden villany es garage villany
-  - garden villany es garage villany kapcsold
+  - kapcsold garden villany és garage villany
+  - garden villany és garage villany kapcsold
 - name: and_light.garden_light.garage_light_off
   conditions:
   - type: action
@@ -106,8 +106,8 @@
     entity_id: light.garage_light
     state: 'off'
   sentences:
-  - oltsd garden villany es garage villany
-  - garden villany es garage villany oltsd
+  - oltsd garden villany és garage villany
+  - garden villany és garage villany oltsd
 - name: and_light.master_ceiling_light.master_bedside_left_on
   conditions:
   - type: action
@@ -117,8 +117,8 @@
     entity_id: light.master_bedside_left
     state: 'on'
   sentences:
-  - kapcsold haloszobamaster mennyezet es haloszobamaster ejjeliszekreny
-  - haloszobamaster mennyezet es haloszobamaster ejjeliszekreny kapcsold
+  - kapcsold haloszobamaster mennyezet és haloszobamaster ejjeliszekreny
+  - haloszobamaster mennyezet és haloszobamaster ejjeliszekreny kapcsold
 - name: and_light.master_ceiling_light.master_bedside_left_off
   conditions:
   - type: action
@@ -128,8 +128,8 @@
     entity_id: light.master_bedside_left
     state: 'off'
   sentences:
-  - oltsd haloszobamaster mennyezet es haloszobamaster ejjeliszekreny
-  - haloszobamaster mennyezet es haloszobamaster ejjeliszekreny oltsd
+  - oltsd haloszobamaster mennyezet és haloszobamaster ejjeliszekreny
+  - haloszobamaster mennyezet és haloszobamaster ejjeliszekreny oltsd
 - name: and_light.family_ceiling_light.dining_pendant_on
   conditions:
   - type: action
@@ -139,8 +139,8 @@
     entity_id: light.dining_pendant
     state: 'on'
   sentences:
-  - kapcsold nappalifam mennyezet es nappalifamess villany
-  - nappalifam mennyezet es nappalifamess villany kapcsold
+  - kapcsold nappalifam mennyezet és nappalifamess villany
+  - nappalifam mennyezet és nappalifamess villany kapcsold
 - name: and_light.family_ceiling_light.dining_pendant_off
   conditions:
   - type: action
@@ -150,8 +150,8 @@
     entity_id: light.dining_pendant
     state: 'off'
   sentences:
-  - oltsd nappalifam mennyezet es nappalifamess villany
-  - nappalifam mennyezet es nappalifamess villany oltsd
+  - oltsd nappalifam mennyezet és nappalifamess villany
+  - nappalifam mennyezet és nappalifamess villany oltsd
 - name: and_light.basement_light.laundry_light_on
   conditions:
   - type: action
@@ -161,8 +161,8 @@
     entity_id: light.laundry_light
     state: 'on'
   sentences:
-  - kapcsold basement villany es mosokonyha villany
-  - basement villany es mosokonyha villany kapcsold
+  - kapcsold basement villany és mosokonyha villany
+  - basement villany és mosokonyha villany kapcsold
 - name: and_light.basement_light.laundry_light_off
   conditions:
   - type: action
@@ -172,8 +172,8 @@
     entity_id: light.laundry_light
     state: 'off'
   sentences:
-  - oltsd basement villany es mosokonyha villany
-  - basement villany es mosokonyha villany oltsd
+  - oltsd basement villany és mosokonyha villany
+  - basement villany és mosokonyha villany oltsd
 - name: and_fan.master_fan_light.kitchen_island_on
   conditions:
   - type: action
@@ -183,8 +183,8 @@
     entity_id: light.kitchen_island
     state: 'on'
   sentences:
-  - kapcsold haloszobamaster ventilator es konyha sziget
-  - haloszobamaster ventilator es konyha sziget kapcsold
+  - kapcsold haloszobamaster ventilátor és konyha sziget
+  - haloszobamaster ventilátor és konyha sziget kapcsold
 - name: and_cover.living_blinds_light.living_ceiling_on
   conditions:
   - type: action
@@ -194,8 +194,8 @@
     entity_id: light.living_ceiling
     state: 'on'
   sentences:
-  - kapcsold nappali fuggony es nappali mennyezet
-  - nappali fuggony es nappali mennyezet kapcsold
+  - kapcsold nappali függöny és nappali mennyezet
+  - nappali függöny és nappali mennyezet kapcsold
 - name: and_switch.washing_machine_switch.dryer_on
   conditions:
   - type: action
@@ -205,8 +205,8 @@
     entity_id: switch.dryer
     state: 'on'
   sentences:
-  - kapcsold mosokonyha mosogep es mosokonyha dryer
-  - mosokonyha mosogep es mosokonyha dryer kapcsold
+  - kapcsold mosokonyha mosogep és mosokonyha dryer
+  - mosokonyha mosogep és mosokonyha dryer kapcsold
 - name: off_living_kitchen
   conditions:
   - type: action
@@ -218,8 +218,8 @@
     domain: light
     state: 'off'
   sentences:
-  - oltsd villany nappali es konyha
-  - villany nappali es konyha oltsd
+  - oltsd villany nappali és konyha
+  - villany nappali és konyha oltsd
 - name: off_office_hallway
   conditions:
   - type: action
@@ -231,8 +231,8 @@
     domain: light
     state: 'off'
   sentences:
-  - oltsd villany office es hallway
-  - villany office es hallway oltsd
+  - oltsd villany office és hallway
+  - villany office és hallway oltsd
 - name: off_garage_garden
   conditions:
   - type: action
@@ -244,8 +244,8 @@
     domain: light
     state: 'off'
   sentences:
-  - oltsd villany garage es garden
-  - villany garage es garden oltsd
+  - oltsd villany garage és garden
+  - villany garage és garden oltsd
 - name: off_master_bedroom_main_bath
   conditions:
   - type: action
@@ -257,8 +257,8 @@
     domain: light
     state: 'off'
   sentences:
-  - oltsd villany haloszobamaster es main bath
-  - villany haloszobamaster es main bath oltsd
+  - oltsd villany haloszobamaster és main bath
+  - villany haloszobamaster és main bath oltsd
 - name: off_family_room_dining
   conditions:
   - type: action
@@ -270,8 +270,8 @@
     domain: light
     state: 'off'
   sentences:
-  - oltsd villany nappalifam es nappalifamess
-  - villany nappalifam es nappalifamess oltsd
+  - oltsd villany nappalifam és nappalifamess
+  - villany nappalifam és nappalifamess oltsd
 - name: off_living_dining_kitchen
   conditions:
   - type: action
@@ -287,8 +287,8 @@
     domain: light
     state: 'off'
   sentences:
-  - oltsd villany nappali es nappalifamess es konyha
-  - villany nappali nappalifamess es konyha oltsd
+  - oltsd villany nappali és nappalifamess és konyha
+  - villany nappali nappalifamess és konyha oltsd
 - name: on_office_hallway_garage
   conditions:
   - type: action
@@ -304,8 +304,8 @@
     domain: light
     state: 'on'
   sentences:
-  - kapcsold villany office es hallway es garage
-  - villany office hallway es garage kapcsold
+  - kapcsold villany office és hallway és garage
+  - villany office hallway és garage kapcsold
 - name: off_garden_basement_laundry
   conditions:
   - type: action
@@ -321,8 +321,8 @@
     domain: light
     state: 'off'
   sentences:
-  - oltsd villany garden es basement es mosokonyha
-  - villany garden basement es mosokonyha oltsd
+  - oltsd villany garden és basement és mosokonyha
+  - villany garden basement és mosokonyha oltsd
 - name: except_light.kitchen_island
   conditions:
   - type: action
@@ -1249,8 +1249,8 @@
     domain: light
     state: 'off'
   sentences:
-  - oltsd mind villany kiveve konyha es office
-  - mind villany oltsd kiveve konyha es office
+  - oltsd mind villany kiveve konyha és office
+  - mind villany oltsd kiveve konyha és office
   forbid:
   - kitchen
   - office
@@ -1321,8 +1321,8 @@
     domain: light
     state: 'off'
   sentences:
-  - oltsd mind villany kiveve nappali es haloszobamaster
-  - mind villany oltsd kiveve nappali es haloszobamaster
+  - oltsd mind villany kiveve nappali és haloszobamaster
+  - mind villany oltsd kiveve nappali és haloszobamaster
   forbid:
   - living
   - master_bedroom
@@ -1393,8 +1393,8 @@
     domain: light
     state: 'off'
   sentences:
-  - oltsd mind villany kiveve garage es garden
-  - mind villany oltsd kiveve garage es garden
+  - oltsd mind villany kiveve garage és garden
+  - mind villany oltsd kiveve garage és garden
   forbid:
   - garage
   - garden
@@ -1526,8 +1526,8 @@
     domain: cover
     state: open
   sentences:
-  - nyisd fuggony nappali es haloszobamaster
-  - fuggony nappali es haloszobamaster nyisd
+  - nyisd függöny nappali és haloszobamaster
+  - függöny nappali és haloszobamaster nyisd
 - name: covers_living_master_close
   conditions:
   - type: action
@@ -1539,8 +1539,8 @@
     domain: cover
     state: closed
   sentences:
-  - csukd fuggony nappali es haloszobamaster
-  - fuggony nappali es haloszobamaster csukd
+  - csukd függöny nappali és haloszobamaster
+  - függöny nappali és haloszobamaster csukd
 - name: climate_living_master_21
   conditions:
   - type: action
@@ -1554,8 +1554,8 @@
     attributes:
       temperature: 21
   sentences:
-  - allitsd futes nappali es haloszobamaster 21
-  - futes nappali es haloszobamaster 21
+  - állítsd fűtés nappali és haloszobamaster 21
+  - fűtés nappali és haloszobamaster 21
 - name: bright_living_kitchen_50
   conditions:
   - type: action
@@ -1569,8 +1569,8 @@
     attributes:
       brightness: 50
   sentences:
-  - allitsd villany nappali es konyha 50
-  - villany nappali es konyha 50
+  - állítsd villany nappali és konyha 50
+  - villany nappali és konyha 50
 - name: color_living_kitchen_red
   conditions:
   - type: action
@@ -1584,8 +1584,8 @@
     attributes:
       color: red
   sentences:
-  - allitsd villany nappali es konyha red
-  - villany nappali es konyha red
+  - állítsd villany nappali és konyha red
+  - villany nappali és konyha red
 - name: query_living_kitchen_lights
   conditions:
   - type: query
@@ -1595,8 +1595,8 @@
     area: kitchen
     domain: light
   sentences:
-  - mi villany nappali es konyha
-  - villany nappali es konyha
+  - mi villany nappali és konyha
+  - villany nappali és konyha
 - name: temp_living_and_light_kitchen_off
   conditions:
   - type: query
@@ -1606,8 +1606,8 @@
     domain: light
     state: 'off'
   sentences:
-  - mi futes nappali es oltsd villany konyha
-  - oltsd villany konyha es mi futes nappali
+  - mi fűtés nappali és oltsd villany konyha
+  - oltsd villany konyha és mi fűtés nappali
 - name: locks_front_and_garage
   conditions:
   - type: action
@@ -1617,8 +1617,8 @@
     entity_id: lock.garage_entry
     state: locked
   sentences:
-  - zar front ajto es garage ajto
-  - zar zar eloter es garage
+  - zár front ajtó és garage ajtó
+  - zár zár eloter és garage
 - name: scene_and_powder_off
   conditions:
   - type: action
@@ -1628,5 +1628,5 @@
     entity_id: light.powder_room_light
     state: 'off'
   sentences:
-  - kapcsold film es oltsd villany wc
-  - oltsd villany wc es kapcsold film
+  - kapcsold film és oltsd villany wc
+  - oltsd villany wc és kapcsold film

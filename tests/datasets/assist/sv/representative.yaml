@@ -1,12 +1,12 @@
 - name: light_on
   sentences:
-    - tand ljus vardagsrum
+    - tänd ljus vardagsrum
   nlu_expect:
     intents:
       - intent: HassTurnOn
 - name: light_off
   sentences:
-    - slack ljus kok
+    - släck ljus kök
   nlu_expect:
     intents:
       - intent: HassTurnOff

@@ -4,45 +4,45 @@
     entity_id: scene.movie_night
     state: 'on'
   sentences:
-  - tand film
-  - film tand
+  - tänd film
+  - film tänd
 - name: scene_night
   conditions:
   - type: action
     entity_id: script.good_night
     state: 'on'
   sentences:
-  - tand natt
-  - natt tand
+  - tänd natt
+  - natt tänd
 - name: scene_leave
   conditions:
   - type: action
     entity_id: script.leaving_home
     state: 'on'
   sentences:
-  - tand avgang
-  - avgang tand
+  - tänd avgang
+  - avgang tänd
 - name: scene_dinner
   conditions:
   - type: action
     entity_id: scene.dinner_time
     state: 'on'
   sentences:
-  - tand dinner
-  - dinner tand
+  - tänd dinner
+  - dinner tänd
 - name: scene_morning
   conditions:
   - type: action
     entity_id: scene.good_morning
     state: 'on'
   sentences:
-  - tand morning
-  - morning tand
+  - tänd morning
+  - morning tänd
 - name: scene_kids
   conditions:
   - type: action
     entity_id: scene.kids_bedtime
     state: 'on'
   sentences:
-  - tand kids
-  - kids tand
+  - tänd kids
+  - kids tänd

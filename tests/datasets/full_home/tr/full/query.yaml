@@ -3,8 +3,8 @@
   - type: query
     entity_id: light.living_ceiling
   sentences:
-  - ne isik salon
-  - ne salon isik
+  - ne ışık salon
+  - ne salon ışık
 - name: query_cover.living_blinds
   conditions:
   - type: query
@@ -24,8 +24,8 @@
   - type: query
     entity_id: climate.ground_thermostat
   sentences:
-  - ne sicaklik salon
-  - ne salon sicaklik
+  - ne sıcaklık salon
+  - ne salon sıcaklık
 - name: query_media_player.living_tv
   conditions:
   - type: query
@@ -59,29 +59,29 @@
   - type: query
     entity_id: light.kitchen_ceiling
   sentences:
-  - ne isik mutfak
-  - ne mutfak isik
+  - ne ışık mutfak
+  - ne mutfak ışık
 - name: query_light.office_ceiling
   conditions:
   - type: query
     entity_id: light.office_ceiling
   sentences:
-  - ne isik office
-  - ne office isik
+  - ne ışık office
+  - ne office ışık
 - name: query_light.garden
   conditions:
   - type: query
     entity_id: light.garden
   sentences:
-  - ne isik garden
-  - ne garden isik
+  - ne ışık garden
+  - ne garden ışık
 - name: query_light.basement
   conditions:
   - type: query
     entity_id: light.basement
   sentences:
-  - ne isik basement
-  - ne basement isik
+  - ne ışık basement
+  - ne basement ışık
 - name: query_cover.master_blinds
   conditions:
   - type: query
@@ -108,8 +108,8 @@
   - type: query
     entity_id: climate.upper_thermostat
   sentences:
-  - ne sicaklik yatakodasimaster
-  - ne yatakodasimaster sicaklik
+  - ne sıcaklık yatakodasimaster
+  - ne yatakodasimaster sıcaklık
 - name: query_climate.master_ac
   conditions:
   - type: query
@@ -150,120 +150,120 @@
   - type: query
     entity_id: fan.master_fan
   sentences:
-  - ne vantilator yatakodasimaster
-  - ne yatakodasimaster vantilator
+  - ne vantilatör yatakodasimaster
+  - ne yatakodasimaster vantilatör
 - name: query_vacuum.robot
   conditions:
   - type: query
     entity_id: vacuum.robot
   sentences:
-  - ne supurge salon
-  - ne salon supurge
+  - ne süpürge salon
+  - ne salon süpürge
 - name: query_light.living_lamp
   conditions:
   - type: query
     entity_id: light.living_lamp
   sentences:
-  - ne isik salon
-  - ne salon isik
+  - ne ışık salon
+  - ne salon ışık
 - name: query_light.kitchen_island
   conditions:
   - type: query
     entity_id: light.kitchen_island
   sentences:
-  - ne isik mutfak
-  - ne mutfak isik
+  - ne ışık mutfak
+  - ne mutfak ışık
 - name: query_light.master_ceiling
   conditions:
   - type: query
     entity_id: light.master_ceiling
   sentences:
-  - ne isik yatakodasimaster
-  - ne yatakodasimaster isik
+  - ne ışık yatakodasimaster
+  - ne yatakodasimaster ışık
 - name: query_light.master_bedside_left
   conditions:
   - type: query
     entity_id: light.master_bedside_left
   sentences:
-  - ne isik yatakodasimaster
-  - ne yatakodasimaster isik
+  - ne ışık yatakodasimaster
+  - ne yatakodasimaster ışık
 - name: query_light.hallway_light
   conditions:
   - type: query
     entity_id: light.hallway_light
   sentences:
-  - ne isik koridor
-  - ne koridor isik
+  - ne ışık koridor
+  - ne koridor ışık
 - name: query_light.family_ceiling
   conditions:
   - type: query
     entity_id: light.family_ceiling
   sentences:
-  - ne isik aile
-  - ne aile isik
+  - ne ışık aile
+  - ne aile ışık
 - name: query_light.dining_pendant
   conditions:
   - type: query
     entity_id: light.dining_pendant
   sentences:
-  - ne isik aileess
-  - ne aileess isik
+  - ne ışık aileess
+  - ne aileess ışık
 - name: query_light.garage_light
   conditions:
   - type: query
     entity_id: light.garage_light
   sentences:
-  - ne isik garage
-  - ne garage isik
+  - ne ışık garage
+  - ne garage ışık
 - name: query_light.bedroom2_ceiling
   conditions:
   - type: query
     entity_id: light.bedroom2_ceiling
   sentences:
-  - ne isik yatakodasi2
-  - ne yatakodasi2 isik
+  - ne ışık yatakodasi2
+  - ne yatakodasi2 ışık
 - name: query_light.bedroom3_ceiling
   conditions:
   - type: query
     entity_id: light.bedroom3_ceiling
   sentences:
-  - ne isik yatakodasi3
-  - ne yatakodasi3 isik
+  - ne ışık yatakodasi3
+  - ne yatakodasi3 ışık
 - name: query_light.bedroom4_ceiling
   conditions:
   - type: query
     entity_id: light.bedroom4_ceiling
   sentences:
-  - ne isik yatakodasi4
-  - ne yatakodasi4 isik
+  - ne ışık yatakodasi4
+  - ne yatakodasi4 ışık
 - name: query_light.entryway_light
   conditions:
   - type: query
     entity_id: light.entryway_light
   sentences:
-  - ne isik giris
-  - ne giris isik
+  - ne ışık giris
+  - ne giris ışık
 - name: query_light.laundry_light
   conditions:
   - type: query
     entity_id: light.laundry_light
   sentences:
-  - ne isik camasirhane
-  - ne camasirhane isik
+  - ne ışık camasirhane
+  - ne camasirhane ışık
 - name: query_light.main_bath_light
   conditions:
   - type: query
     entity_id: light.main_bath_light
   sentences:
-  - ne isik main bath
-  - ne main bath isik
+  - ne ışık main bath
+  - ne main bath ışık
 - name: query_light.powder_room_light
   conditions:
   - type: query
     entity_id: light.powder_room_light
   sentences:
-  - ne isik wc
-  - ne wc isik
+  - ne ışık wc
+  - ne wc ışık
 - name: query_light.master_ensuite
   conditions:
   - type: query
@@ -276,12 +276,12 @@
   - type: query
     entity_id: light.master_bedside_right
   sentences:
-  - ne isik yatakodasimaster
-  - ne yatakodasimaster isik
+  - ne ışık yatakodasimaster
+  - ne yatakodasimaster ışık
 - name: query_light.master_bath_light
   conditions:
   - type: query
     entity_id: light.master_bath_light
   sentences:
-  - ne isik ebatmaster
-  - ne ebatmaster isik
+  - ne ışık ebatmaster
+  - ne ebatmaster ışık

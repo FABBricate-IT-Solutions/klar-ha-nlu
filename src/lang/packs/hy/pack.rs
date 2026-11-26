@@ -14,7 +14,7 @@ pub const PACK: LanguagePack = LanguagePack {
     talk: Talk {
         fillers: &["um", "y"],
         action_keep: &["anjatir", "miatsu", "անջատիր", "բացիր", "միացրու", "փակիր"],
-        conjunctions: &["then", "yev", "և"],
+        conjunctions: &["then", "yev", "եւ"],
         particles: &[],
         affirm: &["ayo", "այո"],
         or_words: &["kam", "կամ"],

@@ -176,7 +176,7 @@ def _fold_marks(text: str) -> str:
     )
 
 
-# Freeze: do not grow. Canonical fold is src/parse/normalize.rs.
+# Freeze: do not grow. Canonical fold is src/parse/normalize/fold.rs.
 def _umlaut_eq(left: str, right: str) -> bool:
     if left == right:
         return True
@@ -188,6 +188,10 @@ def _umlaut_eq(left: str, right: str) -> bool:
             left_e = i + 1 < len(left) and left[i + 1] == "e"
             right_e = j + 1 < len(right) and right[j + 1] == "e"
             if left_e != right_e:
+                # P-34: do not equate a word with itself plus a trailing "e".
+                single_has_more = (j + 1 < len(right)) if left_e else (i + 1 < len(left))
+                if not single_has_more:
+                    return False
                 if left_e:
                     i += 1
                 else:

@@ -5,7 +5,7 @@
     attributes:
       minutes: 10
   sentences:
-  - tand timer 10 min
+  - tänd timer 10 min
   - timer 10 min
 - name: timer_laundry
   conditions:
@@ -14,15 +14,15 @@
     attributes:
       minutes: 45
   sentences:
-  - tand timer 45 min
+  - tänd timer 45 min
   - timer 45 min
 - name: timer_cancel
   conditions:
   - type: action
     entity_id: timer.abstract
   sentences:
-  - slack timer
-  - timer slack
+  - släck timer
+  - timer släck
 - name: timer_oven_5
   conditions:
   - type: action
@@ -30,7 +30,7 @@
     attributes:
       minutes: 5
   sentences:
-  - tand timer 5 min
+  - tänd timer 5 min
   - timer 5 min
 - name: timer_oven_15
   conditions:
@@ -39,7 +39,7 @@
     attributes:
       minutes: 15
   sentences:
-  - tand timer 15 min
+  - tänd timer 15 min
   - timer 15 min
 - name: timer_oven_20
   conditions:
@@ -48,7 +48,7 @@
     attributes:
       minutes: 20
   sentences:
-  - tand timer 20 min
+  - tänd timer 20 min
   - timer 20 min
 - name: timer_oven_30
   conditions:
@@ -57,7 +57,7 @@
     attributes:
       minutes: 30
   sentences:
-  - tand timer 30 min
+  - tänd timer 30 min
   - timer 30 min
 - name: timer_oven_60
   conditions:
@@ -66,5 +66,5 @@
     attributes:
       minutes: 60
   sentences:
-  - tand timer 60 min
+  - tänd timer 60 min
   - timer 60 min

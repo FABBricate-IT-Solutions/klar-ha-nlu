@@ -5,7 +5,7 @@
     domain: light
     state: 'on'
   sentences:
-  - yak isik salon
+  - yak ışık salon
 - name: lights_living_off
   conditions:
   - type: action
@@ -13,7 +13,7 @@
     domain: light
     state: 'off'
   sentences:
-  - sondur isik salon
+  - söndür ışık salon
 - name: lights_kitchen_on
   conditions:
   - type: action
@@ -21,7 +21,7 @@
     domain: light
     state: 'on'
   sentences:
-  - yak isik mutfak
+  - yak ışık mutfak
 - name: lights_kitchen_off
   conditions:
   - type: action
@@ -29,7 +29,7 @@
     domain: light
     state: 'off'
   sentences:
-  - sondur isik mutfak
+  - söndür ışık mutfak
 - name: lights_garage_on
   conditions:
   - type: action
@@ -37,7 +37,7 @@
     domain: light
     state: 'on'
   sentences:
-  - yak isik garage
+  - yak ışık garage
 - name: lights_garage_off
   conditions:
   - type: action
@@ -45,7 +45,7 @@
     domain: light
     state: 'off'
   sentences:
-  - sondur isik garage
+  - söndür ışık garage
 - name: lights_office_on
   conditions:
   - type: action
@@ -53,7 +53,7 @@
     domain: light
     state: 'on'
   sentences:
-  - yak isik office
+  - yak ışık office
 - name: lights_office_off
   conditions:
   - type: action
@@ -61,7 +61,7 @@
     domain: light
     state: 'off'
   sentences:
-  - sondur isik office
+  - söndür ışık office
 - name: lights_garden_on
   conditions:
   - type: action
@@ -69,7 +69,7 @@
     domain: light
     state: 'on'
   sentences:
-  - yak isik garden
+  - yak ışık garden
 - name: lights_garden_off
   conditions:
   - type: action
@@ -77,7 +77,7 @@
     domain: light
     state: 'off'
   sentences:
-  - sondur isik garden
+  - söndür ışık garden
 - name: lights_master_bedroom_on
   conditions:
   - type: action
@@ -85,7 +85,7 @@
     domain: light
     state: 'on'
   sentences:
-  - yak isik yatakodasimaster
+  - yak ışık yatakodasimaster
 - name: lights_master_bedroom_off
   conditions:
   - type: action
@@ -93,7 +93,7 @@
     domain: light
     state: 'off'
   sentences:
-  - sondur isik yatakodasimaster
+  - söndür ışık yatakodasimaster
 - name: lights_hallway_on
   conditions:
   - type: action
@@ -101,7 +101,7 @@
     domain: light
     state: 'on'
   sentences:
-  - yak isik koridor
+  - yak ışık koridor
 - name: lights_hallway_off
   conditions:
   - type: action
@@ -109,7 +109,7 @@
     domain: light
     state: 'off'
   sentences:
-  - sondur isik koridor
+  - söndür ışık koridor
 - name: lights_basement_on
   conditions:
   - type: action
@@ -117,7 +117,7 @@
     domain: light
     state: 'on'
   sentences:
-  - yak isik basement
+  - yak ışık basement
 - name: lights_basement_off
   conditions:
   - type: action
@@ -125,7 +125,7 @@
     domain: light
     state: 'off'
   sentences:
-  - sondur isik basement
+  - söndür ışık basement
 - name: light.living_ceiling_on
   conditions:
   - type: action
@@ -139,7 +139,7 @@
     entity_id: light.living_ceiling
     state: 'off'
   sentences:
-  - sondur tavan salon
+  - söndür tavan salon
 - name: light.living_ceiling_bright_50
   conditions:
   - type: action
@@ -161,7 +161,7 @@
     entity_id: light.living_lamp
     state: 'off'
   sentences:
-  - sondur lamp salon
+  - söndür lamp salon
 - name: light.kitchen_ceiling_on
   conditions:
   - type: action
@@ -175,7 +175,7 @@
     entity_id: light.kitchen_ceiling
     state: 'off'
   sentences:
-  - sondur tavan mutfak
+  - söndür tavan mutfak
 - name: light.kitchen_island_on
   conditions:
   - type: action
@@ -189,7 +189,7 @@
     entity_id: light.kitchen_island
     state: 'off'
   sentences:
-  - sondur ada mutfak
+  - söndür ada mutfak
 - name: light.master_ceiling_on
   conditions:
   - type: action
@@ -203,7 +203,7 @@
     entity_id: light.master_ceiling
     state: 'off'
   sentences:
-  - sondur tavan yatakodasimaster
+  - söndür tavan yatakodasimaster
 - name: light.master_bedside_left_on
   conditions:
   - type: action
@@ -217,7 +217,7 @@
     entity_id: light.master_bedside_left
     state: 'off'
   sentences:
-  - sondur komodin yatakodasimaster
+  - söndür komodin yatakodasimaster
 - name: light.office_ceiling_on
   conditions:
   - type: action
@@ -231,21 +231,21 @@
     entity_id: light.office_ceiling
     state: 'off'
   sentences:
-  - sondur tavan office
+  - söndür tavan office
 - name: light.garden_on
   conditions:
   - type: action
     entity_id: light.garden
     state: 'on'
   sentences:
-  - yak isik garden
+  - yak ışık garden
 - name: light.garden_off
   conditions:
   - type: action
     entity_id: light.garden
     state: 'off'
   sentences:
-  - sondur isik garden
+  - söndür ışık garden
 - name: light.living_ceiling_red
   conditions:
   - type: action

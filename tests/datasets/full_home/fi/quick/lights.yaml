@@ -5,7 +5,7 @@
     domain: light
     state: 'on'
   sentences:
-  - sytyta valo olohuone
+  - sytytä valo olohuone
 - name: lights_living_off
   conditions:
   - type: action
@@ -21,7 +21,7 @@
     domain: light
     state: 'on'
   sentences:
-  - sytyta valo keittio
+  - sytytä valo keittiö
 - name: lights_kitchen_off
   conditions:
   - type: action
@@ -29,7 +29,7 @@
     domain: light
     state: 'off'
   sentences:
-  - sammuta valo keittio
+  - sammuta valo keittiö
 - name: lights_garage_on
   conditions:
   - type: action
@@ -37,7 +37,7 @@
     domain: light
     state: 'on'
   sentences:
-  - sytyta valo garage
+  - sytytä valo garage
 - name: lights_garage_off
   conditions:
   - type: action
@@ -53,7 +53,7 @@
     domain: light
     state: 'on'
   sentences:
-  - sytyta valo office
+  - sytytä valo office
 - name: lights_office_off
   conditions:
   - type: action
@@ -69,7 +69,7 @@
     domain: light
     state: 'on'
   sentences:
-  - sytyta valo garden
+  - sytytä valo garden
 - name: lights_garden_off
   conditions:
   - type: action
@@ -85,7 +85,7 @@
     domain: light
     state: 'on'
   sentences:
-  - sytyta valo makuuhuonemaster
+  - sytytä valo makuuhuonemaster
 - name: lights_master_bedroom_off
   conditions:
   - type: action
@@ -101,7 +101,7 @@
     domain: light
     state: 'on'
   sentences:
-  - sytyta valo kaytava
+  - sytytä valo kaytava
 - name: lights_hallway_off
   conditions:
   - type: action
@@ -117,7 +117,7 @@
     domain: light
     state: 'on'
   sentences:
-  - sytyta valo basement
+  - sytytä valo basement
 - name: lights_basement_off
   conditions:
   - type: action
@@ -132,7 +132,7 @@
     entity_id: light.living_ceiling
     state: 'on'
   sentences:
-  - sytyta katto olohuone
+  - sytytä katto olohuone
 - name: light.living_ceiling_off
   conditions:
   - type: action
@@ -154,7 +154,7 @@
     entity_id: light.living_lamp
     state: 'on'
   sentences:
-  - sytyta lamp olohuone
+  - sytytä lamp olohuone
 - name: light.living_lamp_off
   conditions:
   - type: action
@@ -168,35 +168,35 @@
     entity_id: light.kitchen_ceiling
     state: 'on'
   sentences:
-  - sytyta katto keittio
+  - sytytä katto keittiö
 - name: light.kitchen_ceiling_off
   conditions:
   - type: action
     entity_id: light.kitchen_ceiling
     state: 'off'
   sentences:
-  - sammuta katto keittio
+  - sammuta katto keittiö
 - name: light.kitchen_island_on
   conditions:
   - type: action
     entity_id: light.kitchen_island
     state: 'on'
   sentences:
-  - sytyta saareke keittio
+  - sytytä saareke keittiö
 - name: light.kitchen_island_off
   conditions:
   - type: action
     entity_id: light.kitchen_island
     state: 'off'
   sentences:
-  - sammuta saareke keittio
+  - sammuta saareke keittiö
 - name: light.master_ceiling_on
   conditions:
   - type: action
     entity_id: light.master_ceiling
     state: 'on'
   sentences:
-  - sytyta katto makuuhuonemaster
+  - sytytä katto makuuhuonemaster
 - name: light.master_ceiling_off
   conditions:
   - type: action
@@ -210,7 +210,7 @@
     entity_id: light.master_bedside_left
     state: 'on'
   sentences:
-  - sytyta yopoyta makuuhuonemaster
+  - sytytä yopoyta makuuhuonemaster
 - name: light.master_bedside_left_off
   conditions:
   - type: action
@@ -224,7 +224,7 @@
     entity_id: light.office_ceiling
     state: 'on'
   sentences:
-  - sytyta katto office
+  - sytytä katto office
 - name: light.office_ceiling_off
   conditions:
   - type: action
@@ -238,7 +238,7 @@
     entity_id: light.garden
     state: 'on'
   sentences:
-  - sytyta valo garden
+  - sytytä valo garden
 - name: light.garden_off
   conditions:
   - type: action

@@ -49,7 +49,7 @@
     attributes:
       volume_level: 10
   sentences:
-  - satt musik vardagsrum 10
+  - sätt musik vardagsrum 10
   - musik vardagsrum 10
 - name: music_volume_20
   conditions:
@@ -58,7 +58,7 @@
     attributes:
       volume_level: 20
   sentences:
-  - satt musik vardagsrum 20
+  - sätt musik vardagsrum 20
   - musik vardagsrum 20
 - name: music_volume_30
   conditions:
@@ -67,7 +67,7 @@
     attributes:
       volume_level: 30
   sentences:
-  - satt musik vardagsrum 30
+  - sätt musik vardagsrum 30
   - musik vardagsrum 30
 - name: music_volume_50
   conditions:
@@ -76,7 +76,7 @@
     attributes:
       volume_level: 50
   sentences:
-  - satt musik vardagsrum 50
+  - sätt musik vardagsrum 50
   - musik vardagsrum 50
 - name: music_volume_80
   conditions:
@@ -85,7 +85,7 @@
     attributes:
       volume_level: 80
   sentences:
-  - satt musik vardagsrum 80
+  - sätt musik vardagsrum 80
   - musik vardagsrum 80
 - name: music_next
   conditions:
@@ -108,8 +108,8 @@
     attributes:
       search_query: queen
   sentences:
-  - spela queen kok
-  - spela queen musik kok
+  - spela queen kök
+  - spela queen musik kök
 - name: play_beatles_living
   conditions:
   - type: action
@@ -234,8 +234,8 @@
     attributes:
       search_query: queen
   sentences:
-  - spela queen kok
-  - spela queen musik kok
+  - spela queen kök
+  - spela queen musik kök
 - name: play_beatles_kitchen
   conditions:
   - type: action
@@ -243,8 +243,8 @@
     attributes:
       search_query: beatles
   sentences:
-  - spela beatles kok
-  - spela beatles musik kok
+  - spela beatles kök
+  - spela beatles musik kök
 - name: play_radiohead_kitchen
   conditions:
   - type: action
@@ -252,8 +252,8 @@
     attributes:
       search_query: radiohead
   sentences:
-  - spela radiohead kok
-  - spela radiohead musik kok
+  - spela radiohead kök
+  - spela radiohead musik kök
 - name: play_abba_kitchen
   conditions:
   - type: action
@@ -261,8 +261,8 @@
     attributes:
       search_query: abba
   sentences:
-  - spela abba kok
-  - spela abba musik kok
+  - spela abba kök
+  - spela abba musik kök
 - name: play_coldplay_kitchen
   conditions:
   - type: action
@@ -270,8 +270,8 @@
     attributes:
       search_query: coldplay
   sentences:
-  - spela coldplay kok
-  - spela coldplay musik kok
+  - spela coldplay kök
+  - spela coldplay musik kök
 - name: play_adele_kitchen
   conditions:
   - type: action
@@ -279,8 +279,8 @@
     attributes:
       search_query: adele
   sentences:
-  - spela adele kok
-  - spela adele musik kok
+  - spela adele kök
+  - spela adele musik kök
 - name: play_prince_kitchen
   conditions:
   - type: action
@@ -288,8 +288,8 @@
     attributes:
       search_query: prince
   sentences:
-  - spela prince kok
-  - spela prince musik kok
+  - spela prince kök
+  - spela prince musik kök
 - name: play_bowie_kitchen
   conditions:
   - type: action
@@ -297,8 +297,8 @@
     attributes:
       search_query: bowie
   sentences:
-  - spela bowie kok
-  - spela bowie musik kok
+  - spela bowie kök
+  - spela bowie musik kök
 - name: play_nirvana_kitchen
   conditions:
   - type: action
@@ -306,8 +306,8 @@
     attributes:
       search_query: nirvana
   sentences:
-  - spela nirvana kok
-  - spela nirvana musik kok
+  - spela nirvana kök
+  - spela nirvana musik kök
 - name: play_eagles_kitchen
   conditions:
   - type: action
@@ -315,8 +315,8 @@
     attributes:
       search_query: eagles
   sentences:
-  - spela eagles kok
-  - spela eagles musik kok
+  - spela eagles kök
+  - spela eagles musik kök
 - name: play_madonna_kitchen
   conditions:
   - type: action
@@ -324,8 +324,8 @@
     attributes:
       search_query: madonna
   sentences:
-  - spela madonna kok
-  - spela madonna musik kok
+  - spela madonna kök
+  - spela madonna musik kök
 - name: play_mozart_kitchen
   conditions:
   - type: action
@@ -333,8 +333,8 @@
     attributes:
       search_query: mozart
   sentences:
-  - spela mozart kok
-  - spela mozart musik kok
+  - spela mozart kök
+  - spela mozart musik kök
 - name: play_daft punk_kitchen
   conditions:
   - type: action
@@ -342,8 +342,8 @@
     attributes:
       search_query: daft punk
   sentences:
-  - spela daft punk kok
-  - spela daft punk musik kok
+  - spela daft punk kök
+  - spela daft punk musik kök
 - name: play_biafra_kitchen
   conditions:
   - type: action
@@ -351,8 +351,8 @@
     attributes:
       search_query: biafra
   sentences:
-  - spela biafra kok
-  - spela biafra musik kok
+  - spela biafra kök
+  - spela biafra musik kök
 - name: play_queen_office
   conditions:
   - type: action
@@ -503,14 +503,14 @@
       media_id: queen
       radio_mode: 'true'
   sentences:
-  - spela queen radio mode kok
+  - spela queen radio mode kök
 - name: now_kitchen
   conditions:
   - type: query
     entity_id: media_player.kitchen_music
   sentences:
-  - vad musik kok
-  - vad track kok
+  - vad musik kök
+  - vad track kök
 - name: radio_office
   conditions:
   - type: action
