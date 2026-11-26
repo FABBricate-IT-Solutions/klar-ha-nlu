@@ -31,6 +31,47 @@ release_from_message() {
   printf '%s' "$tag"
 }
 
+# Dependabot / lockfile-only subjects used on this repo (commit-message prefixes).
+is_dependency_subject() {
+  local subject="$1"
+  if [[ "$subject" =~ ^(npm|cargo|docker|ci)(\(|:) ]] \
+    || [[ "$subject" =~ ^chore\(deps ]] \
+    || [[ "$subject" == *"dependabot/"* ]]; then
+    return 0
+  fi
+  return 1
+}
+
+# True when every first-parent commit since the last stable tag is dependency-only.
+dependency_only_since_last_stable() {
+  local last subject
+  last="$(git tag -l | grep -E '^[0-9]+\.[0-9]+\.[0-9]+$' | sort -t. -k1,1n -k2,2n -k3,3n | tail -1 || true)"
+  if [[ -z "$last" ]]; then
+    return 1
+  fi
+  local count=0
+  while IFS= read -r subject; do
+    [[ -z "$subject" ]] && continue
+    count=$((count + 1))
+    if ! is_dependency_subject "$subject"; then
+      return 1
+    fi
+  done < <(git log --first-parent --pretty=%s "${last}..HEAD")
+  (( count > 0 ))
+}
+
+head_is_stable_tagged() {
+  local tag
+  tag="$(git describe --exact-match --tags HEAD 2>/dev/null || true)"
+  [[ "$tag" =~ ^[0-9]+\.[0-9]+\.[0-9]+$ ]]
+}
+
+nothing_to_release() {
+  echo "Nothing to release — exit 0" >&2
+  write_tag_output ""
+  exit 0
+}
+
 git_ident() {
   git -c "user.name=${GIT_AUTHOR_NAME}" -c "user.email=${GIT_AUTHOR_EMAIL}" "$@"
 }
@@ -77,7 +118,14 @@ existing = path.read_text()
 body_at = existing.find("## [")
 if body_at < 0:
     raise SystemExit("CHANGELOG.md has no version heading")
-path.write_text(existing[:body_at] + section + existing[body_at:])
+# Drop a stale section for this tag if a previous attempt already wrote one.
+rest = existing[body_at:]
+if rest.startswith(f"## [{tag}]"):
+    nxt_existing = rest.find("\n## [", 1)
+    rest = rest[nxt_existing + 1 :] if nxt_existing >= 0 else ""
+    if rest.startswith("\n"):
+        rest = rest[1:]
+path.write_text(existing[:body_at] + section + rest)
 PY
 }
 
@@ -132,8 +180,12 @@ wait_required_checks() {
     fi
     if (( pending == 0 )); then
       case "$status" in
-        CLEAN | HAS_HOOKS | BEHIND | UNSTABLE)
+        CLEAN | HAS_HOOKS | UNSTABLE)
           return 0
+          ;;
+        BEHIND)
+          # V-04: main moved while we waited — catch up and regenerate notes.
+          return 2
           ;;
         BLOCKED)
           echo "Required checks are green but merge is BLOCKED (review or rule). Not using --admin." >&2
@@ -169,6 +221,8 @@ Prepares **${tag}**.
 
 Order (package 5.1): the cut job waits for the 10 required checks and tags this branch tip. **Build** then builds both arches, smokes each image with SIGTERM, scans, pushes images, writes the manifest, and creates the GitHub Release. Only after that succeeds does the land job merge this PR (so the add-on version on \`main\` never appears before its images).
 
+Opened with a GitHub App token so checks run without a manual Actions approval (package 5.2 / V-04).
+
 ## Test plan
 - [ ] Required checks green: test, clippy, rustfmt, web, release-gates, cargo-audit, cargo-deny, gitleaks, hassfest, hacs
 - [ ] Tag ${tag} points at this branch tip before merge
@@ -192,6 +246,21 @@ EOF
   printf '%s' "$pr"
 }
 
+sync_release_branch_with_main() {
+  local tag="$1"
+  git fetch origin main
+  git merge origin/main -m "chore(release): sync main into ${tag}"
+  write_changelog "$tag"
+  python3 scripts/release-notes.py --sync-addons
+  git add Cargo.toml Cargo.lock addon/config.yaml \
+    custom_components/klar_nlu/manifest.json \
+    custom_components/klar_nlu/const.py CHANGELOG.md \
+    addon/CHANGELOG.md addon-staging/CHANGELOG.md
+  if ! git diff --cached --quiet; then
+    git_ident commit -m "chore(release): refresh changelog for ${tag}"
+  fi
+}
+
 prepare_via_pr() {
   # Bump on a branch, wait for required checks, tag the tip. Do not merge yet:
   # landing addon/config.yaml on main is what Supervisor reads (V-02).
@@ -209,14 +278,31 @@ prepare_via_pr() {
   fi
   git push --force-with-lease origin "HEAD:refs/heads/${branch}"
 
-  local pr sha
+  local pr sha wait_rc merge_status
   pr="$(open_or_update_pr "$tag" "$branch")"
   echo "Release PR: https://github.com/${GITHUB_REPOSITORY}/pull/${pr}"
-  wait_required_checks "$pr"
-  local merge_status
+
+  while true; do
+    wait_rc=0
+    wait_required_checks "$pr" || wait_rc=$?
+    if (( wait_rc == 0 )); then
+      break
+    fi
+    if (( wait_rc != 2 )); then
+      exit "$wait_rc"
+    fi
+    echo "main moved during the wait — regenerating changelog for ${tag}"
+    sync_release_branch_with_main "$tag"
+    git push --force-with-lease origin "HEAD:refs/heads/${branch}"
+  done
+
   merge_status="$(gh pr view "$pr" --json mergeStateStatus --jq .mergeStateStatus)"
   if [[ "$merge_status" == "BLOCKED" ]]; then
     echo "mergeStateStatus=BLOCKED; refusing --admin merge" >&2
+    exit 1
+  fi
+  if [[ "$merge_status" == "BEHIND" ]]; then
+    echo "Still BEHIND after refresh; refusing to tag a stale tip" >&2
     exit 1
   fi
   sha="$(gh pr view "$pr" --json headRefOid --jq .headRefOid)"
@@ -264,12 +350,23 @@ self_test() {
   [[ "$(release_from_message $'Merge pull request #146 from org/chore/release-2026.8.52\n\nchore(release): prepare for 2026.8.52')" == "2026.8.52" ]]
   [[ "$(release_from_message $'Merge pull request #146 from FABBricate-IT-Solutions/chore/release-2026.8.52')" == "2026.8.52" ]]
   [[ -z "$(release_from_message $'Merge pull request #147 from org/feat/conversation-suite')" ]]
+  is_dependency_subject "npm: bump the npm-minor group" || exit 1
+  is_dependency_subject "cargo: bump serde" || exit 1
+  is_dependency_subject "Merge pull request #1 from org/dependabot/npm_and_yarn/web/x" || exit 1
+  is_dependency_subject "fix: real bug" && exit 1
+  is_dependency_subject "feat: thing" && exit 1
   grep -q '^prepare_via_pr() {$' "$0"
   grep -q '^land_addon() {$' "$0"
+  grep -q '^nothing_to_release() {$' "$0"
+  grep -q '^dependency_only_since_last_stable() {$' "$0"
+  grep -q 'sync_release_branch_with_main' "$0"
+  grep -q 'return 2' "$0"
   if grep -q '^land_via_pr() {$' "$0"; then
     echo "old land_via_pr function must stay removed" >&2
     exit 1
   fi
+  # "nothing to release" must exit 0 (V-04 dense-merge race).
+  grep -A3 '^nothing_to_release() {$' "$0" | grep -q 'exit 0'
   echo "ok"
 }
 
@@ -299,6 +396,18 @@ main() {
     tag_and_exit "$existing"
   fi
 
+  # V-04: a queued cut after a sibling release already tagged HEAD → soft success.
+  if head_is_stable_tagged; then
+    echo "HEAD is already a stable tag — nothing to release"
+    nothing_to_release
+  fi
+
+  # Skip pure dependency merges; promotion / feat / fix still cut a release.
+  if [[ -z "${VERSION:-}" ]] && dependency_only_since_last_stable; then
+    echo "Only dependency commits since the last stable tag — skip release"
+    nothing_to_release
+  fi
+
   if [[ -n "${VERSION:-}" ]]; then
     version="$VERSION"
   else
@@ -309,7 +418,7 @@ main() {
   tag="$version"
   if git rev-parse "refs/tags/${tag}" >/dev/null 2>&1; then
     echo "Tag ${tag} already exists — nothing to release" >&2
-    exit 1
+    nothing_to_release
   fi
 
   python3 scripts/bump-version.py "$version"

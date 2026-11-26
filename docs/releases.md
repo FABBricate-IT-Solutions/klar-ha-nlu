@@ -48,13 +48,15 @@ Stabile Cuts bleiben **`main` + CalVer-Tags** wie unten.
 - Dieselben Required Checks wie `main` (`test`, `clippy`, `rustfmt`, `web`, `release-gates`, `cargo-audit`, `cargo-deny`, `gitleaks`, `hassfest`, `hacs`)
 - Optional: eine Approval
 
-RC nach Produktion: PR **`staging` → `main`**. Dieser Merge schneidet die nächste CalVer wie bisher.
+RC nach Produktion: PR **`staging` → `main`**. Der Workflow **Promote** öffnet diesen PR wöchentlich (Montag 06:00 UTC) und per manueller Auslösung; er merget nicht. Der Merge schneidet danach die nächste CalVer wie bisher.
+
+`workflow_dispatch` auf **Staging** veröffentlicht nur, wenn der Lauf auf dem Branch `staging` startet — andere Refs werden übersprungen.
 
 Home-Assistant-Wechsel: [home-assistant.md](home-assistant.md) — Konfigurieren → **Release-Kanal** (GitHub-Download und Standard-App-URL).
 
 ## Release schneiden
 
-Jeder Merge auf `main` schneidet automatisch die nächste `YYYY.M.PATCH`. Der Release-Workflow:
+Jeder Merge auf `main` mit fachlichem Inhalt schneidet automatisch die nächste `YYYY.M.PATCH`. Reine Abhängigkeits-Merges (Dependabot / `npm:` / `cargo:` / `docker:` / `ci:`) erzeugen keinen Release. Der Release-Workflow:
 
 1. berechnet die nächste CalVer-Version
 2. schreibt sie nach `Cargo.toml`, `addon/config.yaml` und das HA-Manifest auf dem Branch `chore/release-YYYY.M.PATCH`
@@ -71,7 +73,11 @@ Build erzeugt linux-x86_64 und linux-aarch64 und hängt die Tarballs an das GitH
 
 Ein Tag von deinem Rechner startet Build weiter selbst: `git tag 2026.8.0 && git push origin 2026.8.0`.
 
-Der Cut nutzt nur den kurzlebigen `GITHUB_TOKEN` des Jobs. `main` und `staging` verlangen die Required Checks (`test`, `clippy`, `rustfmt`, `web`, `release-gates`, `cargo-audit`, `cargo-deny`, `gitleaks`, `hassfest`, `hacs`) vor jedem PR-Merge, auch für Admins. Der Versionsbump läuft über denselben PR-Weg, damit die Checks zuerst grün werden können.
+Der Cut öffnet den Release-PR mit einem **GitHub-App-Token** (`APP_CLIENT_ID` Variable, `APP_PRIVATE_KEY` Secret), damit die Required Checks ohne manuelle Actions-Freigabe laufen. Wenn `main` während des Wartens weiterläuft, wird das Changelog neu erzeugt, bevor getaggt wird. Ein Cut, dem nichts mehr zu veröffentlichen bleibt (HEAD schon getaggt, Version schon vergeben), endet mit Exit 0.
+
+`main` und `staging` verlangen die Required Checks (`test`, `clippy`, `rustfmt`, `web`, `release-gates`, `cargo-audit`, `cargo-deny`, `gitleaks`, `hassfest`, `hacs`) vor jedem PR-Merge, auch für Admins. Der Versionsbump läuft über denselben PR-Weg, damit die Checks zuerst grün werden können.
+
+git-cliff ignoriert Staging-/RC-Tags (`ignore_tags`), damit jeder `feat`/`fix`-Commit zwischen zwei Stable-Tags im Changelog der Stable-Version steht.
 
 ## Changelog lokal
 

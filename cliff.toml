@@ -57,7 +57,9 @@ protect_breaking_commits = true
 filter_commits = false
 tag_pattern = "v?[0-9].*"
 skip_tags = ".*-(alpha|beta).*"
-ignore_tags = ""
+# V-03: staging/RC tags match tag_pattern; ignore them so promoted feat/fix
+# commits land in the next stable section instead of under the RC tag.
+ignore_tags = ".*-(staging|rc)\\..*"
 topo_order = false
 sort_commits = "newest"
 commit_parsers = [
@@ -74,6 +76,8 @@ commit_parsers = [
     # must come from CHANGELOG.md (scripts/release-notes.py), not --latest.
     { message = "^chore\\(release\\)", skip = true },
     { message = "^chore\\(deps", skip = true },
+    { message = "^(npm|cargo|docker|ci)(\\(|:)", skip = true },
+    { message = "^Merge ", skip = true },
     { message = "^chore|^ci", group = "Miscellaneous" },
     { body = ".*security", group = "Security" },
     { message = "^revert", group = "Revert" },
