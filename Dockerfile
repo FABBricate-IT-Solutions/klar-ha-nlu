@@ -3,6 +3,8 @@ WORKDIR /ui
 COPY web/package.json web/package-lock.json ./
 RUN npm ci
 COPY web ./
+# KlarBrand imports ../../../docs/klar-mark.png from web/src/components → /docs/...
+COPY docs/klar-mark.png /docs/klar-mark.png
 RUN npm run build
 
 FROM rust:1.100-bookworm AS build
