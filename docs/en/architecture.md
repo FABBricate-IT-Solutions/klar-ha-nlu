@@ -124,4 +124,4 @@ Slots: `entity_id`, `area`, `floor`, `domain`, plus `brightness`, `temperature`,
 
 - No general world knowledge. “Tell me a joke” stays empty — in HA the fallback agent takes over.
 - Parse/execute stays deterministic. After a chat/reject fallback, optional `allow_llm_tools` may advertise Home Assistant Assist tools (2026.9 prefixed names) on Klar’s conversation entity. Refine never gets those tools.
-- Files stay under 500 lines; a new language is a new pack, not a longer `match` list.
+- One module, one job: above 500 lines a module carries an owner and its job in `scripts/guardrails.toml` (`python3 scripts/check_guardrails.py`); there is no hard line limit below that. A new language is a new pack, not a longer `match` list.

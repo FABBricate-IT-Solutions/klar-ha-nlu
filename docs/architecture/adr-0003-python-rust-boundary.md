@@ -79,6 +79,10 @@ Neue **Write**-Route, nicht auf dem Parse-Pfad:
 
 Assist ruft `/speech/render` nach dem Execute. `speech.py` behält `style()` (und Uhr-Wrap) am Assist-Finish; Post-Execute-Vorlagen liegen in der Engine. Fehlendes Render fällt geschlossen fehl.
 
+### Durchsetzung
+
+`python3 scripts/check_guardrails.py boundary` läuft in CI (Job `guardrails`). Es parst jede Datei unter `custom_components/klar_nlu/` und zählt Aufrufe in `re`/`regex` (auch mit Alias oder `from re import …`). Jede Stelle steht pro Datei in `scripts/guardrails.toml` mit Art (`platform`, `markup`, `output`, `token`, `debt`), Grund und Obergrenze. Eine neue Stelle, eine neue Datei oder eine höhere Obergrenze lässt CI fehlschlagen; eine zu hohe Obergrenze ebenso, damit der Raum nur kleiner wird. Äußerungs-Matching (`debt`) hat keine neue Art: heute nur `reminders.py`, das in die Engine wandert. Die Prüfung sieht nur Regexe; andere Wege, eine Äußerung in Python zu lesen, fängt das Review.
+
 ## Folgen
 
 ### Positiv

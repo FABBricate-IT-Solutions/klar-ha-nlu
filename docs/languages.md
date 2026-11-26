@@ -106,7 +106,7 @@ Ein regionales Pack hat keine eigenen Sätze. `tests/regional_overlays.rs`, die 
 
 1. Kompaktes Lexikon in `scripts/lang_packs/`. Zielsprachige Wörter bevorzugen; `scripts/lang_packs/pack_lint.py` schlägt fehl, wenn Chat/Speech-Felder noch englische Stub-Füller tragen.
 2. `python3 scripts/lang_packs/generate.py` (schreibt Daten unter `packs/generated/` und kompiliertes Rust).
-3. Generierte Daten-YAML prüfen; Dateien unter 500 Zeilen. Keine `match LangId`-Arme in `src/parse/`.
+3. Generierte Daten-YAML prüfen. Keine `match LangId`-Arme in `src/parse/`.
 4. Bestehende Suiten müssen grün bleiben; derselbe Assist/Parity-Smoke für die neue Locale.
 5. Spätere Phrase-Korrekturen nur in `packs/assist/{code}.yaml`.
 

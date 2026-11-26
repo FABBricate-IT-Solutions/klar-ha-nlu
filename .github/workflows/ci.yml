@@ -333,6 +333,32 @@ jobs:
           if-no-files-found: error
           retention-days: 30
 
+  # Package 6.11 / Q-13: the guardrails that replaced the 500-line gate. ADR 0003 (no utterance
+  # regexes in the Python integration), module ownership, the freeze of the non-core areas, and
+  # on a pull request the Frozen-area trailer. Full history is needed for the commit range.
+  guardrails:
+    name: guardrails
+    runs-on: ubuntu-26.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+          fetch-depth: 0
+      - name: ADR 0003 boundary, module ownership, frozen areas
+        run: python3 scripts/check_guardrails.py boundary responsibility focus
+      - name: Frozen-area trailers on this pull request
+        if: github.event_name == 'pull_request'
+        env:
+          BASE_REF: ${{ github.base_ref }}
+        run: python3 scripts/check_guardrails.py commits --base "origin/${BASE_REF}"
+      - name: Share of fixes that went to news and LLM paths
+        run: |
+          set -euo pipefail
+          echo '```' >> "${GITHUB_STEP_SUMMARY}"
+          python3 scripts/check_guardrails.py share | tee -a "${GITHUB_STEP_SUMMARY}"
+          echo '```' >> "${GITHUB_STEP_SUMMARY}"
+
   # Cheap checks on the CI definition itself and on the docs.
   lint:
     name: ci-lint
@@ -431,7 +457,7 @@ jobs:
   # tests/test_ci_workflows.py fails when a job of this workflow is missing from the list.
   release-gates:
     name: release-gates
-    needs: [test, clippy, rustfmt, web, web-smoke, ha, datasets, budget, benchmark, lint, release-targets, dockerfile-root]
+    needs: [test, clippy, rustfmt, web, web-smoke, ha, datasets, budget, benchmark, guardrails, lint, release-targets, dockerfile-root]
     if: always()
     runs-on: ubuntu-26.04
     steps:

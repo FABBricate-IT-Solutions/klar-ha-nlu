@@ -1,2 +1,21 @@
 # Default reviewer for every change.
 * @lbentivegni
+
+# Frozen non-core areas (package 6.11). Defaults stay off; a fix or feature that only touches
+# these paths needs a `Frozen-area: <reason>` commit trailer (scripts/check_guardrails.py).
+# Keep this list in step with [[focus.area]] frozen = true in scripts/guardrails.toml.
+/custom_components/klar_nlu/news.py @lbentivegni
+/custom_components/klar_nlu/news_feeds.py @lbentivegni
+/src/parse/news.rs @lbentivegni
+/tests/ha/test_news.py @lbentivegni
+/tests/news_langs.rs @lbentivegni
+/scripts/lang_packs/news_*.py @lbentivegni
+/scripts/lang_packs/emit_news.py @lbentivegni
+/custom_components/klar_nlu/lookup.py @lbentivegni
+/tests/ha/test_lookup.py @lbentivegni
+/src/llm/refine_shots*.rs @lbentivegni
+/src/llm/refine_voices.rs @lbentivegni
+/scripts/lang_packs/voices.py @lbentivegni
+/src/llm/custom_voice.rs @lbentivegni
+/web/src/components/CustomVoiceInterview.tsx @lbentivegni
+/web/src/customVoice.ts @lbentivegni
