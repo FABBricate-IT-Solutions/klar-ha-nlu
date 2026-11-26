@@ -17,6 +17,8 @@ RUN rustup target add x86_64-unknown-linux-musl \
     && rm -rf /var/lib/apt/lists/*
 COPY Cargo.toml Cargo.lock ./
 COPY src ./src
+# assist_embed.rs include_str! → packs/assist/{code}.yaml (package 6.9)
+COPY packs ./packs
 COPY custom_components/klar_nlu/infra_needles.txt custom_components/klar_nlu/infra_needles.txt
 COPY scripts/third-party-notices.py scripts/third-party-notices.py
 COPY web/package.json web/package-lock.json ./web/
