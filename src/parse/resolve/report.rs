@@ -114,6 +114,9 @@ fn collect_scored(tokens: &[String], home: &HomeGraph, domain: Option<&str>, fuz
                 return scored;
             }
         }
+        // Indexed home: never O(entities×tokens). Named devices must seed via content/index
+        // surfaces (including open-word aliases like TR "ac") — R-08/R-09.
+        return Vec::new();
     }
     home.entities
         .iter()

@@ -5,6 +5,7 @@ use crate::lang::LangId;
 
 use super::mood::MOOD;
 use super::news::NEWS;
+use super::numbers::NUMBERS;
 use super::speech::SPEECH;
 use super::verbs::VERBS;
 
@@ -232,37 +233,7 @@ pub const PACK: LanguagePack = LanguagePack {
             ("purple", "purple"),
             ("nyano seto", "warmwhite"),
         ],
-        numbers: &[
-            ("shunya", 0),
-            ("ek", 1),
-            ("dui", 2),
-            ("tin", 3),
-            ("char", 4),
-            ("panch", 5),
-            ("chha", 6),
-            ("sat", 7),
-            ("aath", 8),
-            ("nau", 9),
-            ("das", 10),
-            ("eghara", 11),
-            ("bahra", 12),
-            ("tehra", 13),
-            ("chaudha", 14),
-            ("pandhra", 15),
-            ("sorha", 16),
-            ("satra", 17),
-            ("athara", 18),
-            ("unnais", 19),
-            ("bis", 20),
-            ("tis", 30),
-            ("chalis", 40),
-            ("pachas", 50),
-            ("sathi", 60),
-            ("sattari", 70),
-            ("assi", 80),
-            ("nabbe", 90),
-            ("saya", 100),
-        ],
+        numbers: NUMBERS,
         number_style: NumberStyle::ListedOnly,
         room_index_nouns: &["बैठक"],
     },

@@ -5,6 +5,7 @@ use crate::lang::LangId;
 
 use super::mood::MOOD;
 use super::news::NEWS;
+use super::numbers::NUMBERS;
 use super::speech::SPEECH;
 use super::verbs::VERBS;
 
@@ -208,37 +209,7 @@ pub const PACK: LanguagePack = LanguagePack {
             ("purple", "purple"),
             ("silta balta", "warmwhite"),
         ],
-        numbers: &[
-            ("nulis", 0),
-            ("vienas", 1),
-            ("du", 2),
-            ("trys", 3),
-            ("keturi", 4),
-            ("penki", 5),
-            ("sesi", 6),
-            ("septyni", 7),
-            ("astuoni", 8),
-            ("devyni", 9),
-            ("desimt", 10),
-            ("vienuolika", 11),
-            ("dvylika", 12),
-            ("trylika", 13),
-            ("keturiolika", 14),
-            ("penkiolika", 15),
-            ("sesiolika", 16),
-            ("septyniolika", 17),
-            ("astuoniolika", 18),
-            ("devyniolika", 19),
-            ("dvidesimt", 20),
-            ("trisdesimt", 30),
-            ("keturiasdesimt", 40),
-            ("penkiasdesimt", 50),
-            ("sesiasdesimt", 60),
-            ("septyniasdesimt", 70),
-            ("astuoniasdesimt", 80),
-            ("devyniasdesimt", 90),
-            ("simtas", 100),
-        ],
+        numbers: NUMBERS,
         number_style: NumberStyle::ListedOnly,
         room_index_nouns: &["svetaine"],
     },

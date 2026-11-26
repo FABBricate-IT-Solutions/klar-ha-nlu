@@ -52,7 +52,13 @@ pub(crate) fn parse_clause_candidates_for_action(
     let cat = &catalog();
     let free_text_payload =
         cat.any(tokens, cat.list_nouns()) || cat.any(tokens, cat.media_nouns()) || crate::parse::calendar::mentions_calendar(tokens);
-    if !free_text_payload && tokens.iter().any(|token| cat.is_protected_typo(token) && !known_target_token(token, home)) {
+    let in_number = crate::parse::numbers::number_token_indices(tokens);
+    if !free_text_payload
+        && tokens
+            .iter()
+            .enumerate()
+            .any(|(index, token)| !in_number.contains(&index) && cat.is_protected_typo(token) && !known_target_token(token, home))
+    {
         return Vec::new();
     }
     // Names first: numbers and colours inside a device label are not values.

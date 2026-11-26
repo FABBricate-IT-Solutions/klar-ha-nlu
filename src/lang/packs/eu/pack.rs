@@ -5,6 +5,7 @@ use crate::lang::LangId;
 
 use super::mood::MOOD;
 use super::news::NEWS;
+use super::numbers::NUMBERS;
 use super::speech::SPEECH;
 use super::verbs::VERBS;
 
@@ -208,37 +209,7 @@ pub const PACK: LanguagePack = LanguagePack {
             ("purple", "purple"),
             ("zuri bero", "warmwhite"),
         ],
-        numbers: &[
-            ("zero", 0),
-            ("bat", 1),
-            ("bi", 2),
-            ("hiru", 3),
-            ("lau", 4),
-            ("bost", 5),
-            ("sei", 6),
-            ("zazpi", 7),
-            ("zortzi", 8),
-            ("bederatzi", 9),
-            ("hamar", 10),
-            ("hamaika", 11),
-            ("hamabi", 12),
-            ("hamahiru", 13),
-            ("hamalau", 14),
-            ("hamabost", 15),
-            ("hamasei", 16),
-            ("hamazazpi", 17),
-            ("hemezortzi", 18),
-            ("hemeretzi", 19),
-            ("hogei", 20),
-            ("hogeitahamar", 30),
-            ("berrogei", 40),
-            ("berrogeitahamar", 50),
-            ("hirurogei", 60),
-            ("hirurogeitahamar", 70),
-            ("laurogei", 80),
-            ("laurogeitahamar", 90),
-            ("ehun", 100),
-        ],
+        numbers: NUMBERS,
         number_style: NumberStyle::ListedOnly,
         room_index_nouns: &["egongela"],
     },

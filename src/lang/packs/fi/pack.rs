@@ -5,6 +5,7 @@ use crate::lang::LangId;
 
 use super::mood::MOOD;
 use super::news::NEWS;
+use super::numbers::NUMBERS;
 use super::speech::SPEECH;
 use super::verbs::VERBS;
 
@@ -215,37 +216,7 @@ pub const PACK: LanguagePack = LanguagePack {
             ("violetti", "purple"),
             ("lamminvalkoinen", "warmwhite"),
         ],
-        numbers: &[
-            ("nolla", 0),
-            ("yksi", 1),
-            ("kaksi", 2),
-            ("kolme", 3),
-            ("neljae", 4),
-            ("viisi", 5),
-            ("kuusi", 6),
-            ("seitsemaen", 7),
-            ("kahdeksan", 8),
-            ("yhdeksaen", 9),
-            ("kymmenen", 10),
-            ("yksitoista", 11),
-            ("kaksitoista", 12),
-            ("kolmetoista", 13),
-            ("neljaetoista", 14),
-            ("viisitoista", 15),
-            ("kuusitoista", 16),
-            ("seitsemaentoista", 17),
-            ("kahdeksantoista", 18),
-            ("yhdeksaentoista", 19),
-            ("kaksikymmentae", 20),
-            ("kolmekymmentae", 30),
-            ("neljaekymmentae", 40),
-            ("viisikymmentae", 50),
-            ("kuusikymmentae", 60),
-            ("seitsemaenkymmentae", 70),
-            ("kahdeksankymmentae", 80),
-            ("yhdeksaenkymmentae", 90),
-            ("sata", 100),
-        ],
+        numbers: NUMBERS,
         number_style: NumberStyle::ListedOnly,
         room_index_nouns: &["olohuone"],
     },

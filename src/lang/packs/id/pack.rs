@@ -5,6 +5,7 @@ use crate::lang::LangId;
 
 use super::mood::MOOD;
 use super::news::NEWS;
+use super::numbers::NUMBERS;
 use super::speech::SPEECH;
 use super::verbs::VERBS;
 
@@ -197,37 +198,7 @@ pub const PACK: LanguagePack = LanguagePack {
             ("purple", "purple"),
             ("putihhangat", "warmwhite"),
         ],
-        numbers: &[
-            ("nol", 0),
-            ("satu", 1),
-            ("dua", 2),
-            ("tiga", 3),
-            ("empat", 4),
-            ("lima", 5),
-            ("enam", 6),
-            ("tujuh", 7),
-            ("delapan", 8),
-            ("sembilan", 9),
-            ("sepuluh", 10),
-            ("sebelas", 11),
-            ("duabelas", 12),
-            ("tigabelas", 13),
-            ("empatbelas", 14),
-            ("limabelas", 15),
-            ("enambelas", 16),
-            ("tujuhbelas", 17),
-            ("delapanbelas", 18),
-            ("sembilanbelas", 19),
-            ("duapuluh", 20),
-            ("tigapuluh", 30),
-            ("empatpuluh", 40),
-            ("limapuluh", 50),
-            ("enampuluh", 60),
-            ("tujuhpuluh", 70),
-            ("delapanpuluh", 80),
-            ("sembilanpuluh", 90),
-            ("seratus", 100),
-        ],
+        numbers: NUMBERS,
         number_style: NumberStyle::ListedOnly,
         room_index_nouns: &["ruang"],
     },

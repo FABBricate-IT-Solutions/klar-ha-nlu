@@ -11,7 +11,10 @@ use std::collections::HashSet;
 /// Multi-device lines fall back to union when AND would be empty.
 pub(super) fn content_candidates(tokens: &[String], index: &LabelIndex) -> Vec<usize> {
     let cat = &catalog();
-    let content: Vec<&str> = tokens.iter().map(String::as_str).filter(|token| is_content_token(token, cat)).collect();
+    // Tokens that already label an entity stay seeds even when they also act as open/verb
+    // words (TR loanword "ac" on Klimaanlage) so indexed resolve never needs a full walk.
+    let content: Vec<&str> =
+        tokens.iter().map(String::as_str).filter(|token| is_content_token(token, cat) || index_surface_token(token, index)).collect();
     if content.is_empty() {
         return Vec::new();
     }
@@ -85,4 +88,8 @@ fn is_content_token(token: &str, cat: &Catalog) -> bool {
         return false;
     }
     token.chars().count() >= 2 || token.chars().all(|ch| ch.is_ascii_digit())
+}
+
+fn index_surface_token(token: &str, index: &LabelIndex) -> bool {
+    (token.chars().count() >= 2 || token.chars().all(|ch| ch.is_ascii_digit())) && index.by_token.contains_key(token)
 }

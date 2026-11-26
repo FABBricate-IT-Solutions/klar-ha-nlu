@@ -5,6 +5,7 @@ use crate::lang::LangId;
 
 use super::mood::MOOD;
 use super::news::NEWS;
+use super::numbers::NUMBERS;
 use super::speech::SPEECH;
 use super::verbs::VERBS;
 
@@ -12,7 +13,7 @@ pub const PACK: LanguagePack = LanguagePack {
     id: LangId::new("fa"),
     verbs: VERBS,
     talk: Talk {
-        fillers: &["به", "در", "را"],
+        fillers: &["به", "در", "را", "یک"],
         action_keep: &["باز", "بسته", "خاموش", "روشن"],
         conjunctions: &["then", "و"],
         particles: &["روشن"],
@@ -121,7 +122,7 @@ pub const PACK: LanguagePack = LanguagePack {
         hours: &["ساعت"],
         minutes: &["دقیقه"],
         seconds: &["ثانیه"],
-        list_skip: &["add", "done", "erledigt", "fertig", "fuege", "hinzu", "به", "در", "را"],
+        list_skip: &["add", "done", "erledigt", "fertig", "fuege", "hinzu", "به", "در", "را", "یک"],
         shopping_names: &["فهرست"],
         status_words: &["چی"],
         window_words: &["پرده"],
@@ -176,7 +177,7 @@ pub const PACK: LanguagePack = LanguagePack {
             ("movie_night", "movie_night"),
             ("dinner_time", "dinner_time"),
         ],
-        article_one: &[],
+        article_one: &["یک"],
         strip_pairs: &[],
         keep_after: &[],
     },
@@ -210,37 +211,7 @@ pub const PACK: LanguagePack = LanguagePack {
             ("purple", "purple"),
             ("سفیدگرم", "warmwhite"),
         ],
-        numbers: &[
-            ("صفر", 0),
-            ("یک", 1),
-            ("دو", 2),
-            ("سه", 3),
-            ("چهار", 4),
-            ("پنج", 5),
-            ("شش", 6),
-            ("هفت", 7),
-            ("هشت", 8),
-            ("نه", 9),
-            ("ده", 10),
-            ("یازده", 11),
-            ("دوازده", 12),
-            ("سیزده", 13),
-            ("چهارده", 14),
-            ("پانزده", 15),
-            ("شانزده", 16),
-            ("هفده", 17),
-            ("هجده", 18),
-            ("نوزده", 19),
-            ("بیست", 20),
-            ("سی", 30),
-            ("چهل", 40),
-            ("پنجاه", 50),
-            ("شصت", 60),
-            ("هفتاد", 70),
-            ("هشتاد", 80),
-            ("نود", 90),
-            ("صد", 100),
-        ],
+        numbers: NUMBERS,
         number_style: NumberStyle::ListedOnly,
         room_index_nouns: &["پذیرایی"],
     },

@@ -5,6 +5,7 @@ use crate::lang::LangId;
 
 use super::mood::MOOD;
 use super::news::NEWS;
+use super::numbers::NUMBERS;
 use super::speech::SPEECH;
 use super::verbs::VERBS;
 
@@ -232,37 +233,7 @@ pub const PACK: LanguagePack = LanguagePack {
             ("purple", "purple"),
             ("vedi telupu", "warmwhite"),
         ],
-        numbers: &[
-            ("sunna", 0),
-            ("okati", 1),
-            ("rendu", 2),
-            ("moodu", 3),
-            ("nalugu", 4),
-            ("aidu", 5),
-            ("aaru", 6),
-            ("edu", 7),
-            ("enimidi", 8),
-            ("tommidi", 9),
-            ("padi", 10),
-            ("padakond", 11),
-            ("pannendu", 12),
-            ("padamudu", 13),
-            ("padhnalugu", 14),
-            ("padihenu", 15),
-            ("padaharu", 16),
-            ("padihedu", 17),
-            ("paddenimidi", 18),
-            ("pandommidi", 19),
-            ("iravai", 20),
-            ("muppai", 30),
-            ("nalabhai", 40),
-            ("yabhai", 50),
-            ("aravai", 60),
-            ("debbhai", 70),
-            ("enabhai", 80),
-            ("tombhai", 90),
-            ("vanda", 100),
-        ],
+        numbers: NUMBERS,
         number_style: NumberStyle::ListedOnly,
         room_index_nouns: &["గది"],
     },

@@ -72,7 +72,7 @@ def check_regional(pack: Path, tag: str, parent: str) -> None:
             fail(f"{pack.name} is regional and runs its parent's sentences; remove {own.relative_to(ROOT)}")
 
 
-def check_complete(name: str, verbs: str, body: str) -> None:
+def check_complete(name: str, verbs: str, body: str, numbers: str = "") -> None:
     """A pack that stands on its own needs the basic word classes."""
     if "VerbKind::On" not in verbs or "VerbKind::Off" not in verbs:
         fail(f"{name} missing On/Off verbs")
@@ -82,7 +82,8 @@ def check_complete(name: str, verbs: str, body: str) -> None:
     for field in ("clock:", "weather:"):
         if f"{field} &[]" in body:
             fail(f"{name} household {field} is empty")
-    num_chunk = body[body.find("numbers:") : body.find("numbers:") + 2500] if "numbers:" in body else ""
+    # Numbers may live inline in pack.rs or in a sibling numbers.rs (package 4.2).
+    num_chunk = numbers or (body[body.find("numbers:") : body.find("numbers:") + 2500] if "numbers:" in body else "")
     native_nums = [word for word in re.findall(r'\("([^"]+)", \d+\)', num_chunk) if not word.isdigit()]
     if len(native_nums) < 10:
         fail(f"{name} needs native number words, got {native_nums[:5]}")
@@ -206,11 +207,12 @@ def main() -> None:
         verbs = (pack / "verbs.rs").read_text(encoding="utf-8")
         speech = (pack / "speech.rs").read_text(encoding="utf-8")
         body = (pack / "pack.rs").read_text(encoding="utf-8")
+        numbers = (pack / "numbers.rs").read_text(encoding="utf-8") if (pack / "numbers.rs").is_file() else ""
         if 'unknown: ""' in speech or 'confirm: ""' in speech:
             fail(f"{pack.name} has empty speech")
         if not regional:
-            check_complete(pack.name, verbs, body)
-        if not handwritten and (FAKE_SUFFIX.search(body) or FAKE_SUFFIX.search(verbs)):
+            check_complete(pack.name, verbs, body, numbers)
+        if not handwritten and (FAKE_SUFFIX.search(body) or FAKE_SUFFIX.search(verbs) or FAKE_SUFFIX.search(numbers)):
             fail(f"{pack.name} has synthetic suffix tokens")
         if pack.name not in DE_SCAFFOLD_OK and GERMAN_SCAFFOLD.search(body):
             fail(f"{pack.name} has German home-graph tokens")

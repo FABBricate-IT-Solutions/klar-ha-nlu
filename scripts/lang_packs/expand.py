@@ -8,6 +8,7 @@ from lang_packs.convo import with_warm_white
 from lang_packs.extras import pack_extras
 from lang_packs.native_apply import apply_native, is_script_pack
 from lang_packs.news_lex import apply_news
+from lang_packs.numbers_grammar import expand_number_rows, number_style_for
 from lang_packs.regional import thin_pack
 from lang_packs.speech_slots import apply_speech_slots, pick_room_names
 from lang_packs.timer_lex import apply_to_words, how_long
@@ -49,7 +50,8 @@ def expand(core: dict) -> dict:
     chat = dict(core["chat"])
     apply_news(core["code"], chat)
     colors = with_warm_white(core["code"], list(core.get("colors") or default_colors()))
-    numbers = list(core.get("numbers", []))
+    and_words = list(w.get("and") or [])
+    numbers = expand_number_rows(core["code"], list(core.get("numbers", [])), and_words[0] if and_words else None)
     rooms = list(core.get("rooms", []))
     synonyms = [(native, canon) for native, canon in rooms]
     synonyms += list(core.get("synonyms", []))
@@ -330,7 +332,7 @@ def expand(core: dict) -> dict:
             "domain_map": domain,
             "colors": colors,
             "numbers": numbers,
-            "number_style": core.get("number_style", "ListedOnly"),
+            "number_style": core.get("number_style") or number_style_for(core["code"]),
             "room_index_nouns": [r[0] for r in rooms if r[1] in ("bedroom", "bathroom")] or [r[0] for r in rooms[:1]],
         },
         "chat": chat,

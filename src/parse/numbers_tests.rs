@@ -78,12 +78,9 @@ fn a_listed_compound_is_read_when_its_hyphen_is_gone() {
 #[test]
 fn number_words_the_language_cannot_add_up_are_unreadable() {
     for (lang, text) in [
-        ("fr", "vingt-cinq pour cent"),
-        ("fr", "vingt et un degrés"),
-        ("fr", "quatre-vingt-dix-sept"),
-        ("es", "treinta y cinco grados"),
-        ("es", "treinta cinco"),
-        ("it", "venti cinque per cento"),
+        // Wrong order / impossible sums still rejected (1.14 cases that 4.2 keeps).
+        ("es", "cinco treinta"),
+        ("it", "cinque venti per cento"),
         ("en", "five ten percent"),
         ("en", "one hundred and five percent"),
         ("en", "twenty twenty"),
@@ -94,6 +91,15 @@ fn number_words_the_language_cannot_add_up_are_unreadable() {
     ] {
         unreadable(lang, text);
     }
+}
+
+#[test]
+fn package_4_2_grammars_read_tens_with_ones() {
+    reads("es", "treinta y cinco grados", 35);
+    reads("pt", "vinte e cinco", 25);
+    reads("fr", "vingt et un degrés", 21);
+    assert_eq!(read("fr", "vingt cinq pour cent"), (vec![25, 100], false));
+    reads("nl", "vijf en twintig procent", 25);
 }
 
 #[test]
@@ -121,9 +127,12 @@ fn a_number_held_together_by_and_becomes_one_token() {
     assert_eq!(fold("de", "stell die Heizung auf ein und zwanzig Grad"), "stell die heizung auf 21 grad");
     assert_eq!(fold("de", "fünf und zwanzig Prozent"), "25 prozent");
     assert_eq!(fold("de", "hundert fünf und zwanzig"), "125");
+    // Romance / Germanic grammars from package 4.2 fold before "and" splits a clause.
+    assert_eq!(fold("es", "treinta y cinco grados"), "35 grados");
+    assert_eq!(fold("nl", "vijf en twintig procent"), "25 procent");
     // Plain words stay words: names and search text keep their spelling.
     assert_eq!(fold("en", "play twenty one pilots"), "play twenty one pilots");
     assert_eq!(fold("de", "Licht und Rollo an"), "licht und rollo an");
     // What cannot be added up is left alone and rejected later.
-    assert_eq!(fold("es", "treinta y cinco grados"), "treinta y cinco grados");
+    assert_eq!(fold("en", "five ten percent"), "five ten percent");
 }

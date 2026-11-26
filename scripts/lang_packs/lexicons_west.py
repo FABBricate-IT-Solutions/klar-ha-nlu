@@ -232,7 +232,7 @@ def pt() -> dict:
         fan=["ventoinha"],
         vacuum=["aspirador"],
         scene=["cena"],
-        fillers=["a", "o", "as", "os", "em", "por", "favor"],
+        fillers=["a", "o", "as", "os", "em", "por", "favor", "um", "uma"],
         and_=["e"],
         or_=["ou"],
         yes=["sim", "ok"],
@@ -249,7 +249,18 @@ def pt() -> dict:
         colors=[("vermelho", "red"), ("azul", "blue"), ("verde", "green"), ("amarelo", "yellow"), ("laranja", "orange"), ("rosa", "pink"), ("preto", "black"), ("branco", "white"), ("roxo", "purple")],
         and_join=" e ",
         or_join=" ou ",
-        extra_w={"unlock": ["abre"], "lock_v": ["tranca"], "add": ["adiciona"], "done": ["feito"], "pause": ["pausa"], "hours": ["hora"], "minutes": ["minuto"], "seconds": ["segundo"]},
+        # "um"/"uma" are the article and the number one (L-05): keep only before a time unit.
+        extra_w={
+            "unlock": ["abre"],
+            "lock_v": ["tranca"],
+            "add": ["adiciona"],
+            "done": ["feito"],
+            "pause": ["pausa"],
+            "hours": ["hora"],
+            "minutes": ["minuto"],
+            "seconds": ["segundo"],
+            "one": ["um", "uma"],
+        },
     )
 
 

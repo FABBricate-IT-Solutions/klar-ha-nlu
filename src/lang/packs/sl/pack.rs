@@ -5,6 +5,7 @@ use crate::lang::LangId;
 
 use super::mood::MOOD;
 use super::news::NEWS;
+use super::numbers::NUMBERS;
 use super::speech::SPEECH;
 use super::verbs::VERBS;
 
@@ -210,37 +211,7 @@ pub const PACK: LanguagePack = LanguagePack {
             ("purple", "purple"),
             ("toplabela", "warmwhite"),
         ],
-        numbers: &[
-            ("nic", 0),
-            ("ena", 1),
-            ("dva", 2),
-            ("tri", 3),
-            ("stiri", 4),
-            ("pet", 5),
-            ("sest", 6),
-            ("sedem", 7),
-            ("osem", 8),
-            ("devet", 9),
-            ("deset", 10),
-            ("enajst", 11),
-            ("dvanajst", 12),
-            ("trinajst", 13),
-            ("stirinajst", 14),
-            ("petnajst", 15),
-            ("sesnajst", 16),
-            ("sedemnajst", 17),
-            ("osemnajst", 18),
-            ("devetnajst", 19),
-            ("dvajset", 20),
-            ("trideset", 30),
-            ("stirideset", 40),
-            ("petdeset", 50),
-            ("sestdeset", 60),
-            ("sedemdeset", 70),
-            ("osemdeset", 80),
-            ("devetdeset", 90),
-            ("sto", 100),
-        ],
+        numbers: NUMBERS,
         number_style: NumberStyle::ListedOnly,
         room_index_nouns: &["dnevna"],
     },

@@ -5,6 +5,7 @@ use crate::lang::LangId;
 
 use super::mood::MOOD;
 use super::news::NEWS;
+use super::numbers::NUMBERS;
 use super::speech::SPEECH;
 use super::verbs::VERBS;
 
@@ -147,31 +148,7 @@ pub const PACK: LanguagePack = LanguagePack {
             ("musig", "media_player"),
         ],
         colors: &[],
-        numbers: &[
-            ("eis", 1),
-            ("zwai", 2),
-            ("drue", 3),
-            ("foif", 5),
-            ("saechs", 6),
-            ("sibe", 7),
-            ("nuen", 9),
-            ("zae", 10),
-            ("drizae", 13),
-            ("vierzae", 14),
-            ("fuefzae", 15),
-            ("saechzae", 16),
-            ("sibzae", 17),
-            ("achtzae", 18),
-            ("nuenzae", 19),
-            ("zwanzg", 20),
-            ("drissg", 30),
-            ("vierzg", 40),
-            ("fuefzg", 50),
-            ("saechzg", 60),
-            ("sibzg", 70),
-            ("achtzg", 80),
-            ("nuenzg", 90),
-        ],
+        numbers: NUMBERS,
         number_style: NumberStyle::GermanUnd,
         room_index_nouns: &[],
     },

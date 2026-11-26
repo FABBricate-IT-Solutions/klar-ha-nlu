@@ -9,6 +9,10 @@ use super::LangId;
 pub enum NumberStyle {
     GermanUnd,
     EnglishTens,
+    /// Tens and ones with the pack conjunction between them ("treinta y cinco", "vinte e cinco").
+    TensAndOnes,
+    /// Ones then tens with the pack conjunction ("vijf en twintig", "fem og tyve").
+    OnesAndTens,
     ListedOnly,
 }
 

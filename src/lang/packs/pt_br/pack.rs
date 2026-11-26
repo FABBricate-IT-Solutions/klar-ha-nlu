@@ -5,6 +5,7 @@ use crate::lang::LangId;
 
 use super::mood::MOOD;
 use super::news::NEWS;
+use super::numbers::NUMBERS;
 use super::speech::SPEECH;
 use super::verbs::VERBS;
 
@@ -139,8 +140,8 @@ pub const PACK: LanguagePack = LanguagePack {
     maps: Maps {
         domain_map: &[("abajur", "light"), ("luminaria", "light"), ("ventilador", "fan")],
         colors: &[],
-        numbers: &[("dezesseis", 16), ("dezessete", 17), ("dezenove", 19)],
-        number_style: NumberStyle::ListedOnly,
+        numbers: NUMBERS,
+        number_style: NumberStyle::TensAndOnes,
         room_index_nouns: &[],
     },
     chat: Chat {

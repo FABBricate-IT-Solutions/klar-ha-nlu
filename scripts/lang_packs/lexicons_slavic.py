@@ -91,7 +91,7 @@ def slavic() -> list[dict]:
             confirm="Mam to naozaj spravit?",
             spoken=spoken_home("Dobre, poslednu vetu nechavam tak.", "{target} je zapnute.", "{target} je vypnute.", "{target} sa prepina.", "Teplota {loc}.", "Pozeram na {target}.", "Prehravanie je pozastavene.", "Prehravanie pokracuje.", "Dalsia skladba.", "Predosla skladba.", "Zvuk je vypnuty.", "Zvuk je zapnuty.", "Hlasitost je nastavena.", "Je na zozname."),
             personality=triples(("Velmi dobre. ", "Rad. ", ""), ("Jasne. ", "Hotovo. ", ""), ("Hned to spravim. ", "Vsetko v poriadku. ", ""), ("Ideme. ", "Super. ", ""), ("No dobre. ", "Ak musim. ", ""), ("Samozrejme. ", "Ake prekvapenie. ", ""), ("Aye. ", "Kapitan. ", ""), ("Pohoda. ", "V klude. ", ""), ("Ano. ", "Ano, moj poklad. ", "")),
-            numbers=["nula", "jeden", "dva", "tri", "styri", "pat", "sest", "sedem", "osem", "devat", "desat", "jedenast", "dvanast", "trinast", "strnast", "patnast", "sestnast", "sedemnast", "osemnast", "devatnast", "dvadsat", "tridsat", "styridsat", "padest", "sestdesiat", "sedemdesiat", "osemdesiat", "devatdesiat", "sto"],
+            numbers=["nula", "jeden", "dva", "tri", "styri", "pat", "sest", "sedem", "osem", "devat", "desat", "jedenast", "dvanast", "trinast", "stirnast", "patnast", "sestnast", "sedemnast", "osemnast", "devatnast", "dvadsat", "tridsat", "styridsat", "padesiat", "sestdesiat", "sedemdesiat", "osemdesiat", "devatdesiat", "sto"],
             and_join=" a ",
             or_join=" alebo ",
         ),

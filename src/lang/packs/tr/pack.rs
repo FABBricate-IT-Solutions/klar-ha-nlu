@@ -5,6 +5,7 @@ use crate::lang::LangId;
 
 use super::mood::MOOD;
 use super::news::NEWS;
+use super::numbers::NUMBERS;
 use super::speech::SPEECH;
 use super::verbs::VERBS;
 
@@ -210,37 +211,7 @@ pub const PACK: LanguagePack = LanguagePack {
             ("purple", "purple"),
             ("sicakbeyaz", "warmwhite"),
         ],
-        numbers: &[
-            ("sifir", 0),
-            ("bir", 1),
-            ("iki", 2),
-            ("uec", 3),
-            ("doert", 4),
-            ("bes", 5),
-            ("alti", 6),
-            ("yedi", 7),
-            ("sekiz", 8),
-            ("dokuz", 9),
-            ("on", 10),
-            ("onbir", 11),
-            ("oniki", 12),
-            ("onuec", 13),
-            ("ondoert", 14),
-            ("onbes", 15),
-            ("onalti", 16),
-            ("onyedi", 17),
-            ("onsekiz", 18),
-            ("ondokuz", 19),
-            ("yirmi", 20),
-            ("otuz", 30),
-            ("kirk", 40),
-            ("elli", 50),
-            ("altmis", 60),
-            ("yetmis", 70),
-            ("seksen", 80),
-            ("doksan", 90),
-            ("yuez", 100),
-        ],
+        numbers: NUMBERS,
         number_style: NumberStyle::ListedOnly,
         room_index_nouns: &["salon"],
     },

@@ -5,6 +5,7 @@ use crate::lang::LangId;
 
 use super::mood::MOOD;
 use super::news::NEWS;
+use super::numbers::NUMBERS;
 use super::speech::SPEECH;
 use super::verbs::VERBS;
 
@@ -211,37 +212,7 @@ pub const PACK: LanguagePack = LanguagePack {
             ("purple", "purple"),
             ("לבןחם", "warmwhite"),
         ],
-        numbers: &[
-            ("אפס", 0),
-            ("אחת", 1),
-            ("שתיים", 2),
-            ("שלוש", 3),
-            ("ארבע", 4),
-            ("חמש", 5),
-            ("שש", 6),
-            ("שבע", 7),
-            ("שמונה", 8),
-            ("תשע", 9),
-            ("עשר", 10),
-            ("אחת עשרה", 11),
-            ("שתים עשרה", 12),
-            ("שלוש עשרה", 13),
-            ("ארבע עשרה", 14),
-            ("חמש עשרה", 15),
-            ("שש עשרה", 16),
-            ("שבע עשרה", 17),
-            ("שמונה עשרה", 18),
-            ("תשע עשרה", 19),
-            ("עשרים", 20),
-            ("שלושים", 30),
-            ("ארבעים", 40),
-            ("חמישים", 50),
-            ("שישים", 60),
-            ("שבעים", 70),
-            ("שמונים", 80),
-            ("תשעים", 90),
-            ("מאה", 100),
-        ],
+        numbers: NUMBERS,
         number_style: NumberStyle::ListedOnly,
         room_index_nouns: &["סלון"],
     },

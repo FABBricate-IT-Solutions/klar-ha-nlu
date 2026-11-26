@@ -5,6 +5,7 @@ use crate::lang::LangId;
 
 use super::mood::MOOD;
 use super::news::NEWS;
+use super::numbers::NUMBERS;
 use super::speech::SPEECH;
 use super::verbs::VERBS;
 
@@ -238,37 +239,7 @@ pub const PACK: LanguagePack = LanguagePack {
             ("紫", "purple"),
             ("暖白", "warmwhite"),
         ],
-        numbers: &[
-            ("零", 0),
-            ("一", 1),
-            ("二", 2),
-            ("三", 3),
-            ("四", 4),
-            ("五", 5),
-            ("六", 6),
-            ("七", 7),
-            ("八", 8),
-            ("九", 9),
-            ("十", 10),
-            ("十一", 11),
-            ("十二", 12),
-            ("十三", 13),
-            ("十四", 14),
-            ("十五", 15),
-            ("十六", 16),
-            ("十七", 17),
-            ("十八", 18),
-            ("十九", 19),
-            ("二十", 20),
-            ("三十", 30),
-            ("四十", 40),
-            ("五十", 50),
-            ("六十", 60),
-            ("七十", 70),
-            ("八十", 80),
-            ("九十", 90),
-            ("百", 100),
-        ],
+        numbers: NUMBERS,
         number_style: NumberStyle::ListedOnly,
         room_index_nouns: &["客廳"],
     },

@@ -5,6 +5,7 @@ use crate::lang::LangId;
 
 use super::mood::MOOD;
 use super::news::NEWS;
+use super::numbers::NUMBERS;
 use super::speech::SPEECH;
 use super::verbs::VERBS;
 
@@ -217,38 +218,8 @@ pub const PACK: LanguagePack = LanguagePack {
             ("mov", "purple"),
             ("albcald", "warmwhite"),
         ],
-        numbers: &[
-            ("zero", 0),
-            ("unu", 1),
-            ("doi", 2),
-            ("trei", 3),
-            ("patru", 4),
-            ("cinci", 5),
-            ("sase", 6),
-            ("sapte", 7),
-            ("opt", 8),
-            ("noua", 9),
-            ("zece", 10),
-            ("unsprezece", 11),
-            ("doisprezece", 12),
-            ("treisprezece", 13),
-            ("paisprezece", 14),
-            ("cincisprezece", 15),
-            ("saisprezece", 16),
-            ("saptesprezece", 17),
-            ("optsprezece", 18),
-            ("nouasprezece", 19),
-            ("douazeci", 20),
-            ("treizeci", 30),
-            ("patruzeci", 40),
-            ("cincizeci", 50),
-            ("saizeci", 60),
-            ("saptezeci", 70),
-            ("optzeci", 80),
-            ("nouazeci", 90),
-            ("suta", 100),
-        ],
-        number_style: NumberStyle::ListedOnly,
+        numbers: NUMBERS,
+        number_style: NumberStyle::TensAndOnes,
         room_index_nouns: &["sufragerie"],
     },
     chat: Chat {

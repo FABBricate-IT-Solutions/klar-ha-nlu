@@ -5,6 +5,7 @@ use crate::lang::LangId;
 
 use super::mood::MOOD;
 use super::news::NEWS;
+use super::numbers::NUMBERS;
 use super::speech::SPEECH;
 use super::verbs::VERBS;
 
@@ -210,37 +211,7 @@ pub const PACK: LanguagePack = LanguagePack {
             ("purple", "purple"),
             ("melegfeher", "warmwhite"),
         ],
-        numbers: &[
-            ("nulla", 0),
-            ("egy", 1),
-            ("ketto", 2),
-            ("harom", 3),
-            ("negy", 4),
-            ("oet", 5),
-            ("hat", 6),
-            ("het", 7),
-            ("nyolc", 8),
-            ("kilenc", 9),
-            ("tiz", 10),
-            ("tizenegy", 11),
-            ("tizenketto", 12),
-            ("tizenharom", 13),
-            ("tizennegy", 14),
-            ("tizenoet", 15),
-            ("tizenhat", 16),
-            ("tizenhet", 17),
-            ("tizennyolc", 18),
-            ("tizenkilenc", 19),
-            ("husz", 20),
-            ("harminc", 30),
-            ("negyven", 40),
-            ("oetven", 50),
-            ("hatvan", 60),
-            ("hetven", 70),
-            ("nyolcvan", 80),
-            ("kilencven", 90),
-            ("szaz", 100),
-        ],
+        numbers: NUMBERS,
         number_style: NumberStyle::ListedOnly,
         room_index_nouns: &["nappali"],
     },

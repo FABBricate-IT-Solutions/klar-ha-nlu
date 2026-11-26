@@ -5,6 +5,7 @@ use crate::lang::LangId;
 
 use super::mood::MOOD;
 use super::news::NEWS;
+use super::numbers::NUMBERS;
 use super::speech::SPEECH;
 use super::verbs::VERBS;
 
@@ -12,7 +13,7 @@ pub const PACK: LanguagePack = LanguagePack {
     id: LangId::new("pt"),
     verbs: VERBS,
     talk: Talk {
-        fillers: &["a", "as", "em", "favor", "o", "os", "por"],
+        fillers: &["a", "as", "em", "favor", "o", "os", "por", "um", "uma"],
         action_keep: &["abre", "acende", "apaga", "desliga", "fecha", "liga"],
         conjunctions: &["e", "then"],
         particles: &["liga"],
@@ -179,7 +180,7 @@ pub const PACK: LanguagePack = LanguagePack {
             ("movie_night", "movie_night"),
             ("dinner_time", "dinner_time"),
         ],
-        article_one: &[],
+        article_one: &["um", "uma"],
         strip_pairs: &[],
         keep_after: &[],
     },
@@ -218,38 +219,8 @@ pub const PACK: LanguagePack = LanguagePack {
             ("roxo", "purple"),
             ("brancquente", "warmwhite"),
         ],
-        numbers: &[
-            ("zero", 0),
-            ("um", 1),
-            ("dois", 2),
-            ("tres", 3),
-            ("quatro", 4),
-            ("cinco", 5),
-            ("seis", 6),
-            ("sete", 7),
-            ("oito", 8),
-            ("nove", 9),
-            ("dez", 10),
-            ("onze", 11),
-            ("doze", 12),
-            ("treze", 13),
-            ("catorze", 14),
-            ("quinze", 15),
-            ("dezasseis", 16),
-            ("dezassete", 17),
-            ("dezoito", 18),
-            ("dezanove", 19),
-            ("vinte", 20),
-            ("trinta", 30),
-            ("quarenta", 40),
-            ("cinquenta", 50),
-            ("sessenta", 60),
-            ("setenta", 70),
-            ("oitenta", 80),
-            ("noventa", 90),
-            ("cem", 100),
-        ],
-        number_style: NumberStyle::ListedOnly,
+        numbers: NUMBERS,
+        number_style: NumberStyle::TensAndOnes,
         room_index_nouns: &["sala"],
     },
     chat: Chat {

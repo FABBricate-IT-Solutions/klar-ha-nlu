@@ -5,6 +5,7 @@ use crate::lang::LangId;
 
 use super::mood::MOOD;
 use super::news::NEWS;
+use super::numbers::NUMBERS;
 use super::speech::SPEECH;
 use super::verbs::VERBS;
 
@@ -192,37 +193,7 @@ pub const PACK: LanguagePack = LanguagePack {
             ("purple", "purple"),
             ("trangam", "warmwhite"),
         ],
-        numbers: &[
-            ("khong", 0),
-            ("mot", 1),
-            ("hai", 2),
-            ("ba", 3),
-            ("bon", 4),
-            ("nam", 5),
-            ("sau", 6),
-            ("bay", 7),
-            ("tam", 8),
-            ("chin", 9),
-            ("muoi", 10),
-            ("muoimot", 11),
-            ("muoihai", 12),
-            ("muoiba", 13),
-            ("muoibon", 14),
-            ("muoinam", 15),
-            ("muoisau", 16),
-            ("muoibay", 17),
-            ("muoitam", 18),
-            ("muoichin", 19),
-            ("haimuoi", 20),
-            ("bamuoi", 30),
-            ("bonmuoi", 40),
-            ("nammuoi", 50),
-            ("saumuoi", 60),
-            ("baymuoi", 70),
-            ("tammuoi", 80),
-            ("chinmuoi", 90),
-            ("tram", 100),
-        ],
+        numbers: NUMBERS,
         number_style: NumberStyle::ListedOnly,
         room_index_nouns: &["phongkhach"],
     },

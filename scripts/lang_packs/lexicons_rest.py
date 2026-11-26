@@ -25,7 +25,7 @@ def _eu_west() -> list[dict]:
             unknown="Do ddeallais i ddim. Dywedwch pa olau i'w droi ymlaen, er enghraifft.", need_on="Beth i droi ymlaen?", need_off="Beth i ddiffodd?", confirm="Wir?",
             spoken=spoken_home("Iawn, rwy'n gollwng y frawddeg olaf.", "{target} yn ymlaen.", "{target} yn diffodd.", "{target} yn newid.", "Y tymheredd {loc}.", "Rwy'n edrych ar {target}.", "Mae'r chwarae wedi seibio.", "Mae'r chwarae yn parhau.", "Y trac nesaf.", "Y trac blaenorol.", "Sain wedi'i dawelu.", "Sain yn ol.", "Mae'r sain wedi'i gosod.", "Ar y rhestr."),
             personality=triples(("Iawn. ", "Gyda phleser. ", ""), ("Wedi dal. ", "Wedi gwneud. ", ""), ("Gwnaf hynny nawr. ", "Popeth yn iawn. ", ""), ("Ymlaen a ni. ", "Neis. ", ""), ("Iawn te. ", "Os rhaid. ", ""), ("Wrth gwrs. ", "Beth o syndod. ", ""), ("Aye. ", "Gapten. ", ""), ("Hawdd. ", "Tawel. ", ""), ("Ie. ", "Ie, fy nhrysor. ", "")),
-            numbers=["dim", "un", "dau", "tri", "pedwar", "pump", "chwech", "saith", "wyth", "naw", "deg", "unarddeg", "deuddeg", "triardeg", "pedwarardeg", "pymtheg", "unarsbymtheg", "dauarsbymtheg", "deunaw", "pedwararbytheg", "ugain", "degarddeg", "deugain", "degadeugain", "trigain", "degatrigain", "pedwarugain", "degapedwarugain", "cant"],
+            numbers=["dim", "un", "dau", "tri", "pedwar", "pump", "chwech", "saith", "wyth", "naw", "deg", "unarddeg", "deuddeg", "triardeg", "pedwarardeg", "pymtheg", "unarsbymtheg", "dauarsbymtheg", "deunaw", "pedwararbytheg", "ugain", "degarhugain", "deugain", "degadeugain", "trigain", "degatrigain", "pedwarugain", "degapedwarugain", "cant"],
             and_join=" a ", or_join=" neu ",
         ),
         pack(
@@ -193,7 +193,7 @@ def _se_asia() -> list[dict]:
             unknown="Sikuelewa. Sema kwa mfano taa gani iwaka.", need_on="Niwasha nini?", need_off="Nizime nini?", confirm="Kweli?",
             spoken=spoken_home("Sawa, ninaacha sentensi ya mwisho.", "{target} imewashwa.", "{target} imezimwa.", "{target} inabadilika.", "Joto {loc}.", "Ninatazama {target}.", "Uchezaji umesimamishwa.", "Uchezaji unaendelea.", "Wimbo unaofuata.", "Wimbo uliopita.", "Sauti imezimwa.", "Sauti imewashwa.", "Sauti imewekwa.", "Iko kwenye orodha."),
             personality=triples(("Vizuri. ", "Kwa furaha. ", ""), ("Sawa. ", "Imekamilika. ", ""), ("Nafanya sasa. ", "Yote sawa. ", ""), ("Twende. ", "Nzuri. ", ""), ("Sawa basi. ", "Ikiwa lazima. ", ""), ("Bila shaka. ", "Ajabu gani. ", ""), ("Aye. ", "Kapteni. ", ""), ("Poa. ", "Tulia. ", ""), ("Ndiyo. ", "Ndiyo, hazina yangu. ", "")),
-            numbers=["sifuri", "moja", "mbili", "tatu", "nne", "tano", "sita", "saba", "nane", "tisa", "kumi", "kumimamoja", "kumimambili", "kumimataatu", "kumimanane", "kumimatano", "kumimasita", "kumimasaba", "kumimanane2", "kumimatisa", "ishirini", "thelathini", "arobaini", "hamsini", "sitini", "sabini", "themanini", "tisini", "mia"],
+            numbers=["sifuri", "moja", "mbili", "tatu", "nne", "tano", "sita", "saba", "nane", "tisa", "kumi", "kumimamoja", "kumimambili", "kumimataatu", "kumimanne", "kumimatano", "kumimasita", "kumimasaba", "kumimanane", "kumimatisa", "ishirini", "thelathini", "arobaini", "hamsini", "sitini", "sabini", "themanini", "tisini", "mia"],
             and_join=" na ", or_join=" au ",
         ),
         pack(

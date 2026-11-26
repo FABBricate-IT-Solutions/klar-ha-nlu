@@ -21,6 +21,10 @@ pub struct Catalog {
     pub domain_map: HashMap<&'static str, &'static str>,
     pub(super) colors: HashMap<&'static str, &'static str>,
     pub(super) numbers: HashMap<&'static str, i32>,
+    /// First-wins reverse map so digit↔word probes stay O(1) as number tables grow (R-09).
+    pub(super) numbers_by_value: HashMap<i32, &'static str>,
+    /// Single-token color/number surfaces (len ≥ 6) for gated protected-typo probes (R-08).
+    pub(super) typo_surfaces: Vec<&'static str>,
     pub number_styles: Vec<NumberStyle>,
     fixture_aliases: HashMap<&'static str, &'static [&'static str]>,
     group_clarify: Vec<GroupClarify>,
@@ -164,7 +168,7 @@ impl Catalog {
     }
 
     pub fn number_word(&self, n: i32) -> Option<&'static str> {
-        self.numbers.iter().find(|(_, val)| **val == n).map(|(word, _)| *word)
+        self.numbers_by_value.get(&n).copied()
     }
 
     pub fn fixture_alias(&self, t: &str) -> &'static [&'static str] {
@@ -216,6 +220,14 @@ impl Catalog {
 
     pub fn has_english_tens(&self) -> bool {
         self.number_styles.contains(&NumberStyle::EnglishTens)
+    }
+
+    pub fn has_tens_and_ones(&self) -> bool {
+        self.number_styles.contains(&NumberStyle::TensAndOnes)
+    }
+
+    pub fn has_ones_and_tens(&self) -> bool {
+        self.number_styles.contains(&NumberStyle::OnesAndTens)
     }
 
     pub fn speech(&self) -> &'static Speech {
