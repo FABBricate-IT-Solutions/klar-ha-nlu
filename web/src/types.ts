@@ -235,6 +235,8 @@ export type LlmPublic = {
   model?: string;
   enable_thinking?: boolean;
   provider?: string;
+  /** `"env"` when `KLAR_LLM_*` won on boot; `"file"` when saved from the UI. */
+  source?: string;
 };
 export type LlmModels = { models: string[] };
 export type RefineOutcome = { type: string; text: string; accepted: boolean };
