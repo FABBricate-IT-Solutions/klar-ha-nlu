@@ -4,25 +4,42 @@
 from __future__ import annotations
 
 import importlib.util
+import sys
+import types
 import unittest
 from pathlib import Path
 from types import SimpleNamespace
 
 ROOT = Path(__file__).resolve().parents[2]
+KLAR = ROOT / "custom_components" / "klar_nlu"
+
+
+def _ensure_pkg() -> None:
+    if "klar_nlu" in sys.modules:
+        return
+    pkg = types.ModuleType("klar_nlu")
+    pkg.__path__ = [str(KLAR)]
+    sys.modules["klar_nlu"] = pkg
 
 
 def _load(name: str):
-    path = ROOT / "custom_components" / "klar_nlu" / name
-    spec = importlib.util.spec_from_file_location(f"klar_{name}", path)
+    _ensure_pkg()
+    full = f"klar_nlu.{name}"
+    if full in sys.modules:
+        return sys.modules[full]
+    path = KLAR / f"{name}.py"
+    spec = importlib.util.spec_from_file_location(full, path)
     if spec is None or spec.loader is None:
         raise RuntimeError(f"cannot load {path}")
     mod = importlib.util.module_from_spec(spec)
+    sys.modules[full] = mod
     spec.loader.exec_module(mod)
     return mod
 
 
-reminders = _load("reminders.py")
-zones = _load("time_zone.py")
+_load("passthrough")
+reminders = _load("reminders")
+zones = _load("time_zone")
 
 
 class ReminderDelegateTests(unittest.TestCase):
@@ -47,6 +64,10 @@ class ReminderDelegateTests(unittest.TestCase):
             response=SimpleNamespace(response_type="action_done", speech={"plain": {"speech": "Reminder set for 9:16 PM: feed the cats."}})
         )
         self.assertTrue(reminders.delegation_accepted(result))
+
+    def test_reminder_delegate_uses_shared_default_agent(self) -> None:
+        src = (KLAR / "reminders.py").read_text(encoding="utf-8")
+        self.assertIn("async_delegate_default_agent", src)
 
 
 class TimeZoneTests(unittest.TestCase):

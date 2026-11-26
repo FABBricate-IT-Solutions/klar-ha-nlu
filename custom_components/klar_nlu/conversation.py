@@ -72,6 +72,7 @@ from .fallback import (
     llm_conversation_id,
 )
 from .intents import keep_lab_plan, registered_intent_names
+from .passthrough import async_delegate_default_agent
 from .reminders import async_delegate_reminder, should_delegate
 from .rag_tools import (
     leaks_klar_tools,
@@ -94,6 +95,7 @@ from .news import (
     wants_read,
 )
 from .policy_actions import (
+    continues_after_reject,
     hit_and_payload,
     keeps_engine_chat,
     render_user_template,
@@ -301,6 +303,11 @@ class KlarConversationEntity(ConversationEntity):
         await async_refresh_engine_settings(self.hass, self._entry)
         await async_sync_time_zone(self.hass, self._entry)
         pack = self._request_pack(user_input.language)
+        # H-24: HA sentence triggers (Music Assistant blueprint, Custom Sentences
+        # wired as conversation triggers) run before Klar claims the turn.
+        triggered = await self._sentence_triggers(user_input, chat_log, pack)
+        if triggered is not None:
+            return triggered
         payload = await self._parse(
             user_input.text, user_input.conversation_id, pack, user_input.device_id, getattr(user_input, "satellite_id", None)
         )
@@ -315,9 +322,9 @@ class KlarConversationEntity(ConversationEntity):
             if delegated is not None:
                 return delegated
         if payload.get("unreachable"):
-            triggered = await self._sentence_triggers(user_input, chat_log, pack)
-            if triggered is not None:
-                return triggered
+            defaulted = await async_delegate_default_agent(self.hass, user_input)
+            if defaulted is not None:
+                return defaulted
         speech = _ack_speech(engine_speech, pack, decision_type == "execute" and bool(intents))
         clarify = decision_type in {"clarify", "confirm"}
         chat = decision_type == "chat"
@@ -353,6 +360,17 @@ class KlarConversationEntity(ConversationEntity):
             if replied is not None:
                 return replied
         reason = str(decision.get("reason") or "")
+        # H-24: any Klar rejection continues to the HA default agent (Custom
+        # Sentences, reminder package), then to the LLM fallback.
+        if (
+            continues_after_reject(decision_type, reason)
+            and not clarify
+            and not intents
+            and not payload.get("unreachable")
+        ):
+            defaulted = await async_delegate_default_agent(self.hass, user_input)
+            if defaulted is not None:
+                return defaulted
         if (
             reason == "out_of_domain"
             and self._web_lookup()

@@ -42,9 +42,13 @@ class PolicyActionTests(unittest.TestCase):
         self.assertFalse(actions.keeps_engine_chat("", False, "Es ist 14:44."))
         self.assertTrue(actions.routes_general_chat("chat", ""))
         self.assertTrue(actions.routes_general_chat("reject", "out_of_domain"))
-        self.assertFalse(actions.routes_general_chat("reject", "no_action"))
-        self.assertFalse(actions.routes_general_chat("reject", "no_target"))
+        # H-24: no_action and other rejects continue to HA then LLM.
+        self.assertTrue(actions.routes_general_chat("reject", "no_action"))
+        self.assertTrue(actions.routes_general_chat("reject", "no_target"))
+        self.assertFalse(actions.routes_general_chat("reject", "unsafe"))
+        self.assertFalse(actions.routes_general_chat("reject", "empty_input"))
         self.assertFalse(actions.routes_general_chat("execute", "out_of_domain"))
+        self.assertTrue(actions.continues_after_reject("reject", "no_action"))
 
 
 if __name__ == "__main__":
