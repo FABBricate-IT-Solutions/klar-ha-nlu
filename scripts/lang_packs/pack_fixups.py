@@ -3,10 +3,11 @@
 from __future__ import annotations
 
 import re
+from copy import deepcopy
 
 from lang_packs.convo import with_warm_white
 from lang_packs.household_lex import household_for
-from lang_packs.native_apply import is_script_pack
+from lang_packs.native_apply import apply_native, is_script_pack
 from lang_packs.native_colors import colors_for
 
 EN_CHAT_STUBS = frozenset({"mood", "tell", "idea", "why", "weather", "stop", "news"})
@@ -58,6 +59,13 @@ def resolve_colors(core: dict) -> list[tuple[str, str]]:
         if cleaned:
             return with_warm_white(core["code"], cleaned)
     return with_warm_white(core["code"], existing or default_colors())
+
+
+def spoken_color_map(core: dict) -> dict[str, str]:
+    """Canon → spoken color for dataset generators (same resolution as expand)."""
+    probe = deepcopy(core)
+    apply_native(probe)
+    return {canon: native for native, canon in resolve_colors(probe)}
 
 
 def merge_household_words(code: str, w: dict) -> list[str]:

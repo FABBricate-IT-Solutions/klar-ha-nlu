@@ -7,6 +7,7 @@ from pathlib import Path
 import yaml
 
 from lang_packs.extras import FAMILY, floors, pack_extras
+from lang_packs.pack_fixups import spoken_color_map
 
 ROOT = Path(__file__).resolve().parents[2]
 DATA = ROOT / "tests" / "datasets"
@@ -145,7 +146,8 @@ def lex_of(core: dict) -> dict:
             "light_one": lights[2] if len(lights) > 2 else lights[0],
             "on2": w["on"][1] if len(w["on"]) > 1 else w["on"][0],
             "then": ands[1] if len(ands) > 1 else "then",
-            "colors": {canon: native for native, canon in core.get("colors") or []},
+            # Match expand/resolve_colors so script packs emit native color words (4.4 / L-15).
+            "colors": spoken_color_map(core),
             "rooms": {key: unique(vals) for key, vals in rooms.items()},
             "floors": floors(core["code"]),
             "reject": f"{((core.get('chat') or {}).get('world') or ['x'])[0]} france",
