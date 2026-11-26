@@ -1,8 +1,13 @@
-import { useEffect, useMemo, useState } from "react";
+import { lazy, Suspense, useEffect, useMemo, useState } from "react";
 import { api } from "../api";
 import { AreaTrend, Bars, DecisionMix, Donut, LlmMix, type MixRow } from "../components/charts";
 import { Empty, Kpi } from "../components/common";
 import { Snackbar } from "../components/Snackbar";
+
+const ResultMetricsCard = lazy(async () => {
+  const mod = await import("../components/ResultMetricsCard");
+  return { default: mod.ResultMetricsCard };
+});
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
@@ -357,6 +362,9 @@ export function DashboardPage({
             </CardContent>
           </Card>
         </section>
+      <Suspense fallback={null}>
+        <ResultMetricsCard results={view.results} t={t} />
+      </Suspense>
       <Card className="mb-4 overflow-visible">
         <CardHeader>
           <CardTitle>{t.llmCalls}</CardTitle>

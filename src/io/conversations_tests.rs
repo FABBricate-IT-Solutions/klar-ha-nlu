@@ -69,6 +69,7 @@ fn reject_turn_has_no_candidate() {
     assert_eq!(turn.text.as_deref(), Some("x"));
     assert_eq!(turn.tokens, replay_tokens("x"));
     assert!(turn.candidate_id.is_none());
+    assert_eq!(turn.reject_reason.as_deref(), Some("no_action"));
 }
 
 #[test]

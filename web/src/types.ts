@@ -303,6 +303,7 @@ export type ConversationTurn = {
   text?: string | null;
   tokens?: string[];
   decision: string;
+  reject_reason?: string | null;
   speech: string;
   confidence: number;
   briefing: boolean;
@@ -355,6 +356,37 @@ export type Dashboard = {
     recent: BundleEntry[];
   };
   llm?: LlmWindow;
+  results?: ResultWindow;
+};
+
+export type RejectionCount = {
+  reason: string;
+  count: number;
+};
+
+export type MatcherHitRate = {
+  id: string;
+  hits: number;
+  attempts: number;
+  rate: number;
+};
+
+export type DecisionMixCounts = {
+  execute: number;
+  confirm: number;
+  clarify: number;
+  reject: number;
+  chat: number;
+  error: number;
+};
+
+export type ResultWindow = {
+  total: number;
+  window_ms: number;
+  decision_mix: DecisionMixCounts;
+  top_rejections: RejectionCount[];
+  repeats_within_30s: number;
+  matcher_hit_rates: MatcherHitRate[];
 };
 
 export type LlmWindow = {

@@ -49,6 +49,7 @@ pub fn router(state: AppState) -> Router {
         .merge(crate::io::wrong_case::routes())
         .merge(crate::io::house_regression::routes())
         .merge(crate::io::dashboard::routes())
+        .merge(crate::io::result_metrics::routes())
         .merge(crate::io::lang_api::routes())
         .merge(crate::io::conversations::routes())
         .merge(crate::io::policies::routes())

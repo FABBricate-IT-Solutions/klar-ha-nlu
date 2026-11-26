@@ -6,6 +6,7 @@ use crate::io::llm::load_endpoint;
 use crate::io::llm_calls::LlmCallStore;
 use crate::io::metrics::MetricsStore;
 use crate::io::parse_run::ParseLimiter;
+use crate::io::result_metrics::ResultMetricsStore;
 use crate::io::trainer_consent::TrainerConsentHub;
 use crate::io::wrong_case::WrongCaseStore;
 use crate::llm::LlmEndpoint;
@@ -30,6 +31,7 @@ pub struct AppState {
     pub bundle: BundleStore,
     pub wrong_cases: WrongCaseStore,
     pub metrics: Arc<MetricsStore>,
+    pub result_metrics: Arc<ResultMetricsStore>,
     pub llm_calls: Arc<LlmCallStore>,
     pub config_dir: PathBuf,
     pub data_dir: PathBuf,
@@ -65,6 +67,7 @@ impl AppState {
             bundle: BundleStore::open(&data_dir),
             wrong_cases: WrongCaseStore::open(&data_dir),
             metrics: Arc::new(MetricsStore::default()),
+            result_metrics: Arc::new(ResultMetricsStore::default()),
             llm_calls: Arc::new(LlmCallStore::default()),
             config_dir: data_dir.clone(),
             overlay: OverlayStore::open(&data_dir),
@@ -92,6 +95,7 @@ impl AppState {
     pub async fn record_outcome(&self, outcome: &ParseOutcome, last_names: Vec<String>) {
         let include_text = self.settings.lock().await.support_bundle_raw_text;
         let area = outcome.evidence.iter().find(|item| item.kind == "preferred_area").map(|item| item.value.clone());
+        self.result_metrics.record(outcome);
         self.journal.append(turn_from_outcome(outcome, include_text, last_names, area));
     }
 

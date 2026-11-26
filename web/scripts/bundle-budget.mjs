@@ -12,8 +12,9 @@ const BUDGET = {
   // All JS including on-demand locale/wizard chunks. Raised vs the old single-chunk
   // 2947/790 budget because the split adds many small files; first load is gated above.
   // 6.7: live/history chunk + short English FALLBACK keys in every chrome pack (parity CI).
+  // 6.8: result-metrics chunk + weekly rejection FALLBACK keys in every chrome pack.
   // First-paint entry stays gated above; packs stay shared FALLBACKS, not unique translations.
-  js: { raw: 4050 * KB, gzip: 1425 * KB },
+  js: { raw: 4080 * KB, gzip: 1440 * KB },
   css: { raw: 128 * KB, gzip: 22 * KB },
 };
 
