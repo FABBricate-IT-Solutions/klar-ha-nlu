@@ -83,3 +83,25 @@ jobs:
       contents: write
       packages: write
       security-events: write
+
+  # V-02: Supervisor reads addon/config.yaml from main. Merge only after images exist.
+  land:
+    name: land
+    needs: [cut, publish]
+    if: ${{ always() && needs.cut.outputs.tag != '' && needs.publish.result == 'success' }}
+    runs-on: ubuntu-26.04
+    permissions:
+      contents: write
+      pull-requests: write
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        # scripts/cut-release.sh --land-addon merges with this checkout's credentials.
+        with: # zizmor: ignore[artipacked]
+          ref: main
+          fetch-depth: 0
+          token: ${{ github.token }}
+      - name: Land add-on version on main
+        env:
+          TAG: ${{ needs.cut.outputs.tag }}
+          GITHUB_TOKEN: ${{ github.token }}
+        run: bash scripts/cut-release.sh --land-addon

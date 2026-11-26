@@ -302,12 +302,88 @@ jobs:
       - name: Links between the Markdown files
         run: python3 scripts/check_links.py
 
+  # Package 5.1 / V-09: release musl targets and the add-on Dockerfile on every PR.
+  release-targets:
+    name: release-targets
+    runs-on: ubuntu-26.04
+    timeout-minutes: 45
+    strategy:
+      fail-fast: true
+      matrix:
+        include:
+          - target: x86_64-unknown-linux-musl
+            name: linux-x86_64
+            ha_arch: amd64
+            platform: linux/amd64
+          - target: aarch64-unknown-linux-musl
+            name: linux-aarch64
+            ha_arch: aarch64
+            platform: linux/arm64
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: dtolnay/rust-toolchain@df2a88e9fe4098bad09cb42c3dec7187f15861fc # master
+        with:
+          toolchain: "1.85"
+          targets: ${{ matrix.target }}
+      - uses: taiki-e/setup-cross-toolchain-action@0375eb1d01bea430aa3202965839a7092960a23b # v1.43.1
+        with:
+          target: ${{ matrix.target }}
+      - uses: Swatinem/rust-cache@d1527c8f67ef9af357290475d4af4b0fab8f12e0 # v2.9.3
+        with:
+          shared-key: ci-release-${{ matrix.target }}
+          cache-on-failure: true
+      - name: Release binary
+        run: cargo build --release --locked --target ${{ matrix.target }}
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version: 24
+          cache: npm
+          cache-dependency-path: web/package-lock.json
+      - name: Build UI
+        working-directory: web
+        run: npm ci && npm run build
+      - uses: docker/setup-qemu-action@c7c53464625b32c7a7e944ae62b3e17d2b600130 # v3.7.0
+      - uses: docker/setup-buildx-action@f87e5991a6d7451dcb8d9637bfbc97413f497069 # v4.4.1
+      - name: Add-on image and SIGTERM smoke
+        run: |
+          set -euo pipefail
+          python3 scripts/third-party-notices.py > THIRD_PARTY
+          cp LICENSE docker/LICENSE
+          cp THIRD_PARTY docker/THIRD_PARTY
+          cp "target/${{ matrix.target }}/release/klar" docker/klar
+          cp scripts/klar-entry.sh docker/klar-entry.sh
+          rm -rf docker/ui
+          cp -R web/dist docker/ui
+          chmod +x docker/klar docker/klar-entry.sh
+          tag="klar-ci-${{ matrix.ha_arch }}:pr"
+          docker buildx build --platform "${{ matrix.platform }}" --load \
+            -f docker/Dockerfile -t "$tag" docker/
+          bash scripts/docker-smoke.sh "$tag"
+
+  # Package 5.1 / V-09: the root Dockerfile (source build) on every PR.
+  dockerfile-root:
+    name: dockerfile-root
+    runs-on: ubuntu-26.04
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: docker/setup-buildx-action@f87e5991a6d7451dcb8d9637bfbc97413f497069 # v4.4.1
+      - name: Root Dockerfile and SIGTERM smoke
+        run: |
+          set -euo pipefail
+          docker buildx build --load -f Dockerfile -t klar-nlu:ci .
+          bash scripts/docker-smoke.sh klar-nlu:ci
+
   # Required check on staging. It passes only when every job it needs succeeded, so a new
   # job gates merges by being listed here, without a change to the repository settings.
   # tests/test_ci_workflows.py fails when a job of this workflow is missing from the list.
   release-gates:
     name: release-gates
-    needs: [test, clippy, rustfmt, web, web-smoke, ha, datasets, budget, lint]
+    needs: [test, clippy, rustfmt, web, web-smoke, ha, datasets, budget, lint, release-targets, dockerfile-root]
     if: always()
     runs-on: ubuntu-26.04
     steps:
