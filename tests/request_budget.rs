@@ -85,11 +85,7 @@ fn r09_large_home_parse_p95_under_budget() {
     // two warmed trials so CI noise does not fail a still-compliant binary.
     let limit_ms = if cfg!(debug_assertions) { 250 } else { 20 };
     let first = r09_measure_p95(&graph, &settings);
-    let p95 = if first.as_millis() <= limit_ms {
-        first
-    } else {
-        r09_measure_p95(&graph, &settings).min(first)
-    };
+    let p95 = if first.as_millis() <= limit_ms { first } else { r09_measure_p95(&graph, &settings).min(first) };
     assert!(
         p95.as_millis() <= limit_ms,
         "R-09: p95 {} ms over {limit_ms} ms at {} entities (debug={}, first_trial={} ms)",
