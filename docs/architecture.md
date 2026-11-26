@@ -124,4 +124,4 @@ Slots: `entity_id`, `area`, `floor`, `domain`, plus je nach Aktion `brightness`,
 
 - Kein freies Weltwissen. „Erzähl einen Witz“ bleibt leer — in HA übernimmt dann der Fallback-Agent.
 - Keine Assist-Werkzeuge im Motor. Geräte laufen nur über die erkannten Intents. Klar darf die fertige Bestätigung über den OpenAI-kompatiblen Client umformulieren; HA schiebt nur Tokens ins Chat-Log und vergibt dafür keine Assist-Werkzeuge.
-- Dateien unter 500 Zeilen halten; neue Sprache = neues Paket, nicht eine längere `match`-Liste.
+- Ein Modul, ein Auftrag: Ab 500 Zeilen trägt ein Modul in `scripts/guardrails.toml` Besitzer und Auftrag (`python3 scripts/check_guardrails.py`); es gibt kein hartes Zeilenlimit darunter. Neue Sprache = neues Paket, nicht eine längere `match`-Liste.

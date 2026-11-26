@@ -79,6 +79,10 @@ New **write** route, not on the parse path:
 
 Assist calls `/speech/render` after execute. `speech.py` keeps `style()` (and clock wrap) at Assist finish; post-execute templates live in the engine. Missing render fails closed.
 
+### Enforcement
+
+`python3 scripts/check_guardrails.py boundary` runs in CI (job `guardrails`). It parses every file under `custom_components/klar_nlu/` and counts calls into `re`/`regex` (aliased or via `from re import …`). Each site is listed per file in `scripts/guardrails.toml` with a kind (`platform`, `markup`, `output`, `token`, `debt`), a reason and a ceiling. A new site, a new file or a raised ceiling fails CI; so does a ceiling above the sites that remain, so the room only shrinks. Utterance matching (`debt`) gets no new kind: today only `reminders.py`, which moves to the engine. The check sees regexes only; other ways of reading an utterance in Python are left to review.
+
 ## Consequences
 
 ### Positive

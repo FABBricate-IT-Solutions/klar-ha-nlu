@@ -113,7 +113,7 @@ A regional pack has no sentences of its own. `tests/regional_overlays.rs`, the p
 
 1. Add a compact lexicon in `scripts/lang_packs/`. Prefer target-language words; `scripts/lang_packs/pack_lint.py` fails when chat/speech fields still carry English filler stubs.
 2. Run `python3 scripts/lang_packs/generate.py` (writes data under `packs/generated/` and compiled Rust).
-3. Review the generated data YAML; keep files under 500 lines. Do not add `match LangId` arms in `src/parse/`.
+3. Review the generated data YAML. Do not add `match LangId` arms in `src/parse/`.
 4. Existing suites must stay green; add the same assist/parity smoke for the new locale.
 5. Later phrase fixes go only in `packs/assist/{code}.yaml`.
 

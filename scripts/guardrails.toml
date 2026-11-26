@@ -1,0 +1,246 @@
+# Data for scripts/check_guardrails.py (package 6.11, finding Q-13). Three guardrails, one file:
+#   [boundary]       ADR 0003: regexes allowed in custom_components/klar_nlu/, per file
+#   [responsibility] who owns a long module and what its one job is
+#   [focus]          the frozen non-core areas and the share of fixes that may go there
+
+[boundary]
+root = "custom_components/klar_nlu"
+# Each entry is a ceiling on regex call sites in one file. kind says what the regex reads:
+#   platform  HA or OS strings (entity ids, language tags)   markup  fetched web pages
+#   output    text the engine or an LLM produced             token   a search query, not a command
+#   debt      the user's utterance. ADR 0003 says this moves into the engine; it may only shrink.
+# A new site, a new file or a raised ceiling fails CI. Utterance matching does not get a new kind.
+
+[[boundary.allow]]
+file = "reminders.py"
+sites = 1
+kind = "debt"
+reason = "Spots reminder words in the utterance to hand the turn to the default agent. This is utterance matching: move it into the engine (a delegate flag on the parse outcome) and delete the regex."
+
+[[boundary.allow]]
+file = "refine.py"
+sites = 3
+kind = "output"
+reason = "Splits an LLM reply into sentences to keep or drop them. It reads the model's output, not what the person said."
+
+[[boundary.allow]]
+file = "news.py"
+sites = 8
+kind = "markup"
+reason = "Reads fetched RSS/HTML pages (publisher markup). Frozen non-core area."
+
+[[boundary.allow]]
+file = "clock_speech.py"
+sites = 1
+kind = "output"
+reason = "Reads the HH:MM:SS the engine already put into a spoken clock reply, to reformat it."
+
+[[boundary.allow]]
+file = "lookup.py"
+sites = 2
+kind = "token"
+reason = "Checks a language tag and tokenizes the search query for the Wikipedia lookup. Frozen non-core area."
+
+[responsibility]
+# This replaces the 500-line gate. Up to review_lines nothing is asked. Above it a module needs an
+# entry below: an owner (engine, ha-glue, operator-ui, language-data, tooling) and the one job it
+# does. A module that needs "and" for a second unrelated job is split along that line, not along a
+# line count. Only kind = "logic" has a ceiling; kind = "table" is data that is long by nature.
+# Generated files (the @generated banner) and tests are not listed: their generator and their
+# cases own them.
+review_lines = 500
+ceiling_lines = 1000
+
+[[responsibility.module]]
+path = "custom_components/klar_nlu/conversation.py"
+owner = "ha-glue"
+kind = "logic"
+job = "Home Assistant ConversationEntity: turn orchestration and ChatLog deltas (ADR 0003 keeps it as the HA orchestrator)."
+
+[[responsibility.module]]
+path = "custom_components/klar_nlu/engine.py"
+owner = "ha-glue"
+kind = "logic"
+job = "Download, start and supervise the Klar binary next to Home Assistant."
+
+[[responsibility.module]]
+path = "custom_components/klar_nlu/engine_llm.py"
+owner = "ha-glue"
+kind = "logic"
+job = "Client for the engine's OpenAI-compatible chat routes; streams Assist deltas into the ChatLog."
+
+[[responsibility.module]]
+path = "custom_components/klar_nlu/news.py"
+owner = "ha-glue"
+kind = "logic"
+job = "News briefing fetch and story reading (frozen non-core area)."
+
+[[responsibility.module]]
+path = "scripts/lang_packs/_build_native.py"
+owner = "tooling"
+kind = "logic"
+job = "Build native_surfaces.json and native_calendar.json from code points."
+
+[[responsibility.module]]
+path = "scripts/lang_packs/ha_ui_europe.py"
+owner = "language-data"
+kind = "table"
+job = "Home Assistant UI copy for European locales."
+
+[[responsibility.module]]
+path = "scripts/lang_packs/lanes_west.py"
+owner = "language-data"
+kind = "table"
+job = "Lane chrome copy for West European locales."
+
+[[responsibility.module]]
+path = "scripts/lang_packs/settings_east.py"
+owner = "language-data"
+kind = "table"
+job = "Settings, LLM and trainer chrome copy for East Asian and Middle Eastern locales."
+
+[[responsibility.module]]
+path = "scripts/lang_packs/settings_script.py"
+owner = "language-data"
+kind = "table"
+job = "Settings, LLM and trainer chrome copy for non-Latin-script locales."
+
+[[responsibility.module]]
+path = "scripts/lang_packs/settings_west.py"
+owner = "language-data"
+kind = "table"
+job = "Settings, LLM and trainer chrome copy for West European locales."
+
+[[responsibility.module]]
+path = "scripts/lang_packs/web_ui_keys.py"
+owner = "language-data"
+kind = "table"
+job = "Operator UI field map and aliases for the chrome catalogs."
+
+[[responsibility.module]]
+path = "src/io/bundle.rs"
+owner = "engine"
+kind = "logic"
+job = "Support bundle: record parse turns and export them as a dataset or protocol."
+
+[[responsibility.module]]
+path = "src/io/web.rs"
+owner = "engine"
+kind = "logic"
+job = "HTTP routes of the operator API (parse, settings, custom sentences, teach)."
+
+[[responsibility.module]]
+path = "src/types/outcome.rs"
+owner = "engine"
+kind = "logic"
+job = "The v2 parse outcome contract: plan, candidates, evidence and trace types."
+
+[[responsibility.module]]
+path = "web/src/App.tsx"
+owner = "operator-ui"
+kind = "logic"
+job = "Operator UI shell: navigation, page routing and the trainer dock."
+
+[[responsibility.module]]
+path = "web/src/components/SettingsSections.tsx"
+owner = "operator-ui"
+kind = "logic"
+job = "The sections of the operator settings page."
+
+[[responsibility.module]]
+path = "web/src/i18n/de.ts"
+owner = "operator-ui"
+kind = "table"
+job = "German operator UI strings."
+
+[[responsibility.module]]
+path = "web/src/i18n/en.ts"
+owner = "operator-ui"
+kind = "table"
+job = "English operator UI strings."
+
+[focus]
+# Non-core areas are frozen: their defaults stay off and a fix or feature that mostly touches
+# frozen paths needs a `Frozen-area: <reason>` trailer. `commits` enforces it on a
+# pull request; `share` measures the share of `fix` commits that went mostly to these paths (more than half of their files) since
+# `baseline`. The target is below max_share_percent.
+baseline = "2026-11-26"
+max_share_percent = 5
+settings = "src/types/settings.rs"
+ack_trailer = "Frozen-area"
+ack_reasons = ["security", "data-loss", "regression", "legal"]
+# Not counted either way: docs and changelogs.
+ignored = ["docs/*", "CHANGELOG.md", "addon/CHANGELOG.md", "addon-staging/CHANGELOG.md", "README*.md", "CONTRIBUTING.md", ".github/*", "scripts/guardrails*", "scripts/check_guardrails.py", "tests/test_check_guardrails.py"]
+
+[[focus.area]]
+name = "news-briefing"
+frozen = true
+default_off = ["news_briefing"]
+paths = [
+  "custom_components/klar_nlu/news.py",
+  "custom_components/klar_nlu/news_feeds.py",
+  "src/parse/news.rs",
+  "tests/ha/test_news.py",
+  "tests/news_langs.rs",
+  "scripts/lang_packs/news_*.py",
+  "scripts/lang_packs/emit_news.py",
+]
+
+[[focus.area]]
+name = "wikipedia-answers"
+frozen = true
+default_off = ["web_lookup"]
+paths = [
+  "custom_components/klar_nlu/lookup.py",
+  "tests/ha/test_lookup.py",
+]
+
+[[focus.area]]
+name = "personality-few-shots"
+frozen = true
+default_off = ["refine_speech"]
+paths = [
+  "src/llm/refine_shots*.rs",
+  "src/llm/refine_voices.rs",
+  "scripts/lang_packs/voices.py",
+]
+
+[[focus.area]]
+name = "custom-voice-interview"
+frozen = true
+paths = [
+  "src/llm/custom_voice.rs",
+  "web/src/components/CustomVoiceInterview.tsx",
+  "web/src/customVoice.ts",
+]
+
+# Counted in the share, not frozen: the rest of the LLM plumbing. Fixes here are allowed
+# without a trailer, but they are not core NLU work and count against the 5 %.
+[[focus.area]]
+name = "llm"
+frozen = false
+paths = [
+  "src/llm/*",
+  "src/io/llm*.rs",
+  "custom_components/klar_nlu/refine.py",
+  "custom_components/klar_nlu/fallback.py",
+  "custom_components/klar_nlu/engine_llm.py",
+  "custom_components/klar_nlu/llm_endpoint.py",
+  "custom_components/klar_nlu/stream.py",
+  "custom_components/klar_nlu/rag_tools.py",
+  "custom_components/klar_nlu/assist_tools.py",
+  "tests/ha/test_refine.py",
+  "tests/ha/test_fallback.py",
+  "tests/ha/test_engine_llm.py",
+  "tests/ha/test_llm_endpoint.py",
+  "tests/ha/test_stream.py",
+  "tests/ha/test_rag_tools.py",
+  "tests/llm_key_host.rs",
+  "tests/state_support/fake_llm.rs",
+  "web/src/components/Llm*.tsx",
+  "web/src/components/wizard/LlmStep.tsx",
+  "web/src/llm*.ts",
+  "web/src/useLlmForm.ts",
+  "web/tests/llm*",
+  "web/tests/e2e/llm.spec.ts",
+]
