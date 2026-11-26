@@ -227,6 +227,7 @@ static ROUTES: &[RouteRow] = &[
     (&Method::POST, "/api/v2/wrong-cases/update-dialog", Capability::Write),
     (&Method::GET, "/api/v2/last-turn", Capability::Read),
     (&Method::GET, "/api/dashboard", Capability::Read),
+    (&Method::GET, "/api/v2/result-metrics/export", Capability::Read),
     (&Method::GET, "/api/ui", Capability::Read),
     (&Method::POST, "/api/ui", Capability::Write),
     (&Method::POST, "/api/assignment/apply", Capability::Write),

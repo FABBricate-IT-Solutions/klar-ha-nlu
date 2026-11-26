@@ -140,6 +140,7 @@ async fn mark_wrong_http_exports_intended_nlu_expect() {
         text: Some("Küche Licht an".into()),
         tokens: vec!["kueche".into(), "licht".into(), "an".into()],
         decision: "execute".into(),
+        reject_reason: None,
         speech: String::new(),
         speech_source: None,
         refine_band: None,

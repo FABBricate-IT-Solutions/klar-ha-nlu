@@ -2,6 +2,7 @@ use crate::home::assignment::{build_dashboard, Dashboard};
 use crate::home::overlay::{apply_overlay, load_overlay, UiApplyRow, UiState};
 use crate::io::auth::{reads_allowed, writes_allowed};
 use crate::io::llm_calls::LlmWindow;
+use crate::io::result_metrics::ResultWindow;
 use crate::io::state::{save_failed, AppState};
 use axum::extract::{ConnectInfo, State};
 use axum::http::{HeaderMap, StatusCode};
@@ -37,6 +38,7 @@ async fn get_dashboard(
             state.catalog_for_settings().await.as_ref(),
         ),
         llm: state.llm_calls.snapshot(),
+        results: state.result_metrics.snapshot(),
     }))
 }
 
@@ -45,6 +47,7 @@ struct DashboardOut {
     #[serde(flatten)]
     inner: Dashboard,
     llm: LlmWindow,
+    results: ResultWindow,
 }
 
 async fn get_ui(
@@ -304,6 +307,7 @@ mod tests {
     fn dashboard_route_rolls_llm_calls_into_payload() {
         let src = include_str!("dashboard.rs");
         assert!(src.contains("llm: state.llm_calls.snapshot()"));
+        assert!(src.contains("results: state.result_metrics.snapshot()"));
         assert!(src.contains("#[serde(flatten)]"));
         assert!(!src.contains("prompt") || src.contains("llm_calls"));
     }

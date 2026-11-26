@@ -69,6 +69,7 @@ Routenindex aus dem Axum-Router (`python3 scripts/gen_api_routes.py`). Auth ist 
 | `GET` | `/api/v2/policies/trainer-context` | Read | Trainer-Kontext für das Rules-LLM. |
 | `POST` | `/api/v2/policies/trainer/chat` | Write | Trainer-Chat SSE (Write-Token). |
 | `POST` | `/api/v2/policies/trainer/consent` | Write | Ausstehende Trainer-Write-Tools freigeben oder ablehnen. |
+| `GET` | `/api/v2/result-metrics/export` | Read | Redigierte Wochen-Ergebnis-Metriken (Entscheidungs-Mix, Top-Ablehnungen, Matcher-Treffer). |
 | `POST` | `/api/v2/session/undo-priors` | Write | Vorherige Helligkeit/Position/Temperatur/Lautstärke auf den letzten Execute stempeln, damit Undo sie wiederherstellen kann. |
 | `GET` | `/api/v2/settings/backup` | Write | Allowlistetes Settings-tar.gz laden. |
 | `GET` | `/api/v2/settings/history` | Read | Frühere Engine-Settings-Snapshots listen. |

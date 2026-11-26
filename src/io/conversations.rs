@@ -2,7 +2,7 @@ use crate::home::paths::{append_confined, read_to_string_confined, write_atomic_
 use crate::io::auth::reads_allowed;
 use crate::io::privacy::replay_tokens;
 use crate::io::state::AppState;
-use crate::types::{ParseDecision, ParseOutcome, RefineBand};
+use crate::types::{ParseDecision, ParseOutcome, RefineBand, RejectReason};
 use axum::extract::{ConnectInfo, Path, State};
 use axum::http::{HeaderMap, StatusCode};
 use axum::routing::get;
@@ -28,6 +28,8 @@ pub struct ConversationTurn {
     #[serde(default)]
     pub tokens: Vec<String>,
     pub decision: String,
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub reject_reason: Option<String>,
     pub speech: String,
     #[serde(default, skip_serializing_if = "Option::is_none")]
     pub speech_source: Option<String>,
@@ -148,6 +150,10 @@ pub fn turn_from_outcome(
         ParseDecision::Clarify { prompt, .. } => (Some(prompt.clone()), None),
         _ => (None, None),
     };
+    let reject_reason = match &outcome.decision {
+        ParseDecision::Reject { reason } => Some(reject_reason_wire(reason).into()),
+        _ => None,
+    };
     ConversationTurn {
         conversation_id: outcome.conversation_id.clone(),
         ts_ms: now_ms(),
@@ -155,6 +161,7 @@ pub fn turn_from_outcome(
         // Tokens rebuild the utterance; keep them only with raw-text consent (D-20).
         tokens: if include_text { replay_tokens(&outcome.text) } else { Vec::new() },
         decision: decision_name(&outcome.decision).into(),
+        reject_reason,
         speech: if include_text { outcome.speech.clone() } else { String::new() },
         speech_source: None,
         refine_band: outcome.refine_band.map(band_name),
@@ -188,6 +195,19 @@ fn decision_name(decision: &ParseDecision) -> &'static str {
     }
 }
 
+fn reject_reason_wire(reason: &RejectReason) -> &'static str {
+    match reason {
+        RejectReason::EmptyInput => "empty_input",
+        RejectReason::InvalidInput => "invalid_input",
+        RejectReason::NoAction => "no_action",
+        RejectReason::OutOfDomain => "out_of_domain",
+        RejectReason::NoTarget => "no_target",
+        RejectReason::Ambiguous => "ambiguous",
+        RejectReason::Unsafe => "unsafe",
+        RejectReason::Unsupported => "unsupported",
+    }
+}
+
 fn now_ms() -> u64 {
     SystemTime::now().duration_since(UNIX_EPOCH).map(|d| d.as_millis() as u64).unwrap_or(0)
 }
@@ -215,6 +235,7 @@ fn llm_turn(conversation_id: String, speech: String, source: &str) -> Conversati
         text: None,
         tokens: Vec::new(),
         decision: if source == "chat" { "chat".into() } else { "execute".into() },
+        reject_reason: None,
         speech,
         speech_source: Some(source.to_string()),
         refine_band: None,
