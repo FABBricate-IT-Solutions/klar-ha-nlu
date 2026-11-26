@@ -10,6 +10,7 @@ from lang_packs.news_lex import apply_news
 from lang_packs.numbers_grammar import expand_number_rows, number_style_for
 from lang_packs.pack_fixups import ensure_action_speech, merge_household_words, resolve_colors, scrub_chat
 from lang_packs.regional import thin_pack
+from lang_packs.speech_frames import apply_speech_frames
 from lang_packs.speech_slots import apply_speech_slots, pick_room_names
 from lang_packs.timer_lex import apply_to_words, how_long
 from lang_packs.voices import normalize_personality
@@ -49,6 +50,7 @@ def expand(core: dict) -> dict:
     speech.setdefault("light_step_down", "{target}.")
     speech.setdefault("set_position", speech.get("light_set", "{target} {n}%"))
     ensure_action_speech(speech, w)
+    speech = apply_speech_frames(core["code"], speech, core)
     chat = dict(core["chat"])
     scrub_chat(chat, w, greets)
     apply_news(core["code"], chat)

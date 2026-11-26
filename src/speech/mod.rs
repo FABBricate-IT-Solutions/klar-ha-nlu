@@ -14,6 +14,9 @@ mod render_window;
 mod weather_i18n;
 
 #[cfg(test)]
+#[path = "frames_tests.rs"]
+mod frames_tests;
+#[cfg(test)]
 #[path = "response_speech_tests.rs"]
 mod response_speech_tests;
 

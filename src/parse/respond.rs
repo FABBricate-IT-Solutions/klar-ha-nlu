@@ -1,13 +1,10 @@
 use crate::lang::catalog;
-use crate::parse::normalize::compact;
-use crate::parse::normalize::umlaut_eq;
+use crate::parse::normalize::{compact, umlaut_eq};
 use crate::types::{HomeGraph, Intent, Personality};
 use std::collections::hash_map::DefaultHasher;
 use std::hash::{Hash, Hasher};
 use std::sync::atomic::{AtomicU64, Ordering};
-
 static WRAP_TICK: AtomicU64 = AtomicU64::new(0);
-
 fn speech() -> &'static crate::lang::Speech {
     catalog().speech()
 }
@@ -24,7 +21,6 @@ pub fn speak(intents: &[Intent], personality: Personality, clarify: bool, home: 
     }
     wrap(personality, &describe_all(intents, home))
 }
-
 pub fn speak_unknown() -> String {
     speech().unknown.to_string()
 }
@@ -47,7 +43,6 @@ pub fn speak_clarify(names: &[String], home: Option<&HomeGraph>) -> String {
     disambiguate_clarify_labels(names, &mut labels, home);
     pack.clarify.replace("{names}", &labels.join(pack.clarify_or))
 }
-
 fn describe_all(intents: &[Intent], home: Option<&HomeGraph>) -> String {
     if intents.len() > 1 && intents.iter().all(|i| i.name == intents[0].name) {
         let names: Vec<String> = intents.iter().map(|i| spoken_where(i, home)).filter(|s| !s.is_empty()).collect();
@@ -60,7 +55,6 @@ fn describe_all(intents: &[Intent], home: Option<&HomeGraph>) -> String {
     }
     intents.iter().map(|i| capitalize_sentence(&describe(i, home))).filter(|s| !s.is_empty()).collect::<Vec<_>>().join(" ")
 }
-
 fn describe_group(name: &str, domain: &str, wheres: &[String]) -> Option<String> {
     let pack = speech();
     let joined = join_names(wheres);
@@ -75,7 +69,6 @@ fn describe_group(name: &str, domain: &str, wheres: &[String]) -> Option<String>
     };
     Some(template.replace("{target}", &joined).replace("{names}", &joined))
 }
-
 fn shared_domain(intents: &[Intent]) -> &str {
     let first = intent_domain(&intents[0]);
     if first.is_empty() || intents.iter().any(|intent| intent_domain(intent) != first) {
@@ -84,14 +77,12 @@ fn shared_domain(intents: &[Intent]) -> &str {
         first
     }
 }
-
 fn intent_domain(intent: &Intent) -> &str {
     if let Some(domain) = intent.slot("domain").filter(|domain| !domain.is_empty()) {
         return domain;
     }
     intent.slot("entity_id").and_then(|id| id.split_once('.')).map(|(domain, _)| domain).unwrap_or("")
 }
-
 fn capitalize_sentence(line: &str) -> String {
     let mut chars = line.chars();
     match chars.next() {
@@ -99,7 +90,6 @@ fn capitalize_sentence(line: &str) -> String {
         None => String::new(),
     }
 }
-
 fn join_names(names: &[String]) -> String {
     let conj = speech().and_join;
     match names {
@@ -108,7 +98,6 @@ fn join_names(names: &[String]) -> String {
         [.., last] => format!("{}{conj}{last}", names[..names.len() - 1].join(", ")),
     }
 }
-
 fn describe(intent: &Intent, home: Option<&HomeGraph>) -> String {
     let pack = speech();
     if let Some(line) = pack.list_reply(&intent.name, intent.slot("item")) {
@@ -137,8 +126,12 @@ fn describe(intent: &Intent, home: Option<&HomeGraph>) -> String {
         "HassClimateSetTemperature" => match filled_slot(intent, "temperature") {
             Some(n) => {
                 let noun = climate_noun(intent);
-                let subject = if climate_named(&target, noun) { target } else { format!("{noun} {target}") };
-                pack.climate_set.replace("{noun} {target}", &subject).replace("{n}", n)
+                let unit = pack.unit_c;
+                if climate_named(&target, noun) {
+                    pack.climate_at.replace("{target}", &target).replace("{n}", n).replace("{unit}", unit)
+                } else {
+                    pack.climate_set.replace("{noun}", noun).replace("{target}", &target).replace("{n}", n).replace("{unit}", unit)
+                }
             }
             None => fill(pack.get_state),
         },
@@ -181,12 +174,11 @@ fn describe(intent: &Intent, home: Option<&HomeGraph>) -> String {
             .replace("{when}", intent.slot("day").unwrap_or("")),
         "KlarNoMusicPlayer" => pack.no_music_player.to_string(),
         "SetReminderRelative" | "SetReminderAbsolute" | "SetReminderDaypart" => {
-            format!("Reminder: {}.", intent.slot("task").unwrap_or("reminder"))
+            pack.reminder.replace("{task}", intent.slot("task").unwrap_or("reminder"))
         }
         other => pack.done.replace("{name}", other),
     }
 }
-
 fn light_set_speech(intent: &Intent, fill: &dyn Fn(&str) -> String) -> String {
     let pack = speech();
     match (intent.slot("color"), filled_slot(intent, "brightness"), intent.slot("brightness_step")) {
@@ -197,11 +189,9 @@ fn light_set_speech(intent: &Intent, fill: &dyn Fn(&str) -> String) -> String {
         _ => fill(pack.get_state),
     }
 }
-
 fn filled_slot<'a>(intent: &'a Intent, name: &str) -> Option<&'a str> {
     intent.slot(name).map(str::trim).filter(|value| !value.is_empty())
 }
-
 fn is_step_down(step: &str) -> bool {
     matches!(step.trim().to_ascii_lowercase().as_str(), "down" | "decrease" | "dimmer" | "dunkler" | "-")
 }
@@ -237,7 +227,6 @@ pub(crate) fn spoken_where(intent: &Intent, home: Option<&HomeGraph>) -> String 
     }
     String::new()
 }
-
 fn light_needs_room_label(label: &str, room: &str) -> bool {
     let folded = compact(label);
     let room = compact(room);
@@ -247,17 +236,14 @@ fn light_needs_room_label(label: &str, room: &str) -> bool {
     catalog().light_nouns().iter().any(|noun| folded == compact(noun) || folded.contains(&compact(noun)))
         || catalog().light_singular().iter().any(|noun| folded == compact(noun) || folded.contains(&compact(noun)))
 }
-
 fn looks_started(id: &str) -> bool {
     id.starts_with("scene.") || id.starts_with("script.")
 }
-
 fn scene_label(id: &str, home: Option<&HomeGraph>) -> String {
     home.and_then(|h| h.entities.iter().find(|e| e.entity_id == id))
         .map(|e| pretty_device(&e.name))
         .unwrap_or_else(|| pretty_device(&object_id(id)))
 }
-
 fn device_label(name: &str, domain: &str) -> String {
     let pack = speech();
     let pretty = pretty_device(name);
@@ -271,7 +257,6 @@ fn device_label(name: &str, domain: &str) -> String {
         pretty
     }
 }
-
 fn area_label(area: &str, domain: &str, intent: &str, home: Option<&HomeGraph>) -> String {
     let light = domain == "light" || intent == "HassLightSet";
     if light && domain != "climate" && domain != "fan" && domain != "media_player" && domain != "switch" {
@@ -280,7 +265,6 @@ fn area_label(area: &str, domain: &str, intent: &str, home: Option<&HomeGraph>) 
         pretty_room(area, home)
     }
 }
-
 fn clarify_label(id: &str, home: Option<&HomeGraph>) -> String {
     if let Some(area) = home.and_then(|graph| graph.areas.iter().find(|area| area.area_id == id)) {
         let pretty = pretty_device(&area.name);
@@ -314,7 +298,6 @@ fn disambiguate_clarify_labels(ids: &[String], labels: &mut [String], home: Opti
         *label = format!("{label} ({extra})");
     }
 }
-
 fn clarify_place(id: &str, home: Option<&HomeGraph>) -> Option<String> {
     let home = home?;
     if let Some(area) = home.areas.iter().find(|area| area.area_id == id) {
@@ -330,15 +313,12 @@ fn clarify_place(id: &str, home: Option<&HomeGraph>) -> Option<String> {
         Some(room)
     }
 }
-
 fn object_id(id: &str) -> String {
     id.rsplit('.').next().unwrap_or(id).replace('_', " ")
 }
-
 fn domain_of(id: &str) -> &str {
     id.split('.').next().unwrap_or("")
 }
-
 fn climate_noun(intent: &Intent) -> &'static str {
     let pack = speech();
     let id = intent.slot("entity_id").unwrap_or("");
@@ -349,7 +329,6 @@ fn climate_noun(intent: &Intent) -> &'static str {
         pack.heat_noun
     }
 }
-
 fn climate_named(target: &str, noun: &str) -> bool {
     let noun_folded = compact(noun);
     crate::parse::normalize::tokenize(target).into_iter().any(|folded| {
@@ -360,11 +339,9 @@ fn climate_named(target: &str, noun: &str) -> bool {
             || matches!(folded.as_str(), "heizung" | "heat" | "heater" | "thermostat" | "klima" | "klimaanlage" | "ac" | "aircon")
     })
 }
-
 fn looks_like_entity_id(value: &str) -> bool {
     value.contains('.') && !value.contains(' ') && value.split('.').count() == 2
 }
-
 fn vacuum_name(where_: &str) -> String {
     let pack = speech();
     if where_.is_empty() || where_ == "Zuhause" || where_ == "home" {
@@ -373,15 +350,20 @@ fn vacuum_name(where_: &str) -> String {
         where_.to_string()
     }
 }
-
 fn pretty_device(raw: &str) -> String {
     let parts: Vec<&str> = raw.split_whitespace().filter(|p| !p.is_empty()).collect();
+    if parts.is_empty() {
+        return String::new();
+    }
+    // Preserve source casing for multi-word HA names (L-20 Title-Case).
+    if parts.len() > 1 && parts.iter().any(|part| !part.is_ascii()) {
+        return parts.join(" ");
+    }
     let tail = parts.last().copied().unwrap_or("");
     let light = catalog().light_nouns().contains(tail) || catalog().light_plural().contains(tail);
     let all = parts.first().is_some_and(|p| catalog().all_words().contains(p));
     if light && !all && parts.len() >= 2 {
-        let head = parts[..parts.len() - 1].join("");
-        return title_word(&format!("{head}{tail}"));
+        return title_word(&format!("{}{tail}", parts[..parts.len() - 1].join("")));
     }
     parts
         .iter()
@@ -398,7 +380,6 @@ fn pretty_device(raw: &str) -> String {
         .collect::<Vec<_>>()
         .join(" ")
 }
-
 fn title_word(raw: &str) -> String {
     let mut chars = raw.chars();
     match chars.next() {
@@ -406,7 +387,6 @@ fn title_word(raw: &str) -> String {
         None => String::new(),
     }
 }
-
 fn loc(area: &str, home: Option<&HomeGraph>) -> String {
     let pack = speech();
     if area.is_empty() {
@@ -422,7 +402,6 @@ fn loc(area: &str, home: Option<&HomeGraph>) -> String {
     let template = if feminine { pack.loc_in_der } else { pack.loc_in };
     template.replace("{room}", &room)
 }
-
 fn area_record<'a>(area: &'a str, home: Option<&'a HomeGraph>) -> Option<&'a crate::types::AreaRec> {
     home.and_then(|graph| {
         graph.areas.iter().find(|rec| {
@@ -430,7 +409,6 @@ fn area_record<'a>(area: &'a str, home: Option<&'a HomeGraph>) -> Option<&'a cra
         })
     })
 }
-
 fn pretty_room(area: &str, home: Option<&HomeGraph>) -> String {
     let pack = speech();
     let rec = area_record(area, home);
@@ -443,7 +421,6 @@ fn pretty_room(area: &str, home: Option<&HomeGraph>) -> String {
     }
     title_word(&area.replace('_', " "))
 }
-
 fn or_home(s: &str) -> String {
     if s.is_empty() {
         speech().or_home.to_string()
@@ -451,7 +428,6 @@ fn or_home(s: &str) -> String {
         s.to_string()
     }
 }
-
 fn wrap(personality: Personality, body: &str) -> String {
     if matches!(personality, Personality::Default | Personality::Custom) {
         return body.to_string();
@@ -479,7 +455,6 @@ fn wrap(personality: Personality, body: &str) -> String {
     }
     format!("{prefix}{body}")
 }
-
 fn pick_variant(body: &str, n: usize) -> usize {
     if n <= 1 {
         return 0;
@@ -490,7 +465,6 @@ fn pick_variant(body: &str, n: usize) -> usize {
     tick.hash(&mut hasher);
     (hasher.finish() as usize) % n
 }
-
 #[cfg(test)]
 #[path = "respond_tests.rs"]
 mod tests;

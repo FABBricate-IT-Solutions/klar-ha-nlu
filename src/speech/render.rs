@@ -2,23 +2,22 @@
 
 use crate::lang::{LangId, Speech};
 use crate::types::{SpeechEntity, SpeechRenderOut, SpeechSnapshot};
-use crate::units::{entity_temp_scale, speak_temp, spoken_unit_word};
+use crate::units::{entity_temp_scale, speak_temp};
 
 use super::render_climate::{climate_query, floor_temps};
 use super::render_media::{media_action, media_status};
-use super::render_place::{color_word, empty_place, slot, speak_state};
+use super::render_place::{color_word, empty_place, slot};
 use super::render_weather::weather_query;
 
 pub fn render_snapshot(snap: &SpeechSnapshot) -> SpeechRenderOut {
     let speech = pack_for(&snap.language);
-    let de = is_de(&snap.language);
-    let spoken = if snap.outcome == "error" { speech.unknown.to_string() } else { interpolate(snap, speech, de) };
+    let spoken = if snap.outcome == "error" { speech.unknown.to_string() } else { interpolate(snap, speech) };
     SpeechRenderOut { speech: spoken, quiet_ack: false, source: "post_execute" }
 }
 
-fn interpolate(snap: &SpeechSnapshot, speech: Speech, de: bool) -> String {
+fn interpolate(snap: &SpeechSnapshot, speech: Speech) -> String {
     let target = pretty_where(snap, speech);
-    let line = interpolate_line(snap, speech, de, &target.phrase);
+    let line = interpolate_line(snap, speech, &target.phrase);
     let line = match plural_verbs(&snap.language) {
         Some(verbs) if target.plural => pluralize(&line, &target.phrase, verbs),
         _ => line,
@@ -30,7 +29,6 @@ fn interpolate(snap: &SpeechSnapshot, speech: Speech, de: bool) -> String {
     }
 }
 
-/// Spoken device phrase, and whether it lists several devices.
 struct Target {
     phrase: String,
     plural: bool,
@@ -41,9 +39,6 @@ impl Target {
     }
 }
 
-/// Singular/plural verb for packs whose templates read "{target} is …".
-/// Regional packs are matched first: de-AT says "is", de-CH "isch".
-/// Stopgap until packs carry their own plural templates.
 fn plural_verbs(language: &str) -> Option<(&'static str, &'static str)> {
     let code = language.to_ascii_lowercase().replace('-', "_");
     match code.as_str() {
@@ -59,17 +54,16 @@ fn plural_verbs(language: &str) -> Option<(&'static str, &'static str)> {
     }
 }
 
-/// "A and B is on" → "A and B are on". Only the verb right after the target changes.
 fn pluralize(line: &str, target: &str, (one, many): (&str, &str)) -> String {
     line.replacen(&format!("{target} {one} "), &format!("{target} {many} "), 1)
 }
 
-fn interpolate_line(snap: &SpeechSnapshot, speech: Speech, de: bool, where_: &str) -> String {
+fn interpolate_line(snap: &SpeechSnapshot, speech: Speech, where_: &str) -> String {
     let name = snap.intent.name.as_str();
     if is_query(name) {
-        return query_speech(snap, speech, de);
+        return query_speech(snap, speech);
     }
-    if let Some(line) = media_action(name, where_, snap, de) {
+    if let Some(line) = media_action(name, where_, snap, speech) {
         return line;
     }
     if let Some(line) = timer_action(name, speech) {
@@ -87,13 +81,13 @@ fn interpolate_line(snap: &SpeechSnapshot, speech: Speech, de: bool, where_: &st
         "HassTurnOn" => fill(speech.turn_on, where_, "", ""),
         "HassTurnOff" => fill(speech.turn_off, where_, "", ""),
         "HassToggle" => fill(speech.toggle, where_, "", ""),
-        "HassLightSet" => light_set(snap, speech, where_, de),
+        "HassLightSet" => light_set(snap, speech, where_),
         "HassSetPosition" => match slot(snap, "position") {
             Some(n) => fill(speech.set_position, where_, n, ""),
             None => speech.unknown.to_string(),
         },
         "HassStopMoving" => fill(speech.done, where_, "", ""),
-        "HassClimateSetTemperature" => climate_set(snap, speech, where_, de),
+        "HassClimateSetTemperature" => climate_set(snap, speech, where_),
         "HassVacuumStart" => fill(speech.vacuum_start, where_, "", ""),
         "HassVacuumReturnToBase" => fill(speech.vacuum_dock, where_, "", ""),
         "HassFanSetSpeed" | "HassFanSetPercentage" => match slot(snap, "percentage") {
@@ -113,8 +107,8 @@ fn interpolate_line(snap: &SpeechSnapshot, speech: Speech, de: bool, where_: &st
     }
 }
 
-fn light_set(snap: &SpeechSnapshot, speech: Speech, where_: &str, de: bool) -> String {
-    if let Some(color) = color_word(slot(snap, "color"), de) {
+fn light_set(snap: &SpeechSnapshot, speech: Speech, where_: &str) -> String {
+    if let Some(color) = color_word(slot(snap, "color"), &snap.language) {
         return fill(speech.light_color, where_, "", &color);
     }
     if let Some(level) = slot(snap, "brightness").or_else(|| slot(snap, "percentage")) {
@@ -129,18 +123,33 @@ fn light_set(snap: &SpeechSnapshot, speech: Speech, where_: &str, de: bool) -> S
     }
 }
 
-fn climate_set(snap: &SpeechSnapshot, speech: Speech, where_: &str, de: bool) -> String {
+fn climate_set(snap: &SpeechSnapshot, speech: Speech, where_: &str) -> String {
     let Some(raw) = slot(snap, "temperature") else {
         return speech.unknown.to_string();
     };
     let ha = entity_temp_scale(snap.entities.iter().find(|entity| entity.domain == "climate" || entity.domain == "weather"));
     let temp = speak_temp(raw, ha, snap.unit_system);
-    let unit = spoken_unit_word(snap.unit_system, de);
-    if de {
-        format!("{where_} auf {temp} {unit}.")
-    } else {
-        format!("{where_} is at {temp} {unit}.")
+    let unit = speech.unit_word(snap.unit_system);
+    let noun = climate_noun(snap, speech);
+    if noun.is_empty() || climate_named(where_, noun) {
+        return speech.climate_at.replace("{target}", where_).replace("{n}", &temp).replace("{unit}", unit);
     }
+    speech.climate_set.replace("{noun}", noun).replace("{target}", where_).replace("{n}", &temp).replace("{unit}", unit)
+}
+
+fn climate_noun(snap: &SpeechSnapshot, speech: Speech) -> &'static str {
+    let id = slot(snap, "entity_id").unwrap_or("");
+    if id.contains("cool") || id.contains("ac") || id.contains("klima") {
+        speech.cool_noun
+    } else {
+        speech.heat_noun
+    }
+}
+
+fn climate_named(target: &str, noun: &str) -> bool {
+    let folded = fold(target);
+    let noun = fold(noun);
+    !noun.is_empty() && (folded == noun || folded.contains(&noun) || noun.contains(&folded))
 }
 
 fn timer_action(name: &str, speech: Speech) -> Option<String> {
@@ -152,24 +161,24 @@ fn timer_action(name: &str, speech: Speech) -> Option<String> {
     })
 }
 
-fn query_speech(snap: &SpeechSnapshot, speech: Speech, de: bool) -> String {
+fn query_speech(snap: &SpeechSnapshot, speech: Speech) -> String {
     if let Some(line) = super::render_window::window_list(snap) {
         return line;
     }
     let status = slot(snap, "media_status").unwrap_or("");
     if !status.is_empty() {
-        return media_status(snap, status, de);
+        return media_status(snap, status, speech);
     }
     let entities: Vec<&SpeechEntity> = snap.entities.iter().filter(|entity| !is_infra(entity)).collect();
     if snap.intent.name == "HassClimateGetTemperature" {
         if slot(snap, "floor").is_some() {
-            let line = floor_temps(snap, speech, &entities, de);
+            let line = floor_temps(snap, speech, &entities);
             return if line.is_empty() { empty_place(&snap.language) } else { line };
         }
         if entities.is_empty() {
             return String::new();
         }
-        let line = climate_query(snap, &entities, de);
+        let line = climate_query(snap, &entities, speech);
         if !line.is_empty() {
             return line;
         }
@@ -181,7 +190,7 @@ fn query_speech(snap: &SpeechSnapshot, speech: Speech, de: bool) -> String {
         return line;
     }
     if entities.iter().any(|entity| entity.domain == "climate") {
-        let line = climate_query(snap, &entities, de);
+        let line = climate_query(snap, &entities, speech);
         if !line.is_empty() {
             return line;
         }
@@ -191,21 +200,17 @@ fn query_speech(snap: &SpeechSnapshot, speech: Speech, de: bool) -> String {
     }
     let lights: Vec<_> = entities.iter().filter(|entity| entity.domain == "light").copied().collect();
     if lights.len() >= 2 {
-        return light_counts(&lights, de);
+        return light_counts(&lights, speech);
     }
     entities
         .iter()
         .take(4)
         .filter_map(|entity| {
-            let spoken = speak_state(&entity.state, &snap.language);
-            if entity.name.trim().is_empty() && spoken.trim().is_empty() {
+            let line = speech.entity_line(&entity.name, &entity.state);
+            if entity.name.trim().is_empty() && line.trim().is_empty() {
                 return None;
             }
-            Some(if de {
-                format!("{} ist {spoken}.", entity.name).trim().to_string()
-            } else {
-                format!("{} is {spoken}.", entity.name).trim().to_string()
-            })
+            Some(line.trim().to_string())
         })
         .collect::<Vec<_>>()
         .join(" ")
@@ -219,28 +224,17 @@ fn cap_first(text: &str) -> String {
     }
 }
 
-fn light_counts(lights: &[&SpeechEntity], de: bool) -> String {
+fn light_counts(lights: &[&SpeechEntity], speech: Speech) -> String {
     let on = lights.iter().filter(|entity| entity.state == "on").count();
     let off = lights.iter().filter(|entity| entity.state == "off").count();
-    if de {
-        let mut bits = Vec::new();
-        if on > 0 {
-            bits.push(if on == 1 { "1 Licht an".into() } else { format!("{on} Lichter an") });
-        }
-        if off > 0 {
-            bits.push(if off == 1 { "1 Licht aus".into() } else { format!("{off} Lichter aus") });
-        }
-        bits.join(", ") + "."
-    } else {
-        let mut bits = Vec::new();
-        if on > 0 {
-            bits.push(format!("{on} lights on"));
-        }
-        if off > 0 {
-            bits.push(format!("{off} lights off"));
-        }
-        bits.join(", ") + "."
+    let mut bits = Vec::new();
+    if on > 0 {
+        bits.push(speech.lights_on.replace("{n}", &on.to_string()));
     }
+    if off > 0 {
+        bits.push(speech.lights_off.replace("{n}", &off.to_string()));
+    }
+    bits.join(", ") + "."
 }
 
 fn calendar_speech(snap: &SpeechSnapshot, speech: Speech) -> String {
@@ -332,15 +326,12 @@ fn pretty_where(snap: &SpeechSnapshot, speech: Speech) -> Target {
     Target::one(speech.or_home.to_string())
 }
 
-/// More lights than this in one room are spoken as the room ("the lights in the Living Room").
 const MAX_SPOKEN_TARGETS: usize = 4;
 
-/// The user named one device ("close the bedroom blinds"), so speak only that.
 fn named_device(snap: &SpeechSnapshot) -> Option<&str> {
     slot(snap, "name").filter(|name| !name.is_empty() && !name.contains('.'))
 }
 
-/// Distinct spoken names of the devices acted on, in snapshot order.
 fn spoken_targets(snap: &SpeechSnapshot, speech: Speech) -> Vec<String> {
     let mut names: Vec<String> = Vec::new();
     for entity in snap.entities.iter().filter(|entity| !is_infra(entity)) {
@@ -357,7 +348,6 @@ fn spoken_targets(snap: &SpeechSnapshot, speech: Speech) -> Vec<String> {
     names
 }
 
-/// "A", "A and B", "A, B and C".
 fn join_list(names: &[String], and: &str) -> String {
     match names {
         [] => String::new(),
@@ -377,9 +367,11 @@ fn generic_light(name: &str) -> bool {
     matches!(name.trim().to_lowercase().as_str(), "licht" | "light" | "lampe" | "lamp" | "leuchte")
 }
 
-fn light_word(name: &str) -> bool {
+fn light_word(name: &str, speech: Speech) -> bool {
     let folded = fold(name);
-    ["licht", "light", "lampe", "lamp", "leuchte"].iter().any(|token| folded.contains(token))
+    let noun = fold(speech.light_noun);
+    (!noun.is_empty() && (folded == noun || folded.contains(&noun)))
+        || ["licht", "light", "lampe", "lamp", "leuchte"].iter().any(|token| folded.contains(token))
 }
 
 fn area_light_phrase(room: &str, speech: Speech) -> String {
@@ -405,8 +397,8 @@ fn spoken_device(name: &str, entity_id: &str, speech: Speech) -> String {
     if pretty.is_empty() {
         return String::new();
     }
-    pretty = cap_first(&pretty);
-    if domain == "light" && !light_word(&pretty) {
+    // Keep HA / pack casing; do not Title-Case every word (L-20).
+    if domain == "light" && !light_word(&pretty, speech) {
         pretty.push_str(speech.light_suffix);
     }
     pretty
@@ -454,10 +446,6 @@ fn is_place_query(snap: &SpeechSnapshot, entities: &[&SpeechEntity]) -> bool {
         || slot(snap, "area").is_some()
         || slot(snap, "area_name").is_some()
         || entities.iter().any(|entity| entity.area_name.as_ref().is_some_and(|name| !name.is_empty()))
-}
-
-fn is_de(pack: &str) -> bool {
-    pack == "de" || pack.starts_with("de-")
 }
 
 fn pack_for(language: &str) -> Speech {

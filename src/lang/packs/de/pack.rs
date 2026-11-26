@@ -401,6 +401,7 @@ pub const PACK: LanguagePack = LanguagePack {
             ("pink", "pink"),
             ("schwarz", "black"),
             ("weiss", "white"),
+            ("warmweiß", "warmwhite"),
             ("warmweiss", "warmwhite"),
             ("warmwhite", "warmwhite"),
             ("lila", "purple"),
