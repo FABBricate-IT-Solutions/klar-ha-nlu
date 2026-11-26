@@ -174,6 +174,23 @@ class UiProxyTests(unittest.TestCase):
         with self.assertRaises(ValueError):
             proxy.join_engine_url("", "api/v2")
 
+    def test_forward_headers_strips_browser_origin(self) -> None:
+        # Proxied writes must not carry the HA Origin — Klar treats Origin≠Host as 403.
+        incoming = {
+            "Origin": "http://homeassistant.local:8123",
+            "Referer": "http://homeassistant.local:8123/klar-nlu",
+            "Host": "homeassistant.local:8123",
+            "Content-Type": "application/json",
+            "X-Klar-Token": "browser-token",
+        }
+        headers = proxy._forward_headers(incoming, "engine-token")
+        lower = {k.lower(): v for k, v in headers.items()}
+        self.assertNotIn("origin", lower)
+        self.assertNotIn("referer", lower)
+        self.assertNotIn("host", lower)
+        self.assertEqual(lower.get("content-type"), "application/json")
+        self.assertEqual(lower.get("x-klar-token"), "engine-token")
+
     def test_configured_engine_uses_stored_url_only(self) -> None:
         hass = SimpleNamespace(
             data={

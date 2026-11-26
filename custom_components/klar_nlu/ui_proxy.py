@@ -40,6 +40,10 @@ _STRIP_REQ = frozenset(
         "content-length",
         "cookie",
         "host",
+        # Browser Origin/Referer are the HA frontend origin; Klar's CSRF gate
+        # compares Origin to the engine Host and would 403 every proxied write.
+        "origin",
+        "referer",
         "keep-alive",
         "proxy-authenticate",
         "proxy-authorization",

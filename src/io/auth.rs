@@ -105,16 +105,20 @@ fn local_host(host: &str) -> bool {
 }
 
 pub fn writes_allowed(peer: Option<SocketAddr>, headers: &HeaderMap, token: &Option<String>) -> bool {
+    // A matching write token authenticates the client via a custom header. That is not
+    // browser CSRF, and Home Assistant's UI proxy forwards the frontend Origin which
+    // would otherwise 403 every save (Origin host ≠ engine Host).
+    let token_ok = token
+        .as_deref()
+        .filter(|s| !s.is_empty())
+        .is_some_and(|expected| request_token(headers).is_some_and(|got| token_eq(got, expected)));
+    if token_ok {
+        return host_allowed(peer, headers);
+    }
     if !same_origin(headers) || !host_allowed(peer, headers) {
         return false;
     }
-    if peer.is_some_and(|addr| loopback_peer(addr.ip())) {
-        return true;
-    }
-    let Some(expected) = token.as_deref().filter(|s| !s.is_empty()) else {
-        return false;
-    };
-    request_token(headers).is_some_and(|got| token_eq(got, expected))
+    peer.is_some_and(|addr| loopback_peer(addr.ip()))
 }
 
 pub fn reads_allowed(peer: Option<SocketAddr>, headers: &HeaderMap, token: &Option<String>) -> bool {
@@ -147,11 +151,10 @@ pub fn require(capability: Capability, peer: Option<SocketAddr>, headers: &Heade
             }
         }
         Capability::Write | Capability::PersistParse => {
-            if !same_origin(headers) || !host_allowed(peer, headers) {
-                return Err(StatusCode::FORBIDDEN);
-            }
             if writes_allowed(peer, headers, token) {
                 Ok(())
+            } else if !same_origin(headers) || !host_allowed(peer, headers) {
+                Err(StatusCode::FORBIDDEN)
             } else {
                 Err(StatusCode::UNAUTHORIZED)
             }
