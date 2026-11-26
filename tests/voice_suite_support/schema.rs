@@ -1,3 +1,4 @@
+use klar_nlu::types::HomeGraph;
 use serde::Deserialize;
 use std::collections::BTreeMap;
 
@@ -21,6 +22,9 @@ pub(crate) struct Case {
     pub(crate) speech_forbids: Vec<String>,
     #[serde(default)]
     pub(crate) nlu_expect: Option<NluExpectation>,
+    /// Optional redacted home snippet from an operator-marked wrong turn (6.2).
+    #[serde(default)]
+    pub(crate) home: Option<HomeGraph>,
 }
 
 #[derive(Debug, Deserialize)]

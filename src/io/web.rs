@@ -46,6 +46,7 @@ pub fn router(state: AppState) -> Router {
         .route("/api/entities", get(get_entities).post(tag_entity))
         .route("/api/gaps", get(get_gaps))
         .merge(crate::io::bundle::routes())
+        .merge(crate::io::wrong_case::routes())
         .merge(crate::io::dashboard::routes())
         .merge(crate::io::lang_api::routes())
         .merge(crate::io::conversations::routes())

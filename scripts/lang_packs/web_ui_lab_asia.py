@@ -34,6 +34,10 @@ whyThisBand	为何是这个频段？	為何是這個頻段？	點解呢個頻段
 rememberAsPhrase	记为短语	記為語句	記做語句	フレーズとして覚える	구로 기억	จำเป็นวลี	Nhớ thành cụm	Ingat sebagai frasa	Ingat sebagai frasa	Хэллэгээр сана
 evidence	证据	證據	證據	根拠	근거	หลักฐาน	bằng chứng	bukti	bukti	нотолбар
 names	名称	名稱	名	名前	이름	ชื่อ	tên	nama	nama	нэр
+markWrong	That was wrong	That was wrong	That was wrong	That was wrong	That was wrong	That was wrong	That was wrong	That was wrong	That was wrong	That was wrong
+markWrongSave	Save regression case	Save regression case	Save regression case	Save regression case	Save regression case	Save regression case	Save regression case	Save regression case	Save regression case	Save regression case
+markWrongSaved	Saved as regression case.	Saved as regression case.	Saved as regression case.	Saved as regression case.	Saved as regression case.	Saved as regression case.	Saved as regression case.	Saved as regression case.	Saved as regression case.	Saved as regression case.
+intendedTarget	Intended target	Intended target	Intended target	Intended target	Intended target	Intended target	Intended target	Intended target	Intended target	Intended target
 settingsBackup	设置备份	設定備份	設定備份	設定のバックアップ	설정 백업	สำรองการตั้งค่า	Sao lưu cài đặt	Cadangan pengaturan	Sandaran tetapan	Тохиргооны нөөц
 settingsBackupHint	覆盖层、分配、规则和 LLM 端点。对话和房屋图留在本引擎。	覆蓋層、指派、規則和 LLM 端點。對話和住家圖留在本引擎。	覆蓋層、指派、規則同 LLM 端點。對話同屋企圖留喺呢個引擎。	オーバーレイ、割り当て、規則、LLM エンドポイント。会話と家グラフはこのエンジンに残ります。	오버레이, 할당, 규칙, LLM 엔드포인트. 대화와 집 그래프는 이 엔진에 남습니다.	โอเวอร์เลย์ การกำหนด กฎ และจุดปลาย LLM บทสนทนาและกราฟบ้านอยู่บนเอนจินนี้	Lớp phủ, gán, quy tắc và điểm cuối LLM. Hội thoại và đồ thị nhà ở lại trên động cơ này.	Hamparan, penetapan, aturan, dan titik akhir LLM. Percakapan dan graf rumah tetap di mesin ini.	Hamparan, penugasan, peraturan dan titik akhir LLM. Perbualan dan graf rumah kekal pada enjin ini.	Давхарга, оноолт, дүрэм, LLM төгсгөл. Яриа болон гэрийн граф энэ хөдөлгүүрт үлдэнэ.
 settingsBackupDownload	下载设置	下載設定	下載設定	設定をダウンロード	설정 내려받기	ดาวน์โหลดการตั้งค่า	Tải cài đặt	Unduh pengaturan	Muat turun tetapan	Тохиргоо татах

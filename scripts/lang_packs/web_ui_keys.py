@@ -507,6 +507,10 @@ CATALOG_KEYS = (
     "setupAgainWhere",
     "whyThisBand",
     "rememberAsPhrase",
+    "markWrong",
+    "markWrongSave",
+    "markWrongSaved",
+    "intendedTarget",
     "evidence",
     "names",
 )
@@ -840,6 +844,10 @@ FALLBACKS = {
     "setupAgainWhere": "Replay setup is in Settings.",
     "whyThisBand": "Why this band?",
     "rememberAsPhrase": "Remember as phrase",
+    "markWrong": "That was wrong",
+    "markWrongSave": "Save regression case",
+    "markWrongSaved": "Saved as regression case.",
+    "intendedTarget": "Intended target",
     "evidence": "Evidence",
     "names": "Names",
 }
