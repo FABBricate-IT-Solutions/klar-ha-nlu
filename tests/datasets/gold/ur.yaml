@@ -1,0 +1,64 @@
+# Gold natural sentences for ur: hand-written, not generated from the pack lexicon.
+# Hand-authored natural speech (Q-02); not speaker-verified.
+rooms:
+  living: "لونگ روم"
+  kitchen: "باورچی خانہ"
+  bedroom: "بیڈ روم"
+  hall: "راہداری"
+devices:
+  light_living: "لونگ روم کی لائٹ"
+  light_kitchen: "باورچی خانے کی لائٹ"
+  light_bedroom: "بیڈ روم کی لائٹ"
+  cover_bedroom: "بیڈ روم کے پردے"
+  climate_living: "ہیٹر"
+  lock_front: "سامنے کا دروازہ"
+  shopping_list: "خریداری کی فہرست"
+cases:
+  - text: "لونگ روم کی لائٹ جلاؤ"
+    expect: "TurnOn@living"
+    kind: execute
+    soft: "known gap: resolves as KlarGetCalendarEvents (read only)"
+  - text: "باورچی خانے کی لائٹ بند کرو"
+    expect: "TurnOff@kitchen"
+    kind: execute
+    soft: "known gap: resolves as KlarGetCalendarEvents (read only)"
+  - text: "لونگ روم کی لائٹ آن کرو"
+    expect: "TurnOn@living"
+    kind: execute
+    soft: "known gap: resolves as KlarGetCalendarEvents (read only)"
+  - text: "لونگ روم کی لائٹ 50 فیصد پر کرو"
+    expect: "LightSet@living:brightness=50"
+    kind: execute
+    soft: "known gap: resolves as KlarGetCalendarEvents (read only)"
+  - text: "ہیٹر 21 ڈگری پر سیٹ کرو"
+    expect: "ClimateSetTemperature:temperature=21"
+    kind: execute
+  - text: "بیڈ روم کے پردے کھولو"
+    expect: "TurnOn@bedroom"
+    kind: execute
+  - text: "بیڈ روم کے پردے بند کرو"
+    expect: "CONFIRM"
+    kind: confirm
+  - text: "کیا باورچی خانے کی لائٹ جل رہی ہے؟"
+    expect: "GetState@kitchen"
+    kind: execute
+    soft: "known gap: resolves as KlarGetCalendarEvents (read only)"
+  - text: "لونگ روم کا درجہ حرارت کتنا ہے؟"
+    expect: "GetTemp@living"
+    kind: execute
+  - text: "پانچ منٹ کا ٹائمر لگاؤ"
+    expect: "StartTimer:minutes=5"
+    kind: execute
+  - text: "خریداری کی فہرست میں دودھ شامل کرو"
+    expect: "ListAdd:item=دودھ"
+    kind: execute
+  - text: "موسیقی روکو"
+    expect: "MediaPause"
+    kind: execute
+  - text: "سامنے کا دروازہ لاک کرو"
+    expect: "CONFIRM"
+    kind: confirm
+  - text: "اس وقت کیا بجا ہے؟"
+    expect: "CHAT"
+    kind: chat
+    soft: "known gap: rejected (NoAction)"

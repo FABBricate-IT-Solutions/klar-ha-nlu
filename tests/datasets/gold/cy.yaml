@@ -1,0 +1,65 @@
+# Gold natural sentences for cy: hand-written, not generated from the pack lexicon.
+# Hand-authored natural speech (Q-02); not speaker-verified.
+rooms:
+  living: "Ystafell fyw"
+  kitchen: "Cegin"
+  bedroom: "Ystafell wely"
+  hall: "Cyntedd"
+devices:
+  light_living: "Golau'r ystafell fyw"
+  light_kitchen: "Golau'r gegin"
+  light_bedroom: "Golau'r ystafell wely"
+  cover_bedroom: "Bleindiau'r ystafell wely"
+  climate_living: "Gwres"
+  lock_front: "Drws ffrynt"
+  shopping_list: "Rhestr siopa"
+cases:
+  - text: "Rho'r golau ymlaen yn yr ystafell fyw"
+    expect: "TurnOn@living"
+    kind: execute
+  - text: "Diffodd y golau yn y gegin"
+    expect: "TurnOff@kitchen"
+    kind: execute
+  - text: "Troi golau'r ystafell fyw ymlaen"
+    expect: "TurnOn@living"
+    kind: execute
+  - text: "Gosod golau'r ystafell fyw i 50 y cant"
+    expect: "LightSet@living:brightness=50"
+    kind: execute
+  - text: "Gosod y gwres i 21 gradd"
+    expect: "ClimateSetTemperature:temperature=21"
+    kind: execute
+  - text: "Agor bleindiau'r ystafell wely"
+    expect: "TurnOn@bedroom"
+    kind: execute
+  - text: "Cau bleindiau'r ystafell wely"
+    expect: "CONFIRM"
+    kind: confirm
+  - text: "Ydy golau'r gegin ymlaen?"
+    expect: "GetState@kitchen"
+    kind: execute
+  - text: "Beth yw'r tymheredd yn yr ystafell fyw?"
+    expect: "GetTemp@living"
+    kind: execute
+  - text: "Gosod amserydd am bum munud"
+    expect: "StartTimer:minutes=5"
+    kind: execute
+    soft: "known gap: asks a follow-up instead of acting"
+  - text: "Ychwanegu llaeth at y rhestr siopa"
+    expect: "ListAdd:item=llaeth"
+    kind: execute
+  - text: "Oedi'r gerddoriaeth"
+    expect: "MediaPause"
+    kind: execute
+    soft: "known gap: rejected (NoAction)"
+  - text: "Rho'r golau ymlaen yn yr ystafell fyw a diffodd y golau yn y gegin"
+    expect: "TurnOn@living+TurnOff@kitchen"
+    kind: execute
+  - text: "Cloi'r drws ffrynt"
+    expect: "CONFIRM"
+    kind: confirm
+    soft: "known gap: resolves as HassGetState (read only)"
+  - text: "Faint o'r gloch yw hi?"
+    expect: "CHAT"
+    kind: chat
+    soft: "known gap: rejected (NoAction)"

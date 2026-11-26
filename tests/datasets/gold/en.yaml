@@ -1,0 +1,64 @@
+# Gold natural sentences for en: hand-written, not generated from the pack lexicon.
+# source: plan evidence natural.py (Q-02)
+rooms:
+  living: "Living Room"
+  kitchen: "Kitchen"
+  bedroom: "Bedroom"
+  hall: "Hall"
+devices:
+  light_living: "Living Room Light"
+  light_kitchen: "Kitchen Light"
+  light_bedroom: "Bedroom Light"
+  cover_bedroom: "Bedroom Blinds"
+  climate_living: "Heating"
+  lock_front: "Front Door"
+  shopping_list: "Shopping List"
+cases:
+  - text: "Turn on the living room light"
+    expect: "TurnOn@living"
+    kind: execute
+  - text: "Switch off the kitchen light"
+    expect: "TurnOff@kitchen"
+    kind: execute
+  - text: "Could you turn the lights on in the living room please"
+    expect: "TurnOn@living"
+    kind: execute
+  - text: "Set the living room light to 50 percent"
+    expect: "LightSet@living:brightness=50"
+    kind: execute
+  - text: "Set the living room light to twenty five percent"
+    expect: "LightSet@living:brightness=25"
+    kind: execute
+  - text: "Set the heating to 21 degrees"
+    expect: "ClimateSetTemperature:temperature=21"
+    kind: execute
+  - text: "Open the blinds in the bedroom"
+    expect: "TurnOn@bedroom"
+    kind: execute
+  - text: "Close the blinds in the bedroom"
+    expect: "CONFIRM"
+    kind: confirm
+  - text: "Is the kitchen light on?"
+    expect: "GetState@kitchen"
+    kind: execute
+  - text: "What's the temperature in the living room?"
+    expect: "GetTemp@living"
+    kind: execute
+  - text: "Set a timer for five minutes"
+    expect: "StartTimer:minutes=5"
+    kind: execute
+  - text: "Add milk to the shopping list"
+    expect: "ListAdd:item=milk"
+    kind: execute
+  - text: "Pause the music"
+    expect: "MediaPause"
+    kind: execute
+  - text: "Turn on the living room light and turn off the kitchen light"
+    expect: "TurnOn@living+TurnOff@kitchen"
+    kind: execute
+  - text: "Lock the front door"
+    expect: "CONFIRM"
+    kind: confirm
+  - text: "What time is it?"
+    expect: "CHAT"
+    kind: chat

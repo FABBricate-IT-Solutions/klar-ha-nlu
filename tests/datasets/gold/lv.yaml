@@ -1,0 +1,63 @@
+# Gold natural sentences for lv: hand-written, not generated from the pack lexicon.
+# Hand-authored natural speech (Q-02); not speaker-verified.
+rooms:
+  living: "Viesistaba"
+  kitchen: "Virtuve"
+  bedroom: "Guļamistaba"
+  hall: "Gaitenis"
+devices:
+  light_living: "Viesistabas gaisma"
+  light_kitchen: "Virtuves gaisma"
+  light_bedroom: "Guļamistabas gaisma"
+  cover_bedroom: "Guļamistabas žalūzijas"
+  climate_living: "Apkure"
+  lock_front: "Ārdurvis"
+  shopping_list: "Iepirkumu saraksts"
+cases:
+  - text: "Ieslēdz gaismu viesistabā"
+    expect: "TurnOn@living"
+    kind: execute
+  - text: "Izslēdz gaismu virtuvē"
+    expect: "TurnOff@kitchen"
+    kind: execute
+  - text: "Iededz gaismu viesistabā"
+    expect: "TurnOn@living"
+    kind: execute
+  - text: "Iestati gaismu viesistabā uz 50 procentiem"
+    expect: "LightSet@living:brightness=50"
+    kind: execute
+  - text: "Iestati apkuri uz 21 grādu"
+    expect: "ClimateSetTemperature:temperature=21"
+    kind: execute
+  - text: "Atver žalūzijas guļamistabā"
+    expect: "TurnOn@bedroom"
+    kind: execute
+  - text: "Aizver žalūzijas guļamistabā"
+    expect: "CONFIRM"
+    kind: confirm
+  - text: "Vai gaisma virtuvē ir ieslēgta?"
+    expect: "GetState@kitchen"
+    kind: execute
+  - text: "Kāda ir temperatūra viesistabā?"
+    expect: "GetTemp@living"
+    kind: execute
+  - text: "Iestati taimeri uz piecām minūtēm"
+    expect: "StartTimer:minutes=5"
+    kind: execute
+    soft: "known gap: rejected (NoAction)"
+  - text: "Pievieno pienu iepirkumu sarakstam"
+    expect: "ListAdd:item=pien"
+    kind: execute
+  - text: "Pauzē mūziku"
+    expect: "MediaPause"
+    kind: execute
+  - text: "Ieslēdz gaismu viesistabā un izslēdz gaismu virtuvē"
+    expect: "TurnOn@living+TurnOff@kitchen"
+    kind: execute
+  - text: "Aizslēdz ārdurvis"
+    expect: "CONFIRM"
+    kind: confirm
+  - text: "Cik pulkstenis?"
+    expect: "CHAT"
+    kind: chat
+    soft: "known gap: rejected (NoAction)"

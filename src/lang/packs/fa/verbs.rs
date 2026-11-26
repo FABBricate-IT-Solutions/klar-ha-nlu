@@ -3,6 +3,7 @@ use crate::lang::verbs::VerbKind;
 
 pub(super) const VERBS: &[(&str, VerbKind)] = &[
     ("ابی", VerbKind::Color),
+    ("اضافه", VerbKind::Add),
     ("ایستگاه", VerbKind::Dock),
     ("باز", VerbKind::Open),
     ("بسته", VerbKind::Close),
@@ -25,6 +26,7 @@ pub(super) const VERBS: &[(&str, VerbKind)] = &[
     ("قرمز", VerbKind::Color),
     ("قفل", VerbKind::Lock),
     ("متوسط", VerbKind::Dim),
+    ("متوقف", VerbKind::Pause),
     ("نارنجی", VerbKind::Color),
     ("پایگاه", VerbKind::Dock),
     ("پخش", VerbKind::Play),

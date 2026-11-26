@@ -1,0 +1,61 @@
+# Gold natural sentences for el: hand-written, not generated from the pack lexicon.
+# source: plan evidence natural.py (Q-02)
+rooms:
+  living: "Σαλόνι"
+  kitchen: "Κουζίνα"
+  bedroom: "Κρεβατοκάμαρα"
+  hall: "Χολ"
+devices:
+  light_living: "Φως σαλονιού"
+  light_kitchen: "Φως κουζίνας"
+  light_bedroom: "Φως κρεβατοκάμαρας"
+  cover_bedroom: "Στόρια κρεβατοκάμαρας"
+  climate_living: "Θέρμανση"
+  lock_front: "Εξώπορτα"
+  shopping_list: "Λίστα για ψώνια"
+cases:
+  - text: "Άναψε το φως στο σαλόνι"
+    expect: "TurnOn@living"
+    kind: execute
+  - text: "Σβήσε το φως στην κουζίνα"
+    expect: "TurnOff@kitchen"
+    kind: execute
+  - text: "άναψε φως σαλόνι"
+    expect: "TurnOn@living"
+    kind: execute
+  - text: "ΑΝΑΨΕ ΤΟ ΦΩΣ ΣΤΟ ΣΑΛΟΝΙ"
+    expect: "TurnOn@living"
+    kind: execute
+  - text: "Βάλε το φως στο σαλόνι στο 50 τοις εκατό"
+    expect: "LightSet@living:brightness=50"
+    kind: execute
+  - text: "Βάλε τη θέρμανση στους 21 βαθμούς"
+    expect: "ClimateSetTemperature:temperature=21"
+    kind: execute
+  - text: "Άνοιξε τα στόρια στην κρεβατοκάμαρα"
+    expect: "TurnOn@bedroom"
+    kind: execute
+  - text: "Κλείσε τα στόρια στην κρεβατοκάμαρα"
+    expect: "CONFIRM"
+    kind: confirm
+  - text: "Είναι αναμμένο το φως στην κουζίνα;"
+    expect: "GetState@kitchen"
+    kind: execute
+  - text: "Τι θερμοκρασία έχει στο σαλόνι;"
+    expect: "GetTemp@living"
+    kind: execute
+  - text: "Βάλε χρονόμετρο για πέντε λεπτά"
+    expect: "StartTimer:minutes=5"
+    kind: execute
+  - text: "Πρόσθεσε γάλα στη λίστα για ψώνια"
+    expect: "ListAdd:item=γάλα"
+    kind: execute
+  - text: "Κάνε παύση στη μουσική"
+    expect: "MediaPause"
+    kind: execute
+  - text: "Κλείδωσε την εξώπορτα"
+    expect: "CONFIRM"
+    kind: confirm
+  - text: "Τι ώρα είναι;"
+    expect: "CHAT"
+    kind: chat

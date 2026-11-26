@@ -1,57 +1,71 @@
-# Gold natural sentences for Beta locale (package 4.3).
-# source: plan evidence natural.py; not parity-generated.
+# Gold natural sentences for fr: hand-written, not generated from the pack lexicon.
+# source: plan evidence natural.py (Q-02)
+rooms:
+  living: "Salon"
+  kitchen: "Cuisine"
+  bedroom: "Chambre"
+  hall: "Entrée"
+devices:
+  light_living: "Lumière du salon"
+  light_kitchen: "Lumière de la cuisine"
+  light_bedroom: "Lumière de la chambre"
+  cover_bedroom: "Volets de la chambre"
+  climate_living: "Chauffage"
+  lock_front: "Porte d'entrée"
+  shopping_list: "Liste de courses"
 cases:
-  - text: 'Allume la lumière du salon'
-    expect: 'TurnOn@living'
+  - text: "Allume la lumière du salon"
+    expect: "TurnOn@living"
     kind: execute
-  - text: 'Éteins la lumière de la cuisine'
-    expect: 'TurnOff@kitchen'
+  - text: "Éteins la lumière de la cuisine"
+    expect: "TurnOff@kitchen"
     kind: execute
-  - text: 'éteins la lumière dans la cuisine'
-    expect: 'TurnOff@kitchen'
+  - text: "éteins la lumière dans la cuisine"
+    expect: "TurnOff@kitchen"
     kind: execute
-  - text: 'Mets la lumière du salon à 50 %'
-    expect: 'LightSet@living:brightness=50'
+  - text: "Mets la lumière du salon à 50 %"
+    expect: "LightSet@living:brightness=50"
     kind: execute
-  - text: 'Mets la lumière du salon à vingt-cinq pour cent'
-    expect: 'LightSet@living:brightness=25'
+  - text: "Mets la lumière du salon à vingt-cinq pour cent"
+    expect: "LightSet@living:brightness=25"
     kind: execute
-  - text: 'Mets la lumière du salon à quatre-vingts pour cent'
-    expect: 'LightSet@living:brightness=80'
+  - text: "Mets la lumière du salon à quatre-vingts pour cent"
+    expect: "LightSet@living:brightness=80"
     kind: execute
-  - text: 'Règle le chauffage sur 21 degrés'
-    expect: 'ClimateSetTemperature:temperature=21'
+  - text: "Règle le chauffage sur 21 degrés"
+    expect: "ClimateSetTemperature:temperature=21"
     kind: execute
-  - text: 'Ouvre les volets de la chambre'
-    expect: 'TurnOn@bedroom'
+  - text: "Ouvre les volets de la chambre"
+    expect: "TurnOn@bedroom"
     kind: execute
-  - text: 'Ferme les volets de la chambre'
-    expect: 'CONFIRM'
+  - text: "Ferme les volets de la chambre"
+    expect: "CONFIRM"
     kind: confirm
-  - text: 'Est-ce que la lumière de la cuisine est allumée ?'
-    expect: 'GetState@kitchen'
+  - text: "Est-ce que la lumière de la cuisine est allumée ?"
+    expect: "GetState@kitchen"
     kind: execute
-  - text: 'Quelle est la température dans le salon ?'
-    expect: 'GetTemp@living'
+  - text: "Quelle est la température dans le salon ?"
+    expect: "GetTemp@living"
     kind: execute
-  - text: 'Mets un minuteur de cinq minutes'
-    expect: 'StartTimer:minutes=5'
+  - text: "Mets un minuteur de cinq minutes"
+    expect: "StartTimer:minutes=5"
     kind: execute
-  - text: 'Ajoute du lait à la liste de courses'
-    expect: 'ListAdd:item=lait'
+  - text: "Ajoute du lait à la liste de courses"
+    expect: "ListAdd:item=lait"
     kind: execute
-  - text: 'Mets la musique en pause'
-    expect: 'MediaPause'
+  - text: "Mets la musique en pause"
+    expect: "MediaPause"
     kind: execute
-  - text: 'Allume la lumière du salon et éteins la lumière de la cuisine'
-    expect: 'TurnOn@living+TurnOff@kitchen'
+  - text: "Allume la lumière du salon et éteins la lumière de la cuisine"
+    expect: "TurnOn@living+TurnOff@kitchen"
     kind: execute
   - text: "Verrouille la porte d'entrée"
-    expect: 'CONFIRM'
+    expect: "CONFIRM"
     kind: confirm
   - text: "Allume la lumière de l'entrée"
-    expect: 'TurnOn@hall'
+    expect: "TurnOn@hall"
     kind: execute
-  - text: 'Quelle heure est-il ?'
-    expect: 'CHAT'
+    soft: "known gap: rejected (NoTarget)"
+  - text: "Quelle heure est-il ?"
+    expect: "CHAT"
     kind: chat

@@ -1,0 +1,67 @@
+# Gold natural sentences for mn: hand-written, not generated from the pack lexicon.
+# Hand-authored natural speech (Q-02); not speaker-verified.
+rooms:
+  living: "Зочны өрөө"
+  kitchen: "Гал тогоо"
+  bedroom: "Унтлагын өрөө"
+  hall: "Хонгил"
+devices:
+  light_living: "Зочны өрөөний гэрэл"
+  light_kitchen: "Гал тогооны гэрэл"
+  light_bedroom: "Унтлагын өрөөний гэрэл"
+  cover_bedroom: "Унтлагын өрөөний хөшиг"
+  climate_living: "Халаалт"
+  lock_front: "Орох хаалга"
+  shopping_list: "Худалдан авалтын жагсаалт"
+cases:
+  - text: "Зочны өрөөний гэрлийг асаа"
+    expect: "TurnOn@living"
+    kind: execute
+    soft: "known gap: rejected (NoTarget)"
+  - text: "Гал тогооны гэрлийг унтраа"
+    expect: "TurnOff@kitchen"
+    kind: execute
+    soft: "known gap: rejected (NoTarget)"
+  - text: "Зочны өрөөний гэрлийг асаагаарай"
+    expect: "TurnOn@living"
+    kind: execute
+    soft: "known gap: rejected (NoTarget)"
+  - text: "Зочны өрөөний гэрлийг 50 хувь болго"
+    expect: "LightSet@living:brightness=50"
+    kind: execute
+    soft: "known gap: rejected (NoTarget)"
+  - text: "Халаалтыг 21 градус болго"
+    expect: "ClimateSetTemperature:temperature=21"
+    kind: execute
+    soft: "known gap: rejected (NoAction)"
+  - text: "Унтлагын өрөөний хөшгийг нээ"
+    expect: "TurnOn@bedroom"
+    kind: execute
+    soft: "known gap: rejected (NoTarget)"
+  - text: "Унтлагын өрөөний хөшгийг хаа"
+    expect: "CONFIRM"
+    kind: confirm
+    soft: "known gap: rejected (NoTarget)"
+  - text: "Гал тогооны гэрэл асаалттай юу?"
+    expect: "GetState@kitchen"
+    kind: execute
+  - text: "Зочны өрөөний температур хэд вэ?"
+    expect: "GetTemp@living"
+    kind: execute
+  - text: "Таван минутын таймер тавь"
+    expect: "StartTimer:minutes=5"
+    kind: execute
+    soft: "known gap: asks a follow-up instead of acting"
+  - text: "Худалдан авалтын жагсаалтад сүү нэм"
+    expect: "ListAdd:item=сүү"
+    kind: execute
+  - text: "Хөгжмийг түр зогсоо"
+    expect: "MediaPause"
+    kind: execute
+  - text: "Орох хаалгыг цоожло"
+    expect: "CONFIRM"
+    kind: confirm
+  - text: "Одоо хэдэн цаг болж байна?"
+    expect: "CHAT"
+    kind: chat
+    soft: "known gap: rejected (NoAction)"

@@ -22,6 +22,7 @@ pub(super) const VERBS: &[(&str, VerbKind)] = &[
     ("zenme", VerbKind::Query),
     ("中等", VerbKind::Dim),
     ("什麼", VerbKind::Query),
+    ("加", VerbKind::Add),
     ("合上", VerbKind::Close),
     ("回充", VerbKind::Dock),
     ("回家", VerbKind::Dock),

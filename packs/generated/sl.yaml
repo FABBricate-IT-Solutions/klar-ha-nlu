@@ -65,12 +65,18 @@ verbs:
   - Color
 - - ugasni
   - 'Off'
+- - ustavi
+  - Pause
 - - ventilator
   - FanNoun
+- - vklopi
+  - 'On'
 - - white
   - Color
 - - yellow
   - Color
+- - zakleni
+  - Lock
 - - zapri
   - Close
 - - zatemniti
@@ -84,6 +90,7 @@ talk:
   - na
   action_keep:
   - prizgi
+  - vklopi
   - ugasni
   - odpri
   - zapri

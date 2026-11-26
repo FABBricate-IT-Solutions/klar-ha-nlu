@@ -1,0 +1,68 @@
+# Gold natural sentences for lt: hand-written, not generated from the pack lexicon.
+# Hand-authored natural speech (Q-02); not speaker-verified.
+rooms:
+  living: "Svetainė"
+  kitchen: "Virtuvė"
+  bedroom: "Miegamasis"
+  hall: "Koridorius"
+devices:
+  light_living: "Svetainės šviesa"
+  light_kitchen: "Virtuvės šviesa"
+  light_bedroom: "Miegamojo šviesa"
+  cover_bedroom: "Miegamojo žaliuzės"
+  climate_living: "Šildymas"
+  lock_front: "Lauko durys"
+  shopping_list: "Pirkinių sąrašas"
+cases:
+  - text: "Įjunk šviesą svetainėje"
+    expect: "TurnOn@living"
+    kind: execute
+  - text: "Išjunk šviesą virtuvėje"
+    expect: "TurnOff@kitchen"
+    kind: execute
+    soft: "known gap: asks a follow-up instead of acting"
+  - text: "Uždek šviesą svetainėje"
+    expect: "TurnOn@living"
+    kind: execute
+    soft: "known gap: rejected (NoAction)"
+  - text: "Nustatyk šviesą svetainėje į 50 procentų"
+    expect: "LightSet@living:brightness=50"
+    kind: execute
+  - text: "Nustatyk šildymą į 21 laipsnį"
+    expect: "ClimateSetTemperature:temperature=21"
+    kind: execute
+  - text: "Atidaryk žaliuzes miegamajame"
+    expect: "TurnOn@bedroom"
+    kind: execute
+  - text: "Uždaryk žaliuzes miegamajame"
+    expect: "CONFIRM"
+    kind: confirm
+  - text: "Ar šviesa virtuvėje įjungta?"
+    expect: "GetState@kitchen"
+    kind: execute
+    soft: "known gap: rejected (NoAction)"
+  - text: "Kokia temperatūra svetainėje?"
+    expect: "GetTemp@living"
+    kind: execute
+    soft: "known gap: rejected (NoAction)"
+  - text: "Nustatyk laikmatį penkioms minutėms"
+    expect: "StartTimer:minutes=5"
+    kind: execute
+    soft: "known gap: rejected (NoAction)"
+  - text: "Pridėk pieno į pirkinių sąrašą"
+    expect: "ListAdd:item=pien"
+    kind: execute
+  - text: "Sustabdyk muziką"
+    expect: "MediaPause"
+    kind: execute
+  - text: "Įjunk šviesą svetainėje ir išjunk šviesą virtuvėje"
+    expect: "TurnOn@living+TurnOff@kitchen"
+    kind: execute
+    soft: "known gap: resolves as HassTurnOn"
+  - text: "Užrakink lauko duris"
+    expect: "CONFIRM"
+    kind: confirm
+  - text: "Kiek dabar valandų?"
+    expect: "CHAT"
+    kind: chat
+    soft: "known gap: rejected (NoAction)"

@@ -13,6 +13,8 @@ pub(super) const VERBS: &[(&str, VerbKind)] = &[
     ("hvit", VerbKind::Color),
     ("hvordan", VerbKind::Query),
     ("laas", VerbKind::Lock),
+    ("las", VerbKind::Lock),
+    ("legg", VerbKind::Add),
     ("lilla", VerbKind::Color),
     ("liste", VerbKind::List),
     ("lukk", VerbKind::Close),

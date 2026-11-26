@@ -9,6 +9,8 @@ pub(super) const VERBS: &[(&str, VerbKind)] = &[
     ("black", VerbKind::Color),
     ("blue", VerbKind::Color),
     ("daha", VerbKind::Dim),
+    ("duraklat", VerbKind::Pause),
+    ("ekle", VerbKind::Add),
     ("green", VerbKind::Color),
     ("istasyon", VerbKind::Dock),
     ("kapat", VerbKind::Close),

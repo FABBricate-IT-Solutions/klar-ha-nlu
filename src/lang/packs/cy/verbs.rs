@@ -13,6 +13,7 @@ pub(super) const VERBS: &[(&str, VerbKind)] = &[
     ("cau", VerbKind::Close),
     ("chwarae", VerbKind::Play),
     ("clo", VerbKind::Lock),
+    ("cloi", VerbKind::Lock),
     ("diffodd", VerbKind::Off),
     ("golygfa", VerbKind::Scene),
     ("gorsaf", VerbKind::Dock),
@@ -22,6 +23,7 @@ pub(super) const VERBS: &[(&str, VerbKind)] = &[
     ("gwyntyll", VerbKind::FanNoun),
     ("lleihau", VerbKind::Lower),
     ("next", VerbKind::Next),
+    ("oedi", VerbKind::Pause),
     ("orange", VerbKind::Color),
     ("pink", VerbKind::Color),
     ("play", VerbKind::Play),
@@ -35,4 +37,5 @@ pub(super) const VERBS: &[(&str, VerbKind)] = &[
     ("white", VerbKind::Color),
     ("ycant", VerbKind::Percent),
     ("yellow", VerbKind::Color),
+    ("ymlaen", VerbKind::On),
 ];

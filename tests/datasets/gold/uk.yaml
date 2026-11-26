@@ -1,45 +1,58 @@
-# Gold natural sentences for Beta locale (package 4.3).
-# source: plan evidence natural.py; not parity-generated.
+# Gold natural sentences for uk: hand-written, not generated from the pack lexicon.
+# source: plan evidence natural.py (Q-02)
+rooms:
+  living: "Вітальня"
+  kitchen: "Кухня"
+  bedroom: "Спальня"
+  hall: "Коридор"
+devices:
+  light_living: "Світло у вітальні"
+  light_kitchen: "Світло на кухні"
+  light_bedroom: "Світло у спальні"
+  cover_bedroom: "Штори у спальні"
+  climate_living: "Опалення"
+  lock_front: "Вхідні двері"
+  shopping_list: "Список покупок"
 cases:
-  - text: 'Увімкни світло у вітальні'
-    expect: 'TurnOn@living'
+  - text: "Увімкни світло у вітальні"
+    expect: "TurnOn@living"
     kind: execute
-  - text: 'Вимкни світло на кухні'
-    expect: 'TurnOff@kitchen'
+  - text: "Вимкни світло на кухні"
+    expect: "TurnOff@kitchen"
     kind: execute
-  - text: 'увімкни світло вітальня'
-    expect: 'TurnOn@living'
+  - text: "увімкни світло вітальня"
+    expect: "TurnOn@living"
     kind: execute
-  - text: 'Встанови світло у вітальні на 50 відсотків'
-    expect: 'LightSet@living:brightness=50'
+  - text: "Встанови світло у вітальні на 50 відсотків"
+    expect: "LightSet@living:brightness=50"
     kind: execute
-  - text: 'Встанови опалення на 21 градус'
-    expect: 'ClimateSetTemperature:temperature=21'
+  - text: "Встанови опалення на 21 градус"
+    expect: "ClimateSetTemperature:temperature=21"
     kind: execute
-  - text: 'Відкрий штори у спальні'
-    expect: 'TurnOn@bedroom'
+  - text: "Відкрий штори у спальні"
+    expect: "TurnOn@bedroom"
     kind: execute
-  - text: 'Закрий штори у спальні'
-    expect: 'CONFIRM'
+  - text: "Закрий штори у спальні"
+    expect: "CONFIRM"
     kind: confirm
-  - text: 'Чи увімкнене світло на кухні?'
-    expect: 'GetState@kitchen'
+  - text: "Чи увімкнене світло на кухні?"
+    expect: "GetState@kitchen"
     kind: execute
-  - text: 'Яка температура у вітальні?'
-    expect: 'GetTemp@living'
+  - text: "Яка температура у вітальні?"
+    expect: "GetTemp@living"
     kind: execute
   - text: "Постав таймер на п'ять хвилин"
-    expect: 'StartTimer:minutes=5'
+    expect: "StartTimer:minutes=5"
     kind: execute
-  - text: 'Додай молоко до списку покупок'
-    expect: 'ListAdd:item=молоко'
+  - text: "Додай молоко до списку покупок"
+    expect: "ListAdd:item=молоко"
     kind: execute
-  - text: 'Постав музику на паузу'
-    expect: 'MediaPause'
+  - text: "Постав музику на паузу"
+    expect: "MediaPause"
     kind: execute
-  - text: 'Замкни вхідні двері'
-    expect: 'CONFIRM'
+  - text: "Замкни вхідні двері"
+    expect: "CONFIRM"
     kind: confirm
-  - text: 'Котра година?'
-    expect: 'CHAT'
+  - text: "Котра година?"
+    expect: "CHAT"
     kind: chat

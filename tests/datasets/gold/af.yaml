@@ -1,0 +1,64 @@
+# Gold natural sentences for af: hand-written, not generated from the pack lexicon.
+# Hand-authored natural speech (Q-02); not speaker-verified.
+rooms:
+  living: "Sitkamer"
+  kitchen: "Kombuis"
+  bedroom: "Slaapkamer"
+  hall: "Gang"
+devices:
+  light_living: "Sitkamer lig"
+  light_kitchen: "Kombuis lig"
+  light_bedroom: "Slaapkamer lig"
+  cover_bedroom: "Slaapkamer gordyne"
+  climate_living: "Verwarming"
+  lock_front: "Voordeur"
+  shopping_list: "Inkopielys"
+cases:
+  - text: "Skakel die lig in die sitkamer aan"
+    expect: "TurnOn@living"
+    kind: execute
+  - text: "Skakel die lig in die kombuis af"
+    expect: "TurnOff@kitchen"
+    kind: execute
+    soft: "known gap: rejected (Unsupported)"
+  - text: "Sit die lig in die sitkamer aan"
+    expect: "TurnOn@living"
+    kind: execute
+  - text: "Stel die lig in die sitkamer op 50 persent"
+    expect: "LightSet@living:brightness=50"
+    kind: execute
+  - text: "Stel die verwarming op 21 grade"
+    expect: "ClimateSetTemperature:temperature=21"
+    kind: execute
+  - text: "Maak die gordyne in die slaapkamer oop"
+    expect: "TurnOn@bedroom"
+    kind: execute
+  - text: "Maak die gordyne in die slaapkamer toe"
+    expect: "CONFIRM"
+    kind: confirm
+  - text: "Is die lig in die kombuis aan?"
+    expect: "GetState@kitchen"
+    kind: execute
+  - text: "Wat is die temperatuur in die sitkamer?"
+    expect: "GetTemp@living"
+    kind: execute
+  - text: "Stel 'n timer vir vyf minute"
+    expect: "StartTimer:minutes=5"
+    kind: execute
+  - text: "Voeg melk by die inkopielys"
+    expect: "ListAdd:item=melk"
+    kind: execute
+  - text: "Onderbreek die musiek"
+    expect: "MediaPause"
+    kind: execute
+  - text: "Skakel die lig in die sitkamer aan en die lig in die kombuis af"
+    expect: "TurnOn@living+TurnOff@kitchen"
+    kind: execute
+    soft: "known gap: rejected (Unsupported)"
+  - text: "Sluit die voordeur"
+    expect: "CONFIRM"
+    kind: confirm
+  - text: "Hoe laat is dit?"
+    expect: "CHAT"
+    kind: chat
+    soft: "known gap: rejected (OutOfDomain)"

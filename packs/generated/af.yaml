@@ -31,6 +31,8 @@ verbs:
   - Dim
 - - next
   - Next
+- - onderbreek
+  - Pause
 - - oop
   - Open
 - - oranje
@@ -43,11 +45,17 @@ verbs:
   - Color
 - - play
   - Play
+- - pouseer
+  - Pause
 - - rooi
   - Color
+- - sit
+  - 'On'
 - - skakel
   - 'On'
 - - slot
+  - Lock
+- - sluit
   - Lock
 - - speel
   - Play
@@ -69,6 +77,8 @@ verbs:
   - Scene
 - - verminder
   - Lower
+- - voeg
+  - Add
 - - waaier
   - FanNoun
 - - warmwit
@@ -84,6 +94,7 @@ talk:
   - in
   action_keep:
   - skakel
+  - sit
   - doof
   - oop
   - toe
@@ -93,6 +104,7 @@ talk:
   particles:
   - aan
   - af
+  - sit
   - doof
   affirm:
   - ja

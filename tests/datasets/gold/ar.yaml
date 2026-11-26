@@ -1,0 +1,76 @@
+# Gold natural sentences for ar: hand-written, not generated from the pack lexicon.
+# source: plan evidence natural.py (Q-02)
+rooms:
+  living: "الصالون"
+  kitchen: "المطبخ"
+  bedroom: "غرفة النوم"
+  hall: "المدخل"
+devices:
+  light_living: "ضوء الصالون"
+  light_kitchen: "ضوء المطبخ"
+  light_bedroom: "ضوء غرفة النوم"
+  cover_bedroom: "ستائر غرفة النوم"
+  climate_living: "التدفئة"
+  lock_front: "الباب الأمامي"
+  shopping_list: "قائمة التسوق"
+cases:
+  - text: "شغل الضوء في الصالون"
+    expect: "TurnOn@living"
+    kind: execute
+    soft: "known gap: rejected (NoTarget)"
+  - text: "شغّل الضوء في الصالون"
+    expect: "TurnOn@living"
+    kind: execute
+    soft: "known gap: rejected (NoTarget)"
+  - text: "أطفئ الضوء في المطبخ"
+    expect: "TurnOff@kitchen"
+    kind: execute
+    soft: "known gap: rejected (NoTarget)"
+  - text: "اطفئ ضوء المطبخ"
+    expect: "TurnOff@kitchen"
+    kind: execute
+  - text: "شغل ضوء صالون"
+    expect: "TurnOn@living"
+    kind: execute
+    soft: "known gap: asks a follow-up instead of acting"
+  - text: "اضبط الضوء في الصالون على 50 بالمئة"
+    expect: "LightSet@living:brightness=50"
+    kind: execute
+    soft: "known gap: rejected (NoTarget)"
+  - text: "اضبط الضوء في الصالون على ٥٠ بالمئة"
+    expect: "LightSet@living:brightness=50"
+    kind: execute
+    soft: "known gap: rejected (NoTarget)"
+  - text: "اضبط التدفئة على 21 درجة"
+    expect: "ClimateSetTemperature:temperature=21"
+    kind: execute
+  - text: "افتح الستائر في غرفة النوم"
+    expect: "TurnOn@bedroom"
+    kind: execute
+    soft: "known gap: rejected (NoTarget)"
+  - text: "أغلق الستائر في غرفة النوم"
+    expect: "CONFIRM"
+    kind: confirm
+    soft: "known gap: rejected (NoTarget)"
+  - text: "هل الضوء في المطبخ مضاء؟"
+    expect: "GetState@kitchen"
+    kind: execute
+  - text: "كم درجة الحرارة في الصالون؟"
+    expect: "GetTemp@living"
+    kind: execute
+  - text: "اضبط مؤقت لمدة خمس دقائق"
+    expect: "StartTimer:minutes=5"
+    kind: execute
+    soft: "known gap: asks a follow-up instead of acting"
+  - text: "أضف حليب إلى قائمة التسوق"
+    expect: "ListAdd:item=حليب"
+    kind: execute
+  - text: "أوقف الموسيقى مؤقتا"
+    expect: "MediaPause"
+    kind: execute
+  - text: "اقفل الباب الأمامي"
+    expect: "CONFIRM"
+    kind: confirm
+  - text: "كم الساعة؟"
+    expect: "CHAT"
+    kind: chat

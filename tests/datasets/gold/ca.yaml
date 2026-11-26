@@ -1,0 +1,62 @@
+# Gold natural sentences for ca: hand-written, not generated from the pack lexicon.
+# Hand-authored natural speech (Q-02); not speaker-verified.
+rooms:
+  living: "Sala"
+  kitchen: "Cuina"
+  bedroom: "Dormitori"
+  hall: "Rebedor"
+devices:
+  light_living: "Llum de la sala"
+  light_kitchen: "Llum de la cuina"
+  light_bedroom: "Llum del dormitori"
+  cover_bedroom: "Persianes del dormitori"
+  climate_living: "Calefacció"
+  lock_front: "Porta d'entrada"
+  shopping_list: "Llista de la compra"
+cases:
+  - text: "Encén el llum de la sala"
+    expect: "TurnOn@living"
+    kind: execute
+  - text: "Apaga el llum de la cuina"
+    expect: "TurnOff@kitchen"
+    kind: execute
+  - text: "Engega el llum de la sala"
+    expect: "TurnOn@living"
+    kind: execute
+  - text: "Posa el llum de la sala al 50 per cent"
+    expect: "LightSet@living:brightness=50"
+    kind: execute
+  - text: "Posa la calefacció a 21 graus"
+    expect: "ClimateSetTemperature:temperature=21"
+    kind: execute
+  - text: "Obre les persianes del dormitori"
+    expect: "TurnOn@bedroom"
+    kind: execute
+  - text: "Tanca les persianes del dormitori"
+    expect: "CONFIRM"
+    kind: confirm
+  - text: "Està encès el llum de la cuina?"
+    expect: "GetState@kitchen"
+    kind: execute
+  - text: "Quina temperatura fa a la sala?"
+    expect: "GetTemp@living"
+    kind: execute
+  - text: "Posa un temporitzador de cinc minuts"
+    expect: "StartTimer:minutes=5"
+    kind: execute
+    soft: "known gap: resolves as HassStartTimer"
+  - text: "Afegeix llet a la llista de la compra"
+    expect: "ListAdd:item=llet"
+    kind: execute
+  - text: "Posa la música en pausa"
+    expect: "MediaPause"
+    kind: execute
+  - text: "Encén el llum de la sala i apaga el llum de la cuina"
+    expect: "TurnOn@living+TurnOff@kitchen"
+    kind: execute
+  - text: "Tanca amb clau la porta d'entrada"
+    expect: "CONFIRM"
+    kind: confirm
+  - text: "Quina hora és?"
+    expect: "CHAT"
+    kind: chat

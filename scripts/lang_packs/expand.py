@@ -6,6 +6,7 @@ from lang_packs.answers import answers_for
 from lang_packs.calendar_lex import calendar_for
 from lang_packs.extras import pack_extras
 from lang_packs.native_apply import apply_native, is_script_pack
+from lang_packs.natural_words import merge_natural_words
 from lang_packs.news_lex import apply_news
 from lang_packs.numbers_grammar import expand_number_rows, number_style_for
 from lang_packs.pack_fixups import ensure_action_speech, merge_household_words, resolve_colors, scrub_chat
@@ -26,6 +27,7 @@ def expand(core: dict) -> dict:
     w = core["w"]
     for key, val in pack_extras(core["code"]).items():
         w.setdefault(key, val)
+    merge_natural_words(core["code"], w)
     greets = merge_household_words(core["code"], w)
     apply_to_words(core["code"], w)
     cal = calendar_for(core["code"])
@@ -130,6 +132,8 @@ def expand(core: dict) -> dict:
         verbs.append((word, "Next"))
     for word in w.get("pause", []):
         verbs.append((word, "Pause"))
+    for word in w.get("switch_verbs", []):
+        verbs.append((word, "Switch"))
     verbs.extend(core.get("extra_verbs", []))
 
     domain = []

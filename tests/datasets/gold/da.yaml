@@ -1,0 +1,69 @@
+# Gold natural sentences for da: hand-written, not generated from the pack lexicon.
+# source: plan evidence natural.py (Q-02)
+rooms:
+  living: "Stue"
+  kitchen: "Køkken"
+  bedroom: "Soveværelse"
+  hall: "Gang"
+devices:
+  light_living: "Stue lys"
+  light_kitchen: "Køkken lys"
+  light_bedroom: "Soveværelse lys"
+  cover_bedroom: "Gardiner soveværelse"
+  climate_living: "Varme"
+  lock_front: "Hoveddør"
+  shopping_list: "Indkøbsliste"
+cases:
+  - text: "Tænd lyset i stuen"
+    expect: "TurnOn@living"
+    kind: execute
+    soft: "known gap: asks a follow-up instead of acting"
+  - text: "Sluk lyset i køkkenet"
+    expect: "TurnOff@kitchen"
+    kind: execute
+    soft: "known gap: asks a follow-up instead of acting"
+  - text: "tænd lys stue"
+    expect: "TurnOn@living"
+    kind: execute
+  - text: "Sæt lyset i stuen til 50 procent"
+    expect: "LightSet@living:brightness=50"
+    kind: execute
+    soft: "known gap: rejected (NoAction)"
+  - text: "Sæt lyset i stuen til femogtyve procent"
+    expect: "LightSet@living:brightness=25"
+    kind: execute
+    soft: "known gap: rejected (NoAction)"
+  - text: "Sæt varmen til 21 grader"
+    expect: "ClimateSetTemperature:temperature=21"
+    kind: execute
+    soft: "known gap: rejected (NoAction)"
+  - text: "Åbn gardinerne i soveværelset"
+    expect: "TurnOn@bedroom"
+    kind: execute
+    soft: "known gap: rejected (NoAction)"
+  - text: "Luk gardinerne i soveværelset"
+    expect: "CONFIRM"
+    kind: confirm
+    soft: "known gap: rejected (NoTarget)"
+  - text: "Er lyset i køkkenet tændt?"
+    expect: "GetState@kitchen"
+    kind: execute
+    soft: "known gap: rejected (NoAction)"
+  - text: "Hvad er temperaturen i stuen?"
+    expect: "GetTemp@living"
+    kind: execute
+  - text: "Sæt en timer på fem minutter"
+    expect: "StartTimer:minutes=5"
+    kind: execute
+  - text: "Tilføj mælk til indkøbslisten"
+    expect: "ListAdd:item=mælk"
+    kind: execute
+  - text: "Sæt musikken på pause"
+    expect: "MediaPause"
+    kind: execute
+  - text: "Lås hoveddøren"
+    expect: "CONFIRM"
+    kind: confirm
+  - text: "Hvad er klokken?"
+    expect: "CHAT"
+    kind: chat

@@ -47,12 +47,16 @@ verbs:
   - Pause
 - - play
   - Play
+- - pozastav
+  - Pause
 - - pridej
   - Add
 - - procent
   - Percent
 - - pust
   - Play
+- - rozsvit
+  - 'On'
 - - ruzova
   - Color
 - - scena
@@ -85,6 +89,8 @@ verbs:
   - Close
 - - zelena
   - Color
+- - zhasni
+  - 'Off'
 - - zluta
   - Color
 - - zpet
@@ -96,7 +102,9 @@ talk:
   - na
   action_keep:
   - zapni
+  - rozsviť
   - vypni
+  - zhasni
   - otevri
   - zavri
   conjunctions:

@@ -1,0 +1,64 @@
+# Gold natural sentences for lb: hand-written, not generated from the pack lexicon.
+# Hand-authored natural speech (Q-02); not speaker-verified.
+rooms:
+  living: "Wunnzëmmer"
+  kitchen: "Kichen"
+  bedroom: "Schlofzëmmer"
+  hall: "Gank"
+devices:
+  light_living: "Wunnzëmmer Luucht"
+  light_kitchen: "Kichen Luucht"
+  light_bedroom: "Schlofzëmmer Luucht"
+  cover_bedroom: "Schlofzëmmer Rolllueden"
+  climate_living: "Heizung"
+  lock_front: "Haustier"
+  shopping_list: "Akafslëscht"
+cases:
+  - text: "Maach d'Luucht am Wunnzëmmer un"
+    expect: "TurnOn@living"
+    kind: execute
+  - text: "Maach d'Luucht an der Kichen aus"
+    expect: "TurnOff@kitchen"
+    kind: execute
+    soft: "known gap: rejected (Unsupported)"
+  - text: "Schalt d'Luucht am Wunnzëmmer un"
+    expect: "TurnOn@living"
+    kind: execute
+  - text: "Stell d'Luucht am Wunnzëmmer op 50 Prozent"
+    expect: "LightSet@living:brightness=50"
+    kind: execute
+  - text: "Stell d'Heizung op 21 Grad"
+    expect: "ClimateSetTemperature:temperature=21"
+    kind: execute
+  - text: "Maach d'Rolllueden am Schlofzëmmer op"
+    expect: "TurnOn@bedroom"
+    kind: execute
+  - text: "Maach d'Rolllueden am Schlofzëmmer zou"
+    expect: "CONFIRM"
+    kind: confirm
+  - text: "Ass d'Luucht an der Kichen un?"
+    expect: "GetState@kitchen"
+    kind: execute
+  - text: "Wéi waarm ass et am Wunnzëmmer?"
+    expect: "GetTemp@living"
+    kind: execute
+  - text: "Stell en Timer op fënnef Minutten"
+    expect: "StartTimer:minutes=5"
+    kind: execute
+  - text: "Setz Mëllech op d'Akafslëscht"
+    expect: "ListAdd:item=Mëllech"
+    kind: execute
+  - text: "Pauséier d'Musek"
+    expect: "MediaPause"
+    kind: execute
+  - text: "Maach d'Luucht am Wunnzëmmer un an d'Luucht an der Kichen aus"
+    expect: "TurnOn@living+TurnOff@kitchen"
+    kind: execute
+    soft: "known gap: rejected (Unsupported)"
+  - text: "Spär d'Haustier of"
+    expect: "CONFIRM"
+    kind: confirm
+  - text: "Wéi spéit ass et?"
+    expect: "CHAT"
+    kind: chat
+    soft: "known gap: rejected (NoAction)"

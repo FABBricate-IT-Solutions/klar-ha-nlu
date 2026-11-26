@@ -1,0 +1,64 @@
+# Gold natural sentences for sw: hand-written, not generated from the pack lexicon.
+# Hand-authored natural speech (Q-02); not speaker-verified.
+rooms:
+  living: "Sebule"
+  kitchen: "Jikoni"
+  bedroom: "Chumba cha kulala"
+  hall: "Ukumbi"
+devices:
+  light_living: "Taa ya sebuleni"
+  light_kitchen: "Taa ya jikoni"
+  light_bedroom: "Taa ya chumba cha kulala"
+  cover_bedroom: "Pazia la chumba cha kulala"
+  climate_living: "Hita"
+  lock_front: "Mlango wa mbele"
+  shopping_list: "Orodha ya ununuzi"
+cases:
+  - text: "Washa taa ya sebuleni"
+    expect: "TurnOn@living"
+    kind: execute
+    soft: "known gap: asks a follow-up instead of acting"
+  - text: "Zima taa ya jikoni"
+    expect: "TurnOff@kitchen"
+    kind: execute
+  - text: "Washa taa ya sebule"
+    expect: "TurnOn@living"
+    kind: execute
+  - text: "Weka taa ya sebuleni kuwa asilimia 50"
+    expect: "LightSet@living:brightness=50"
+    kind: execute
+    soft: "known gap: rejected (NoAction)"
+  - text: "Weka hita kuwa nyuzi 21"
+    expect: "ClimateSetTemperature:temperature=21"
+    kind: execute
+  - text: "Fungua pazia la chumba cha kulala"
+    expect: "TurnOn@bedroom"
+    kind: execute
+  - text: "Funga pazia la chumba cha kulala"
+    expect: "CONFIRM"
+    kind: confirm
+  - text: "Je, taa ya jikoni imewashwa?"
+    expect: "GetState@kitchen"
+    kind: execute
+  - text: "Joto la sebuleni ni kiasi gani?"
+    expect: "GetTemp@living"
+    kind: execute
+  - text: "Weka kipima muda cha dakika tano"
+    expect: "StartTimer:minutes=5"
+    kind: execute
+  - text: "Ongeza maziwa kwenye orodha ya ununuzi"
+    expect: "ListAdd:item=maziwa"
+    kind: execute
+  - text: "Sitisha muziki"
+    expect: "MediaPause"
+    kind: execute
+  - text: "Washa taa ya sebuleni na uzime taa ya jikoni"
+    expect: "TurnOn@living+TurnOff@kitchen"
+    kind: execute
+    soft: "known gap: asks a follow-up instead of acting"
+  - text: "Funga mlango wa mbele kwa kufuli"
+    expect: "CONFIRM"
+    kind: confirm
+  - text: "Ni saa ngapi?"
+    expect: "CHAT"
+    kind: chat

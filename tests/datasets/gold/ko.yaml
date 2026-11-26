@@ -1,0 +1,63 @@
+# Gold natural sentences for ko: hand-written, not generated from the pack lexicon.
+# source: plan evidence natural.py (Q-02)
+rooms:
+  living: "거실"
+  kitchen: "주방"
+  bedroom: "침실"
+  hall: "현관"
+devices:
+  light_living: "거실 불"
+  light_kitchen: "주방 불"
+  light_bedroom: "침실 불"
+  cover_bedroom: "침실 커튼"
+  climate_living: "난방"
+  lock_front: "현관문"
+  shopping_list: "쇼핑 목록"
+cases:
+  - text: "거실 불 켜 줘"
+    expect: "TurnOn@living"
+    kind: execute
+  - text: "거실 불 켜줘"
+    expect: "TurnOn@living"
+    kind: execute
+  - text: "주방 불 꺼 줘"
+    expect: "TurnOff@kitchen"
+    kind: execute
+  - text: "거실 불을 켜"
+    expect: "TurnOn@living"
+    kind: execute
+  - text: "거실 불을 50퍼센트로 해 줘"
+    expect: "LightSet@living:brightness=50"
+    kind: execute
+  - text: "난방을 21도로 맞춰 줘"
+    expect: "ClimateSetTemperature:temperature=21"
+    kind: execute
+  - text: "침실 커튼 열어 줘"
+    expect: "TurnOn@bedroom"
+    kind: execute
+  - text: "침실 커튼 닫아 줘"
+    expect: "CONFIRM"
+    kind: confirm
+  - text: "주방 불 켜져 있어?"
+    expect: "GetState@kitchen"
+    kind: execute
+  - text: "거실 온도 몇 도야?"
+    expect: "GetTemp@living"
+    kind: execute
+    soft: "known gap: rejected (NoTarget)"
+  - text: "5분 타이머 맞춰 줘"
+    expect: "StartTimer:minutes=5"
+    kind: execute
+  - text: "쇼핑 목록에 우유 추가해 줘"
+    expect: "ListAdd:item=우유"
+    kind: execute
+  - text: "음악 일시정지해 줘"
+    expect: "MediaPause"
+    kind: execute
+  - text: "현관문 잠가 줘"
+    expect: "CONFIRM"
+    kind: confirm
+  - text: "지금 몇 시야?"
+    expect: "CHAT"
+    kind: chat
+    soft: "known gap: rejected (NoAction)"

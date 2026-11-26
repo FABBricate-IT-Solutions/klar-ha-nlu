@@ -1,0 +1,60 @@
+# Gold natural sentences for pa: hand-written, not generated from the pack lexicon.
+# Hand-authored natural speech (Q-02); not speaker-verified.
+rooms:
+  living: "ਬੈਠਕ"
+  kitchen: "ਰਸੋਈ"
+  bedroom: "ਸੌਣ ਵਾਲਾ ਕਮਰਾ"
+  hall: "ਲਾਂਘਾ"
+devices:
+  light_living: "ਬੈਠਕ ਦੀ ਲਾਈਟ"
+  light_kitchen: "ਰਸੋਈ ਦੀ ਲਾਈਟ"
+  light_bedroom: "ਸੌਣ ਵਾਲੇ ਕਮਰੇ ਦੀ ਲਾਈਟ"
+  cover_bedroom: "ਸੌਣ ਵਾਲੇ ਕਮਰੇ ਦੇ ਪਰਦੇ"
+  climate_living: "ਹੀਟਰ"
+  lock_front: "ਮੁੱਖ ਦਰਵਾਜ਼ਾ"
+  shopping_list: "ਖਰੀਦਦਾਰੀ ਦੀ ਸੂਚੀ"
+cases:
+  - text: "ਬੈਠਕ ਦੀ ਲਾਈਟ ਚਾਲੂ ਕਰੋ"
+    expect: "TurnOn@living"
+    kind: execute
+  - text: "ਰਸੋਈ ਦੀ ਲਾਈਟ ਬੰਦ ਕਰੋ"
+    expect: "TurnOff@kitchen"
+    kind: execute
+  - text: "ਬੈਠਕ ਦੀ ਲਾਈਟ ਜਗਾਓ"
+    expect: "TurnOn@living"
+    kind: execute
+  - text: "ਬੈਠਕ ਦੀ ਲਾਈਟ 50 ਫੀਸਦੀ ਤੇ ਕਰੋ"
+    expect: "LightSet@living:brightness=50"
+    kind: execute
+  - text: "ਹੀਟਰ 21 ਡਿਗਰੀ ਤੇ ਸੈੱਟ ਕਰੋ"
+    expect: "ClimateSetTemperature:temperature=21"
+    kind: execute
+  - text: "ਸੌਣ ਵਾਲੇ ਕਮਰੇ ਦੇ ਪਰਦੇ ਖੋਲ੍ਹੋ"
+    expect: "TurnOn@bedroom"
+    kind: execute
+  - text: "ਸੌਣ ਵਾਲੇ ਕਮਰੇ ਦੇ ਪਰਦੇ ਬੰਦ ਕਰੋ"
+    expect: "CONFIRM"
+    kind: confirm
+  - text: "ਕੀ ਰਸੋਈ ਦੀ ਲਾਈਟ ਚਾਲੂ ਹੈ?"
+    expect: "GetState@kitchen"
+    kind: execute
+  - text: "ਬੈਠਕ ਦਾ ਤਾਪਮਾਨ ਕਿੰਨਾ ਹੈ?"
+    expect: "GetTemp@living"
+    kind: execute
+  - text: "ਪੰਜ ਮਿੰਟ ਦਾ ਟਾਈਮਰ ਲਗਾਓ"
+    expect: "StartTimer:minutes=5"
+    kind: execute
+    soft: "known gap: asks a follow-up instead of acting"
+  - text: "ਖਰੀਦਦਾਰੀ ਦੀ ਸੂਚੀ ਵਿੱਚ ਦੁੱਧ ਜੋੜੋ"
+    expect: "ListAdd:item=ਦੁੱਧ"
+    kind: execute
+  - text: "ਸੰਗੀਤ ਰੋਕੋ"
+    expect: "MediaPause"
+    kind: execute
+  - text: "ਮੁੱਖ ਦਰਵਾਜ਼ਾ ਲਾਕ ਕਰੋ"
+    expect: "CONFIRM"
+    kind: confirm
+  - text: "ਹੁਣ ਕਿੰਨੇ ਵੱਜੇ ਹਨ?"
+    expect: "CHAT"
+    kind: chat
+    soft: "known gap: rejected (NoAction)"

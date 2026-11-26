@@ -1,0 +1,63 @@
+# Gold natural sentences for vi: hand-written, not generated from the pack lexicon.
+# source: plan evidence natural.py (Q-02)
+rooms:
+  living: "Phòng khách"
+  kitchen: "Nhà bếp"
+  bedroom: "Phòng ngủ"
+  hall: "Lối vào"
+devices:
+  light_living: "Đèn phòng khách"
+  light_kitchen: "Đèn nhà bếp"
+  light_bedroom: "Đèn phòng ngủ"
+  cover_bedroom: "Rèm phòng ngủ"
+  climate_living: "Máy sưởi"
+  lock_front: "Cửa trước"
+  shopping_list: "Danh sách mua sắm"
+cases:
+  - text: "Bật đèn phòng khách"
+    expect: "TurnOn@living"
+    kind: execute
+  - text: "Tắt đèn nhà bếp"
+    expect: "TurnOff@kitchen"
+    kind: execute
+  - text: "bat den phong khach"
+    expect: "TurnOn@living"
+    kind: execute
+  - text: "Đặt đèn phòng khách ở mức 50 phần trăm"
+    expect: "LightSet@living:brightness=50"
+    kind: execute
+    soft: "known gap: rejected (NoTarget)"
+  - text: "Đặt máy sưởi ở 21 độ"
+    expect: "ClimateSetTemperature:temperature=21"
+    kind: execute
+  - text: "Mở rèm phòng ngủ"
+    expect: "TurnOn@bedroom"
+    kind: execute
+  - text: "Đóng rèm phòng ngủ"
+    expect: "CONFIRM"
+    kind: confirm
+  - text: "Đèn nhà bếp có đang bật không?"
+    expect: "GetState@kitchen"
+    kind: execute
+    soft: "known gap: rejected (NoAction)"
+  - text: "Nhiệt độ phòng khách là bao nhiêu?"
+    expect: "GetTemp@living"
+    kind: execute
+  - text: "Đặt hẹn giờ năm phút"
+    expect: "StartTimer:minutes=5"
+    kind: execute
+  - text: "Thêm sữa vào danh sách mua sắm"
+    expect: "ListAdd:item=sữa"
+    kind: execute
+    soft: "known gap: answered as chat"
+  - text: "Tạm dừng nhạc"
+    expect: "MediaPause"
+    kind: execute
+    soft: "known gap: rejected (NoAction)"
+  - text: "Khóa cửa trước"
+    expect: "CONFIRM"
+    kind: confirm
+  - text: "Mấy giờ rồi?"
+    expect: "CHAT"
+    kind: chat
+    soft: "known gap: rejected (NoAction)"

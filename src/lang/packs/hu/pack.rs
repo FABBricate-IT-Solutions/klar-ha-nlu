@@ -106,7 +106,7 @@ pub const PACK: LanguagePack = LanguagePack {
         chores: &["lista"],
         weak_scene: &["a", "az"],
         timer_cancel: &["oltsd"],
-        timer_pause: &["halt", "hold"],
+        timer_pause: &["halt", "hold", "szueneteltesd"],
         timer_add: &[],
         timer_remove: &["csokkent", "minus"],
         list_complete: &[],

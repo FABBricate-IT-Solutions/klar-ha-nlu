@@ -1,0 +1,63 @@
+# Gold natural sentences for et: hand-written, not generated from the pack lexicon.
+# Hand-authored natural speech (Q-02); not speaker-verified.
+rooms:
+  living: "Elutuba"
+  kitchen: "Köök"
+  bedroom: "Magamistuba"
+  hall: "Esik"
+devices:
+  light_living: "Elutoa lamp"
+  light_kitchen: "Köögi lamp"
+  light_bedroom: "Magamistoa lamp"
+  cover_bedroom: "Magamistoa rulood"
+  climate_living: "Küte"
+  lock_front: "Välisuks"
+  shopping_list: "Ostunimekiri"
+cases:
+  - text: "Lülita elutoa lamp sisse"
+    expect: "TurnOn@living"
+    kind: execute
+  - text: "Lülita köögi lamp välja"
+    expect: "TurnOff@kitchen"
+    kind: execute
+  - text: "Süüta elutoa lamp"
+    expect: "TurnOn@living"
+    kind: execute
+  - text: "Sea elutoa lamp 50 protsendile"
+    expect: "LightSet@living:brightness=50"
+    kind: execute
+  - text: "Sea küte 21 kraadile"
+    expect: "ClimateSetTemperature:temperature=21"
+    kind: execute
+  - text: "Ava magamistoa rulood"
+    expect: "TurnOn@bedroom"
+    kind: execute
+  - text: "Sulge magamistoa rulood"
+    expect: "CONFIRM"
+    kind: confirm
+  - text: "Kas köögi lamp põleb?"
+    expect: "GetState@kitchen"
+    kind: execute
+  - text: "Mis temperatuur on elutoas?"
+    expect: "GetTemp@living"
+    kind: execute
+  - text: "Pane taimer viieks minutiks"
+    expect: "StartTimer:minutes=5"
+    kind: execute
+    soft: "known gap: asks a follow-up instead of acting"
+  - text: "Lisa piim ostunimekirja"
+    expect: "ListAdd:item=piim"
+    kind: execute
+  - text: "Pane muusika pausile"
+    expect: "MediaPause"
+    kind: execute
+  - text: "Lülita elutoa lamp sisse ja köögi lamp välja"
+    expect: "TurnOn@living+TurnOff@kitchen"
+    kind: execute
+    soft: "known gap: resolves as HassTurnOn"
+  - text: "Lukusta välisuks"
+    expect: "CONFIRM"
+    kind: confirm
+  - text: "Mis kell on?"
+    expect: "CHAT"
+    kind: chat

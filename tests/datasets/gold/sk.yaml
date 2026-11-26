@@ -1,0 +1,62 @@
+# Gold natural sentences for sk: hand-written, not generated from the pack lexicon.
+# Hand-authored natural speech (Q-02); not speaker-verified.
+rooms:
+  living: "Obývačka"
+  kitchen: "Kuchyňa"
+  bedroom: "Spálňa"
+  hall: "Chodba"
+devices:
+  light_living: "Svetlo v obývačke"
+  light_kitchen: "Svetlo v kuchyni"
+  light_bedroom: "Svetlo v spálni"
+  cover_bedroom: "Žalúzie v spálni"
+  climate_living: "Kúrenie"
+  lock_front: "Vchodové dvere"
+  shopping_list: "Nákupný zoznam"
+cases:
+  - text: "Zapni svetlo v obývačke"
+    expect: "TurnOn@living"
+    kind: execute
+  - text: "Vypni svetlo v kuchyni"
+    expect: "TurnOff@kitchen"
+    kind: execute
+  - text: "Rozsviet svetlo v obývačke"
+    expect: "TurnOn@living"
+    kind: execute
+  - text: "Nastav svetlo v obývačke na 50 percent"
+    expect: "LightSet@living:brightness=50"
+    kind: execute
+  - text: "Nastav kúrenie na 21 stupňov"
+    expect: "ClimateSetTemperature:temperature=21"
+    kind: execute
+  - text: "Otvor žalúzie v spálni"
+    expect: "TurnOn@bedroom"
+    kind: execute
+  - text: "Zatvor žalúzie v spálni"
+    expect: "CONFIRM"
+    kind: confirm
+  - text: "Svieti svetlo v kuchyni?"
+    expect: "GetState@kitchen"
+    kind: execute
+  - text: "Aká je teplota v obývačke?"
+    expect: "GetTemp@living"
+    kind: execute
+  - text: "Nastav časovač na päť minút"
+    expect: "StartTimer:minutes=5"
+    kind: execute
+    soft: "known gap: asks a follow-up instead of acting"
+  - text: "Pridaj mlieko do nákupného zoznamu"
+    expect: "ListAdd:item=mlieko"
+    kind: execute
+  - text: "Pozastav hudbu"
+    expect: "MediaPause"
+    kind: execute
+  - text: "Zapni svetlo v obývačke a vypni svetlo v kuchyni"
+    expect: "TurnOn@living+TurnOff@kitchen"
+    kind: execute
+  - text: "Zamkni vchodové dvere"
+    expect: "CONFIRM"
+    kind: confirm
+  - text: "Koľko je hodín?"
+    expect: "CHAT"
+    kind: chat

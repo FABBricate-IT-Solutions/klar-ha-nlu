@@ -31,6 +31,7 @@ pub(super) const VERBS: &[(&str, VerbKind)] = &[
     ("oranje", VerbKind::Color),
     ("paars", VerbKind::Color),
     ("pauze", VerbKind::Pause),
+    ("pauzeer", VerbKind::Pause),
     ("play", VerbKind::Play),
     ("procent", VerbKind::Percent),
     ("rood", VerbKind::Color),

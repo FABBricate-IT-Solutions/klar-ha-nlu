@@ -1,0 +1,82 @@
+# Gold natural sentences for nb: hand-written, not generated from the pack lexicon.
+# source: plan evidence natural.py (Q-02)
+rooms:
+  living: "Stue"
+  kitchen: "Kjøkken"
+  bedroom: "Soverom"
+  hall: "Gang"
+devices:
+  light_living: "Stue lys"
+  light_kitchen: "Kjøkken lys"
+  light_bedroom: "Soverom lys"
+  cover_bedroom: "Gardiner soverom"
+  climate_living: "Varme"
+  lock_front: "Ytterdør"
+  shopping_list: "Handleliste"
+cases:
+  - text: "Slå på lyset i stua"
+    expect: "TurnOn@living"
+    kind: execute
+    soft: "known gap: asks a follow-up instead of acting"
+  - text: "Slå av lyset på kjøkkenet"
+    expect: "TurnOff@kitchen"
+    kind: execute
+    soft: "known gap: asks a follow-up instead of acting"
+  - text: "Skru på lyset i stua"
+    expect: "TurnOn@living"
+    kind: execute
+    soft: "known gap: asks a follow-up instead of acting"
+  - text: "Skru av lyset på kjøkkenet"
+    expect: "TurnOff@kitchen"
+    kind: execute
+    soft: "known gap: asks a follow-up instead of acting"
+  - text: "slå på lys stue"
+    expect: "TurnOn@living"
+    kind: execute
+    soft: "known gap: resolves as HassGetState (read only)"
+  - text: "skru av lys kjøkken"
+    expect: "TurnOff@kitchen"
+    kind: execute
+    soft: "known gap: resolves as HassGetState (read only)"
+  - text: "Sett lyset i stua til 50 prosent"
+    expect: "LightSet@living:brightness=50"
+    kind: execute
+    soft: "known gap: rejected (NoAction)"
+  - text: "Sett lyset i stua til tjuefem prosent"
+    expect: "LightSet@living:brightness=25"
+    kind: execute
+    soft: "known gap: rejected (NoAction)"
+  - text: "Sett varmen til 21 grader"
+    expect: "ClimateSetTemperature:temperature=21"
+    kind: execute
+    soft: "known gap: rejected (NoAction)"
+  - text: "Åpne gardinene på soverommet"
+    expect: "TurnOn@bedroom"
+    kind: execute
+    soft: "known gap: asks a follow-up instead of acting"
+  - text: "Lukk gardinene på soverommet"
+    expect: "CONFIRM"
+    kind: confirm
+    soft: "known gap: asks a follow-up instead of acting"
+  - text: "Er lyset på kjøkkenet på?"
+    expect: "GetState@kitchen"
+    kind: execute
+    soft: "known gap: asks a follow-up instead of acting"
+  - text: "Hva er temperaturen i stua?"
+    expect: "GetTemp@living"
+    kind: execute
+  - text: "Sett en timer på fem minutter"
+    expect: "StartTimer:minutes=5"
+    kind: execute
+  - text: "Legg til melk på handlelisten"
+    expect: "ListAdd:item=melk"
+    kind: execute
+  - text: "Sett musikken på pause"
+    expect: "MediaPause"
+    kind: execute
+  - text: "Lås ytterdøren"
+    expect: "CONFIRM"
+    kind: confirm
+  - text: "Hva er klokka?"
+    expect: "CHAT"
+    kind: chat

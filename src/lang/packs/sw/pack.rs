@@ -106,7 +106,7 @@ pub const PACK: LanguagePack = LanguagePack {
         chores: &["orodha"],
         weak_scene: &["katika", "ya"],
         timer_cancel: &["zima"],
-        timer_pause: &["halt", "hold"],
+        timer_pause: &["halt", "hold", "sitisha"],
         timer_add: &[],
         timer_remove: &["minus", "punguza"],
         list_complete: &[],

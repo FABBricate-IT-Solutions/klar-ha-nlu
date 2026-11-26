@@ -18,6 +18,8 @@ verbs:
   - Color
 - - brava
   - Lock
+- - dodaj
+  - Add
 - - green
   - Color
 - - iskljuci
@@ -32,6 +34,8 @@ verbs:
   - Color
 - - otvori
   - Open
+- - pauziraj
+  - Pause
 - - pink
   - Color
 - - play
@@ -64,7 +68,11 @@ verbs:
   - Dim
 - - toplobelo
   - Color
+- - ugasi
+  - 'Off'
 - - ukljuci
+  - 'On'
+- - upali
   - 'On'
 - - usisivac
   - VacuumNoun
@@ -74,6 +82,8 @@ verbs:
   - Color
 - - yellow
   - Color
+- - zakljucaj
+  - Lock
 - - zatvori
   - Close
 talk:
@@ -83,7 +93,9 @@ talk:
   - to
   action_keep:
   - ukljuci
+  - upali
   - iskljuci
+  - ugasi
   - otvori
   - zatvori
   conjunctions:

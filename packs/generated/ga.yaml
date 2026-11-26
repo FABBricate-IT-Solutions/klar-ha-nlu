@@ -41,6 +41,8 @@ verbs:
   - Color
 - - laghdaigh
   - Lower
+- - las
+  - 'On'
 - - liosta
   - List
 - - meanach
@@ -67,8 +69,12 @@ verbs:
   - Color
 - - seinn
   - Play
+- - siul
+  - 'On'
 - - socraigh
   - Set
+- - sos
+  - Pause
 - - staisiun
   - Dock
 - - white
@@ -81,6 +87,7 @@ talk:
   - sa
   action_keep:
   - cas
+  - las
   - much
   - oscail
   - dun
@@ -89,6 +96,7 @@ talk:
   - then
   particles:
   - cas
+  - las
   - much
   affirm:
   - ta

@@ -30,6 +30,8 @@ verbs:
   - Play
 - - clo
   - Lock
+- - cloi
+  - Lock
 - - diffodd
   - 'Off'
 - - golygfa
@@ -48,6 +50,8 @@ verbs:
   - Lower
 - - next
   - Next
+- - oedi
+  - Pause
 - - orange
   - Color
 - - pink
@@ -74,12 +78,15 @@ verbs:
   - Percent
 - - yellow
   - Color
+- - ymlaen
+  - 'On'
 talk:
   fillers:
   - y
   - yn
   action_keep:
   - tro
+  - ymlaen
   - diffodd
   - agor
   - cau

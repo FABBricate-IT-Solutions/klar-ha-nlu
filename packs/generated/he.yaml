@@ -21,8 +21,12 @@ verbs:
   - Dock
 - - הדלק
   - 'On'
+- - הוסף
+  - Add
 - - הפחת
   - Lower
+- - השהה
+  - Pause
 - - ורוד
   - Color
 - - טיימר
@@ -51,6 +55,8 @@ verbs:
   - Lock
 - - נגן
   - Play
+- - נעל
+  - Lock
 - - סגול
   - Color
 - - סגור
@@ -71,8 +77,12 @@ verbs:
   - Color
 - - שים
   - Set
+- - תדליק
+  - 'On'
 - - תחנה
   - Dock
+- - תכבה
+  - 'Off'
 talk:
   fillers:
   - את
@@ -80,7 +90,9 @@ talk:
   - של
   action_keep:
   - הדלק
+  - תדליק
   - כבה
+  - תכבה
   - פתח
   - סגור
   conjunctions:
@@ -89,6 +101,7 @@ talk:
   particles:
   - הדלק
   - כבה
+  - תכבה
   affirm:
   - כן
   - אוקיי
@@ -119,8 +132,12 @@ nouns:
   light_plural: []
   cover_nouns:
   - וילון
+  - תריס
+  - תריסים
+  - וילונות
   curtain_nouns:
   - וילון
+  - תריס
   fan_nouns:
   - מאוורר
   climate_nouns:

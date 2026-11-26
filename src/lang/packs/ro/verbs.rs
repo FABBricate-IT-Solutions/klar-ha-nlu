@@ -19,6 +19,7 @@ pub(super) const VERBS: &[(&str, VerbKind)] = &[
     ("galben", VerbKind::Color),
     ("gata", VerbKind::ListComplete),
     ("inchide", VerbKind::Close),
+    ("incuie", VerbKind::Lock),
     ("lasuta", VerbKind::Percent),
     ("lista", VerbKind::List),
     ("maiintunecat", VerbKind::Dim),

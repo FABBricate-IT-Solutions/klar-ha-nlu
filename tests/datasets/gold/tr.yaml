@@ -1,0 +1,68 @@
+# Gold natural sentences for tr: hand-written, not generated from the pack lexicon.
+# source: plan evidence natural.py (Q-02)
+rooms:
+  living: "Oturma odası"
+  kitchen: "Mutfak"
+  bedroom: "Yatak odası"
+  hall: "Antre"
+devices:
+  light_living: "Oturma odası ışığı"
+  light_kitchen: "Mutfak ışığı"
+  light_bedroom: "Yatak odası ışığı"
+  cover_bedroom: "Yatak odası perdesi"
+  climate_living: "Isıtma"
+  lock_front: "Ön kapı"
+  shopping_list: "Alışveriş listesi"
+cases:
+  - text: "Oturma odasının ışığını aç"
+    expect: "TurnOn@living"
+    kind: execute
+  - text: "Mutfak ışığını kapat"
+    expect: "TurnOff@kitchen"
+    kind: execute
+  - text: "Mutfak ışığını söndür"
+    expect: "TurnOff@kitchen"
+    kind: execute
+  - text: "Işığı yak"
+    expect: "TurnOn"
+    kind: execute
+    soft: "known gap: asks a follow-up instead of acting"
+  - text: "İlk olarak mutfak ışığını kapat"
+    expect: "TurnOff@kitchen"
+    kind: execute
+  - text: "Oturma odasının ışığını yüzde 50 yap"
+    expect: "LightSet@living:brightness=50"
+    kind: execute
+  - text: "Isıtmayı 21 dereceye ayarla"
+    expect: "ClimateSetTemperature:temperature=21"
+    kind: execute
+    soft: "known gap: rejected (NoAction)"
+  - text: "Yatak odasındaki perdeleri aç"
+    expect: "TurnOn@bedroom"
+    kind: execute
+    soft: "known gap: rejected (NoTarget)"
+  - text: "Yatak odasındaki perdeleri kapat"
+    expect: "CONFIRM"
+    kind: confirm
+    soft: "known gap: rejected (NoTarget)"
+  - text: "Mutfak ışığı açık mı?"
+    expect: "GetState@kitchen"
+    kind: execute
+  - text: "Oturma odasında sıcaklık kaç derece?"
+    expect: "GetTemp@living"
+    kind: execute
+  - text: "Beş dakikalık bir zamanlayıcı kur"
+    expect: "StartTimer:minutes=5"
+    kind: execute
+  - text: "Alışveriş listesine süt ekle"
+    expect: "ListAdd:item=süt"
+    kind: execute
+  - text: "Müziği duraklat"
+    expect: "MediaPause"
+    kind: execute
+  - text: "Ön kapıyı kilitle"
+    expect: "CONFIRM"
+    kind: confirm
+  - text: "Saat kaç?"
+    expect: "CHAT"
+    kind: chat

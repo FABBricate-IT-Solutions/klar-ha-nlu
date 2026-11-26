@@ -1,0 +1,60 @@
+# Gold natural sentences for ne: hand-written, not generated from the pack lexicon.
+# Hand-authored natural speech (Q-02); not speaker-verified.
+rooms:
+  living: "बैठक कोठा"
+  kitchen: "भान्सा"
+  bedroom: "सुत्ने कोठा"
+  hall: "करिडोर"
+devices:
+  light_living: "बैठक कोठाको बत्ती"
+  light_kitchen: "भान्साको बत्ती"
+  light_bedroom: "सुत्ने कोठाको बत्ती"
+  cover_bedroom: "सुत्ने कोठाको पर्दा"
+  climate_living: "हिटर"
+  lock_front: "मुख्य ढोका"
+  shopping_list: "किनमेल सूची"
+cases:
+  - text: "बैठक कोठाको बत्ती बाल"
+    expect: "TurnOn@living"
+    kind: execute
+  - text: "भान्साको बत्ती निभाऊ"
+    expect: "TurnOff@kitchen"
+    kind: execute
+  - text: "बैठक कोठाको बत्ती अन गर"
+    expect: "TurnOn@living"
+    kind: execute
+  - text: "बैठक कोठाको बत्ती 50 प्रतिशतमा सेट गर"
+    expect: "LightSet@living:brightness=50"
+    kind: execute
+  - text: "हिटर 21 डिग्रीमा सेट गर"
+    expect: "ClimateSetTemperature:temperature=21"
+    kind: execute
+  - text: "सुत्ने कोठाको पर्दा खोल"
+    expect: "TurnOn@bedroom"
+    kind: execute
+  - text: "सुत्ने कोठाको पर्दा बन्द गर"
+    expect: "CONFIRM"
+    kind: confirm
+  - text: "के भान्साको बत्ती बलेको छ?"
+    expect: "GetState@kitchen"
+    kind: execute
+  - text: "बैठक कोठाको तापक्रम कति छ?"
+    expect: "GetTemp@living"
+    kind: execute
+  - text: "पाँच मिनेटको टाइमर लगाऊ"
+    expect: "StartTimer:minutes=5"
+    kind: execute
+    soft: "known gap: asks a follow-up instead of acting"
+  - text: "किनमेल सूचीमा दूध थप"
+    expect: "ListAdd:item=दूध"
+    kind: execute
+  - text: "संगीत रोक"
+    expect: "MediaPause"
+    kind: execute
+  - text: "मुख्य ढोका ताला लगाऊ"
+    expect: "CONFIRM"
+    kind: confirm
+  - text: "अहिले कति बज्यो?"
+    expect: "CHAT"
+    kind: chat
+    soft: "known gap: rejected (NoAction)"

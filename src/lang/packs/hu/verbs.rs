@@ -36,6 +36,7 @@ pub(super) const VERBS: &[(&str, VerbKind)] = &[
     ("red", VerbKind::Color),
     ("sotetebb", VerbKind::Dim),
     ("szazalek", VerbKind::Percent),
+    ("szueneteltesd", VerbKind::Pause),
     ("van", VerbKind::Query),
     ("vannak", VerbKind::Query),
     ("ventilator", VerbKind::FanNoun),

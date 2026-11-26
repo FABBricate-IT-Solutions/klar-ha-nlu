@@ -75,7 +75,7 @@ pub const PACK: LanguagePack = LanguagePack {
         singular_lamp_block: &["batti", "बत्ती"],
     },
     cues: Cues {
-        power_words: &["bujhao", "jalao", "चालू", "जलाओ", "बंद", "बुझाओ"],
+        power_words: &["bujhao", "jalao", "चालू", "जलाओ", "बंद", "बुझा", "बुझाओ"],
         command_hedges: &[],
         skip_light: &["bartan", "dryer", "pankha", "pc", "tv", "upakaran", "washing", "टीवी", "पंखा"],
         laundry_area: &["dhobi"],
@@ -97,7 +97,7 @@ pub const PACK: LanguagePack = LanguagePack {
         replay_on_off: &["जलाओ", "बुझाओ"],
         replay_off: &["बुझाओ"],
         sensor_words: &["sensor"],
-        lock_verbs: &["tala", "ताला"],
+        lock_verbs: &["tala", "ताला", "लॉक"],
         entry_words: &["pravesh"],
         oven: &["oven"],
         laundry_timer: &["dhobi"],

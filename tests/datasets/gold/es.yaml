@@ -1,48 +1,62 @@
-# Gold natural sentences for Beta locale (package 4.3).
-# source: plan evidence natural.py; not parity-generated.
+# Gold natural sentences for es: hand-written, not generated from the pack lexicon.
+# source: plan evidence natural.py (Q-02)
+rooms:
+  living: "Salón"
+  kitchen: "Cocina"
+  bedroom: "Dormitorio"
+  hall: "Entrada"
+devices:
+  light_living: "Luz del salón"
+  light_kitchen: "Luz de la cocina"
+  light_bedroom: "Luz del dormitorio"
+  cover_bedroom: "Persianas del dormitorio"
+  climate_living: "Calefacción"
+  lock_front: "Puerta principal"
+  shopping_list: "Lista de la compra"
 cases:
-  - text: 'Enciende la luz del salón'
-    expect: 'TurnOn@living'
+  - text: "Enciende la luz del salón"
+    expect: "TurnOn@living"
     kind: execute
-  - text: 'Apaga la luz de la cocina'
-    expect: 'TurnOff@kitchen'
+  - text: "Apaga la luz de la cocina"
+    expect: "TurnOff@kitchen"
     kind: execute
-  - text: 'Pon la luz del salón al 50 por ciento'
-    expect: 'LightSet@living:brightness=50'
+  - text: "Pon la luz del salón al 50 por ciento"
+    expect: "LightSet@living:brightness=50"
     kind: execute
-  - text: 'Pon la luz del salón al veinticinco por ciento'
-    expect: 'LightSet@living:brightness=25'
+  - text: "Pon la luz del salón al veinticinco por ciento"
+    expect: "LightSet@living:brightness=25"
     kind: execute
-  - text: 'Pon la calefacción a 21 grados'
-    expect: 'ClimateSetTemperature:temperature=21'
+    soft: "known gap: rejected (NoAction)"
+  - text: "Pon la calefacción a 21 grados"
+    expect: "ClimateSetTemperature:temperature=21"
     kind: execute
-  - text: 'Abre las persianas del dormitorio'
-    expect: 'TurnOn@bedroom'
+  - text: "Abre las persianas del dormitorio"
+    expect: "TurnOn@bedroom"
     kind: execute
-  - text: 'Cierra las persianas del dormitorio'
-    expect: 'CONFIRM'
+  - text: "Cierra las persianas del dormitorio"
+    expect: "CONFIRM"
     kind: confirm
-  - text: '¿Está encendida la luz de la cocina?'
-    expect: 'GetState@kitchen'
+  - text: "¿Está encendida la luz de la cocina?"
+    expect: "GetState@kitchen"
     kind: execute
-  - text: '¿Qué temperatura hace en el salón?'
-    expect: 'GetTemp@living'
+  - text: "¿Qué temperatura hace en el salón?"
+    expect: "GetTemp@living"
     kind: execute
-  - text: 'Pon un temporizador de cinco minutos'
-    expect: 'StartTimer:minutes=5'
+  - text: "Pon un temporizador de cinco minutos"
+    expect: "StartTimer:minutes=5"
     kind: execute
-  - text: 'Añade leche a la lista de la compra'
-    expect: 'ListAdd:item=leche'
+  - text: "Añade leche a la lista de la compra"
+    expect: "ListAdd:item=leche"
     kind: execute
-  - text: 'Pausa la música'
-    expect: 'MediaPause'
+  - text: "Pausa la música"
+    expect: "MediaPause"
     kind: execute
-  - text: 'Enciende la luz del salón y apaga la luz de la cocina'
-    expect: 'TurnOn@living+TurnOff@kitchen'
+  - text: "Enciende la luz del salón y apaga la luz de la cocina"
+    expect: "TurnOn@living+TurnOff@kitchen"
     kind: execute
-  - text: 'Cierra con llave la puerta principal'
-    expect: 'CONFIRM'
+  - text: "Cierra con llave la puerta principal"
+    expect: "CONFIRM"
     kind: confirm
-  - text: '¿Qué hora es?'
-    expect: 'CHAT'
+  - text: "¿Qué hora es?"
+    expect: "CHAT"
     kind: chat

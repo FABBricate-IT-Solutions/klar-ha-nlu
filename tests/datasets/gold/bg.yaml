@@ -1,0 +1,64 @@
+# Gold natural sentences for bg: hand-written, not generated from the pack lexicon.
+# Hand-authored natural speech (Q-02); not speaker-verified.
+rooms:
+  living: "Хол"
+  kitchen: "Кухня"
+  bedroom: "Спалня"
+  hall: "Антре"
+devices:
+  light_living: "Лампа в хола"
+  light_kitchen: "Лампа в кухнята"
+  light_bedroom: "Лампа в спалнята"
+  cover_bedroom: "Щори в спалнята"
+  climate_living: "Отопление"
+  lock_front: "Входна врата"
+  shopping_list: "Списък за пазаруване"
+cases:
+  - text: "Включи лампата в хола"
+    expect: "TurnOn@living"
+    kind: execute
+  - text: "Изключи лампата в кухнята"
+    expect: "TurnOff@kitchen"
+    kind: execute
+  - text: "Светни лампата в хола"
+    expect: "TurnOn@living"
+    kind: execute
+  - text: "Задай лампата в хола на 50 процента"
+    expect: "LightSet@living:brightness=50"
+    kind: execute
+  - text: "Задай отоплението на 21 градуса"
+    expect: "ClimateSetTemperature:temperature=21"
+    kind: execute
+    soft: "known gap: rejected (NoAction)"
+  - text: "Отвори щорите в спалнята"
+    expect: "TurnOn@bedroom"
+    kind: execute
+    soft: "known gap: rejected (NoTarget)"
+  - text: "Затвори щорите в спалнята"
+    expect: "CONFIRM"
+    kind: confirm
+    soft: "known gap: rejected (NoTarget)"
+  - text: "Включена ли е лампата в кухнята?"
+    expect: "GetState@kitchen"
+    kind: execute
+  - text: "Каква е температурата в хола?"
+    expect: "GetTemp@living"
+    kind: execute
+  - text: "Задай таймер за пет минути"
+    expect: "StartTimer:minutes=5"
+    kind: execute
+  - text: "Добави мляко към списъка за пазаруване"
+    expect: "ListAdd:item=мляко"
+    kind: execute
+  - text: "Паузирай музиката"
+    expect: "MediaPause"
+    kind: execute
+  - text: "Включи лампата в хола и изключи лампата в кухнята"
+    expect: "TurnOn@living+TurnOff@kitchen"
+    kind: execute
+  - text: "Заключи входната врата"
+    expect: "CONFIRM"
+    kind: confirm
+  - text: "Колко е часът?"
+    expect: "CHAT"
+    kind: chat
