@@ -254,10 +254,7 @@ impl Catalog {
         for &(w, n) in p.maps.numbers {
             self.numbers.insert(w, n);
             // Prefer a single-token surface when several forms share a value (R-09 probes).
-            let replace = self
-                .numbers_by_value
-                .get(&n)
-                .is_none_or(|prev| prev.contains(' ') && !w.contains(' '));
+            let replace = self.numbers_by_value.get(&n).is_none_or(|prev| prev.contains(' ') && !w.contains(' '));
             if replace {
                 self.numbers_by_value.insert(n, w);
             }

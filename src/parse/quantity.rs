@@ -163,9 +163,10 @@ pub fn absolute_temperature(tokens: &[String]) -> Option<f64> {
     }
     // Prefer a digit/decimal token so a fraction word earlier in the clause cannot win
     // over "… cuarto 23" / "… quarto 21" style set-points.
-    if let Some(value) = extract_quantities(tokens).into_iter().find_map(|q| {
-        tokens.get(q.start).and_then(|token| parse_numeric_token(token)).filter(|_| q.end == q.start + 1)
-    }) {
+    if let Some(value) = extract_quantities(tokens)
+        .into_iter()
+        .find_map(|q| tokens.get(q.start).and_then(|token| parse_numeric_token(token)).filter(|_| q.end == q.start + 1))
+    {
         return Some(value);
     }
     first_quantity(tokens).map(|q| q.value).or_else(|| first_number(tokens).map(f64::from))

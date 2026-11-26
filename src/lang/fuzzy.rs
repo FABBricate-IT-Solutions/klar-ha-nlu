@@ -78,7 +78,7 @@ impl Catalog {
         };
         self.typo_surfaces.iter().any(|candidate| {
             let c_len = candidate.chars().count();
-            c_len.abs_diff(len) <= 2 && candidate.chars().next() == Some(first) && levenshtein(token, candidate) <= 2
+            c_len.abs_diff(len) <= 2 && candidate.starts_with(first) && levenshtein(token, candidate) <= 2
         })
     }
 
@@ -100,7 +100,7 @@ impl Catalog {
             *value >= 20
                 && !word.contains(' ')
                 && word.chars().count().abs_diff(len) <= 2
-                && word.chars().next() == Some(first)
+                && word.starts_with(first)
                 && levenshtein(tail, word) <= 2
         })
     }

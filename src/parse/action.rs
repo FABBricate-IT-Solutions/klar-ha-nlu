@@ -335,7 +335,17 @@ pub(crate) fn has_climate_noun(tokens: &[String]) -> bool {
     if cat.any(tokens, cat.climate_nouns()) {
         return true;
     }
-    tokens.iter().any(|token| matches!(token.as_str(), "ac" | "klima" | "klimaanlage") && cat.verb(token) != Some(VerbKind::Open))
+    tokens.iter().any(|token| match token.as_str() {
+        "klima" | "klimaanlage" => true,
+        // Turkish "ac" is also Open ("aç"). Keep bare open commands, but the English
+        // loanword AC still counts when a set-point is spoken ("ayarla ac … 21").
+        "ac" => {
+            cat.verb(token) != Some(VerbKind::Open)
+                || (crate::parse::numbers::first_number(tokens).is_some()
+                    && tokens.iter().any(|other| cat.verb(other) == Some(VerbKind::Set)))
+        }
+        _ => false,
+    })
 }
 
 pub(super) fn has_power_word(tokens: &[String]) -> bool {
@@ -345,4 +355,19 @@ pub(super) fn has_power_word(tokens: &[String]) -> bool {
 pub(super) fn has_lock_or_door(tokens: &[String]) -> bool {
     let cat = &catalog();
     cat.any(tokens, cat.lock_nouns()) || cat.any(tokens, cat.door_nouns())
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+    use crate::lang::bind;
+    use crate::parse::normalize::tokenize;
+
+    #[test]
+    fn turkish_set_ac_number_is_climate_not_open() {
+        let _tr = bind(&["tr".into()]);
+        let tokens = tokenize("ayarla ac yatakodasi 21");
+        assert!(has_climate_noun(&tokens), "{tokens:?}");
+        assert_eq!(set_by_number(&tokens), Action::SetTemp, "{tokens:?}");
+    }
 }

@@ -114,8 +114,11 @@ fn collect_scored(tokens: &[String], home: &HomeGraph, domain: Option<&str>, fuz
                 return scored;
             }
         }
-        // Indexed home with no seeded rows: skip the O(entities×tokens) walk (R-08/R-09).
-        return Vec::new();
+        // R-08: long unknown-token junk must not score every entity. Short utterances still
+        // fall through so named devices (TR "ac" → Klimaanlage) can win without an index hit.
+        if tokens.len() >= 64 {
+            return Vec::new();
+        }
     }
     home.entities
         .iter()
