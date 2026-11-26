@@ -1,15 +1,15 @@
-import { useEffect, useState } from "react";
+import { lazy, Suspense, useEffect, useState } from "react";
 import { api, download, getToken, setToken, type LanguagePack } from "../api";
 import { Guide } from "../components/Guide";
 import { LlmSettingsCard } from "../components/LlmSettingsCard";
 import { SettingsBackupCard } from "../components/SettingsBackupCard";
-import { DoctorCard } from "../components/DoctorCard";
 import {
   SettingsEngineSection,
   SettingsJournalSection,
   SettingsLanguagesSection,
   SettingsVoiceSection,
 } from "../components/SettingsSections";
+import { doctorCopy } from "../doctorCopy";
 import { type Messages } from "../i18n";
 import { sameJson, syncDraftWhenClean } from "../lib/resourceStore";
 import { toastSaved, toastSaveFailed } from "../saveToast";
@@ -27,12 +27,17 @@ import {
 } from "@/components/ui/alert-dialog";
 import { Button } from "@/components/ui/button";
 
+const DoctorCard = lazy(async () => {
+  const mod = await import("../components/DoctorCard");
+  return { default: mod.DoctorCard };
+});
+
 function readTheme(theme?: Theme): Theme {
   if (theme === "light" || theme === "dark") return theme;
   return document.documentElement.dataset.theme === "light" ? "light" : "dark";
 }
 
-function settingsLabel(t: Messages, view: SettingsView): string {
+function settingsLabel(t: Messages, locale: string, view: SettingsView): string {
   switch (view) {
     case "llm":
       return t.settingsNavLlm;
@@ -43,7 +48,7 @@ function settingsLabel(t: Messages, view: SettingsView): string {
     case "engine":
       return t.settingsNavEngine;
     case "doctor":
-      return t.settingsNavDoctor;
+      return doctorCopy(locale).nav;
     case "backup":
       return t.settingsNavBackup;
     default: {
@@ -53,7 +58,7 @@ function settingsLabel(t: Messages, view: SettingsView): string {
   }
 }
 
-function settingsHint(t: Messages, view: SettingsView): string {
+function settingsHint(t: Messages, locale: string, view: SettingsView): string {
   switch (view) {
     case "llm":
       return t.llmHint;
@@ -64,7 +69,7 @@ function settingsHint(t: Messages, view: SettingsView): string {
     case "engine":
       return t.missHint;
     case "doctor":
-      return t.doctorHint;
+      return doctorCopy(locale).hint;
     case "backup":
       return t.journalHint;
     default: {
@@ -218,11 +223,11 @@ export function SettingsPage({
             aria-current={view === item ? "page" : undefined}
             onClick={() => onSettingsView(item)}
           >
-            {settingsLabel(t, item)}
+            {settingsLabel(t, locale, item)}
           </button>
         ))}
       </nav>
-      <Guide title={t.settingsGuide} steps={[{ id: view, label: settingsLabel(t, view), hint: settingsHint(t, view) }]} />
+      <Guide title={t.settingsGuide} steps={[{ id: view, label: settingsLabel(t, locale, view), hint: settingsHint(t, locale, view) }]} />
       <p className="caption" style={{ marginTop: -8 }}>{t.haGlueHint}</p>
       {view === "llm" ? <LlmSettingsCard key={llmEpoch} t={t} /> : null}
       {view === "voice" && loaded ? (
@@ -251,7 +256,11 @@ export function SettingsPage({
           onTheme={setTheme}
         />
       ) : null}
-      {view === "doctor" ? <DoctorCard t={t} /> : null}
+      {view === "doctor" ? (
+        <Suspense fallback={null}>
+          <DoctorCard t={t} locale={locale} />
+        </Suspense>
+      ) : null}
       {view === "backup" ? (
         <div className="flex min-w-0 flex-col gap-4">
           <SettingsBackupCard t={t} onSettings={onSettings} onRestored={afterRestore} />

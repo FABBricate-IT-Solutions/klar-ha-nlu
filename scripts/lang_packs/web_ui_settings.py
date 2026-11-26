@@ -74,20 +74,7 @@ KEYS = (
     "settingsNavVoice",
     "settingsNavLanguages",
     "settingsNavEngine",
-    "settingsNavDoctor",
     "settingsNavBackup",
-    "doctorTitle",
-    "doctorHint",
-    "doctorBuild",
-    "doctorHome",
-    "doctorOverlay",
-    "doctorLlm",
-    "doctorWyoming",
-    "doctorOps",
-    "doctorUnavailable",
-    "doctorEntities",
-    "doctorAge",
-    "doctorAgeNever",
     "appearanceDark",
     "appearanceLight",
     "setupReplay",
@@ -218,16 +205,3 @@ def apply_settings_copy(packs: dict[str, dict[str, str]]) -> None:
             fields["invalidJson"] = row.get("invalidJson") or "Das ist kein gültiges JSON."
             fields["rulesReloaded"] = row.get("rulesReloaded") or "Regeln neu von der Engine geladen."
             fields["tokenHint"] = row.get("tokenHint") or "Die App füllt das meist automatisch. Nur für LAN-Clients außerhalb von Home Assistant eintragen."
-            fields["settingsNavDoctor"] = row.get("settingsNavDoctor") or "Doctor"
-            fields["doctorTitle"] = row.get("doctorTitle") or "Doctor"
-            fields["doctorHint"] = row.get("doctorHint") or "Live-Health der Engine: Build-Identität, Home-Graph, Overlay, LLM, Wyoming."
-            fields["doctorBuild"] = row.get("doctorBuild") or "Build"
-            fields["doctorHome"] = row.get("doctorHome") or "Home-Graph"
-            fields["doctorOverlay"] = row.get("doctorOverlay") or "Overlay"
-            fields["doctorLlm"] = row.get("doctorLlm") or "LLM"
-            fields["doctorWyoming"] = row.get("doctorWyoming") or "Wyoming"
-            fields["doctorOps"] = row.get("doctorOps") or "Ops"
-            fields["doctorUnavailable"] = row.get("doctorUnavailable") or "Health nicht erreichbar."
-            fields["doctorEntities"] = row.get("doctorEntities") or "{n} Entitäten"
-            fields["doctorAge"] = row.get("doctorAge") or "{n}s seit letztem Sync"
-            fields["doctorAgeNever"] = row.get("doctorAgeNever") or "Noch kein Live-Sync"

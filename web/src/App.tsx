@@ -387,7 +387,7 @@ export function App() {
           </div>
           <div className="topbar-end">
             <div className="status">
-              {buildId ? <Badge variant="outline" title={t.doctorBuild}>{buildId}</Badge> : null}
+              {buildId ? <Badge variant="outline" title="Build">{buildId}</Badge> : null}
               <Badge variant={dashboard?.counts.leftover ? "default" : "outline"}>{dashboard?.counts.leftover ?? 0} {t.open}</Badge>
               <Badge variant={settings.nlu_rag ? "default" : "outline"}>{settings.nlu_rag ? t.ragModeShort : t.chatMode}</Badge>
             </div>

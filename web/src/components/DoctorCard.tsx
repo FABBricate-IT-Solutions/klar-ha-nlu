@@ -1,16 +1,19 @@
 import { useEffect, useState } from "react";
 import { api, type EngineHealth } from "../api";
-import { fill, type Messages } from "../i18n";
+import { doctorCopy, fillDoctor } from "../doctorCopy";
+import type { Messages } from "../i18n";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 
-function homeAge(t: Messages, health: EngineHealth): string {
+function homeAge(locale: string, health: EngineHealth): string {
+  const copy = doctorCopy(locale);
   const age = health.home.age_secs;
-  if (age == null) return t.doctorAgeNever;
-  return fill(t.doctorAge, { n: String(age) });
+  if (age == null) return copy.ageNever;
+  return fillDoctor(copy.age, { n: String(age) });
 }
 
-export function DoctorCard({ t }: { t: Messages }) {
+export function DoctorCard({ t, locale }: { t: Messages; locale: string }) {
+  const copy = doctorCopy(locale);
   const [health, setHealth] = useState<EngineHealth | null>(null);
   const [error, setError] = useState(false);
 
@@ -36,16 +39,16 @@ export function DoctorCard({ t }: { t: Messages }) {
   return (
     <Card>
       <CardHeader>
-        <CardTitle>{t.doctorTitle}</CardTitle>
-        <CardDescription>{t.doctorHint}</CardDescription>
+        <CardTitle>{copy.title}</CardTitle>
+        <CardDescription>{copy.hint}</CardDescription>
       </CardHeader>
       <CardContent className="grid gap-4">
         {error || !health ? (
-          <p className="caption text-destructive">{t.doctorUnavailable}</p>
+          <p className="caption text-destructive">{copy.unavailable}</p>
         ) : (
           <>
             <section className="grid gap-1">
-              <h3 className="text-sm font-medium">{t.doctorBuild}</h3>
+              <h3 className="text-sm font-medium">{copy.build}</h3>
               <p className="font-mono text-sm">
                 {health.version}
                 <span className="text-muted-foreground"> · </span>
@@ -54,32 +57,32 @@ export function DoctorCard({ t }: { t: Messages }) {
               <Badge variant={health.ok ? "default" : "destructive"}>{health.ok ? t.engineReady : t.engineOffline}</Badge>
             </section>
             <section className="grid gap-1">
-              <h3 className="text-sm font-medium">{t.doctorHome}</h3>
+              <h3 className="text-sm font-medium">{copy.home}</h3>
               <p className="text-sm">
                 {health.home.source}
                 {" · "}
-                {fill(t.doctorEntities, { n: String(health.home.entities) })}
+                {fillDoctor(copy.entities, { n: String(health.home.entities) })}
                 {" · "}
-                {homeAge(t, health)}
+                {homeAge(locale, health)}
               </p>
             </section>
             <section className="grid gap-1">
-              <h3 className="text-sm font-medium">{t.doctorOverlay}</h3>
+              <h3 className="text-sm font-medium">{copy.overlay}</h3>
               <p className="text-sm">{health.overlay.status}</p>
             </section>
             <section className="grid gap-1">
-              <h3 className="text-sm font-medium">{t.doctorLlm}</h3>
+              <h3 className="text-sm font-medium">{copy.llm}</h3>
               <p className="text-sm">
                 {health.llm.configured ? t.llmConfigured : t.llmNotConfigured}
                 {health.llm.provider ? ` · ${health.llm.provider}` : ""}
               </p>
             </section>
             <section className="grid gap-1">
-              <h3 className="text-sm font-medium">{t.doctorWyoming}</h3>
+              <h3 className="text-sm font-medium">{copy.wyoming}</h3>
               <p className="text-sm">{health.wyoming.listening ? t.engineReady : t.engineOffline}</p>
             </section>
             <section className="grid gap-1">
-              <h3 className="text-sm font-medium">{t.doctorOps}</h3>
+              <h3 className="text-sm font-medium">{copy.ops}</h3>
               <p className="font-mono text-sm">
                 req {health.ops.requests ?? 0}
                 {" · "}
