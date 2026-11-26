@@ -1,5 +1,5 @@
 name: Klar NLU (Staging)
-version: "staging"
+version: "2026.11.3"
 slug: klar_nlu_staging
 description: Staging/RC von Klar NLU (67 Sprachen, Assist-Alternative). Nicht Produktion. Image-Tag staging.
 url: https://github.com/FABBricate-IT-Solutions/klar-ha-nlu
@@ -33,7 +33,7 @@ options:
   support_bundle: false
   ui_locale: ""
 schema:
-  token: str?
+  token: password?
   support_bundle: bool?
   ui_locale: str?
 image: ghcr.io/fabbricate-it-solutions/klar-nlu-{arch}

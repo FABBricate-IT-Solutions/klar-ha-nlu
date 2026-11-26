@@ -195,7 +195,7 @@ fn detect_kind<'a>(cat: &Catalog, tokens: &[String]) -> Option<&'a Kind> {
 }
 
 fn cue_match(cat: &Catalog, kind: &Kind, word: &str) -> bool {
-    kind.cues.iter().any(|cue| *cue == word)
+    kind.cues.contains(&word)
         || (kind.device_class == "window" && cat.window_words().contains(word))
         || (kind.device_class == "door" && cat.door_nouns().contains(word))
 }

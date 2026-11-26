@@ -191,7 +191,7 @@ fn identity_has_key(player: &EntityRec, keys: &[String]) -> bool {
         .iter()
         .flat_map(|part| part.split(|c: char| !c.is_ascii_alphanumeric()))
         .map(compact)
-        .any(|token| !token.is_empty() && keys.iter().any(|key| token == *key))
+        .any(|token| !token.is_empty() && keys.contains(&token))
 }
 
 pub(super) fn strip_area_query(query: String, home: &HomeGraph) -> String {

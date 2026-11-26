@@ -36,6 +36,12 @@ struct Args {
 
 #[derive(Subcommand, Debug)]
 enum Command {
+    /// Probe the local HTTP health document (container HEALTHCHECK; no shell)
+    Healthcheck {
+        /// Host:port of the HTTP listener
+        #[arg(long, default_value = "127.0.0.1:10520")]
+        http: String,
+    },
     /// Validate, preview, or import language packs
     Lang {
         #[command(subcommand)]
@@ -115,6 +121,26 @@ enum MigrateCommand {
 /// How long work that is still running in the background gets after the engine has stopped.
 const RUNTIME_SHUTDOWN: Duration = Duration::from_millis(300);
 
+/// One HTTP GET against `/api/v2/health` — used as the image HEALTHCHECK on scratch/distroless.
+fn probe_health(http: &str) -> Result<(), String> {
+    use std::io::{Read, Write};
+    use std::net::TcpStream;
+    use std::time::Duration as StdDuration;
+
+    let mut stream = TcpStream::connect(http).map_err(|err| err.to_string())?;
+    stream.set_read_timeout(Some(StdDuration::from_secs(3))).map_err(|err| err.to_string())?;
+    stream.set_write_timeout(Some(StdDuration::from_secs(3))).map_err(|err| err.to_string())?;
+    let req = format!("GET /api/v2/health HTTP/1.1\r\nHost: {http}\r\nConnection: close\r\n\r\n");
+    stream.write_all(req.as_bytes()).map_err(|err| err.to_string())?;
+    let mut body = String::new();
+    stream.read_to_string(&mut body).map_err(|err| err.to_string())?;
+    if body.contains("\"ok\":true") || body.contains("\"ok\": true") {
+        Ok(())
+    } else {
+        Err(format!("unexpected response from {http}"))
+    }
+}
+
 fn main() -> ExitCode {
     let runtime = match tokio::runtime::Builder::new_multi_thread().enable_all().build() {
         Ok(runtime) => runtime,
@@ -136,6 +162,15 @@ async fn run_command() -> ExitCode {
         .init();
 
     let args = Args::parse();
+    if let Some(Command::Healthcheck { http }) = args.command {
+        return match probe_health(&http) {
+            Ok(()) => ExitCode::SUCCESS,
+            Err(err) => {
+                eprintln!("healthcheck: {err}");
+                ExitCode::FAILURE
+            }
+        };
+    }
     if let Some(Command::Lang { command }) = args.command {
         let result = match command {
             LangCommand::Validate { path } => klar_nlu::lang::validate_path(&path),

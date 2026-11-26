@@ -22,9 +22,9 @@ jobs:
           persist-credentials: false
       - uses: dtolnay/rust-toolchain@df2a88e9fe4098bad09cb42c3dec7187f15861fc # master
         with:
-          toolchain: "1.85"
+          toolchain: "1.91"
       # Prebuilt binary instead of `cargo install` (that compiled for about three minutes
-      # on every run). Same version as before; 0.22.2+ does not build with the MSRV 1.85.
+      # on every run).
       - uses: taiki-e/install-action@fe3acb53a98b62c772db35de75ce0e4595e7ca8c # v2.90.8
         with:
           tool: cargo-audit@0.22.1

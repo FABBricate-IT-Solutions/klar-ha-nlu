@@ -85,7 +85,7 @@ fn phrase_score(tokens: &[String], phrase: &str) -> usize {
     }
     let spoken: Vec<String> = words.iter().filter(|word| !catalog().is_filler(word)).cloned().collect();
     let joined = words.concat();
-    let named = stands_in(tokens, &words) || stands_in(tokens, &spoken) || tokens.iter().any(|token| *token == joined);
+    let named = stands_in(tokens, &words) || stands_in(tokens, &spoken) || tokens.contains(&joined);
     if named {
         weight * 4
     } else {

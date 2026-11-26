@@ -356,7 +356,7 @@ pub(crate) fn fixture_aliases(token: &str) -> Vec<&str> {
     if cat.bedside().contains(token) {
         out.extend(["nacht", "nachttisch", "bedside"]);
     }
-    if token == "globe" || token == "kugel" || aliases.iter().any(|alias| *alias == "globe") {
+    if token == "globe" || token == "kugel" || aliases.contains(&"globe") {
         out.extend(["kugel", "globe"]);
     }
     out

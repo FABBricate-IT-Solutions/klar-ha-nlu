@@ -1,4 +1,5 @@
 use crate::home::{load_merged, registry_stamp};
+use crate::io::addon_options::AddonOptions;
 use crate::io::http_server::{self, HttpLimits};
 use crate::io::listen::bind;
 use crate::io::llm::secure_endpoint_file;
@@ -55,6 +56,11 @@ pub async fn run(args: RuntimeArgs) -> std::io::Result<()> {
     })?;
     let _ = std::fs::remove_file(&probe);
     let data_dir = args.data_dir.clone();
+    // A-14: Supervisor options via serde (quotes/backslashes), not sed in the entry script.
+    match AddonOptions::load(&data_dir) {
+        Ok(opts) => opts.apply_env(),
+        Err(err) => tracing::warn!("Add-on-Optionen nicht gelesen: {err}"),
+    }
     let token =
         resolve_token(args.token.or_else(|| std::env::var("KLAR_TOKEN").ok().filter(|s| !s.is_empty())), args.token_file.as_deref());
     if token.is_none() {

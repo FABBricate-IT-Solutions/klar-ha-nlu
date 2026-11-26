@@ -98,7 +98,7 @@ pub fn apply_overlay(catalog: &mut Catalog, pack: &ExternalPack) -> Result<(), S
         if replace {
             catalog.numbers_by_value.insert(*number, word);
         }
-        if word.chars().count() >= 6 && !word.contains(' ') && !catalog.typo_surfaces.iter().any(|s| *s == word) {
+        if word.chars().count() >= 6 && !word.contains(' ') && !catalog.typo_surfaces.contains(&word) {
             catalog.typo_surfaces.push(word);
         }
     }

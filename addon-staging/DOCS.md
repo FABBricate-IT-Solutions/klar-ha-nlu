@@ -10,9 +10,9 @@ Settings → Devices & services → Klar NLU → Configure → **Release channel
 - **Stable** points back at `http://klar-nlu:10520` (or the CalVer release).
 - A custom URL is left alone.
 
-Install and start this app before switching to Staging. After a merge to `staging`, rebuild (the app version stays `staging`). Do not edit `.storage`.
+Install and start this app before switching to Staging. The app version tracks CalVer (same as Stable) so Supervisor has an update path when the tree is bumped; the image tag stays `staging`. Do not edit `.storage`.
 
-If you set the app **token**, paste the same value into the integration write token.
+If you set the app **token** (password field), paste the same value into the integration write token.
 
 ## Options
 

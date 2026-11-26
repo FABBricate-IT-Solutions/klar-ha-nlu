@@ -4,6 +4,7 @@
 from __future__ import annotations
 
 import importlib.util
+import re
 import sys
 import types
 import unittest
@@ -347,13 +348,16 @@ class EngineChannelTests(unittest.TestCase):
                 if line.startswith("slug:"):
                     slugs.append(line.split(":", 1)[1].strip())
         self.assertEqual(slugs, ["klar_nlu", "klar_nlu_staging"])
-        for rel in (
-            "addon/config.yaml",
-            "addon-staging/config.yaml",
-            "addon/build.yaml",
-            "addon-staging/build.yaml",
-        ):
-            self.assertNotIn("armv7", (ROOT / rel).read_text(), rel)
+        for rel in ("addon/config.yaml", "addon-staging/config.yaml"):
+            text = (ROOT / rel).read_text()
+            self.assertNotIn("armv7", text, rel)
+            # V-15: no dead local build_from; image is pulled from GHCR.
+            self.assertFalse((ROOT / rel).with_name("build.yaml").exists(), rel)
+            self.assertIsNotNone(
+                re.search(r'(?m)^version: "20\d\d\.(?:[1-9]|1[0-2])\.\d+"$', text),
+                text,
+            )
+            self.assertIn("token: password?", text)
 
     def test_merge_engine_settings_copies_pipeline_flags(self) -> None:
         source = (ROOT / "custom_components" / "klar_nlu" / "engine.py").read_text()

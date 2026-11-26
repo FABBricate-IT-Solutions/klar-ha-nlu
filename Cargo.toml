@@ -2,7 +2,7 @@
 name = "klar-nlu"
 version = "2026.11.3"
 edition = "2021"
-rust-version = "1.85"
+rust-version = "1.91"
 description = "Deterministic NLU for Home Assistant — 67 languages, Assist alternative"
 license = "MIT"
 default-run = "klar"
@@ -29,21 +29,20 @@ tokio = { version = "1", features = ["full"] }
 tokio-stream = { version = "0.1", default-features = false, features = ["sync"] }
 reqwest = { version = "0.12.12", default-features = false, features = ["json", "rustls-tls", "stream"] }
 futures-util = { version = "0.3", default-features = false, features = ["std"] }
-# url 2.5.9 fixes RUSTSEC-2026-0592. idna 1.1.0 still uses idna_adapter;
-# pin adapter 1.1 so rustc 1.85 does not pull ICU4X (adapter 1.2 needs 1.86).
-url = "=2.5.9"
-idna = "=1.1.0"
-idna_adapter = "=1.1.0"
+url = "2.5.9"
+idna = "1"
 tracing = "0.1"
 tracing-subscriber = { version = "0.3", features = ["env-filter"] }
 clap = { version = "4", features = ["derive"] }
 thiserror = "2"
 strsim = "0.11"
-# uuid 1.27 sets rust-version 1.89. Stay on 1.26.x for the 1.85 toolchain.
-uuid = { version = ">=1, <1.27", features = ["v4"] }
-serde_yaml = "0.9"
+uuid = { version = "1", features = ["v4"] }
+# Maintained serde_yaml fork (drops unmaintained unsafe-libyaml). Keep the serde_yaml
+# import path so call sites stay stable (V-14).
+serde_yaml = { package = "serde_norway", version = "0.9" }
 tower-http = { version = "0.7.0", features = ["fs", "timeout", "compression-gzip", "set-header"] }
-tar = "0.4"
+# default-features pulls xattr → rustix; we only need plain ustar for settings backup.
+tar = { version = "0.4", default-features = false }
 flate2 = { version = "1", default-features = false, features = ["rust_backend"] }
 jiff = { version = "0.2", default-features = false, features = ["std", "tz-system", "tzdb-bundle-always"] }
 parking_lot = "0.12"

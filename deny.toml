@@ -1,12 +1,10 @@
 [advisories]
 version = 2
 yanked = "deny"
-ignore = [
-    # serde_yaml 0.9 is frozen on unsafe-libyaml. RUSTSEC-2024-0449 marks that
-    # parser unmaintained; there is no patched release. It parses local config
-    # and test YAML, and cargo-audit does not treat this as a vulnerability.
-    { id = "RUSTSEC-2024-0449", reason = "serde_yaml 0.9 has no release that drops unmaintained unsafe-libyaml" },
-]
+# V-14 / acceptance: refuse unsound crates everywhere in the graph.
+unsound = "all"
+# Informational unmaintained notes stay soft; unsound is the hard gate.
+unmaintained = "none"
 
 [licenses]
 version = 2

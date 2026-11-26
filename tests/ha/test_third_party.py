@@ -62,6 +62,28 @@ class NoticeTests(unittest.TestCase):
         self.assertIn("===== Unicode-3.0 =====", text)
         self.assertIn("See LICENSE", text)
 
+    def test_render_lists_npm_packages(self) -> None:
+        text = notices.render(
+            [("axum", "0.8.9", "MIT")],
+            [("react", "19.3.1", "MIT")],
+        )
+        self.assertIn("npm packages shipped in the operator UI", text)
+        self.assertIn("react 19.3.1  MIT", text)
+
+    def test_npm_from_lock_skips_dev_and_nested(self) -> None:
+        lock = {
+            "packages": {
+                "": {"name": "web"},
+                "node_modules/react": {"version": "19.0.0", "license": "MIT"},
+                "node_modules/vitest": {"version": "3.0.0", "license": "MIT", "dev": True},
+                "node_modules/react/node_modules/loose-envify": {
+                    "version": "1.0.0",
+                    "license": "MIT",
+                },
+            }
+        }
+        self.assertEqual(notices.npm_from_lock(lock), [("react", "19.0.0", "MIT")])
+
     def test_tarball_keeps_binary_and_adds_notices(self) -> None:
         license_text = (ROOT / "LICENSE").read_text(encoding="utf-8")
         self.assertIn("MIT License", license_text)
