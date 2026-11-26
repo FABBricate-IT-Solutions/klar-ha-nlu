@@ -7,7 +7,7 @@ use super::types::{
 use futures_util::StreamExt;
 use serde_json::Value;
 use std::collections::BTreeSet;
-use std::sync::Arc;
+use std::sync::{Arc, OnceLock};
 use std::time::Duration;
 
 const MAX_MODELS: usize = 500;
@@ -35,9 +35,19 @@ fn http_client_with(timeout: Duration, connect_timeout: Duration, resolver: Guar
         .map_err(|_| LlmError::Transport)
 }
 
+/// One process-wide client for chat / stream / model list (reqwest::Client is an Arc).
+fn shared_http() -> Result<reqwest::Client, LlmError> {
+    static CELL: OnceLock<reqwest::Client> = OnceLock::new();
+    if let Some(client) = CELL.get() {
+        return Ok(client.clone());
+    }
+    let built = http_client(Duration::from_secs(120), Duration::from_secs(10))?;
+    Ok(CELL.get_or_init(|| built).clone())
+}
+
 impl LlmClient {
     pub fn new(endpoint: LlmEndpoint) -> Result<Self, LlmError> {
-        Ok(Self { http: http_client(Duration::from_secs(120), Duration::from_secs(10))?, endpoint })
+        Ok(Self { http: shared_http()?, endpoint })
     }
 }
 
@@ -75,11 +85,16 @@ where
 }
 
 pub async fn list_models(endpoint: &LlmEndpoint) -> Result<Vec<String>, LlmError> {
-    list_models_with(endpoint, GuardedResolver::system()).await
+    list_models_with_http(endpoint, shared_http()?).await
 }
 
+#[cfg(test)]
 pub(crate) async fn list_models_with(endpoint: &LlmEndpoint, resolver: GuardedResolver) -> Result<Vec<String>, LlmError> {
     let http = http_client_with(Duration::from_secs(20), Duration::from_secs(8), resolver)?;
+    list_models_with_http(endpoint, http).await
+}
+
+async fn list_models_with_http(endpoint: &LlmEndpoint, http: reqwest::Client) -> Result<Vec<String>, LlmError> {
     let mut last_err = LlmError::Response;
     let mut saw_empty = false;
     for url in model_list_urls(&endpoint.base_url) {
@@ -226,24 +241,18 @@ impl LlmClient {
         let mut bytes = response.bytes_stream();
         while let Some(chunk) = bytes.next().await {
             let chunk = chunk.map_err(|_| LlmError::Transport)?;
-            let text = String::from_utf8_lossy(&chunk);
-            for data in buf.push(&text) {
+            for data in buf.push(&chunk)? {
                 if data == "[DONE]" {
                     return Ok(CompletionTurn { text: out, tool_calls: assembler.finish(), usage });
                 }
-                if let Some(found) = usage_from_data(&data) {
-                    usage = Some(found);
-                }
-                if let Some(delta) = delta_text(&data) {
-                    out.push_str(&delta);
-                    if !on_delta(&delta) {
-                        return Err(LlmError::Transport);
-                    }
-                }
-                if let Some(calls) = delta_tool_calls(&data) {
-                    assembler.push(&calls);
-                }
+                apply_sse_data(&data, &mut out, &mut assembler, &mut usage, on_delta)?;
             }
+        }
+        for data in buf.finish()? {
+            if data == "[DONE]" {
+                break;
+            }
+            apply_sse_data(&data, &mut out, &mut assembler, &mut usage, on_delta)?;
         }
         let tool_calls = assembler.finish();
         if out.is_empty() && tool_calls.is_empty() {
@@ -275,6 +284,31 @@ impl LlmClient {
     }
 }
 
+fn apply_sse_data<F>(
+    data: &str,
+    out: &mut String,
+    assembler: &mut ToolCallAssembler,
+    usage: &mut Option<TokenUsage>,
+    on_delta: &mut F,
+) -> Result<(), LlmError>
+where
+    F: FnMut(&str) -> bool,
+{
+    if let Some(found) = usage_from_data(data) {
+        *usage = Some(found);
+    }
+    if let Some(delta) = delta_text(data) {
+        out.push_str(&delta);
+        if !on_delta(&delta) {
+            return Err(LlmError::Transport);
+        }
+    }
+    if let Some(calls) = delta_tool_calls(data) {
+        assembler.push(&calls);
+    }
+    Ok(())
+}
+
 fn usage_from_data(data: &str) -> Option<TokenUsage> {
     let parsed: UpstreamCompletion = serde_json::from_str(data).ok()?;
     parsed.usage.as_ref().and_then(TokenUsage::from_upstream)
@@ -290,5 +324,17 @@ fn apply_provider_headers(mut req: reqwest::RequestBuilder, endpoint: &LlmEndpoi
             req
         }
         _ => req.bearer_auth(&endpoint.api_key),
+    }
+}
+
+#[cfg(test)]
+mod shared_http_tests {
+    #[test]
+    fn freestanding_paths_reuse_shared_http() {
+        let src = include_str!("client.rs");
+        assert!(src.contains("fn shared_http"));
+        assert!(src.contains("http: shared_http()?"));
+        assert!(src.contains("list_models_with_http(endpoint, shared_http()?)"));
+        assert!(!src.contains("http_client(Duration::from_secs(120), Duration::from_secs(10))?,\n        endpoint"));
     }
 }

@@ -155,6 +155,8 @@ pub enum LlmError {
     Transport,
     #[error("llm response")]
     Response,
+    #[error("llm stream too large")]
+    TooLarge,
 }
 
 impl ChatRequest {

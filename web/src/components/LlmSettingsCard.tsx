@@ -63,7 +63,10 @@ export function LlmSettingsCard({ t }: { t: Messages }) {
         </div>
         <CardDescription>{t.llmHint}</CardDescription>
         {endpoint.configured ? (
-          <p className="font-mono text-xs text-muted-foreground">{endpoint.model} · {endpoint.base_url}</p>
+          <p className="font-mono text-xs text-muted-foreground">
+            {endpoint.model} · {endpoint.base_url}
+            {endpoint.source ? ` · ${t.source}: ${endpoint.source}` : null}
+          </p>
         ) : null}
       </CardHeader>
       <CardContent>

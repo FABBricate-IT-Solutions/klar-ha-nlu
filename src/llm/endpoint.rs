@@ -18,6 +18,25 @@ pub enum LlmProviderKind {
     Custom,
 }
 
+/// Where the active endpoint came from. Env still wins on boot; the UI shows this so a
+/// restart that re-applies `KLAR_LLM_*` is not a silent overwrite of a saved file.
+#[derive(Debug, Clone, Copy, PartialEq, Eq, Serialize, Deserialize, Default)]
+#[serde(rename_all = "lowercase")]
+pub enum LlmConfigSource {
+    #[default]
+    File,
+    Env,
+}
+
+impl LlmConfigSource {
+    pub fn as_str(self) -> &'static str {
+        match self {
+            Self::File => "file",
+            Self::Env => "env",
+        }
+    }
+}
+
 #[derive(Clone)]
 pub struct LlmEndpoint {
     pub base_url: String,
@@ -25,6 +44,7 @@ pub struct LlmEndpoint {
     pub model: String,
     pub enable_thinking: bool,
     pub provider: LlmProviderKind,
+    pub source: LlmConfigSource,
 }
 
 #[derive(Debug, Clone, Serialize, Deserialize, PartialEq, Eq)]
@@ -38,6 +58,9 @@ pub struct LlmPublic {
     pub enable_thinking: bool,
     #[serde(skip_serializing_if = "Option::is_none")]
     pub provider: Option<String>,
+    /// `"env"` or `"file"` when configured.
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub source: Option<String>,
 }
 
 impl std::fmt::Debug for LlmEndpoint {
@@ -47,6 +70,7 @@ impl std::fmt::Debug for LlmEndpoint {
             .field("model", &self.model)
             .field("provider", &self.provider)
             .field("enable_thinking", &self.enable_thinking)
+            .field("source", &self.source)
             .field("api_key", &if self.api_key.is_empty() { "" } else { "***" })
             .finish()
     }
@@ -74,7 +98,14 @@ impl LlmEndpoint {
         }
         let base_url = normalize_base(base_url)?;
         let provider = LlmProviderKind::from_url(&base_url);
-        Ok(Self { base_url, api_key: sanitize_key(api_key)?, model: model.to_string(), enable_thinking: false, provider })
+        Ok(Self {
+            base_url,
+            api_key: sanitize_key(api_key)?,
+            model: model.to_string(),
+            enable_thinking: false,
+            provider,
+            source: LlmConfigSource::File,
+        })
     }
 
     pub fn with_thinking(mut self, enable_thinking: bool) -> Self {
@@ -87,11 +118,23 @@ impl LlmEndpoint {
         self
     }
 
+    pub fn with_source(mut self, source: LlmConfigSource) -> Self {
+        self.source = source;
+        self
+    }
+
     /// List models without persisting a chat model. Never used by `nlu::parse`.
     pub fn for_discovery(base_url: &str, api_key: &str) -> Result<Self, LlmError> {
         let base_url = normalize_base(base_url)?;
         let provider = LlmProviderKind::from_url(&base_url);
-        Ok(Self { base_url, api_key: sanitize_key(api_key)?, model: String::new(), enable_thinking: false, provider })
+        Ok(Self {
+            base_url,
+            api_key: sanitize_key(api_key)?,
+            model: String::new(),
+            enable_thinking: false,
+            provider,
+            source: LlmConfigSource::File,
+        })
     }
 
     /// Whether `raw` names the address this endpoint is stored for: same scheme, host, port
@@ -142,6 +185,7 @@ impl LlmEndpoint {
             model: Some(self.model.clone()),
             enable_thinking: self.enable_thinking,
             provider: Some(self.provider.as_str().to_string()),
+            source: Some(self.source.as_str().to_string()),
         }
     }
 }
@@ -193,7 +237,7 @@ impl LlmProviderKind {
 
 impl LlmPublic {
     pub fn empty() -> Self {
-        Self { configured: false, base_url: None, model: None, enable_thinking: false, provider: None }
+        Self { configured: false, base_url: None, model: None, enable_thinking: false, provider: None, source: None }
     }
 }
 

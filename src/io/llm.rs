@@ -69,8 +69,9 @@ fn stored_key_for(current: Option<&LlmEndpoint>, base_url: &str) -> String {
 }
 
 pub fn load_endpoint(dir: &Path) -> Option<LlmEndpoint> {
+    // Env still wins on boot (ADR 0002); `source` makes that visible to the UI.
     if let Some(from_env) = LlmEndpoint::from_env() {
-        return Some(from_env);
+        return Some(from_env.with_source(crate::llm::LlmConfigSource::Env));
     }
     from_file(dir)
 }
@@ -80,7 +81,7 @@ fn from_file(dir: &Path) -> Option<LlmEndpoint> {
     LlmEndpoint::from_parts(&stored.base_url, &stored.api_key, &stored.model).ok().map(|endpoint| {
         let provider =
             if stored.provider == LlmProviderKind::Custom { LlmProviderKind::from_url(&endpoint.base_url) } else { stored.provider };
-        endpoint.with_thinking(stored.enable_thinking).with_provider(provider)
+        endpoint.with_thinking(stored.enable_thinking).with_provider(provider).with_source(crate::llm::LlmConfigSource::File)
     })
 }
 
@@ -195,8 +196,8 @@ async fn set_endpoint(
         return Err(StatusCode::UNAUTHORIZED);
     }
     if body.configured == Some(false) {
+        clear_endpoint(&state.data_dir).map_err(|_| StatusCode::INTERNAL_SERVER_ERROR)?;
         *state.llm.lock().await = None;
-        let _ = clear_endpoint(&state.data_dir);
         return Ok(Json(LlmPublic::empty()));
     }
     let mut current = state.llm.lock().await;
@@ -215,7 +216,8 @@ async fn set_endpoint(
     let endpoint = LlmEndpoint::from_parts(base_url, &api_key, model)
         .map_err(|_| StatusCode::BAD_REQUEST)?
         .with_thinking(thinking)
-        .with_provider(provider);
+        .with_provider(provider)
+        .with_source(crate::llm::LlmConfigSource::File);
     save_endpoint(&state.data_dir, &endpoint).map_err(|_| StatusCode::INTERNAL_SERVER_ERROR)?;
     let public = endpoint.public();
     *current = Some(endpoint);
@@ -457,6 +459,7 @@ pub fn status_for(err: &LlmError) -> StatusCode {
         LlmError::InvalidEndpoint(_) | LlmError::InvalidRequest(_) => StatusCode::BAD_REQUEST,
         LlmError::Timeout => StatusCode::GATEWAY_TIMEOUT,
         LlmError::Upstream(429) => StatusCode::TOO_MANY_REQUESTS,
+        LlmError::TooLarge => StatusCode::PAYLOAD_TOO_LARGE,
         LlmError::Upstream(_) | LlmError::Transport | LlmError::Response => StatusCode::BAD_GATEWAY,
     }
 }

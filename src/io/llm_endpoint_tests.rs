@@ -18,6 +18,7 @@ fn persists_endpoint_and_keeps_key_off_public() {
     assert!(!loaded.enable_thinking);
     assert!(!public.enable_thinking);
     assert_eq!(public.provider.as_deref(), Some("custom"));
+    assert_eq!(public.source.as_deref(), Some("file"));
     clear_endpoint(&dir).unwrap();
     assert!(from_file(&dir).is_none());
 }
@@ -111,4 +112,34 @@ fn clear_missing_file_is_ok() {
     let scratch = TestDir::new("llm-missing");
     let dir = scratch.path().to_path_buf();
     clear_endpoint(&dir).unwrap();
+}
+
+#[test]
+fn clear_endpoint_fails_when_path_is_a_directory() {
+    let scratch = TestDir::new("llm-clear-dir");
+    let dir = scratch.path().to_path_buf();
+    std::fs::create_dir(dir.join(LLM_FILE)).unwrap();
+    assert!(clear_endpoint(&dir).is_err());
+}
+
+#[test]
+fn clear_route_propagates_delete_errors() {
+    let src = include_str!("llm.rs");
+    let start = src.find("if body.configured == Some(false)").expect("clear branch");
+    let body = &src[start..start + 280];
+    assert!(body.contains("clear_endpoint(&state.data_dir).map_err(|_| StatusCode::INTERNAL_SERVER_ERROR)?"));
+    assert!(!body.contains("let _ = clear_endpoint"));
+}
+
+#[test]
+fn load_endpoint_marks_env_source_over_file() {
+    let scratch = TestDir::new("llm-env-source");
+    let dir = scratch.path().to_path_buf();
+    let file = LlmEndpoint::from_parts("http://127.0.0.1:11434/v1", "sk-file", "from-file").unwrap();
+    save_endpoint(&dir, &file).unwrap();
+    // Without env, file wins and is labelled.
+    let loaded = load_endpoint(&dir).unwrap();
+    assert_eq!(loaded.model, "from-file");
+    assert_eq!(loaded.source, crate::llm::LlmConfigSource::File);
+    assert_eq!(loaded.public().source.as_deref(), Some("file"));
 }
