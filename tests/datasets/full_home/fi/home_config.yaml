@@ -41,10 +41,10 @@ areas:
   aliases:
   - olohuonefamess
 - id: kitchen
-  name: Keittio
+  name: keittiö
   floor: ground
   aliases:
-  - keittio
+  - keittiö
 - id: family_room
   name: Olohuonefam
   floor: ground
@@ -143,15 +143,15 @@ devices:
   - valo
 - id: light.kitchen_ceiling
   area_id: kitchen
-  name: keittio katto
+  name: keittiö katto
   aliases:
-  - keittio katto
+  - keittiö katto
   - katto
 - id: light.kitchen_island
   area_id: kitchen
-  name: keittio saareke
+  name: keittiö saareke
   aliases:
-  - keittio saareke
+  - keittiö saareke
   - saareke
 - id: light.family_ceiling
   area_id: family_room
@@ -289,16 +289,16 @@ devices:
   - verho
 - id: climate.ground_thermostat
   area_id: living
-  name: olohuone lampo
+  name: olohuone lämpö
   aliases:
-  - olohuone lampo
-  - lampo
+  - olohuone lämpö
+  - lämpö
 - id: climate.upper_thermostat
   area_id: master_bedroom
-  name: makuuhuonemaster lampo
+  name: makuuhuonemaster lämpö
   aliases:
-  - makuuhuonemaster lampo
-  - lampo
+  - makuuhuonemaster lämpö
+  - lämpö
 - id: climate.master_ac
   area_id: master_bedroom
   name: lammitys makuuhuonemaster
@@ -342,15 +342,15 @@ devices:
   - garage
 - id: switch.dishwasher
   area_id: kitchen
-  name: keittio astianpesu
+  name: keittiö astianpesu
   aliases:
-  - keittio astianpesu
+  - keittiö astianpesu
   - astianpesu
 - id: switch.rangehood
   area_id: kitchen
-  name: keittio rangehood
+  name: keittiö rangehood
   aliases:
-  - keittio rangehood
+  - keittiö rangehood
   - rangehood
   tags:
   - rangehood
@@ -411,9 +411,9 @@ devices:
   - musiikki
 - id: media_player.kitchen_music
   area_id: kitchen
-  name: keittio musiikki
+  name: keittiö musiikki
   aliases:
-  - keittio musiikki
+  - keittiö musiikki
   - musiikki
   platform: music_assistant
   tags:
@@ -451,9 +451,9 @@ devices:
   - windowsensor
 - id: binary_sensor.kitchen_motion
   area_id: kitchen
-  name: keittio motion
+  name: keittiö motion
   aliases:
-  - keittio motion
+  - keittiö motion
   - motion
   tags:
   - motion

@@ -10,22 +10,22 @@
   - type: query
     entity_id: cover.living_blinds
   sentences:
-  - mi fuggony nappali
-  - mi nappali fuggony
+  - mi függöny nappali
+  - mi nappali függöny
 - name: query_lock.front_door
   conditions:
   - type: query
     entity_id: lock.front_door
   sentences:
-  - mi zar eloter
-  - mi eloter zar
+  - mi zár eloter
+  - mi eloter zár
 - name: query_climate.ground_thermostat
   conditions:
   - type: query
     entity_id: climate.ground_thermostat
   sentences:
-  - mi futes nappali
-  - mi nappali futes
+  - mi fűtés nappali
+  - mi nappali fűtés
 - name: query_media_player.living_tv
   conditions:
   - type: query
@@ -87,36 +87,36 @@
   - type: query
     entity_id: cover.master_blinds
   sentences:
-  - mi fuggony haloszobamaster
-  - mi haloszobamaster fuggony
+  - mi függöny haloszobamaster
+  - mi haloszobamaster függöny
 - name: query_cover.garage_door
   conditions:
   - type: query
     entity_id: cover.garage_door
   sentences:
-  - mi fuggony garage
-  - mi garage fuggony
+  - mi függöny garage
+  - mi garage függöny
 - name: query_lock.garage_entry
   conditions:
   - type: query
     entity_id: lock.garage_entry
   sentences:
-  - mi zar garage
-  - mi garage zar
+  - mi zár garage
+  - mi garage zár
 - name: query_climate.upper_thermostat
   conditions:
   - type: query
     entity_id: climate.upper_thermostat
   sentences:
-  - mi futes haloszobamaster
-  - mi haloszobamaster futes
+  - mi fűtés haloszobamaster
+  - mi haloszobamaster fűtés
 - name: query_climate.master_ac
   conditions:
   - type: query
     entity_id: climate.master_ac
   sentences:
-  - mi homerseklet haloszobamaster
-  - mi haloszobamaster homerseklet
+  - mi hőmérséklet haloszobamaster
+  - mi haloszobamaster hőmérséklet
 - name: query_media_player.family_tv
   conditions:
   - type: query
@@ -150,15 +150,15 @@
   - type: query
     entity_id: fan.master_fan
   sentences:
-  - mi ventilator haloszobamaster
-  - mi haloszobamaster ventilator
+  - mi ventilátor haloszobamaster
+  - mi haloszobamaster ventilátor
 - name: query_vacuum.robot
   conditions:
   - type: query
     entity_id: vacuum.robot
   sentences:
-  - mi porszivo nappali
-  - mi nappali porszivo
+  - mi porszívó nappali
+  - mi nappali porszívó
 - name: query_light.living_lamp
   conditions:
   - type: query

@@ -2,7 +2,7 @@
 use crate::lang::mood::MoodWords;
 
 pub(super) const MOOD: MoodWords = MoodWords {
-    request_frames: &["آیا می‌توانی", "آیا می‌شود", "میتوانی", "میتونی", "میشه", "می‌توانی", "می‌تونی", "می‌شه", "می‌شود"],
-    question_openers: &["آیا"],
+    request_frames: &["ایا میتوانی", "ایا میشود", "میتوانی", "میتونی", "میشه", "میشود"],
+    question_openers: &["ایا"],
     ..MoodWords::EMPTY
 };

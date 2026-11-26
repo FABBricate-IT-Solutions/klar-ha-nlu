@@ -275,7 +275,7 @@ pub const PACK: LanguagePack = LanguagePack {
     },
     chat: Chat {
         greet: &["dakai"],
-        thanks: &["真的要執行嗎？"],
+        thanks: &["真的要執行嗎?"],
         feeling: &["mood"],
         identity: &["dakai"],
         tell: &["tell"],

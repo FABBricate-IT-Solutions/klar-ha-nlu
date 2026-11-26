@@ -12,8 +12,8 @@
     entity_id: media_player.living_tv
     state: 'off'
   sentences:
-  - sondur tv salon
-  - tv salon sondur
+  - söndür tv salon
+  - tv salon söndür
 - name: media_player.living_tv_pause
   conditions:
   - type: action
@@ -36,8 +36,8 @@
     entity_id: media_player.family_tv
     state: 'off'
   sentences:
-  - sondur tv aile
-  - tv aile sondur
+  - söndür tv aile
+  - tv aile söndür
 - name: media_player.family_tv_pause
   conditions:
   - type: action

@@ -2,4 +2,4 @@
 use crate::lang::mood::MoodWords;
 
 pub(super) const MOOD: MoodWords =
-    MoodWords { request_frames: &["mohl bys", "mohla bys", "mohli byste", "můzes", "můzete"], ..MoodWords::EMPTY };
+    MoodWords { request_frames: &["mohl bys", "mohla bys", "mohli byste", "muzes", "muzete"], ..MoodWords::EMPTY };

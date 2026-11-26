@@ -2,16 +2,16 @@
 use crate::lang::groups::News;
 
 pub(super) const NEWS: News = News {
-    words: &["briefing", "jaunumi", "jaunumus", "virsraksti", "zinas", "ziņam", "ziņas", "ziņu"],
+    words: &["briefing", "jaunumi", "jaunumus", "virsraksti", "zinam", "zinas", "zinu"],
     dismiss: &["diezgan", "ne", "stop"],
     intro: "Apskatu jaunākās ziņas.",
     nudge: "Gribi vairāk par kādu?",
     done: "Labi.",
     follow: &[
-        "cita", "citu", "detaļas", "otra", "otro", "pedeja", "pedejo", "pirma", "pirmo", "si", "sikak", "so", "ta", "tas", "to", "tresa",
+        "cita", "citu", "detalas", "otra", "otro", "pedeja", "pedejo", "pirma", "pirmo", "si", "sikak", "so", "ta", "tas", "to", "tresa",
         "treso", "turpini", "vairak", "vel",
     ],
-    story: &["raksts", "rakstu", "stasts", "ziņa"],
+    story: &["raksts", "rakstu", "stasts", "zina"],
     about: &["par"],
     about_after: &[],
     topics: &[
@@ -22,7 +22,7 @@ pub(super) const NEWS: News = News {
         ("ekonomikas", "ekonomika"),
         ("ekonomika", "ekonomika"),
         ("biznesa", "bizness"),
-        ("tehnoloģiju", "tehnoloģijas"),
+        ("tehnologiju", "tehnoloģijas"),
         ("zinatnes", "zinātne"),
         ("kulturas", "kultūra"),
     ],

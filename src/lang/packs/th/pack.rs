@@ -225,12 +225,12 @@ pub const PACK: LanguagePack = LanguagePack {
         ],
         colors: &[
             ("แดง", "red"),
-            ("น้ำเงิน", "blue"),
+            ("น้ําเงิน", "blue"),
             ("เขียว", "green"),
             ("เหลือง", "yellow"),
             ("ส้ม", "orange"),
             ("ชมพู", "pink"),
-            ("ดำ", "black"),
+            ("ดํา", "black"),
             ("ขาว", "white"),
             ("ม่วง", "purple"),
             ("ขาวนวล", "warmwhite"),
@@ -271,7 +271,7 @@ pub const PACK: LanguagePack = LanguagePack {
     },
     chat: Chat {
         greet: &["poetfai"],
-        thanks: &["ทำจริงหรือ"],
+        thanks: &["ทําจริงหรือ"],
         feeling: &["mood"],
         identity: &["poetfai"],
         tell: &["tell"],

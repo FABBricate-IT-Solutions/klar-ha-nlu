@@ -7,8 +7,8 @@
     entity_id: light.living_lamp
     state: 'on'
   sentences:
-  - sytyta olohuone katto ja olohuone lamp
-  - olohuone katto ja olohuone lamp sytyta
+  - sytytä olohuone katto ja olohuone lamp
+  - olohuone katto ja olohuone lamp sytytä
 - name: and_light.living_ceiling_light.living_lamp_off
   conditions:
   - type: action
@@ -29,8 +29,8 @@
     entity_id: light.kitchen_island
     state: 'on'
   sentences:
-  - sytyta keittio katto ja keittio saareke
-  - keittio katto ja keittio saareke sytyta
+  - sytytä keittiö katto ja keittiö saareke
+  - keittiö katto ja keittiö saareke sytytä
 - name: and_light.kitchen_ceiling_light.kitchen_island_off
   conditions:
   - type: action
@@ -40,8 +40,8 @@
     entity_id: light.kitchen_island
     state: 'off'
   sentences:
-  - sammuta keittio katto ja keittio saareke
-  - keittio katto ja keittio saareke sammuta
+  - sammuta keittiö katto ja keittiö saareke
+  - keittiö katto ja keittiö saareke sammuta
 - name: and_light.living_ceiling_light.kitchen_island_on
   conditions:
   - type: action
@@ -51,8 +51,8 @@
     entity_id: light.kitchen_island
     state: 'on'
   sentences:
-  - sytyta olohuone katto ja keittio saareke
-  - olohuone katto ja keittio saareke sytyta
+  - sytytä olohuone katto ja keittiö saareke
+  - olohuone katto ja keittiö saareke sytytä
 - name: and_light.living_ceiling_light.kitchen_island_off
   conditions:
   - type: action
@@ -62,8 +62,8 @@
     entity_id: light.kitchen_island
     state: 'off'
   sentences:
-  - sammuta olohuone katto ja keittio saareke
-  - olohuone katto ja keittio saareke sammuta
+  - sammuta olohuone katto ja keittiö saareke
+  - olohuone katto ja keittiö saareke sammuta
 - name: and_light.office_ceiling_light.hallway_light_on
   conditions:
   - type: action
@@ -73,8 +73,8 @@
     entity_id: light.hallway_light
     state: 'on'
   sentences:
-  - sytyta office katto ja kaytava valo
-  - office katto ja kaytava valo sytyta
+  - sytytä office katto ja kaytava valo
+  - office katto ja kaytava valo sytytä
 - name: and_light.office_ceiling_light.hallway_light_off
   conditions:
   - type: action
@@ -95,8 +95,8 @@
     entity_id: light.garage_light
     state: 'on'
   sentences:
-  - sytyta garden valo ja garage valo
-  - garden valo ja garage valo sytyta
+  - sytytä garden valo ja garage valo
+  - garden valo ja garage valo sytytä
 - name: and_light.garden_light.garage_light_off
   conditions:
   - type: action
@@ -117,8 +117,8 @@
     entity_id: light.master_bedside_left
     state: 'on'
   sentences:
-  - sytyta makuuhuonemaster katto ja makuuhuonemaster yopoyta
-  - makuuhuonemaster katto ja makuuhuonemaster yopoyta sytyta
+  - sytytä makuuhuonemaster katto ja makuuhuonemaster yopoyta
+  - makuuhuonemaster katto ja makuuhuonemaster yopoyta sytytä
 - name: and_light.master_ceiling_light.master_bedside_left_off
   conditions:
   - type: action
@@ -139,8 +139,8 @@
     entity_id: light.dining_pendant
     state: 'on'
   sentences:
-  - sytyta olohuonefam katto ja olohuonefamess valo
-  - olohuonefam katto ja olohuonefamess valo sytyta
+  - sytytä olohuonefam katto ja olohuonefamess valo
+  - olohuonefam katto ja olohuonefamess valo sytytä
 - name: and_light.family_ceiling_light.dining_pendant_off
   conditions:
   - type: action
@@ -161,8 +161,8 @@
     entity_id: light.laundry_light
     state: 'on'
   sentences:
-  - sytyta basement valo ja kodinhoito valo
-  - basement valo ja kodinhoito valo sytyta
+  - sytytä basement valo ja kodinhoito valo
+  - basement valo ja kodinhoito valo sytytä
 - name: and_light.basement_light.laundry_light_off
   conditions:
   - type: action
@@ -183,8 +183,8 @@
     entity_id: light.kitchen_island
     state: 'on'
   sentences:
-  - sytyta makuuhuonemaster tuuletin ja keittio saareke
-  - makuuhuonemaster tuuletin ja keittio saareke sytyta
+  - sytytä makuuhuonemaster tuuletin ja keittiö saareke
+  - makuuhuonemaster tuuletin ja keittiö saareke sytytä
 - name: and_cover.living_blinds_light.living_ceiling_on
   conditions:
   - type: action
@@ -194,8 +194,8 @@
     entity_id: light.living_ceiling
     state: 'on'
   sentences:
-  - sytyta olohuone verho ja olohuone katto
-  - olohuone verho ja olohuone katto sytyta
+  - sytytä olohuone verho ja olohuone katto
+  - olohuone verho ja olohuone katto sytytä
 - name: and_switch.washing_machine_switch.dryer_on
   conditions:
   - type: action
@@ -205,8 +205,8 @@
     entity_id: switch.dryer
     state: 'on'
   sentences:
-  - sytyta kodinhoito pesukone ja kodinhoito dryer
-  - kodinhoito pesukone ja kodinhoito dryer sytyta
+  - sytytä kodinhoito pesukone ja kodinhoito dryer
+  - kodinhoito pesukone ja kodinhoito dryer sytytä
 - name: off_living_kitchen
   conditions:
   - type: action
@@ -218,8 +218,8 @@
     domain: light
     state: 'off'
   sentences:
-  - sammuta valo olohuone ja keittio
-  - valo olohuone ja keittio sammuta
+  - sammuta valo olohuone ja keittiö
+  - valo olohuone ja keittiö sammuta
 - name: off_office_hallway
   conditions:
   - type: action
@@ -287,8 +287,8 @@
     domain: light
     state: 'off'
   sentences:
-  - sammuta valo olohuone ja olohuonefamess ja keittio
-  - valo olohuone olohuonefamess ja keittio sammuta
+  - sammuta valo olohuone ja olohuonefamess ja keittiö
+  - valo olohuone olohuonefamess ja keittiö sammuta
 - name: on_office_hallway_garage
   conditions:
   - type: action
@@ -304,8 +304,8 @@
     domain: light
     state: 'on'
   sentences:
-  - sytyta valo office ja kaytava ja garage
-  - valo office kaytava ja garage sytyta
+  - sytytä valo office ja kaytava ja garage
+  - valo office kaytava ja garage sytytä
 - name: off_garden_basement_laundry
   conditions:
   - type: action
@@ -397,8 +397,8 @@
     entity_id: light.kitchen_ceiling
     state: 'off'
   sentences:
-  - sammuta kaikki valo paitsi saareke keittio
-  - kaikki valo sammuta paitsi saareke keittio
+  - sammuta kaikki valo paitsi saareke keittiö
+  - kaikki valo sammuta paitsi saareke keittiö
   forbid:
   - light.kitchen_island
   - kitchen
@@ -780,8 +780,8 @@
     domain: light
     state: 'on'
   sentences:
-  - sytyta kaikki valo paitsi keittio
-  - kaikki valo sytyta paitsi keittio
+  - sytytä kaikki valo paitsi keittiö
+  - kaikki valo sytytä paitsi keittiö
   forbid:
   - kitchen
 - name: all_on_except_office
@@ -855,8 +855,8 @@
     domain: light
     state: 'on'
   sentences:
-  - sytyta kaikki valo paitsi office
-  - kaikki valo sytyta paitsi office
+  - sytytä kaikki valo paitsi office
+  - kaikki valo sytytä paitsi office
   forbid:
   - office
 - name: all_on_except_garden
@@ -930,8 +930,8 @@
     domain: light
     state: 'on'
   sentences:
-  - sytyta kaikki valo paitsi garden
-  - kaikki valo sytyta paitsi garden
+  - sytytä kaikki valo paitsi garden
+  - kaikki valo sytytä paitsi garden
   forbid:
   - garden
 - name: all_on_except_living
@@ -1005,8 +1005,8 @@
     domain: light
     state: 'on'
   sentences:
-  - sytyta kaikki valo paitsi olohuone
-  - kaikki valo sytyta paitsi olohuone
+  - sytytä kaikki valo paitsi olohuone
+  - kaikki valo sytytä paitsi olohuone
   forbid:
   - living
 - name: all_on_except_garage
@@ -1080,8 +1080,8 @@
     domain: light
     state: 'on'
   sentences:
-  - sytyta kaikki valo paitsi garage
-  - kaikki valo sytyta paitsi garage
+  - sytytä kaikki valo paitsi garage
+  - kaikki valo sytytä paitsi garage
   forbid:
   - garage
 - name: except_in_kitchen_island
@@ -1090,8 +1090,8 @@
     entity_id: light.kitchen_ceiling
     state: 'off'
   sentences:
-  - sammuta kaikki valo keittio paitsi saareke
-  - kaikki valo keittio sammuta paitsi saareke
+  - sammuta kaikki valo keittiö paitsi saareke
+  - kaikki valo keittiö sammuta paitsi saareke
   forbid:
   - light.kitchen_island
 - name: except_in_living_lamp
@@ -1178,8 +1178,8 @@
     entity_id: light.kitchen_ceiling
     state: 'on'
   sentences:
-  - sytyta kaikki valo paitsi saareke keittio
-  - kaikki valo sytyta paitsi saareke keittio
+  - sytytä kaikki valo paitsi saareke keittiö
+  - kaikki valo sytytä paitsi saareke keittiö
   forbid:
   - light.kitchen_island
 - name: except_kitchen_office
@@ -1249,8 +1249,8 @@
     domain: light
     state: 'off'
   sentences:
-  - sammuta kaikki valo paitsi keittio ja office
-  - kaikki valo sammuta paitsi keittio ja office
+  - sammuta kaikki valo paitsi keittiö ja office
+  - kaikki valo sammuta paitsi keittiö ja office
   forbid:
   - kitchen
   - office
@@ -1437,8 +1437,8 @@
     domain: light
     state: 'off'
   sentences:
-  - sammuta kaikki valo ala paitsi keittio
-  - kaikki valo ala sammuta paitsi keittio
+  - sammuta kaikki valo ala paitsi keittiö
+  - kaikki valo ala sammuta paitsi keittiö
   forbid:
   - kitchen
 - name: floor_upper_except_master_bedroom
@@ -1554,8 +1554,8 @@
     attributes:
       temperature: 21
   sentences:
-  - aseta lampo olohuone ja makuuhuonemaster 21
-  - lampo olohuone ja makuuhuonemaster 21
+  - aseta lämpö olohuone ja makuuhuonemaster 21
+  - lämpö olohuone ja makuuhuonemaster 21
 - name: bright_living_kitchen_50
   conditions:
   - type: action
@@ -1569,8 +1569,8 @@
     attributes:
       brightness: 50
   sentences:
-  - aseta valo olohuone ja keittio 50
-  - valo olohuone ja keittio 50
+  - aseta valo olohuone ja keittiö 50
+  - valo olohuone ja keittiö 50
 - name: color_living_kitchen_red
   conditions:
   - type: action
@@ -1584,8 +1584,8 @@
     attributes:
       color: red
   sentences:
-  - aseta valo olohuone ja keittio punainen
-  - valo olohuone ja keittio punainen
+  - aseta valo olohuone ja keittiö punainen
+  - valo olohuone ja keittiö punainen
 - name: query_living_kitchen_lights
   conditions:
   - type: query
@@ -1595,8 +1595,8 @@
     area: kitchen
     domain: light
   sentences:
-  - mika valo olohuone ja keittio
-  - valo olohuone ja keittio
+  - mikä valo olohuone ja keittiö
+  - valo olohuone ja keittiö
 - name: temp_living_and_light_kitchen_off
   conditions:
   - type: query
@@ -1606,8 +1606,8 @@
     domain: light
     state: 'off'
   sentences:
-  - mika lampo olohuone ja sammuta valo keittio
-  - sammuta valo keittio ja mika lampo olohuone
+  - mikä lämpö olohuone ja sammuta valo keittiö
+  - sammuta valo keittiö ja mikä lämpö olohuone
 - name: locks_front_and_garage
   conditions:
   - type: action
@@ -1628,5 +1628,5 @@
     entity_id: light.powder_room_light
     state: 'off'
   sentences:
-  - sytyta elokuva ja sammuta valo wc
-  - sammuta valo wc ja sytyta elokuva
+  - sytytä elokuva ja sammuta valo wc
+  - sammuta valo wc ja sytytä elokuva

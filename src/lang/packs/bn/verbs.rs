@@ -44,5 +44,5 @@ pub(super) const VERBS: &[(&str, VerbKind)] = &[
     ("পাখা", VerbKind::FanNoun),
     ("বন্ধ", VerbKind::Close),
     ("সেট", VerbKind::Set),
-    ("হয়েছে", VerbKind::ListComplete),
+    ("হয়েছে", VerbKind::ListComplete),
 ];

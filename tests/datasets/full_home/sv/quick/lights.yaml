@@ -5,7 +5,7 @@
     domain: light
     state: 'on'
   sentences:
-  - tand ljus vardagsrum
+  - tänd ljus vardagsrum
 - name: lights_living_off
   conditions:
   - type: action
@@ -13,7 +13,7 @@
     domain: light
     state: 'off'
   sentences:
-  - slack ljus vardagsrum
+  - släck ljus vardagsrum
 - name: lights_kitchen_on
   conditions:
   - type: action
@@ -21,7 +21,7 @@
     domain: light
     state: 'on'
   sentences:
-  - tand ljus kok
+  - tänd ljus kök
 - name: lights_kitchen_off
   conditions:
   - type: action
@@ -29,7 +29,7 @@
     domain: light
     state: 'off'
   sentences:
-  - slack ljus kok
+  - släck ljus kök
 - name: lights_garage_on
   conditions:
   - type: action
@@ -37,7 +37,7 @@
     domain: light
     state: 'on'
   sentences:
-  - tand ljus garage
+  - tänd ljus garage
 - name: lights_garage_off
   conditions:
   - type: action
@@ -45,7 +45,7 @@
     domain: light
     state: 'off'
   sentences:
-  - slack ljus garage
+  - släck ljus garage
 - name: lights_office_on
   conditions:
   - type: action
@@ -53,7 +53,7 @@
     domain: light
     state: 'on'
   sentences:
-  - tand ljus office
+  - tänd ljus office
 - name: lights_office_off
   conditions:
   - type: action
@@ -61,7 +61,7 @@
     domain: light
     state: 'off'
   sentences:
-  - slack ljus office
+  - släck ljus office
 - name: lights_garden_on
   conditions:
   - type: action
@@ -69,7 +69,7 @@
     domain: light
     state: 'on'
   sentences:
-  - tand ljus garden
+  - tänd ljus garden
 - name: lights_garden_off
   conditions:
   - type: action
@@ -77,7 +77,7 @@
     domain: light
     state: 'off'
   sentences:
-  - slack ljus garden
+  - släck ljus garden
 - name: lights_master_bedroom_on
   conditions:
   - type: action
@@ -85,7 +85,7 @@
     domain: light
     state: 'on'
   sentences:
-  - tand ljus sovrummaster
+  - tänd ljus sovrummaster
 - name: lights_master_bedroom_off
   conditions:
   - type: action
@@ -93,7 +93,7 @@
     domain: light
     state: 'off'
   sentences:
-  - slack ljus sovrummaster
+  - släck ljus sovrummaster
 - name: lights_hallway_on
   conditions:
   - type: action
@@ -101,7 +101,7 @@
     domain: light
     state: 'on'
   sentences:
-  - tand ljus hallway
+  - tänd ljus hallway
 - name: lights_hallway_off
   conditions:
   - type: action
@@ -109,7 +109,7 @@
     domain: light
     state: 'off'
   sentences:
-  - slack ljus hallway
+  - släck ljus hallway
 - name: lights_basement_on
   conditions:
   - type: action
@@ -117,7 +117,7 @@
     domain: light
     state: 'on'
   sentences:
-  - tand ljus basement
+  - tänd ljus basement
 - name: lights_basement_off
   conditions:
   - type: action
@@ -125,21 +125,21 @@
     domain: light
     state: 'off'
   sentences:
-  - slack ljus basement
+  - släck ljus basement
 - name: light.living_ceiling_on
   conditions:
   - type: action
     entity_id: light.living_ceiling
     state: 'on'
   sentences:
-  - tand tak vardagsrum
+  - tänd tak vardagsrum
 - name: light.living_ceiling_off
   conditions:
   - type: action
     entity_id: light.living_ceiling
     state: 'off'
   sentences:
-  - slack tak vardagsrum
+  - släck tak vardagsrum
 - name: light.living_ceiling_bright_50
   conditions:
   - type: action
@@ -147,105 +147,105 @@
     attributes:
       brightness: 50
   sentences:
-  - satt tak vardagsrum 50
+  - sätt tak vardagsrum 50
 - name: light.living_lamp_on
   conditions:
   - type: action
     entity_id: light.living_lamp
     state: 'on'
   sentences:
-  - tand lamp vardagsrum
+  - tänd lamp vardagsrum
 - name: light.living_lamp_off
   conditions:
   - type: action
     entity_id: light.living_lamp
     state: 'off'
   sentences:
-  - slack lamp vardagsrum
+  - släck lamp vardagsrum
 - name: light.kitchen_ceiling_on
   conditions:
   - type: action
     entity_id: light.kitchen_ceiling
     state: 'on'
   sentences:
-  - tand tak kok
+  - tänd tak kök
 - name: light.kitchen_ceiling_off
   conditions:
   - type: action
     entity_id: light.kitchen_ceiling
     state: 'off'
   sentences:
-  - slack tak kok
+  - släck tak kök
 - name: light.kitchen_island_on
   conditions:
   - type: action
     entity_id: light.kitchen_island
     state: 'on'
   sentences:
-  - tand o kok
+  - tänd o kök
 - name: light.kitchen_island_off
   conditions:
   - type: action
     entity_id: light.kitchen_island
     state: 'off'
   sentences:
-  - slack o kok
+  - släck o kök
 - name: light.master_ceiling_on
   conditions:
   - type: action
     entity_id: light.master_ceiling
     state: 'on'
   sentences:
-  - tand tak sovrummaster
+  - tänd tak sovrummaster
 - name: light.master_ceiling_off
   conditions:
   - type: action
     entity_id: light.master_ceiling
     state: 'off'
   sentences:
-  - slack tak sovrummaster
+  - släck tak sovrummaster
 - name: light.master_bedside_left_on
   conditions:
   - type: action
     entity_id: light.master_bedside_left
     state: 'on'
   sentences:
-  - tand sanglampa sovrummaster
+  - tänd sanglampa sovrummaster
 - name: light.master_bedside_left_off
   conditions:
   - type: action
     entity_id: light.master_bedside_left
     state: 'off'
   sentences:
-  - slack sanglampa sovrummaster
+  - släck sanglampa sovrummaster
 - name: light.office_ceiling_on
   conditions:
   - type: action
     entity_id: light.office_ceiling
     state: 'on'
   sentences:
-  - tand tak office
+  - tänd tak office
 - name: light.office_ceiling_off
   conditions:
   - type: action
     entity_id: light.office_ceiling
     state: 'off'
   sentences:
-  - slack tak office
+  - släck tak office
 - name: light.garden_on
   conditions:
   - type: action
     entity_id: light.garden
     state: 'on'
   sentences:
-  - tand ljus garden
+  - tänd ljus garden
 - name: light.garden_off
   conditions:
   - type: action
     entity_id: light.garden
     state: 'off'
   sentences:
-  - slack ljus garden
+  - släck ljus garden
 - name: light.living_ceiling_red
   conditions:
   - type: action
@@ -253,4 +253,4 @@
     attributes:
       color: red
   sentences:
-  - satt tak vardagsrum rod
+  - sätt tak vardagsrum röd

@@ -47,6 +47,7 @@ tar = "0.4"
 flate2 = { version = "1", default-features = false, features = ["rust_backend"] }
 jiff = { version = "0.2", default-features = false, features = ["std", "tz-system", "tzdb-bundle-always"] }
 parking_lot = "0.12"
+unicode-normalization = "0.1"
 
 [dev-dependencies]
 # Scratch directories for tests; removed on drop, also when a test panics.

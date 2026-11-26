@@ -5,8 +5,8 @@
     attributes:
       minutes: 10
   sentences:
-  - yak zamanlayici 10 min
-  - zamanlayici 10 min
+  - yak zamanlayıcı 10 min
+  - zamanlayıcı 10 min
 - name: timer_laundry
   conditions:
   - type: action
@@ -14,15 +14,15 @@
     attributes:
       minutes: 45
   sentences:
-  - yak zamanlayici 45 min
-  - zamanlayici 45 min
+  - yak zamanlayıcı 45 min
+  - zamanlayıcı 45 min
 - name: timer_cancel
   conditions:
   - type: action
     entity_id: timer.abstract
   sentences:
-  - sondur zamanlayici
-  - zamanlayici sondur
+  - söndür zamanlayıcı
+  - zamanlayıcı söndür
 - name: timer_oven_5
   conditions:
   - type: action
@@ -30,8 +30,8 @@
     attributes:
       minutes: 5
   sentences:
-  - yak zamanlayici 5 min
-  - zamanlayici 5 min
+  - yak zamanlayıcı 5 min
+  - zamanlayıcı 5 min
 - name: timer_oven_15
   conditions:
   - type: action
@@ -39,8 +39,8 @@
     attributes:
       minutes: 15
   sentences:
-  - yak zamanlayici 15 min
-  - zamanlayici 15 min
+  - yak zamanlayıcı 15 min
+  - zamanlayıcı 15 min
 - name: timer_oven_20
   conditions:
   - type: action
@@ -48,8 +48,8 @@
     attributes:
       minutes: 20
   sentences:
-  - yak zamanlayici 20 min
-  - zamanlayici 20 min
+  - yak zamanlayıcı 20 min
+  - zamanlayıcı 20 min
 - name: timer_oven_30
   conditions:
   - type: action
@@ -57,8 +57,8 @@
     attributes:
       minutes: 30
   sentences:
-  - yak zamanlayici 30 min
-  - zamanlayici 30 min
+  - yak zamanlayıcı 30 min
+  - zamanlayıcı 30 min
 - name: timer_oven_60
   conditions:
   - type: action
@@ -66,5 +66,5 @@
     attributes:
       minutes: 60
   sentences:
-  - yak zamanlayici 60 min
-  - zamanlayici 60 min
+  - yak zamanlayıcı 60 min
+  - zamanlayıcı 60 min

@@ -40,8 +40,8 @@
   - type: query
     entity_id: media_player.living_music
   sentences:
-  - mika musiikki olohuone
-  - mika track olohuone
+  - mikä musiikki olohuone
+  - mikä track olohuone
 - name: music_volume_10
   conditions:
   - type: action
@@ -108,8 +108,8 @@
     attributes:
       search_query: queen
   sentences:
-  - soita queen keittio
-  - soita queen musiikki keittio
+  - soita queen keittiö
+  - soita queen musiikki keittiö
 - name: play_beatles_living
   conditions:
   - type: action
@@ -234,8 +234,8 @@
     attributes:
       search_query: queen
   sentences:
-  - soita queen keittio
-  - soita queen musiikki keittio
+  - soita queen keittiö
+  - soita queen musiikki keittiö
 - name: play_beatles_kitchen
   conditions:
   - type: action
@@ -243,8 +243,8 @@
     attributes:
       search_query: beatles
   sentences:
-  - soita beatles keittio
-  - soita beatles musiikki keittio
+  - soita beatles keittiö
+  - soita beatles musiikki keittiö
 - name: play_radiohead_kitchen
   conditions:
   - type: action
@@ -252,8 +252,8 @@
     attributes:
       search_query: radiohead
   sentences:
-  - soita radiohead keittio
-  - soita radiohead musiikki keittio
+  - soita radiohead keittiö
+  - soita radiohead musiikki keittiö
 - name: play_abba_kitchen
   conditions:
   - type: action
@@ -261,8 +261,8 @@
     attributes:
       search_query: abba
   sentences:
-  - soita abba keittio
-  - soita abba musiikki keittio
+  - soita abba keittiö
+  - soita abba musiikki keittiö
 - name: play_coldplay_kitchen
   conditions:
   - type: action
@@ -270,8 +270,8 @@
     attributes:
       search_query: coldplay
   sentences:
-  - soita coldplay keittio
-  - soita coldplay musiikki keittio
+  - soita coldplay keittiö
+  - soita coldplay musiikki keittiö
 - name: play_adele_kitchen
   conditions:
   - type: action
@@ -279,8 +279,8 @@
     attributes:
       search_query: adele
   sentences:
-  - soita adele keittio
-  - soita adele musiikki keittio
+  - soita adele keittiö
+  - soita adele musiikki keittiö
 - name: play_prince_kitchen
   conditions:
   - type: action
@@ -288,8 +288,8 @@
     attributes:
       search_query: prince
   sentences:
-  - soita prince keittio
-  - soita prince musiikki keittio
+  - soita prince keittiö
+  - soita prince musiikki keittiö
 - name: play_bowie_kitchen
   conditions:
   - type: action
@@ -297,8 +297,8 @@
     attributes:
       search_query: bowie
   sentences:
-  - soita bowie keittio
-  - soita bowie musiikki keittio
+  - soita bowie keittiö
+  - soita bowie musiikki keittiö
 - name: play_nirvana_kitchen
   conditions:
   - type: action
@@ -306,8 +306,8 @@
     attributes:
       search_query: nirvana
   sentences:
-  - soita nirvana keittio
-  - soita nirvana musiikki keittio
+  - soita nirvana keittiö
+  - soita nirvana musiikki keittiö
 - name: play_eagles_kitchen
   conditions:
   - type: action
@@ -315,8 +315,8 @@
     attributes:
       search_query: eagles
   sentences:
-  - soita eagles keittio
-  - soita eagles musiikki keittio
+  - soita eagles keittiö
+  - soita eagles musiikki keittiö
 - name: play_madonna_kitchen
   conditions:
   - type: action
@@ -324,8 +324,8 @@
     attributes:
       search_query: madonna
   sentences:
-  - soita madonna keittio
-  - soita madonna musiikki keittio
+  - soita madonna keittiö
+  - soita madonna musiikki keittiö
 - name: play_mozart_kitchen
   conditions:
   - type: action
@@ -333,8 +333,8 @@
     attributes:
       search_query: mozart
   sentences:
-  - soita mozart keittio
-  - soita mozart musiikki keittio
+  - soita mozart keittiö
+  - soita mozart musiikki keittiö
 - name: play_daft punk_kitchen
   conditions:
   - type: action
@@ -342,8 +342,8 @@
     attributes:
       search_query: daft punk
   sentences:
-  - soita daft punk keittio
-  - soita daft punk musiikki keittio
+  - soita daft punk keittiö
+  - soita daft punk musiikki keittiö
 - name: play_biafra_kitchen
   conditions:
   - type: action
@@ -351,8 +351,8 @@
     attributes:
       search_query: biafra
   sentences:
-  - soita biafra keittio
-  - soita biafra musiikki keittio
+  - soita biafra keittiö
+  - soita biafra musiikki keittiö
 - name: play_queen_office
   conditions:
   - type: action
@@ -493,8 +493,8 @@
   - type: query
     entity_id: media_player.living_music
   sentences:
-  - mika musiikki olohuone
-  - mika track olohuone
+  - mikä musiikki olohuone
+  - mikä track olohuone
 - name: radio_kitchen
   conditions:
   - type: action
@@ -503,14 +503,14 @@
       media_id: queen
       radio_mode: 'true'
   sentences:
-  - soita queen radio mode keittio
+  - soita queen radio mode keittiö
 - name: now_kitchen
   conditions:
   - type: query
     entity_id: media_player.kitchen_music
   sentences:
-  - mika musiikki keittio
-  - mika track keittio
+  - mikä musiikki keittiö
+  - mikä track keittiö
 - name: radio_office
   conditions:
   - type: action
@@ -525,5 +525,5 @@
   - type: query
     entity_id: media_player.office_music
   sentences:
-  - mika musiikki office
-  - mika track office
+  - mikä musiikki office
+  - mikä track office

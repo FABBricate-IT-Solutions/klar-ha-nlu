@@ -5,8 +5,8 @@
     domain: light
     state: 'on'
   sentences:
-  - yak isik giris
-  - isik giris yak
+  - yak ışık giris
+  - ışık giris yak
 - name: lights_entryway_off
   conditions:
   - type: action
@@ -14,8 +14,8 @@
     domain: light
     state: 'off'
   sentences:
-  - sondur isik giris
-  - isik giris sondur
+  - söndür ışık giris
+  - ışık giris söndür
 - name: lights_living_on
   conditions:
   - type: action
@@ -23,8 +23,8 @@
     domain: light
     state: 'on'
   sentences:
-  - yak isik salon
-  - isik salon yak
+  - yak ışık salon
+  - ışık salon yak
 - name: lights_living_off
   conditions:
   - type: action
@@ -32,8 +32,8 @@
     domain: light
     state: 'off'
   sentences:
-  - sondur isik salon
-  - isik salon sondur
+  - söndür ışık salon
+  - ışık salon söndür
 - name: lights_dining_on
   conditions:
   - type: action
@@ -41,8 +41,8 @@
     domain: light
     state: 'on'
   sentences:
-  - yak isik aileess
-  - isik aileess yak
+  - yak ışık aileess
+  - ışık aileess yak
 - name: lights_dining_off
   conditions:
   - type: action
@@ -50,8 +50,8 @@
     domain: light
     state: 'off'
   sentences:
-  - sondur isik aileess
-  - isik aileess sondur
+  - söndür ışık aileess
+  - ışık aileess söndür
 - name: lights_kitchen_on
   conditions:
   - type: action
@@ -59,8 +59,8 @@
     domain: light
     state: 'on'
   sentences:
-  - yak isik mutfak
-  - isik mutfak yak
+  - yak ışık mutfak
+  - ışık mutfak yak
 - name: lights_kitchen_off
   conditions:
   - type: action
@@ -68,8 +68,8 @@
     domain: light
     state: 'off'
   sentences:
-  - sondur isik mutfak
-  - isik mutfak sondur
+  - söndür ışık mutfak
+  - ışık mutfak söndür
 - name: lights_family_room_on
   conditions:
   - type: action
@@ -77,8 +77,8 @@
     domain: light
     state: 'on'
   sentences:
-  - yak isik aile
-  - isik aile yak
+  - yak ışık aile
+  - ışık aile yak
 - name: lights_family_room_off
   conditions:
   - type: action
@@ -86,8 +86,8 @@
     domain: light
     state: 'off'
   sentences:
-  - sondur isik aile
-  - isik aile sondur
+  - söndür ışık aile
+  - ışık aile söndür
 - name: lights_laundry_on
   conditions:
   - type: action
@@ -95,8 +95,8 @@
     domain: light
     state: 'on'
   sentences:
-  - yak isik camasirhane
-  - isik camasirhane yak
+  - yak ışık camasirhane
+  - ışık camasirhane yak
 - name: lights_laundry_off
   conditions:
   - type: action
@@ -104,8 +104,8 @@
     domain: light
     state: 'off'
   sentences:
-  - sondur isik camasirhane
-  - isik camasirhane sondur
+  - söndür ışık camasirhane
+  - ışık camasirhane söndür
 - name: lights_powder_room_on
   conditions:
   - type: action
@@ -113,8 +113,8 @@
     domain: light
     state: 'on'
   sentences:
-  - yak isik wc
-  - isik wc yak
+  - yak ışık wc
+  - ışık wc yak
 - name: lights_powder_room_off
   conditions:
   - type: action
@@ -122,8 +122,8 @@
     domain: light
     state: 'off'
   sentences:
-  - sondur isik wc
-  - isik wc sondur
+  - söndür ışık wc
+  - ışık wc söndür
 - name: lights_garage_on
   conditions:
   - type: action
@@ -131,8 +131,8 @@
     domain: light
     state: 'on'
   sentences:
-  - yak isik garage
-  - isik garage yak
+  - yak ışık garage
+  - ışık garage yak
 - name: lights_garage_off
   conditions:
   - type: action
@@ -140,8 +140,8 @@
     domain: light
     state: 'off'
   sentences:
-  - sondur isik garage
-  - isik garage sondur
+  - söndür ışık garage
+  - ışık garage söndür
 - name: lights_office_on
   conditions:
   - type: action
@@ -149,8 +149,8 @@
     domain: light
     state: 'on'
   sentences:
-  - yak isik office
-  - isik office yak
+  - yak ışık office
+  - ışık office yak
 - name: lights_office_off
   conditions:
   - type: action
@@ -158,8 +158,8 @@
     domain: light
     state: 'off'
   sentences:
-  - sondur isik office
-  - isik office sondur
+  - söndür ışık office
+  - ışık office söndür
 - name: lights_garden_on
   conditions:
   - type: action
@@ -167,8 +167,8 @@
     domain: light
     state: 'on'
   sentences:
-  - yak isik garden
-  - isik garden yak
+  - yak ışık garden
+  - ışık garden yak
 - name: lights_garden_off
   conditions:
   - type: action
@@ -176,8 +176,8 @@
     domain: light
     state: 'off'
   sentences:
-  - sondur isik garden
-  - isik garden sondur
+  - söndür ışık garden
+  - ışık garden söndür
 - name: lights_master_bedroom_on
   conditions:
   - type: action
@@ -185,8 +185,8 @@
     domain: light
     state: 'on'
   sentences:
-  - yak isik yatakodasimaster
-  - isik yatakodasimaster yak
+  - yak ışık yatakodasimaster
+  - ışık yatakodasimaster yak
 - name: lights_master_bedroom_off
   conditions:
   - type: action
@@ -194,8 +194,8 @@
     domain: light
     state: 'off'
   sentences:
-  - sondur isik yatakodasimaster
-  - isik yatakodasimaster sondur
+  - söndür ışık yatakodasimaster
+  - ışık yatakodasimaster söndür
 - name: lights_bedroom_2_on
   conditions:
   - type: action
@@ -203,8 +203,8 @@
     domain: light
     state: 'on'
   sentences:
-  - yak isik yatakodasi2
-  - isik yatakodasi2 yak
+  - yak ışık yatakodasi2
+  - ışık yatakodasi2 yak
 - name: lights_bedroom_2_off
   conditions:
   - type: action
@@ -212,8 +212,8 @@
     domain: light
     state: 'off'
   sentences:
-  - sondur isik yatakodasi2
-  - isik yatakodasi2 sondur
+  - söndür ışık yatakodasi2
+  - ışık yatakodasi2 söndür
 - name: lights_bedroom_3_on
   conditions:
   - type: action
@@ -221,8 +221,8 @@
     domain: light
     state: 'on'
   sentences:
-  - yak isik yatakodasi3
-  - isik yatakodasi3 yak
+  - yak ışık yatakodasi3
+  - ışık yatakodasi3 yak
 - name: lights_bedroom_3_off
   conditions:
   - type: action
@@ -230,8 +230,8 @@
     domain: light
     state: 'off'
   sentences:
-  - sondur isik yatakodasi3
-  - isik yatakodasi3 sondur
+  - söndür ışık yatakodasi3
+  - ışık yatakodasi3 söndür
 - name: lights_bedroom_4_on
   conditions:
   - type: action
@@ -239,8 +239,8 @@
     domain: light
     state: 'on'
   sentences:
-  - yak isik yatakodasi4
-  - isik yatakodasi4 yak
+  - yak ışık yatakodasi4
+  - ışık yatakodasi4 yak
 - name: lights_bedroom_4_off
   conditions:
   - type: action
@@ -248,8 +248,8 @@
     domain: light
     state: 'off'
   sentences:
-  - sondur isik yatakodasi4
-  - isik yatakodasi4 sondur
+  - söndür ışık yatakodasi4
+  - ışık yatakodasi4 söndür
 - name: lights_master_bath_on
   conditions:
   - type: action
@@ -257,8 +257,8 @@
     domain: light
     state: 'on'
   sentences:
-  - yak isik ebatmaster
-  - isik ebatmaster yak
+  - yak ışık ebatmaster
+  - ışık ebatmaster yak
 - name: lights_master_bath_off
   conditions:
   - type: action
@@ -266,8 +266,8 @@
     domain: light
     state: 'off'
   sentences:
-  - sondur isik ebatmaster
-  - isik ebatmaster sondur
+  - söndür ışık ebatmaster
+  - ışık ebatmaster söndür
 - name: lights_main_bath_on
   conditions:
   - type: action
@@ -275,8 +275,8 @@
     domain: light
     state: 'on'
   sentences:
-  - yak isik main bath
-  - isik main bath yak
+  - yak ışık main bath
+  - ışık main bath yak
 - name: lights_main_bath_off
   conditions:
   - type: action
@@ -284,8 +284,8 @@
     domain: light
     state: 'off'
   sentences:
-  - sondur isik main bath
-  - isik main bath sondur
+  - söndür ışık main bath
+  - ışık main bath söndür
 - name: lights_hallway_on
   conditions:
   - type: action
@@ -293,8 +293,8 @@
     domain: light
     state: 'on'
   sentences:
-  - yak isik koridor
-  - isik koridor yak
+  - yak ışık koridor
+  - ışık koridor yak
 - name: lights_hallway_off
   conditions:
   - type: action
@@ -302,8 +302,8 @@
     domain: light
     state: 'off'
   sentences:
-  - sondur isik koridor
-  - isik koridor sondur
+  - söndür ışık koridor
+  - ışık koridor söndür
 - name: lights_basement_on
   conditions:
   - type: action
@@ -311,8 +311,8 @@
     domain: light
     state: 'on'
   sentences:
-  - yak isik basement
-  - isik basement yak
+  - yak ışık basement
+  - ışık basement yak
 - name: lights_basement_off
   conditions:
   - type: action
@@ -320,8 +320,8 @@
     domain: light
     state: 'off'
   sentences:
-  - sondur isik basement
-  - isik basement sondur
+  - söndür ışık basement
+  - ışık basement söndür
 - name: light.living_ceiling_on
   conditions:
   - type: action
@@ -336,8 +336,8 @@
     entity_id: light.living_ceiling
     state: 'off'
   sentences:
-  - sondur tavan salon
-  - tavan salon sondur
+  - söndür tavan salon
+  - tavan salon söndür
 - name: light.living_ceiling_bright_20
   conditions:
   - type: action
@@ -406,8 +406,8 @@
     entity_id: light.living_lamp
     state: 'off'
   sentences:
-  - sondur lamp salon
-  - lamp salon sondur
+  - söndür lamp salon
+  - lamp salon söndür
 - name: light.living_lamp_bright_20
   conditions:
   - type: action
@@ -476,8 +476,8 @@
     entity_id: light.kitchen_ceiling
     state: 'off'
   sentences:
-  - sondur tavan mutfak
-  - tavan mutfak sondur
+  - söndür tavan mutfak
+  - tavan mutfak söndür
 - name: light.kitchen_ceiling_bright_20
   conditions:
   - type: action
@@ -546,8 +546,8 @@
     entity_id: light.kitchen_island
     state: 'off'
   sentences:
-  - sondur ada mutfak
-  - ada mutfak sondur
+  - söndür ada mutfak
+  - ada mutfak söndür
 - name: light.kitchen_island_bright_20
   conditions:
   - type: action
@@ -616,8 +616,8 @@
     entity_id: light.master_ceiling
     state: 'off'
   sentences:
-  - sondur tavan yatakodasimaster
-  - tavan yatakodasimaster sondur
+  - söndür tavan yatakodasimaster
+  - tavan yatakodasimaster söndür
 - name: light.master_ceiling_bright_20
   conditions:
   - type: action
@@ -686,8 +686,8 @@
     entity_id: light.master_bedside_left
     state: 'off'
   sentences:
-  - sondur komodin yatakodasimaster
-  - komodin yatakodasimaster sondur
+  - söndür komodin yatakodasimaster
+  - komodin yatakodasimaster söndür
 - name: light.master_bedside_left_bright_20
   conditions:
   - type: action
@@ -756,8 +756,8 @@
     entity_id: light.office_ceiling
     state: 'off'
   sentences:
-  - sondur tavan office
-  - tavan office sondur
+  - söndür tavan office
+  - tavan office söndür
 - name: light.office_ceiling_bright_20
   conditions:
   - type: action
@@ -818,16 +818,16 @@
     entity_id: light.garden
     state: 'on'
   sentences:
-  - yak isik garden
-  - isik garden yak
+  - yak ışık garden
+  - ışık garden yak
 - name: light.garden_off
   conditions:
   - type: action
     entity_id: light.garden
     state: 'off'
   sentences:
-  - sondur isik garden
-  - isik garden sondur
+  - söndür ışık garden
+  - ışık garden söndür
 - name: light.garden_bright_20
   conditions:
   - type: action
@@ -835,8 +835,8 @@
     attributes:
       brightness: 20
   sentences:
-  - ayarla isik garden 20
-  - isik garden 20
+  - ayarla ışık garden 20
+  - ışık garden 20
 - name: light.garden_bright_40
   conditions:
   - type: action
@@ -844,8 +844,8 @@
     attributes:
       brightness: 40
   sentences:
-  - ayarla isik garden 40
-  - isik garden 40
+  - ayarla ışık garden 40
+  - ışık garden 40
 - name: light.garden_bright_50
   conditions:
   - type: action
@@ -853,8 +853,8 @@
     attributes:
       brightness: 50
   sentences:
-  - ayarla isik garden 50
-  - isik garden 50
+  - ayarla ışık garden 50
+  - ışık garden 50
 - name: light.garden_bright_60
   conditions:
   - type: action
@@ -862,8 +862,8 @@
     attributes:
       brightness: 60
   sentences:
-  - ayarla isik garden 60
-  - isik garden 60
+  - ayarla ışık garden 60
+  - ışık garden 60
 - name: light.garden_bright_80
   conditions:
   - type: action
@@ -871,8 +871,8 @@
     attributes:
       brightness: 80
   sentences:
-  - ayarla isik garden 80
-  - isik garden 80
+  - ayarla ışık garden 80
+  - ışık garden 80
 - name: light.garden_bright_100
   conditions:
   - type: action
@@ -880,24 +880,24 @@
     attributes:
       brightness: 100
   sentences:
-  - ayarla isik garden 100
-  - isik garden 100
+  - ayarla ışık garden 100
+  - ışık garden 100
 - name: light.basement_on
   conditions:
   - type: action
     entity_id: light.basement
     state: 'on'
   sentences:
-  - yak isik basement
-  - isik basement yak
+  - yak ışık basement
+  - ışık basement yak
 - name: light.basement_off
   conditions:
   - type: action
     entity_id: light.basement
     state: 'off'
   sentences:
-  - sondur isik basement
-  - isik basement sondur
+  - söndür ışık basement
+  - ışık basement söndür
 - name: light.basement_bright_20
   conditions:
   - type: action
@@ -905,8 +905,8 @@
     attributes:
       brightness: 20
   sentences:
-  - ayarla isik basement 20
-  - isik basement 20
+  - ayarla ışık basement 20
+  - ışık basement 20
 - name: light.basement_bright_40
   conditions:
   - type: action
@@ -914,8 +914,8 @@
     attributes:
       brightness: 40
   sentences:
-  - ayarla isik basement 40
-  - isik basement 40
+  - ayarla ışık basement 40
+  - ışık basement 40
 - name: light.basement_bright_50
   conditions:
   - type: action
@@ -923,8 +923,8 @@
     attributes:
       brightness: 50
   sentences:
-  - ayarla isik basement 50
-  - isik basement 50
+  - ayarla ışık basement 50
+  - ışık basement 50
 - name: light.basement_bright_60
   conditions:
   - type: action
@@ -932,8 +932,8 @@
     attributes:
       brightness: 60
   sentences:
-  - ayarla isik basement 60
-  - isik basement 60
+  - ayarla ışık basement 60
+  - ışık basement 60
 - name: light.basement_bright_80
   conditions:
   - type: action
@@ -941,8 +941,8 @@
     attributes:
       brightness: 80
   sentences:
-  - ayarla isik basement 80
-  - isik basement 80
+  - ayarla ışık basement 80
+  - ışık basement 80
 - name: light.basement_bright_100
   conditions:
   - type: action
@@ -950,24 +950,24 @@
     attributes:
       brightness: 100
   sentences:
-  - ayarla isik basement 100
-  - isik basement 100
+  - ayarla ışık basement 100
+  - ışık basement 100
 - name: light.hallway_light_on
   conditions:
   - type: action
     entity_id: light.hallway_light
     state: 'on'
   sentences:
-  - yak isik koridor
-  - isik koridor yak
+  - yak ışık koridor
+  - ışık koridor yak
 - name: light.hallway_light_off
   conditions:
   - type: action
     entity_id: light.hallway_light
     state: 'off'
   sentences:
-  - sondur isik koridor
-  - isik koridor sondur
+  - söndür ışık koridor
+  - ışık koridor söndür
 - name: light.hallway_light_bright_20
   conditions:
   - type: action
@@ -975,8 +975,8 @@
     attributes:
       brightness: 20
   sentences:
-  - ayarla isik koridor 20
-  - isik koridor 20
+  - ayarla ışık koridor 20
+  - ışık koridor 20
 - name: light.hallway_light_bright_40
   conditions:
   - type: action
@@ -984,8 +984,8 @@
     attributes:
       brightness: 40
   sentences:
-  - ayarla isik koridor 40
-  - isik koridor 40
+  - ayarla ışık koridor 40
+  - ışık koridor 40
 - name: light.hallway_light_bright_50
   conditions:
   - type: action
@@ -993,8 +993,8 @@
     attributes:
       brightness: 50
   sentences:
-  - ayarla isik koridor 50
-  - isik koridor 50
+  - ayarla ışık koridor 50
+  - ışık koridor 50
 - name: light.hallway_light_bright_60
   conditions:
   - type: action
@@ -1002,8 +1002,8 @@
     attributes:
       brightness: 60
   sentences:
-  - ayarla isik koridor 60
-  - isik koridor 60
+  - ayarla ışık koridor 60
+  - ışık koridor 60
 - name: light.hallway_light_bright_80
   conditions:
   - type: action
@@ -1011,8 +1011,8 @@
     attributes:
       brightness: 80
   sentences:
-  - ayarla isik koridor 80
-  - isik koridor 80
+  - ayarla ışık koridor 80
+  - ışık koridor 80
 - name: light.hallway_light_bright_100
   conditions:
   - type: action
@@ -1020,8 +1020,8 @@
     attributes:
       brightness: 100
   sentences:
-  - ayarla isik koridor 100
-  - isik koridor 100
+  - ayarla ışık koridor 100
+  - ışık koridor 100
 - name: light.family_ceiling_on
   conditions:
   - type: action
@@ -1036,8 +1036,8 @@
     entity_id: light.family_ceiling
     state: 'off'
   sentences:
-  - sondur tavan aile
-  - tavan aile sondur
+  - söndür tavan aile
+  - tavan aile söndür
 - name: light.family_ceiling_bright_20
   conditions:
   - type: action
@@ -1098,16 +1098,16 @@
     entity_id: light.dining_pendant
     state: 'on'
   sentences:
-  - yak isik aileess
-  - isik aileess yak
+  - yak ışık aileess
+  - ışık aileess yak
 - name: light.dining_pendant_off
   conditions:
   - type: action
     entity_id: light.dining_pendant
     state: 'off'
   sentences:
-  - sondur isik aileess
-  - isik aileess sondur
+  - söndür ışık aileess
+  - ışık aileess söndür
 - name: light.dining_pendant_bright_20
   conditions:
   - type: action
@@ -1115,8 +1115,8 @@
     attributes:
       brightness: 20
   sentences:
-  - ayarla isik aileess 20
-  - isik aileess 20
+  - ayarla ışık aileess 20
+  - ışık aileess 20
 - name: light.dining_pendant_bright_40
   conditions:
   - type: action
@@ -1124,8 +1124,8 @@
     attributes:
       brightness: 40
   sentences:
-  - ayarla isik aileess 40
-  - isik aileess 40
+  - ayarla ışık aileess 40
+  - ışık aileess 40
 - name: light.dining_pendant_bright_50
   conditions:
   - type: action
@@ -1133,8 +1133,8 @@
     attributes:
       brightness: 50
   sentences:
-  - ayarla isik aileess 50
-  - isik aileess 50
+  - ayarla ışık aileess 50
+  - ışık aileess 50
 - name: light.dining_pendant_bright_60
   conditions:
   - type: action
@@ -1142,8 +1142,8 @@
     attributes:
       brightness: 60
   sentences:
-  - ayarla isik aileess 60
-  - isik aileess 60
+  - ayarla ışık aileess 60
+  - ışık aileess 60
 - name: light.dining_pendant_bright_80
   conditions:
   - type: action
@@ -1151,8 +1151,8 @@
     attributes:
       brightness: 80
   sentences:
-  - ayarla isik aileess 80
-  - isik aileess 80
+  - ayarla ışık aileess 80
+  - ışık aileess 80
 - name: light.dining_pendant_bright_100
   conditions:
   - type: action
@@ -1160,24 +1160,24 @@
     attributes:
       brightness: 100
   sentences:
-  - ayarla isik aileess 100
-  - isik aileess 100
+  - ayarla ışık aileess 100
+  - ışık aileess 100
 - name: light.garage_light_on
   conditions:
   - type: action
     entity_id: light.garage_light
     state: 'on'
   sentences:
-  - yak isik garage
-  - isik garage yak
+  - yak ışık garage
+  - ışık garage yak
 - name: light.garage_light_off
   conditions:
   - type: action
     entity_id: light.garage_light
     state: 'off'
   sentences:
-  - sondur isik garage
-  - isik garage sondur
+  - söndür ışık garage
+  - ışık garage söndür
 - name: light.garage_light_bright_20
   conditions:
   - type: action
@@ -1185,8 +1185,8 @@
     attributes:
       brightness: 20
   sentences:
-  - ayarla isik garage 20
-  - isik garage 20
+  - ayarla ışık garage 20
+  - ışık garage 20
 - name: light.garage_light_bright_40
   conditions:
   - type: action
@@ -1194,8 +1194,8 @@
     attributes:
       brightness: 40
   sentences:
-  - ayarla isik garage 40
-  - isik garage 40
+  - ayarla ışık garage 40
+  - ışık garage 40
 - name: light.garage_light_bright_50
   conditions:
   - type: action
@@ -1203,8 +1203,8 @@
     attributes:
       brightness: 50
   sentences:
-  - ayarla isik garage 50
-  - isik garage 50
+  - ayarla ışık garage 50
+  - ışık garage 50
 - name: light.garage_light_bright_60
   conditions:
   - type: action
@@ -1212,8 +1212,8 @@
     attributes:
       brightness: 60
   sentences:
-  - ayarla isik garage 60
-  - isik garage 60
+  - ayarla ışık garage 60
+  - ışık garage 60
 - name: light.garage_light_bright_80
   conditions:
   - type: action
@@ -1221,8 +1221,8 @@
     attributes:
       brightness: 80
   sentences:
-  - ayarla isik garage 80
-  - isik garage 80
+  - ayarla ışık garage 80
+  - ışık garage 80
 - name: light.garage_light_bright_100
   conditions:
   - type: action
@@ -1230,8 +1230,8 @@
     attributes:
       brightness: 100
   sentences:
-  - ayarla isik garage 100
-  - isik garage 100
+  - ayarla ışık garage 100
+  - ışık garage 100
 - name: light.bedroom2_ceiling_on
   conditions:
   - type: action
@@ -1246,8 +1246,8 @@
     entity_id: light.bedroom2_ceiling
     state: 'off'
   sentences:
-  - sondur tavan yatakodasi2
-  - tavan yatakodasi2 sondur
+  - söndür tavan yatakodasi2
+  - tavan yatakodasi2 söndür
 - name: light.bedroom2_ceiling_bright_20
   conditions:
   - type: action
@@ -1316,8 +1316,8 @@
     entity_id: light.bedroom3_ceiling
     state: 'off'
   sentences:
-  - sondur tavan yatakodasi3
-  - tavan yatakodasi3 sondur
+  - söndür tavan yatakodasi3
+  - tavan yatakodasi3 söndür
 - name: light.bedroom3_ceiling_bright_20
   conditions:
   - type: action
@@ -1386,8 +1386,8 @@
     entity_id: light.bedroom4_ceiling
     state: 'off'
   sentences:
-  - sondur tavan yatakodasi4
-  - tavan yatakodasi4 sondur
+  - söndür tavan yatakodasi4
+  - tavan yatakodasi4 söndür
 - name: light.bedroom4_ceiling_bright_20
   conditions:
   - type: action
@@ -1448,16 +1448,16 @@
     entity_id: light.entryway_light
     state: 'on'
   sentences:
-  - yak isik giris
-  - isik giris yak
+  - yak ışık giris
+  - ışık giris yak
 - name: light.entryway_light_off
   conditions:
   - type: action
     entity_id: light.entryway_light
     state: 'off'
   sentences:
-  - sondur isik giris
-  - isik giris sondur
+  - söndür ışık giris
+  - ışık giris söndür
 - name: light.entryway_light_bright_20
   conditions:
   - type: action
@@ -1465,8 +1465,8 @@
     attributes:
       brightness: 20
   sentences:
-  - ayarla isik giris 20
-  - isik giris 20
+  - ayarla ışık giris 20
+  - ışık giris 20
 - name: light.entryway_light_bright_40
   conditions:
   - type: action
@@ -1474,8 +1474,8 @@
     attributes:
       brightness: 40
   sentences:
-  - ayarla isik giris 40
-  - isik giris 40
+  - ayarla ışık giris 40
+  - ışık giris 40
 - name: light.entryway_light_bright_50
   conditions:
   - type: action
@@ -1483,8 +1483,8 @@
     attributes:
       brightness: 50
   sentences:
-  - ayarla isik giris 50
-  - isik giris 50
+  - ayarla ışık giris 50
+  - ışık giris 50
 - name: light.entryway_light_bright_60
   conditions:
   - type: action
@@ -1492,8 +1492,8 @@
     attributes:
       brightness: 60
   sentences:
-  - ayarla isik giris 60
-  - isik giris 60
+  - ayarla ışık giris 60
+  - ışık giris 60
 - name: light.entryway_light_bright_80
   conditions:
   - type: action
@@ -1501,8 +1501,8 @@
     attributes:
       brightness: 80
   sentences:
-  - ayarla isik giris 80
-  - isik giris 80
+  - ayarla ışık giris 80
+  - ışık giris 80
 - name: light.entryway_light_bright_100
   conditions:
   - type: action
@@ -1510,24 +1510,24 @@
     attributes:
       brightness: 100
   sentences:
-  - ayarla isik giris 100
-  - isik giris 100
+  - ayarla ışık giris 100
+  - ışık giris 100
 - name: light.laundry_light_on
   conditions:
   - type: action
     entity_id: light.laundry_light
     state: 'on'
   sentences:
-  - yak isik camasirhane
-  - isik camasirhane yak
+  - yak ışık camasirhane
+  - ışık camasirhane yak
 - name: light.laundry_light_off
   conditions:
   - type: action
     entity_id: light.laundry_light
     state: 'off'
   sentences:
-  - sondur isik camasirhane
-  - isik camasirhane sondur
+  - söndür ışık camasirhane
+  - ışık camasirhane söndür
 - name: light.laundry_light_bright_20
   conditions:
   - type: action
@@ -1535,8 +1535,8 @@
     attributes:
       brightness: 20
   sentences:
-  - ayarla isik camasirhane 20
-  - isik camasirhane 20
+  - ayarla ışık camasirhane 20
+  - ışık camasirhane 20
 - name: light.laundry_light_bright_40
   conditions:
   - type: action
@@ -1544,8 +1544,8 @@
     attributes:
       brightness: 40
   sentences:
-  - ayarla isik camasirhane 40
-  - isik camasirhane 40
+  - ayarla ışık camasirhane 40
+  - ışık camasirhane 40
 - name: light.laundry_light_bright_50
   conditions:
   - type: action
@@ -1553,8 +1553,8 @@
     attributes:
       brightness: 50
   sentences:
-  - ayarla isik camasirhane 50
-  - isik camasirhane 50
+  - ayarla ışık camasirhane 50
+  - ışık camasirhane 50
 - name: light.laundry_light_bright_60
   conditions:
   - type: action
@@ -1562,8 +1562,8 @@
     attributes:
       brightness: 60
   sentences:
-  - ayarla isik camasirhane 60
-  - isik camasirhane 60
+  - ayarla ışık camasirhane 60
+  - ışık camasirhane 60
 - name: light.laundry_light_bright_80
   conditions:
   - type: action
@@ -1571,8 +1571,8 @@
     attributes:
       brightness: 80
   sentences:
-  - ayarla isik camasirhane 80
-  - isik camasirhane 80
+  - ayarla ışık camasirhane 80
+  - ışık camasirhane 80
 - name: light.laundry_light_bright_100
   conditions:
   - type: action
@@ -1580,24 +1580,24 @@
     attributes:
       brightness: 100
   sentences:
-  - ayarla isik camasirhane 100
-  - isik camasirhane 100
+  - ayarla ışık camasirhane 100
+  - ışık camasirhane 100
 - name: light.main_bath_light_on
   conditions:
   - type: action
     entity_id: light.main_bath_light
     state: 'on'
   sentences:
-  - yak isik main bath
-  - isik main bath yak
+  - yak ışık main bath
+  - ışık main bath yak
 - name: light.main_bath_light_off
   conditions:
   - type: action
     entity_id: light.main_bath_light
     state: 'off'
   sentences:
-  - sondur isik main bath
-  - isik main bath sondur
+  - söndür ışık main bath
+  - ışık main bath söndür
 - name: light.main_bath_light_bright_20
   conditions:
   - type: action
@@ -1605,8 +1605,8 @@
     attributes:
       brightness: 20
   sentences:
-  - ayarla isik main bath 20
-  - isik main bath 20
+  - ayarla ışık main bath 20
+  - ışık main bath 20
 - name: light.main_bath_light_bright_40
   conditions:
   - type: action
@@ -1614,8 +1614,8 @@
     attributes:
       brightness: 40
   sentences:
-  - ayarla isik main bath 40
-  - isik main bath 40
+  - ayarla ışık main bath 40
+  - ışık main bath 40
 - name: light.main_bath_light_bright_50
   conditions:
   - type: action
@@ -1623,8 +1623,8 @@
     attributes:
       brightness: 50
   sentences:
-  - ayarla isik main bath 50
-  - isik main bath 50
+  - ayarla ışık main bath 50
+  - ışık main bath 50
 - name: light.main_bath_light_bright_60
   conditions:
   - type: action
@@ -1632,8 +1632,8 @@
     attributes:
       brightness: 60
   sentences:
-  - ayarla isik main bath 60
-  - isik main bath 60
+  - ayarla ışık main bath 60
+  - ışık main bath 60
 - name: light.main_bath_light_bright_80
   conditions:
   - type: action
@@ -1641,8 +1641,8 @@
     attributes:
       brightness: 80
   sentences:
-  - ayarla isik main bath 80
-  - isik main bath 80
+  - ayarla ışık main bath 80
+  - ışık main bath 80
 - name: light.main_bath_light_bright_100
   conditions:
   - type: action
@@ -1650,24 +1650,24 @@
     attributes:
       brightness: 100
   sentences:
-  - ayarla isik main bath 100
-  - isik main bath 100
+  - ayarla ışık main bath 100
+  - ışık main bath 100
 - name: light.powder_room_light_on
   conditions:
   - type: action
     entity_id: light.powder_room_light
     state: 'on'
   sentences:
-  - yak isik wc
-  - isik wc yak
+  - yak ışık wc
+  - ışık wc yak
 - name: light.powder_room_light_off
   conditions:
   - type: action
     entity_id: light.powder_room_light
     state: 'off'
   sentences:
-  - sondur isik wc
-  - isik wc sondur
+  - söndür ışık wc
+  - ışık wc söndür
 - name: light.powder_room_light_bright_20
   conditions:
   - type: action
@@ -1675,8 +1675,8 @@
     attributes:
       brightness: 20
   sentences:
-  - ayarla isik wc 20
-  - isik wc 20
+  - ayarla ışık wc 20
+  - ışık wc 20
 - name: light.powder_room_light_bright_40
   conditions:
   - type: action
@@ -1684,8 +1684,8 @@
     attributes:
       brightness: 40
   sentences:
-  - ayarla isik wc 40
-  - isik wc 40
+  - ayarla ışık wc 40
+  - ışık wc 40
 - name: light.powder_room_light_bright_50
   conditions:
   - type: action
@@ -1693,8 +1693,8 @@
     attributes:
       brightness: 50
   sentences:
-  - ayarla isik wc 50
-  - isik wc 50
+  - ayarla ışık wc 50
+  - ışık wc 50
 - name: light.powder_room_light_bright_60
   conditions:
   - type: action
@@ -1702,8 +1702,8 @@
     attributes:
       brightness: 60
   sentences:
-  - ayarla isik wc 60
-  - isik wc 60
+  - ayarla ışık wc 60
+  - ışık wc 60
 - name: light.powder_room_light_bright_80
   conditions:
   - type: action
@@ -1711,8 +1711,8 @@
     attributes:
       brightness: 80
   sentences:
-  - ayarla isik wc 80
-  - isik wc 80
+  - ayarla ışık wc 80
+  - ışık wc 80
 - name: light.powder_room_light_bright_100
   conditions:
   - type: action
@@ -1720,8 +1720,8 @@
     attributes:
       brightness: 100
   sentences:
-  - ayarla isik wc 100
-  - isik wc 100
+  - ayarla ışık wc 100
+  - ışık wc 100
 - name: light.master_ensuite_on
   conditions:
   - type: action
@@ -1736,8 +1736,8 @@
     entity_id: light.master_ensuite
     state: 'off'
   sentences:
-  - sondur ensuite yatakodasimaster
-  - ensuite yatakodasimaster sondur
+  - söndür ensuite yatakodasimaster
+  - ensuite yatakodasimaster söndür
 - name: light.master_ensuite_bright_20
   conditions:
   - type: action
@@ -1806,8 +1806,8 @@
     entity_id: light.master_bedside_right
     state: 'off'
   sentences:
-  - sondur komodin yatakodasimaster
-  - komodin yatakodasimaster sondur
+  - söndür komodin yatakodasimaster
+  - komodin yatakodasimaster söndür
 - name: light.master_bedside_right_bright_20
   conditions:
   - type: action
@@ -1868,16 +1868,16 @@
     entity_id: light.master_bath_light
     state: 'on'
   sentences:
-  - yak isik ebatmaster
-  - isik ebatmaster yak
+  - yak ışık ebatmaster
+  - ışık ebatmaster yak
 - name: light.master_bath_light_off
   conditions:
   - type: action
     entity_id: light.master_bath_light
     state: 'off'
   sentences:
-  - sondur isik ebatmaster
-  - isik ebatmaster sondur
+  - söndür ışık ebatmaster
+  - ışık ebatmaster söndür
 - name: light.master_bath_light_bright_20
   conditions:
   - type: action
@@ -1885,8 +1885,8 @@
     attributes:
       brightness: 20
   sentences:
-  - ayarla isik ebatmaster 20
-  - isik ebatmaster 20
+  - ayarla ışık ebatmaster 20
+  - ışık ebatmaster 20
 - name: light.master_bath_light_bright_40
   conditions:
   - type: action
@@ -1894,8 +1894,8 @@
     attributes:
       brightness: 40
   sentences:
-  - ayarla isik ebatmaster 40
-  - isik ebatmaster 40
+  - ayarla ışık ebatmaster 40
+  - ışık ebatmaster 40
 - name: light.master_bath_light_bright_50
   conditions:
   - type: action
@@ -1903,8 +1903,8 @@
     attributes:
       brightness: 50
   sentences:
-  - ayarla isik ebatmaster 50
-  - isik ebatmaster 50
+  - ayarla ışık ebatmaster 50
+  - ışık ebatmaster 50
 - name: light.master_bath_light_bright_60
   conditions:
   - type: action
@@ -1912,8 +1912,8 @@
     attributes:
       brightness: 60
   sentences:
-  - ayarla isik ebatmaster 60
-  - isik ebatmaster 60
+  - ayarla ışık ebatmaster 60
+  - ışık ebatmaster 60
 - name: light.master_bath_light_bright_80
   conditions:
   - type: action
@@ -1921,8 +1921,8 @@
     attributes:
       brightness: 80
   sentences:
-  - ayarla isik ebatmaster 80
-  - isik ebatmaster 80
+  - ayarla ışık ebatmaster 80
+  - ışık ebatmaster 80
 - name: light.master_bath_light_bright_100
   conditions:
   - type: action
@@ -1930,8 +1930,8 @@
     attributes:
       brightness: 100
   sentences:
-  - ayarla isik ebatmaster 100
-  - isik ebatmaster 100
+  - ayarla ışık ebatmaster 100
+  - ışık ebatmaster 100
 - name: light.living_ceiling_red
   conditions:
   - type: action
@@ -1940,7 +1940,7 @@
       color: red
   sentences:
   - ayarla tavan salon red
-  - ayarla isik salon red
+  - ayarla ışık salon red
 - name: light.living_ceiling_blue
   conditions:
   - type: action
@@ -1949,7 +1949,7 @@
       color: blue
   sentences:
   - ayarla tavan salon blue
-  - ayarla isik salon blue
+  - ayarla ışık salon blue
 - name: light.living_ceiling_green
   conditions:
   - type: action
@@ -1958,7 +1958,7 @@
       color: green
   sentences:
   - ayarla tavan salon green
-  - ayarla isik salon green
+  - ayarla ışık salon green
 - name: light.living_ceiling_white
   conditions:
   - type: action
@@ -1967,7 +1967,7 @@
       color: white
   sentences:
   - ayarla tavan salon white
-  - ayarla isik salon white
+  - ayarla ışık salon white
 - name: light.living_ceiling_yellow
   conditions:
   - type: action
@@ -1976,7 +1976,7 @@
       color: yellow
   sentences:
   - ayarla tavan salon yellow
-  - ayarla isik salon yellow
+  - ayarla ışık salon yellow
 - name: light.living_ceiling_black
   conditions:
   - type: action
@@ -1985,7 +1985,7 @@
       color: black
   sentences:
   - ayarla tavan salon black
-  - ayarla isik salon black
+  - ayarla ışık salon black
 - name: light.living_lamp_red
   conditions:
   - type: action
@@ -1994,7 +1994,7 @@
       color: red
   sentences:
   - ayarla lamp salon red
-  - ayarla isik salon red
+  - ayarla ışık salon red
 - name: light.living_lamp_blue
   conditions:
   - type: action
@@ -2003,7 +2003,7 @@
       color: blue
   sentences:
   - ayarla lamp salon blue
-  - ayarla isik salon blue
+  - ayarla ışık salon blue
 - name: light.living_lamp_green
   conditions:
   - type: action
@@ -2012,7 +2012,7 @@
       color: green
   sentences:
   - ayarla lamp salon green
-  - ayarla isik salon green
+  - ayarla ışık salon green
 - name: light.living_lamp_white
   conditions:
   - type: action
@@ -2021,7 +2021,7 @@
       color: white
   sentences:
   - ayarla lamp salon white
-  - ayarla isik salon white
+  - ayarla ışık salon white
 - name: light.living_lamp_yellow
   conditions:
   - type: action
@@ -2030,7 +2030,7 @@
       color: yellow
   sentences:
   - ayarla lamp salon yellow
-  - ayarla isik salon yellow
+  - ayarla ışık salon yellow
 - name: light.living_lamp_black
   conditions:
   - type: action
@@ -2039,7 +2039,7 @@
       color: black
   sentences:
   - ayarla lamp salon black
-  - ayarla isik salon black
+  - ayarla ışık salon black
 - name: light.kitchen_ceiling_red
   conditions:
   - type: action
@@ -2048,7 +2048,7 @@
       color: red
   sentences:
   - ayarla tavan mutfak red
-  - ayarla isik mutfak red
+  - ayarla ışık mutfak red
 - name: light.kitchen_ceiling_blue
   conditions:
   - type: action
@@ -2057,7 +2057,7 @@
       color: blue
   sentences:
   - ayarla tavan mutfak blue
-  - ayarla isik mutfak blue
+  - ayarla ışık mutfak blue
 - name: light.kitchen_ceiling_green
   conditions:
   - type: action
@@ -2066,7 +2066,7 @@
       color: green
   sentences:
   - ayarla tavan mutfak green
-  - ayarla isik mutfak green
+  - ayarla ışık mutfak green
 - name: light.kitchen_ceiling_white
   conditions:
   - type: action
@@ -2075,7 +2075,7 @@
       color: white
   sentences:
   - ayarla tavan mutfak white
-  - ayarla isik mutfak white
+  - ayarla ışık mutfak white
 - name: light.kitchen_ceiling_yellow
   conditions:
   - type: action
@@ -2084,7 +2084,7 @@
       color: yellow
   sentences:
   - ayarla tavan mutfak yellow
-  - ayarla isik mutfak yellow
+  - ayarla ışık mutfak yellow
 - name: light.kitchen_ceiling_black
   conditions:
   - type: action
@@ -2093,7 +2093,7 @@
       color: black
   sentences:
   - ayarla tavan mutfak black
-  - ayarla isik mutfak black
+  - ayarla ışık mutfak black
 - name: light.kitchen_island_red
   conditions:
   - type: action
@@ -2102,7 +2102,7 @@
       color: red
   sentences:
   - ayarla ada mutfak red
-  - ayarla isik mutfak red
+  - ayarla ışık mutfak red
 - name: light.kitchen_island_blue
   conditions:
   - type: action
@@ -2111,7 +2111,7 @@
       color: blue
   sentences:
   - ayarla ada mutfak blue
-  - ayarla isik mutfak blue
+  - ayarla ışık mutfak blue
 - name: light.kitchen_island_green
   conditions:
   - type: action
@@ -2120,7 +2120,7 @@
       color: green
   sentences:
   - ayarla ada mutfak green
-  - ayarla isik mutfak green
+  - ayarla ışık mutfak green
 - name: light.kitchen_island_white
   conditions:
   - type: action
@@ -2129,7 +2129,7 @@
       color: white
   sentences:
   - ayarla ada mutfak white
-  - ayarla isik mutfak white
+  - ayarla ışık mutfak white
 - name: light.kitchen_island_yellow
   conditions:
   - type: action
@@ -2138,7 +2138,7 @@
       color: yellow
   sentences:
   - ayarla ada mutfak yellow
-  - ayarla isik mutfak yellow
+  - ayarla ışık mutfak yellow
 - name: light.kitchen_island_black
   conditions:
   - type: action
@@ -2147,7 +2147,7 @@
       color: black
   sentences:
   - ayarla ada mutfak black
-  - ayarla isik mutfak black
+  - ayarla ışık mutfak black
 - name: light.master_ceiling_red
   conditions:
   - type: action
@@ -2156,7 +2156,7 @@
       color: red
   sentences:
   - ayarla tavan yatakodasimaster red
-  - ayarla isik yatakodasimaster red
+  - ayarla ışık yatakodasimaster red
 - name: light.master_ceiling_blue
   conditions:
   - type: action
@@ -2165,7 +2165,7 @@
       color: blue
   sentences:
   - ayarla tavan yatakodasimaster blue
-  - ayarla isik yatakodasimaster blue
+  - ayarla ışık yatakodasimaster blue
 - name: light.master_ceiling_green
   conditions:
   - type: action
@@ -2174,7 +2174,7 @@
       color: green
   sentences:
   - ayarla tavan yatakodasimaster green
-  - ayarla isik yatakodasimaster green
+  - ayarla ışık yatakodasimaster green
 - name: light.master_ceiling_white
   conditions:
   - type: action
@@ -2183,7 +2183,7 @@
       color: white
   sentences:
   - ayarla tavan yatakodasimaster white
-  - ayarla isik yatakodasimaster white
+  - ayarla ışık yatakodasimaster white
 - name: light.master_ceiling_yellow
   conditions:
   - type: action
@@ -2192,7 +2192,7 @@
       color: yellow
   sentences:
   - ayarla tavan yatakodasimaster yellow
-  - ayarla isik yatakodasimaster yellow
+  - ayarla ışık yatakodasimaster yellow
 - name: light.master_ceiling_black
   conditions:
   - type: action
@@ -2201,7 +2201,7 @@
       color: black
   sentences:
   - ayarla tavan yatakodasimaster black
-  - ayarla isik yatakodasimaster black
+  - ayarla ışık yatakodasimaster black
 - name: light.master_bedside_left_red
   conditions:
   - type: action
@@ -2210,7 +2210,7 @@
       color: red
   sentences:
   - ayarla komodin yatakodasimaster red
-  - ayarla isik yatakodasimaster red
+  - ayarla ışık yatakodasimaster red
 - name: light.master_bedside_left_blue
   conditions:
   - type: action
@@ -2219,7 +2219,7 @@
       color: blue
   sentences:
   - ayarla komodin yatakodasimaster blue
-  - ayarla isik yatakodasimaster blue
+  - ayarla ışık yatakodasimaster blue
 - name: light.master_bedside_left_green
   conditions:
   - type: action
@@ -2228,7 +2228,7 @@
       color: green
   sentences:
   - ayarla komodin yatakodasimaster green
-  - ayarla isik yatakodasimaster green
+  - ayarla ışık yatakodasimaster green
 - name: light.master_bedside_left_white
   conditions:
   - type: action
@@ -2237,7 +2237,7 @@
       color: white
   sentences:
   - ayarla komodin yatakodasimaster white
-  - ayarla isik yatakodasimaster white
+  - ayarla ışık yatakodasimaster white
 - name: light.master_bedside_left_yellow
   conditions:
   - type: action
@@ -2246,7 +2246,7 @@
       color: yellow
   sentences:
   - ayarla komodin yatakodasimaster yellow
-  - ayarla isik yatakodasimaster yellow
+  - ayarla ışık yatakodasimaster yellow
 - name: light.master_bedside_left_black
   conditions:
   - type: action
@@ -2255,7 +2255,7 @@
       color: black
   sentences:
   - ayarla komodin yatakodasimaster black
-  - ayarla isik yatakodasimaster black
+  - ayarla ışık yatakodasimaster black
 - name: light.office_ceiling_red
   conditions:
   - type: action
@@ -2264,7 +2264,7 @@
       color: red
   sentences:
   - ayarla tavan office red
-  - ayarla isik office red
+  - ayarla ışık office red
 - name: light.office_ceiling_blue
   conditions:
   - type: action
@@ -2273,7 +2273,7 @@
       color: blue
   sentences:
   - ayarla tavan office blue
-  - ayarla isik office blue
+  - ayarla ışık office blue
 - name: light.office_ceiling_green
   conditions:
   - type: action
@@ -2282,7 +2282,7 @@
       color: green
   sentences:
   - ayarla tavan office green
-  - ayarla isik office green
+  - ayarla ışık office green
 - name: light.office_ceiling_white
   conditions:
   - type: action
@@ -2291,7 +2291,7 @@
       color: white
   sentences:
   - ayarla tavan office white
-  - ayarla isik office white
+  - ayarla ışık office white
 - name: light.office_ceiling_yellow
   conditions:
   - type: action
@@ -2300,7 +2300,7 @@
       color: yellow
   sentences:
   - ayarla tavan office yellow
-  - ayarla isik office yellow
+  - ayarla ışık office yellow
 - name: light.office_ceiling_black
   conditions:
   - type: action
@@ -2309,7 +2309,7 @@
       color: black
   sentences:
   - ayarla tavan office black
-  - ayarla isik office black
+  - ayarla ışık office black
 - name: light.garden_red
   conditions:
   - type: action
@@ -2317,8 +2317,8 @@
     attributes:
       color: red
   sentences:
-  - ayarla isik garden red
-  - isik garden red
+  - ayarla ışık garden red
+  - ışık garden red
 - name: light.garden_blue
   conditions:
   - type: action
@@ -2326,8 +2326,8 @@
     attributes:
       color: blue
   sentences:
-  - ayarla isik garden blue
-  - isik garden blue
+  - ayarla ışık garden blue
+  - ışık garden blue
 - name: light.garden_green
   conditions:
   - type: action
@@ -2335,8 +2335,8 @@
     attributes:
       color: green
   sentences:
-  - ayarla isik garden green
-  - isik garden green
+  - ayarla ışık garden green
+  - ışık garden green
 - name: light.garden_white
   conditions:
   - type: action
@@ -2344,8 +2344,8 @@
     attributes:
       color: white
   sentences:
-  - ayarla isik garden white
-  - isik garden white
+  - ayarla ışık garden white
+  - ışık garden white
 - name: light.garden_yellow
   conditions:
   - type: action
@@ -2353,8 +2353,8 @@
     attributes:
       color: yellow
   sentences:
-  - ayarla isik garden yellow
-  - isik garden yellow
+  - ayarla ışık garden yellow
+  - ışık garden yellow
 - name: light.garden_black
   conditions:
   - type: action
@@ -2362,8 +2362,8 @@
     attributes:
       color: black
   sentences:
-  - ayarla isik garden black
-  - isik garden black
+  - ayarla ışık garden black
+  - ışık garden black
 - name: light.basement_red
   conditions:
   - type: action
@@ -2371,8 +2371,8 @@
     attributes:
       color: red
   sentences:
-  - ayarla isik basement red
-  - isik basement red
+  - ayarla ışık basement red
+  - ışık basement red
 - name: light.basement_blue
   conditions:
   - type: action
@@ -2380,8 +2380,8 @@
     attributes:
       color: blue
   sentences:
-  - ayarla isik basement blue
-  - isik basement blue
+  - ayarla ışık basement blue
+  - ışık basement blue
 - name: light.basement_green
   conditions:
   - type: action
@@ -2389,8 +2389,8 @@
     attributes:
       color: green
   sentences:
-  - ayarla isik basement green
-  - isik basement green
+  - ayarla ışık basement green
+  - ışık basement green
 - name: light.basement_white
   conditions:
   - type: action
@@ -2398,8 +2398,8 @@
     attributes:
       color: white
   sentences:
-  - ayarla isik basement white
-  - isik basement white
+  - ayarla ışık basement white
+  - ışık basement white
 - name: light.basement_yellow
   conditions:
   - type: action
@@ -2407,8 +2407,8 @@
     attributes:
       color: yellow
   sentences:
-  - ayarla isik basement yellow
-  - isik basement yellow
+  - ayarla ışık basement yellow
+  - ışık basement yellow
 - name: light.basement_black
   conditions:
   - type: action
@@ -2416,8 +2416,8 @@
     attributes:
       color: black
   sentences:
-  - ayarla isik basement black
-  - isik basement black
+  - ayarla ışık basement black
+  - ışık basement black
 - name: light.hallway_light_red
   conditions:
   - type: action
@@ -2425,8 +2425,8 @@
     attributes:
       color: red
   sentences:
-  - ayarla isik koridor red
-  - isik koridor red
+  - ayarla ışık koridor red
+  - ışık koridor red
 - name: light.hallway_light_blue
   conditions:
   - type: action
@@ -2434,8 +2434,8 @@
     attributes:
       color: blue
   sentences:
-  - ayarla isik koridor blue
-  - isik koridor blue
+  - ayarla ışık koridor blue
+  - ışık koridor blue
 - name: light.hallway_light_green
   conditions:
   - type: action
@@ -2443,8 +2443,8 @@
     attributes:
       color: green
   sentences:
-  - ayarla isik koridor green
-  - isik koridor green
+  - ayarla ışık koridor green
+  - ışık koridor green
 - name: light.hallway_light_white
   conditions:
   - type: action
@@ -2452,8 +2452,8 @@
     attributes:
       color: white
   sentences:
-  - ayarla isik koridor white
-  - isik koridor white
+  - ayarla ışık koridor white
+  - ışık koridor white
 - name: light.hallway_light_yellow
   conditions:
   - type: action
@@ -2461,8 +2461,8 @@
     attributes:
       color: yellow
   sentences:
-  - ayarla isik koridor yellow
-  - isik koridor yellow
+  - ayarla ışık koridor yellow
+  - ışık koridor yellow
 - name: light.hallway_light_black
   conditions:
   - type: action
@@ -2470,8 +2470,8 @@
     attributes:
       color: black
   sentences:
-  - ayarla isik koridor black
-  - isik koridor black
+  - ayarla ışık koridor black
+  - ışık koridor black
 - name: light.family_ceiling_red
   conditions:
   - type: action
@@ -2480,7 +2480,7 @@
       color: red
   sentences:
   - ayarla tavan aile red
-  - ayarla isik aile red
+  - ayarla ışık aile red
 - name: light.family_ceiling_blue
   conditions:
   - type: action
@@ -2489,7 +2489,7 @@
       color: blue
   sentences:
   - ayarla tavan aile blue
-  - ayarla isik aile blue
+  - ayarla ışık aile blue
 - name: light.family_ceiling_green
   conditions:
   - type: action
@@ -2498,7 +2498,7 @@
       color: green
   sentences:
   - ayarla tavan aile green
-  - ayarla isik aile green
+  - ayarla ışık aile green
 - name: light.family_ceiling_white
   conditions:
   - type: action
@@ -2507,7 +2507,7 @@
       color: white
   sentences:
   - ayarla tavan aile white
-  - ayarla isik aile white
+  - ayarla ışık aile white
 - name: light.family_ceiling_yellow
   conditions:
   - type: action
@@ -2516,7 +2516,7 @@
       color: yellow
   sentences:
   - ayarla tavan aile yellow
-  - ayarla isik aile yellow
+  - ayarla ışık aile yellow
 - name: light.family_ceiling_black
   conditions:
   - type: action
@@ -2525,7 +2525,7 @@
       color: black
   sentences:
   - ayarla tavan aile black
-  - ayarla isik aile black
+  - ayarla ışık aile black
 - name: light.dining_pendant_red
   conditions:
   - type: action
@@ -2533,8 +2533,8 @@
     attributes:
       color: red
   sentences:
-  - ayarla isik aileess red
-  - isik aileess red
+  - ayarla ışık aileess red
+  - ışık aileess red
 - name: light.dining_pendant_blue
   conditions:
   - type: action
@@ -2542,8 +2542,8 @@
     attributes:
       color: blue
   sentences:
-  - ayarla isik aileess blue
-  - isik aileess blue
+  - ayarla ışık aileess blue
+  - ışık aileess blue
 - name: light.dining_pendant_green
   conditions:
   - type: action
@@ -2551,8 +2551,8 @@
     attributes:
       color: green
   sentences:
-  - ayarla isik aileess green
-  - isik aileess green
+  - ayarla ışık aileess green
+  - ışık aileess green
 - name: light.dining_pendant_white
   conditions:
   - type: action
@@ -2560,8 +2560,8 @@
     attributes:
       color: white
   sentences:
-  - ayarla isik aileess white
-  - isik aileess white
+  - ayarla ışık aileess white
+  - ışık aileess white
 - name: light.dining_pendant_yellow
   conditions:
   - type: action
@@ -2569,8 +2569,8 @@
     attributes:
       color: yellow
   sentences:
-  - ayarla isik aileess yellow
-  - isik aileess yellow
+  - ayarla ışık aileess yellow
+  - ışık aileess yellow
 - name: light.dining_pendant_black
   conditions:
   - type: action
@@ -2578,8 +2578,8 @@
     attributes:
       color: black
   sentences:
-  - ayarla isik aileess black
-  - isik aileess black
+  - ayarla ışık aileess black
+  - ışık aileess black
 - name: light.garage_light_red
   conditions:
   - type: action
@@ -2587,8 +2587,8 @@
     attributes:
       color: red
   sentences:
-  - ayarla isik garage red
-  - isik garage red
+  - ayarla ışık garage red
+  - ışık garage red
 - name: light.garage_light_blue
   conditions:
   - type: action
@@ -2596,8 +2596,8 @@
     attributes:
       color: blue
   sentences:
-  - ayarla isik garage blue
-  - isik garage blue
+  - ayarla ışık garage blue
+  - ışık garage blue
 - name: light.garage_light_green
   conditions:
   - type: action
@@ -2605,8 +2605,8 @@
     attributes:
       color: green
   sentences:
-  - ayarla isik garage green
-  - isik garage green
+  - ayarla ışık garage green
+  - ışık garage green
 - name: light.garage_light_white
   conditions:
   - type: action
@@ -2614,8 +2614,8 @@
     attributes:
       color: white
   sentences:
-  - ayarla isik garage white
-  - isik garage white
+  - ayarla ışık garage white
+  - ışık garage white
 - name: light.garage_light_yellow
   conditions:
   - type: action
@@ -2623,8 +2623,8 @@
     attributes:
       color: yellow
   sentences:
-  - ayarla isik garage yellow
-  - isik garage yellow
+  - ayarla ışık garage yellow
+  - ışık garage yellow
 - name: light.garage_light_black
   conditions:
   - type: action
@@ -2632,8 +2632,8 @@
     attributes:
       color: black
   sentences:
-  - ayarla isik garage black
-  - isik garage black
+  - ayarla ışık garage black
+  - ışık garage black
 - name: light.bedroom2_ceiling_red
   conditions:
   - type: action
@@ -2642,7 +2642,7 @@
       color: red
   sentences:
   - ayarla tavan yatakodasi2 red
-  - ayarla isik yatakodasi2 red
+  - ayarla ışık yatakodasi2 red
 - name: light.bedroom2_ceiling_blue
   conditions:
   - type: action
@@ -2651,7 +2651,7 @@
       color: blue
   sentences:
   - ayarla tavan yatakodasi2 blue
-  - ayarla isik yatakodasi2 blue
+  - ayarla ışık yatakodasi2 blue
 - name: light.bedroom2_ceiling_green
   conditions:
   - type: action
@@ -2660,7 +2660,7 @@
       color: green
   sentences:
   - ayarla tavan yatakodasi2 green
-  - ayarla isik yatakodasi2 green
+  - ayarla ışık yatakodasi2 green
 - name: light.bedroom2_ceiling_white
   conditions:
   - type: action
@@ -2669,7 +2669,7 @@
       color: white
   sentences:
   - ayarla tavan yatakodasi2 white
-  - ayarla isik yatakodasi2 white
+  - ayarla ışık yatakodasi2 white
 - name: light.bedroom2_ceiling_yellow
   conditions:
   - type: action
@@ -2678,7 +2678,7 @@
       color: yellow
   sentences:
   - ayarla tavan yatakodasi2 yellow
-  - ayarla isik yatakodasi2 yellow
+  - ayarla ışık yatakodasi2 yellow
 - name: light.bedroom2_ceiling_black
   conditions:
   - type: action
@@ -2687,7 +2687,7 @@
       color: black
   sentences:
   - ayarla tavan yatakodasi2 black
-  - ayarla isik yatakodasi2 black
+  - ayarla ışık yatakodasi2 black
 - name: light.bedroom3_ceiling_red
   conditions:
   - type: action
@@ -2696,7 +2696,7 @@
       color: red
   sentences:
   - ayarla tavan yatakodasi3 red
-  - ayarla isik yatakodasi3 red
+  - ayarla ışık yatakodasi3 red
 - name: light.bedroom3_ceiling_blue
   conditions:
   - type: action
@@ -2705,7 +2705,7 @@
       color: blue
   sentences:
   - ayarla tavan yatakodasi3 blue
-  - ayarla isik yatakodasi3 blue
+  - ayarla ışık yatakodasi3 blue
 - name: light.bedroom3_ceiling_green
   conditions:
   - type: action
@@ -2714,7 +2714,7 @@
       color: green
   sentences:
   - ayarla tavan yatakodasi3 green
-  - ayarla isik yatakodasi3 green
+  - ayarla ışık yatakodasi3 green
 - name: light.bedroom3_ceiling_white
   conditions:
   - type: action
@@ -2723,7 +2723,7 @@
       color: white
   sentences:
   - ayarla tavan yatakodasi3 white
-  - ayarla isik yatakodasi3 white
+  - ayarla ışık yatakodasi3 white
 - name: light.bedroom3_ceiling_yellow
   conditions:
   - type: action
@@ -2732,7 +2732,7 @@
       color: yellow
   sentences:
   - ayarla tavan yatakodasi3 yellow
-  - ayarla isik yatakodasi3 yellow
+  - ayarla ışık yatakodasi3 yellow
 - name: light.bedroom3_ceiling_black
   conditions:
   - type: action
@@ -2741,7 +2741,7 @@
       color: black
   sentences:
   - ayarla tavan yatakodasi3 black
-  - ayarla isik yatakodasi3 black
+  - ayarla ışık yatakodasi3 black
 - name: light.bedroom4_ceiling_red
   conditions:
   - type: action
@@ -2750,7 +2750,7 @@
       color: red
   sentences:
   - ayarla tavan yatakodasi4 red
-  - ayarla isik yatakodasi4 red
+  - ayarla ışık yatakodasi4 red
 - name: light.bedroom4_ceiling_blue
   conditions:
   - type: action
@@ -2759,7 +2759,7 @@
       color: blue
   sentences:
   - ayarla tavan yatakodasi4 blue
-  - ayarla isik yatakodasi4 blue
+  - ayarla ışık yatakodasi4 blue
 - name: light.bedroom4_ceiling_green
   conditions:
   - type: action
@@ -2768,7 +2768,7 @@
       color: green
   sentences:
   - ayarla tavan yatakodasi4 green
-  - ayarla isik yatakodasi4 green
+  - ayarla ışık yatakodasi4 green
 - name: light.bedroom4_ceiling_white
   conditions:
   - type: action
@@ -2777,7 +2777,7 @@
       color: white
   sentences:
   - ayarla tavan yatakodasi4 white
-  - ayarla isik yatakodasi4 white
+  - ayarla ışık yatakodasi4 white
 - name: light.bedroom4_ceiling_yellow
   conditions:
   - type: action
@@ -2786,7 +2786,7 @@
       color: yellow
   sentences:
   - ayarla tavan yatakodasi4 yellow
-  - ayarla isik yatakodasi4 yellow
+  - ayarla ışık yatakodasi4 yellow
 - name: light.bedroom4_ceiling_black
   conditions:
   - type: action
@@ -2795,7 +2795,7 @@
       color: black
   sentences:
   - ayarla tavan yatakodasi4 black
-  - ayarla isik yatakodasi4 black
+  - ayarla ışık yatakodasi4 black
 - name: light.entryway_light_red
   conditions:
   - type: action
@@ -2803,8 +2803,8 @@
     attributes:
       color: red
   sentences:
-  - ayarla isik giris red
-  - isik giris red
+  - ayarla ışık giris red
+  - ışık giris red
 - name: light.entryway_light_blue
   conditions:
   - type: action
@@ -2812,8 +2812,8 @@
     attributes:
       color: blue
   sentences:
-  - ayarla isik giris blue
-  - isik giris blue
+  - ayarla ışık giris blue
+  - ışık giris blue
 - name: light.entryway_light_green
   conditions:
   - type: action
@@ -2821,8 +2821,8 @@
     attributes:
       color: green
   sentences:
-  - ayarla isik giris green
-  - isik giris green
+  - ayarla ışık giris green
+  - ışık giris green
 - name: light.entryway_light_white
   conditions:
   - type: action
@@ -2830,8 +2830,8 @@
     attributes:
       color: white
   sentences:
-  - ayarla isik giris white
-  - isik giris white
+  - ayarla ışık giris white
+  - ışık giris white
 - name: light.entryway_light_yellow
   conditions:
   - type: action
@@ -2839,8 +2839,8 @@
     attributes:
       color: yellow
   sentences:
-  - ayarla isik giris yellow
-  - isik giris yellow
+  - ayarla ışık giris yellow
+  - ışık giris yellow
 - name: light.entryway_light_black
   conditions:
   - type: action
@@ -2848,8 +2848,8 @@
     attributes:
       color: black
   sentences:
-  - ayarla isik giris black
-  - isik giris black
+  - ayarla ışık giris black
+  - ışık giris black
 - name: light.laundry_light_red
   conditions:
   - type: action
@@ -2857,8 +2857,8 @@
     attributes:
       color: red
   sentences:
-  - ayarla isik camasirhane red
-  - isik camasirhane red
+  - ayarla ışık camasirhane red
+  - ışık camasirhane red
 - name: light.laundry_light_blue
   conditions:
   - type: action
@@ -2866,8 +2866,8 @@
     attributes:
       color: blue
   sentences:
-  - ayarla isik camasirhane blue
-  - isik camasirhane blue
+  - ayarla ışık camasirhane blue
+  - ışık camasirhane blue
 - name: light.laundry_light_green
   conditions:
   - type: action
@@ -2875,8 +2875,8 @@
     attributes:
       color: green
   sentences:
-  - ayarla isik camasirhane green
-  - isik camasirhane green
+  - ayarla ışık camasirhane green
+  - ışık camasirhane green
 - name: light.laundry_light_white
   conditions:
   - type: action
@@ -2884,8 +2884,8 @@
     attributes:
       color: white
   sentences:
-  - ayarla isik camasirhane white
-  - isik camasirhane white
+  - ayarla ışık camasirhane white
+  - ışık camasirhane white
 - name: light.laundry_light_yellow
   conditions:
   - type: action
@@ -2893,8 +2893,8 @@
     attributes:
       color: yellow
   sentences:
-  - ayarla isik camasirhane yellow
-  - isik camasirhane yellow
+  - ayarla ışık camasirhane yellow
+  - ışık camasirhane yellow
 - name: light.laundry_light_black
   conditions:
   - type: action
@@ -2902,8 +2902,8 @@
     attributes:
       color: black
   sentences:
-  - ayarla isik camasirhane black
-  - isik camasirhane black
+  - ayarla ışık camasirhane black
+  - ışık camasirhane black
 - name: light.main_bath_light_red
   conditions:
   - type: action
@@ -2911,8 +2911,8 @@
     attributes:
       color: red
   sentences:
-  - ayarla isik main bath red
-  - isik main bath red
+  - ayarla ışık main bath red
+  - ışık main bath red
 - name: light.main_bath_light_blue
   conditions:
   - type: action
@@ -2920,8 +2920,8 @@
     attributes:
       color: blue
   sentences:
-  - ayarla isik main bath blue
-  - isik main bath blue
+  - ayarla ışık main bath blue
+  - ışık main bath blue
 - name: light.main_bath_light_green
   conditions:
   - type: action
@@ -2929,8 +2929,8 @@
     attributes:
       color: green
   sentences:
-  - ayarla isik main bath green
-  - isik main bath green
+  - ayarla ışık main bath green
+  - ışık main bath green
 - name: light.main_bath_light_white
   conditions:
   - type: action
@@ -2938,8 +2938,8 @@
     attributes:
       color: white
   sentences:
-  - ayarla isik main bath white
-  - isik main bath white
+  - ayarla ışık main bath white
+  - ışık main bath white
 - name: light.main_bath_light_yellow
   conditions:
   - type: action
@@ -2947,8 +2947,8 @@
     attributes:
       color: yellow
   sentences:
-  - ayarla isik main bath yellow
-  - isik main bath yellow
+  - ayarla ışık main bath yellow
+  - ışık main bath yellow
 - name: light.main_bath_light_black
   conditions:
   - type: action
@@ -2956,8 +2956,8 @@
     attributes:
       color: black
   sentences:
-  - ayarla isik main bath black
-  - isik main bath black
+  - ayarla ışık main bath black
+  - ışık main bath black
 - name: light.powder_room_light_red
   conditions:
   - type: action
@@ -2965,8 +2965,8 @@
     attributes:
       color: red
   sentences:
-  - ayarla isik wc red
-  - isik wc red
+  - ayarla ışık wc red
+  - ışık wc red
 - name: light.powder_room_light_blue
   conditions:
   - type: action
@@ -2974,8 +2974,8 @@
     attributes:
       color: blue
   sentences:
-  - ayarla isik wc blue
-  - isik wc blue
+  - ayarla ışık wc blue
+  - ışık wc blue
 - name: light.powder_room_light_green
   conditions:
   - type: action
@@ -2983,8 +2983,8 @@
     attributes:
       color: green
   sentences:
-  - ayarla isik wc green
-  - isik wc green
+  - ayarla ışık wc green
+  - ışık wc green
 - name: light.powder_room_light_white
   conditions:
   - type: action
@@ -2992,8 +2992,8 @@
     attributes:
       color: white
   sentences:
-  - ayarla isik wc white
-  - isik wc white
+  - ayarla ışık wc white
+  - ışık wc white
 - name: light.powder_room_light_yellow
   conditions:
   - type: action
@@ -3001,8 +3001,8 @@
     attributes:
       color: yellow
   sentences:
-  - ayarla isik wc yellow
-  - isik wc yellow
+  - ayarla ışık wc yellow
+  - ışık wc yellow
 - name: light.powder_room_light_black
   conditions:
   - type: action
@@ -3010,8 +3010,8 @@
     attributes:
       color: black
   sentences:
-  - ayarla isik wc black
-  - isik wc black
+  - ayarla ışık wc black
+  - ışık wc black
 - name: light.master_ensuite_red
   conditions:
   - type: action
@@ -3020,7 +3020,7 @@
       color: red
   sentences:
   - ayarla ensuite yatakodasimaster red
-  - ayarla isik yatakodasimaster red
+  - ayarla ışık yatakodasimaster red
 - name: light.master_ensuite_blue
   conditions:
   - type: action
@@ -3029,7 +3029,7 @@
       color: blue
   sentences:
   - ayarla ensuite yatakodasimaster blue
-  - ayarla isik yatakodasimaster blue
+  - ayarla ışık yatakodasimaster blue
 - name: light.master_ensuite_green
   conditions:
   - type: action
@@ -3038,7 +3038,7 @@
       color: green
   sentences:
   - ayarla ensuite yatakodasimaster green
-  - ayarla isik yatakodasimaster green
+  - ayarla ışık yatakodasimaster green
 - name: light.master_ensuite_white
   conditions:
   - type: action
@@ -3047,7 +3047,7 @@
       color: white
   sentences:
   - ayarla ensuite yatakodasimaster white
-  - ayarla isik yatakodasimaster white
+  - ayarla ışık yatakodasimaster white
 - name: light.master_ensuite_yellow
   conditions:
   - type: action
@@ -3056,7 +3056,7 @@
       color: yellow
   sentences:
   - ayarla ensuite yatakodasimaster yellow
-  - ayarla isik yatakodasimaster yellow
+  - ayarla ışık yatakodasimaster yellow
 - name: light.master_ensuite_black
   conditions:
   - type: action
@@ -3065,7 +3065,7 @@
       color: black
   sentences:
   - ayarla ensuite yatakodasimaster black
-  - ayarla isik yatakodasimaster black
+  - ayarla ışık yatakodasimaster black
 - name: light.master_bedside_right_red
   conditions:
   - type: action
@@ -3074,7 +3074,7 @@
       color: red
   sentences:
   - ayarla komodin yatakodasimaster red
-  - ayarla isik yatakodasimaster red
+  - ayarla ışık yatakodasimaster red
 - name: light.master_bedside_right_blue
   conditions:
   - type: action
@@ -3083,7 +3083,7 @@
       color: blue
   sentences:
   - ayarla komodin yatakodasimaster blue
-  - ayarla isik yatakodasimaster blue
+  - ayarla ışık yatakodasimaster blue
 - name: light.master_bedside_right_green
   conditions:
   - type: action
@@ -3092,7 +3092,7 @@
       color: green
   sentences:
   - ayarla komodin yatakodasimaster green
-  - ayarla isik yatakodasimaster green
+  - ayarla ışık yatakodasimaster green
 - name: light.master_bedside_right_white
   conditions:
   - type: action
@@ -3101,7 +3101,7 @@
       color: white
   sentences:
   - ayarla komodin yatakodasimaster white
-  - ayarla isik yatakodasimaster white
+  - ayarla ışık yatakodasimaster white
 - name: light.master_bedside_right_yellow
   conditions:
   - type: action
@@ -3110,7 +3110,7 @@
       color: yellow
   sentences:
   - ayarla komodin yatakodasimaster yellow
-  - ayarla isik yatakodasimaster yellow
+  - ayarla ışık yatakodasimaster yellow
 - name: light.master_bedside_right_black
   conditions:
   - type: action
@@ -3119,7 +3119,7 @@
       color: black
   sentences:
   - ayarla komodin yatakodasimaster black
-  - ayarla isik yatakodasimaster black
+  - ayarla ışık yatakodasimaster black
 - name: light.master_bath_light_red
   conditions:
   - type: action
@@ -3127,8 +3127,8 @@
     attributes:
       color: red
   sentences:
-  - ayarla isik ebatmaster red
-  - isik ebatmaster red
+  - ayarla ışık ebatmaster red
+  - ışık ebatmaster red
 - name: light.master_bath_light_blue
   conditions:
   - type: action
@@ -3136,8 +3136,8 @@
     attributes:
       color: blue
   sentences:
-  - ayarla isik ebatmaster blue
-  - isik ebatmaster blue
+  - ayarla ışık ebatmaster blue
+  - ışık ebatmaster blue
 - name: light.master_bath_light_green
   conditions:
   - type: action
@@ -3145,8 +3145,8 @@
     attributes:
       color: green
   sentences:
-  - ayarla isik ebatmaster green
-  - isik ebatmaster green
+  - ayarla ışık ebatmaster green
+  - ışık ebatmaster green
 - name: light.master_bath_light_white
   conditions:
   - type: action
@@ -3154,8 +3154,8 @@
     attributes:
       color: white
   sentences:
-  - ayarla isik ebatmaster white
-  - isik ebatmaster white
+  - ayarla ışık ebatmaster white
+  - ışık ebatmaster white
 - name: light.master_bath_light_yellow
   conditions:
   - type: action
@@ -3163,8 +3163,8 @@
     attributes:
       color: yellow
   sentences:
-  - ayarla isik ebatmaster yellow
-  - isik ebatmaster yellow
+  - ayarla ışık ebatmaster yellow
+  - ışık ebatmaster yellow
 - name: light.master_bath_light_black
   conditions:
   - type: action
@@ -3172,8 +3172,8 @@
     attributes:
       color: black
   sentences:
-  - ayarla isik ebatmaster black
-  - isik ebatmaster black
+  - ayarla ışık ebatmaster black
+  - ışık ebatmaster black
 - name: all_except_kitchen
   conditions:
   - type: action
@@ -3245,8 +3245,8 @@
     domain: light
     state: 'off'
   sentences:
-  - sondur hepsi isik haric mutfak
-  - hepsi isik sondur haric mutfak
+  - söndür hepsi ışık haric mutfak
+  - hepsi ışık söndür haric mutfak
   forbid:
   - kitchen
 - name: all_except_office
@@ -3320,8 +3320,8 @@
     domain: light
     state: 'off'
   sentences:
-  - sondur hepsi isik haric office
-  - hepsi isik sondur haric office
+  - söndür hepsi ışık haric office
+  - hepsi ışık söndür haric office
   forbid:
   - office
 - name: all_except_garage
@@ -3395,8 +3395,8 @@
     domain: light
     state: 'off'
   sentences:
-  - sondur hepsi isik haric garage
-  - hepsi isik sondur haric garage
+  - söndür hepsi ışık haric garage
+  - hepsi ışık söndür haric garage
   forbid:
   - garage
 - name: all_except_master_bedroom
@@ -3470,8 +3470,8 @@
     domain: light
     state: 'off'
   sentences:
-  - sondur hepsi isik haric yatakodasimaster
-  - hepsi isik sondur haric yatakodasimaster
+  - söndür hepsi ışık haric yatakodasimaster
+  - hepsi ışık söndür haric yatakodasimaster
   forbid:
   - master_bedroom
 - name: floor_ground_on
@@ -3480,48 +3480,48 @@
     domain: light
     state: 'on'
   sentences:
-  - yak hepsi isik alt
-  - isik alt yak
+  - yak hepsi ışık alt
+  - ışık alt yak
 - name: floor_ground_off
   conditions:
   - type: action
     domain: light
     state: 'off'
   sentences:
-  - sondur hepsi isik alt
-  - isik alt sondur
+  - söndür hepsi ışık alt
+  - ışık alt söndür
 - name: floor_upper_on
   conditions:
   - type: action
     domain: light
     state: 'on'
   sentences:
-  - yak hepsi isik ust
-  - isik ust yak
+  - yak hepsi ışık ust
+  - ışık ust yak
 - name: floor_upper_off
   conditions:
   - type: action
     domain: light
     state: 'off'
   sentences:
-  - sondur hepsi isik ust
-  - isik ust sondur
+  - söndür hepsi ışık ust
+  - ışık ust söndür
 - name: floor_basement_on
   conditions:
   - type: action
     domain: light
     state: 'on'
   sentences:
-  - yak hepsi isik basement
-  - isik basement yak
+  - yak hepsi ışık basement
+  - ışık basement yak
 - name: floor_basement_off
   conditions:
   - type: action
     domain: light
     state: 'off'
   sentences:
-  - sondur hepsi isik basement
-  - isik basement sondur
+  - söndür hepsi ışık basement
+  - ışık basement söndür
 - name: all_except_entryway
   conditions:
   - type: action
@@ -3593,8 +3593,8 @@
     domain: light
     state: 'off'
   sentences:
-  - sondur hepsi isik haric giris
-  - hepsi isik sondur haric giris
+  - söndür hepsi ışık haric giris
+  - hepsi ışık söndür haric giris
   forbid:
   - entryway
 - name: all_except_living
@@ -3668,8 +3668,8 @@
     domain: light
     state: 'off'
   sentences:
-  - sondur hepsi isik haric salon
-  - hepsi isik sondur haric salon
+  - söndür hepsi ışık haric salon
+  - hepsi ışık söndür haric salon
   forbid:
   - living
 - name: all_except_dining
@@ -3743,8 +3743,8 @@
     domain: light
     state: 'off'
   sentences:
-  - sondur hepsi isik haric aileess
-  - hepsi isik sondur haric aileess
+  - söndür hepsi ışık haric aileess
+  - hepsi ışık söndür haric aileess
   forbid:
   - dining
 - name: all_except_family_room
@@ -3818,8 +3818,8 @@
     domain: light
     state: 'off'
   sentences:
-  - sondur hepsi isik haric aile
-  - hepsi isik sondur haric aile
+  - söndür hepsi ışık haric aile
+  - hepsi ışık söndür haric aile
   forbid:
   - family_room
 - name: all_except_laundry
@@ -3893,8 +3893,8 @@
     domain: light
     state: 'off'
   sentences:
-  - sondur hepsi isik haric camasirhane
-  - hepsi isik sondur haric camasirhane
+  - söndür hepsi ışık haric camasirhane
+  - hepsi ışık söndür haric camasirhane
   forbid:
   - laundry
 - name: all_except_powder_room
@@ -3968,8 +3968,8 @@
     domain: light
     state: 'off'
   sentences:
-  - sondur hepsi isik haric wc
-  - hepsi isik sondur haric wc
+  - söndür hepsi ışık haric wc
+  - hepsi ışık söndür haric wc
   forbid:
   - powder_room
 - name: all_except_garden
@@ -4043,8 +4043,8 @@
     domain: light
     state: 'off'
   sentences:
-  - sondur hepsi isik haric garden
-  - hepsi isik sondur haric garden
+  - söndür hepsi ışık haric garden
+  - hepsi ışık söndür haric garden
   forbid:
   - garden
 - name: all_except_bedroom_2
@@ -4118,8 +4118,8 @@
     domain: light
     state: 'off'
   sentences:
-  - sondur hepsi isik haric yatakodasi2
-  - hepsi isik sondur haric yatakodasi2
+  - söndür hepsi ışık haric yatakodasi2
+  - hepsi ışık söndür haric yatakodasi2
   forbid:
   - bedroom_2
 - name: all_except_bedroom_3
@@ -4193,8 +4193,8 @@
     domain: light
     state: 'off'
   sentences:
-  - sondur hepsi isik haric yatakodasi3
-  - hepsi isik sondur haric yatakodasi3
+  - söndür hepsi ışık haric yatakodasi3
+  - hepsi ışık söndür haric yatakodasi3
   forbid:
   - bedroom_3
 - name: all_except_bedroom_4
@@ -4268,8 +4268,8 @@
     domain: light
     state: 'off'
   sentences:
-  - sondur hepsi isik haric yatakodasi4
-  - hepsi isik sondur haric yatakodasi4
+  - söndür hepsi ışık haric yatakodasi4
+  - hepsi ışık söndür haric yatakodasi4
   forbid:
   - bedroom_4
 - name: all_except_master_bath
@@ -4343,8 +4343,8 @@
     domain: light
     state: 'off'
   sentences:
-  - sondur hepsi isik haric ebatmaster
-  - hepsi isik sondur haric ebatmaster
+  - söndür hepsi ışık haric ebatmaster
+  - hepsi ışık söndür haric ebatmaster
   forbid:
   - master_bath
 - name: all_except_main_bath
@@ -4418,8 +4418,8 @@
     domain: light
     state: 'off'
   sentences:
-  - sondur hepsi isik haric main bath
-  - hepsi isik sondur haric main bath
+  - söndür hepsi ışık haric main bath
+  - hepsi ışık söndür haric main bath
   forbid:
   - main_bath
 - name: all_except_hallway
@@ -4493,8 +4493,8 @@
     domain: light
     state: 'off'
   sentences:
-  - sondur hepsi isik haric koridor
-  - hepsi isik sondur haric koridor
+  - söndür hepsi ışık haric koridor
+  - hepsi ışık söndür haric koridor
   forbid:
   - hallway
 - name: all_except_basement
@@ -4568,8 +4568,8 @@
     domain: light
     state: 'off'
   sentences:
-  - sondur hepsi isik haric basement
-  - hepsi isik sondur haric basement
+  - söndür hepsi ışık haric basement
+  - hepsi ışık söndür haric basement
   forbid:
   - basement
 - name: light.basement_on_extra
@@ -4578,16 +4578,16 @@
     entity_id: light.basement
     state: 'on'
   sentences:
-  - yak isik basement
-  - isik basement yak
+  - yak ışık basement
+  - ışık basement yak
 - name: light.hallway_light_on_extra
   conditions:
   - type: action
     entity_id: light.hallway_light
     state: 'on'
   sentences:
-  - yak isik koridor
-  - isik koridor yak
+  - yak ışık koridor
+  - ışık koridor yak
 - name: light.family_ceiling_on_extra
   conditions:
   - type: action
@@ -4602,5 +4602,5 @@
     entity_id: light.dining_pendant
     state: 'on'
   sentences:
-  - yak isik aileess
-  - isik aileess yak
+  - yak ışık aileess
+  - ışık aileess yak

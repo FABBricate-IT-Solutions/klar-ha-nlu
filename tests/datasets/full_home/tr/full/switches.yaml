@@ -12,8 +12,8 @@
     entity_id: switch.dishwasher
     state: 'off'
   sentences:
-  - sondur bulasik mutfak
-  - bulasik mutfak sondur
+  - söndür bulasik mutfak
+  - bulasik mutfak söndür
 - name: switch.washing_machine_on
   conditions:
   - type: action
@@ -28,8 +28,8 @@
     entity_id: switch.washing_machine
     state: 'off'
   sentences:
-  - sondur camasir camasirhane
-  - camasir camasirhane sondur
+  - söndür camasir camasirhane
+  - camasir camasirhane söndür
 - name: switch.dryer_on
   conditions:
   - type: action
@@ -44,8 +44,8 @@
     entity_id: switch.dryer
     state: 'off'
   sentences:
-  - sondur dryer camasirhane
-  - dryer camasirhane sondur
+  - söndür dryer camasirhane
+  - dryer camasirhane söndür
 - name: switch.rangehood_on
   conditions:
   - type: action
@@ -60,37 +60,37 @@
     entity_id: switch.rangehood
     state: 'off'
   sentences:
-  - sondur rangehood mutfak
-  - rangehood mutfak sondur
+  - söndür rangehood mutfak
+  - rangehood mutfak söndür
 - name: switch.master_bath_fan_on
   conditions:
   - type: action
     entity_id: switch.master_bath_fan
     state: 'on'
   sentences:
-  - yak vantilatorbad ebatmaster
-  - vantilatorbad ebatmaster yak
+  - yak vantilatörbad ebatmaster
+  - vantilatörbad ebatmaster yak
 - name: switch.master_bath_fan_off
   conditions:
   - type: action
     entity_id: switch.master_bath_fan
     state: 'off'
   sentences:
-  - sondur vantilatorbad ebatmaster
-  - vantilatorbad ebatmaster sondur
+  - söndür vantilatörbad ebatmaster
+  - vantilatörbad ebatmaster söndür
 - name: switch.main_bath_fan_on
   conditions:
   - type: action
     entity_id: switch.main_bath_fan
     state: 'on'
   sentences:
-  - yak vantilatorbad main bath
-  - vantilatorbad main bath yak
+  - yak vantilatörbad main bath
+  - vantilatörbad main bath yak
 - name: switch.main_bath_fan_off
   conditions:
   - type: action
     entity_id: switch.main_bath_fan
     state: 'off'
   sentences:
-  - sondur vantilatorbad main bath
-  - vantilatorbad main bath sondur
+  - söndür vantilatörbad main bath
+  - vantilatörbad main bath söndür

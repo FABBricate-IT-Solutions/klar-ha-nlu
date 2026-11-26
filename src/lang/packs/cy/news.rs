@@ -25,7 +25,7 @@ pub(super) const NEWS: News = News {
         "ymhellach",
     ],
     story: &["adroddiad", "erthygl", "pennawd", "stori"],
-    about: &["am", "ynghylch", "ynglŷn"],
+    about: &["am", "ynghylch", "ynglyn"],
     about_after: &[],
     topics: &[
         ("chwaraeon", "chwaraeon"),

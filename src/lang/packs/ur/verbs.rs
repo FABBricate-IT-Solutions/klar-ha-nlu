@@ -23,7 +23,7 @@ pub(super) const VERBS: &[(&str, VerbKind)] = &[
     ("فہرست", VerbKind::List),
     ("فیصد", VerbKind::Percent),
     ("منظر", VerbKind::Scene),
-    ("ٹائمر", VerbKind::Timer),
+    ("ٹايمر", VerbKind::Timer),
     ("پنکھا", VerbKind::FanNoun),
     ("چالو", VerbKind::On),
     ("چلاو", VerbKind::Play),

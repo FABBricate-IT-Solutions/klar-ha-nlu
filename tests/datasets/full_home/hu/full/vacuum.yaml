@@ -4,13 +4,13 @@
     entity_id: vacuum.robot
     state: 'on'
   sentences:
-  - kapcsold porszivo
-  - porszivo kapcsold
+  - kapcsold porszívó
+  - porszívó kapcsold
 - name: vacuum_dock
   conditions:
   - type: action
     entity_id: vacuum.robot
     state: 'off'
   sentences:
-  - oltsd porszivo
-  - porszivo oltsd
+  - oltsd porszívó
+  - porszívó oltsd

@@ -2,20 +2,7 @@
 use crate::lang::groups::News;
 
 pub(super) const NEWS: News = News {
-    words: &[
-        "aktualiteit",
-        "aktualiteiten",
-        "briefing",
-        "dneiegkeeten",
-        "dnews",
-        "dnoriichten",
-        "neiegkeet",
-        "neiegkeeten",
-        "news",
-        "noriicht",
-        "noriichten",
-        "schlagzeilen",
-    ],
+    words: &["aktualiteit", "aktualiteiten", "briefing", "neiegkeet", "neiegkeeten", "news", "noriicht", "noriichten", "schlagzeilen"],
     dismiss: &["genuch", "neen", "stop"],
     intro: "Ech kucken d'Neiegkeeten.",
     nudge: "Wëlls du méi iwwer eng?",

@@ -18,8 +18,8 @@
     entity_id: light.living_lamp
     state: 'off'
   sentences:
-  - sondur salon tavan ve salon lamp
-  - salon tavan ve salon lamp sondur
+  - söndür salon tavan ve salon lamp
+  - salon tavan ve salon lamp söndür
 - name: and_light.kitchen_ceiling_light.kitchen_island_on
   conditions:
   - type: action
@@ -40,8 +40,8 @@
     entity_id: light.kitchen_island
     state: 'off'
   sentences:
-  - sondur mutfak tavan ve mutfak ada
-  - mutfak tavan ve mutfak ada sondur
+  - söndür mutfak tavan ve mutfak ada
+  - mutfak tavan ve mutfak ada söndür
 - name: and_light.living_ceiling_light.kitchen_island_on
   conditions:
   - type: action
@@ -62,8 +62,8 @@
     entity_id: light.kitchen_island
     state: 'off'
   sentences:
-  - sondur salon tavan ve mutfak ada
-  - salon tavan ve mutfak ada sondur
+  - söndür salon tavan ve mutfak ada
+  - salon tavan ve mutfak ada söndür
 - name: and_light.office_ceiling_light.hallway_light_on
   conditions:
   - type: action
@@ -73,8 +73,8 @@
     entity_id: light.hallway_light
     state: 'on'
   sentences:
-  - yak office tavan ve koridor isik
-  - office tavan ve koridor isik yak
+  - yak office tavan ve koridor ışık
+  - office tavan ve koridor ışık yak
 - name: and_light.office_ceiling_light.hallway_light_off
   conditions:
   - type: action
@@ -84,8 +84,8 @@
     entity_id: light.hallway_light
     state: 'off'
   sentences:
-  - sondur office tavan ve koridor isik
-  - office tavan ve koridor isik sondur
+  - söndür office tavan ve koridor ışık
+  - office tavan ve koridor ışık söndür
 - name: and_light.garden_light.garage_light_on
   conditions:
   - type: action
@@ -95,8 +95,8 @@
     entity_id: light.garage_light
     state: 'on'
   sentences:
-  - yak garden isik ve garage isik
-  - garden isik ve garage isik yak
+  - yak garden ışık ve garage ışık
+  - garden ışık ve garage ışık yak
 - name: and_light.garden_light.garage_light_off
   conditions:
   - type: action
@@ -106,8 +106,8 @@
     entity_id: light.garage_light
     state: 'off'
   sentences:
-  - sondur garden isik ve garage isik
-  - garden isik ve garage isik sondur
+  - söndür garden ışık ve garage ışık
+  - garden ışık ve garage ışık söndür
 - name: and_light.master_ceiling_light.master_bedside_left_on
   conditions:
   - type: action
@@ -128,8 +128,8 @@
     entity_id: light.master_bedside_left
     state: 'off'
   sentences:
-  - sondur yatakodasimaster tavan ve yatakodasimaster komodin
-  - yatakodasimaster tavan ve yatakodasimaster komodin sondur
+  - söndür yatakodasimaster tavan ve yatakodasimaster komodin
+  - yatakodasimaster tavan ve yatakodasimaster komodin söndür
 - name: and_light.family_ceiling_light.dining_pendant_on
   conditions:
   - type: action
@@ -139,8 +139,8 @@
     entity_id: light.dining_pendant
     state: 'on'
   sentences:
-  - yak aile tavan ve aileess isik
-  - aile tavan ve aileess isik yak
+  - yak aile tavan ve aileess ışık
+  - aile tavan ve aileess ışık yak
 - name: and_light.family_ceiling_light.dining_pendant_off
   conditions:
   - type: action
@@ -150,8 +150,8 @@
     entity_id: light.dining_pendant
     state: 'off'
   sentences:
-  - sondur aile tavan ve aileess isik
-  - aile tavan ve aileess isik sondur
+  - söndür aile tavan ve aileess ışık
+  - aile tavan ve aileess ışık söndür
 - name: and_light.basement_light.laundry_light_on
   conditions:
   - type: action
@@ -161,8 +161,8 @@
     entity_id: light.laundry_light
     state: 'on'
   sentences:
-  - yak basement isik ve camasirhane isik
-  - basement isik ve camasirhane isik yak
+  - yak basement ışık ve camasirhane ışık
+  - basement ışık ve camasirhane ışık yak
 - name: and_light.basement_light.laundry_light_off
   conditions:
   - type: action
@@ -172,8 +172,8 @@
     entity_id: light.laundry_light
     state: 'off'
   sentences:
-  - sondur basement isik ve camasirhane isik
-  - basement isik ve camasirhane isik sondur
+  - söndür basement ışık ve camasirhane ışık
+  - basement ışık ve camasirhane ışık söndür
 - name: and_fan.master_fan_light.kitchen_island_on
   conditions:
   - type: action
@@ -183,8 +183,8 @@
     entity_id: light.kitchen_island
     state: 'on'
   sentences:
-  - yak yatakodasimaster vantilator ve mutfak ada
-  - yatakodasimaster vantilator ve mutfak ada yak
+  - yak yatakodasimaster vantilatör ve mutfak ada
+  - yatakodasimaster vantilatör ve mutfak ada yak
 - name: and_cover.living_blinds_light.living_ceiling_on
   conditions:
   - type: action
@@ -218,8 +218,8 @@
     domain: light
     state: 'off'
   sentences:
-  - sondur isik salon ve mutfak
-  - isik salon ve mutfak sondur
+  - söndür ışık salon ve mutfak
+  - ışık salon ve mutfak söndür
 - name: off_office_hallway
   conditions:
   - type: action
@@ -231,8 +231,8 @@
     domain: light
     state: 'off'
   sentences:
-  - sondur isik office ve koridor
-  - isik office ve koridor sondur
+  - söndür ışık office ve koridor
+  - ışık office ve koridor söndür
 - name: off_garage_garden
   conditions:
   - type: action
@@ -244,8 +244,8 @@
     domain: light
     state: 'off'
   sentences:
-  - sondur isik garage ve garden
-  - isik garage ve garden sondur
+  - söndür ışık garage ve garden
+  - ışık garage ve garden söndür
 - name: off_master_bedroom_main_bath
   conditions:
   - type: action
@@ -257,8 +257,8 @@
     domain: light
     state: 'off'
   sentences:
-  - sondur isik yatakodasimaster ve main bath
-  - isik yatakodasimaster ve main bath sondur
+  - söndür ışık yatakodasimaster ve main bath
+  - ışık yatakodasimaster ve main bath söndür
 - name: off_family_room_dining
   conditions:
   - type: action
@@ -270,8 +270,8 @@
     domain: light
     state: 'off'
   sentences:
-  - sondur isik aile ve aileess
-  - isik aile ve aileess sondur
+  - söndür ışık aile ve aileess
+  - ışık aile ve aileess söndür
 - name: off_living_dining_kitchen
   conditions:
   - type: action
@@ -287,8 +287,8 @@
     domain: light
     state: 'off'
   sentences:
-  - sondur isik salon ve aileess ve mutfak
-  - isik salon aileess ve mutfak sondur
+  - söndür ışık salon ve aileess ve mutfak
+  - ışık salon aileess ve mutfak söndür
 - name: on_office_hallway_garage
   conditions:
   - type: action
@@ -304,8 +304,8 @@
     domain: light
     state: 'on'
   sentences:
-  - yak isik office ve koridor ve garage
-  - isik office koridor ve garage yak
+  - yak ışık office ve koridor ve garage
+  - ışık office koridor ve garage yak
 - name: off_garden_basement_laundry
   conditions:
   - type: action
@@ -321,8 +321,8 @@
     domain: light
     state: 'off'
   sentences:
-  - sondur isik garden ve basement ve camasirhane
-  - isik garden basement ve camasirhane sondur
+  - söndür ışık garden ve basement ve camasirhane
+  - ışık garden basement ve camasirhane söndür
 - name: except_light.kitchen_island
   conditions:
   - type: action
@@ -397,8 +397,8 @@
     entity_id: light.kitchen_ceiling
     state: 'off'
   sentences:
-  - sondur hepsi isik haric ada mutfak
-  - hepsi isik sondur haric ada mutfak
+  - söndür hepsi ışık haric ada mutfak
+  - hepsi ışık söndür haric ada mutfak
   forbid:
   - light.kitchen_island
   - kitchen
@@ -476,8 +476,8 @@
     entity_id: light.living_ceiling
     state: 'off'
   sentences:
-  - sondur hepsi isik haric lamp salon
-  - hepsi isik sondur haric lamp salon
+  - söndür hepsi ışık haric lamp salon
+  - hepsi ışık söndür haric lamp salon
   forbid:
   - light.living_lamp
   - living
@@ -552,8 +552,8 @@
     domain: light
     state: 'off'
   sentences:
-  - sondur hepsi isik haric garden
-  - hepsi isik sondur haric garden
+  - söndür hepsi ışık haric garden
+  - hepsi ışık söndür haric garden
   forbid:
   - light.garden
   - garden
@@ -628,8 +628,8 @@
     domain: light
     state: 'off'
   sentences:
-  - sondur hepsi isik haric tavan office
-  - hepsi isik sondur haric tavan office
+  - söndür hepsi ışık haric tavan office
+  - hepsi ışık söndür haric tavan office
   forbid:
   - light.office_ceiling
   - office
@@ -704,8 +704,8 @@
     domain: light
     state: 'off'
   sentences:
-  - sondur hepsi isik haric basement
-  - hepsi isik sondur haric basement
+  - söndür hepsi ışık haric basement
+  - hepsi ışık söndür haric basement
   forbid:
   - light.basement
   - basement
@@ -780,8 +780,8 @@
     domain: light
     state: 'on'
   sentences:
-  - yak hepsi isik haric mutfak
-  - hepsi isik yak haric mutfak
+  - yak hepsi ışık haric mutfak
+  - hepsi ışık yak haric mutfak
   forbid:
   - kitchen
 - name: all_on_except_office
@@ -855,8 +855,8 @@
     domain: light
     state: 'on'
   sentences:
-  - yak hepsi isik haric office
-  - hepsi isik yak haric office
+  - yak hepsi ışık haric office
+  - hepsi ışık yak haric office
   forbid:
   - office
 - name: all_on_except_garden
@@ -930,8 +930,8 @@
     domain: light
     state: 'on'
   sentences:
-  - yak hepsi isik haric garden
-  - hepsi isik yak haric garden
+  - yak hepsi ışık haric garden
+  - hepsi ışık yak haric garden
   forbid:
   - garden
 - name: all_on_except_living
@@ -1005,8 +1005,8 @@
     domain: light
     state: 'on'
   sentences:
-  - yak hepsi isik haric salon
-  - hepsi isik yak haric salon
+  - yak hepsi ışık haric salon
+  - hepsi ışık yak haric salon
   forbid:
   - living
 - name: all_on_except_garage
@@ -1080,8 +1080,8 @@
     domain: light
     state: 'on'
   sentences:
-  - yak hepsi isik haric garage
-  - hepsi isik yak haric garage
+  - yak hepsi ışık haric garage
+  - hepsi ışık yak haric garage
   forbid:
   - garage
 - name: except_in_kitchen_island
@@ -1090,8 +1090,8 @@
     entity_id: light.kitchen_ceiling
     state: 'off'
   sentences:
-  - sondur hepsi isik mutfak haric ada
-  - hepsi isik mutfak sondur haric ada
+  - söndür hepsi ışık mutfak haric ada
+  - hepsi ışık mutfak söndür haric ada
   forbid:
   - light.kitchen_island
 - name: except_in_living_lamp
@@ -1100,8 +1100,8 @@
     entity_id: light.living_ceiling
     state: 'off'
   sentences:
-  - sondur hepsi isik salon haric lamp
-  - hepsi isik salon sondur haric lamp
+  - söndür hepsi ışık salon haric lamp
+  - hepsi ışık salon söndür haric lamp
   forbid:
   - light.living_lamp
 - name: except_island_on
@@ -1178,8 +1178,8 @@
     entity_id: light.kitchen_ceiling
     state: 'on'
   sentences:
-  - yak hepsi isik haric ada mutfak
-  - hepsi isik yak haric ada mutfak
+  - yak hepsi ışık haric ada mutfak
+  - hepsi ışık yak haric ada mutfak
   forbid:
   - light.kitchen_island
 - name: except_kitchen_office
@@ -1249,8 +1249,8 @@
     domain: light
     state: 'off'
   sentences:
-  - sondur hepsi isik haric mutfak ve office
-  - hepsi isik sondur haric mutfak ve office
+  - söndür hepsi ışık haric mutfak ve office
+  - hepsi ışık söndür haric mutfak ve office
   forbid:
   - kitchen
   - office
@@ -1321,8 +1321,8 @@
     domain: light
     state: 'off'
   sentences:
-  - sondur hepsi isik haric salon ve yatakodasimaster
-  - hepsi isik sondur haric salon ve yatakodasimaster
+  - söndür hepsi ışık haric salon ve yatakodasimaster
+  - hepsi ışık söndür haric salon ve yatakodasimaster
   forbid:
   - living
   - master_bedroom
@@ -1393,8 +1393,8 @@
     domain: light
     state: 'off'
   sentences:
-  - sondur hepsi isik haric garage ve garden
-  - hepsi isik sondur haric garage ve garden
+  - söndür hepsi ışık haric garage ve garden
+  - hepsi ışık söndür haric garage ve garden
   forbid:
   - garage
   - garden
@@ -1437,8 +1437,8 @@
     domain: light
     state: 'off'
   sentences:
-  - sondur hepsi isik alt haric mutfak
-  - hepsi isik alt sondur haric mutfak
+  - söndür hepsi ışık alt haric mutfak
+  - hepsi ışık alt söndür haric mutfak
   forbid:
   - kitchen
 - name: floor_upper_except_master_bedroom
@@ -1468,8 +1468,8 @@
     domain: light
     state: 'off'
   sentences:
-  - sondur hepsi isik ust haric yatakodasimaster
-  - hepsi isik ust sondur haric yatakodasimaster
+  - söndür hepsi ışık ust haric yatakodasimaster
+  - hepsi ışık ust söndür haric yatakodasimaster
   forbid:
   - master_bedroom
 - name: floor_ground_except_office
@@ -1511,8 +1511,8 @@
     domain: light
     state: 'off'
   sentences:
-  - sondur hepsi isik alt haric office
-  - hepsi isik alt sondur haric office
+  - söndür hepsi ışık alt haric office
+  - hepsi ışık alt söndür haric office
   forbid:
   - office
 - name: covers_living_master_open
@@ -1526,8 +1526,8 @@
     domain: cover
     state: open
   sentences:
-  - ac perde salon ve yatakodasimaster
-  - perde salon ve yatakodasimaster ac
+  - aç perde salon ve yatakodasimaster
+  - perde salon ve yatakodasimaster aç
 - name: covers_living_master_close
   conditions:
   - type: action
@@ -1554,8 +1554,8 @@
     attributes:
       temperature: 21
   sentences:
-  - ayarla sicaklik salon ve yatakodasimaster 21
-  - sicaklik salon ve yatakodasimaster 21
+  - ayarla sıcaklık salon ve yatakodasimaster 21
+  - sıcaklık salon ve yatakodasimaster 21
 - name: bright_living_kitchen_50
   conditions:
   - type: action
@@ -1569,8 +1569,8 @@
     attributes:
       brightness: 50
   sentences:
-  - ayarla isik salon ve mutfak 50
-  - isik salon ve mutfak 50
+  - ayarla ışık salon ve mutfak 50
+  - ışık salon ve mutfak 50
 - name: color_living_kitchen_red
   conditions:
   - type: action
@@ -1584,8 +1584,8 @@
     attributes:
       color: red
   sentences:
-  - ayarla isik salon ve mutfak red
-  - isik salon ve mutfak red
+  - ayarla ışık salon ve mutfak red
+  - ışık salon ve mutfak red
 - name: query_living_kitchen_lights
   conditions:
   - type: query
@@ -1595,8 +1595,8 @@
     area: kitchen
     domain: light
   sentences:
-  - ne isik salon ve mutfak
-  - isik salon ve mutfak
+  - ne ışık salon ve mutfak
+  - ışık salon ve mutfak
 - name: temp_living_and_light_kitchen_off
   conditions:
   - type: query
@@ -1606,8 +1606,8 @@
     domain: light
     state: 'off'
   sentences:
-  - ne sicaklik salon ve sondur isik mutfak
-  - sondur isik mutfak ve ne sicaklik salon
+  - ne sıcaklık salon ve söndür ışık mutfak
+  - söndür ışık mutfak ve ne sıcaklık salon
 - name: locks_front_and_garage
   conditions:
   - type: action
@@ -1617,7 +1617,7 @@
     entity_id: lock.garage_entry
     state: locked
   sentences:
-  - kilitle front kapi ve garage kapi
+  - kilitle front kapı ve garage kapı
   - kilitle kilit giris ve garage
 - name: scene_and_powder_off
   conditions:
@@ -1628,5 +1628,5 @@
     entity_id: light.powder_room_light
     state: 'off'
   sentences:
-  - yak film ve sondur isik wc
-  - sondur isik wc ve yak film
+  - yak film ve söndür ışık wc
+  - söndür ışık wc ve yak film

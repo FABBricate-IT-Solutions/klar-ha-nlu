@@ -16,7 +16,6 @@ pub(super) const NEWS: News = News {
     about_after: &[],
     topics: &[
         ("esports", "esports"),
-        ("desports", "esports"),
         ("esport", "esports"),
         ("esportives", "esports"),
         ("politica", "política"),
@@ -34,7 +33,6 @@ pub(super) const NEWS: News = News {
         "ara",
         "avui",
         "breu",
-        "davui",
         "de",
         "del",
         "dels",

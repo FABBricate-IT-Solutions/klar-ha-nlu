@@ -4,45 +4,45 @@
     entity_id: lock.front_door
     state: locked
   sentences:
-  - las las entre
-  - las entre las
+  - lås lås entre
+  - lås entre lås
 - name: lock.front_door_unlock
   conditions:
   - type: action
     entity_id: lock.front_door
     state: unlocked
   sentences:
-  - oppna las entre
-  - las entre oppna
+  - öppna lås entre
+  - lås entre öppna
 - name: lock.garage_entry_lock
   conditions:
   - type: action
     entity_id: lock.garage_entry
     state: locked
   sentences:
-  - las las garage
-  - las garage las
+  - lås lås garage
+  - lås garage lås
 - name: lock.garage_entry_unlock
   conditions:
   - type: action
     entity_id: lock.garage_entry
     state: unlocked
   sentences:
-  - oppna las garage
-  - las garage oppna
+  - öppna lås garage
+  - lås garage öppna
 - name: lock.front_door_lock_extra
   conditions:
   - type: action
     entity_id: lock.front_door
     state: locked
   sentences:
-  - las las entre
-  - las entre las
+  - lås lås entre
+  - lås entre lås
 - name: lock.garage_entry_lock_extra
   conditions:
   - type: action
     entity_id: lock.garage_entry
     state: locked
   sentences:
-  - las las garage
-  - las garage las
+  - lås lås garage
+  - lås garage lås

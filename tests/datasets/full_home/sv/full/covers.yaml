@@ -4,16 +4,16 @@
     entity_id: cover.living_blinds
     state: open
   sentences:
-  - oppna gardin vardagsrum
-  - gardin vardagsrum oppna
+  - öppna gardin vardagsrum
+  - gardin vardagsrum öppna
 - name: cover.living_blinds_close
   conditions:
   - type: action
     entity_id: cover.living_blinds
     state: closed
   sentences:
-  - stang gardin vardagsrum
-  - gardin vardagsrum stang
+  - stäng gardin vardagsrum
+  - gardin vardagsrum stäng
 - name: cover.living_blinds_pos_0
   conditions:
   - type: action
@@ -21,7 +21,7 @@
     attributes:
       position: 0
   sentences:
-  - satt gardin vardagsrum 0
+  - sätt gardin vardagsrum 0
   - gardin vardagsrum 0
 - name: cover.living_blinds_pos_25
   conditions:
@@ -30,7 +30,7 @@
     attributes:
       position: 25
   sentences:
-  - satt gardin vardagsrum 25
+  - sätt gardin vardagsrum 25
   - gardin vardagsrum 25
 - name: cover.living_blinds_pos_40
   conditions:
@@ -39,7 +39,7 @@
     attributes:
       position: 40
   sentences:
-  - satt gardin vardagsrum 40
+  - sätt gardin vardagsrum 40
   - gardin vardagsrum 40
 - name: cover.living_blinds_pos_75
   conditions:
@@ -48,7 +48,7 @@
     attributes:
       position: 75
   sentences:
-  - satt gardin vardagsrum 75
+  - sätt gardin vardagsrum 75
   - gardin vardagsrum 75
 - name: cover.living_blinds_pos_100
   conditions:
@@ -57,7 +57,7 @@
     attributes:
       position: 100
   sentences:
-  - satt gardin vardagsrum 100
+  - sätt gardin vardagsrum 100
   - gardin vardagsrum 100
 - name: cover.master_blinds_open
   conditions:
@@ -65,16 +65,16 @@
     entity_id: cover.master_blinds
     state: open
   sentences:
-  - oppna gardin sovrummaster
-  - gardin sovrummaster oppna
+  - öppna gardin sovrummaster
+  - gardin sovrummaster öppna
 - name: cover.master_blinds_close
   conditions:
   - type: action
     entity_id: cover.master_blinds
     state: closed
   sentences:
-  - stang gardin sovrummaster
-  - gardin sovrummaster stang
+  - stäng gardin sovrummaster
+  - gardin sovrummaster stäng
 - name: cover.master_blinds_pos_0
   conditions:
   - type: action
@@ -82,7 +82,7 @@
     attributes:
       position: 0
   sentences:
-  - satt gardin sovrummaster 0
+  - sätt gardin sovrummaster 0
   - gardin sovrummaster 0
 - name: cover.master_blinds_pos_25
   conditions:
@@ -91,7 +91,7 @@
     attributes:
       position: 25
   sentences:
-  - satt gardin sovrummaster 25
+  - sätt gardin sovrummaster 25
   - gardin sovrummaster 25
 - name: cover.master_blinds_pos_40
   conditions:
@@ -100,7 +100,7 @@
     attributes:
       position: 40
   sentences:
-  - satt gardin sovrummaster 40
+  - sätt gardin sovrummaster 40
   - gardin sovrummaster 40
 - name: cover.master_blinds_pos_75
   conditions:
@@ -109,7 +109,7 @@
     attributes:
       position: 75
   sentences:
-  - satt gardin sovrummaster 75
+  - sätt gardin sovrummaster 75
   - gardin sovrummaster 75
 - name: cover.master_blinds_pos_100
   conditions:
@@ -118,7 +118,7 @@
     attributes:
       position: 100
   sentences:
-  - satt gardin sovrummaster 100
+  - sätt gardin sovrummaster 100
   - gardin sovrummaster 100
 - name: cover.bedroom2_blinds_open
   conditions:
@@ -126,16 +126,16 @@
     entity_id: cover.bedroom2_blinds
     state: open
   sentences:
-  - oppna gardin sovrum2
-  - gardin sovrum2 oppna
+  - öppna gardin sovrum2
+  - gardin sovrum2 öppna
 - name: cover.bedroom2_blinds_close
   conditions:
   - type: action
     entity_id: cover.bedroom2_blinds
     state: closed
   sentences:
-  - stang gardin sovrum2
-  - gardin sovrum2 stang
+  - stäng gardin sovrum2
+  - gardin sovrum2 stäng
 - name: cover.bedroom2_blinds_pos_0
   conditions:
   - type: action
@@ -143,7 +143,7 @@
     attributes:
       position: 0
   sentences:
-  - satt gardin sovrum2 0
+  - sätt gardin sovrum2 0
   - gardin sovrum2 0
 - name: cover.bedroom2_blinds_pos_25
   conditions:
@@ -152,7 +152,7 @@
     attributes:
       position: 25
   sentences:
-  - satt gardin sovrum2 25
+  - sätt gardin sovrum2 25
   - gardin sovrum2 25
 - name: cover.bedroom2_blinds_pos_40
   conditions:
@@ -161,7 +161,7 @@
     attributes:
       position: 40
   sentences:
-  - satt gardin sovrum2 40
+  - sätt gardin sovrum2 40
   - gardin sovrum2 40
 - name: cover.bedroom2_blinds_pos_75
   conditions:
@@ -170,7 +170,7 @@
     attributes:
       position: 75
   sentences:
-  - satt gardin sovrum2 75
+  - sätt gardin sovrum2 75
   - gardin sovrum2 75
 - name: cover.bedroom2_blinds_pos_100
   conditions:
@@ -179,7 +179,7 @@
     attributes:
       position: 100
   sentences:
-  - satt gardin sovrum2 100
+  - sätt gardin sovrum2 100
   - gardin sovrum2 100
 - name: cover.bedroom3_blinds_open
   conditions:
@@ -187,16 +187,16 @@
     entity_id: cover.bedroom3_blinds
     state: open
   sentences:
-  - oppna gardin sovrum3
-  - gardin sovrum3 oppna
+  - öppna gardin sovrum3
+  - gardin sovrum3 öppna
 - name: cover.bedroom3_blinds_close
   conditions:
   - type: action
     entity_id: cover.bedroom3_blinds
     state: closed
   sentences:
-  - stang gardin sovrum3
-  - gardin sovrum3 stang
+  - stäng gardin sovrum3
+  - gardin sovrum3 stäng
 - name: cover.bedroom3_blinds_pos_0
   conditions:
   - type: action
@@ -204,7 +204,7 @@
     attributes:
       position: 0
   sentences:
-  - satt gardin sovrum3 0
+  - sätt gardin sovrum3 0
   - gardin sovrum3 0
 - name: cover.bedroom3_blinds_pos_25
   conditions:
@@ -213,7 +213,7 @@
     attributes:
       position: 25
   sentences:
-  - satt gardin sovrum3 25
+  - sätt gardin sovrum3 25
   - gardin sovrum3 25
 - name: cover.bedroom3_blinds_pos_40
   conditions:
@@ -222,7 +222,7 @@
     attributes:
       position: 40
   sentences:
-  - satt gardin sovrum3 40
+  - sätt gardin sovrum3 40
   - gardin sovrum3 40
 - name: cover.bedroom3_blinds_pos_75
   conditions:
@@ -231,7 +231,7 @@
     attributes:
       position: 75
   sentences:
-  - satt gardin sovrum3 75
+  - sätt gardin sovrum3 75
   - gardin sovrum3 75
 - name: cover.bedroom3_blinds_pos_100
   conditions:
@@ -240,7 +240,7 @@
     attributes:
       position: 100
   sentences:
-  - satt gardin sovrum3 100
+  - sätt gardin sovrum3 100
   - gardin sovrum3 100
 - name: cover.garage_door_open
   conditions:
@@ -248,16 +248,16 @@
     entity_id: cover.garage_door
     state: open
   sentences:
-  - oppna gardin garage
-  - gardin garage oppna
+  - öppna gardin garage
+  - gardin garage öppna
 - name: cover.garage_door_close
   conditions:
   - type: action
     entity_id: cover.garage_door
     state: closed
   sentences:
-  - stang gardin garage
-  - gardin garage stang
+  - stäng gardin garage
+  - gardin garage stäng
 - name: cover.garage_door_pos_0
   conditions:
   - type: action
@@ -265,7 +265,7 @@
     attributes:
       position: 0
   sentences:
-  - satt gardin garage 0
+  - sätt gardin garage 0
   - gardin garage 0
 - name: cover.garage_door_pos_25
   conditions:
@@ -274,7 +274,7 @@
     attributes:
       position: 25
   sentences:
-  - satt gardin garage 25
+  - sätt gardin garage 25
   - gardin garage 25
 - name: cover.garage_door_pos_40
   conditions:
@@ -283,7 +283,7 @@
     attributes:
       position: 40
   sentences:
-  - satt gardin garage 40
+  - sätt gardin garage 40
   - gardin garage 40
 - name: cover.garage_door_pos_75
   conditions:
@@ -292,7 +292,7 @@
     attributes:
       position: 75
   sentences:
-  - satt gardin garage 75
+  - sätt gardin garage 75
   - gardin garage 75
 - name: cover.garage_door_pos_100
   conditions:
@@ -301,7 +301,7 @@
     attributes:
       position: 100
   sentences:
-  - satt gardin garage 100
+  - sätt gardin garage 100
   - gardin garage 100
 - name: cover.living_blinds_open_extra
   conditions:
@@ -309,13 +309,13 @@
     entity_id: cover.living_blinds
     state: open
   sentences:
-  - oppna gardin vardagsrum
-  - gardin vardagsrum oppna
+  - öppna gardin vardagsrum
+  - gardin vardagsrum öppna
 - name: cover.master_blinds_open_extra
   conditions:
   - type: action
     entity_id: cover.master_blinds
     state: open
   sentences:
-  - oppna gardin sovrummaster
-  - gardin sovrummaster oppna
+  - öppna gardin sovrummaster
+  - gardin sovrummaster öppna

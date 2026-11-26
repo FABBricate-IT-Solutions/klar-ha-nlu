@@ -4,13 +4,13 @@
     entity_id: vacuum.robot
     state: 'on'
   sentences:
-  - yak supurge
-  - supurge yak
+  - yak süpürge
+  - süpürge yak
 - name: vacuum_dock
   conditions:
   - type: action
     entity_id: vacuum.robot
     state: 'off'
   sentences:
-  - sondur supurge
-  - supurge sondur
+  - söndür süpürge
+  - süpürge söndür

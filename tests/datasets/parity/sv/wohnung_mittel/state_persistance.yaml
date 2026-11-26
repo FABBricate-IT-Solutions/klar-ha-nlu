@@ -1,15 +1,15 @@
 state_persistance/followup::heizung_dann_grad:
-- - tand varme vardagsrum
+- - tänd värme vardagsrum
   - ' 21'
 state_persistance/followup::wohnzimmer_dann_aus:
-- - tand ljus vardagsrum
-  - slack ljus vardagsrum
+- - tänd ljus vardagsrum
+  - släck ljus vardagsrum
 state_persistance/spoken::kugel_dann_aus:
-- - tand kula
-  - slack kula
+- - tänd kula
+  - släck kula
 state_persistance/spoken::wohnzimmer_dann_kueche:
-- - tand ljus vardagsrum
-  - tand ljus kok
+- - tänd ljus vardagsrum
+  - tänd ljus kök
 state_persistance/spoken::wohnzimmer_dann_rot:
-- - tand alla ljus vardagsrum
-  - rod
+- - tänd alla ljus vardagsrum
+  - röd

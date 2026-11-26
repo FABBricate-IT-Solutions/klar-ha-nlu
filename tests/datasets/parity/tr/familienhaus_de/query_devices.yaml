@@ -1,9 +1,9 @@
 query_devices/binary_sensor_front_door_sensor::binary_sensor_front_door_sensor_get_status:
-- ne sensor kapi giris
+- ne sensor kapı giris
 query_devices/climate_ground_thermostat::climate_ground_thermostat_get_temperature:
-- ne sicaklik salon
+- ne sıcaklık salon
 query_devices/climate_upper_thermostat::climate_upper_thermostat_get_temperature:
-- ne sicaklik yatakodasimaster
+- ne sıcaklık yatakodasimaster
 query_devices/cover_bedroom2_blinds::cover_bedroom2_blinds_get_position:
 - ne perde yatakodasi2
 query_devices/cover_bedroom2_blinds::cover_bedroom2_blinds_get_status:
@@ -25,17 +25,17 @@ query_devices/cover_master_blinds::cover_master_blinds_get_position:
 query_devices/cover_master_blinds::cover_master_blinds_get_status:
 - ne perde yatakodasimaster
 query_devices/fan_bedroom2_fan::fan_bedroom2_fan_get_fan_speed:
-- ne vantilator yatakodasi2
+- ne vantilatör yatakodasi2
 query_devices/fan_bedroom2_fan::fan_bedroom2_fan_get_status:
-- ne vantilator yatakodasi2
+- ne vantilatör yatakodasi2
 query_devices/fan_family_fan::fan_family_fan_get_fan_speed:
-- ne vantilator aile
+- ne vantilatör aile
 query_devices/fan_family_fan::fan_family_fan_get_status:
-- ne vantilator aile
+- ne vantilatör aile
 query_devices/fan_master_fan::fan_master_fan_get_fan_speed:
-- ne vantilator yatakodasimaster
+- ne vantilatör yatakodasimaster
 query_devices/fan_master_fan::fan_master_fan_get_status:
-- ne vantilator yatakodasimaster
+- ne vantilatör yatakodasimaster
 query_devices/light_bedroom2_ceiling::light_bedroom2_ceiling_get_brightness:
 - ne tavan yatakodasi2
 query_devices/light_bedroom2_ceiling::light_bedroom2_ceiling_get_status:
@@ -49,25 +49,25 @@ query_devices/light_bedroom4_ceiling::light_bedroom4_ceiling_get_brightness:
 query_devices/light_bedroom4_ceiling::light_bedroom4_ceiling_get_status:
 - ne tavan yatakodasi4
 query_devices/light_dining_pendant::light_dining_pendant_get_brightness:
-- ne isik aileess
+- ne ışık aileess
 query_devices/light_dining_pendant::light_dining_pendant_get_status:
-- ne isik aileess
+- ne ışık aileess
 query_devices/light_entryway_light::light_entryway_light_get_brightness:
-- ne isik giris
+- ne ışık giris
 query_devices/light_entryway_light::light_entryway_light_get_status:
-- ne isik giris
+- ne ışık giris
 query_devices/light_family_ceiling::light_family_ceiling_get_brightness:
 - ne tavan aile
 query_devices/light_family_ceiling::light_family_ceiling_get_status:
 - ne tavan aile
 query_devices/light_garage_light::light_garage_light_get_brightness:
-- ne isik garage
+- ne ışık garage
 query_devices/light_garage_light::light_garage_light_get_status:
-- ne isik garage
+- ne ışık garage
 query_devices/light_hallway_light::light_hallway_light_get_brightness:
-- ne isik girisgang
+- ne ışık girisgang
 query_devices/light_hallway_light::light_hallway_light_get_status:
-- ne isik girisgang
+- ne ışık girisgang
 query_devices/light_kitchen_ceiling::light_kitchen_ceiling_get_brightness:
 - ne tavan mutfak
 query_devices/light_kitchen_ceiling::light_kitchen_ceiling_get_status:
@@ -77,9 +77,9 @@ query_devices/light_kitchen_island::light_kitchen_island_get_brightness:
 query_devices/light_kitchen_island::light_kitchen_island_get_status:
 - ne ada mutfak
 query_devices/light_laundry_light::light_laundry_light_get_brightness:
-- ne isik camasirhane
+- ne ışık camasirhane
 query_devices/light_laundry_light::light_laundry_light_get_status:
-- ne isik camasirhane
+- ne ışık camasirhane
 query_devices/light_living_ceiling::light_living_ceiling_get_brightness:
 - ne tavan salon
 query_devices/light_living_ceiling::light_living_ceiling_get_status:
@@ -89,13 +89,13 @@ query_devices/light_living_lamp::light_living_lamp_get_brightness:
 query_devices/light_living_lamp::light_living_lamp_get_status:
 - ne lamp salon
 query_devices/light_main_bath_light::light_main_bath_light_get_brightness:
-- ne isik main bath
+- ne ışık main bath
 query_devices/light_main_bath_light::light_main_bath_light_get_status:
-- ne isik main bath
+- ne ışık main bath
 query_devices/light_master_bath_light::light_master_bath_light_get_brightness:
-- ne isik ebatmaster
+- ne ışık ebatmaster
 query_devices/light_master_bath_light::light_master_bath_light_get_status:
-- ne isik ebatmaster
+- ne ışık ebatmaster
 query_devices/light_master_bedside_left::light_master_bedside_left_get_brightness:
 - ne komodin left yatakodasimaster
 query_devices/light_master_bedside_left::light_master_bedside_left_get_status:
@@ -113,9 +113,9 @@ query_devices/light_master_ensuite::light_master_ensuite_get_brightness:
 query_devices/light_master_ensuite::light_master_ensuite_get_status:
 - ne ankleide yatakodasimaster
 query_devices/light_powder_room_light::light_powder_room_light_get_brightness:
-- ne isik wc
+- ne ışık wc
 query_devices/light_powder_room_light::light_powder_room_light_get_status:
-- ne isik wc
+- ne ışık wc
 query_devices/lock_front_door::lock_front_door_get_status:
 - ne kilit giris
 query_devices/lock_garage_entry::lock_garage_entry_get_status:

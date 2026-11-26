@@ -4,8 +4,8 @@
     entity_id: cover.living_blinds
     state: open
   sentences:
-  - ac perde salon
-  - perde salon ac
+  - aç perde salon
+  - perde salon aç
 - name: cover.living_blinds_close
   conditions:
   - type: action
@@ -65,8 +65,8 @@
     entity_id: cover.master_blinds
     state: open
   sentences:
-  - ac perde yatakodasimaster
-  - perde yatakodasimaster ac
+  - aç perde yatakodasimaster
+  - perde yatakodasimaster aç
 - name: cover.master_blinds_close
   conditions:
   - type: action
@@ -126,8 +126,8 @@
     entity_id: cover.bedroom2_blinds
     state: open
   sentences:
-  - ac perde yatakodasi2
-  - perde yatakodasi2 ac
+  - aç perde yatakodasi2
+  - perde yatakodasi2 aç
 - name: cover.bedroom2_blinds_close
   conditions:
   - type: action
@@ -187,8 +187,8 @@
     entity_id: cover.bedroom3_blinds
     state: open
   sentences:
-  - ac perde yatakodasi3
-  - perde yatakodasi3 ac
+  - aç perde yatakodasi3
+  - perde yatakodasi3 aç
 - name: cover.bedroom3_blinds_close
   conditions:
   - type: action
@@ -248,8 +248,8 @@
     entity_id: cover.garage_door
     state: open
   sentences:
-  - ac perde garage
-  - perde garage ac
+  - aç perde garage
+  - perde garage aç
 - name: cover.garage_door_close
   conditions:
   - type: action
@@ -309,13 +309,13 @@
     entity_id: cover.living_blinds
     state: open
   sentences:
-  - ac perde salon
-  - perde salon ac
+  - aç perde salon
+  - perde salon aç
 - name: cover.master_blinds_open_extra
   conditions:
   - type: action
     entity_id: cover.master_blinds
     state: open
   sentences:
-  - ac perde yatakodasimaster
-  - perde yatakodasimaster ac
+  - aç perde yatakodasimaster
+  - perde yatakodasimaster aç

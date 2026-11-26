@@ -1,12 +1,12 @@
 - name: light_on
   sentences:
-    - sytyta valo olohuone
+    - sytytä valo olohuone
   nlu_expect:
     intents:
       - intent: HassTurnOn
 - name: light_off
   sentences:
-    - sammuta valo keittio
+    - sammuta valo keittiö
   nlu_expect:
     intents:
       - intent: HassTurnOff

@@ -1,15 +1,15 @@
 area/heizung::heizung_badezimmer_23:
-- aseta lampo kylpymaster 23
+- aseta lämpö kylpymaster 23
 area/heizung::heizung_esszimmer_23:
-- aseta lampo olohuonefamess 23
+- aseta lämpö olohuonefamess 23
 area/heizung::heizung_schlafzimmer_23:
-- aseta lampo makuuhuone 23
+- aseta lämpö makuuhuone 23
 area/heizung::heizung_wohnzimmer_23:
-- aseta lampo olohuone 23
+- aseta lämpö olohuone 23
 area/lichter::alle_an_ausser_kugel:
-- sytyta kaikki valo paitsi pallo
+- sytytä kaikki valo paitsi pallo
 area/lichter::alle_an_ausser_schlafzimmer:
-- sytyta kaikki valo paitsi makuuhuone
+- sytytä kaikki valo paitsi makuuhuone
 area/lichter::alle_auf_20_ausser_schlafzimmer:
 - aseta kaikki valo paitsi makuuhuone 20
 area/lichter::alle_auf_rot_ausser_kugel:
@@ -19,21 +19,21 @@ area/lichter::alle_ausser_kugel:
 area/lichter::alle_ausser_schlafzimmer:
 - sammuta kaikki valo paitsi makuuhuone
 area/lichter::alle_lichter_an:
-- sytyta kaikki valo
+- sytytä kaikki valo
 area/lichter::alle_lichter_aus:
 - sammuta kaikki valo
 area/lichter::arbeitszimmer_lichter_an:
-- sytyta kaikki valo office
+- sytytä kaikki valo office
 area/lichter::arbeitszimmer_lichter_aus:
 - sammuta kaikki valo office
 area/lichter::esszimmer_lichter_an:
-- sytyta kaikki valo olohuonefamess
+- sytytä kaikki valo olohuonefamess
 area/lichter::esszimmer_lichter_aus:
 - sammuta kaikki valo olohuonefamess
 area/lichter::kuche_lichter_an:
-- sytyta kaikki valo keittio
+- sytytä kaikki valo keittiö
 area/lichter::kuche_lichter_aus:
-- sammuta kaikki valo keittio
+- sammuta kaikki valo keittiö
 area/lichter::schlafzimmer_auf_blau:
 - aseta kaikki valo makuuhuone sininen
 area/lichter::schlafzimmer_auf_rot:
@@ -41,7 +41,7 @@ area/lichter::schlafzimmer_auf_rot:
 area/lichter::wohnzimmer_helligkeit:
 - aseta kaikki valo olohuone 45
 area/lichter::wohnzimmer_lichter_an:
-- sytyta kaikki valo olohuone
+- sytytä kaikki valo olohuone
 area/lichter::wohnzimmer_lichter_aus:
 - sammuta kaikki valo olohuone
 area/spoken::alle_ausser_kugel_stt:
@@ -49,21 +49,21 @@ area/spoken::alle_ausser_kugel_stt:
 area/spoken::alle_ausser_schlaf_stt:
 - sammuta kaikki valo paitsi makuuhuone
 area/spoken::alle_ganzen_an:
-- sytyta kaikki valo
+- sytytä kaikki valo
 area/spoken::alle_lampen_aus:
 - sammuta kaikki valo
 area/spoken::esszimmer_weiss:
 - aseta kaikki valo olohuonefamess valkoinen
 area/spoken::stt_kuche_lichte:
-- sammuta kaikki valo keittio
+- sammuta kaikki valo keittiö
 area/spoken::stt_licht_wohnzimmer_an:
-- sytyta kaikki valo olohuone
+- sytytä kaikki valo olohuone
 area/spoken::stt_licht_wohnzimmer_aus:
 - sammuta kaikki valo olohuone
 area/spoken::stt_schlafzimmer_dativ:
 - sammuta kaikki valo makuuhuone
 area/spoken::wohnzimmer_gruen:
-- aseta kaikki valo olohuone vihrea
+- aseta kaikki valo olohuone vihreä
 area/spoken_more::alle_ausser_arbeitszimmer:
 - sammuta kaikki valo paitsi office
 area/spoken_more::arbeitszimmer_lampen_aus:
@@ -71,11 +71,11 @@ area/spoken_more::arbeitszimmer_lampen_aus:
 area/spoken_more::esszimmer_30:
 - aseta kaikki valo olohuonefamess 30
 area/spoken_more::esszimmer_lichte_an:
-- sytyta kaikki valo olohuonefamess
+- sytytä kaikki valo olohuonefamess
 area/spoken_more::kuche_80:
-- aseta kaikki valo keittio 80
+- aseta kaikki valo keittiö 80
 area/spoken_more::kuche_blau:
-- aseta kaikki valo keittio sininen
+- aseta kaikki valo keittiö sininen
 area/spoken_more::ueberall_ausser_schlaf_stt:
 - sammuta kaikki valo paitsi makuuhuone
 area/spoken_more::wohnzimmer_gelb:
