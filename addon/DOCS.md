@@ -30,13 +30,13 @@ Settings stay in `/data/klar_nlu.json`, recordings in `/data/support_bundle.json
 
 ## Docker without the add-on
 
-Pin the image tag to the engine CalVer (same as `Cargo.toml` / the GitHub Release). Current tree: **2026.9.5**.
+Pin the image tag to the engine CalVer (same as `Cargo.toml` / the GitHub Release). Current tree: **2026.11.3**.
 
 ```bash
 docker run --rm --network host \
   -v /path/to/homeassistant/config:/config:ro \
   -v /path/to/klar-data:/data \
-  ghcr.io/fabbricate-it-solutions/klar-nlu:2026.9.5
+  ghcr.io/fabbricate-it-solutions/klar-nlu:2026.11.3
 ```
 
 Then use `http://127.0.0.1:10520` in the integration.

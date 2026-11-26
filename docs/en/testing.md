@@ -5,11 +5,11 @@
 ```bash
 cargo fmt --check
 cargo check
-cargo nextest run
+cargo nextest run --locked
 cargo build --release
 ```
 
-CI uses [cargo-nextest](https://nexte.st/) (`cargo nextest run --locked --profile ci`): each test runs in its own process and is scheduled across all cores. `cargo test` remains a fallback. Locally, `cargo test -- --test-threads=1` keeps output sequential and easier to read.
+CI uses [cargo-nextest](https://nexte.st/) (`cargo nextest run --locked --profile ci`): each test runs in its own process and is scheduled across all cores. Use nextest only — never `cargo test`, never `--test-threads` or other thread caps.
 
 ## Suites
 
@@ -33,7 +33,7 @@ CI uses [cargo-nextest](https://nexte.st/) (`cargo nextest run --locked --profil
 Voice suites only:
 
 ```bash
-cargo test --test german --test german_except --test german_tags --test voice_suite -- --test-threads=1 --nocapture
+cargo nextest run --locked -E 'test(/german|voice_suite/)'
 ```
 
 Failures dump to `target/suite_fails_family_home_en.txt` and `target/suite_fails_familienhaus_de.txt`.
@@ -147,8 +147,7 @@ python3 tests/ha/test_fallback.py
 ## Release gates
 
 ```bash
-cargo test --test eval held_out
-cargo test --test privacy --test migrate --test policy --test contract --test semantic
+cargo nextest run --locked -E 'test(/held_out|privacy|migrate|policy|contract|semantic/)'
 cargo run --quiet -- lang validate packs
 cargo run --quiet -- eval bench --repeat 8
 klar eval gate          # full scorecard, exit 1 below thresholds

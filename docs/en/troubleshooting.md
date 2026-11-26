@@ -108,10 +108,10 @@ The conversation journal (UI **Conversations**) keeps the last 200 turns for 24 
 
 ## What never leaves the house
 
-The engine is local. No cloud, no model weights, no phone-home. A default install makes zero outbound fetches.
+Parse and ranking stay on-device: no model weights inside `nlu::parse`, no phone-home. A default install makes zero outbound fetches.
 
-Wikipedia/Wikidata (`web_lookup`) and news feeds (`news_briefing`) are off by default. Turn them on with `POST /api/settings`. Operator UI fonts are bundled (no Google Fonts). Under Home Assistant ingress the write token stays in memory, not `localStorage`. The local engine child process does not inherit the Supervisor environment.
+Optional outbound paths stay off until you turn them on with `POST /api/settings` or the operator UI: Wikipedia/Wikidata (`web_lookup`), news feeds (`news_briefing`), and the engine LLM (refine / chat / assist). Operator UI fonts are bundled (no Google Fonts). Under Home Assistant ingress the write token stays in memory, not `localStorage`. The local engine child process does not inherit the Supervisor environment.
 
-Klar’s engine LLM may rewrite a finished confirmation or handle chat. Configure it in the operator UI (Settings → LLM). **Allow Assist tools on chat** is off by default; when on, Core Assist tool names (2026.9 prefixes) are advertised after Klar parse. NLU-RAG (off by default) may send an already-matched slice and is exclusive with those HA tools in one round.
+Klar’s engine LLM may rewrite a finished confirmation or handle chat when configured (Settings → LLM). **Allow Assist tools on chat** is off by default; when on, Core Assist tool names (2026.9 prefixes) are advertised after Klar parse. NLU-RAG (off by default) may send an already-matched slice and is exclusive with those HA tools in one round.
 
 Do not commit `KLAR_TOKEN`, `klar.token`, or unredacted bundles.

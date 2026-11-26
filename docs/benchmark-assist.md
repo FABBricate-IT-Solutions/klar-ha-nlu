@@ -12,14 +12,14 @@ Gleiche Oracles wie in [tests](testing.md), gleicher Home-Graph je Suite. Assist
 
 | | Assist | Klar NLU |
 |---|---|---|
-| 9.922 Sätze, DE/EN-Suiten | **31,3 %** | **100 %** (Gates, 0 Fail) |
+| 9.922 Sätze, DE/EN-Suiten | **31,3 %** | **fail = 0** auf Klar-Gates (als 100 % der Oracle-Fälle veröffentlicht) |
 | Hausbefehle ohne OOD-Ablehnung | **24,5 %** | 100 % |
 | Lehrbuch-Lichtphrasen (`full_home` quick) | **~94 %** | 100 % |
 | Multi-Intent, Timer, Klärung, Follow-up | **0 %** | 100 % |
 
 **Klar trifft auf diesen Testsätzen etwa 3,2× so oft wie Assist.** Bei echten Hausbefehlen (ohne geschenkte OOD-Treffer, weil nichts matched) **4,1×**. Bei Sätzen, die Assist-Templates ohnehin vorsehen, ist der Abstand klein (etwa 1,06×).
 
-Klar-Zahlen: `cargo nextest run` auf `voice_suite` und `full_home` de/en, `--run-ignored all`, Profil `default` (`test-threads = num-cpus`). Assist: HassIL 3.11.0 und `home-assistant-intents` 2026.7.30, Slot-Listen `name` / `area` / `floor` aus jeder `home_config.yaml` (wie der Default-Agent in HA Core).
+Klar-Zahlen: `cargo nextest run --locked` auf `voice_suite` und `full_home` de/en, `--run-ignored all`, Default-Nextest-Profil (alle Kerne, kein Thread-Deckel). Assist: HassIL 3.11.0 und `home-assistant-intents` 2026.7.30, Slot-Listen `name` / `area` / `floor` aus jeder `home_config.yaml` (wie der Default-Agent in HA Core). Die Zahlen unten sind diese Messung auf DE/EN-Oracles — kein Anspruch, dass jede kompilierte Locale bei fail = 0 liegt.
 
 ## Suiten
 
@@ -114,7 +114,7 @@ Geplant:
 
 - `full_home` quick + full für weitere HassIL-Sprachen (fr, nl, es, it, …), sobald die Locale-Gates bei Klar `fail == 0` sind
 - Parity-Wohnung gegen Assist-Templates derselben Sprache
-- Kein stilles Mischen von Lexika; jede Locale bleibt erstklassig, siehe [Sprachen](languages.md)
+- Kein stilles Mischen von Lexika; jede Locale nutzt denselben Weg und eine veröffentlichte Stufe, siehe [Sprachen](languages.md)
 
 HassIL-Intents gibt es nicht für jedes Klar-Pack gleich tief. Ein späterer Lauf sagt dann pro Sprache, ob Assist-Templates überhaupt existieren — nicht nur, ob Klar den Satz kann.
 

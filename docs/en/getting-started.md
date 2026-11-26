@@ -4,7 +4,7 @@
 
 Household path: install the pieces below → expose devices → Assist pipeline → try five phrases → Mapping if something misses.
 
-Every compiled Assist locale is first-class. German and English are the usual examples. See [languages](languages.md).
+Every compiled Assist locale uses the same engine path; quality is tiered (reference / beta / experimental). German and English are the usual examples. See [languages](languages.md).
 
 V2 only: the engine and the Home Assistant integration must be the same CalVer. HTTP parse is `POST /api/v2/parse`.
 

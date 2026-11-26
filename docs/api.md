@@ -8,6 +8,69 @@ Zwei Schnittstellen: HTTP auf Port **10520**, Wyoming auf **10500**.
 
 ## HTTP
 
+Routenindex aus dem Axum-Router (`python3 scripts/gen_api_routes.py`). Auth ist die Capability aus `src/io/auth.rs`, oder `öffentlich`, wenn die Route außerhalb der Token-Middleware liegt (Health und `/`).
+
+<!-- BEGIN GENERATED ROUTES -->
+
+| Method | Path | Auth | Zweck |
+|--------|------|------|---------|
+| `GET` | `/` | öffentlich | React-Operator-UI (oder Redirect nach `web/dist`). |
+| `POST` | `/api/assignment/apply` | Write | Raum-Zuordnungsvorschläge anwenden. |
+| `POST` | `/api/assignment/undo` | Write | Letzten Assignment-Batch rückgängig. |
+| `DELETE` | `/api/bundle` | Write | Support-Bundle-Status; DELETE leert ihn. |
+| `GET` | `/api/bundle` | Read | Support-Bundle-Status; DELETE leert ihn. |
+| `POST` | `/api/bundle/clear` | Write | Support-Bundle-Protokoll leeren (POST-Alias). |
+| `GET` | `/api/bundle/dataset` | Read | Turns als Voice-Suite-YAML laden. |
+| `GET` | `/api/bundle/entries` | Read | Aufgezeichnete Turns listen oder löschen. |
+| `POST` | `/api/bundle/entries` | Write | Aufgezeichnete Turns listen oder löschen. |
+| `GET` | `/api/bundle/protocol` | Read | Redigiertes JSONL-Protokoll laden. |
+| `GET` | `/api/custom` | Read | Liste der Custom-Phrasen. |
+| `POST` | `/api/custom` | Write | Liste der Custom-Phrasen. |
+| `GET` | `/api/dashboard` | Read | Dashboard-Payload für die React-UI. |
+| `GET` | `/api/entities` | Read | Home-Graph; POST Tags / Aliase / preferred / area. |
+| `POST` | `/api/entities` | PersistParse | Home-Graph; POST Tags / Aliase / preferred / area. |
+| `GET` | `/api/gaps` | Read | Kalibrierungs-Rest und Räume. |
+| `POST` | `/api/lang/explain` | Read | Preview plus Stages / Evidence / matched custom. |
+| `GET` | `/api/lang/overlay` | Read | Sprach-Overlay + Custom-Sätze. |
+| `POST` | `/api/lang/overlay` | Write | Sprach-Overlay + Custom-Sätze. |
+| `POST` | `/api/lang/preview` | Read | Parse mit ungespeichertem Overlay; installiert nicht. |
+| `POST` | `/api/lang/rollback` | Write | Frühere Overlay-History-Zeile wiederherstellen. |
+| `GET` | `/api/settings` | Read | Engine-Settings-Store (GET/POST vollständig, PATCH partiell). |
+| `PATCH` | `/api/settings` | Write | Engine-Settings-Store (GET/POST vollständig, PATCH partiell). |
+| `POST` | `/api/settings` | Write | Engine-Settings-Store (GET/POST vollständig, PATCH partiell). |
+| `GET` | `/api/ui` | Read | Persistenter UI-Zustand im Overlay. |
+| `POST` | `/api/ui` | Write | Persistenter UI-Zustand im Overlay. |
+| `GET` | `/api/v2/conversations` | Read | Gesprächsjournal (letzte 200 Turns / 24 h). |
+| `GET` | `/api/v2/conversations/{id}` | Read | Turns einer Conversation-ID. |
+| `GET` | `/api/v2/health` | öffentlich | Öffentliche Build-Identität, Home-Alter, Overlay, LLM, Wyoming, Ops-Zähler (ohne Token). |
+| `POST` | `/api/v2/home` | Write | Live-Home-Graph von der Home-Assistant-Integration. |
+| `GET` | `/api/v2/intents` | Read | Liste der bekannten Intent-Namen. |
+| `GET` | `/api/v2/languages` | Read | Wählbare Locales (Tier + offered). |
+| `GET` | `/api/v2/last-turn` | Read | Neuester Journal-Turn, oder null. |
+| `POST` | `/api/v2/llm/assist` | Write | Engine-eigenes Yarn/Chat/RAG/Kalender/News-Assist. |
+| `POST` | `/api/v2/llm/chat` | Write | Rohes Chat/SSE gegen das Engine-LLM. |
+| `POST` | `/api/v2/llm/custom-voice` | Write | Custom-Voice-Block über das Endpoint-LLM erzeugen. |
+| `GET` | `/api/v2/llm/endpoint` | Read | OpenAI-kompatibler Upstream (Key nie im GET). |
+| `POST` | `/api/v2/llm/endpoint` | Write | OpenAI-kompatibler Upstream (Key nie im GET). |
+| `POST` | `/api/v2/llm/models` | Write | Modelle eines genannten Upstreams listen (Write). |
+| `POST` | `/api/v2/llm/refine` | Write | Engine-eigenes Refine fertiger NLU-Sprache. |
+| `GET` | `/api/v2/llm/voice` | Read | Persönlichkeits-Vorschau (Flavor + Refine-Prompt). |
+| `POST` | `/api/v2/parse` | Read | V2-Parse (`schema_version: "2.0"`). |
+| `GET` | `/api/v2/policies` | Read | Policy-Bundle der Rules-Registerkarte. |
+| `POST` | `/api/v2/policies` | Write | Policy-Bundle der Rules-Registerkarte. |
+| `GET` | `/api/v2/policies/catalog` | Read | Eingebauter Match-Katalog und Safety-Seeds. |
+| `POST` | `/api/v2/policies/evaluate` | Read | Dry-Run-Parse gegen optionale Policies. |
+| `POST` | `/api/v2/policies/propose/validate` | Read | Trainer-Vorschlag prüfen, ohne anzuwenden. |
+| `GET` | `/api/v2/policies/trainer-context` | Read | Trainer-Kontext für das Rules-LLM. |
+| `POST` | `/api/v2/policies/trainer/chat` | Write | Trainer-Chat SSE (Write-Token). |
+| `POST` | `/api/v2/policies/trainer/consent` | Write | Ausstehende Trainer-Write-Tools freigeben oder ablehnen. |
+| `GET` | `/api/v2/settings/backup` | Write | Allowlistetes Settings-tar.gz laden. |
+| `POST` | `/api/v2/settings/restore` | Write | Settings aus Backup-Archiv wiederherstellen. |
+| `GET` | `/api/v2/speech/asr_boost` | Read | Whisper-Bias-Liste für externes STT. |
+| `POST` | `/api/v2/speech/render` | Read | Sprache nach Execute aus HA-Zustandsschnappschuss. |
+
+<!-- END GENERATED ROUTES -->
+
 ### `POST /api/v2/parse`
 
 ```json
@@ -80,7 +143,9 @@ Der Token kommt aus `--token`, `KLAR_TOKEN` oder `--token-file`.
 | `404` | Entity nicht gefunden |
 | `413` | Parse-Text zu lang |
 
-### `GET` / `POST /api/settings`
+### `GET` / `POST` / `PATCH /api/settings`
+
+`GET` liefert das volle Settings-Objekt. `POST` ersetzt es. `PATCH` merged ein Teilobjekt (unbekannte Keys → `422`).
 
 ```json
 {

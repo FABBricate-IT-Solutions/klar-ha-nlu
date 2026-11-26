@@ -108,10 +108,10 @@ Das Conversation-Journal (UI **Gespräche**) hält die letzten 200 Turns 24 Stun
 
 ## Was das Haus nicht verlässt
 
-Die Engine ist lokal. Keine Cloud, keine Modellgewichte, kein Phone-Home. Standardinstallation: null ausgehende Abrufe.
+Parse und Ranking bleiben lokal: keine Modellgewichte in `nlu::parse`, kein Phone-Home. Standardinstallation: null ausgehende Abrufe.
 
-Wikipedia/Wikidata (`web_lookup`) und Nachrichten-Feeds (`news_briefing`) sind standardmäßig aus. Einschalten über `POST /api/settings`. Schriften der Operator-UI sind gebündelt (kein Google Fonts). Unter Home-Assistant-Ingress liegt das Schreib-Token nur im Speicher, nicht in `localStorage`. Der lokale Engine-Kindprozess erbt keine Supervisor-Umgebung.
+Optionale ausgehende Pfade bleiben aus, bis sie über `POST /api/settings` oder die Operator-UI angehen: Wikipedia/Wikidata (`web_lookup`), Nachrichten-Feeds (`news_briefing`) und das Engine-LLM (Refine / Chat / Assist). Schriften der Operator-UI sind gebündelt (kein Google Fonts). Unter Home-Assistant-Ingress liegt das Schreib-Token nur im Speicher, nicht in `localStorage`. Der lokale Engine-Kindprozess erbt keine Supervisor-Umgebung.
 
-Das Klar-Engine-LLM darf eine fertige Bestätigung umformulieren oder Chat führen. Konfiguration in der Operator-UI (Einstellungen → LLM). **Assist-Werkzeuge beim Chat** ist standardmäßig aus; an: Core-Assist-Toolnamen (2026.9-Präfixe) nach dem Klar-Parse. NLU-RAG (standardmäßig aus) schickt nur den gematchten Ausschnitt und schließt HA-Tools in derselben Runde aus.
+Das Klar-Engine-LLM darf eine fertige Bestätigung umformulieren oder Chat führen, wenn es konfiguriert ist (Einstellungen → LLM). **Assist-Werkzeuge beim Chat** ist standardmäßig aus; an: Core-Assist-Toolnamen (2026.9-Präfixe) nach dem Klar-Parse. NLU-RAG (standardmäßig aus) schickt nur den gematchten Ausschnitt und schließt HA-Tools in derselben Runde aus.
 
 `KLAR_TOKEN`, `klar.token` und unredigierte Bundles nicht committen.
