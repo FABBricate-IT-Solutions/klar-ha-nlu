@@ -1,0 +1,84 @@
+# Desired repository protection (package 5.3 / V-06).
+# Compared weekly by scripts/audit_protection.py against the live GitHub API.
+# Apply changes in the GitHub UI/API to match this file; the audit fails on drift.
+version: 1
+
+immutable_releases:
+  enabled: true
+
+# Contexts that every protected branch must require (also listed in cut-release.sh).
+required_status_checks:
+  - test
+  - clippy
+  - rustfmt
+  - web
+  - release-gates
+  - cargo-audit
+  - cargo-deny
+  - gitleaks
+  - hassfest
+  - hacs
+
+rulesets:
+  - name: Protect main
+    target: branch
+    enforcement: active
+    include:
+      - refs/heads/main
+    rules:
+      - type: deletion
+      - type: non_fast_forward
+      - type: pull_request
+        parameters:
+          required_approving_review_count: 0
+          dismiss_stale_reviews_on_push: false
+          require_code_owner_review: false
+          require_last_push_approval: false
+          required_review_thread_resolution: false
+          allowed_merge_methods:
+            - merge
+            - squash
+      - type: required_status_checks
+        parameters:
+          # "aktuelle Branches" — PR branch must be up to date with the base.
+          strict_required_status_checks_policy: true
+          do_not_enforce_on_create: false
+          # Contexts come from required_status_checks above when omitted here.
+          use_shared_status_checks: true
+
+  - name: Protect staging
+    target: branch
+    enforcement: active
+    include:
+      - refs/heads/staging
+    rules:
+      - type: deletion
+      - type: non_fast_forward
+      - type: pull_request
+        parameters:
+          required_approving_review_count: 0
+          dismiss_stale_reviews_on_push: false
+          require_code_owner_review: false
+          require_last_push_approval: false
+          required_review_thread_resolution: false
+          allowed_merge_methods:
+            - merge
+            - squash
+      - type: required_status_checks
+        parameters:
+          strict_required_status_checks_policy: true
+          do_not_enforce_on_create: false
+          use_shared_status_checks: true
+
+  # CalVer tags are YYYY.M.PATCH (and YYYY.M.PATCH-staging.*); they start with 20.
+  # Keep v* for any legacy version tags.
+  - name: Protect version tags
+    target: tag
+    enforcement: active
+    include:
+      - refs/tags/v*
+      - refs/tags/20*
+    rules:
+      - type: deletion
+      - type: non_fast_forward
+      - type: update
