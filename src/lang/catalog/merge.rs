@@ -176,6 +176,8 @@ impl Catalog {
         for extra in ["aufgabenliste", "liste"] {
             c.sets.entry(WordKey::ListNouns).or_default().insert(extra);
         }
+        c.typo_surfaces.sort_unstable();
+        c.typo_surfaces.dedup();
         c.max_script_surface = c.measure_script_surfaces();
         c
     }
@@ -251,6 +253,22 @@ impl Catalog {
         }
         for &(w, n) in p.maps.numbers {
             self.numbers.insert(w, n);
+            // Prefer a single-token surface when several forms share a value (R-09 probes).
+            let replace = self
+                .numbers_by_value
+                .get(&n)
+                .is_none_or(|prev| prev.contains(' ') && !w.contains(' '));
+            if replace {
+                self.numbers_by_value.insert(n, w);
+            }
+            if w.chars().count() >= 6 && !w.contains(' ') {
+                self.typo_surfaces.push(w);
+            }
+        }
+        for &(w, _) in p.maps.colors {
+            if w.chars().count() >= 6 && !w.contains(' ') {
+                self.typo_surfaces.push(w);
+            }
         }
         for &(w, aliases) in p.fixtures.fixture_aliases {
             self.fixture_aliases.insert(w, aliases);
@@ -271,6 +289,8 @@ impl Catalog {
             domain_map: HashMap::new(),
             colors: HashMap::new(),
             numbers: HashMap::new(),
+            numbers_by_value: HashMap::new(),
+            typo_surfaces: Vec::new(),
             number_styles: Vec::new(),
             fixture_aliases: HashMap::new(),
             group_clarify: Vec::new(),

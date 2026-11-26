@@ -136,7 +136,8 @@ fn fraction_word(token: &str) -> Option<f64> {
     match token {
         "half" | "halb" | "halbe" | "halbes" | "halben" | "halv" | "halvt" | "helft" | "meta" | "medio" | "meia" | "demi" | "moitie"
         | "yarim" | "نصف" | "חצי" | "نیم" => Some(0.5),
-        "quarter" | "viertel" | "kvart" | "kwart" | "cuarto" | "quarto" | "quart" | "ceyrek" => Some(0.25),
+        // Not "cuarto"/"quarto": those are bedroom nouns in gl/es/pt and must not steal set-points.
+        "quarter" | "viertel" | "kvart" | "kwart" | "quart" | "ceyrek" => Some(0.25),
         "eineinhalb" | "anderthalb" | "einhalb" | "anderthalve" => Some(1.5),
         "dreiviertel" | "trequart" => Some(0.75),
         _ => None,
@@ -159,6 +160,13 @@ pub fn format_quantity(value: f64) -> String {
 pub fn absolute_temperature(tokens: &[String]) -> Option<f64> {
     if is_relative_temp(tokens) {
         return None;
+    }
+    // Prefer a digit/decimal token so a fraction word earlier in the clause cannot win
+    // over "… cuarto 23" / "… quarto 21" style set-points.
+    if let Some(value) = extract_quantities(tokens).into_iter().find_map(|q| {
+        tokens.get(q.start).and_then(|token| parse_numeric_token(token)).filter(|_| q.end == q.start + 1)
+    }) {
+        return Some(value);
     }
     first_quantity(tokens).map(|q| q.value).or_else(|| first_number(tokens).map(f64::from))
 }

@@ -69,3 +69,16 @@ fn relative_temp_steps() {
     assert_eq!(temperature_step(&t), Some(1.0));
     assert!(absolute_temperature(&t).is_none());
 }
+
+#[test]
+fn bedroom_cuarto_quarto_keep_digit_setpoint() {
+    // gl/es "cuarto" and pt "quarto" name the bedroom; ASCII temps must stay Celsius.
+    let gl = toks("gl", "pon calefaccion cuarto 23");
+    assert_eq!(absolute_temperature(&gl).map(format_quantity).as_deref(), Some("23"), "{gl:?}");
+    let gl_ac = toks("gl", "pon ac cuarto 21");
+    assert_eq!(absolute_temperature(&gl_ac).map(format_quantity).as_deref(), Some("21"), "{gl_ac:?}");
+    let pt = toks("pt", "poe aquecimento quarto 23");
+    assert_eq!(absolute_temperature(&pt).map(format_quantity).as_deref(), Some("23"), "{pt:?}");
+    let pt_ac = toks("pt", "poe ac quarto 21");
+    assert_eq!(absolute_temperature(&pt_ac).map(format_quantity).as_deref(), Some("21"), "{pt_ac:?}");
+}

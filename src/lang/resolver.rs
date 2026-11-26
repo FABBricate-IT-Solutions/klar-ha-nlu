@@ -92,7 +92,15 @@ pub fn apply_overlay(catalog: &mut Catalog, pack: &ExternalPack) -> Result<(), S
         catalog.colors.insert(leak(token), leak(color));
     }
     for (token, number) in &pack.maps.numbers {
-        catalog.numbers.insert(leak(token), *number);
+        let word = leak(token);
+        catalog.numbers.insert(word, *number);
+        let replace = catalog.numbers_by_value.get(number).is_none_or(|prev| prev.contains(' ') && !word.contains(' '));
+        if replace {
+            catalog.numbers_by_value.insert(*number, word);
+        }
+        if word.chars().count() >= 6 && !word.contains(' ') && !catalog.typo_surfaces.iter().any(|s| *s == word) {
+            catalog.typo_surfaces.push(word);
+        }
     }
     for (path, words) in &pack.sets {
         let Some(key) = set_field(path) else {

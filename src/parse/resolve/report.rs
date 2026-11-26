@@ -114,6 +114,8 @@ fn collect_scored(tokens: &[String], home: &HomeGraph, domain: Option<&str>, fuz
                 return scored;
             }
         }
+        // Indexed home with no seeded rows: skip the O(entities×tokens) walk (R-08/R-09).
+        return Vec::new();
     }
     home.entities
         .iter()

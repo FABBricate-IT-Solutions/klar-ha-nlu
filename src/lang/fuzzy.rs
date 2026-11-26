@@ -57,7 +57,8 @@ impl Catalog {
     }
 
     pub fn is_protected_typo(&self, token: &str) -> bool {
-        token.chars().count() >= 6
+        let len = token.chars().count();
+        len >= 6
             && self.number(token).is_none()
             && token.parse::<i32>().is_err()
             && self.color(token).is_none()
@@ -66,14 +67,19 @@ impl Catalog {
             && !self.generic().contains(token)
             && !self.all_words().contains(token)
             && !self.is_except(token)
-            && (self
-                .colors
-                .keys()
-                .copied()
-                .chain(self.numbers.keys().copied())
-                .filter(|candidate| candidate.chars().count() >= 6)
-                .any(|candidate| levenshtein(token, candidate) <= 2)
-                || self.has_german_compound_number_typo(token))
+            && (self.protected_surface_typo(token, len) || self.has_german_compound_number_typo(token))
+    }
+
+    /// Length- and prefix-gated probes against single-token color/number surfaces (R-08/R-09).
+    /// Skips multi-word number phrases so expanded 0..=100 tables stay O(bucket), not O(lexicon).
+    fn protected_surface_typo(&self, token: &str, len: usize) -> bool {
+        let Some(first) = token.chars().next() else {
+            return false;
+        };
+        self.typo_surfaces.iter().any(|candidate| {
+            let c_len = candidate.chars().count();
+            c_len.abs_diff(len) <= 2 && candidate.chars().next() == Some(first) && levenshtein(token, candidate) <= 2
+        })
     }
 
     fn has_german_compound_number_typo(&self, token: &str) -> bool {
@@ -82,7 +88,21 @@ impl Catalog {
             return false;
         }
         let ones = parts[0] == "ein" || self.number(parts[0]).is_some_and(|value| (1..10).contains(&value));
-        ones && self.number(parts[1]).is_none() && self.numbers.iter().any(|(word, value)| *value >= 20 && levenshtein(parts[1], word) <= 2)
+        if !ones || self.number(parts[1]).is_some() {
+            return false;
+        }
+        let tail = parts[1];
+        let len = tail.chars().count();
+        let Some(first) = tail.chars().next() else {
+            return false;
+        };
+        self.numbers.iter().any(|(word, value)| {
+            *value >= 20
+                && !word.contains(' ')
+                && word.chars().count().abs_diff(len) <= 2
+                && word.chars().next() == Some(first)
+                && levenshtein(tail, word) <= 2
+        })
     }
 
     pub fn fuzzy_domain(&self, tokens: &[String]) -> Option<&'static str> {
