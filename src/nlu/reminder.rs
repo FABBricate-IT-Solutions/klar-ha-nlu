@@ -5,6 +5,7 @@
 //! else that is clearly a reminder is out of domain so the integration can hand
 //! the original sentence to the default Assist agent.
 
+use crate::lang::catalog;
 use crate::parse::respond::speak_unknown;
 use crate::types::{Intent, RejectReason};
 
@@ -24,12 +25,8 @@ pub(super) fn route(context: &ParseContext<'_>, tokens: &[String]) -> Option<Dra
     Some(draft)
 }
 
-fn ack(tokens: &[String], task: &str) -> String {
-    if tokens.iter().any(|token| token.starts_with("erinner")) {
-        format!("Erinnerung: {task}.")
-    } else {
-        format!("Reminder: {task}.")
-    }
+fn ack(_tokens: &[String], task: &str) -> String {
+    catalog().speech().reminder.replace("{task}", task)
 }
 
 fn reminder_shaped(tokens: &[String]) -> bool {

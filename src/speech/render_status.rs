@@ -4,7 +4,7 @@ use crate::lang::Speech;
 use crate::types::{SpeechEntity, SpeechSnapshot, UnitSystem};
 
 use super::render_climate::area_temp_fact;
-use super::render_place::{empty_place, slot, speak_state};
+use super::render_place::{empty_place, slot};
 
 const PRESENCE: &[&str] = &[
     "occupancy",
@@ -71,12 +71,12 @@ pub(super) fn place_status(snap: &SpeechSnapshot, entities: &[&SpeechEntity], sp
 }
 
 fn area_status(area: &str, entities: &[&SpeechEntity], speech: Speech, pack: &str, unit_system: UnitSystem) -> String {
-    let pretty = speech.room_name(&fold(area)).map_or_else(|| title(area), str::to_string);
-    let facts = area_facts(&pretty, entities, pack, unit_system, is_de(pack));
+    let pretty = speech.room_name(&fold(area)).map_or_else(|| preserve(area), str::to_string);
+    let facts = area_facts(&pretty, entities, speech, unit_system);
     if facts.is_empty() {
         return String::new();
     }
-    let heading = heading(&pretty, speech, pack);
+    let heading = heading(&pretty, speech);
     if ideo(pack) {
         return format!("{heading}。{}", facts.join("，"));
     }
@@ -87,7 +87,7 @@ fn area_status(area: &str, entities: &[&SpeechEntity], speech: Speech, pack: &st
     }
 }
 
-fn area_facts(area: &str, entities: &[&SpeechEntity], pack: &str, unit_system: UnitSystem, de: bool) -> Vec<String> {
+fn area_facts(area: &str, entities: &[&SpeechEntity], speech: Speech, unit_system: UnitSystem) -> Vec<String> {
     let lights: Vec<_> = entities.iter().copied().filter(|entity| entity.domain == "light").collect();
     let sockets: Vec<_> = entities.iter().copied().filter(|entity| class_of(entity) == "outlet").collect();
     let presence: Vec<_> = entities.iter().copied().filter(|entity| is_presence(entity)).collect();
@@ -95,8 +95,8 @@ fn area_facts(area: &str, entities: &[&SpeechEntity], pack: &str, unit_system: U
     let mut generic_on = false;
     let mut generic_off = false;
     for entity in &lights {
-        let label = device_label(entity, area, de);
-        if generic_light(&label) {
+        let label = device_label(entity, area, speech);
+        if generic_light(&label, speech) {
             if is_on(entity) {
                 generic_on = true;
             } else {
@@ -104,37 +104,29 @@ fn area_facts(area: &str, entities: &[&SpeechEntity], pack: &str, unit_system: U
             }
             continue;
         }
-        facts.push(clause(&label, entity, pack));
+        facts.push(clause(&label, entity, speech));
     }
     if generic_on {
-        facts.push(format!("{} {}", if de { "Licht" } else { "light" }, speak_state("on", pack)));
+        facts.push(format!("{} {}", speech.light_noun, speech.state_word("on")));
     } else if generic_off {
-        facts.push(format!("{} {}", if de { "Licht" } else { "light" }, speak_state("off", pack)));
+        facts.push(format!("{} {}", speech.light_noun, speech.state_word("off")));
     }
     for entity in &sockets {
-        let label = device_label(entity, area, de);
+        let label = device_label(entity, area, speech);
         if !label.is_empty() {
-            facts.push(clause(&label, entity, pack));
+            facts.push(clause(&label, entity, speech));
         }
     }
     if !presence.is_empty() {
         let occupied = presence.iter().any(|entity| is_on(entity));
-        facts.push(if de {
-            if occupied {
-                "jemand da".into()
-            } else {
-                "niemand da".into()
-            }
-        } else if occupied {
-            "occupied".into()
-        } else {
-            "empty".into()
-        });
+        facts.push(if occupied { speech.presence_yes.into() } else { speech.presence_no.into() });
     }
-    if let Some(temp) = area_temp_fact(entities, unit_system, de) {
+    if let Some(temp) = area_temp_fact(entities, unit_system, speech) {
         facts.push(temp);
     }
-    let have_temp = facts.iter().any(|fact| fact.contains("Grad") || fact.contains("degree") || fact.contains("Fahrenheit"));
+    let have_temp = facts
+        .iter()
+        .any(|fact| fact.contains(speech.unit_c) || fact.contains(speech.unit_f) || fact.contains("Grad") || fact.contains("degree"));
     for entity in entities {
         if entity.domain == "light" || class_of(entity) == "outlet" || is_presence(entity) {
             continue;
@@ -148,43 +140,37 @@ fn area_facts(area: &str, entities: &[&SpeechEntity], pack: &str, unit_system: U
         if have_temp && looks_like_temp(entity) && entity.domain != "climate" {
             continue;
         }
-        let label = device_label(entity, area, de);
+        let label = device_label(entity, area, speech);
         if label.is_empty() {
             continue;
         }
-        facts.push(clause(&label, entity, pack));
+        facts.push(clause(&label, entity, speech));
     }
     facts
 }
 
-fn heading(room: &str, speech: Speech, pack: &str) -> String {
-    if is_de(pack) {
-        let folded = fold(room);
-        if folded == "balkon" {
-            return format!("Auf dem {room}");
-        }
-        if speech.loc_der_rooms.iter().any(|key| folded.contains(key)) || folded.ends_with('e') {
-            return cap_first(&speech.loc_in_der.replace("{room}", room));
-        }
-        return cap_first(&speech.loc_in.replace("{room}", room));
+fn heading(room: &str, speech: Speech) -> String {
+    let folded = fold(room);
+    if speech.loc_der_rooms.iter().any(|key| folded.contains(key)) || folded.ends_with('e') {
+        return cap_first(&speech.loc_in_der.replace("{room}", room));
     }
     let loc = speech.loc_in.replace("{room}", room);
     if loc.trim() == room {
-        return title(room);
+        return preserve(room);
     }
     cap_first(&loc)
 }
 
-fn device_label(entity: &SpeechEntity, area: &str, de: bool) -> String {
+fn device_label(entity: &SpeechEntity, area: &str, speech: Speech) -> String {
     let stripped = strip_area(&entity.name, area);
-    if entity.domain == "light" && generic_light(&stripped) {
-        return if de { "Licht".into() } else { "light".into() };
+    if entity.domain == "light" && generic_light(&stripped, speech) {
+        return speech.light_noun.to_string();
     }
     stripped
 }
 
 fn strip_area(name: &str, area: &str) -> String {
-    let pretty = title(name);
+    let pretty = preserve(name);
     if area.is_empty() {
         return pretty;
     }
@@ -194,17 +180,19 @@ fn strip_area(name: &str, area: &str) -> String {
         return String::new();
     }
     if let Some(rest) = pretty_l.strip_prefix(&(area_l + " ")) {
-        return title(rest);
+        return preserve(rest);
     }
     pretty
 }
 
-fn generic_light(label: &str) -> bool {
-    label.is_empty() || LIGHT_WORDS.iter().any(|word| label.to_lowercase().replace(' ', "") == *word)
+fn generic_light(label: &str, speech: Speech) -> bool {
+    label.is_empty()
+        || LIGHT_WORDS.iter().any(|word| label.to_lowercase().replace(' ', "") == *word)
+        || fold(label) == fold(speech.light_noun)
 }
 
-fn clause(name: &str, entity: &SpeechEntity, pack: &str) -> String {
-    format!("{name} {}", speak_state(&entity.state, pack)).trim().to_string()
+fn clause(name: &str, entity: &SpeechEntity, speech: Speech) -> String {
+    format!("{name} {}", speech.state_word(&entity.state)).trim().to_string()
 }
 
 fn is_presence(entity: &SpeechEntity) -> bool {
@@ -240,18 +228,12 @@ fn ideo(pack: &str) -> bool {
     IDEO.contains(&pack)
 }
 
-fn is_de(pack: &str) -> bool {
-    pack == "de" || pack.starts_with("de-")
-}
-
 fn fold(text: &str) -> String {
     text.to_lowercase().replace('ü', "u").replace('ä', "a").replace('ö', "o").replace('ß', "ss").replace(' ', "")
 }
 
-fn title(raw: &str) -> String {
-    let text = raw.replace('_', " ");
-    let text = text.split_whitespace().collect::<Vec<_>>().join(" ");
-    cap_first(&text)
+fn preserve(raw: &str) -> String {
+    raw.replace('_', " ").split_whitespace().collect::<Vec<_>>().join(" ")
 }
 
 fn cap_first(text: &str) -> String {
