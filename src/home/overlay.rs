@@ -1,3 +1,4 @@
+use super::change_history::{PoliciesRevision, SettingsRevision};
 use super::overlay_store::OverlayStore;
 use crate::lang::{LanguageOverlay, LanguageRevision};
 use crate::types::{CustomSentence, HomeGraph, MatchControl, PolicyRule, Settings, SpeechBank};
@@ -138,6 +139,12 @@ pub struct Overlay {
     pub speech_bank: SpeechBank,
     #[serde(default, skip_serializing_if = "Vec::is_empty")]
     pub match_controls: Vec<MatchControl>,
+    /// Prior house-rule bundles (package 6.7). Newest last.
+    #[serde(default, skip_serializing_if = "Vec::is_empty")]
+    pub policies_history: Vec<PoliciesRevision>,
+    /// Prior engine settings snapshots (package 6.7). Newest last.
+    #[serde(default, skip_serializing_if = "Vec::is_empty")]
+    pub settings_history: Vec<SettingsRevision>,
 }
 
 pub fn overlay_path(dir: &Path) -> std::path::PathBuf {

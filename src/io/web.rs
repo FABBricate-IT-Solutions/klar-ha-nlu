@@ -52,6 +52,7 @@ pub fn router(state: AppState) -> Router {
         .merge(crate::io::lang_api::routes())
         .merge(crate::io::conversations::routes())
         .merge(crate::io::policies::routes())
+        .merge(crate::io::change_history::routes())
         .merge(crate::io::undo_priors::routes())
         .layer(DefaultBodyLimit::max(16 * 1024))
         .merge(crate::io::home_sync::routes(state.clone()))
@@ -224,7 +225,7 @@ async fn set_settings(
     if body.extra_prompt.chars().count() > 2000 || body.default_language.chars().count() > 32 {
         return Err(StatusCode::UNPROCESSABLE_ENTITY);
     }
-    state.overlay.update(|overlay| overlay.settings = Some(body.clone())).map_err(save_failed)?;
+    crate::io::change_history::save_settings(&state, body.clone(), "settings".into())?;
     *state.settings.lock().await = body.clone();
     Ok(Json(body))
 }
@@ -238,7 +239,7 @@ async fn patch_settings(
     gate(peer, &headers, &state.token)?;
     let current = state.settings.lock().await.clone();
     let body = crate::io::trainer_settings::patch_settings_http(&current, &patch).map_err(|_| StatusCode::UNPROCESSABLE_ENTITY)?;
-    state.overlay.update(|overlay| overlay.settings = Some(body.clone())).map_err(save_failed)?;
+    crate::io::change_history::save_settings(&state, body.clone(), "settings".into())?;
     *state.settings.lock().await = body.clone();
     Ok(Json(body))
 }

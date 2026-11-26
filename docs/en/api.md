@@ -41,6 +41,7 @@ Route index generated from the Axum router (`python3 scripts/gen_api_routes.py`)
 | `GET` | `/api/ui` | Read | Persistent UI chrome state under the overlay. |
 | `POST` | `/api/ui` | Write | Persistent UI chrome state under the overlay. |
 | `GET` | `/api/v2/conversations` | Read | Conversation journal (last 200 turns / 24 h). |
+| `GET` | `/api/v2/conversations/live` | Read | SSE stream of journal turns (snapshot, then each new turn). |
 | `POST` | `/api/v2/conversations/mark-wrong` | Write | Mark a journal turn with the intended intent/target; export an nlu_expect case. |
 | `GET` | `/api/v2/conversations/{id}` | Read | Turns for one conversation id. |
 | `GET` | `/api/v2/health` | public | Public build identity, home age, overlay, LLM, Wyoming, ops counters (no token). |
@@ -61,13 +62,18 @@ Route index generated from the Axum router (`python3 scripts/gen_api_routes.py`)
 | `POST` | `/api/v2/policies` | Write | Rules tab policy bundle. |
 | `GET` | `/api/v2/policies/catalog` | Read | Built-in match catalog and safety seeds. |
 | `POST` | `/api/v2/policies/evaluate` | Read | Dry-run parse against optional policies. |
+| `GET` | `/api/v2/policies/history` | Read | List prior house-rule bundle snapshots. |
+| `POST` | `/api/v2/policies/preview-turns` | Read | Count how many recent journal turns a draft rule would match. |
 | `POST` | `/api/v2/policies/propose/validate` | Read | Validate a trainer proposal without applying. |
+| `POST` | `/api/v2/policies/rollback` | Write | Restore a prior house-rule bundle from history. |
 | `GET` | `/api/v2/policies/trainer-context` | Read | Trainer context stub for the Rules LLM. |
 | `POST` | `/api/v2/policies/trainer/chat` | Write | Trainer chat SSE (write token). |
 | `POST` | `/api/v2/policies/trainer/consent` | Write | Approve or deny a pending trainer write tool. |
 | `POST` | `/api/v2/session/undo-priors` | Write | Stamp prior brightness/position/temperature/volume onto the last execute so undo can restore them. |
 | `GET` | `/api/v2/settings/backup` | Write | Download allowlisted settings tar.gz. |
+| `GET` | `/api/v2/settings/history` | Read | List prior engine settings snapshots. |
 | `POST` | `/api/v2/settings/restore` | Write | Restore from a settings backup archive. |
+| `POST` | `/api/v2/settings/rollback` | Write | Restore prior engine settings from history. |
 | `GET` | `/api/v2/setup/token` | Read | Supervisor/loopback claim of the auto-minted write token (fresh App install). |
 | `GET` | `/api/v2/speech/asr_boost` | Read | Ranked Whisper bias terms for external STT. |
 | `POST` | `/api/v2/speech/render` | Read | Post-execute speech from an HA state snapshot. |

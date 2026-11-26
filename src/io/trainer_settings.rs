@@ -80,15 +80,9 @@ pub async fn list_engine(state: &AppState) -> Result<Value, String> {
 
 pub async fn apply_engine(state: &AppState, args: &Value) -> Result<Value, String> {
     let next = patch_engine(&state.settings.lock().await.clone(), args)?;
-    let ui = state
-        .overlay
-        .update(|overlay| {
-            overlay.settings = Some(next.clone());
-            overlay.ui.clone()
-        })
-        .map_err(save_failed)
-        .map_err(|_| "save overlay")?;
+    crate::io::change_history::save_settings(state, next.clone(), "trainer".into()).map_err(|_| "save overlay")?;
     *state.settings.lock().await = next.clone();
+    let ui = load_overlay(&state.data_dir).ui;
     let configured = state.llm.lock().await.is_some();
     Ok(engine_view(&next, &ui.theme, &ui.locale, ui.locale_set, configured))
 }

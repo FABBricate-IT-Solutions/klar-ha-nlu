@@ -1,4 +1,5 @@
 pub(crate) mod assignment;
+pub(crate) mod change_history;
 pub(crate) mod classify;
 pub mod entrance;
 pub mod expose;

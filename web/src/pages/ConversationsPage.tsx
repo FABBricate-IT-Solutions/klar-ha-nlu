@@ -1,13 +1,17 @@
-import { useEffect, useMemo, useState } from "react";
-import { api } from "../api";
+import { useMemo, useState } from "react";
 import { Empty } from "../components/common";
 import { SetupHint } from "../components/SetupHint";
 import { MarkWrong } from "../components/MarkWrong";
 import { canTeachFromMiss, TeachFromMiss, teachIntentFromNames } from "../components/TeachFromMiss";
 import { WhyDrawer, canJournalReplay, journalHeard, whyThisBand } from "../components/WhyDrawer";
-import type { Messages } from "../i18n";
+import { fill, type Messages } from "../i18n";
+import { turnMatchesQuery } from "../lib/journalLive";
 import { refineBandLabel } from "./ParsePage";
 import type { ConversationTurn, RefineBand } from "../types";
+
+const DECISIONS = ["", "execute", "confirm", "clarify", "reject", "chat", "error"] as const;
+
+type DecisionFilter = (typeof DECISIONS)[number];
 
 function turnRefineBand(raw: string | null | undefined): RefineBand | null {
   switch (raw) {
@@ -21,78 +25,113 @@ function turnRefineBand(raw: string | null | undefined): RefineBand | null {
   }
 }
 
-function asTurns(rows: unknown): ConversationTurn[] {
-  if (!Array.isArray(rows)) {
-    return [];
-  }
-  return rows.filter((row): row is ConversationTurn => !!row && typeof row === "object");
-}
-
 function turnTitle(turn: ConversationTurn, locale: string | undefined): string {
   const when = turn.ts_ms ? new Date(turn.ts_ms).toLocaleString(locale) : "";
   return [when, turn.decision].filter(Boolean).join(" · ");
 }
 
+function decisionLabel(t: Messages, decision: DecisionFilter): string {
+  switch (decision) {
+    case "":
+      return t.journalFilterAll;
+    case "execute":
+      return t.labDecisionExecute;
+    case "confirm":
+      return "confirm";
+    case "clarify":
+      return "clarify";
+    case "reject":
+      return "reject";
+    case "chat":
+      return t.llmKindChat;
+    case "error":
+      return "error";
+    default: {
+      const _never: never = decision;
+      return _never;
+    }
+  }
+}
+
+function asDecisionFilter(raw: string): DecisionFilter {
+  for (const value of DECISIONS) {
+    if (value === raw) return value;
+  }
+  return "";
+}
+
 export function ConversationsPage({
   t,
   locale,
+  turns,
+  live,
   onReplay,
   onTeach,
 }: {
   t: Messages;
   locale: string;
+  /** Live journal from App (SSE). Null while the first load is in flight. */
+  turns: ConversationTurn[] | null;
+  live?: boolean;
   onReplay: (text: string) => void;
   onTeach?: (heard: string) => void;
 }) {
-  const [turns, setTurns] = useState<ConversationTurn[] | null>(null);
-  const [error, setError] = useState("");
   const [why, setWhy] = useState<ConversationTurn | null>(null);
-  useEffect(() => {
-    let alive = true;
-    const load = () => {
-      api.conversations()
-        .then((rows) => {
-          if (!alive) return;
-          setTurns(asTurns(rows));
-          setError("");
-        })
-        .catch((err) => {
-          if (!alive) return;
-          setTurns((prev) => prev ?? []);
-          setError(String(err));
-        });
-    };
-    load();
-    // Journal used to load once; refresh so new Assist turns appear (U-29).
-    const timer = window.setInterval(load, 15_000);
-    return () => {
-      alive = false;
-      window.clearInterval(timer);
-    };
-  }, []);
-  const items = useMemo(
-    () => [...(turns || [])].sort((a, b) => (b.ts_ms || 0) - (a.ts_ms || 0)),
-    [turns],
-  );
+  const [query, setQuery] = useState("");
+  const [decision, setDecision] = useState<DecisionFilter>("");
+
+  const items = useMemo(() => {
+    const sorted = [...(turns || [])].sort((a, b) => (b.ts_ms || 0) - (a.ts_ms || 0));
+    return sorted.filter((turn) => turnMatchesQuery(turn, query, decision));
+  }, [turns, query, decision]);
+
   return (
     <div className="page">
       <section className="hero">
         <div>
           <h1>{t.conversations}</h1>
           <p className="muted">{t.journalHint}</p>
+          {live ? <p className="caption">{t.journalLive}</p> : null}
         </div>
       </section>
-      {error && <div className="card danger">{error}</div>}
-      {turns === null && !error && <div className="card">{t.loading}</div>}
-      {turns && items.length === 0 && !error && (
+      <section className="card" style={{ marginBottom: 16 }}>
+        <div className="row" style={{ flexWrap: "wrap", gap: 8 }}>
+          <input
+            value={query}
+            onChange={(ev) => setQuery(ev.target.value)}
+            placeholder={t.journalSearch}
+            aria-label={t.journalSearch}
+          />
+          <select
+            value={decision}
+            onChange={(ev) => setDecision(asDecisionFilter(ev.target.value))}
+            aria-label={t.journalFilterDecision}
+          >
+            {DECISIONS.map((value) => (
+              <option key={value || "all"} value={value}>
+                {decisionLabel(t, value)}
+              </option>
+            ))}
+          </select>
+        </div>
+        {turns && (
+          <p className="caption" style={{ marginTop: 8 }}>
+            {fill(t.journalFilterCount, { shown: String(items.length), total: String(turns.length) })}
+          </p>
+        )}
+      </section>
+      {turns === null && <div className="card">{t.loading}</div>}
+      {turns && items.length === 0 && (
         <Empty
-          text={t.noConversations}
-          action={(
-            <>
-              <p className="caption">{t.conversationsEmptyHint}</p>
-              <SetupHint t={t} />
-            </>
-          )}
+          text={turns.length === 0 ? t.noConversations : t.journalFilterEmpty}
+          action={
+            turns.length === 0 ? (
+              <>
+                <p className="caption">{t.conversationsEmptyHint}</p>
+                <SetupHint t={t} />
+              </>
+            ) : null
+          }
         />
       )}
       {items.map((turn, index) => {

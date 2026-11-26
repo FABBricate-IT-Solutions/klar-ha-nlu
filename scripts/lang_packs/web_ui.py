@@ -14,7 +14,7 @@ from lang_packs.web_ui_europe import PACKS as EUROPE
 from lang_packs.web_ui_indic import PACKS as INDIC
 from lang_packs.lotse_chrome import apply_lotse_chrome
 from lang_packs.lotse_yesno import apply_yesno
-from lang_packs.web_ui_keys import ALIASES, CATALOG_KEYS, CONSTANTS, expand
+from lang_packs.web_ui_keys import ALIASES, CATALOG_KEYS, CONSTANTS, EN_ONLY, expand
 from lang_packs.web_ui_mena import PACKS as MENA
 from lang_packs.web_ui_nordic import PACKS as NORDIC
 from lang_packs.lanes import apply_lanes_copy
@@ -61,9 +61,10 @@ def english_keys() -> list[str]:
 
 def write_web_ui_translations() -> None:
     keys = english_keys()
-    expected = set(CATALOG_KEYS) | set(ALIASES) | set(CONSTANTS)
+    expected = set(CATALOG_KEYS) | set(ALIASES) | set(CONSTANTS) | set(EN_ONLY)
     if set(keys) != expected:
         raise SystemExit(f"en.ts drift missing={sorted(expected - set(keys))} extra={sorted(set(keys) - expected)}")
+    pack_keys = set(keys) - set(EN_ONLY)
     DEST.mkdir(parents=True, exist_ok=True)
     written: set[str] = set()
     for code, fields in PACKS.items():
@@ -74,8 +75,8 @@ def write_web_ui_translations() -> None:
         if missing or extra:
             raise SystemExit(f"{code}: missing={missing} extra={extra}")
         flat = expand(fields)
-        if set(flat) != set(keys):
-            raise SystemExit(f"{code}: expand drift {sorted(set(keys) ^ set(flat))}")
+        if set(flat) != pack_keys:
+            raise SystemExit(f"{code}: expand drift {sorted(pack_keys ^ set(flat))}")
         path = DEST / f"{code}.json"
         path.write_text(json.dumps(flat, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
         written.add(code)

@@ -41,6 +41,7 @@ Routenindex aus dem Axum-Router (`python3 scripts/gen_api_routes.py`). Auth ist 
 | `GET` | `/api/ui` | Read | Persistenter UI-Zustand im Overlay. |
 | `POST` | `/api/ui` | Write | Persistenter UI-Zustand im Overlay. |
 | `GET` | `/api/v2/conversations` | Read | Gesprächsjournal (letzte 200 Turns / 24 h). |
+| `GET` | `/api/v2/conversations/live` | Read | SSE-Stream der Journal-Turns (Snapshot, dann jeder neue Turn). |
 | `POST` | `/api/v2/conversations/mark-wrong` | Write | Journal-Turn mit gemeintem Intent/Ziel markieren; nlu_expect-Fall exportieren. |
 | `GET` | `/api/v2/conversations/{id}` | Read | Turns einer Conversation-ID. |
 | `GET` | `/api/v2/health` | öffentlich | Öffentliche Build-Identität, Home-Alter, Overlay, LLM, Wyoming, Ops-Zähler (ohne Token). |
@@ -61,13 +62,18 @@ Routenindex aus dem Axum-Router (`python3 scripts/gen_api_routes.py`). Auth ist 
 | `POST` | `/api/v2/policies` | Write | Policy-Bundle der Rules-Registerkarte. |
 | `GET` | `/api/v2/policies/catalog` | Read | Eingebauter Match-Katalog und Safety-Seeds. |
 | `POST` | `/api/v2/policies/evaluate` | Read | Dry-Run-Parse gegen optionale Policies. |
+| `GET` | `/api/v2/policies/history` | Read | Frühere Hausregel-Snapshots listen. |
+| `POST` | `/api/v2/policies/preview-turns` | Read | Zählt, wie viele jüngste Journal-Turns eine Entwurfsregel treffen würde. |
 | `POST` | `/api/v2/policies/propose/validate` | Read | Trainer-Vorschlag prüfen, ohne anzuwenden. |
+| `POST` | `/api/v2/policies/rollback` | Write | Früheres Hausregel-Bundle aus der Historie wiederherstellen. |
 | `GET` | `/api/v2/policies/trainer-context` | Read | Trainer-Kontext für das Rules-LLM. |
 | `POST` | `/api/v2/policies/trainer/chat` | Write | Trainer-Chat SSE (Write-Token). |
 | `POST` | `/api/v2/policies/trainer/consent` | Write | Ausstehende Trainer-Write-Tools freigeben oder ablehnen. |
 | `POST` | `/api/v2/session/undo-priors` | Write | Vorherige Helligkeit/Position/Temperatur/Lautstärke auf den letzten Execute stempeln, damit Undo sie wiederherstellen kann. |
 | `GET` | `/api/v2/settings/backup` | Write | Allowlistetes Settings-tar.gz laden. |
+| `GET` | `/api/v2/settings/history` | Read | Frühere Engine-Settings-Snapshots listen. |
 | `POST` | `/api/v2/settings/restore` | Write | Settings aus Backup-Archiv wiederherstellen. |
+| `POST` | `/api/v2/settings/rollback` | Write | Frühere Engine-Settings aus der Historie wiederherstellen. |
 | `GET` | `/api/v2/setup/token` | Read | Supervisor/Loopback holt das automatisch erzeugte Schreib-Token (frische App-Installation). |
 | `GET` | `/api/v2/speech/asr_boost` | Read | Whisper-Bias-Liste für externes STT. |
 | `POST` | `/api/v2/speech/render` | Read | Sprache nach Execute aus HA-Zustandsschnappschuss. |

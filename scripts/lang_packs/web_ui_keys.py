@@ -26,6 +26,21 @@ CONSTANTS = {
     "floors": "Floors",
 }
 
+# Hand-written de/en only (package 6.7). Lazy chrome packs fall back via `{...en, ...pack}`.
+EN_ONLY = (
+    "journalLive",
+    "journalSearch",
+    "journalFilterDecision",
+    "journalFilterAll",
+    "journalFilterCount",
+    "journalFilterEmpty",
+    "previewRuleTurns",
+    "previewRuleTurnsResult",
+    "changeHistory",
+    "changeHistoryHint",
+    "changeHistoryRestore",
+)
+
 CATALOG_KEYS = (
     "home",
     "conversations",
