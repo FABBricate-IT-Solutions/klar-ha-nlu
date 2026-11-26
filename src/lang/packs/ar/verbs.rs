@@ -2,17 +2,14 @@
 use crate::lang::verbs::VerbKind;
 
 pub(super) const VERBS: &[(&str, VerbKind)] = &[
-    ("black", VerbKind::Color),
-    ("blue", VerbKind::Color),
-    ("green", VerbKind::Color),
-    ("orange", VerbKind::Color),
-    ("pink", VerbKind::Color),
-    ("purple", VerbKind::Color),
-    ("red", VerbKind::Color),
-    ("white", VerbKind::Color),
-    ("yellow", VerbKind::Color),
+    ("ابيض", VerbKind::Color),
     ("ابيضدافي", VerbKind::Color),
+    ("احمر", VerbKind::Color),
+    ("اخضر", VerbKind::Color),
     ("اخفت", VerbKind::Dim),
+    ("ازرق", VerbKind::Color),
+    ("اسود", VerbKind::Color),
+    ("اصفر", VerbKind::Color),
     ("اطفي", VerbKind::Off),
     ("اغلق", VerbKind::Close),
     ("اغمق", VerbKind::Dim),
@@ -20,6 +17,8 @@ pub(super) const VERBS: &[(&str, VerbKind)] = &[
     ("انقص", VerbKind::Lower),
     ("ايش", VerbKind::Query),
     ("بالميه", VerbKind::Percent),
+    ("برتقالي", VerbKind::Color),
+    ("بنفسجي", VerbKind::Color),
     ("تشغيل", VerbKind::Play),
     ("حط", VerbKind::Set),
     ("شغل", VerbKind::On),
@@ -33,4 +32,5 @@ pub(super) const VERBS: &[(&str, VerbKind)] = &[
     ("مشهد", VerbKind::Scene),
     ("مكنسه", VerbKind::VacuumNoun),
     ("موقت", VerbKind::Timer),
+    ("وردي", VerbKind::Color),
 ];

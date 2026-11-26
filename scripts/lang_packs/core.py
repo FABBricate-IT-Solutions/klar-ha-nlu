@@ -97,19 +97,22 @@ def rooms(*pairs: tuple[str, str]) -> list[tuple[str, str]]:
     return list(pairs)
 
 
-def euro_chat(hello, thanks, who, story, news, intro, nudge, done):
+def euro_chat(hello, thanks, who, story, news, intro, nudge, done, world=None):
+    # Feeling/tell/advice/open must not be English stubs (L-17/L-22).
+    # Greetings come from household_lex via expand scrub_chat, not from On verbs.
+    # world needs one locale cue for parity reject probes (never bare EN "weather").
     return chat(
-        hello,
+        hello if hello and hello != [""] else [],
         thanks,
-        ["mood"],
+        [],
         who,
-        ["tell"],
+        [],
         story,
-        ["weather"],
-        ["idea"],
-        who + ["why"],
+        list(world or []),
+        [],
+        list(who or []),
         news,
-        ["stop"],
+        [],
         intro,
         nudge,
         done,
@@ -388,7 +391,17 @@ def pack(
                 "door": _first(door, light0),
             },
         ),
-        euro_chat([on0], [confirm], [on0], [on0], ["news"], "News.", "More?", "OK."),
+        euro_chat(
+            [on0],
+            [confirm],
+            [on0],
+            [on0],
+            ["news"],
+            "News.",
+            "More?",
+            "OK.",
+            world=climate[-1:] or media[:1] or light[:1],
+        ),
         living_kitchen(living, kitchen),
         colors or [],
         nums(numbers),

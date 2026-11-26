@@ -143,7 +143,13 @@ fn german_two_lights_use_plural() {
 }
 
 #[test]
-fn generated_locales_speak_the_name_until_worded() {
-    let out = say("fr", "HassTurnOn", "cover.volet", "Volet", "cover");
-    assert_eq!(out, "Volet.");
+fn generated_locales_name_the_cover_action() {
+    // Package 4.4: generated packs must not speak bare "{target}." for open/close (L-18/L-19).
+    let open = say("fr", "HassTurnOn", "cover.volet", "Volet", "cover");
+    let close = say("fr", "HassTurnOff", "cover.volet", "Volet", "cover");
+    assert_ne!(open, "Volet.");
+    assert_ne!(close, "Volet.");
+    assert_ne!(open, close);
+    assert!(open.contains("Volet"), "got {open:?}");
+    assert!(close.contains("Volet"), "got {close:?}");
 }

@@ -534,7 +534,7 @@ const LANGS: &[LangRow] = &[
         id: LangId::new("gl"),
         meta: LangMeta {
             code: "gl",
-            native_name: "Galician",
+            native_name: "Galego",
             script: "Latn",
             variants: &["gl", "gl-ES"],
             parent: None,
@@ -645,14 +645,16 @@ const LANGS: &[LangRow] = &[
     },
     LangRow {
         id: LangId::new("hi"),
-        meta: LangMeta { code: "hi", native_name: "Hindi", script: "Deva", variants: &["hi", "hi-IN"], parent: None, tier: Tier::Beta },
+        meta: LangMeta {
+            code: "hi", native_name: "हिन्दी", script: "Deva", variants: &["hi", "hi-IN"], parent: None, tier: Tier::Beta
+        },
         pack: &packs::hi::PACK,
     },
     LangRow {
         id: LangId::new("bn"),
         meta: LangMeta {
             code: "bn",
-            native_name: "Bangla",
+            native_name: "বাংলা",
             script: "Beng",
             variants: &["bn", "bn-BD"],
             parent: None,
@@ -664,7 +666,7 @@ const LANGS: &[LangRow] = &[
         id: LangId::new("gu"),
         meta: LangMeta {
             code: "gu",
-            native_name: "Gujarati",
+            native_name: "ગુજરાતી",
             script: "Gujr",
             variants: &["gu", "gu-IN"],
             parent: None,
@@ -676,7 +678,7 @@ const LANGS: &[LangRow] = &[
         id: LangId::new("kn"),
         meta: LangMeta {
             code: "kn",
-            native_name: "Kannada",
+            native_name: "ಕನ್ನಡ",
             script: "Knda",
             variants: &["kn", "kn-IN"],
             parent: None,
@@ -688,7 +690,7 @@ const LANGS: &[LangRow] = &[
         id: LangId::new("ml"),
         meta: LangMeta {
             code: "ml",
-            native_name: "Malayalam",
+            native_name: "മലയാളം",
             script: "Mlym",
             variants: &["ml", "ml-IN"],
             parent: None,
@@ -700,7 +702,7 @@ const LANGS: &[LangRow] = &[
         id: LangId::new("mr"),
         meta: LangMeta {
             code: "mr",
-            native_name: "Marathi",
+            native_name: "मराठी",
             script: "Deva",
             variants: &["mr", "mr-IN"],
             parent: None,
@@ -710,14 +712,16 @@ const LANGS: &[LangRow] = &[
     },
     LangRow {
         id: LangId::new("ta"),
-        meta: LangMeta { code: "ta", native_name: "Tamil", script: "Taml", variants: &["ta"], parent: None, tier: Tier::Experimental },
+        meta: LangMeta {
+            code: "ta", native_name: "தமிழ்", script: "Taml", variants: &["ta"], parent: None, tier: Tier::Experimental
+        },
         pack: &packs::ta::PACK,
     },
     LangRow {
         id: LangId::new("te"),
         meta: LangMeta {
             code: "te",
-            native_name: "Telugu",
+            native_name: "తెలుగు",
             script: "Telu",
             variants: &["te", "te-IN"],
             parent: None,
@@ -727,14 +731,16 @@ const LANGS: &[LangRow] = &[
     },
     LangRow {
         id: LangId::new("pa"),
-        meta: LangMeta { code: "pa", native_name: "Punjabi", script: "Guru", variants: &["pa"], parent: None, tier: Tier::Experimental },
+        meta: LangMeta {
+            code: "pa", native_name: "ਪੰਜਾਬੀ", script: "Guru", variants: &["pa"], parent: None, tier: Tier::Experimental
+        },
         pack: &packs::pa::PACK,
     },
     LangRow {
         id: LangId::new("ne"),
         meta: LangMeta {
             code: "ne",
-            native_name: "Nepali",
+            native_name: "नेपाली",
             script: "Deva",
             variants: &["ne", "ne-NP"],
             parent: None,
@@ -746,7 +752,7 @@ const LANGS: &[LangRow] = &[
         id: LangId::new("hy"),
         meta: LangMeta {
             code: "hy",
-            native_name: "Armenian",
+            native_name: "Հայերեն",
             script: "Armn",
             variants: &["hy", "hy-AM"],
             parent: None,
@@ -758,7 +764,7 @@ const LANGS: &[LangRow] = &[
         id: LangId::new("ka"),
         meta: LangMeta {
             code: "ka",
-            native_name: "Georgian",
+            native_name: "ქართული",
             script: "Geor",
             variants: &["ka", "ka-GE"],
             parent: None,
@@ -770,7 +776,7 @@ const LANGS: &[LangRow] = &[
         id: LangId::new("mn"),
         meta: LangMeta {
             code: "mn",
-            native_name: "Mongolian",
+            native_name: "Монгол",
             script: "Cyrl",
             variants: &["mn", "mn-MN"],
             parent: None,

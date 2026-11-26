@@ -25,7 +25,7 @@ pub(super) const VERBS: &[(&str, VerbKind)] = &[
     ("pink", VerbKind::Color),
     ("play", VerbKind::Play),
     ("pon", VerbKind::Set),
-    ("por cento", VerbKind::Percent),
+    ("porcento", VerbKind::Percent),
     ("purple", VerbKind::Color),
     ("que", VerbKind::Query),
     ("red", VerbKind::Color),

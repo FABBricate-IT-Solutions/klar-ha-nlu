@@ -9,6 +9,7 @@ from __future__ import annotations
 
 from lang_packs.convo import pack_words
 from lang_packs.dock_play import dock_words, play_words
+from lang_packs.household_lex import household_for
 
 # code -> except tokens
 EXCEPT = {
@@ -175,7 +176,6 @@ def _family(entry: str, family: str, laundry: str, powder: str, bed: str, bath: 
         rooms["main_bath"] = [f"{bath}main"]
     return rooms
 
-
 FAMILY = {
     "fr": _family("entree", "famille", "buanderie", "toilettes", "chambre", "bainmaster"),
     "nl": _family("hal", "huiskamer", "wasruimte", "toilet", "slaapkamer", "badmaster"),
@@ -244,80 +244,12 @@ FAMILY = {
     "mn": _family("orol", "gerbul", "ugaalga", "oroon", "untlagiin", "untlagiinugasalgach"),
 }
 
-
-
 def except_words(code: str) -> list[str]:
     return list(EXCEPT.get(code, []))
-
 
 def floors(code: str) -> dict[str, list[str]]:
     upper, ground = FLOORS.get(code, (["upper"], ["ground"]))
     return {"upper": list(upper), "ground": list(ground)}
-
-
-HOUSEHOLD = {
-    "de-CH": {
-        "teach": ["nenn das ", "nenne das ", "das heisst "],
-        "explain": ["was hesch ghoert", "was hast du gehoert", "warum hast du gestoppt"],
-        "undo": ["rueckgaengig", "nimm das zurueck"],
-        "clock": ["wie spaet", "wie viel uhr", "d uhrzit"],
-        "date": ["welches datum", "der wievielte"],
-        "weekday": ["welcher tag", "welcher wochentag"],
-        "weather": ["wie isch s wetter", "wetterbericht", "wetter"],
-        "clock_skip": ["timer", "wecker"],
-        "date_ok": "Heute ist {weekday}, der {date}.",
-        "weekday_ok": "Heute ist {weekday}.",
-        "today_ok": "Heute ist {weekday}, der {date}.",
-    },
-    "de-AT": {
-        "teach": ["nenn das ", "nenne das ", "das heisst "],
-        "explain": ["was hast du gehoert", "was hast du verstanden", "warum hast du gestoppt"],
-        "undo": ["rueckgaengig", "nimm das zurueck"],
-        "clock": ["wie spaet", "wie viel uhr", "die uhrzeit"],
-        "date": ["welches datum", "der wievielte"],
-        "weekday": ["welcher tag", "welcher wochentag"],
-        "weather": ["wie ist das wetter", "wetterbericht", "wetter"],
-        "clock_skip": ["timer", "wecker"],
-        "date_ok": "Heute ist {weekday}, der {date}.",
-        "weekday_ok": "Heute ist {weekday}.",
-        "today_ok": "Heute ist {weekday}, der {date}.",
-    },
-    "en-GB": {
-        "teach": ["call this ", "call it ", "name this "],
-        "explain": ["what did you hear", "what did you understand", "why did you stop"],
-        "undo": ["undo that", "undo", "take that back"],
-        "clock": ["what time", "whats the time"],
-        "date": ["what date", "whats the date", "what is the date"],
-        "weekday": ["what day is", "what day of the week"],
-        "today": ["whats today", "what is today"],
-        "weather": ["whats the weather", "what is the weather", "weather forecast"],
-        "clock_skip": ["timer", "alarm"],
-    },
-    "nl": {
-        "date": ["welke datum", "wat is de datum"],
-        "weekday": ["welke dag", "welke weekdag", "welke dag is het"],
-        "today": ["wat is vandaag"],
-        "date_ok": "Vandaag is {weekday}, {date}.",
-        "weekday_ok": "Vandaag is {weekday}.",
-        "today_ok": "Vandaag is {weekday}, {date}.",
-    },
-    "fr": {
-        "date": ["quelle date", "c est quelle date"],
-        "weekday": ["quel jour", "quel jour sommes", "quel jour est il"],
-        "today": ["on est quel jour"],
-        "date_ok": "Nous sommes {weekday}, {date}.",
-        "weekday_ok": "Nous sommes {weekday}.",
-        "today_ok": "Nous sommes {weekday}, {date}.",
-    },
-    "it": {
-        "date": ["che data", "qual e la data"],
-        "weekday": ["che giorno", "che giorno e", "che giorno e oggi"],
-        "today": ["che giorno e oggi"],
-        "date_ok": "Oggi e {weekday}, {date}.",
-        "weekday_ok": "Oggi e {weekday}.",
-        "today_ok": "Oggi e {weekday}, {date}.",
-    },
-}
 
 
 # island, ceiling, globe, bedside, device, film, night, leave
@@ -388,7 +320,6 @@ WORDS = {
     "ka": ("kuntkhuli", "potoloni", "burtuli", "sagamise", "mokobiloba", "filmi", "ghame", "gasvla"),
     "mn": ("aran", "taaz", "bomboo", "oronii", "togkhoromj", "kino", "shono", "garah"),
 }
-
 
 # washer, dishwasher, tv
 APPLIANCES = {
@@ -472,7 +403,6 @@ DRYERS = {
     "pl": "suszarka",
 }
 
-
 def pack_extras(code: str) -> dict[str, list[str]]:
     extra: dict[str, list[str]] = {}
     words = except_words(code)
@@ -482,7 +412,13 @@ def pack_extras(code: str) -> dict[str, list[str]]:
     if family:
         extra["laundry"] = list(family["laundry"])
         extra["entry"] = list(family["entryway"])
-    extra.update(HOUSEHOLD.get(code, {}))
+    for key, value in household_for(code).items():
+        if key == "greet":
+            continue
+        if isinstance(value, list):
+            extra[key] = list(dict.fromkeys(list(value) + list(extra.get(key) or [])))
+        else:
+            extra[key] = value
     if code in WORDS:
         island, ceiling, globe, bedside, device, film, night, leave = WORDS[code]
         extra.setdefault("island", [island])

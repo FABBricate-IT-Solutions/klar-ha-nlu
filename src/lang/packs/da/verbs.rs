@@ -19,8 +19,6 @@ pub(super) const VERBS: &[(&str, VerbKind)] = &[
     ("medium", VerbKind::Dim),
     ("morkere", VerbKind::Dim),
     ("next", VerbKind::Next),
-    ("orange", VerbKind::Color),
-    ("pink", VerbKind::Color),
     ("play", VerbKind::Play),
     ("procent", VerbKind::Percent),
     ("rod", VerbKind::Color),
