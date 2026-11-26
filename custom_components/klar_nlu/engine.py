@@ -113,6 +113,7 @@ class KlarEngine:
         self.hass = hass
         self.channel = resolve_channel(channel)
         self._proc: asyncio.subprocess.Process | None = None
+        self._supervise = False
         self.token: str | None = None
 
     @property
@@ -127,14 +128,26 @@ class KlarEngine:
         if await self._ping():
             self.token = await self.hass.async_add_executor_job(self._existing_token)
             _LOGGER.info("Klar already listens on %s", DEFAULT_URL)
+            await self.async_check_version(DEFAULT_URL, self.token)
             return
         await self._ensure_binary()
         await self._spawn()
-        await self._wait_ready()
+        try:
+            await self._wait_ready()
+        except Exception:
+            # H-14: a failed ready wait must not leave an orphan child.
+            await self.async_stop()
+            raise
         ir.async_delete_issue(self.hass, DOMAIN, "engine_down")
+        await self.async_check_version(DEFAULT_URL, self.token)
+        self._supervise = True
         asyncio.create_task(self._watch())
 
     async def async_stop(self) -> None:
+        self._supervise = False
+        await self._kill_child()
+
+    async def _kill_child(self) -> None:
         proc = self._proc
         self._proc = None
         if proc is None or proc.returncode is not None:
@@ -185,7 +198,13 @@ class KlarEngine:
             async with session.get(chosen["browser_download_url"], timeout=timeout) as resp:
                 resp.raise_for_status()
                 blob = await resp.read()
-        except ClientError as err:
+        except (ClientError, RuntimeError, UnsupportedMachineError) as err:
+            # H-14: staging (and any download failure) still starts from a local binary.
+            if present:
+                _LOGGER.warning("Using existing Klar binary offline: %s", err)
+                return
+            if isinstance(err, UnsupportedMachineError):
+                raise
             raise RuntimeError(f"Could not download Klar: {err}") from err
         require_sha256(chosen.get("digest"), blob)
         await self.hass.async_add_executor_job(self._extract, blob, wanted)
@@ -276,20 +295,39 @@ class KlarEngine:
             _LOGGER.log(level, "klar: %s", line.decode(errors="replace").rstrip())
 
     async def _watch(self) -> None:
-        proc = self._proc
-        if proc is None:
-            return
-        await proc.wait()
-        if self._proc is None:
-            return
-        ir.async_create_issue(
-            self.hass,
-            DOMAIN,
-            "engine_down",
-            is_fixable=False,
-            severity=ir.IssueSeverity.ERROR,
-            translation_key="engine_down",
-        )
+        """Restart a crashed child with exponential backoff (H-14)."""
+        delay = 1.0
+        while self._supervise:
+            proc = self._proc
+            if proc is not None:
+                code = await proc.wait()
+                if not self._supervise:
+                    return
+                ir.async_create_issue(
+                    self.hass,
+                    DOMAIN,
+                    "engine_down",
+                    is_fixable=False,
+                    severity=ir.IssueSeverity.ERROR,
+                    translation_key="engine_down",
+                )
+                _LOGGER.warning(
+                    "Klar engine exited (%s); restarting in %.1fs", code, delay
+                )
+                await asyncio.sleep(delay)
+                if not self._supervise:
+                    return
+            try:
+                await self._spawn()
+                await self._wait_ready()
+            except Exception as err:  # noqa: BLE001 — keep trying with backoff
+                _LOGGER.error("Klar engine restart failed: %s", err)
+                await self._kill_child()
+                delay = min(delay * 2.0, 60.0)
+                await asyncio.sleep(delay)
+                continue
+            ir.async_delete_issue(self.hass, DOMAIN, "engine_down")
+            delay = 1.0
 
     async def _wait_ready(self) -> None:
         for _ in range(_READY_TRIES):
@@ -302,14 +340,46 @@ class KlarEngine:
 
     async def _ping(self) -> bool:
         session = async_get_clientsession(self.hass)
-        try:
-            async with session.get(
-                DEFAULT_URL + "/",
-                timeout=ClientTimeout(total=2),
-            ) as resp:
-                return resp.status < 500
-        except ClientError:
-            return False
+        for path in ("/api/v2/health", "/"):
+            try:
+                async with session.get(
+                    DEFAULT_URL + path,
+                    timeout=ClientTimeout(total=2),
+                ) as resp:
+                    if resp.status < 500:
+                        return True
+            except (ClientError, TimeoutError, OSError):
+                continue
+        return False
+
+    async def async_check_version(self, url: str, token: str | None = None) -> None:
+        await async_check_engine_version(self.hass, url, token)
+
+
+async def async_check_engine_version(
+    hass: HomeAssistant, url: str, token: str | None = None
+) -> None:
+    """Warn on integration/engine CalVer mix instead of looking 'not responding' (R-19)."""
+    payload = await async_fetch_health(hass, url, token)
+    if payload is None:
+        return
+    engine_version = str(payload.get("version") or "").lstrip("v")
+    wanted = ENGINE_VERSION.lstrip("v")
+    if not engine_version or engine_version == wanted:
+        ir.async_delete_issue(hass, DOMAIN, "version_mismatch")
+        return
+    ir.async_create_issue(
+        hass,
+        DOMAIN,
+        "version_mismatch",
+        is_fixable=False,
+        severity=ir.IssueSeverity.WARNING,
+        translation_key="version_mismatch",
+        translation_placeholders={
+            "integration": wanted,
+            "engine": engine_version,
+        },
+    )
 
 
 def merge_engine_settings(
@@ -413,6 +483,29 @@ async def async_fetch_settings(
                 payload = await resp.json()
         except (ClientError, TimeoutError, OSError, ValueError) as err:
             _LOGGER.debug("Klar settings not fetched from %s: %s", base, err)
+            continue
+        return payload if isinstance(payload, dict) else None
+    return None
+
+
+async def async_fetch_health(
+    hass: HomeAssistant, url: str, token: str | None = None
+) -> dict[str, object] | None:
+    """Read `GET /api/v2/health` for version compare and doctor pages (R-19)."""
+    session = async_get_clientsession(hass)
+    headers = engine_headers(token)
+    for base in engine_url_candidates(url):
+        try:
+            async with session.get(
+                f"{base}/api/v2/health",
+                headers=headers,
+                timeout=ClientTimeout(total=2),
+            ) as resp:
+                if resp.status >= 400:
+                    continue
+                payload = await resp.json()
+        except (ClientError, TimeoutError, OSError, ValueError) as err:
+            _LOGGER.debug("Klar health not fetched from %s: %s", base, err)
             continue
         return payload if isinstance(payload, dict) else None
     return None

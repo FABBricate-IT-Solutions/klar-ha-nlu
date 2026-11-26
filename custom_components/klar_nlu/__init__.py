@@ -35,6 +35,7 @@ from .const import (
 )
 from .engine import (
     KlarEngine,
+    async_check_engine_version,
     async_push_fallback_flag,
     async_seed_product_settings,
     async_sync_default_language,
@@ -92,6 +93,7 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
         "engine_settings": {},
     }
     await async_refresh_klar_hosts(hass)
+    await async_check_engine_version(hass, url, token)
     await hass.config_entries.async_forward_entry_setups(entry, PLATFORMS)
     await sync.async_start()
     await async_setup_services(hass)

@@ -128,6 +128,14 @@
     "engine_down": {
       "title": "Peiriant Klar wedi stopio",
       "description": "Nid yw proses Klar ynghlwm yn rhedeg. Ail-lwythwch Klar NLU yn Gosodiadau → Dyfeisiau a gwasanaethau."
+    },
+    "version_mismatch": {
+      "title": "Klar version mismatch",
+      "description": "Integration {integration} talks to engine {engine}. Update both to the same CalVer; Assist still answers, but features may disagree."
+    },
+    "sync_rejected": {
+      "title": "Klar home sync rejected",
+      "description": "Home Assistant could not push the home graph (HTTP {status}). Check the Klar write token and engine logs."
     }
   }
 }

@@ -14,6 +14,7 @@ use axum::{Json, Router};
 use std::net::SocketAddr;
 use std::sync::atomic::Ordering;
 use std::sync::Arc;
+use std::time::{SystemTime, UNIX_EPOCH};
 
 pub fn routes(state: AppState) -> Router<AppState> {
     Router::new()
@@ -68,6 +69,8 @@ async fn api_home(
     };
     state.home.replace(graph).await;
     state.live_sync.store(true, Ordering::Relaxed);
+    let synced_ms = SystemTime::now().duration_since(UNIX_EPOCH).unwrap_or_default().as_millis() as u64;
+    state.home_synced_ms.store(synced_ms, Ordering::Relaxed);
     Ok(Json(ack))
 }
 
