@@ -10,8 +10,8 @@ use crate::lang::Tier;
 use crate::llm::ChatEvent;
 use crate::types::{
     Mode, ParseDecision, Personality, PolicyEffect, RefineBand, RejectReason, UnitSystem, MAX_CANDIDATES, MAX_CLARIFY_OPTIONS,
-    MAX_DETAIL_CHARS, MAX_EVIDENCE, MAX_EVIDENCE_PER_ITEM, MAX_PLAN_STEPS, MAX_TRACE_DISCARDED, MAX_TRACE_STAGES, MAX_TRACE_TOKENS,
-    MAX_TRACE_TOKEN_CHARS, PARSE_SCHEMA_VERSION,
+    MAX_DETAIL_CHARS, MAX_EVIDENCE, MAX_EVIDENCE_PER_ITEM, MAX_PLAN_STEPS, MAX_TRACE_DISCARDED, MAX_TRACE_DISCARDED_CLAUSES,
+    MAX_TRACE_SPANS, MAX_TRACE_STAGES, MAX_TRACE_TOKENS, MAX_TRACE_TOKEN_CHARS, PARSE_SCHEMA_VERSION,
 };
 use std::fmt::Write as _;
 
@@ -140,6 +140,8 @@ pub fn export_typescript() -> String {
     writeln!(out, "export const MAX_DETAIL_CHARS = {MAX_DETAIL_CHARS};").unwrap();
     writeln!(out, "export const MAX_TRACE_TOKENS = {MAX_TRACE_TOKENS};").unwrap();
     writeln!(out, "export const MAX_TRACE_TOKEN_CHARS = {MAX_TRACE_TOKEN_CHARS};").unwrap();
+    writeln!(out, "export const MAX_TRACE_SPANS = {MAX_TRACE_SPANS};").unwrap();
+    writeln!(out, "export const MAX_TRACE_DISCARDED_CLAUSES = {MAX_TRACE_DISCARDED_CLAUSES};").unwrap();
     out.push('\n');
     write_const_list(&mut out, "POLICY_EFFECTS", policy_effects());
     write_const_list(&mut out, "REFINE_BANDS", refine_bands());

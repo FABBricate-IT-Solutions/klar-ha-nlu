@@ -130,6 +130,11 @@ compiledRisk	Zkompilované riziko	Skompilované riziko	Skompilowane ryzyko	Lefor
 finalBand	Band	Band	Band	Band	Band	Band	Band	Band	Band	Band
 triggerFirst	Nejdřív HA spouštěče vět, pak Klar, pak registrovaný intent.	Najprv HA spúšťače viet, potom Klar, potom registrovaný intent.	Najpierw wyzwalacze zdań HA, potem Klar, potem zarejestrowany intent.	Először HA mondatindítók, aztán Klar, aztán regisztrált intent.	Prvo HA okidači rečenica, zatim Klar, zatim registrirani intent.	Najprej HA sprožilci stavkov, nato Klar, nato registriran intent.	Първо HA тригери за изречения, после Klar, после регистриран intent.	Прво HA окидачи реченица, затим Klar, затим регистровани intent.	Prvo HA okidači rečenica, zatim Klar, zatim registrovani intent.	Спочатку тригери речень HA, потім Klar, потім зареєстрований intent.
 discarded	Zahozeno	Zahodené	Odrzucone	Elvetve	Odbačeno	Zavrženo	Отхвърлено	Одбачено	Odbačeno	Відхилено
+decisionTrace	Stopa rozhodnutí	Stopa rozhodnutia	Ślad decyzji	Döntésnyom	Trag odluke	Sled odločitve	Следа от решение	Траг одлуке	Trag odluke	Слід рішення
+triggerWord	Spouštěcí slovo	Spúšťacie slovo	Słowo wyzwalające	Kioldó szó	Okidačka riječ	Sprožilna beseda	Задействаща дума	Окидачка реч	Okidačka reč	Спускове слово
+consumedSpans	Spotřebovaná rozpětí	Spotrebované rozpätia	Zużyte spany	Felhasznált spanok	Iskorišteni spanovi	Porabljeni spani	Изразходвани спанове	Искоришћени спанови	Iskorišteni spanovi	Використані спани
+remainingTokens	Zbývající tokeny	Zostávajúce tokeny	Pozostałe tokeny	Maradék tokenek	Preostali tokeni	Preostali žetoni	Останали токени	Преостали токени	Preostali tokeni	Залишкові токени
+discardedClause	Zahozená klauzule	Zahodená klauzula	Odrzucona klauzula	Elvetett záradék	Odbačena klauzula	Zavržena klavzula	Отхвърлена клауза	Одбачена клаузула	Odbačena klauzula	Відхилена клаузула
 stageTokens	Tokens	Tokens	Tokens	Tokens	Tokens	Tokens	Tokens	Tokens	Tokens	Tokens
 stageBind	Bind	Bind	Bind	Bind	Bind	Bind	Bind	Bind	Bind	Bind
 stageRank	Rank	Rank	Rank	Rank	Rank	Rank	Rank	Rank	Rank	Rank

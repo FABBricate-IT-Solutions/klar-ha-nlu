@@ -111,6 +111,8 @@ fn decide(context: &ParseContext<'_>) -> PipelineResult {
     let _speech = prefer_speech(context, &split.tokens);
     trace.tokens = split.tokens.iter().take(MAX_NORMALIZED_TOKENS).cloned().collect();
     trace.normalized = trace.tokens.join(" ");
+    super::explain_trace::record_spans(&mut trace, &split.tokens, context.home);
+    trace.trigger_word = super::explain_trace::trigger_word(&split.tokens, &context.catalog, context.home);
     record_stage(&mut trace, "normalize", started, format!("{} normalized tokens", split.tokens.len()));
     if split.tokens.len() > MAX_NORMALIZED_TOKENS {
         let draft = reject(RejectReason::InvalidInput, speak_unknown());
@@ -310,11 +312,15 @@ fn finish(
     mut trace: ParseTrace,
 ) -> PipelineResult {
     let mut evidence = evidence;
-    let (mut draft, guarded) = super::mood::guard(context, draft);
+    let mood_started = Instant::now();
+    let (mut draft, guarded, discarded_clauses) = super::mood::guard(context, draft);
     if guarded {
         candidates = draft.output_candidate.clone().into_iter().collect();
-        record_stage(&mut trace, "mood_guard", Instant::now(), decision_name(&draft.decision).into());
     }
+    if !discarded_clauses.is_empty() {
+        trace.discarded_clauses = discarded_clauses;
+    }
+    record_stage(&mut trace, "mood_guard", mood_started, if guarded { decision_name(&draft.decision).into() } else { "unchanged".into() });
     if let Some(area) = context.session.preferred_area.as_deref().filter(|area| !area.is_empty()) {
         if !evidence.iter().any(|item| item.kind == "preferred_area") {
             evidence.push(Evidence {

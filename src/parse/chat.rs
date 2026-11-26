@@ -158,6 +158,7 @@ mod tests {
             reason: None,
             area: Some("wohnzimmer".into()),
             names: Vec::new(),
+            trigger_word: None,
         });
         for text in ["über einen Elefanten", "länger", "egal", "science fiction"] {
             assert!(briefing_followup(&toks(text), &home, &session), "{text}");

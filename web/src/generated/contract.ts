@@ -13,6 +13,8 @@ export const MAX_TRACE_DISCARDED = 64;
 export const MAX_DETAIL_CHARS = 256;
 export const MAX_TRACE_TOKENS = 256;
 export const MAX_TRACE_TOKEN_CHARS = 64;
+export const MAX_TRACE_SPANS = 32;
+export const MAX_TRACE_DISCARDED_CLAUSES = 32;
 
 export const POLICY_EFFECTS = [
   "confirm",

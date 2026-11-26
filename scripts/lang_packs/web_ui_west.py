@@ -130,6 +130,11 @@ compiledRisk	Risque compilé	Gecompileerd risico	Riesgo compilado	Rischio compil
 finalBand	Bande	Band	Banda	Banda	Banda	Banda	Bandă	Banda	Banda
 triggerFirst	Les déclencheurs de phrases HA d'abord, puis Klar, puis une intention enregistrée.	Eerst HA-zintriggers, dan Klar, dan een geregistreerde intentie.	Primero los disparadores de frases HA, luego Klar, luego una intención registrada.	Prima gli attivatori di frase HA, poi Klar, poi un intento registrato.	Primeiro os acionadores de frases HA, depois o Klar, depois uma intenção registada.	Primer els activadors de frases HA, després Klar, després una intenció registrada.	Mai întâi declanșatoarele de fraze HA, apoi Klar, apoi o intenție înregistrată.	Primeiro os acionadores de frases HA, depois o Klar, depois uma intenção registrada.	Primeiro os disparadores de frases HA, logo Klar, logo unha intención rexistrada.
 discarded	Écarté	Verworpen	Descartado	Scartato	Descartado	Descartat	Renunțat	Descartado	Descartado
+decisionTrace	Trace de décision	Besluitspoor	Rastro de decisión	Traccia di decisione	Rasto de decisão	Traça de decisió	Urmă a deciziei	Rastro de decisión	Rastro de decisión
+triggerWord	Mot déclencheur	Triggerwoord	Palabra disparadora	Parola attivatrice	Palavra disparadora	Paraula disparadora	Cuvânt declanșator	Palabra disparadora	Palabra disparadora
+consumedSpans	Spans consumidos	Verbruikte spans	Spans consumidos	Span consumati	Spans consumidos	Spans consumits	Spanuri consumate	Spans consumidos	Spans consumidos
+remainingTokens	Tokens restantes	Resterende tokens	Tokens restantes	Token rimanenti	Tokens restantes	Tokens restants	Tokenuri rămase	Tokens restantes	Tokens restantes
+discardedClause	Cláusula descartada	Verworpen clausule	Cláusula descartada	Clausola scartata	Cláusula descartada	Clàusula descartada	Clauză renunțată	Cláusula descartada	Cláusula descartada
 stageTokens	Jetons	Tokens	Tokens	Token	Tokens	Tokens	Tokenuri	Tokens	Tokens
 stageBind	Liaison	Koppelen	Vincular	Associa	Associar	Vincle	Legare	Vincular	Vincular
 stageRank	Rang	Rang	Rango	Rango	Classificação	Rang	Clasare	Classificação	Rango

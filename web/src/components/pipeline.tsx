@@ -31,6 +31,10 @@ export function Pipeline({ result, t }: { result: ParseResult; t: Messages }) {
   const rank = result.plan?.steps[0]?.intent.name || result.evidence[0]?.source || "—";
   const policy = result.policy_trace?.hit || result.policy_trace?.matched_rule || "compiled";
   const cells = [tokens, bind, rank, policy, band];
+  const trigger = result.trace.trigger_word?.trim();
+  const consumed = result.trace.consumed_spans ?? [];
+  const remaining = result.trace.remaining_tokens ?? [];
+  const discardedClauses = result.trace.discarded_clauses ?? [];
   return (
     <div>
       <div className="pipeline">
@@ -45,6 +49,31 @@ export function Pipeline({ result, t }: { result: ParseResult; t: Messages }) {
           );
         })}
       </div>
+      {(trigger || consumed.length > 0 || remaining.length > 0 || discardedClauses.length > 0) && (
+        <div className="card" style={{ marginTop: 12 }}>
+          <h3>{t.decisionTrace}</h3>
+          {trigger ? (
+            <p className="mono">
+              {t.triggerWord}: {trigger}
+            </p>
+          ) : null}
+          {consumed.length > 0 ? (
+            <p className="muted">
+              {t.consumedSpans}: {consumed.map((span) => span.text).join(" · ")}
+            </p>
+          ) : null}
+          {remaining.length > 0 ? (
+            <p className="muted">
+              {t.remainingTokens}: {remaining.join(" · ")}
+            </p>
+          ) : null}
+          {discardedClauses.map((row) => (
+            <p className="muted" key={`${row.reason}:${row.text}`}>
+              {t.discardedClause}: {row.text} · {row.reason}
+            </p>
+          ))}
+        </div>
+      )}
       {result.trace.discarded.length > 0 && (
         <div className="card" style={{ marginTop: 12 }}>
           <h3>{t.discarded}</h3>

@@ -130,6 +130,11 @@ compiledRisk	Kompileret risiko	Kompilert risiko	Kompilerad risk	Käännetty risk
 finalBand	Bånd	Bånd	Band	Kaista	Band	Riba	Juosta	Josla
 triggerFirst	HA-sætningsudløsere først, derefter Klar, derefter en registreret hensigt.	HA-setningsutløsere først, deretter Klar, deretter en registrert intensjon.	HA-meningsutlösare först, sedan Klar, sedan en registrerad avsikt.	HA-lauselaukaisimet ensin, sitten Klar, sitten rekisteröity tarkoitus.	HA-setningakveikjur fyrst, síðan Klar, síðan skráður ásetningur.	Kõigepealt HA lausetrigerid, seejärel Klar, seejärel registreeritud kavatsus.	Pirmiausia HA sakinių trigeriai, tada Klar, tada registruotas ketinimas.	Vispirms HA teikumu trigeri, tad Klar, tad reģistrēts nolūks.
 discarded	Kasseret	Forkastet	Förkastad	Hylätty	Hunsað	Hüljatud	Atmesta	Atmests
+decisionTrace	Beslutningsspor	Beslutningsspor	Beslutningsspår	Päätösjälki	Ákvörðunarspor	Otsustusjälg	Sprendimo pėdsakas	Lēmuma pēdas
+triggerWord	Udløserord	Utløserord	Utlösarord	Laukaissana	Kveikjuorð	Päästiksõna	Trigerio žodis	Ierosinātājvārds
+consumedSpans	Forbrugte spænd	Forbrukte spenn	Förbrukade spann	Kulutetut jännevälit	Notuð span	Kulutatud vahemikud	Sunaudoti spanai	Izlietotie span
+remainingTokens	Resterende tokens	Gjenværende tokens	Återstående tokens	Jäljellä olevat tokenit	Eftirstandandi tákn	Järelejäänud tokenid	Likę žetonai	Atlikušie tokeņi
+discardedClause	Kassérét klausul	Forkastet klausul	Förkastad klausul	Hylätty lause	Hunsuð klausa	Hüljatud klausel	Atmesta sąlyga	Atmests klauzuls
 stageTokens	Tokens	Tokens	Tokens	Tokens	Tokens	Tokens	Tokens	Tokens
 stageBind	Bind	Bind	Bind	Sidonta	Binda	Sidumine	Susieti	Saistīt
 stageRank	Rang	Rang	Rang	Sijoitus	Röð	Järk	Rangas	Rangs

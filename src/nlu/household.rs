@@ -148,7 +148,8 @@ fn format_explain(heard: &LastHeard, house: &Household) -> String {
         "chat" => house.was_chat.to_string(),
         _ => house.decision.replace("{decision}", &heard.decision),
     };
-    format!("{heard_line}{why}{where_}")
+    let trigger = heard.trigger_word.as_deref().filter(|word| !word.is_empty()).map(|word| format!(" ({word})")).unwrap_or_default();
+    format!("{heard_line}{why}{trigger}{where_}")
 }
 
 fn undo(context: &ParseContext<'_>) -> Draft {
