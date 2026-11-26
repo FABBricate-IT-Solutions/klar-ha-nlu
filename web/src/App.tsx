@@ -6,6 +6,7 @@ import { Drawer } from "./components/common";
 import { KlarBrand } from "./components/KlarBrand";
 import { TrainerDock, TrainerToggle } from "./components/TrainerDock";
 import { TEACH_HEARD_KEY } from "./components/TeachFromMiss";
+import { RegressionUpdateDialog } from "./components/RegressionUpdateDialog";
 import { assistParseLanguage, chromeLocale, dictionaries, ensureLocale, isRtl, type Messages } from "./i18n";
 import { ConversationsPage } from "./pages/ConversationsPage";
 import { DashboardPage } from "./pages/Dashboard";
@@ -505,6 +506,7 @@ export function App() {
         language={locale}
       />
     ) : null}
+    <RegressionUpdateDialog active={booted} t={t} />
     <Toaster theme={theme} position="top-center" closeButton />
     </TooltipProvider>
   );

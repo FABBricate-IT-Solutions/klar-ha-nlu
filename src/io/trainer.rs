@@ -3,6 +3,7 @@
 use crate::home::gaps::leftover;
 use crate::home::overlay::load_overlay;
 use crate::io::auth::reads_allowed;
+use crate::io::house_regression::{self, RegressionImpact, RunConfig};
 use crate::io::limits::{MAX_PARSE_CHARS, MAX_PROPOSAL_CUSTOM, MAX_PROPOSAL_MATCH_CONTROLS, MAX_PROPOSAL_UTTERANCES};
 use crate::io::state::AppState;
 use crate::lang::{catalog_for, validate_custom, validate_language, LanguageOverlay};
@@ -106,6 +107,9 @@ pub struct ValidateOut {
     pub errors: Vec<Issue>,
     pub warnings: Vec<Issue>,
     pub dry_run: Vec<DryRunRow>,
+    /// Saved per-home cases whose parse fingerprint moves under this proposal.
+    #[serde(default)]
+    pub regression: RegressionImpact,
 }
 
 pub async fn trainer_context(
@@ -158,35 +162,45 @@ pub async fn validate_proposal(
     let settings = state.settings.lock().await.clone();
     let language = pin_language(body.language.as_deref(), &settings).map_err(|_| StatusCode::BAD_REQUEST)?;
     let home = state.home.snapshot().await;
-    let house = match body.policies.clone() {
-        Some(rules) => rules,
-        None => state.policies.lock().await.clone(),
-    };
-    let match_controls = match body.match_controls.clone() {
-        Some(rows) => rows,
-        None => state.match_controls.lock().await.clone(),
-    };
+    let current_house = state.policies.lock().await.clone();
+    let current_match = state.match_controls.lock().await.clone();
+    let current_custom = state.custom.lock().await.clone();
+    let house = body.policies.clone().unwrap_or_else(|| current_house.clone());
+    let match_controls = body.match_controls.clone().unwrap_or_else(|| current_match.clone());
     let speech_bank = state.speech_bank.lock().await.clone();
     let overlay = match body.language_overlay.clone() {
         Some(language) => language,
         None => load_overlay(&state.data_dir).language,
     };
-    let custom = match body.custom.clone() {
-        Some(rows) => rows,
-        None => state.custom.lock().await.clone(),
-    };
-    Ok(Json(validate(
+    let custom = body.custom.clone().unwrap_or_else(|| current_custom.clone());
+    let mut out = validate(
         &home,
         &settings,
         &language,
         body.layer.as_deref().unwrap_or("all"),
-        house,
-        match_controls,
+        house.clone(),
+        match_controls.clone(),
         overlay,
         &speech_bank,
         body.utterances.as_deref().unwrap_or(&[]),
         &custom,
-    )))
+    );
+    if out.ok {
+        let wrong_cases = state.wrong_cases.load();
+        let mut pinned = settings.clone();
+        pinned.languages = vec![language];
+        let before = RunConfig {
+            settings: &pinned,
+            house: &current_house,
+            match_controls: &current_match,
+            custom: &current_custom,
+            speech_bank: &speech_bank,
+        };
+        let after =
+            RunConfig { settings: &pinned, house: &house, match_controls: &match_controls, custom: &custom, speech_bank: &speech_bank };
+        out.regression = house_regression::trainer_impact(&wrong_cases, &before, &after);
+    }
+    Ok(Json(out))
 }
 
 fn proposal_within_limits(body: &ProposalIn) -> bool {
@@ -207,35 +221,44 @@ pub async fn validate_args(state: &AppState, args: &serde_json::Value) -> Result
     let language =
         proposal.language.clone().or_else(|| settings.languages.first().cloned()).unwrap_or_else(|| settings.default_pack().to_string());
     let home = state.home.snapshot().await;
-    let house = match proposal.policies.clone() {
-        Some(rules) => rules,
-        None => state.policies.lock().await.clone(),
-    };
-    let match_controls = match proposal.match_controls.clone() {
-        Some(rows) => rows,
-        None => state.match_controls.lock().await.clone(),
-    };
+    let current_house = state.policies.lock().await.clone();
+    let current_match = state.match_controls.lock().await.clone();
+    let current_custom = state.custom.lock().await.clone();
+    let house = proposal.policies.clone().unwrap_or_else(|| current_house.clone());
+    let match_controls = proposal.match_controls.clone().unwrap_or_else(|| current_match.clone());
     let overlay = match proposal.language_overlay.clone() {
         Some(language) => language,
         None => load_overlay(&state.data_dir).language,
     };
-    let custom = match proposal.custom.clone() {
-        Some(rows) => rows,
-        None => state.custom.lock().await.clone(),
-    };
+    let custom = proposal.custom.clone().unwrap_or_else(|| current_custom.clone());
     let speech_bank = state.speech_bank.lock().await.clone();
-    let out = validate(
+    let mut out = validate(
         &home,
         &settings,
         &language,
         proposal.layer.as_deref().unwrap_or("all"),
-        house,
-        match_controls,
+        house.clone(),
+        match_controls.clone(),
         overlay,
         &speech_bank,
         proposal.utterances.as_deref().unwrap_or(&[]),
         &custom,
     );
+    if out.ok {
+        let wrong_cases = state.wrong_cases.load();
+        let mut pinned = settings.clone();
+        pinned.languages = vec![language];
+        let before = RunConfig {
+            settings: &pinned,
+            house: &current_house,
+            match_controls: &current_match,
+            custom: &current_custom,
+            speech_bank: &speech_bank,
+        };
+        let after =
+            RunConfig { settings: &pinned, house: &house, match_controls: &match_controls, custom: &custom, speech_bank: &speech_bank };
+        out.regression = house_regression::trainer_impact(&wrong_cases, &before, &after);
+    }
     serde_json::to_value(out).map(|value| crate::io::trainer_reads::with_view("validate", value)).map_err(|_| "validate encode".into())
 }
 
@@ -283,7 +306,7 @@ pub fn validate(
     } else {
         Vec::new()
     };
-    ValidateOut { ok: errors.is_empty(), errors, warnings, dry_run }
+    ValidateOut { ok: errors.is_empty(), errors, warnings, dry_run, regression: RegressionImpact::default() }
 }
 
 pub fn context_stub(ctx: &TrainerContext, languages: &[String]) -> String {

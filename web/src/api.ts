@@ -21,6 +21,8 @@ import type {
   TrainerContext,
   TrainerTurn,
   UiState,
+  WrongCaseDryRun,
+  WrongCaseUpdateDialog,
 } from "./types";
 import { ApiError, readErrorBody } from "./lib/apiError";
 import { takeSseEvents } from "./lib/sse";
@@ -302,6 +304,9 @@ export const api = {
       method: "POST",
       body: JSON.stringify(body),
     }),
+  wrongCaseDryRun: () => request<WrongCaseDryRun>("/api/v2/wrong-cases/dry-run"),
+  wrongCaseUpdateDialog: () => request<WrongCaseUpdateDialog>("/api/v2/wrong-cases/update-dialog"),
+  ackWrongCaseUpdateDialog: () => request<WrongCaseUpdateDialog>("/api/v2/wrong-cases/update-dialog", { method: "POST" }),
   intents: () => request<string[]>("/api/v2/intents"),
   tagEntity: (body: { entity_id: string; aliases?: string[]; preferred?: boolean; nlu_ignore?: boolean; area?: string }) =>
     request<Entity>("/api/entities", { method: "POST", body: JSON.stringify(body) }),

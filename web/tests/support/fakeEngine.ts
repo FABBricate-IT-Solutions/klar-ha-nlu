@@ -136,6 +136,13 @@ function routesFor(stored: Stored): Record<string, Handler> {
     "GET /api/entities": { body: [] },
     "GET /api/gaps": { body: { leftover: [], rooms: [] } },
     "GET /api/custom": { body: [] },
+    "GET /api/v2/wrong-cases/update-dialog": {
+      body: { engine_version: "test", is_update: false, total: 0, changed: 0, cases: [] },
+    },
+    "POST /api/v2/wrong-cases/update-dialog": {
+      body: { engine_version: "test", is_update: false, total: 0, changed: 0, cases: [] },
+    },
+    "GET /api/v2/wrong-cases/dry-run": { body: { total: 0, passed: 0, failed: 0, cases: [] } },
   };
 }
 

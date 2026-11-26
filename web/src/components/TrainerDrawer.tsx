@@ -433,6 +433,16 @@ export function TrainerDrawer({
               {row.house ? ` · house ${row.house}` : ""}
             </span>
           ))}
+          {result.regression && result.regression.changed > 0 ? (
+            <div className="trainer-regression">
+              <p>{t.regressionTrainerChanged.replace("{n}", String(result.regression.changed))}</p>
+              <ul className="regression-sentences mono">
+                {(result.regression.cases ?? []).map((row) => (
+                  <li key={row.id}>{row.text}</li>
+                ))}
+              </ul>
+            </div>
+          ) : null}
         </div>
       ) : null}
     </section>

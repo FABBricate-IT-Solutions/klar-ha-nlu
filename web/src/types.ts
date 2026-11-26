@@ -219,7 +219,35 @@ export type TrainerContext = {
 
 export type TrainerIssue = { path: string; message: string };
 export type TrainerDryRun = { text: string; decision: string; seed?: string | null; house?: string | null; compiled_risky: boolean };
-export type TrainerValidateOut = { ok: boolean; errors: TrainerIssue[]; warnings: TrainerIssue[]; dry_run: TrainerDryRun[] };
+export type RegressionChangedCase = { id: string; text: string; before: string; after: string };
+export type RegressionImpact = { total: number; changed: number; cases?: RegressionChangedCase[] };
+export type TrainerValidateOut = {
+  ok: boolean;
+  errors: TrainerIssue[];
+  warnings: TrainerIssue[];
+  dry_run: TrainerDryRun[];
+  regression?: RegressionImpact;
+};
+export type WrongCaseDryRunRow = {
+  id: string;
+  text: string;
+  fingerprint: string;
+  matches_intended: boolean;
+};
+export type WrongCaseDryRun = {
+  total: number;
+  passed: number;
+  failed: number;
+  cases?: WrongCaseDryRunRow[];
+};
+export type WrongCaseUpdateDialog = {
+  engine_version: string;
+  baseline_version?: string | null;
+  is_update: boolean;
+  total: number;
+  changed: number;
+  cases?: RegressionChangedCase[];
+};
 export type TrainerProposal = {
   layer?: string;
   language?: string;

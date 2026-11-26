@@ -71,6 +71,9 @@ Route index generated from the Axum router (`python3 scripts/gen_api_routes.py`)
 | `POST` | `/api/v2/speech/render` | Read | Post-execute speech from an HA state snapshot. |
 | `GET` | `/api/v2/wrong-cases` | Read | List operator-marked regression cases. |
 | `GET` | `/api/v2/wrong-cases/dataset` | Read | Download marked-wrong cases as nlu_expect YAML. |
+| `GET` | `/api/v2/wrong-cases/dry-run` | Read | Dry-run saved per-home regression cases against the live engine. |
+| `GET` | `/api/v2/wrong-cases/update-dialog` | Read | After an engine update: how many saved cases changed, and which sentences. |
+| `POST` | `/api/v2/wrong-cases/update-dialog` | Write | After an engine update: how many saved cases changed, and which sentences. |
 
 <!-- END GENERATED ROUTES -->
 

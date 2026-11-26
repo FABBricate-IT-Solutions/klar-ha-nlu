@@ -9,6 +9,7 @@ pub(crate) mod conversations;
 pub(crate) mod dashboard;
 pub(crate) mod health;
 pub(crate) mod home_sync;
+pub(crate) mod house_regression;
 pub(crate) mod http_error;
 pub mod http_server;
 pub(crate) mod lang_api;
