@@ -52,6 +52,7 @@ pub fn router(state: AppState) -> Router {
         .merge(crate::io::lang_api::routes())
         .merge(crate::io::conversations::routes())
         .merge(crate::io::policies::routes())
+        .merge(crate::io::undo_priors::routes())
         .layer(DefaultBodyLimit::max(16 * 1024))
         .merge(crate::io::home_sync::routes(state.clone()))
         .merge(crate::io::backup::routes(state.clone()))

@@ -19,8 +19,12 @@ fn inverts_on_off_and_skips_queries() {
     assert_eq!(invert_intent(&Intent::new("HassOpenCover").with("entity_id", "cover.a")).unwrap().name, "HassCloseCover");
     assert_eq!(invert_intent(&Intent::new("HassLock").with("entity_id", "lock.a")).unwrap().name, "HassUnlock");
     assert!(invert_intent(&Intent::new("HassGetState").with("entity_id", "lock.a")).is_none());
-    assert!(invert_intent(&Intent::new("HassLightSet").with("entity_id", "light.a")).is_none());
-    assert!(invert_intent(&Intent::new("HassSetPosition").with("entity_id", "cover.a")).is_none());
+    assert!(invert_intent(&Intent::new("HassLightSet").with("entity_id", "light.a").with("brightness", "30")).is_none());
+    assert!(invert_intent(&Intent::new("HassSetPosition").with("entity_id", "cover.a").with("position", "40")).is_none());
+    let restored =
+        invert_intent(&Intent::new("HassLightSet").with("entity_id", "light.a").with("brightness", "30").with("prior_brightness", "80"))
+            .unwrap();
+    assert_eq!(restored.slot("brightness"), Some("80"));
 }
 
 #[test]

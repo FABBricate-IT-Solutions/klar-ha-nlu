@@ -51,9 +51,10 @@ class ConversationFallbackTests(unittest.TestCase):
         src = (ROOT / "custom_components" / "klar_nlu" / "conversation.py").read_text(
             encoding="utf-8"
         )
-        start = src.index("executed = await execute_plan")
+        start = src.index("executed = await stamp_then_execute")
         end = src.index("if self._quiet_ack()", start)
         block = src[start:end]
+        self.assertIn("execute_plan=execute_plan", block)
         self.assertIn("calendar_query_only(plan)", block)
         self.assertIn("self._calendar_llm()", block)
         self.assertIn('executed.get("outcome") != "error"', block)

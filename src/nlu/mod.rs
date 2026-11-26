@@ -27,10 +27,13 @@ mod risk;
 pub mod semantic;
 mod sensor_query;
 mod speech;
+pub(crate) mod undo;
 mod unmet;
 mod validation;
 mod weather_lex;
 mod weather_words;
+
+pub use undo::UndoPrior;
 
 use crate::session::Session;
 use crate::types::{

@@ -267,7 +267,7 @@ impl PipelineResult {
         for intent in &self.commit.remember {
             session.remember(intent);
         }
-        if self.commit.remember.iter().any(|intent| super::household::invert_intent(intent).is_some()) {
+        if self.commit.remember.iter().any(super::undo::remembers_for_undo) {
             session.last_execute = self.commit.remember.clone();
         }
         if let Some(briefing) = self.commit.briefing {

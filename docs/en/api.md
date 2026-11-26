@@ -65,6 +65,7 @@ Route index generated from the Axum router (`python3 scripts/gen_api_routes.py`)
 | `GET` | `/api/v2/policies/trainer-context` | Read | Trainer context stub for the Rules LLM. |
 | `POST` | `/api/v2/policies/trainer/chat` | Write | Trainer chat SSE (write token). |
 | `POST` | `/api/v2/policies/trainer/consent` | Write | Approve or deny a pending trainer write tool. |
+| `POST` | `/api/v2/session/undo-priors` | Write | Stamp prior brightness/position/temperature/volume onto the last execute so undo can restore them. |
 | `GET` | `/api/v2/settings/backup` | Write | Download allowlisted settings tar.gz. |
 | `POST` | `/api/v2/settings/restore` | Write | Restore from a settings backup archive. |
 | `GET` | `/api/v2/speech/asr_boost` | Read | Ranked Whisper bias terms for external STT. |

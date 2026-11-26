@@ -11,6 +11,7 @@ use super::context::ParseContext;
 use super::draft::{chat, clock_chat, execute, reject, Draft};
 use super::phrase::{after_prefix, has_words, is_any_phrase, is_phrase, words, Slack};
 use super::risk::risky_step;
+pub(crate) use super::undo::invert_intent;
 
 pub(super) fn route(context: &ParseContext<'_>, tokens: &[String]) -> Option<Draft> {
     if tokens.is_empty() {
@@ -213,26 +214,6 @@ fn weather(context: &ParseContext<'_>, class: super::weather_lex::WeatherClass) 
         }
         None => chat(house.no_weather.into(), false, false),
     }
-}
-
-pub(crate) fn invert_intent(intent: &Intent) -> Option<Intent> {
-    let name = match intent.name.as_str() {
-        "HassTurnOn" => "HassTurnOff",
-        "HassTurnOff" => "HassTurnOn",
-        "HassToggle" => "HassToggle",
-        "HassMediaPause" => "HassMediaUnpause",
-        "HassMediaUnpause" => "HassMediaPause",
-        "HassMediaPlayerMute" => "HassMediaPlayerUnmute",
-        "HassMediaPlayerUnmute" => "HassMediaPlayerMute",
-        "HassVacuumStart" => "HassVacuumReturnToBase",
-        "HassStartTimer" => "HassCancelTimer",
-        "HassOpenCover" => "HassCloseCover",
-        "HassCloseCover" => "HassOpenCover",
-        "HassLock" => "HassUnlock",
-        "HassUnlock" => "HassLock",
-        _ => return None,
-    };
-    Some(Intent { name: name.into(), slots: intent.slots.clone() })
 }
 
 fn looks_like_clock(context: &ParseContext<'_>, said: &[String], tokens: &[String]) -> bool {

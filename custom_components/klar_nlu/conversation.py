@@ -64,6 +64,7 @@ from .lang_select import advertised_languages, default_pack, enabled_packs, reso
 from .lookup import grounded, lookup_facts, lookup_instruction, lookup_miss, source_speech
 from .contracts import executable_intents
 from .executor import execute_plan
+from .undo_priors import stamp_then_execute
 from .fallback import (
     append_llm_turn,
     calendar_query_only,
@@ -401,8 +402,17 @@ class KlarConversationEntity(ConversationEntity):
 
         if decision_type == "execute" and intents:
             plan = intents
-            executed = await execute_plan(
-                self.hass, user_input, plan, pack, self._assistant(), self._exposed
+            executed = await stamp_then_execute(
+                self.hass,
+                user_input,
+                plan,
+                pack,
+                self._assistant(),
+                self._exposed,
+                url=self._url,
+                token=self._token(),
+                conversation_id=conversation_id,
+                execute_plan=execute_plan,
             )
             if executed.get("speech"):
                 speech = str(executed["speech"])
@@ -715,7 +725,18 @@ class KlarConversationEntity(ConversationEntity):
             if str((payload.get("decision") or {}).get("type") or "") == "execute":
                 intents = keep_lab_plan(executable_intents(payload), registered_intent_names(self.hass))
                 if intents:
-                    executed = await execute_plan(self.hass, user_input, intents, pack, self._assistant(), self._exposed)
+                    executed = await stamp_then_execute(
+                        self.hass,
+                        user_input,
+                        intents,
+                        pack,
+                        self._assistant(),
+                        self._exposed,
+                        url=self._url,
+                        token=self._token(),
+                        conversation_id=payload.get("conversation_id") or user_input.conversation_id,
+                        execute_plan=execute_plan,
+                    )
                     speech = str(executed.get("speech") or payload.get("speech") or _cue(_DONE, pack, "OK"))
                     return await self._spoken(
                         user_input,
