@@ -59,6 +59,19 @@ fn a02_cross_origin_loopback_write_is_forbidden() {
 }
 
 #[test]
+fn ha_proxy_origin_with_write_token_is_allowed() {
+    // HA sidebar iframe → /api/klar_nlu/ui → engine: Origin is the HA frontend,
+    // Host is the engine. The proxy injects x-klar-token.
+    let peer = "192.168.178.226:9".parse().unwrap();
+    let mut headers = HeaderMap::new();
+    headers.insert("origin", "http://homeassistant.local:8123".parse().unwrap());
+    headers.insert("host", "192.168.178.15:10520".parse().unwrap());
+    headers.insert("x-klar-token", "secret".parse().unwrap());
+    assert!(writes_allowed(Some(peer), &headers, &Some("secret".into())));
+    assert!(require(Capability::Write, Some(peer), &headers, &Some("secret".into())).is_ok());
+}
+
+#[test]
 fn same_origin_loopback_write_still_works() {
     let peer = "127.0.0.1:9".parse().unwrap();
     let mut headers = HeaderMap::new();
