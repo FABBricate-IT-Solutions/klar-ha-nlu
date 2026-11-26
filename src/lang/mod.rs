@@ -197,6 +197,7 @@ pub fn catalog_for(codes: &[String]) -> Arc<Catalog> {
     let key = format!("{}+{}+u{}", ids.iter().map(|lang| lang.code()).collect::<Vec<_>>().join(","), applied.join(","), user_key);
     let mut map = cache().lock();
     if let Some(catalog) = map.get(&key) {
+        crate::ops::ops().record_cache_hit(map.len() as u64);
         return catalog;
     }
     let mut catalog = Catalog::merge_layers(&layers_of(&ids));
@@ -208,7 +209,9 @@ pub fn catalog_for(codes: &[String]) -> Arc<Catalog> {
     if let Some(user) = &user {
         resolver::apply_user_overlay(&mut catalog, user);
     }
-    map.insert(key, Arc::new(catalog))
+    let out = map.insert(key, Arc::new(catalog));
+    crate::ops::ops().record_cache_miss(map.len() as u64);
+    out
 }
 
 /// The catalog a request binds under these settings. `languages` may be empty (every
@@ -225,9 +228,12 @@ pub fn bound_catalog(settings: &crate::types::Settings) -> Arc<Catalog> {
 fn cached_builtins(ids: &[LangId], key: &str) -> Arc<Catalog> {
     let mut map = cache().lock();
     if let Some(catalog) = map.get(key) {
+        crate::ops::ops().record_cache_hit(map.len() as u64);
         return catalog;
     }
-    map.insert(key.to_string(), Arc::new(Catalog::merge_layers(&layers_of(ids))))
+    let out = map.insert(key.to_string(), Arc::new(Catalog::merge_layers(&layers_of(ids))));
+    crate::ops::ops().record_cache_miss(map.len() as u64);
+    out
 }
 
 /// A regional pack is bound on top of its parent. A parent that is bound anyway is not read twice.

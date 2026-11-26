@@ -4,6 +4,7 @@ use crate::io::listen::{accept_failed, stopped};
 use crate::io::parse_run::{run_parse, ParseRequest};
 use crate::io::state::AppState;
 use crate::nlu::legacy_result;
+use crate::ops;
 use crate::types::{ParseDecision, ParseOutcome};
 use serde_json::{json, Value};
 use std::io::{Error, ErrorKind};
@@ -33,6 +34,7 @@ struct InflightGuard(Arc<AtomicUsize>);
 impl Drop for InflightGuard {
     fn drop(&mut self) {
         self.0.fetch_sub(1, Ordering::Relaxed);
+        ops::ops().record_wyoming_close();
     }
 }
 
@@ -57,10 +59,12 @@ pub async fn serve(listener: TcpListener, state: AppState, mut stop: watch::Rece
         };
         if !should_admit(peer, inflight.load(Ordering::Relaxed)) {
             // Auth and capacity still reject; a short error is best-effort so clients do not hang.
+            ops::ops().record_wyoming_reject();
             tokio::spawn(write_reject(stream));
             continue;
         }
         inflight.fetch_add(1, Ordering::Relaxed);
+        ops::ops().record_wyoming_connect();
         let state = state.clone();
         let inflight = inflight.clone();
         let (stop, alive) = (stop.clone(), alive.clone());
@@ -211,7 +215,11 @@ where
                     outcome.teach = Some(crate::types::TeachProposal { entity_id, alias });
                 }
                 let last_names = session.last.iter().map(|turn| turn.name.clone()).collect();
-                state.sessions.lock().await.put(session);
+                {
+                    let mut sessions = state.sessions.lock().await;
+                    sessions.put(session);
+                    ops::ops().sync_sessions(sessions.created(), sessions.len() as u64);
+                }
                 state.record_parse("wyoming", language, &legacy_result(outcome.clone())).await;
                 state.record_outcome(&outcome, last_names).await;
                 let intents = match &outcome.decision {

@@ -36,8 +36,21 @@ pub(crate) struct StoredEndpoint {
 }
 
 pub(crate) fn load_stored_endpoint(dir: &Path) -> Option<StoredEndpoint> {
-    let raw = read_to_string_confined(dir, LLM_FILE).ok()?;
-    serde_json::from_str(&raw).ok()
+    let raw = match read_to_string_confined(dir, LLM_FILE) {
+        Ok(raw) => raw,
+        Err(err) if err.kind() == std::io::ErrorKind::NotFound => return None,
+        Err(err) => {
+            tracing::warn!("{LLM_FILE} nicht lesbar: {err}");
+            return None;
+        }
+    };
+    match serde_json::from_str(&raw) {
+        Ok(stored) => Some(stored),
+        Err(err) => {
+            tracing::warn!("{LLM_FILE} ungültig: {err}");
+            None
+        }
+    }
 }
 
 /// The file holds the API key, so only the owner may read it.

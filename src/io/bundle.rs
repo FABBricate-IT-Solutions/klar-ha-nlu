@@ -115,7 +115,11 @@ impl BundleStore {
 
     pub fn clear(&self) {
         let _guard = self.lock.lock().unwrap_or_else(|e| e.into_inner());
-        let _ = remove_confined(&self.dir, BUNDLE_FILE);
+        if let Err(err) = remove_confined(&self.dir, BUNDLE_FILE) {
+            if err.kind() != std::io::ErrorKind::NotFound {
+                tracing::warn!("{BUNDLE_FILE} nicht gelöscht: {err}");
+            }
+        }
     }
 
     pub fn dataset_yaml(&self) -> String {
@@ -235,7 +239,11 @@ fn ensure_ids(entries: &mut [BundleEntry]) -> bool {
 
 fn write_entries(dir: &Path, entries: &[BundleEntry]) {
     if entries.is_empty() {
-        let _ = remove_confined(dir, BUNDLE_FILE);
+        if let Err(err) = remove_confined(dir, BUNDLE_FILE) {
+            if err.kind() != std::io::ErrorKind::NotFound {
+                tracing::warn!("{BUNDLE_FILE} nicht gelöscht: {err}");
+            }
+        }
         return;
     }
     let mut body = String::new();
@@ -245,7 +253,9 @@ fn write_entries(dir: &Path, entries: &[BundleEntry]) {
             body.push('\n');
         }
     }
-    let _ = write_atomic_confined(dir, BUNDLE_FILE, body.as_bytes());
+    if let Err(err) = write_atomic_confined(dir, BUNDLE_FILE, body.as_bytes()) {
+        tracing::warn!("{BUNDLE_FILE} nicht gespeichert: {err}");
+    }
 }
 
 fn append_line(dir: &Path, line: &str) {
@@ -258,7 +268,9 @@ fn append_line(dir: &Path, line: &str) {
     }
     payload.push_str(line);
     payload.push('\n');
-    let _ = append_confined(dir, BUNDLE_FILE, payload.as_bytes());
+    if let Err(err) = append_confined(dir, BUNDLE_FILE, payload.as_bytes()) {
+        tracing::warn!("{BUNDLE_FILE} nicht angehängt: {err}");
+    }
 }
 
 pub fn routes() -> Router<AppState> {

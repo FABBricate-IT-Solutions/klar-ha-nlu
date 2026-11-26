@@ -232,9 +232,28 @@ pub fn save_home_snapshot(dir: &Path, snapshot: &HomeSnapshot) -> std::io::Resul
 }
 
 pub fn load_home_snapshot(dir: &Path) -> Option<HomeGraph> {
-    let raw = read_to_string_confined(dir, HOME_SNAPSHOT_FILE).ok()?;
-    let snapshot: HomeSnapshot = serde_json::from_str(&raw).ok()?;
-    ingest(snapshot).ok()
+    let raw = match read_to_string_confined(dir, HOME_SNAPSHOT_FILE) {
+        Ok(raw) => raw,
+        Err(err) if err.kind() == std::io::ErrorKind::NotFound => return None,
+        Err(err) => {
+            tracing::warn!("{HOME_SNAPSHOT_FILE} nicht lesbar: {err}");
+            return None;
+        }
+    };
+    let snapshot: HomeSnapshot = match serde_json::from_str(&raw) {
+        Ok(snapshot) => snapshot,
+        Err(err) => {
+            tracing::warn!("{HOME_SNAPSHOT_FILE} ungültig: {err}");
+            return None;
+        }
+    };
+    match ingest(snapshot) {
+        Ok(graph) => Some(graph),
+        Err(err) => {
+            tracing::warn!("{HOME_SNAPSHOT_FILE} abgelehnt: {}", err.as_str());
+            None
+        }
+    }
 }
 
 fn reject_duplicate_ids(snapshot: &HomeSnapshot) -> Result<(), SnapshotError> {

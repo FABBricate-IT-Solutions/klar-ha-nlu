@@ -1,6 +1,7 @@
 use crate::home::expose::assist_visible;
 use crate::home::gaps::leftover;
 use crate::home::overlay::apply_overlay;
+use crate::io::access_log::access_log;
 use crate::io::auth::{reads_allowed, writes_allowed};
 use crate::io::auth_middleware::authorize;
 use crate::io::limits::MAX_PARSE_CHARS;
@@ -74,7 +75,9 @@ pub fn router(state: AppState) -> Router {
                 }))
                 .service(ServeDir::new(ui_dir())),
         )
-        .with_state(state)
+        .with_state(state.clone())
+        // 3.10: one access line per request (outside auth so denials are logged too).
+        .layer(from_fn_with_state(state, access_log))
 }
 
 async fn index() -> Html<String> {
@@ -159,7 +162,11 @@ async fn api_parse(
         outcome.teach = Some(TeachProposal { entity_id, alias });
     }
     let last_names = session.last.iter().map(|turn| turn.name.clone()).collect();
-    state.sessions.lock().await.put(session);
+    {
+        let mut sessions = state.sessions.lock().await;
+        sessions.put(session);
+        crate::ops::ops().sync_sessions(sessions.created(), sessions.len() as u64);
+    }
     state.record_parse("http", body.language.as_deref(), &legacy_result(outcome.clone())).await;
     state.record_outcome(&outcome, last_names).await;
     Ok(Json(outcome))

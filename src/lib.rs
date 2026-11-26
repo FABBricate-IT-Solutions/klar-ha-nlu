@@ -7,6 +7,7 @@ pub mod lang;
 pub mod llm;
 pub mod migrate;
 pub mod nlu;
+pub mod ops;
 pub mod parse;
 pub mod session;
 pub mod speech;

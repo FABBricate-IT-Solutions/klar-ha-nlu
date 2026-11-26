@@ -1,3 +1,4 @@
+pub(crate) mod access_log;
 pub(crate) mod auth;
 pub(crate) mod auth_middleware;
 pub(crate) mod backup;
@@ -16,6 +17,9 @@ pub(crate) mod listen;
 pub(crate) mod llm;
 pub(crate) mod llm_calls;
 pub(crate) mod metrics;
+#[cfg(test)]
+#[path = "observability_tests.rs"]
+mod observability_tests;
 pub(crate) mod parse_run;
 pub(crate) mod policies;
 pub(crate) mod privacy;

@@ -6,6 +6,7 @@
 use crate::home::overlay_store::OverlayRead;
 use crate::io::state::AppState;
 use crate::llm::LlmPublic;
+use crate::ops::{ops, OpsSnapshot};
 use axum::extract::State;
 use axum::routing::get;
 use axum::{Json, Router};
@@ -26,6 +27,8 @@ struct Health {
     overlay: OverlayHealth,
     llm: LlmPublic,
     wyoming: WyomingHealth,
+    /// Latency, sessions, overlay writes, catalog cache, Wyoming (3.10).
+    ops: OpsSnapshot,
 }
 
 #[derive(Debug, Serialize)]
@@ -76,6 +79,10 @@ async fn health(State(state): State<AppState>) -> Json<Health> {
         OverlayRead::Unreadable(_) => "unreadable",
     };
     let llm = state.llm.lock().await.as_ref().map(|endpoint| endpoint.public()).unwrap_or_else(LlmPublic::empty);
+    {
+        let sessions = state.sessions.lock().await;
+        ops().sync_sessions(sessions.created(), sessions.len() as u64);
+    }
     Json(Health {
         ok: true,
         version: env!("CARGO_PKG_VERSION"),
@@ -84,6 +91,7 @@ async fn health(State(state): State<AppState>) -> Json<Health> {
         overlay: OverlayHealth { status: overlay },
         llm,
         wyoming: WyomingHealth { listening: state.wyoming_up.load(Ordering::Relaxed) },
+        ops: ops().snapshot(),
     })
 }
 
@@ -133,6 +141,9 @@ mod tests {
         assert_eq!(body["overlay"]["status"], "missing");
         assert_eq!(body["llm"]["configured"], false);
         assert_eq!(body["wyoming"]["listening"], true);
+        assert!(body["ops"]["requests"].as_u64().is_some());
+        assert!(body["ops"]["overlay_writes"].as_u64().is_some());
+        assert!(body["ops"]["wyoming_connects"].as_u64().is_some());
     }
 
     #[tokio::test]
