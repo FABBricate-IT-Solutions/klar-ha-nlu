@@ -1,0 +1,67 @@
+# Gold natural sentences for he: hand-written, not generated from the pack lexicon.
+# source: plan evidence natural.py (Q-02)
+rooms:
+  living: "סלון"
+  kitchen: "מטבח"
+  bedroom: "חדר שינה"
+  hall: "כניסה"
+devices:
+  light_living: "אור בסלון"
+  light_kitchen: "אור במטבח"
+  light_bedroom: "אור בחדר השינה"
+  cover_bedroom: "תריסים בחדר השינה"
+  climate_living: "חימום"
+  lock_front: "דלת הכניסה"
+  shopping_list: "רשימת קניות"
+cases:
+  - text: "הדלק את האור בסלון"
+    expect: "TurnOn@living"
+    kind: execute
+    soft: "known gap: rejected (NoTarget)"
+  - text: "תדליק את האור בסלון"
+    expect: "TurnOn@living"
+    kind: execute
+    soft: "known gap: rejected (NoTarget)"
+  - text: "כבה את האור במטבח"
+    expect: "TurnOff@kitchen"
+    kind: execute
+    soft: "known gap: rejected (NoTarget)"
+  - text: "הדלק אור סלון"
+    expect: "TurnOn@living"
+    kind: execute
+  - text: "כוון את האור בסלון ל-50 אחוז"
+    expect: "LightSet@living:brightness=50"
+    kind: execute
+    soft: "known gap: rejected (NoTarget)"
+  - text: "כוון את החימום ל-21 מעלות"
+    expect: "ClimateSetTemperature:temperature=21"
+    kind: execute
+    soft: "known gap: rejected (NoAction)"
+  - text: "פתח את התריסים בחדר השינה"
+    expect: "TurnOn@bedroom"
+    kind: execute
+  - text: "סגור את התריסים בחדר השינה"
+    expect: "CONFIRM"
+    kind: confirm
+  - text: "האם האור במטבח דולק?"
+    expect: "GetState@kitchen"
+    kind: execute
+  - text: "מה הטמפרטורה בסלון?"
+    expect: "GetTemp@living"
+    kind: execute
+  - text: "כוון טיימר לחמש דקות"
+    expect: "StartTimer:minutes=5"
+    kind: execute
+    soft: "known gap: asks a follow-up instead of acting"
+  - text: "הוסף חלב לרשימת הקניות"
+    expect: "ListAdd:item=חלב"
+    kind: execute
+  - text: "השהה את המוזיקה"
+    expect: "MediaPause"
+    kind: execute
+  - text: "נעל את דלת הכניסה"
+    expect: "CONFIRM"
+    kind: confirm
+  - text: "מה השעה?"
+    expect: "CHAT"
+    kind: chat

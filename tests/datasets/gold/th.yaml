@@ -1,0 +1,60 @@
+# Gold natural sentences for th: hand-written, not generated from the pack lexicon.
+# source: plan evidence natural.py (Q-02)
+rooms:
+  living: "ห้องนั่งเล่น"
+  kitchen: "ห้องครัว"
+  bedroom: "ห้องนอน"
+  hall: "ทางเข้า"
+devices:
+  light_living: "ไฟห้องนั่งเล่น"
+  light_kitchen: "ไฟห้องครัว"
+  light_bedroom: "ไฟห้องนอน"
+  cover_bedroom: "ม่านห้องนอน"
+  climate_living: "เครื่องทำความร้อน"
+  lock_front: "ประตูหน้าบ้าน"
+  shopping_list: "รายการซื้อของ"
+cases:
+  - text: "เปิดไฟห้องนั่งเล่น"
+    expect: "TurnOn@living"
+    kind: execute
+  - text: "ปิดไฟห้องครัว"
+    expect: "TurnOff@kitchen"
+    kind: execute
+  - text: "ช่วยเปิดไฟห้องนั่งเล่นหน่อย"
+    expect: "TurnOn@living"
+    kind: execute
+    soft: "known gap: rejected (NoTarget)"
+  - text: "ปรับไฟห้องนั่งเล่นเป็น 50 เปอร์เซ็นต์"
+    expect: "LightSet@living:brightness=50"
+    kind: execute
+    soft: "known gap: rejected (NoTarget)"
+  - text: "ตั้งเครื่องทำความร้อนเป็น 21 องศา"
+    expect: "ClimateSetTemperature:temperature=21"
+    kind: execute
+  - text: "เปิดม่านห้องนอน"
+    expect: "TurnOn@bedroom"
+    kind: execute
+  - text: "ปิดม่านห้องนอน"
+    expect: "CONFIRM"
+    kind: confirm
+  - text: "ไฟห้องครัวเปิดอยู่ไหม"
+    expect: "GetState@kitchen"
+    kind: execute
+  - text: "ห้องนั่งเล่นอุณหภูมิเท่าไหร่"
+    expect: "GetTemp@living"
+    kind: execute
+  - text: "ตั้งเวลาห้านาที"
+    expect: "StartTimer:minutes=5"
+    kind: execute
+  - text: "เพิ่มนมในรายการซื้อของ"
+    expect: "ListAdd:item=นม"
+    kind: execute
+  - text: "หยุดเพลงชั่วคราว"
+    expect: "MediaPause"
+    kind: execute
+  - text: "ล็อกประตูหน้าบ้าน"
+    expect: "CONFIRM"
+    kind: confirm
+  - text: "ตอนนี้กี่โมง"
+    expect: "CHAT"
+    kind: chat

@@ -1,0 +1,61 @@
+# Gold natural sentences for hy: hand-written, not generated from the pack lexicon.
+# Hand-authored natural speech (Q-02); not speaker-verified.
+rooms:
+  living: "Հյուրասենյակ"
+  kitchen: "Խոհանոց"
+  bedroom: "Ննջասենյակ"
+  hall: "Միջանցք"
+devices:
+  light_living: "Հյուրասենյակի լույսը"
+  light_kitchen: "Խոհանոցի լույսը"
+  light_bedroom: "Ննջասենյակի լույսը"
+  cover_bedroom: "Ննջասենյակի վարագույրները"
+  climate_living: "Ջեռուցում"
+  lock_front: "Մուտքի դուռ"
+  shopping_list: "Գնումների ցուցակ"
+cases:
+  - text: "Միացրու հյուրասենյակի լույսը"
+    expect: "TurnOn@living"
+    kind: execute
+  - text: "Անջատիր խոհանոցի լույսը"
+    expect: "TurnOff@kitchen"
+    kind: execute
+  - text: "Վառիր հյուրասենյակի լույսը"
+    expect: "TurnOn@living"
+    kind: execute
+  - text: "Դիր հյուրասենյակի լույսը 50 տոկոսի վրա"
+    expect: "LightSet@living:brightness=50"
+    kind: execute
+  - text: "Դիր ջեռուցումը 21 աստիճանի վրա"
+    expect: "ClimateSetTemperature:temperature=21"
+    kind: execute
+  - text: "Բացիր ննջասենյակի վարագույրները"
+    expect: "TurnOn@bedroom"
+    kind: execute
+  - text: "Փակիր ննջասենյակի վարագույրները"
+    expect: "CONFIRM"
+    kind: confirm
+  - text: "Արդյո՞ք խոհանոցի լույսը միացված է"
+    expect: "GetState@kitchen"
+    kind: execute
+  - text: "Ինչքա՞ն է ջերմաստիճանը հյուրասենյակում"
+    expect: "GetTemp@living"
+    kind: execute
+    soft: "known gap: rejected (NoAction)"
+  - text: "Դիր ժամաչափ հինգ րոպեով"
+    expect: "StartTimer:minutes=5"
+    kind: execute
+    soft: "known gap: asks a follow-up instead of acting"
+  - text: "Ավելացրու կաթը գնումների ցուցակին"
+    expect: "ListAdd:item=կաթ"
+    kind: execute
+  - text: "Դադարեցրու երաժշտությունը"
+    expect: "MediaPause"
+    kind: execute
+  - text: "Կողպիր մուտքի դուռը"
+    expect: "CONFIRM"
+    kind: confirm
+  - text: "Ժամը քանի՞սն է"
+    expect: "CHAT"
+    kind: chat
+    soft: "known gap: rejected (NoAction)"

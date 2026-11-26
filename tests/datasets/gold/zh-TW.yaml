@@ -1,0 +1,62 @@
+# Gold natural sentences for zh-TW: hand-written, not generated from the pack lexicon.
+# Hand-authored natural speech (Q-02); not speaker-verified.
+rooms:
+  living: "客廳"
+  kitchen: "廚房"
+  bedroom: "臥室"
+  hall: "玄關"
+devices:
+  light_living: "客廳燈"
+  light_kitchen: "廚房燈"
+  light_bedroom: "臥室燈"
+  cover_bedroom: "臥室窗簾"
+  climate_living: "暖氣"
+  lock_front: "前門"
+  shopping_list: "購物清單"
+cases:
+  - text: "打開客廳的燈"
+    expect: "TurnOn@living"
+    kind: execute
+  - text: "關掉廚房的燈"
+    expect: "TurnOff@kitchen"
+    kind: execute
+  - text: "把客廳的燈打開"
+    expect: "TurnOn@living"
+    kind: execute
+  - text: "把客廳的燈調到50%"
+    expect: "LightSet@living:brightness=50"
+    kind: execute
+  - text: "把暖氣調到21度"
+    expect: "ClimateSetTemperature:temperature=21"
+    kind: execute
+  - text: "打開臥室的窗簾"
+    expect: "TurnOn@bedroom"
+    kind: execute
+  - text: "關上臥室的窗簾"
+    expect: "CONFIRM"
+    kind: confirm
+  - text: "廚房的燈開著嗎？"
+    expect: "GetState@kitchen"
+    kind: execute
+  - text: "客廳現在幾度？"
+    expect: "GetTemp@living"
+    kind: execute
+  - text: "設定一個五分鐘的計時器"
+    expect: "StartTimer:minutes=5"
+    kind: execute
+    soft: "known gap: rejected (NoAction)"
+  - text: "把牛奶加到購物清單"
+    expect: "ListAdd:item=牛奶"
+    kind: execute
+  - text: "暫停音樂"
+    expect: "MediaPause"
+    kind: execute
+  - text: "打開客廳的燈，然後關掉廚房的燈"
+    expect: "TurnOn@living+TurnOff@kitchen"
+    kind: execute
+  - text: "鎖上前門"
+    expect: "CONFIRM"
+    kind: confirm
+  - text: "現在幾點？"
+    expect: "CHAT"
+    kind: chat

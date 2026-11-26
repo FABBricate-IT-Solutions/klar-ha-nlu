@@ -1,0 +1,62 @@
+# Gold natural sentences for eu: hand-written, not generated from the pack lexicon.
+# Hand-authored natural speech (Q-02); not speaker-verified.
+rooms:
+  living: "Egongela"
+  kitchen: "Sukaldea"
+  bedroom: "Logela"
+  hall: "Sarrera"
+devices:
+  light_living: "Egongelako argia"
+  light_kitchen: "Sukaldeko argia"
+  light_bedroom: "Logelako argia"
+  cover_bedroom: "Logelako pertsianak"
+  climate_living: "Berokuntza"
+  lock_front: "Sarrerako atea"
+  shopping_list: "Erosketa zerrenda"
+cases:
+  - text: "Piztu egongelako argia"
+    expect: "TurnOn@living"
+    kind: execute
+  - text: "Itzali sukaldeko argia"
+    expect: "TurnOff@kitchen"
+    kind: execute
+  - text: "Piztu argia egongelan"
+    expect: "TurnOn@living"
+    kind: execute
+  - text: "Jarri egongelako argia ehuneko 50ean"
+    expect: "LightSet@living:brightness=50"
+    kind: execute
+  - text: "Jarri berokuntza 21 graduan"
+    expect: "ClimateSetTemperature:temperature=21"
+    kind: execute
+  - text: "Ireki logelako pertsianak"
+    expect: "TurnOn@bedroom"
+    kind: execute
+  - text: "Itxi logelako pertsianak"
+    expect: "CONFIRM"
+    kind: confirm
+  - text: "Piztuta dago sukaldeko argia?"
+    expect: "GetState@kitchen"
+    kind: execute
+  - text: "Zein da egongelako tenperatura?"
+    expect: "GetTemp@living"
+    kind: execute
+  - text: "Jarri tenporizadore bat bost minututarako"
+    expect: "StartTimer:minutes=5"
+    kind: execute
+    soft: "known gap: rejected (NoAction)"
+  - text: "Gehitu esnea erosketa zerrendara"
+    expect: "ListAdd:item=esne"
+    kind: execute
+  - text: "Jarri musika pausan"
+    expect: "MediaPause"
+    kind: execute
+  - text: "Piztu egongelako argia eta itzali sukaldeko argia"
+    expect: "TurnOn@living+TurnOff@kitchen"
+    kind: execute
+  - text: "Giltzapetu sarrerako atea"
+    expect: "CONFIRM"
+    kind: confirm
+  - text: "Zer ordu da?"
+    expect: "CHAT"
+    kind: chat

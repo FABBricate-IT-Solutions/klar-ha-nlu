@@ -1,0 +1,61 @@
+# Gold natural sentences for ml: hand-written, not generated from the pack lexicon.
+# Hand-authored natural speech (Q-02); not speaker-verified.
+rooms:
+  living: "സ്വീകരണമുറി"
+  kitchen: "അടുക്കള"
+  bedroom: "കിടപ്പുമുറി"
+  hall: "ഇടനാഴി"
+devices:
+  light_living: "സ്വീകരണമുറിയിലെ ലൈറ്റ്"
+  light_kitchen: "അടുക്കളയിലെ ലൈറ്റ്"
+  light_bedroom: "കിടപ്പുമുറിയിലെ ലൈറ്റ്"
+  cover_bedroom: "കിടപ്പുമുറിയിലെ കർട്ടൻ"
+  climate_living: "ഹീറ്റർ"
+  lock_front: "മുൻവാതിൽ"
+  shopping_list: "ഷോപ്പിംഗ് ലിസ്റ്റ്"
+cases:
+  - text: "സ്വീകരണമുറിയിലെ ലൈറ്റ് ഓൺ ചെയ്യൂ"
+    expect: "TurnOn@living"
+    kind: execute
+  - text: "അടുക്കളയിലെ ലൈറ്റ് ഓഫ് ചെയ്യൂ"
+    expect: "TurnOff@kitchen"
+    kind: execute
+  - text: "സ്വീകരണമുറിയിലെ ലൈറ്റ് ഇടൂ"
+    expect: "TurnOn@living"
+    kind: execute
+  - text: "സ്വീകരണമുറിയിലെ ലൈറ്റ് 50 ശതമാനമാക്കൂ"
+    expect: "LightSet@living:brightness=50"
+    kind: execute
+  - text: "ഹീറ്റർ 21 ഡിഗ്രിയിൽ സജ്ജമാക്കൂ"
+    expect: "ClimateSetTemperature:temperature=21"
+    kind: execute
+  - text: "കിടപ്പുമുറിയിലെ കർട്ടൻ തുറക്കൂ"
+    expect: "TurnOn@bedroom"
+    kind: execute
+  - text: "കിടപ്പുമുറിയിലെ കർട്ടൻ അടയ്ക്കൂ"
+    expect: "CONFIRM"
+    kind: confirm
+    soft: "known gap: resolves as HassGetState (read only)"
+  - text: "അടുക്കളയിലെ ലൈറ്റ് ഓണാണോ?"
+    expect: "GetState@kitchen"
+    kind: execute
+  - text: "സ്വീകരണമുറിയിലെ താപനില എത്രയാണ്?"
+    expect: "GetTemp@living"
+    kind: execute
+  - text: "അഞ്ച് മിനിറ്റ് ടൈമർ സജ്ജമാക്കൂ"
+    expect: "StartTimer:minutes=5"
+    kind: execute
+    soft: "known gap: asks a follow-up instead of acting"
+  - text: "ഷോപ്പിംഗ് ലിസ്റ്റിൽ പാൽ ചേർക്കൂ"
+    expect: "ListAdd:item=പാൽ"
+    kind: execute
+  - text: "സംഗീതം താൽക്കാലികമായി നിർത്തൂ"
+    expect: "MediaPause"
+    kind: execute
+  - text: "മുൻവാതിൽ പൂട്ടൂ"
+    expect: "CONFIRM"
+    kind: confirm
+  - text: "ഇപ്പോൾ സമയം എത്രയായി?"
+    expect: "CHAT"
+    kind: chat
+    soft: "known gap: rejected (NoAction)"

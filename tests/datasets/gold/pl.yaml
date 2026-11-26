@@ -1,0 +1,67 @@
+# Gold natural sentences for pl: hand-written, not generated from the pack lexicon.
+# source: plan evidence natural.py (Q-02)
+rooms:
+  living: "Salon"
+  kitchen: "Kuchnia"
+  bedroom: "Sypialnia"
+  hall: "Przedpokój"
+devices:
+  light_living: "Światło w salonie"
+  light_kitchen: "Światło w kuchni"
+  light_bedroom: "Światło w sypialni"
+  cover_bedroom: "Rolety w sypialni"
+  climate_living: "Ogrzewanie"
+  lock_front: "Drzwi wejściowe"
+  shopping_list: "Lista zakupów"
+cases:
+  - text: "Włącz światło w salonie"
+    expect: "TurnOn@living"
+    kind: execute
+  - text: "Wyłącz światło w kuchni"
+    expect: "TurnOff@kitchen"
+    kind: execute
+  - text: "włącz światło salon"
+    expect: "TurnOn@living"
+    kind: execute
+  - text: "Zapal światło w salonie"
+    expect: "TurnOn@living"
+    kind: execute
+  - text: "Zgaś światło w kuchni"
+    expect: "TurnOff@kitchen"
+    kind: execute
+  - text: "Ustaw światło w salonie na 50 procent"
+    expect: "LightSet@living:brightness=50"
+    kind: execute
+  - text: "Ustaw światło w salonie na dwadzieścia pięć procent"
+    expect: "LightSet@living:brightness=25"
+    kind: execute
+  - text: "Ustaw ogrzewanie na 21 stopni"
+    expect: "ClimateSetTemperature:temperature=21"
+    kind: execute
+  - text: "Otwórz rolety w sypialni"
+    expect: "TurnOn@bedroom"
+    kind: execute
+  - text: "Zamknij rolety w sypialni"
+    expect: "CONFIRM"
+    kind: confirm
+  - text: "Czy światło w kuchni jest włączone?"
+    expect: "GetState@kitchen"
+    kind: execute
+  - text: "Jaka jest temperatura w salonie?"
+    expect: "GetTemp@living"
+    kind: execute
+  - text: "Ustaw minutnik na pięć minut"
+    expect: "StartTimer:minutes=5"
+    kind: execute
+  - text: "Dodaj mleko do listy zakupów"
+    expect: "ListAdd:item=mleko"
+    kind: execute
+  - text: "Wstrzymaj muzykę"
+    expect: "MediaPause"
+    kind: execute
+  - text: "Zamknij drzwi wejściowe na klucz"
+    expect: "CONFIRM"
+    kind: confirm
+  - text: "Która godzina?"
+    expect: "CHAT"
+    kind: chat

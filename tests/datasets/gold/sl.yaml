@@ -1,0 +1,61 @@
+# Gold natural sentences for sl: hand-written, not generated from the pack lexicon.
+# Hand-authored natural speech (Q-02); not speaker-verified.
+rooms:
+  living: "Dnevna soba"
+  kitchen: "Kuhinja"
+  bedroom: "Spalnica"
+  hall: "Hodnik"
+devices:
+  light_living: "Luč v dnevni sobi"
+  light_kitchen: "Luč v kuhinji"
+  light_bedroom: "Luč v spalnici"
+  cover_bedroom: "Žaluzije v spalnici"
+  climate_living: "Ogrevanje"
+  lock_front: "Vhodna vrata"
+  shopping_list: "Nakupovalni seznam"
+cases:
+  - text: "Prižgi luč v dnevni sobi"
+    expect: "TurnOn@living"
+    kind: execute
+  - text: "Ugasni luč v kuhinji"
+    expect: "TurnOff@kitchen"
+    kind: execute
+  - text: "Vklopi luč v dnevni sobi"
+    expect: "TurnOn@living"
+    kind: execute
+  - text: "Nastavi luč v dnevni sobi na 50 odstotkov"
+    expect: "LightSet@living:brightness=50"
+    kind: execute
+  - text: "Nastavi ogrevanje na 21 stopinj"
+    expect: "ClimateSetTemperature:temperature=21"
+    kind: execute
+  - text: "Odpri žaluzije v spalnici"
+    expect: "TurnOn@bedroom"
+    kind: execute
+  - text: "Zapri žaluzije v spalnici"
+    expect: "CONFIRM"
+    kind: confirm
+  - text: "Ali sveti luč v kuhinji?"
+    expect: "GetState@kitchen"
+    kind: execute
+  - text: "Kakšna je temperatura v dnevni sobi?"
+    expect: "GetTemp@living"
+    kind: execute
+  - text: "Nastavi časovnik na pet minut"
+    expect: "StartTimer:minutes=5"
+    kind: execute
+  - text: "Dodaj mleko na nakupovalni seznam"
+    expect: "ListAdd:item=mleko"
+    kind: execute
+  - text: "Začasno ustavi glasbo"
+    expect: "MediaPause"
+    kind: execute
+  - text: "Prižgi luč v dnevni sobi in ugasni luč v kuhinji"
+    expect: "TurnOn@living+TurnOff@kitchen"
+    kind: execute
+  - text: "Zakleni vhodna vrata"
+    expect: "CONFIRM"
+    kind: confirm
+  - text: "Koliko je ura?"
+    expect: "CHAT"
+    kind: chat

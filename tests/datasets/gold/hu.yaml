@@ -1,0 +1,67 @@
+# Gold natural sentences for hu: hand-written, not generated from the pack lexicon.
+# source: plan evidence natural.py (Q-02)
+rooms:
+  living: "Nappali"
+  kitchen: "Konyha"
+  bedroom: "Hálószoba"
+  hall: "Előszoba"
+devices:
+  light_living: "Nappali lámpa"
+  light_kitchen: "Konyha lámpa"
+  light_bedroom: "Hálószoba lámpa"
+  cover_bedroom: "Hálószoba redőny"
+  climate_living: "Fűtés"
+  lock_front: "Bejárati ajtó"
+  shopping_list: "Bevásárlólista"
+cases:
+  - text: "Kapcsold fel a villanyt a nappaliban"
+    expect: "TurnOn@living"
+    kind: execute
+    soft: "known gap: asks a follow-up instead of acting"
+  - text: "Kapcsold le a villanyt a konyhában"
+    expect: "TurnOff@kitchen"
+    kind: execute
+    soft: "known gap: asks a follow-up instead of acting"
+  - text: "Kapcsold be a nappali lámpát"
+    expect: "TurnOn@living"
+    kind: execute
+  - text: "Kapcsold ki a konyha lámpát"
+    expect: "TurnOff@kitchen"
+    kind: execute
+  - text: "Állítsd a nappali lámpát 50 százalékra"
+    expect: "LightSet@living:brightness=50"
+    kind: execute
+  - text: "Állítsd a fűtést 21 fokra"
+    expect: "ClimateSetTemperature:temperature=21"
+    kind: execute
+    soft: "known gap: rejected (NoAction)"
+  - text: "Húzd fel a redőnyt a hálószobában"
+    expect: "TurnOn@bedroom"
+    kind: execute
+  - text: "Engedd le a redőnyt a hálószobában"
+    expect: "CONFIRM"
+    kind: confirm
+  - text: "Ég a villany a konyhában?"
+    expect: "GetState@kitchen"
+    kind: execute
+    soft: "known gap: rejected (NoAction)"
+  - text: "Hány fok van a nappaliban?"
+    expect: "GetTemp@living"
+    kind: execute
+    soft: "known gap: rejected (OutOfDomain)"
+  - text: "Állíts be egy időzítőt öt percre"
+    expect: "StartTimer:minutes=5"
+    kind: execute
+    soft: "known gap: asks a follow-up instead of acting"
+  - text: "Add hozzá a tejet a bevásárlólistához"
+    expect: "ListAdd:item=tej"
+    kind: execute
+  - text: "Szüneteltesd a zenét"
+    expect: "MediaPause"
+    kind: execute
+  - text: "Zárd be a bejárati ajtót"
+    expect: "CONFIRM"
+    kind: confirm
+  - text: "Mennyi az idő?"
+    expect: "CHAT"
+    kind: chat

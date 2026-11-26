@@ -1,0 +1,61 @@
+# Gold natural sentences for te: hand-written, not generated from the pack lexicon.
+# Hand-authored natural speech (Q-02); not speaker-verified.
+rooms:
+  living: "హాల్"
+  kitchen: "వంటగది"
+  bedroom: "పడకగది"
+  hall: "వరండా"
+devices:
+  light_living: "హాల్ లైట్"
+  light_kitchen: "వంటగది లైట్"
+  light_bedroom: "పడకగది లైట్"
+  cover_bedroom: "పడకగది కర్టెన్"
+  climate_living: "హీటర్"
+  lock_front: "ముందు తలుపు"
+  shopping_list: "షాపింగ్ జాబితా"
+cases:
+  - text: "హాల్ లైట్ ఆన్ చేయి"
+    expect: "TurnOn@living"
+    kind: execute
+  - text: "వంటగది లైట్ ఆఫ్ చేయి"
+    expect: "TurnOff@kitchen"
+    kind: execute
+  - text: "హాల్ లైట్ వెలిగించు"
+    expect: "TurnOn@living"
+    kind: execute
+  - text: "హాల్ లైట్ 50 శాతానికి సెట్ చేయి"
+    expect: "LightSet@living:brightness=50"
+    kind: execute
+  - text: "హీటర్ 21 డిగ్రీలకు సెట్ చేయి"
+    expect: "ClimateSetTemperature:temperature=21"
+    kind: execute
+  - text: "పడకగది కర్టెన్ తెరువు"
+    expect: "TurnOn@bedroom"
+    kind: execute
+  - text: "పడకగది కర్టెన్ మూసివేయి"
+    expect: "CONFIRM"
+    kind: confirm
+    soft: "known gap: resolves as HassGetState (read only)"
+  - text: "వంటగది లైట్ వెలుగుతోందా?"
+    expect: "GetState@kitchen"
+    kind: execute
+  - text: "హాల్ ఉష్ణోగ్రత ఎంత?"
+    expect: "GetTemp@living"
+    kind: execute
+  - text: "ఐదు నిమిషాల టైమర్ పెట్టు"
+    expect: "StartTimer:minutes=5"
+    kind: execute
+    soft: "known gap: asks a follow-up instead of acting"
+  - text: "షాపింగ్ జాబితాలో పాలు చేర్చు"
+    expect: "ListAdd:item=పాలు"
+    kind: execute
+  - text: "సంగీతాన్ని పాజ్ చేయి"
+    expect: "MediaPause"
+    kind: execute
+  - text: "ముందు తలుపు లాక్ చేయి"
+    expect: "CONFIRM"
+    kind: confirm
+  - text: "ఇప్పుడు సమయం ఎంత?"
+    expect: "CHAT"
+    kind: chat
+    soft: "known gap: rejected (NoAction)"

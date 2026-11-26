@@ -1,0 +1,65 @@
+# Gold natural sentences for kw: hand-written, not generated from the pack lexicon.
+# Hand-authored natural speech (Q-02); not speaker-verified.
+rooms:
+  living: "Stevell esedha"
+  kitchen: "Kegin"
+  bedroom: "Stevell wely"
+  hall: "Sal"
+devices:
+  light_living: "Golow an stevell esedha"
+  light_kitchen: "Golow an gegin"
+  light_bedroom: "Golow an stevell wely"
+  cover_bedroom: "Kortinow an stevell wely"
+  climate_living: "Tomheans"
+  lock_front: "Daras a-rag"
+  shopping_list: "Rol pernans"
+cases:
+  - text: "Gwra golowi golow an stevell esedha"
+    expect: "TurnOn@living"
+    kind: execute
+    soft: "known gap: resolves as HassGetState (read only)"
+  - text: "Gwra studhya golow an gegin"
+    expect: "TurnOff@kitchen"
+    kind: execute
+    soft: "known gap: resolves as HassGetState (read only)"
+  - text: "Gwra enowi golow an stevell esedha"
+    expect: "TurnOn@living"
+    kind: execute
+    soft: "known gap: resolves as HassGetState (read only)"
+  - text: "Settya golow an stevell esedha dhe hanter kans"
+    expect: "LightSet@living:brightness=50"
+    kind: execute
+    soft: "known gap: resolves as HassLightSet"
+  - text: "Settya an tomheans dhe unnek warn ugens gradh"
+    expect: "ClimateSetTemperature:temperature=21"
+    kind: execute
+    soft: "known gap: resolves as HassClimateSetTemperature"
+  - text: "Igeri kortinow an stevell wely"
+    expect: "TurnOn@bedroom"
+    kind: execute
+  - text: "Degea kortinow an stevell wely"
+    expect: "CONFIRM"
+    kind: confirm
+  - text: "Eus golow an gegin ow lesko?"
+    expect: "GetState@kitchen"
+    kind: execute
+  - text: "Pyth yw an tomder yn stevell esedha?"
+    expect: "GetTemp@living"
+    kind: execute
+  - text: "Settya termyn a bymp mynysenn"
+    expect: "StartTimer:minutes=5"
+    kind: execute
+    soft: "known gap: asks a follow-up instead of acting"
+  - text: "Keworra leth dhe rol pernans"
+    expect: "ListAdd:item=leth"
+    kind: execute
+  - text: "Powes an ilow"
+    expect: "MediaPause"
+    kind: execute
+  - text: "Alhwedh an daras a-rag"
+    expect: "CONFIRM"
+    kind: confirm
+  - text: "Pyth yw an eur?"
+    expect: "CHAT"
+    kind: chat
+    soft: "known gap: rejected (NoAction)"

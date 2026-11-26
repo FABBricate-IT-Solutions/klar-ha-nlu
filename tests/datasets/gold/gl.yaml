@@ -1,0 +1,62 @@
+# Gold natural sentences for gl: hand-written, not generated from the pack lexicon.
+# Hand-authored natural speech (Q-02); not speaker-verified.
+rooms:
+  living: "Salón"
+  kitchen: "Cociña"
+  bedroom: "Dormitorio"
+  hall: "Entrada"
+devices:
+  light_living: "Luz do salón"
+  light_kitchen: "Luz da cociña"
+  light_bedroom: "Luz do dormitorio"
+  cover_bedroom: "Persianas do dormitorio"
+  climate_living: "Calefacción"
+  lock_front: "Porta de entrada"
+  shopping_list: "Lista da compra"
+cases:
+  - text: "Acende a luz do salón"
+    expect: "TurnOn@living"
+    kind: execute
+  - text: "Apaga a luz da cociña"
+    expect: "TurnOff@kitchen"
+    kind: execute
+  - text: "Prende a luz do salón"
+    expect: "TurnOn@living"
+    kind: execute
+  - text: "Pon a luz do salón ao 50 por cento"
+    expect: "LightSet@living:brightness=50"
+    kind: execute
+  - text: "Pon a calefacción a 21 graos"
+    expect: "ClimateSetTemperature:temperature=21"
+    kind: execute
+  - text: "Abre as persianas do dormitorio"
+    expect: "TurnOn@bedroom"
+    kind: execute
+  - text: "Pecha as persianas do dormitorio"
+    expect: "CONFIRM"
+    kind: confirm
+  - text: "Está acesa a luz da cociña?"
+    expect: "GetState@kitchen"
+    kind: execute
+  - text: "Que temperatura fai no salón?"
+    expect: "GetTemp@living"
+    kind: execute
+  - text: "Pon un temporizador de cinco minutos"
+    expect: "StartTimer:minutes=5"
+    kind: execute
+    soft: "known gap: resolves as HassStartTimer"
+  - text: "Engade leite á lista da compra"
+    expect: "ListAdd:item=leite"
+    kind: execute
+  - text: "Pon a música en pausa"
+    expect: "MediaPause"
+    kind: execute
+  - text: "Acende a luz do salón e apaga a luz da cociña"
+    expect: "TurnOn@living+TurnOff@kitchen"
+    kind: execute
+  - text: "Pecha coa chave a porta de entrada"
+    expect: "CONFIRM"
+    kind: confirm
+  - text: "Que hora é?"
+    expect: "CHAT"
+    kind: chat

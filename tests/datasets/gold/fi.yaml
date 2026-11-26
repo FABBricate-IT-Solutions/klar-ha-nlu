@@ -1,0 +1,62 @@
+# Gold natural sentences for fi: hand-written, not generated from the pack lexicon.
+# source: plan evidence natural.py (Q-02)
+rooms:
+  living: "Olohuone"
+  kitchen: "Keittiö"
+  bedroom: "Makuuhuone"
+  hall: "Eteinen"
+devices:
+  light_living: "Olohuoneen valo"
+  light_kitchen: "Keittiön valo"
+  light_bedroom: "Makuuhuoneen valo"
+  cover_bedroom: "Makuuhuoneen kaihtimet"
+  climate_living: "Lämmitys"
+  lock_front: "Ulko-ovi"
+  shopping_list: "Ostoslista"
+cases:
+  - text: "Sytytä olohuoneen valo"
+    expect: "TurnOn@living"
+    kind: execute
+  - text: "Sammuta keittiön valo"
+    expect: "TurnOff@kitchen"
+    kind: execute
+  - text: "sytytä valo olohuone"
+    expect: "TurnOn@living"
+    kind: execute
+  - text: "Laita olohuoneen valo päälle"
+    expect: "TurnOn@living"
+    kind: execute
+  - text: "Aseta olohuoneen valo 50 prosenttiin"
+    expect: "LightSet@living:brightness=50"
+    kind: execute
+  - text: "Aseta lämmitys 21 asteeseen"
+    expect: "ClimateSetTemperature:temperature=21"
+    kind: execute
+  - text: "Avaa makuuhuoneen kaihtimet"
+    expect: "TurnOn@bedroom"
+    kind: execute
+  - text: "Sulje makuuhuoneen kaihtimet"
+    expect: "CONFIRM"
+    kind: confirm
+  - text: "Onko keittiön valo päällä?"
+    expect: "GetState@kitchen"
+    kind: execute
+  - text: "Mikä on olohuoneen lämpötila?"
+    expect: "GetTemp@living"
+    kind: execute
+  - text: "Aseta ajastin viideksi minuutiksi"
+    expect: "StartTimer:minutes=5"
+    kind: execute
+    soft: "known gap: asks a follow-up instead of acting"
+  - text: "Lisää maitoa ostoslistalle"
+    expect: "ListAdd:item=maito"
+    kind: execute
+  - text: "Keskeytä musiikki"
+    expect: "MediaPause"
+    kind: execute
+  - text: "Lukitse ulko-ovi"
+    expect: "CONFIRM"
+    kind: confirm
+  - text: "Paljonko kello on?"
+    expect: "CHAT"
+    kind: chat

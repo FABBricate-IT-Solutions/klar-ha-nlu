@@ -1,51 +1,64 @@
-# Gold natural sentences for Beta locale (package 4.3).
-# source: plan evidence natural.py; not parity-generated.
+# Gold natural sentences for nl: hand-written, not generated from the pack lexicon.
+# source: plan evidence natural.py (Q-02)
+rooms:
+  living: "Woonkamer"
+  kitchen: "Keuken"
+  bedroom: "Slaapkamer"
+  hall: "Hal"
+devices:
+  light_living: "Woonkamer lamp"
+  light_kitchen: "Keuken lamp"
+  light_bedroom: "Slaapkamer lamp"
+  cover_bedroom: "Rolluiken slaapkamer"
+  climate_living: "Verwarming"
+  lock_front: "Voordeur"
+  shopping_list: "Boodschappenlijst"
 cases:
-  - text: 'Doe het licht in de woonkamer aan'
-    expect: 'TurnOn@living'
+  - text: "Doe het licht in de woonkamer aan"
+    expect: "TurnOn@living"
     kind: execute
-  - text: 'Doe het licht in de keuken uit'
-    expect: 'TurnOff@kitchen'
+  - text: "Doe het licht in de keuken uit"
+    expect: "TurnOff@kitchen"
     kind: execute
-  - text: 'Zet de lamp in de woonkamer aan'
-    expect: 'TurnOn@living'
+  - text: "Zet de lamp in de woonkamer aan"
+    expect: "TurnOn@living"
     kind: execute
-  - text: 'Zet het licht in de woonkamer op 50 procent'
-    expect: 'LightSet@living:brightness=50'
+  - text: "Zet het licht in de woonkamer op 50 procent"
+    expect: "LightSet@living:brightness=50"
     kind: execute
-  - text: 'Zet het licht in de woonkamer op vijfentwintig procent'
-    expect: 'LightSet@living:brightness=25'
+  - text: "Zet het licht in de woonkamer op vijfentwintig procent"
+    expect: "LightSet@living:brightness=25"
     kind: execute
-  - text: 'Zet de verwarming op 21 graden'
-    expect: 'ClimateSetTemperature:temperature=21'
+  - text: "Zet de verwarming op 21 graden"
+    expect: "ClimateSetTemperature:temperature=21"
     kind: execute
-  - text: 'Doe de rolluiken in de slaapkamer open'
-    expect: 'TurnOn@bedroom'
+  - text: "Doe de rolluiken in de slaapkamer open"
+    expect: "TurnOn@bedroom"
     kind: execute
-  - text: 'Doe de rolluiken in de slaapkamer dicht'
-    expect: 'CONFIRM'
+  - text: "Doe de rolluiken in de slaapkamer dicht"
+    expect: "CONFIRM"
     kind: confirm
-  - text: 'Is het licht in de keuken aan?'
-    expect: 'GetState@kitchen'
+  - text: "Is het licht in de keuken aan?"
+    expect: "GetState@kitchen"
     kind: execute
-  - text: 'Wat is de temperatuur in de woonkamer?'
-    expect: 'GetTemp@living'
+  - text: "Wat is de temperatuur in de woonkamer?"
+    expect: "GetTemp@living"
     kind: execute
-  - text: 'Zet een timer voor vijf minuten'
-    expect: 'StartTimer:minutes=5'
+  - text: "Zet een timer voor vijf minuten"
+    expect: "StartTimer:minutes=5"
     kind: execute
-  - text: 'Zet melk op de boodschappenlijst'
-    expect: 'ListAdd:item=melk'
+  - text: "Zet melk op de boodschappenlijst"
+    expect: "ListAdd:item=melk"
     kind: execute
-  - text: 'Pauzeer de muziek'
-    expect: 'MediaPause'
+  - text: "Pauzeer de muziek"
+    expect: "MediaPause"
     kind: execute
-  - text: 'Doe het licht in de woonkamer aan en het licht in de keuken uit'
-    expect: 'TurnOn@living+TurnOff@kitchen'
+  - text: "Doe het licht in de woonkamer aan en het licht in de keuken uit"
+    expect: "TurnOn@living+TurnOff@kitchen"
     kind: execute
-  - text: 'Doe de voordeur op slot'
-    expect: 'CONFIRM'
+  - text: "Doe de voordeur op slot"
+    expect: "CONFIRM"
     kind: confirm
-  - text: 'Hoe laat is het?'
-    expect: 'CHAT'
+  - text: "Hoe laat is het?"
+    expect: "CHAT"
     kind: chat

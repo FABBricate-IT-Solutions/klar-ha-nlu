@@ -1,0 +1,70 @@
+# Gold natural sentences for is: hand-written, not generated from the pack lexicon.
+# Hand-authored natural speech (Q-02); not speaker-verified.
+rooms:
+  living: "Stofa"
+  kitchen: "Eldhús"
+  bedroom: "Svefnherbergi"
+  hall: "Forstofa"
+devices:
+  light_living: "Stofuljós"
+  light_kitchen: "Eldhúsljós"
+  light_bedroom: "Svefnherbergisljós"
+  cover_bedroom: "Gluggatjöld í svefnherbergi"
+  climate_living: "Hitun"
+  lock_front: "Útidyr"
+  shopping_list: "Innkaupalisti"
+cases:
+  - text: "Kveiktu ljósið í stofunni"
+    expect: "TurnOn@living"
+    kind: execute
+    soft: "known gap: asks a follow-up instead of acting"
+  - text: "Slökktu ljósið í eldhúsinu"
+    expect: "TurnOff@kitchen"
+    kind: execute
+    soft: "known gap: rejected (NoAction)"
+  - text: "Kveiktu á ljósinu í stofunni"
+    expect: "TurnOn@living"
+    kind: execute
+    soft: "known gap: asks a follow-up instead of acting"
+  - text: "Stilltu ljósið í stofunni á 50 prósent"
+    expect: "LightSet@living:brightness=50"
+    kind: execute
+    soft: "known gap: rejected (NoAction)"
+  - text: "Stilltu hitann á 21 gráðu"
+    expect: "ClimateSetTemperature:temperature=21"
+    kind: execute
+    soft: "known gap: rejected (NoAction)"
+  - text: "Opnaðu gluggatjöldin í svefnherberginu"
+    expect: "TurnOn@bedroom"
+    kind: execute
+  - text: "Lokaðu gluggatjöldunum í svefnherberginu"
+    expect: "CONFIRM"
+    kind: confirm
+  - text: "Er kveikt á ljósinu í eldhúsinu?"
+    expect: "GetState@kitchen"
+    kind: execute
+    soft: "known gap: rejected (NoAction)"
+  - text: "Hvað er hitastigið í stofunni?"
+    expect: "GetTemp@living"
+    kind: execute
+    soft: "known gap: rejected (NoAction)"
+  - text: "Stilltu tímamæli á fimm mínútur"
+    expect: "StartTimer:minutes=5"
+    kind: execute
+    soft: "known gap: rejected (NoAction)"
+  - text: "Bættu mjólk á innkaupalistann"
+    expect: "ListAdd:item=mjólk"
+    kind: execute
+  - text: "Settu tónlistina á pásu"
+    expect: "MediaPause"
+    kind: execute
+  - text: "Kveiktu ljósið í stofunni og slökktu ljósið í eldhúsinu"
+    expect: "TurnOn@living+TurnOff@kitchen"
+    kind: execute
+    soft: "known gap: asks a follow-up instead of acting"
+  - text: "Læstu útidyrunum"
+    expect: "CONFIRM"
+    kind: confirm
+  - text: "Hvað er klukkan?"
+    expect: "CHAT"
+    kind: chat

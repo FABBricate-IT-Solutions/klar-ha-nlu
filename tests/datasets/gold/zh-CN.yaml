@@ -1,0 +1,65 @@
+# Gold natural sentences for zh-CN: hand-written, not generated from the pack lexicon.
+# source: plan evidence natural.py (Q-02)
+rooms:
+  living: "客厅"
+  kitchen: "厨房"
+  bedroom: "卧室"
+  hall: "门厅"
+devices:
+  light_living: "客厅灯"
+  light_kitchen: "厨房灯"
+  light_bedroom: "卧室灯"
+  cover_bedroom: "卧室窗帘"
+  climate_living: "暖气"
+  lock_front: "前门"
+  shopping_list: "购物清单"
+cases:
+  - text: "打开客厅的灯"
+    expect: "TurnOn@living"
+    kind: execute
+  - text: "关掉厨房的灯"
+    expect: "TurnOff@kitchen"
+    kind: execute
+  - text: "把客厅的灯打开"
+    expect: "TurnOn@living"
+    kind: execute
+  - text: "客厅开灯"
+    expect: "TurnOn@living"
+    kind: execute
+  - text: "把客厅的灯调到50%"
+    expect: "LightSet@living:brightness=50"
+    kind: execute
+  - text: "把客厅的灯调到百分之二十五"
+    expect: "LightSet@living:brightness=25"
+    kind: execute
+  - text: "把暖气调到21度"
+    expect: "ClimateSetTemperature:temperature=21"
+    kind: execute
+  - text: "打开卧室的窗帘"
+    expect: "TurnOn@bedroom"
+    kind: execute
+  - text: "关上卧室的窗帘"
+    expect: "CONFIRM"
+    kind: confirm
+  - text: "厨房的灯开着吗？"
+    expect: "GetState@kitchen"
+    kind: execute
+  - text: "客厅现在多少度？"
+    expect: "GetTemp@living"
+    kind: execute
+  - text: "设置一个五分钟的计时器"
+    expect: "StartTimer:minutes=5"
+    kind: execute
+    soft: "known gap: rejected (NoAction)"
+  - text: "把牛奶加到购物清单"
+    expect: "ListAdd:item=牛奶"
+    kind: execute
+  - text: "暂停音乐"
+    expect: "MediaPause"
+    kind: execute
+  - text: "锁上前门"
+    expect: "CONFIRM"
+    kind: confirm
+  - text: "现在几点？"
+    expect: "CHAT"
+    kind: chat

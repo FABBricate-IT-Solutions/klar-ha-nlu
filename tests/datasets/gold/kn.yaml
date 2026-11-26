@@ -1,0 +1,61 @@
+# Gold natural sentences for kn: hand-written, not generated from the pack lexicon.
+# Hand-authored natural speech (Q-02); not speaker-verified.
+rooms:
+  living: "ಲಿವಿಂಗ್ ರೂಮ್"
+  kitchen: "ಅಡುಗೆಮನೆ"
+  bedroom: "ಮಲಗುವ ಕೋಣೆ"
+  hall: "ಹಜಾರ"
+devices:
+  light_living: "ಲಿವಿಂಗ್ ರೂಮ್ ಲೈಟ್"
+  light_kitchen: "ಅಡುಗೆಮನೆ ಲೈಟ್"
+  light_bedroom: "ಮಲಗುವ ಕೋಣೆ ಲೈಟ್"
+  cover_bedroom: "ಮಲಗುವ ಕೋಣೆ ಪರದೆ"
+  climate_living: "ಹೀಟರ್"
+  lock_front: "ಮುಂಬಾಗಿಲು"
+  shopping_list: "ಖರೀದಿ ಪಟ್ಟಿ"
+cases:
+  - text: "ಲಿವಿಂಗ್ ರೂಮ್ ಲೈಟ್ ಆನ್ ಮಾಡಿ"
+    expect: "TurnOn@living"
+    kind: execute
+  - text: "ಅಡುಗೆಮನೆ ಲೈಟ್ ಆಫ್ ಮಾಡಿ"
+    expect: "TurnOff@kitchen"
+    kind: execute
+  - text: "ಲಿವಿಂಗ್ ರೂಮ್ ಲೈಟ್ ಹಚ್ಚಿ"
+    expect: "TurnOn@living"
+    kind: execute
+  - text: "ಲಿವಿಂಗ್ ರೂಮ್ ಲೈಟ್ ಅನ್ನು 50 ಶೇಕಡಾಕ್ಕೆ ಹೊಂದಿಸಿ"
+    expect: "LightSet@living:brightness=50"
+    kind: execute
+  - text: "ಹೀಟರ್ ಅನ್ನು 21 ಡಿಗ್ರಿಗೆ ಹೊಂದಿಸಿ"
+    expect: "ClimateSetTemperature:temperature=21"
+    kind: execute
+  - text: "ಮಲಗುವ ಕೋಣೆ ಪರದೆ ತೆರೆಯಿರಿ"
+    expect: "TurnOn@bedroom"
+    kind: execute
+  - text: "ಮಲಗುವ ಕೋಣೆ ಪರದೆ ಮುಚ್ಚಿ"
+    expect: "CONFIRM"
+    kind: confirm
+    soft: "known gap: resolves as HassGetState (read only)"
+  - text: "ಅಡುಗೆಮನೆ ಲೈಟ್ ಆನ್ ಆಗಿದೆಯೇ?"
+    expect: "GetState@kitchen"
+    kind: execute
+  - text: "ಲಿವಿಂಗ್ ರೂಮ್ ತಾಪಮಾನ ಎಷ್ಟು?"
+    expect: "GetTemp@living"
+    kind: execute
+  - text: "ಐದು ನಿಮಿಷಗಳ ಟೈಮರ್ ಹೊಂದಿಸಿ"
+    expect: "StartTimer:minutes=5"
+    kind: execute
+    soft: "known gap: asks a follow-up instead of acting"
+  - text: "ಖರೀದಿ ಪಟ್ಟಿಗೆ ಹಾಲು ಸೇರಿಸಿ"
+    expect: "ListAdd:item=ಹಾಲು"
+    kind: execute
+  - text: "ಸಂಗೀತ ವಿರಾಮಗೊಳಿಸಿ"
+    expect: "MediaPause"
+    kind: execute
+  - text: "ಮುಂಬಾಗಿಲು ಲಾಕ್ ಮಾಡಿ"
+    expect: "CONFIRM"
+    kind: confirm
+  - text: "ಈಗ ಸಮಯ ಎಷ್ಟು?"
+    expect: "CHAT"
+    kind: chat
+    soft: "known gap: rejected (NoAction)"

@@ -1,0 +1,56 @@
+# Gold natural sentences for ro: hand-written, not generated from the pack lexicon.
+# source: plan evidence natural.py (Q-02)
+rooms:
+  living: "Sufragerie"
+  kitchen: "Bucătărie"
+  bedroom: "Dormitor"
+  hall: "Hol"
+devices:
+  light_living: "Lumina din sufragerie"
+  light_kitchen: "Lumina din bucătărie"
+  light_bedroom: "Lumina din dormitor"
+  cover_bedroom: "Jaluzele dormitor"
+  climate_living: "Încălzire"
+  lock_front: "Ușa de la intrare"
+  shopping_list: "Lista de cumpărături"
+cases:
+  - text: "Aprinde lumina din sufragerie"
+    expect: "TurnOn@living"
+    kind: execute
+  - text: "Stinge lumina din bucătărie"
+    expect: "TurnOff@kitchen"
+    kind: execute
+  - text: "Setează lumina din sufragerie la 50 la sută"
+    expect: "LightSet@living:brightness=50"
+    kind: execute
+  - text: "Setează încălzirea la 21 de grade"
+    expect: "ClimateSetTemperature:temperature=21"
+    kind: execute
+    soft: "known gap: rejected (NoAction)"
+  - text: "Deschide jaluzelele din dormitor"
+    expect: "TurnOn@bedroom"
+    kind: execute
+  - text: "Închide jaluzelele din dormitor"
+    expect: "CONFIRM"
+    kind: confirm
+  - text: "Este aprinsă lumina din bucătărie?"
+    expect: "GetState@kitchen"
+    kind: execute
+  - text: "Care este temperatura din sufragerie?"
+    expect: "GetTemp@living"
+    kind: execute
+  - text: "Pune un cronometru de cinci minute"
+    expect: "StartTimer:minutes=5"
+    kind: execute
+  - text: "Adaugă lapte pe lista de cumpărături"
+    expect: "ListAdd:item=lapte"
+    kind: execute
+  - text: "Pune muzica pe pauză"
+    expect: "MediaPause"
+    kind: execute
+  - text: "Încuie ușa de la intrare"
+    expect: "CONFIRM"
+    kind: confirm
+  - text: "Cât este ceasul?"
+    expect: "CHAT"
+    kind: chat

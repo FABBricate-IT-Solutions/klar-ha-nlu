@@ -1,0 +1,64 @@
+# Gold natural sentences for cs: hand-written, not generated from the pack lexicon.
+# source: plan evidence natural.py (Q-02)
+rooms:
+  living: "Obývák"
+  kitchen: "Kuchyně"
+  bedroom: "Ložnice"
+  hall: "Chodba"
+devices:
+  light_living: "Světlo v obýváku"
+  light_kitchen: "Světlo v kuchyni"
+  light_bedroom: "Světlo v ložnici"
+  cover_bedroom: "Žaluzie v ložnici"
+  climate_living: "Topení"
+  lock_front: "Vchodové dveře"
+  shopping_list: "Nákupní seznam"
+cases:
+  - text: "Rozsviť světlo v obýváku"
+    expect: "TurnOn@living"
+    kind: execute
+  - text: "Zhasni světlo v kuchyni"
+    expect: "TurnOff@kitchen"
+    kind: execute
+  - text: "Zapni světlo v obýváku"
+    expect: "TurnOn@living"
+    kind: execute
+  - text: "Vypni světlo v kuchyni"
+    expect: "TurnOff@kitchen"
+    kind: execute
+  - text: "zapni světlo obývák"
+    expect: "TurnOn@living"
+    kind: execute
+  - text: "Nastav světlo v obýváku na 50 procent"
+    expect: "LightSet@living:brightness=50"
+    kind: execute
+  - text: "Nastav topení na 21 stupňů"
+    expect: "ClimateSetTemperature:temperature=21"
+    kind: execute
+  - text: "Otevři žaluzie v ložnici"
+    expect: "TurnOn@bedroom"
+    kind: execute
+  - text: "Zavři žaluzie v ložnici"
+    expect: "CONFIRM"
+    kind: confirm
+  - text: "Svítí světlo v kuchyni?"
+    expect: "GetState@kitchen"
+    kind: execute
+  - text: "Jaká je teplota v obýváku?"
+    expect: "GetTemp@living"
+    kind: execute
+  - text: "Nastav časovač na pět minut"
+    expect: "StartTimer:minutes=5"
+    kind: execute
+  - text: "Přidej mléko na nákupní seznam"
+    expect: "ListAdd:item=mléko"
+    kind: execute
+  - text: "Pozastav hudbu"
+    expect: "MediaPause"
+    kind: execute
+  - text: "Zamkni vchodové dveře"
+    expect: "CONFIRM"
+    kind: confirm
+  - text: "Kolik je hodin?"
+    expect: "CHAT"
+    kind: chat

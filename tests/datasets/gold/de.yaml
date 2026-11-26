@@ -1,0 +1,64 @@
+# Gold natural sentences for de: hand-written, not generated from the pack lexicon.
+# source: plan evidence natural.py (Q-02)
+rooms:
+  living: "Wohnzimmer"
+  kitchen: "Küche"
+  bedroom: "Schlafzimmer"
+  hall: "Flur"
+devices:
+  light_living: "Wohnzimmer Licht"
+  light_kitchen: "Küche Licht"
+  light_bedroom: "Schlafzimmer Licht"
+  cover_bedroom: "Schlafzimmer Rollo"
+  climate_living: "Heizung"
+  lock_front: "Haustür"
+  shopping_list: "Einkaufsliste"
+cases:
+  - text: "Mach das Licht im Wohnzimmer an"
+    expect: "TurnOn@living"
+    kind: execute
+  - text: "Schalte das Licht in der Küche aus"
+    expect: "TurnOff@kitchen"
+    kind: execute
+  - text: "Schalte bitte das Licht im Wohnzimmer ein"
+    expect: "TurnOn@living"
+    kind: execute
+  - text: "Stell das Licht im Wohnzimmer auf 50 Prozent"
+    expect: "LightSet@living:brightness=50"
+    kind: execute
+  - text: "Stell das Licht im Wohnzimmer auf fünfundzwanzig Prozent"
+    expect: "LightSet@living:brightness=25"
+    kind: execute
+  - text: "Stell die Heizung auf 21 Grad"
+    expect: "ClimateSetTemperature:temperature=21"
+    kind: execute
+  - text: "Mach das Rollo im Schlafzimmer auf"
+    expect: "TurnOn@bedroom"
+    kind: execute
+  - text: "Mach das Rollo im Schlafzimmer zu"
+    expect: "CONFIRM"
+    kind: confirm
+  - text: "Ist das Licht in der Küche an?"
+    expect: "GetState@kitchen"
+    kind: execute
+  - text: "Wie warm ist es im Wohnzimmer?"
+    expect: "GetTemp@living"
+    kind: execute
+  - text: "Stell einen Timer auf fünf Minuten"
+    expect: "StartTimer:minutes=5"
+    kind: execute
+  - text: "Setz Milch auf die Einkaufsliste"
+    expect: "ListAdd:item=milch"
+    kind: execute
+  - text: "Pausiere die Musik"
+    expect: "MediaPause"
+    kind: execute
+  - text: "Mach das Licht im Wohnzimmer an und das Licht in der Küche aus"
+    expect: "TurnOn@living+TurnOff@kitchen"
+    kind: execute
+  - text: "Schließ die Haustür ab"
+    expect: "CONFIRM"
+    kind: confirm
+  - text: "Wie spät ist es?"
+    expect: "CHAT"
+    kind: chat

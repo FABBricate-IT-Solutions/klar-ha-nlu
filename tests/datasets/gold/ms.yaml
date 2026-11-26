@@ -1,0 +1,62 @@
+# Gold natural sentences for ms: hand-written, not generated from the pack lexicon.
+# Hand-authored natural speech (Q-02); not speaker-verified.
+rooms:
+  living: "Ruang tamu"
+  kitchen: "Dapur"
+  bedroom: "Bilik tidur"
+  hall: "Lorong"
+devices:
+  light_living: "Lampu ruang tamu"
+  light_kitchen: "Lampu dapur"
+  light_bedroom: "Lampu bilik tidur"
+  cover_bedroom: "Langsir bilik tidur"
+  climate_living: "Pemanas"
+  lock_front: "Pintu depan"
+  shopping_list: "Senarai belanja"
+cases:
+  - text: "Hidupkan lampu ruang tamu"
+    expect: "TurnOn@living"
+    kind: execute
+  - text: "Matikan lampu dapur"
+    expect: "TurnOff@kitchen"
+    kind: execute
+  - text: "Pasang lampu ruang tamu"
+    expect: "TurnOn@living"
+    kind: execute
+  - text: "Tetapkan lampu ruang tamu kepada 50 peratus"
+    expect: "LightSet@living:brightness=50"
+    kind: execute
+  - text: "Tetapkan pemanas kepada 21 darjah"
+    expect: "ClimateSetTemperature:temperature=21"
+    kind: execute
+  - text: "Buka langsir bilik tidur"
+    expect: "TurnOn@bedroom"
+    kind: execute
+  - text: "Tutup langsir bilik tidur"
+    expect: "CONFIRM"
+    kind: confirm
+  - text: "Adakah lampu dapur menyala?"
+    expect: "GetState@kitchen"
+    kind: execute
+  - text: "Berapakah suhu di ruang tamu?"
+    expect: "GetTemp@living"
+    kind: execute
+  - text: "Tetapkan pemasa lima minit"
+    expect: "StartTimer:minutes=5"
+    kind: execute
+  - text: "Tambah susu ke senarai belanja"
+    expect: "ListAdd:item=susu"
+    kind: execute
+  - text: "Jeda muzik"
+    expect: "MediaPause"
+    kind: execute
+  - text: "Hidupkan lampu ruang tamu dan matikan lampu dapur"
+    expect: "TurnOn@living+TurnOff@kitchen"
+    kind: execute
+  - text: "Kunci pintu depan"
+    expect: "CONFIRM"
+    kind: confirm
+  - text: "Pukul berapa sekarang?"
+    expect: "CHAT"
+    kind: chat
+    soft: "known gap: rejected (NoAction)"

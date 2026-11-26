@@ -1,0 +1,60 @@
+# Gold natural sentences for bn: hand-written, not generated from the pack lexicon.
+# Hand-authored natural speech (Q-02); not speaker-verified.
+rooms:
+  living: "বসার ঘর"
+  kitchen: "রান্নাঘর"
+  bedroom: "শোবার ঘর"
+  hall: "বারান্দা"
+devices:
+  light_living: "বসার ঘরের লাইট"
+  light_kitchen: "রান্নাঘরের লাইট"
+  light_bedroom: "শোবার ঘরের লাইট"
+  cover_bedroom: "শোবার ঘরের পর্দা"
+  climate_living: "হিটার"
+  lock_front: "সামনের দরজা"
+  shopping_list: "বাজারের তালিকা"
+cases:
+  - text: "বসার ঘরের লাইট জ্বালাও"
+    expect: "TurnOn@living"
+    kind: execute
+  - text: "রান্নাঘরের লাইট বন্ধ করো"
+    expect: "TurnOff@kitchen"
+    kind: execute
+  - text: "বসার ঘরের লাইট চালু করো"
+    expect: "TurnOn@living"
+    kind: execute
+  - text: "বসার ঘরের লাইট 50 শতাংশে সেট করো"
+    expect: "LightSet@living:brightness=50"
+    kind: execute
+  - text: "হিটার 21 ডিগ্রিতে সেট করো"
+    expect: "ClimateSetTemperature:temperature=21"
+    kind: execute
+  - text: "শোবার ঘরের পর্দা খোলো"
+    expect: "TurnOn@bedroom"
+    kind: execute
+  - text: "শোবার ঘরের পর্দা বন্ধ করো"
+    expect: "CONFIRM"
+    kind: confirm
+  - text: "রান্নাঘরের লাইট কি জ্বলছে?"
+    expect: "GetState@kitchen"
+    kind: execute
+  - text: "বসার ঘরের তাপমাত্রা কত?"
+    expect: "GetTemp@living"
+    kind: execute
+  - text: "পাঁচ মিনিটের টাইমার সেট করো"
+    expect: "StartTimer:minutes=5"
+    kind: execute
+    soft: "known gap: asks a follow-up instead of acting"
+  - text: "বাজারের তালিকায় দুধ যোগ করো"
+    expect: "ListAdd:item=দুধ"
+    kind: execute
+  - text: "গান থামাও"
+    expect: "MediaPause"
+    kind: execute
+  - text: "সামনের দরজা তালা দাও"
+    expect: "CONFIRM"
+    kind: confirm
+  - text: "এখন কটা বাজে?"
+    expect: "CHAT"
+    kind: chat
+    soft: "known gap: rejected (NoAction)"

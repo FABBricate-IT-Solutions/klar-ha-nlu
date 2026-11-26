@@ -1,0 +1,63 @@
+# Gold natural sentences for ga: hand-written, not generated from the pack lexicon.
+# Hand-authored natural speech (Q-02); not speaker-verified.
+rooms:
+  living: "Seomra suite"
+  kitchen: "Cistin"
+  bedroom: "Seomra codlata"
+  hall: "Halla"
+devices:
+  light_living: "Solas an tseomra suite"
+  light_kitchen: "Solas na cistine"
+  light_bedroom: "Solas an tseomra codlata"
+  cover_bedroom: "Dallóga an tseomra codlata"
+  climate_living: "Teasaíocht"
+  lock_front: "Doras tosaigh"
+  shopping_list: "Liosta siopadóireachta"
+cases:
+  - text: "Las solas an tseomra suite"
+    expect: "TurnOn@living"
+    kind: execute
+  - text: "Múch solas na cistine"
+    expect: "TurnOff@kitchen"
+    kind: execute
+  - text: "Cuir an solas ar siúl sa seomra suite"
+    expect: "TurnOn@living"
+    kind: execute
+    soft: "known gap: rejected (NoAction)"
+  - text: "Socraigh solas an tseomra suite go 50 faoin gcéad"
+    expect: "LightSet@living:brightness=50"
+    kind: execute
+  - text: "Socraigh an teasaíocht go 21 chéim"
+    expect: "ClimateSetTemperature:temperature=21"
+    kind: execute
+  - text: "Oscail dallóga an tseomra codlata"
+    expect: "TurnOn@bedroom"
+    kind: execute
+  - text: "Dún dallóga an tseomra codlata"
+    expect: "CONFIRM"
+    kind: confirm
+  - text: "An bhfuil solas na cistine ar siúl?"
+    expect: "GetState@kitchen"
+    kind: execute
+    soft: "known gap: rejected (NoAction)"
+  - text: "Cad é an teocht sa seomra suite?"
+    expect: "GetTemp@living"
+    kind: execute
+  - text: "Socraigh amadóir ar feadh cúig nóiméad"
+    expect: "StartTimer:minutes=5"
+    kind: execute
+    soft: "known gap: rejected (NoAction)"
+  - text: "Cuir bainne leis an liosta siopadóireachta"
+    expect: "ListAdd:item=bainne"
+    kind: execute
+  - text: "Cuir an ceol ar sos"
+    expect: "MediaPause"
+    kind: execute
+    soft: "known gap: rejected (NoAction)"
+  - text: "Cuir an doras tosaigh faoi ghlas"
+    expect: "CONFIRM"
+    kind: confirm
+    soft: "known gap: resolves as HassGetState (read only)"
+  - text: "Cén t-am é?"
+    expect: "CHAT"
+    kind: chat

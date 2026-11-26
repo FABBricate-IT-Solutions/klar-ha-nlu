@@ -1,0 +1,64 @@
+# Gold natural sentences for ta: hand-written, not generated from the pack lexicon.
+# Hand-authored natural speech (Q-02); not speaker-verified.
+rooms:
+  living: "வரவேற்பறை"
+  kitchen: "சமையலறை"
+  bedroom: "படுக்கையறை"
+  hall: "நடைபாதை"
+devices:
+  light_living: "வரவேற்பறை விளக்கு"
+  light_kitchen: "சமையலறை விளக்கு"
+  light_bedroom: "படுக்கையறை விளக்கு"
+  cover_bedroom: "படுக்கையறை திரைச்சீலை"
+  climate_living: "ஹீட்டர்"
+  lock_front: "முன் கதவு"
+  shopping_list: "ஷாப்பிங் பட்டியல்"
+cases:
+  - text: "வரவேற்பறை விளக்கை ஆன் செய்"
+    expect: "TurnOn@living"
+    kind: execute
+  - text: "சமையலறை விளக்கை அணை"
+    expect: "TurnOff@kitchen"
+    kind: execute
+  - text: "வரவேற்பறை விளக்கை எரியவிடு"
+    expect: "TurnOn@living"
+    kind: execute
+  - text: "வரவேற்பறை விளக்கை 50 சதவீதமாக அமை"
+    expect: "LightSet@living:brightness=50"
+    kind: execute
+  - text: "ஹீட்டரை 21 டிகிரிக்கு அமை"
+    expect: "ClimateSetTemperature:temperature=21"
+    kind: execute
+    soft: "known gap: rejected (NoAction)"
+  - text: "படுக்கையறை திரைச்சீலையைத் திற"
+    expect: "TurnOn@bedroom"
+    kind: execute
+    soft: "known gap: rejected (NoTarget)"
+  - text: "படுக்கையறை திரைச்சீலையை மூடு"
+    expect: "CONFIRM"
+    kind: confirm
+    soft: "known gap: rejected (NoTarget)"
+  - text: "சமையலறை விளக்கு எரிகிறதா?"
+    expect: "GetState@kitchen"
+    kind: execute
+  - text: "வரவேற்பறையில் வெப்பநிலை என்ன?"
+    expect: "GetTemp@living"
+    kind: execute
+    soft: "known gap: rejected (NoAction)"
+  - text: "ஐந்து நிமிட டைமரை அமை"
+    expect: "StartTimer:minutes=5"
+    kind: execute
+    soft: "known gap: rejected (NoAction)"
+  - text: "ஷாப்பிங் பட்டியலில் பால் சேர்"
+    expect: "ListAdd:item=பால்"
+    kind: execute
+  - text: "இசையை இடைநிறுத்து"
+    expect: "MediaPause"
+    kind: execute
+  - text: "முன் கதவைப் பூட்டு"
+    expect: "CONFIRM"
+    kind: confirm
+  - text: "இப்போது மணி என்ன?"
+    expect: "CHAT"
+    kind: chat
+    soft: "known gap: rejected (NoAction)"

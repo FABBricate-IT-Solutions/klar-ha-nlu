@@ -1,0 +1,73 @@
+# Gold natural sentences for sv: hand-written, not generated from the pack lexicon.
+# source: plan evidence natural.py (Q-02)
+rooms:
+  living: "Vardagsrum"
+  kitchen: "Kök"
+  bedroom: "Sovrum"
+  hall: "Hall"
+devices:
+  light_living: "Vardagsrum lampa"
+  light_kitchen: "Kök lampa"
+  light_bedroom: "Sovrum lampa"
+  cover_bedroom: "Persienner sovrum"
+  climate_living: "Värme"
+  lock_front: "Ytterdörr"
+  shopping_list: "Inköpslista"
+cases:
+  - text: "Tänd lampan i vardagsrummet"
+    expect: "TurnOn@living"
+    kind: execute
+    soft: "known gap: asks a follow-up instead of acting"
+  - text: "Släck lampan i köket"
+    expect: "TurnOff@kitchen"
+    kind: execute
+    soft: "known gap: asks a follow-up instead of acting"
+  - text: "tänd ljus vardagsrum"
+    expect: "TurnOn@living"
+    kind: execute
+  - text: "släck ljus kök"
+    expect: "TurnOff@kitchen"
+    kind: execute
+  - text: "Sätt lampan i vardagsrummet på 50 procent"
+    expect: "LightSet@living:brightness=50"
+    kind: execute
+  - text: "Sätt lampan i vardagsrummet på tjugofem procent"
+    expect: "LightSet@living:brightness=25"
+    kind: execute
+    soft: "known gap: rejected (Unsupported)"
+  - text: "Sätt värmen på 21 grader"
+    expect: "ClimateSetTemperature:temperature=21"
+    kind: execute
+  - text: "Öppna persiennerna i sovrummet"
+    expect: "TurnOn@bedroom"
+    kind: execute
+  - text: "Stäng persiennerna i sovrummet"
+    expect: "CONFIRM"
+    kind: confirm
+  - text: "Är lampan i köket tänd?"
+    expect: "GetState@kitchen"
+    kind: execute
+    soft: "known gap: asks a follow-up instead of acting"
+  - text: "Vad är temperaturen i vardagsrummet?"
+    expect: "GetTemp@living"
+    kind: execute
+  - text: "Sätt en timer på fem minuter"
+    expect: "StartTimer:minutes=5"
+    kind: execute
+  - text: "Lägg till mjölk på inköpslistan"
+    expect: "ListAdd:item=mjölk"
+    kind: execute
+  - text: "Pausa musiken"
+    expect: "MediaPause"
+    kind: execute
+  - text: "Tänd lampan i vardagsrummet och släck lampan i köket"
+    expect: "TurnOn@living+TurnOff@kitchen"
+    kind: execute
+    soft: "known gap: asks a follow-up instead of acting"
+  - text: "Lås ytterdörren"
+    expect: "CONFIRM"
+    kind: confirm
+  - text: "Vad är klockan?"
+    expect: "CHAT"
+    kind: chat
+    soft: "known gap: rejected (NoAction)"

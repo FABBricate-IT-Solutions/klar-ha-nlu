@@ -1,0 +1,60 @@
+# Gold natural sentences for mr: hand-written, not generated from the pack lexicon.
+# Hand-authored natural speech (Q-02); not speaker-verified.
+rooms:
+  living: "दिवाणखाना"
+  kitchen: "स्वयंपाकघर"
+  bedroom: "बेडरूम"
+  hall: "पॅसेज"
+devices:
+  light_living: "दिवाणखान्यातील दिवा"
+  light_kitchen: "स्वयंपाकघरातील दिवा"
+  light_bedroom: "बेडरूममधील दिवा"
+  cover_bedroom: "बेडरूममधील पडदे"
+  climate_living: "हीटर"
+  lock_front: "मुख्य दरवाजा"
+  shopping_list: "खरेदी यादी"
+cases:
+  - text: "दिवाणखान्यातील दिवा चालू करा"
+    expect: "TurnOn@living"
+    kind: execute
+  - text: "स्वयंपाकघरातील दिवा बंद करा"
+    expect: "TurnOff@kitchen"
+    kind: execute
+  - text: "दिवाणखान्यातील दिवा लावा"
+    expect: "TurnOn@living"
+    kind: execute
+  - text: "दिवाणखान्यातील दिवा 50 टक्के करा"
+    expect: "LightSet@living:brightness=50"
+    kind: execute
+  - text: "हीटर 21 अंशांवर सेट करा"
+    expect: "ClimateSetTemperature:temperature=21"
+    kind: execute
+  - text: "बेडरूममधील पडदे उघडा"
+    expect: "TurnOn@bedroom"
+    kind: execute
+  - text: "बेडरूममधील पडदे बंद करा"
+    expect: "CONFIRM"
+    kind: confirm
+  - text: "स्वयंपाकघरातील दिवा चालू आहे का?"
+    expect: "GetState@kitchen"
+    kind: execute
+  - text: "दिवाणखान्यातील तापमान किती आहे?"
+    expect: "GetTemp@living"
+    kind: execute
+  - text: "पाच मिनिटांचा टायमर लावा"
+    expect: "StartTimer:minutes=5"
+    kind: execute
+    soft: "known gap: rejected (NoAction)"
+  - text: "खरेदी यादीत दूध जोडा"
+    expect: "ListAdd:item=दूध"
+    kind: execute
+  - text: "संगीत थांबवा"
+    expect: "MediaPause"
+    kind: execute
+  - text: "मुख्य दरवाजा लॉक करा"
+    expect: "CONFIRM"
+    kind: confirm
+  - text: "आता किती वाजले?"
+    expect: "CHAT"
+    kind: chat
+    soft: "known gap: rejected (NoAction)"

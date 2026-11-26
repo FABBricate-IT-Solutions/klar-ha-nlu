@@ -1,0 +1,60 @@
+# Gold natural sentences for gu: hand-written, not generated from the pack lexicon.
+# Hand-authored natural speech (Q-02); not speaker-verified.
+rooms:
+  living: "બેઠક ખંડ"
+  kitchen: "રસોડું"
+  bedroom: "શયનખંડ"
+  hall: "પરસાળ"
+devices:
+  light_living: "બેઠક ખંડની લાઇટ"
+  light_kitchen: "રસોડાની લાઇટ"
+  light_bedroom: "શયનખંડની લાઇટ"
+  cover_bedroom: "શયનખંડના પડદા"
+  climate_living: "હીટર"
+  lock_front: "આગળનો દરવાજો"
+  shopping_list: "ખરીદીની યાદી"
+cases:
+  - text: "બેઠક ખંડની લાઇટ ચાલુ કરો"
+    expect: "TurnOn@living"
+    kind: execute
+  - text: "રસોડાની લાઇટ બંધ કરો"
+    expect: "TurnOff@kitchen"
+    kind: execute
+  - text: "બેઠક ખંડની લાઇટ ચાલુ કરી દો"
+    expect: "TurnOn@living"
+    kind: execute
+  - text: "બેઠક ખંડની લાઇટ 50 ટકા પર સેટ કરો"
+    expect: "LightSet@living:brightness=50"
+    kind: execute
+  - text: "હીટર 21 ડિગ્રી પર સેટ કરો"
+    expect: "ClimateSetTemperature:temperature=21"
+    kind: execute
+  - text: "શયનખંડના પડદા ખોલો"
+    expect: "TurnOn@bedroom"
+    kind: execute
+  - text: "શયનખંડના પડદા બંધ કરો"
+    expect: "CONFIRM"
+    kind: confirm
+  - text: "શું રસોડાની લાઇટ ચાલુ છે?"
+    expect: "GetState@kitchen"
+    kind: execute
+  - text: "બેઠક ખંડનું તાપમાન કેટલું છે?"
+    expect: "GetTemp@living"
+    kind: execute
+  - text: "પાંચ મિનિટનો ટાઈમર સેટ કરો"
+    expect: "StartTimer:minutes=5"
+    kind: execute
+    soft: "known gap: asks a follow-up instead of acting"
+  - text: "ખરીદીની યાદીમાં દૂધ ઉમેરો"
+    expect: "ListAdd:item=દૂધ"
+    kind: execute
+  - text: "સંગીત થોભાવો"
+    expect: "MediaPause"
+    kind: execute
+  - text: "આગળનો દરવાજો લોક કરો"
+    expect: "CONFIRM"
+    kind: confirm
+  - text: "અત્યારે કેટલા વાગ્યા છે?"
+    expect: "CHAT"
+    kind: chat
+    soft: "known gap: rejected (NoAction)"

@@ -1,0 +1,68 @@
+# Gold natural sentences for ja: hand-written, not generated from the pack lexicon.
+# source: plan evidence natural.py (Q-02)
+rooms:
+  living: "リビング"
+  kitchen: "キッチン"
+  bedroom: "寝室"
+  hall: "玄関"
+devices:
+  light_living: "リビングの電気"
+  light_kitchen: "キッチンの電気"
+  light_bedroom: "寝室の電気"
+  cover_bedroom: "寝室のカーテン"
+  climate_living: "暖房"
+  lock_front: "玄関の鍵"
+  shopping_list: "買い物リスト"
+cases:
+  - text: "リビングの電気をつけて"
+    expect: "TurnOn@living"
+    kind: execute
+  - text: "キッチンの電気を消して"
+    expect: "TurnOff@kitchen"
+    kind: execute
+  - text: "リビングの電気を50パーセントにして"
+    expect: "LightSet@living:brightness=50"
+    kind: execute
+    soft: "known gap: rejected (NoTarget)"
+  - text: "リビングの電気を５０パーセントにして"
+    expect: "LightSet@living:brightness=50"
+    kind: execute
+    soft: "known gap: rejected (NoTarget)"
+  - text: "リビングの電気を二十五パーセントにして"
+    expect: "LightSet@living:brightness=25"
+    kind: execute
+    soft: "known gap: resolves as HassGetState (read only)"
+  - text: "暖房を21度に設定して"
+    expect: "ClimateSetTemperature:temperature=21"
+    kind: execute
+  - text: "寝室のカーテンを開けて"
+    expect: "TurnOn@bedroom"
+    kind: execute
+  - text: "寝室のカーテンを閉めて"
+    expect: "CONFIRM"
+    kind: confirm
+  - text: "キッチンの電気はついてる？"
+    expect: "GetState@kitchen"
+    kind: execute
+  - text: "リビングの温度は何度？"
+    expect: "GetTemp@living"
+    kind: execute
+  - text: "5分のタイマーをセットして"
+    expect: "StartTimer:minutes=5"
+    kind: execute
+  - text: "五分のタイマーをセットして"
+    expect: "StartTimer:minutes=5"
+    kind: execute
+    soft: "known gap: asks a follow-up instead of acting"
+  - text: "買い物リストに牛乳を追加して"
+    expect: "ListAdd:item=牛乳"
+    kind: execute
+  - text: "音楽を一時停止して"
+    expect: "MediaPause"
+    kind: execute
+  - text: "玄関の鍵を閉めて"
+    expect: "CONFIRM"
+    kind: confirm
+  - text: "今何時？"
+    expect: "CHAT"
+    kind: chat
