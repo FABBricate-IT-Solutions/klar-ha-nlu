@@ -49,7 +49,7 @@ Every compiled Assist locale uses the same `LanguagePack` path. German and Engli
 
 **Not shipped:** Russian (`ru`, `ru-RU`) — no pack, no registry row, `pin_language("ru")` stays unknown.
 
-YAML under `packs/` is for user overlays and `klar lang import-hassil`, not Assist coverage. Packs are never silently merged into one giant default catalog.
+YAML under `packs/` holds user overlays (`klar lang import-hassil`), **assist phrase corrections** (`packs/assist/{code}.yaml`, one file per locale — [fix a phrase in three steps](fix-phrase.md)), and the generated pack data mirror (`packs/generated/{code}.yaml`). Packs are never silently merged into one giant default catalog.
 
 Import HassIL into an overlay (not into a merged default catalog):
 
@@ -59,7 +59,9 @@ klar lang import-hassil --from path/to/hassil --into /data --language de --dry-r
 
 ## Layout
 
-- `src/lang/packs/{code}/` — `verbs.rs`, `speech.rs`, `pack.rs` (de/en hand-written reference; others generated)
+- `packs/generated/{code}.yaml` — generated pack as data (read/diff; do not hand-edit)
+- `packs/assist/{code}.yaml` — phrase corrections (one file; [fix-phrase](fix-phrase.md); `klar lang new-case`)
+- `src/lang/packs/{code}/` — compiled tables (de/en hand-written; others generated — do not hand-edit)
 - `src/lang/registry.rs` — compiled ids, `from_code`, `pack()`, `GET /api/v2/languages`
 - `scripts/lang_packs/` — generator (HassIL harvest is bootstrap only). Do not run `generate.py` in pre-commit.
 
@@ -99,13 +101,21 @@ A regional pack has no sentences of its own. `tests/regional_overlays.rs`, the p
 
 `parse()` binds `Settings.languages`; helpers read `catalog()`. New engine fields belong on `LanguagePack` and in the existing `extend_sets!` merge.
 
+## Layout
+
+- `packs/generated/{code}.yaml` — generated pack as data (read/diff; do not hand-edit)
+- `packs/assist/{code}.yaml` — phrase corrections (one file; [fix-phrase](fix-phrase.md); `klar lang new-case`)
+- `src/lang/packs/{code}/` — compiled tables (de/en hand-written; others generated — do not hand-edit)
+- `src/lang/registry.rs` — compiled ids, `from_code`, `pack()`, `GET /api/v2/languages`
+- `scripts/lang_packs/` — generator (HassIL harvest is bootstrap only). Do not run `generate.py` in pre-commit.
+
 ## Adding a pack
 
 1. Add a compact lexicon in `scripts/lang_packs/`. Prefer target-language words; `scripts/lang_packs/pack_lint.py` fails when chat/speech fields still carry English filler stubs.
-2. Run `python3 scripts/lang_packs/generate.py`.
-3. Review the Rust like hand-written code: `rustfmt`, unique tokens after `fold_latin`, no comment narration.
-4. Keep files under 500 lines. Do not add `match LangId` arms in `src/parse/`.
-5. Existing suites must stay green; add the same assist/parity smoke for the new locale.
+2. Run `python3 scripts/lang_packs/generate.py` (writes data under `packs/generated/` and compiled Rust).
+3. Review the generated data YAML; keep files under 500 lines. Do not add `match LangId` arms in `src/parse/`.
+4. Existing suites must stay green; add the same assist/parity smoke for the new locale.
+5. Later phrase fixes go only in `packs/assist/{code}.yaml`.
 
 `LanguagePack` in `src/lang/groups.rs` is the checklist. Empty slices are allowed only when the language has no such concept.
 

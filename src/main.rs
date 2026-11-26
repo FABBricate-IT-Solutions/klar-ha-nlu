@@ -84,6 +84,20 @@ enum LangCommand {
         #[arg(long)]
         dry_run: bool,
     },
+    /// Append a phrase→intent case to packs/assist/{language}.yaml (one-file pack fix).
+    NewCase {
+        #[arg(long)]
+        language: String,
+        #[arg(long)]
+        phrase: String,
+        #[arg(long)]
+        intent: String,
+        /// Slot as key=value; repeatable
+        #[arg(long = "slot")]
+        slots: Vec<String>,
+        #[arg(long)]
+        into: Option<PathBuf>,
+    },
 }
 
 #[derive(Subcommand, Debug)]
@@ -179,6 +193,9 @@ async fn run_command() -> ExitCode {
             }
             LangCommand::ImportHassil { from, into, language, dry_run } => {
                 klar_nlu::lang::import_hassil(&from, into.as_deref(), language.as_deref(), dry_run)
+            }
+            LangCommand::NewCase { language, phrase, intent, slots, into } => {
+                klar_nlu::lang::new_case(&language, &phrase, &intent, &slots, into.as_deref())
             }
         };
         return match result {
