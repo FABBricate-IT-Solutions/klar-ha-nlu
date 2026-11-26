@@ -5,6 +5,7 @@ use crate::lang::LangId;
 
 use super::mood::MOOD;
 use super::news::NEWS;
+use super::numbers::NUMBERS;
 use super::speech::SPEECH;
 use super::verbs::VERBS;
 
@@ -208,37 +209,7 @@ pub const PACK: LanguagePack = LanguagePack {
             ("purple", "purple"),
             ("silti balts", "warmwhite"),
         ],
-        numbers: &[
-            ("nulle", 0),
-            ("viens", 1),
-            ("divi", 2),
-            ("tris", 3),
-            ("cetri", 4),
-            ("pieci", 5),
-            ("sesi", 6),
-            ("septini", 7),
-            ("astoni", 8),
-            ("devini", 9),
-            ("desmit", 10),
-            ("vienpadsmit", 11),
-            ("divpadsmit", 12),
-            ("trispadsmit", 13),
-            ("cetrpadsmit", 14),
-            ("piecpadsmit", 15),
-            ("sespadsmit", 16),
-            ("septinpadsmit", 17),
-            ("astonpadsmit", 18),
-            ("devinpadsmit", 19),
-            ("divdesmit", 20),
-            ("trisdesmit", 30),
-            ("cetrdesmit", 40),
-            ("piecdesmit", 50),
-            ("sesdesmit", 60),
-            ("septindesmit", 70),
-            ("astondesmit", 80),
-            ("devindesmit", 90),
-            ("simts", 100),
-        ],
+        numbers: NUMBERS,
         number_style: NumberStyle::ListedOnly,
         room_index_nouns: &["istaba"],
     },

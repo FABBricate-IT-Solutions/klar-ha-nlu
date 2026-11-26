@@ -134,10 +134,11 @@ pub(crate) fn parse_numeric_token(token: &str) -> Option<f64> {
 
 fn fraction_word(token: &str) -> Option<f64> {
     match token {
-        "half" | "halb" | "halbe" | "halbes" | "halben" => Some(0.5),
-        "quarter" | "viertel" => Some(0.25),
-        "eineinhalb" | "anderthalb" | "einhalb" => Some(1.5),
-        "dreiviertel" => Some(0.75),
+        "half" | "halb" | "halbe" | "halbes" | "halben" | "halv" | "halvt" | "helft" | "meta" | "medio" | "meia" | "demi" | "moitie"
+        | "yarim" | "نصف" | "חצי" | "نیم" => Some(0.5),
+        "quarter" | "viertel" | "kvart" | "kwart" | "cuarto" | "quarto" | "quart" | "ceyrek" => Some(0.25),
+        "eineinhalb" | "anderthalb" | "einhalb" | "anderthalve" => Some(1.5),
+        "dreiviertel" | "trequart" => Some(0.75),
         _ => None,
     }
 }

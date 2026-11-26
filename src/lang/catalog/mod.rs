@@ -218,6 +218,14 @@ impl Catalog {
         self.number_styles.contains(&NumberStyle::EnglishTens)
     }
 
+    pub fn has_tens_and_ones(&self) -> bool {
+        self.number_styles.contains(&NumberStyle::TensAndOnes)
+    }
+
+    pub fn has_ones_and_tens(&self) -> bool {
+        self.number_styles.contains(&NumberStyle::OnesAndTens)
+    }
+
     pub fn speech(&self) -> &'static Speech {
         self.speech.first().copied().unwrap_or(&super::packs::en::PACK.speech)
     }

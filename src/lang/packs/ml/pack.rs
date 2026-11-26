@@ -5,6 +5,7 @@ use crate::lang::LangId;
 
 use super::mood::MOOD;
 use super::news::NEWS;
+use super::numbers::NUMBERS;
 use super::speech::SPEECH;
 use super::verbs::VERBS;
 
@@ -232,37 +233,7 @@ pub const PACK: LanguagePack = LanguagePack {
             ("purple", "purple"),
             ("chusukulla vella", "warmwhite"),
         ],
-        numbers: &[
-            ("poojyam", 0),
-            ("onnu", 1),
-            ("randu", 2),
-            ("munnu", 3),
-            ("naalu", 4),
-            ("anchu", 5),
-            ("aaru", 6),
-            ("ezhu", 7),
-            ("ettu", 8),
-            ("onpathu", 9),
-            ("pathu", 10),
-            ("pathinonnu", 11),
-            ("panthrandu", 12),
-            ("pathimunnu", 13),
-            ("pathinaalu", 14),
-            ("pathinanchu", 15),
-            ("pathinaaru", 16),
-            ("pathinezhu", 17),
-            ("pathinettu", 18),
-            ("pathonpathu", 19),
-            ("irupathu", 20),
-            ("muppathu", 30),
-            ("nalpathu", 40),
-            ("anpathu", 50),
-            ("arupathu", 60),
-            ("ezhupathu", 70),
-            ("enpathu", 80),
-            ("thonnooru", 90),
-            ("nooru", 100),
-        ],
+        numbers: NUMBERS,
         number_style: NumberStyle::ListedOnly,
         room_index_nouns: &["ഹാൾ"],
     },

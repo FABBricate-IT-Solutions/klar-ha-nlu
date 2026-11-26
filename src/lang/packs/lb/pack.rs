@@ -5,6 +5,7 @@ use crate::lang::LangId;
 
 use super::mood::MOOD;
 use super::news::NEWS;
+use super::numbers::NUMBERS;
 use super::speech::SPEECH;
 use super::verbs::VERBS;
 
@@ -210,38 +211,8 @@ pub const PACK: LanguagePack = LanguagePack {
             ("purple", "purple"),
             ("waarmwaeiss", "warmwhite"),
         ],
-        numbers: &[
-            ("null", 0),
-            ("eent", 1),
-            ("zwee", 2),
-            ("drai", 3),
-            ("veier", 4),
-            ("fennef", 5),
-            ("sechs", 6),
-            ("siwen", 7),
-            ("aacht", 8),
-            ("neng", 9),
-            ("zeng", 10),
-            ("eelf", 11),
-            ("zwielef", 12),
-            ("draizeng", 13),
-            ("veierzeng", 14),
-            ("fofzeng", 15),
-            ("siechzeng", 16),
-            ("siwwenzeng", 17),
-            ("uechtzeng", 18),
-            ("nonzeng", 19),
-            ("zwanzeg", 20),
-            ("dresseg", 30),
-            ("veierzeg", 40),
-            ("fofzeg", 50),
-            ("sechzeg", 60),
-            ("siwwenzeg", 70),
-            ("achtzeg", 80),
-            ("nonzeg", 90),
-            ("honnert", 100),
-        ],
-        number_style: NumberStyle::ListedOnly,
+        numbers: NUMBERS,
+        number_style: NumberStyle::OnesAndTens,
         room_index_nouns: &["wunnen"],
     },
     chat: Chat {

@@ -5,6 +5,7 @@ use crate::lang::LangId;
 
 use super::mood::MOOD;
 use super::news::NEWS;
+use super::numbers::NUMBERS;
 use super::speech::SPEECH;
 use super::verbs::VERBS;
 
@@ -208,37 +209,7 @@ pub const PACK: LanguagePack = LanguagePack {
             ("purple", "purple"),
             ("ban te", "warmwhite"),
         ],
-        numbers: &[
-            ("naid", 0),
-            ("aon", 1),
-            ("do", 2),
-            ("tri", 3),
-            ("ceathair", 4),
-            ("cuig", 5),
-            ("se", 6),
-            ("seacht", 7),
-            ("ocht", 8),
-            ("naoi", 9),
-            ("deich", 10),
-            ("aonndead", 11),
-            ("doceag", 12),
-            ("triceag", 13),
-            ("ceathairdeag", 14),
-            ("cuigdeag", 15),
-            ("sedeag", 16),
-            ("seachtdead", 17),
-            ("ochtdead", 18),
-            ("naoideag", 19),
-            ("fiche", 20),
-            ("triocha", 30),
-            ("daichead", 40),
-            ("caoga", 50),
-            ("seasca", 60),
-            ("seachtod", 70),
-            ("ochto", 80),
-            ("nocad", 90),
-            ("cead", 100),
-        ],
+        numbers: NUMBERS,
         number_style: NumberStyle::ListedOnly,
         room_index_nouns: &["seomra"],
     },

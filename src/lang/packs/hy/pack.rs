@@ -5,6 +5,7 @@ use crate::lang::LangId;
 
 use super::mood::MOOD;
 use super::news::NEWS;
+use super::numbers::NUMBERS;
 use super::speech::SPEECH;
 use super::verbs::VERBS;
 
@@ -243,37 +244,7 @@ pub const PACK: LanguagePack = LanguagePack {
             ("purple", "purple"),
             ("jag spitak", "warmwhite"),
         ],
-        numbers: &[
-            ("zro", 0),
-            ("mek", 1),
-            ("yerku", 2),
-            ("yerek", 3),
-            ("chors", 4),
-            ("hing", 5),
-            ("vets", 6),
-            ("yot", 7),
-            ("ut", 8),
-            ("iny", 9),
-            ("tasy", 10),
-            ("tasnmek", 11),
-            ("tasnyerku", 12),
-            ("tasnyerek", 13),
-            ("tasnchors", 14),
-            ("tasnhing", 15),
-            ("tasnvets", 16),
-            ("tasnyot", 17),
-            ("tasnut", 18),
-            ("tasniny", 19),
-            ("ksan", 20),
-            ("yeresun", 30),
-            ("karrasun", 40),
-            ("hisun", 50),
-            ("vatsun", 60),
-            ("yotanasun", 70),
-            ("utsun", 80),
-            ("innsun", 90),
-            ("haryur", 100),
-        ],
+        numbers: NUMBERS,
         number_style: NumberStyle::ListedOnly,
         room_index_nouns: &["հյուրասենյակ"],
     },

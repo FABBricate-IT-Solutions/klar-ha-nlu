@@ -5,6 +5,7 @@ use crate::lang::LangId;
 
 use super::mood::MOOD;
 use super::news::NEWS;
+use super::numbers::NUMBERS;
 use super::speech::SPEECH;
 use super::verbs::VERBS;
 
@@ -208,37 +209,7 @@ pub const PACK: LanguagePack = LanguagePack {
             ("purple", "purple"),
             ("soe valge", "warmwhite"),
         ],
-        numbers: &[
-            ("null", 0),
-            ("uks", 1),
-            ("kaks", 2),
-            ("kolm", 3),
-            ("neli", 4),
-            ("viis", 5),
-            ("kuus", 6),
-            ("seitse", 7),
-            ("kaheksa", 8),
-            ("uheksa", 9),
-            ("kymme", 10),
-            ("uksteist", 11),
-            ("kaksteist", 12),
-            ("kolmteist", 13),
-            ("neliteist", 14),
-            ("viisteist", 15),
-            ("kuusteist", 16),
-            ("seitseteist", 17),
-            ("kaheksateist", 18),
-            ("uheksateist", 19),
-            ("kakskymmend", 20),
-            ("kolmkymmend", 30),
-            ("nelikymmend", 40),
-            ("viiskymmend", 50),
-            ("kuuskymmend", 60),
-            ("seitsekymmend", 70),
-            ("kaheksakymmend", 80),
-            ("uheksakymmend", 90),
-            ("sada", 100),
-        ],
+        numbers: NUMBERS,
         number_style: NumberStyle::ListedOnly,
         room_index_nouns: &["elutuba"],
     },

@@ -85,23 +85,37 @@ fn a_listed_number_is_read_with_or_without_its_hyphen() {
 
 #[test]
 fn a_number_the_language_cannot_add_up_is_rejected() {
+    // Package 4.2 replaced the 1.14 blanket reject for tens+ones that the locale
+    // can now compose. Forms with no grammar (wrong order, missing link) still refuse.
     for (lang, text) in [
-        ("fr", "mets le chauffage à vingt-deux degrés"),
-        ("fr", "mets le chauffage à vingt et un degrés"),
-        ("fr", "mets la lampe salon à vingt-cinq pour cent"),
-        ("fr", "mets un minuteur de vingt cinq minutes"),
-        ("es", "pon la calefaccion a treinta y cinco grados"),
-        ("es", "pon la lampara salon al treinta y cinco por ciento"),
-        ("it", "imposta lampada salon al venti cinque per cento"),
-        ("nl", "zet lamp salon op vijf en twintig procent"),
+        ("it", "imposta lampada salon al cinque venti per cento"),
         ("en", "set the salon light to five ten percent"),
         ("en", "set the salon light to one hundred and five percent"),
         ("de", "Stell die Heizung auf zwei drei Grad"),
     ] {
         refuses(lang, &[text]);
     }
-    refuses("fr", &["allume le chauffage", "vingt cinq"]);
     refuses("en", &["turn on the heating", "twenty twenty"]);
+}
+
+#[test]
+fn package_4_2_reads_composed_tens_and_ones() {
+    sets("fr", &["mets le chauffage à vingt-deux degrés"], "HassClimateSetTemperature climate.salon temperature=22");
+    sets("fr", &["mets le chauffage à vingt et un degrés"], "HassClimateSetTemperature climate.salon temperature=21");
+    sets("fr", &["mets la lampe salon à vingt-cinq pour cent"], "HassLightSet light.salon brightness=25");
+    sets("es", &["pon la calefaccion a treinta y cinco grados"], "HassClimateSetTemperature climate.salon temperature=35");
+    sets("es", &["pon la lampara salon al treinta y cinco por ciento"], "HassLightSet light.salon brightness=35");
+    sets("nl", &["zet lamp salon op vijf en twintig procent"], "HassLightSet light.salon brightness=25");
+    starts_timer("fr", "mets un minuteur de vingt cinq minutes", "minutes", "25");
+}
+
+#[test]
+fn article_one_does_not_steal_timer_duration() {
+    // L-05: "um" / "یک" is the article, "cinco" / "پنج" is the duration.
+    starts_timer("pt", "Define um temporizador de cinco minutos", "minutes", "5");
+    starts_timer("pt-BR", "Coloca um temporizador de cinco minutos", "minutes", "5");
+    starts_timer("fa", "یک تایمر پنج دقیقه بگذار", "minutes", "5");
+    starts_timer("pt", "temporizador de um minuto", "minutes", "1");
 }
 
 #[test]

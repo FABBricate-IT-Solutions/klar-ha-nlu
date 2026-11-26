@@ -5,6 +5,7 @@ use crate::lang::LangId;
 
 use super::mood::MOOD;
 use super::news::NEWS;
+use super::numbers::NUMBERS;
 use super::speech::SPEECH;
 use super::verbs::VERBS;
 
@@ -139,7 +140,7 @@ pub const PACK: LanguagePack = LanguagePack {
     maps: Maps {
         domain_map: &[("telly", "media_player"), ("hoover", "vacuum"), ("socket", "switch")],
         colors: &[],
-        numbers: &[],
+        numbers: NUMBERS,
         number_style: NumberStyle::EnglishTens,
         room_index_nouns: &[],
     },

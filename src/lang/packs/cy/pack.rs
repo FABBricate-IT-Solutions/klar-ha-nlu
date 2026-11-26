@@ -5,6 +5,7 @@ use crate::lang::LangId;
 
 use super::mood::MOOD;
 use super::news::NEWS;
+use super::numbers::NUMBERS;
 use super::speech::SPEECH;
 use super::verbs::VERBS;
 
@@ -208,37 +209,7 @@ pub const PACK: LanguagePack = LanguagePack {
             ("purple", "purple"),
             ("gwyncynnes", "warmwhite"),
         ],
-        numbers: &[
-            ("dim", 0),
-            ("un", 1),
-            ("dau", 2),
-            ("tri", 3),
-            ("pedwar", 4),
-            ("pump", 5),
-            ("chwech", 6),
-            ("saith", 7),
-            ("wyth", 8),
-            ("naw", 9),
-            ("deg", 10),
-            ("unarddeg", 11),
-            ("deuddeg", 12),
-            ("triardeg", 13),
-            ("pedwarardeg", 14),
-            ("pymtheg", 15),
-            ("unarsbymtheg", 16),
-            ("dauarsbymtheg", 17),
-            ("deunaw", 18),
-            ("pedwararbytheg", 19),
-            ("ugain", 20),
-            ("degarddeg", 30),
-            ("deugain", 40),
-            ("degadeugain", 50),
-            ("trigain", 60),
-            ("degatrigain", 70),
-            ("pedwarugain", 80),
-            ("degapedwarugain", 90),
-            ("cant", 100),
-        ],
+        numbers: NUMBERS,
         number_style: NumberStyle::ListedOnly,
         room_index_nouns: &["ystafell"],
     },

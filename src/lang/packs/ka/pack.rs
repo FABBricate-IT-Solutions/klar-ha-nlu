@@ -5,6 +5,7 @@ use crate::lang::LangId;
 
 use super::mood::MOOD;
 use super::news::NEWS;
+use super::numbers::NUMBERS;
 use super::speech::SPEECH;
 use super::verbs::VERBS;
 
@@ -243,37 +244,7 @@ pub const PACK: LanguagePack = LanguagePack {
             ("purple", "purple"),
             ("tbili tetri", "warmwhite"),
         ],
-        numbers: &[
-            ("nuli", 0),
-            ("erti", 1),
-            ("ori", 2),
-            ("sami", 3),
-            ("otkhi", 4),
-            ("khuti", 5),
-            ("ekvsi", 6),
-            ("shvidi", 7),
-            ("rva", 8),
-            ("tskhra", 9),
-            ("ati", 10),
-            ("tertmeti", 11),
-            ("tormeti", 12),
-            ("tsameti", 13),
-            ("totkhmeti", 14),
-            ("tkhutmeti", 15),
-            ("tekvsmeti", 16),
-            ("chvidmeti", 17),
-            ("tvrameti", 18),
-            ("tskhrameti", 19),
-            ("otsi", 20),
-            ("otsdaati", 30),
-            ("ormotsi", 40),
-            ("ormotsdaati", 50),
-            ("samotsi", 60),
-            ("samotsdaati", 70),
-            ("otkhmotsi", 80),
-            ("otkhmotsdaati", 90),
-            ("asi", 100),
-        ],
+        numbers: NUMBERS,
         number_style: NumberStyle::ListedOnly,
         room_index_nouns: &["მისაღები"],
     },

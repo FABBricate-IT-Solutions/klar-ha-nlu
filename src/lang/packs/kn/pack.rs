@@ -5,6 +5,7 @@ use crate::lang::LangId;
 
 use super::mood::MOOD;
 use super::news::NEWS;
+use super::numbers::NUMBERS;
 use super::speech::SPEECH;
 use super::verbs::VERBS;
 
@@ -232,37 +233,7 @@ pub const PACK: LanguagePack = LanguagePack {
             ("purple", "purple"),
             ("bisi bili", "warmwhite"),
         ],
-        numbers: &[
-            ("sonne", 0),
-            ("ondu", 1),
-            ("eradu", 2),
-            ("muru", 3),
-            ("nalku", 4),
-            ("aidu", 5),
-            ("aru", 6),
-            ("elu", 7),
-            ("entu", 8),
-            ("ombattu", 9),
-            ("hattu", 10),
-            ("hannondu", 11),
-            ("hanneradu", 12),
-            ("hadimuru", 13),
-            ("hadinalku", 14),
-            ("hadinaidu", 15),
-            ("hadinaru", 16),
-            ("hadinelu", 17),
-            ("hadinentu", 18),
-            ("hattombattu", 19),
-            ("ipattu", 20),
-            ("muvattu", 30),
-            ("nalavattu", 40),
-            ("aivattu", 50),
-            ("aravattu", 60),
-            ("eppattu", 70),
-            ("embattu", 80),
-            ("tombattu", 90),
-            ("nuru", 100),
-        ],
+        numbers: NUMBERS,
         number_style: NumberStyle::ListedOnly,
         room_index_nouns: &["ಹಾಲ್"],
     },

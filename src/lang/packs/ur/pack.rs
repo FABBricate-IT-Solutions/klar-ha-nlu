@@ -5,6 +5,7 @@ use crate::lang::LangId;
 
 use super::mood::MOOD;
 use super::news::NEWS;
+use super::numbers::NUMBERS;
 use super::speech::SPEECH;
 use super::verbs::VERBS;
 
@@ -210,37 +211,7 @@ pub const PACK: LanguagePack = LanguagePack {
             ("purple", "purple"),
             ("گرم سفید", "warmwhite"),
         ],
-        numbers: &[
-            ("صفر", 0),
-            ("ایک", 1),
-            ("دو", 2),
-            ("تین", 3),
-            ("چار", 4),
-            ("پانچ", 5),
-            ("چھ", 6),
-            ("سات", 7),
-            ("اٹھ", 8),
-            ("نو", 9),
-            ("دس", 10),
-            ("گیارہ", 11),
-            ("بارہ", 12),
-            ("تیرہ", 13),
-            ("چودہ", 14),
-            ("پندرہ", 15),
-            ("سولہ", 16),
-            ("سترہ", 17),
-            ("اٹھارہ", 18),
-            ("انیس", 19),
-            ("بیس", 20),
-            ("تیس", 30),
-            ("چالیس", 40),
-            ("پچاس", 50),
-            ("ساٹھ", 60),
-            ("ستر", 70),
-            ("اسی", 80),
-            ("نوے", 90),
-            ("سو", 100),
-        ],
+        numbers: NUMBERS,
         number_style: NumberStyle::ListedOnly,
         room_index_nouns: &["لانج"],
     },

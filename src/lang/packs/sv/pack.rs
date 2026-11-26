@@ -5,6 +5,7 @@ use crate::lang::LangId;
 
 use super::mood::MOOD;
 use super::news::NEWS;
+use super::numbers::NUMBERS;
 use super::speech::SPEECH;
 use super::verbs::VERBS;
 
@@ -216,38 +217,8 @@ pub const PACK: LanguagePack = LanguagePack {
             ("lila", "purple"),
             ("varmvit", "warmwhite"),
         ],
-        numbers: &[
-            ("noll", 0),
-            ("ett", 1),
-            ("tva", 2),
-            ("tre", 3),
-            ("fyra", 4),
-            ("fem", 5),
-            ("sex", 6),
-            ("sju", 7),
-            ("atta", 8),
-            ("nio", 9),
-            ("tio", 10),
-            ("elva", 11),
-            ("tolv", 12),
-            ("tretton", 13),
-            ("fjorton", 14),
-            ("femton", 15),
-            ("sexton", 16),
-            ("sjutton", 17),
-            ("arton", 18),
-            ("nitton", 19),
-            ("tjugo", 20),
-            ("trettio", 30),
-            ("fyrtio", 40),
-            ("femtio", 50),
-            ("sextio", 60),
-            ("sjuttio", 70),
-            ("attio", 80),
-            ("nittio", 90),
-            ("hundra", 100),
-        ],
-        number_style: NumberStyle::ListedOnly,
+        numbers: NUMBERS,
+        number_style: NumberStyle::OnesAndTens,
         room_index_nouns: &["vardagsrum"],
     },
     chat: Chat {

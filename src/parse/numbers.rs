@@ -46,9 +46,10 @@ pub fn sets_misread_number(plan: &IntentPlan, tokens: &[String]) -> bool {
     sets_value && unreadable_number(tokens)
 }
 
-/// Writes a number that is held together by "and" as one digit token: "ein und zwanzig"
-/// becomes "21". Later stages drop articles and cut clauses at "and", and would otherwise
-/// take such a number apart.
+/// Writes a number that is held together by a conjunction as one digit token:
+/// "ein und zwanzig" / "treinta y cinco" become "21" / "35". Later stages drop articles
+/// and cut clauses at "and", and would otherwise take such a number apart. Plain
+/// "twenty one" stays words so names like "twenty one pilots" keep their spelling.
 pub fn fold_spoken_numbers(tokens: &[String]) -> Vec<String> {
     let glued: Vec<Spoken> = scan(tokens).into_iter().filter(|number| number.readable && number.glued).collect();
     let mut out = Vec::with_capacity(tokens.len());
@@ -111,6 +112,12 @@ fn scan(tokens: &[String]) -> Vec<Spoken> {
             i += 1;
             continue;
         }
+        // "um temporizador de cinco minutos" / "یک تایمر پنج دقیقه": article before a
+        // timer noun is not the duration (L-05).
+        if article_one(t) && tokens.get(i + 1).is_some_and(|next| cat.timer_nouns().contains(next.as_str())) {
+            i += 1;
+            continue;
+        }
         let Some((first, width)) = word_at(tokens, i) else {
             i += 1;
             continue;
@@ -134,7 +141,9 @@ fn scan(tokens: &[String]) -> Vec<Spoken> {
             }
         }
         let value = compose(&run);
-        let glued = run.iter().any(|piece| matches!(piece, Piece::And(_)));
+        // Listed multi-word forms that hold a conjunction ("treinta y cinco") must fold
+        // the same way as an And-composed run, or clause splitting cuts the number apart.
+        let glued = run.iter().any(|piece| matches!(piece, Piece::And(_))) || tokens[i..end].iter().any(|token| cat.is_conj(token));
         out.push(Spoken { value: value.unwrap_or(first), readable: value.is_some(), start: i, end, glued });
         i = end;
     }
@@ -194,10 +203,97 @@ fn compose(run: &[Piece<'_>]) -> Option<i32> {
         [Piece::Word(ones), Piece::And("und"), Piece::Word(tens)] if cat.has_german_und() && (1..10).contains(ones) && is_tens(*tens) => {
             Some(ones + tens)
         }
+        // "treinta y cinco" / "vinte e cinco" (package 4.2).
+        [Piece::Word(tens), Piece::And(_), Piece::Word(ones)] if cat.has_tens_and_ones() && is_tens(*tens) && (1..10).contains(ones) => {
+            Some(tens + ones)
+        }
+        // "vijf en twintig" / "fem og tyve".
+        [Piece::Word(ones), Piece::And(_), Piece::Word(tens)] if cat.has_ones_and_tens() && (1..10).contains(ones) && is_tens(*tens) => {
+            Some(ones + tens)
+        }
         _ => None,
     };
-    let composes_hundreds = cat.has_english_tens() || cat.has_german_und();
+    // Hundreds compose for every grammar that can add the part below a hundred, and for a
+    // bare "two hundred" with no remainder when the hundred stem is listed.
+    let composes_hundreds =
+        cat.has_english_tens() || cat.has_german_und() || cat.has_tens_and_ones() || cat.has_ones_and_tens() || rest.is_empty();
     below.filter(|_| hundreds == 0 || composes_hundreds).map(|below| hundreds + below)
+}
+
+/// Spell `n` with the active packs for 0..=1000 round-trips (package 4.2).
+pub fn spell_number(n: i32) -> Option<String> {
+    if !(0..=1000).contains(&n) {
+        return None;
+    }
+    let cat = &catalog();
+    if let Some(word) = cat.number_word(n) {
+        return Some(word.to_string());
+    }
+    if n == 0 {
+        return None;
+    }
+    if n == 1000 {
+        return cat.number_word(1000).map(str::to_string).or_else(|| {
+            let hundred = cat.number_word(100)?;
+            let ten = cat.number_word(10)?;
+            Some(format!("{ten} {hundred}"))
+        });
+    }
+    if n >= 100 {
+        let hundreds = n / 100;
+        let rest = n % 100;
+        let hundred_word = cat.number_word(100)?;
+        let head = if hundreds == 1 {
+            if cat.has_german_und() {
+                format!("ein{hundred_word}")
+            } else if cat.has_english_tens() {
+                format!("one {hundred_word}")
+            } else {
+                hundred_word.to_string()
+            }
+        } else {
+            let count = cat.number_word(hundreds)?;
+            if cat.has_german_und() {
+                format!("{count}{hundred_word}")
+            } else {
+                format!("{count} {hundred_word}")
+            }
+        };
+        if rest == 0 {
+            return Some(head);
+        }
+        let tail = spell_number(rest)?;
+        return Some(if cat.has_german_und() { format!("{head}{tail}") } else { format!("{head} {tail}") });
+    }
+    let tens = (n / 10) * 10;
+    let ones = n % 10;
+    if ones == 0 {
+        return cat.number_word(tens).map(str::to_string);
+    }
+    if tens < 20 {
+        return cat.number_word(n).map(str::to_string);
+    }
+    let tens_w = cat.number_word(tens)?;
+    let ones_w = cat.number_word(ones)?;
+    if cat.has_english_tens() {
+        return Some(format!("{tens_w} {ones_w}"));
+    }
+    if cat.has_german_und() {
+        let ones_w = if ones == 1 { "ein" } else { ones_w };
+        return Some(format!("{ones_w} und {tens_w}"));
+    }
+    if cat.has_tens_and_ones() {
+        return Some(format!("{tens_w} {} {ones_w}", number_conj(cat)));
+    }
+    if cat.has_ones_and_tens() {
+        return Some(format!("{ones_w} {} {tens_w}", number_conj(cat)));
+    }
+    // ListedOnly: concatenated tens+ones, matching the generator expansion.
+    Some(format!("{tens_w}{ones_w}"))
+}
+
+fn number_conj(cat: &crate::lang::Catalog) -> &'static str {
+    cat.conjunctions().iter().copied().filter(|word| *word != "then").min_by_key(|word| word.len()).unwrap_or("e")
 }
 
 fn is_tens(value: i32) -> bool {
@@ -233,6 +329,12 @@ fn is_room_index(tokens: &[String], i: usize, n: i32) -> bool {
 
 pub fn first_number(tokens: &[String]) -> Option<i32> {
     extract_numbers(tokens).into_iter().next()
+}
+
+/// Token indices that belong to a readable number span ("quatre"+"vingts" → 80).
+/// Protected-typo checks must skip these so a half of a listed compound is not rejected.
+pub fn number_token_indices(tokens: &[String]) -> std::collections::HashSet<usize> {
+    scan(tokens).into_iter().filter(|number| number.readable).flat_map(|number| number.start..number.end).collect()
 }
 
 pub fn guess_numbered_action(tokens: &[String], last_climate: bool, last_cover: bool, last_fan: bool) -> Action {

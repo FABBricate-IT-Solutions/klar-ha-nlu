@@ -5,6 +5,7 @@ use crate::lang::LangId;
 
 use super::mood::MOOD;
 use super::news::NEWS;
+use super::numbers::NUMBERS;
 use super::speech::SPEECH;
 use super::verbs::VERBS;
 
@@ -217,38 +218,8 @@ pub const PACK: LanguagePack = LanguagePack {
             ("lila", "purple"),
             ("blanccalent", "warmwhite"),
         ],
-        numbers: &[
-            ("zero", 0),
-            ("un", 1),
-            ("dos", 2),
-            ("tres", 3),
-            ("quatre", 4),
-            ("cinc", 5),
-            ("sis", 6),
-            ("set", 7),
-            ("vuit", 8),
-            ("nou", 9),
-            ("deu", 10),
-            ("onze", 11),
-            ("dotze", 12),
-            ("tretze", 13),
-            ("catorze", 14),
-            ("quinze", 15),
-            ("setze", 16),
-            ("disset", 17),
-            ("divuit", 18),
-            ("dinou", 19),
-            ("vint", 20),
-            ("trenta", 30),
-            ("quaranta", 40),
-            ("cinquanta", 50),
-            ("seixanta", 60),
-            ("setanta", 70),
-            ("vuitanta", 80),
-            ("noranta", 90),
-            ("cent", 100),
-        ],
-        number_style: NumberStyle::ListedOnly,
+        numbers: NUMBERS,
+        number_style: NumberStyle::TensAndOnes,
         room_index_nouns: &["sala"],
     },
     chat: Chat {

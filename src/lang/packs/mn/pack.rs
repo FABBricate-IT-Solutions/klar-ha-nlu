@@ -5,6 +5,7 @@ use crate::lang::LangId;
 
 use super::mood::MOOD;
 use super::news::NEWS;
+use super::numbers::NUMBERS;
 use super::speech::SPEECH;
 use super::verbs::VERBS;
 
@@ -232,37 +233,7 @@ pub const PACK: LanguagePack = LanguagePack {
             ("purple", "purple"),
             ("dulaan tsagaan", "warmwhite"),
         ],
-        numbers: &[
-            ("teg", 0),
-            ("neg", 1),
-            ("khoyor", 2),
-            ("gurav", 3),
-            ("dorov", 4),
-            ("tav", 5),
-            ("zurgaa", 6),
-            ("doloo", 7),
-            ("naim", 8),
-            ("yos", 9),
-            ("arav", 10),
-            ("arvanneg", 11),
-            ("arvankhoyor", 12),
-            ("arvangurav", 13),
-            ("arvandorov", 14),
-            ("arvantav", 15),
-            ("arvanzurgaa", 16),
-            ("arvandoloo", 17),
-            ("arvannaim", 18),
-            ("arvanyos", 19),
-            ("khori", 20),
-            ("guch", 30),
-            ("doch", 40),
-            ("tavi", 50),
-            ("jar", 60),
-            ("dal", 70),
-            ("naya", 80),
-            ("yer", 90),
-            ("zuu", 100),
-        ],
+        numbers: NUMBERS,
         number_style: NumberStyle::ListedOnly,
         room_index_nouns: &["зочны"],
     },

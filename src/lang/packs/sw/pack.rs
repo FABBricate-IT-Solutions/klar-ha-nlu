@@ -5,6 +5,7 @@ use crate::lang::LangId;
 
 use super::mood::MOOD;
 use super::news::NEWS;
+use super::numbers::NUMBERS;
 use super::speech::SPEECH;
 use super::verbs::VERBS;
 
@@ -194,37 +195,7 @@ pub const PACK: LanguagePack = LanguagePack {
             ("purple", "purple"),
             ("nyeupejoto", "warmwhite"),
         ],
-        numbers: &[
-            ("sifuri", 0),
-            ("moja", 1),
-            ("mbili", 2),
-            ("tatu", 3),
-            ("nne", 4),
-            ("tano", 5),
-            ("sita", 6),
-            ("saba", 7),
-            ("nane", 8),
-            ("tisa", 9),
-            ("kumi", 10),
-            ("kumimamoja", 11),
-            ("kumimambili", 12),
-            ("kumimataatu", 13),
-            ("kumimanane", 14),
-            ("kumimatano", 15),
-            ("kumimasita", 16),
-            ("kumimasaba", 17),
-            ("kumimanane2", 18),
-            ("kumimatisa", 19),
-            ("ishirini", 20),
-            ("thelathini", 30),
-            ("arobaini", 40),
-            ("hamsini", 50),
-            ("sitini", 60),
-            ("sabini", 70),
-            ("themanini", 80),
-            ("tisini", 90),
-            ("mia", 100),
-        ],
+        numbers: NUMBERS,
         number_style: NumberStyle::ListedOnly,
         room_index_nouns: &["sebuleni"],
     },

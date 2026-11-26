@@ -5,6 +5,7 @@ use crate::lang::LangId;
 
 use super::mood::MOOD;
 use super::news::NEWS;
+use super::numbers::NUMBERS;
 use super::speech::SPEECH;
 use super::verbs::VERBS;
 
@@ -212,37 +213,7 @@ pub const PACK: LanguagePack = LanguagePack {
             ("purple", "purple"),
             ("ابيضدافي", "warmwhite"),
         ],
-        numbers: &[
-            ("صفر", 0),
-            ("واحد", 1),
-            ("اثنان", 2),
-            ("ثلاثه", 3),
-            ("اربعه", 4),
-            ("خمسه", 5),
-            ("سته", 6),
-            ("سبعه", 7),
-            ("ثمانيه", 8),
-            ("تسعه", 9),
-            ("عشره", 10),
-            ("احد عشر", 11),
-            ("اثنا عشر", 12),
-            ("ثلاثه عشر", 13),
-            ("اربعه عشر", 14),
-            ("خمسه عشر", 15),
-            ("سته عشر", 16),
-            ("سبعه عشر", 17),
-            ("ثمانيه عشر", 18),
-            ("تسعه عشر", 19),
-            ("عشرون", 20),
-            ("ثلاثون", 30),
-            ("اربعون", 40),
-            ("خمسون", 50),
-            ("ستون", 60),
-            ("سبعون", 70),
-            ("ثمانون", 80),
-            ("تسعون", 90),
-            ("مايه", 100),
-        ],
+        numbers: NUMBERS,
         number_style: NumberStyle::ListedOnly,
         room_index_nouns: &["صالون"],
     },

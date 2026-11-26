@@ -5,6 +5,7 @@ use crate::lang::LangId;
 
 use super::mood::MOOD;
 use super::news::NEWS;
+use super::numbers::NUMBERS;
 use super::speech::SPEECH;
 use super::verbs::VERBS;
 
@@ -233,37 +234,7 @@ pub const PACK: LanguagePack = LanguagePack {
             ("बैंगनी", "purple"),
             ("garam safed", "warmwhite"),
         ],
-        numbers: &[
-            ("शून्य", 0),
-            ("एक", 1),
-            ("दो", 2),
-            ("तीन", 3),
-            ("चार", 4),
-            ("पांच", 5),
-            ("छह", 6),
-            ("सात", 7),
-            ("आठ", 8),
-            ("नौ", 9),
-            ("दस", 10),
-            ("ग्यारह", 11),
-            ("बारह", 12),
-            ("तेरह", 13),
-            ("चौदह", 14),
-            ("पंद्रह", 15),
-            ("सोलह", 16),
-            ("सत्रह", 17),
-            ("अठारह", 18),
-            ("उन्नीस", 19),
-            ("बीस", 20),
-            ("तीस", 30),
-            ("चालीस", 40),
-            ("पचास", 50),
-            ("साठ", 60),
-            ("सत्तर", 70),
-            ("अस्सी", 80),
-            ("नब्बे", 90),
-            ("सौ", 100),
-        ],
+        numbers: NUMBERS,
         number_style: NumberStyle::ListedOnly,
         room_index_nouns: &["बैठक"],
     },

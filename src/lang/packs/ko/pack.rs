@@ -5,6 +5,7 @@ use crate::lang::LangId;
 
 use super::mood::MOOD;
 use super::news::NEWS;
+use super::numbers::NUMBERS;
 use super::speech::SPEECH;
 use super::verbs::VERBS;
 
@@ -239,37 +240,7 @@ pub const PACK: LanguagePack = LanguagePack {
             ("보라", "purple"),
             ("따뜻한흰색", "warmwhite"),
         ],
-        numbers: &[
-            ("영", 0),
-            ("일", 1),
-            ("이", 2),
-            ("삼", 3),
-            ("사", 4),
-            ("오", 5),
-            ("육", 6),
-            ("칠", 7),
-            ("팔", 8),
-            ("구", 9),
-            ("십", 10),
-            ("십일", 11),
-            ("십이", 12),
-            ("십삼", 13),
-            ("십사", 14),
-            ("십오", 15),
-            ("십육", 16),
-            ("십칠", 17),
-            ("십팔", 18),
-            ("십구", 19),
-            ("이십", 20),
-            ("삼십", 30),
-            ("사십", 40),
-            ("오십", 50),
-            ("육십", 60),
-            ("칠십", 70),
-            ("팔십", 80),
-            ("구십", 90),
-            ("백", 100),
-        ],
+        numbers: NUMBERS,
         number_style: NumberStyle::ListedOnly,
         room_index_nouns: &["거실"],
     },
