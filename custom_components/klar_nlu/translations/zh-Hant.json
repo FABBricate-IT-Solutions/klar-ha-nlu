@@ -128,6 +128,14 @@
     "engine_down": {
       "title": "Klar 引擎已停止",
       "description": "內建 Klar 程序未在執行。請在設定 → 裝置與服務重新載入 Klar NLU。"
+    },
+    "version_mismatch": {
+      "title": "Klar version mismatch",
+      "description": "Integration {integration} talks to engine {engine}. Update both to the same CalVer; Assist still answers, but features may disagree."
+    },
+    "sync_rejected": {
+      "title": "Klar home sync rejected",
+      "description": "Home Assistant could not push the home graph (HTTP {status}). Check the Klar write token and engine logs."
     }
   }
 }

@@ -12,7 +12,7 @@ use crate::session::Sessions;
 use crate::types::{CustomSentence, HomeGraph, MatchControl, ParseOutcome, ParseResult, PolicyRule, Settings, SpeechBank};
 use axum::http::StatusCode;
 use std::path::PathBuf;
-use std::sync::atomic::AtomicBool;
+use std::sync::atomic::{AtomicBool, AtomicU64};
 use std::sync::Arc;
 use tokio::sync::Mutex;
 
@@ -34,9 +34,13 @@ pub struct AppState {
     /// The only writer of `klar_nlu.json` in `data_dir`.
     pub overlay: OverlayStore,
     pub live_sync: Arc<AtomicBool>,
+    /// Unix millis of the last successful `POST /api/v2/home`. Zero until the first push.
+    pub home_synced_ms: Arc<AtomicU64>,
     /// The home as Home Assistant last pushed it, before the overlays. `None` until the
     /// first push; the registry files are the base until then.
     pub live_base: Arc<Mutex<Option<Arc<HomeGraph>>>>,
+    /// Wyoming accept loop is running (set from the Wyoming server task).
+    pub wyoming_up: Arc<AtomicBool>,
     pub token: Option<String>,
     pub llm: Arc<Mutex<Option<LlmEndpoint>>>,
     pub trainer_consent: Arc<TrainerConsentHub>,
@@ -63,7 +67,9 @@ impl AppState {
             overlay: OverlayStore::open(&data_dir),
             data_dir,
             live_sync: Arc::new(AtomicBool::new(false)),
+            home_synced_ms: Arc::new(AtomicU64::new(0)),
             live_base: Arc::new(Mutex::new(None)),
+            wyoming_up: Arc::new(AtomicBool::new(false)),
             token,
             llm: Arc::new(Mutex::new(llm)),
             trainer_consent: TrainerConsentHub::new(),

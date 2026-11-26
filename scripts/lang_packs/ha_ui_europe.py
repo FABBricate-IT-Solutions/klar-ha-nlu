@@ -56,6 +56,10 @@ EUROPE: dict[str, dict[str, str]] = {
         "area": 'Gehört in',
         "down_title": 'Klar-Engine gestoppt',
         "down_desc": 'Der mitgelieferte Klar-Prozess läuft nicht. Lade Klar NLU unter Einstellungen → Geräte und Dienste neu.',
+        "mismatch_title": 'Klar-Versionsmix',
+        "mismatch_desc": 'Integration {integration} spricht mit Engine {engine}. Beide auf dieselbe CalVer bringen; Assist antwortet weiter, Funktionen können abweichen.',
+        "sync_title": 'Klar-Homesync abgelehnt',
+        "sync_desc": 'Home Assistant konnte den Home-Graph nicht senden (HTTP {status}). Write-Token und Engine-Logs prüfen.',
     },
     "de-CH": {
         "user_desc": "Die Integration redet mit Assist. D'Engine lauft als Klar-NLU-App, mitglieferte Prozess oder Docker. Uf Home Assistant OS d App installiere und Klar-NLU-App wähle. Ohni App Mitglieferte Engine starte. Nöd beides. De Release-Kanal cha mer spöter wächsle.",

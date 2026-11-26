@@ -29,4 +29,7 @@ COPY LICENSE /usr/share/doc/klar/LICENSE
 COPY scripts/klar-entry.sh /usr/local/bin/klar-entry.sh
 RUN chmod +x /usr/local/bin/klar-entry.sh
 EXPOSE 10500 10520
+# R-19: Supervisor and Docker both probe the public health document.
+HEALTHCHECK --interval=30s --timeout=5s --start-period=20s --retries=3 \
+  CMD bash -c 'exec 3<>/dev/tcp/127.0.0.1/10520; printf "GET /api/v2/health HTTP/1.1\r\nHost: localhost\r\nConnection: close\r\n\r\n" >&3; grep -q "\"ok\":true" <&3'
 ENTRYPOINT ["/usr/local/bin/klar-entry.sh"]

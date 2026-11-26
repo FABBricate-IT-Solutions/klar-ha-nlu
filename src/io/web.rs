@@ -57,6 +57,8 @@ pub fn router(state: AppState) -> Router {
         .layer(from_fn_with_state(state.clone(), authorize));
     Router::new()
         .route("/", get(index))
+        // R-19: public health for watchdog / healthcheck / version compare (no token).
+        .merge(crate::io::health::routes())
         .merge(api)
         // U-20: gzip UI assets when the client asks; long-cache hashed files, no-cache HTML.
         .fallback_service(

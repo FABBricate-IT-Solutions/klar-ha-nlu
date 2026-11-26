@@ -11,11 +11,20 @@ from homeassistant.components.homeassistant.exposed_entities import async_should
 from homeassistant.config_entries import ConfigEntry
 from homeassistant.core import Event, HomeAssistant, callback
 from homeassistant.helpers import area_registry, device_registry, entity_registry, floor_registry, label_registry
+from homeassistant.helpers import issue_registry as ir
 from homeassistant.helpers.aiohttp_client import async_get_clientsession
 
 from .asr_boost import export_asr_boost
 from .addon_host import async_refresh_klar_hosts
-from .const import CONF_ASSIST_FILTER, DEFAULT_ASSIST_FILTER, DEFAULT_URL, CONF_URL, engine_headers, engine_url_candidates
+from .const import (
+    CONF_ASSIST_FILTER,
+    DEFAULT_ASSIST_FILTER,
+    DEFAULT_URL,
+    CONF_URL,
+    DOMAIN,
+    engine_headers,
+    engine_url_candidates,
+)
 
 _LOGGER = logging.getLogger(__name__)
 _EVENTS = (
@@ -128,7 +137,17 @@ class HomeGraphSync:
                 ) as resp:
                     if resp.status >= 400:
                         _LOGGER.warning("Klar home snapshot rejected: %s", resp.status)
+                        ir.async_create_issue(
+                            self.hass,
+                            DOMAIN,
+                            "sync_rejected",
+                            is_fixable=False,
+                            severity=ir.IssueSeverity.WARNING,
+                            translation_key="sync_rejected",
+                            translation_placeholders={"status": str(resp.status)},
+                        )
                         return False
+                    ir.async_delete_issue(self.hass, DOMAIN, "sync_rejected")
                     await self._refresh_asr_boost()
                     return True
             except (ClientError, TimeoutError, OSError) as err:

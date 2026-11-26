@@ -128,6 +128,14 @@
     "engine_down": {
       "title": "Klar-Engine gestoppt",
       "description": "Der mitgelieferte Klar-Prozess läuft nicht. Lade Klar NLU unter Einstellungen → Geräte und Dienste neu."
+    },
+    "version_mismatch": {
+      "title": "Klar-Versionsmix",
+      "description": "Integration {integration} spricht mit Engine {engine}. Beide auf dieselbe CalVer bringen; Assist antwortet weiter, Funktionen können abweichen."
+    },
+    "sync_rejected": {
+      "title": "Klar-Homesync abgelehnt",
+      "description": "Home Assistant konnte den Home-Graph nicht senden (HTTP {status}). Write-Token und Engine-Logs prüfen."
     }
   }
 }

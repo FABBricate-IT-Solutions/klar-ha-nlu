@@ -5,6 +5,7 @@ pub mod bootstrap;
 pub(crate) mod bundle;
 pub(crate) mod conversations;
 pub(crate) mod dashboard;
+pub(crate) mod health;
 pub(crate) mod home_sync;
 pub(crate) mod http_error;
 pub mod http_server;

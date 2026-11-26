@@ -112,4 +112,16 @@ def expand(fields: dict[str, str]) -> dict[str, str]:
         "entity.sensor.last_area.name": f["area"],
         "issues.engine_down.title": f["down_title"],
         "issues.engine_down.description": f["down_desc"],
+        "issues.version_mismatch.title": f.get("mismatch_title") or "Klar version mismatch",
+        "issues.version_mismatch.description": f.get("mismatch_desc")
+        or (
+            "Integration {integration} talks to engine {engine}. "
+            "Update both to the same CalVer; Assist still answers, but features may disagree."
+        ),
+        "issues.sync_rejected.title": f.get("sync_title") or "Klar home sync rejected",
+        "issues.sync_rejected.description": f.get("sync_desc")
+        or (
+            "Home Assistant could not push the home graph (HTTP {status}). "
+            "Check the Klar write token and engine logs."
+        ),
     }

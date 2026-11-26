@@ -36,6 +36,10 @@ def _load_sync() -> types.ModuleType:
     helpers = _module("homeassistant.helpers")
     aiohttp_client = types.ModuleType("homeassistant.helpers.aiohttp_client")
     aiohttp_client.async_get_clientsession = lambda _hass: None
+    issue_registry = types.ModuleType("homeassistant.helpers.issue_registry")
+    issue_registry.IssueSeverity = SimpleNamespace(WARNING="warning", ERROR="error")
+    issue_registry.async_create_issue = lambda *args, **kwargs: None
+    issue_registry.async_delete_issue = lambda *args, **kwargs: None
     area_registry = types.ModuleType("homeassistant.helpers.area_registry")
     device_registry = types.ModuleType("homeassistant.helpers.device_registry")
     entity_registry = types.ModuleType("homeassistant.helpers.entity_registry")
@@ -54,6 +58,7 @@ def _load_sync() -> types.ModuleType:
         "homeassistant.core": core,
         "homeassistant.helpers": helpers,
         "homeassistant.helpers.aiohttp_client": aiohttp_client,
+        "homeassistant.helpers.issue_registry": issue_registry,
         "homeassistant.helpers.area_registry": area_registry,
         "homeassistant.helpers.device_registry": device_registry,
         "homeassistant.helpers.entity_registry": entity_registry,

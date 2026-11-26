@@ -40,6 +40,7 @@ impl Drop for InflightGuard {
 /// finish. A failed `accept` is logged and the listener carries on: it used to end the
 /// listener for good, with the process still running.
 pub async fn serve(listener: TcpListener, state: AppState, mut stop: watch::Receiver<bool>) -> std::io::Result<()> {
+    state.wyoming_up.store(true, Ordering::Relaxed);
     let inflight = Arc::new(AtomicUsize::new(0));
     // Every connection holds a sender. When the last one is dropped, `recv` returns.
     let (alive, mut all_closed) = mpsc::channel::<()>(1);
@@ -74,6 +75,7 @@ pub async fn serve(listener: TcpListener, state: AppState, mut stop: watch::Rece
     drop(listener);
     drop(alive);
     let _ = all_closed.recv().await;
+    state.wyoming_up.store(false, Ordering::Relaxed);
     Ok(())
 }
 

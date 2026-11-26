@@ -10,6 +10,7 @@ arch:
 init: false
 startup: services
 boot: auto
+watchdog: http://[HOST]:[PORT:10520]/api/v2/health
 hostname: klar-nlu
 host_network: false
 ingress: true
