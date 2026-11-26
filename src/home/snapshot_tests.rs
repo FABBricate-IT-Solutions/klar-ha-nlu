@@ -149,6 +149,32 @@ fn drops_unknown_floor_links_and_disabled_entities() {
 }
 
 #[test]
+fn rejects_duplicate_ids_and_empty_or_missing_assist_frees_nothing() {
+    let mut dup = snapshot();
+    dup.entities.push(dup.entities[0].clone());
+    assert_eq!(ingest(dup).unwrap_err(), SnapshotError::Malformed("duplicate entity_id"));
+
+    let mut empty = snapshot();
+    empty.entities.clear();
+    assert_eq!(ingest(empty).unwrap_err(), SnapshotError::Malformed("empty home snapshot"));
+
+    let mut no_assist = snapshot();
+    no_assist.assist = None;
+    let home = ingest(no_assist).expect("missing assist becomes explicit set");
+    // Omitted assist → every kept entity is exposed, but the set is Some (not None), so later
+    // additions are not silently freed.
+    assert_eq!(home.assist.as_ref().map(HashSet::len), Some(1));
+    assert!(crate::home::expose::assist_visible(&home.entities[0], &home));
+    assert!(home.assist.is_some());
+
+    let mut empty_assist = snapshot();
+    empty_assist.assist = Some(Vec::new());
+    let locked = ingest(empty_assist).expect("explicit empty assist");
+    assert_eq!(locked.assist.as_ref().map(HashSet::len), Some(0));
+    assert!(!crate::home::expose::assist_visible(&locked.entities[0], &locked));
+}
+
+#[test]
 fn ingest_keeps_weather_and_assist_only_domains() {
     let mut raw = snapshot();
     raw.entities.push(SnapshotEntity {

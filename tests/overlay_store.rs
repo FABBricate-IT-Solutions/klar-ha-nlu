@@ -54,13 +54,15 @@ async fn an_unreadable_file_stays_byte_identical_and_every_write_route_fails() {
         ("/api/custom", json!([{"phrase": "werkbank aufräumen", "intent": "HassTurnOff", "slots": {}}])),
         ("/api/ui", json!({"tab": "graph"})),
         ("/api/v2/policies", json!({"policies": []})),
-        ("/api/assignment/apply", json!({})),
         ("/api/assignment/undo", json!({})),
     ];
     for (path, body) in writes {
         assert_eq!(engine.post(path, body).await, StatusCode::INTERNAL_SERVER_ERROR, "{path}");
         assert_eq!(std::fs::read(dir.file(OVERLAY_FILE)).unwrap(), BROKEN.as_bytes(), "{path} changed the unreadable file");
     }
+    // D-19: apply with nothing to do must not touch the undo stack or the corrupt file.
+    assert_eq!(engine.post("/api/assignment/apply", json!({})).await, StatusCode::OK);
+    assert_eq!(std::fs::read(dir.file(OVERLAY_FILE)).unwrap(), BROKEN.as_bytes());
     assert_eq!(std::fs::read(dir.file("klar_nlu.json.bad")).unwrap(), BROKEN.as_bytes(), "a .bad copy keeps the bytes");
     let (_, settings) = engine.get("/api/settings").await;
     assert_eq!(settings["personality"], "default", "a refused save must not change the running settings");

@@ -70,3 +70,22 @@ fn apply_writes_v2_only_and_forces_confirm() {
     let raw = std::fs::read_to_string(dir.join("klar_nlu.json")).unwrap();
     assert!(!raw.contains("legacy_flag"));
 }
+
+#[test]
+fn apply_keeps_a_pre_migrate_backup() {
+    let scratch = tempfile::tempdir().unwrap();
+    let dir = scratch.path().to_path_buf();
+    let path = write_v1(&dir, r#"{"legacy_flag": true, "settings": {"confirm_risky_actions": true}}"#);
+    let before = std::fs::read_to_string(&path).unwrap();
+    apply(&path, &dir, Some(&default_home())).expect("apply");
+    let backups: Vec<_> = std::fs::read_dir(&dir)
+        .unwrap()
+        .filter_map(|entry| entry.ok())
+        .map(|entry| entry.file_name().to_string_lossy().into_owned())
+        .filter(|name| name.starts_with("klar_nlu.json.pre-migrate-"))
+        .collect();
+    assert_eq!(backups.len(), 1, "{backups:?}");
+    let backup = std::fs::read_to_string(dir.join(&backups[0])).unwrap();
+    assert_eq!(backup, before);
+    assert!(!std::fs::read_to_string(dir.join("klar_nlu.json")).unwrap().contains("legacy_flag"));
+}

@@ -107,11 +107,24 @@ fn import(from: &Path, into: Option<&Path>, home: Option<&HomeGraph>, apply_writ
     if apply_write {
         let dest = into.unwrap_or(from);
         let dir = if dest.is_dir() { dest.to_path_buf() } else { dest.parent().unwrap_or(dest).to_path_buf() };
+        // D-13: keep a copy of the existing overlay before --apply overwrites it.
+        backup_existing_overlay(&dir)?;
         save_overlay(&dir, &overlay).map_err(|err| format!("{}: {err}", overlay_path(&dir).display()))?;
         applied = true;
     }
 
     Ok(ImportReport { schema: "v2".into(), dry_run: !apply_write, applied, conflicts, orphans, security, accepted_custom, dropped_custom })
+}
+
+fn backup_existing_overlay(dir: &Path) -> Result<(), String> {
+    let path = overlay_path(dir);
+    if !path.is_file() {
+        return Ok(());
+    }
+    let stamp = std::time::SystemTime::now().duration_since(std::time::UNIX_EPOCH).map(|d| d.as_secs()).unwrap_or(0);
+    let backup = dir.join(format!("klar_nlu.json.pre-migrate-{stamp}"));
+    std::fs::copy(&path, &backup).map_err(|err| format!("{}: backup before migrate failed: {err}", path.display()))?;
+    Ok(())
 }
 
 fn unknown_keys(value: &serde_json::Value) -> Vec<Issue> {

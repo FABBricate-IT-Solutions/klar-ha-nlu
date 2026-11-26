@@ -56,9 +56,21 @@ pub fn read_to_string_confined(dir: &Path, name: &str) -> io::Result<String> {
     std::fs::read_to_string(path)
 }
 
+/// Non-atomic replace. Prefer [`write_atomic_confined`] when a kill mid-write must leave the
+/// previous file readable.
+#[allow(dead_code)]
 pub fn write_confined(dir: &Path, name: &str, bytes: &[u8]) -> io::Result<()> {
     let path = safe_path(confined_file(dir, name)?)?;
     std::fs::write(path, bytes)
+}
+
+/// Append bytes to `dir/name` and sync. A kill mid-write can leave a short last line; every
+/// earlier line stays readable (jsonl). Prefer this for append-only journals.
+pub fn append_confined(dir: &Path, name: &str, bytes: &[u8]) -> io::Result<()> {
+    let path = safe_path(confined_file(dir, name)?)?;
+    let mut file = OpenOptions::new().create(true).append(true).open(path)?;
+    file.write_all(bytes)?;
+    file.sync_all()
 }
 
 /// Replace `dir/name` in one step: the bytes go to a temp file of their own, are synced, and
@@ -224,5 +236,13 @@ mod tests {
         }
         sweep_temp_files(dir.path(), "state.json");
         assert_eq!(dir.names(), ["other.json.tmp", "state.json", "state.json.bad"]);
+    }
+
+    #[test]
+    fn append_keeps_prior_bytes_readable() {
+        let dir = TestDir::new("append");
+        append_confined(dir.path(), "log.jsonl", b"{\"a\":1}\n").unwrap();
+        append_confined(dir.path(), "log.jsonl", b"{\"a\":2}\n").unwrap();
+        assert_eq!(read_to_string_confined(dir.path(), "log.jsonl").unwrap(), "{\"a\":1}\n{\"a\":2}\n");
     }
 }

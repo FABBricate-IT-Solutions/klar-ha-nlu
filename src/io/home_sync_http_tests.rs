@@ -116,7 +116,13 @@ async fn body_byte_boundary_is_enforced_for_fixed_and_streamed_requests() {
         for extra in [0, 1] {
             let fixture = Fixture::new();
             let before = fixture.state.home.snapshot().await;
-            let mut bytes = serde_json::to_vec(&json!({"schema_version": HOME_SCHEMA_VERSION})).unwrap();
+            // A schema-only body is an empty snapshot (D-15 → 400). Pad it to probe the byte cap.
+            let mut bytes = serde_json::to_vec(&json!({
+                "schema_version": HOME_SCHEMA_VERSION,
+                "entities": [{"entity_id": "light.boundary", "name": "Boundary"}],
+                "assist": ["light.boundary"]
+            }))
+            .unwrap();
             bytes.resize(MAX_HOME_SNAPSHOT_BYTES + extra, b' ');
             let response = fixture.post("/api/v2/home", bytes, streamed).await;
             assert_eq!(
@@ -159,8 +165,13 @@ async fn invalid_snapshots_keep_the_last_successful_graph_and_live_sync_flag() {
 async fn over_limit_collections_are_capped_instead_of_rejecting_the_graph() {
     let fixture = Fixture::new();
     // R-10: filter then cap — oversized keep_domain lists sync, truncated to the cap.
-    let mut body = json!({"schema_version": HOME_SCHEMA_VERSION});
-    body["entities"] = Value::Array(vec![json!({"entity_id": "light.fixture"}); MAX_SNAPSHOT_ENTITIES + 1]);
+    // D-15: ids must be unique; duplicates are rejected rather than silently collapsed.
+    let entities: Vec<_> = (0..MAX_SNAPSHOT_ENTITIES + 1).map(|index| json!({"entity_id": format!("light.fixture_{index}")})).collect();
+    let body = json!({
+        "schema_version": HOME_SCHEMA_VERSION,
+        "entities": entities,
+        "assist": (0..MAX_SNAPSHOT_ENTITIES + 1).map(|index| format!("light.fixture_{index}")).collect::<Vec<_>>(),
+    });
     let response = fixture.post("/api/v2/home", serde_json::to_vec(&body).unwrap(), false).await;
     assert_eq!(response.status(), StatusCode::OK);
     assert_eq!(fixture.state.home.snapshot().await.entities.len(), MAX_SNAPSHOT_ENTITIES);
@@ -169,7 +180,8 @@ async fn over_limit_collections_are_capped_instead_of_rejecting_the_graph() {
     let long_alias = "x".repeat(MAX_ALIAS_CHARS + 20);
     let body = json!({
         "schema_version": HOME_SCHEMA_VERSION,
-        "entities": [{"entity_id": "light.fixture", "aliases": [long_alias.clone(), "ok"]}]
+        "entities": [{"entity_id": "light.fixture", "aliases": [long_alias.clone(), "ok"]}],
+        "assist": ["light.fixture"]
     });
     assert_eq!(fixture.post("/api/v2/home", serde_json::to_vec(&body).unwrap(), false).await.status(), StatusCode::OK);
     let home = fixture.state.home.snapshot().await;

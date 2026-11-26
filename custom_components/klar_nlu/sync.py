@@ -184,15 +184,13 @@ class HomeGraphSync:
                     continue
                 entities.append(_state_entity(state))
                 known.add(entity_id)
-        assist = None
         assist_ids: set[str] = set()
         if assist_filter:
-            assist = [
+            assist_ids = {
                 entry.entity_id
                 for entry in er.entities.values()
                 if not getattr(entry, "disabled_by", None) and _exposed(self.hass, entry.entity_id)
-            ][:_ASSIST_CAP]
-            assist_ids = set(assist)
+            }
         # R-10: filter domains/Assist (and conversation agents), then cap — never push a
         # snapshot the engine would reject for size alone. Cap after Assist inclusion so
         # conversation.* / exposed Assist rows are not dropped by the entity budget.
@@ -205,6 +203,12 @@ class HomeGraphSync:
         others = [row for row in filtered if not _assist_priority(row["entity_id"], assist_ids)]
         keep_priority = priority[:_ENTITY_CAP]
         entities = keep_priority + others[: max(0, _ENTITY_CAP - len(keep_priority))]
+        # D-15: engine treats a missing assist list as empty (nothing exposed). Always send
+        # an explicit list — exposed-only when the filter is on, else every kept entity.
+        if assist_filter:
+            assist = [row["entity_id"] for row in entities if row["entity_id"] in assist_ids][:_ASSIST_CAP]
+        else:
+            assist = [row["entity_id"] for row in entities][:_ASSIST_CAP]
         devices = [_device(device) for device in dr.devices.values()][:_DEVICE_CAP]
         areas = [_area(area) for area in ar.areas.values()][:_AREA_CAP]
         floors = [_floor(floor) for floor in fr.floors.values()][:_FLOOR_CAP]

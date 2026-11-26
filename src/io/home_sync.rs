@@ -1,6 +1,6 @@
 use crate::home::labels::rebuild_label_index;
 use crate::home::overlay::{apply_overlay, load_overlay};
-use crate::home::snapshot::{ingest, HomeSnapshot, SnapshotError};
+use crate::home::snapshot::{ingest, save_home_snapshot, HomeSnapshot, SnapshotError};
 use crate::io::auth::home_writes_allowed;
 use crate::io::limits::MAX_HOME_SNAPSHOT_BYTES;
 use crate::io::state::AppState;
@@ -54,11 +54,16 @@ async fn api_home(
     if !home_writes_allowed(Some(peer), &headers, &state.token) {
         return Err(StatusCode::UNAUTHORIZED);
     }
-    let ingested = match ingest(body) {
+    let ingested = match ingest(body.clone()) {
         Ok(graph) => graph,
         Err(SnapshotError::Caps) => return Err(StatusCode::PAYLOAD_TOO_LARGE),
         Err(SnapshotError::Schema | SnapshotError::Malformed(_)) => return Err(StatusCode::BAD_REQUEST),
     };
+    // D-17: keep the last push on disk so a restart does not drop the live home.
+    if let Err(err) = save_home_snapshot(&state.data_dir, &body) {
+        tracing::error!("home_snapshot.json nicht gespeichert: {err}");
+        return Err(StatusCode::INTERNAL_SERVER_ERROR);
+    }
     *state.live_base.lock().await = Some(Arc::new(ingested.clone()));
     let graph = apply_live_overlays(&state, ingested);
     let ack = HomeAck {
@@ -128,6 +133,39 @@ mod tests {
         assert!(state.live_sync.load(Ordering::Relaxed));
         let home = state.home.snapshot().await;
         assert_eq!(home.areas[0].floor_id.as_deref(), Some("upper"));
+        assert!(state.data_dir.join(crate::home::snapshot::HOME_SNAPSHOT_FILE).is_file());
+        let restored = crate::home::snapshot::load_home_snapshot(&state.data_dir).expect("persisted");
+        assert_eq!(restored.entities.len(), 1);
+    }
+
+    #[tokio::test]
+    async fn empty_snapshot_is_rejected_and_does_not_clear_home() {
+        let scratch = TestDir::new("home-sync-empty");
+        let dir = scratch.path().to_path_buf();
+        let state = AppState::new(
+            LoadedHome {
+                graph: crate::home::default_home(),
+                settings: Settings::default(),
+                custom: Vec::new(),
+                language: Default::default(),
+                policies: Vec::new(),
+                speech_bank: Default::default(),
+                match_controls: Vec::new(),
+            },
+            dir,
+            None,
+        );
+        let before = state.home.snapshot().await.entities.len();
+        let body = serde_json::from_value::<HomeSnapshot>(json!({
+            "schema_version": HOME_SCHEMA_VERSION,
+            "entities": [],
+            "assist": []
+        }))
+        .expect("snapshot json");
+        let err =
+            api_home(State(state.clone()), ConnectInfo("127.0.0.1:9".parse().unwrap()), HeaderMap::new(), Json(body)).await.unwrap_err();
+        assert_eq!(err, StatusCode::BAD_REQUEST);
+        assert_eq!(state.home.snapshot().await.entities.len(), before);
     }
 
     #[tokio::test]

@@ -170,6 +170,10 @@ async fn apply_suggestions(
         }
         rows.push(UiApplyRow { entity_id: row.entity_id, before: row.area, after: suggestion.area_id });
     }
+    // D-19: do not wipe the last undo stack when there is nothing to apply.
+    if rows.is_empty() {
+        return Ok(Json(ApplyOut { applied: 0, rows }));
+    }
     let overlay = state
         .overlay
         .update(|overlay| {
@@ -302,5 +306,12 @@ mod tests {
         assert!(src.contains("llm: state.llm_calls.snapshot()"));
         assert!(src.contains("#[serde(flatten)]"));
         assert!(!src.contains("prompt") || src.contains("llm_calls"));
+    }
+
+    #[test]
+    fn apply_suggestions_skips_empty_undo_overwrite() {
+        let src = include_str!("dashboard.rs");
+        assert!(src.contains("do not wipe the last undo stack"), "{src}");
+        assert!(src.contains("if rows.is_empty()"), "{src}");
     }
 }

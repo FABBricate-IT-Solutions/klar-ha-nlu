@@ -37,8 +37,24 @@ pub async fn run(args: RuntimeArgs) -> std::io::Result<()> {
     // delivers signals that have a handler.
     let mut signals = StopSignals::install()?;
 
-    let _ = std::fs::create_dir_all(&args.data_dir);
-    let data_dir = if args.data_dir.is_dir() { args.data_dir.clone() } else { args.config_dir.clone() };
+    // D-12: a missing or unusable data directory is a start error, not a quiet fallback to
+    // the Home Assistant config folder (which is often read-only).
+    std::fs::create_dir_all(&args.data_dir)
+        .map_err(|err| std::io::Error::new(err.kind(), format!("Datenverzeichnis {} nicht anlegbar: {err}", args.data_dir.display())))?;
+    let meta = std::fs::metadata(&args.data_dir)
+        .map_err(|err| std::io::Error::new(err.kind(), format!("Datenverzeichnis {} nicht lesbar: {err}", args.data_dir.display())))?;
+    if !meta.is_dir() {
+        return Err(std::io::Error::new(
+            std::io::ErrorKind::NotADirectory,
+            format!("Datenverzeichnis {} ist kein Ordner", args.data_dir.display()),
+        ));
+    }
+    let probe = args.data_dir.join(".klar-write-probe");
+    std::fs::write(&probe, b"ok").map_err(|err| {
+        std::io::Error::new(err.kind(), format!("Datenverzeichnis {} nicht beschreibbar: {err}", args.data_dir.display()))
+    })?;
+    let _ = std::fs::remove_file(&probe);
+    let data_dir = args.data_dir.clone();
     let token =
         resolve_token(args.token.or_else(|| std::env::var("KLAR_TOKEN").ok().filter(|s| !s.is_empty())), args.token_file.as_deref());
     if token.is_none() {
@@ -53,8 +69,14 @@ pub async fn run(args: RuntimeArgs) -> std::io::Result<()> {
     if !loaded.language.sets.is_empty() {
         crate::lang::install_user_overlay(Some(loaded.language.clone()));
     }
+    let restored_base = crate::home::snapshot::load_home_snapshot(&data_dir);
     let mut state = AppState::new(loaded, data_dir.clone(), token);
     state.config_dir = args.config_dir.clone();
+    if let Some(base) = restored_base {
+        // D-17: treat the persisted push as live so registry polling does not overwrite it.
+        state.live_sync.store(true, Ordering::Relaxed);
+        *state.live_base.lock().await = Some(std::sync::Arc::new(base));
+    }
     state.overlay.checkpoint();
     secure_endpoint_file(&state.data_dir);
     enable_bundle_from_env(&state).await;
@@ -209,10 +231,15 @@ async fn reload_home(state: AppState, config_dir: PathBuf, data_dir: PathBuf) {
 }
 
 fn load_language_packs(explicit: Option<&Path>) {
+    // R-23: never fall back to a cwd-relative `packs/` — that silently picks up whatever the
+    // process happened to start in. Explicit flag, env, or the packaged share path only.
     let dir = explicit
         .map(PathBuf::from)
-        .or_else(|| std::env::var("KLAR_LANG_DIR").ok().map(PathBuf::from))
-        .or_else(|| ["/usr/share/klar/packs", "packs"].into_iter().map(PathBuf::from).find(|path| path.join("registry.yaml").is_file()));
+        .or_else(|| std::env::var("KLAR_LANG_DIR").ok().filter(|value| !value.trim().is_empty()).map(PathBuf::from))
+        .or_else(|| {
+            let packaged = PathBuf::from("/usr/share/klar/packs");
+            packaged.join("registry.yaml").is_file().then_some(packaged)
+        });
     let Some(dir) = dir else {
         return;
     };
@@ -237,5 +264,21 @@ mod tests {
         assert!(!token.is_empty());
         let mode = std::fs::metadata(&path).unwrap().permissions().mode() & 0o777;
         assert_eq!(mode, 0o600);
+    }
+
+    #[test]
+    fn language_packs_ignore_cwd_relative_packs() {
+        let scratch = TestDir::new("lang-cwd");
+        let packs = scratch.path().join("packs");
+        std::fs::create_dir_all(&packs).unwrap();
+        std::fs::write(packs.join("registry.yaml"), "packs: []\n").unwrap();
+        let previous = std::env::current_dir().ok();
+        std::env::set_current_dir(scratch.path()).unwrap();
+        std::env::remove_var("KLAR_LANG_DIR");
+        load_language_packs(None);
+        if let Some(previous) = previous {
+            let _ = std::env::set_current_dir(previous);
+        }
+        // No panic and no load from cwd — packaged path is absent in the test sandbox.
     }
 }

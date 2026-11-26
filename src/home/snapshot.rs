@@ -1,9 +1,13 @@
+use crate::home::paths::{read_to_string_confined, write_atomic_confined};
 use crate::home::registry::keep_domain;
 use crate::home::registry_yaml::{drop_borrowed_area_names, merge_area_aliases, merge_floor_aliases};
 use crate::home::roles::expand_entity_tags;
 use crate::types::{AreaRec, EntityRec, FloorRec, HomeGraph};
-use serde::Deserialize;
+use serde::{Deserialize, Serialize};
 use std::collections::{HashMap, HashSet};
+use std::path::Path;
+
+pub const HOME_SNAPSHOT_FILE: &str = "home_snapshot.json";
 
 pub const HOME_SCHEMA_VERSION: &str = "1";
 pub const MAX_SNAPSHOT_ENTITIES: usize = 4096;
@@ -34,7 +38,7 @@ impl SnapshotError {
     }
 }
 
-#[derive(Debug, Deserialize)]
+#[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(deny_unknown_fields)]
 pub struct HomeSnapshot {
     pub schema_version: String,
@@ -54,7 +58,7 @@ pub struct HomeSnapshot {
     pub registered_intents: Vec<String>,
 }
 
-#[derive(Debug, Deserialize)]
+#[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(deny_unknown_fields)]
 pub struct SnapshotEntity {
     pub entity_id: String,
@@ -81,7 +85,7 @@ pub struct SnapshotEntity {
     pub device_class: Option<String>,
 }
 
-#[derive(Debug, Deserialize)]
+#[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(deny_unknown_fields)]
 pub struct SnapshotDevice {
     pub id: String,
@@ -93,7 +97,7 @@ pub struct SnapshotDevice {
     pub area_id: Option<String>,
 }
 
-#[derive(Debug, Deserialize)]
+#[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(deny_unknown_fields)]
 pub struct SnapshotArea {
     pub id: String,
@@ -104,7 +108,7 @@ pub struct SnapshotArea {
     pub floor_id: Option<String>,
 }
 
-#[derive(Debug, Deserialize)]
+#[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(deny_unknown_fields)]
 pub struct SnapshotFloor {
     pub floor_id: String,
@@ -115,7 +119,7 @@ pub struct SnapshotFloor {
     pub level: Option<i32>,
 }
 
-#[derive(Debug, Deserialize)]
+#[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(deny_unknown_fields)]
 pub struct SnapshotLabel {
     pub label_id: String,
@@ -126,6 +130,10 @@ pub fn ingest(mut snapshot: HomeSnapshot) -> Result<HomeGraph, SnapshotError> {
     if snapshot.schema_version != HOME_SCHEMA_VERSION {
         return Err(SnapshotError::Schema);
     }
+    // D-15: missing assist must not stay `None` (that frees everything, including entities
+    // added later). An omitted list means "every entity kept in this snapshot"; an explicit
+    // empty list means nothing is exposed.
+    let assist_omitted = snapshot.assist.is_none();
     // R-10: sanitize (clip aliases, reject bad ids), filter domains/Assist, then cap.
     let assist_ids: HashSet<String> =
         snapshot.assist.as_ref().map(|ids| ids.iter().filter(|id| id.contains('.')).cloned().collect()).unwrap_or_default();
@@ -138,15 +146,22 @@ pub fn ingest(mut snapshot: HomeSnapshot) -> Result<HomeGraph, SnapshotError> {
         .filter(|entity| !entity.disabled && (keep_domain(&entity.entity_id) || assist_ids.contains(&entity.entity_id)))
         .take(MAX_SNAPSHOT_ENTITIES)
         .collect();
+    // D-15: an empty push must not wipe a running home.
+    if snapshot.entities.is_empty() {
+        return Err(SnapshotError::Malformed("empty home snapshot"));
+    }
     snapshot.devices = snapshot.devices.into_iter().take(MAX_SNAPSHOT_DEVICES).map(sanitize_device).collect::<Result<Vec<_>, _>>()?;
     snapshot.areas = snapshot.areas.into_iter().take(MAX_SNAPSHOT_AREAS).map(sanitize_area).collect::<Result<Vec<_>, _>>()?;
     snapshot.floors = snapshot.floors.into_iter().take(MAX_SNAPSHOT_FLOORS).map(sanitize_floor).collect::<Result<Vec<_>, _>>()?;
     snapshot.labels = snapshot.labels.into_iter().take(MAX_SNAPSHOT_LABELS).map(sanitize_label).collect::<Result<Vec<_>, _>>()?;
+    reject_duplicate_ids(&snapshot)?;
     if let Some(assist) = snapshot.assist.as_mut() {
         *assist = std::mem::take(assist).into_iter().filter(|id| id.contains('.')).take(MAX_SNAPSHOT_ASSIST).collect();
         for entity_id in assist.iter() {
             valid_entity_id(entity_id)?;
         }
+    } else if assist_omitted {
+        snapshot.assist = Some(snapshot.entities.iter().map(|entity| entity.entity_id.clone()).take(MAX_SNAPSHOT_ASSIST).collect());
     }
     let devices = device_names(&snapshot.devices);
     let label_names = snapshot.labels.iter().map(|label| (label.label_id.clone(), label.name.clone())).collect::<HashMap<_, _>>();
@@ -207,6 +222,53 @@ pub fn ingest(mut snapshot: HomeSnapshot) -> Result<HomeGraph, SnapshotError> {
     let mut graph = HomeGraph { entities, areas, floors, assist, registered_intents, device_classes, ..HomeGraph::default() };
     crate::home::labels::rebuild_label_index(&mut graph);
     Ok(graph)
+}
+
+/// Persist the last accepted Home Assistant push so a restart does not fall back to an empty
+/// or demo home while live sync is offline (D-17).
+pub fn save_home_snapshot(dir: &Path, snapshot: &HomeSnapshot) -> std::io::Result<()> {
+    let bytes = serde_json::to_vec(snapshot).map_err(|err| std::io::Error::new(std::io::ErrorKind::InvalidData, err))?;
+    write_atomic_confined(dir, HOME_SNAPSHOT_FILE, &bytes)
+}
+
+pub fn load_home_snapshot(dir: &Path) -> Option<HomeGraph> {
+    let raw = read_to_string_confined(dir, HOME_SNAPSHOT_FILE).ok()?;
+    let snapshot: HomeSnapshot = serde_json::from_str(&raw).ok()?;
+    ingest(snapshot).ok()
+}
+
+fn reject_duplicate_ids(snapshot: &HomeSnapshot) -> Result<(), SnapshotError> {
+    let mut entities = HashSet::new();
+    for entity in &snapshot.entities {
+        if !entities.insert(entity.entity_id.as_str()) {
+            return Err(SnapshotError::Malformed("duplicate entity_id"));
+        }
+    }
+    let mut devices = HashSet::new();
+    for device in &snapshot.devices {
+        if !devices.insert(device.id.as_str()) {
+            return Err(SnapshotError::Malformed("duplicate device id"));
+        }
+    }
+    let mut areas = HashSet::new();
+    for area in &snapshot.areas {
+        if !areas.insert(area.id.as_str()) {
+            return Err(SnapshotError::Malformed("duplicate area id"));
+        }
+    }
+    let mut floors = HashSet::new();
+    for floor in &snapshot.floors {
+        if !floors.insert(floor.floor_id.as_str()) {
+            return Err(SnapshotError::Malformed("duplicate floor id"));
+        }
+    }
+    let mut labels = HashSet::new();
+    for label in &snapshot.labels {
+        if !labels.insert(label.label_id.as_str()) {
+            return Err(SnapshotError::Malformed("duplicate label id"));
+        }
+    }
+    Ok(())
 }
 
 fn sanitize_entity(mut entity: SnapshotEntity) -> Result<SnapshotEntity, SnapshotError> {
