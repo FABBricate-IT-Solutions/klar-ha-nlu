@@ -11,8 +11,9 @@ const BUDGET = {
   entry: { raw: 1200 * KB, gzip: 500 * KB },
   // All JS including on-demand locale/wizard chunks. Raised vs the old single-chunk
   // 2947/790 budget because the split adds many small files; first load is gated above.
-  // 6.7 live journal/history adds a small on-demand chunk; keep first-paint entry gated above.
-  js: { raw: 4000 * KB, gzip: 1410 * KB },
+  // 6.7: live/history chunk + short English FALLBACK keys in every chrome pack (parity CI).
+  // First-paint entry stays gated above; packs stay shared FALLBACKS, not unique translations.
+  js: { raw: 4050 * KB, gzip: 1425 * KB },
   css: { raw: 128 * KB, gzip: 22 * KB },
 };
 
