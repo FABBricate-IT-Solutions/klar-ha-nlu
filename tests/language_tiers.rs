@@ -3,7 +3,8 @@
 //! Every compiled locale runs its on/off minimal pairs (`tests/datasets/minimal_pairs`,
 //! built from the locale's own generator lexicon). A locale earns:
 //! - **Reference** when every "on"/"off" acts correctly, questions and negated
-//!   commands never switch anything (de/en and their regional packs).
+//!   commands never switch anything. Every negation word of the pack is tried in
+//!   front of every pair. Every compiled locale earns it.
 //! - **Beta** when basic on/off never reverse and questions stay inert; missing
 //!   negation alone does not force Experimental (package 4.3).
 //! - **Experimental** otherwise.
@@ -119,15 +120,24 @@ fn findings(code: &str, all: &BTreeMap<String, Pairs>, home: &HomeGraph) -> Find
             found.question.push(format!("acts on a question: \"{text}?\" gives {}", got.shown));
         }
     }
-    let negation = catalog_for(&[code.to_string()]).moods().find_map(|mood| mood.negation.first().copied());
-    match (negation, own.on.first()) {
-        (Some(word), Some(text)) => {
+    // Every negation word of the pack, spoken in front of every on/off sentence, must keep the
+    // sentence from switching anything. An entry with a space is a split spelling of a word
+    // of a script written without spaces; the word itself is tested as well.
+    let words: Vec<&str> = catalog_for(&[code.to_string()])
+        .moods()
+        .flat_map(|mood| mood.negation.iter().copied())
+        .filter(|word| !word.contains(' '))
+        .collect();
+    if words.is_empty() {
+        found.negation.push("no negation words: the pack cannot tell a negated command from a command".to_string());
+    }
+    for word in words {
+        for text in own.on.iter().chain(own.off.iter()) {
             let got = effect(code, home, &format!("{word} {text}"));
             if got.on || got.off {
                 found.negation.push(format!("acts on a negated command: \"{word} {text}\" gives {}", got.shown));
             }
         }
-        _ => found.negation.push("no negation words: the pack cannot tell a negated command from a command".to_string()),
     }
     found
 }
@@ -142,8 +152,8 @@ fn every_locale_is_in_the_tier_its_minimal_pairs_put_it_in() {
         let found = findings(code, &all, &home);
         let earned = found.earned();
         let listed = lang.meta().expect("registry row").tier;
-        // Reference is reserved for the hand-written line; a generated pack that
-        // fully passes still sits in Beta until it is promoted in tiers.py.
+        // A locale that fully passes may sit in Beta or Experimental until it is
+        // promoted in tiers.py; one listed above what it earns is a failure.
         let expected = match (listed, earned) {
             (Tier::Reference, Tier::Reference) => Tier::Reference,
             (Tier::Reference, other) => other,

@@ -198,23 +198,47 @@ fn explain_speech_speaks_path_ids() {
     assert!(de.speech.contains("ausgeführt"));
 }
 
+/// Every shipped locale is reference, so the list is also read with Swahili demoted.
+fn swahili_experimental(meta: &crate::lang::LangMeta) -> Tier {
+    match meta.code {
+        "sw" => Tier::Experimental,
+        _ => meta.tier,
+    }
+}
+
 #[test]
-fn language_list_offers_stable_locales_and_what_is_configured() {
-    let codes = |settings: &Settings, all: bool| language_rows(settings, all).into_iter().map(|row| row.code).collect::<Vec<_>>();
+fn language_list_offers_every_shipped_locale() {
     let fresh = Settings::default();
     let offered_now = language_rows(&fresh, false);
-    assert!(offered_now.iter().all(|row| row.tier.always_offered() && row.offered), "only reference/beta locales without the switch");
-    assert!(codes(&fresh, false).contains(&"de".to_string()) && codes(&fresh, false).contains(&"en".to_string()));
-    assert!(codes(&fresh, false).contains(&"nl".to_string()), "beta locales are offered");
-    let hidden = language_rows(&fresh, true).into_iter().find(|row| row.tier == Tier::Experimental).expect("an experimental locale");
+    assert!(offered_now.iter().all(|row| row.tier == Tier::Reference && row.offered), "every shipped locale is reference");
+    assert_eq!(offered_now.len(), crate::lang::languages().len(), "no switch needed");
+    let codes: Vec<String> = offered_now.into_iter().map(|row| row.code).collect();
+    assert!(["de", "en", "nl", "ja"].iter().all(|code| codes.contains(&(*code).to_string())));
+    assert_eq!(language_rows(&fresh, true).len(), crate::lang::languages().len());
+}
+
+#[test]
+fn language_list_keeps_an_experimental_locale_behind_the_switch() {
+    let codes = |settings: &Settings, all: bool| {
+        language_rows_in(swahili_experimental, settings, all).into_iter().map(|row| row.code).collect::<Vec<_>>()
+    };
+    let fresh = Settings::default();
+    let hidden = language_rows_in(swahili_experimental, &fresh, true)
+        .into_iter()
+        .find(|row| row.tier == Tier::Experimental)
+        .expect("an experimental locale");
     assert!(!hidden.offered && !codes(&fresh, false).contains(&hidden.code));
+    assert_eq!(codes(&fresh, false).len(), crate::lang::languages().len() - 1);
 
     let switched = Settings { experimental_languages: true, ..Settings::default() };
     assert_eq!(codes(&switched, false).len(), crate::lang::languages().len());
 
     // A house that runs an experimental locale still sees it, marked as experimental.
     let running = Settings { languages: vec![hidden.code.clone()], ..Settings::default() };
-    let row = language_rows(&running, false).into_iter().find(|row| row.code == hidden.code).expect("configured locale stays listed");
+    let row = language_rows_in(swahili_experimental, &running, false)
+        .into_iter()
+        .find(|row| row.code == hidden.code)
+        .expect("configured locale stays listed");
     assert!(row.offered && row.tier == Tier::Experimental);
     assert_eq!(codes(&fresh, true).len(), crate::lang::languages().len());
 }

@@ -44,7 +44,7 @@ pub use resolver::{
     reset_runtime_packs,
 };
 pub use speech::Speech;
-pub use tier::{check_selection, check_settings, in_use, offered, tier_of, Tier};
+pub use tier::{check_selection, check_settings, in_use, offered, offered_as, tier_of, Tier};
 pub use user::{
     push_revision, revision_hash, select_revision, validate_custom, validate_language, LanguageOverlay, LanguageRevision, OverlayIssue,
     SetDelta, MAX_HISTORY, MAX_USER_INTENTS,

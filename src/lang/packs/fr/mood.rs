@@ -2,6 +2,7 @@
 use crate::lang::mood::MoodWords;
 
 pub(super) const MOOD: MoodWords = MoodWords {
+    negation: &["aucun", "aucune", "jamais", "ne", "non", "pas"],
     request_frames: &[
         "est ce que tu peux",
         "est ce que tu pourrais",

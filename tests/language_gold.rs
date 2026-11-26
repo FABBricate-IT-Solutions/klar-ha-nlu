@@ -191,11 +191,9 @@ fn published_tier_table_covers_every_compiled_locale() {
         };
         by_tier.entry(label).or_default().push(meta.code);
     }
-    assert!(by_tier.get("reference").is_some_and(|row| row.contains(&"de") && row.contains(&"en")));
-    assert!(by_tier
-        .get("beta")
-        .is_some_and(|row| { ["es", "nl", "pt", "it", "fr", "id", "uk", "hi"].iter().all(|code| row.contains(code)) }));
-    assert!(by_tier.get("experimental").is_some_and(|row| !row.is_empty()));
+    // Every compiled locale earns Reference in `tests/language_tiers.rs`, so nothing is Beta or experimental.
+    assert_eq!(by_tier.get("reference").map(Vec::len), Some(LangId::all().len()), "every compiled locale is reference");
+    assert!(!by_tier.contains_key("beta") && !by_tier.contains_key("experimental"), "no locale is beta or experimental: {by_tier:?}");
     for (tier, codes) in &by_tier {
         println!("TIER_TABLE {tier}: {}", codes.join(", "));
     }

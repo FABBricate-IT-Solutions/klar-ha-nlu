@@ -2,6 +2,7 @@
 use crate::lang::mood::MoodWords;
 
 pub(super) const MOOD: MoodWords = MoodWords {
+    negation: &["belum", "bukan", "jangan", "tak", "tiada", "tidak"],
     request_frames: &["boleh", "boleh awak", "boleh tolong", "bolehkah", "bolehkah anda", "bolehkah awak"],
     question_openers: &["adakah", "apakah"],
     ..MoodWords::EMPTY

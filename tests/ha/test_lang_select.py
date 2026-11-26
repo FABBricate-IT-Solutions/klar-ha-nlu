@@ -98,35 +98,32 @@ class LangSelectTests(unittest.TestCase):
         self.assertEqual(pinned, ["de"])
         self.assertIsNone(chrome)
 
-    def test_voice_dropdown_hides_experimental_by_default(self) -> None:
-        # Package 4.3: reference + beta are offered; experimental stays behind the switch.
+    def test_every_shipped_locale_is_offered_without_the_switch(self) -> None:
+        # Every compiled locale earns reference, so nothing is behind the experimental switch.
+        self.assertEqual(lang.EXPERIMENTAL_LANGUAGES, ())
+        self.assertEqual(lang.offered_packs(), list(lang.SUPPORTED_LANGUAGES))
         offered = lang.offered_packs()
-        self.assertIn("de", offered)
-        self.assertIn("en", offered)
-        self.assertIn("de-CH", offered)
-        self.assertIn("fr", offered)  # beta
-        self.assertIn("nl", offered)  # beta
-        self.assertNotIn("ca", offered)  # experimental
-        self.assertNotIn("zh-CN", offered)
+        for code in ("de", "en", "de-CH", "fr", "nl", "ca", "zh-CN", "ja"):
+            self.assertIn(code, offered)
         advertised = lang.advertised_languages()
-        self.assertIn("de", advertised)
-        self.assertIn("de-DE", advertised)
-        self.assertIn("de-AT", advertised)
-        self.assertIn("de-CH", advertised)
-        self.assertIn("en", advertised)
-        self.assertIn("fr", advertised)
-        self.assertNotIn("zh", advertised)  # zh-CN is experimental
-        self.assertNotIn("zh-Hans", advertised)
-        self.assertNotIn("ca", advertised)
+        for tag in ("de", "de-DE", "de-AT", "de-CH", "en", "fr", "ca", "zh", "zh-Hans"):
+            self.assertIn(tag, advertised)
 
-    def test_experimental_switch_or_kept_locale_opens_the_list(self) -> None:
-        self.assertIn("ca", lang.offered_packs(experimental=True))
-        self.assertIn("zh-CN", lang.offered_packs(experimental=True))
-        self.assertIn("ca", lang.offered_packs(selected=["ca"]))
-        self.assertNotIn("ca", lang.offered_packs(selected=["pt-BR"]))
-        self.assertIn("fr", lang.offered_packs(selected=["pt-BR"]))  # beta always offered
-        self.assertIn("ca", lang.advertised_languages(experimental=True))
-        self.assertIn("pt-BR", lang.advertised_languages(selected=["pt-BR"]))
+    def test_experimental_locale_stays_behind_the_switch(self) -> None:
+        # The switch is for a locale added later that has not earned reference yet.
+        with patch.object(lang, "_EXPERIMENTAL", frozenset({"ca", "zh-CN"})):
+            offered = lang.offered_packs()
+            self.assertNotIn("ca", offered)
+            self.assertNotIn("zh-CN", offered)
+            self.assertIn("fr", offered)
+            self.assertNotIn("ca", lang.advertised_languages())
+            self.assertNotIn("zh", lang.advertised_languages())
+            self.assertIn("ca", lang.offered_packs(experimental=True))
+            self.assertIn("zh-CN", lang.offered_packs(experimental=True))
+            self.assertIn("ca", lang.offered_packs(selected=["ca"]))
+            self.assertNotIn("ca", lang.offered_packs(selected=["pt-BR"]))
+            self.assertIn("fr", lang.offered_packs(selected=["pt-BR"]))
+            self.assertIn("ca", lang.advertised_languages(experimental=True))
 
     def test_system_option_sets_default_language_from_ha(self) -> None:
         self.assertEqual(lang.engine_default_language("system", "de"), "de")

@@ -2,6 +2,7 @@
 use crate::lang::mood::MoodWords;
 
 pub(super) const MOOD: MoodWords = MoodWords {
+    negation: &["byth", "ddim", "dim", "na", "nac", "nid", "paid", "peidiwch"],
     request_frames: &["allwch chi", "elli di", "wnei di", "wnewch chi"],
     question_openers: &["oes", "ydi", "ydir", "ydy", "ydyr", "yw", "ywr"],
     ..MoodWords::EMPTY

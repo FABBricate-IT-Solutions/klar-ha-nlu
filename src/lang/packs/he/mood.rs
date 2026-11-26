@@ -2,6 +2,7 @@
 use crate::lang::mood::MoodWords;
 
 pub(super) const MOOD: MoodWords = MoodWords {
+    negation: &["אין", "אינה", "אינו", "אל", "לא", "שלא"],
     request_frames: &["אפשר", "את יכולה", "אתה יכול", "האם אפשר", "האם את יכולה", "האם אתה יכול", "תוכל", "תוכלי"],
     question_openers: &["האם"],
     ..MoodWords::EMPTY

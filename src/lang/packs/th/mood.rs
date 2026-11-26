@@ -2,6 +2,7 @@
 use crate::lang::mood::MoodWords;
 
 pub(super) const MOOD: MoodWords = MoodWords {
+    negation: &["ห ้ า ม", "ห้า ม", "ห้าม", "อ ย ่ า", "อย่า", "ไ ม ่", "ไม่"],
     question_endings: &[
         "มั้ย",
         "มั้ยครับ",

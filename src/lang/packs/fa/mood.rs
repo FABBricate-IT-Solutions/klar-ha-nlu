@@ -2,6 +2,7 @@
 use crate::lang::mood::MoodWords;
 
 pub(super) const MOOD: MoodWords = MoodWords {
+    negation: &["نه", "نکن", "نکنید", "نیست", "هرگز", "هیچ"],
     request_frames: &["ایا میتوانی", "ایا میشود", "میتوانی", "میتونی", "میشه", "میشود"],
     question_openers: &["ایا"],
     ..MoodWords::EMPTY
