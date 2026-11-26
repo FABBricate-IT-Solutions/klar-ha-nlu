@@ -251,6 +251,8 @@ impl Session {
 pub struct Sessions {
     inner: HashMap<String, Session>,
     recent_id: Option<String>,
+    /// How many session slots this process has created (3.10).
+    created: u64,
 }
 
 impl Sessions {
@@ -267,6 +269,7 @@ impl Sessions {
                 let mut s = Session::new();
                 s.id = existing.to_string();
                 self.inner.insert(existing.to_string(), s);
+                self.created = self.created.saturating_add(1);
                 self.inner.get_mut(existing).expect("inserted")
             }
             _ => {
@@ -274,6 +277,7 @@ impl Sessions {
                 let s = Session::new();
                 let key = s.id.clone();
                 self.inner.insert(key.clone(), s);
+                self.created = self.created.saturating_add(1);
                 self.inner.get_mut(&key).expect("inserted")
             }
         }
@@ -339,9 +343,16 @@ impl Sessions {
         self.inner.insert(session.id.clone(), session);
     }
 
-    #[cfg(test)]
-    pub(crate) fn len(&self) -> usize {
+    pub fn len(&self) -> usize {
         self.inner.len()
+    }
+
+    pub fn is_empty(&self) -> bool {
+        self.inner.is_empty()
+    }
+
+    pub fn created(&self) -> u64 {
+        self.created
     }
 
     fn sweep_ttl(&mut self) {

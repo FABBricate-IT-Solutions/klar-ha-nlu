@@ -72,9 +72,11 @@ impl ConversationJournal {
         // D-11: append one line when the file still matches memory; rewrite atomically when
         // TTL or the turn cap drops older rows (kill mid-rename leaves the previous file).
         if compacted || overflow {
-            let _ = rewrite_turns(&self.dir, &turns);
-        } else {
-            let _ = append_turn(&self.dir, &turn);
+            if let Err(err) = rewrite_turns(&self.dir, &turns) {
+                tracing::warn!("conversations.jsonl nicht gespeichert: {err}");
+            }
+        } else if let Err(err) = append_turn(&self.dir, &turn) {
+            tracing::warn!("conversations.jsonl nicht angehängt: {err}");
         }
     }
 
@@ -98,7 +100,9 @@ impl ConversationJournal {
             turn.speech = speech;
             turn.speech_source = Some(source.to_string());
             turn.ts_ms = now_ms();
-            let _ = rewrite_turns(&self.dir, &turns);
+            if let Err(err) = rewrite_turns(&self.dir, &turns) {
+                tracing::warn!("conversations.jsonl nicht gespeichert: {err}");
+            }
             return;
         }
         let turn = llm_turn(id, speech, source);
@@ -106,9 +110,11 @@ impl ConversationJournal {
         if turns.len() > MAX_TURNS {
             let drop = turns.len() - MAX_TURNS;
             turns.drain(0..drop);
-            let _ = rewrite_turns(&self.dir, &turns);
-        } else {
-            let _ = append_turn(&self.dir, &turn);
+            if let Err(err) = rewrite_turns(&self.dir, &turns) {
+                tracing::warn!("conversations.jsonl nicht gespeichert: {err}");
+            }
+        } else if let Err(err) = append_turn(&self.dir, &turn) {
+            tracing::warn!("conversations.jsonl nicht angehängt: {err}");
         }
     }
 }

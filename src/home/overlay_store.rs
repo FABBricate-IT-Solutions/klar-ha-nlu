@@ -277,8 +277,13 @@ impl OverlayStore {
         // Checked before touching the disk too, so a value that cannot be stored costs no write.
         let bytes = storable_bytes(overlay)?;
         if bytes != on_disk {
-            write_checked_confined(&self.dir, OVERLAY_FILE, &bytes, reads_back)?;
+            if let Err(err) = write_checked_confined(&self.dir, OVERLAY_FILE, &bytes, reads_back) {
+                crate::ops::ops().record_overlay_write_error();
+                tracing::error!("{OVERLAY_FILE} nicht gespeichert: {err}");
+                return Err(err);
+            }
         }
+        crate::ops::ops().record_overlay_write();
         self.keep_last_good(&bytes);
         Ok(())
     }
