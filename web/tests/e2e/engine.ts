@@ -69,10 +69,11 @@ export const test = base.extend<{ engine: Engine }>({
     const [http, wyoming] = [await freePort(), await freePort()];
     const url = `http://127.0.0.1:${http}`;
     let output = "";
+    // D-16: empty config has no HA registry. Lab smoke needs the sample home on request.
     const child = spawn(
       engineBinary(),
       ["--http", `127.0.0.1:${http}`, "--wyoming", `127.0.0.1:${wyoming}`, "--config-dir", path.join(home, "config"), "--data-dir", path.join(home, "data")],
-      { env: { ...process.env, KLAR_UI_DIR: ui }, stdio: ["ignore", "pipe", "pipe"] },
+      { env: { ...process.env, KLAR_UI_DIR: ui, KLAR_DEMO_HOME: "1" }, stdio: ["ignore", "pipe", "pipe"] },
     );
     child.stdout?.on("data", (chunk: Buffer) => (output += chunk.toString()));
     child.stderr?.on("data", (chunk: Buffer) => (output += chunk.toString()));
