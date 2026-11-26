@@ -1,0 +1,347 @@
+- name: gen_multi_0
+  split: multi
+  language: de
+  sentences:
+    - 'Mach Eingangslicht an und mach Esszimmer Pendelleuchte aus'
+  nlu_expect:
+    intents:
+      - intent: HassTurnOn
+        slots: {entity_id: light.entryway_light}
+      - intent: HassTurnOff
+        slots: {entity_id: light.dining_pendant}
+
+- name: gen_multi_1
+  split: multi
+  language: de
+  sentences:
+    - 'Mach Wohnzimmer Decke aus und danach mach Waschküche Licht an'
+  nlu_expect:
+    intents:
+      - intent: HassTurnOff
+        slots: {entity_id: light.living_ceiling}
+      - intent: HassTurnOn
+        slots: {entity_id: light.laundry_light}
+
+- name: gen_multi_2
+  split: multi
+  language: de
+  sentences:
+    - 'Mach Wohnzimmer Lampe an, mach Nachttisch links aus'
+  nlu_expect:
+    intents:
+      - intent: HassTurnOn
+        slots: {entity_id: light.living_lamp}
+      - intent: HassTurnOff
+        slots: {entity_id: light.master_bedside_left}
+
+- name: gen_multi_3
+  split: multi
+  language: de
+  sentences:
+    - 'Mach Esszimmer Pendelleuchte aus und mach Elternbad Licht an'
+  nlu_expect:
+    intents:
+      - intent: HassTurnOff
+        slots: {entity_id: light.dining_pendant}
+      - intent: HassTurnOn
+        slots: {entity_id: light.master_bath_light}
+
+- name: gen_multi_4
+  split: multi
+  language: de
+  sentences:
+    - 'Mach Küche Decke an und danach mach Wohnzimmer Lampe aus'
+  nlu_expect:
+    intents:
+      - intent: HassTurnOn
+        slots: {entity_id: light.kitchen_ceiling}
+      - intent: HassTurnOff
+        slots: {entity_id: light.living_lamp}
+
+- name: gen_multi_5
+  split: multi
+  language: de
+  sentences:
+    - 'Mach Insel Licht aus, mach Familienzimmer Lüfter an'
+  nlu_expect:
+    intents:
+      - intent: HassTurnOff
+        slots: {entity_id: light.kitchen_island}
+      - intent: HassTurnOn
+        slots: {entity_id: fan.family_fan}
+
+- name: gen_multi_6
+  split: multi
+  language: de
+  sentences:
+    - 'Starte Dunstabzug und mach Ankleide Licht aus'
+  nlu_expect:
+    intents:
+      - intent: HassTurnOn
+        slots: {entity_id: switch.rangehood}
+      - intent: HassTurnOff
+        slots: {entity_id: light.master_ensuite}
+
+- name: gen_multi_7
+  split: multi
+  language: de
+  sentences:
+    - 'Stoppe Spülmaschine und danach mach Kinderzimmer 4 Decke an'
+  nlu_expect:
+    intents:
+      - intent: HassTurnOff
+        slots: {entity_id: switch.dishwasher}
+      - intent: HassTurnOn
+        slots: {entity_id: light.bedroom4_ceiling}
+
+- name: gen_multi_8
+  split: multi
+  language: de
+  sentences:
+    - 'Mach Familienzimmer Decke an, mach Wohnzimmer Decke aus'
+  nlu_expect:
+    intents:
+      - intent: HassTurnOn
+        slots: {entity_id: light.family_ceiling}
+      - intent: HassTurnOff
+        slots: {entity_id: light.living_ceiling}
+
+- name: gen_multi_9
+  split: multi
+  language: de
+  sentences:
+    - 'Stoppe Familienzimmer Lüfter und mach Familienzimmer Decke an'
+  nlu_expect:
+    intents:
+      - intent: HassTurnOff
+        slots: {entity_id: fan.family_fan}
+      - intent: HassTurnOn
+        slots: {entity_id: light.family_ceiling}
+
+- name: gen_multi_10
+  split: multi
+  language: de
+  sentences:
+    - 'Mach Waschküche Licht an und danach mach Schlafzimmer Decke aus'
+  nlu_expect:
+    intents:
+      - intent: HassTurnOn
+        slots: {entity_id: light.laundry_light}
+      - intent: HassTurnOff
+        slots: {entity_id: light.master_ceiling}
+
+- name: gen_multi_11
+  split: multi
+  language: de
+  sentences:
+    - 'Stoppe Waschmaschine, mach Kinderzimmer 3 Decke an'
+  nlu_expect:
+    intents:
+      - intent: HassTurnOff
+        slots: {entity_id: switch.washing_machine}
+      - intent: HassTurnOn
+        slots: {entity_id: light.bedroom3_ceiling}
+
+- name: gen_multi_12
+  split: multi
+  language: de
+  sentences:
+    - 'Starte Trockner und mach Eingangslicht aus'
+  nlu_expect:
+    intents:
+      - intent: HassTurnOn
+        slots: {entity_id: switch.dryer}
+      - intent: HassTurnOff
+        slots: {entity_id: light.entryway_light}
+
+- name: gen_multi_13
+  split: multi
+  language: de
+  sentences:
+    - 'Mach Gäste-WC Licht aus und danach mach Spülmaschine an'
+  nlu_expect:
+    intents:
+      - intent: HassTurnOff
+        slots: {entity_id: light.powder_room_light}
+      - intent: HassTurnOn
+        slots: {entity_id: switch.dishwasher}
+
+- name: gen_multi_14
+  split: multi
+  language: de
+  sentences:
+    - 'Mach Garagenlicht an, mach Schlafzimmer Decke aus'
+  nlu_expect:
+    intents:
+      - intent: HassTurnOn
+        slots: {entity_id: light.garage_light}
+      - intent: HassTurnOff
+        slots: {entity_id: light.master_ceiling}
+
+- name: gen_multi_15
+  split: multi
+  language: de
+  sentences:
+    - 'Mach Schlafzimmer Decke aus und mach Kinderzimmer 2 Lüfter an'
+  nlu_expect:
+    intents:
+      - intent: HassTurnOff
+        slots: {entity_id: light.master_ceiling}
+      - intent: HassTurnOn
+        slots: {entity_id: fan.bedroom2_fan}
+
+- name: gen_multi_16
+  split: multi
+  language: de
+  sentences:
+    - 'Mach Ankleide Licht an und danach mach Flur Licht aus'
+  nlu_expect:
+    intents:
+      - intent: HassTurnOn
+        slots: {entity_id: light.master_ensuite}
+      - intent: HassTurnOff
+        slots: {entity_id: light.hallway_light}
+
+- name: gen_multi_17
+  split: multi
+  language: de
+  sentences:
+    - 'Mach Nachttisch links aus, mach Dunstabzug an'
+  nlu_expect:
+    intents:
+      - intent: HassTurnOff
+        slots: {entity_id: light.master_bedside_left}
+      - intent: HassTurnOn
+        slots: {entity_id: switch.rangehood}
+
+- name: gen_multi_18
+  split: multi
+  language: de
+  sentences:
+    - 'Mach Nachttisch rechts an und mach Gäste-WC Licht aus'
+  nlu_expect:
+    intents:
+      - intent: HassTurnOn
+        slots: {entity_id: light.master_bedside_right}
+      - intent: HassTurnOff
+        slots: {entity_id: light.powder_room_light}
+
+- name: gen_multi_19
+  split: multi
+  language: de
+  sentences:
+    - 'Stoppe Schlafzimmer Lüfter und danach mach Kinderzimmer 2 Decke an'
+  nlu_expect:
+    intents:
+      - intent: HassTurnOff
+        slots: {entity_id: fan.master_fan}
+      - intent: HassTurnOn
+        slots: {entity_id: light.bedroom2_ceiling}
+
+- name: gen_multi_20
+  split: multi
+  language: de
+  sentences:
+    - 'Mach Kinderzimmer 2 Decke an, mach Badezimmer Lüfter aus'
+  nlu_expect:
+    intents:
+      - intent: HassTurnOn
+        slots: {entity_id: light.bedroom2_ceiling}
+      - intent: HassTurnOff
+        slots: {entity_id: switch.main_bath_fan}
+
+- name: gen_multi_21
+  split: multi
+  language: de
+  sentences:
+    - 'Stoppe Kinderzimmer 2 Lüfter und mach Insel Licht an'
+  nlu_expect:
+    intents:
+      - intent: HassTurnOff
+        slots: {entity_id: fan.bedroom2_fan}
+      - intent: HassTurnOn
+        slots: {entity_id: light.kitchen_island}
+
+- name: gen_multi_22
+  split: multi
+  language: de
+  sentences:
+    - 'Mach Kinderzimmer 3 Decke an und danach mach Trockner aus'
+  nlu_expect:
+    intents:
+      - intent: HassTurnOn
+        slots: {entity_id: light.bedroom3_ceiling}
+      - intent: HassTurnOff
+        slots: {entity_id: switch.dryer}
+
+- name: gen_multi_23
+  split: multi
+  language: de
+  sentences:
+    - 'Mach Kinderzimmer 4 Decke aus, mach Schlafzimmer Lüfter an'
+  nlu_expect:
+    intents:
+      - intent: HassTurnOff
+        slots: {entity_id: light.bedroom4_ceiling}
+      - intent: HassTurnOn
+        slots: {entity_id: fan.master_fan}
+
+- name: gen_multi_24
+  split: multi
+  language: de
+  sentences:
+    - 'Mach Elternbad Licht an und mach Badezimmer Licht aus'
+  nlu_expect:
+    intents:
+      - intent: HassTurnOn
+        slots: {entity_id: light.master_bath_light}
+      - intent: HassTurnOff
+        slots: {entity_id: light.main_bath_light}
+
+- name: gen_multi_25
+  split: multi
+  language: de
+  sentences:
+    - 'Stoppe Elternbad Lüfter und danach mach Küche Decke an'
+  nlu_expect:
+    intents:
+      - intent: HassTurnOff
+        slots: {entity_id: switch.master_bath_fan}
+      - intent: HassTurnOn
+        slots: {entity_id: light.kitchen_ceiling}
+
+- name: gen_multi_26
+  split: multi
+  language: de
+  sentences:
+    - 'Mach Badezimmer Licht an, mach Waschmaschine aus'
+  nlu_expect:
+    intents:
+      - intent: HassTurnOn
+        slots: {entity_id: light.main_bath_light}
+      - intent: HassTurnOff
+        slots: {entity_id: switch.washing_machine}
+
+- name: gen_multi_27
+  split: multi
+  language: de
+  sentences:
+    - 'Stoppe Badezimmer Lüfter und mach Nachttisch rechts an'
+  nlu_expect:
+    intents:
+      - intent: HassTurnOff
+        slots: {entity_id: switch.main_bath_fan}
+      - intent: HassTurnOn
+        slots: {entity_id: light.master_bedside_right}
+
+- name: gen_multi_28
+  split: multi
+  language: de
+  sentences:
+    - 'Mach Flur Licht an und danach mach Elternbad Lüfter aus'
+  nlu_expect:
+    intents:
+      - intent: HassTurnOn
+        slots: {entity_id: light.hallway_light}
+      - intent: HassTurnOff
+        slots: {entity_id: switch.master_bath_fan}

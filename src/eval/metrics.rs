@@ -12,10 +12,18 @@ pub struct EvalMetrics {
     pub asr_recovery: f64,
     pub clarify_precision: f64,
     pub clarify_recall: f64,
+    /// Share of in-domain items the engine rejected.
     pub reject_fpr: f64,
+    /// Share of out-of-domain items that did not end in a reject (chat counts as a miss).
     pub reject_fnr: f64,
-    pub brier: f64,
-    pub ece: f64,
+    /// Share of out-of-domain items the engine would have acted on or asked about.
+    pub reject_unsafe: f64,
+    /// Typo-split items recovered to the gold intent; reported and floored, see `MIN_TYPO_RECOVERY`.
+    pub typo_recovery: f64,
+    /// Exact decision accuracy over every item: the figure comparable to the Assist run.
+    pub accuracy: f64,
+    /// The same over in-domain items only, without credit for rejecting out-of-domain sentences.
+    pub in_domain_accuracy: f64,
 }
 
 pub fn score_items(items: &[EvalItem], outcomes: &[ParseOutcome]) -> EvalMetrics {
@@ -35,8 +43,12 @@ pub fn score_items(items: &[EvalItem], outcomes: &[ParseOutcome]) -> EvalMetrics
     let mut reject_fn = 0usize;
     let mut reject_neg = 0usize;
     let mut reject_pos = 0usize;
-    let mut brier_sum = 0.0;
-    let mut ece_bins = [(0usize, 0.0, 0usize); 10];
+    let mut reject_unsafe = 0usize;
+    let mut typo_ok = 0usize;
+    let mut typo_n = 0usize;
+    let mut correct_total = 0usize;
+    let mut in_domain_n = 0usize;
+    let mut in_domain_ok = 0usize;
 
     for (item, outcome) in items.iter().zip(outcomes) {
         let actual = match &outcome.decision {
@@ -46,7 +58,9 @@ pub fn score_items(items: &[EvalItem], outcomes: &[ParseOutcome]) -> EvalMetrics
         let predicted_names: BTreeSet<String> = actual.iter().map(|intent| intent.name.clone()).collect();
         let gold_names: BTreeSet<String> =
             item.expect_intents.as_ref().map(|intents| intents.iter().map(|intent| intent.name.clone()).collect()).unwrap_or_default();
-        for name in predicted_names.union(&gold_names) {
+        // Typo items have their own recovery figure and floor; they do not dilute the core F1 gates.
+        let core = item.split != Split::Typo;
+        for name in predicted_names.union(&gold_names).filter(|_| core) {
             let counts = per_intent.entry(name.clone()).or_default();
             let pred = predicted_names.contains(name);
             let gold = gold_names.contains(name);
@@ -55,7 +69,7 @@ pub fn score_items(items: &[EvalItem], outcomes: &[ParseOutcome]) -> EvalMetrics
             counts.fn_ += usize::from(!pred && gold);
         }
 
-        if let Some(gold) = &item.expect_intents {
+        if let Some(gold) = item.expect_intents.as_ref().filter(|_| core) {
             pair_n += 1;
             if pairing_ok(gold, &actual) {
                 pair_ok += 1;
@@ -71,26 +85,34 @@ pub fn score_items(items: &[EvalItem], outcomes: &[ParseOutcome]) -> EvalMetrics
         }
 
         let predicted_clarify = matches!(outcome.decision, ParseDecision::Clarify { .. } | ParseDecision::Confirm { .. });
-        clarify_tp += usize::from(predicted_clarify && item.expect_clarify);
-        clarify_fp += usize::from(predicted_clarify && !item.expect_clarify);
-        clarify_fn += usize::from(!predicted_clarify && item.expect_clarify);
+        // Asking about a mistyped name is the safe outcome, not a spurious clarification.
+        clarify_tp += usize::from(core && predicted_clarify && item.expect_clarify);
+        clarify_fp += usize::from(core && predicted_clarify && !item.expect_clarify);
+        clarify_fn += usize::from(core && !predicted_clarify && item.expect_clarify);
 
         let predicted_reject = matches!(outcome.decision, ParseDecision::Reject { .. });
         if item.expect_reject {
             reject_pos += 1;
             reject_fn += usize::from(!predicted_reject);
+            reject_unsafe += usize::from(matches!(
+                outcome.decision,
+                ParseDecision::Execute | ParseDecision::Clarify { .. } | ParseDecision::Confirm { .. }
+            ));
         } else {
             reject_neg += 1;
             reject_fp += usize::from(predicted_reject);
         }
 
         let correct = decision_correct(item, outcome, &actual);
-        let confidence = outcome.confidence.clamp(0.0, 1.0);
-        brier_sum += (confidence - f64::from(u8::from(correct))).powi(2);
-        let bin = ((confidence * 10.0).floor() as usize).min(9);
-        ece_bins[bin].0 += 1;
-        ece_bins[bin].1 += confidence;
-        ece_bins[bin].2 += usize::from(correct);
+        correct_total += usize::from(correct);
+        if item.in_domain() {
+            in_domain_n += 1;
+            in_domain_ok += usize::from(correct);
+        }
+        if item.split == Split::Typo {
+            typo_n += 1;
+            typo_ok += usize::from(correct);
+        }
     }
 
     let intent_macro_f1 =
@@ -106,8 +128,10 @@ pub fn score_items(items: &[EvalItem], outcomes: &[ParseOutcome]) -> EvalMetrics
         clarify_recall: recall(clarify_tp, clarify_fn),
         reject_fpr: ratio(reject_fp, reject_neg),
         reject_fnr: ratio(reject_fn, reject_pos),
-        brier: if items.is_empty() { 0.0 } else { brier_sum / items.len() as f64 },
-        ece: expected_calibration_error(&ece_bins, items.len()),
+        reject_unsafe: ratio_zero(reject_unsafe, reject_pos),
+        typo_recovery: ratio(typo_ok, typo_n),
+        accuracy: ratio(correct_total, items.len()),
+        in_domain_accuracy: ratio(in_domain_ok, in_domain_n),
     }
 }
 
@@ -195,19 +219,10 @@ fn ratio(num: usize, den: usize) -> f64 {
     }
 }
 
-fn expected_calibration_error(bins: &[(usize, f64, usize)], total: usize) -> f64 {
-    if total == 0 {
-        return 0.0;
+fn ratio_zero(num: usize, den: usize) -> f64 {
+    if den == 0 {
+        0.0
+    } else {
+        num as f64 / den as f64
     }
-    bins.iter()
-        .map(|(count, conf_sum, correct)| {
-            if *count == 0 {
-                0.0
-            } else {
-                let acc = *correct as f64 / *count as f64;
-                let conf = conf_sum / *count as f64;
-                (*count as f64 / total as f64) * (acc - conf).abs()
-            }
-        })
-        .sum()
 }

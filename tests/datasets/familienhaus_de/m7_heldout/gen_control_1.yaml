@@ -1,0 +1,649 @@
+- name: gen_on_entryway_light
+  split: control
+  language: de
+  sentences:
+    - 'Mach Eingangslicht an'
+    - 'Schalte Eingangslicht ein'
+    - 'Eingangslicht an bitte'
+    - 'Kannst du Eingangslicht anmachen'
+  nlu_expect:
+    intents:
+      - intent: HassTurnOn
+        slots: {entity_id: light.entryway_light}
+
+- name: gen_off_entryway_light
+  split: control
+  language: de
+  sentences:
+    - 'Mach Eingangslicht aus'
+    - 'Schalte Eingangslicht aus'
+    - 'Eingangslicht aus bitte'
+    - 'Kannst du Eingangslicht ausmachen'
+  nlu_expect:
+    intents:
+      - intent: HassTurnOff
+        slots: {entity_id: light.entryway_light}
+
+- name: gen_on_living_ceiling
+  split: control
+  language: de
+  sentences:
+    - 'Schalte Wohnzimmer Decke ein'
+    - 'Wohnzimmer Decke an bitte'
+    - 'Kannst du Wohnzimmer Decke anmachen'
+    - 'Bitte Wohnzimmer Decke einschalten'
+  nlu_expect:
+    intents:
+      - intent: HassTurnOn
+        slots: {entity_id: light.living_ceiling}
+
+- name: gen_off_living_ceiling
+  split: control
+  language: de
+  sentences:
+    - 'Schalte Wohnzimmer Decke aus'
+    - 'Wohnzimmer Decke aus bitte'
+    - 'Kannst du Wohnzimmer Decke ausmachen'
+    - 'Bitte Wohnzimmer Decke ausschalten'
+  nlu_expect:
+    intents:
+      - intent: HassTurnOff
+        slots: {entity_id: light.living_ceiling}
+
+- name: gen_on_living_lamp
+  split: control
+  language: de
+  sentences:
+    - 'Wohnzimmer Lampe an bitte'
+    - 'Kannst du Wohnzimmer Lampe anmachen'
+    - 'Bitte Wohnzimmer Lampe einschalten'
+    - 'Wohnzimmer Lampe einschalten'
+  nlu_expect:
+    intents:
+      - intent: HassTurnOn
+        slots: {entity_id: light.living_lamp}
+
+- name: gen_off_living_lamp
+  split: control
+  language: de
+  sentences:
+    - 'Wohnzimmer Lampe aus bitte'
+    - 'Kannst du Wohnzimmer Lampe ausmachen'
+    - 'Bitte Wohnzimmer Lampe ausschalten'
+    - 'Wohnzimmer Lampe ausschalten'
+  nlu_expect:
+    intents:
+      - intent: HassTurnOff
+        slots: {entity_id: light.living_lamp}
+
+- name: gen_on_dining_pendant
+  split: control
+  language: de
+  sentences:
+    - 'Kannst du Esszimmer Pendelleuchte anmachen'
+    - 'Bitte Esszimmer Pendelleuchte einschalten'
+    - 'Esszimmer Pendelleuchte einschalten'
+    - 'Würdest du Esszimmer Pendelleuchte anschalten'
+  nlu_expect:
+    intents:
+      - intent: HassTurnOn
+        slots: {entity_id: light.dining_pendant}
+
+- name: gen_off_dining_pendant
+  split: control
+  language: de
+  sentences:
+    - 'Kannst du Esszimmer Pendelleuchte ausmachen'
+    - 'Bitte Esszimmer Pendelleuchte ausschalten'
+    - 'Esszimmer Pendelleuchte ausschalten'
+    - 'Würdest du Esszimmer Pendelleuchte ausschalten'
+  nlu_expect:
+    intents:
+      - intent: HassTurnOff
+        slots: {entity_id: light.dining_pendant}
+
+- name: gen_on_kitchen_ceiling
+  split: control
+  language: de
+  sentences:
+    - 'Bitte Küche Decke einschalten'
+    - 'Küche Decke einschalten'
+    - 'Würdest du Küche Decke anschalten'
+    - 'Ich möchte Küche Decke einschalten'
+  nlu_expect:
+    intents:
+      - intent: HassTurnOn
+        slots: {entity_id: light.kitchen_ceiling}
+
+- name: gen_off_kitchen_ceiling
+  split: control
+  language: de
+  sentences:
+    - 'Bitte Küche Decke ausschalten'
+    - 'Küche Decke ausschalten'
+    - 'Würdest du Küche Decke ausschalten'
+    - 'Ich möchte Küche Decke ausschalten'
+  nlu_expect:
+    intents:
+      - intent: HassTurnOff
+        slots: {entity_id: light.kitchen_ceiling}
+
+- name: gen_on_kitchen_island
+  split: control
+  language: de
+  sentences:
+    - 'Insel Licht einschalten'
+    - 'Würdest du Insel Licht anschalten'
+    - 'Ich möchte Insel Licht einschalten'
+    - 'Mach Insel Licht an'
+  nlu_expect:
+    intents:
+      - intent: HassTurnOn
+        slots: {entity_id: light.kitchen_island}
+
+- name: gen_off_kitchen_island
+  split: control
+  language: de
+  sentences:
+    - 'Insel Licht ausschalten'
+    - 'Würdest du Insel Licht ausschalten'
+    - 'Ich möchte Insel Licht ausschalten'
+    - 'Mach Insel Licht aus'
+  nlu_expect:
+    intents:
+      - intent: HassTurnOff
+        slots: {entity_id: light.kitchen_island}
+
+- name: gen_on_rangehood
+  split: control
+  language: de
+  sentences:
+    - 'Würdest du Dunstabzug anschalten'
+    - 'Schalte Dunstabzug ein'
+    - 'Starte Dunstabzug'
+    - 'Mach Dunstabzug an'
+  nlu_expect:
+    intents:
+      - intent: HassTurnOn
+        slots: {entity_id: switch.rangehood}
+
+- name: gen_off_rangehood
+  split: control
+  language: de
+  sentences:
+    - 'Würdest du Dunstabzug ausschalten'
+    - 'Schalte Dunstabzug aus'
+    - 'Stoppe Dunstabzug'
+    - 'Mach Dunstabzug aus'
+  nlu_expect:
+    intents:
+      - intent: HassTurnOff
+        slots: {entity_id: switch.rangehood}
+
+- name: gen_on_dishwasher
+  split: control
+  language: de
+  sentences:
+    - 'Schalte Spülmaschine ein'
+    - 'Starte Spülmaschine'
+    - 'Mach Spülmaschine an'
+    - 'Spülmaschine an bitte'
+  nlu_expect:
+    intents:
+      - intent: HassTurnOn
+        slots: {entity_id: switch.dishwasher}
+
+- name: gen_off_dishwasher
+  split: control
+  language: de
+  sentences:
+    - 'Schalte Spülmaschine aus'
+    - 'Stoppe Spülmaschine'
+    - 'Mach Spülmaschine aus'
+    - 'Spülmaschine aus bitte'
+  nlu_expect:
+    intents:
+      - intent: HassTurnOff
+        slots: {entity_id: switch.dishwasher}
+
+- name: gen_on_family_ceiling
+  split: control
+  language: de
+  sentences:
+    - 'Mach Familienzimmer Decke an'
+    - 'Schalte Familienzimmer Decke ein'
+    - 'Familienzimmer Decke an bitte'
+    - 'Kannst du Familienzimmer Decke anmachen'
+  nlu_expect:
+    intents:
+      - intent: HassTurnOn
+        slots: {entity_id: light.family_ceiling}
+
+- name: gen_off_family_ceiling
+  split: control
+  language: de
+  sentences:
+    - 'Mach Familienzimmer Decke aus'
+    - 'Schalte Familienzimmer Decke aus'
+    - 'Familienzimmer Decke aus bitte'
+    - 'Kannst du Familienzimmer Decke ausmachen'
+  nlu_expect:
+    intents:
+      - intent: HassTurnOff
+        slots: {entity_id: light.family_ceiling}
+
+- name: gen_on_family_fan
+  split: control
+  language: de
+  sentences:
+    - 'Mach Familienzimmer Lüfter an'
+    - 'Familienzimmer Lüfter an bitte'
+    - 'Kannst du Familienzimmer Lüfter anmachen'
+    - 'Bitte Familienzimmer Lüfter einschalten'
+  nlu_expect:
+    intents:
+      - intent: HassTurnOn
+        slots: {entity_id: fan.family_fan}
+
+- name: gen_off_family_fan
+  split: control
+  language: de
+  sentences:
+    - 'Mach Familienzimmer Lüfter aus'
+    - 'Familienzimmer Lüfter aus bitte'
+    - 'Kannst du Familienzimmer Lüfter ausmachen'
+    - 'Bitte Familienzimmer Lüfter ausschalten'
+  nlu_expect:
+    intents:
+      - intent: HassTurnOff
+        slots: {entity_id: fan.family_fan}
+
+- name: gen_on_laundry_light
+  split: control
+  language: de
+  sentences:
+    - 'Waschküche Licht an bitte'
+    - 'Kannst du Waschküche Licht anmachen'
+    - 'Bitte Waschküche Licht einschalten'
+    - 'Waschküche Licht einschalten'
+  nlu_expect:
+    intents:
+      - intent: HassTurnOn
+        slots: {entity_id: light.laundry_light}
+
+- name: gen_off_laundry_light
+  split: control
+  language: de
+  sentences:
+    - 'Waschküche Licht aus bitte'
+    - 'Kannst du Waschküche Licht ausmachen'
+    - 'Bitte Waschküche Licht ausschalten'
+    - 'Waschküche Licht ausschalten'
+  nlu_expect:
+    intents:
+      - intent: HassTurnOff
+        slots: {entity_id: light.laundry_light}
+
+- name: gen_on_washing_machine
+  split: control
+  language: de
+  sentences:
+    - 'Kannst du Waschmaschine anmachen'
+    - 'Bitte Waschmaschine einschalten'
+    - 'Waschmaschine einschalten'
+    - 'Würdest du Waschmaschine anschalten'
+  nlu_expect:
+    intents:
+      - intent: HassTurnOn
+        slots: {entity_id: switch.washing_machine}
+
+- name: gen_off_washing_machine
+  split: control
+  language: de
+  sentences:
+    - 'Kannst du Waschmaschine ausmachen'
+    - 'Bitte Waschmaschine ausschalten'
+    - 'Waschmaschine ausschalten'
+    - 'Würdest du Waschmaschine ausschalten'
+  nlu_expect:
+    intents:
+      - intent: HassTurnOff
+        slots: {entity_id: switch.washing_machine}
+
+- name: gen_on_dryer
+  split: control
+  language: de
+  sentences:
+    - 'Bitte Trockner einschalten'
+    - 'Trockner einschalten'
+    - 'Würdest du Trockner anschalten'
+    - 'Schalte Trockner ein'
+  nlu_expect:
+    intents:
+      - intent: HassTurnOn
+        slots: {entity_id: switch.dryer}
+
+- name: gen_off_dryer
+  split: control
+  language: de
+  sentences:
+    - 'Bitte Trockner ausschalten'
+    - 'Trockner ausschalten'
+    - 'Würdest du Trockner ausschalten'
+    - 'Schalte Trockner aus'
+  nlu_expect:
+    intents:
+      - intent: HassTurnOff
+        slots: {entity_id: switch.dryer}
+
+- name: gen_on_powder_room_light
+  split: control
+  language: de
+  sentences:
+    - 'Gäste-WC Licht einschalten'
+    - 'Würdest du Gäste-WC Licht anschalten'
+    - 'Ich möchte Gäste-WC Licht einschalten'
+    - 'Mach Gäste-WC Licht an'
+  nlu_expect:
+    intents:
+      - intent: HassTurnOn
+        slots: {entity_id: light.powder_room_light}
+
+- name: gen_off_powder_room_light
+  split: control
+  language: de
+  sentences:
+    - 'Gäste-WC Licht ausschalten'
+    - 'Würdest du Gäste-WC Licht ausschalten'
+    - 'Ich möchte Gäste-WC Licht ausschalten'
+    - 'Mach Gäste-WC Licht aus'
+  nlu_expect:
+    intents:
+      - intent: HassTurnOff
+        slots: {entity_id: light.powder_room_light}
+
+- name: gen_on_garage_light
+  split: control
+  language: de
+  sentences:
+    - 'Würdest du Garagenlicht anschalten'
+    - 'Ich möchte Garagenlicht einschalten'
+    - 'Mach Garagenlicht an'
+    - 'Schalte Garagenlicht ein'
+  nlu_expect:
+    intents:
+      - intent: HassTurnOn
+        slots: {entity_id: light.garage_light}
+
+- name: gen_off_garage_light
+  split: control
+  language: de
+  sentences:
+    - 'Würdest du Garagenlicht ausschalten'
+    - 'Ich möchte Garagenlicht ausschalten'
+    - 'Mach Garagenlicht aus'
+    - 'Schalte Garagenlicht aus'
+  nlu_expect:
+    intents:
+      - intent: HassTurnOff
+        slots: {entity_id: light.garage_light}
+
+- name: gen_on_master_ceiling
+  split: control
+  language: de
+  sentences:
+    - 'Ich möchte Schlafzimmer Decke einschalten'
+    - 'Mach Schlafzimmer Decke an'
+    - 'Schalte Schlafzimmer Decke ein'
+    - 'Schlafzimmer Decke an bitte'
+  nlu_expect:
+    intents:
+      - intent: HassTurnOn
+        slots: {entity_id: light.master_ceiling}
+
+- name: gen_off_master_ceiling
+  split: control
+  language: de
+  sentences:
+    - 'Ich möchte Schlafzimmer Decke ausschalten'
+    - 'Mach Schlafzimmer Decke aus'
+    - 'Schalte Schlafzimmer Decke aus'
+    - 'Schlafzimmer Decke aus bitte'
+  nlu_expect:
+    intents:
+      - intent: HassTurnOff
+        slots: {entity_id: light.master_ceiling}
+
+- name: gen_on_master_ensuite
+  split: control
+  language: de
+  sentences:
+    - 'Mach Ankleide Licht an'
+    - 'Schalte Ankleide Licht ein'
+    - 'Ankleide Licht an bitte'
+    - 'Kannst du Ankleide Licht anmachen'
+  nlu_expect:
+    intents:
+      - intent: HassTurnOn
+        slots: {entity_id: light.master_ensuite}
+
+- name: gen_off_master_ensuite
+  split: control
+  language: de
+  sentences:
+    - 'Mach Ankleide Licht aus'
+    - 'Schalte Ankleide Licht aus'
+    - 'Ankleide Licht aus bitte'
+    - 'Kannst du Ankleide Licht ausmachen'
+  nlu_expect:
+    intents:
+      - intent: HassTurnOff
+        slots: {entity_id: light.master_ensuite}
+
+- name: gen_on_master_bedside_left
+  split: control
+  language: de
+  sentences:
+    - 'Schalte Nachttisch links ein'
+    - 'Nachttisch links an bitte'
+    - 'Kannst du Nachttisch links anmachen'
+    - 'Bitte Nachttisch links einschalten'
+  nlu_expect:
+    intents:
+      - intent: HassTurnOn
+        slots: {entity_id: light.master_bedside_left}
+
+- name: gen_off_master_bedside_left
+  split: control
+  language: de
+  sentences:
+    - 'Schalte Nachttisch links aus'
+    - 'Nachttisch links aus bitte'
+    - 'Kannst du Nachttisch links ausmachen'
+    - 'Bitte Nachttisch links ausschalten'
+  nlu_expect:
+    intents:
+      - intent: HassTurnOff
+        slots: {entity_id: light.master_bedside_left}
+
+- name: gen_on_master_bedside_right
+  split: control
+  language: de
+  sentences:
+    - 'Nachttisch rechts an bitte'
+    - 'Kannst du Nachttisch rechts anmachen'
+    - 'Bitte Nachttisch rechts einschalten'
+    - 'Nachttisch rechts einschalten'
+  nlu_expect:
+    intents:
+      - intent: HassTurnOn
+        slots: {entity_id: light.master_bedside_right}
+
+- name: gen_off_master_bedside_right
+  split: control
+  language: de
+  sentences:
+    - 'Nachttisch rechts aus bitte'
+    - 'Kannst du Nachttisch rechts ausmachen'
+    - 'Bitte Nachttisch rechts ausschalten'
+    - 'Nachttisch rechts ausschalten'
+  nlu_expect:
+    intents:
+      - intent: HassTurnOff
+        slots: {entity_id: light.master_bedside_right}
+
+- name: gen_on_master_fan
+  split: control
+  language: de
+  sentences:
+    - 'Kannst du Schlafzimmer Lüfter anmachen'
+    - 'Bitte Schlafzimmer Lüfter einschalten'
+    - 'Schlafzimmer Lüfter einschalten'
+    - 'Würdest du Schlafzimmer Lüfter anschalten'
+  nlu_expect:
+    intents:
+      - intent: HassTurnOn
+        slots: {entity_id: fan.master_fan}
+
+- name: gen_off_master_fan
+  split: control
+  language: de
+  sentences:
+    - 'Kannst du Schlafzimmer Lüfter ausmachen'
+    - 'Bitte Schlafzimmer Lüfter ausschalten'
+    - 'Schlafzimmer Lüfter ausschalten'
+    - 'Würdest du Schlafzimmer Lüfter ausschalten'
+  nlu_expect:
+    intents:
+      - intent: HassTurnOff
+        slots: {entity_id: fan.master_fan}
+
+- name: gen_on_bedroom2_ceiling
+  split: control
+  language: de
+  sentences:
+    - 'Bitte Kinderzimmer 2 Decke einschalten'
+    - 'Kinderzimmer 2 Decke einschalten'
+    - 'Würdest du Kinderzimmer 2 Decke anschalten'
+    - 'Ich möchte Kinderzimmer 2 Decke einschalten'
+  nlu_expect:
+    intents:
+      - intent: HassTurnOn
+        slots: {entity_id: light.bedroom2_ceiling}
+
+- name: gen_off_bedroom2_ceiling
+  split: control
+  language: de
+  sentences:
+    - 'Bitte Kinderzimmer 2 Decke ausschalten'
+    - 'Kinderzimmer 2 Decke ausschalten'
+    - 'Würdest du Kinderzimmer 2 Decke ausschalten'
+    - 'Ich möchte Kinderzimmer 2 Decke ausschalten'
+  nlu_expect:
+    intents:
+      - intent: HassTurnOff
+        slots: {entity_id: light.bedroom2_ceiling}
+
+- name: gen_on_bedroom2_fan
+  split: control
+  language: de
+  sentences:
+    - 'Kinderzimmer 2 Lüfter einschalten'
+    - 'Würdest du Kinderzimmer 2 Lüfter anschalten'
+    - 'Schalte Kinderzimmer 2 Lüfter ein'
+    - 'Starte Kinderzimmer 2 Lüfter'
+  nlu_expect:
+    intents:
+      - intent: HassTurnOn
+        slots: {entity_id: fan.bedroom2_fan}
+
+- name: gen_off_bedroom2_fan
+  split: control
+  language: de
+  sentences:
+    - 'Kinderzimmer 2 Lüfter ausschalten'
+    - 'Würdest du Kinderzimmer 2 Lüfter ausschalten'
+    - 'Schalte Kinderzimmer 2 Lüfter aus'
+    - 'Stoppe Kinderzimmer 2 Lüfter'
+  nlu_expect:
+    intents:
+      - intent: HassTurnOff
+        slots: {entity_id: fan.bedroom2_fan}
+
+- name: gen_on_bedroom3_ceiling
+  split: control
+  language: de
+  sentences:
+    - 'Würdest du Kinderzimmer 3 Decke anschalten'
+    - 'Ich möchte Kinderzimmer 3 Decke einschalten'
+    - 'Mach Kinderzimmer 3 Decke an'
+    - 'Schalte Kinderzimmer 3 Decke ein'
+  nlu_expect:
+    intents:
+      - intent: HassTurnOn
+        slots: {entity_id: light.bedroom3_ceiling}
+
+- name: gen_off_bedroom3_ceiling
+  split: control
+  language: de
+  sentences:
+    - 'Würdest du Kinderzimmer 3 Decke ausschalten'
+    - 'Ich möchte Kinderzimmer 3 Decke ausschalten'
+    - 'Mach Kinderzimmer 3 Decke aus'
+    - 'Schalte Kinderzimmer 3 Decke aus'
+  nlu_expect:
+    intents:
+      - intent: HassTurnOff
+        slots: {entity_id: light.bedroom3_ceiling}
+
+- name: gen_on_bedroom4_ceiling
+  split: control
+  language: de
+  sentences:
+    - 'Ich möchte Kinderzimmer 4 Decke einschalten'
+    - 'Mach Kinderzimmer 4 Decke an'
+    - 'Schalte Kinderzimmer 4 Decke ein'
+    - 'Kinderzimmer 4 Decke an bitte'
+  nlu_expect:
+    intents:
+      - intent: HassTurnOn
+        slots: {entity_id: light.bedroom4_ceiling}
+
+- name: gen_off_bedroom4_ceiling
+  split: control
+  language: de
+  sentences:
+    - 'Ich möchte Kinderzimmer 4 Decke ausschalten'
+    - 'Mach Kinderzimmer 4 Decke aus'
+    - 'Schalte Kinderzimmer 4 Decke aus'
+    - 'Kinderzimmer 4 Decke aus bitte'
+  nlu_expect:
+    intents:
+      - intent: HassTurnOff
+        slots: {entity_id: light.bedroom4_ceiling}
+
+- name: gen_on_master_bath_light
+  split: control
+  language: de
+  sentences:
+    - 'Mach Elternbad Licht an'
+    - 'Schalte Elternbad Licht ein'
+    - 'Elternbad Licht an bitte'
+    - 'Kannst du Elternbad Licht anmachen'
+  nlu_expect:
+    intents:
+      - intent: HassTurnOn
+        slots: {entity_id: light.master_bath_light}
+
+- name: gen_off_master_bath_light
+  split: control
+  language: de
+  sentences:
+    - 'Mach Elternbad Licht aus'
+    - 'Schalte Elternbad Licht aus'
+    - 'Elternbad Licht aus bitte'
+    - 'Kannst du Elternbad Licht ausmachen'
+  nlu_expect:
+    intents:
+      - intent: HassTurnOff
+        slots: {entity_id: light.master_bath_light}

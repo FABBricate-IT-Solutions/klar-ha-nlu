@@ -1,0 +1,21 @@
+- name: gen_typo_on_main_bath_fan
+  split: typo
+  language: de
+  sentences:
+    - 'Mach Badezimmer Lüfer an'
+    - 'Schalte Baezimmer Lüfter ein'
+  nlu_expect:
+    intents:
+      - intent: HassTurnOn
+        slots: {entity_id: switch.main_bath_fan}
+
+- name: gen_typo_off_main_bath_fan
+  split: typo
+  language: de
+  sentences:
+    - 'Mach Badezimer Lüfter aus'
+    - 'Schalte Badezimmer Lüfer aus'
+  nlu_expect:
+    intents:
+      - intent: HassTurnOff
+        slots: {entity_id: switch.main_bath_fan}

@@ -285,6 +285,54 @@ jobs:
         timeout-minutes: 10
         run: pytest -q
 
+  # Package 6.10 / Q-08: the held-out scorecard with its reject and corpus gates, the Home
+  # Assist default agent (hassil + gazetteer) on the same sentences, and one artifact that
+  # joins them and names the commit. benchmark_report.py refuses runs of different commits.
+  benchmark:
+    name: benchmark
+    runs-on: ubuntu-26.04
+    timeout-minutes: 25
+    env:
+      KLAR_COMMIT_SHA: ${{ github.sha }}
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: dtolnay/rust-toolchain@df2a88e9fe4098bad09cb42c3dec7187f15861fc # master
+        with:
+          toolchain: "1.91"
+      - uses: Swatinem/rust-cache@d1527c8f67ef9af357290475d4af4b0fab8f12e0 # v2.9.3
+        with:
+          shared-key: ci-benchmark
+          cache-on-failure: true
+      - uses: astral-sh/setup-uv@1db35dd8eee11c5894872e0b383ae6c406cf738d # v10.4.0
+        with:
+          python-version: "3.14"
+          activate-environment: true
+          enable-cache: true
+          cache-dependency-glob: scripts/requirements-assist-bench.txt
+      - name: Install the Assist packages (pinned with Home Assistant)
+        run: uv pip install -r scripts/requirements-assist-bench.txt
+      - name: Klar scorecard gate
+        run: cargo run --locked --release -- eval gate --out target/benchmark/scorecard.json > /dev/null
+      - name: Assist on the same held-out sentences
+        run: python scripts/bench_assist.py --suite heldout_en --suite heldout_de --out target/benchmark/assist.json
+      - name: Join both runs under the commit
+        run: |
+          set -euo pipefail
+          python scripts/benchmark_report.py \
+            --scorecard target/benchmark/scorecard.json \
+            --assist target/benchmark/assist.json \
+            --out target/benchmark/benchmark.json \
+            --markdown target/benchmark/benchmark.md
+          cat target/benchmark/benchmark.md >> "${GITHUB_STEP_SUMMARY}"
+      - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: benchmark-${{ github.sha }}
+          path: target/benchmark/
+          if-no-files-found: error
+          retention-days: 30
+
   # Cheap checks on the CI definition itself and on the docs.
   lint:
     name: ci-lint
@@ -383,7 +431,7 @@ jobs:
   # tests/test_ci_workflows.py fails when a job of this workflow is missing from the list.
   release-gates:
     name: release-gates
-    needs: [test, clippy, rustfmt, web, web-smoke, ha, datasets, budget, lint, release-targets, dockerfile-root]
+    needs: [test, clippy, rustfmt, web, web-smoke, ha, datasets, budget, benchmark, lint, release-targets, dockerfile-root]
     if: always()
     runs-on: ubuntu-26.04
     steps:

@@ -1,0 +1,29 @@
+- name: gen_confirm_lock_front_door
+  split: clarify
+  language: de
+  sentences:
+    - 'Schließe Haustür ab'
+    - 'Bitte Haustür abschließen'
+  nlu_expect:
+    clarify: true
+    intents: []
+
+- name: gen_confirm_unlock_front_door
+  split: clarify
+  language: de
+  sentences:
+    - 'Schließe Haustür auf'
+    - 'Bitte Haustür aufschließen'
+  nlu_expect:
+    clarify: true
+    intents: []
+
+- name: gen_confirm_open_garage_door
+  split: clarify
+  language: de
+  sentences:
+    - 'Öffne Garagentor'
+    - 'Bitte Garagentor öffnen'
+  nlu_expect:
+    clarify: true
+    intents: []

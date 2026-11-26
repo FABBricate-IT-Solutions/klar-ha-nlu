@@ -1,0 +1,21 @@
+- name: gen_typo_on_hallway_light
+  split: typo
+  language: en
+  sentences:
+    - 'Switch on the Hallay Light'
+    - 'Please turn on the Hallay Light'
+  nlu_expect:
+    intents:
+      - intent: HassTurnOn
+        slots: {entity_id: light.hallway_light}
+
+- name: gen_typo_off_hallway_light
+  split: typo
+  language: en
+  sentences:
+    - 'Switch off the Halway Light'
+    - 'Shut off the Halway Light'
+  nlu_expect:
+    intents:
+      - intent: HassTurnOff
+        slots: {entity_id: light.hallway_light}

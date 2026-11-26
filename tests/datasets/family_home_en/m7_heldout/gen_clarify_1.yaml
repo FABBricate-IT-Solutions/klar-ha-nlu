@@ -1,0 +1,29 @@
+- name: gen_confirm_lock_front_door
+  split: clarify
+  language: en
+  sentences:
+    - 'Lock the Front Door'
+    - 'Please lock the Front Door'
+  nlu_expect:
+    clarify: true
+    intents: []
+
+- name: gen_confirm_unlock_front_door
+  split: clarify
+  language: en
+  sentences:
+    - 'Unlock the Front Door'
+    - 'Please unlock the Front Door'
+  nlu_expect:
+    clarify: true
+    intents: []
+
+- name: gen_confirm_open_garage_door
+  split: clarify
+  language: en
+  sentences:
+    - 'Open the Garage Door'
+    - 'Please open the Garage Door'
+  nlu_expect:
+    clarify: true
+    intents: []

@@ -1,0 +1,251 @@
+- name: gen_climate_ground_thermostat_20
+  split: control
+  language: en
+  sentences:
+    - 'Put the Ground Floor Thermostat at 20'
+    - 'Change the Ground Floor Thermostat to 20'
+  nlu_expect:
+    intents:
+      - intent: HassClimateSetTemperature
+        slots: {entity_id: climate.ground_thermostat, temperature: 20}
+
+- name: gen_climate_ground_thermostat_21
+  split: control
+  language: en
+  sentences:
+    - 'Change the Ground Floor Thermostat to 21'
+    - 'Set the Ground Floor Thermostat to 21 degrees'
+  nlu_expect:
+    intents:
+      - intent: HassClimateSetTemperature
+        slots: {entity_id: climate.ground_thermostat, temperature: 21}
+
+- name: gen_climate_ground_thermostat_22
+  split: control
+  language: en
+  sentences:
+    - 'Set the Ground Floor Thermostat to 22 degrees'
+    - 'Make the Ground Floor Thermostat 22 degrees'
+  nlu_expect:
+    intents:
+      - intent: HassClimateSetTemperature
+        slots: {entity_id: climate.ground_thermostat, temperature: 22}
+
+- name: gen_climate_ground_thermostat_23
+  split: control
+  language: en
+  sentences:
+    - 'Make the Ground Floor Thermostat 23 degrees'
+    - 'Put the Ground Floor Thermostat at 23'
+  nlu_expect:
+    intents:
+      - intent: HassClimateSetTemperature
+        slots: {entity_id: climate.ground_thermostat, temperature: 23}
+
+- name: gen_climate_ground_thermostat_24
+  split: control
+  language: en
+  sentences:
+    - 'Put the Ground Floor Thermostat at 24'
+    - 'Change the Ground Floor Thermostat to 24'
+  nlu_expect:
+    intents:
+      - intent: HassClimateSetTemperature
+        slots: {entity_id: climate.ground_thermostat, temperature: 24}
+
+- name: gen_climate_upper_thermostat_18
+  split: control
+  language: en
+  sentences:
+    - 'Make the Upper Floor Thermostat 18 degrees'
+    - 'Put the Upper Floor Thermostat at 18'
+  nlu_expect:
+    intents:
+      - intent: HassClimateSetTemperature
+        slots: {entity_id: climate.upper_thermostat, temperature: 18}
+
+- name: gen_climate_upper_thermostat_19
+  split: control
+  language: en
+  sentences:
+    - 'Put the Upper Floor Thermostat at 19'
+    - 'Change the Upper Floor Thermostat to 19'
+  nlu_expect:
+    intents:
+      - intent: HassClimateSetTemperature
+        slots: {entity_id: climate.upper_thermostat, temperature: 19}
+
+- name: gen_climate_upper_thermostat_20
+  split: control
+  language: en
+  sentences:
+    - 'Change the Upper Floor Thermostat to 20'
+    - 'Set the Upper Floor Thermostat to 20 degrees'
+  nlu_expect:
+    intents:
+      - intent: HassClimateSetTemperature
+        slots: {entity_id: climate.upper_thermostat, temperature: 20}
+
+- name: gen_climate_upper_thermostat_21
+  split: control
+  language: en
+  sentences:
+    - 'Set the Upper Floor Thermostat to 21 degrees'
+    - 'Make the Upper Floor Thermostat 21 degrees'
+  nlu_expect:
+    intents:
+      - intent: HassClimateSetTemperature
+        slots: {entity_id: climate.upper_thermostat, temperature: 21}
+
+- name: gen_climate_upper_thermostat_22
+  split: control
+  language: en
+  sentences:
+    - 'Make the Upper Floor Thermostat 22 degrees'
+    - 'Put the Upper Floor Thermostat at 22'
+  nlu_expect:
+    intents:
+      - intent: HassClimateSetTemperature
+        slots: {entity_id: climate.upper_thermostat, temperature: 22}
+
+- name: gen_climate_upper_thermostat_23
+  split: control
+  language: en
+  sentences:
+    - 'Put the Upper Floor Thermostat at 23'
+    - 'Change the Upper Floor Thermostat to 23'
+  nlu_expect:
+    intents:
+      - intent: HassClimateSetTemperature
+        slots: {entity_id: climate.upper_thermostat, temperature: 23}
+
+- name: gen_climate_upper_thermostat_24
+  split: control
+  language: en
+  sentences:
+    - 'Change the Upper Floor Thermostat to 24'
+    - 'Set the Upper Floor Thermostat to 24 degrees'
+  nlu_expect:
+    intents:
+      - intent: HassClimateSetTemperature
+        slots: {entity_id: climate.upper_thermostat, temperature: 24}
+
+- name: gen_open_living_blinds
+  split: control
+  language: en
+  sentences:
+    - 'Open the Living Room Blinds'
+    - 'Raise the Living Room Blinds'
+    - 'Roll up the Living Room Blinds'
+  nlu_expect:
+    intents:
+      - intent: HassTurnOn
+        slots: {entity_id: cover.living_blinds}
+
+- name: gen_open_master_blinds
+  split: control
+  language: en
+  sentences:
+    - 'Raise the Master Blinds'
+    - 'Roll up the Master Blinds'
+    - 'Pull up the Master Blinds'
+  nlu_expect:
+    intents:
+      - intent: HassTurnOn
+        slots: {entity_id: cover.master_blinds}
+
+- name: gen_open_bedroom2_blinds
+  split: control
+  language: en
+  sentences:
+    - 'Roll up the Bedroom 2 Blinds'
+    - 'Pull up the Bedroom 2 Blinds'
+    - 'Open the Bedroom 2 Blinds'
+  nlu_expect:
+    intents:
+      - intent: HassTurnOn
+        slots: {entity_id: cover.bedroom2_blinds}
+
+- name: gen_open_bedroom3_blinds
+  split: control
+  language: en
+  sentences:
+    - 'Pull up the Bedroom 3 Blinds'
+    - 'Open the Bedroom 3 Blinds'
+    - 'Raise the Bedroom 3 Blinds'
+  nlu_expect:
+    intents:
+      - intent: HassTurnOn
+        slots: {entity_id: cover.bedroom3_blinds}
+
+- name: gen_room_on_kitchen
+  split: control
+  language: en
+  sentences:
+    - 'Turn on the lights in the Kitchen'
+    - 'Switch on all the lights in the Kitchen'
+    - 'Put the Kitchen lights on'
+  nlu_expect:
+    intents:
+      - intent: HassTurnOn
+        slots: {area: kitchen, domain: light}
+
+- name: gen_room_off_kitchen
+  split: control
+  language: en
+  sentences:
+    - 'Turn off the lights in the Kitchen'
+    - 'Switch off all the lights in the Kitchen'
+    - 'Put the Kitchen lights off'
+  nlu_expect:
+    intents:
+      - intent: HassTurnOff
+        slots: {area: kitchen, domain: light}
+
+- name: gen_room_on_living
+  split: control
+  language: en
+  sentences:
+    - 'Switch on all the lights in the Living Room'
+    - 'Put the Living Room lights on'
+    - 'Turn on the lights in the Living Room'
+  nlu_expect:
+    intents:
+      - intent: HassTurnOn
+        slots: {area: living, domain: light}
+
+- name: gen_room_off_living
+  split: control
+  language: en
+  sentences:
+    - 'Switch off all the lights in the Living Room'
+    - 'Put the Living Room lights off'
+    - 'Turn off the lights in the Living Room'
+  nlu_expect:
+    intents:
+      - intent: HassTurnOff
+        slots: {area: living, domain: light}
+
+- name: gen_room_on_master_bedroom
+  split: control
+  language: en
+  sentences:
+    - 'Put the Master Bedroom lights on'
+    - 'Turn on the lights in the Master Bedroom'
+    - 'Switch on all the lights in the Master Bedroom'
+  nlu_expect:
+    intents:
+      - intent: HassTurnOn
+        slots: {area: master_bedroom, domain: light}
+
+- name: gen_room_off_master_bedroom
+  split: control
+  language: en
+  sentences:
+    - 'Put the Master Bedroom lights off'
+    - 'Turn off the lights in the Master Bedroom'
+    - 'Switch off all the lights in the Master Bedroom'
+  nlu_expect:
+    intents:
+      - intent: HassTurnOff
+        slots: {area: master_bedroom, domain: light}

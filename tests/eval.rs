@@ -1,6 +1,7 @@
 use klar_nlu::eval::{
-    evaluate_dir, family_home, gate_scorecard, heldout_dir, run_scorecard, write_scorecard, MIN_ASR_RECOVERY, MIN_CLARIFY_PRECISION,
-    MIN_HELD_OUT, MIN_INTENT_MACRO_F1, MIN_PAIRING, MIN_SLOT_MICRO_F1,
+    evaluate_dir, family_home, gate_scorecard, heldout_dir, run_scorecard, write_scorecard, MAX_REJECT_FNR, MAX_REJECT_FPR,
+    MAX_REJECT_UNSAFE, MIN_ASR_RECOVERY, MIN_CLARIFY_PRECISION, MIN_HELD_OUT, MIN_INTENT_MACRO_F1, MIN_IN_DOMAIN, MIN_PAIRING,
+    MIN_SLOT_MICRO_F1, MIN_TYPO_RECOVERY,
 };
 use std::path::PathBuf;
 
@@ -8,6 +9,14 @@ fn assert_quality(language: &str) {
     let home = family_home(language).expect("family home");
     let (items, metrics) = evaluate_dir(&heldout_dir(language), &home, language).expect("corpus");
     assert!(items.len() >= MIN_HELD_OUT, "{language} held-out {} < {MIN_HELD_OUT}", items.len());
+    let in_domain = items.iter().filter(|item| item.in_domain()).count();
+    assert!(in_domain >= MIN_IN_DOMAIN, "{language} in-domain held-out {in_domain} < {MIN_IN_DOMAIN}");
+    assert!(
+        in_domain * 100 >= items.len() * 40,
+        "{language} held-out is {} % in-domain; out-of-domain rejects must not dominate",
+        in_domain * 100 / items.len()
+    );
+    assert!(items.iter().any(|item| item.split == klar_nlu::eval::Split::Typo), "{language} missing typo split");
     assert!(items.iter().any(|item| item.split == klar_nlu::eval::Split::Asr), "{language} missing ASR split");
     assert!(items.iter().any(|item| item.split == klar_nlu::eval::Split::Ood), "{language} missing OOD split");
     assert!(items.iter().any(|item| item.split == klar_nlu::eval::Split::Clarify), "{language} missing clarify split");
@@ -55,6 +64,10 @@ fn assert_quality(language: &str) {
     assert!(metrics.intent_slot_pairing + 1e-9 >= MIN_PAIRING, "{language} pairing {}", metrics.intent_slot_pairing);
     assert!(metrics.asr_recovery + 1e-9 >= MIN_ASR_RECOVERY, "{language} ASR {}", metrics.asr_recovery);
     assert!(metrics.clarify_precision + 1e-9 >= MIN_CLARIFY_PRECISION, "{language} clarify P {}", metrics.clarify_precision);
+    assert!(metrics.reject_fnr <= MAX_REJECT_FNR + 1e-9, "{language} reject miss rate {}", metrics.reject_fnr);
+    assert!(metrics.reject_fpr <= MAX_REJECT_FPR + 1e-9, "{language} in-domain reject rate {}", metrics.reject_fpr);
+    assert!(metrics.reject_unsafe <= MAX_REJECT_UNSAFE + 1e-9, "{language} out-of-domain acted on {}", metrics.reject_unsafe);
+    assert!(metrics.typo_recovery + 1e-9 >= MIN_TYPO_RECOVERY, "{language} typo recovery {}", metrics.typo_recovery);
 }
 
 #[test]
@@ -73,8 +86,9 @@ fn scorecard_json_includes_bench_and_assist_same_graph() {
     let path = PathBuf::from(env!("CARGO_MANIFEST_DIR")).join("target/eval_scorecard.json");
     write_scorecard(&path, &card).expect("write");
     let parsed: klar_nlu::eval::Scorecard = serde_json::from_str(&std::fs::read_to_string(&path).expect("read")).expect("json");
-    assert_eq!(parsed.schema_version, "m7.1");
+    assert_eq!(parsed.schema_version, "m7.2");
     assert_eq!(parsed.languages.len(), 2);
+    assert!(parsed.languages.iter().all(|card| card.in_domain >= MIN_IN_DOMAIN), "{:?}", parsed.languages);
     assert!(parsed.bench.samples >= 8);
     assert!(parsed.comparison.len() >= 2, "{:?}", parsed.comparison);
     assert!(parsed.comparison.iter().all(|row| row.ok == row.cases && row.cases > 0), "{:?}", parsed.comparison);
@@ -120,4 +134,54 @@ fn metrics_are_not_vacuous_on_mismatched_gold() {
     assert!(metrics.intent_macro_f1 < 0.5, "{}", metrics.intent_macro_f1);
     assert!(metrics.intent_slot_pairing < 0.5, "{}", metrics.intent_slot_pairing);
     assert!(metrics.slot_micro_f1 < 0.5, "slot F1 must not be vacuous: {}", metrics.slot_micro_f1);
+}
+
+#[test]
+fn scorecard_has_no_uncalibrated_confidence_field() {
+    // `ParseOutcome.confidence` is a ranking score behind the decision bands, not a probability, and a reject
+    // carries 0.0. Scoring it as one gave ECE 0.89. The figure is gone from the scorecard instead of being tuned.
+    let card = run_scorecard(None).expect("scorecard");
+    let json = serde_json::to_value(&card).expect("json");
+    let text = json.to_string();
+    for banned in ["ece", "brier", "confidence", "calibration"] {
+        assert!(!text.contains(&format!("\"{banned}\"")), "scorecard still exposes {banned}: {text}");
+    }
+    for language in json["languages"].as_array().expect("languages") {
+        for key in ["reject_fpr", "reject_fnr", "reject_unsafe", "typo_recovery", "accuracy"] {
+            assert!(language["metrics"][key].is_number(), "metrics.{key} missing");
+        }
+    }
+}
+
+#[test]
+fn scorecard_is_stamped_with_the_commit() {
+    std::env::set_var("KLAR_COMMIT_SHA", "0123456789abcdef0123456789abcdef01234567");
+    let card = run_scorecard(None).expect("scorecard");
+    assert_eq!(card.commit, "0123456789abcdef0123456789abcdef01234567");
+}
+
+#[test]
+fn gate_fails_on_reject_errors_and_thin_in_domain_corpus() {
+    let card = run_scorecard(None).expect("scorecard");
+    gate_scorecard(&card).expect("baseline passes");
+
+    let mut missed = card.clone();
+    missed.languages[0].metrics.reject_fnr = MAX_REJECT_FNR + 0.01;
+    assert!(gate_scorecard(&missed).expect_err("reject miss rate is gated").contains("reject miss rate"));
+
+    let mut over = card.clone();
+    over.languages[1].metrics.reject_fpr = MAX_REJECT_FPR + 0.01;
+    assert!(gate_scorecard(&over).expect_err("in-domain reject rate is gated").contains("in-domain reject rate"));
+
+    let mut acted = card.clone();
+    acted.languages[0].metrics.reject_unsafe = 0.01;
+    assert!(gate_scorecard(&acted).expect_err("acting outside the home is gated").contains("acted on"));
+
+    let mut thin = card.clone();
+    thin.languages[1].in_domain = MIN_IN_DOMAIN - 1;
+    assert!(gate_scorecard(&thin).expect_err("thin corpus is gated").contains("in-domain utterances"));
+
+    let mut typos = card;
+    typos.languages[0].metrics.typo_recovery = MIN_TYPO_RECOVERY - 0.01;
+    assert!(gate_scorecard(&typos).expect_err("typo floor is gated").contains("typo recovery"));
 }

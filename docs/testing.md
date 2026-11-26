@@ -27,7 +27,7 @@ CI nutzt [cargo-nextest](https://nexte.st/) (`cargo nextest run --locked --profi
 | `parity_*` + `voice_suite` | Wohn+Familie+m0+m2+Conversation-Overlays je Locale | Job `dataset-suites` läuft auf jedem PR: eigene Suites (`wohnung_*`, `parity_own_*`, `full_home` quick je Locale, `full_home` full de/en), `fail == 0` bzw. Obergrenze in `tests/fixtures/suite_bounds.yaml`. Volle `parity_*`-Rubrik: Profil `ci` auf `main` und wöchentlich `language-parity.yml`, dort auch `parity_conversation_*` und `full_home` full je Locale (`#[ignore]`, `--run-ignored all`) |
 | `tests/contract.rs` | V2-`ParseOutcome` | alle grün |
 | `tests/policy.rs` | Confirm/OOD/Multi-Intent | alle grün |
-| `tests/eval.rs` held-out | `m7_heldout` EN/DE | Intent-F1 ≥ 0,98, Slot-F1 ≥ 0,99, Pairing ≥ 0,97, ASR ≥ 0,92, Clarify-P ≥ 0,95 |
+| `tests/eval.rs` held-out | `m7_heldout` EN/DE, je ≥ 500 In-Domain-Sätze (generierter Teil: `scripts/eval_heldout/generate.py`) | Intent-F1 ≥ 0,98, Slot-F1 ≥ 0,99, Pairing ≥ 0,97, ASR ≥ 0,92, Clarify-P ≥ 0,95, Out-of-Domain ohne Reject ≤ 1 %, abgelehnte In-Domain-Sätze ≤ 2 %, Handlung auf Out-of-Domain = 0, Tippfehler-Erholung ≥ 70 % |
 | `tests/privacy.rs` / `tests/migrate.rs` | Bundle-Redaktion, V1-Import | alle grün |
 
 Nur die Voice-Suite:
@@ -153,7 +153,7 @@ python3 tests/ha/test_fallback.py
 cargo nextest run --locked -E 'test(/held_out|privacy|migrate|policy|contract|semantic/)'
 cargo run --quiet -- lang validate packs
 cargo run --quiet -- eval bench --repeat 8
-klar eval gate          # volle Scorecard, Exit 1 unter den Schwellen
+klar eval gate          # volle Scorecard, Exit 1 unter den Schwellen; CI stempelt den Commit (KLAR_COMMIT_SHA)
 klar migrate import --from /data/klar_nlu.json
 ```
 

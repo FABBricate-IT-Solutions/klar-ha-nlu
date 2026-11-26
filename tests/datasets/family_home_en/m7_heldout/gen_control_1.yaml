@@ -1,0 +1,649 @@
+- name: gen_on_entryway_light
+  split: control
+  language: en
+  sentences:
+    - 'I''d like the Entryway Light on'
+    - 'Entryway Light on please'
+    - 'Would you turn on the Entryway Light'
+    - 'Could you switch on the Entryway Light for me'
+  nlu_expect:
+    intents:
+      - intent: HassTurnOn
+        slots: {entity_id: light.entryway_light}
+
+- name: gen_off_entryway_light
+  split: control
+  language: en
+  sentences:
+    - 'I''d like the Entryway Light off'
+    - 'Entryway Light off please'
+    - 'Would you turn off the Entryway Light'
+    - 'Could you switch off the Entryway Light for me'
+  nlu_expect:
+    intents:
+      - intent: HassTurnOff
+        slots: {entity_id: light.entryway_light}
+
+- name: gen_on_living_ceiling
+  split: control
+  language: en
+  sentences:
+    - 'Living Room Ceiling on please'
+    - 'Would you turn on the Living Room Ceiling'
+    - 'Could you switch on the Living Room Ceiling for me'
+    - 'Please turn on the Living Room Ceiling'
+  nlu_expect:
+    intents:
+      - intent: HassTurnOn
+        slots: {entity_id: light.living_ceiling}
+
+- name: gen_off_living_ceiling
+  split: control
+  language: en
+  sentences:
+    - 'Living Room Ceiling off please'
+    - 'Would you turn off the Living Room Ceiling'
+    - 'Could you switch off the Living Room Ceiling for me'
+    - 'Kill the Living Room Ceiling'
+  nlu_expect:
+    intents:
+      - intent: HassTurnOff
+        slots: {entity_id: light.living_ceiling}
+
+- name: gen_on_living_lamp
+  split: control
+  language: en
+  sentences:
+    - 'Would you turn on the Living Room Lamp'
+    - 'Could you switch on the Living Room Lamp for me'
+    - 'Please turn on the Living Room Lamp'
+    - 'Turn the Living Room Lamp on'
+  nlu_expect:
+    intents:
+      - intent: HassTurnOn
+        slots: {entity_id: light.living_lamp}
+
+- name: gen_off_living_lamp
+  split: control
+  language: en
+  sentences:
+    - 'Would you turn off the Living Room Lamp'
+    - 'Could you switch off the Living Room Lamp for me'
+    - 'Kill the Living Room Lamp'
+    - 'Shut off the Living Room Lamp'
+  nlu_expect:
+    intents:
+      - intent: HassTurnOff
+        slots: {entity_id: light.living_lamp}
+
+- name: gen_on_dining_pendant
+  split: control
+  language: en
+  sentences:
+    - 'Could you switch on the Dining Pendant for me'
+    - 'Please turn on the Dining Pendant'
+    - 'Turn the Dining Pendant on'
+    - 'Can you turn on the Dining Pendant'
+  nlu_expect:
+    intents:
+      - intent: HassTurnOn
+        slots: {entity_id: light.dining_pendant}
+
+- name: gen_off_dining_pendant
+  split: control
+  language: en
+  sentences:
+    - 'Could you switch off the Dining Pendant for me'
+    - 'Kill the Dining Pendant'
+    - 'Shut off the Dining Pendant'
+    - 'Turn the Dining Pendant off'
+  nlu_expect:
+    intents:
+      - intent: HassTurnOff
+        slots: {entity_id: light.dining_pendant}
+
+- name: gen_on_kitchen_ceiling
+  split: control
+  language: en
+  sentences:
+    - 'Please turn on the Kitchen Ceiling'
+    - 'Turn the Kitchen Ceiling on'
+    - 'Can you turn on the Kitchen Ceiling'
+    - 'Switch the Kitchen Ceiling on'
+  nlu_expect:
+    intents:
+      - intent: HassTurnOn
+        slots: {entity_id: light.kitchen_ceiling}
+
+- name: gen_off_kitchen_ceiling
+  split: control
+  language: en
+  sentences:
+    - 'Kill the Kitchen Ceiling'
+    - 'Shut off the Kitchen Ceiling'
+    - 'Turn the Kitchen Ceiling off'
+    - 'Can you turn off the Kitchen Ceiling'
+  nlu_expect:
+    intents:
+      - intent: HassTurnOff
+        slots: {entity_id: light.kitchen_ceiling}
+
+- name: gen_on_kitchen_island
+  split: control
+  language: en
+  sentences:
+    - 'Turn the Island Lights on'
+    - 'Can you turn on the Island Lights'
+    - 'Switch the Island Lights on'
+    - 'I''d like the Island Lights on'
+  nlu_expect:
+    intents:
+      - intent: HassTurnOn
+        slots: {entity_id: light.kitchen_island}
+
+- name: gen_off_kitchen_island
+  split: control
+  language: en
+  sentences:
+    - 'Shut off the Island Lights'
+    - 'Turn the Island Lights off'
+    - 'Can you turn off the Island Lights'
+    - 'I''d like the Island Lights off'
+  nlu_expect:
+    intents:
+      - intent: HassTurnOff
+        slots: {entity_id: light.kitchen_island}
+
+- name: gen_on_rangehood
+  split: control
+  language: en
+  sentences:
+    - 'Could you start the Rangehood for me'
+    - 'Switch the Rangehood on'
+    - 'Start the Rangehood'
+    - 'Rangehood on please'
+  nlu_expect:
+    intents:
+      - intent: HassTurnOn
+        slots: {entity_id: switch.rangehood}
+
+- name: gen_off_rangehood
+  split: control
+  language: en
+  sentences:
+    - 'I''d like the Rangehood off'
+    - 'Switch the Rangehood off'
+    - 'Stop the Rangehood'
+    - 'Shut off the Rangehood'
+  nlu_expect:
+    intents:
+      - intent: HassTurnOff
+        slots: {entity_id: switch.rangehood}
+
+- name: gen_on_dishwasher
+  split: control
+  language: en
+  sentences:
+    - 'Switch the Dishwasher on'
+    - 'Start the Dishwasher'
+    - 'Dishwasher on please'
+    - 'Can you turn the Dishwasher on'
+  nlu_expect:
+    intents:
+      - intent: HassTurnOn
+        slots: {entity_id: switch.dishwasher}
+
+- name: gen_off_dishwasher
+  split: control
+  language: en
+  sentences:
+    - 'Switch the Dishwasher off'
+    - 'Stop the Dishwasher'
+    - 'Shut off the Dishwasher'
+    - 'Dishwasher off please'
+  nlu_expect:
+    intents:
+      - intent: HassTurnOff
+        slots: {entity_id: switch.dishwasher}
+
+- name: gen_on_family_ceiling
+  split: control
+  language: en
+  sentences:
+    - 'I''d like the Family Room Ceiling on'
+    - 'Family Room Ceiling on please'
+    - 'Would you turn on the Family Room Ceiling'
+    - 'Could you switch on the Family Room Ceiling for me'
+  nlu_expect:
+    intents:
+      - intent: HassTurnOn
+        slots: {entity_id: light.family_ceiling}
+
+- name: gen_off_family_ceiling
+  split: control
+  language: en
+  sentences:
+    - 'I''d like the Family Room Ceiling off'
+    - 'Family Room Ceiling off please'
+    - 'Would you turn off the Family Room Ceiling'
+    - 'Could you switch off the Family Room Ceiling for me'
+  nlu_expect:
+    intents:
+      - intent: HassTurnOff
+        slots: {entity_id: light.family_ceiling}
+
+- name: gen_on_family_fan
+  split: control
+  language: en
+  sentences:
+    - 'Family Room Fan on please'
+    - 'Can you turn the Family Room Fan on'
+    - 'Would you switch on the Family Room Fan'
+    - 'Turn the Family Room Fan on'
+  nlu_expect:
+    intents:
+      - intent: HassTurnOn
+        slots: {entity_id: fan.family_fan}
+
+- name: gen_off_family_fan
+  split: control
+  language: en
+  sentences:
+    - 'Shut off the Family Room Fan'
+    - 'Family Room Fan off please'
+    - 'Can you turn the Family Room Fan off'
+    - 'Would you switch off the Family Room Fan'
+  nlu_expect:
+    intents:
+      - intent: HassTurnOff
+        slots: {entity_id: fan.family_fan}
+
+- name: gen_on_laundry_light
+  split: control
+  language: en
+  sentences:
+    - 'Would you turn on the Laundry Light'
+    - 'Could you switch on the Laundry Light for me'
+    - 'Please turn on the Laundry Light'
+    - 'Turn the Laundry Light on'
+  nlu_expect:
+    intents:
+      - intent: HassTurnOn
+        slots: {entity_id: light.laundry_light}
+
+- name: gen_off_laundry_light
+  split: control
+  language: en
+  sentences:
+    - 'Would you turn off the Laundry Light'
+    - 'Could you switch off the Laundry Light for me'
+    - 'Kill the Laundry Light'
+    - 'Shut off the Laundry Light'
+  nlu_expect:
+    intents:
+      - intent: HassTurnOff
+        slots: {entity_id: light.laundry_light}
+
+- name: gen_on_washing_machine
+  split: control
+  language: en
+  sentences:
+    - 'Would you switch on the Washing Machine'
+    - 'Power up the Washing Machine'
+    - 'I''d like the Washing Machine on'
+    - 'Could you start the Washing Machine for me'
+  nlu_expect:
+    intents:
+      - intent: HassTurnOn
+        slots: {entity_id: switch.washing_machine}
+
+- name: gen_off_washing_machine
+  split: control
+  language: en
+  sentences:
+    - 'Can you turn the Washing Machine off'
+    - 'Would you switch off the Washing Machine'
+    - 'Power down the Washing Machine'
+    - 'I''d like the Washing Machine off'
+  nlu_expect:
+    intents:
+      - intent: HassTurnOff
+        slots: {entity_id: switch.washing_machine}
+
+- name: gen_on_dryer
+  split: control
+  language: en
+  sentences:
+    - 'Power up the Dryer'
+    - 'I''d like the Dryer on'
+    - 'Could you start the Dryer for me'
+    - 'Switch the Dryer on'
+  nlu_expect:
+    intents:
+      - intent: HassTurnOn
+        slots: {entity_id: switch.dryer}
+
+- name: gen_off_dryer
+  split: control
+  language: en
+  sentences:
+    - 'Would you switch off the Dryer'
+    - 'Power down the Dryer'
+    - 'I''d like the Dryer off'
+    - 'Switch the Dryer off'
+  nlu_expect:
+    intents:
+      - intent: HassTurnOff
+        slots: {entity_id: switch.dryer}
+
+- name: gen_on_powder_room_light
+  split: control
+  language: en
+  sentences:
+    - 'Turn the Powder Room Light on'
+    - 'Can you turn on the Powder Room Light'
+    - 'Switch the Powder Room Light on'
+    - 'I''d like the Powder Room Light on'
+  nlu_expect:
+    intents:
+      - intent: HassTurnOn
+        slots: {entity_id: light.powder_room_light}
+
+- name: gen_off_powder_room_light
+  split: control
+  language: en
+  sentences:
+    - 'Shut off the Powder Room Light'
+    - 'Turn the Powder Room Light off'
+    - 'Can you turn off the Powder Room Light'
+    - 'I''d like the Powder Room Light off'
+  nlu_expect:
+    intents:
+      - intent: HassTurnOff
+        slots: {entity_id: light.powder_room_light}
+
+- name: gen_on_garage_light
+  split: control
+  language: en
+  sentences:
+    - 'Can you turn on the Garage Light'
+    - 'Switch the Garage Light on'
+    - 'I''d like the Garage Light on'
+    - 'Garage Light on please'
+  nlu_expect:
+    intents:
+      - intent: HassTurnOn
+        slots: {entity_id: light.garage_light}
+
+- name: gen_off_garage_light
+  split: control
+  language: en
+  sentences:
+    - 'Turn the Garage Light off'
+    - 'Can you turn off the Garage Light'
+    - 'I''d like the Garage Light off'
+    - 'Garage Light off please'
+  nlu_expect:
+    intents:
+      - intent: HassTurnOff
+        slots: {entity_id: light.garage_light}
+
+- name: gen_on_master_ceiling
+  split: control
+  language: en
+  sentences:
+    - 'Switch the Master Ceiling on'
+    - 'I''d like the Master Ceiling on'
+    - 'Master Ceiling on please'
+    - 'Would you turn on the Master Ceiling'
+  nlu_expect:
+    intents:
+      - intent: HassTurnOn
+        slots: {entity_id: light.master_ceiling}
+
+- name: gen_off_master_ceiling
+  split: control
+  language: en
+  sentences:
+    - 'Can you turn off the Master Ceiling'
+    - 'I''d like the Master Ceiling off'
+    - 'Master Ceiling off please'
+    - 'Would you turn off the Master Ceiling'
+  nlu_expect:
+    intents:
+      - intent: HassTurnOff
+        slots: {entity_id: light.master_ceiling}
+
+- name: gen_on_master_ensuite
+  split: control
+  language: en
+  sentences:
+    - 'I''d like the Master Ensuite Light on'
+    - 'Master Ensuite Light on please'
+    - 'Would you turn on the Master Ensuite Light'
+    - 'Could you switch on the Master Ensuite Light for me'
+  nlu_expect:
+    intents:
+      - intent: HassTurnOn
+        slots: {entity_id: light.master_ensuite}
+
+- name: gen_off_master_ensuite
+  split: control
+  language: en
+  sentences:
+    - 'I''d like the Master Ensuite Light off'
+    - 'Master Ensuite Light off please'
+    - 'Would you turn off the Master Ensuite Light'
+    - 'Could you switch off the Master Ensuite Light for me'
+  nlu_expect:
+    intents:
+      - intent: HassTurnOff
+        slots: {entity_id: light.master_ensuite}
+
+- name: gen_on_master_bedside_left
+  split: control
+  language: en
+  sentences:
+    - 'Left Bedside Lamp on please'
+    - 'Would you turn on the Left Bedside Lamp'
+    - 'Could you switch on the Left Bedside Lamp for me'
+    - 'Please turn on the Left Bedside Lamp'
+  nlu_expect:
+    intents:
+      - intent: HassTurnOn
+        slots: {entity_id: light.master_bedside_left}
+
+- name: gen_off_master_bedside_left
+  split: control
+  language: en
+  sentences:
+    - 'Left Bedside Lamp off please'
+    - 'Would you turn off the Left Bedside Lamp'
+    - 'Could you switch off the Left Bedside Lamp for me'
+    - 'Kill the Left Bedside Lamp'
+  nlu_expect:
+    intents:
+      - intent: HassTurnOff
+        slots: {entity_id: light.master_bedside_left}
+
+- name: gen_on_master_bedside_right
+  split: control
+  language: en
+  sentences:
+    - 'Would you turn on the Right Bedside Lamp'
+    - 'Could you switch on the Right Bedside Lamp for me'
+    - 'Please turn on the Right Bedside Lamp'
+    - 'Turn the Right Bedside Lamp on'
+  nlu_expect:
+    intents:
+      - intent: HassTurnOn
+        slots: {entity_id: light.master_bedside_right}
+
+- name: gen_off_master_bedside_right
+  split: control
+  language: en
+  sentences:
+    - 'Would you turn off the Right Bedside Lamp'
+    - 'Could you switch off the Right Bedside Lamp for me'
+    - 'Kill the Right Bedside Lamp'
+    - 'Shut off the Right Bedside Lamp'
+  nlu_expect:
+    intents:
+      - intent: HassTurnOff
+        slots: {entity_id: light.master_bedside_right}
+
+- name: gen_on_master_fan
+  split: control
+  language: en
+  sentences:
+    - 'Would you switch on the Master Fan'
+    - 'Turn the Master Fan on'
+    - 'I''d like the Master Fan on'
+    - 'Could you start the Master Fan for me'
+  nlu_expect:
+    intents:
+      - intent: HassTurnOn
+        slots: {entity_id: fan.master_fan}
+
+- name: gen_off_master_fan
+  split: control
+  language: en
+  sentences:
+    - 'Can you turn the Master Fan off'
+    - 'Would you switch off the Master Fan'
+    - 'Turn the Master Fan off'
+    - 'I''d like the Master Fan off'
+  nlu_expect:
+    intents:
+      - intent: HassTurnOff
+        slots: {entity_id: fan.master_fan}
+
+- name: gen_on_bedroom2_ceiling
+  split: control
+  language: en
+  sentences:
+    - 'Please turn on the Bedroom 2 Ceiling'
+    - 'Turn the Bedroom 2 Ceiling on'
+    - 'Can you turn on the Bedroom 2 Ceiling'
+    - 'Switch the Bedroom 2 Ceiling on'
+  nlu_expect:
+    intents:
+      - intent: HassTurnOn
+        slots: {entity_id: light.bedroom2_ceiling}
+
+- name: gen_off_bedroom2_ceiling
+  split: control
+  language: en
+  sentences:
+    - 'Kill the Bedroom 2 Ceiling'
+    - 'Shut off the Bedroom 2 Ceiling'
+    - 'Turn the Bedroom 2 Ceiling off'
+    - 'Can you turn off the Bedroom 2 Ceiling'
+  nlu_expect:
+    intents:
+      - intent: HassTurnOff
+        slots: {entity_id: light.bedroom2_ceiling}
+
+- name: gen_on_bedroom2_fan
+  split: control
+  language: en
+  sentences:
+    - 'I''d like the Bedroom 2 Fan on'
+    - 'Could you start the Bedroom 2 Fan for me'
+    - 'Switch the Bedroom 2 Fan on'
+    - 'Start the Bedroom 2 Fan'
+  nlu_expect:
+    intents:
+      - intent: HassTurnOn
+        slots: {entity_id: fan.bedroom2_fan}
+
+- name: gen_off_bedroom2_fan
+  split: control
+  language: en
+  sentences:
+    - 'Turn the Bedroom 2 Fan off'
+    - 'I''d like the Bedroom 2 Fan off'
+    - 'Switch the Bedroom 2 Fan off'
+    - 'Stop the Bedroom 2 Fan'
+  nlu_expect:
+    intents:
+      - intent: HassTurnOff
+        slots: {entity_id: fan.bedroom2_fan}
+
+- name: gen_on_bedroom3_ceiling
+  split: control
+  language: en
+  sentences:
+    - 'Can you turn on the Bedroom 3 Ceiling'
+    - 'Switch the Bedroom 3 Ceiling on'
+    - 'I''d like the Bedroom 3 Ceiling on'
+    - 'Bedroom 3 Ceiling on please'
+  nlu_expect:
+    intents:
+      - intent: HassTurnOn
+        slots: {entity_id: light.bedroom3_ceiling}
+
+- name: gen_off_bedroom3_ceiling
+  split: control
+  language: en
+  sentences:
+    - 'Turn the Bedroom 3 Ceiling off'
+    - 'Can you turn off the Bedroom 3 Ceiling'
+    - 'I''d like the Bedroom 3 Ceiling off'
+    - 'Bedroom 3 Ceiling off please'
+  nlu_expect:
+    intents:
+      - intent: HassTurnOff
+        slots: {entity_id: light.bedroom3_ceiling}
+
+- name: gen_on_bedroom4_ceiling
+  split: control
+  language: en
+  sentences:
+    - 'Switch the Bedroom 4 Ceiling on'
+    - 'I''d like the Bedroom 4 Ceiling on'
+    - 'Bedroom 4 Ceiling on please'
+    - 'Would you turn on the Bedroom 4 Ceiling'
+  nlu_expect:
+    intents:
+      - intent: HassTurnOn
+        slots: {entity_id: light.bedroom4_ceiling}
+
+- name: gen_off_bedroom4_ceiling
+  split: control
+  language: en
+  sentences:
+    - 'Can you turn off the Bedroom 4 Ceiling'
+    - 'I''d like the Bedroom 4 Ceiling off'
+    - 'Bedroom 4 Ceiling off please'
+    - 'Would you turn off the Bedroom 4 Ceiling'
+  nlu_expect:
+    intents:
+      - intent: HassTurnOff
+        slots: {entity_id: light.bedroom4_ceiling}
+
+- name: gen_on_master_bath_light
+  split: control
+  language: en
+  sentences:
+    - 'I''d like the Master Bath Light on'
+    - 'Master Bath Light on please'
+    - 'Would you turn on the Master Bath Light'
+    - 'Could you switch on the Master Bath Light for me'
+  nlu_expect:
+    intents:
+      - intent: HassTurnOn
+        slots: {entity_id: light.master_bath_light}
+
+- name: gen_off_master_bath_light
+  split: control
+  language: en
+  sentences:
+    - 'I''d like the Master Bath Light off'
+    - 'Master Bath Light off please'
+    - 'Would you turn off the Master Bath Light'
+    - 'Could you switch off the Master Bath Light for me'
+  nlu_expect:
+    intents:
+      - intent: HassTurnOff
+        slots: {entity_id: light.master_bath_light}

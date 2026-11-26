@@ -27,7 +27,7 @@ CI uses [cargo-nextest](https://nexte.st/) (`cargo nextest run --locked --profil
 | `parity_*` + `voice_suite` | Wohn+Family+m0+m2+conversation overlays per locale | Job `dataset-suites` runs on every PR: own suites (`wohnung_*`, `parity_own_*`, `full_home` quick per locale, `full_home` full de/en), `fail == 0` or the ceiling in `tests/fixtures/suite_bounds.yaml`. Full `parity_*` rubric: profile `ci` on `main` and weekly `language-parity.yml`, which also runs `parity_conversation_*` and `full_home` full per locale (`#[ignore]`, `--run-ignored all`) |
 | `tests/contract.rs` | V2 `ParseOutcome` | all green |
 | `tests/policy.rs` | Confirm/OOD/multi-intent | all green |
-| `tests/eval.rs` held-out | `m7_heldout` EN/DE | Intent-F1 ≥ 0.98, Slot-F1 ≥ 0.99, pairing ≥ 0.97, ASR ≥ 0.92, Clarify P ≥ 0.95 |
+| `tests/eval.rs` held-out | `m7_heldout` EN/DE, ≥ 500 in-domain sentences each (generated part: `scripts/eval_heldout/generate.py`) | Intent-F1 ≥ 0.98, Slot-F1 ≥ 0.99, pairing ≥ 0.97, ASR ≥ 0.92, Clarify P ≥ 0.95, out-of-domain not rejected ≤ 1 %, in-domain rejected ≤ 2 %, out-of-domain acted on = 0, typo recovery ≥ 70 % |
 | `tests/privacy.rs` / `tests/migrate.rs` | bundle redaction, V1 import | all green |
 
 Voice suites only:
@@ -150,7 +150,7 @@ python3 tests/ha/test_fallback.py
 cargo nextest run --locked -E 'test(/held_out|privacy|migrate|policy|contract|semantic/)'
 cargo run --quiet -- lang validate packs
 cargo run --quiet -- eval bench --repeat 8
-klar eval gate          # full scorecard, exit 1 below thresholds
+klar eval gate          # full scorecard, exit 1 below thresholds; CI stamps it with the commit (KLAR_COMMIT_SHA)
 klar migrate import --from /data/klar_nlu.json
 ```
 

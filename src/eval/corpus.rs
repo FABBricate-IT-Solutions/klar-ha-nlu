@@ -3,6 +3,8 @@ use std::collections::BTreeMap;
 use std::path::{Path, PathBuf};
 
 pub const MIN_HELD_OUT: usize = 500;
+/// In-domain sentences per language. Out-of-domain rejects are cheap to collect and used to be 87 % of the corpus.
+pub const MIN_IN_DOMAIN: usize = 500;
 
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Deserialize)]
 #[serde(rename_all = "snake_case")]
@@ -13,6 +15,8 @@ pub enum Split {
     Clarify,
     Multi,
     Adversarial,
+    /// One dropped letter in an entity name. Reported with its own floor, not folded into `Asr`.
+    Typo,
 }
 
 #[derive(Debug, Clone, PartialEq, Eq)]
@@ -30,6 +34,13 @@ pub struct EvalItem {
     pub expect_intents: Option<Vec<GoldIntent>>,
     pub expect_reject: bool,
     pub expect_clarify: bool,
+}
+
+impl EvalItem {
+    /// A home command or a question Klar should answer or confirm, as opposed to something it must reject.
+    pub fn in_domain(&self) -> bool {
+        !self.expect_reject
+    }
 }
 
 #[derive(Debug, Deserialize)]
