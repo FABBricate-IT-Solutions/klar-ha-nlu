@@ -33,6 +33,6 @@ pub(super) const VERBS: &[(&str, VerbKind)] = &[
     ("tro", VerbKind::On),
     ("tywyllach", VerbKind::Dim),
     ("white", VerbKind::Color),
-    ("y cant", VerbKind::Percent),
+    ("ycant", VerbKind::Percent),
     ("yellow", VerbKind::Color),
 ];

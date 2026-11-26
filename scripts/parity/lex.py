@@ -148,7 +148,7 @@ def lex_of(core: dict) -> dict:
             "colors": {canon: native for native, canon in core.get("colors") or []},
             "rooms": {key: unique(vals) for key, vals in rooms.items()},
             "floors": floors(core["code"]),
-            "reject": f"{(core.get('chat') or {}).get('world', ['weather'])[0]} france",
+            "reject": f"{((core.get('chat') or {}).get('world') or ['x'])[0]} france",
         }
     )
     return lex

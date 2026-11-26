@@ -50,7 +50,6 @@ pub(super) const VERBS: &[(&str, VerbKind)] = &[
     ("moyen", VerbKind::Dim),
     ("next", VerbKind::Next),
     ("noir", VerbKind::Color),
-    ("orange", VerbKind::Color),
     ("ouvre", VerbKind::Open),
     ("ouvrir", VerbKind::Open),
     ("pause", VerbKind::Pause),

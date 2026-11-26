@@ -13,6 +13,8 @@ import sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(ROOT / "scripts"))
+from lang_packs.pack_lint import lint_packs  # noqa: E402
 PACKS = ROOT / "src" / "lang" / "packs"
 PARSE = ROOT / "src" / "parse"
 NLU = ROOT / "src" / "nlu"
@@ -233,6 +235,9 @@ def main() -> None:
     check_field_checklist()
     check_banners()
     check_default_catalog()
+    defects = lint_packs(PACKS, ROOT / "src" / "lang" / "registry.rs")
+    if defects:
+        fail("pack quality lint:\n" + "\n".join(defects))
     print("lang pack gates ok")
 
 

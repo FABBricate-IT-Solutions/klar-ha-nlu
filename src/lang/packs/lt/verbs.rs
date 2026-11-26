@@ -24,7 +24,7 @@ pub(super) const VERBS: &[(&str, VerbKind)] = &[
     ("red", VerbKind::Color),
     ("sarasas", VerbKind::List),
     ("scena", VerbKind::Scene),
-    ("silta balta", VerbKind::Color),
+    ("siltabalta", VerbKind::Color),
     ("siurblys", VerbKind::VacuumNoun),
     ("spyna", VerbKind::Lock),
     ("stotele", VerbKind::Dock),

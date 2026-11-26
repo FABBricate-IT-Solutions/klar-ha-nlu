@@ -26,7 +26,7 @@ pub(super) const VERBS: &[(&str, VerbKind)] = &[
     ("samazini", VerbKind::Lower),
     ("saraksts", VerbKind::List),
     ("scena", VerbKind::Scene),
-    ("silti balts", VerbKind::Color),
+    ("siltibalts", VerbKind::Color),
     ("sledzene", VerbKind::Lock),
     ("stacija", VerbKind::Dock),
     ("taimeris", VerbKind::Timer),

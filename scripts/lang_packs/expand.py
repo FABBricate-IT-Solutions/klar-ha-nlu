@@ -4,11 +4,11 @@ from __future__ import annotations
 
 from lang_packs.answers import answers_for
 from lang_packs.calendar_lex import calendar_for
-from lang_packs.convo import with_warm_white
 from lang_packs.extras import pack_extras
 from lang_packs.native_apply import apply_native, is_script_pack
 from lang_packs.news_lex import apply_news
 from lang_packs.numbers_grammar import expand_number_rows, number_style_for
+from lang_packs.pack_fixups import ensure_action_speech, merge_household_words, resolve_colors, scrub_chat
 from lang_packs.regional import thin_pack
 from lang_packs.speech_slots import apply_speech_slots, pick_room_names
 from lang_packs.timer_lex import apply_to_words, how_long
@@ -25,6 +25,7 @@ def expand(core: dict) -> dict:
     w = core["w"]
     for key, val in pack_extras(core["code"]).items():
         w.setdefault(key, val)
+    greets = merge_household_words(core["code"], w)
     apply_to_words(core["code"], w)
     cal = calendar_for(core["code"])
     w.setdefault("calendar", list(cal["nouns"]))
@@ -47,9 +48,11 @@ def expand(core: dict) -> dict:
     speech.setdefault("light_step_up", "{target}.")
     speech.setdefault("light_step_down", "{target}.")
     speech.setdefault("set_position", speech.get("light_set", "{target} {n}%"))
+    ensure_action_speech(speech, w)
     chat = dict(core["chat"])
+    scrub_chat(chat, w, greets)
     apply_news(core["code"], chat)
-    colors = with_warm_white(core["code"], list(core.get("colors") or default_colors()))
+    colors = resolve_colors(core)
     and_words = list(w.get("and") or [])
     numbers = expand_number_rows(core["code"], list(core.get("numbers", [])), and_words[0] if and_words else None)
     rooms = list(core.get("rooms", []))
@@ -341,27 +344,20 @@ def expand(core: dict) -> dict:
     }
     return thin_pack(full, core) if core.get("parent") else full
 
-
 def household_from(core: dict, w: dict, speech: dict) -> dict:
     extra = pack_extras(core["code"])
-    query = w.get("query") or []
-    sett = w.get("set") or w.get("on") or []
-    off = w.get("off") or []
-    climate = w.get("climate") or []
     timer = w.get("timer") or []
-    q0, s0, o0 = (query[:1] or [""])[0], (sett[:1] or [""])[0], (off[:1] or [""])[0]
-    climate0, timer0 = (climate[-1:] or [""])[0], (timer[:1] or [""])[0]
     add = lambda key, extra_word: unique(w.get(key, []) + extra.get(key, []) + ([extra_word] if extra_word else []))
-    # Teach and undo change the house, so they are hand-written phrases or none at all:
-    # a phrase built from the set or off verb plus the door noun is an ordinary command.
+    # Teach/undo/clock/weather/explain must be real phrases (household_lex / extras),
+    # never a concatenation of query + off + set verbs (L-17).
     teach = add("teach", "")
-    explain = add("explain", f"{q0} {o0} {s0}".strip() if q0 and o0 and s0 else "")
+    explain = add("explain", "")
     undo = add("undo", "")
-    clock = add("clock", f"{q0} {timer0}".strip() if q0 and timer0 else "")
+    clock = add("clock", "")
     date = add("date", "")
     weekday = add("weekday", "")
     today = add("today", "")
-    weather = add("weather", f"{q0} {climate0}".strip() if q0 and climate0 else "")
+    weather = add("weather", "")
     return {
         "teach": teach,
         "explain": explain,
@@ -394,14 +390,12 @@ def household_from(core: dict, w: dict, speech: dict) -> dict:
         "no_weather": extra.get("no_weather") or speech.get("unknown", ""),
     }
 
-
 def scene_lexemes(core: dict) -> list[str]:
     words: list[str] = []
     for src, dst in core.get("scene_synonyms", []):
         words.append(src)
         words.append(dst)
     return words
-
 
 def calendar_smokes(cal: dict) -> list[tuple[str, str]]:
     rows = []
@@ -415,12 +409,10 @@ def calendar_smokes(cal: dict) -> list[tuple[str, str]]:
         rows.append((cal["move_smoke"], "KlarMoveCalendarEvent"))
     return rows
 
-
 def music_smokes(w: dict) -> list[tuple[str, str]]:
     play = (w.get("play") or ["play"])[0]
     search = "depeche"
     return [(f"{play} {search}", "MassPlayMedia")]
-
 
 DEVICE_STEMS = {
     "island": ["island", "insel"],
@@ -438,12 +430,10 @@ DEVICE_STEMS = {
 GERMAN_HOME = {"aufgabenliste", "klimaanlage", "insel", "filmabend", "verlassen"}
 GERMAN_OK = {"de", "en", "de-CH", "de-AT"}
 
-
 def device_stems(code: str, stems: list[str]) -> list[str]:
     if code in GERMAN_OK:
         return stems
     return [stem for stem in stems if stem not in GERMAN_HOME]
-
 
 def fixture_alias_rows(w: dict, code: str) -> list[tuple[str, list[str]]]:
     rows: list[tuple[str, list[str]]] = []
@@ -451,7 +441,6 @@ def fixture_alias_rows(w: dict, code: str) -> list[tuple[str, list[str]]]:
         for native in w.get(key, []):
             rows.append((native, unique([native, *device_stems(code, stems)])))
     return rows
-
 
 def device_synonym_rows(w: dict, code: str) -> list[tuple[str, str]]:
     rows: list[tuple[str, str]] = []
@@ -461,7 +450,6 @@ def device_synonym_rows(w: dict, code: str) -> list[tuple[str, str]]:
                 if native and native != stem:
                     rows.append((native, stem))
     return rows
-
 
 def scene_synonym_rows(core: dict, w: dict) -> list[tuple[str, str]]:
     rows = [(src, dst) for src, dst in core.get("scene_synonyms", []) if src and dst]
@@ -478,14 +466,8 @@ def scene_synonym_rows(core: dict, w: dict) -> list[tuple[str, str]]:
     )
     return rows
 
-
 def rooms_named(rooms: list[tuple[str, str]], canon: str) -> list[str]:
     return [native for native, name in rooms if name == canon]
-
-
-def default_colors() -> list[tuple[str, str]]:
-    return [(color, color) for color in ("red", "blue", "green", "yellow", "orange", "pink", "black", "white", "purple")]
-
 
 def distinct_from(words: list[str], forbidden: list[str], field: str) -> list[str]:
     blocked = set(forbidden)
@@ -493,7 +475,6 @@ def distinct_from(words: list[str], forbidden: list[str], field: str) -> list[st
     if not kept:
         raise ValueError(f"{field} collides with light nouns: {words}")
     return kept
-
 
 def unique(values: list[str]) -> list[str]:
     seen: set[str] = set()
@@ -503,7 +484,6 @@ def unique(values: list[str]) -> list[str]:
             seen.add(item)
             out.append(item)
     return out
-
 
 def lexemes(values: list[str] | None) -> list[str]:
     return unique(part for word in (values or []) for part in word.split())

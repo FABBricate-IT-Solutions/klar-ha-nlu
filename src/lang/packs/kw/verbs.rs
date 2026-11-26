@@ -12,7 +12,7 @@ pub(super) const VERBS: &[(&str, VerbKind)] = &[
     ("green", VerbKind::Color),
     ("gwari", VerbKind::Play),
     ("gweles", VerbKind::Scene),
-    ("gwynn toemm", VerbKind::Color),
+    ("gwynntoemm", VerbKind::Color),
     ("gwyns", VerbKind::FanNoun),
     ("igeri", VerbKind::Open),
     ("kans", VerbKind::Percent),

@@ -34,5 +34,5 @@ pub(super) const VERBS: &[(&str, VerbKind)] = &[
     ("yellow", VerbKind::Color),
     ("zer", VerbKind::Query),
     ("zerrenda", VerbKind::List),
-    ("zuri bero", VerbKind::Color),
+    ("zuribero", VerbKind::Color),
 ];

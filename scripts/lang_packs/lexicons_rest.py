@@ -68,7 +68,7 @@ def _eu_west() -> list[dict]:
             and_join=" agus ", or_join=" no ",
         ),
         pack(
-            "gl", "Galician", ["gl", "gl-ES"],
+            "gl", "Galego", ["gl", "gl-ES"],
             on=["acende"], off=["apaga"], open_=["abre"], close=["pecha"], query=["que"], set_=["pon"],
             light=["luz"], cover=["cortina"], climate=["calefaccion"], media=["tele"], lock=["pechadura"], door=["porta"],
             timer=["temporizador"], list_=["lista"], fan=["ventilador"], vacuum=["aspiradora"], scene=["escena"],
@@ -215,7 +215,7 @@ def _se_asia() -> list[dict]:
 def _indic() -> list[dict]:
     return [
         pack(
-            "hi", "Hindi", ["hi", "hi-IN"], script="Deva",
+            "hi", "हिन्दी", ["hi", "hi-IN"], script="Deva",
             on=["jalao"], off=["bujhao"], open_=["kholo"], close=["band"], query=["kya"], set_=["set"],
             light=["batti"], cover=["parda"], climate=["garmi"], media=["tivi"], lock=["tala"], door=["darwaza"],
             timer=["timer"], list_=["suchi"], fan=["pankha"], vacuum=["jhadu"], scene=["drishya"],
@@ -228,7 +228,7 @@ def _indic() -> list[dict]:
             and_join=" aur ", or_join=" ya ",
         ),
         pack(
-            "bn", "Bangla", ["bn", "bn-BD"], script="Beng",
+            "bn", "বাংলা", ["bn", "bn-BD"], script="Beng",
             on=["jalao"], off=["nibhao"], open_=["khol"], close=["bondho"], query=["ki"], set_=["set"],
             light=["alo"], cover=["porda"], climate=["gorom"], media=["tivi"], lock=["tala"], door=["dorja"],
             timer=["timer"], list_=["talika"], fan=["pakha"], vacuum=["jharu"], scene=["drishyo"],
@@ -241,7 +241,7 @@ def _indic() -> list[dict]:
             and_join=" ebong ", or_join=" ba ",
         ),
         pack(
-            "gu", "Gujarati", ["gu", "gu-IN"], script="Gujr",
+            "gu", "ગુજરાતી", ["gu", "gu-IN"], script="Gujr",
             on=["chalu"], off=["bandh"], open_=["kholo"], close=["bandhkaro"], query=["shu"], set_=["set"],
             light=["prakash"], cover=["pado"], climate=["garmi"], media=["tivi"], lock=["talu"], door=["darwajo"],
             timer=["timer"], list_=["yadi"], fan=["pankho"], vacuum=["jhadu"], scene=["drashya"],
@@ -254,7 +254,7 @@ def _indic() -> list[dict]:
             and_join=" ane ", or_join=" athva ",
         ),
         pack(
-            "kn", "Kannada", ["kn", "kn-IN"], script="Knda",
+            "kn", "ಕನ್ನಡ", ["kn", "kn-IN"], script="Knda",
             on=["hachchu"], off=["arisu"], open_=["tere"], close=["muchchu"], query=["enu"], set_=["hondisu"],
             light=["belaku"], cover=["parade"], climate=["bisi"], media=["tivi"], lock=["biga"], door=["bagilu"],
             timer=["timer"], list_=["patti"], fan=["fanu"], vacuum=["gudisu"], scene=["drishya"],
@@ -267,7 +267,7 @@ def _indic() -> list[dict]:
             and_join=" mattu ", or_join=" athava ",
         ),
         pack(
-            "ml", "Malayalam", ["ml", "ml-IN"], script="Mlym",
+            "ml", "മലയാളം", ["ml", "ml-IN"], script="Mlym",
             on=["theli"], off=["anaykku"], open_=["thurakku"], close=["adaykku"], query=["enth"], set_=["set"],
             light=["vilakku"], cover=["jada"], climate=["chudu"], media=["tivi"], lock=["poott"], door=["vathil"],
             timer=["timer"], list_=["pattika"], fan=["fan"], vacuum=["varal"], scene=["rangam"],
@@ -280,7 +280,7 @@ def _indic() -> list[dict]:
             and_join=" um ", or_join=" allenkil ",
         ),
         pack(
-            "mr", "Marathi", ["mr", "mr-IN"], script="Deva",
+            "mr", "मराठी", ["mr", "mr-IN"], script="Deva",
             on=["chalu"], off=["band"], open_=["ughad"], close=["bandkar"], query=["kay"], set_=["set"],
             light=["diva"], cover=["padda"], climate=["ushnata"], media=["tivi"], lock=["kulup"], door=["darwaja"],
             timer=["timer"], list_=["yadi"], fan=["pankha"], vacuum=["jhadu"], scene=["drishya"],
@@ -293,7 +293,7 @@ def _indic() -> list[dict]:
             and_join=" ani ", or_join=" kinva ",
         ),
         pack(
-            "ta", "Tamil", ["ta"], script="Taml",
+            "ta", "தமிழ்", ["ta"], script="Taml",
             on=["eru"], off=["anai"], open_=["thira"], close=["moodu"], query=["enna"], set_=["amai"],
             light=["vilakku"], cover=["thirai"], climate=["veppam"], media=["tivi"], lock=["poottu"], door=["kathavu"],
             timer=["timer"], list_=["pattiyal"], fan=["visiri"], vacuum=["thudaippu"], scene=["kaatchi"],
@@ -306,7 +306,7 @@ def _indic() -> list[dict]:
             and_join=" matrum ", or_join=" allathu ",
         ),
         pack(
-            "te", "Telugu", ["te", "te-IN"], script="Telu",
+            "te", "తెలుగు", ["te", "te-IN"], script="Telu",
             on=["veliginchu"], off=["arpu"], open_=["theruvu"], close=["mooyi"], query=["emi"], set_=["set"],
             light=["velugu"], cover=["thera"], climate=["vedi"], media=["tivi"], lock=["talam"], door=["talupu"],
             timer=["timer"], list_=["jabita"], fan=["fanu"], vacuum=["udchu"], scene=["drishyam"],
@@ -319,7 +319,7 @@ def _indic() -> list[dict]:
             and_join=" mariyu ", or_join=" leda ",
         ),
         pack(
-            "pa", "Punjabi", ["pa"], script="Guru",
+            "pa", "ਪੰਜਾਬੀ", ["pa"], script="Guru",
             on=["chalu"], off=["band"], open_=["kholh"], close=["bandkar"], query=["ki"], set_=["set"],
             light=["roshni"], cover=["parda"], climate=["garmi"], media=["tivi"], lock=["tala"], door=["darwaza"],
             timer=["timer"], list_=["suchi"], fan=["pakha"], vacuum=["jharu"], scene=["drish"],
@@ -332,7 +332,7 @@ def _indic() -> list[dict]:
             and_join=" ate ", or_join=" jaan ",
         ),
         pack(
-            "ne", "Nepali", ["ne", "ne-NP"], script="Deva",
+            "ne", "नेपाली", ["ne", "ne-NP"], script="Deva",
             on=["bal"], off=["nibhau"], open_=["khol"], close=["banda"], query=["ke"], set_=["set"],
             light=["batti"], cover=["parda"], climate=["tato"], media=["tivi"], lock=["tala"], door=["dhoka"],
             timer=["timer"], list_=["suchi"], fan=["pankha"], vacuum=["kucho"], scene=["drishya"],
@@ -350,7 +350,7 @@ def _indic() -> list[dict]:
 def _caucasus() -> list[dict]:
     return [
         pack(
-            "hy", "Armenian", ["hy", "hy-AM"], script="Armn",
+            "hy", "Հայերեն", ["hy", "hy-AM"], script="Armn",
             on=["miatsu"], off=["anjatir"], open_=["batsir"], close=["pakir"], query=["inch"], set_=["dir"],
             light=["luys"], cover=["varaguyr"], climate=["jerutsum"], media=["herustatsuyts"], lock=["kogpek"], door=["dur"],
             timer=["zhamachap"], list_=["tsutsak"], fan=["odapokhich"], vacuum=["poshekul"], scene=["tesaran"],
@@ -363,7 +363,7 @@ def _caucasus() -> list[dict]:
             and_join=" yev ", or_join=" kam ",
         ),
         pack(
-            "ka", "Georgian", ["ka", "ka-GE"], script="Geor",
+            "ka", "ქართული", ["ka", "ka-GE"], script="Geor",
             on=["charte"], off=["gamorte"], open_=["gakhseni"], close=["dakhure"], query=["ra"], set_=["daayene"],
             light=["sinatle"], cover=["parda"], climate=["gatboba"], media=["televizori"], lock=["saketi"], door=["kari"],
             timer=["taimeri"], list_=["sia"], fan=["ventilatori"], vacuum=["mtversasruti"], scene=["stsena"],
@@ -376,7 +376,7 @@ def _caucasus() -> list[dict]:
             and_join=" da ", or_join=" an ",
         ),
         pack(
-            "mn", "Mongolian", ["mn", "mn-MN"], script="Cyrl",
+            "mn", "Монгол", ["mn", "mn-MN"], script="Cyrl",
             on=["asaa"], off=["untraa"], open_=["nee"], close=["khaa"], query=["yuu"], set_=["tokhiruul"],
             light=["gerel"], cover=["khoshig"], climate=["khalaalt"], media=["televiz"], lock=["tugjee"], door=["khaalga"],
             timer=["timer"], list_=["jagsaalt"], fan=["sens"], vacuum=["toos"], scene=["uzegdel"],
