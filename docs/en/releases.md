@@ -57,12 +57,13 @@ Home Assistant switch: [home-assistant.md](home-assistant.md) — Configure → 
 Every merge to `main` cuts the next `YYYY.M.PATCH` automatically. The Release workflow:
 
 1. Computes the next CalVer
-2. Writes it into `Cargo.toml`, `addon/config.yaml`, and the HA manifest
+2. Writes it into `Cargo.toml`, `addon/config.yaml`, and the HA manifest on branch `chore/release-YYYY.M.PATCH`
 3. Regenerates `CHANGELOG.md`
-4. Opens or updates `chore/release-YYYY.M.PATCH`, waits for the 10 required checks, merges with `gh pr merge` (no `--admin`), and tags
-5. Calls **Build** in the same run (`workflow_call`)
+4. Opens or updates the release PR, waits for the 10 required checks, and tags that branch tip (no merge yet)
+5. Calls **Build**: both architectures, start each container, stop with SIGTERM, scan, then push images, manifest, and the GitHub Release
+6. Merges the release PR only afterwards (`land`) — the add-on version on `main` never appears before its images
 
-If the push is already a `chore(release): prepare for YYYY.M.PATCH` land (or a merge of `chore/release-*`), the cut only tags. It never `git push`es a new commit to `main`.
+If the push is already a `chore(release): prepare for YYYY.M.PATCH` land (or a merge of `chore/release-*`), the cut only tags when the tag is still missing. It never `git push`es a new commit to `main`.
 
 **Actions → Release → Run workflow** remains for a manual override (empty = next version, or e.g. `2026.8.0`).
 

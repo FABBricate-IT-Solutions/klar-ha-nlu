@@ -101,7 +101,9 @@ class PermissionTests(unittest.TestCase):
 
     def test_the_build_job_cannot_write_to_the_repository(self) -> None:
         jobs = load(GITHUB / "workflows" / "build.yml")["jobs"]
-        self.assertEqual(jobs["build"]["permissions"], {"contents": "read", "packages": "write"})
+        # build only loads/scans locally; docker-publish is the sole packages writer.
+        self.assertEqual(jobs["build"]["permissions"], {"contents": "read", "packages": "read"})
+        self.assertEqual(jobs["docker-publish"]["permissions"], {"contents": "read", "packages": "write"})
         writers = sorted(job_id for job_id, job in jobs.items() if job["permissions"].get("contents") == "write")
         self.assertEqual(writers, ["release"])
 
@@ -112,7 +114,10 @@ class PermissionTests(unittest.TestCase):
             if str(step.get("uses", "")).startswith("actions/checkout@")
             and (step.get("with") or {}).get("persist-credentials") is not False
         )
-        self.assertEqual(keeps, ["build.yml:release", "release.yml:cut", "staging.yml:tag"])
+        self.assertEqual(
+            keeps,
+            ["build.yml:release", "release.yml:cut", "release.yml:land", "staging.yml:tag"],
+        )
 
     def test_no_run_block_expands_a_context_that_a_caller_or_branch_name_controls(self) -> None:
         risky = re.compile(r"\$\{\{\s*(inputs\.nextest_profile|github\.(base_ref|head_ref)|github\.event\.[\w.]*(title|body|message))")

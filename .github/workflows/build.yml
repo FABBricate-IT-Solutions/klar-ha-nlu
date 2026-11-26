@@ -1,5 +1,10 @@
 name: Build
 # Pin Ubuntu 26.04. ubuntu-latest moves to this image through November 2026.
+#
+# Publish order (package 5.1 / V-02, V-05, V-09):
+#   build both arches → load container → SIGTERM smoke → scan →
+#   then push images + multi-arch manifest → GitHub Release.
+# The Release workflow lands the add-on version on main only after this succeeds.
 
 on:
   push:
@@ -31,12 +36,12 @@ jobs:
     # Staging.yml calls this workflow with release_tag after it creates the tag.
     if: ${{ !(github.event_name == 'push' && startsWith(github.ref, 'refs/tags/') && inputs.release_tag == '' && (contains(github.ref_name, '-staging.') || contains(github.ref_name, '-rc.'))) }}
     runs-on: ubuntu-26.04
-    # Pushes the per-arch image to GHCR. The GitHub Release is created by the job `release`.
+    # Builds the binary and a local image. Pushing waits for every arch (docker-publish).
     permissions:
       contents: read
-      packages: write
+      packages: read
     strategy:
-      fail-fast: false
+      fail-fast: true
       matrix:
         include:
           # musl-static: HA Core is Alpine. gnu binaries execve with ENOENT there.
@@ -109,20 +114,16 @@ jobs:
           if [[ "${{ inputs.prerelease }}" == "true" || "$RELEASE_TAG" == *-staging.* || "$RELEASE_TAG" == *-rc.* || "$GITHUB_REF_NAME" == *-staging.* || "$GITHUB_REF_NAME" == *-rc.* ]]; then
             echo "channel=staging" >> "$GITHUB_OUTPUT"
           fi
+      - uses: docker/setup-qemu-action@c7c53464625b32c7a7e944ae62b3e17d2b600130 # v3.7.0
+        if: github.event_name != 'pull_request'
       - uses: docker/setup-buildx-action@f87e5991a6d7451dcb8d9637bfbc97413f497069 # v4.4.1
         if: github.event_name != 'pull_request'
-      - uses: docker/login-action@8aa5831fb8d48d8f76594c7ddde61ae58019f550 # v4.8.0
-        if: github.event_name != 'pull_request'
-        with:
-          registry: ghcr.io
-          username: ${{ github.actor }}
-          password: ${{ secrets.GITHUB_TOKEN }}
-      - name: Push container
+      - name: Build container
         if: github.event_name != 'pull_request'
         env:
-          GITHUB_REF: ${{ github.ref }}
-          RELEASE_TAG: ${{ inputs.release_tag }}
+          VERSION: ${{ steps.meta.outputs.version }}
         run: |
+          set -euo pipefail
           cp LICENSE docker/LICENSE
           cp THIRD_PARTY docker/THIRD_PARTY
           cp "target/${{ matrix.target }}/release/klar" docker/klar
@@ -130,28 +131,45 @@ jobs:
           rm -rf docker/ui
           cp -R web/dist docker/ui
           chmod +x docker/klar docker/klar-entry.sh
-          image="${GHCR}-${{ matrix.ha_arch }}"
-          version="${{ steps.meta.outputs.version }}"
-          tags=(-t "$image:$version")
-          if [[ "${{ steps.meta.outputs.edge }}" == "true" ]]; then
-            tags+=(-t "$image:edge")
-          fi
-          if [[ "${{ inputs.prerelease }}" == "true" || "${{ steps.meta.outputs.channel }}" == "staging" ]]; then
-            tags+=(-t "$image:staging")
-          elif [[ "$GITHUB_REF" == refs/tags/v* || "$GITHUB_REF" == refs/tags/20* || -n "$RELEASE_TAG" ]]; then
-            tags+=(-t "$image:latest")
-          fi
-          docker buildx build --platform "${{ matrix.platform }}" --push \
-            -f docker/Dockerfile "${tags[@]}" docker/
+          local_tag="klar-local-${{ matrix.ha_arch }}:${VERSION}"
+          docker buildx build --platform "${{ matrix.platform }}" --load \
+            -f docker/Dockerfile -t "$local_tag" docker/
+          echo "local_tag=$local_tag" >> "$GITHUB_ENV"
+      - name: Smoke SIGTERM
+        if: github.event_name != 'pull_request'
+        run: bash scripts/docker-smoke.sh "$local_tag"
+      - name: Scan local image
+        if: github.event_name != 'pull_request'
+        uses: aquasecurity/trivy-action@ed142fd0673e97e23eac54620cfb913e5ce36c25 # v0.36.0
+        with:
+          version: v0.74.0
+          image-ref: ${{ env.local_tag }}
+          severity: HIGH,CRITICAL
+          ignore-unfixed: true
+          vuln-type: os,library
+          format: table
+          exit-code: "1"
+      - name: Save image artifact
+        if: github.event_name != 'pull_request'
+        run: |
+          set -euo pipefail
+          docker save "$local_tag" | gzip > "klar-image-${{ matrix.ha_arch }}.tar.gz"
+      - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        if: github.event_name != 'pull_request'
+        with:
+          name: klar-image-${{ matrix.ha_arch }}
+          path: klar-image-${{ matrix.ha_arch }}.tar.gz
+          if-no-files-found: error
 
-  docker-manifest:
-    name: docker-manifest
+  docker-publish:
+    name: docker-publish
     if: github.event_name != 'pull_request'
     needs: build
     runs-on: ubuntu-26.04
     outputs:
-      image: ${{ steps.tags.outputs.image }}
+      image: ${{ steps.push.outputs.image }}
     permissions:
+      contents: read
       packages: write
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
@@ -164,13 +182,20 @@ jobs:
           registry: ghcr.io
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
-      - name: Multi-arch tags
-        id: tags
+      - uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333 # v8.0.2
+        with:
+          path: images
+          pattern: klar-image-*
+          merge-multiple: true
+      - name: Push images and manifest
+        id: push
         env:
           GITHUB_REF: ${{ github.ref }}
           GITHUB_REF_NAME: ${{ github.ref_name }}
           RELEASE_TAG: ${{ inputs.release_tag }}
+          PRERELEASE: ${{ inputs.prerelease }}
         run: |
+          set -euo pipefail
           addon="$(sed -n 's/^version: "\([^"]*\)"/\1/p' addon/config.yaml | head -1)"
           if [[ -n "$RELEASE_TAG" && ! "$RELEASE_TAG" =~ ^v?[0-9]+(\.[0-9]+)+(-((rc|staging)\.[A-Za-z0-9]+))?$ ]]; then
             echo "Invalid release_tag format: $RELEASE_TAG" >&2
@@ -184,15 +209,43 @@ jobs:
             version="$addon"
             extra_edge=true
           fi
-          src=(
-            "${GHCR}-amd64:${version}"
-            "${GHCR}-aarch64:${version}"
-          )
+          channel=""
+          if [[ "$PRERELEASE" == "true" || "$RELEASE_TAG" == *-staging.* || "$RELEASE_TAG" == *-rc.* || "$GITHUB_REF_NAME" == *-staging.* || "$GITHUB_REF_NAME" == *-rc.* ]]; then
+            channel=staging
+          fi
+          src=()
+          for arch in amd64 aarch64; do
+            archive="images/klar-image-${arch}.tar.gz"
+            if [[ ! -f "$archive" ]]; then
+              echo "missing image artifact: $archive" >&2
+              exit 1
+            fi
+            gzip -dc "$archive" | docker load
+            local_tag="klar-local-${arch}:${version}"
+            image="${GHCR}-${arch}"
+            docker tag "$local_tag" "${image}:${version}"
+            tags=("${image}:${version}")
+            if [[ "${extra_edge:-}" == "true" ]]; then
+              docker tag "$local_tag" "${image}:edge"
+              tags+=("${image}:edge")
+            fi
+            if [[ "$channel" == "staging" ]]; then
+              docker tag "$local_tag" "${image}:staging"
+              tags+=("${image}:staging")
+            elif [[ "$GITHUB_REF" == refs/tags/v* || "$GITHUB_REF" == refs/tags/20* || -n "$RELEASE_TAG" ]]; then
+              docker tag "$local_tag" "${image}:latest"
+              tags+=("${image}:latest")
+            fi
+            for tag in "${tags[@]}"; do
+              docker push "$tag"
+            done
+            src+=("${image}:${version}")
+          done
           docker buildx imagetools create -t "${GHCR}:${version}" "${src[@]}"
           if [[ "${extra_edge:-}" == "true" ]]; then
             docker buildx imagetools create -t "${GHCR}:edge" "${src[@]}"
           fi
-          if [[ "${{ inputs.prerelease }}" == "true" || "$RELEASE_TAG" == *-staging.* || "$RELEASE_TAG" == *-rc.* ]]; then
+          if [[ "$channel" == "staging" ]]; then
             docker buildx imagetools create -t "${GHCR}:staging" "${src[@]}"
           elif [[ "$GITHUB_REF" == refs/tags/v* || "$GITHUB_REF" == refs/tags/20* || -n "$RELEASE_TAG" ]]; then
             docker buildx imagetools create -t "${GHCR}:latest" "${src[@]}"
@@ -202,7 +255,7 @@ jobs:
   trivy:
     name: trivy
     if: github.event_name != 'pull_request'
-    needs: docker-manifest
+    needs: docker-publish
     runs-on: ubuntu-26.04
     timeout-minutes: 20
     permissions:
@@ -218,7 +271,7 @@ jobs:
       - uses: aquasecurity/trivy-action@ed142fd0673e97e23eac54620cfb913e5ce36c25 # v0.36.0
         with:
           version: v0.74.0
-          image-ref: ${{ needs.docker-manifest.outputs.image }}
+          image-ref: ${{ needs.docker-publish.outputs.image }}
           severity: HIGH,CRITICAL
           ignore-unfixed: true
           vuln-type: os,library
@@ -236,7 +289,7 @@ jobs:
   release:
     name: release
     if: ${{ startsWith(github.ref, 'refs/tags/v') || startsWith(github.ref, 'refs/tags/20') || inputs.release_tag != '' }}
-    needs: build
+    needs: [docker-publish, trivy]
     runs-on: ubuntu-26.04
     permissions:
       contents: write
@@ -249,6 +302,7 @@ jobs:
       - uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333 # v8.0.2
         with:
           path: dist
+          pattern: klar-linux-*
           merge-multiple: true
       - uses: anchore/sbom-action@e22c389904149dbc22b58101806040fa8d37a610 # v0.24.0
         with:

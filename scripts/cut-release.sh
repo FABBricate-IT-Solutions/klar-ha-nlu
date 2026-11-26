@@ -167,12 +167,13 @@ open_or_update_pr() {
       --body "$(cat <<EOF
 Prepares **${tag}**.
 
-The Release cut job waits for the 10 required status checks, then merges this PR with \`gh pr merge\` (no \`--admin\`) and tags ${tag}.
+Order (package 5.1): the cut job waits for the 10 required checks and tags this branch tip. **Build** then builds both arches, smokes each image with SIGTERM, scans, pushes images, writes the manifest, and creates the GitHub Release. Only after that succeeds does the land job merge this PR (so the add-on version on \`main\` never appears before its images).
 
 ## Test plan
 - [ ] Required checks green: test, clippy, rustfmt, web, release-gates, cargo-audit, cargo-deny, gitleaks, hassfest, hacs
-- [ ] Merge lands on main without a direct push
-- [ ] Release tags and publishes ${tag}
+- [ ] Tag ${tag} points at this branch tip before merge
+- [ ] GHCR images and the GitHub Release exist before this PR merges
+- [ ] Merge lands on main without a direct push (no \`--admin\`)
 EOF
 )")"
     echo "$url" >&2
@@ -191,7 +192,9 @@ EOF
   printf '%s' "$pr"
 }
 
-land_via_pr() {
+prepare_via_pr() {
+  # Bump on a branch, wait for required checks, tag the tip. Do not merge yet:
+  # landing addon/config.yaml on main is what Supervisor reads (V-02).
   local tag="$1"
   local branch="chore/release-${tag}"
   git checkout -B "$branch"
@@ -206,7 +209,7 @@ land_via_pr() {
   fi
   git push --force-with-lease origin "HEAD:refs/heads/${branch}"
 
-  local pr
+  local pr sha
   pr="$(open_or_update_pr "$tag" "$branch")"
   echo "Release PR: https://github.com/${GITHUB_REPOSITORY}/pull/${pr}"
   wait_required_checks "$pr"
@@ -216,23 +219,43 @@ land_via_pr() {
     echo "mergeStateStatus=BLOCKED; refusing --admin merge" >&2
     exit 1
   fi
-  gh pr merge "$pr" --merge --delete-branch
-  local sha=""
-  local waited=0
-  while (( waited < 60 )); do
-    sha="$(gh pr view "$pr" --json mergeCommit --jq '.mergeCommit.oid // empty')"
-    if [[ -n "$sha" ]]; then
-      break
-    fi
-    sleep 2
-    waited=$((waited + 2))
-  done
+  sha="$(gh pr view "$pr" --json headRefOid --jq .headRefOid)"
   if [[ -z "$sha" ]]; then
-    echo "PR ${pr} merged but merge commit SHA is missing" >&2
+    echo "PR ${pr} has no head SHA" >&2
     exit 1
   fi
+  echo "pr=${pr}" >> "$GITHUB_OUTPUT"
   git fetch origin "$sha"
   tag_and_exit "$tag" "$sha"
+}
+
+land_addon() {
+  # Called only after Build has pushed images, scanned, and created the Release.
+  local tag="${TAG:-}"
+  tag="${tag#v}"
+  if [[ -z "$tag" ]]; then
+    echo "usage: cut-release.sh --land-addon  (with TAG set)" >&2
+    exit 1
+  fi
+  local branch="chore/release-${tag}"
+  local pr merge_status
+  pr="$(gh pr list --head "$branch" --base main --state open --json number --jq '.[0].number // empty')"
+  if [[ -z "$pr" ]]; then
+    pr="$(gh pr list --head "$branch" --base main --state merged --json number --jq '.[0].number // empty')"
+    if [[ -n "$pr" ]]; then
+      echo "Release PR #${pr} already merged — add-on version is on main"
+      exit 0
+    fi
+    echo "No release PR for ${branch}" >&2
+    exit 1
+  fi
+  merge_status="$(gh pr view "$pr" --json mergeStateStatus --jq .mergeStateStatus)"
+  if [[ "$merge_status" == "BLOCKED" ]]; then
+    echo "mergeStateStatus=BLOCKED; refusing --admin merge" >&2
+    exit 1
+  fi
+  gh pr merge "$pr" --merge --delete-branch
+  echo "Landed add-on version ${tag} via PR #${pr}"
 }
 
 self_test() {
@@ -241,6 +264,12 @@ self_test() {
   [[ "$(release_from_message $'Merge pull request #146 from org/chore/release-2026.8.52\n\nchore(release): prepare for 2026.8.52')" == "2026.8.52" ]]
   [[ "$(release_from_message $'Merge pull request #146 from FABBricate-IT-Solutions/chore/release-2026.8.52')" == "2026.8.52" ]]
   [[ -z "$(release_from_message $'Merge pull request #147 from org/feat/conversation-suite')" ]]
+  grep -q '^prepare_via_pr() {$' "$0"
+  grep -q '^land_addon() {$' "$0"
+  if grep -q '^land_via_pr() {$' "$0"; then
+    echo "old land_via_pr function must stay removed" >&2
+    exit 1
+  fi
   echo "ok"
 }
 
@@ -250,8 +279,17 @@ main() {
     return
   fi
 
+  if [[ "${1:-}" == "--land-addon" ]]; then
+    if [[ -z "${GITHUB_REPOSITORY:-}" ]]; then
+      echo "usage: cut-release.sh --land-addon  (run from Release land job)" >&2
+      exit 1
+    fi
+    land_addon
+    return
+  fi
+
   if [[ -z "${GITHUB_OUTPUT:-}" || -z "${GITHUB_REPOSITORY:-}" ]]; then
-    echo "usage: cut-release.sh --self-test  (or run from Release with GITHUB_OUTPUT set)" >&2
+    echo "usage: cut-release.sh --self-test|--land-addon  (or run from Release with GITHUB_OUTPUT set)" >&2
     exit 1
   fi
 
@@ -277,7 +315,7 @@ main() {
   python3 scripts/bump-version.py "$version"
   write_changelog "$tag"
   python3 scripts/release-notes.py --sync-addons
-  land_via_pr "$tag"
+  prepare_via_pr "$tag"
 }
 
 main "$@"

@@ -57,12 +57,13 @@ Home-Assistant-Wechsel: [home-assistant.md](home-assistant.md) — Konfigurieren
 Jeder Merge auf `main` schneidet automatisch die nächste `YYYY.M.PATCH`. Der Release-Workflow:
 
 1. berechnet die nächste CalVer-Version
-2. schreibt sie nach `Cargo.toml`, `addon/config.yaml` und das HA-Manifest
+2. schreibt sie nach `Cargo.toml`, `addon/config.yaml` und das HA-Manifest auf dem Branch `chore/release-YYYY.M.PATCH`
 3. erzeugt `CHANGELOG.md` neu
-4. öffnet oder aktualisiert `chore/release-YYYY.M.PATCH`, wartet auf die 10 Required Checks, merget mit `gh pr merge` (kein `--admin`) und taggt
-5. ruft **Build** im selben Lauf auf (`workflow_call`)
+4. öffnet oder aktualisiert den Release-PR, wartet auf die 10 Required Checks und taggt die Branch-Spitze (noch kein Merge)
+5. ruft **Build** auf: beide Architekturen, Container-Start, Stop per SIGTERM, Scan, danach Images, Manifest und GitHub Release
+6. merget den Release-PR erst danach (`land`) — die Add-on-Version auf `main` erscheint nie vor ihren Images
 
-Ist der Push schon ein Land von `chore(release): prepare for YYYY.M.PATCH` (oder ein Merge von `chore/release-*`), taggt der Cut nur. Er pusht keinen neuen Commit nach `main`.
+Ist der Push schon ein Land von `chore(release): prepare for YYYY.M.PATCH` (oder ein Merge von `chore/release-*`), taggt der Cut nur, wenn der Tag noch fehlt. Er pusht keinen neuen Commit nach `main`.
 
 **Actions → Release → Run workflow** bleibt für einen manuellen Override (Feld leer = nächste Version, oder z. B. `2026.8.0`).
 
