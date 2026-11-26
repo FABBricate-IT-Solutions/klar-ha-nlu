@@ -71,6 +71,9 @@ Routenindex aus dem Axum-Router (`python3 scripts/gen_api_routes.py`). Auth ist 
 | `POST` | `/api/v2/speech/render` | Read | Sprache nach Execute aus HA-Zustandsschnappschuss. |
 | `GET` | `/api/v2/wrong-cases` | Read | Vom Operator markierte Regressionsfälle listen. |
 | `GET` | `/api/v2/wrong-cases/dataset` | Read | Als falsch markierte Fälle als nlu_expect-YAML laden. |
+| `GET` | `/api/v2/wrong-cases/dry-run` | Read | Gespeicherte Haus-Regressionsfälle trocken gegen die laufende Engine laufen lassen. |
+| `GET` | `/api/v2/wrong-cases/update-dialog` | Read | Nach Engine-Update: wie viele gespeicherte Fälle sich ändern, und welche Sätze. |
+| `POST` | `/api/v2/wrong-cases/update-dialog` | Write | Nach Engine-Update: wie viele gespeicherte Fälle sich ändern, und welche Sätze. |
 
 <!-- END GENERATED ROUTES -->
 
