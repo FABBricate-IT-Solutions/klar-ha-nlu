@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { api, type EngineHealth } from "../api";
 import { fill, type Messages } from "../i18n";
 import { Badge } from "@/components/ui/badge";
@@ -13,17 +13,26 @@ function homeAge(t: Messages, health: EngineHealth): string {
 export function DoctorCard({ t }: { t: Messages }) {
   const [health, setHealth] = useState<EngineHealth | null>(null);
   const [error, setError] = useState(false);
-  const load = useCallback(() => {
-    setError(false);
+
+  useEffect(() => {
+    let live = true;
     api
       .health()
-      .then(setHealth)
+      .then((next) => {
+        if (!live) return;
+        setHealth(next);
+        setError(false);
+      })
       .catch(() => {
+        if (!live) return;
         setHealth(null);
         setError(true);
       });
+    return () => {
+      live = false;
+    };
   }, []);
-  useEffect(load, [load]);
+
   return (
     <Card>
       <CardHeader>
