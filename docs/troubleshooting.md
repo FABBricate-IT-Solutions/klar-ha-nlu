@@ -104,7 +104,7 @@ Downloads sind redigiert:
 - Entity- und Area-Namen werden pseudonymisiert
 - Rohtext, Sprachausgabe und Tokens bleiben draußen, solange **support_bundle_raw_text** aus ist (Standard)
 
-Das Conversation-Journal (UI **Gespräche**) hält die letzten 200 Turns 24 Stunden. Rohtext, Tokens und Speech folgen derselben Flagge. Das Dashboard zeigt dann keinen Satztext.
+Das Conversation-Journal (UI **Gespräche**) hält die letzten 200 Turns 24 Stunden auf der Box und zeigt den gehörten Satz – sonst fehlen Replay-Text, „Das war falsch“ und die Fallübergabe. Rohtext in **Downloads**, in den Ergebnis-Metriken und in der Übergabe an das Trainer-LLM folgt weiterhin **support_bundle_raw_text**.
 
 ## Was das Haus nicht verlässt
 

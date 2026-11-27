@@ -107,7 +107,7 @@ fn journal_save_failure_emits_warning() {
     let mut perms = std::fs::metadata(dir.path()).unwrap().permissions();
     perms.set_mode(0o555);
     std::fs::set_permissions(dir.path(), perms).unwrap();
-    let turn = turn_from_outcome(&sample_outcome(), true, Vec::new(), None);
+    let turn = turn_from_outcome(&sample_outcome(), Vec::new(), None);
     let (_, text) = logged(|| journal.append(turn));
     let mut perms = std::fs::metadata(dir.path()).unwrap().permissions();
     perms.set_mode(0o755);

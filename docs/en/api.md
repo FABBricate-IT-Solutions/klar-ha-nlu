@@ -185,7 +185,7 @@ The token comes from `--token`, `KLAR_TOKEN`, or `--token-file`.
 | `default_language` | The pack a request binds when `languages` is empty and the request names no language. Empty means English. A code no pack answers is refused with `422`. |
 | `experimental_languages` | `true` offers experimental locales for a new selection (see [languages](languages.md#tiers)). Off by default. |
 | `support_bundle` | `true` writes parse traffic to `/data/support_bundle.jsonl` (max 2000 entries). Survives restarts. First boot also via `KLAR_SUPPORT_BUNDLE=1`. |
-| `support_bundle_raw_text` | `true` keeps raw text, speech, and tokens in downloads and the journal. Off by default. Conversation IDs are always hashed; entity and area names are always pseudonymized. |
+| `support_bundle_raw_text` | `true` keeps raw text, speech, and tokens in downloads. Off by default. The on-box conversation journal always keeps the sentence – the flag only decides what leaves the house. Conversation IDs are always hashed; entity and area names are always pseudonymized. |
 | `confirm_risky_actions` | `true` requires confirmation before risky actions such as locking/unlocking and broad safety-relevant controls. |
 | `semantic_adapters` | `true` consults local typed adapters after a ranking reject. Off by default. Proposals are revalidated; they never override Execute/Confirm/Clarify/Chat. |
 | `nlu_rag` | `true` attaches a matched-slice retrieval on `chat` and `reject` only. Off by default. Never Assist tools; the HA fallback may recover a command only through Klar tools. `POST /api/v2/parse` can set `nlu_rag` per request. |
@@ -358,7 +358,7 @@ Dry-run parse with optional `policies` (else the stored set). Body: `{ "text", "
 
 ### `GET /api/v2/conversations`
 
-Conversation journal: last **200** turns, **24 hours**, file `/data/conversations.jsonl`. Fields: `conversation_id`, `ts_ms`, optional `text`, `decision`, `speech`, `confidence`, `briefing`, `evidence_kinds`, `last_names`, optional `confirm_prompt` / `candidate_id`. Raw `text` is stored only when `support_bundle_raw_text` is on. Confirm/clarify never include a plan.
+Conversation journal: last **200** turns, **24 hours**, file `/data/conversations.jsonl`. Fields: `conversation_id`, `ts_ms`, optional `text`, `decision`, `speech`, `confidence`, `briefing`, `evidence_kinds`, `last_names`, optional `confirm_prompt` / `candidate_id`. The heard sentence stays in the journal (`text`, `tokens`, `speech`) so **Replay** and **That was wrong** keep working; `support_bundle_raw_text` covers the download only. Confirm/clarify never include a plan.
 
 ### `GET /api/v2/conversations/{id}`
 

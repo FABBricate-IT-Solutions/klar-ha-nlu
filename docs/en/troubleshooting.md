@@ -104,7 +104,7 @@ Downloads are redacted:
 - Entity and area names are pseudonymized
 - Raw utterance, speech, and tokens stay out unless **support_bundle_raw_text** is on (off by default)
 
-The conversation journal (UI **Conversations**) keeps the last 200 turns for 24 hours. Raw text, tokens, and speech follow the same flag. The dashboard then shows no sentence text.
+The conversation journal (UI **Conversations**) keeps the last 200 turns for 24 hours on the box and shows the heard sentence – without it replay text, "That was wrong", and the case hand-off are dead. Raw text in **downloads**, in the result metrics, and in what the trainer LLM receives still follows **support_bundle_raw_text**.
 
 ## What never leaves the house
 

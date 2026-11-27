@@ -91,7 +91,7 @@ mod tests {
             refine_band: None,
             teach: None,
         };
-        journal.append(crate::io::conversations::turn_from_outcome(&outcome, true, Vec::new(), None));
+        journal.append(crate::io::conversations::turn_from_outcome(&outcome, Vec::new(), None));
         let got = rx.recv().await.expect("live turn");
         assert_eq!(got.conversation_id, "c-live");
         assert_eq!(got.text.as_deref(), Some("licht an"));
