@@ -14,7 +14,8 @@ const BUDGET = {
   // 6.7: live/history chunk + short English FALLBACK keys in every chrome pack (parity CI).
   // 6.8: result-metrics chunk + weekly rejection FALLBACK keys in every chrome pack.
   // First-paint entry stays gated above; packs stay shared FALLBACKS, not unique translations.
-  js: { raw: 4080 * KB, gzip: 1440 * KB },
+  // 1448: journalHint now names the heard sentence — one clause in each of the 67 locale packs.
+  js: { raw: 4080 * KB, gzip: 1448 * KB },
   css: { raw: 128 * KB, gzip: 22 * KB },
 };
 

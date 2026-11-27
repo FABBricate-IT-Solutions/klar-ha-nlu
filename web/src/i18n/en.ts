@@ -228,7 +228,7 @@ export const en = {
   ignoreTarget: "Ignore this target",
   teachSaved: "Saved.",
   journal: "Conversation journal",
-  journalHint: "Last 200 turns, 24 hours, redacted. Chat and refine replies from the engine LLM are logged. Raw text only with the bundle.",
+  journalHint: "Last 200 turns, 24 hours, redacted. The heard sentence and the engine LLM chat and refine replies are logged. Raw text leaves the house only with the support bundle.",
   journalLive: "Live — new utterances appear without reloading.",
   journalSearch: "Search journal",
   journalFilterDecision: "Filter by decision",

@@ -245,15 +245,9 @@ mod tests {
             let mut settings = state.settings.lock().await;
             settings.support_bundle_raw_text = true;
         }
-        state.journal.append(turn_from_outcome(
-            &outcome("licht an", "Geht.", ParseDecision::Execute),
-            true,
-            vec!["Wohnzimmer".into()],
-            None,
-        ));
+        state.journal.append(turn_from_outcome(&outcome("licht an", "Geht.", ParseDecision::Execute), vec!["Wohnzimmer".into()], None));
         state.journal.append(turn_from_outcome(
             &outcome("kalender", "Nichts.", ParseDecision::Reject { reason: RejectReason::NoAction }),
-            true,
             Vec::new(),
             None,
         ));
@@ -268,12 +262,7 @@ mod tests {
     #[tokio::test]
     async fn list_turns_hides_utterances_without_raw_text() {
         let (_scratch, state) = state();
-        state.journal.append(turn_from_outcome(
-            &outcome("licht an", "Geht.", ParseDecision::Execute),
-            true,
-            vec!["Wohnzimmer".into()],
-            None,
-        ));
+        state.journal.append(turn_from_outcome(&outcome("licht an", "Geht.", ParseDecision::Execute), vec!["Wohnzimmer".into()], None));
         let listed = list_turns(&state, &json!({"last":1})).await.unwrap();
         assert_eq!(listed["count"], 1);
         assert!(listed["turns"][0]["text"].is_null());

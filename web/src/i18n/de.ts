@@ -228,7 +228,7 @@ export const de = {
   ignoreTarget: "Dieses Ziel ignorieren",
   teachSaved: "Gespeichert.",
   journal: "Gesprächsjournal",
-  journalHint: "Letzte 200 Turns, 24 Stunden, redigiert. Chat- und Verfeinerungsantworten des Engine-LLM stehen im Journal. Rohtext nur mit Bundle.",
+  journalHint: "Letzte 200 Turns, 24 Stunden, redigiert. Der gehörte Satz und die Chat- und Verfeinerungsantworten des Engine-LLM stehen im Journal. Rohtext verlässt das Haus nur mit dem Support-Bundle.",
   journalLive: "Live — neue Äußerungen erscheinen ohne Neuladen.",
   journalSearch: "Journal durchsuchen",
   journalFilterDecision: "Nach Entscheidung filtern",

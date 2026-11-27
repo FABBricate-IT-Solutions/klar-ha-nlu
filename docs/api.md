@@ -185,7 +185,7 @@ Der Token kommt aus `--token`, `KLAR_TOKEN` oder `--token-file`.
 | `default_language` | Das Pack, das ein Request bindet, wenn `languages` leer ist und der Request keine Sprache nennt. Leer heißt Englisch. Ein Code, den kein Pack beantwortet, wird mit `422` abgelehnt. |
 | `experimental_languages` | `true` bietet experimentelle Locales zur Neuauswahl an (siehe [Sprachen](languages.md#stufen)). Standardmäßig aus. |
 | `support_bundle` | `true` speichert Parse-Verkehr unter `/data/support_bundle.jsonl` (max. 2000 Einträge). Überlebt Neustarts. Erststart auch über `KLAR_SUPPORT_BUNDLE=1`. |
-| `support_bundle_raw_text` | `true` erlaubt Rohtext, Sprachausgabe und Tokens im Download und im Journal. Standard aus. Conversation-IDs werden immer gehasht, Entity- und Area-Namen immer pseudonymisiert. |
+| `support_bundle_raw_text` | `true` erlaubt Rohtext, Sprachausgabe und Tokens im Download. Standard aus. Das Conversation-Journal auf der Box behält den Satz immer – die Flagge entscheidet nur über alles, was das Haus verlässt. Conversation-IDs werden immer gehasht, Entity- und Area-Namen immer pseudonymisiert. |
 | `confirm_risky_actions` | `true` verlangt vor riskanten Aktionen wie Sperren/Entsperren und breiten sicherheitsrelevanten Steuerungen eine Bestätigung. |
 | `semantic_adapters` | `true` befragt lokale typisierte Adapter nach einem Ranking-Reject. Standard aus. Vorschläge werden revalidiert und überschreiben Execute/Confirm/Clarify/Chat nicht. |
 | `nlu_rag` | `true` hängt nur bei `chat` und `reject` einen gematchten Ausschnitt an. Standard aus. Nie Assist-Werkzeuge; der HA-Fallback darf einen Befehl nur über Klar-Werkzeuge nachziehen. `POST /api/v2/parse` kann `nlu_rag` pro Request setzen. |
@@ -358,7 +358,7 @@ Dry-Run-Parse mit optionalen `policies` (sonst der gespeicherte Satz). Body: `{ 
 
 ### `GET /api/v2/conversations`
 
-Gesprächsjournal: letzte **200** Turns, **24 Stunden**, Datei `/data/conversations.jsonl`. Felder: `conversation_id`, `ts_ms`, optionales `text`, `decision`, `speech`, `confidence`, `briefing`, `evidence_kinds`, `last_names`, optional `confirm_prompt` / `candidate_id`. Roh-`text` nur bei `support_bundle_raw_text`. Confirm/Clarify enthalten keinen Plan.
+Gesprächsjournal: letzte **200** Turns, **24 Stunden**, Datei `/data/conversations.jsonl`. Felder: `conversation_id`, `ts_ms`, optionales `text`, `decision`, `speech`, `confidence`, `briefing`, `evidence_kinds`, `last_names`, optional `confirm_prompt` / `candidate_id`. Der gehörte Satz bleibt im Journal (`text`, `tokens`, `speech`), damit **Nochmal** und **Das war falsch** funktionieren; `support_bundle_raw_text` betrifft nur den Download. Confirm/Clarify enthalten keinen Plan.
 
 ### `GET /api/v2/conversations/{id}`
 

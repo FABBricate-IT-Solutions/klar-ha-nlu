@@ -114,7 +114,9 @@ impl ConversationJournal {
         if let Some(turn) = turns.iter_mut().rev().find(|turn| turn.conversation_id == id) {
             turn.speech = speech;
             turn.speech_source = Some(source.to_string());
-            turn.ts_ms = now_ms();
+            // Keep the original ts_ms: the card shows when the user spoke, not when the engine
+            // LLM answered, and the live view keys on conversation_id:ts_ms. A fresh ts would jump
+            // the card to the reply time and show it twice.
             let published = turn.clone();
             if let Err(err) = rewrite_turns(&self.dir, &turns) {
                 tracing::warn!("conversations.jsonl nicht gespeichert: {err}");
@@ -139,12 +141,15 @@ impl ConversationJournal {
     }
 }
 
-pub fn turn_from_outcome(
-    outcome: &ParseOutcome,
-    include_text: bool,
-    last_names: Vec<String>,
-    preferred_area: Option<String>,
-) -> ConversationTurn {
+/// Builds the operator's journal line for one parse.
+///
+/// The journal is the local diagnostic view of this box: capped at 200 turns for 24 hours,
+/// served only to read-scoped callers. It keeps the heard utterance, its replay tokens, and
+/// the spoken answer, because the Conversations page, **Nochmal**, **Das war falsch**, and the
+/// trainer's case export are unusable without them. Raw-text consent (D-20) still gates every
+/// path that leaves the box: the support-bundle download (`bundle.rs`, `privacy.rs`), the
+/// metrics, and the turns handed to the LLM trainer (`trainer_turns.rs`).
+pub fn turn_from_outcome(outcome: &ParseOutcome, last_names: Vec<String>, preferred_area: Option<String>) -> ConversationTurn {
     let (confirm_prompt, candidate_id) = match &outcome.decision {
         ParseDecision::Confirm { prompt, candidate_id } => (Some(prompt.clone()), Some(candidate_id.clone())),
         ParseDecision::Clarify { prompt, .. } => (Some(prompt.clone()), None),
@@ -157,12 +162,12 @@ pub fn turn_from_outcome(
     ConversationTurn {
         conversation_id: outcome.conversation_id.clone(),
         ts_ms: now_ms(),
-        text: include_text.then(|| outcome.text.clone()),
-        // Tokens rebuild the utterance; keep them only with raw-text consent (D-20).
-        tokens: if include_text { replay_tokens(&outcome.text) } else { Vec::new() },
+        text: Some(outcome.text.clone()),
+        // Tokens rebuild the utterance for the replay button; exports redact them (D-20).
+        tokens: replay_tokens(&outcome.text),
         decision: decision_name(&outcome.decision).into(),
         reject_reason,
-        speech: if include_text { outcome.speech.clone() } else { String::new() },
+        speech: outcome.speech.clone(),
         speech_source: None,
         refine_band: outcome.refine_band.map(band_name),
         confidence: outcome.confidence,

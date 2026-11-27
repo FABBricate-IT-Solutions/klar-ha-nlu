@@ -26,18 +26,18 @@ fn confirm_turn_hides_plan() {
         refine_band: Some(RefineBand::Status),
         teach: None,
     };
-    let turn = turn_from_outcome(&outcome, false, Vec::new(), None);
+    let turn = turn_from_outcome(&outcome, Vec::new(), None);
     assert_eq!(turn.decision, "confirm");
-    assert!(turn.text.is_none());
-    assert!(turn.tokens.is_empty());
-    assert!(turn.speech.is_empty());
+    assert_eq!(turn.text.as_deref(), Some("lock the door"));
+    assert_eq!(turn.tokens, replay_tokens("lock the door"));
+    assert_eq!(turn.speech, "Really?");
     assert_eq!(turn.confirm_prompt.as_deref(), Some("Really?"));
     assert_eq!(turn.candidate_id.as_deref(), Some("sel"));
     assert_eq!(turn.refine_band.as_deref(), Some("status"));
     let json = serde_json::to_string(&turn).expect("turn json");
     assert!(json.contains("\"last_names\":[]"), "{json}");
     assert!(json.contains("\"evidence_kinds\":[]"), "{json}");
-    assert!(!json.contains("lock the door"), "{json}");
+    assert!(!json.contains("plan"), "{json}");
 }
 
 #[test]
@@ -64,7 +64,7 @@ fn reject_turn_has_no_candidate() {
         refine_band: None,
         teach: None,
     };
-    let turn = turn_from_outcome(&outcome, true, vec!["Kugel".into()], Some("kueche".into()));
+    let turn = turn_from_outcome(&outcome, vec!["Kugel".into()], Some("kueche".into()));
     assert_eq!(turn.preferred_area.as_deref(), Some("kueche"));
     assert_eq!(turn.text.as_deref(), Some("x"));
     assert_eq!(turn.tokens, replay_tokens("x"));
@@ -73,7 +73,7 @@ fn reject_turn_has_no_candidate() {
 }
 
 #[test]
-fn default_journal_omits_tokens_and_speech_without_raw_text() {
+fn default_journal_keeps_tokens_and_speech_for_the_operator() {
     let spoken = "Mach das Küchenlicht an!";
     let outcome = ParseOutcome {
         schema_version: "2.0".into(),
@@ -97,18 +97,17 @@ fn default_journal_omits_tokens_and_speech_without_raw_text() {
         refine_band: None,
         teach: None,
     };
-    let turn = turn_from_outcome(&outcome, false, vec!["HassTurnOn".into()], None);
-    assert!(turn.text.is_none());
-    assert!(turn.tokens.is_empty());
-    assert!(turn.speech.is_empty());
+    let turn = turn_from_outcome(&outcome, vec!["HassTurnOn".into()], None);
+    assert_eq!(turn.text.as_deref(), Some(spoken));
+    assert_eq!(turn.tokens, replay_tokens(spoken));
+    assert_eq!(turn.speech, "Verstanden.");
     let json = serde_json::to_string(&turn).expect("turn json");
-    assert!(!json.contains(spoken), "{json}");
-    assert!(!json.contains("Küchenlicht"), "{json}");
-    assert!(!json.contains("Verstanden"), "{json}");
+    assert!(json.contains(spoken), "{json}");
+    assert!(json.contains("Küchenlicht"), "{json}");
 }
 
 #[test]
-fn journal_roundtrip_omits_utterance_without_raw_text() {
+fn journal_roundtrip_keeps_utterance_for_the_operator() {
     let scratch = TestDir::new("journal-tokens");
     let dir = scratch.path().to_path_buf();
     let spoken = "Küche AN!";
@@ -135,16 +134,15 @@ fn journal_roundtrip_omits_utterance_without_raw_text() {
         teach: None,
     };
     let journal = ConversationJournal::open(&dir);
-    journal.append(turn_from_outcome(&outcome, false, Vec::new(), None));
+    journal.append(turn_from_outcome(&outcome, Vec::new(), None));
     let reloaded = ConversationJournal::open(&dir);
     let turns = reloaded.list();
     assert_eq!(turns.len(), 1);
-    assert!(turns[0].text.is_none());
-    assert!(turns[0].tokens.is_empty());
-    assert!(turns[0].speech.is_empty());
+    assert_eq!(turns[0].text.as_deref(), Some(spoken));
+    assert_eq!(turns[0].tokens, replay_tokens(spoken));
+    assert_eq!(turns[0].speech, "An.");
     let raw = crate::home::paths::read_to_string_confined(&dir, JOURNAL_FILE).expect("journal file");
-    assert!(!raw.contains(spoken), "{raw}");
-    assert!(!raw.contains("Küche"), "{raw}");
+    assert!(raw.contains(spoken), "{raw}");
 }
 
 #[test]
@@ -183,14 +181,16 @@ fn note_spoken_patches_chat_reply_on_latest_turn() {
         teach: None,
     };
     let journal = ConversationJournal::open(&dir);
-    journal.append(turn_from_outcome(&outcome, false, Vec::new(), None));
+    journal.append(turn_from_outcome(&outcome, Vec::new(), None));
+    let spoken_at = journal.list()[0].ts_ms;
     journal.note_spoken(Some("c-chat"), "Zwei Roboter gehen in eine Bar.", "chat");
     journal.note_spoken(Some("c-chat"), "KLAR_PARSE: licht an", "chat");
     let turns = journal.list();
-    assert_eq!(turns.len(), 1);
+    assert_eq!(turns.len(), 1, "patching the reply must not add a second card");
     assert_eq!(turns[0].speech, "Zwei Roboter gehen in eine Bar.");
     assert_eq!(turns[0].speech_source.as_deref(), Some("chat"));
     assert_eq!(turns[0].decision, "chat");
+    assert_eq!(turns[0].ts_ms, spoken_at, "the card keeps the request time, not the reply time");
 }
 
 #[test]
@@ -221,7 +221,6 @@ fn journal_append_keeps_prior_lines_readable() {
             refine_band: None,
             teach: None,
         },
-        false,
         Vec::new(),
         None,
     );

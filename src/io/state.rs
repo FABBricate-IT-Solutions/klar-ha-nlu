@@ -93,10 +93,10 @@ impl AppState {
     }
 
     pub async fn record_outcome(&self, outcome: &ParseOutcome, last_names: Vec<String>) {
-        let include_text = self.settings.lock().await.support_bundle_raw_text;
         let area = outcome.evidence.iter().find(|item| item.kind == "preferred_area").map(|item| item.value.clone());
         self.result_metrics.record(outcome);
-        self.journal.append(turn_from_outcome(outcome, include_text, last_names, area));
+        // The journal is local; raw-text consent gates the bundle and the metrics, not it.
+        self.journal.append(turn_from_outcome(outcome, last_names, area));
     }
 
     pub async fn catalog_for_settings(&self) -> std::sync::Arc<crate::lang::Catalog> {
