@@ -114,7 +114,9 @@ impl ConversationJournal {
         if let Some(turn) = turns.iter_mut().rev().find(|turn| turn.conversation_id == id) {
             turn.speech = speech;
             turn.speech_source = Some(source.to_string());
-            turn.ts_ms = now_ms();
+            // Keep the original ts_ms: the card shows when the user spoke, not when the engine
+            // LLM answered, and the live view keys on conversation_id:ts_ms. A fresh ts would jump
+            // the card to the reply time and show it twice.
             let published = turn.clone();
             if let Err(err) = rewrite_turns(&self.dir, &turns) {
                 tracing::warn!("conversations.jsonl nicht gespeichert: {err}");

@@ -182,13 +182,15 @@ fn note_spoken_patches_chat_reply_on_latest_turn() {
     };
     let journal = ConversationJournal::open(&dir);
     journal.append(turn_from_outcome(&outcome, Vec::new(), None));
+    let spoken_at = journal.list()[0].ts_ms;
     journal.note_spoken(Some("c-chat"), "Zwei Roboter gehen in eine Bar.", "chat");
     journal.note_spoken(Some("c-chat"), "KLAR_PARSE: licht an", "chat");
     let turns = journal.list();
-    assert_eq!(turns.len(), 1);
+    assert_eq!(turns.len(), 1, "patching the reply must not add a second card");
     assert_eq!(turns[0].speech, "Zwei Roboter gehen in eine Bar.");
     assert_eq!(turns[0].speech_source.as_deref(), Some("chat"));
     assert_eq!(turns[0].decision, "chat");
+    assert_eq!(turns[0].ts_ms, spoken_at, "the card keeps the request time, not the reply time");
 }
 
 #[test]
